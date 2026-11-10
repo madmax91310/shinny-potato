@@ -1,0 +1,54 @@
+{
+  "initial": {
+    "points": 10706,
+    "categories": {
+      "failure": 44,
+      "connection": 264,
+      "monitoring": 375,
+      "qualification": 2618,
+      "due": 3,
+      "editorial": 28,
+      "archive": 5004,
+      "waiting": 832,
+      "not-applicable": 430,
+      "history": 1108
+    },
+    "signals": 14524,
+    "attempts": 1490,
+    "commonInterventions": 1,
+    "pointsInCommonInterventions": 2,
+    "consumerContracts": 5584,
+    "consumerStates": {
+      "blocked": 1221,
+      "qualification-needed": 1082,
+      "scheduled-evidence": 3281
+    }
+  },
+  "final": {
+    "points": 10676,
+    "categories": {
+      "failure": 37,
+      "connection": 264,
+      "monitoring": 373,
+      "qualification": 2567,
+      "due": 7,
+      "editorial": 28,
+      "archive": 5007,
+      "waiting": 837,
+      "not-applicable": 430,
+      "history": 1126
+    },
+    "signals": 14569,
+    "attempts": 1503,
+    "commonInterventions": 1,
+    "pointsInCommonInterventions": 2,
+    "consumerContracts": 5619,
+    "consumerStates": {
+      "blocked": 1277,
+      "qualification-needed": 1077,
+      "scheduled-evidence": 3265
+    }
+  },
+  "initialActive": 683,
+  "finalActive": 674
+}

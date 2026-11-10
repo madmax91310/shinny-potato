@@ -1,0 +1,45 @@
+{
+  "before": {
+    "sha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "dataSha": "84a19763804bf7577131e491f8d471771e8f0706",
+    "lane": "validated-data",
+    "builtAt": "2026-11-10T08:25:48.456Z"
+  },
+  "after": {
+    "sha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "dataSha": "84a19763804bf7577131e491f8d471771e8f0706",
+    "lane": "validated-data",
+    "builtAt": "2026-11-10T08:25:48.456Z"
+  },
+  "oracles": "c40eebc0a14bb90dbb291eeacceee7b5c01afc78",
+  "reports": [
+    {
+      "key": "calculator-etc_wheatNav-USD-lump-390",
+      "asset": "etc_wheatNav",
+      "currency": "USD",
+      "mode": "lump",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "9 214 $",
+      "actual": "9 214 $",
+      "pngSha256": "ac77a6bd350bba8f91fa5dc971f6ecd455fe5d8a83b44344e656bb39b21a1f43",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etc_wheatNav-USD-dca-390",
+      "asset": "etc_wheatNav",
+      "currency": "USD",
+      "mode": "dca",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "225 248 $",
+      "actual": "225 248 $",
+      "pngSha256": "cacea47ba53609156a8f4c9eed54fedc04c046ba2e97ec803ed2a7364fb097f2",
+      "independentDecimalOracle": true
+    }
+  ],
+  "errors": [],
+  "meaning": "Actual public selection, Decimal calculation on monthly bounds, text/preview/PNG and mobile. Unchanged valid data is not a claim that Bitwise supplier recovered."
+}

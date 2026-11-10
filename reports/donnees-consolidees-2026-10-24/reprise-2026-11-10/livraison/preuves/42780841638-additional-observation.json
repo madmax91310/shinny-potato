@@ -1,0 +1,4845 @@
+{
+  "sourceRun": 42780841638,
+  "event": "push",
+  "recordingCommit": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+  "originalArtifactReport": "additional-observation.json",
+  "originalReportSha256": "df8bd792932a72884042c87732a08c63a55da17a9832d1d49cedb4212bd894f0",
+  "contractValidation": "passed",
+  "scope": {
+    "kind": "refresh_additional_etf",
+    "mode": "full",
+    "expectedIds": [
+      "etf-additional-observation-IE00BLNMYC90",
+      "etf-additional-observation-IE0006WW1TQ4",
+      "etf-additional-observation-LU0290358497",
+      "etf-additional-observation-IE000L6ZMMC4",
+      "etf-additional-observation-IE00BGV5VN51",
+      "etf-additional-observation-IE00BM67HK77",
+      "etf-additional-observation-IE00BM67HS53",
+      "etf-additional-observation-IE00BTJRMP35",
+      "etf-additional-observation-LU1875395870",
+      "etf-additional-observation-LU2196470426",
+      "etf-additional-observation-IE00BK5BQT80",
+      "etf-additional-observation-IE00BK5BR626",
+      "etf-additional-observation-IE00B8GKDB10",
+      "etf-additional-observation-IE00BK5BR733",
+      "etf-additional-observation-IE00B3VVMM84",
+      "etf-additional-observation-IE00BZ163G84",
+      "etf-additional-observation-IE00BYWQWR46",
+      "etf-additional-observation-IE0007Y8Y157",
+      "etf-additional-observation-IE000M7V94E1",
+      "etf-additional-observation-IE000YU9K6K2",
+      "etf-additional-observation-IE000YYE6WK5",
+      "etf-additional-observation-IE00BDFBTQ78",
+      "etf-additional-observation-NL0009690239",
+      "etf-additional-observation-NL0011683594",
+      "etf-additional-observation-IE00B579F325",
+      "etf-additional-observation-IE00BD6FTQ80",
+      "etf-additional-observation-FR0014017NX3",
+      "etf-additional-observation-FR0010342592",
+      "etf-additional-observation-FR0010755611",
+      "etf-additional-observation-FR0011440478",
+      "etf-additional-observation-FR0011869320",
+      "etf-additional-observation-FR0011871078",
+      "etf-additional-observation-FR0011871110",
+      "etf-additional-observation-FR0011871128",
+      "etf-additional-observation-FR0013411980",
+      "etf-additional-observation-FR0013411998",
+      "etf-additional-observation-FR0013412004",
+      "etf-additional-observation-FR0013412012",
+      "etf-additional-observation-FR0013412020",
+      "etf-additional-observation-FR0013412038",
+      "etf-additional-observation-FR001400S9V0",
+      "etf-additional-observation-FR001400U5Q4",
+      "etf-additional-observation-LU1681043599",
+      "etf-additional-observation-LU1681045370",
+      "etf-additional-observation-LU1834983550",
+      "etf-additional-observation-LU1834983634",
+      "etf-additional-observation-LU1834986900",
+      "etf-additional-observation-LU1834988518",
+      "etf-additional-observation-IE00B2NPKV68",
+      "etf-additional-observation-IE00B1FZS913",
+      "etf-additional-observation-DE000A0H08Q4",
+      "etf-additional-observation-IE00B02KXK85",
+      "etf-additional-observation-IE00B0M63623",
+      "etf-additional-observation-IE00B14X4Q57",
+      "etf-additional-observation-IE00B3WJKG14",
+      "etf-additional-observation-IE00B40B8R38",
+      "etf-additional-observation-IE00B42NKQ00",
+      "etf-additional-observation-IE00B4KBBD01",
+      "etf-additional-observation-IE00B4NCWG09",
+      "etf-additional-observation-IE00B4ND3602",
+      "etf-additional-observation-IE00B52SFT06",
+      "etf-additional-observation-IE00B53L3W79",
+      "etf-additional-observation-IE00B5W4TY14",
+      "etf-additional-observation-IE00BDFL4P12",
+      "etf-additional-observation-IE00BJ5JNZ06",
+      "etf-additional-observation-IE00BJ5JPG56",
+      "etf-additional-observation-IE00BKPSFC54",
+      "etf-additional-observation-IE00BQT3WG13",
+      "etf-additional-observation-IE000XZSV718",
+      "etf-additional-observation-JE00B1VS3770",
+      "etf-additional-observation-GB00BJYDH287",
+      "etf-additional-observation-IE00B4K6B022",
+      "etf-additional-observation-CH0454664001",
+      "etf-additional-observation-IE00BYPLS672",
+      "etf-additional-observation-IE00BF0M2Z96",
+      "etf-additional-observation-IE00BK5BCD43",
+      "etf-additional-observation-IE00BK5BCH80",
+      "etf-additional-observation-IE0002XZSHO1",
+      "etf-additional-observation-IE000DQLYVB9",
+      "etf-additional-observation-DE000A27Z304",
+      "etf-additional-observation-GB00B15KXQ89",
+      "etf-additional-observation-IE0002Y8CX98",
+      "etf-additional-observation-IE000W8WMSL2",
+      "etf-additional-observation-IE00BZ56SW52",
+      "etf-additional-observation-IE00BM8R0J59",
+      "etf-additional-observation-GB00BLD4ZL17",
+      "etf-additional-observation-GB00BLD4ZM24",
+      "etf-additional-observation-IE00BD4TXV59",
+      "etf-additional-observation-FR0011550185",
+      "etf-additional-observation-FR0011550193",
+      "etf-additional-observation-IE000QDFFK00",
+      "etf-additional-observation-FR0007056841",
+      "etf-additional-observation-FR001400ZGO4",
+      "etf-additional-observation-IE00B3F81G20",
+      "etf-additional-observation-IE00B52MJY50",
+      "etf-additional-observation-IE00BJGWQN72",
+      "etf-additional-observation-IE00BQQP9F84",
+      "etf-additional-observation-IE0003Z9E2Y3",
+      "etf-additional-observation-IE0003UVYC20",
+      "etf-additional-observation-IE00BM67HV82",
+      "etf-additional-observation-IE00BM67HQ30",
+      "etf-additional-observation-IE00B4556L06",
+      "etf-additional-observation-IE00B4LHWP62",
+      "etf-additional-observation-IE000UL6CLP7",
+      "etf-additional-observation-IE0003R87OG3",
+      "etf-additional-observation-IE00B52SF786",
+      "etf-additional-observation-IE00B5377D42",
+      "etf-additional-observation-IE00B5WHFQ43",
+      "etf-additional-observation-IE00B0M63516",
+      "etf-additional-observation-IE00B4M7GH52",
+      "etf-additional-observation-IE00B52XQP83",
+      "etf-additional-observation-IE00BJ5JPJ87",
+      "etf-additional-observation-IE00B1FZS574",
+      "etf-additional-observation-IE00B8KGV557",
+      "etf-additional-observation-IE00B86MWN23",
+      "etf-additional-observation-IE00B2QWDY88",
+      "etf-additional-observation-IE00B14X4S71",
+      "etf-additional-observation-IE00B1FZS798",
+      "etf-additional-observation-IE00BSKRJZ44",
+      "etf-additional-observation-IE00B1FZSC47",
+      "etf-additional-observation-IE00BZ048462",
+      "etf-additional-observation-IE00BFM6T814",
+      "etf-additional-observation-IE00BYPC1H27",
+      "etf-additional-observation-IE00BZ6V7883",
+      "etf-additional-observation-IE00B3F81K65",
+      "etf-additional-observation-IE00BSKRJX20"
+    ],
+    "requestedIds": [
+      "etf-additional-observation-IE00BLNMYC90",
+      "etf-additional-observation-IE0006WW1TQ4",
+      "etf-additional-observation-LU0290358497",
+      "etf-additional-observation-IE000L6ZMMC4",
+      "etf-additional-observation-IE00BGV5VN51",
+      "etf-additional-observation-IE00BM67HK77",
+      "etf-additional-observation-IE00BM67HS53",
+      "etf-additional-observation-IE00BTJRMP35",
+      "etf-additional-observation-LU1875395870",
+      "etf-additional-observation-LU2196470426",
+      "etf-additional-observation-IE00BK5BQT80",
+      "etf-additional-observation-IE00BK5BR626",
+      "etf-additional-observation-IE00B8GKDB10",
+      "etf-additional-observation-IE00BK5BR733",
+      "etf-additional-observation-IE00B3VVMM84",
+      "etf-additional-observation-IE00BZ163G84",
+      "etf-additional-observation-IE00BYWQWR46",
+      "etf-additional-observation-IE0007Y8Y157",
+      "etf-additional-observation-IE000M7V94E1",
+      "etf-additional-observation-IE000YU9K6K2",
+      "etf-additional-observation-IE000YYE6WK5",
+      "etf-additional-observation-IE00BDFBTQ78",
+      "etf-additional-observation-NL0009690239",
+      "etf-additional-observation-NL0011683594",
+      "etf-additional-observation-IE00B579F325",
+      "etf-additional-observation-IE00BD6FTQ80",
+      "etf-additional-observation-FR0014017NX3",
+      "etf-additional-observation-FR0010342592",
+      "etf-additional-observation-FR0010755611",
+      "etf-additional-observation-FR0011440478",
+      "etf-additional-observation-FR0011869320",
+      "etf-additional-observation-FR0011871078",
+      "etf-additional-observation-FR0011871110",
+      "etf-additional-observation-FR0011871128",
+      "etf-additional-observation-FR0013411980",
+      "etf-additional-observation-FR0013411998",
+      "etf-additional-observation-FR0013412004",
+      "etf-additional-observation-FR0013412012",
+      "etf-additional-observation-FR0013412020",
+      "etf-additional-observation-FR0013412038",
+      "etf-additional-observation-FR001400S9V0",
+      "etf-additional-observation-FR001400U5Q4",
+      "etf-additional-observation-LU1681043599",
+      "etf-additional-observation-LU1681045370",
+      "etf-additional-observation-LU1834983550",
+      "etf-additional-observation-LU1834983634",
+      "etf-additional-observation-LU1834986900",
+      "etf-additional-observation-LU1834988518",
+      "etf-additional-observation-IE00B2NPKV68",
+      "etf-additional-observation-IE00B1FZS913",
+      "etf-additional-observation-DE000A0H08Q4",
+      "etf-additional-observation-IE00B02KXK85",
+      "etf-additional-observation-IE00B0M63623",
+      "etf-additional-observation-IE00B14X4Q57",
+      "etf-additional-observation-IE00B3WJKG14",
+      "etf-additional-observation-IE00B40B8R38",
+      "etf-additional-observation-IE00B42NKQ00",
+      "etf-additional-observation-IE00B4KBBD01",
+      "etf-additional-observation-IE00B4NCWG09",
+      "etf-additional-observation-IE00B4ND3602",
+      "etf-additional-observation-IE00B52SFT06",
+      "etf-additional-observation-IE00B53L3W79",
+      "etf-additional-observation-IE00B5W4TY14",
+      "etf-additional-observation-IE00BDFL4P12",
+      "etf-additional-observation-IE00BJ5JNZ06",
+      "etf-additional-observation-IE00BJ5JPG56",
+      "etf-additional-observation-IE00BKPSFC54",
+      "etf-additional-observation-IE00BQT3WG13",
+      "etf-additional-observation-IE000XZSV718",
+      "etf-additional-observation-JE00B1VS3770",
+      "etf-additional-observation-GB00BJYDH287",
+      "etf-additional-observation-IE00B4K6B022",
+      "etf-additional-observation-CH0454664001",
+      "etf-additional-observation-IE00BYPLS672",
+      "etf-additional-observation-IE00BF0M2Z96",
+      "etf-additional-observation-IE00BK5BCD43",
+      "etf-additional-observation-IE00BK5BCH80",
+      "etf-additional-observation-IE0002XZSHO1",
+      "etf-additional-observation-IE000DQLYVB9",
+      "etf-additional-observation-DE000A27Z304",
+      "etf-additional-observation-GB00B15KXQ89",
+      "etf-additional-observation-IE0002Y8CX98",
+      "etf-additional-observation-IE000W8WMSL2",
+      "etf-additional-observation-IE00BZ56SW52",
+      "etf-additional-observation-IE00BM8R0J59",
+      "etf-additional-observation-GB00BLD4ZL17",
+      "etf-additional-observation-GB00BLD4ZM24",
+      "etf-additional-observation-IE00BD4TXV59",
+      "etf-additional-observation-FR0011550185",
+      "etf-additional-observation-FR0011550193",
+      "etf-additional-observation-IE000QDFFK00",
+      "etf-additional-observation-FR0007056841",
+      "etf-additional-observation-FR001400ZGO4",
+      "etf-additional-observation-IE00B3F81G20",
+      "etf-additional-observation-IE00B52MJY50",
+      "etf-additional-observation-IE00BJGWQN72",
+      "etf-additional-observation-IE00BQQP9F84",
+      "etf-additional-observation-IE0003Z9E2Y3",
+      "etf-additional-observation-IE0003UVYC20",
+      "etf-additional-observation-IE00BM67HV82",
+      "etf-additional-observation-IE00BM67HQ30",
+      "etf-additional-observation-IE00B4556L06",
+      "etf-additional-observation-IE00B4LHWP62",
+      "etf-additional-observation-IE000UL6CLP7",
+      "etf-additional-observation-IE0003R87OG3",
+      "etf-additional-observation-IE00B52SF786",
+      "etf-additional-observation-IE00B5377D42",
+      "etf-additional-observation-IE00B5WHFQ43",
+      "etf-additional-observation-IE00B0M63516",
+      "etf-additional-observation-IE00B4M7GH52",
+      "etf-additional-observation-IE00B52XQP83",
+      "etf-additional-observation-IE00BJ5JPJ87",
+      "etf-additional-observation-IE00B1FZS574",
+      "etf-additional-observation-IE00B8KGV557",
+      "etf-additional-observation-IE00B86MWN23",
+      "etf-additional-observation-IE00B2QWDY88",
+      "etf-additional-observation-IE00B14X4S71",
+      "etf-additional-observation-IE00B1FZS798",
+      "etf-additional-observation-IE00BSKRJZ44",
+      "etf-additional-observation-IE00B1FZSC47",
+      "etf-additional-observation-IE00BZ048462",
+      "etf-additional-observation-IE00BFM6T814",
+      "etf-additional-observation-IE00BYPC1H27",
+      "etf-additional-observation-IE00BZ6V7883",
+      "etf-additional-observation-IE00B3F81K65",
+      "etf-additional-observation-IE00BSKRJX20"
+    ],
+    "items": [
+      {
+        "id": "etf-additional-observation-IE00BLNMYC90",
+        "instrument": "IE00BLNMYC90",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0006WW1TQ4",
+        "instrument": "IE0006WW1TQ4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU0290358497",
+        "instrument": "LU0290358497",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000L6ZMMC4",
+        "instrument": "IE000L6ZMMC4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BGV5VN51",
+        "instrument": "IE00BGV5VN51",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HK77",
+        "instrument": "IE00BM67HK77",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HS53",
+        "instrument": "IE00BM67HS53",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BTJRMP35",
+        "instrument": "IE00BTJRMP35",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1875395870",
+        "instrument": "LU1875395870",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU2196470426",
+        "instrument": "LU2196470426",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BQT80",
+        "instrument": "IE00BK5BQT80",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BR626",
+        "instrument": "IE00BK5BR626",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B8GKDB10",
+        "instrument": "IE00B8GKDB10",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BR733",
+        "instrument": "IE00BK5BR733",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3VVMM84",
+        "instrument": "IE00B3VVMM84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ163G84",
+        "instrument": "IE00BZ163G84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BYWQWR46",
+        "instrument": "IE00BYWQWR46",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0007Y8Y157",
+        "instrument": "IE0007Y8Y157",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000M7V94E1",
+        "instrument": "IE000M7V94E1",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000YU9K6K2",
+        "instrument": "IE000YU9K6K2",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000YYE6WK5",
+        "instrument": "IE000YYE6WK5",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BDFBTQ78",
+        "instrument": "IE00BDFBTQ78",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-NL0009690239",
+        "instrument": "NL0009690239",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-NL0011683594",
+        "instrument": "NL0011683594",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B579F325",
+        "instrument": "IE00B579F325",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BD6FTQ80",
+        "instrument": "IE00BD6FTQ80",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0014017NX3",
+        "instrument": "FR0014017NX3",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0010342592",
+        "instrument": "FR0010342592",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0010755611",
+        "instrument": "FR0010755611",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011440478",
+        "instrument": "FR0011440478",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011869320",
+        "instrument": "FR0011869320",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011871078",
+        "instrument": "FR0011871078",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011871110",
+        "instrument": "FR0011871110",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011871128",
+        "instrument": "FR0011871128",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013411980",
+        "instrument": "FR0013411980",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013411998",
+        "instrument": "FR0013411998",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412004",
+        "instrument": "FR0013412004",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412012",
+        "instrument": "FR0013412012",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412020",
+        "instrument": "FR0013412020",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412038",
+        "instrument": "FR0013412038",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR001400S9V0",
+        "instrument": "FR001400S9V0",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR001400U5Q4",
+        "instrument": "FR001400U5Q4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1681043599",
+        "instrument": "LU1681043599",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1681045370",
+        "instrument": "LU1681045370",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834983550",
+        "instrument": "LU1834983550",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834983634",
+        "instrument": "LU1834983634",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834986900",
+        "instrument": "LU1834986900",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834988518",
+        "instrument": "LU1834988518",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B2NPKV68",
+        "instrument": "IE00B2NPKV68",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZS913",
+        "instrument": "IE00B1FZS913",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-DE000A0H08Q4",
+        "instrument": "DE000A0H08Q4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B02KXK85",
+        "instrument": "IE00B02KXK85",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B0M63623",
+        "instrument": "IE00B0M63623",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B14X4Q57",
+        "instrument": "IE00B14X4Q57",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3WJKG14",
+        "instrument": "IE00B3WJKG14",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B40B8R38",
+        "instrument": "IE00B40B8R38",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B42NKQ00",
+        "instrument": "IE00B42NKQ00",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4KBBD01",
+        "instrument": "IE00B4KBBD01",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4NCWG09",
+        "instrument": "IE00B4NCWG09",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4ND3602",
+        "instrument": "IE00B4ND3602",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52SFT06",
+        "instrument": "IE00B52SFT06",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B53L3W79",
+        "instrument": "IE00B53L3W79",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B5W4TY14",
+        "instrument": "IE00B5W4TY14",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BDFL4P12",
+        "instrument": "IE00BDFL4P12",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJ5JNZ06",
+        "instrument": "IE00BJ5JNZ06",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJ5JPG56",
+        "instrument": "IE00BJ5JPG56",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BKPSFC54",
+        "instrument": "IE00BKPSFC54",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BQT3WG13",
+        "instrument": "IE00BQT3WG13",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000XZSV718",
+        "instrument": "IE000XZSV718",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-JE00B1VS3770",
+        "instrument": "JE00B1VS3770",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00BJYDH287",
+        "instrument": "GB00BJYDH287",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4K6B022",
+        "instrument": "IE00B4K6B022",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-CH0454664001",
+        "instrument": "CH0454664001",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BYPLS672",
+        "instrument": "IE00BYPLS672",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BF0M2Z96",
+        "instrument": "IE00BF0M2Z96",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BCD43",
+        "instrument": "IE00BK5BCD43",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BCH80",
+        "instrument": "IE00BK5BCH80",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0002XZSHO1",
+        "instrument": "IE0002XZSHO1",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000DQLYVB9",
+        "instrument": "IE000DQLYVB9",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-DE000A27Z304",
+        "instrument": "DE000A27Z304",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00B15KXQ89",
+        "instrument": "GB00B15KXQ89",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0002Y8CX98",
+        "instrument": "IE0002Y8CX98",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000W8WMSL2",
+        "instrument": "IE000W8WMSL2",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ56SW52",
+        "instrument": "IE00BZ56SW52",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM8R0J59",
+        "instrument": "IE00BM8R0J59",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00BLD4ZL17",
+        "instrument": "GB00BLD4ZL17",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00BLD4ZM24",
+        "instrument": "GB00BLD4ZM24",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BD4TXV59",
+        "instrument": "IE00BD4TXV59",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011550185",
+        "instrument": "FR0011550185",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011550193",
+        "instrument": "FR0011550193",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000QDFFK00",
+        "instrument": "IE000QDFFK00",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0007056841",
+        "instrument": "FR0007056841",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR001400ZGO4",
+        "instrument": "FR001400ZGO4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3F81G20",
+        "instrument": "IE00B3F81G20",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52MJY50",
+        "instrument": "IE00B52MJY50",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJGWQN72",
+        "instrument": "IE00BJGWQN72",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BQQP9F84",
+        "instrument": "IE00BQQP9F84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0003Z9E2Y3",
+        "instrument": "IE0003Z9E2Y3",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0003UVYC20",
+        "instrument": "IE0003UVYC20",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HV82",
+        "instrument": "IE00BM67HV82",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HQ30",
+        "instrument": "IE00BM67HQ30",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4556L06",
+        "instrument": "IE00B4556L06",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4LHWP62",
+        "instrument": "IE00B4LHWP62",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000UL6CLP7",
+        "instrument": "IE000UL6CLP7",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0003R87OG3",
+        "instrument": "IE0003R87OG3",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52SF786",
+        "instrument": "IE00B52SF786",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B5377D42",
+        "instrument": "IE00B5377D42",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B5WHFQ43",
+        "instrument": "IE00B5WHFQ43",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B0M63516",
+        "instrument": "IE00B0M63516",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4M7GH52",
+        "instrument": "IE00B4M7GH52",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52XQP83",
+        "instrument": "IE00B52XQP83",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJ5JPJ87",
+        "instrument": "IE00BJ5JPJ87",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZS574",
+        "instrument": "IE00B1FZS574",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B8KGV557",
+        "instrument": "IE00B8KGV557",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B86MWN23",
+        "instrument": "IE00B86MWN23",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B2QWDY88",
+        "instrument": "IE00B2QWDY88",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B14X4S71",
+        "instrument": "IE00B14X4S71",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZS798",
+        "instrument": "IE00B1FZS798",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BSKRJZ44",
+        "instrument": "IE00BSKRJZ44",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZSC47",
+        "instrument": "IE00B1FZSC47",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ048462",
+        "instrument": "IE00BZ048462",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BFM6T814",
+        "instrument": "IE00BFM6T814",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BYPC1H27",
+        "instrument": "IE00BYPC1H27",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ6V7883",
+        "instrument": "IE00BZ6V7883",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3F81K65",
+        "instrument": "IE00B3F81K65",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BSKRJX20",
+        "instrument": "IE00BSKRJX20",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-11-10T08:23:38.072814+00:00",
+    "planSha256": "138b59dafc2a411b478cd2bb861cb2c1ff043164f5dd9eea11c20b646fff52ee",
+    "attemptedIds": [
+      "etf-additional-observation-IE00BLNMYC90",
+      "etf-additional-observation-IE0006WW1TQ4",
+      "etf-additional-observation-LU0290358497",
+      "etf-additional-observation-IE000L6ZMMC4",
+      "etf-additional-observation-IE00BGV5VN51",
+      "etf-additional-observation-IE00BM67HK77",
+      "etf-additional-observation-IE00BM67HS53",
+      "etf-additional-observation-IE00BTJRMP35",
+      "etf-additional-observation-LU1875395870",
+      "etf-additional-observation-LU2196470426",
+      "etf-additional-observation-IE00BK5BQT80",
+      "etf-additional-observation-IE00BK5BR626",
+      "etf-additional-observation-IE00B8GKDB10",
+      "etf-additional-observation-IE00BK5BR733",
+      "etf-additional-observation-IE00B3VVMM84",
+      "etf-additional-observation-IE00BZ163G84",
+      "etf-additional-observation-IE00BYWQWR46",
+      "etf-additional-observation-IE0007Y8Y157",
+      "etf-additional-observation-IE000M7V94E1",
+      "etf-additional-observation-IE000YU9K6K2",
+      "etf-additional-observation-IE000YYE6WK5",
+      "etf-additional-observation-IE00BDFBTQ78",
+      "etf-additional-observation-NL0009690239",
+      "etf-additional-observation-NL0011683594",
+      "etf-additional-observation-IE00B579F325",
+      "etf-additional-observation-IE00BD6FTQ80",
+      "etf-additional-observation-FR0014017NX3",
+      "etf-additional-observation-FR0010342592",
+      "etf-additional-observation-FR0010755611",
+      "etf-additional-observation-FR0011440478",
+      "etf-additional-observation-FR0011869320",
+      "etf-additional-observation-FR0011871078",
+      "etf-additional-observation-FR0011871110",
+      "etf-additional-observation-FR0011871128",
+      "etf-additional-observation-FR0013411980",
+      "etf-additional-observation-FR0013411998",
+      "etf-additional-observation-FR0013412004",
+      "etf-additional-observation-FR0013412012",
+      "etf-additional-observation-FR0013412020",
+      "etf-additional-observation-FR0013412038",
+      "etf-additional-observation-FR001400S9V0",
+      "etf-additional-observation-FR001400U5Q4",
+      "etf-additional-observation-LU1681043599",
+      "etf-additional-observation-LU1681045370",
+      "etf-additional-observation-LU1834983550",
+      "etf-additional-observation-LU1834983634",
+      "etf-additional-observation-LU1834986900",
+      "etf-additional-observation-LU1834988518",
+      "etf-additional-observation-IE00B2NPKV68",
+      "etf-additional-observation-IE00B1FZS913",
+      "etf-additional-observation-DE000A0H08Q4",
+      "etf-additional-observation-IE00B02KXK85",
+      "etf-additional-observation-IE00B0M63623",
+      "etf-additional-observation-IE00B14X4Q57",
+      "etf-additional-observation-IE00B3WJKG14",
+      "etf-additional-observation-IE00B40B8R38",
+      "etf-additional-observation-IE00B42NKQ00",
+      "etf-additional-observation-IE00B4KBBD01",
+      "etf-additional-observation-IE00B4NCWG09",
+      "etf-additional-observation-IE00B4ND3602",
+      "etf-additional-observation-IE00B52SFT06",
+      "etf-additional-observation-IE00B53L3W79",
+      "etf-additional-observation-IE00B5W4TY14",
+      "etf-additional-observation-IE00BDFL4P12",
+      "etf-additional-observation-IE00BJ5JNZ06",
+      "etf-additional-observation-IE00BJ5JPG56",
+      "etf-additional-observation-IE00BKPSFC54",
+      "etf-additional-observation-IE00BQT3WG13",
+      "etf-additional-observation-IE000XZSV718",
+      "etf-additional-observation-JE00B1VS3770",
+      "etf-additional-observation-GB00BJYDH287",
+      "etf-additional-observation-IE00B4K6B022",
+      "etf-additional-observation-CH0454664001",
+      "etf-additional-observation-IE00BYPLS672",
+      "etf-additional-observation-IE00BF0M2Z96",
+      "etf-additional-observation-IE00BK5BCD43",
+      "etf-additional-observation-IE00BK5BCH80",
+      "etf-additional-observation-IE0002XZSHO1",
+      "etf-additional-observation-IE000DQLYVB9",
+      "etf-additional-observation-DE000A27Z304",
+      "etf-additional-observation-GB00B15KXQ89",
+      "etf-additional-observation-IE0002Y8CX98",
+      "etf-additional-observation-IE000W8WMSL2",
+      "etf-additional-observation-IE00BZ56SW52",
+      "etf-additional-observation-IE00BM8R0J59",
+      "etf-additional-observation-GB00BLD4ZL17",
+      "etf-additional-observation-GB00BLD4ZM24",
+      "etf-additional-observation-IE00BD4TXV59",
+      "etf-additional-observation-FR0011550185",
+      "etf-additional-observation-FR0011550193",
+      "etf-additional-observation-IE000QDFFK00",
+      "etf-additional-observation-FR0007056841",
+      "etf-additional-observation-FR001400ZGO4",
+      "etf-additional-observation-IE00B3F81G20",
+      "etf-additional-observation-IE00B52MJY50",
+      "etf-additional-observation-IE00BJGWQN72",
+      "etf-additional-observation-IE00BQQP9F84",
+      "etf-additional-observation-IE0003Z9E2Y3",
+      "etf-additional-observation-IE0003UVYC20",
+      "etf-additional-observation-IE00BM67HV82",
+      "etf-additional-observation-IE00BM67HQ30",
+      "etf-additional-observation-IE00B4556L06",
+      "etf-additional-observation-IE00B4LHWP62",
+      "etf-additional-observation-IE000UL6CLP7",
+      "etf-additional-observation-IE0003R87OG3",
+      "etf-additional-observation-IE00B52SF786",
+      "etf-additional-observation-IE00B5377D42",
+      "etf-additional-observation-IE00B5WHFQ43",
+      "etf-additional-observation-IE00B0M63516",
+      "etf-additional-observation-IE00B4M7GH52",
+      "etf-additional-observation-IE00B52XQP83",
+      "etf-additional-observation-IE00BJ5JPJ87",
+      "etf-additional-observation-IE00B1FZS574",
+      "etf-additional-observation-IE00B8KGV557",
+      "etf-additional-observation-IE00B86MWN23",
+      "etf-additional-observation-IE00B2QWDY88",
+      "etf-additional-observation-IE00B14X4S71",
+      "etf-additional-observation-IE00B1FZS798",
+      "etf-additional-observation-IE00BSKRJZ44",
+      "etf-additional-observation-IE00B1FZSC47",
+      "etf-additional-observation-IE00BZ048462",
+      "etf-additional-observation-IE00BFM6T814",
+      "etf-additional-observation-IE00BYPC1H27",
+      "etf-additional-observation-IE00BZ6V7883",
+      "etf-additional-observation-IE00B3F81K65",
+      "etf-additional-observation-IE00BSKRJX20"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [
+      "etf-additional-observation-IE00BLNMYC90",
+      "etf-additional-observation-IE0006WW1TQ4",
+      "etf-additional-observation-LU0290358497",
+      "etf-additional-observation-IE000L6ZMMC4",
+      "etf-additional-observation-IE00BGV5VN51",
+      "etf-additional-observation-IE00BM67HK77",
+      "etf-additional-observation-IE00BM67HS53",
+      "etf-additional-observation-IE00BTJRMP35",
+      "etf-additional-observation-LU1875395870",
+      "etf-additional-observation-LU2196470426",
+      "etf-additional-observation-IE00BK5BQT80",
+      "etf-additional-observation-IE00BK5BR626",
+      "etf-additional-observation-IE00B8GKDB10",
+      "etf-additional-observation-IE00BK5BR733",
+      "etf-additional-observation-IE00B3VVMM84",
+      "etf-additional-observation-IE00BZ163G84",
+      "etf-additional-observation-IE00BYWQWR46",
+      "etf-additional-observation-IE0007Y8Y157",
+      "etf-additional-observation-IE000M7V94E1",
+      "etf-additional-observation-IE000YU9K6K2",
+      "etf-additional-observation-IE000YYE6WK5",
+      "etf-additional-observation-IE00BDFBTQ78",
+      "etf-additional-observation-NL0009690239",
+      "etf-additional-observation-NL0011683594",
+      "etf-additional-observation-IE00B579F325",
+      "etf-additional-observation-IE00BD6FTQ80",
+      "etf-additional-observation-FR0014017NX3",
+      "etf-additional-observation-FR0010342592",
+      "etf-additional-observation-FR0010755611",
+      "etf-additional-observation-FR0011440478",
+      "etf-additional-observation-FR0011869320",
+      "etf-additional-observation-FR0011871078",
+      "etf-additional-observation-FR0011871110",
+      "etf-additional-observation-FR0011871128",
+      "etf-additional-observation-FR0013411980",
+      "etf-additional-observation-FR0013411998",
+      "etf-additional-observation-FR0013412004",
+      "etf-additional-observation-FR0013412012",
+      "etf-additional-observation-FR0013412020",
+      "etf-additional-observation-FR0013412038",
+      "etf-additional-observation-FR001400S9V0",
+      "etf-additional-observation-FR001400U5Q4",
+      "etf-additional-observation-LU1681043599",
+      "etf-additional-observation-LU1681045370",
+      "etf-additional-observation-LU1834983550",
+      "etf-additional-observation-LU1834983634",
+      "etf-additional-observation-LU1834986900",
+      "etf-additional-observation-LU1834988518",
+      "etf-additional-observation-IE00B2NPKV68",
+      "etf-additional-observation-IE00B1FZS913",
+      "etf-additional-observation-DE000A0H08Q4",
+      "etf-additional-observation-IE00B02KXK85",
+      "etf-additional-observation-IE00B0M63623",
+      "etf-additional-observation-IE00B14X4Q57",
+      "etf-additional-observation-IE00B3WJKG14",
+      "etf-additional-observation-IE00B40B8R38",
+      "etf-additional-observation-IE00B42NKQ00",
+      "etf-additional-observation-IE00B4KBBD01",
+      "etf-additional-observation-IE00B4NCWG09",
+      "etf-additional-observation-IE00B4ND3602",
+      "etf-additional-observation-IE00B52SFT06",
+      "etf-additional-observation-IE00B53L3W79",
+      "etf-additional-observation-IE00B5W4TY14",
+      "etf-additional-observation-IE00BDFL4P12",
+      "etf-additional-observation-IE00BJ5JNZ06",
+      "etf-additional-observation-IE00BJ5JPG56",
+      "etf-additional-observation-IE00BKPSFC54",
+      "etf-additional-observation-IE00BQT3WG13",
+      "etf-additional-observation-IE000XZSV718",
+      "etf-additional-observation-JE00B1VS3770",
+      "etf-additional-observation-GB00BJYDH287",
+      "etf-additional-observation-IE00B4K6B022",
+      "etf-additional-observation-CH0454664001",
+      "etf-additional-observation-IE00BYPLS672",
+      "etf-additional-observation-IE00BF0M2Z96",
+      "etf-additional-observation-IE00BK5BCD43",
+      "etf-additional-observation-IE00BK5BCH80",
+      "etf-additional-observation-IE0002XZSHO1",
+      "etf-additional-observation-IE000DQLYVB9",
+      "etf-additional-observation-DE000A27Z304",
+      "etf-additional-observation-GB00B15KXQ89",
+      "etf-additional-observation-IE000W8WMSL2",
+      "etf-additional-observation-IE00BZ56SW52",
+      "etf-additional-observation-IE00BM8R0J59",
+      "etf-additional-observation-GB00BLD4ZL17",
+      "etf-additional-observation-GB00BLD4ZM24",
+      "etf-additional-observation-IE00BD4TXV59",
+      "etf-additional-observation-FR0011550185",
+      "etf-additional-observation-FR0011550193",
+      "etf-additional-observation-IE000QDFFK00",
+      "etf-additional-observation-FR0007056841",
+      "etf-additional-observation-FR001400ZGO4",
+      "etf-additional-observation-IE00B3F81G20",
+      "etf-additional-observation-IE00B52MJY50",
+      "etf-additional-observation-IE00BJGWQN72",
+      "etf-additional-observation-IE00BQQP9F84",
+      "etf-additional-observation-IE0003Z9E2Y3",
+      "etf-additional-observation-IE0003UVYC20",
+      "etf-additional-observation-IE00BM67HV82",
+      "etf-additional-observation-IE00BM67HQ30",
+      "etf-additional-observation-IE00B4556L06",
+      "etf-additional-observation-IE00B4LHWP62",
+      "etf-additional-observation-IE000UL6CLP7",
+      "etf-additional-observation-IE0003R87OG3",
+      "etf-additional-observation-IE00B52SF786",
+      "etf-additional-observation-IE00B5377D42",
+      "etf-additional-observation-IE00B5WHFQ43",
+      "etf-additional-observation-IE00B0M63516",
+      "etf-additional-observation-IE00B4M7GH52",
+      "etf-additional-observation-IE00B52XQP83",
+      "etf-additional-observation-IE00BJ5JPJ87",
+      "etf-additional-observation-IE00B1FZS574",
+      "etf-additional-observation-IE00B8KGV557",
+      "etf-additional-observation-IE00B86MWN23",
+      "etf-additional-observation-IE00B2QWDY88",
+      "etf-additional-observation-IE00B14X4S71",
+      "etf-additional-observation-IE00B1FZS798",
+      "etf-additional-observation-IE00BSKRJZ44",
+      "etf-additional-observation-IE00B1FZSC47",
+      "etf-additional-observation-IE00BZ048462",
+      "etf-additional-observation-IE00BFM6T814",
+      "etf-additional-observation-IE00BYPC1H27",
+      "etf-additional-observation-IE00BZ6V7883",
+      "etf-additional-observation-IE00B3F81K65",
+      "etf-additional-observation-IE00BSKRJX20"
+    ],
+    "networkAttemptUnknownIds": [
+      "etf-additional-observation-IE0002Y8CX98"
+    ],
+    "runId": "42780841638",
+    "attempt": "1",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "nonce": "df9e7897-2e7b-4e1e-9c24-bcc5c0399878"
+  },
+  "inputPlan": {
+    "items": [
+      {
+        "id": "etf-additional-observation-IE00BLNMYC90",
+        "instrument": "IE00BLNMYC90",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0006WW1TQ4",
+        "instrument": "IE0006WW1TQ4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU0290358497",
+        "instrument": "LU0290358497",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000L6ZMMC4",
+        "instrument": "IE000L6ZMMC4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BGV5VN51",
+        "instrument": "IE00BGV5VN51",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HK77",
+        "instrument": "IE00BM67HK77",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HS53",
+        "instrument": "IE00BM67HS53",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BTJRMP35",
+        "instrument": "IE00BTJRMP35",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1875395870",
+        "instrument": "LU1875395870",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU2196470426",
+        "instrument": "LU2196470426",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BQT80",
+        "instrument": "IE00BK5BQT80",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BR626",
+        "instrument": "IE00BK5BR626",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B8GKDB10",
+        "instrument": "IE00B8GKDB10",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BR733",
+        "instrument": "IE00BK5BR733",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3VVMM84",
+        "instrument": "IE00B3VVMM84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ163G84",
+        "instrument": "IE00BZ163G84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BYWQWR46",
+        "instrument": "IE00BYWQWR46",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0007Y8Y157",
+        "instrument": "IE0007Y8Y157",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000M7V94E1",
+        "instrument": "IE000M7V94E1",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000YU9K6K2",
+        "instrument": "IE000YU9K6K2",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000YYE6WK5",
+        "instrument": "IE000YYE6WK5",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BDFBTQ78",
+        "instrument": "IE00BDFBTQ78",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-NL0009690239",
+        "instrument": "NL0009690239",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-NL0011683594",
+        "instrument": "NL0011683594",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B579F325",
+        "instrument": "IE00B579F325",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BD6FTQ80",
+        "instrument": "IE00BD6FTQ80",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0014017NX3",
+        "instrument": "FR0014017NX3",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0010342592",
+        "instrument": "FR0010342592",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0010755611",
+        "instrument": "FR0010755611",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011440478",
+        "instrument": "FR0011440478",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011869320",
+        "instrument": "FR0011869320",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011871078",
+        "instrument": "FR0011871078",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011871110",
+        "instrument": "FR0011871110",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011871128",
+        "instrument": "FR0011871128",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013411980",
+        "instrument": "FR0013411980",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013411998",
+        "instrument": "FR0013411998",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412004",
+        "instrument": "FR0013412004",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412012",
+        "instrument": "FR0013412012",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412020",
+        "instrument": "FR0013412020",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0013412038",
+        "instrument": "FR0013412038",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR001400S9V0",
+        "instrument": "FR001400S9V0",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR001400U5Q4",
+        "instrument": "FR001400U5Q4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1681043599",
+        "instrument": "LU1681043599",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1681045370",
+        "instrument": "LU1681045370",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834983550",
+        "instrument": "LU1834983550",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834983634",
+        "instrument": "LU1834983634",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834986900",
+        "instrument": "LU1834986900",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-LU1834988518",
+        "instrument": "LU1834988518",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B2NPKV68",
+        "instrument": "IE00B2NPKV68",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZS913",
+        "instrument": "IE00B1FZS913",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-DE000A0H08Q4",
+        "instrument": "DE000A0H08Q4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B02KXK85",
+        "instrument": "IE00B02KXK85",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B0M63623",
+        "instrument": "IE00B0M63623",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B14X4Q57",
+        "instrument": "IE00B14X4Q57",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3WJKG14",
+        "instrument": "IE00B3WJKG14",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B40B8R38",
+        "instrument": "IE00B40B8R38",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B42NKQ00",
+        "instrument": "IE00B42NKQ00",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4KBBD01",
+        "instrument": "IE00B4KBBD01",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4NCWG09",
+        "instrument": "IE00B4NCWG09",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4ND3602",
+        "instrument": "IE00B4ND3602",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52SFT06",
+        "instrument": "IE00B52SFT06",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B53L3W79",
+        "instrument": "IE00B53L3W79",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B5W4TY14",
+        "instrument": "IE00B5W4TY14",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BDFL4P12",
+        "instrument": "IE00BDFL4P12",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJ5JNZ06",
+        "instrument": "IE00BJ5JNZ06",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJ5JPG56",
+        "instrument": "IE00BJ5JPG56",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BKPSFC54",
+        "instrument": "IE00BKPSFC54",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BQT3WG13",
+        "instrument": "IE00BQT3WG13",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000XZSV718",
+        "instrument": "IE000XZSV718",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-JE00B1VS3770",
+        "instrument": "JE00B1VS3770",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00BJYDH287",
+        "instrument": "GB00BJYDH287",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4K6B022",
+        "instrument": "IE00B4K6B022",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-CH0454664001",
+        "instrument": "CH0454664001",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BYPLS672",
+        "instrument": "IE00BYPLS672",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BF0M2Z96",
+        "instrument": "IE00BF0M2Z96",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BCD43",
+        "instrument": "IE00BK5BCD43",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BK5BCH80",
+        "instrument": "IE00BK5BCH80",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0002XZSHO1",
+        "instrument": "IE0002XZSHO1",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000DQLYVB9",
+        "instrument": "IE000DQLYVB9",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-DE000A27Z304",
+        "instrument": "DE000A27Z304",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00B15KXQ89",
+        "instrument": "GB00B15KXQ89",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0002Y8CX98",
+        "instrument": "IE0002Y8CX98",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000W8WMSL2",
+        "instrument": "IE000W8WMSL2",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ56SW52",
+        "instrument": "IE00BZ56SW52",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM8R0J59",
+        "instrument": "IE00BM8R0J59",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00BLD4ZL17",
+        "instrument": "GB00BLD4ZL17",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-GB00BLD4ZM24",
+        "instrument": "GB00BLD4ZM24",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BD4TXV59",
+        "instrument": "IE00BD4TXV59",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011550185",
+        "instrument": "FR0011550185",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0011550193",
+        "instrument": "FR0011550193",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000QDFFK00",
+        "instrument": "IE000QDFFK00",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR0007056841",
+        "instrument": "FR0007056841",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-FR001400ZGO4",
+        "instrument": "FR001400ZGO4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3F81G20",
+        "instrument": "IE00B3F81G20",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52MJY50",
+        "instrument": "IE00B52MJY50",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJGWQN72",
+        "instrument": "IE00BJGWQN72",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BQQP9F84",
+        "instrument": "IE00BQQP9F84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0003Z9E2Y3",
+        "instrument": "IE0003Z9E2Y3",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0003UVYC20",
+        "instrument": "IE0003UVYC20",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HV82",
+        "instrument": "IE00BM67HV82",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BM67HQ30",
+        "instrument": "IE00BM67HQ30",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4556L06",
+        "instrument": "IE00B4556L06",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4LHWP62",
+        "instrument": "IE00B4LHWP62",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE000UL6CLP7",
+        "instrument": "IE000UL6CLP7",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE0003R87OG3",
+        "instrument": "IE0003R87OG3",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52SF786",
+        "instrument": "IE00B52SF786",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B5377D42",
+        "instrument": "IE00B5377D42",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B5WHFQ43",
+        "instrument": "IE00B5WHFQ43",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B0M63516",
+        "instrument": "IE00B0M63516",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B4M7GH52",
+        "instrument": "IE00B4M7GH52",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B52XQP83",
+        "instrument": "IE00B52XQP83",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BJ5JPJ87",
+        "instrument": "IE00BJ5JPJ87",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZS574",
+        "instrument": "IE00B1FZS574",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B8KGV557",
+        "instrument": "IE00B8KGV557",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B86MWN23",
+        "instrument": "IE00B86MWN23",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B2QWDY88",
+        "instrument": "IE00B2QWDY88",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B14X4S71",
+        "instrument": "IE00B14X4S71",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZS798",
+        "instrument": "IE00B1FZS798",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BSKRJZ44",
+        "instrument": "IE00BSKRJZ44",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B1FZSC47",
+        "instrument": "IE00B1FZSC47",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ048462",
+        "instrument": "IE00BZ048462",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BFM6T814",
+        "instrument": "IE00BFM6T814",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BYPC1H27",
+        "instrument": "IE00BYPC1H27",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BZ6V7883",
+        "instrument": "IE00BZ6V7883",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00B3F81K65",
+        "instrument": "IE00B3F81K65",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-additional-observation-IE00BSKRJX20",
+        "instrument": "IE00BSKRJX20",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      }
+    ],
+    "mode": "full",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "emptyReason": null,
+    "cacheRequested": false,
+    "producer": "refresh_additional_etf",
+    "reportStem": "additional-observation",
+    "declaredAt": "2026-11-10T08:23:38.072814+00:00",
+    "nonce": "df9e7897-2e7b-4e1e-9c24-bcc5c0399878",
+    "codeSha": "7f940971992c787a2737fcf1e729eee4c22e3463",
+    "durablePlan": true,
+    "runId": "42780841638",
+    "attempt": "1",
+    "sha256": "138b59dafc2a411b478cd2bb861cb2c1ff043164f5dd9eea11c20b646fff52ee"
+  },
+  "outcomes": [
+    {
+      "id": "etf-additional-observation-IE00BLNMYC90",
+      "instrument": "IE00BLNMYC90",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE0006WW1TQ4",
+      "instrument": "IE0006WW1TQ4",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU0290358497",
+      "instrument": "LU0290358497",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000L6ZMMC4",
+      "instrument": "IE000L6ZMMC4",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BGV5VN51",
+      "instrument": "IE00BGV5VN51",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BM67HK77",
+      "instrument": "IE00BM67HK77",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BM67HS53",
+      "instrument": "IE00BM67HS53",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BTJRMP35",
+      "instrument": "IE00BTJRMP35",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU1875395870",
+      "instrument": "LU1875395870",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU2196470426",
+      "instrument": "LU2196470426",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BK5BQT80",
+      "instrument": "IE00BK5BQT80",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BK5BR626",
+      "instrument": "IE00BK5BR626",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B8GKDB10",
+      "instrument": "IE00B8GKDB10",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BK5BR733",
+      "instrument": "IE00BK5BR733",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B3VVMM84",
+      "instrument": "IE00B3VVMM84",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Distributing_9507_EU_INT_UK_EN.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BZ163G84",
+      "instrument": "IE00BZ163G84",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fund-docs.vanguard.com/EUR_Corporate_Bond_UCITS_ETF_EUR_Distributing_9659_EU_INT_UK_EN.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BYWQWR46",
+      "instrument": "IE00BYWQWR46",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE0007Y8Y157",
+      "instrument": "IE0007Y8Y157",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000M7V94E1",
+      "instrument": "IE000M7V94E1",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/nucl-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000YU9K6K2",
+      "instrument": "IE000YU9K6K2",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000YYE6WK5",
+      "instrument": "IE000YYE6WK5",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BDFBTQ78",
+      "instrument": "IE00BDFBTQ78",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-NL0009690239",
+      "instrument": "NL0009690239",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/tret-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-NL0011683594",
+      "instrument": "NL0011683594",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/tdiv-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B579F325",
+      "instrument": "IE00B579F325",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BD6FTQ80",
+      "instrument": "IE00BD6FTQ80",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0014017NX3",
+      "instrument": "FR0014017NX3",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0010342592",
+      "instrument": "FR0010342592",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0010755611",
+      "instrument": "FR0010755611",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0011440478",
+      "instrument": "FR0011440478",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0011869320",
+      "instrument": "FR0011869320",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0011871078",
+      "instrument": "FR0011871078",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0011871110",
+      "instrument": "FR0011871110",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0011871128",
+      "instrument": "FR0011871128",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0013411980",
+      "instrument": "FR0013411980",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0013411998",
+      "instrument": "FR0013411998",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0013412004",
+      "instrument": "FR0013412004",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0013412012",
+      "instrument": "FR0013412012",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0013412020",
+      "instrument": "FR0013412020",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0013412038",
+      "instrument": "FR0013412038",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR001400S9V0",
+      "instrument": "FR001400S9V0",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR001400U5Q4",
+      "instrument": "FR001400U5Q4",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU1681043599",
+      "instrument": "LU1681043599",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU1681045370",
+      "instrument": "LU1681045370",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU1834983550",
+      "instrument": "LU1834983550",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU1834983634",
+      "instrument": "LU1834983634",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU1834986900",
+      "instrument": "LU1834986900",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-LU1834988518",
+      "instrument": "LU1834988518",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B2NPKV68",
+      "instrument": "IE00B2NPKV68",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B1FZS913",
+      "instrument": "IE00B1FZS913",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-DE000A0H08Q4",
+      "instrument": "DE000A0H08Q4",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B02KXK85",
+      "instrument": "IE00B02KXK85",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B0M63623",
+      "instrument": "IE00B0M63623",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251878&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B14X4Q57",
+      "instrument": "IE00B14X4Q57",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B3WJKG14",
+      "instrument": "IE00B3WJKG14",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=280510&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B40B8R38",
+      "instrument": "IE00B40B8R38",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=287102&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B42NKQ00",
+      "instrument": "IE00B42NKQ00",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B4KBBD01",
+      "instrument": "IE00B4KBBD01",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=287115&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B4NCWG09",
+      "instrument": "IE00B4NCWG09",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258443&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B4ND3602",
+      "instrument": "IE00B4ND3602",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B52SFT06",
+      "instrument": "IE00B52SFT06",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B53L3W79",
+      "instrument": "IE00B53L3W79",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253712&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B5W4TY14",
+      "instrument": "IE00B5W4TY14",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BDFL4P12",
+      "instrument": "IE00BDFL4P12",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=287254&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BJ5JNZ06",
+      "instrument": "IE00BJ5JNZ06",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BJ5JPG56",
+      "instrument": "IE00BJ5JPG56",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308751&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BKPSFC54",
+      "instrument": "IE00BKPSFC54",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=313867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BQT3WG13",
+      "instrument": "IE00BQT3WG13",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000XZSV718",
+      "instrument": "IE000XZSV718",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.ssga.com/fr/en_gb/intermediary/etfs/state-street-spdr-sp-500-ucits-etf-acc-spyl-gy",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-JE00B1VS3770",
+      "instrument": "JE00B1VS3770",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-GB00BJYDH287",
+      "instrument": "GB00BJYDH287",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B4K6B022",
+      "instrument": "IE00B4K6B022",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-CH0454664001",
+      "instrument": "CH0454664001",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BYPLS672",
+      "instrument": "IE00BYPLS672",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BF0M2Z96",
+      "instrument": "IE00BF0M2Z96",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BK5BCD43",
+      "instrument": "IE00BK5BCD43",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BK5BCH80",
+      "instrument": "IE00BK5BCH80",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE0002XZSHO1",
+      "instrument": "IE0002XZSHO1",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000DQLYVB9",
+      "instrument": "IE000DQLYVB9",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-DE000A27Z304",
+      "instrument": "DE000A27Z304",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-GB00B15KXQ89",
+      "instrument": "GB00B15KXQ89",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE0002Y8CX98",
+      "instrument": "IE0002Y8CX98",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF IE0002Y8CX98",
+      "field": "overview-date",
+      "error": "Missing or ambiguous issuer overview date: []",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "etf-additional-observation-IE000W8WMSL2",
+      "instrument": "IE000W8WMSL2",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BZ56SW52",
+      "instrument": "IE00BZ56SW52",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BM8R0J59",
+      "instrument": "IE00BM8R0J59",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-GB00BLD4ZL17",
+      "instrument": "GB00BLD4ZL17",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-btc/",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-GB00BLD4ZM24",
+      "instrument": "GB00BLD4ZM24",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BD4TXV59",
+      "instrument": "IE00BD4TXV59",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0011550185",
+      "instrument": "FR0011550185",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0011550193",
+      "instrument": "FR0011550193",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000QDFFK00",
+      "instrument": "IE000QDFFK00",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR0007056841",
+      "instrument": "FR0007056841",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-FR001400ZGO4",
+      "instrument": "FR001400ZGO4",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B3F81G20",
+      "instrument": "IE00B3F81G20",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B52MJY50",
+      "instrument": "IE00B52MJY50",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BJGWQN72",
+      "instrument": "IE00BJGWQN72",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BQQP9F84",
+      "instrument": "IE00BQQP9F84",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdx-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE0003Z9E2Y3",
+      "instrument": "IE0003Z9E2Y3",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://globalxetfs.eu/funds/copx/",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE0003UVYC20",
+      "instrument": "IE0003UVYC20",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BM67HV82",
+      "instrument": "IE00BM67HV82",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BM67HQ30",
+      "instrument": "IE00BM67HQ30",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B4556L06",
+      "instrument": "IE00B4556L06",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B4LHWP62",
+      "instrument": "IE00B4LHWP62",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258442&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE000UL6CLP7",
+      "instrument": "IE000UL6CLP7",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE0003R87OG3",
+      "instrument": "IE0003R87OG3",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B52SF786",
+      "instrument": "IE00B52SF786",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253721&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B5377D42",
+      "instrument": "IE00B5377D42",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B5WHFQ43",
+      "instrument": "IE00B5WHFQ43",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B0M63516",
+      "instrument": "IE00B0M63516",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251853&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B4M7GH52",
+      "instrument": "IE00B4M7GH52",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251875&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B52XQP83",
+      "instrument": "IE00B52XQP83",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BJ5JPJ87",
+      "instrument": "IE00BJ5JPJ87",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308477&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B1FZS574",
+      "instrument": "IE00B1FZS574",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B8KGV557",
+      "instrument": "IE00B8KGV557",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B86MWN23",
+      "instrument": "IE00B86MWN23",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B2QWDY88",
+      "instrument": "IE00B2QWDY88",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B14X4S71",
+      "instrument": "IE00B14X4S71",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251715&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B1FZS798",
+      "instrument": "IE00B1FZS798",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BSKRJZ44",
+      "instrument": "IE00BSKRJZ44",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B1FZSC47",
+      "instrument": "IE00B1FZSC47",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BZ048462",
+      "instrument": "IE00BZ048462",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BFM6T814",
+      "instrument": "IE00BFM6T814",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BYPC1H27",
+      "instrument": "IE00BYPC1H27",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BZ6V7883",
+      "instrument": "IE00BZ6V7883",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00B3F81K65",
+      "instrument": "IE00B3F81K65",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-additional-observation-IE00BSKRJX20",
+      "instrument": "IE00BSKRJX20",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    }
+  ],
+  "issues": [],
+  "unscopedFailures": [],
+  "meaning": "The exact declared instrument/field group and native outcomes, not certification of every field retained in the merged record. Source, local qualification, recording and publication remain distinct."
+}

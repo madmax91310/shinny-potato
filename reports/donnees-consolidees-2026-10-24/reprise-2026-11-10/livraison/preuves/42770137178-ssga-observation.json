@@ -1,0 +1,458 @@
+{
+  "sourceRun": 42770137178,
+  "event": "push",
+  "recordingCommit": "8fb458ec5194f94ef1ad05abf150bc9c100e3e6a",
+  "originalArtifactReport": "ssga-observation.json",
+  "originalReportSha256": "a9b34ed2188cd3d58e3becfd51da758fadd551be1c402e05073b0c4989b17e74",
+  "contractValidation": "passed",
+  "scope": {
+    "kind": "collect_ssga_etf",
+    "mode": "full",
+    "expectedIds": [
+      "etf-ssga-observation-IE00B3YLTY66",
+      "etf-ssga-observation-IE00BJ38QD84",
+      "etf-ssga-observation-IE00B3T9LM79",
+      "etf-ssga-observation-IE00B44Z5B48",
+      "etf-ssga-observation-IE00B469F816",
+      "etf-ssga-observation-IE00B5M1WJ87",
+      "etf-ssga-observation-IE00B6YX5D40",
+      "etf-ssga-observation-IE00B9CQXS71",
+      "etf-ssga-observation-IE00BYTRR863"
+    ],
+    "requestedIds": [
+      "etf-ssga-observation-IE00B3YLTY66",
+      "etf-ssga-observation-IE00BJ38QD84",
+      "etf-ssga-observation-IE00B3T9LM79",
+      "etf-ssga-observation-IE00B44Z5B48",
+      "etf-ssga-observation-IE00B469F816",
+      "etf-ssga-observation-IE00B5M1WJ87",
+      "etf-ssga-observation-IE00B6YX5D40",
+      "etf-ssga-observation-IE00B9CQXS71",
+      "etf-ssga-observation-IE00BYTRR863"
+    ],
+    "items": [
+      {
+        "id": "etf-ssga-observation-IE00B3YLTY66",
+        "instrument": "IE00B3YLTY66",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00BJ38QD84",
+        "instrument": "IE00BJ38QD84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B3T9LM79",
+        "instrument": "IE00B3T9LM79",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B44Z5B48",
+        "instrument": "IE00B44Z5B48",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B469F816",
+        "instrument": "IE00B469F816",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B5M1WJ87",
+        "instrument": "IE00B5M1WJ87",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B6YX5D40",
+        "instrument": "IE00B6YX5D40",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B9CQXS71",
+        "instrument": "IE00B9CQXS71",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00BYTRR863",
+        "instrument": "IE00BYTRR863",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-11-10T06:51:27.369728+00:00",
+    "planSha256": "604f4023d3aabd209334f39cdc40e39aa79245ccb3abef849715d287266aa7e7",
+    "attemptedIds": [
+      "etf-ssga-observation-IE00B3YLTY66",
+      "etf-ssga-observation-IE00BJ38QD84",
+      "etf-ssga-observation-IE00B3T9LM79",
+      "etf-ssga-observation-IE00B44Z5B48",
+      "etf-ssga-observation-IE00B469F816",
+      "etf-ssga-observation-IE00B5M1WJ87",
+      "etf-ssga-observation-IE00B6YX5D40",
+      "etf-ssga-observation-IE00B9CQXS71",
+      "etf-ssga-observation-IE00BYTRR863"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [
+      "etf-ssga-observation-IE00B3YLTY66",
+      "etf-ssga-observation-IE00BJ38QD84",
+      "etf-ssga-observation-IE00B3T9LM79",
+      "etf-ssga-observation-IE00B44Z5B48",
+      "etf-ssga-observation-IE00B469F816",
+      "etf-ssga-observation-IE00B5M1WJ87",
+      "etf-ssga-observation-IE00B6YX5D40",
+      "etf-ssga-observation-IE00B9CQXS71",
+      "etf-ssga-observation-IE00BYTRR863"
+    ],
+    "networkAttemptUnknownIds": [],
+    "runId": "42770137178",
+    "attempt": "1",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "nonce": "127dc5de-517a-474d-a491-0df30a51cb30"
+  },
+  "inputPlan": {
+    "items": [
+      {
+        "id": "etf-ssga-observation-IE00B3YLTY66",
+        "instrument": "IE00B3YLTY66",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00BJ38QD84",
+        "instrument": "IE00BJ38QD84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B3T9LM79",
+        "instrument": "IE00B3T9LM79",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B44Z5B48",
+        "instrument": "IE00B44Z5B48",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B469F816",
+        "instrument": "IE00B469F816",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B5M1WJ87",
+        "instrument": "IE00B5M1WJ87",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B6YX5D40",
+        "instrument": "IE00B6YX5D40",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00B9CQXS71",
+        "instrument": "IE00B9CQXS71",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-ssga-observation-IE00BYTRR863",
+        "instrument": "IE00BYTRR863",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      }
+    ],
+    "mode": "full",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "emptyReason": null,
+    "cacheRequested": false,
+    "producer": "collect_ssga_etf",
+    "reportStem": "ssga-observation",
+    "declaredAt": "2026-11-10T06:51:27.369728+00:00",
+    "nonce": "127dc5de-517a-474d-a491-0df30a51cb30",
+    "codeSha": "499c3064878af68376c513d41869c47c9cc93e64",
+    "durablePlan": true,
+    "runId": "42770137178",
+    "attempt": "1",
+    "sha256": "604f4023d3aabd209334f39cdc40e39aa79245ccb3abef849715d287266aa7e7"
+  },
+  "outcomes": [
+    {
+      "id": "etf-ssga-observation-IE00B3YLTY66",
+      "instrument": "IE00B3YLTY66",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00BJ38QD84",
+      "instrument": "IE00BJ38QD84",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-russell-2000-us-small-cap-ucits-etf-acc-zprr-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00B3T9LM79",
+      "instrument": "IE00B3T9LM79",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00B44Z5B48",
+      "instrument": "IE00B44Z5B48",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00B469F816",
+      "instrument": "IE00B469F816",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-emerging-markets-ucits-etf-spym-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00B5M1WJ87",
+      "instrument": "IE00B5M1WJ87",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00B6YX5D40",
+      "instrument": "IE00B6YX5D40",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00B9CQXS71",
+      "instrument": "IE00B9CQXS71",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/uk/en_gb/intermediary/etfs/spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-ssga-observation-IE00BYTRR863",
+      "instrument": "IE00BYTRR863",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na",
+      "dataPeriods": {
+        "aum": "2026-11-09",
+        "sectors": "2026-11-06",
+        "countries": "2026-11-06",
+        "holdings": "2026-11-06"
+      },
+      "operationAttempted": true,
+      "sourceAttempted": true
+    }
+  ],
+  "issues": [],
+  "unscopedFailures": [],
+  "meaning": "The exact declared instrument/field group and native outcomes, not certification of every field retained in the merged record. Source, local qualification, recording and publication remain distinct."
+}

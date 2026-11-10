@@ -1,0 +1,1311 @@
+{
+  "sourceRun": 42780841553,
+  "event": "push",
+  "recordingCommit": "7f940971992c787a2737fcf1e729eee4c22e3463",
+  "originalArtifactReport": "dca-equities.json",
+  "originalReportSha256": "d8f8ca1b90c7a1a09e9e1976beb0c1a7f6c58abed6a8e013208552af1b198f6a",
+  "contractValidation": "passed",
+  "scope": {
+    "kind": "collect_dca_equities",
+    "mode": "full",
+    "expectedIds": [
+      "dca-equity:nintendo",
+      "dca-equity:costco",
+      "dca-equity:caterpillar",
+      "dca-equity:deere",
+      "dca-equity:wasteManagement",
+      "dca-equity:airbus",
+      "dca-equity:safran",
+      "dca-equity:bnp",
+      "dca-equity:orange",
+      "dca-equity:engie",
+      "dca-equity:siemens",
+      "dca-equity:allianz",
+      "dca-equity:unilever",
+      "dca-equity:nestle",
+      "dca-equity:visa",
+      "dca-equity:berkshire",
+      "dca-equity:novo",
+      "dca-equity:vinci",
+      "dca-equity:total",
+      "dca-equity:saintgobain",
+      "dca-equity:legrand",
+      "dca-equity:airliquide",
+      "dca-equity:schneider",
+      "dca-equity:lvmh",
+      "dca-equity:loreal",
+      "dca-equity:sanofi",
+      "dca-equity:danone",
+      "dca-equity:axa",
+      "dca-equity:michelin",
+      "dca-equity:veolia",
+      "dca-equity:sap",
+      "dca-equity:asml",
+      "dca-equity:microsoft",
+      "dca-equity:apple",
+      "dca-equity:alphabet",
+      "dca-equity:amazon",
+      "dca-equity:nvidia"
+    ],
+    "requestedIds": [
+      "dca-equity:nintendo",
+      "dca-equity:costco",
+      "dca-equity:caterpillar",
+      "dca-equity:deere",
+      "dca-equity:wasteManagement",
+      "dca-equity:airbus",
+      "dca-equity:safran",
+      "dca-equity:bnp",
+      "dca-equity:orange",
+      "dca-equity:engie",
+      "dca-equity:siemens",
+      "dca-equity:allianz",
+      "dca-equity:unilever",
+      "dca-equity:nestle",
+      "dca-equity:visa",
+      "dca-equity:berkshire",
+      "dca-equity:novo",
+      "dca-equity:vinci",
+      "dca-equity:total",
+      "dca-equity:saintgobain",
+      "dca-equity:legrand",
+      "dca-equity:airliquide",
+      "dca-equity:schneider",
+      "dca-equity:lvmh",
+      "dca-equity:loreal",
+      "dca-equity:sanofi",
+      "dca-equity:danone",
+      "dca-equity:axa",
+      "dca-equity:michelin",
+      "dca-equity:veolia",
+      "dca-equity:sap",
+      "dca-equity:asml",
+      "dca-equity:microsoft",
+      "dca-equity:apple",
+      "dca-equity:alphabet",
+      "dca-equity:amazon",
+      "dca-equity:nvidia"
+    ],
+    "items": [
+      {
+        "id": "dca-equity:nintendo",
+        "instrument": "JP3756600007",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:costco",
+        "instrument": "US22160K1051",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:caterpillar",
+        "instrument": "US1491231015",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:deere",
+        "instrument": "US2441991054",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:wasteManagement",
+        "instrument": "US94106L1098",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:airbus",
+        "instrument": "NL0000235190",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:safran",
+        "instrument": "FR0000073272",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:bnp",
+        "instrument": "FR0000131104",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:orange",
+        "instrument": "FR0000133308",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:engie",
+        "instrument": "FR0010208488",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:siemens",
+        "instrument": "DE0007236101",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:allianz",
+        "instrument": "DE0008404005",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:unilever",
+        "instrument": "GB00BVZK7T90",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:nestle",
+        "instrument": "CH0038863350",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:visa",
+        "instrument": "US92826C8394",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:berkshire",
+        "instrument": "US0846707026",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:novo",
+        "instrument": "DK0062498333",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:vinci",
+        "instrument": "FR0000125486",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:total",
+        "instrument": "FR0000120271",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:saintgobain",
+        "instrument": "FR0000125007",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:legrand",
+        "instrument": "FR0010307819",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:airliquide",
+        "instrument": "FR0000120073",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:schneider",
+        "instrument": "FR0000121972",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:lvmh",
+        "instrument": "FR0000121014",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:loreal",
+        "instrument": "FR0000120321",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:sanofi",
+        "instrument": "FR0000120578",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:danone",
+        "instrument": "FR0000120644",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:axa",
+        "instrument": "FR0000120628",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:michelin",
+        "instrument": "FR001400AJ45",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:veolia",
+        "instrument": "FR0000124141",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:sap",
+        "instrument": "DE0007164600",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:asml",
+        "instrument": "NL0010273215",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:microsoft",
+        "instrument": "US5949181045",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:apple",
+        "instrument": "US0378331005",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:alphabet",
+        "instrument": "US02079K3059",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:amazon",
+        "instrument": "US0231351067",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:nvidia",
+        "instrument": "US67066G1040",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-11-10T08:14:19.273424+00:00",
+    "planSha256": "18fbba609a444b054daf500157ea7779b51c92ef75c0674ec6428825f758a584",
+    "attemptedIds": [
+      "dca-equity:nintendo",
+      "dca-equity:costco",
+      "dca-equity:caterpillar",
+      "dca-equity:deere",
+      "dca-equity:wasteManagement",
+      "dca-equity:airbus",
+      "dca-equity:safran",
+      "dca-equity:bnp",
+      "dca-equity:orange",
+      "dca-equity:engie",
+      "dca-equity:siemens",
+      "dca-equity:allianz",
+      "dca-equity:unilever",
+      "dca-equity:nestle",
+      "dca-equity:visa",
+      "dca-equity:berkshire",
+      "dca-equity:novo",
+      "dca-equity:vinci",
+      "dca-equity:total",
+      "dca-equity:saintgobain",
+      "dca-equity:legrand",
+      "dca-equity:airliquide",
+      "dca-equity:schneider",
+      "dca-equity:lvmh",
+      "dca-equity:loreal",
+      "dca-equity:sanofi",
+      "dca-equity:danone",
+      "dca-equity:axa",
+      "dca-equity:michelin",
+      "dca-equity:veolia",
+      "dca-equity:sap",
+      "dca-equity:asml",
+      "dca-equity:microsoft",
+      "dca-equity:apple",
+      "dca-equity:alphabet",
+      "dca-equity:amazon",
+      "dca-equity:nvidia"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [
+      "dca-equity:nintendo",
+      "dca-equity:costco",
+      "dca-equity:caterpillar",
+      "dca-equity:deere",
+      "dca-equity:wasteManagement",
+      "dca-equity:airbus",
+      "dca-equity:safran",
+      "dca-equity:bnp",
+      "dca-equity:orange",
+      "dca-equity:engie",
+      "dca-equity:siemens",
+      "dca-equity:allianz",
+      "dca-equity:unilever",
+      "dca-equity:nestle",
+      "dca-equity:visa",
+      "dca-equity:berkshire",
+      "dca-equity:novo",
+      "dca-equity:vinci",
+      "dca-equity:total",
+      "dca-equity:saintgobain",
+      "dca-equity:legrand",
+      "dca-equity:airliquide",
+      "dca-equity:schneider",
+      "dca-equity:lvmh",
+      "dca-equity:loreal",
+      "dca-equity:sanofi",
+      "dca-equity:danone",
+      "dca-equity:axa",
+      "dca-equity:michelin",
+      "dca-equity:veolia",
+      "dca-equity:sap",
+      "dca-equity:asml",
+      "dca-equity:microsoft",
+      "dca-equity:apple",
+      "dca-equity:alphabet",
+      "dca-equity:amazon",
+      "dca-equity:nvidia"
+    ],
+    "networkAttemptUnknownIds": [],
+    "runId": "42780841553",
+    "attempt": "1",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "nonce": "d1b256cb-eb24-44f7-8a5d-7b9e6bbe6a93"
+  },
+  "inputPlan": {
+    "items": [
+      {
+        "id": "dca-equity:nintendo",
+        "instrument": "JP3756600007",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:costco",
+        "instrument": "US22160K1051",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:caterpillar",
+        "instrument": "US1491231015",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:deere",
+        "instrument": "US2441991054",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:wasteManagement",
+        "instrument": "US94106L1098",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:airbus",
+        "instrument": "NL0000235190",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:safran",
+        "instrument": "FR0000073272",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:bnp",
+        "instrument": "FR0000131104",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:orange",
+        "instrument": "FR0000133308",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:engie",
+        "instrument": "FR0010208488",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:siemens",
+        "instrument": "DE0007236101",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:allianz",
+        "instrument": "DE0008404005",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:unilever",
+        "instrument": "GB00BVZK7T90",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:nestle",
+        "instrument": "CH0038863350",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:visa",
+        "instrument": "US92826C8394",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:berkshire",
+        "instrument": "US0846707026",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:novo",
+        "instrument": "DK0062498333",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:vinci",
+        "instrument": "FR0000125486",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:total",
+        "instrument": "FR0000120271",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:saintgobain",
+        "instrument": "FR0000125007",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:legrand",
+        "instrument": "FR0010307819",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:airliquide",
+        "instrument": "FR0000120073",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:schneider",
+        "instrument": "FR0000121972",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:lvmh",
+        "instrument": "FR0000121014",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:loreal",
+        "instrument": "FR0000120321",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:sanofi",
+        "instrument": "FR0000120578",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:danone",
+        "instrument": "FR0000120644",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:axa",
+        "instrument": "FR0000120628",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:michelin",
+        "instrument": "FR001400AJ45",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:veolia",
+        "instrument": "FR0000124141",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:sap",
+        "instrument": "DE0007164600",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:asml",
+        "instrument": "NL0010273215",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:microsoft",
+        "instrument": "US5949181045",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:apple",
+        "instrument": "US0378331005",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:alphabet",
+        "instrument": "US02079K3059",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:amazon",
+        "instrument": "US0231351067",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      },
+      {
+        "id": "dca-equity:nvidia",
+        "instrument": "US67066G1040",
+        "fields": [
+          "country of risk",
+          "sector"
+        ],
+        "selected": true
+      }
+    ],
+    "mode": "full",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "emptyReason": null,
+    "cacheRequested": false,
+    "producer": "collect_dca_equities",
+    "reportStem": "dca-equities",
+    "declaredAt": "2026-11-10T08:14:19.273424+00:00",
+    "nonce": "d1b256cb-eb24-44f7-8a5d-7b9e6bbe6a93",
+    "codeSha": "c40eebc0a14bb90dbb291eeacceee7b5c01afc78",
+    "durablePlan": true,
+    "runId": "42780841553",
+    "attempt": "1",
+    "sha256": "18fbba609a444b054daf500157ea7779b51c92ef75c0674ec6428825f758a584"
+  },
+  "outcomes": [
+    {
+      "id": "dca-equity:nintendo",
+      "instrument": "JP3756600007",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:costco",
+      "instrument": "US22160K1051",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:caterpillar",
+      "instrument": "US1491231015",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:deere",
+      "instrument": "US2441991054",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:wasteManagement",
+      "instrument": "US94106L1098",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:airbus",
+      "instrument": "NL0000235190",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:safran",
+      "instrument": "FR0000073272",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:bnp",
+      "instrument": "FR0000131104",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:orange",
+      "instrument": "FR0000133308",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:engie",
+      "instrument": "FR0010208488",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:siemens",
+      "instrument": "DE0007236101",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:allianz",
+      "instrument": "DE0008404005",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:unilever",
+      "instrument": "GB00BVZK7T90",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:nestle",
+      "instrument": "CH0038863350",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:visa",
+      "instrument": "US92826C8394",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:berkshire",
+      "instrument": "US0846707026",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:novo",
+      "instrument": "DK0062498333",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:vinci",
+      "instrument": "FR0000125486",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:total",
+      "instrument": "FR0000120271",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:saintgobain",
+      "instrument": "FR0000125007",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:legrand",
+      "instrument": "FR0010307819",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:airliquide",
+      "instrument": "FR0000120073",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:schneider",
+      "instrument": "FR0000121972",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:lvmh",
+      "instrument": "FR0000121014",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:loreal",
+      "instrument": "FR0000120321",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:sanofi",
+      "instrument": "FR0000120578",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:danone",
+      "instrument": "FR0000120644",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:axa",
+      "instrument": "FR0000120628",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:michelin",
+      "instrument": "FR001400AJ45",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:veolia",
+      "instrument": "FR0000124141",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:sap",
+      "instrument": "DE0007164600",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:asml",
+      "instrument": "NL0010273215",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:microsoft",
+      "instrument": "US5949181045",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:apple",
+      "instrument": "US0378331005",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:alphabet",
+      "instrument": "US02079K3059",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:amazon",
+      "instrument": "US0231351067",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "dca-equity:nvidia",
+      "instrument": "US67066G1040",
+      "fields": [
+        "country of risk",
+        "sector"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    }
+  ],
+  "issues": [],
+  "unscopedFailures": [],
+  "meaning": "The exact declared instrument/field group and native outcomes, not certification of every field retained in the merged record. Source, local qualification, recording and publication remain distinct."
+}

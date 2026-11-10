@@ -1,0 +1,3573 @@
+{
+  "before": {
+    "sha": "d7c50e6ed9a36302ed788c1ce5e46d9fca7530a3",
+    "builtAt": "2026-11-10T10:06:17Z"
+  },
+  "after": {
+    "sha": "d7c50e6ed9a36302ed788c1ce5e46d9fca7530a3",
+    "builtAt": "2026-11-10T10:06:17Z"
+  },
+  "receipts": [
+    {
+      "id": "panx-profile",
+      "qualifications": [
+        {
+          "asset": "bnp",
+          "label": "BNP Paribas",
+          "isin": "FR0000131104",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 100,
+          "identifiedCoverage": 100,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0
+        },
+        {
+          "asset": "FR0011550185",
+          "label": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
+          "isin": "FR0011550185",
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "Certaines positions n’ont pas d’identifiant qualifié.",
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 39.06,
+          "identifiedCoverage": 0,
+          "unidentifiedCoverage": 39.06,
+          "residualWeight": 60.94
+        },
+        {
+          "asset": "FR0011871110",
+          "label": "Amundi PEA Nasdaq-100 UCITS ETF",
+          "isin": "FR0011871110",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.0001,
+          "identifiedCoverage": 100.0001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.00010000000000331966
+        },
+        {
+          "asset": "FR0013412012",
+          "label": "Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF",
+          "isin": "FR0013412012",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 45.095477,
+          "identifiedCoverage": 45.095477,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 54.904523
+        },
+        {
+          "asset": "FR0013412020",
+          "label": "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF",
+          "isin": "FR0013412020",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 35.571005,
+          "identifiedCoverage": 35.571005,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 64.428995
+        },
+        {
+          "asset": "FR0013412269",
+          "label": "Amundi PEA US Tech Screened UCITS ETF - Acc",
+          "isin": "FR0013412269",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 79.266435,
+          "identifiedCoverage": 79.266435,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 20.733565
+        },
+        {
+          "asset": "LU1681043599",
+          "label": "Amundi MSCI World Swap UCITS ETF (Acc)",
+          "isin": "LU1681043599",
+          "asOf": "2026-09-25",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99900000000014,
+          "identifiedCoverage": 99.99900000000014,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0009999999998626663
+        },
+        {
+          "asset": "lvmh",
+          "label": "LVMH",
+          "isin": "FR0000121014",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 100,
+          "identifiedCoverage": 100,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": true,
+          "overlap": 0.1228
+        },
+        {
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": true,
+          "overlap": 0.1227
+        }
+      ],
+      "pngSha256": "6cf7fdb6c91d9ba9132d23d9b0ee52ca678f6013575b3983d113b547b95475a7"
+    },
+    {
+      "id": "core",
+      "qualifications": [
+        {
+          "asset": "nasdaq",
+          "label": "iShares Nasdaq 100 UCITS ETF",
+          "isin": "IE00B53SZB19",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.96072000000001,
+          "identifiedCoverage": 99.96072000000001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.03927999999999088
+        },
+        {
+          "asset": "sp500",
+          "label": "iShares Core S&P 500 UCITS ETF",
+          "isin": "IE00B5BMR087",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.95215999999996,
+          "identifiedCoverage": 99.95215999999996,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0478400000000363
+        },
+        {
+          "asset": "world",
+          "label": "iShares Core MSCI World UCITS ETF (Acc)",
+          "isin": "IE00B4L5Y983",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.51999999999984,
+          "identifiedCoverage": 99.51999999999984,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.4800000000001603
+        }
+      ],
+      "pairs": [
+        {
+          "full": true,
+          "overlap": 52.40467000000001
+        },
+        {
+          "full": true,
+          "overlap": 37.801230000000025
+        },
+        {
+          "full": true,
+          "overlap": 70.38264000000001
+        }
+      ],
+      "pngSha256": "225c1a9b7372b2ab55e6eca75116e2add7bb097e2e40e92fd240705a242adbd3"
+    },
+    {
+      "id": "residual-identities",
+      "qualifications": [
+        {
+          "asset": "acwi",
+          "label": "iShares MSCI ACWI UCITS ETF USD (Acc)",
+          "isin": "IE00B6R52259",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.58333999999995,
+          "identifiedCoverage": 99.58333999999994,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.41666000000005
+        },
+        {
+          "asset": "small",
+          "label": "iShares MSCI World Small Cap UCITS ETF",
+          "isin": "IE00BF4RFH31",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Certaines positions n’ont pas d’identifiant qualifié.",
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.3706399999999,
+          "identifiedCoverage": 99.3703299999999,
+          "unidentifiedCoverage": 0.00031,
+          "residualWeight": 0.629360000000105
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "e524e6dae5608bc17828dc6b6ba692049a9b333fde4fc6d449ecf64a3f4416c9"
+    },
+    {
+      "id": "nav-residual",
+      "qualifications": [
+        {
+          "asset": "emerging",
+          "label": "Xtrackers MSCI Emerging Markets UCITS ETF",
+          "isin": "IE00BTJRMP35",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Certaines positions n’ont pas d’identifiant qualifié.",
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.35130090999982,
+          "identifiedCoverage": 99.35130090999982,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.6486990900001786
+        },
+        {
+          "asset": "infrastructure",
+          "label": "iShares Global Infrastructure UCITS ETF USD (Dist)",
+          "isin": "IE00B1FZS467",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.23137,
+          "identifiedCoverage": 99.23137,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.7686300000000017
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "e2610973215da5861b725cb902298ba67faa02c9572f86e7c39daf1e93da437a"
+    },
+    {
+      "id": "hedged-unsupported",
+      "qualifications": [
+        {
+          "asset": "IE00B441G979",
+          "label": "iShares MSCI World EUR Hedged UCITS ETF (Acc)",
+          "isin": "IE00B441G979",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.15043999999997,
+          "identifiedCoverage": 99.15043999999997,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.8495600000000252
+        },
+        {
+          "asset": "world",
+          "label": "iShares Core MSCI World UCITS ETF (Acc)",
+          "isin": "IE00B4L5Y983",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.51999999999984,
+          "identifiedCoverage": 99.51999999999984,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.4800000000001603
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "bfba48e523706734f4d24e8f1467e6e252a9fa45cb81dae5625a509cb0d2b246"
+    },
+    {
+      "id": "cloud",
+      "qualifications": [
+        {
+          "asset": "cloud",
+          "label": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "isin": "IE00BJGWQN72",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.00030000000005,
+          "identifiedCoverage": 100.00030000000005,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.00030000000005259153
+        },
+        {
+          "asset": "sp500",
+          "label": "iShares Core S&P 500 UCITS ETF",
+          "isin": "IE00B5BMR087",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.95215999999996,
+          "identifiedCoverage": 99.95215999999996,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0478400000000363
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "fdcd83b696cc4dcf6428526bb0176ce84a41502d0bfac2f78d0b444b5cbfaf95"
+    },
+    {
+      "id": "ggra-full-with-world",
+      "qualifications": [
+        {
+          "asset": "IE00BZ56SW52",
+          "label": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+          "isin": "IE00BZ56SW52",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99979999999991,
+          "identifiedCoverage": 99.99979999999991,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.00020000000009190444
+        },
+        {
+          "asset": "world",
+          "label": "iShares Core MSCI World UCITS ETF (Acc)",
+          "isin": "IE00B4L5Y983",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.51999999999984,
+          "identifiedCoverage": 99.51999999999984,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.4800000000001603
+        }
+      ],
+      "pairs": [
+        {
+          "full": true,
+          "overlap": 37.79735999999997
+        }
+      ],
+      "pngSha256": "dbc8f3352eb056b2b9085625fbe6154b5a1798eebb18e250d60d7478c7b40212"
+    },
+    {
+      "id": "new-issuer-portfolios",
+      "qualifications": [
+        {
+          "asset": "IE00BKLF1R75",
+          "label": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+          "isin": "IE00BKLF1R75",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.00010000000003,
+          "identifiedCoverage": 100.00010000000003,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.00010000000003174137
+        },
+        {
+          "asset": "IE00BZ56SW52",
+          "label": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+          "isin": "IE00BZ56SW52",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99979999999991,
+          "identifiedCoverage": 99.99979999999991,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.00020000000009190444
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "82d530e40aa60246e75b1ef8c9de4bfce8dc07f0c66c2f3fb4b187f28b246bf8"
+    },
+    {
+      "id": "retained-globalx-and-jpm",
+      "qualifications": [
+        {
+          "asset": "IE0003UVYC20",
+          "label": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+          "isin": "IE0003UVYC20",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.53727688178762,
+          "identifiedCoverage": 99.53727688178762,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.46272311821238077
+        },
+        {
+          "asset": "IE000NDWFGA5",
+          "label": "Global X Uranium UCITS ETF USD Acc",
+          "isin": "IE000NDWFGA5",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Certaines positions n’ont pas d’identifiant qualifié."
+          ],
+          "sourceCoverage": 99.82099999999994,
+          "identifiedCoverage": 99.81699999999995,
+          "unidentifiedCoverage": 0.004,
+          "residualWeight": 0.1790000000000589
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "692136ba45ab261f0f7a40399ec18b0d7105dcb72528b0438a9fdc0e40874671"
+    },
+    {
+      "id": "qualified-venue-tickers",
+      "qualifications": [
+        {
+          "asset": "IE000YYE6WK5",
+          "label": "VanEck Defense UCITS ETF",
+          "isin": "IE000YYE6WK5",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233172&ticker=UCTDFNS&reactlang=en&reactctr=uk",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.98999999999998,
+          "identifiedCoverage": 99.98999999999998,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.010000000000019327
+        },
+        {
+          "asset": "IE00BDFBTQ78",
+          "label": "VanEck S&P Global Mining UCITS ETF",
+          "isin": "IE00BDFBTQ78",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Certaines positions n’ont pas d’identifiant qualifié."
+          ],
+          "sourceCoverage": 99.95000000000007,
+          "identifiedCoverage": 99.92000000000007,
+          "unidentifiedCoverage": 0.03,
+          "residualWeight": 0.049999999999926104
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "a0e87ac75fc0e99f7f724d5a942d0bbebfb80dcd4b54ffc19cf7c8e97e851b59"
+    },
+    {
+      "id": "retained-invesco-shares",
+      "qualifications": [
+        {
+          "asset": "IE0000QLH0G6",
+          "label": "Invesco FTSE All-World UCITS ETF Distributing",
+          "isin": "IE0000QLH0G6",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.90050000000033,
+          "identifiedCoverage": 99.90050000000033,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.09949999999966508
+        },
+        {
+          "asset": "IE000716YHJ7",
+          "label": "Invesco FTSE All-World UCITS ETF Accumulating",
+          "isin": "IE000716YHJ7",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.90050000000033,
+          "identifiedCoverage": 99.90050000000033,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.09949999999966508
+        }
+      ],
+      "pairs": [
+        {
+          "full": true,
+          "overlap": 99.9005000000003
+        }
+      ],
+      "pngSha256": "22e9f898b38b2eb68c37ffb6619798892b5889c171f610d0bbf846796225cd3f"
+    },
+    {
+      "id": "neutral",
+      "qualifications": [
+        {
+          "asset": "world",
+          "label": "iShares Core MSCI World UCITS ETF (Acc)",
+          "isin": "IE00B4L5Y983",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.51999999999984,
+          "identifiedCoverage": 99.51999999999984,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.4800000000001603
+        }
+      ],
+      "pairs": [],
+      "pngSha256": "8d4f1b12a102deeafad4b9651b91222dc902c9fdd9648ff812b03f1e0f989ed8"
+    },
+    {
+      "id": "fund-and-index",
+      "qualifications": [
+        {
+          "asset": "FR0013411980",
+          "label": "Amundi PEA Japan (TOPIX) UCITS ETF",
+          "isin": "FR0013411980",
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99940000000012,
+          "identifiedCoverage": 99.99940000000012,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0005999999998778094
+        },
+        {
+          "asset": "world",
+          "label": "iShares Core MSCI World UCITS ETF (Acc)",
+          "isin": "IE00B4L5Y983",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.51999999999984,
+          "identifiedCoverage": 99.51999999999984,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.4800000000001603
+        }
+      ],
+      "pairs": [],
+      "pngSha256": "8d4f1b12a102deeafad4b9651b91222dc902c9fdd9648ff812b03f1e0f989ed8"
+    },
+    {
+      "id": "native-index-pair",
+      "qualifications": [
+        {
+          "asset": "FR0013411980",
+          "label": "Amundi PEA Japan (TOPIX) UCITS ETF",
+          "isin": "FR0013411980",
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99940000000012,
+          "identifiedCoverage": 99.99940000000012,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0005999999998778094
+        },
+        {
+          "asset": "FR0013411998",
+          "label": "Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc",
+          "isin": "FR0013411998",
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99940000000012,
+          "identifiedCoverage": 99.99940000000012,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0005999999998778094
+        }
+      ],
+      "pairs": [
+        {
+          "full": true,
+          "overlap": 99.99940000000024
+        }
+      ],
+      "pngSha256": "208d504099fca471be2dc98b67db61520e482160321a11cc3ef45a71f2407a00"
+    },
+    {
+      "id": "issuer-economic-indices",
+      "qualifications": [
+        {
+          "asset": "europe",
+          "label": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
+          "isin": "FR0011550193",
+          "asOf": "2026-10-28",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99989999999991,
+          "identifiedCoverage": 99.99989999999991,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.00010000000008858478
+        },
+        {
+          "asset": "FR0011871110",
+          "label": "Amundi PEA Nasdaq-100 UCITS ETF",
+          "isin": "FR0011871110",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.0001,
+          "identifiedCoverage": 100.0001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.00010000000000331966
+        },
+        {
+          "asset": "nasdaq",
+          "label": "iShares Nasdaq 100 UCITS ETF",
+          "isin": "IE00B53SZB19",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.96072000000001,
+          "identifiedCoverage": 99.96072000000001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.03927999999999088
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "d8899fa8f96652ab8f766b79a3111f572e2ab562e6d8dee42674f2e187fbdaa7"
+    },
+    {
+      "id": "msci-economic-indices",
+      "qualifications": [
+        {
+          "asset": "FR0013412038",
+          "label": "Amundi PEA MSCI Europe UCITS ETF (Acc)",
+          "isin": "FR0013412038",
+          "asOf": "2026-09-25",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99980000000004,
+          "identifiedCoverage": 99.99980000000004,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.00019999999996400675
+        },
+        {
+          "asset": "FR001400U5Q4",
+          "label": "Amundi PEA Monde (MSCI World) UCITS ETF",
+          "isin": "FR001400U5Q4",
+          "asOf": "2026-09-25",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99900000000014,
+          "identifiedCoverage": 99.99900000000014,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0009999999998626663
+        },
+        {
+          "asset": "IE0002XZSHO1",
+          "label": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
+          "isin": "IE0002XZSHO1",
+          "asOf": "2026-09-25",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99900000000014,
+          "identifiedCoverage": 99.99900000000014,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0009999999998626663
+        },
+        {
+          "asset": "LU1681043599",
+          "label": "Amundi MSCI World Swap UCITS ETF (Acc)",
+          "isin": "LU1681043599",
+          "asOf": "2026-09-25",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99900000000014,
+          "identifiedCoverage": 99.99900000000014,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0009999999998626663
+        },
+        {
+          "asset": "LU1681045370",
+          "label": "Amundi MSCI Emerging Markets UCITS ETF",
+          "isin": "LU1681045370",
+          "asOf": "2026-09-25",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.00080000000011,
+          "identifiedCoverage": 100.00080000000011,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.0008000000001118224
+        }
+      ],
+      "pairs": [
+        {
+          "full": true,
+          "overlap": 15.1689
+        },
+        {
+          "full": true,
+          "overlap": 15.1689
+        },
+        {
+          "full": true,
+          "overlap": 15.1689
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": true,
+          "overlap": 99.99900000000011
+        },
+        {
+          "full": true,
+          "overlap": 99.99900000000011
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": true,
+          "overlap": 99.99900000000011
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "f2e1072a3fc9c23ea820cef2c2f7d84a732c3aac5c73ce3ae502a1878e0dee5d"
+    },
+    {
+      "id": "russell-economic-reference",
+      "qualifications": [
+        {
+          "asset": "europe",
+          "label": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
+          "isin": "FR0011550193",
+          "asOf": "2026-10-28",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99989999999991,
+          "identifiedCoverage": 99.99989999999991,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.00010000000008858478
+        },
+        {
+          "asset": "LU1681038672",
+          "label": "Amundi Russell 2000 UCITS ETF EUR Acc",
+          "isin": "LU1681038672",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.00039999999987,
+          "identifiedCoverage": 100.00039999999987,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.0003999999998711701
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "c484f206ccffdac34f535c1fe91c44afa94ce99f671cffbe65c1e0fbfcf15d84"
+    },
+    {
+      "id": "physical-fund-index-references",
+      "qualifications": [
+        {
+          "asset": "IE000QDFFK00",
+          "label": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
+          "isin": "IE000QDFFK00",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.0001,
+          "identifiedCoverage": 100.0001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.00010000000000331966
+        },
+        {
+          "asset": "IE00BD4TXV59",
+          "label": "UBS Core MSCI World UCITS ETF",
+          "isin": "IE00BD4TXV59",
+          "asOf": "2026-09-25",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées."
+          ],
+          "sourceCoverage": 99.99900000000014,
+          "identifiedCoverage": 99.99900000000014,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0009999999998626663
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "26c72814c75e15f7deb19a10cabd9274edd45ed146e8729804762e0e9c3413e9"
+    },
+    {
+      "id": "europe-pea-partial",
+      "qualifications": [
+        {
+          "asset": "europe",
+          "label": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
+          "isin": "FR0011550193",
+          "asOf": "2026-10-28",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99989999999991,
+          "identifiedCoverage": 99.99989999999991,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.00010000000008858478
+        },
+        {
+          "asset": "FR0011869304",
+          "label": "Amundi PEA Immobilier Europe UCITS ETF Acc",
+          "isin": "FR0011869304",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 45.081433,
+          "identifiedCoverage": 45.081433,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 54.918567
+        },
+        {
+          "asset": "FR0011871110",
+          "label": "Amundi PEA Nasdaq-100 UCITS ETF",
+          "isin": "FR0011871110",
+          "asOf": "2026-11-06",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.0001,
+          "identifiedCoverage": 100.0001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.00010000000000331966
+        }
+      ],
+      "pairs": [
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        },
+        {
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "c26d19fd451541139ff25522cfd4857572b2a7a434d6bc81a94b9a34e43edb56"
+    },
+    {
+      "id": "europe-only-no-identifiers",
+      "qualifications": [
+        {
+          "asset": "europe",
+          "label": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
+          "isin": "FR0011550193",
+          "asOf": "2026-10-28",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99989999999991,
+          "identifiedCoverage": 99.99989999999991,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.00010000000008858478
+        }
+      ],
+      "pairs": [],
+      "pngSha256": "75881aac9c9733616d368dc7798707f5fce23d0b95dcefaddc9b63d6edd838c3"
+    },
+    {
+      "id": "outside-equity-only",
+      "qualifications": [],
+      "pairs": [],
+      "pngSha256": "234a802ecae5c7c2da2ecbf977c8f2af357ae391fade1a9be1dbdeb368060a94"
+    }
+  ],
+  "chunks": [
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-2O9FVKR2.js",
+      "sha256": "902a6e57200a3f56704d51c7609a117287679279ef4ba21bc6f8b156f5606de6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/react-CwJFpaho.js",
+      "sha256": "47a1df5cc470edba21ded1ea4359e8bc0a870f7497957ebfd90fb6e210671d14",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/preload-helper-Dp3WIDEx.js",
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/App-B_s0jUko.js",
+      "sha256": "1c5cf70faae90727903e2cb36c787244e005b40843ff9015c3b837c1a1455f31",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/light-helpers-DsOrSi2m.js",
+      "sha256": "1ffc35b657be1c1246a425ff5ec4c69a83933bb8d7687fddb0075631ad675a62",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/ChoicePicker-DhC2iZH_.js",
+      "sha256": "3d8c12706dd2f0bf275000fcf64a23eea87aa87952b8ef8fe86ba05b3a67ce58",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/publication-preferences-BvCJOYoS.js",
+      "sha256": "2575174eab1f3583084bf62dcd6f1ac5ec38ba957ea63c23dac5c7065c642787",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Button-DQrx5LrE.js",
+      "sha256": "89392025b0ef99e6b0a045d44de87b5fdb1ff9f1dbf1fb2e1dc0ead2e6a15921",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/engine-DIOyeIMH.js",
+      "sha256": "3a3e67ce5eee69aca95587a8773fb5453d627ef1de9e61060890cabe97384622",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/record-loader-iBe7-wA4.js",
+      "sha256": "ba6c6f41e54f256cd3debe3f3ab1b538e5546fec31ce859e03297da82251423b",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/dca-catalog-pl2myBtH.js",
+      "sha256": "d43d5ae612372fc9900517536caa9d9509e1a1588c8ad60c61888eedc51b80f6",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/analytics-BMZpe8qO.js",
+      "sha256": "6b0b7d23cf96c66dc3375e8d3c432ca40f1e3fb527a34f985c9f1d2ea9c07518",
+      "currentRussellMethod": true,
+      "newRuntimeContract": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/french-characteristics-sbwHBo83.js",
+      "sha256": "271f2cca0d6413fba9727a337e543bfceee38f390d55cd5d6760e4e626d31d6e",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/index-concentration-core-DwN1teXS.js",
+      "sha256": "407924355746c3ca05f4fa7c253147e806f72b11b63ea9fd21c0ad4cbd72f31a",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/use-selected-records-Bxd7fga4.js",
+      "sha256": "c68d1344288fc1e44d879767adb8f60a28fe5f0d4ed439513914b82c20486fd9",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/AssetPicker-5lsB03Fm.js",
+      "sha256": "9a543dd190a47ce3baf90eb962f94e989f0446f9799542baa87454f59d0d5386",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/Analytics-C3EmI_Kl.js",
+      "sha256": "cb8b0e1570cb49c8517015dbbb4bdc9648070bd6804788a057f042da29848d05",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-loader-fAnkK1pM.js",
+      "sha256": "569af2646da635ea60860c45a3a4b99186cfcc972a6db2d4b73f3f525194bfa4",
+      "currentRussellMethod": false,
+      "newRuntimeContract": false
+    }
+  ],
+  "errors": []
+}

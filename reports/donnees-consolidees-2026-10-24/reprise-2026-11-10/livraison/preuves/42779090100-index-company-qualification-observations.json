@@ -1,0 +1,2137 @@
+{
+  "sourceRun": 42779090100,
+  "event": "workflow_dispatch",
+  "recordingCommit": "d1d52a04a510ce7ec75265519447a8a5fd93aacd",
+  "originalArtifactReport": "index-company-qualification-observations.json",
+  "originalReportSha256": "d354c02acb3a6d63c47b0ce52e860953559e2f5d3d3391f3d46d8f6c7eb4096a",
+  "contractValidation": "passed",
+  "scope": {
+    "kind": "index-company-qualification",
+    "mode": "full",
+    "expectedIds": [
+      "qualification:msci-usa",
+      "qualification:msci-india",
+      "qualification:ftse-epra-nareit-developed-dividend-plus",
+      "qualification:ftse-global-core-infrastructure",
+      "qualification:msci-world-momentum",
+      "qualification:msci-world-minimum-volatility-usd",
+      "qualification:msci-world-sector-neutral-quality",
+      "qualification:msci-world-enhanced-value",
+      "qualification:msci-em-ex-china",
+      "qualification:acwi-imi",
+      "qualification:sp500-equal-weight",
+      "qualification:russell-2000",
+      "qualification:em-standard",
+      "qualification:topix",
+      "qualification:nikkei225",
+      "qualification:acwi",
+      "qualification:ftse-all-world",
+      "qualification:world-small-cap",
+      "qualification:world-ex-usa",
+      "qualification:world",
+      "qualification:stoxx600",
+      "qualification:eurostoxx50",
+      "qualification:mscieurope",
+      "qualification:em-esg",
+      "qualification:sp500-pea",
+      "qualification:nasdaq-pea",
+      "qualification:msci-world-consumer-discretionary",
+      "qualification:msci-world-communication-services",
+      "qualification:msci-world-health-care",
+      "qualification:msci-world-financials",
+      "qualification:msci-world-energy",
+      "qualification:world-islamic",
+      "qualification:msci-world-materials",
+      "qualification:msci-world-utilities",
+      "qualification:msci-world-industrials",
+      "qualification:msci-world-consumer-staples",
+      "qualification:msci-em-imi",
+      "qualification:ftse-all-world-high-dividend-yield",
+      "qualification:sp-global-dividend-aristocrats",
+      "qualification:msci-world-growth",
+      "qualification:ftse-china-50",
+      "qualification:ftse-em",
+      "qualification:msci-china",
+      "qualification:msci-china-a",
+      "qualification:msci-em-asia-screened",
+      "qualification:msci-em-emea-esg",
+      "qualification:msci-em-latin-america",
+      "qualification:msci-em-latin-america-selection",
+      "qualification:msci-japan-imi",
+      "qualification:msci-world-high-dividend-yield-advanced-select",
+      "qualification:russell-1000",
+      "qualification:sp-euro-dividend-aristocrats",
+      "qualification:cac40",
+      "qualification:dow-jones",
+      "qualification:dax",
+      "qualification:msci-korea"
+    ],
+    "requestedIds": [
+      "qualification:msci-usa",
+      "qualification:msci-india",
+      "qualification:ftse-epra-nareit-developed-dividend-plus",
+      "qualification:ftse-global-core-infrastructure",
+      "qualification:msci-world-momentum",
+      "qualification:msci-world-minimum-volatility-usd",
+      "qualification:msci-world-sector-neutral-quality",
+      "qualification:msci-world-enhanced-value",
+      "qualification:msci-em-ex-china",
+      "qualification:acwi-imi",
+      "qualification:sp500-equal-weight",
+      "qualification:russell-2000",
+      "qualification:em-standard",
+      "qualification:topix",
+      "qualification:nikkei225",
+      "qualification:acwi",
+      "qualification:ftse-all-world",
+      "qualification:world-small-cap",
+      "qualification:world-ex-usa",
+      "qualification:world",
+      "qualification:stoxx600",
+      "qualification:eurostoxx50",
+      "qualification:mscieurope",
+      "qualification:em-esg",
+      "qualification:sp500-pea",
+      "qualification:nasdaq-pea",
+      "qualification:msci-world-consumer-discretionary",
+      "qualification:msci-world-communication-services",
+      "qualification:msci-world-health-care",
+      "qualification:msci-world-financials",
+      "qualification:msci-world-energy",
+      "qualification:world-islamic",
+      "qualification:msci-world-materials",
+      "qualification:msci-world-utilities",
+      "qualification:msci-world-industrials",
+      "qualification:msci-world-consumer-staples",
+      "qualification:msci-em-imi",
+      "qualification:ftse-all-world-high-dividend-yield",
+      "qualification:sp-global-dividend-aristocrats",
+      "qualification:msci-world-growth",
+      "qualification:ftse-china-50",
+      "qualification:ftse-em",
+      "qualification:msci-china",
+      "qualification:msci-china-a",
+      "qualification:msci-em-asia-screened",
+      "qualification:msci-em-emea-esg",
+      "qualification:msci-em-latin-america",
+      "qualification:msci-em-latin-america-selection",
+      "qualification:msci-japan-imi",
+      "qualification:msci-world-high-dividend-yield-advanced-select",
+      "qualification:russell-1000",
+      "qualification:sp-euro-dividend-aristocrats",
+      "qualification:cac40",
+      "qualification:dow-jones",
+      "qualification:dax",
+      "qualification:msci-korea"
+    ],
+    "items": [
+      {
+        "id": "qualification:msci-usa",
+        "instrument": "msci-usa",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-india",
+        "instrument": "msci-india",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-epra-nareit-developed-dividend-plus",
+        "instrument": "ftse-epra-nareit-developed-dividend-plus",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-global-core-infrastructure",
+        "instrument": "ftse-global-core-infrastructure",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-momentum",
+        "instrument": "msci-world-momentum",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-minimum-volatility-usd",
+        "instrument": "msci-world-minimum-volatility-usd",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-sector-neutral-quality",
+        "instrument": "msci-world-sector-neutral-quality",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-enhanced-value",
+        "instrument": "msci-world-enhanced-value",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-ex-china",
+        "instrument": "msci-em-ex-china",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:acwi-imi",
+        "instrument": "acwi-imi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp500-equal-weight",
+        "instrument": "sp500-equal-weight",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:russell-2000",
+        "instrument": "russell-2000",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:em-standard",
+        "instrument": "em-standard",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:topix",
+        "instrument": "topix",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:nikkei225",
+        "instrument": "nikkei225",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:acwi",
+        "instrument": "acwi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-all-world",
+        "instrument": "ftse-all-world",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world-small-cap",
+        "instrument": "world-small-cap",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world-ex-usa",
+        "instrument": "world-ex-usa",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world",
+        "instrument": "world",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:stoxx600",
+        "instrument": "stoxx600",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:eurostoxx50",
+        "instrument": "eurostoxx50",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:mscieurope",
+        "instrument": "mscieurope",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:em-esg",
+        "instrument": "em-esg",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp500-pea",
+        "instrument": "sp500-pea",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:nasdaq-pea",
+        "instrument": "nasdaq-pea",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-consumer-discretionary",
+        "instrument": "msci-world-consumer-discretionary",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-communication-services",
+        "instrument": "msci-world-communication-services",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-health-care",
+        "instrument": "msci-world-health-care",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-financials",
+        "instrument": "msci-world-financials",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-energy",
+        "instrument": "msci-world-energy",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world-islamic",
+        "instrument": "world-islamic",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-materials",
+        "instrument": "msci-world-materials",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-utilities",
+        "instrument": "msci-world-utilities",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-industrials",
+        "instrument": "msci-world-industrials",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-consumer-staples",
+        "instrument": "msci-world-consumer-staples",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-imi",
+        "instrument": "msci-em-imi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-all-world-high-dividend-yield",
+        "instrument": "ftse-all-world-high-dividend-yield",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp-global-dividend-aristocrats",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-growth",
+        "instrument": "msci-world-growth",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-china-50",
+        "instrument": "ftse-china-50",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-em",
+        "instrument": "ftse-em",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-china",
+        "instrument": "msci-china",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-china-a",
+        "instrument": "msci-china-a",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-asia-screened",
+        "instrument": "msci-em-asia-screened",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-emea-esg",
+        "instrument": "msci-em-emea-esg",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-latin-america",
+        "instrument": "msci-em-latin-america",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-latin-america-selection",
+        "instrument": "msci-em-latin-america-selection",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-japan-imi",
+        "instrument": "msci-japan-imi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-high-dividend-yield-advanced-select",
+        "instrument": "msci-world-high-dividend-yield-advanced-select",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:russell-1000",
+        "instrument": "russell-1000",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp-euro-dividend-aristocrats",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:cac40",
+        "instrument": "cac40",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:dow-jones",
+        "instrument": "dow-jones",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:dax",
+        "instrument": "dax",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-korea",
+        "instrument": "msci-korea",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-11-10T08:01:02.207906+00:00",
+    "planSha256": "74ce04e964297f9ae4b5427b35459aac889ab746c959f8e56622807d20eb87f4",
+    "attemptedIds": [
+      "qualification:msci-india",
+      "qualification:ftse-epra-nareit-developed-dividend-plus",
+      "qualification:ftse-global-core-infrastructure",
+      "qualification:msci-world-momentum",
+      "qualification:msci-world-minimum-volatility-usd",
+      "qualification:msci-world-sector-neutral-quality",
+      "qualification:msci-world-enhanced-value",
+      "qualification:msci-em-ex-china",
+      "qualification:acwi-imi",
+      "qualification:sp500-equal-weight",
+      "qualification:russell-2000",
+      "qualification:em-standard",
+      "qualification:topix",
+      "qualification:acwi",
+      "qualification:ftse-all-world",
+      "qualification:world-ex-usa",
+      "qualification:world",
+      "qualification:stoxx600",
+      "qualification:eurostoxx50",
+      "qualification:mscieurope",
+      "qualification:sp500-pea",
+      "qualification:nasdaq-pea",
+      "qualification:msci-world-health-care",
+      "qualification:world-islamic",
+      "qualification:msci-world-materials",
+      "qualification:msci-world-utilities",
+      "qualification:msci-world-industrials",
+      "qualification:ftse-all-world-high-dividend-yield",
+      "qualification:ftse-em",
+      "qualification:msci-japan-imi",
+      "qualification:msci-world-high-dividend-yield-advanced-select",
+      "qualification:sp-euro-dividend-aristocrats",
+      "qualification:cac40",
+      "qualification:dow-jones",
+      "qualification:dax",
+      "qualification:msci-korea"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [],
+    "networkAttemptUnknownIds": [],
+    "runId": "42779090100",
+    "attempt": "1",
+    "selectionReason": null,
+    "nonce": "0eeb5be5-8e3f-4c4c-8446-60a192a54fc5"
+  },
+  "inputPlan": {
+    "producer": "index-company-qualification",
+    "reportStem": "index-company-qualification-observations",
+    "items": [
+      {
+        "id": "qualification:msci-usa",
+        "instrument": "msci-usa",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-india",
+        "instrument": "msci-india",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-epra-nareit-developed-dividend-plus",
+        "instrument": "ftse-epra-nareit-developed-dividend-plus",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-global-core-infrastructure",
+        "instrument": "ftse-global-core-infrastructure",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-momentum",
+        "instrument": "msci-world-momentum",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-minimum-volatility-usd",
+        "instrument": "msci-world-minimum-volatility-usd",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-sector-neutral-quality",
+        "instrument": "msci-world-sector-neutral-quality",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-enhanced-value",
+        "instrument": "msci-world-enhanced-value",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-ex-china",
+        "instrument": "msci-em-ex-china",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:acwi-imi",
+        "instrument": "acwi-imi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp500-equal-weight",
+        "instrument": "sp500-equal-weight",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:russell-2000",
+        "instrument": "russell-2000",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:em-standard",
+        "instrument": "em-standard",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:topix",
+        "instrument": "topix",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:nikkei225",
+        "instrument": "nikkei225",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:acwi",
+        "instrument": "acwi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-all-world",
+        "instrument": "ftse-all-world",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world-small-cap",
+        "instrument": "world-small-cap",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world-ex-usa",
+        "instrument": "world-ex-usa",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world",
+        "instrument": "world",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:stoxx600",
+        "instrument": "stoxx600",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:eurostoxx50",
+        "instrument": "eurostoxx50",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:mscieurope",
+        "instrument": "mscieurope",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:em-esg",
+        "instrument": "em-esg",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp500-pea",
+        "instrument": "sp500-pea",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:nasdaq-pea",
+        "instrument": "nasdaq-pea",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-consumer-discretionary",
+        "instrument": "msci-world-consumer-discretionary",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-communication-services",
+        "instrument": "msci-world-communication-services",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-health-care",
+        "instrument": "msci-world-health-care",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-financials",
+        "instrument": "msci-world-financials",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-energy",
+        "instrument": "msci-world-energy",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:world-islamic",
+        "instrument": "world-islamic",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-materials",
+        "instrument": "msci-world-materials",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-utilities",
+        "instrument": "msci-world-utilities",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-industrials",
+        "instrument": "msci-world-industrials",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-consumer-staples",
+        "instrument": "msci-world-consumer-staples",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-imi",
+        "instrument": "msci-em-imi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-all-world-high-dividend-yield",
+        "instrument": "ftse-all-world-high-dividend-yield",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp-global-dividend-aristocrats",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-growth",
+        "instrument": "msci-world-growth",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-china-50",
+        "instrument": "ftse-china-50",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:ftse-em",
+        "instrument": "ftse-em",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-china",
+        "instrument": "msci-china",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-china-a",
+        "instrument": "msci-china-a",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-asia-screened",
+        "instrument": "msci-em-asia-screened",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-emea-esg",
+        "instrument": "msci-em-emea-esg",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-latin-america",
+        "instrument": "msci-em-latin-america",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-em-latin-america-selection",
+        "instrument": "msci-em-latin-america-selection",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-japan-imi",
+        "instrument": "msci-japan-imi",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-world-high-dividend-yield-advanced-select",
+        "instrument": "msci-world-high-dividend-yield-advanced-select",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:russell-1000",
+        "instrument": "russell-1000",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:sp-euro-dividend-aristocrats",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:cac40",
+        "instrument": "cac40",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:dow-jones",
+        "instrument": "dow-jones",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:dax",
+        "instrument": "dax",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "qualification:msci-korea",
+        "instrument": "msci-korea",
+        "fields": [
+          "company-composition"
+        ],
+        "selected": true
+      }
+    ],
+    "mode": "full",
+    "emptyReason": null,
+    "retainNativeFailuresOnly": false,
+    "declaredAt": "2026-11-10T08:01:02.207906+00:00",
+    "nonce": "0eeb5be5-8e3f-4c4c-8446-60a192a54fc5",
+    "codeSha": "c1333b52e318ea8af24252e30e6a061ebdb3c702",
+    "durablePlan": true,
+    "runId": "42779090100",
+    "attempt": "1",
+    "sha256": "74ce04e964297f9ae4b5427b35459aac889ab746c959f8e56622807d20eb87f4"
+  },
+  "outcomes": [
+    {
+      "id": "qualification:msci-usa",
+      "instrument": "msci-usa",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-usa",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-india",
+      "instrument": "msci-india",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-india",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:ftse-epra-nareit-developed-dividend-plus",
+      "instrument": "ftse-epra-nareit-developed-dividend-plus",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "ftse-epra-nareit-developed-dividend-plus",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:ftse-global-core-infrastructure",
+      "instrument": "ftse-global-core-infrastructure",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "ftse-global-core-infrastructure",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-momentum",
+      "instrument": "msci-world-momentum",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "field": "Qualification de la composition",
+      "error": "Somme des poids incohérente",
+      "sourceId": "msci-world-momentum",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "status": "failed",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-minimum-volatility-usd",
+      "instrument": "msci-world-minimum-volatility-usd",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-minimum-volatility-usd",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-sector-neutral-quality",
+      "instrument": "msci-world-sector-neutral-quality",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-sector-neutral-quality",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-enhanced-value",
+      "instrument": "msci-world-enhanced-value",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-enhanced-value",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-em-ex-china",
+      "instrument": "msci-em-ex-china",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-em-ex-china",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:acwi-imi",
+      "instrument": "acwi-imi",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "acwi-imi",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:sp500-equal-weight",
+      "instrument": "sp500-equal-weight",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "sp500-equal-weight",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:russell-2000",
+      "instrument": "russell-2000",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "russell-2000",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-08T15:19:12.478302+00:00",
+      "asOf": "2026-11-05",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:em-standard",
+      "instrument": "em-standard",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "em-standard",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-09-25",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:topix",
+      "instrument": "topix",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "topix",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-09-30",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:nikkei225",
+      "instrument": "nikkei225",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "nikkei225",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:acwi",
+      "instrument": "acwi",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "acwi",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:ftse-all-world",
+      "instrument": "ftse-all-world",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "ftse-all-world",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-09-30",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:world-small-cap",
+      "instrument": "world-small-cap",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "world-small-cap",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Identifiant, doublon ou poids de titre incohérent",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:world-ex-usa",
+      "instrument": "world-ex-usa",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "world-ex-usa",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:world",
+      "instrument": "world",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "world",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-09-25",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:stoxx600",
+      "instrument": "stoxx600",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "stoxx600",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-08T15:19:12.478302+00:00",
+      "asOf": "2026-10-28",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:eurostoxx50",
+      "instrument": "eurostoxx50",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "eurostoxx50",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:mscieurope",
+      "instrument": "mscieurope",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "mscieurope",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-09-25",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:em-esg",
+      "instrument": "em-esg",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "em-esg",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:sp500-pea",
+      "instrument": "sp500-pea",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "sp500-pea",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:nasdaq-pea",
+      "instrument": "nasdaq-pea",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "nasdaq-pea",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-consumer-discretionary",
+      "instrument": "msci-world-consumer-discretionary",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-consumer-discretionary",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-world-communication-services",
+      "instrument": "msci-world-communication-services",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-communication-services",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-world-health-care",
+      "instrument": "msci-world-health-care",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-health-care",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-financials",
+      "instrument": "msci-world-financials",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-financials",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-world-energy",
+      "instrument": "msci-world-energy",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-energy",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:world-islamic",
+      "instrument": "world-islamic",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "world-islamic",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-materials",
+      "instrument": "msci-world-materials",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-materials",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-utilities",
+      "instrument": "msci-world-utilities",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-utilities",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-industrials",
+      "instrument": "msci-world-industrials",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-industrials",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-consumer-staples",
+      "instrument": "msci-world-consumer-staples",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-consumer-staples",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-em-imi",
+      "instrument": "msci-em-imi",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-em-imi",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Identifiant, doublon ou poids de titre incohérent",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:ftse-all-world-high-dividend-yield",
+      "instrument": "ftse-all-world-high-dividend-yield",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "ftse-all-world-high-dividend-yield",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-09-30",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:sp-global-dividend-aristocrats",
+      "instrument": "sp-global-dividend-aristocrats",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "sp-global-dividend-aristocrats",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-world-growth",
+      "instrument": "msci-world-growth",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-growth",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:ftse-china-50",
+      "instrument": "ftse-china-50",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "ftse-china-50",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:ftse-em",
+      "instrument": "ftse-em",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "ftse-em",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-09-30",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-china",
+      "instrument": "msci-china",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-china",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-china-a",
+      "instrument": "msci-china-a",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-china-a",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-em-asia-screened",
+      "instrument": "msci-em-asia-screened",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-em-asia-screened",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-em-emea-esg",
+      "instrument": "msci-em-emea-esg",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-em-emea-esg",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-em-latin-america",
+      "instrument": "msci-em-latin-america",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-em-latin-america",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-em-latin-america-selection",
+      "instrument": "msci-em-latin-america-selection",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-em-latin-america-selection",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:msci-japan-imi",
+      "instrument": "msci-japan-imi",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-japan-imi",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-world-high-dividend-yield-advanced-select",
+      "instrument": "msci-world-high-dividend-yield-advanced-select",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-world-high-dividend-yield-advanced-select",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:russell-1000",
+      "instrument": "russell-1000",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "russell-1000",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "not-admitted",
+      "status": "not-attempted",
+      "checkedAt": null,
+      "asOf": null,
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.",
+      "operationAttempted": false
+    },
+    {
+      "id": "qualification:sp-euro-dividend-aristocrats",
+      "instrument": "sp-euro-dividend-aristocrats",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "sp-euro-dividend-aristocrats",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:cac40",
+      "instrument": "cac40",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "cac40",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-10",
+      "asOf": "2026-10-31",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:dow-jones",
+      "instrument": "dow-jones",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "dow-jones",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-10",
+      "asOf": "2026-10-31",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:dax",
+      "instrument": "dax",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "dax",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-10",
+      "asOf": "2026-10-31",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    },
+    {
+      "id": "qualification:msci-korea",
+      "instrument": "msci-korea",
+      "fields": [
+        "company-composition"
+      ],
+      "selected": true,
+      "sourceId": "msci-korea",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "qualificationStatus": "qualified",
+      "status": "succeeded",
+      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
+      "asOf": "2026-11-06",
+      "validatedAt": "2026-11-10T08:01:02.392Z",
+      "reason": "Qualification non disponible",
+      "field": "Qualification de la composition",
+      "operationAttempted": true
+    }
+  ],
+  "issues": [],
+  "unscopedFailures": [],
+  "meaning": "The exact declared instrument/field group and native outcomes, not certification of every field retained in the merged record. Source, local qualification, recording and publication remain distinct.",
+  "phase": "local-qualification-not-a-supplier-call"
+}

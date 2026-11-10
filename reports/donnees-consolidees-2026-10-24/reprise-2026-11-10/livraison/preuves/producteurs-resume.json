@@ -1,0 +1,191 @@
+{
+  "reports": [
+    {
+      "report": "42779499877-exposure-expansion.json",
+      "run": 42779499877,
+      "recording": "84a19763804bf7577131e491f8d471771e8f0706",
+      "producer": "collect_exposure_expansion",
+      "expected": 36,
+      "requested": 36,
+      "nativeOutcomes": {
+        "succeeded": 36
+      }
+    },
+    {
+      "report": "42779090100-index-company-observations.json",
+      "run": 42779090100,
+      "recording": "d1d52a04a510ce7ec75265519447a8a5fd93aacd",
+      "producer": "refresh_index_companies",
+      "expected": 5,
+      "requested": 5,
+      "nativeOutcomes": {
+        "succeeded": 5
+      }
+    },
+    {
+      "report": "42779090100-index-company-qualification-observations.json",
+      "run": 42779090100,
+      "recording": "d1d52a04a510ce7ec75265519447a8a5fd93aacd",
+      "producer": "index-company-qualification",
+      "expected": 56,
+      "requested": 56,
+      "nativeOutcomes": {
+        "not-attempted": 20,
+        "succeeded": 35,
+        "failed": 1
+      }
+    },
+    {
+      "report": "42779090100-selected-index-observations.json",
+      "run": 42779090100,
+      "recording": "d1d52a04a510ce7ec75265519447a8a5fd93aacd",
+      "producer": "refresh_index_sources",
+      "expected": 113,
+      "requested": 20,
+      "nativeOutcomes": {
+        "not-attempted": 89,
+        "succeeded": 20,
+        "not-applicable": 4
+      }
+    },
+    {
+      "report": "42780841553-dca-complete-holdings.json",
+      "run": 42780841553,
+      "recording": "7f940971992c787a2737fcf1e729eee4c22e3463",
+      "producer": "collect_dca_complete_holdings",
+      "expected": 201,
+      "requested": 201,
+      "nativeOutcomes": {
+        "succeeded": 200,
+        "failed": 1
+      }
+    },
+    {
+      "report": "42780841553-dca-equities.json",
+      "run": 42780841553,
+      "recording": "7f940971992c787a2737fcf1e729eee4c22e3463",
+      "producer": "collect_dca_equities",
+      "expected": 37,
+      "requested": 37,
+      "nativeOutcomes": {
+        "succeeded": 37
+      }
+    },
+    {
+      "report": "42780841553-exposure-sleeves.json",
+      "run": 42780841553,
+      "recording": "7f940971992c787a2737fcf1e729eee4c22e3463",
+      "producer": "collect_exposure_sleeves",
+      "expected": 16,
+      "requested": 16,
+      "nativeOutcomes": {
+        "succeeded": 16
+      }
+    },
+    {
+      "report": "42780841553-qualified-exposures.json",
+      "run": 42780841553,
+      "recording": "7f940971992c787a2737fcf1e729eee4c22e3463",
+      "producer": "collect_qualified_exposures",
+      "expected": 51,
+      "requested": 51,
+      "nativeOutcomes": {
+        "succeeded": 50,
+        "not-attempted": 1
+      }
+    },
+    {
+      "report": "42780841553-vanguard-sleeves.json",
+      "run": 42780841553,
+      "recording": "7f940971992c787a2737fcf1e729eee4c22e3463",
+      "producer": "collect_vanguard_sleeves",
+      "expected": 3,
+      "requested": 3,
+      "nativeOutcomes": {
+        "succeeded": 3
+      }
+    },
+    {
+      "report": "42780841638-additional-observation.json",
+      "run": 42780841638,
+      "recording": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+      "producer": "refresh_additional_etf",
+      "expected": 126,
+      "requested": 126,
+      "nativeOutcomes": {
+        "succeeded": 125,
+        "failed": 1
+      }
+    },
+    {
+      "report": "42780841638-amundi-observation.json",
+      "run": 42780841638,
+      "recording": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+      "producer": "collect_amundi_etf",
+      "expected": 37,
+      "requested": 37,
+      "nativeOutcomes": {
+        "succeeded": 37
+      }
+    },
+    {
+      "report": "42780841638-index-observation.json",
+      "run": 42780841638,
+      "recording": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+      "producer": "refresh_index_sources",
+      "expected": 113,
+      "requested": 109,
+      "nativeOutcomes": {
+        "succeeded": 107,
+        "failed": 2,
+        "not-applicable": 4
+      }
+    },
+    {
+      "report": "42780841638-observation.json",
+      "run": 42780841638,
+      "recording": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+      "producer": "collect_etf_pilot",
+      "expected": 42,
+      "requested": 42,
+      "nativeOutcomes": {
+        "succeeded": 42
+      }
+    },
+    {
+      "report": "42780841638-presentation-performance.json",
+      "run": 42780841638,
+      "recording": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+      "producer": "collect_presentation_performance",
+      "expected": 4,
+      "requested": 4,
+      "nativeOutcomes": {
+        "succeeded": 4
+      }
+    },
+    {
+      "report": "42780841638-ssga-observation.json",
+      "run": 42780841638,
+      "recording": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+      "producer": "collect_ssga_etf",
+      "expected": 9,
+      "requested": 9,
+      "nativeOutcomes": {
+        "succeeded": 9
+      }
+    },
+    {
+      "report": "42712425920-investor-observations.json",
+      "run": 42712425920,
+      "recording": "0efbf090fa62dbed6edf92a67306e87cb19c0903",
+      "producer": "update-investor-13f",
+      "expected": 28,
+      "requested": 28,
+      "nativeOutcomes": {
+        "unchanged-verified": 28
+      }
+    }
+  ],
+  "rows": 880,
+  "denominatorMeaning": "Result identities may repeat an instrument across distinct source/field groups. Not a count of unique assets or certified catalogue fields."
+}

@@ -1,0 +1,90 @@
+{
+  "before": {
+    "sha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "dataSha": "d1d52a04a510ce7ec75265519447a8a5fd93aacd",
+    "lane": "validated-data",
+    "builtAt": "2026-11-10T08:10:53.312Z"
+  },
+  "oracles": "c40eebc0a14bb90dbb291eeacceee7b5c01afc78",
+  "reports": [
+    {
+      "key": "calculator-etc_wti_crude_oilNav-USD-lump-1440",
+      "asset": "etc_wti_crude_oilNav",
+      "currency": "USD",
+      "mode": "lump",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "19 964 $",
+      "actual": "19 964 $",
+      "pngSha256": "f37ba745218f9f53da67f2e4815a4482b48afc897c68a047e31ee62ab42ce554",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etc_wti_crude_oilNav-USD-dca-1440",
+      "asset": "etc_wti_crude_oilNav",
+      "currency": "USD",
+      "mode": "dca",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "416 410 $",
+      "actual": "416 410 $",
+      "pngSha256": "dbb31c6de5e22d0ed11de5b5f5b13a781192f37b4bbeb7000dbeb9b1da916bdd",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etc_wti_crude_oilNav-EUR-lump-1440",
+      "asset": "etc_wti_crude_oilNav",
+      "currency": "EUR",
+      "mode": "lump",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "18 565 €",
+      "actual": "18 565 €",
+      "pngSha256": "cb2913eef1f7c1fe606ac4cfbf296674d7fa481676ceb2c19fd9cf0b20984eea",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etc_wti_crude_oilNav-EUR-dca-1440",
+      "asset": "etc_wti_crude_oilNav",
+      "currency": "EUR",
+      "mode": "dca",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "423 901 €",
+      "actual": "423 901 €",
+      "pngSha256": "d98aba16ea0d97c4036caf9aea02e8cb0ad95a1524884d96d3726238cd596813",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etc_wheatNav-USD-lump-1440",
+      "asset": "etc_wheatNav",
+      "currency": "USD",
+      "mode": "lump",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "9 214 $",
+      "actual": "9 214 $",
+      "pngSha256": "ac77a6bd350bba8f91fa5dc971f6ecd455fe5d8a83b44344e656bb39b21a1f43",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etc_wheatNav-USD-dca-1440",
+      "asset": "etc_wheatNav",
+      "currency": "USD",
+      "mode": "dca",
+      "start": "2024-12",
+      "end": "2026-10",
+      "months": 23,
+      "expected": "225 248 $",
+      "actual": "225 248 $",
+      "pngSha256": "cacea47ba53609156a8f4c9eed54fedc04c046ba2e97ec803ed2a7364fb097f2",
+      "independentDecimalOracle": true
+    }
+  ],
+  "errors": []
+}

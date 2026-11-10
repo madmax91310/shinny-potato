@@ -1,0 +1,194 @@
+{
+  "reserve": "Extraits des commandes réellement exécutées ; tests locaux distincts des preuves GitHub, fournisseur et publique. Les essais initialement erronés ne sont pas substitués aux reçus réussis.",
+  "logs": [
+    {
+      "log": "pr1214-tests.log",
+      "sha256": "5b432b9325b558ad6d7ca28999bb8621fe8987f11106f787962067684566019c",
+      "bytes": 1183,
+      "tail": [
+        "....................",
+        "----------------------------------------------------------------------",
+        "Ran 20 tests in 0.804s",
+        "",
+        "OK",
+        "..............................................................",
+        "----------------------------------------------------------------------",
+        "Ran 62 tests in 0.958s",
+        "",
+        "OK",
+        "................................",
+        "----------------------------------------------------------------------",
+        "Ran 32 tests in 20.197s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "log": "exposure-publication-tests.log",
+      "sha256": "d3a9fe2f9a3cbb8c236803b524af9069d5735c26073f0105a872eb4a9e0721c8",
+      "bytes": 116,
+      "tail": [
+        ".................",
+        "----------------------------------------------------------------------",
+        "Ran 17 tests in 1.692s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "log": "exposure-rebase-tests.log",
+      "sha256": "1ef98e476a17e1672a4a9e15b8b5b859d90c31f88c537b375ea100c605fd07b8",
+      "bytes": 206,
+      "tail": [
+        ".........................................................................................................",
+        "----------------------------------------------------------------------",
+        "Ran 105 tests in 28.902s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "log": "exposure-workflow-tests.log",
+      "sha256": "9ec9e3c52e7908b746c625587944c7e1eb71f90fc834fbb4527d510523684dd2",
+      "bytes": 105,
+      "tail": [
+        ".......",
+        "----------------------------------------------------------------------",
+        "Ran 7 tests in 0.007s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "log": "exposure-commit-tests.log",
+      "sha256": "4d82c22a76fc79dde3989fc4fa05f15780952e7e5c078d8f9d634d465c20d33a",
+      "bytes": 106,
+      "tail": [
+        "........",
+        "----------------------------------------------------------------------",
+        "Ran 8 tests in 1.041s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "log": "exposure-analytics-tests.log",
+      "sha256": "945cbe11768ca7cb000177d4950d390eab59023a970b3a8f89b3cad47a27bb87",
+      "bytes": 123,
+      "tail": [
+        "DCA analytics: contributions, direct/indirect totals, concentration, partial coverage and compatible comparisons verified."
+      ]
+    },
+    {
+      "log": "exposure-overlap-tests.log",
+      "sha256": "c3e83b6288b7bd19c09fd41ba0330466a57ccdd18997cd0f86db9845090ec067",
+      "bytes": 130,
+      "tail": [
+        "Complete exposures: 411 equity entries, 50 positions, complete holdings, direct/indirect totals and missing-data guards verified."
+      ]
+    },
+    {
+      "log": "exposure-consumer-tests.log",
+      "sha256": "c2fde24a7bc381d900d3a9be05de48af746673fd3d457d80d0fe6c9eb7fa73d2",
+      "bytes": 111,
+      "tail": [
+        "36 exact ISINs: catalogue search, dated country/sector donuts, monetary treatment and index identity verified."
+      ]
+    },
+    {
+      "log": "russell-method-tests.log",
+      "sha256": "d68d5ea68b529deff7f957215b45b7551f8acae47f5ea1736979a7eed352f83a",
+      "bytes": 118,
+      "tail": [
+        "...................",
+        "----------------------------------------------------------------------",
+        "Ran 19 tests in 0.122s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "log": "russell-native-tests.log",
+      "sha256": "e6502cc358ccb656c7751e67d433ef67b5da72926025154f9f988591fceedf10",
+      "bytes": 913,
+      "tail": [
+        "Native index contracts: exact share, benchmark, source, full census, original weights and same-date identities required; unsupported full Europe/PEA references refused; observed partial weights retained.",
+        "Issuer economic-index references: 600/101 actual original rows, exact benchmarks, delayed dates and separate baskets; existing full-overlap excess guard unchanged.",
+        "Five MSCI parts: same original economic-index rows, qualified unhedged currency convention, source dates and full/partial weight guards preserved.",
+        "UBS World/BNP Nasdaq: index reference only; missing physical fund holdings remain explicitly uncertified.",
+        "Russell equity reference: exact Net30 target, original weights and separate return series; changed, missing or stale methodology fails closed.",
+        "Russell method renewal: current sealed document, dated previous controls, unchanged weights and refusal of unknown/renewed obsolete proofs verified."
+      ]
+    },
+    {
+      "log": "publication-queue-closed-pr-tests.log",
+      "sha256": "8016c830cace4e2386c701fc41a83dea3cbf85d0e35e6451282d979bf56487ac",
+      "bytes": 102,
+      "tail": [
+        "Closed PR cleanup cannot cancel master, publications, forks, other PRs, collectors or completed runs."
+      ]
+    },
+    {
+      "log": "publication-queue-gate-tests.log",
+      "sha256": "bac3a2a8d34cf9841545ae30ed05fdd01f7af639a037ec0765f35c3fc62c21ff",
+      "bytes": 178,
+      "tail": [
+        "Gate contract: real Git definition/data/code races, omitted reusable dependency, immutable publication receipt and canonical recovery consumer passed (runner context simulated)."
+      ]
+    },
+    {
+      "log": "publication-queue-snapshot-tests.log",
+      "sha256": "b2ca0388ea61a2534c794af75dea9ee50f5cd96f51b5dec282fa402eb5d34e5d",
+      "bytes": 298,
+      "tail": [
+        "Queued data coalesced; code boundaries and fallback publication identities preserved.",
+        "Composed code/data publications recognized only with an included data prefix and proven unchanged code.",
+        "Real isolated Git: served data stops its duplicate gate; unserved code and missing data remain unqualified."
+      ]
+    },
+    {
+      "log": "production-final-build.log",
+      "sha256": "868724f489e7bafd4139cfa21cba9303d725d8631f8a7b2106ad114fc3f6415a",
+      "bytes": 387823,
+      "tail": [
+        "Route total: src/pages/portfolio-duels/App.jsx: 1277.6 kB (339.8 kB gzip), 19 files; code 758.5/775 kB, data 1162.4 kB",
+        "Route total: src/pages/portfolio-generator/App.jsx: 1774.3 kB (473.1 kB gzip), 24 files; code 1039.2/1105 kB, data 1606.8 kB",
+        "Route total: src/pages/practical-sheets/App.jsx: 1483.2 kB (346.3 kB gzip), 19 files; code 788.4/793 kB, data 1486.7 kB",
+        "Route total: src/pages/presentations/App.jsx: 438.5 kB (132.4 kB gzip), 12 files; code 744.3/1935 kB, data 107.8 kB",
+        "Route total: src/pages/ranking-ideas/App.jsx: 298.9 kB (98.5 kB gzip), 8 files; code 646.7/650 kB, data 17.3 kB",
+        "Route total: src/pages/tweet-bank/App.jsx: 2011.1 kB (443.8 kB gzip), 25 files; code 698.1/706 kB, data 2421.4 kB",
+        "Route total: src/pages/tweet-midi/App.jsx: 7993.5 kB (1945.3 kB gzip), 111 files; code 1170.9/1307 kB, data 9812.4 kB",
+        "Route total: src/pages/tweet-midi/formats/anniversaire/App.jsx: 2853.9 kB (544.4 kB gzip), 28 files; code 781.9/810 kB, data 3240.6 kB",
+        "Route total: src/pages/tweet-midi/formats/comparatif/App.jsx: 3856.6 kB (851.1 kB gzip), 48 files; code 1013.3/1189 kB, data 4440.2 kB",
+        "Route total: src/pages/tweet-midi/formats/dilemme/App.jsx: 1363.3 kB (355.1 kB gzip), 23 files; code 770.1/786 kB, data 1343.7 kB",
+        "Route total: src/pages/tweet-midi/formats/lexique/App.jsx: 1499.6 kB (393.1 kB gzip), 27 files; code 895.9/896 kB, data 1359.5 kB",
+        "Route total: src/pages/tweet-midi/formats/performance/App.jsx: 2490.3 kB (507.3 kB gzip), 28 files; code 770.7/773 kB, data 2893.0 kB",
+        "Route total: src/pages/tweet-midi/formats/pouvoir/App.jsx: 1392.0 kB (359.5 kB gzip), 23 files; code 780.9/788 kB, data 1370.7 kB",
+        "Published coverage: 4583 field certificates agree with the inventory and generated collection targets.",
+        "Publication manifest matches all 42 built public data files."
+      ]
+    },
+    {
+      "log": "monthly-bitwise-browser.log",
+      "sha256": "a4156c579735c88535c1f3c43c8408307b1d31700e916f3f0f867add13de8759",
+      "bytes": 1157,
+      "tail": [
+        "performance-etc_wti_crude_oilNav-2020-390 text and PNG verified",
+        "performance-etc_wheatNav-2022-390 text and PNG verified",
+        "performance-annual-DE000A27Z304-2025-390 text and PNG verified",
+        "performance-etc_brent_crude_oilNav-2020-390 text and PNG verified",
+        "Public monthly tools passed 12 {",
+        "  sha: '38f580af5a5169d275c2d6bbf5b2bf4951387f03',",
+        "  dataSha: 'd1d52a04a510ce7ec75265519447a8a5fd93aacd',",
+        "  lane: 'validated-data',",
+        "  builtAt: '2026-11-10T08:10:53.312Z'",
+        "} {",
+        "  sha: '38f580af5a5169d275c2d6bbf5b2bf4951387f03',",
+        "  dataSha: 'd1d52a04a510ce7ec75265519447a8a5fd93aacd',",
+        "  lane: 'validated-data',",
+        "  builtAt: '2026-11-10T08:10:53.312Z'",
+        "}"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "sourceRun": 42774587390,
+  "event": "workflow_dispatch",
+  "recordingCommit": "eb2467b1d68e119dc5b6999991ccfb462dfbd15e",
+  "requestBeforeAcquisition": {
+    "requestedAt": "2026-11-10T07:20:22.415909+00:00",
+    "status": 204,
+    "request": {
+      "ref": "master",
+      "inputs": {
+        "series": "etc_wti_crude_oilNav,etc_wheatNav,etfDE000A27Z304",
+        "ranking_sources": "",
+        "listings_only": false,
+        "retry_failed": false
+      }
+    }
+  },
+  "nativeReport": {
+    "checkedAt": "2026-11-10T07:23:22.426621+00:00",
+    "scope": {
+      "requestedIds": [
+        "etfDE000A27Z304",
+        "etc_wti_crude_oilNav",
+        "etc_wheatNav"
+      ],
+      "expectedIds": [
+        "etfDE000A27Z304",
+        "etc_wti_crude_oilNav",
+        "etc_wheatNav"
+      ],
+      "selection": "explicit"
+    },
+    "series": [
+      {
+        "id": "etfDE000A27Z304",
+        "status": "failed",
+        "reason": "HTTP Error 400: Bad Request"
+      },
+      {
+        "id": "etc_wti_crude_oilNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "386519b50db6420cb83d1184bc1b8f37844b29ea080441c56490ee8af01470b8",
+        "controlScope": {
+          "controlledInstrument": "GB00B15KXV33",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2019-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_wheatNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "d9c113c44dcbb0b3490b72d8d8c6f2e7a92a4878d84d18563bd95d2af14b7abb",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB664",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      }
+    ]
+  },
+  "meaning": "Three requested series only. Two real unchanged source controls and one supplier failure; a green validation/recording job does not certify Bitwise."
+}

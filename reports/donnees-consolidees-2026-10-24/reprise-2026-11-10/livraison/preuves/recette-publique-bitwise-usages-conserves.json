@@ -1,0 +1,67 @@
+{
+  "before": {
+    "sha": "d7c50e6ed9a36302ed788c1ce5e46d9fca7530a3",
+    "builtAt": "2026-11-10T10:06:17Z"
+  },
+  "after": {
+    "sha": "d7c50e6ed9a36302ed788c1ce5e46d9fca7530a3",
+    "builtAt": "2026-11-10T10:06:17Z"
+  },
+  "oracles": "c40eebc0a14bb90dbb291eeacceee7b5c01afc78",
+  "reports": [
+    {
+      "key": "calculator-etfDE000A27Z304-EUR-lump-1440",
+      "asset": "etfDE000A27Z304",
+      "currency": "EUR",
+      "mode": "lump",
+      "start": "2025-01",
+      "end": "2026-10",
+      "months": 22,
+      "expected": "6 637 €",
+      "actual": "6 637 €",
+      "pngSha256": "6f15f363c93cd471d97969a2c45c2098e42718f36b42fe7d5aa941373da9384a",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etfDE000A27Z304-EUR-dca-1440",
+      "asset": "etfDE000A27Z304",
+      "currency": "EUR",
+      "mode": "dca",
+      "start": "2025-01",
+      "end": "2026-10",
+      "months": 22,
+      "expected": "203 140 €",
+      "actual": "203 140 €",
+      "pngSha256": "5443e55d1bca94407f7f72665f2085f8fdb85e4863b075be12c70b7ef3499388",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etfDE000A27Z304-EUR-lump-390",
+      "asset": "etfDE000A27Z304",
+      "currency": "EUR",
+      "mode": "lump",
+      "start": "2025-01",
+      "end": "2026-10",
+      "months": 22,
+      "expected": "6 637 €",
+      "actual": "6 637 €",
+      "pngSha256": "6f15f363c93cd471d97969a2c45c2098e42718f36b42fe7d5aa941373da9384a",
+      "independentDecimalOracle": true
+    },
+    {
+      "key": "calculator-etfDE000A27Z304-EUR-dca-390",
+      "asset": "etfDE000A27Z304",
+      "currency": "EUR",
+      "mode": "dca",
+      "start": "2025-01",
+      "end": "2026-10",
+      "months": 22,
+      "expected": "203 140 €",
+      "actual": "203 140 €",
+      "pngSha256": "5443e55d1bca94407f7f72665f2085f8fdb85e4863b075be12c70b7ef3499388",
+      "independentDecimalOracle": true
+    }
+  ],
+  "errors": [],
+  "meaning": "Actual public selection, Decimal calculation on monthly bounds, text/preview/PNG and mobile. Unchanged valid data is not a claim that Bitwise supplier recovered."
+}

@@ -1,0 +1,201 @@
+{
+  "sourceRun": 42780841638,
+  "event": "push",
+  "recordingCommit": "5626154aafd0101eaafe9e4e647f58c6f7a95c61",
+  "originalArtifactReport": "presentation-performance.json",
+  "originalReportSha256": "ea069e4a56806a776a0de13d304a1c3ca6645c4a60b6985c44c57cc4370fb7f5",
+  "contractValidation": "passed",
+  "scope": {
+    "kind": "collect_presentation_performance",
+    "mode": "full",
+    "expectedIds": [
+      "etf-presentation-performance-FR001400U5Q4",
+      "etf-presentation-performance-LU2970735911",
+      "etf-presentation-performance-IE000DQLYVB9",
+      "etf-presentation-performance-IE0007Y8Y157"
+    ],
+    "requestedIds": [
+      "etf-presentation-performance-FR001400U5Q4",
+      "etf-presentation-performance-LU2970735911",
+      "etf-presentation-performance-IE000DQLYVB9",
+      "etf-presentation-performance-IE0007Y8Y157"
+    ],
+    "items": [
+      {
+        "id": "etf-presentation-performance-FR001400U5Q4",
+        "instrument": "FR001400U5Q4",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-presentation-performance-LU2970735911",
+        "instrument": "LU2970735911",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-presentation-performance-IE000DQLYVB9",
+        "instrument": "IE000DQLYVB9",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-presentation-performance-IE0007Y8Y157",
+        "instrument": "IE0007Y8Y157",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-11-10T08:24:56.279037+00:00",
+    "planSha256": "1f5087e9827cf85d263a3bef8e276c2e364291751f98304d447d4dae6290cea4",
+    "attemptedIds": [
+      "etf-presentation-performance-FR001400U5Q4",
+      "etf-presentation-performance-LU2970735911",
+      "etf-presentation-performance-IE000DQLYVB9",
+      "etf-presentation-performance-IE0007Y8Y157"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [
+      "etf-presentation-performance-FR001400U5Q4",
+      "etf-presentation-performance-LU2970735911",
+      "etf-presentation-performance-IE000DQLYVB9",
+      "etf-presentation-performance-IE0007Y8Y157"
+    ],
+    "networkAttemptUnknownIds": [],
+    "runId": "42780841638",
+    "attempt": "1",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "nonce": "ef2f1aae-5f94-4841-a244-07a83078d7f9"
+  },
+  "inputPlan": {
+    "items": [
+      {
+        "id": "etf-presentation-performance-FR001400U5Q4",
+        "instrument": "FR001400U5Q4",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-presentation-performance-LU2970735911",
+        "instrument": "LU2970735911",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-presentation-performance-IE000DQLYVB9",
+        "instrument": "IE000DQLYVB9",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-presentation-performance-IE0007Y8Y157",
+        "instrument": "IE0007Y8Y157",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true
+      }
+    ],
+    "mode": "full",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "emptyReason": null,
+    "cacheRequested": false,
+    "producer": "collect_presentation_performance",
+    "reportStem": "presentation-performance",
+    "declaredAt": "2026-11-10T08:24:56.279037+00:00",
+    "nonce": "ef2f1aae-5f94-4841-a244-07a83078d7f9",
+    "codeSha": "7f940971992c787a2737fcf1e729eee4c22e3463",
+    "durablePlan": true,
+    "runId": "42780841638",
+    "attempt": "1",
+    "sha256": "1f5087e9827cf85d263a3bef8e276c2e364291751f98304d447d4dae6290cea4"
+  },
+  "outcomes": [
+    {
+      "id": "etf-presentation-performance-FR001400U5Q4",
+      "instrument": "FR001400U5Q4",
+      "fields": [
+        "exact-share published cumulative performance <= 1 year",
+        "currency",
+        "reinvestment convention"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-presentation-performance-LU2970735911",
+      "instrument": "LU2970735911",
+      "fields": [
+        "exact-share published cumulative performance <= 1 year",
+        "currency",
+        "reinvestment convention"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-presentation-performance-IE000DQLYVB9",
+      "instrument": "IE000DQLYVB9",
+      "fields": [
+        "exact-share published cumulative performance <= 1 year",
+        "currency",
+        "reinvestment convention"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "etf-presentation-performance-IE0007Y8Y157",
+      "instrument": "IE0007Y8Y157",
+      "fields": [
+        "exact-share published cumulative performance <= 1 year",
+        "currency",
+        "reinvestment convention"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    }
+  ],
+  "issues": [],
+  "unscopedFailures": [],
+  "meaning": "The exact declared instrument/field group and native outcomes, not certification of every field retained in the merged record. Source, local qualification, recording and publication remain distinct."
+}

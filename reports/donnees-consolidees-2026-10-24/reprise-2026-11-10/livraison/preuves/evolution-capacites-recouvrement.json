@@ -1,0 +1,668 @@
+[
+  {
+    "id": "cloud",
+    "avant": [
+      {
+        "asset": "cloud",
+        "label": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+        "isin": "IE00BJGWQN72",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99979999999998,
+        "identifiedCoverage": 99.99979999999998,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.00020000000002085017
+      }
+    ],
+    "apres": [
+      {
+        "asset": "cloud",
+        "label": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+        "isin": "IE00BJGWQN72",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00030000000005,
+        "identifiedCoverage": 100.00030000000005,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00030000000005259153
+      }
+    ]
+  },
+  {
+    "id": "momentum",
+    "avant": [
+      {
+        "asset": "momentum",
+        "label": "iShares Edge MSCI World Momentum Factor UCITS ETF (Acc)",
+        "isin": "IE00BP3QZ825",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.66823000000002,
+        "identifiedCoverage": 99.66823000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.33176999999997747
+      }
+    ],
+    "apres": [
+      {
+        "asset": "momentum",
+        "label": "iShares Edge MSCI World Momentum Factor UCITS ETF (Acc)",
+        "isin": "IE00BP3QZ825",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.06762000000005,
+        "identifiedCoverage": 100.06762000000005,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.06762000000004775
+      }
+    ]
+  },
+  {
+    "id": "LU1681038672",
+    "avant": [
+      {
+        "asset": "LU1681038672",
+        "label": "Amundi Russell 2000 UCITS ETF EUR Acc",
+        "isin": "LU1681038672",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99859999999991,
+        "identifiedCoverage": 99.99859999999991,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.0014000000000891077
+      }
+    ],
+    "apres": [
+      {
+        "asset": "LU1681038672",
+        "label": "Amundi Russell 2000 UCITS ETF EUR Acc",
+        "isin": "LU1681038672",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00039999999987,
+        "identifiedCoverage": 100.00039999999987,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0003999999998711701
+      }
+    ]
+  },
+  {
+    "id": "LU1681040223",
+    "avant": [
+      {
+        "asset": "LU1681040223",
+        "label": "Amundi STOXX Europe 600 ESG UCITS ETF Acc",
+        "isin": "LU1681040223",
+        "asOf": "2026-11-04",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.45761719324017,
+        "identifiedCoverage": 99.45761719324017,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.5423828067598322
+      }
+    ],
+    "apres": [
+      {
+        "asset": "LU1681040223",
+        "label": "Amundi STOXX Europe 600 ESG UCITS ETF Acc",
+        "isin": "LU1681040223",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.59713344439788,
+        "identifiedCoverage": 99.59713344439788,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.4028665556021167
+      }
+    ]
+  },
+  {
+    "id": "LU0908500753",
+    "avant": [
+      {
+        "asset": "LU0908500753",
+        "label": "Amundi Core STOXX Europe 600 UCITS ETF",
+        "isin": "LU0908500753",
+        "asOf": "2026-11-04",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.61061933284715,
+        "identifiedCoverage": 99.61061933284715,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.38938066715284947
+      }
+    ],
+    "apres": [
+      {
+        "asset": "LU0908500753",
+        "label": "Amundi Core STOXX Europe 600 UCITS ETF",
+        "isin": "LU0908500753",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.28641860279087,
+        "identifiedCoverage": 99.28641860279087,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.7135813972091256
+      }
+    ]
+  },
+  {
+    "id": "IE000YYE6WK5",
+    "avant": [
+      {
+        "asset": "IE000YYE6WK5",
+        "label": "VanEck Defense UCITS ETF",
+        "isin": "IE000YYE6WK5",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233172&ticker=UCTDFNS&reactlang=en&reactctr=uk",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Certaines positions n’ont pas d’identifiant qualifié."
+        ],
+        "sourceCoverage": 99.99999999999997,
+        "identifiedCoverage": 99.47999999999998,
+        "unidentifiedCoverage": 0.52,
+        "residualWeight": 2.842170943040401e-14
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE000YYE6WK5",
+        "label": "VanEck Defense UCITS ETF",
+        "isin": "IE000YYE6WK5",
+        "asOf": "2026-11-09",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233172&ticker=UCTDFNS&reactlang=en&reactctr=uk",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.98999999999998,
+        "identifiedCoverage": 99.98999999999998,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.010000000000019327
+      }
+    ]
+  },
+  {
+    "id": "IE0002XZSHO1",
+    "avant": [
+      {
+        "asset": "IE0002XZSHO1",
+        "label": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
+        "isin": "IE0002XZSHO1",
+        "asOf": "2026-09-23",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00030000000002,
+        "identifiedCoverage": 100.00030000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0003000000000241698
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE0002XZSHO1",
+        "label": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
+        "isin": "IE0002XZSHO1",
+        "asOf": "2026-09-25",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99900000000014,
+        "identifiedCoverage": 99.99900000000014,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.0009999999998626663
+      }
+    ]
+  },
+  {
+    "id": "IE00BZ56SW52",
+    "avant": [
+      {
+        "asset": "IE00BZ56SW52",
+        "label": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+        "isin": "IE00BZ56SW52",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00080000000007,
+        "identifiedCoverage": 100.00080000000007,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0008000000000691898
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE00BZ56SW52",
+        "label": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+        "isin": "IE00BZ56SW52",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99979999999991,
+        "identifiedCoverage": 99.99979999999991,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.00020000000009190444
+      }
+    ]
+  },
+  {
+    "id": "IE00B86MWN23",
+    "avant": [
+      {
+        "asset": "IE00B86MWN23",
+        "label": "iShares Edge MSCI Europe Minimum Volatility UCITS ETF",
+        "isin": "IE00B86MWN23",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.51451,
+        "identifiedCoverage": 99.51451,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.48548999999999864
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE00B86MWN23",
+        "label": "iShares Edge MSCI Europe Minimum Volatility UCITS ETF",
+        "isin": "IE00B86MWN23",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.49083000000005,
+        "identifiedCoverage": 99.49083000000005,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.5091699999999548
+      }
+    ]
+  },
+  {
+    "id": "IE000L2SA8K5",
+    "avant": [
+      {
+        "asset": "IE000L2SA8K5",
+        "label": "Invesco NASDAQ-100 Equal Weight UCITS ETF Acc",
+        "isin": "IE000L2SA8K5",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5/holdings/fund?idType=isin",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.98,
+        "identifiedCoverage": 99.98,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.01999999999999602
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE000L2SA8K5",
+        "label": "Invesco NASDAQ-100 Equal Weight UCITS ETF Acc",
+        "isin": "IE000L2SA8K5",
+        "asOf": "2026-11-09",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5/holdings/fund?idType=isin",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.01,
+        "identifiedCoverage": 100.01,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.010000000000005116
+      }
+    ]
+  },
+  {
+    "id": "LU1681043599",
+    "avant": [
+      {
+        "asset": "LU1681043599",
+        "label": "Amundi MSCI World Swap UCITS ETF (Acc)",
+        "isin": "LU1681043599",
+        "asOf": "2026-09-23",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00030000000002,
+        "identifiedCoverage": 100.00030000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0003000000000241698
+      }
+    ],
+    "apres": [
+      {
+        "asset": "LU1681043599",
+        "label": "Amundi MSCI World Swap UCITS ETF (Acc)",
+        "isin": "LU1681043599",
+        "asOf": "2026-09-25",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99900000000014,
+        "identifiedCoverage": 99.99900000000014,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.0009999999998626663
+      }
+    ]
+  },
+  {
+    "id": "IE00B02KXK85",
+    "avant": [
+      {
+        "asset": "IE00B02KXK85",
+        "label": "iShares China Large Cap UCITS ETF (Dist)",
+        "isin": "IE00B02KXK85",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.41682999999999,
+        "identifiedCoverage": 99.41682999999999,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.5831700000000097
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE00B02KXK85",
+        "label": "iShares China Large Cap UCITS ETF (Dist)",
+        "isin": "IE00B02KXK85",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.54011000000006,
+        "identifiedCoverage": 99.54011000000006,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.4598899999999446
+      }
+    ]
+  },
+  {
+    "id": "IE0003UVYC20",
+    "avant": [
+      {
+        "asset": "IE0003UVYC20",
+        "label": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+        "isin": "IE0003UVYC20",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.32858219877875,
+        "identifiedCoverage": 99.32858219877875,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.6714178012212528
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE0003UVYC20",
+        "label": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+        "isin": "IE0003UVYC20",
+        "asOf": "2026-11-09",
+        "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.53727688178762,
+        "identifiedCoverage": 99.53727688178762,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.46272311821238077
+      }
+    ]
+  },
+  {
+    "id": "IE00BP3QZD73",
+    "avant": [
+      {
+        "asset": "IE00BP3QZD73",
+        "label": "iShares MSCI World Mid-Cap Equal Weight UCITS ETF",
+        "isin": "IE00BP3QZD73",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.36303000000002,
+        "identifiedCoverage": 99.36303000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.6369699999999767
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE00BP3QZD73",
+        "label": "iShares MSCI World Mid-Cap Equal Weight UCITS ETF",
+        "isin": "IE00BP3QZD73",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.6506100000001,
+        "identifiedCoverage": 99.6506100000001,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.34938999999990017
+      }
+    ]
+  },
+  {
+    "id": "IE00BKLF1R75",
+    "avant": [
+      {
+        "asset": "IE00BKLF1R75",
+        "label": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "isin": "IE00BKLF1R75",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99970000000005,
+        "identifiedCoverage": 99.99970000000005,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.00029999999995311555
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE00BKLF1R75",
+        "label": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "isin": "IE00BKLF1R75",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00010000000003,
+        "identifiedCoverage": 100.00010000000003,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00010000000003174137
+      }
+    ]
+  },
+  {
+    "id": "FR001400U5Q4",
+    "avant": [
+      {
+        "asset": "FR001400U5Q4",
+        "label": "Amundi PEA Monde (MSCI World) UCITS ETF",
+        "isin": "FR001400U5Q4",
+        "asOf": "2026-09-23",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00030000000002,
+        "identifiedCoverage": 100.00030000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0003000000000241698
+      }
+    ],
+    "apres": [
+      {
+        "asset": "FR001400U5Q4",
+        "label": "Amundi PEA Monde (MSCI World) UCITS ETF",
+        "isin": "FR001400U5Q4",
+        "asOf": "2026-09-25",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99900000000014,
+        "identifiedCoverage": 99.99900000000014,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.0009999999998626663
+      }
+    ]
+  },
+  {
+    "id": "LU1681045370",
+    "avant": [
+      {
+        "asset": "LU1681045370",
+        "label": "Amundi MSCI Emerging Markets UCITS ETF",
+        "isin": "LU1681045370",
+        "asOf": "2026-09-23",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 100.00000000000018,
+        "identifiedCoverage": 100.00000000000018,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -1.8474111129762605e-13
+      }
+    ],
+    "apres": [
+      {
+        "asset": "LU1681045370",
+        "label": "Amundi MSCI Emerging Markets UCITS ETF",
+        "isin": "LU1681045370",
+        "asOf": "2026-09-25",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00080000000011,
+        "identifiedCoverage": 100.00080000000011,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0008000000001118224
+      }
+    ]
+  },
+  {
+    "id": "IE00B8KGV557",
+    "avant": [
+      {
+        "asset": "IE00B8KGV557",
+        "label": "iShares Edge MSCI EM Minimum Volatility UCITS ETF",
+        "isin": "IE00B8KGV557",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.47801999999993,
+        "identifiedCoverage": 99.47801999999993,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.5219800000000703
+      }
+    ],
+    "apres": [
+      {
+        "asset": "IE00B8KGV557",
+        "label": "iShares Edge MSCI EM Minimum Volatility UCITS ETF",
+        "isin": "IE00B8KGV557",
+        "asOf": "2026-11-06",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.50180000000002,
+        "identifiedCoverage": 99.50180000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.4981999999999829
+      }
+    ]
+  }
+]

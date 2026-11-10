@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-11-10",
+  "execution": "real local public browser, no login; not a GitHub supplier validation",
+  "listing": "DE000A27Z304 / Xetra / EUR",
+  "cases": [
+    {
+      "source": "Deutsche Börse official public delayed history",
+      "page": "https://live.deutsche-boerse.com/en/etf/de000a27z304-etc-issuance-gmbh-0-000/price-history/historical-prices-and-volumes",
+      "request": {
+        "listTimeseries": {
+          "resolution": "1D",
+          "marketstateId": "DELAYED[DE000A27Z304,EUR@ETR>STX]",
+          "start": "2026-10-01T00:00:00.000Z",
+          "end": "2026-10-31T23:59:00.000Z",
+          "cleanSplits": false,
+          "cleanDividends": false,
+          "cleanDistributions": false,
+          "cleanSubscriptions": false,
+          "quality": "DELAYED"
+        },
+        "requestId": "request-6"
+      },
+      "completed": true,
+      "dailyRows": 22,
+      "first": "2026-10-01",
+      "last": "2026-10-30",
+      "firstClose": 65.68,
+      "lastClose": 60.945,
+      "rawCaptureSha256": "b5be384a257cfa52b25e3ac0f0dd1c340ec3693c3782da1b88890509ebbfede8"
+    },
+    {
+      "source": "Deutsche Börse official public delayed history",
+      "page": "https://live.deutsche-boerse.com/en/etf/de000a27z304-etc-issuance-gmbh-0-000/price-history/historical-prices-and-volumes",
+      "request": {
+        "listTimeseries": {
+          "resolution": "1D",
+          "marketstateId": "DELAYED[DE000A27Z304,EUR@ETR>STX]",
+          "start": "2020-07-01T00:00:00.000Z",
+          "end": "2026-10-31T23:59:00.000Z",
+          "cleanSplits": false,
+          "cleanDividends": false,
+          "cleanDistributions": false,
+          "cleanSubscriptions": false,
+          "quality": "DELAYED"
+        },
+        "requestId": "request-6"
+      },
+      "completed": true,
+      "dailyRows": 404,
+      "first": "2025-03-19",
+      "last": "2026-10-30",
+      "firstClose": 70.535,
+      "lastClose": 60.945,
+      "rawCaptureSha256": "e4024c93e7abb9a9073506a287ff4479dd5946c68ebd51ab40dfc2b6bc70ee4a"
+    },
+    {
+      "source": "Deutsche Börse official public delayed history",
+      "page": "https://live.deutsche-boerse.com/en/etf/de000a27z304-etc-issuance-gmbh-0-000/price-history/historical-prices-and-volumes",
+      "request": {
+        "listTimeseries": {
+          "resolution": "1D",
+          "marketstateId": "DELAYED[DE000A27Z304,EUR@ETR>STX]",
+          "start": "2020-12-01T00:00:00.000Z",
+          "end": "2021-12-31T23:59:00.000Z",
+          "cleanSplits": false,
+          "cleanDividends": false,
+          "cleanDistributions": false,
+          "cleanSubscriptions": false,
+          "quality": "DELAYED"
+        },
+        "requestId": "request-6"
+      },
+      "completed": true,
+      "dailyRows": 0,
+      "first": null,
+      "last": null,
+      "firstClose": null,
+      "lastClose": null,
+      "rawCaptureSha256": "752b33f6cac371f741f88d385fd8b37f1575c0d7d83f43ca6e926b1f1ebbe049"
+    }
+  ],
+  "financialQualification": "Not qualified as a substitute for Yahoo adjusted-close. Browser options prove raw mode only; adjustment/reinvestment method and historical completeness still need proof. No data or financial guard changed.",
+  "finding": "October22sessions available. A2020-2026 request yields404sessions starting2025-03-19; exact2020-12/2021-12request completes with0rows. A complete protocol response does not prove full requested coverage.",
+  "next": "Qualify the official adjusted-price method and availability/terms of a reproducible export. Any rolling route must preserve dated historical evidence and explicitly qualify overlap, rather than certify retained cache as newly controlled."
+}
