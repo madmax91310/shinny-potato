@@ -98,3 +98,63 @@ assert(codeReceiptUpload.includes('!inputs.producer_receipt_declared'),'Nested c
 assert.match(codeWorkflow,/Record the data snapshot requested for publication[\s\S]*?data_publication.py receipt --all/,'The local full-snapshot validation receipt remains mandatory')
 assert.match(publicationWorkflow,/publish-code:[\s\S]*?producer_receipt_declared: true/,'Only the outer caller that uploaded its receipt declares ownership')
 console.log('Nested code validation preserves the immutable producer receipt; direct code publication keeps its default all-snapshot receipt.')
+
+// Distinct artifacts from two collectors shared a caller SHA and Pages kept
+// serving the preceding dataset. Deployment identity must follow the receipt,
+// without changing GITHUB_SHA, skipping the order guard or weakening verification.
+const {deploySnapshot}=await import('./deploy-validated-pages.mjs')
+const endpoint='https://api.github.com/repos/madmax91310/shinny-potato/pages/deployments'
+const baseDeployment={repo:'madmax91310/shinny-potato',ref:'refs/heads/master',event:'schedule',artifactId:'13777766942',
+ codeSha:'d7c50e6ed9a36302ed788c1ce5e46d9fca7530a3',dataSha:'d515b99bdebe787a0b5d476285e74e68e59fa4f5',
+ headSha:'d515b99bdebe787a0b5d476285e74e68e59fa4f5',eventSha:'200166e59320852553b6c720076fff8d461485c1',
+ token:'isolated-api-credential',oidcToken:'isolated-runtime-credential',oidcUrl:'https://vstoken.actions.githubusercontent.com/isolated',
+ build:{sha:'d7c50e6ed9a36302ed788c1ce5e46d9fca7530a3',dataSha:'d515b99bdebe787a0b5d476285e74e68e59fa4f5'}}
+function deploymentHarness(config=baseDeployment,statuses=['queued','succeed'],settings={}){
+ let now=0;const calls=[],logs=[]
+ const fetcher=async(url,options)=>{
+  calls.push({url:String(url),options})
+  if(String(url)===config.oidcUrl)return settings.badOidc?new Response('not-json-private-body'):Response.json({value:'isolated-oidc-assertion'})
+  if(String(url)===endpoint)return settings.postFailure?Response.json({}, {status:503}):Response.json({id:config.dataSha,status_url:settings.badStatusUrl??endpoint+'/'+config.dataSha,page_url:'https://madmax91310.github.io/shinny-potato/'},{status:201})
+  if(String(url)===endpoint+'/'+config.dataSha+'/cancel')return new Response(null,{status:204})
+  assert.equal(String(url),endpoint+'/'+config.dataSha,'Authorization never leaves the known GitHub API')
+  const status=statuses.length>1?statuses.shift():statuses[0]
+  return typeof status==='number'?Response.json({}, {status,headers:{'retry-after':'1'}}):Response.json({status})
+ }
+ return {calls,logs,dependencies:{fetcher,clock:()=>now,sleep:async ms=>{now+=ms},log:message=>logs.push(message),...(settings.timeout?{timeout:settings.timeout}:{})}}
+}
+for(const [eventSha,dataSha,artifactId]of[
+ ['200166e59320852553b6c720076fff8d461485c1','d515b99bdebe787a0b5d476285e74e68e59fa4f5','13777766942'],
+ ['d515b99bdebe787a0b5d476285e74e68e59fa4f5','b28fc20865defe23c14ebdc3743b521ccafb1962','13783154054']]){
+ const config={...baseDeployment,eventSha,dataSha,headSha:dataSha,artifactId,build:{...baseDeployment.build,dataSha}},h=deploymentHarness(config)
+ const result=await deploySnapshot(config,h.dependencies),creation=h.calls.find(c=>c.options.method==='POST')
+ assert.equal(JSON.parse(creation.options.body).pages_build_version,dataSha)
+ assert.equal(JSON.parse(creation.options.body).artifact_id,Number(artifactId))
+ assert.equal(config.eventSha,eventSha,'Caller provenance is retained, never overwritten')
+ assert.equal(result.pages_build_version,dataSha);assert.equal(result.deployment_id,dataSha)
+ assert(!h.calls.some(c=>c.url.endsWith('/cancel')))
+ assert(!JSON.stringify([result,h.logs]).includes('isolated-oidc-assertion'))
+}
+for(const change of[{headSha:'a'.repeat(40)},{build:{...baseDeployment.build,dataSha:'a'.repeat(40)}},{artifactId:''},{artifactId:'9007199254740993'},{ref:'refs/heads/other'},{event:'pull_request'},{oidcUrl:'https://example.org/token'}]){
+ const h=deploymentHarness();await assert.rejects(()=>deploySnapshot({...baseDeployment,...change},h.dependencies));assert.equal(h.calls.length,0)
+}
+for(const [statuses,settings,message]of[
+ [['deployment_failed'],{},/Pages deployment failed/],
+ [['queued'],{timeout:6000},/deadline exceeded/],
+ [[503],{},/HTTP 503/],
+ [['succeed'],{badStatusUrl:'https://example.org/private'},/Unexpected Pages status endpoint/]]){
+ const h=deploymentHarness(baseDeployment,statuses,settings)
+ await assert.rejects(()=>deploySnapshot(baseDeployment,h.dependencies),message)
+ assert.equal(h.calls.filter(c=>c.url.endsWith('/cancel')).length,1,'Only this incomplete deployment is cancelled')
+}
+const partial=deploymentHarness(baseDeployment,[503,'succeed']);await deploySnapshot(baseDeployment,partial.dependencies)
+assert(!partial.calls.some(c=>c.url.endsWith('/cancel')),'A recovered status request can complete normally')
+const failedCreation=deploymentHarness(baseDeployment,['succeed'],{postFailure:true});await assert.rejects(()=>deploySnapshot(baseDeployment,failedCreation.dependencies),/HTTP 503/)
+assert.equal(failedCreation.calls.filter(c=>c.options.method==='POST').length,1,'An uncertain creation is never blindly duplicated')
+const badIdentity=deploymentHarness(baseDeployment,['succeed'],{badOidc:true});await assert.rejects(()=>deploySnapshot(baseDeployment,badIdentity.dependencies),/Invalid JSON/)
+assert.equal(badIdentity.calls.length,1)
+assert.match(publicationWorkflow,/id: pages_artifact[\s\S]*PAGES_ARTIFACT_ID: \$\{\{ steps\.pages_artifact\.outputs\.artifact_id \}\}/)
+assert.match(publicationWorkflow,/PAGES_DATA_SHA: \$\{\{ steps\.compose\.outputs\.data_sha \}\}/)
+assert(publicationWorkflow.indexOf('id: order')<publicationWorkflow.indexOf('node scripts/deploy-validated-pages.mjs'))
+assert(publicationWorkflow.indexOf('node scripts/deploy-validated-pages.mjs')<publicationWorkflow.indexOf('node scripts/verify-pages-publication.mjs'))
+console.log('Recorded Pages version: both real caller/snapshot cases, exact artifact identity, OIDC isolation, strict chronology, bounded recovery/cancellation and unchanged public verification.');
+assert.match(publicationWorkflow,/fetch-depth: 0\s+#.*\n\s+#.*\n\s+filter: blob:none/,'Full ancestry and complete current checkout must survive lazy historical-blob acquisition')
