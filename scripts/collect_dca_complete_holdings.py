@@ -8,6 +8,31 @@ from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
 from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
 ROOT=Path(__file__).resolve().parents[1]
+def ranking_nav_downgrade(isin, previous, candidate, now):
+    """Preserve a dated native book; a newer ranking cannot prove its NAV basis.
+
+    This is retention, not new admission of the previous book: consumer identity,
+    completeness and freshness checks remain mandatory on its original dates.
+    """
+    if candidate.get('weightBasis')!='issuer-fund-ranking-unqualified-nav-denominator':
+        return None
+    from wisdomtree_api_holdings import CLASS_CONFIG
+    config=CLASS_CONFIG.get(isin)
+    if not config or (previous.get('sourceUrl')!=f'https://www.wisdomtree.com/api/fund-holdings/{config["classId"]}'
+            or previous.get('subjectIsin')!=isin or previous.get('scope')!='complete-equity-sleeve-with-published-cash'
+            or previous.get('basis')!='fund' or previous.get('complete')is not True
+            or previous.get('navReconciliation',{}).get('normalizationApplied')is not False):
+        return None
+    return {'kind':'unqualified-ranking-nav-denominator','subjectIsin':isin,
+        'asOf':candidate['asOf'],'checkedAt':now.isoformat(),'sourceUrl':candidate['sourceUrl'],
+        'sha256':candidate.get('sha256'),'financialDataQualified':False,'normalizationApplied':False,
+        'weightBasis':candidate['weightBasis'],'rowCount':len(candidate['rows']),
+        'publishedEquityWeightPct':sum(r['weightPct']for r in candidate['rows']),
+        'retainedAsOf':previous.get('asOf'),'retainedSourceSha256':previous.get('sha256'),
+        'accessAttempts':candidate.get('accessAttempts',[]),
+        'reason':'Native book unavailable; Fund ranking has no qualified NAV denominator. Original dated native book retained; no source-success date renewed. '+next((str(a.get('error',''))[:800] for a in candidate.get('accessAttempts',[]) if a.get('status')=='unavailable' and a.get('sourceUrl')==previous.get('sourceUrl')),'')}
+
+
 def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
     """Retry only a missing component on an otherwise exact product response."""
     attempts=[]
@@ -158,6 +183,11 @@ def main():
                 if isinstance(error,HoldingsSourceError):rejected[isin]=error.diagnostic
                 continue
             h,securities=result
+            downgrade=ranking_nav_downgrade(isin,previous.get(isin,{}),h,now)
+            if downgrade:
+                errors[isin]=downgrade['reason']
+                rejected[isin]=downgrade
+                continue
             if previous.get(isin,{}).get('asOf','')>h['asOf']:
                 errors[isin]='Date regression'+('; access attempts: '+json.dumps(h['accessAttempts'])[:2400] if h.get('accessAttempts') else '')
                 rejected[isin]={'kind':'older-source-observation','subjectIsin':isin,
@@ -201,7 +231,7 @@ def main():
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
-    observations={isin:{**{key:h[key] for key in ['asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof'] if key in h},
+    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof'] if key in h},
         'completeFile':h.get('complete') is True,'rows':len(h['rows']),
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}

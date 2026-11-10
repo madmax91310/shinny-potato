@@ -48,3 +48,36 @@ class Retention(unittest.TestCase):
     self.assertEqual(report['updated'],['ok'])
     self.assertEqual(report['errors'][0]['id'],'dca-holdings:failed')
     self.assertEqual(bool(report['rejectedObservations']),failure!='transport')
+
+ def test_native_book_is_not_replaced_by_unqualified_rankings_and_resumes_after_real_success(self):
+  import gzip
+  fixture=pathlib.Path(__file__).parent/'fixtures/wisdomtree-quantum-nav-20261110/qualified-replay.json'
+  native=json.loads(fixture.read_text());isin='IE000W8WMSL2';native['checkedAt']='2026-11-10T07:00:00+00:00'
+  ranked={'asOf':'2026-11-10','basis':'fund','complete':True,'sourceUrl':'https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB',
+   'sha256':'a'*64,'weightBasis':'issuer-fund-ranking-unqualified-nav-denominator','rows':[{'isin':'US0378331005','name':'Apple','weightPct':100}],
+   'accessAttempts':[{'sourceUrl':native['sourceUrl'],'status':'unavailable','error':'HTTP403'}]}
+  ok={'asOf':'2026-11-10','checkedAt':'2026-11-10T07:00:00+00:00','basis':'fund','complete':True,'sourceUrl':'https://issuer.example/ok','rows':[{'isin':'US0378331005','name':'Apple','weightPct':100}]}
+  with tempfile.TemporaryDirectory()as folder:
+   root=pathlib.Path(folder);(root/'scripts').mkdir();(root/'src/data').mkdir(parents=True)
+   for name,value in [('dca-complete-holdings-sources.json',{isin:{'parser':'fixture','isin':isin},'ok':{'parser':'fixture','isin':'ok'}}),('generated-holdings-sources.json',{}),('dca-equity-identities.json',{}),('dca-equity-extra-identities.json',{})]:(root/'scripts'/name).write_text(json.dumps(value))
+   previous={isin:native,'ok':ok,'untouched':copy.deepcopy(ok)};(root/'src/data/dca-complete-holdings.json').write_text(json.dumps(previous))
+   retained=native;last_success=native['checkedAt']
+   for state in ['ranking-fallback','native-recovered','ranking-fallback-again']:
+    def acquire(config,now):
+     if config['isin']=='ok':return copy.deepcopy(ok)
+     if state!='native-recovered':return copy.deepcopy(ranked)
+     value=copy.deepcopy(native);value['asOf']='2026-11-10';value['navReconciliation']['asOf']=value['asOf'];value['sha256']='b'*64;return value
+    with patch.object(producer,'ROOT',root),patch.dict(collect_physical_holdings.COLLECTORS,{'fixture':acquire}),patch('sys.argv',['producer','--apply','--output',str(root/'report.json')]),contextlib.redirect_stdout(io.StringIO()):
+     if state=='native-recovered':producer.main()
+     else:
+      with self.assertRaises(SystemExit):producer.main()
+    after=json.loads((root/'src/data/dca-complete-holdings.json').read_text());status=json.loads((root/'src/data/dca-holdings-status.json').read_text());report=json.loads((root/'report.json').read_text())
+    self.assertEqual(after['untouched'],previous['untouched']);self.assertEqual(status['ok']['status'],'validated')
+    if state=='native-recovered':
+     self.assertEqual(after[isin]['asOf'],'2026-11-10');self.assertNotIn('lastRejectedObservation',status[isin]);self.assertEqual(status[isin]['status'],'validated')
+     retained=after[isin];last_success=retained['checkedAt']
+    else:
+     self.assertEqual(after[isin],retained);self.assertEqual(status[isin]['lastSuccessAt'],last_success)
+     self.assertEqual(status[isin]['status'],'failed');self.assertIn('403',status[isin]['error']);self.assertEqual(report['updated'],['ok'])
+     self.assertEqual(status[isin]['lastRejectedObservation']['kind'],'unqualified-ranking-nav-denominator')
+     self.assertEqual(report['rejectedObservations'][isin]['accessAttempts'][0]['error'],'HTTP403')

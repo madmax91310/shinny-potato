@@ -121,11 +121,11 @@ def parse(page,share,now,mapping,identity_dates,*,identity_observations=None):
 
 def collect(share,now):
     from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
-    # These two existing shares expose a newer, full precision NAV book. A
+    # These existing shares expose a full precision NAV book with its cash. A
     # rounded ranking must not hide it. Only transport failure permits fallback;
     # contradictory identity/date/weight evidence still fails closed.
     api_error=None
-    if share['isin'] in ('IE00BZ56SW52','IE00BKLF1R75'):
+    if share['isin'] in CLASSES:
         try:return api_collect(share,now)
         except IssuerApiUnavailable as error:api_error=error
     rankings_error=''
