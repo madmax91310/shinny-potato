@@ -34,5 +34,10 @@ for(const[isin,r]of Object.entries(AUTOMATED_ETF)){
  assert.equal(JSON.stringify(r),before,'Source rows, dates and weights are retained intact')
  affected.push(isin)
 }
-assert(affected.includes('IE00BDVPNG13')&&affected.includes('IE00BKLF1R75'),'Exercise the real ordinary ranked-field consumers, not just synthetic examples')
+const retained=JSON.parse(readFileSync(new URL('./fixtures/wisdomtree-ranking-basis-20261110/rankings-retained.json',import.meta.url)))
+assert(unqualifiedFundRankingWeights(retained),'The acquired real ranking remains refused independently of future live-registry updates')
+assert.equal(holdingConcentration({holdings:retained}),null)
+assert.equal(presentationComposition({holdings:retained},{replicationMethod:'physical'}),'')
+// The loop above exercises every current affected consumer. A later qualified
+// issuer PDF/native response must not be forced to remain a rejected ranking.
 console.log('Publication weight basis: original ranked data retained; unsafe fund concentration, comparison text and image rows refused for '+affected.join(', ')+'; independent fields preserved.')
