@@ -111,6 +111,57 @@ class ExposurePublication(unittest.TestCase):
   self.current[isin]['countries']['checkedAt']='2026-11-09';row['record']=copy.deepcopy(self.current[isin])
   with self.assertRaisesRegex(ValueError,'Retained field changed'):self.audit()
 
+class ExposureFallbackPublication(unittest.TestCase):
+ """Current real cron: preserve two primary failures and their qualified fallbacks."""
+ flush=ExposurePublication.flush
+ def setUp(self):
+  self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)
+  fixture=ROOT/'scripts/fixtures/exposure-fallback-publication-20261110'
+  read_new=lambda n:json.loads(gzip.decompress((fixture/(n+'.gz')).read_bytes()))
+  self.baseline=read_new('baseline.json');self.report=read_new('exposure-expansion.json')
+  self.config=read_new('config.json');write(self.root/'scripts/exposure-etf-expansion.json',self.config)
+  self.started=finish({},copy.deepcopy(self.report['resultContract']['inputPlan']),completed=False)
+  self.current=copy.deepcopy(self.baseline)
+  for row in self.report['shares']:
+   if row['status']=='validated':self.current[row['isin']]=copy.deepcopy(row['record'])
+  self.flush()
+ def audit(self,only=None,**kwargs):
+  self.flush();plan=self.report['resultContract']['inputPlan']
+  with patch.object(publication,'git_bytes',return_value=json.dumps(self.baseline).encode()):
+   return publication.audit(self.root,self.report,self.started,plan['codeSha'],only=only,
+    run_id=kwargs.get('run_id','42848056797'),attempt=kwargs.get('attempt','1'),
+    now=kwargs.get('now',dt.datetime(2026,11,10,16,tzinfo=dt.timezone.utc)))
+ def test_real_qualified_fallback_does_not_rewrite_primary_failures(self):
+  contract=copy.deepcopy(self.report['resultContract']);self.assertEqual(self.audit(),36)
+  self.assertEqual(self.report['resultContract'],contract)
+  self.assertEqual({o['instrument']for o in contract['outcomes']if o['status']=='failed'},
+                   {'IE00BDVPNG13','IE00BKLF1R75'})
+ def test_the_original_guard_refusal_is_reproduced(self):
+  with patch.object(publication,'qualified_transport_fallback',return_value=False):
+   with self.assertRaisesRegex(ValueError,'cache cannot certify.*IE00BDVPNG13'):self.audit()
+ def test_fallback_without_fresh_network_field_proof_is_refused(self):
+  original=copy.deepcopy(self.report)
+  mutations=[
+   lambda r:r.update(sourceAttempts=[]),
+   lambda r:r['record']['sectors'].update(checkedAt='2026-11-09'),
+   lambda r:r['record']['sectors'].update(sha256=None),
+   lambda r:r['collectionErrors'][0].update(qualifiedFallbackAvailable=False),
+   lambda r:r['collectionErrors'][0].update(phase='validation'),
+   lambda r:r['collectionErrors'][0].update(field='financial-contradiction'),
+   lambda r:r.update(sourceAttempts=[a for a in r['sourceAttempts']if a.get('status')!='downloaded']),
+  ]
+  for mutate in mutations:
+   with self.subTest(mutation=mutate):
+    self.report=copy.deepcopy(original);row=next(r for r in self.report['shares']if r['isin']=='IE00BDVPNG13')
+    mutate(row);self.current[row['isin']]=copy.deepcopy(row['record'])
+    with self.assertRaises(ValueError):self.audit()
+ def test_partial_transport_evidence_cannot_certify_cache(self):
+  row=next(r for r in self.report['shares']if r['isin']=='IE00BDVPNG13')
+  outcome=next(o for o in self.report['resultContract']['outcomes']if o['instrument']==row['isin'])
+  outcome['sourceAttempted']=False
+  with self.assertRaisesRegex(ValueError,'cache cannot certify'):self.audit()
+
+
 class ExposurePublicationGit(unittest.TestCase):
  def git(self,root,*args):return subprocess.check_output(['git','-C',str(root),*args],stderr=subprocess.DEVNULL).decode().strip()
  def setup_repository(self):

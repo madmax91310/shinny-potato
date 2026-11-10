@@ -4,8 +4,10 @@ import datetime as dt
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
+from urllib.parse import urlsplit
 
 import observation_rebase_guard as guard
 from producer_report_contract import validate_contract
@@ -58,6 +60,66 @@ def instant(value):
     return stamp
 
 
+def qualified_transport_fallback(row, outcome, configured, checked):
+    """A failed primary transport stays failed; only fresh qualified fields may write.
+
+    The ordinary issuer collector already validates this exact-share response.
+    Its transport evidence must independently cover every field that accounts
+    for the failed composite outcome. This is not a source-success outcome.
+    """
+    if (configured.get('parser') != 'wisdomtree-html'
+            or outcome.get('status') != 'failed'
+            or outcome.get('operationAttempted') is not True
+            or outcome.get('sourceAttempted') is False):
+        return False
+    errors = row.get('collectionErrors', [])
+    if not errors or any(e.get('field') not in {'rankings-primary-http', 'aum-primary-http'}
+                         or e.get('phase') != 'acquisition'
+                         or e.get('qualifiedFallbackAvailable') is not True for e in errors):
+        return False
+    if len({e['field'] for e in errors}) != len(errors):
+        return False
+    if outcome.get('field') != ', '.join(sorted(e['field'] for e in errors)):
+        return False
+    attempts = row.get('sourceAttempts', [])
+    record = row.get('record', {})
+    for error in errors:
+        url = error.get('url', '')
+        parsed = urlsplit(url)
+        if parsed.scheme != 'https' or parsed.netloc != 'dataspanapi.wisdomtree.com':
+            return False
+        if error['field'] == 'aum-primary-http':
+            from issuer_routes import ROUTES
+            if url != ROUTES['wisdomtree']['fundDirectory']:
+                return False
+            fields = {'aum'}
+        else:
+            if parsed.path != '/funddetails/rankings/':
+                return False
+            fields = set(error.get('qualifiedFields', []))
+            retained = {f['field'] for f in row.get('retainedFields', [])}
+            if not fields or not fields <= {'countries', 'sectors', 'holdings'}:
+                return False
+            if {'countries', 'sectors', 'holdings'} - fields - (retained & {'countries'}):
+                return False
+        validated = [a for a in attempts if (a.get('url') or a.get('sourceUrl')) == url
+                     and a.get('status') == 'validated' and set(a.get('fields', [])) == fields]
+        if len(validated) != 1:
+            return False
+        transports = attempts + validated[0].get('transportAttempts', [])
+        if not any((a.get('url') or a.get('sourceUrl')) == url
+                   and a.get('status') == 'downloaded'
+                   and a.get('transport') in {'browser', 'ordinary-public-browser'} for a in transports):
+            return False
+        for name in fields:
+            field = record.get(name, {})
+            if (field.get('sourceUrl') != url
+                    or field.get('checkedAt') != checked.date().isoformat()
+                    or not re.fullmatch(r'[0-9a-f]{64}', str(field.get('sha256', '')))):
+                return False
+    return True
+
+
 def audit(root, report, started, base, *, only=None, run_id=None, attempt=None, now=None):
     # Determine the requested instruments from inputs before examining results.
     config = load((root / 'scripts/exposure-etf-expansion.json').read_bytes())['instruments']
@@ -104,7 +166,11 @@ def audit(root, report, started, base, *, only=None, run_id=None, attempt=None, 
             if value != old or outcomes[isin]['status'] != 'failed':
                 raise ValueError('Failed source changed its last valid record: ' + isin)
             continue
-        if row.get('status') != 'validated' or outcomes[isin]['status'] not in ('succeeded', 'unchanged-verified') or outcomes[isin].get('sourceAttempted') is not True:
+        outcome = outcomes[isin]
+        source_success = (outcome['status'] in ('succeeded', 'unchanged-verified')
+                          and outcome.get('sourceAttempted') is True)
+        fallback = qualified_transport_fallback(row, outcome, configured[isin], checked)
+        if row.get('status') != 'validated' or not (source_success or fallback):
             raise ValueError('A missing result or cache cannot certify source success: ' + isin)
         if value != row['record']:
             raise ValueError('Registry differs from validated source record: ' + isin)

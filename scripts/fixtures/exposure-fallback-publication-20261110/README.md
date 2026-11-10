@@ -1,0 +1,1 @@
+Régression issue du cron42848056797,10novembre2026 : deux secours publics effectivement acquis et qualifiés, avec erreursHTTP primaires conservées. Captures normalisées du rapport, baseline et configuration exactes ; aucune réponse fournisseur brute ni nouveau chiffre fabriqué. Les mutations des tests restent isolées.
