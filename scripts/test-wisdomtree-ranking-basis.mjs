@@ -1,11 +1,19 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {createHash} from 'node:crypto'
 import {qualifyHoldings} from '../src/pages/dca-profiles/holdings-qualification.js'
 import {projectDcaHoldings} from './lib/dca-holdings-projection.mjs'
 import {portfolioAnalytics} from '../src/pages/dca-profiles/analytics.js'
 import {holdingsConsumerQualifications,applyHoldingsConsumerQualification} from './lib/holdings-consumer-qualification.mjs'
 const fixture=name=>JSON.parse(readFileSync(new URL(`./fixtures/wisdomtree-ranking-basis-20261110/${name}.json`,import.meta.url)))
 const ranked=fixture('rankings-retained'),native=fixture('native-qualified'),isin='IE000W8WMSL2',reference={isin,synthetic:false},now=new Date('2026-11-10T23:00:00Z')
+const raw=gunzipSync(readFileSync(new URL('./fixtures/wisdomtree-ranking-basis-20261110/issuer-api.json.gz',import.meta.url)))
+assert.equal(createHash('sha256').update(raw).digest('hex'),native.sha256)
+const source=JSON.parse(raw),byFigi=new Map(source.filter(r=>r.figi).map(r=>[r.figi,r]))
+assert(source.every(r=>r.wtClassID===58690128&&r.fundTicker==='WQTM LN'&&r.dt.startsWith(native.asOf)))
+assert.equal(byFigi.size,47)
+for(const row of native.rows)assert.equal(row.weightPct,byFigi.get(row.figi).wgt*100,'Each original native weight is bound to the exact raw FIGI')
 assert.equal(ranked.asOf,native.asOf)
 assert.deepEqual(new Set(ranked.rows.map(r=>r.isin)),new Set(native.rows.map(r=>r.isin)))
 const total=h=>h.rows.reduce((s,r)=>s+r.weightPct,0)
