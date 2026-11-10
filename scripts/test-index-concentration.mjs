@@ -21,7 +21,12 @@ assert.equal(records['msci-korea'].asOf,records['msci-korea'].classificationAsOf
 assert.equal(records['msci-korea'].top.find(r=>r.name==='Samsung Electronics').securities.length,2)
 assert.match(records['dow-jones'].method, /prix/)
 assert.equal(records['dow-jones'].approximation, false)
-assert.ok(Math.abs(records['dow-jones'].topWeight - observations['dow-jones'].facts.holdings.reduce((sum, [, weight]) => sum + weight, 0)) < 1e-10)
+// A failed refresh may retain an older qualified snapshot, including its visual facts.
+const dow = records['dow-jones']
+assert.equal(dow.asOf, dow.visualFacts.asOf)
+assert.equal(dow.topWeight, dow.top.reduce((sum, row) => sum + row.weightPct, 0))
+assert.ok(Math.abs(dow.topWeight - dow.visualFacts.holdings.reduce((sum, [, weight]) => sum + weight, 0)) < 1e-10)
+if (!dow.retained) assert.deepEqual(dow.visualFacts, observations['dow-jones'].facts)
 assert.equal(records.dax.topWeight, records.dax.top.reduce((s,r)=>s+r.weightPct,0))
 assert.equal(records.world.top.find(r=>r.name==='Alphabet').securities.length, 2)
 if (!records.world.retained) {
@@ -77,3 +82,5 @@ const elevenResult=calculateConcentration({...record,rows:eleven,topCompaniesCer
 assert.equal(elevenResult.top.length,10)
 assert.ok(elevenResult.top.some(r=>r.id===rows[8].isin))
 await import('./test-native-index-company-view.mjs')
+
+await import('./test-dow-concentration-refresh.mjs')
