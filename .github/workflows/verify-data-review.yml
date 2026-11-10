@@ -16,7 +16,7 @@ permissions:
   contents: read
 jobs:
   sources:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.scopes != '["wisdomtree-native-macos"]'
     strategy:
       fail-fast: false
       matrix:
@@ -53,7 +53,7 @@ jobs:
           retention-days: 35
 
   routes:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.scopes != '["wisdomtree-native-macos"]'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -155,4 +155,45 @@ jobs:
         with:
           name: data-review-vaneck-dk
           path: vaneck-evidence/
+          retention-days: 35
+
+  native-macos:
+    if: github.event_name == 'workflow_dispatch' && inputs.scopes == '["wisdomtree-native-macos"]'
+    runs-on: macos-15
+    timeout-minutes: 6
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Read one official exact-share book without production writes
+        run: |
+          python - <<'PYTHON'
+          import urllib.request,json,pathlib,datetime,hashlib,math
+          root=pathlib.Path('evidence');root.mkdir()
+          url='https://www.wisdomtree.com/api/fund-holdings/58690128'
+          report={'expected':[{'instrument':'IE000W8WMSL2','field':'native-complete-book','classId':58690128,'ticker':'WQTM LN'}],'attemptedIds':['IE000W8WMSL2'],'sourceAttempted':True,'sourceUrl':url,'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'trigger':'workflow_dispatch','runner':'macos-15','productionWritten':False}
+          try:
+            req=urllib.request.Request(url,headers={'Accept':'application/json','User-Agent':'EpargnantLibre source qualification lepargnantlibre@gmail.com'})
+            response=urllib.request.urlopen(req,timeout=45);raw=response.read(4000001)
+            if len(raw)>4000000:raise ValueError('Response too large')
+            rows=json.loads(raw)
+            if not isinstance(rows,list)or len(rows)<11:raise ValueError('Empty or partial book')
+            if any(r.get('wtClassID')!=58690128 or r.get('fundTicker')!='WQTM LN' for r in rows):raise ValueError('Wrong exact share or listing')
+            dates={r.get('dt')for r in rows}
+            if len(dates)!=1:raise ValueError('Mixed dates')
+            weights=[r.get('wgt')for r in rows]
+            if not all(type(w)in(int,float)and math.isfinite(w)and 0<=w<=1 for w in weights)or abs(sum(weights)-1)>1e-7:raise ValueError('Unqualified source book weights')
+            (root/'native-api.json').write_bytes(raw)
+            report.update(status='validated-source-book-only',sha256=hashlib.sha256(raw).hexdigest(),asOf=next(iter(dates)),rows=len(rows),publishedTotalWeight=sum(weights),identityQualification='Not certified by this transport probe; retained separate proofs required')
+          except Exception as error:report.update(status='failed',error=str(error)[:1000])
+          (root/'native-probe.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
+          if report['status']=='failed':raise SystemExit(1)
+          PYTHON
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: wisdomtree-native-macos-exact-source
+          path: evidence/
           retention-days: 35
