@@ -1,0 +1,322 @@
+{
+  "facts": {
+    "index": "Dow Jones Industrial Average",
+    "asOf": "2026-10-31",
+    "constituents": 30,
+    "countries": [
+      [
+        "États-Unis",
+        100.0
+      ]
+    ],
+    "sectors": [
+      [
+        "Finance",
+        27.3
+      ],
+      [
+        "Technologies de l'info.",
+        19.2
+      ],
+      [
+        "Santé",
+        14.68
+      ],
+      [
+        "Industrie",
+        13.85
+      ],
+      [
+        "Conso Cyclique",
+        9.86
+      ],
+      [
+        "Services de communication",
+        4.48
+      ],
+      [
+        "Conso non Cyclique",
+        4.25
+      ],
+      [
+        "Matériaux",
+        3.75
+      ],
+      [
+        "Énergie",
+        2.63
+      ]
+    ],
+    "holdings": [
+      [
+        "GOLDMAN SACHS GROUP INC",
+        10.53
+      ],
+      [
+        "CATERPILLAR INC",
+        7.35
+      ],
+      [
+        "MICROSOFT CORP",
+        6.02
+      ],
+      [
+        "AMGEN INC",
+        5.23
+      ],
+      [
+        "UNITEDHEALTH GROUP INC",
+        4.67
+      ],
+      [
+        "VISA INC-CLASS A SHARES",
+        4.66
+      ],
+      [
+        "TRAVELERS COMPANIES",
+        4.52
+      ],
+      [
+        "APPLE INC",
+        3.96
+      ],
+      [
+        "JPMORGAN CHASE & CO",
+        3.9
+      ],
+      [
+        "SHERWIN-WILLIAMS CO/THE",
+        3.75
+      ]
+    ],
+    "source": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-11-09",
+      "sha256": "e1a6dca38e29f01db0d752a30b8fa45b118db01074f6bd6b22eabbf6405980a5",
+      "label": "Composition de l’indice publiée par Amundi"
+    },
+    "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+  },
+  "previousCompanies": {
+    "available": true,
+    "top": [
+      {
+        "id": "US38141G1040",
+        "name": "GOLDMAN SACHS GROUP INC",
+        "weightPct": 10.61,
+        "securities": [
+          "US38141G1040"
+        ]
+      },
+      {
+        "id": "US1491231015",
+        "name": "CATERPILLAR INC",
+        "weightPct": 9.57,
+        "securities": [
+          "US1491231015"
+        ]
+      },
+      {
+        "id": "US5949181045",
+        "name": "MICROSOFT CORP",
+        "weightPct": 5.89,
+        "securities": [
+          "US5949181045"
+        ]
+      },
+      {
+        "id": "US0311621009",
+        "name": "AMGEN INC",
+        "weightPct": 4.9,
+        "securities": [
+          "US0311621009"
+        ]
+      },
+      {
+        "id": "US91324P1021",
+        "name": "UNITEDHEALTH GROUP INC",
+        "weightPct": 4.34,
+        "securities": [
+          "US91324P1021"
+        ]
+      },
+      {
+        "id": "US92826C8394",
+        "name": "VISA INC-CLASS A SHARES",
+        "weightPct": 4.23,
+        "securities": [
+          "US92826C8394"
+        ]
+      },
+      {
+        "id": "US89417E1091",
+        "name": "TRAVELERS COMPANIES",
+        "weightPct": 4.2,
+        "securities": [
+          "US89417E1091"
+        ]
+      },
+      {
+        "id": "US02079K3059",
+        "name": "Alphabet",
+        "weightPct": 3.95,
+        "securities": [
+          "US02079K3059"
+        ]
+      },
+      {
+        "id": "US46625H1005",
+        "name": "JPMORGAN CHASE & CO",
+        "weightPct": 3.88,
+        "securities": [
+          "US46625H1005"
+        ]
+      },
+      {
+        "id": "US8243481061",
+        "name": "SHERWIN-WILLIAMS CO/THE",
+        "weightPct": 3.82,
+        "securities": [
+          "US8243481061"
+        ]
+      }
+    ],
+    "topWeight": 55.390000000000015,
+    "otherWeight": 44.609999999999985,
+    "identifiedWeight": 55.390000000000015,
+    "asOf": "2026-09-30",
+    "checkedAt": "2026-11-08",
+    "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+    "sourceLabel": "Composition de l’indice publiée par Amundi",
+    "approximation": false,
+    "method": "Pondération par le prix des actions (price weighted), pas par capitalisation ; cumul calculé sur les poids publiés arrondis par la source",
+    "methodologyUrl": "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-industrial-average/",
+    "refresh": {
+      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
+      "lastSuccessAt": "2026-11-08T13:52:20.733782+00:00",
+      "status": "validated",
+      "asOf": "2026-09-30"
+    },
+    "visualFacts": {
+      "index": "Dow Jones Industrial Average",
+      "asOf": "2026-09-30",
+      "constituents": 30,
+      "countries": [
+        [
+          "États-Unis",
+          100
+        ]
+      ],
+      "sectors": [
+        [
+          "Finance",
+          26.46
+        ],
+        [
+          "Technologies de l'info.",
+          18.73
+        ],
+        [
+          "Industrie",
+          16.12
+        ],
+        [
+          "Santé",
+          14.07
+        ],
+        [
+          "Conso Cyclique",
+          9.31
+        ],
+        [
+          "Services de communication",
+          5.17
+        ],
+        [
+          "Conso non Cyclique",
+          3.96
+        ],
+        [
+          "Matériaux",
+          3.82
+        ],
+        [
+          "Énergie",
+          2.37
+        ]
+      ],
+      "holdings": [
+        [
+          "GOLDMAN SACHS GROUP INC",
+          10.61
+        ],
+        [
+          "CATERPILLAR INC",
+          9.57
+        ],
+        [
+          "MICROSOFT CORP",
+          5.89
+        ],
+        [
+          "AMGEN INC",
+          4.9
+        ],
+        [
+          "UNITEDHEALTH GROUP INC",
+          4.34
+        ],
+        [
+          "VISA INC-CLASS A SHARES",
+          4.23
+        ],
+        [
+          "TRAVELERS COMPANIES",
+          4.2
+        ],
+        [
+          "ALPHABET INC CL A",
+          3.95
+        ],
+        [
+          "JPMORGAN CHASE & CO",
+          3.88
+        ],
+        [
+          "SHERWIN-WILLIAMS CO/THE",
+          3.82
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+        "checkedAt": "2026-11-08",
+        "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    }
+  },
+  "identity": {
+    "sourceUrl": "https://live.deutsche-boerse.com/equity/apple-inc",
+    "checkedAt": "2026-11-10T05:49:11.774015+00:00",
+    "sha256": "fc94707eb3f9894f91ded7578608940417066cb36453c38b5288614b0cd34d45",
+    "officialTitle": "Apple Inc. Equity | 865985 | US0378331005 | Share Price",
+    "reviewedSourceLabel": "APPLE INC",
+    "isin": "US0378331005",
+    "review": "Explicit reviewed alias: official exchange company name and exact ISIN; independently corroborated by the already qualified official Invesco native index security. No dynamic issuer-name join."
+  },
+  "nativeIdentityCorroboration": {
+    "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+    "asOf": "2026-11-06",
+    "sha256": "32973699fa0cad8544b4530ba139956b84f4dbd2491c64eb2d3140c1620a3ba6",
+    "row": {
+      "isin": "US0378331005",
+      "name": "APPLE ORD",
+      "weightPct": 8.5492
+    }
+  },
+  "decimalOracle": {
+    "topWeight": "54.59",
+    "otherWeight": "45.41"
+  }
+}

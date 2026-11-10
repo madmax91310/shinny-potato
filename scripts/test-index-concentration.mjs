@@ -1,11 +1,14 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
 import { aggregateCompanies, calculateConcentration, roundedComposition, retainQualifiedComposition } from '../src/data/index-concentration-core.js'
 import { getIndexConcentration, compositionImageSheet } from '../src/data/index-company-compositions.js'
 import identities from '../src/data/index-company-identities.json' with { type: 'json' }
 import records from '../src/data/index-company-compositions.json' with { type: 'json' }
 import observations from '../src/data/index-company-observations.json' with { type: 'json' }
+import qualified from '../src/data/index-company-qualified.json' with { type: 'json' }
 import full from '../src/data/dca-complete-holdings.json' with { type: 'json' }
 import { SHEETS } from '../src/data/index-factsheets.js'
+import companySources from './index-company-sources.json' with {type:'json'}
 const grouped = aggregateCompanies([
   {isin:'US02079K3059',name:'Alphabet A',weightPct:3.14159}, {isin:'US02079K1079',name:'Different class label',weightPct:2.71828},
   {isin:'KR7005930003',name:'Samsung Electronics',weightPct:4}, {isin:'KR7005931001',name:'Preferred',weightPct:1},
@@ -21,7 +24,16 @@ assert.equal(records['msci-korea'].asOf,records['msci-korea'].classificationAsOf
 assert.equal(records['msci-korea'].top.find(r=>r.name==='Samsung Electronics').securities.length,2)
 assert.match(records['dow-jones'].method, /prix/)
 assert.equal(records['dow-jones'].approximation, false)
-assert.ok(Math.abs(records['dow-jones'].topWeight - observations['dow-jones'].facts.holdings.reduce((sum, [, weight]) => sum + weight, 0)) < 1e-10)
+// A newly unqualified entrant must retain the old photograph, not compare its
+// old weights with the new table or prevent other qualified indices publishing.
+const dow=records['dow-jones'],dowSource=dow.retained ? qualified['dow-jones'].companies : observations['dow-jones'].facts
+assert.equal(dow.asOf,dowSource.asOf)
+assert.equal(dow.checkedAt,dow.retained ? dowSource.checkedAt : dowSource.source.checkedAt)
+if(dow.retained){
+ assert.equal(dow.refresh.status,'failed')
+ assert.deepEqual(dow.top,dowSource.top)
+ assert.equal(dow.topWeight,dowSource.topWeight)
+}else assert.ok(Math.abs(dow.topWeight-dowSource.holdings.reduce((sum,[,weight])=>sum+weight,0))<1e-10)
 assert.equal(records.dax.topWeight, records.dax.top.reduce((s,r)=>s+r.weightPct,0))
 assert.equal(records.world.top.find(r=>r.name==='Alphabet').securities.length, 2)
 if (!records.world.retained) {
@@ -76,4 +88,27 @@ const eleven=[{isin:'US02079K3059',name:'Alphabet A',weightPct:4},{isin:'US02079
 const elevenResult=calculateConcentration({...record,rows:eleven,topCompaniesCertified:true},identities)
 assert.equal(elevenResult.top.length,10)
 assert.ok(elevenResult.top.some(r=>r.id===rows[8].isin))
+
+// Actual 31 October table: Apple replaces Alphabet in the Dow top ten.
+// The exchange's exact ISIN and an independent qualified native index agree.
+const dowEntrant=JSON.parse(readFileSync(new URL('./fixtures/index-company-entrants-20261110/dow-apple.json',import.meta.url)))
+assert(dowEntrant.identity.officialTitle.includes(dowEntrant.identity.isin))
+assert.equal(dowEntrant.nativeIdentityCorroboration.row.isin,dowEntrant.identity.isin)
+assert.equal(companySources.reviewedSecurityLabels[dowEntrant.identity.reviewedSourceLabel],dowEntrant.identity.isin)
+const dowRows=dowEntrant.facts.holdings.map(([name,weightPct])=>({name,weightPct,isin:companySources.reviewedSecurityLabels[name]}))
+const dowInput={rows:dowRows,asOf:dowEntrant.facts.asOf,checkedAt:dowEntrant.facts.source.checkedAt,sourceUrl:dowEntrant.facts.source.url,sha256:dowEntrant.facts.source.sha256,complete:false,topCompaniesCertified:true}
+const freshDow=calculateConcentration(dowInput,identities)
+assert(freshDow.available,freshDow.reason)
+assert.equal(freshDow.top.length,10)
+assert(Math.abs(freshDow.topWeight-Number(dowEntrant.decimalOracle.topWeight))<1e-10)
+assert(Math.abs(freshDow.otherWeight-Number(dowEntrant.decimalOracle.otherWeight))<1e-10)
+assert.equal(freshDow.top.find(r=>r.securities.includes(dowEntrant.identity.isin)).weightPct,3.96)
+const unknownDow=calculateConcentration({...dowInput,rows:dowRows.map(r=>r.isin===dowEntrant.identity.isin?{...r,isin:undefined}:r)},identities)
+assert.equal(unknownDow.available,false,'An unreviewed entrant must still refuse the new photograph')
+const heldDow=retainQualifiedComposition(unknownDow,dowEntrant.previousCompanies)
+assert.equal(heldDow.asOf,'2026-09-30')
+assert.equal(heldDow.checkedAt,dowEntrant.previousCompanies.checkedAt)
+assert.equal(heldDow.topWeight,dowEntrant.previousCompanies.topWeight)
+assert.deepEqual(heldDow.top,dowEntrant.previousCompanies.top)
+assert.equal(heldDow.refresh.status,'failed')
 await import('./test-native-index-company-view.mjs')
