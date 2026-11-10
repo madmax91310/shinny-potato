@@ -34,8 +34,13 @@ export async function deploySnapshot(config,{fetcher=fetch,sleep=wait,clock=Date
   const result=await request(api,token,'POST',{artifact_id:Number(artifactId),pages_build_version:dataSha,oidc_token:identity.value})
   assert(result&&/^[\w-]{1,128}$/.test(String(result.id??'')),'Missing Pages deployment identity')
   created=String(result.id)
-  const statusUrl=api+'/'+encodeURIComponent(created)
-  if(result.status_url)assert.equal(result.status_url,statusUrl,'Unexpected Pages status endpoint')
+  // The real Pages create response uses the singular deployment/status route;
+  // the REST resource route is also documented. Bind both to this exact repo/ID.
+  // Never forward runtime authorization to an arbitrary response-supplied URL.
+  const resourceUrl=api+'/'+encodeURIComponent(created)
+  const responseStatusUrl=`https://api.github.com/repos/${repo}/pages/deployment/status/${encodeURIComponent(created)}`
+  const statusUrl=result.status_url??resourceUrl
+  assert([resourceUrl,responseStatusUrl].includes(statusUrl),'Unexpected Pages status endpoint')
   const pageUrl=new URL(result.page_url)
   assert(pageUrl.protocol==='https:'&&!pageUrl.username&&!pageUrl.password,'Invalid public Pages URL')
   log(`Pages artifact ${artifactId}: recorded build ${dataSha}; caller ${eventSha}; deployment ${created}`)

@@ -114,9 +114,9 @@ function deploymentHarness(config=baseDeployment,statuses=['queued','succeed'],s
  const fetcher=async(url,options)=>{
   calls.push({url:String(url),options})
   if(String(url)===config.oidcUrl)return settings.badOidc?new Response('not-json-private-body'):Response.json({value:'isolated-oidc-assertion'})
-  if(String(url)===endpoint)return settings.postFailure?Response.json({}, {status:503}):Response.json({id:config.dataSha,status_url:settings.badStatusUrl??endpoint+'/'+config.dataSha,page_url:'https://madmax91310.github.io/shinny-potato/'},{status:201})
+  if(String(url)===endpoint)return settings.postFailure?Response.json({}, {status:503}):Response.json({id:config.dataSha,status_url:settings.badStatusUrl??settings.actualStatusUrl??endpoint+'/'+config.dataSha,page_url:'https://madmax91310.github.io/shinny-potato/'},{status:201})
   if(String(url)===endpoint+'/'+config.dataSha+'/cancel')return new Response(null,{status:204})
-  assert.equal(String(url),endpoint+'/'+config.dataSha,'Authorization never leaves the known GitHub API')
+  assert.equal(String(url),settings.actualStatusUrl??endpoint+'/'+config.dataSha,'Authorization never leaves the exact repository and deployment status endpoint')
   const status=statuses.length>1?statuses.shift():statuses[0]
   return typeof status==='number'?Response.json({}, {status,headers:{'retry-after':'1'}}):Response.json({status})
  }
@@ -133,6 +133,22 @@ for(const [eventSha,dataSha,artifactId]of[
  assert.equal(result.pages_build_version,dataSha);assert.equal(result.deployment_id,dataSha)
  assert(!h.calls.some(c=>c.url.endsWith('/cancel')))
  assert(!JSON.stringify([result,h.logs]).includes('isolated-oidc-assertion'))
+}
+// Regression from actual GitHub job130120358454/run42897897981, 2026-11-10.
+// Its create response is not the REST resource URL assumed by the first mock.
+{
+ const dataSha='9c9bec68c98073e6c3cb00c53929b5c9f4f28043'
+ const config={...baseDeployment,artifactId:'13801124855',codeSha:'a94db8be106863574896bb521337ad71f9c49671',dataSha,headSha:dataSha,build:{sha:'a94db8be106863574896bb521337ad71f9c49671',dataSha}}
+ const actualStatusUrl=`https://api.github.com/repos/madmax91310/shinny-potato/pages/deployment/status/${dataSha}`
+ const h=deploymentHarness(config,['queued','succeed'],{actualStatusUrl})
+ assert.equal((await deploySnapshot(config,h.dependencies)).pages_build_version,dataSha)
+ assert.equal(h.calls.filter(c=>c.url===actualStatusUrl).length,2)
+ assert(!h.calls.some(c=>c.url.endsWith('/cancel')))
+ for(const badStatusUrl of [actualStatusUrl+'?other=1',actualStatusUrl+'#fragment',actualStatusUrl.replace('shinny-potato','other-repository'),actualStatusUrl.replace('api.github.com','api.github.com.evil.example'),actualStatusUrl.replace(dataSha,'a'.repeat(40))]){
+  const rejected=deploymentHarness(config,['succeed'],{badStatusUrl})
+  await assert.rejects(()=>deploySnapshot(config,rejected.dependencies),/Unexpected Pages status endpoint/)
+  assert(!rejected.calls.some(c=>c.url===badStatusUrl),'An invalid response URL is rejected before any authorized GET')
+ }
 }
 for(const change of[{headSha:'a'.repeat(40)},{build:{...baseDeployment.build,dataSha:'a'.repeat(40)}},{artifactId:''},{artifactId:'9007199254740993'},{ref:'refs/heads/other'},{event:'pull_request'},{oidcUrl:'https://example.org/token'}]){
  const h=deploymentHarness();await assert.rejects(()=>deploySnapshot({...baseDeployment,...change},h.dependencies));assert.equal(h.calls.length,0)
