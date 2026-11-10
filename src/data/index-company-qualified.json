@@ -95,8 +95,8 @@
       "method": "Capitalisation flottante, avec plafonnement ; cumul calculé sur les poids publiés arrondis par la source",
       "methodologyUrl": "https://live.euronext.com/en/product/indices/FR0003500008-XPAR",
       "refresh": {
-        "checkedAt": "2026-11-10T08:00:47.014826+00:00",
-        "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
+        "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+        "lastSuccessAt": "2026-11-10T15:13:28.881120+00:00",
         "status": "validated",
         "asOf": "2026-10-31"
       },
@@ -732,8 +732,8 @@
       "method": "Pondération par le prix des actions (price weighted), pas par capitalisation ; cumul calculé sur les poids publiés arrondis par la source",
       "methodologyUrl": "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-industrial-average/",
       "refresh": {
-        "checkedAt": "2026-11-10T08:00:47.014826+00:00",
-        "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
+        "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+        "lastSuccessAt": "2026-11-10T15:13:28.881120+00:00",
         "status": "validated",
         "asOf": "2026-10-31"
       },
@@ -1333,8 +1333,8 @@
       "method": "Capitalisation flottante, avec plafonnement ; cumul calculé sur les poids publiés arrondis par la source",
       "methodologyUrl": "https://www.stoxx.com/index-details?symbol=DAX",
       "refresh": {
-        "checkedAt": "2026-11-10T08:00:47.014826+00:00",
-        "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
+        "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+        "lastSuccessAt": "2026-11-10T15:13:28.881120+00:00",
         "status": "validated",
         "asOf": "2026-10-31"
       },
@@ -1940,7 +1940,7 @@
       "identifiedWeight": 99.79482000000002,
       "sourceRowCount": 165,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares MSCI India UCITS ETF USD (Acc)",
       "sourceIsin": "IE00BZCQB185",
@@ -1953,8 +1953,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI India Index (Net). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -2056,7 +2056,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -4902,21 +4902,21 @@
       "identifiedWeight": 99.23137,
       "sourceRowCount": 271,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Global Infrastructure UCITS ETF USD (Dist)",
       "sourceIsin": "IE00B1FZS467",
       "identitySourceUrl": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
       "identityCheckedAt": "2026-10-01",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-09",
+      "observedIdentityCheckedAt": "2026-11-10",
       "productStructure": "Physical",
       "replicationMethodology": "Replicated",
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement FTSE Global Core Infrastructure Index (USD). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -5126,7 +5126,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -13152,7 +13152,7 @@
       "identifiedWeight": 99.67228,
       "sourceRowCount": 296,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Edge MSCI World Minimum Volatility UCITS ETF",
       "sourceIsin": "IE00B8FHGS14",
@@ -13165,8 +13165,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI World Minimum Volatility. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -13356,7 +13356,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -17299,21 +17299,21 @@
       "identifiedWeight": 99.67689999999997,
       "sourceRowCount": 288,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Edge MSCI World Quality Factor UCITS ETF (Acc)",
       "sourceIsin": "IE00BP3QZ601",
       "identitySourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZ601",
       "identityCheckedAt": "2026-09-29",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-09",
+      "observedIdentityCheckedAt": "2026-11-10",
       "productStructure": "Physical",
       "replicationMethodology": "Optimised",
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI World Sector Neutral Quality. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -17495,7 +17495,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -21348,21 +21348,21 @@
       "identifiedWeight": 99.45467000000001,
       "sourceRowCount": 390,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Edge MSCI World Value Factor UCITS ETF",
       "sourceIsin": "IE00BP3QZB59",
       "identitySourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZB59",
       "identityCheckedAt": "2026-09-29",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-09",
+      "observedIdentityCheckedAt": "2026-11-10",
       "productStructure": "Physical",
       "replicationMethodology": "Replicated",
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI World Enhanced Value. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -21548,7 +21548,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -25058,7 +25058,7 @@
         {
           "id": "US0378331005",
           "name": "Apple Inc.",
-          "weightPct": 4.51348,
+          "weightPct": 4.524606,
           "securities": [
             "US0378331005"
           ]
@@ -25066,7 +25066,7 @@
         {
           "id": "US67066G1040",
           "name": "NVIDIA Corporation",
-          "weightPct": 3.910622,
+          "weightPct": 3.663908,
           "securities": [
             "US67066G1040"
           ]
@@ -25074,7 +25074,7 @@
         {
           "id": "US5949181045",
           "name": "Microsoft Corporation",
-          "weightPct": 3.347592,
+          "weightPct": 3.36618,
           "securities": [
             "US5949181045"
           ]
@@ -25082,7 +25082,7 @@
         {
           "id": "US02079K3059",
           "name": "Alphabet",
-          "weightPct": 2.708932,
+          "weightPct": 2.6773119999999997,
           "securities": [
             "US02079K3059",
             "US02079K1079"
@@ -25091,7 +25091,7 @@
         {
           "id": "US0231351067",
           "name": "Amazon.com Inc.",
-          "weightPct": 2.237003,
+          "weightPct": 2.253768,
           "securities": [
             "US0231351067"
           ]
@@ -25099,7 +25099,7 @@
         {
           "id": "TW0002330008",
           "name": "TSMC",
-          "weightPct": 1.495444,
+          "weightPct": 1.521572,
           "securities": [
             "TW0002330008"
           ]
@@ -25107,7 +25107,7 @@
         {
           "id": "US11135F1012",
           "name": "Broadcom Inc.",
-          "weightPct": 1.187777,
+          "weightPct": 1.264586,
           "securities": [
             "US11135F1012"
           ]
@@ -25115,7 +25115,7 @@
         {
           "id": "US30303M1027",
           "name": "Meta Platforms Inc Class A",
-          "weightPct": 1.183121,
+          "weightPct": 1.217164,
           "securities": [
             "US30303M1027"
           ]
@@ -25123,7 +25123,7 @@
         {
           "id": "US5324571083",
           "name": "Eli Lilly and Company",
-          "weightPct": 0.959404,
+          "weightPct": 0.979186,
           "securities": [
             "US5324571083"
           ]
@@ -25131,18 +25131,18 @@
         {
           "id": "US88160R1014",
           "name": "Tesla Inc.",
-          "weightPct": 0.911036,
+          "weightPct": 0.940998,
           "securities": [
             "US88160R1014"
           ]
         }
       ],
-      "topWeight": 22.454411,
-      "otherWeight": 77.545589,
-      "identifiedWeight": 99.99889300000076,
-      "sourceRowCount": 6096,
-      "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "topWeight": 22.409280000000003,
+      "otherWeight": 77.59072,
+      "identifiedWeight": 99.99888800000006,
+      "sourceRowCount": 6095,
+      "asOf": "2026-11-09",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx",
       "sourceLabel": "State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc)",
       "sourceIsin": "IE00B3YLTY66",
@@ -25155,286 +25155,286 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI ACWI IMI Index (Net Total Return). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
-        "asOf": "2026-11-06"
+        "asOf": "2026-11-09"
       },
       "visualFacts": {
-        "asOf": "2026-11-06",
+        "asOf": "2026-11-09",
         "countries": [
           [
             "USA",
-            63.232828
+            63.401195
           ],
           [
             "Japan",
-            5.46761
+            5.503244
           ],
           [
             "Großbritannien",
-            3.451611
+            3.424078
           ],
           [
             "Kanada",
-            3.258716
+            3.242307
           ],
           [
             "Taiwan",
-            2.945813
+            3.003536
           ],
           [
             "China",
-            2.311324
+            2.254308
           ],
           [
             "Schweiz",
-            2.062389
+            2.034193
           ],
           [
             "Frankreich",
-            2.026755
+            2.020739
           ],
           [
             "Deutschland",
-            1.93526
+            1.931769
           ],
           [
             "Südkorea",
-            1.908472
+            1.870194
           ],
           [
             "Indien",
-            1.673041
+            1.641664
           ],
           [
             "Australien",
-            1.585203
+            1.556515
           ],
           [
             "Niederlande",
-            1.032876
+            1.045095
           ],
           [
             "Schweden",
-            0.796284
+            0.793626
           ],
           [
             "Spanien",
-            0.742648
+            0.745154
           ],
           [
             "Italien",
-            0.654854
+            0.666252
           ],
           [
             "Dänemark",
-            0.4741
+            0.468908
           ],
           [
             "Singapur",
-            0.463074
+            0.452006
           ],
           [
             "Brasilien",
-            0.447678
+            0.445093
           ],
           [
             "Hong Kong",
-            0.419314
+            0.411101
           ],
           [
             "Südafrika",
-            0.379888
+            0.382775
           ],
           [
             "Israel",
-            0.325145
+            0.326189
           ],
           [
             "Belgien",
-            0.322553
+            0.323088
           ],
           [
             "Saudi-Arabien",
-            0.307039
+            0.302641
           ],
           [
             "Mexiko",
-            0.235344
+            0.23267
           ],
           [
             "VAE",
-            0.17081
+            0.169608
           ],
           [
             "Finnland",
-            0.167083
+            0.167913
           ],
           [
             "Malysia",
-            0.148163
+            0.144056
           ],
           [
             "Polen",
-            0.137915
+            0.135573
           ],
           [
             "Norwegen",
-            0.133827
+            0.132668
           ],
           [
             "Neuseeland",
-            0.102476
+            0.10173
           ],
           [
             "Thailand",
-            0.101249
+            0.09973
           ],
           [
             "Portugal",
-            0.082424
+            0.081776
           ],
           [
             "Kuwait",
-            0.079546
+            0.078336
           ],
           [
             "Qatar",
-            0.074104
+            0.072798
           ],
           [
             "Indonesien",
-            0.059195
+            0.058286
           ],
           [
             "Türkei",
-            0.055273
+            0.053978
           ],
           [
             "Tschechische Republik",
-            0.050862
+            0.049515
           ],
           [
             "Chile",
-            0.036411
+            0.035794
           ],
           [
             "Irland",
-            0.033661
+            0.033671
           ],
           [
             "Griechenland",
-            0.031956
+            0.031788
           ],
           [
             "Österreich",
-            0.027478
+            0.02739
           ],
           [
             "Kolumbien",
-            0.016918
+            0.016966
           ],
           [
             "Philippinen",
-            0.014306
+            0.013684
           ],
           [
             "Ungarn",
-            0.009488
+            0.009481
           ]
         ],
         "sectors": [
           [
             "Technologie",
-            27.557303
+            27.769029
           ],
           [
             "Finance",
-            17.06972
+            16.984153
           ],
           [
             "Industrie",
-            11.185702
+            11.306757
           ],
           [
             "Santé",
-            9.774032
+            9.737525
           ],
           [
             "Consommation cyclique",
-            9.196264
+            9.200693
           ],
           [
             "Communication",
-            6.928213
+            6.893232
           ],
           [
             "Consommation de base",
-            5.260798
+            5.172324
           ],
           [
             "Matériaux",
-            4.238935
+            4.264835
           ],
           [
             "Énergie",
-            4.206646
+            4.126983
           ],
           [
             "Services publics",
-            2.420893
+            2.407275
           ],
           [
             "Immobilier",
-            2.160383
+            2.136113
           ]
         ],
         "holdings": [
           [
             "Apple Inc.",
-            4.51348
+            4.524606
           ],
           [
             "NVIDIA Corporation",
-            3.910622
+            3.663908
           ],
           [
             "Microsoft Corporation",
-            3.347592
+            3.36618
           ],
           [
             "Alphabet",
-            2.708932
+            2.6773119999999997
           ],
           [
             "Amazon.com Inc.",
-            2.237003
+            2.253768
           ],
           [
             "TSMC",
-            1.495444
+            1.521572
           ],
           [
             "Broadcom Inc.",
-            1.187777
+            1.264586
           ],
           [
             "Meta Platforms Inc Class A",
-            1.183121
+            1.217164
           ],
           [
             "Eli Lilly and Company",
-            0.959404
+            0.979186
           ],
           [
             "Tesla Inc.",
-            0.911036
+            0.940998
           ]
         ],
         "source": {
           "url": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -29314,6 +29314,394 @@
           "constituents": null,
           "targetConstituents": null
         }
+      },
+      "2026-11-09": {
+        "available": true,
+        "top": [
+          {
+            "id": "US0378331005",
+            "name": "Apple Inc.",
+            "weightPct": 4.524606,
+            "securities": [
+              "US0378331005"
+            ]
+          },
+          {
+            "id": "US67066G1040",
+            "name": "NVIDIA Corporation",
+            "weightPct": 3.663908,
+            "securities": [
+              "US67066G1040"
+            ]
+          },
+          {
+            "id": "US5949181045",
+            "name": "Microsoft Corporation",
+            "weightPct": 3.36618,
+            "securities": [
+              "US5949181045"
+            ]
+          },
+          {
+            "id": "US02079K3059",
+            "name": "Alphabet",
+            "weightPct": 2.6773119999999997,
+            "securities": [
+              "US02079K3059",
+              "US02079K1079"
+            ]
+          },
+          {
+            "id": "US0231351067",
+            "name": "Amazon.com Inc.",
+            "weightPct": 2.253768,
+            "securities": [
+              "US0231351067"
+            ]
+          },
+          {
+            "id": "TW0002330008",
+            "name": "TSMC",
+            "weightPct": 1.521572,
+            "securities": [
+              "TW0002330008"
+            ]
+          },
+          {
+            "id": "US11135F1012",
+            "name": "Broadcom Inc.",
+            "weightPct": 1.264586,
+            "securities": [
+              "US11135F1012"
+            ]
+          },
+          {
+            "id": "US30303M1027",
+            "name": "Meta Platforms Inc Class A",
+            "weightPct": 1.217164,
+            "securities": [
+              "US30303M1027"
+            ]
+          },
+          {
+            "id": "US5324571083",
+            "name": "Eli Lilly and Company",
+            "weightPct": 0.979186,
+            "securities": [
+              "US5324571083"
+            ]
+          },
+          {
+            "id": "US88160R1014",
+            "name": "Tesla Inc.",
+            "weightPct": 0.940998,
+            "securities": [
+              "US88160R1014"
+            ]
+          }
+        ],
+        "topWeight": 22.409280000000003,
+        "otherWeight": 77.59072,
+        "identifiedWeight": 99.99888800000006,
+        "sourceRowCount": 6095,
+        "asOf": "2026-11-09",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx",
+        "sourceLabel": "State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc)",
+        "sourceIsin": "IE00B3YLTY66",
+        "identitySourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
+        "identityCheckedAt": "2026-10-05",
+        "observedIdentitySourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
+        "observedIdentityCheckedAt": "2026-11-10",
+        "productStructure": "Physique",
+        "replicationMethodology": "Physique",
+        "approximation": true,
+        "method": "Positions d’un ETF physique suivant exactement MSCI ACWI IMI Index (Net Total Return). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
+        "refresh": {
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+          "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
+          "status": "validated",
+          "asOf": "2026-11-09"
+        },
+        "visualFacts": {
+          "asOf": "2026-11-09",
+          "countries": [
+            [
+              "USA",
+              63.401195
+            ],
+            [
+              "Japan",
+              5.503244
+            ],
+            [
+              "Großbritannien",
+              3.424078
+            ],
+            [
+              "Kanada",
+              3.242307
+            ],
+            [
+              "Taiwan",
+              3.003536
+            ],
+            [
+              "China",
+              2.254308
+            ],
+            [
+              "Schweiz",
+              2.034193
+            ],
+            [
+              "Frankreich",
+              2.020739
+            ],
+            [
+              "Deutschland",
+              1.931769
+            ],
+            [
+              "Südkorea",
+              1.870194
+            ],
+            [
+              "Indien",
+              1.641664
+            ],
+            [
+              "Australien",
+              1.556515
+            ],
+            [
+              "Niederlande",
+              1.045095
+            ],
+            [
+              "Schweden",
+              0.793626
+            ],
+            [
+              "Spanien",
+              0.745154
+            ],
+            [
+              "Italien",
+              0.666252
+            ],
+            [
+              "Dänemark",
+              0.468908
+            ],
+            [
+              "Singapur",
+              0.452006
+            ],
+            [
+              "Brasilien",
+              0.445093
+            ],
+            [
+              "Hong Kong",
+              0.411101
+            ],
+            [
+              "Südafrika",
+              0.382775
+            ],
+            [
+              "Israel",
+              0.326189
+            ],
+            [
+              "Belgien",
+              0.323088
+            ],
+            [
+              "Saudi-Arabien",
+              0.302641
+            ],
+            [
+              "Mexiko",
+              0.23267
+            ],
+            [
+              "VAE",
+              0.169608
+            ],
+            [
+              "Finnland",
+              0.167913
+            ],
+            [
+              "Malysia",
+              0.144056
+            ],
+            [
+              "Polen",
+              0.135573
+            ],
+            [
+              "Norwegen",
+              0.132668
+            ],
+            [
+              "Neuseeland",
+              0.10173
+            ],
+            [
+              "Thailand",
+              0.09973
+            ],
+            [
+              "Portugal",
+              0.081776
+            ],
+            [
+              "Kuwait",
+              0.078336
+            ],
+            [
+              "Qatar",
+              0.072798
+            ],
+            [
+              "Indonesien",
+              0.058286
+            ],
+            [
+              "Türkei",
+              0.053978
+            ],
+            [
+              "Tschechische Republik",
+              0.049515
+            ],
+            [
+              "Chile",
+              0.035794
+            ],
+            [
+              "Irland",
+              0.033671
+            ],
+            [
+              "Griechenland",
+              0.031788
+            ],
+            [
+              "Österreich",
+              0.02739
+            ],
+            [
+              "Kolumbien",
+              0.016966
+            ],
+            [
+              "Philippinen",
+              0.013684
+            ],
+            [
+              "Ungarn",
+              0.009481
+            ]
+          ],
+          "sectors": [
+            [
+              "Technologie",
+              27.769029
+            ],
+            [
+              "Finance",
+              16.984153
+            ],
+            [
+              "Industrie",
+              11.306757
+            ],
+            [
+              "Santé",
+              9.737525
+            ],
+            [
+              "Consommation cyclique",
+              9.200693
+            ],
+            [
+              "Communication",
+              6.893232
+            ],
+            [
+              "Consommation de base",
+              5.172324
+            ],
+            [
+              "Matériaux",
+              4.264835
+            ],
+            [
+              "Énergie",
+              4.126983
+            ],
+            [
+              "Services publics",
+              2.407275
+            ],
+            [
+              "Immobilier",
+              2.136113
+            ]
+          ],
+          "holdings": [
+            [
+              "Apple Inc.",
+              4.524606
+            ],
+            [
+              "NVIDIA Corporation",
+              3.663908
+            ],
+            [
+              "Microsoft Corporation",
+              3.36618
+            ],
+            [
+              "Alphabet",
+              2.6773119999999997
+            ],
+            [
+              "Amazon.com Inc.",
+              2.253768
+            ],
+            [
+              "TSMC",
+              1.521572
+            ],
+            [
+              "Broadcom Inc.",
+              1.264586
+            ],
+            [
+              "Meta Platforms Inc Class A",
+              1.217164
+            ],
+            [
+              "Eli Lilly and Company",
+              0.979186
+            ],
+            [
+              "Tesla Inc.",
+              0.940998
+            ]
+          ],
+          "source": {
+            "url": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx",
+            "checkedAt": "2026-11-10T08:14:55.168895+00:00"
+          },
+          "constituents": null,
+          "targetConstituents": null
+        }
       }
     }
   },
@@ -29323,7 +29711,7 @@
       "top": [
         {
           "id": "US60770K1079",
-          "name": "Moderna Inc",
+          "name": "MODERNA",
           "weightPct": 0.37079858,
           "securities": [
             "US60770K1079"
@@ -29331,7 +29719,7 @@
         },
         {
           "id": "US69370C1009",
-          "name": "PTC Inc",
+          "name": "PTC",
           "weightPct": 0.29927607,
           "securities": [
             "US69370C1009"
@@ -29339,7 +29727,7 @@
         },
         {
           "id": "IE00B4BNMY34",
-          "name": "Accenture PLC",
+          "name": "ACCENTURE PLC CLASS A",
           "weightPct": 0.29339587,
           "securities": [
             "IE00B4BNMY34"
@@ -29355,7 +29743,7 @@
         },
         {
           "id": "US5926881054",
-          "name": "Mettler-Toledo International Inc",
+          "name": "METTLER TOLEDO",
           "weightPct": 0.26485441,
           "securities": [
             "US5926881054"
@@ -29363,7 +29751,7 @@
         },
         {
           "id": "US45168D1046",
-          "name": "IDEXX Laboratories Inc",
+          "name": "IDEXX LABORATORIES",
           "weightPct": 0.26069199,
           "securities": [
             "US45168D1046"
@@ -29379,7 +29767,7 @@
         },
         {
           "id": "US3377381088",
-          "name": "Fiserv Inc",
+          "name": "FISERV INC",
           "weightPct": 0.2562966,
           "securities": [
             "US3377381088"
@@ -29387,7 +29775,7 @@
         },
         {
           "id": "US03831W1080",
-          "name": "Applovin Corp",
+          "name": "APPLOVIN CLASS A",
           "weightPct": 0.25411512,
           "securities": [
             "US03831W1080"
@@ -29395,7 +29783,7 @@
         },
         {
           "id": "US46120E6023",
-          "name": "Intuitive Surgical Inc",
+          "name": "INTUITIVE SURGICAL",
           "weightPct": 0.25321779,
           "securities": [
             "US46120E6023"
@@ -29407,7 +29795,7 @@
       "identifiedWeight": 99.7743071600001,
       "sourceRowCount": 504,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
       "sourceLabel": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
       "sourceIsin": "IE00BLNMYC90",
@@ -29420,8 +29808,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement S&P 500 Equal Weight Index (Net Total Return). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -29501,15 +29889,15 @@
         ],
         "holdings": [
           [
-            "Moderna Inc",
+            "MODERNA",
             0.37079858
           ],
           [
-            "PTC Inc",
+            "PTC",
             0.29927607
           ],
           [
-            "Accenture PLC",
+            "ACCENTURE PLC CLASS A",
             0.29339587
           ],
           [
@@ -29517,11 +29905,11 @@
             0.26528829
           ],
           [
-            "Mettler-Toledo International Inc",
+            "METTLER TOLEDO",
             0.26485441
           ],
           [
-            "IDEXX Laboratories Inc",
+            "IDEXX LABORATORIES",
             0.26069199
           ],
           [
@@ -29529,21 +29917,21 @@
             0.25782056
           ],
           [
-            "Fiserv Inc",
+            "FISERV INC",
             0.2562966
           ],
           [
-            "Applovin Corp",
+            "APPLOVIN CLASS A",
             0.25411512
           ],
           [
-            "Intuitive Surgical Inc",
+            "INTUITIVE SURGICAL",
             0.25321779
           ]
         ],
         "source": {
           "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -32843,7 +33231,7 @@
         {
           "id": "US3773221029",
           "name": "GLAUKOS ORD",
-          "weightPct": 0.4406,
+          "weightPct": 0.4456,
           "securities": [
             "US3773221029"
           ]
@@ -32851,83 +33239,83 @@
         {
           "id": "US10950A1060",
           "name": "BRIGHTSPRING HEALTH SERVICES ORD",
-          "weightPct": 0.3844,
+          "weightPct": 0.3885,
           "securities": [
             "US10950A1060"
           ]
         },
         {
+          "id": "IL0011684185",
+          "name": "JFROG ORD",
+          "weightPct": 0.3796,
+          "securities": [
+            "IL0011684185"
+          ]
+        },
+        {
           "id": "US9027881088",
           "name": "UMB FINANCIAL ORD",
-          "weightPct": 0.3456,
+          "weightPct": 0.3403,
           "securities": [
             "US9027881088"
           ]
         },
         {
-          "id": "US1096411004",
-          "name": "BRINKER INTERNATIONAL ORD",
-          "weightPct": 0.3212,
-          "securities": [
-            "US1096411004"
-          ]
-        },
-        {
-          "id": "US14174T1079",
-          "name": "CARETRUST REIT ORD",
-          "weightPct": 0.3106,
-          "securities": [
-            "US14174T1079"
-          ]
-        },
-        {
-          "id": "US78377T1079",
-          "name": "RYMAN HOSPITALITY PROP REIT ORD",
-          "weightPct": 0.3104,
-          "securities": [
-            "US78377T1079"
-          ]
-        },
-        {
           "id": "US6153942023",
           "name": "Moog",
-          "weightPct": 0.307,
+          "weightPct": 0.3192,
           "securities": [
             "US6153942023"
           ]
         },
         {
-          "id": "US46817M1071",
-          "name": "JACKSON FINANCIAL CL A ORD",
-          "weightPct": 0.305,
+          "id": "US14174T1079",
+          "name": "CARETRUST REIT ORD",
+          "weightPct": 0.3165,
           "securities": [
-            "US46817M1071"
+            "US14174T1079"
+          ]
+        },
+        {
+          "id": "US1096411004",
+          "name": "BRINKER INTERNATIONAL ORD",
+          "weightPct": 0.3093,
+          "securities": [
+            "US1096411004"
+          ]
+        },
+        {
+          "id": "US78377T1079",
+          "name": "RYMAN HOSPITALITY PROP REIT ORD",
+          "weightPct": 0.3086,
+          "securities": [
+            "US78377T1079"
+          ]
+        },
+        {
+          "id": "US92243G1085",
+          "name": "VAXCYTE ORD",
+          "weightPct": 0.3047,
+          "securities": [
+            "US92243G1085"
           ]
         },
         {
           "id": "US6800331075",
           "name": "OLD NATIONAL BANCORP ORD",
-          "weightPct": 0.3041,
+          "weightPct": 0.3001,
           "securities": [
             "US6800331075"
           ]
-        },
-        {
-          "id": "US42226A1079",
-          "name": "HEALTHEQUITY ORD",
-          "weightPct": 0.3017,
-          "securities": [
-            "US42226A1079"
-          ]
         }
       ],
-      "topWeight": 3.3306,
-      "otherWeight": 96.6694,
-      "identifiedWeight": 99.99860000000007,
-      "asOf": "2026-11-05",
-      "checkedAt": "2026-11-08T15:19:12.478302+00:00",
+      "topWeight": 3.4124,
+      "otherWeight": 96.5876,
+      "identifiedWeight": 100.00039999999994,
+      "asOf": "2026-11-06",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
-      "sha256": "4cdb0fa6d4fa57e4f960056924bd5b95599acb3e0688df359942833b58ac554a",
+      "sha256": "17f3dba094356cf1eebedd7fb954e900ab3145a80c98b0817a06646774fc4dcf",
       "sourceBasis": "qualified-native-index",
       "sourceIndexId": "russell2000-equity-members",
       "sourceIndexName": "Russell 2000 Total Return Index",
@@ -32937,11 +33325,11 @@
       "sourceRowCount": 1959,
       "sourceCompanyCount": 1959,
       "sourceComplete": true,
-      "publishedWeightSum": 99.99860000000007,
-      "publishedRoundingResidualPct": 0.0013999999999327883,
+      "publishedWeightSum": 100.00039999999994,
+      "publishedRoundingResidualPct": -0.00039999999994222435,
       "normalizationApplied": false,
-      "weightVectorSha256": "47b13d87d5a330d1a47bd51d94cfcf1408c07a5e03a6158c40230d701fea268b",
-      "issuerGroupingSha256": "037a2d1b6a1053b5f85a60edfb1a813e4af4b21766fa660ea4f637eeca7c5eee",
+      "weightVectorSha256": "7f53817eddbb4d36776bc1f4cb5eca655e71f73fe87ba8a5d5e6965a70918c27",
+      "issuerGroupingSha256": "69dbc7ed5ae16dda42414b3a020022845204df84e0723464129d227420b7a074",
       "coverageProof": {
         "kind": "complete-issuer-published-index",
         "indexId": "russell2000-equity-members",
@@ -32950,16 +33338,16 @@
         "originalPublishedWeights": true,
         "normalizationApplied": false,
         "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-russell-2000-ucits-etf-acc.html",
-        "publisherPageSha256": "7d87da42e9cca99759f120d9e07f4619f87ab1f5022427b93ffb02e977e61c56",
-        "tableTextSha256": "302690c0c06a1fe399c1583dcadbb7e225af7c693039d9094ee152f61feba60f",
+        "publisherPageSha256": "c05c6fa5e09a05959228ab6e6ce8328ea63edea83543a7128d1c995d9c496707",
+        "tableTextSha256": "f5a282cbfcc7e165a3257da93bb4d4c05bc0f31ac2da9700786f1720ca97953f",
         "economicExposurePublished": true,
         "separateSubstituteBasketPublished": true,
         "returnWeightProof": {
           "documents": [
             {
               "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
-              "sha256": "26d2d051beb27a6a808af7c17a2e2871cc5388e669bedbb42cbc4d0d3ce47c76",
-              "version": "v7.2, August2026"
+              "sha256": "abeba3b9c101da5527cec30429bc6523d42e78a8e2ed51f868a3d2785bba005e",
+              "version": "v7.3, November2026"
             },
             {
               "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
@@ -32967,7 +33355,7 @@
               "version": "v1.2, September2026"
             }
           ],
-          "checkedAt": "2026-11-08T15:19:12.478302+00:00",
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00",
           "rule": "Equity-member weights use the same closing float-adjusted market values across the standard Russell2000 price/gross/net return series. Withholding tax changes the dividend return calculation, not these market values. Only equity weights are referenced; RU20INTR returns never replace RU20N30U returns. Hedged, capped, style and leveraged variants are excluded.",
           "originalWeightsUnchanged": true,
           "targetReturnSeriesUnchanged": true
@@ -32975,13 +33363,12 @@
         "targetBenchmark": "Russell2000 Net30% Total Return USD (RU20N30U)"
       },
       "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
-      "identityCheckedAt": "2026-11-08T15:19:12.478302+00:00",
+      "identityCheckedAt": "2026-11-10T08:14:55.168895+00:00",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-08T15:19:12.478302+00:00",
-        "status": "failed",
-        "asOf": "2026-11-05",
-        "error": "Changed Russell return-weight methodology requires qualification"
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
+        "status": "validated",
+        "asOf": "2026-11-06"
       },
       "capabilities": {
         "companyComposition": true,
@@ -35130,6 +35517,157 @@
           "constituents": null,
           "targetConstituents": null
         }
+      },
+      "2026-11-06": {
+        "available": true,
+        "top": [
+          {
+            "id": "US3773221029",
+            "name": "GLAUKOS ORD",
+            "weightPct": 0.4456,
+            "securities": [
+              "US3773221029"
+            ]
+          },
+          {
+            "id": "US10950A1060",
+            "name": "BRIGHTSPRING HEALTH SERVICES ORD",
+            "weightPct": 0.3885,
+            "securities": [
+              "US10950A1060"
+            ]
+          },
+          {
+            "id": "IL0011684185",
+            "name": "JFROG ORD",
+            "weightPct": 0.3796,
+            "securities": [
+              "IL0011684185"
+            ]
+          },
+          {
+            "id": "US9027881088",
+            "name": "UMB FINANCIAL ORD",
+            "weightPct": 0.3403,
+            "securities": [
+              "US9027881088"
+            ]
+          },
+          {
+            "id": "US6153942023",
+            "name": "Moog",
+            "weightPct": 0.3192,
+            "securities": [
+              "US6153942023"
+            ]
+          },
+          {
+            "id": "US14174T1079",
+            "name": "CARETRUST REIT ORD",
+            "weightPct": 0.3165,
+            "securities": [
+              "US14174T1079"
+            ]
+          },
+          {
+            "id": "US1096411004",
+            "name": "BRINKER INTERNATIONAL ORD",
+            "weightPct": 0.3093,
+            "securities": [
+              "US1096411004"
+            ]
+          },
+          {
+            "id": "US78377T1079",
+            "name": "RYMAN HOSPITALITY PROP REIT ORD",
+            "weightPct": 0.3086,
+            "securities": [
+              "US78377T1079"
+            ]
+          },
+          {
+            "id": "US92243G1085",
+            "name": "VAXCYTE ORD",
+            "weightPct": 0.3047,
+            "securities": [
+              "US92243G1085"
+            ]
+          },
+          {
+            "id": "US6800331075",
+            "name": "OLD NATIONAL BANCORP ORD",
+            "weightPct": 0.3001,
+            "securities": [
+              "US6800331075"
+            ]
+          }
+        ],
+        "topWeight": 3.4124,
+        "otherWeight": 96.5876,
+        "identifiedWeight": 100.00039999999994,
+        "asOf": "2026-11-06",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+        "sha256": "17f3dba094356cf1eebedd7fb954e900ab3145a80c98b0817a06646774fc4dcf",
+        "sourceBasis": "qualified-native-index",
+        "sourceIndexId": "russell2000-equity-members",
+        "sourceIndexName": "Russell 2000 Total Return Index",
+        "indexProofSubjectIsin": "LU1681038672",
+        "sourceLabel": "Invesco · Russell 2000 Total Return Index",
+        "approximation": false,
+        "sourceRowCount": 1959,
+        "sourceCompanyCount": 1959,
+        "sourceComplete": true,
+        "publishedWeightSum": 100.00039999999994,
+        "publishedRoundingResidualPct": -0.00039999999994222435,
+        "normalizationApplied": false,
+        "weightVectorSha256": "7f53817eddbb4d36776bc1f4cb5eca655e71f73fe87ba8a5d5e6965a70918c27",
+        "issuerGroupingSha256": "69dbc7ed5ae16dda42414b3a020022845204df84e0723464129d227420b7a074",
+        "coverageProof": {
+          "kind": "complete-issuer-published-index",
+          "indexId": "russell2000-equity-members",
+          "sourceRowCount": 1959,
+          "publisherRowCount": 1959,
+          "originalPublishedWeights": true,
+          "normalizationApplied": false,
+          "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-russell-2000-ucits-etf-acc.html",
+          "publisherPageSha256": "c05c6fa5e09a05959228ab6e6ce8328ea63edea83543a7128d1c995d9c496707",
+          "tableTextSha256": "f5a282cbfcc7e165a3257da93bb4d4c05bc0f31ac2da9700786f1720ca97953f",
+          "economicExposurePublished": true,
+          "separateSubstituteBasketPublished": true,
+          "returnWeightProof": {
+            "documents": [
+              {
+                "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
+                "sha256": "abeba3b9c101da5527cec30429bc6523d42e78a8e2ed51f868a3d2785bba005e",
+                "version": "v7.3, November2026"
+              },
+              {
+                "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
+                "sha256": "d9e4c50186666664257890de5a5c8cf9f7f52cc135a1eda85f8469e94733e266",
+                "version": "v1.2, September2026"
+              }
+            ],
+            "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+            "rule": "Equity-member weights use the same closing float-adjusted market values across the standard Russell2000 price/gross/net return series. Withholding tax changes the dividend return calculation, not these market values. Only equity weights are referenced; RU20INTR returns never replace RU20N30U returns. Hedged, capped, style and leveraged variants are excluded.",
+            "originalWeightsUnchanged": true,
+            "targetReturnSeriesUnchanged": true
+          },
+          "targetBenchmark": "Russell2000 Net30% Total Return USD (RU20N30U)"
+        },
+        "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+        "identityCheckedAt": "2026-11-10T08:14:55.168895+00:00",
+        "refresh": {
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+          "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
+          "status": "validated",
+          "asOf": "2026-11-06"
+        },
+        "capabilities": {
+          "companyComposition": true,
+          "mainFactsheet": false
+        },
+        "method": "Référence économique intégrale de l’indice déjà qualifiée, distincte des actifs du fonds et des paniers de substitution. Regroupements par les liens ISIN revus; aucune jointure par nom. Dix entreprises sélectionnées après agrégation de toutes les lignes. Poids publiés conservés sans renormalisation; le résidu de précision du fichier intégral reste enregistré. Les pays, secteurs, rendements et la fiche classique ne sont pas remplacés."
       }
     }
   },
@@ -35224,7 +35762,7 @@
       "otherWeight": 59.90990000000001,
       "identifiedWeight": 100.00079999999997,
       "asOf": "2026-09-25",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
       "sha256": "b0ab5473321ab4adf9d9b028135d9980cae9d7d333b33c13e7eed48b7d02820f",
       "sourceBasis": "qualified-native-index",
@@ -35249,16 +35787,16 @@
         "originalPublishedWeights": true,
         "normalizationApplied": false,
         "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-msci-emerging-markets-ucits-etf-acc.html",
-        "publisherPageSha256": "99dfad75d986b0d5e94bfbaa7b2ae00371c457aa41c566e432202a4650d098ee",
+        "publisherPageSha256": "36a9fa560b9de01645f59a14b8a544765ef3bf87be14fd104b5ae9ed298a8eb0",
         "tableTextSha256": "1b233a819c0bfd3109b178272615ee45bca6603a2cecf64e21ac145baf989aa5",
         "economicExposurePublished": true,
         "separateSubstituteBasketPublished": true
       },
       "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
-      "identityCheckedAt": "2026-11-09T17:55:41.609129+00:00",
+      "identityCheckedAt": "2026-11-10T08:14:55.168895+00:00",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-09-25"
       },
@@ -38368,7 +38906,7 @@
         {
           "id": "US0378331005",
           "name": "Apple Inc.",
-          "weightPct": 5.126264,
+          "weightPct": 5.139887,
           "securities": [
             "US0378331005"
           ]
@@ -38376,7 +38914,7 @@
         {
           "id": "US67066G1040",
           "name": "NVIDIA Corporation",
-          "weightPct": 4.376417,
+          "weightPct": 4.100629,
           "securities": [
             "US67066G1040"
           ]
@@ -38384,7 +38922,7 @@
         {
           "id": "US5949181045",
           "name": "Microsoft Corporation",
-          "weightPct": 3.818834,
+          "weightPct": 3.840673,
           "securities": [
             "US5949181045"
           ]
@@ -38392,7 +38930,7 @@
         {
           "id": "US02079K3059",
           "name": "Alphabet",
-          "weightPct": 3.057352,
+          "weightPct": 3.022145,
           "securities": [
             "US02079K3059",
             "US02079K1079"
@@ -38401,7 +38939,7 @@
         {
           "id": "US0231351067",
           "name": "Amazon.com Inc.",
-          "weightPct": 2.559908,
+          "weightPct": 2.579545,
           "securities": [
             "US0231351067"
           ]
@@ -38409,31 +38947,31 @@
         {
           "id": "TW0002330008",
           "name": "TSMC",
-          "weightPct": 1.647253,
+          "weightPct": 1.675152,
           "securities": [
             "TW0002330008"
           ]
         },
         {
-          "id": "US30303M1027",
-          "name": "Meta Platforms Inc Class A",
-          "weightPct": 1.36711,
-          "securities": [
-            "US30303M1027"
-          ]
-        },
-        {
           "id": "US11135F1012",
           "name": "Broadcom Inc.",
-          "weightPct": 1.354402,
+          "weightPct": 1.441885,
           "securities": [
             "US11135F1012"
           ]
         },
         {
+          "id": "US30303M1027",
+          "name": "Meta Platforms Inc Class A",
+          "weightPct": 1.406643,
+          "securities": [
+            "US30303M1027"
+          ]
+        },
+        {
           "id": "US5324571083",
           "name": "Eli Lilly and Company",
-          "weightPct": 1.105312,
+          "weightPct": 1.127944,
           "securities": [
             "US5324571083"
           ]
@@ -38441,18 +38979,18 @@
         {
           "id": "US88160R1014",
           "name": "Tesla Inc.",
-          "weightPct": 1.046351,
+          "weightPct": 1.080739,
           "securities": [
             "US88160R1014"
           ]
         }
       ],
-      "topWeight": 25.459203000000002,
-      "otherWeight": 74.540797,
-      "identifiedWeight": 99.99999600000025,
+      "topWeight": 25.415241999999996,
+      "otherWeight": 74.58475800000001,
+      "identifiedWeight": 99.99998199999995,
       "sourceRowCount": 2246,
-      "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-09",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx",
       "sourceLabel": "SPDR MSCI ACWI UCITS ETF",
       "sourceIsin": "IE00B44Z5B48",
@@ -38465,290 +39003,290 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI All Country World (ACWI). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
-        "asOf": "2026-11-06"
+        "asOf": "2026-11-09"
       },
       "visualFacts": {
-        "asOf": "2026-11-06",
+        "asOf": "2026-11-09",
         "countries": [
           [
             "United States",
-            64.622871
+            64.77444
           ],
           [
             "Japan",
-            4.817763
+            4.855915
           ],
           [
             "United Kingdom",
-            3.21287
+            3.182655
           ],
           [
             "Canada",
-            3.125493
+            3.10912
           ],
           [
             "Taiwan",
-            2.887531
+            2.942837
           ],
           [
             "China",
-            2.421007
+            2.363021
           ],
           [
             "Switzerland",
-            2.137527
+            2.105847
           ],
           [
             "France",
-            2.073834
-          ],
-          [
-            "South Korea",
-            1.92794
+            2.063048
           ],
           [
             "Germany",
-            1.908632
+            1.905021
+          ],
+          [
+            "South Korea",
+            1.8889
           ],
           [
             "India",
-            1.474551
+            1.447865
           ],
           [
             "Australia",
-            1.443398
+            1.419007
           ],
           [
             "Netherlands",
-            1.138841
+            1.149218
           ],
           [
             "Spain",
-            0.854266
+            0.858438
           ],
           [
             "Sweden",
-            0.767162
+            0.765408
           ],
           [
             "Italy",
-            0.679569
+            0.685744
           ],
           [
             "Brazil",
-            0.440026
+            0.439715
           ],
           [
             "Hong Kong",
-            0.415873
+            0.409777
           ],
           [
             "South Africa",
-            0.374911
+            0.380051
           ],
           [
             "Denmark",
-            0.371244
+            0.367304
           ],
           [
             "Singapore",
-            0.356805
+            0.347318
           ],
           [
             "Saudi Arabia",
-            0.282452
+            0.279078
           ],
           [
             "Israel",
-            0.246167
+            0.24837
           ],
           [
             "Belgium",
-            0.238615
+            0.241074
           ],
           [
             "Finland",
-            0.237612
+            0.236059
           ],
           [
             "Mexico",
-            0.203784
+            0.201856
           ],
           [
             "United Arab Emirates",
-            0.1603
+            0.163525
           ],
           [
             "Norway",
-            0.135127
+            0.135142
           ],
           [
             "Poland",
-            0.124013
+            0.121851
           ],
           [
             "Thailand",
-            0.122254
+            0.119638
           ],
           [
             "Malaysia",
-            0.10403
+            0.100871
           ],
           [
             "Ireland",
-            0.096378
+            0.096279
           ],
           [
             "Austria",
-            0.082521
+            0.082175
           ],
           [
             "Greece",
-            0.071721
+            0.074595
           ],
           [
             "Qatar",
-            0.05214
-          ],
-          [
-            "Kuwait",
-            0.047947
-          ],
-          [
-            "Chile",
-            0.047699
+            0.050799
           ],
           [
             "Portugal",
-            0.0468
+            0.047513
+          ],
+          [
+            "Chile",
+            0.046958
+          ],
+          [
+            "Kuwait",
+            0.04648
           ],
           [
             "Peru",
-            0.043161
+            0.043343
           ],
           [
             "Indonesia",
-            0.0427
+            0.041933
           ],
           [
             "Hungary",
-            0.039363
+            0.041223
           ],
           [
             "Turkey",
-            0.038824
+            0.038293
           ],
           [
             "New Zealand",
-            0.037049
+            0.036264
           ],
           [
             "Philippines",
-            0.01834
+            0.017463
           ],
           [
             "Czech Republic",
-            0.016321
+            0.015997
           ],
           [
             "Colombia",
-            0.011082
+            0.011131
           ]
         ],
         "sectors": [
           [
             "Information Technology",
-            29.356342
+            29.58742
           ],
           [
             "Financials",
-            17.207151
+            17.107855
           ],
           [
             "Industrials",
-            10.201927
+            10.291944
           ],
           [
             "Health Care",
-            9.603962
+            9.567681
           ],
           [
             "Consumer Discretionary",
-            9.092073
+            9.115435
           ],
           [
             "Communication",
-            7.395859
+            7.361482
           ],
           [
             "Consumer Staples",
-            5.25756
+            5.163961
           ],
           [
             "Energy",
-            4.13861
+            4.063004
           ],
           [
             "Materials",
-            3.617732
+            3.638917
           ],
           [
             "Utilities",
-            2.514171
+            2.502897
           ],
           [
             "Immobilier",
-            1.614612
+            1.599404
           ]
         ],
         "holdings": [
           [
             "Apple Inc.",
-            5.126264
+            5.139887
           ],
           [
             "NVIDIA Corporation",
-            4.376417
+            4.100629
           ],
           [
             "Microsoft Corporation",
-            3.818834
+            3.840673
           ],
           [
             "Alphabet",
-            3.057352
+            3.022145
           ],
           [
             "Amazon.com Inc.",
-            2.559908
+            2.579545
           ],
           [
             "TSMC",
-            1.647253
-          ],
-          [
-            "Meta Platforms Inc Class A",
-            1.36711
+            1.675152
           ],
           [
             "Broadcom Inc.",
-            1.354402
+            1.441885
+          ],
+          [
+            "Meta Platforms Inc Class A",
+            1.406643
           ],
           [
             "Eli Lilly and Company",
-            1.105312
+            1.127944
           ],
           [
             "Tesla Inc.",
-            1.046351
+            1.080739
           ]
         ],
         "source": {
           "url": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -42668,6 +43206,398 @@
           "constituents": null,
           "targetConstituents": null
         }
+      },
+      "2026-11-09": {
+        "available": true,
+        "top": [
+          {
+            "id": "US0378331005",
+            "name": "Apple Inc.",
+            "weightPct": 5.139887,
+            "securities": [
+              "US0378331005"
+            ]
+          },
+          {
+            "id": "US67066G1040",
+            "name": "NVIDIA Corporation",
+            "weightPct": 4.100629,
+            "securities": [
+              "US67066G1040"
+            ]
+          },
+          {
+            "id": "US5949181045",
+            "name": "Microsoft Corporation",
+            "weightPct": 3.840673,
+            "securities": [
+              "US5949181045"
+            ]
+          },
+          {
+            "id": "US02079K3059",
+            "name": "Alphabet",
+            "weightPct": 3.022145,
+            "securities": [
+              "US02079K3059",
+              "US02079K1079"
+            ]
+          },
+          {
+            "id": "US0231351067",
+            "name": "Amazon.com Inc.",
+            "weightPct": 2.579545,
+            "securities": [
+              "US0231351067"
+            ]
+          },
+          {
+            "id": "TW0002330008",
+            "name": "TSMC",
+            "weightPct": 1.675152,
+            "securities": [
+              "TW0002330008"
+            ]
+          },
+          {
+            "id": "US11135F1012",
+            "name": "Broadcom Inc.",
+            "weightPct": 1.441885,
+            "securities": [
+              "US11135F1012"
+            ]
+          },
+          {
+            "id": "US30303M1027",
+            "name": "Meta Platforms Inc Class A",
+            "weightPct": 1.406643,
+            "securities": [
+              "US30303M1027"
+            ]
+          },
+          {
+            "id": "US5324571083",
+            "name": "Eli Lilly and Company",
+            "weightPct": 1.127944,
+            "securities": [
+              "US5324571083"
+            ]
+          },
+          {
+            "id": "US88160R1014",
+            "name": "Tesla Inc.",
+            "weightPct": 1.080739,
+            "securities": [
+              "US88160R1014"
+            ]
+          }
+        ],
+        "topWeight": 25.415241999999996,
+        "otherWeight": 74.58475800000001,
+        "identifiedWeight": 99.99998199999995,
+        "sourceRowCount": 2246,
+        "asOf": "2026-11-09",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx",
+        "sourceLabel": "SPDR MSCI ACWI UCITS ETF",
+        "sourceIsin": "IE00B44Z5B48",
+        "identitySourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B44Z5B48",
+        "identityCheckedAt": "2026-10-03",
+        "observedIdentitySourceUrl": "https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy",
+        "observedIdentityCheckedAt": "2026-11-10",
+        "productStructure": "Physical",
+        "replicationMethodology": "Physical",
+        "approximation": true,
+        "method": "Positions d’un ETF physique suivant exactement MSCI All Country World (ACWI). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
+        "refresh": {
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+          "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
+          "status": "validated",
+          "asOf": "2026-11-09"
+        },
+        "visualFacts": {
+          "asOf": "2026-11-09",
+          "countries": [
+            [
+              "United States",
+              64.77444
+            ],
+            [
+              "Japan",
+              4.855915
+            ],
+            [
+              "United Kingdom",
+              3.182655
+            ],
+            [
+              "Canada",
+              3.10912
+            ],
+            [
+              "Taiwan",
+              2.942837
+            ],
+            [
+              "China",
+              2.363021
+            ],
+            [
+              "Switzerland",
+              2.105847
+            ],
+            [
+              "France",
+              2.063048
+            ],
+            [
+              "Germany",
+              1.905021
+            ],
+            [
+              "South Korea",
+              1.8889
+            ],
+            [
+              "India",
+              1.447865
+            ],
+            [
+              "Australia",
+              1.419007
+            ],
+            [
+              "Netherlands",
+              1.149218
+            ],
+            [
+              "Spain",
+              0.858438
+            ],
+            [
+              "Sweden",
+              0.765408
+            ],
+            [
+              "Italy",
+              0.685744
+            ],
+            [
+              "Brazil",
+              0.439715
+            ],
+            [
+              "Hong Kong",
+              0.409777
+            ],
+            [
+              "South Africa",
+              0.380051
+            ],
+            [
+              "Denmark",
+              0.367304
+            ],
+            [
+              "Singapore",
+              0.347318
+            ],
+            [
+              "Saudi Arabia",
+              0.279078
+            ],
+            [
+              "Israel",
+              0.24837
+            ],
+            [
+              "Belgium",
+              0.241074
+            ],
+            [
+              "Finland",
+              0.236059
+            ],
+            [
+              "Mexico",
+              0.201856
+            ],
+            [
+              "United Arab Emirates",
+              0.163525
+            ],
+            [
+              "Norway",
+              0.135142
+            ],
+            [
+              "Poland",
+              0.121851
+            ],
+            [
+              "Thailand",
+              0.119638
+            ],
+            [
+              "Malaysia",
+              0.100871
+            ],
+            [
+              "Ireland",
+              0.096279
+            ],
+            [
+              "Austria",
+              0.082175
+            ],
+            [
+              "Greece",
+              0.074595
+            ],
+            [
+              "Qatar",
+              0.050799
+            ],
+            [
+              "Portugal",
+              0.047513
+            ],
+            [
+              "Chile",
+              0.046958
+            ],
+            [
+              "Kuwait",
+              0.04648
+            ],
+            [
+              "Peru",
+              0.043343
+            ],
+            [
+              "Indonesia",
+              0.041933
+            ],
+            [
+              "Hungary",
+              0.041223
+            ],
+            [
+              "Turkey",
+              0.038293
+            ],
+            [
+              "New Zealand",
+              0.036264
+            ],
+            [
+              "Philippines",
+              0.017463
+            ],
+            [
+              "Czech Republic",
+              0.015997
+            ],
+            [
+              "Colombia",
+              0.011131
+            ]
+          ],
+          "sectors": [
+            [
+              "Information Technology",
+              29.58742
+            ],
+            [
+              "Financials",
+              17.107855
+            ],
+            [
+              "Industrials",
+              10.291944
+            ],
+            [
+              "Health Care",
+              9.567681
+            ],
+            [
+              "Consumer Discretionary",
+              9.115435
+            ],
+            [
+              "Communication",
+              7.361482
+            ],
+            [
+              "Consumer Staples",
+              5.163961
+            ],
+            [
+              "Energy",
+              4.063004
+            ],
+            [
+              "Materials",
+              3.638917
+            ],
+            [
+              "Utilities",
+              2.502897
+            ],
+            [
+              "Immobilier",
+              1.599404
+            ]
+          ],
+          "holdings": [
+            [
+              "Apple Inc.",
+              5.139887
+            ],
+            [
+              "NVIDIA Corporation",
+              4.100629
+            ],
+            [
+              "Microsoft Corporation",
+              3.840673
+            ],
+            [
+              "Alphabet",
+              3.022145
+            ],
+            [
+              "Amazon.com Inc.",
+              2.579545
+            ],
+            [
+              "TSMC",
+              1.675152
+            ],
+            [
+              "Broadcom Inc.",
+              1.441885
+            ],
+            [
+              "Meta Platforms Inc Class A",
+              1.406643
+            ],
+            [
+              "Eli Lilly and Company",
+              1.127944
+            ],
+            [
+              "Tesla Inc.",
+              1.080739
+            ]
+          ],
+          "source": {
+            "url": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx",
+            "checkedAt": "2026-11-10T08:14:55.168895+00:00"
+          },
+          "constituents": null,
+          "targetConstituents": null
+        }
       }
     }
   },
@@ -42762,7 +43692,7 @@
       "identifiedWeight": 99.54911000000018,
       "sourceRowCount": 3794,
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sourceLabel": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
       "sourceIsin": "IE00BK5BQT80",
@@ -42775,8 +43705,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement FTSE All-World. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-09-30"
       },
@@ -43078,7 +44008,7 @@
         ],
         "source": {
           "url": "https://www.vanguard.co.uk/gpx/graphql",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -43501,7 +44431,7 @@
       "top": [
         {
           "id": "NL0010273215",
-          "name": "ASML Holding NV",
+          "name": "ASML HOLDING",
           "weightPct": 2.31332192,
           "securities": [
             "NL0010273215"
@@ -43526,7 +44456,7 @@
         },
         {
           "id": "CH0012005267",
-          "name": "Novartis AG",
+          "name": "NOVARTIS AG",
           "weightPct": 1.2372871,
           "securities": [
             "CH0012005267"
@@ -43542,7 +44472,7 @@
         },
         {
           "id": "GB0009895292",
-          "name": "AstraZeneca PLC",
+          "name": "ASTRAZENECA PLC",
           "weightPct": 1.1726215,
           "securities": [
             "GB0009895292"
@@ -43558,7 +44488,7 @@
         },
         {
           "id": "CH0038863350",
-          "name": "Nestle SA",
+          "name": "NESTLE SA",
           "weightPct": 1.12295811,
           "securities": [
             "CH0038863350"
@@ -43566,7 +44496,7 @@
         },
         {
           "id": "DE0007164600",
-          "name": "SAP SE",
+          "name": "SAP",
           "weightPct": 0.99142224,
           "securities": [
             "DE0007164600"
@@ -43586,7 +44516,7 @@
       "identifiedWeight": 99.8142291600001,
       "sourceRowCount": 736,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
       "sourceLabel": "Xtrackers MSCI World ex USA UCITS ETF 1C",
       "sourceIsin": "IE0006WW1TQ4",
@@ -43599,8 +44529,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI World ex USA Index (Net Total Return). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -43792,7 +44722,7 @@
         ],
         "holdings": [
           [
-            "ASML Holding NV",
+            "ASML HOLDING",
             2.31332192
           ],
           [
@@ -43804,7 +44734,7 @@
             1.2476803
           ],
           [
-            "Novartis AG",
+            "NOVARTIS AG",
             1.2372871
           ],
           [
@@ -43812,7 +44742,7 @@
             1.19935419
           ],
           [
-            "AstraZeneca PLC",
+            "ASTRAZENECA PLC",
             1.1726215
           ],
           [
@@ -43820,11 +44750,11 @@
             1.16337083
           ],
           [
-            "Nestle SA",
+            "NESTLE SA",
             1.12295811
           ],
           [
-            "SAP SE",
+            "SAP",
             0.99142224
           ],
           [
@@ -43834,7 +44764,7 @@
         ],
         "source": {
           "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -48663,7 +49593,7 @@
       "otherWeight": 71.1089,
       "identifiedWeight": 99.99900000000002,
       "asOf": "2026-09-25",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
       "sha256": "3a9ee153da5e7699d071f7c912b78b292b2bc2403763deff9b4876edd2ccc649",
       "sourceBasis": "qualified-native-index",
@@ -48688,7 +49618,7 @@
         "originalPublishedWeights": true,
         "normalizationApplied": false,
         "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-msci-world-ucits-etf-acc.html",
-        "publisherPageSha256": "874ae1a83503904728956b8ceb51a1c5298e56a9bca0df655a725a15b3b9dcff",
+        "publisherPageSha256": "9f7dd334a8753b19762b47865b848b86e4250edd9d11bb162059a36706975e9b",
         "tableTextSha256": "faf26002fa9aed1d2c7950c20ac351711df4a0f3254e42390bc86c07759afa30",
         "economicExposurePublished": true,
         "separateSubstituteBasketPublished": true,
@@ -48696,16 +49626,16 @@
           "sourceUrl": "https://www.msci.com/eqb/methodology/meth_docs/MSCI_Index_Calculation_Methodology_May2026.pdf",
           "sha256": "d7066c5f47cbeb96445cdba9289ce3a82fdcaabe9972677d81923aa9b8d1806f",
           "version": "2026-05",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00",
           "rule": "Unhedged reporting-currency conversion multiplies the whole index by one FX scalar; constituent proportions are invariant. No return, price or fund-currency conversion is performed; currency hedges, ESG and leveraged variants are excluded.",
           "originalWeightsUnchanged": true
         }
       },
       "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
-      "identityCheckedAt": "2026-11-09T17:55:41.609129+00:00",
+      "identityCheckedAt": "2026-11-10T08:14:55.168895+00:00",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-09-25"
       },
@@ -52598,7 +53528,7 @@
       "identifiedWeight": 99.60580999999999,
       "sourceRowCount": 50,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253712&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Core EURO STOXX 50 UCITS ETF",
       "sourceIsin": "IE00B53L3W79",
@@ -52611,8 +53541,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement EURO STOXX® 50. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -52734,7 +53664,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253712&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -55836,7 +56766,7 @@
       "otherWeight": 78.1661,
       "identifiedWeight": 99.99979999999996,
       "asOf": "2026-09-25",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
       "sha256": "1540225774de6470229bbb1ea8a8933a77ac07a2d40ee2142a3d0a9317768833",
       "sourceBasis": "qualified-native-index",
@@ -55861,16 +56791,16 @@
         "originalPublishedWeights": true,
         "normalizationApplied": false,
         "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-msci-europe-ucits-etf-acc.html",
-        "publisherPageSha256": "4e18036a5129acd629af8e2b03897872550a38b9803af2c63053a5d03c2ac24e",
+        "publisherPageSha256": "7a26d6c59dea64b77cd67da248712c163ab63fd67b69332368e61c13ab5ce1a5",
         "tableTextSha256": "dc377fd1955a08411160599e00b85c6473421ca34132b40674d8c54dd848d46a",
         "economicExposurePublished": true,
         "separateSubstituteBasketPublished": true
       },
       "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
-      "identityCheckedAt": "2026-11-09T17:55:41.609129+00:00",
+      "identityCheckedAt": "2026-11-10T08:14:55.168895+00:00",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-09-25"
       },
@@ -59452,7 +60382,7 @@
       "identifiedWeight": 99.95215999999996,
       "sourceRowCount": 503,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Core S&P 500 UCITS ETF",
       "sourceIsin": "IE00B5BMR087",
@@ -59465,8 +60395,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement S&P 500®. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -59568,7 +60498,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -62433,7 +63363,7 @@
       "otherWeight": 50.33239999999999,
       "identifiedWeight": 100.00010000000009,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
       "sha256": "32973699fa0cad8544b4530ba139956b84f4dbd2491c64eb2d3140c1620a3ba6",
       "sourceBasis": "qualified-native-index",
@@ -62458,16 +63388,16 @@
         "originalPublishedWeights": true,
         "normalizationApplied": false,
         "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-nasdaq-100-swap-ucits-etf-acc.html",
-        "publisherPageSha256": "a76e3f3bb570050bd7cef9809211ae295e134b12523a69cc6e465cfb1ca94343",
+        "publisherPageSha256": "b1d50271704a33e937ddf82e0a3aa019a049405c230a89ad759449c27a130c97",
         "tableTextSha256": "454d6b848b73e917f7518ef3be5d618c68b54d26a9963d200a98dcc173257d35",
         "economicExposurePublished": true,
         "separateSubstituteBasketPublished": true
       },
       "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
-      "identityCheckedAt": "2026-11-09T17:55:41.609129+00:00",
+      "identityCheckedAt": "2026-11-10T08:14:55.168895+00:00",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -65131,7 +66061,7 @@
       "top": [
         {
           "id": "US5324571083",
-          "name": "Eli Lilly and Co",
+          "name": "ELI LILLY",
           "weightPct": 11.88732331,
           "securities": [
             "US5324571083"
@@ -65139,7 +66069,7 @@
         },
         {
           "id": "US4781601046",
-          "name": "Johnson & Johnson",
+          "name": "JOHNSON & JOHNSON",
           "weightPct": 7.29276163,
           "securities": [
             "US4781601046"
@@ -65147,7 +66077,7 @@
         },
         {
           "id": "US00287Y1091",
-          "name": "AbbVie Inc",
+          "name": "ABBVIE",
           "weightPct": 5.64887156,
           "securities": [
             "US00287Y1091"
@@ -65155,7 +66085,7 @@
         },
         {
           "id": "US58933Y1055",
-          "name": "Merck & Co Inc",
+          "name": "MERCK & CO INC",
           "weightPct": 3.97471698,
           "securities": [
             "US58933Y1055"
@@ -65163,7 +66093,7 @@
         },
         {
           "id": "US91324P1021",
-          "name": "UnitedHealth Group Inc",
+          "name": "UNITEDHEALTH GROUP",
           "weightPct": 3.92594614,
           "securities": [
             "US91324P1021"
@@ -65180,7 +66110,7 @@
         },
         {
           "id": "CH0012005267",
-          "name": "Novartis AG",
+          "name": "NOVARTIS AG",
           "weightPct": 3.2587325,
           "securities": [
             "CH0012005267"
@@ -65188,7 +66118,7 @@
         },
         {
           "id": "GB0009895292",
-          "name": "AstraZeneca PLC",
+          "name": "ASTRAZENECA PLC",
           "weightPct": 3.08717174,
           "securities": [
             "GB0009895292"
@@ -65196,7 +66126,7 @@
         },
         {
           "id": "US8835561023",
-          "name": "Thermo Fisher Scientific Inc",
+          "name": "THERMO FISHER SCIENTIFIC",
           "weightPct": 2.83201443,
           "securities": [
             "US8835561023"
@@ -65204,7 +66134,7 @@
         },
         {
           "id": "US0311621009",
-          "name": "Amgen Inc",
+          "name": "AMGEN INC",
           "weightPct": 2.72739749,
           "securities": [
             "US0311621009"
@@ -65216,7 +66146,7 @@
       "identifiedWeight": 99.77978616999997,
       "sourceRowCount": 113,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
       "sourceLabel": "Xtrackers MSCI World Health Care UCITS ETF",
       "sourceIsin": "IE00BM67HK77",
@@ -65229,8 +66159,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI World Health Care Index (NTR, USD). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -65330,23 +66260,23 @@
         ],
         "holdings": [
           [
-            "Eli Lilly and Co",
+            "ELI LILLY",
             11.88732331
           ],
           [
-            "Johnson & Johnson",
+            "JOHNSON & JOHNSON",
             7.29276163
           ],
           [
-            "AbbVie Inc",
+            "ABBVIE",
             5.64887156
           ],
           [
-            "Merck & Co Inc",
+            "MERCK & CO INC",
             3.97471698
           ],
           [
-            "UnitedHealth Group Inc",
+            "UNITEDHEALTH GROUP",
             3.92594614
           ],
           [
@@ -65354,25 +66284,25 @@
             3.8233485000000003
           ],
           [
-            "Novartis AG",
+            "NOVARTIS AG",
             3.2587325
           ],
           [
-            "AstraZeneca PLC",
+            "ASTRAZENECA PLC",
             3.08717174
           ],
           [
-            "Thermo Fisher Scientific Inc",
+            "THERMO FISHER SCIENTIFIC",
             2.83201443
           ],
           [
-            "Amgen Inc",
+            "AMGEN INC",
             2.72739749
           ]
         ],
         "source": {
           "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -68905,7 +69835,7 @@
       "top": [
         {
           "id": "IE000S9YS762",
-          "name": "Linde PLC",
+          "name": "LINDE PLC",
           "weightPct": 8.30924065,
           "securities": [
             "IE000S9YS762"
@@ -68929,7 +69859,7 @@
         },
         {
           "id": "US6516391066",
-          "name": "Newmont Corporation",
+          "name": "NEWMONT",
           "weightPct": 4.45988754,
           "securities": [
             "US6516391066"
@@ -68954,7 +69884,7 @@
         },
         {
           "id": "US35671D8570",
-          "name": "Freeport-McMoRan Inc",
+          "name": "FREEPORT MCMORAN INC",
           "weightPct": 2.97779428,
           "securities": [
             "US35671D8570"
@@ -68970,7 +69900,7 @@
         },
         {
           "id": "US2788651006",
-          "name": "Ecolab Inc",
+          "name": "ECOLAB",
           "weightPct": 2.65495957,
           "securities": [
             "US2788651006"
@@ -68990,7 +69920,7 @@
       "identifiedWeight": 99.79805427999996,
       "sourceRowCount": 88,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
       "sourceLabel": "Xtrackers MSCI World Materials UCITS ETF",
       "sourceIsin": "IE00BM67HS53",
@@ -69003,8 +69933,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI WORLD MATERIALS TRN INDEX. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -69116,7 +70046,7 @@
         ],
         "holdings": [
           [
-            "Linde PLC",
+            "LINDE PLC",
             8.30924065
           ],
           [
@@ -69128,7 +70058,7 @@
             4.53974444
           ],
           [
-            "Newmont Corporation",
+            "NEWMONT",
             4.45988754
           ],
           [
@@ -69140,7 +70070,7 @@
             3.39467512
           ],
           [
-            "Freeport-McMoRan Inc",
+            "FREEPORT MCMORAN INC",
             2.97779428
           ],
           [
@@ -69148,7 +70078,7 @@
             2.73657806
           ],
           [
-            "Ecolab Inc",
+            "ECOLAB",
             2.65495957
           ],
           [
@@ -69158,7 +70088,7 @@
         ],
         "source": {
           "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -72831,7 +73761,7 @@
       "top": [
         {
           "id": "US65339F1012",
-          "name": "Nextera Energy Inc",
+          "name": "NEXTERA ENERGY",
           "weightPct": 8.06202468,
           "securities": [
             "US65339F1012"
@@ -72847,7 +73777,7 @@
         },
         {
           "id": "US8425871071",
-          "name": "Southern Co",
+          "name": "SOUTHERN",
           "weightPct": 4.62776443,
           "securities": [
             "US8425871071"
@@ -72855,7 +73785,7 @@
         },
         {
           "id": "US26441C2044",
-          "name": "Duke Energy Corp",
+          "name": "DUKE ENERGY CORP",
           "weightPct": 4.42867628,
           "securities": [
             "US26441C2044"
@@ -72879,7 +73809,7 @@
         },
         {
           "id": "US21037T1097",
-          "name": "Constellation Energy Corp",
+          "name": "CONSTELLATION ENERGY CORP",
           "weightPct": 3.47219007,
           "securities": [
             "US21037T1097"
@@ -72895,7 +73825,7 @@
         },
         {
           "id": "US25746U1097",
-          "name": "Dominion Energy Inc",
+          "name": "DOMINION ENERGY",
           "weightPct": 2.68300964,
           "securities": [
             "US25746U1097"
@@ -72903,7 +73833,7 @@
         },
         {
           "id": "US29364G1031",
-          "name": "Entergy Corp",
+          "name": "ENTERGY CORP",
           "weightPct": 2.29399827,
           "securities": [
             "US29364G1031"
@@ -72915,7 +73845,7 @@
       "identifiedWeight": 99.65744921000005,
       "sourceRowCount": 74,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
       "sourceLabel": "Xtrackers MSCI World Utilities UCITS ETF",
       "sourceIsin": "IE00BM67HQ30",
@@ -72928,8 +73858,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI WORLD UTILITIES TRN INDEX. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -73033,7 +73963,7 @@
         ],
         "holdings": [
           [
-            "Nextera Energy Inc",
+            "NEXTERA ENERGY",
             8.06202468
           ],
           [
@@ -73041,11 +73971,11 @@
             6.96217461
           ],
           [
-            "Southern Co",
+            "SOUTHERN",
             4.62776443
           ],
           [
-            "Duke Energy Corp",
+            "DUKE ENERGY CORP",
             4.42867628
           ],
           [
@@ -73057,7 +73987,7 @@
             3.66252247
           ],
           [
-            "Constellation Energy Corp",
+            "CONSTELLATION ENERGY CORP",
             3.47219007
           ],
           [
@@ -73065,17 +73995,17 @@
             3.061529
           ],
           [
-            "Dominion Energy Inc",
+            "DOMINION ENERGY",
             2.68300964
           ],
           [
-            "Entergy Corp",
+            "ENTERGY CORP",
             2.29399827
           ]
         ],
         "source": {
           "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -76650,7 +77580,7 @@
       "top": [
         {
           "id": "US3696043013",
-          "name": "General Electric Co",
+          "name": "GE AEROSPACE",
           "weightPct": 3.57588998,
           "securities": [
             "US3696043013"
@@ -76658,7 +77588,7 @@
         },
         {
           "id": "US1491231015",
-          "name": "Caterpillar Inc",
+          "name": "CATERPILLAR INC",
           "weightPct": 2.74512015,
           "securities": [
             "US1491231015"
@@ -76666,7 +77596,7 @@
         },
         {
           "id": "US75513E1010",
-          "name": "RTX Corp",
+          "name": "RTX",
           "weightPct": 2.72310874,
           "securities": [
             "US75513E1010"
@@ -76674,7 +77604,7 @@
         },
         {
           "id": "DE0007236101",
-          "name": "Siemens AG",
+          "name": "SIEMENS N AG",
           "weightPct": 2.26785716,
           "securities": [
             "DE0007236101"
@@ -76682,7 +77612,7 @@
         },
         {
           "id": "US36828A1016",
-          "name": "GE Vernova Inc",
+          "name": "GE VERNOVA",
           "weightPct": 2.21970601,
           "securities": [
             "US36828A1016"
@@ -76690,7 +77620,7 @@
         },
         {
           "id": "US9078181081",
-          "name": "Union Pacific Corp",
+          "name": "UNION PACIFIC",
           "weightPct": 1.83638998,
           "securities": [
             "US9078181081"
@@ -76698,7 +77628,7 @@
         },
         {
           "id": "US2441991054",
-          "name": "Deere & Co",
+          "name": "DEERE",
           "weightPct": 1.74086272,
           "securities": [
             "US2441991054"
@@ -76706,7 +77636,7 @@
         },
         {
           "id": "JP3970300004",
-          "name": "Recruit Holdings Co Ltd",
+          "name": "RECRUIT HOLDINGS",
           "weightPct": 1.51941598,
           "securities": [
             "JP3970300004"
@@ -76734,7 +77664,7 @@
       "identifiedWeight": 99.83472069000003,
       "sourceRowCount": 250,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
       "sourceLabel": "Xtrackers MSCI World Industrials UCITS ETF 1C",
       "sourceIsin": "IE00BM67HV82",
@@ -76747,8 +77677,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI World Industrials Index (Net Total Return). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -76856,35 +77786,35 @@
         ],
         "holdings": [
           [
-            "General Electric Co",
+            "GE AEROSPACE",
             3.57588998
           ],
           [
-            "Caterpillar Inc",
+            "CATERPILLAR INC",
             2.74512015
           ],
           [
-            "RTX Corp",
+            "RTX",
             2.72310874
           ],
           [
-            "Siemens AG",
+            "SIEMENS N AG",
             2.26785716
           ],
           [
-            "GE Vernova Inc",
+            "GE VERNOVA",
             2.21970601
           ],
           [
-            "Union Pacific Corp",
+            "UNION PACIFIC",
             1.83638998
           ],
           [
-            "Deere & Co",
+            "DEERE",
             1.74086272
           ],
           [
-            "Recruit Holdings Co Ltd",
+            "RECRUIT HOLDINGS",
             1.51941598
           ],
           [
@@ -76898,7 +77828,7 @@
         ],
         "source": {
           "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -80634,7 +81564,7 @@
       "identifiedWeight": 98.53482000000007,
       "sourceRowCount": 2427,
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sourceLabel": "Vanguard FTSE All-World High Dividend Yield UCITS ETF",
       "sourceIsin": "IE00B8GKDB10",
@@ -80647,8 +81577,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement FTSE All-World High Dividend Yield. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-09-30"
       },
@@ -80950,7 +81880,7 @@
         ],
         "source": {
           "url": "https://www.vanguard.co.uk/gpx/graphql",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -81459,7 +82389,7 @@
       "identifiedWeight": 98.82198000000008,
       "sourceRowCount": 2305,
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sourceLabel": "Vanguard FTSE Emerging Markets UCITS ETF (Acc)",
       "sourceIsin": "IE00BK5BR733",
@@ -81472,8 +82402,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement FTSE Emerging. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-09-30"
       },
@@ -81679,7 +82609,7 @@
         ],
         "source": {
           "url": "https://www.vanguard.co.uk/gpx/graphql",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -82091,7 +83021,7 @@
       "identifiedWeight": 99.03749999999997,
       "sourceRowCount": 928,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Core MSCI Japan IMI UCITS ETF (Acc)",
       "sourceIsin": "IE00B4L5YX21",
@@ -82104,8 +83034,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI Japan IMI. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -82207,7 +83137,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -84854,7 +85784,7 @@
       "identifiedWeight": 99.43081000000002,
       "sourceRowCount": 191,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares MSCI World Quality Dividend Advanced UCITS ETF",
       "sourceIsin": "IE00BKPSFC54",
@@ -84867,8 +85797,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI World High Dividend Yield Advanced Select. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -85038,7 +85968,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -88829,71 +89759,71 @@
         {
           "id": "FR0000051807",
           "name": "Teleperformance SE",
-          "weightPct": 4.873441,
+          "weightPct": 4.782325,
           "securities": [
             "FR0000051807"
           ]
         },
         {
-          "id": "DE0008402215",
-          "name": "Hannover Rueck SE",
-          "weightPct": 3.968508,
-          "securities": [
-            "DE0008402215"
-          ]
-        },
-        {
           "id": "BE0974264930",
           "name": "ageas SA/NV",
-          "weightPct": 3.887764,
+          "weightPct": 3.924101,
           "securities": [
             "BE0974264930"
           ]
         },
         {
+          "id": "DE0008402215",
+          "name": "Hannover Rueck SE",
+          "weightPct": 3.898103,
+          "securities": [
+            "DE0008402215"
+          ]
+        },
+        {
           "id": "DE0008430026",
           "name": "Munchener Ruckversicherungs-Gesellschaft AG",
-          "weightPct": 3.812378,
+          "weightPct": 3.775229,
           "securities": [
             "DE0008430026"
           ]
         },
         {
-          "id": "AT0000743059",
-          "name": "OMV Aktiengesellschaft",
-          "weightPct": 3.608596,
-          "securities": [
-            "AT0000743059"
-          ]
-        },
-        {
           "id": "FR0000120578",
           "name": "Sanofi SA",
-          "weightPct": 3.549527,
+          "weightPct": 3.62008,
           "securities": [
             "FR0000120578"
           ]
         },
         {
-          "id": "NL0010773842",
-          "name": "NN Group N.V.",
-          "weightPct": 3.466439,
+          "id": "AT0000743059",
+          "name": "OMV Aktiengesellschaft",
+          "weightPct": 3.571096,
           "securities": [
-            "NL0010773842"
+            "AT0000743059"
           ]
         },
         {
           "id": "IT0004810054",
           "name": "UNIPOL ASSICURAZIONI SPA",
-          "weightPct": 3.439068,
+          "weightPct": 3.549497,
           "securities": [
             "IT0004810054"
           ]
         },
         {
+          "id": "NL0010773842",
+          "name": "NN Group N.V.",
+          "weightPct": 3.507873,
+          "securities": [
+            "NL0010773842"
+          ]
+        },
+        {
           "id": "NL0000395903",
           "name": "Wolters Kluwer N.V.",
-          "weightPct": 3.427369,
+          "weightPct": 3.365418,
           "securities": [
             "NL0000395903"
           ]
@@ -88901,18 +89831,18 @@
         {
           "id": "FI4000074984",
           "name": "Valmet Corp",
-          "weightPct": 3.213964,
+          "weightPct": 3.19399,
           "securities": [
             "FI4000074984"
           ]
         }
       ],
-      "topWeight": 37.247054,
-      "otherWeight": 62.752946,
-      "identifiedWeight": 100.00001,
+      "topWeight": 37.187712,
+      "otherWeight": 62.812288,
+      "identifiedWeight": 99.999996,
       "sourceRowCount": 41,
-      "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "asOf": "2026-11-09",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyw-gy.xlsx",
       "sourceLabel": "SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist)",
       "sourceIsin": "IE00B5M1WJ87",
@@ -88925,138 +89855,138 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement S&P Euro High Yield Dividend Aristocrats Index. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
-        "asOf": "2026-11-06"
+        "asOf": "2026-11-09"
       },
       "visualFacts": {
-        "asOf": "2026-11-06",
+        "asOf": "2026-11-09",
         "countries": [
           [
             "Germany",
-            21.915924
+            21.869183
           ],
           [
             "Italy",
-            18.389241
+            18.607565
           ],
           [
             "Finland",
-            16.65123
+            16.419416
           ],
           [
             "Netherlands",
-            12.719117
+            12.663817
           ],
           [
             "France",
-            12.229553
+            12.230505
           ],
           [
             "Belgium",
-            6.068769
+            6.118456
           ],
           [
             "Austria",
-            5.382182
+            5.389278
           ],
           [
             "Spain",
-            3.615665
+            3.643784
           ],
           [
             "Portugal",
-            3.028328
+            3.057994
           ]
         ],
         "sectors": [
           [
             "Financials",
-            29.476932
+            29.629785
           ],
           [
             "Industrials",
-            21.95302
+            21.848659
           ],
           [
             "Utilities",
-            15.640072
+            15.73783
           ],
           [
             "Materials",
-            8.757162
+            8.660379
           ],
           [
             "Health Care",
-            6.46497
-          ],
-          [
-            "Communication",
-            5.214107
+            6.525586
           ],
           [
             "Energy",
-            5.211122
+            5.16698
+          ],
+          [
+            "Communication",
+            5.156541
           ],
           [
             "Consumer Staples",
-            3.776932
+            3.770954
           ],
           [
             "Immobilier",
-            2.181005
+            2.194355
           ],
           [
             "Information Technology",
-            1.324685
+            1.30893
           ]
         ],
         "holdings": [
           [
             "Teleperformance SE",
-            4.873441
-          ],
-          [
-            "Hannover Rueck SE",
-            3.968508
+            4.782325
           ],
           [
             "ageas SA/NV",
-            3.887764
+            3.924101
+          ],
+          [
+            "Hannover Rueck SE",
+            3.898103
           ],
           [
             "Munchener Ruckversicherungs-Gesellschaft AG",
-            3.812378
-          ],
-          [
-            "OMV Aktiengesellschaft",
-            3.608596
+            3.775229
           ],
           [
             "Sanofi SA",
-            3.549527
+            3.62008
           ],
           [
-            "NN Group N.V.",
-            3.466439
+            "OMV Aktiengesellschaft",
+            3.571096
           ],
           [
             "UNIPOL ASSICURAZIONI SPA",
-            3.439068
+            3.549497
+          ],
+          [
+            "NN Group N.V.",
+            3.507873
           ],
           [
             "Wolters Kluwer N.V.",
-            3.427369
+            3.365418
           ],
           [
             "Valmet Corp",
-            3.213964
+            3.19399
           ]
         ],
         "source": {
           "url": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyw-gy.xlsx",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -91446,6 +92376,245 @@
           "constituents": null,
           "targetConstituents": null
         }
+      },
+      "2026-11-09": {
+        "available": true,
+        "top": [
+          {
+            "id": "FR0000051807",
+            "name": "Teleperformance SE",
+            "weightPct": 4.782325,
+            "securities": [
+              "FR0000051807"
+            ]
+          },
+          {
+            "id": "BE0974264930",
+            "name": "ageas SA/NV",
+            "weightPct": 3.924101,
+            "securities": [
+              "BE0974264930"
+            ]
+          },
+          {
+            "id": "DE0008402215",
+            "name": "Hannover Rueck SE",
+            "weightPct": 3.898103,
+            "securities": [
+              "DE0008402215"
+            ]
+          },
+          {
+            "id": "DE0008430026",
+            "name": "Munchener Ruckversicherungs-Gesellschaft AG",
+            "weightPct": 3.775229,
+            "securities": [
+              "DE0008430026"
+            ]
+          },
+          {
+            "id": "FR0000120578",
+            "name": "Sanofi SA",
+            "weightPct": 3.62008,
+            "securities": [
+              "FR0000120578"
+            ]
+          },
+          {
+            "id": "AT0000743059",
+            "name": "OMV Aktiengesellschaft",
+            "weightPct": 3.571096,
+            "securities": [
+              "AT0000743059"
+            ]
+          },
+          {
+            "id": "IT0004810054",
+            "name": "UNIPOL ASSICURAZIONI SPA",
+            "weightPct": 3.549497,
+            "securities": [
+              "IT0004810054"
+            ]
+          },
+          {
+            "id": "NL0010773842",
+            "name": "NN Group N.V.",
+            "weightPct": 3.507873,
+            "securities": [
+              "NL0010773842"
+            ]
+          },
+          {
+            "id": "NL0000395903",
+            "name": "Wolters Kluwer N.V.",
+            "weightPct": 3.365418,
+            "securities": [
+              "NL0000395903"
+            ]
+          },
+          {
+            "id": "FI4000074984",
+            "name": "Valmet Corp",
+            "weightPct": 3.19399,
+            "securities": [
+              "FI4000074984"
+            ]
+          }
+        ],
+        "topWeight": 37.187712,
+        "otherWeight": 62.812288,
+        "identifiedWeight": 99.999996,
+        "sourceRowCount": 41,
+        "asOf": "2026-11-09",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyw-gy.xlsx",
+        "sourceLabel": "SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist)",
+        "sourceIsin": "IE00B5M1WJ87",
+        "identitySourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+        "identityCheckedAt": "2026-10-11",
+        "observedIdentitySourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+        "observedIdentityCheckedAt": "2026-11-10",
+        "productStructure": "Physique",
+        "replicationMethodology": "Physique",
+        "approximation": true,
+        "method": "Positions d’un ETF physique suivant exactement S&P Euro High Yield Dividend Aristocrats Index. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.",
+        "refresh": {
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+          "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
+          "status": "validated",
+          "asOf": "2026-11-09"
+        },
+        "visualFacts": {
+          "asOf": "2026-11-09",
+          "countries": [
+            [
+              "Germany",
+              21.869183
+            ],
+            [
+              "Italy",
+              18.607565
+            ],
+            [
+              "Finland",
+              16.419416
+            ],
+            [
+              "Netherlands",
+              12.663817
+            ],
+            [
+              "France",
+              12.230505
+            ],
+            [
+              "Belgium",
+              6.118456
+            ],
+            [
+              "Austria",
+              5.389278
+            ],
+            [
+              "Spain",
+              3.643784
+            ],
+            [
+              "Portugal",
+              3.057994
+            ]
+          ],
+          "sectors": [
+            [
+              "Financials",
+              29.629785
+            ],
+            [
+              "Industrials",
+              21.848659
+            ],
+            [
+              "Utilities",
+              15.73783
+            ],
+            [
+              "Materials",
+              8.660379
+            ],
+            [
+              "Health Care",
+              6.525586
+            ],
+            [
+              "Energy",
+              5.16698
+            ],
+            [
+              "Communication",
+              5.156541
+            ],
+            [
+              "Consumer Staples",
+              3.770954
+            ],
+            [
+              "Immobilier",
+              2.194355
+            ],
+            [
+              "Information Technology",
+              1.30893
+            ]
+          ],
+          "holdings": [
+            [
+              "Teleperformance SE",
+              4.782325
+            ],
+            [
+              "ageas SA/NV",
+              3.924101
+            ],
+            [
+              "Hannover Rueck SE",
+              3.898103
+            ],
+            [
+              "Munchener Ruckversicherungs-Gesellschaft AG",
+              3.775229
+            ],
+            [
+              "Sanofi SA",
+              3.62008
+            ],
+            [
+              "OMV Aktiengesellschaft",
+              3.571096
+            ],
+            [
+              "UNIPOL ASSICURAZIONI SPA",
+              3.549497
+            ],
+            [
+              "NN Group N.V.",
+              3.507873
+            ],
+            [
+              "Wolters Kluwer N.V.",
+              3.365418
+            ],
+            [
+              "Valmet Corp",
+              3.19399
+            ]
+          ],
+          "source": {
+            "url": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyw-gy.xlsx",
+            "checkedAt": "2026-11-10T08:14:55.168895+00:00"
+          },
+          "constituents": null,
+          "targetConstituents": null
+        }
       }
     }
   },
@@ -91571,7 +92740,7 @@
       "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
       "identityCheckedAt": "2026-11-08T15:19:12.478302+00:00",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
         "lastSuccessAt": "2026-11-08T15:19:12.478302+00:00",
         "status": "failed",
         "asOf": "2026-10-28",
@@ -93986,7 +95155,7 @@
       "identifiedWeight": 99.6631999999999,
       "sourceRowCount": 387,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares MSCI World Islamic UCITS ETF",
       "sourceIsin": "IE00B27YCN58",
@@ -93999,8 +95168,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI Developed World Islamic Index (NET) (USD). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -94186,7 +95355,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -97662,7 +98831,7 @@
         {
           "id": "KR7005930003",
           "name": "Samsung Electronics",
-          "weightPct": 39.269999999999996,
+          "weightPct": 39.760000000000005,
           "securities": [
             "KR7005930003",
             "KR7005931001"
@@ -97671,7 +98840,7 @@
         {
           "id": "KR7000660001",
           "name": "SK HYNIX",
-          "weightPct": 24.5,
+          "weightPct": 24.73,
           "securities": [
             "KR7000660001"
           ]
@@ -97679,7 +98848,7 @@
         {
           "id": "KR7402340004",
           "name": "SK SQUARE",
-          "weightPct": 2.63,
+          "weightPct": 2.64,
           "securities": [
             "KR7402340004"
           ]
@@ -97687,7 +98856,7 @@
         {
           "id": "KR7105560007",
           "name": "KB FINANCIAL GROUP",
-          "weightPct": 1.99,
+          "weightPct": 2.01,
           "securities": [
             "KR7105560007"
           ]
@@ -97695,7 +98864,7 @@
         {
           "id": "KR7009150004",
           "name": "SAMSUNG ELECTRO MECHANICS",
-          "weightPct": 1.91,
+          "weightPct": 1.87,
           "securities": [
             "KR7009150004"
           ]
@@ -97703,7 +98872,7 @@
         {
           "id": "KR7005380001",
           "name": "Hyundai Motor",
-          "weightPct": 1.79,
+          "weightPct": 1.7399999999999998,
           "securities": [
             "KR7005380001",
             "KR7005382007",
@@ -97713,7 +98882,7 @@
         {
           "id": "KR7055550008",
           "name": "SHINHAN FINANCIAL GROUP",
-          "weightPct": 1.41,
+          "weightPct": 1.4,
           "securities": [
             "KR7055550008"
           ]
@@ -97729,83 +98898,83 @@
         {
           "id": "KR7086790003",
           "name": "HANA FINANCIAL GROUP",
-          "weightPct": 1.24,
+          "weightPct": 1.22,
           "securities": [
             "KR7086790003"
           ]
         },
         {
-          "id": "KR7006400006",
-          "name": "SAMSUNG SDI LTD",
-          "weightPct": 1.11,
+          "id": "KR7035420009",
+          "name": "NAVER",
+          "weightPct": 1.04,
           "securities": [
-            "KR7006400006"
+            "KR7035420009"
           ]
         }
       ],
-      "topWeight": 77.09999999999998,
-      "otherWeight": 22.90000000000002,
-      "identifiedWeight": 99.73999999999998,
-      "asOf": "2026-11-06",
-      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
-      "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.06",
+      "topWeight": 77.66000000000003,
+      "otherWeight": 22.339999999999975,
+      "identifiedWeight": 99.72000000000006,
+      "asOf": "2026-11-09",
+      "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+      "sourceUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
       "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
       "sourceProductCode": "KRX 332940",
       "sourceBasis": "physical-creation-basket",
-      "sha256": "5d9eed3f8d1ff0606219286b748becac75561634eb2f245b7faab0eb04e488f4",
+      "sha256": "94ae285a152d24547607b9de805210dd6721bf4dd7c389dc1073091e4050c567",
       "approximation": true,
       "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé.",
       "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
       "identityCheckedAt": "2026-11-10",
       "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "classificationAsOf": "2026-11-06",
+      "classificationAsOf": "2026-11-09",
       "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
       "refresh": {
-        "checkedAt": "2026-11-10T08:00:47.014826+00:00",
-        "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
+        "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+        "lastSuccessAt": "2026-11-10T15:13:28.881120+00:00",
         "status": "validated",
-        "asOf": "2026-11-06"
+        "asOf": "2026-11-09"
       },
       "visualFacts": {
-        "asOf": "2026-11-06",
+        "asOf": "2026-11-09",
         "countries": [
           [
             "Corée du Sud",
-            99.73999999999997
+            99.72000000000006
           ]
         ],
         "sectors": [
           [
             "💻 Technologie",
-            67.50999999999999
+            68.07
           ],
           [
             "🏭 Industrie",
-            11.600000000000001
+            11.34
           ],
           [
             "🏦 Finance",
-            8.299999999999999
+            8.27
           ],
           [
             "🛍️ Consommation cyclique",
-            4.25
+            4.13
           ],
           [
             "🏥 Santé",
-            2.5100000000000002
+            2.44
           ],
           [
             "📡 Communication",
-            2.19
+            2.18
           ],
           [
             "🛒 Consommation de base",
-            1.26
+            1.21
           ],
           [
             "🪨 Matériaux",
-            1.16
+            1.13
           ],
           [
             "⚡ Énergie",
@@ -97813,37 +98982,37 @@
           ],
           [
             "💡 Services publics",
-            0.31
+            0.3
           ]
         ],
         "holdings": [
           [
             "Samsung Electronics",
-            39.269999999999996
+            39.760000000000005
           ],
           [
             "SK HYNIX",
-            24.5
+            24.73
           ],
           [
             "SK SQUARE",
-            2.63
+            2.64
           ],
           [
             "KB FINANCIAL GROUP",
-            1.99
+            2.01
           ],
           [
             "SAMSUNG ELECTRO MECHANICS",
-            1.91
+            1.87
           ],
           [
             "Hyundai Motor",
-            1.79
+            1.7399999999999998
           ],
           [
             "SHINHAN FINANCIAL GROUP",
-            1.41
+            1.4
           ],
           [
             "CELLTRION",
@@ -97851,17 +99020,17 @@
           ],
           [
             "HANA FINANCIAL GROUP",
-            1.24
+            1.22
           ],
           [
-            "SAMSUNG SDI LTD",
-            1.11
+            "NAVER",
+            1.04
           ]
         ],
         "source": {
-          "url": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.06",
-          "checkedAt": "2026-11-10T08:00:47.014826+00:00",
-          "sha256": "5d9eed3f8d1ff0606219286b748becac75561634eb2f245b7faab0eb04e488f4"
+          "url": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+          "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+          "sha256": "94ae285a152d24547607b9de805210dd6721bf4dd7c389dc1073091e4050c567"
         },
         "constituents": null,
         "targetConstituents": null
@@ -100187,6 +101356,217 @@
           "constituents": null,
           "targetConstituents": null
         }
+      },
+      "2026-11-09": {
+        "available": true,
+        "top": [
+          {
+            "id": "KR7005930003",
+            "name": "Samsung Electronics",
+            "weightPct": 39.760000000000005,
+            "securities": [
+              "KR7005930003",
+              "KR7005931001"
+            ]
+          },
+          {
+            "id": "KR7000660001",
+            "name": "SK HYNIX",
+            "weightPct": 24.73,
+            "securities": [
+              "KR7000660001"
+            ]
+          },
+          {
+            "id": "KR7402340004",
+            "name": "SK SQUARE",
+            "weightPct": 2.64,
+            "securities": [
+              "KR7402340004"
+            ]
+          },
+          {
+            "id": "KR7105560007",
+            "name": "KB FINANCIAL GROUP",
+            "weightPct": 2.01,
+            "securities": [
+              "KR7105560007"
+            ]
+          },
+          {
+            "id": "KR7009150004",
+            "name": "SAMSUNG ELECTRO MECHANICS",
+            "weightPct": 1.87,
+            "securities": [
+              "KR7009150004"
+            ]
+          },
+          {
+            "id": "KR7005380001",
+            "name": "Hyundai Motor",
+            "weightPct": 1.7399999999999998,
+            "securities": [
+              "KR7005380001",
+              "KR7005382007",
+              "KR7005381009"
+            ]
+          },
+          {
+            "id": "KR7055550008",
+            "name": "SHINHAN FINANCIAL GROUP",
+            "weightPct": 1.4,
+            "securities": [
+              "KR7055550008"
+            ]
+          },
+          {
+            "id": "KR7068270008",
+            "name": "CELLTRION",
+            "weightPct": 1.25,
+            "securities": [
+              "KR7068270008"
+            ]
+          },
+          {
+            "id": "KR7086790003",
+            "name": "HANA FINANCIAL GROUP",
+            "weightPct": 1.22,
+            "securities": [
+              "KR7086790003"
+            ]
+          },
+          {
+            "id": "KR7035420009",
+            "name": "NAVER",
+            "weightPct": 1.04,
+            "securities": [
+              "KR7035420009"
+            ]
+          }
+        ],
+        "topWeight": 77.66000000000003,
+        "otherWeight": 22.339999999999975,
+        "identifiedWeight": 99.72000000000006,
+        "asOf": "2026-11-09",
+        "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+        "sourceUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+        "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
+        "sourceProductCode": "KRX 332940",
+        "sourceBasis": "physical-creation-basket",
+        "sha256": "94ae285a152d24547607b9de805210dd6721bf4dd7c389dc1073091e4050c567",
+        "approximation": true,
+        "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé.",
+        "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
+        "identityCheckedAt": "2026-11-10",
+        "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "classificationAsOf": "2026-11-09",
+        "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
+        "refresh": {
+          "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+          "lastSuccessAt": "2026-11-10T15:13:28.881120+00:00",
+          "status": "validated",
+          "asOf": "2026-11-09"
+        },
+        "visualFacts": {
+          "asOf": "2026-11-09",
+          "countries": [
+            [
+              "Corée du Sud",
+              99.72000000000006
+            ]
+          ],
+          "sectors": [
+            [
+              "💻 Technologie",
+              68.07
+            ],
+            [
+              "🏭 Industrie",
+              11.34
+            ],
+            [
+              "🏦 Finance",
+              8.27
+            ],
+            [
+              "🛍️ Consommation cyclique",
+              4.13
+            ],
+            [
+              "🏥 Santé",
+              2.44
+            ],
+            [
+              "📡 Communication",
+              2.18
+            ],
+            [
+              "🛒 Consommation de base",
+              1.21
+            ],
+            [
+              "🪨 Matériaux",
+              1.13
+            ],
+            [
+              "⚡ Énergie",
+              0.65
+            ],
+            [
+              "💡 Services publics",
+              0.3
+            ]
+          ],
+          "holdings": [
+            [
+              "Samsung Electronics",
+              39.760000000000005
+            ],
+            [
+              "SK HYNIX",
+              24.73
+            ],
+            [
+              "SK SQUARE",
+              2.64
+            ],
+            [
+              "KB FINANCIAL GROUP",
+              2.01
+            ],
+            [
+              "SAMSUNG ELECTRO MECHANICS",
+              1.87
+            ],
+            [
+              "Hyundai Motor",
+              1.7399999999999998
+            ],
+            [
+              "SHINHAN FINANCIAL GROUP",
+              1.4
+            ],
+            [
+              "CELLTRION",
+              1.25
+            ],
+            [
+              "HANA FINANCIAL GROUP",
+              1.22
+            ],
+            [
+              "NAVER",
+              1.04
+            ]
+          ],
+          "source": {
+            "url": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+            "checkedAt": "2026-11-10T15:13:28.881120+00:00",
+            "sha256": "94ae285a152d24547607b9de805210dd6721bf4dd7c389dc1073091e4050c567"
+          },
+          "constituents": null,
+          "targetConstituents": null
+        }
       }
     }
   },
@@ -100280,7 +101660,7 @@
       "identifiedWeight": 99.44947000000006,
       "sourceRowCount": 319,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares Developed Markets Property Yield UCITS ETF USD (Dist)",
       "sourceIsin": "IE00B1FZS350",
@@ -100293,8 +101673,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement FTSE EPRA/NAREIT Developed Dividend+. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -100452,7 +101832,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -103752,7 +105132,7 @@
       "identifiedWeight": 99.50710999999998,
       "sourceRowCount": 546,
       "asOf": "2026-11-06",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sourceLabel": "iShares MSCI EM ex-China UCITS ETF (Acc)",
       "sourceIsin": "IE00BMG6Z448",
@@ -103765,8 +105145,8 @@
       "approximation": true,
       "method": "Positions d’un ETF physique suivant exactement MSCI Emerging Markets ex China Index (Net). Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste. Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-11-06"
       },
@@ -103956,7 +105336,7 @@
         ],
         "source": {
           "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-09T17:55:41.609129+00:00"
+          "checkedAt": "2026-11-10T08:14:55.168895+00:00"
         },
         "constituents": null,
         "targetConstituents": null
@@ -104654,7 +106034,7 @@
       "otherWeight": 75.9059,
       "identifiedWeight": 99.99940000000008,
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-09T17:55:41.609129+00:00",
+      "checkedAt": "2026-11-10T08:14:55.168895+00:00",
       "sourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
       "sha256": "8471982993b59624d502aa50330e0eeb98892f89fb052d69ca42d43586aa4f1d",
       "sourceBasis": "qualified-native-index",
@@ -104680,10 +106060,10 @@
         "endMarkerPresent": true
       },
       "identitySourceUrl": "https://www.blackrock.com/jp/individual-en/en/products/279438/fund/1480664184455.ajax?tab=all&fileType=json&asOfDate=20260930",
-      "identityCheckedAt": "2026-11-09T17:55:41.609129+00:00",
+      "identityCheckedAt": "2026-11-10T08:14:55.168895+00:00",
       "refresh": {
-        "checkedAt": "2026-11-09T17:55:41.609129+00:00",
-        "lastSuccessAt": "2026-11-09T17:55:41.609129+00:00",
+        "checkedAt": "2026-11-10T08:14:55.168895+00:00",
+        "lastSuccessAt": "2026-11-10T08:14:55.168895+00:00",
         "status": "validated",
         "asOf": "2026-09-30"
       },
