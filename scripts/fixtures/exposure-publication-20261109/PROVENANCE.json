@@ -1,0 +1,17 @@
+{
+  "kind": "immutable-test-fixture",
+  "sourceRun": "https://github.com/madmax91310/shinny-potato/actions/runs/42668435788",
+  "artifactId": 13696904603,
+  "acquisitionCode": "1686fd10645dadca251e6787a64cc14e08519b70",
+  "files": {
+    "baseline.json.gz": "eca7f3062316a2deb5dae35bcde8fe4462d2a7dcb6abcd4598ee9d8fa86961d7",
+    "config.json.gz": "fa06ecc7fe7c5bc9f6fa73b3f58e70071a2fbf5dad84fdf2af640a2d47121537",
+    "exposure-expansion.contract-plan.json.gz": "dbd87c574923fa26db0a2efe0ea5cffe63b3dca357f65c96cf49ee6ce1300ddb",
+    "exposure-expansion.json.gz": "723763b1ebdf2910d81a6876d7f485f35f8ddc5d0a276af66a6cfd341500e82d"
+  },
+  "notes": [
+    "Source report and pre-acquisition plan are the original GitHub artifact.",
+    "Baseline registry and configuration are from the exact acquisition commit.",
+    "Tests synthesize separate Git transactions; these are never production observations."
+  ]
+}
