@@ -16536,6 +16536,30 @@
       "verifyMonthlyDisagreements": true,
       "dailyWindowMonths": [],
       "timezone": "Europe/Paris"
+    },
+    {
+      "id": "etcPalladiumMarket",
+      "label": "iShares Physical Palladium (IPDM) · cours Londres",
+      "isin": "IE00B4556L06",
+      "ticker": "IPDM",
+      "mic": "XLON",
+      "currency": "USD",
+      "parser": "yahoo",
+      "symbol": "IPDM.L",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE00B4556L06-XLON-IPDM-USD",
+      "instrumentType": "ETC",
+      "method": "Cours de la cotation exacte IPDM sur Londres en USD, ajustés des opérations sur titres ; dernière séance mensuelle recoupée avec la bougie mensuelle et les fenêtres quotidiennes nécessaires ; distincts de la NAV et du niveau réinvesti officiels. Aucun historique avant mai2011.",
+      "collectAnniversary": false,
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2011-05",
+      "verifyMonthlyDisagreements": true,
+      "dailyWindowMonths": [],
+      "timezone": "Europe/London",
+      "anniversaryAvailable": false,
+      "anniversaryExclusionReason": "Route réservée aux comparaisons mensuelles sur fenêtres qualifiées ; le rendement2025 IPDM.L reste refusé. Les usages VL demeurent distincts."
     }
   ]
 }

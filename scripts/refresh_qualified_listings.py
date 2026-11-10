@@ -42,13 +42,19 @@ def parse(source,body,checked):
   # neighbouring trading-currency tab. Bind identity and listing date there too.
   trading_rows=BitwiseTradingRows(body).rows
   text='\n'.join(row['text'] for row in trading_rows)
- elif source.get('format')=='html':
+ elif source.get('format')in ('html','blackrock-listings-html'):
   document=body.decode('utf-8')
-  if source['isin'] not in document:raise ValueError('Wrong exact-share document')
+  if source.get('format')=='blackrock-listings-html':
+   # Bind the listing table to the primary fund-facts ISIN, never a related
+   # instrument or a stale encoded widget elsewhere in the document.
+   cells=re.findall(r'''<td\b[^>]*\bdata-id=["']keyFundFacts-isin-data["'][^>]*>(.*?)</td>''',document,re.S|re.I)
+   primary=[html.unescape(re.sub('<[^>]+>',' ',cell)).strip()for cell in cells]
+   if primary!=[source['isin']]:raise ValueError('Wrong or ambiguous primary BlackRock share identity')
+  elif source['isin'] not in document:raise ValueError('Wrong exact-share document')
   text='\n'.join(re.sub(r'\s+',' ',html.unescape(re.sub('<[^>]+>',' ',row))).strip() for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>',document,re.S|re.I))
   # The row extraction retains a separate exact identity check on the document.
  else:text=pdf_text(body)
- if source.get('format')!='html' and source['isin'] not in text:raise ValueError('Wrong exact-share document')
+ if source.get('format')not in ('html','blackrock-listings-html') and source['isin'] not in text:raise ValueError('Wrong exact-share document')
  rows=[]
  for spec in source['rows']:
   matches=list(re.finditer(spec['pattern'],text,re.M))

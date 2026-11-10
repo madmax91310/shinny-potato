@@ -27,3 +27,6 @@ const investment=derive({assetId:paris.id,amountRaw:'100',startYear:2023,startMo
 const prices=paris.points.filter(p=>p.date>='2023-01');
 assert(Math.abs(investment.result.finalValue-100*prices.at(-1).price/prices[0].price)<1e-8);
 console.log('Bitwise Paris: exact EUR venue, independent coverage, unchanged Xetra refusals, calculator and ranking consumers.');
+
+// Exact existing palladium share: market and NAV windows remain distinct.
+await import("./test-palladium-market-consumers.mjs")
