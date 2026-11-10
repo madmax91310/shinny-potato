@@ -16,7 +16,7 @@ export function qualifyHoldings(h, line, reference, now = new Date()) {
   if (!['fund','index','equity'].includes(h.basis)) reasons.push('Périmètre de composition non qualifié.')
   // A Fund ranking can exhaust the ranked equities without proving their NAV
   // denominator or the omitted cash. This also applies to retained old reports.
-  const rankingOnly = h.coverageProof?.rankClassificationID === 1 && h.coverageProof?.rankClassification === 'Fund'
+  const rankingOnly = h.weightBasis === 'issuer-fund-ranking-unqualified-nav-denominator' || (h.coverageProof?.rankClassificationID === 1 && h.coverageProof?.rankClassification === 'Fund')
   if (rankingOnly && !holdingsReconciliationDetails(h)) reasons.push('Poids du classement émetteur : dénominateur NAV et liquidités excluses non qualifiés.')
   if ((h.synthetic || reference?.synthetic) && h.basis === 'fund') reasons.push('Panier de substitution exclu de l’exposition économique.')
   if (h.basis === 'index' && h.complete === true && !qualifiedNativeIndexComposition(h,line.isin,now)) reasons.push('Composition intégrale d’indice non qualifiée pour cette part.')

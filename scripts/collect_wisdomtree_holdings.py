@@ -16,6 +16,17 @@ from collect_ssga_etf import xlsx_rows
 
 IDENTITIES=[(r['isin'],r['url'])for r in json.loads((Path(__file__).with_name('security-identity-sources.json')).read_text())]
 
+def ranking_observation(*args, **kwargs):
+    from collect_physical_holdings import observation
+    result = observation(*args, **kwargs)
+    # File completeness proves the ranked securities, not their NAV denominator.
+    result['weightBasis'] = 'issuer-fund-ranking-unqualified-nav-denominator'
+    result['method'] = 'Complete published issuer Fund ranking; original ranking weights; fund NAV denominator and excluded cash not independently qualified; no renormalisation'
+    result.setdefault('coverageProof', {'rankClassificationID':1, 'rankClassification':'Fund',
+        'rowCount':len(result['rows']), 'publishedWeightPct':sum(r['weightPct'] for r in result['rows'])})
+    return result
+
+
 def known_shares():
     shares={}
     for name in ['additional-etf-sources.json','exposure-etf-expansion.json']:
@@ -169,7 +180,7 @@ def product_page(url,fetch_page=None):
 
 
 def collect_rankings(share,now):
-    from collect_physical_holdings import observation
+    observation=ranking_observation
     page,route,attempts=product_page(share['sourceUrl'])
     share={**share,'sourceUrl':route}
     from security_identifier_observations import qualified_observations,qualified,API,requires_independent_identity
@@ -391,7 +402,7 @@ def consolidate_ranked_securities(rows, mapping):
 
 
 def collect_public_rankings(share,now,fetch=download):
-    from collect_physical_holdings import observation
+    observation=ranking_observation
     raw,url,identity,listing,attempts=acquire_qualified_public_rankings(share,now,fetch)
     snapshot=complete_identity_mapping(now)
     mapping,dates,proofs=snapshot
@@ -413,11 +424,6 @@ def collect_public_rankings(share,now,fetch=download):
             'securityRowCount':len(rows),'consolidatedSecurityGroups':sum('sourcePositions'in r for r in rows),
             'publishedWeightPct':sum(r['weightPct']for r in native_rows),'otherRankingGroupsExcluded':True})
     result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights'
-    # Source-file completeness is not proof of the financial weight denominator.
-    # Keep the publisher's original figures and let the shared consumer contract
-    # refuse full portfolio arithmetic until a closed NAV/cash book is qualified.
-    result['weightBasis'] = 'issuer-fund-ranking-unqualified-nav-denominator'
-    result['method'] = 'Complete published issuer Fund ranking; original ranking weights; fund NAV denominator and excluded cash not independently qualified; no renormalisation'
     if result['coverageProof']['consolidatedSecurityGroups']:
         result['method'] += '; distinct native SEDOL positions of the same qualified ISIN summed with every original position retained in sourcePositions'
     if getattr(snapshot,'source_failures',[]):result['identitySourceFailures']=snapshot.source_failures
