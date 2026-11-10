@@ -1,6 +1,6 @@
 import { qualifiedNativeIndexComposition } from '../../data/native-index-composition.js'
 import { EXPOSURE_MAX_AGE_DAYS } from './exposure.js'
-import { completeEquitySleeve } from '../../data/holdings-reconciliation.js'
+import { completeEquitySleeve, holdingsReconciliationDetails } from '../../data/holdings-reconciliation.js'
 
 const securityId = value => /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(value || '')
 export function qualifyHoldings(h, line, reference, now = new Date()) {
@@ -14,6 +14,10 @@ export function qualifyHoldings(h, line, reference, now = new Date()) {
   else if (age < 0) reasons.push('Date de composition future.')
   else if (age > EXPOSURE_MAX_AGE_DAYS) reasons.push('Composition périmée.')
   if (!['fund','index','equity'].includes(h.basis)) reasons.push('Périmètre de composition non qualifié.')
+  // A Fund ranking can exhaust the ranked equities without proving their NAV
+  // denominator or the omitted cash. This also applies to retained old reports.
+  const rankingOnly = h.coverageProof?.rankClassificationID === 1 && h.coverageProof?.rankClassification === 'Fund'
+  if (rankingOnly && !holdingsReconciliationDetails(h)) reasons.push('Poids du classement émetteur : dénominateur NAV et liquidités excluses non qualifiés.')
   if ((h.synthetic || reference?.synthetic) && h.basis === 'fund') reasons.push('Panier de substitution exclu de l’exposition économique.')
   if (h.basis === 'index' && h.complete === true && !qualifiedNativeIndexComposition(h,line.isin,now)) reasons.push('Composition intégrale d’indice non qualifiée pour cette part.')
   const validRows = Array.isArray(h.rows) && h.rows.length > 0 && h.rows.every(row => Number.isFinite(row.weightPct) && row.weightPct >= 0 && row.weightPct <= 100)
