@@ -25,6 +25,7 @@ try {
   for(const width of [1440,390]){
     await page.setViewportSize({width,height:900})
     await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
+    await page.getByText('Documents sources : moniteur, producteurs et couverture par champ',{exact:true}).click()
     const monitor=page.getByRole('region',{name:'Surveillance des données',exact:true})
     await monitor.getByText('1 entrées de suivi · 1 signalement(s) conservé(s)',{exact:false}).waitFor()
     await monitor.getByRole('searchbox',{name:'Rechercher un incident'}).fill('Donnée partagée de recette')
