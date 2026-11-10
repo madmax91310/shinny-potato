@@ -11901,5 +11901,22 @@
     "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
     "sha256": "6ed96993c6fea0278be7be5a0eca3625153d5c1427172db4ee591c9bc5d5a9e7"
+  },
+  "etfDE000A27Z304Paris": {
+    "value": 58.58399963378906,
+    "asOf": "2026-11-09",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "BTCE.PA",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1792972800&period2=1794268800&interval=1d&events=splits",
+    "sha256": "b1d2b38ec59bb7c775c2bce214f03be3b60953185ba49a5b4567099e38af1b47",
+    "method": "Dernière séance terminée ; cours brut",
+    "maxAgeDays": 7,
+    "isin": "DE000A27Z304",
+    "ticker": "BTCE",
+    "mic": "XPAR",
+    "listingEvidenceId": "DE000A27Z304-XPAR-BTCE-EUR"
   }
 }

@@ -4,7 +4,7 @@ import LISTING_HOSTS from '../listing-source-hosts.json' with { type: 'json' };
 // pas d'une inférence sur le domicile ou la devise du fonds.
 export const SOURCE_HOSTS = new Set(LISTING_HOSTS.hosts);
 const MARKETS = {
-  XPAR: ['Euronext Paris', /Euronext Paris|Euronext\s*\(FR\)|EURONEXT PARIS|EN Paris|Venue: Paris|MIC\s*\|\s*XPAR/],
+  XPAR: ['Euronext Paris', /Euronext Paris|Euronext PAR\b|Euronext\s*\(FR\)|EURONEXT PARIS|EN Paris|Venue: Paris|MIC\s*\|\s*XPAR/],
   XAMS: ['Euronext Amsterdam', /Euronext Amsterdam|EURONEXT AMSTERDAM|EN Amsterdam|NYSE Euronext - Amsterdam|NYSE Euronext EUR/],
   XLON: ['London Stock Exchange', /London Stock\s+Exchange|LONDON STOCK EXCHANGE|LSE/],
   XETR: ['Xetra', /Xetra|XETRA|DEUTSCHE BÖRSE|Deutsche Börse|Deutsche Boerse/],

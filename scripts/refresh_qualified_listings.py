@@ -16,6 +16,13 @@ def parse(source,body,checked):
   if len(products)!=1 or products[0]['productId']!=source['isin'] or products[0]['characteristics']['ISIN']!=source['isin']:raise ValueError('Wrong exact-share document')
   rows=products[0]['characteristics']['LISTINGS']
   text='\n'.join(' '.join([row['exchangePlace'],row['tradingCurrency'],row['ticker'],row['ric'],source['isin']]) for row in rows)
+ elif source.get('format')=='bitwise-trading-html':
+  # The currency belongs to each venue row, not the fund's USD NAV or a
+  # neighbouring trading-currency tab. Bind identity and listing date there too.
+  from bs4 import BeautifulSoup
+  document=BeautifulSoup(body,'html.parser')
+  trading_rows=document.select('.trading__tr[data-exchange-currency]')
+  text='\n'.join(row.get_text(' ',strip=True) for row in trading_rows)
  elif source.get('format')=='html':
   document=body.decode('utf-8')
   if source['isin'] not in document:raise ValueError('Wrong exact-share document')
@@ -28,6 +35,12 @@ def parse(source,body,checked):
   matches=list(re.finditer(spec['pattern'],text,re.M))
   if len(matches)!=1:raise ValueError('Ambiguous or missing official listing row')
   match=matches[0];symbol=spec.get('symbol') or match[1]
+  if source.get('format')=='bitwise-trading-html':
+   candidates=[row for row in trading_rows if row.get_text(' ',strip=True)==match[0].strip()]
+   if (len(candidates)!=1 or candidates[0].get('data-exchange-currency')!=spec['currency']
+       or f"ISIN {source['isin']} " not in match[0]
+       or dt.datetime.strptime(match['listing_date'],'%d.%m.%y').date().isoformat()!=spec['listingDate']):
+    raise ValueError('Wrong exact-share trading currency, venue or listing date')
   if not re.fullmatch(r'[A-Za-z0-9]+\.[A-Za-z]+',symbol):raise ValueError('Invalid official listing symbol')
   excerpt=source['isin']+' | '+match[0].strip()
   evidence_id=f'{source["isin"]}-{spec["mic"]}-{spec["ticker"]}-{spec["currency"]}'
