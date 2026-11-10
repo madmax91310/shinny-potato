@@ -10,17 +10,15 @@ class QualifiedListings(unittest.TestCase):
   body=gzip.decompress((root/'scripts/fixtures/bitwise-paris-20261110/issuer.html.gz').read_bytes())
   rows=parse(source,body,'2026-11-10')
   self.assertEqual([(r['mic'],r['symbol'],r['currency'])for r in rows],[('XETR','BTCE.DE','EUR'),('XPAR','BTCE.PA','EUR')])
-  from bs4 import BeautifulSoup
   for mutation in ['currency','identity','date','duplicate','missing']:
-   document=BeautifulSoup(body,'html.parser')
-   row=next(r for r in document.select('.trading__tr')if 'BTCE.PA'in r.get_text())
-   if mutation=='currency':row['data-exchange-currency']='USD'
-   elif mutation=='identity':row.string=row.get_text(' ',strip=True).replace('DE000A27Z304','DE0000000000')
-   elif mutation=='date':row.string=row.get_text(' ',strip=True).replace('01.06.21','01.06.20')
-   elif mutation=='duplicate':row.insert_after(BeautifulSoup(str(row),'html.parser'))
-   else:row.decompose()
+   changed=body
+   if mutation=='currency':changed=body.replace(b'data-exchange-currency="EUR"',b'data-exchange-currency="USD"')
+   elif mutation=='identity':changed=body.replace(b'DE000A27Z304',b'DE0000000000')
+   elif mutation=='date':changed=body.replace(b'01.06.21',b'01.06.20')
+   elif mutation=='duplicate':changed=body+body
+   else:changed=body.replace(b'BTCE.PA',b'OTHER.PA')
    with self.subTest(mutation=mutation),self.assertRaises(ValueError):
-    parse(source,str(document).encode(),'2026-11-10')
+    parse(source,changed,'2026-11-10')
  def test_paris_daily_and_monthly_coverage_without_extending_xetra(self):
   import copy,datetime,gzip,json
   from pathlib import Path

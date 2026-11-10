@@ -7,9 +7,30 @@ import html
 import json
 from pathlib import Path
 import re
+from html.parser import HTMLParser
 from data_automation import UTC,write_json_atomic
 from issuer_documents import download,pdf_text
 ROOT=Path(__file__).resolve().parents[1]
+
+class BitwiseTradingRows(HTMLParser):
+ def __init__(self,body):
+  super().__init__(convert_charrefs=True)
+  self.rows=[];self.depth=0;self.parts=[];self.currency=None
+  self.feed(body.decode('utf-8'));self.close()
+  if self.depth:raise ValueError('Incomplete issuer trading row')
+ def handle_starttag(self,tag,attrs):
+  if tag!='div':return
+  attrs=dict(attrs)
+  if self.depth:self.depth+=1
+  elif 'trading__tr'in attrs.get('class','').split() and 'data-exchange-currency'in attrs:
+   self.depth=1;self.parts=[];self.currency=attrs['data-exchange-currency']
+ def handle_data(self,data):
+  if self.depth:self.parts.append(data)
+ def handle_endtag(self,tag):
+  if tag=='div'and self.depth:
+   self.depth-=1
+   if not self.depth:self.rows.append({'currency':self.currency,'text':re.sub(r'\s+',' ',' '.join(self.parts)).strip()})
+
 def parse(source,body,checked):
  if source.get('format')=='amundi-api':
   products=json.loads(body)['products']
@@ -19,10 +40,8 @@ def parse(source,body,checked):
  elif source.get('format')=='bitwise-trading-html':
   # The currency belongs to each venue row, not the fund's USD NAV or a
   # neighbouring trading-currency tab. Bind identity and listing date there too.
-  from bs4 import BeautifulSoup
-  document=BeautifulSoup(body,'html.parser')
-  trading_rows=document.select('.trading__tr[data-exchange-currency]')
-  text='\n'.join(row.get_text(' ',strip=True) for row in trading_rows)
+  trading_rows=BitwiseTradingRows(body).rows
+  text='\n'.join(row['text'] for row in trading_rows)
  elif source.get('format')=='html':
   document=body.decode('utf-8')
   if source['isin'] not in document:raise ValueError('Wrong exact-share document')
@@ -36,8 +55,8 @@ def parse(source,body,checked):
   if len(matches)!=1:raise ValueError('Ambiguous or missing official listing row')
   match=matches[0];symbol=spec.get('symbol') or match[1]
   if source.get('format')=='bitwise-trading-html':
-   candidates=[row for row in trading_rows if row.get_text(' ',strip=True)==match[0].strip()]
-   if (len(candidates)!=1 or candidates[0].get('data-exchange-currency')!=spec['currency']
+   candidates=[row for row in trading_rows if row['text']==match[0].strip()]
+   if (len(candidates)!=1 or candidates[0]['currency']!=spec['currency']
        or f"ISIN {source['isin']} " not in match[0]
        or dt.datetime.strptime(match['listing_date'],'%d.%m.%y').date().isoformat()!=spec['listingDate']):
     raise ValueError('Wrong exact-share trading currency, venue or listing date')
