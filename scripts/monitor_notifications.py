@@ -3,6 +3,7 @@ import datetime as dt
 import hashlib
 import json
 import re
+from automation_contracts import workflow_retirement
 
 POLICY_MARKER = '<!-- monitor-notification-state:'
 REMINDER_HOURS = 24
@@ -13,21 +14,24 @@ def stamp(value):
 
 def critical_incidents(monitor):
     now=stamp(monitor.get('checkedAt'))
+    radar_active = not workflow_retirement({}, 'monitor:radar')
     result=[]
     priority=[]
     for identifier,row in monitor.get('active',{}).items():
+        if workflow_retirement(row, identifier):
+            continue
         first=stamp(row.get('firstSeenAt'))
         hours=(now-first).total_seconds()/3600 if now and first and now>=first else 0
         reason=None
-        if identifier=='monitor:radar' and hours>=1:
+        if radar_active and identifier=='monitor:radar' and hours>=1:
             reason='Flux global du Radar illisible depuis au moins une heure.'
         elif row.get('kind')=='publication' and row.get('impactScope')=='collector' and hours>=6:
             reason='Publication de la collecte durablement bloquée depuis au moins six heures.'
-        elif identifier.startswith('workflow:') and row.get('kind')=='collection' and 'Radar éditorial' in row.get('tools',[]) and hours>=2:
+        elif radar_active and identifier.startswith('workflow:') and row.get('kind')=='collection' and 'Radar éditorial' in row.get('tools',[]) and hours>=2:
             reason='Exécution globale du producteur Radar en échec depuis au moins deux heures.'
         if reason:
             result.append({**row,'criticalReason':reason})
-        if row.get('kind')=='collection' and row.get('workflow')=='update-editorial-radar.yml' and hours>=2:
+        if radar_active and row.get('kind')=='collection' and row.get('workflow')=='update-editorial-radar.yml' and hours>=2:
             key=str(row.get('dataId',identifier)).lower()
             family='statistiques' if 'insee' in key else 'banques' if any(k in key for k in ('fortuneo','boursobank','trade-republic','revolut')) else 'immobilier' if any(k in key for k in ('credit-logement','creditlogement','banque-france','bdf','notaires')) else None
             if family:priority.append((family,identifier,row))

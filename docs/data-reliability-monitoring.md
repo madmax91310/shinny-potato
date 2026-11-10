@@ -12,7 +12,19 @@ Le suivi `automation-status` rassemble les incidents dans « Données à revoir 
 
 ## Cycle et notifications
 
-L’identifiant de l’incident reste stable pendant les tentatives répétées. La date de première détection est conservée ; la date de dernier contrôle progresse. Une disparition vérifiée produit un retour à la normale. Un radar absent ou ancien conserve ses contradictions précédentes et signale sa propre indisponibilité.
+L’identifiant de l’incident reste stable pendant les tentatives répétées. La date de première détection est conservée ; la date de dernier contrôle progresse. Une disparition vérifiée produit un retour à la normale. Un radar actif absent ou ancien conserve ses contradictions précédentes et signale sa propre indisponibilité.
+
+### Radar arrêté volontairement
+
+Le registre `src/data/retired-automations.json` porte l’état `disabled-by-request` du Radar. Ce statut explicite distingue un arrêt demandé d’un service actif indisponible ; `automatic: false` seul supprime uniquement les échéances de collecte, sans masquer les vrais échecs d’un producteur manuel actif.
+
+Le moniteur ne crée plus d’incident pour l’absence du flux, ses preuves dédiées ou les échecs propres au service arrêté. Les épisodes déjà actifs passent dans `monitoring.retired`, avec leurs dates initiales, observations et motifs conservés. Ils portent `retirementStatus: disabled-by-request` ; aucun passage dans les résolutions n’est déduit de l’arrêt. Les anciennes observations du workflow restent conservées.
+
+Les incidents de champs partagés, les consommateurs autres que le Radar et les contradictions financières déjà connues restent suivis. Un identifiant de donnée inconnu n’est pas retiré implicitement. Un flux encore disponible peut fournir une contradiction liée à un autre outil ; il ne crée plus de nouvelle anomalie propre au Radar arrêté. Les mêmes limites s’appliquent aux vues de « Données à revoir », y compris lorsqu’elles lisent un ancien bilan.
+
+La classification critique applique également ce statut : pas de notification initiale ni de rappel pour le flux global, le producteur ou la couverture prioritaire du Radar arrêté, même à partir d’un ancien bilan. Les blocages de publication des collecteurs actifs conservent leur seuil de six heures, leurs accusés de réception et leurs rappels espacés de 24 heures. Les règles Radar restent testées pour le cas où le service serait actif.
+
+Le workflow de collecte Radar reste inchangé : une exécution de production requiert `workflow_dispatch`, la branche `master` et `collect: true`. Cette correction ne déclenche aucune collecte et ne modifie ni les données financières ni leurs preuves.
 
 Une seule issue regroupe les incidents. Une nouvelle apparition ou une résolution produit un commentaire récapitulatif. Les mêmes incidents répétés ne renvoient rien ; les marqueurs des commentaires du bot évitent le doublon si GitHub a accepté une notification mais que sa réponse a été perdue. L’issue se ferme lorsque tous les incidents sont résolus et se rouvre au prochain incident. Les notifications suivent les abonnements GitHub du propriétaire ; aucun destinataire externe n’est ajouté.
 

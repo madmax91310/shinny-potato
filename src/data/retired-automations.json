@@ -1,6 +1,12 @@
 {
   "schemaVersion": 1,
   "workflows": {
+    "update-editorial-radar.yml": {
+      "tool": "/radar-editorial",
+      "retiredAt": "2026-11-10",
+      "status": "disabled-by-request",
+      "reason": "Radar éditorial arrêté à la demande de l’utilisateur ; collecte manuelle explicite uniquement. Surveillance du service et de ses sources dédiées retirée, sans réparation de donnée déduite. Observations historiques et contrôles des données utilisées par d’autres outils conservés."
+    },
     "update-company-analysis.yml": {
       "tool": "/analyse-entreprise",
       "retiredAt": "2026-10-21",

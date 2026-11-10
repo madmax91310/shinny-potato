@@ -45,6 +45,10 @@ on:
       - "scripts/fixtures/automation-reports/**"
       - "scripts/test_automation_status.py"
       - "scripts/automation_monitoring.py"
+      - "scripts/automation_contracts.py"
+      - "src/data/retired-automations.json"
+      - "src/lib/automation-retirement.js"
+      - "scripts/test-automation-retirement.mjs"
       - "scripts/monitor_notifications.py"
       - "scripts/test_automation_monitoring.py"
       - "scripts/automation_recovery.py"
@@ -66,6 +70,9 @@ on:
       - 'scripts/automation-report-contracts.json'
       - 'scripts/fixtures/automation-reports/**'
       - 'scripts/automation_monitoring.py'
+      - 'scripts/automation_contracts.py'
+      - 'src/data/retired-automations.json'
+      - 'src/lib/automation-retirement.js'
       - 'scripts/monitor_notifications.py'
       - 'scripts/automation_recovery.py'
       - 'scripts/github_automation_transport.py'
@@ -94,6 +101,7 @@ jobs:
         with:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
+      - run: node scripts/test-automation-retirement.mjs
       - run: node scripts/test-monitor-storage.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
@@ -121,6 +129,7 @@ jobs:
         with:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
+      - run: node scripts/test-automation-retirement.mjs
       - run: node scripts/test-monitor-storage.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'

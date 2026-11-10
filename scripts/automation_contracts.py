@@ -4,6 +4,26 @@ import re
 from functools import lru_cache
 from pathlib import Path
 
+RETIRED_WORKFLOWS = json.loads((Path(__file__).resolve().parents[1] / 'src/data/retired-automations.json').read_text())['workflows']
+RADAR_WORKFLOW = 'update-editorial-radar.yml'
+
+
+def workflow_retirement(row, identifier=None):
+    """Service withdrawal never retires a field with another or unknown consumer."""
+    identifier = identifier or row.get('id', '')
+    workflow = RADAR_WORKFLOW if identifier in ('monitor:radar', 'monitor:radar-proofs', 'critical:radar-coverage') else row.get('workflow')
+    policy = RETIRED_WORKFLOWS.get(workflow)
+    if not policy:
+        return None
+    if policy.get('status') == 'disabled-by-request':
+        if identifier in ('monitor:radar', 'monitor:radar-proofs', 'critical:radar-coverage'):
+            return policy
+        if set(row.get('tools', [])) - {'Radar éditorial'} or row.get('impactScope') == 'asset':
+            return None
+        if row.get('dataId') and not row['dataId'].startswith('radar:'):
+            return None
+    return policy
+
 
 @lru_cache(maxsize=None)
 def field_contract(contract):
