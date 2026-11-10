@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import {qualifyCoverage} from './lib/data-qualification.mjs'
+import {buildInbox} from '../src/pages/data-review/review-inbox.js'
 import { unqualifiedFundRankingWeights } from '../src/data/holding-weight-basis.js'
 import { AUTOMATED_ETF, refreshFundDetails } from '../src/data/automated-etf.js'
 import { holdingConcentration, concentrationCopy, comparisonConcentration } from '../src/data/exposure-observations.js'
@@ -41,3 +43,14 @@ assert.equal(presentationComposition({holdings:retained},{replicationMethod:'phy
 // The loop above exercises every current affected consumer. A later qualified
 // issuer PDF/native response must not be forced to remain a rejected ranking.
 console.log('Publication weight basis: original ranked data retained; unsafe fund concentration, comparison text and image rows refused for '+affected.join(', ')+'; independent fields preserved.')
+
+const sourceRow={id:'IE000W8WMSL2',type:'instrument',name:'Quantum',field:'holdings',present:true,state:'current',asOf:retained.asOf,checkedAt:'2026-11-10',sourceUrl:retained.sourceUrl}
+const qualification=qualifyCoverage(sourceRow,{record:{holdings:retained}})
+assert.equal(qualification.actionState,'unqualified');assert(qualification.requiresAction);assert.match(qualification.reason,/dénominateur NAV/)
+assert.equal(qualification.checkedAt,sourceRow.checkedAt);assert.equal(qualification.asOf,sourceRow.asOf)
+const inbox=buildInbox({inventory:{backlog:[qualification]}})
+assert(inbox.issues.some(r=>r.asset===sourceRow.id&&/dénominateur NAV/.test(r.cause)),'The existing public reducer exposes the exact rejected weight convention without a new interface')
+for(const state of ['source-conflict','collection-error','check-overdue']){const prior=qualifyCoverage({...sourceRow,state,reason:'Original failure'},{record:{holdings:retained}});assert.equal(prior.actionState,state);assert.equal(prior.reason,'Original failure')}
+assert.equal(qualifyCoverage({...sourceRow,field:'sectors'},{record:{holdings:retained}}).actionState,'current')
+assert.equal(qualifyCoverage(sourceRow,{record:{holdings:native}}).actionState,'current')
+console.log('Existing Données à revoir reducer receives the weight-qualification gap; distinct failures, dates, native books and country/sector capabilities preserved.')
