@@ -1,3 +1,4 @@
+import { unqualifiedFundRankingWeights } from './holding-weight-basis.js';
 import {newerCompatibleAum} from './aum-observations.js';
 import {withInstrumentMetadata} from './instrument-metadata.js';
 import expansionRecords from './exposure-etf-expansion-records.json' with { type:'json' };
@@ -37,7 +38,8 @@ export function refreshFundDetails(isin, previous = {}) {
   if (!r) return previous;
   return { ...previous,
     ...(previous.holdings?.length ? { holdingsAsOf: previous.holdingsAsOf ?? previous.asOf } : {}),
-    ...(r.holdings ? { holdings: r.holdings.rows.map(p => [p.name, p.weightPct]), holdingsAsOf: r.holdings.asOf, holdingsSource: r.holdings.sourceUrl ?? r.sourceUrl, holdingsCheckedAt: r.holdings.checkedAt, holdingsBasis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund'), basis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund') } : {}),
+    ...(r.holdings && !unqualifiedFundRankingWeights(r.holdings) ? { holdings: r.holdings.rows.map(p => [p.name, p.weightPct]), holdingsAsOf: r.holdings.asOf, holdingsSource: r.holdings.sourceUrl ?? r.sourceUrl, holdingsCheckedAt: r.holdings.checkedAt, holdingsBasis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund'), basis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund') } : {}),
+    ...(unqualifiedFundRankingWeights(r.holdings) ? {holdings: [], holdingsAsOf: r.holdings.asOf, holdingsSource: r.holdings.sourceUrl ?? r.sourceUrl, holdingsWeightBasis: 'issuer-fund-ranking-unqualified-nav-denominator'} : {}),
     ...(r.sectors ? { sectors: r.sectors.rows.map(p => [p.label, p.weightPct]), sectorsAsOf: r.sectors.asOf,
       sectorsSource: r.sectors.sourceUrl ?? r.sourceUrl, sectorsCheckedAt: r.sectors.checkedAt, sectorsBasis: r.sectors.basis === 'index' ? 'tracked-index' : (r.sectors.basis ?? 'fund'), basis: r.sectors.basis === 'index' ? 'tracked-index' : (r.sectors.basis ?? 'fund') } : {}),
     ...(r.countries ? { countries: r.countries.rows.map(p => [p.name, p.weightPct]), countriesAsOf: r.countries.asOf, countriesSource: r.countries.sourceUrl ?? r.sourceUrl,
