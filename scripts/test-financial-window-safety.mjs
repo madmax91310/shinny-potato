@@ -16,7 +16,9 @@ const {RANKING_ASSETS}=await import('../src/pages/performance-rankings/data.js')
 import FX from '../src/data/monthly-fx.json'with{type:'json'}
 const performance=await import('../src/pages/tweet-midi/data/performanceHistory.js')
 const rows=JSON.parse(readFileSync('public/data/financial-reconciliation.json')).rows.filter(r=>r.open||r.residualOpen)
-let refused=0,nav=0,examined=0
+const sources=JSON.parse(readFileSync('scripts/monthly-automation.json')).series
+const {INSTRUMENT_LISTINGS_BY_ISIN}=await import('../src/data/instrument-listings.js')
+let refused=0,nav=0,independentQuotes=0,examined=0
 for(const row of rows){
  const assets=Object.values(ASSETS).filter(a=>a.isin===row.isin)
  assert(assets.length,`Every open case retains an explicit consumer: ${row.id}`)
@@ -28,6 +30,15 @@ for(const row of rows){
  assert.equal(reported.qualification.qualified,qualifyHistoryWindow(asset,start,end).qualified,'Review screen reports actual consumer admission')
  if(asset.historyConvention==='fund-nav-total-return'){
   assert.notEqual(result.code,'financial-window-unconfirmed');nav++;continue
+ }
+ const source=sources.find(s=>s.id===asset.id)
+ if(source?.symbol&&source.symbol!==row.original.marketSymbol){
+  const listing=INSTRUMENT_LISTINGS_BY_ISIN[row.isin]?.find(l=>l.evidenceId===source.listingEvidenceId)
+  assert(listing,'An independent quote requires an exact official listing')
+  assert.equal(listing.symbol,source.symbol);assert.equal(listing.currency,asset.currency);assert.equal(listing.mic,asset.mic)
+  assert(asset.sourceUrls.some(u=>u.includes('/chart/'+encodeURIComponent(source.symbol)+'?')))
+  assert.notEqual(result.code,'financial-window-unconfirmed','Only the disputed quote is withheld; independent coverage can still be incomplete')
+  independentQuotes++;continue
  }
  assert.equal(result.qualified,false,`${row.id}: unresolved original quote must not be offered`)
  if(result.code==='financial-window-unconfirmed')refused++
@@ -59,7 +70,7 @@ assert.equal(qualifyHistoryWindow({...asset,portfolio:{lines:[{asset}]}},start,e
 const other={...asset,symbol:'OTHER.L',sourceUrls:['https://query2.finance.yahoo.com/v8/finance/chart/OTHER.L']}
 assert(qualifyHistoryWindow(other,start,end).qualified,'A different explicitly identified listing is not the disputed quote')
 assert.equal(examined,rows.length,'Every open comparison is checked across all its current series; new NAV routes cannot hide its original quote')
-console.log(JSON.stringify({unresolvedComparisons:rows.length,activeQuotesRefused:refused,independentNavCasesPreserved:nav,calculator:true,video:true,rankings:true,fx:true,anniversary:true,annualProjection:true,recentMonths:true}))
+console.log(JSON.stringify({unresolvedComparisons:rows.length,activeQuotesRefused:refused,independentNavCasesPreserved:nav,independentQuotesPreserved:independentQuotes,calculator:true,video:true,rankings:true,fx:true,anniversary:true,annualProjection:true,recentMonths:true}))
 
 assert.deepEqual(qualifiedYearWindow([2017,2018,2020,2023,2024,2025],3),[2023,2024,2025])
 assert.deepEqual(qualifiedYearWindow([2017,2018,2020,2023,2024,2025],4),[])

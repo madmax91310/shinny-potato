@@ -1,9 +1,36 @@
 {
-  "checkedAt": "2026-11-10T15:59:13.112Z",
+  "checkedAt": "2026-11-10T18:21:41.205Z",
   "total": 694,
   "outside": 53,
-  "complete": 640,
+  "complete": 639,
   "gaps": [
+    {
+      "asset": "IE000RDRMSD1",
+      "isin": "IE000RDRMSD1",
+      "name": "iShares Blockchain Technology UCITS ETF",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      }
+    },
     {
       "asset": "IE000XZSV718",
       "isin": "IE000XZSV718",
