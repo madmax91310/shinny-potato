@@ -38,10 +38,15 @@ function qualifiedIssuerIndex(h,share,index,now){
    &&h.shareDiscoverySourceUrl===share.shareDocumentDiscoveryUrl&&hash(h.shareDiscoverySha256)
  const subjectScopeQualified=!share.referenceOnly||(h.approximation===true&&p?.referenceOnlyForSubject===true)
  const returnRule=index.returnWeightContract,returnProof=p?.returnWeightProof
+ // Preserve genuine earlier source controls without allowing the producer to
+ // certify an old document again after its recorded review cutoff.
+ const returnDocumentSets=returnRule?[returnRule.documents,...(returnRule.historicalDocumentSets??[])
+  .filter(set=>Number.isFinite(Date.parse(set.lastSourceControlAtMost))&&control<=Date.parse(set.lastSourceControlAtMost))
+  .map(set=>set.documents)]:[]
  const returnQualified=!returnRule||(returnProof?.checkedAt===h.checkedAt&&returnProof.rule===returnRule.rule
   &&returnProof.originalWeightsUnchanged===true&&returnProof.targetReturnSeriesUnchanged===true
-  &&Array.isArray(returnProof.documents)&&returnProof.documents.length===returnRule.documents.length
-  &&returnRule.documents.every((doc,i)=>['sourceUrl','sha256','version'].every(key=>returnProof.documents[i]?.[key]===doc[key]))
+  &&Array.isArray(returnProof.documents)&&returnDocumentSets.some(docs=>Array.isArray(docs)&&returnProof.documents.length===docs.length
+   &&docs.every((doc,i)=>['sourceUrl','sha256','version'].every(key=>returnProof.documents[i]?.[key]===doc[key])))
   &&p.targetBenchmark===share.targetBenchmark&&share.hedged===false)
  return returnQualified&&subjectScopeQualified&&currencyQualified&&h.methodCode===index.methodCode&&h.sourceUrl===index.weightSourceUrl&&hash(h.sha256)
   &&typeof h.method==='string'&&h.method.trim().length>0&&subjectSource&&hash(h.shareSha256)

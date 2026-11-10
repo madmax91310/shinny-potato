@@ -1,0 +1,36 @@
+{
+  "kind": "source-review-not-a-source-execution",
+  "documents": [
+    {
+      "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
+      "priorSha256": "26d2d051beb27a6a808af7c17a2e2871cc5388e669bedbb42cbc4d0d3ce47c76",
+      "checkedAt": "2026-11-10T07:21:29.050588+00:00",
+      "sha256": "abeba3b9c101da5527cec30429bc6523d42e78a8e2ed51f868a3d2785bba005e",
+      "bytes": 748399,
+      "status": "acquired",
+      "reviewedClauses": [
+        "v7.3",
+        "November 2026",
+        "float-adjusted, market capitalization-weighted indexes",
+        "Net total return indexes based on specified withholding tax rates"
+      ]
+    },
+    {
+      "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
+      "priorSha256": "d9e4c50186666664257890de5a5c8cf9f7f52cc135a1eda85f8469e94733e266",
+      "checkedAt": "2026-11-10T07:21:29.622667+00:00",
+      "sha256": "d9e4c50186666664257890de5a5c8cf9f7f52cc135a1eda85f8469e94733e266",
+      "bytes": 247032,
+      "status": "acquired",
+      "reviewedClauses": [
+        "v1.2",
+        "September 2026",
+        "price, total and net returns",
+        "AEMV equals the index float-adjusted market value based on the primary exchange closing prices"
+      ]
+    }
+  ],
+  "scope": "Standard unhedged equity-member closing weights only. No reuse of RU20INTR returns for RU20N30U. No claim that all version changes are immaterial.",
+  "reviewedAt": "2026-11-10",
+  "notIncluded": "Full copyrighted documents; obtain them from their official URLs."
+}

@@ -114,8 +114,8 @@
         "documents": [
           {
             "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
-            "sha256": "26d2d051beb27a6a808af7c17a2e2871cc5388e669bedbb42cbc4d0d3ce47c76",
-            "version": "v7.2, August2026"
+            "sha256": "abeba3b9c101da5527cec30429bc6523d42e78a8e2ed51f868a3d2785bba005e",
+            "version": "v7.3, November2026"
           },
           {
             "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
@@ -123,7 +123,25 @@
             "version": "v1.2, September2026"
           }
         ],
-        "rule": "Equity-member weights use the same closing float-adjusted market values across the standard Russell2000 price/gross/net return series. Withholding tax changes the dividend return calculation, not these market values. Only equity weights are referenced; RU20INTR returns never replace RU20N30U returns. Hedged, capped, style and leveraged variants are excluded."
+        "rule": "Equity-member weights use the same closing float-adjusted market values across the standard Russell2000 price/gross/net return series. Withholding tax changes the dividend return calculation, not these market values. Only equity weights are referenced; RU20INTR returns never replace RU20N30U returns. Hedged, capped, style and leveraged variants are excluded.",
+        "historicalDocumentSets": [
+          {
+            "lastSourceControlAtMost": "2026-11-10T07:21:29.050588+00:00",
+            "documents": [
+              {
+                "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
+                "sha256": "26d2d051beb27a6a808af7c17a2e2871cc5388e669bedbb42cbc4d0d3ce47c76",
+                "version": "v7.2, August2026"
+              },
+              {
+                "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
+                "sha256": "d9e4c50186666664257890de5a5c8cf9f7f52cc135a1eda85f8469e94733e266",
+                "version": "v1.2, September2026"
+              }
+            ],
+            "reason": "Previously qualified historical source controls remain valid with their original dates. This is a review cutoff, not a claimed document publication date. The producer accepts only the current documents."
+          }
+        ]
       }
     }
   },

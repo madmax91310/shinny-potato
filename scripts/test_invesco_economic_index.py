@@ -221,3 +221,26 @@ class UbsMonthlyPublication(unittest.TestCase):
             qualify_subject('IE00BD4TXV59', dt.datetime(2027, 1, 1, tzinfo=dt.timezone.utc), missing, attempts=attempts)
         self.assertEqual(len(attempts), 6)
         self.assertTrue(all(r['status']=='waiting-publication' for r in attempts))
+
+
+class CurrentRussellMethod(unittest.TestCase):
+    def test_reviewed_official_documents_keep_exact_hashes_and_financial_rules(self):
+        from invesco_economic_index import CONTRACTS, return_weight_method
+        review=json.loads((Path(__file__).with_name('fixtures')/'invesco-economic-index/russell-method-20261110.json').read_text())
+        documents=CONTRACTS['indices']['russell2000-equity-members']['returnWeightContract']['documents']
+        self.assertEqual([(d['sourceUrl'],d['sha256']) for d in documents],[(d['url'],d['sha256']) for d in review['documents']])
+        # Isolated PDF decoding, not a claim of a supplier request in this test.
+        bodies={d['sourceUrl']:('isolated-pdf-'+str(i)).encode() for i,d in enumerate(documents)}
+        hashes={bodies[d['sourceUrl']]:d['sha256'] for d in documents}
+        texts={bodies[d['sourceUrl']]:' '.join(review['documents'][i]['reviewedClauses']) for i,d in enumerate(documents)}
+        now=dt.datetime(2026,11,10,tzinfo=dt.timezone.utc)
+        with patch('invesco_economic_index.digest',side_effect=hashes.__getitem__),patch('invesco_economic_index.pdf_text',side_effect=texts.__getitem__):
+            _,proof=return_weight_method('russell2000-equity-members',now,bodies.__getitem__)
+            self.assertTrue(proof['originalWeightsUnchanged'])
+            self.assertTrue(proof['targetReturnSeriesUnchanged'])
+            for index,term in [(0,'float-adjusted, market capitalization-weighted indexes'),(0,'Net total return indexes based on specified withholding tax rates'),(1,'AEMV equals the index float-adjusted market value based on the primary exchange closing prices')]:
+                changed=dict(texts);key=bodies[documents[index]['sourceUrl']];changed[key]=changed[key].replace(term,'unqualified replacement')
+                with patch('invesco_economic_index.pdf_text',side_effect=changed.__getitem__),self.assertRaisesRegex(ValueError,'Missing official common'):
+                    return_weight_method('russell2000-equity-members',now,lambda url:bodies[url])
+        self.assertEqual(documents[0]['version'],'v7.3, November2026')
+        self.assertEqual(review['documents'][1]['sha256'],review['documents'][1]['priorSha256'])
