@@ -30,10 +30,10 @@ concurrency:
   # Producers and master pushes share one full validation queue. The selector
   # coalesces queued requests; the publisher adopts the latest safe data prefix.
   # One group per data SHA otherwise starts 8 browser jobs for every collector.
-  # v4 isolates this gate generation from queued old definitions that cannot
-  # adopt current code after unrelated workflow additions. Publishing still uses
+  # v5 isolates the gate containing the mandatory exposure-publication check
+  # from queued v4 definitions that cannot certify it (#1218). Publishing still uses
   # the unchanged pages-production lock and published code/data ancestry checks.
-  group: ${{ inputs.validation_group == 'etf-publication-954' && 'pages-validation-etf-publication-954' || format('pages-validation-v4-{0}', github.event_name == 'pull_request' && github.ref || 'master') }}
+  group: ${{ inputs.validation_group == 'etf-publication-954' && 'pages-validation-etf-publication-954' || format('pages-validation-v5-{0}', github.event_name == 'pull_request' && github.ref || 'master') }}
   # Superseded PR revisions cannot publish; keep every production validation.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
   queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}
