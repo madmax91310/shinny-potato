@@ -157,3 +157,4 @@ assert.match(publicationWorkflow,/PAGES_DATA_SHA: \$\{\{ steps\.compose\.outputs
 assert(publicationWorkflow.indexOf('id: order')<publicationWorkflow.indexOf('node scripts/deploy-validated-pages.mjs'))
 assert(publicationWorkflow.indexOf('node scripts/deploy-validated-pages.mjs')<publicationWorkflow.indexOf('node scripts/verify-pages-publication.mjs'))
 console.log('Recorded Pages version: both real caller/snapshot cases, exact artifact identity, OIDC isolation, strict chronology, bounded recovery/cancellation and unchanged public verification.');
+assert.match(publicationWorkflow,/fetch-depth: 0\s+#.*\n\s+#.*\n\s+filter: blob:none/,'Full ancestry and complete current checkout must survive lazy historical-blob acquisition')

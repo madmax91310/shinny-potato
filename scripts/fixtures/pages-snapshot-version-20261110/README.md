@@ -19,3 +19,13 @@ the new code must be observed through recording and public verification.
 
 API contract: https://docs.github.com/en/rest/pages/pages#create-a-github-pages-deployment
 Original version selection: https://github.com/actions/deploy-pages/blob/v5.0.1/src/internal/context.js
+
+A third ordinary run42873841828 exposed an independent execution-budget limit:
+checkout consumed470s, composition53s, build43s, browser preparation/smoke56s,
+then Pages stayed in syncing_files until the job's20-minute limit cancelled it.
+Its own10-minute deployment bound and the unchanged public verifier had no
+reserved time. The job now allows40minutes for these distinct bounded stages;
+Pages still has its original10-minute limit and no public/financial check is
+relaxed. `filter: blob:none` preserves the full commit graph and complete current
+checkout while avoiding eager download of unused historical blobs. Proofs needed
+by an old revision remain materialized on demand, not deleted or waived.

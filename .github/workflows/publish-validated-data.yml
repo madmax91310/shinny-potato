@@ -22,7 +22,10 @@ jobs:
   publish:
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     runs-on: ubuntu-26.04
-    timeout-minutes: 20
+    # Checkout + compose/build, the existing 10-minute Pages bound, and the
+    # unchanged public verifier must each be able to finish. Run42873841828
+    # spent470s fetching history, then hit the old job limit during deployment.
+    timeout-minutes: 40
     # Hold the publication lock from code selection through verification.
     concurrency:
       group: pages-production
@@ -39,6 +42,9 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
           fetch-depth: 0
+          # Preserve full ancestry while materializing historical blobs only
+          # when a build/proof actually needs them; current files stay complete.
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
