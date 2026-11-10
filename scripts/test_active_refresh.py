@@ -1,6 +1,8 @@
 """Ensure source updates change active records, without regressions or partial writes."""
 import copy
+import contextlib
 import datetime as dt
+import io
 import json
 import pathlib
 import tempfile
@@ -15,6 +17,91 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 class ActiveRefreshTests(unittest.TestCase):
+    def run_extension_report(self, report, merged):
+        """Exercise the real CLI writes, summary and final failure gate offline."""
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            (root / 'scripts').mkdir()
+            (root / 'src/data').mkdir(parents=True)
+            (root / 'scripts/additional-etf-sources.json').write_text('{"instruments": []}')
+            active = root / 'src/data/automated-etf.json'
+            active.write_text('{}')
+            baseline = root / 'baseline.json'
+            baseline.write_text('{}')
+            output, summary = root / 'report.json', root / 'summary.md'
+            stdout = io.StringIO()
+            exit_code = 0
+            with patch.object(refresh_additional_etf, 'ROOT', root), \
+                    patch.object(refresh_additional_etf, 'refresh', return_value=(merged, report)), \
+                    patch('sys.argv', ['refresh', '--baseline', str(baseline), '--output', str(output), '--apply']), \
+                    patch.dict('os.environ', {'GITHUB_STEP_SUMMARY': str(summary)}, clear=True), \
+                    contextlib.redirect_stdout(stdout):
+                try:
+                    refresh_additional_etf.main()
+                except SystemExit as error:
+                    exit_code = error.code
+            self.assertEqual(json.loads(active.read_text()), merged)
+            self.assertEqual(json.loads(output.read_text()), report)
+            return exit_code, summary.read_text(), stdout.getvalue()
+
+    def test_source_attempt_formats_and_incomplete_receipts_preserve_126_records(self):
+        attempts = [
+            {'url': 'https://issuer.test/primary', 'reason': 'HTTP 403'},
+            {'url': 'https://issuer.test/document', 'status': 'validated'},
+            {'sourceUrl': 'https://issuer.test/alias', 'status': 'unavailable', 'error': 'HTTP 503'},
+            {'sourceUrl': 'https://issuer.test/current', 'status': 'validated'},
+            {'attempt': 1, 'sha256': 'digest', 'status': 'missing-complete-fund-file'},
+            {'status': 'failed', 'reason': 'ambiguous date'},
+            {}, {'url': None, 'sourceUrl': None}, None, 'incomplete',
+            {'url': 'https://issuer.test/http', 'sourceUrl': 'https://issuer.test/browser',
+             'status': 'partial', 'reason': 'unqualified holdings', 'error': 'date mismatch'},
+        ]
+        merged = {f'SHARE{i}': {'aum': {'amount': 100 + i, 'asOf': '2026-11-06'},
+                              'performance': {'years': {'2025': 7.5}}} for i in range(126)}
+        report = {'shares': [{'isin': isin, 'provider': 'issuer', 'status': 'validated',
+                             'sourceUrl': 'https://issuer.test/retained',
+                             'sourceAttempts': copy.deepcopy(attempts) if i == 0 else []}
+                            for i, isin in enumerate(merged)], 'notQualified': []}
+        before = copy.deepcopy(report)
+        code, summary, stdout = self.run_extension_report(report, merged)
+        self.assertEqual(code, 0)
+        self.assertEqual(report, before)
+        self.assertIn('126/126 shares validated', stdout)
+        for text in ('HTTP 403', 'HTTP 503', 'ambiguous date', 'URL non renseignée',
+                     'Tentative invalide', 'missing-complete-fund-file', 'digest',
+                     'https://issuer.test/current', 'https://issuer.test/document',
+                     'https://issuer.test/http', 'https://issuer.test/browser', 'date mismatch'):
+            self.assertIn(text, summary)
+            self.assertIn(text, stdout)
+        self.assertNotIn('Source de secours utilisée', summary)
+        self.assertNotIn('Source recovered', stdout)
+        missing = refresh_additional_etf.source_attempts_text(
+            {'isin': 'UNKNOWN', 'sourceAttempts': [{'status': 'unavailable'}]})
+        self.assertNotIn('https://', missing)
+        self.assertIn('URL non renseignée', missing)
+
+    def test_report_keeps_financial_failures_and_partial_errors_fatal(self):
+        valid = {'isin': 'VALID', 'provider': 'issuer', 'status': 'validated',
+                 'sourceUrl': 'https://issuer.test/document',
+                 'sourceAttempts': [{'sourceUrl': 'https://issuer.test/primary', 'error': 'HTTP 403'},
+                                    {'url': 'https://issuer.test/document', 'status': 'validated'}]}
+        failures = [
+            {'isin': 'BAD', 'provider': 'issuer', 'status': 'failed', 'reason': 'Ambiguous fund date'},
+            {**valid, 'collectionErrors': [{'field': 'holdings', 'reason': 'Invalid financial weights'}]},
+            {**valid, 'collectionErrors': [{'field': 'rankings-primary-http', 'reason': 'HTTP 403',
+                                          'qualifiedFallbackAvailable': True}]},
+        ]
+        for failure in failures:
+            with self.subTest(failure=failure):
+                report = {'shares': [valid, failure], 'notQualified': []}
+                code, summary, stdout = self.run_extension_report(
+                    report, {'VALID': {'aum': {'amount': 123}}, 'BAD': {'retained': True}})
+                self.assertEqual(code, 1)
+                reason = failure.get('reason') or failure['collectionErrors'][0]['reason']
+                self.assertIn(reason, summary)
+                self.assertIn(reason, stdout)
+                self.assertIn('https://issuer.test/document', summary)
+
     def test_extension_failure_signals_after_preserving_valid_updates(self):
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
