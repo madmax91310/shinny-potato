@@ -34,3 +34,18 @@ assert(!qualifiedWisdomtreeRankingsRoute(url,config))
 assert(qualifiedWisdomtreeRankingsRoute(url,config,[alias]))
 assert(!qualifiedWisdomtreeRankingsRoute(url,config,[{...alias,tradingCurrency:'USD'}]))
 console.log('Semantic route checks retain +/%20 and document-qualified same-ISIN listings; wrong hosts, products, duplicate/extra parameters and unproved listings refused.')
+
+// Real complete NAV-weighted Quantum book: exact Class A proof and cash retained.
+const quantum=JSON.parse(readFileSync('scripts/fixtures/wisdomtree-quantum-nav-20261110/qualified-replay.json'));
+const {qualifyHoldings}=await import('../src/pages/dca-profiles/holdings-qualification.js');
+const {holdingsReconciliationDetails}=await import('../src/data/holdings-reconciliation.js');
+const line={isin:'IE000W8WMSL2'},reference={isin:line.isin,synthetic:false};
+const q=qualifyHoldings(quantum,line,reference,new Date('2026-11-10T23:59:00Z'));
+assert(q.valid&&q.complete);assert.equal(quantum.rows.length,47);
+const accounting=holdingsReconciliationDetails(quantum);assert(accounting);
+assert(Math.abs(accounting.excludedWeightPctByType.Cash-.2931336614588322)<1e-12);
+assert(Math.abs(q.residualWeight-accounting.excludedWeightPctByType.Cash)<1e-10);
+assert(quantum.rows.some(r=>r.name==='Google Inc'&&r.isin==='US02079K3059'));
+const unknown=structuredClone(quantum);unknown.rows.find(r=>r.name==='Google Inc').isin=null;
+assert(!qualifyHoldings(unknown,line,reference,new Date('2026-11-10T23:59:00Z')).complete,'A name and a ticker cannot replace the independent class proof');
+console.log('Quantum: 47 exact securities, unchanged fund NAV weights, separately preserved cash and missing-identity refusal.');

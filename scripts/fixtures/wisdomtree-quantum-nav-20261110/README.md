@@ -1,0 +1,29 @@
+# Exact Quantum fund book, with published cash
+
+Real acquisition on 10 November2026; issuer snapshot 9 November2026.
+`issuer-api.json.gz` is the unmodified public issuer response for class58690128,
+WisdomTree Quantum Computing UCITS ETF USD Acc, exact ISIN IE000W8WMSL2.
+The 47 securities have original fund NAV weights totalling99.7068663385412%;
+the six literal cash accounts total0.2931336614588322%. Nothing is rescaled.
+The ordinary API adapter acquired and qualified the source over public HTTP;
+`initial-qualification.json.gz` retained one unknown identity, Google Inc.
+
+The existing rounded ranking is retained separately as `rounded-prior.json`.
+It is a dated registered observation, not a fresh source check. At the start of
+this continuation an older ranking exceeded100%; a subsequent scheduled source
+already supplied99.9998% before this correction. Do not count its already
+restored admission as a new repair or suppress the historical refusal. The NAV
+book supplies a different explicitly qualified denominator including cash.
+
+`alphabet-isin-query.json.gz` is a real independent exact ISIN request. It
+returns the issuer FIGI BBG009S39JX6 for Alphabet ClassA US02079K3059. A company
+name is only a lookup hypothesis; it cannot assign an identity or mix ClassC.
+`shared-identity-proofs.json.gz` freezes the11 shared proofs reused by the
+ordinary adapter with their original successful-control dates.
+`qualified-replay.json` replays these actual observations through the existing
+parser and reconciliation. It is not a new GitHub run, publication or cron.
+Those production proofs must be obtained separately after the code qualifies.
+
+The other precision candidate, Cloud, is deliberately not promoted. Its native
+NCINO FIGI BBG00XTV91S5 and the existing ISIN query US63947X1019 return different
+share-class FIGIs. A common company name or ticker cannot resolve this conflict.

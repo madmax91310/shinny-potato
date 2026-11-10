@@ -16,6 +16,42 @@ def portfolio():
             for i in range(12)]
 
 class ApiHoldings(unittest.TestCase):
+    def test_real_quantum_nav_book_and_independent_alphabet_class_query(self):
+        import gzip,json
+        from pathlib import Path
+        from wisdomtree_identity_cache import expand_observation
+        folder=Path(__file__).parent/'fixtures/wisdomtree-quantum-nav-20261110'
+        read=lambda name:json.loads(gzip.decompress((folder/name).read_bytes()))
+        now=dt.datetime(2026,11,10,23,59,tzinfo=dt.timezone.utc)
+        initial=read('initial-qualification.json.gz')
+        shared=read('shared-identity-proofs.json.gz')
+        observed=[expand_observation(o)for o in initial['identityObservations']]+shared
+        payload=read('issuer-api.json.gz')
+        before,_,_=parse(payload,{'isin':'IE000W8WMSL2'},now,identity_map(observed,now))
+        self.assertEqual([(r['name'],r['figi'])for r in before if not r['isin']],[('Google Inc','BBG009S39JX6')])
+        lookup=read('alphabet-isin-query.json.gz')
+        self.assertEqual(lookup['request'],[{'idType':'ID_ISIN','idValue':'US02079K3059'}])
+        mapping=identity_map(observed+[lookup],now)
+        rows,date,cash=parse(payload,{'isin':'IE000W8WMSL2'},now,mapping)
+        self.assertEqual(date,'2026-11-09');self.assertEqual(len(rows),47)
+        self.assertTrue(all(r['isin']for r in rows))
+        self.assertEqual(next(r['isin']for r in rows if r['figi']=='BBG009S39JX6'),'US02079K3059')
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows),99.7068663385412)
+        self.assertAlmostEqual(cash,.2931336614588322)
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows)+cash,100)
+        for row,item in zip(rows,[r for r in payload if r.get('figi')]):
+            self.assertEqual(row['weightPct'],item['wgt']*100,'Original NAV weights, never a scaled ranking')
+        for field,value in [('wtClassID',1),('fundTicker','OTHER'),('checkSumWgtEntity',.9),('wgt',1)]:
+            bad=copy.deepcopy(payload);bad[0][field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):
+                parse(bad,{'isin':'IE000W8WMSL2'},now,mapping)
+        from collect_wisdomtree_holdings import collect
+        with patch('wisdomtree_api_holdings.collect',return_value={'asOf':date})as api,patch('collect_wisdomtree_holdings.collect_public_rankings')as ranked:
+            self.assertEqual(collect({'isin':'IE000W8WMSL2'},now)['asOf'],date)
+            api.assert_called_once();ranked.assert_not_called()
+        with patch('wisdomtree_api_holdings.collect',side_effect=ValueError('Wrong exact fund')),patch('collect_wisdomtree_holdings.collect_public_rankings')as ranked:
+            with self.assertRaises(ValueError):collect({'isin':'IE000W8WMSL2'},now)
+            ranked.assert_not_called()
     def test_positive_receipts_renew_before_expiry_and_negative_lookups_retry(self):
         from wisdomtree_identity_cache import recent_lookup_keys,lookup_key
         positive={'idType':'ID_ISIN','idValue':'US0000000001'}
