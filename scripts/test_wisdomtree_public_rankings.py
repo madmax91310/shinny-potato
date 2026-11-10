@@ -104,7 +104,7 @@ class PublicRankings(unittest.TestCase):
    self.assertIn('GGRG%20LN',url);return payload
   with patch('collect_wisdomtree_holdings.complete_identity_mapping',return_value=(mapping,['2026-10-28'],{})):
    h=collect_public_rankings({'isin':isin,'currency':'USD'},NOW,fetch)
-  self.assertEqual(h['requestedListingTicker'],'GGRG LN');self.assertEqual(h['asOf'],'2026-10-23')
+  self.assertEqual(h['weightBasis'],'issuer-fund-ranking-unqualified-nav-denominator');self.assertNotIn('original fund NAV weights',h['method']);self.assertEqual(h['requestedListingTicker'],'GGRG LN');self.assertEqual(h['asOf'],'2026-10-23')
   self.assertTrue(h['complete']);self.assertEqual(len(calls),5)
   self.assertEqual(h['qualifiedRankingListings'][0]['tradingCurrency'],'GBx')
   self.assertEqual(h['accessAttempts'][0]['status'],'unavailable')
