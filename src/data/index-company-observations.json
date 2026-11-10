@@ -104,7 +104,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-08",
+        "checkedAt": "2026-11-10",
         "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -333,8 +333,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
-      "lastSuccessAt": "2026-11-08T13:52:20.733782+00:00",
+      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
+      "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
       "status": "validated",
       "asOf": "2026-10-31"
     }
@@ -342,98 +342,98 @@
   "dow-jones": {
     "facts": {
       "index": "Dow Jones Industrial Average",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "constituents": 30,
       "countries": [
         [
           "États-Unis",
-          100
+          100.0
         ]
       ],
       "sectors": [
         [
           "Finance",
-          26.46
+          27.3
         ],
         [
           "Technologies de l'info.",
-          18.73
-        ],
-        [
-          "Industrie",
-          16.12
+          19.2
         ],
         [
           "Santé",
-          14.07
+          14.68
+        ],
+        [
+          "Industrie",
+          13.85
         ],
         [
           "Conso Cyclique",
-          9.31
+          9.86
         ],
         [
           "Services de communication",
-          5.17
+          4.48
         ],
         [
           "Conso non Cyclique",
-          3.96
+          4.25
         ],
         [
           "Matériaux",
-          3.82
+          3.75
         ],
         [
           "Énergie",
-          2.37
+          2.63
         ]
       ],
       "holdings": [
         [
           "GOLDMAN SACHS GROUP INC",
-          10.61
+          10.53
         ],
         [
           "CATERPILLAR INC",
-          9.57
+          7.35
         ],
         [
           "MICROSOFT CORP",
-          5.89
+          6.02
         ],
         [
           "AMGEN INC",
-          4.9
+          5.23
         ],
         [
           "UNITEDHEALTH GROUP INC",
-          4.34
+          4.67
         ],
         [
           "VISA INC-CLASS A SHARES",
-          4.23
+          4.66
         ],
         [
           "TRAVELERS COMPANIES",
-          4.2
+          4.52
         ],
         [
-          "ALPHABET INC CL A",
-          3.95
+          "APPLE INC",
+          3.96
         ],
         [
           "JPMORGAN CHASE & CO",
-          3.88
+          3.9
         ],
         [
           "SHERWIN-WILLIAMS CO/THE",
-          3.82
+          3.75
         ]
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-08",
-        "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839",
+        "checkedAt": "2026-11-10",
+        "sha256": "e1a6dca38e29f01db0d752a30b8fa45b118db01074f6bd6b22eabbf6405980a5",
         "label": "Composition de l’indice publiée par Amundi"
       },
       "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
@@ -536,13 +536,111 @@
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "2026-10-31": {
+        "index": "Dow Jones Industrial Average",
+        "asOf": "2026-10-31",
+        "constituents": 30,
+        "countries": [
+          [
+            "États-Unis",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Finance",
+            27.3
+          ],
+          [
+            "Technologies de l'info.",
+            19.2
+          ],
+          [
+            "Santé",
+            14.68
+          ],
+          [
+            "Industrie",
+            13.85
+          ],
+          [
+            "Conso Cyclique",
+            9.86
+          ],
+          [
+            "Services de communication",
+            4.48
+          ],
+          [
+            "Conso non Cyclique",
+            4.25
+          ],
+          [
+            "Matériaux",
+            3.75
+          ],
+          [
+            "Énergie",
+            2.63
+          ]
+        ],
+        "holdings": [
+          [
+            "GOLDMAN SACHS GROUP INC",
+            10.53
+          ],
+          [
+            "CATERPILLAR INC",
+            7.35
+          ],
+          [
+            "MICROSOFT CORP",
+            6.02
+          ],
+          [
+            "AMGEN INC",
+            5.23
+          ],
+          [
+            "UNITEDHEALTH GROUP INC",
+            4.67
+          ],
+          [
+            "VISA INC-CLASS A SHARES",
+            4.66
+          ],
+          [
+            "TRAVELERS COMPANIES",
+            4.52
+          ],
+          [
+            "APPLE INC",
+            3.96
+          ],
+          [
+            "JPMORGAN CHASE & CO",
+            3.9
+          ],
+          [
+            "SHERWIN-WILLIAMS CO/THE",
+            3.75
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-11-10",
+          "sha256": "e1a6dca38e29f01db0d752a30b8fa45b118db01074f6bd6b22eabbf6405980a5",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
       }
     },
     "status": {
-      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
-      "lastSuccessAt": "2026-11-08T13:52:20.733782+00:00",
+      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
+      "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
       "status": "validated",
-      "asOf": "2026-09-30"
+      "asOf": "2026-10-31"
     }
   },
   "dax": {
@@ -642,7 +740,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-08",
+        "checkedAt": "2026-11-10",
         "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -855,8 +953,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
-      "lastSuccessAt": "2026-11-08T13:52:20.733782+00:00",
+      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
+      "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
       "status": "validated",
       "asOf": "2026-10-31"
     }
@@ -958,7 +1056,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
-        "checkedAt": "2026-11-08",
+        "checkedAt": "2026-11-10",
         "label": "Composition officielle automatisée · MSCI Korea",
         "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb"
       },
@@ -1171,14 +1269,14 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
-      "lastSuccessAt": "2026-11-08T13:52:20.733782+00:00",
+      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
+      "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
       "status": "validated",
       "asOf": "2026-10-30"
     },
     "companyFund": {
-      "asOf": "2026-11-05",
-      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
+      "asOf": "2026-11-06",
+      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
       "basis": "physical-creation-basket",
       "complete": true,
       "rows": [
@@ -1186,133 +1284,139 @@
           "isin": "KR7005930003",
           "name": "SAMSUNG ELECTRONICS LTD",
           "sourceName": "삼성전자",
-          "weightPct": 34.41
+          "weightPct": 34.55
         },
         {
           "isin": "KR7000660001",
           "name": "SK HYNIX",
           "sourceName": "SK하이닉스",
-          "weightPct": 25.51
+          "weightPct": 24.5
         },
         {
           "isin": "KR7005931001",
           "name": "SAMSUNG ELECTRONICS NON VOTING PRE",
           "sourceName": "삼성전자우",
-          "weightPct": 4.7
+          "weightPct": 4.72
         },
         {
           "isin": "KR7402340004",
           "name": "SK SQUARE",
           "sourceName": "SK스퀘어",
-          "weightPct": 2.74
-        },
-        {
-          "isin": "KR7009150004",
-          "name": "SAMSUNG ELECTRO MECHANICS",
-          "sourceName": "삼성전기",
-          "weightPct": 1.94
+          "weightPct": 2.63
         },
         {
           "isin": "KR7105560007",
           "name": "KB FINANCIAL GROUP",
           "sourceName": "KB금융",
-          "weightPct": 1.93
+          "weightPct": 1.99
+        },
+        {
+          "isin": "KR7009150004",
+          "name": "SAMSUNG ELECTRO MECHANICS",
+          "sourceName": "삼성전기",
+          "weightPct": 1.91
         },
         {
           "isin": "KR7005380001",
           "name": "HYUNDAI MOTOR",
           "sourceName": "현대차",
-          "weightPct": 1.42
+          "weightPct": 1.45
         },
         {
           "isin": "KR7055550008",
           "name": "SHINHAN FINANCIAL GROUP",
           "sourceName": "신한지주",
-          "weightPct": 1.35
+          "weightPct": 1.41
         },
         {
           "isin": "KR7068270008",
           "name": "CELLTRION",
           "sourceName": "셀트리온",
-          "weightPct": 1.19
+          "weightPct": 1.25
         },
         {
           "isin": "KR7086790003",
           "name": "HANA FINANCIAL GROUP",
           "sourceName": "하나금융지주",
-          "weightPct": 1.18
+          "weightPct": 1.24
         },
         {
           "isin": "KR7006400006",
           "name": "SAMSUNG SDI LTD",
           "sourceName": "삼성SDI",
-          "weightPct": 1.13
+          "weightPct": 1.11
         },
         {
           "isin": "KR7035420009",
           "name": "NAVER",
           "sourceName": "NAVER",
-          "weightPct": 0.95
+          "weightPct": 1.05
         },
         {
           "isin": "KR7000270009",
           "name": "KIA CORPORATION",
           "sourceName": "기아",
-          "weightPct": 0.86
-        },
-        {
-          "isin": "KR7028260008",
-          "name": "SAMSUNG C&T CORP",
-          "sourceName": "삼성물산",
-          "weightPct": 0.86
+          "weightPct": 0.92
         },
         {
           "isin": "KR7012450003",
           "name": "HANWHA AEROSPACE LTD",
           "sourceName": "한화에어로스페이스",
-          "weightPct": 0.83
+          "weightPct": 0.87
         },
         {
-          "isin": "KR7034020008",
-          "name": "DOOSAN ENERBILITY LTD",
-          "sourceName": "두산에너빌리티",
-          "weightPct": 0.81
+          "isin": "KR7028260008",
+          "name": "SAMSUNG C&T CORP",
+          "sourceName": "삼성물산",
+          "weightPct": 0.87
         },
         {
           "isin": "KR7012330007",
           "name": "HYUNDAI MOBIS LTD",
           "sourceName": "현대모비스",
-          "weightPct": 0.79
+          "weightPct": 0.81
         },
         {
           "isin": "KR7316140003",
           "name": "WOORI FINANCIAL GROUP INC",
           "sourceName": "우리금융지주",
-          "weightPct": 0.75
+          "weightPct": 0.79
         },
         {
-          "isin": "KR7032830002",
-          "name": "SAMSUNG LIFE LTD",
-          "sourceName": "삼성생명",
-          "weightPct": 0.72
+          "isin": "KR7034020008",
+          "name": "DOOSAN ENERBILITY LTD",
+          "sourceName": "두산에너빌리티",
+          "weightPct": 0.78
         },
         {
           "isin": "KR7005490008",
           "name": "POSCO",
           "sourceName": "POSCO홀딩스",
-          "weightPct": 0.71
+          "weightPct": 0.74
         },
         {
-          "isin": "KR7000810002",
-          "name": "SAMSUNG FIRE & MARINE INSURANCE LT",
-          "sourceName": "삼성화재",
-          "weightPct": 0.7
+          "isin": "KR7032830002",
+          "name": "SAMSUNG LIFE LTD",
+          "sourceName": "삼성생명",
+          "weightPct": 0.74
         },
         {
           "isin": "KR7207940008",
           "name": "SAMSUNG BIOLOGICS",
           "sourceName": "삼성바이오로직스",
-          "weightPct": 0.65
+          "weightPct": 0.69
+        },
+        {
+          "isin": "KR7000810002",
+          "name": "SAMSUNG FIRE & MARINE INSURANCE LT",
+          "sourceName": "삼성화재",
+          "weightPct": 0.69
+        },
+        {
+          "isin": "KR7033780008",
+          "name": "KT&G CORP",
+          "sourceName": "KT&G",
+          "weightPct": 0.66
         },
         {
           "isin": "KR7034730002",
@@ -1321,34 +1425,28 @@
           "weightPct": 0.64
         },
         {
-          "isin": "KR7033780008",
-          "name": "KT&G CORP",
-          "sourceName": "KT&G",
-          "weightPct": 0.63
-        },
-        {
           "isin": "KR7373220003",
           "name": "LG ENERGY SOLUTION LTD",
           "sourceName": "LG에너지솔루션",
-          "weightPct": 0.59
+          "weightPct": 0.62
         },
         {
           "isin": "KR7066570003",
           "name": "LG ELECTRONICS INC",
           "sourceName": "LG전자",
-          "weightPct": 0.55
-        },
-        {
-          "isin": "KR7051910008",
-          "name": "LG CHEM LTD",
-          "sourceName": "LG화학",
-          "weightPct": 0.41
+          "weightPct": 0.57
         },
         {
           "isin": "KR7010140002",
           "name": "SAMSUNG HEAVY INDUSTRIES LTD",
           "sourceName": "삼성중공업",
-          "weightPct": 0.41
+          "weightPct": 0.42
+        },
+        {
+          "isin": "KR7051910008",
+          "name": "LG CHEM LTD",
+          "sourceName": "LG화학",
+          "weightPct": 0.42
         },
         {
           "isin": "KR7196170005",
@@ -1360,19 +1458,25 @@
           "isin": "KR7009540006",
           "name": "HD KOREA SHIPBUILDING & OFFSHORE E",
           "sourceName": "HD한국조선해양",
-          "weightPct": 0.38
+          "weightPct": 0.4
         },
         {
           "isin": "KR7035720002",
           "name": "KAKAO",
           "sourceName": "카카오",
-          "weightPct": 0.36
+          "weightPct": 0.39
+        },
+        {
+          "isin": "KR7138040001",
+          "name": "MERITZ FINANCIAL GROUP INC",
+          "sourceName": "메리츠금융지주",
+          "weightPct": 0.35
         },
         {
           "isin": "KR7010120004",
           "name": "LS ELECTRIC LTD",
           "sourceName": "LS ELECTRIC",
-          "weightPct": 0.36
+          "weightPct": 0.34
         },
         {
           "isin": "KR7267260008",
@@ -1381,46 +1485,46 @@
           "weightPct": 0.34
         },
         {
-          "isin": "KR7298040007",
-          "name": "HYOSUNG HEAVY INDUSTRIES CORP",
-          "sourceName": "효성중공업",
-          "weightPct": 0.33
-        },
-        {
-          "isin": "KR7138040001",
-          "name": "MERITZ FINANCIAL GROUP INC",
-          "sourceName": "메리츠금융지주",
+          "isin": "KR7018260000",
+          "name": "SAMSUNG SDS",
+          "sourceName": "삼성에스디에스",
           "weightPct": 0.33
         },
         {
           "isin": "KR7329180004",
           "name": "HD HYUNDAI HEAVY INDUSTRIES LTD",
           "sourceName": "HD현대중공업",
-          "weightPct": 0.31
+          "weightPct": 0.32
         },
         {
           "isin": "KR7017670001",
           "name": "SK TELECOM",
           "sourceName": "SK텔레콤",
-          "weightPct": 0.3
+          "weightPct": 0.32
+        },
+        {
+          "isin": "KR7298040007",
+          "name": "HYOSUNG HEAVY INDUSTRIES CORP",
+          "sourceName": "효성중공업",
+          "weightPct": 0.32
         },
         {
           "isin": "KR7015760002",
           "name": "KOREA ELECTRIC POWER",
           "sourceName": "한국전력",
-          "weightPct": 0.29
-        },
-        {
-          "isin": "KR7018260000",
-          "name": "SAMSUNG SDS",
-          "sourceName": "삼성에스디에스",
-          "weightPct": 0.29
+          "weightPct": 0.31
         },
         {
           "isin": "KR7003550001",
           "name": "LG",
           "sourceName": "LG",
-          "weightPct": 0.28
+          "weightPct": 0.3
+        },
+        {
+          "isin": "KR7086280005",
+          "name": "HYUNDAI GLOVIS LTD",
+          "sourceName": "현대글로비스",
+          "weightPct": 0.29
         },
         {
           "isin": "KR7005830005",
@@ -1429,16 +1533,10 @@
           "weightPct": 0.28
         },
         {
-          "isin": "KR7086280005",
-          "name": "HYUNDAI GLOVIS LTD",
-          "sourceName": "현대글로비스",
-          "weightPct": 0.27
-        },
-        {
           "isin": "KR7096770003",
           "name": "SK INNOVATION LTD",
           "sourceName": "SK이노베이션",
-          "weightPct": 0.26
+          "weightPct": 0.27
         },
         {
           "isin": "KR7086520004",
@@ -1462,19 +1560,19 @@
           "isin": "KR7042660001",
           "name": "HANWHA OCEAN LTD",
           "sourceName": "한화오션",
-          "weightPct": 0.23
+          "weightPct": 0.24
         },
         {
           "isin": "KR7047810007",
           "name": "KOREA AEROSPACE INDUSTRIES",
           "sourceName": "한국항공우주",
-          "weightPct": 0.22
+          "weightPct": 0.23
         },
         {
-          "isin": "KR7071050009",
-          "name": "KOREA INVESTMENT HOLDINGS LTD",
-          "sourceName": "한국금융지주",
-          "weightPct": 0.22
+          "isin": "KR7259960003",
+          "name": "KRAFTON",
+          "sourceName": "크래프톤",
+          "weightPct": 0.23
         },
         {
           "isin": "KR7000720003",
@@ -1489,16 +1587,22 @@
           "weightPct": 0.21
         },
         {
-          "isin": "KR7259960003",
-          "name": "KRAFTON",
-          "sourceName": "크래프톤",
-          "weightPct": 0.21
-        },
-        {
           "isin": "KR7003490000",
           "name": "KOREAN AIR LINES",
           "sourceName": "대한항공",
-          "weightPct": 0.2
+          "weightPct": 0.21
+        },
+        {
+          "isin": "KR7003230000",
+          "name": "SAM YANG FOODS INC",
+          "sourceName": "삼양식품",
+          "weightPct": 0.21
+        },
+        {
+          "isin": "KR7005382007",
+          "name": "HYUNDAI MOTOR S2 PREF",
+          "sourceName": "현대차2우B",
+          "weightPct": 0.21
         },
         {
           "isin": "KR7267250009",
@@ -1507,28 +1611,22 @@
           "weightPct": 0.2
         },
         {
-          "isin": "KR7005382007",
-          "name": "HYUNDAI MOTOR S2 PREF",
-          "sourceName": "현대차2우B",
-          "weightPct": 0.2
-        },
-        {
-          "isin": "KR7003230000",
-          "name": "SAM YANG FOODS INC",
-          "sourceName": "삼양식품",
-          "weightPct": 0.2
-        },
-        {
           "isin": "KR7064350002",
           "name": "HYUNDAI-ROTEM",
           "sourceName": "현대로템",
-          "weightPct": 0.19
+          "weightPct": 0.2
         },
         {
-          "isin": "KR7000150003",
-          "name": "DOOSAN CORP",
-          "sourceName": "두산",
-          "weightPct": 0.19
+          "isin": "KR7071050009",
+          "name": "KOREA INVESTMENT HOLDINGS LTD",
+          "sourceName": "한국금융지주",
+          "weightPct": 0.2
+        },
+        {
+          "isin": "KR7011200003",
+          "name": "HMM LTD",
+          "sourceName": "HMM",
+          "weightPct": 0.2
         },
         {
           "isin": "KR7247540008",
@@ -1537,16 +1635,22 @@
           "weightPct": 0.19
         },
         {
-          "isin": "KR7011200003",
-          "name": "HMM LTD",
-          "sourceName": "HMM",
-          "weightPct": 0.19
+          "isin": "KR7024110009",
+          "name": "INDUSTRIAL BANK OF KOREA",
+          "sourceName": "기업은행",
+          "weightPct": 0.18
         },
         {
-          "isin": "KR7079550000",
-          "name": "LIG DEFENSE&AEROSPACE LTD",
-          "sourceName": "LIG디펜스앤에어로스페이스",
-          "weightPct": 0.17
+          "isin": "KR7000150003",
+          "name": "DOOSAN CORP",
+          "sourceName": "두산",
+          "weightPct": 0.18
+        },
+        {
+          "isin": "KR7010950004",
+          "name": "S-OIL",
+          "sourceName": "S-Oil",
+          "weightPct": 0.18
         },
         {
           "isin": "KR7006800007",
@@ -1555,15 +1659,9 @@
           "weightPct": 0.17
         },
         {
-          "isin": "KR7024110009",
-          "name": "INDUSTRIAL BANK OF KOREA",
-          "sourceName": "기업은행",
-          "weightPct": 0.17
-        },
-        {
-          "isin": "KR7010950004",
-          "name": "S-OIL",
-          "sourceName": "S-Oil",
+          "isin": "KR7079550000",
+          "name": "LIG DEFENSE&AEROSPACE LTD",
+          "sourceName": "LIG디펜스앤에어로스페이스",
           "weightPct": 0.17
         },
         {
@@ -1576,6 +1674,12 @@
           "isin": "KR7000100008",
           "name": "YUHAN",
           "sourceName": "유한양행",
+          "weightPct": 0.16
+        },
+        {
+          "isin": "KR7090430000",
+          "name": "AMOREPACIFIC",
+          "sourceName": "아모레퍼시픽",
           "weightPct": 0.15
         },
         {
@@ -1591,9 +1695,9 @@
           "weightPct": 0.14
         },
         {
-          "isin": "KR7090430000",
-          "name": "AMOREPACIFIC",
-          "sourceName": "아모레퍼시픽",
+          "isin": "KR7323410001",
+          "name": "KAKAOBANK",
+          "sourceName": "카카오뱅크",
           "weightPct": 0.14
         },
         {
@@ -1603,16 +1707,10 @@
           "weightPct": 0.13
         },
         {
-          "isin": "KR7323410001",
-          "name": "KAKAOBANK",
-          "sourceName": "카카오뱅크",
-          "weightPct": 0.13
-        },
-        {
           "isin": "KR7005381009",
           "name": "HYUNDAI MOTOR S1 PREF",
           "sourceName": "현대차우",
-          "weightPct": 0.12
+          "weightPct": 0.13
         },
         {
           "isin": "KR7005940002",
@@ -1624,78 +1722,78 @@
           "isin": "KR7032640005",
           "name": "LG UPLUS",
           "sourceName": "LG유플러스",
-          "weightPct": 0.06
+          "weightPct": 0.07
         }
       ],
       "countries": [
         [
           "Corée du Sud",
-          99.75000000000001
+          99.73999999999997
         ]
       ],
       "sectors": [
         [
           "💻 Technologie",
-          68.37
+          67.50999999999999
         ],
         [
           "🏭 Industrie",
-          11.569999999999999
+          11.600000000000001
         ],
         [
           "🏦 Finance",
-          8.049999999999999
+          8.299999999999999
         ],
         [
           "🛍️ Consommation cyclique",
-          4.1000000000000005
+          4.25
         ],
         [
           "🏥 Santé",
-          2.4
+          2.5100000000000002
         ],
         [
           "📡 Communication",
-          2.0100000000000002
+          2.19
         ],
         [
           "🛒 Consommation de base",
-          1.21
+          1.26
         ],
         [
           "🪨 Matériaux",
-          1.1199999999999999
+          1.16
         ],
         [
           "⚡ Énergie",
-          0.63
+          0.65
         ],
         [
           "💡 Services publics",
-          0.29
+          0.31
         ]
       ],
-      "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.05",
-      "sha256": "9e08f87fcf480e5adb2aa6be6f1de09fb063e150b12dba86d61f3602745c0eb8",
+      "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.06",
+      "sha256": "5d9eed3f8d1ff0606219286b748becac75561634eb2f245b7faab0eb04e488f4",
       "datedBasketProof": {
-        "requestedAsOf": "2026-11-05",
-        "serverFileName": "HANARO MSCI KOREA TR_PDF_2026.11.05.xlsx",
-        "fragmentUrl": "https://www.hanaroetf.com/api/v1/fund/CEBA1E927AC1478B/get-fund-holdings-list?baseDate=2026.11.05",
-        "fragmentSha256": "f831b993995fb7a3367ba3d7b394f8a3a49a9c107ea9c3ec0ba7ff441d2387c7",
-        "latestPublisherAsOf": "2026-11-06",
+        "requestedAsOf": "2026-11-06",
+        "serverFileName": "HANARO MSCI KOREA TR_PDF_2026.11.06.xlsx",
+        "fragmentUrl": "https://www.hanaroetf.com/api/v1/fund/CEBA1E927AC1478B/get-fund-holdings-list?baseDate=2026.11.06",
+        "fragmentSha256": "f9b9760e8213803541ca64b39a196d573e469efcdcd9448bf2feba21da356c31",
+        "latestPublisherAsOf": "2026-11-09",
         "publicationPageUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
         "method": "Same-date physical basket explicitly confirmed by issuer download filename and every HTML/Excel position; latest mismatched basket excluded"
       },
-      "cashWeightPct": 0.23,
+      "cashWeightPct": 0.25,
       "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
       "sourceProductCode": "KRX 332940",
       "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
-      "identityCheckedAt": "2026-11-08",
+      "identityCheckedAt": "2026-11-10",
       "identitySha256": "4838bb201f9e4d201ddcddfbff97958f0171bc39bf8686a69ad08cd82ca1d0b7",
       "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "classificationSha256": "27da09d22822147b4106a4475f3bbfeacd979a3c65f1f1a06ec31151d15f31a8",
-      "classificationAsOf": "2026-11-05",
-      "classificationCheckedAt": "2026-11-08T13:52:20.733782+00:00",
+      "classificationSha256": "55d5bd44a45bb544693a7f14c18e42324d22ff3535cb3ed26281b31b6a655fdc",
+      "classificationAsOf": "2026-11-06",
+      "classificationCheckedAt": "2026-11-10T08:00:47.014826+00:00",
       "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
       "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé."
     },
@@ -6829,13 +6927,536 @@
         "classificationCheckedAt": "2026-11-06T14:38:29.044635+00:00",
         "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
         "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé."
+      },
+      "2026-11-06": {
+        "asOf": "2026-11-06",
+        "checkedAt": "2026-11-10T08:00:47.014826+00:00",
+        "basis": "physical-creation-basket",
+        "complete": true,
+        "rows": [
+          {
+            "isin": "KR7005930003",
+            "name": "SAMSUNG ELECTRONICS LTD",
+            "sourceName": "삼성전자",
+            "weightPct": 34.55
+          },
+          {
+            "isin": "KR7000660001",
+            "name": "SK HYNIX",
+            "sourceName": "SK하이닉스",
+            "weightPct": 24.5
+          },
+          {
+            "isin": "KR7005931001",
+            "name": "SAMSUNG ELECTRONICS NON VOTING PRE",
+            "sourceName": "삼성전자우",
+            "weightPct": 4.72
+          },
+          {
+            "isin": "KR7402340004",
+            "name": "SK SQUARE",
+            "sourceName": "SK스퀘어",
+            "weightPct": 2.63
+          },
+          {
+            "isin": "KR7105560007",
+            "name": "KB FINANCIAL GROUP",
+            "sourceName": "KB금융",
+            "weightPct": 1.99
+          },
+          {
+            "isin": "KR7009150004",
+            "name": "SAMSUNG ELECTRO MECHANICS",
+            "sourceName": "삼성전기",
+            "weightPct": 1.91
+          },
+          {
+            "isin": "KR7005380001",
+            "name": "HYUNDAI MOTOR",
+            "sourceName": "현대차",
+            "weightPct": 1.45
+          },
+          {
+            "isin": "KR7055550008",
+            "name": "SHINHAN FINANCIAL GROUP",
+            "sourceName": "신한지주",
+            "weightPct": 1.41
+          },
+          {
+            "isin": "KR7068270008",
+            "name": "CELLTRION",
+            "sourceName": "셀트리온",
+            "weightPct": 1.25
+          },
+          {
+            "isin": "KR7086790003",
+            "name": "HANA FINANCIAL GROUP",
+            "sourceName": "하나금융지주",
+            "weightPct": 1.24
+          },
+          {
+            "isin": "KR7006400006",
+            "name": "SAMSUNG SDI LTD",
+            "sourceName": "삼성SDI",
+            "weightPct": 1.11
+          },
+          {
+            "isin": "KR7035420009",
+            "name": "NAVER",
+            "sourceName": "NAVER",
+            "weightPct": 1.05
+          },
+          {
+            "isin": "KR7000270009",
+            "name": "KIA CORPORATION",
+            "sourceName": "기아",
+            "weightPct": 0.92
+          },
+          {
+            "isin": "KR7012450003",
+            "name": "HANWHA AEROSPACE LTD",
+            "sourceName": "한화에어로스페이스",
+            "weightPct": 0.87
+          },
+          {
+            "isin": "KR7028260008",
+            "name": "SAMSUNG C&T CORP",
+            "sourceName": "삼성물산",
+            "weightPct": 0.87
+          },
+          {
+            "isin": "KR7012330007",
+            "name": "HYUNDAI MOBIS LTD",
+            "sourceName": "현대모비스",
+            "weightPct": 0.81
+          },
+          {
+            "isin": "KR7316140003",
+            "name": "WOORI FINANCIAL GROUP INC",
+            "sourceName": "우리금융지주",
+            "weightPct": 0.79
+          },
+          {
+            "isin": "KR7034020008",
+            "name": "DOOSAN ENERBILITY LTD",
+            "sourceName": "두산에너빌리티",
+            "weightPct": 0.78
+          },
+          {
+            "isin": "KR7005490008",
+            "name": "POSCO",
+            "sourceName": "POSCO홀딩스",
+            "weightPct": 0.74
+          },
+          {
+            "isin": "KR7032830002",
+            "name": "SAMSUNG LIFE LTD",
+            "sourceName": "삼성생명",
+            "weightPct": 0.74
+          },
+          {
+            "isin": "KR7207940008",
+            "name": "SAMSUNG BIOLOGICS",
+            "sourceName": "삼성바이오로직스",
+            "weightPct": 0.69
+          },
+          {
+            "isin": "KR7000810002",
+            "name": "SAMSUNG FIRE & MARINE INSURANCE LT",
+            "sourceName": "삼성화재",
+            "weightPct": 0.69
+          },
+          {
+            "isin": "KR7033780008",
+            "name": "KT&G CORP",
+            "sourceName": "KT&G",
+            "weightPct": 0.66
+          },
+          {
+            "isin": "KR7034730002",
+            "name": "SK INC",
+            "sourceName": "SK",
+            "weightPct": 0.64
+          },
+          {
+            "isin": "KR7373220003",
+            "name": "LG ENERGY SOLUTION LTD",
+            "sourceName": "LG에너지솔루션",
+            "weightPct": 0.62
+          },
+          {
+            "isin": "KR7066570003",
+            "name": "LG ELECTRONICS INC",
+            "sourceName": "LG전자",
+            "weightPct": 0.57
+          },
+          {
+            "isin": "KR7010140002",
+            "name": "SAMSUNG HEAVY INDUSTRIES LTD",
+            "sourceName": "삼성중공업",
+            "weightPct": 0.42
+          },
+          {
+            "isin": "KR7051910008",
+            "name": "LG CHEM LTD",
+            "sourceName": "LG화학",
+            "weightPct": 0.42
+          },
+          {
+            "isin": "KR7196170005",
+            "name": "ALTEOGEN INC",
+            "sourceName": "알테오젠",
+            "weightPct": 0.41
+          },
+          {
+            "isin": "KR7009540006",
+            "name": "HD KOREA SHIPBUILDING & OFFSHORE E",
+            "sourceName": "HD한국조선해양",
+            "weightPct": 0.4
+          },
+          {
+            "isin": "KR7035720002",
+            "name": "KAKAO",
+            "sourceName": "카카오",
+            "weightPct": 0.39
+          },
+          {
+            "isin": "KR7138040001",
+            "name": "MERITZ FINANCIAL GROUP INC",
+            "sourceName": "메리츠금융지주",
+            "weightPct": 0.35
+          },
+          {
+            "isin": "KR7010120004",
+            "name": "LS ELECTRIC LTD",
+            "sourceName": "LS ELECTRIC",
+            "weightPct": 0.34
+          },
+          {
+            "isin": "KR7267260008",
+            "name": "HD HYUNDAI ELECTRIC",
+            "sourceName": "HD현대일렉트릭",
+            "weightPct": 0.34
+          },
+          {
+            "isin": "KR7018260000",
+            "name": "SAMSUNG SDS",
+            "sourceName": "삼성에스디에스",
+            "weightPct": 0.33
+          },
+          {
+            "isin": "KR7329180004",
+            "name": "HD HYUNDAI HEAVY INDUSTRIES LTD",
+            "sourceName": "HD현대중공업",
+            "weightPct": 0.32
+          },
+          {
+            "isin": "KR7017670001",
+            "name": "SK TELECOM",
+            "sourceName": "SK텔레콤",
+            "weightPct": 0.32
+          },
+          {
+            "isin": "KR7298040007",
+            "name": "HYOSUNG HEAVY INDUSTRIES CORP",
+            "sourceName": "효성중공업",
+            "weightPct": 0.32
+          },
+          {
+            "isin": "KR7015760002",
+            "name": "KOREA ELECTRIC POWER",
+            "sourceName": "한국전력",
+            "weightPct": 0.31
+          },
+          {
+            "isin": "KR7003550001",
+            "name": "LG",
+            "sourceName": "LG",
+            "weightPct": 0.3
+          },
+          {
+            "isin": "KR7086280005",
+            "name": "HYUNDAI GLOVIS LTD",
+            "sourceName": "현대글로비스",
+            "weightPct": 0.29
+          },
+          {
+            "isin": "KR7005830005",
+            "name": "DB INSURANCE LTD",
+            "sourceName": "DB손해보험",
+            "weightPct": 0.28
+          },
+          {
+            "isin": "KR7096770003",
+            "name": "SK INNOVATION LTD",
+            "sourceName": "SK이노베이션",
+            "weightPct": 0.27
+          },
+          {
+            "isin": "KR7086520004",
+            "name": "ECOPRO LTD",
+            "sourceName": "에코프로",
+            "weightPct": 0.26
+          },
+          {
+            "isin": "KR7042700005",
+            "name": "HANMI SEMICONDUCTOR",
+            "sourceName": "한미반도체",
+            "weightPct": 0.25
+          },
+          {
+            "isin": "KR7278470000",
+            "name": "APR LTD",
+            "sourceName": "에이피알",
+            "weightPct": 0.24
+          },
+          {
+            "isin": "KR7042660001",
+            "name": "HANWHA OCEAN LTD",
+            "sourceName": "한화오션",
+            "weightPct": 0.24
+          },
+          {
+            "isin": "KR7047810007",
+            "name": "KOREA AEROSPACE INDUSTRIES",
+            "sourceName": "한국항공우주",
+            "weightPct": 0.23
+          },
+          {
+            "isin": "KR7259960003",
+            "name": "KRAFTON",
+            "sourceName": "크래프톤",
+            "weightPct": 0.23
+          },
+          {
+            "isin": "KR7000720003",
+            "name": "HYUNDAI ENGINEERING & CONSTRUCTION",
+            "sourceName": "현대건설",
+            "weightPct": 0.22
+          },
+          {
+            "isin": "KR7003670007",
+            "name": "POSCO FUTURE M LTD",
+            "sourceName": "포스코퓨처엠",
+            "weightPct": 0.21
+          },
+          {
+            "isin": "KR7003490000",
+            "name": "KOREAN AIR LINES",
+            "sourceName": "대한항공",
+            "weightPct": 0.21
+          },
+          {
+            "isin": "KR7003230000",
+            "name": "SAM YANG FOODS INC",
+            "sourceName": "삼양식품",
+            "weightPct": 0.21
+          },
+          {
+            "isin": "KR7005382007",
+            "name": "HYUNDAI MOTOR S2 PREF",
+            "sourceName": "현대차2우B",
+            "weightPct": 0.21
+          },
+          {
+            "isin": "KR7267250009",
+            "name": "HD HYUNDAI LTD",
+            "sourceName": "HD현대",
+            "weightPct": 0.2
+          },
+          {
+            "isin": "KR7064350002",
+            "name": "HYUNDAI-ROTEM",
+            "sourceName": "현대로템",
+            "weightPct": 0.2
+          },
+          {
+            "isin": "KR7071050009",
+            "name": "KOREA INVESTMENT HOLDINGS LTD",
+            "sourceName": "한국금융지주",
+            "weightPct": 0.2
+          },
+          {
+            "isin": "KR7011200003",
+            "name": "HMM LTD",
+            "sourceName": "HMM",
+            "weightPct": 0.2
+          },
+          {
+            "isin": "KR7247540008",
+            "name": "ECOPRO BM LTD",
+            "sourceName": "에코프로비엠",
+            "weightPct": 0.19
+          },
+          {
+            "isin": "KR7024110009",
+            "name": "INDUSTRIAL BANK OF KOREA",
+            "sourceName": "기업은행",
+            "weightPct": 0.18
+          },
+          {
+            "isin": "KR7000150003",
+            "name": "DOOSAN CORP",
+            "sourceName": "두산",
+            "weightPct": 0.18
+          },
+          {
+            "isin": "KR7010950004",
+            "name": "S-OIL",
+            "sourceName": "S-Oil",
+            "weightPct": 0.18
+          },
+          {
+            "isin": "KR7006800007",
+            "name": "MIRAE ASSET SECURITIES CO LTD",
+            "sourceName": "미래에셋증권",
+            "weightPct": 0.17
+          },
+          {
+            "isin": "KR7079550000",
+            "name": "LIG DEFENSE&AEROSPACE LTD",
+            "sourceName": "LIG디펜스앤에어로스페이스",
+            "weightPct": 0.17
+          },
+          {
+            "isin": "KR7161390000",
+            "name": "HANKOOK TIRE & TECHNOLOGY LTD",
+            "sourceName": "한국타이어앤테크놀로지",
+            "weightPct": 0.16
+          },
+          {
+            "isin": "KR7000100008",
+            "name": "YUHAN",
+            "sourceName": "유한양행",
+            "weightPct": 0.16
+          },
+          {
+            "isin": "KR7090430000",
+            "name": "AMOREPACIFIC",
+            "sourceName": "아모레퍼시픽",
+            "weightPct": 0.15
+          },
+          {
+            "isin": "KR7272210006",
+            "name": "HANWHA SYSTEMS LTD",
+            "sourceName": "한화시스템",
+            "weightPct": 0.15
+          },
+          {
+            "isin": "KR7011070000",
+            "name": "LG INNOTEK LTD",
+            "sourceName": "LG이노텍",
+            "weightPct": 0.14
+          },
+          {
+            "isin": "KR7323410001",
+            "name": "KAKAOBANK",
+            "sourceName": "카카오뱅크",
+            "weightPct": 0.14
+          },
+          {
+            "isin": "KR7352820005",
+            "name": "HYBE",
+            "sourceName": "하이브",
+            "weightPct": 0.13
+          },
+          {
+            "isin": "KR7005381009",
+            "name": "HYUNDAI MOTOR S1 PREF",
+            "sourceName": "현대차우",
+            "weightPct": 0.13
+          },
+          {
+            "isin": "KR7005940002",
+            "name": "NH INVESTMENT & SECURITIES",
+            "sourceName": "NH투자증권",
+            "weightPct": 0.12
+          },
+          {
+            "isin": "KR7032640005",
+            "name": "LG UPLUS",
+            "sourceName": "LG유플러스",
+            "weightPct": 0.07
+          }
+        ],
+        "countries": [
+          [
+            "Corée du Sud",
+            99.73999999999997
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            67.50999999999999
+          ],
+          [
+            "🏭 Industrie",
+            11.600000000000001
+          ],
+          [
+            "🏦 Finance",
+            8.299999999999999
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            4.25
+          ],
+          [
+            "🏥 Santé",
+            2.5100000000000002
+          ],
+          [
+            "📡 Communication",
+            2.19
+          ],
+          [
+            "🛒 Consommation de base",
+            1.26
+          ],
+          [
+            "🪨 Matériaux",
+            1.16
+          ],
+          [
+            "⚡ Énergie",
+            0.65
+          ],
+          [
+            "💡 Services publics",
+            0.31
+          ]
+        ],
+        "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.06",
+        "sha256": "5d9eed3f8d1ff0606219286b748becac75561634eb2f245b7faab0eb04e488f4",
+        "datedBasketProof": {
+          "requestedAsOf": "2026-11-06",
+          "serverFileName": "HANARO MSCI KOREA TR_PDF_2026.11.06.xlsx",
+          "fragmentUrl": "https://www.hanaroetf.com/api/v1/fund/CEBA1E927AC1478B/get-fund-holdings-list?baseDate=2026.11.06",
+          "fragmentSha256": "f9b9760e8213803541ca64b39a196d573e469efcdcd9448bf2feba21da356c31",
+          "latestPublisherAsOf": "2026-11-09",
+          "publicationPageUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+          "method": "Same-date physical basket explicitly confirmed by issuer download filename and every HTML/Excel position; latest mismatched basket excluded"
+        },
+        "cashWeightPct": 0.25,
+        "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
+        "sourceProductCode": "KRX 332940",
+        "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
+        "identityCheckedAt": "2026-11-10",
+        "identitySha256": "4838bb201f9e4d201ddcddfbff97958f0171bc39bf8686a69ad08cd82ca1d0b7",
+        "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "classificationSha256": "55d5bd44a45bb544693a7f14c18e42324d22ff3535cb3ed26281b31b6a655fdc",
+        "classificationAsOf": "2026-11-06",
+        "classificationCheckedAt": "2026-11-10T08:00:47.014826+00:00",
+        "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
+        "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé."
       }
     },
     "companyStatus": {
-      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
-      "lastSuccessAt": "2026-11-08T13:52:20.733782+00:00",
+      "checkedAt": "2026-11-10T08:00:47.014826+00:00",
+      "lastSuccessAt": "2026-11-10T08:00:47.014826+00:00",
       "status": "validated",
-      "asOf": "2026-11-05"
+      "asOf": "2026-11-06"
     }
   }
 }
