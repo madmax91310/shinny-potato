@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "runId": 42842184286,
+      "jobId": 129928868258,
+      "producer": "update-market-monthly.yml",
+      "eventSha": "200166e59320852553b6c720076fff8d461485c1",
+      "recordedDataSha": "d515b99bdebe787a0b5d476285e74e68e59fa4f5",
+      "artifactId": 13777766942,
+      "observedPrecedingDataSha": "80b13390ab3863f4172e25a05ef0db1cb78e9ee5",
+      "publicVerification": "30 unsuccessful polls 2026-11-10T15:38:24Z to 15:45:40Z; correct artifact build-info verified separately"
+    },
+    {
+      "runId": 42845464106,
+      "jobId": 129943623636,
+      "producer": "update-non-bond-expansion.yml",
+      "eventSha": "d515b99bdebe787a0b5d476285e74e68e59fa4f5",
+      "recordedDataSha": "b28fc20865defe23c14ebdc3743b521ccafb1962",
+      "artifactId": 13783154054,
+      "observedPrecedingDataSha": "a7774c3a361b6f066736e2a404da81817d59187c",
+      "publicVerification": "30 unsuccessful polls 2026-11-10T16:52:49Z to 17:00:06Z"
+    }
+  ],
+  "meaning": "Observed mismatch between caller build version and actual recorded artifact. The change binds the deployment to that recorded commit; it does not certify the old failed attempts or assert a universal GitHub cache cause."
+}
