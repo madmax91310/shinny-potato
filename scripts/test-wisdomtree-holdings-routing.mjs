@@ -49,3 +49,17 @@ assert(quantum.rows.some(r=>r.name==='Google Inc'&&r.isin==='US02079K3059'));
 const unknown=structuredClone(quantum);unknown.rows.find(r=>r.name==='Google Inc').isin=null;
 assert(!qualifyHoldings(unknown,line,reference,new Date('2026-11-10T23:59:00Z')).complete,'A name and a ticker cannot replace the independent class proof');
 console.log('Quantum: 47 exact securities, unchanged fund NAV weights, separately preserved cash and missing-identity refusal.');
+
+const {projectDcaHoldings}=await import('./lib/dca-holdings-projection.mjs');
+const {holdingsConsumerQualifications}=await import('./lib/holdings-consumer-qualification.mjs');
+const ranking=JSON.parse(readFileSync('scripts/fixtures/wisdomtree-ranking-basis-20261110/rankings-retained.json'));
+ranking.accessAttempts=[{sourceUrl:quantum.sourceUrl,status:'unavailable',error:'HTTP403 native source'}];
+const projected=projectDcaHoldings(ranking,false);
+assert.deepEqual(projected.accessAttempts,ranking.accessAttempts);
+const denied=qualifyHoldings(projected,line,reference,new Date('2026-11-10T23:59:00Z'));
+assert(!denied.valid&&!denied.complete);assert(denied.reasons.some(r=>r.includes('403')),'The native provider failure remains visible in the existing source details');
+assert(!qualifyHoldings({...quantum,subjectIsin:'IE00BJGWQN72'},line,reference,new Date('2026-11-10T23:59:00Z')).valid,'A closed NAV book cannot be attached to another exact part');
+const missingAttemptProof=structuredClone(projected);delete missingAttemptProof.accessAttempts;
+const mismatch=holdingsConsumerQualifications({references:{q:reference},holdings:{q:missingAttemptProof},sourceRecords:{[line.isin]:ranking},now:new Date('2026-11-10T23:59:00Z')})[line.isin];
+assert.equal(mismatch.outcomes[0].status,'deferred','Losing the native attempt proof cannot certify a matching source projection');
+console.log('Native attempts survive projection, supplier errors remain visible, exact-share binding and proof-loss refusal preserved.');

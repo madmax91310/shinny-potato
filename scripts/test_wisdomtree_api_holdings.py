@@ -52,6 +52,22 @@ class ApiHoldings(unittest.TestCase):
         with patch('wisdomtree_api_holdings.collect',side_effect=ValueError('Wrong exact fund')),patch('collect_wisdomtree_holdings.collect_public_rankings')as ranked:
             with self.assertRaises(ValueError):collect({'isin':'IE000W8WMSL2'},now)
             ranked.assert_not_called()
+    def test_all_six_exact_classes_attempt_the_native_book_before_ranked_fallback(self):
+        from collect_wisdomtree_holdings import collect
+        from wisdomtree_api_holdings import CLASSES,IssuerApiUnavailable
+        now=dt.datetime(2026,11,10,tzinfo=dt.timezone.utc)
+        for isin in CLASSES:
+            with self.subTest(isin=isin):
+                with patch('wisdomtree_api_holdings.collect',return_value={'asOf':'2026-11-09','basis':'fund'})as api,patch('collect_wisdomtree_holdings.collect_public_rankings')as ranked:
+                    self.assertEqual(collect({'isin':isin},now)['asOf'],'2026-11-09');api.assert_called_once();ranked.assert_not_called()
+                with patch('wisdomtree_api_holdings.collect',side_effect=IssuerApiUnavailable('HTTP403')),patch('collect_wisdomtree_holdings.collect_public_rankings',return_value={'asOf':'2026-11-09','weightBasis':'issuer-fund-ranking-unqualified-nav-denominator'})as ranked:
+                    value=collect({'isin':isin},now);ranked.assert_called_once()
+                    self.assertEqual(value['weightBasis'],'issuer-fund-ranking-unqualified-nav-denominator')
+                    self.assertEqual(value['accessAttempts'][0]['status'],'unavailable')
+                    self.assertIn('403',value['accessAttempts'][0]['error'])
+                with patch('wisdomtree_api_holdings.collect',side_effect=ValueError('Wrong exact native part')),patch('collect_wisdomtree_holdings.collect_public_rankings')as ranked:
+                    with self.assertRaises(ValueError):collect({'isin':isin},now)
+                    ranked.assert_not_called()
     def test_positive_receipts_renew_before_expiry_and_negative_lookups_retry(self):
         from wisdomtree_identity_cache import recent_lookup_keys,lookup_key
         positive={'idType':'ID_ISIN','idValue':'US0000000001'}

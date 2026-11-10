@@ -3,7 +3,7 @@ import {qualifyHoldings} from '../../src/pages/dca-profiles/holdings-qualificati
 const signature=h=>!Array.isArray(h?.rows)||h.rows.some(r=>!r||typeof r!=='object')?null:JSON.stringify({
  asOf:h.asOf,checkedAt:h.checkedAt,sourceUrl:h.sourceUrl,sha256:h.sha256,basis:h.basis,
  complete:h.complete===true,approximation:h.approximation===true,
- weightBasis:h.weightBasis,scope:h.scope,subjectIsin:h.subjectIsin,navReconciliation:h.navReconciliation,coverageProof:h.coverageProof,
+ accessAttempts:h.accessAttempts,weightBasis:h.weightBasis,scope:h.scope,subjectIsin:h.subjectIsin,navReconciliation:h.navReconciliation,coverageProof:h.coverageProof,
  positions:h.rows.map(r=>JSON.stringify([r.isin??null,r.weightPct])).sort(),
 })
 

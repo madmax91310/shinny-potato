@@ -125,7 +125,7 @@ def collect(share,now):
     # rounded ranking must not hide it. Only transport failure permits fallback;
     # contradictory identity/date/weight evidence still fails closed.
     api_error=None
-    if share['isin'] in ('IE00BZ56SW52','IE00BKLF1R75','IE000W8WMSL2'):
+    if share['isin'] in CLASSES:
         try:return api_collect(share,now)
         except IssuerApiUnavailable as error:api_error=error
     rankings_error=''
