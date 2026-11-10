@@ -344,7 +344,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "f79dd73cb3fc8f6eb5890da4efbf63b19f1c19e4a075b495392d418f5daed00d",
     "automatedRecord": {
       "currency": "USD",
@@ -1012,7 +1012,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "852373a6a97c141c67c2ac9cbb11bd1329b2881957f1b7c89a15803fdc1ded73",
     "automatedRecord": {
       "currency": "USD",
@@ -1605,8 +1605,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "3b2709bf4e91149009d79a0a0ce0790d83d78b901dff563a656f6b194a22d061",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "99b0e348d8d5a3d3747a68046b833cd5ce7104e9620ee8e71656570dfb2f80ec",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251707,
@@ -2179,7 +2179,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "c2c779f7c4fb7b17a99163f0f9879aba6abc7f171e00480c0046009863958553",
     "automatedRecord": {
       "currency": "USD",
@@ -2514,81 +2514,53 @@
     },
     "countries": {
       "asOf": "2026-11-09",
-      "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 45.16821
+          "weightPct": 44.99
         },
         {
           "name": "Canada",
-          "weightPct": 17.75482
+          "weightPct": 17.74
         },
         {
           "name": "United Kingdom",
-          "weightPct": 14.50157
+          "weightPct": 14.44
         },
         {
           "name": "Sweden",
-          "weightPct": 5.9304
+          "weightPct": 5.92
         },
         {
           "name": "Australia",
-          "weightPct": 4.34388
+          "weightPct": 4.28
         },
         {
           "name": "Switzerland",
-          "weightPct": 4.0547
+          "weightPct": 4.05
         },
         {
-          "name": "Guernsey",
-          "weightPct": 3.09636
+          "name": "Guernsey, Channel Islands",
+          "weightPct": 3.1
         },
         {
           "name": "France",
-          "weightPct": 2.08028
+          "weightPct": 2.08
         },
         {
-          "name": "Jersey",
-          "weightPct": 1.29019
-        },
-        {
-          "name": "Belgium",
-          "weightPct": 0.48992
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.42927
-        },
-        {
-          "name": "Japan",
-          "weightPct": 0.30979
-        },
-        {
-          "name": "Korea (South)",
-          "weightPct": 0.22923
-        },
-        {
-          "name": "Germany",
-          "weightPct": 0.20219
-        },
-        {
-          "name": "Brazil",
-          "weightPct": 0.08422
-        },
-        {
-          "name": "European Union",
-          "weightPct": 0.03491
-        },
-        {
-          "name": "Hong Kong",
-          "weightPct": 1e-05
+          "name": "Jersey, Channel Islands",
+          "weightPct": 1.29
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 1.73
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.38
         }
-      ]
+      ],
+      "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
       "asOf": "2026-11-09",
@@ -2784,8 +2756,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "a2e4caa3a01011d1234ae2cd39b5ee7625473c202a328cb794574c8a80dc4608",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "75a28e48fafca55ae69137ce4c3512fa489c53aed1e02237c0120e7c7e32da7c",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251918,
@@ -2814,81 +2786,53 @@
       },
       "countries": {
         "asOf": "2026-11-09",
-        "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 45.16821
+            "weightPct": 44.99
           },
           {
             "name": "Canada",
-            "weightPct": 17.75482
+            "weightPct": 17.74
           },
           {
             "name": "United Kingdom",
-            "weightPct": 14.50157
+            "weightPct": 14.44
           },
           {
             "name": "Sweden",
-            "weightPct": 5.9304
+            "weightPct": 5.92
           },
           {
             "name": "Australia",
-            "weightPct": 4.34388
+            "weightPct": 4.28
           },
           {
             "name": "Switzerland",
-            "weightPct": 4.0547
+            "weightPct": 4.05
           },
           {
-            "name": "Guernsey",
-            "weightPct": 3.09636
+            "name": "Guernsey, Channel Islands",
+            "weightPct": 3.1
           },
           {
             "name": "France",
-            "weightPct": 2.08028
+            "weightPct": 2.08
           },
           {
-            "name": "Jersey",
-            "weightPct": 1.29019
-          },
-          {
-            "name": "Belgium",
-            "weightPct": 0.48992
-          },
-          {
-            "name": "Bermuda",
-            "weightPct": 0.42927
-          },
-          {
-            "name": "Japan",
-            "weightPct": 0.30979
-          },
-          {
-            "name": "Korea (South)",
-            "weightPct": 0.22923
-          },
-          {
-            "name": "Germany",
-            "weightPct": 0.20219
-          },
-          {
-            "name": "Brazil",
-            "weightPct": 0.08422
-          },
-          {
-            "name": "European Union",
-            "weightPct": 0.03491
-          },
-          {
-            "name": "Hong Kong",
-            "weightPct": 1e-05
+            "name": "Jersey, Channel Islands",
+            "weightPct": 1.29
           },
           {
             "name": "Other",
-            "weightPct": 0.0
+            "weightPct": 1.73
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.38
           }
         ],
+        "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-11-10",
         "modifiedAt": "2026-11-10"
       },
@@ -3341,8 +3285,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "ae63d7d12d204158da4ece125080adb95c610f5adba097269a3c735abad1f58c",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "01ce6bcbc90e1a542e695b5a849f031c5878c43988e63be40928e692a82ad8c0",
     "automatedRecord": {
       "currency": "USD",
       "productId": 326347,
@@ -3872,8 +3816,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "8fa4d070fb18cb3051187f66cadf565366977069a7b38a504c53e1f5d2b8804a",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "364a35d392ba7376a98cfac7ddd6b4f8242cdb288e342dba948cf49f976baf2a",
     "automatedRecord": {
       "currency": "USD",
       "productId": 308902,
@@ -4497,8 +4441,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "986ca9d20e04656c4aa85eb6f390f38791a64932463e5419a593656c76124934",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "d70828433912340e39f104bf4dd7b43a1a6d395ac238073766da1a3df6429a18",
     "automatedRecord": {
       "currency": "USD",
       "productId": 308873,
@@ -5019,7 +4963,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "9e46825f4c770e3e82e4d480430cfb81a0a42f1471851b1a175bcc750b8b9dbc",
     "automatedRecord": {
       "currency": "USD",
@@ -5537,8 +5481,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "c5f31013d07895333aeed38ba274798af49958be8e024c835f9093e9cb14187a",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "f5a6309c31538b6461be3db23661992695a09375e6b9a43d5bdaf191446a8cf7",
     "automatedRecord": {
       "currency": "USD",
       "productId": 326317,
@@ -6103,7 +6047,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "ec59073424421244896d0afca94bca27cfa20ff7aa30391a870e7afbafb5ce34",
     "automatedRecord": {
       "currency": "USD",
@@ -6805,7 +6749,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "3de1031262c741e535d3a2db1e61ae109af154894b32467f790be9849ef2529f",
     "automatedRecord": {
       "currency": "USD",
@@ -7467,8 +7411,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "d76e3aff2ed6ad44f318213227c58211ca3975f803cd38eec552c5208d6217f5",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "fbbed7232685c0d2afa8ea16e8df2467b756cae8c2d48205933e0f86e9f2bcec",
     "automatedRecord": {
       "currency": "USD",
       "productId": 308909,
@@ -8156,8 +8100,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "1fc0c8bbfdf9ac77ac16a31fcb8cc343f83753a0f59a3c441c5782869dec06fa",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "b8d5350eebd9524a3298a9f415fc43855ab13de3d57ebe3d1a4eb34c2f7026a2",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251809,
@@ -8967,7 +8911,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "e1ddc9f9f321d6e18aab309a3c82f704a127bc26b1505e67e923019ac5a1ab58",
     "automatedRecord": {
       "currency": "USD",
@@ -9722,8 +9666,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "154d7b09708b60590fc1abd5522fbc510b136c92d984fd664035b84da072f120",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "45c9dba07021c5cb0a79211c8fc21f34e415834884a4a51d705e23c96954bc0d",
     "automatedRecord": {
       "currency": "USD",
       "productId": 270054,
@@ -10451,7 +10395,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "0d22dcd370dd0d1ed83af9edd47249395e57802996556e13db440b0de361123f",
     "automatedRecord": {
       "currency": "USD",
@@ -11174,7 +11118,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "11e98199a47b98ca8b54c6dd03e2ce2d76289edad0d6c7c60c08f2f3a4d80a39",
     "automatedRecord": {
       "currency": "USD",
@@ -11931,7 +11875,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "726cb2f4c2bd2c1ca3ed563d5bf98231efc118a1acd5eadc6cb6fb21db804e20",
     "automatedRecord": {
       "currency": "USD",
@@ -12633,8 +12577,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "958543cb79fd2376404ce0deb067c21b0bfa8493cf57b7bb89ab30c49c9ad9ea",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "2f56e1d5c0eaaa348262f2fc4f7f64a8980f90e98d288808718d668bf085072f",
     "automatedRecord": {
       "currency": "USD",
       "productId": 326341,
@@ -13224,7 +13168,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "e31909717d3cf71f7cb4633f7cec74c838c0abe9c9c160a4f739034368152066",
     "automatedRecord": {
       "currency": "USD",
@@ -13951,7 +13895,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "5974960190dedafd3ca4bb9137c72ff41a07fb870fea492f47aabb6fe231ab37",
     "automatedRecord": {
       "currency": "USD",
@@ -14657,8 +14601,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "98ac58f1e84a4babb422dd0795ece94621c999d66f4a5be2f7904338330d39de",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "dac9add570c561c1610eff3b21470a342971f87ef6e345279aa1cd127ae59825",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 332876,
@@ -15382,7 +15326,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "dc89f88a90708615b65de98543c15f8a4adde8b2607b2a8b1b0120c759833e4e",
     "automatedRecord": {
       "currency": "USD",
@@ -15905,10 +15849,10 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Construction & Materials (Capped) TR",
     "aum": {
-      "amount": 809474812.03,
+      "amount": 817340089.25,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-11-09"
+      "asOf": "2026-11-10"
     },
     "countries": {
       "asOf": "2026-11-09",
@@ -16141,18 +16085,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "16cccda3de6e98c56b8ac6f7b45d24108c2d2b7e2e572e3b8e63255881e252f6",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "16ae05ac244098c8671084c922b2fd441817d410fd82d5a25f326e197f01e902",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251940,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251940&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 809474812.03,
+        "amount": 817340089.25,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-11-09",
+        "asOf": "2026-11-10",
         "checkedAt": "2026-11-10",
         "modifiedAt": "2026-11-10"
       },
@@ -16701,8 +16645,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "6acb09ef98c2026134dd400d93aebf55dcf861c580ba703048de82bfe090f65a",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "7deba817b311c478ce0d811c7c62f7b383d22328aa2dfc5e704b97b10c54bd81",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251737,
@@ -17237,8 +17181,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "a6b046d1e9c43d48db5cbb263829a5de85e63cc12dda148dc30d4e2ea61ca0fe",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "e8c2c2678e5bf4bff33dbcf22b8e0ce1ce8c74898bfed82cb566b7b2cbee15bb",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251808,
@@ -17869,8 +17813,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "fc1be6027215924586bc759b8f04cd3ef674542b7a2e0f07ab47958785dfa4d4",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "f13f537342edc8ae2cf0aa5743eb3b648675987c0dfcd27bec87f75bbd6273ff",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 338575,
@@ -18283,10 +18227,10 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Utilities (Capped) TR",
     "aum": {
-      "amount": 890227948.4,
+      "amount": 886232596.77,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-11-09"
+      "asOf": "2026-11-10"
     },
     "countries": {
       "asOf": "2026-11-09",
@@ -18511,18 +18455,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "fa2401d1b2d98431755aea2827dd3ed9ce8f36ad8e95d265903a72e6495efd7c",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "884e812dcd454397a7d766b1909654af29087c083a88758e9dde1ab98ffe5dd9",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251967,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251967&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 890227948.4,
+        "amount": 886232596.77,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-11-09",
+        "asOf": "2026-11-10",
         "checkedAt": "2026-11-10",
         "modifiedAt": "2026-11-10"
       },
@@ -19187,8 +19131,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "405dc6795019ef706183480e5c609d64631446f58824d428c1d57dfb1d4f383c",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "fa8f1748b4cba2c71c172cd8be524d83291a12f7cb188647be772c4da2a7067b",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251891,
@@ -19598,10 +19542,10 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Telecommunications (Capped) TR",
     "aum": {
-      "amount": 257430096.84,
+      "amount": 256654742.61,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-11-09"
+      "asOf": "2026-11-10"
     },
     "countries": {
       "asOf": "2026-11-09",
@@ -19826,18 +19770,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "b53982c860f826acc8bda0c614ae649d452c0cc3a9226f988380eacc1c600190",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "04bf335306ceea6e33a0f6856439776e10b22e1c8492bc46a3b38be56f86ee4d",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251963,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251963&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 257430096.84,
+        "amount": 256654742.61,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-11-09",
+        "asOf": "2026-11-10",
         "checkedAt": "2026-11-10",
         "modifiedAt": "2026-11-10"
       },
@@ -20147,10 +20091,10 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Media (Capped) TR",
     "aum": {
-      "amount": 16421157.38,
+      "amount": 16444413.86,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-11-09"
+      "asOf": "2026-11-10"
     },
     "countries": {
       "asOf": "2026-11-09",
@@ -20337,18 +20281,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "4fab5c800d7aa76670314fef8ae32902af8dcf60adf06eb8ba950ae0ae3e019e",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "ac778a90892ab5e5ffc2561794ac776ae4f3e70cfc219a606107a93cdd16114a",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251952,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251952&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 16421157.38,
+        "amount": 16444413.86,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-11-09",
+        "asOf": "2026-11-10",
         "checkedAt": "2026-11-10",
         "modifiedAt": "2026-11-10"
       },
@@ -20619,10 +20563,10 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Food and Beverage (Capped) TR - Net",
     "aum": {
-      "amount": 351836141.53,
+      "amount": 353841555.18,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-11-09"
+      "asOf": "2026-11-10"
     },
     "countries": {
       "asOf": "2026-11-09",
@@ -20835,18 +20779,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "843a015f7d708f432817aaa3206f09ac21b8ee23484d57218bc82e612cd48aaf",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "522f1b5bb52f10d0739b6f9b48ee71dbd75c04feb2395206f0e6be34f4e5b3a0",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251944,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251944&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 351836141.53,
+        "amount": 353841555.18,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-11-09",
+        "asOf": "2026-11-10",
         "checkedAt": "2026-11-10",
         "modifiedAt": "2026-11-10"
       },
@@ -21142,10 +21086,10 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Retail (Capped) TR - Net",
     "aum": {
-      "amount": 14546706.76,
+      "amount": 14585037.32,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-11-09"
+      "asOf": "2026-11-10"
     },
     "countries": {
       "asOf": "2026-11-09",
@@ -21362,18 +21306,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "c999151e9cff1d5b04af8ae13ce1c8d8c1211edd9af0273dc532b0ad8352fc64",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "86dd0265ec2f6c181d395cdafe5c55df0b72d95850072e80f4ecfc255022e613",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251959,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 14546706.76,
+        "amount": 14585037.32,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-11-09",
+        "asOf": "2026-11-10",
         "checkedAt": "2026-11-10",
         "modifiedAt": "2026-11-10"
       },
@@ -22052,8 +21996,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "664a0506d2549f68f6c8537cffb76cc0c8476836bab5217000bc5a6a72a23c7f",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "4c7e6446df0af4bb2a045313a2503e95a39fffc0b6d686fedc4e036ad308bf0e",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 258114,
@@ -22926,7 +22870,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "eccf910e08019c2c1fb87c00af84cd760a20da2190b67e6917f516ba87385d21",
     "automatedRecord": {
       "currency": "USD",
@@ -23767,7 +23711,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "75fd122d3673433caa99d6f46982cac6013ca9951aa8e1c0bc1a942ecfa9e9af",
     "automatedRecord": {
       "currency": "EUR",
@@ -24395,8 +24339,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "91b99b7aac341e09b3089bc7b95283e203a1771cb0c6af2ae55d22f03ab68a19",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "04d2b8f75171bfb2ad44a140dbd6b427a6390481582337da7757017982eeca0f",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 253496,
@@ -25016,7 +24960,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "83cd8adba6e769760feb0124d09c6f01fb26fb677c6010dfc4485e379c0225af",
     "automatedRecord": {
       "currency": "EUR",
@@ -25651,7 +25595,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "aabd1fc4abcb28edbcc28c6d1d4fee3d2ad03e9f651eadf53797ec71e3fad1f8",
     "automatedRecord": {
       "currency": "EUR",
@@ -26279,8 +26223,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "d336a09e0bbdf48800da7412121fd5bdfa74064220c278153fc3e7059e730dcb",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "81b12cfd980d94a585ee93ae4b5b7d3c7f49c4c3484a7ce8c9926599224b5b60",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 272019,
@@ -26914,8 +26858,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "ea6b61cf48f77beea5f282c83cd9acd431347cb5ffb19b932f32d3f617f36a28",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "36697606330f6c310d45055e07a68a17a8680a068b6d101df4804477d67034e8",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 272024,
@@ -27512,8 +27456,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "e8fd81b93e4ba82d19c6011b5e2462d5ac7a472d78a2bd26dba59e1de5e66c8a",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "c7eea5917b5a45e8254b26d6e6d3f55e23c878dbdb3f2165894d7f9610555eac",
     "automatedRecord": {
       "currency": "USD",
       "productId": 285209,
@@ -28081,7 +28025,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "2dcdf8f9f1d34a3bd653e3986aca0e0637fb842f36738c7d01401d51cbb5871c",
     "automatedRecord": {
       "currency": "USD",
@@ -28650,7 +28594,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "20ab17125773e4417d7732866c7fcd6f434ff6109e0d1f6e87f758f88de3368d",
     "automatedRecord": {
       "currency": "USD",
@@ -29234,8 +29178,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "3a1ac441e8d57a4c2127c9fb4a3a60d7baf931d7b4ef1d8a630bd925f5e0696d",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "76e943a9bbf000c884789c9b3f21090d43f3805002912a83cb056f972ce86ae9",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251920,
@@ -29865,8 +29809,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "6b5e564c1a8da6ce01723b4e8259f2e8875a04a9c0b71a2ac05984481b89e5fe",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "72dfad4ee10d2b2d02d97e522d69d35bba26fdc7218e988f7cc6ca4fab8bed72",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 290846,
@@ -30464,7 +30408,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
     "pageSha256": "d9cc296dbdf68912c2b197d17d18a3b2b15db68acab4b94d4d05192cab4f16da",
     "automatedRecord": {
       "currency": "USD",
@@ -30988,8 +30932,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "37876e0262d37b9b14b3c77a6ac251b94e215f0a3a17696201dcd5a7d112375c",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "3b8bbcd5822b5044aaabf46130acffb90e8ba6d6c4deb287ed950364242998ea",
     "automatedRecord": {
       "currency": "USD",
       "productId": 334464,
@@ -31590,8 +31534,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-11-10T18:18:32.358476+00:00",
-    "pageSha256": "58e01989715650c3e3ecf0fbbb14ec457b1b985f8feb3dfc25d287b497661dcb",
+    "checkedAt": "2026-11-10T22:48:31.704476+00:00",
+    "pageSha256": "7e2ff5054a5f0a015b3fd7a6a4134d0915999bf9be2240f99b236b64b2253e7c",
     "automatedRecord": {
       "currency": "USD",
       "productId": 284218,
