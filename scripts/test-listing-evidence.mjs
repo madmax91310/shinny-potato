@@ -71,3 +71,9 @@ for(const excerpt of ['MIC XAMS | DCAM EUR','XPAR DCAM EUR','{"otherMic":"XPAR",
  const mic=structuredClone(fixture);mic.evidence.a.excerpt=excerpt;assert(validateListingEvidence(mic).some(error=>error.includes('place sans preuve')));
 }
 
+
+// Issuer Bitwise uses the explicit venue abbreviation "Euronext PAR".
+for(const [venue,valid]of [['Euronext PAR',true],['Euronext AMS',false],['Euronext PARX',false]]){
+ const bitwise=structuredClone(fixture);bitwise.evidence.a.excerpt=`${venue} EUR DCAM FP`;
+ assert.equal(validateListingEvidence(bitwise).length===0,valid);
+}
