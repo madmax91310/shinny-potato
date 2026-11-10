@@ -102,3 +102,18 @@ for(const proof of [undefined,{...russell.coverageProof.returnWeightProof,target
  {...russell.coverageProof.returnWeightProof,checkedAt:'2026-10-29T00:00:00Z'}])
  assert.equal(qualifiedNativeIndexComposition({...russell,coverageProof:{...russell.coverageProof,returnWeightProof:proof}},'LU1681038672',issuerNow),false)
 console.log('Russell equity reference: exact Net30 target, original weights and separate return series; changed, missing or stale methodology fails closed.')
+
+// A current methodology review must not invalidate genuine older qualified
+// photographs, or turn an old hash into a new successful source control.
+const russellNew=structuredClone(russell),russellRule=contracts.indices['russell2000-equity-members'].returnWeightContract
+russellNew.checkedAt='2026-11-10T08:00:00Z'
+russellNew.coverageProof.returnWeightProof.checkedAt=russellNew.checkedAt
+const novemberNow=new Date('2026-11-10T09:00:00Z')
+assert.equal(qualifiedNativeIndexComposition(russellNew,'LU1681038672',novemberNow),false,'Old method cannot renew a source control after its review cutoff')
+russellNew.coverageProof.returnWeightProof.documents=structuredClone(russellRule.documents)
+assert(qualifiedNativeIndexComposition(russellNew,'LU1681038672',novemberNow),'Current reviewed method qualifies the same unmodified equity-member weights')
+assert.deepEqual(russellNew.rows,russell.rows,'Method review must never alter, rescale or replace positions')
+const corruptMethod=structuredClone(russellNew);corruptMethod.coverageProof.returnWeightProof.documents[0].sha256='f'.repeat(64)
+assert.equal(qualifiedNativeIndexComposition(corruptMethod,'LU1681038672',novemberNow),false)
+assert(qualifiedNativeIndexComposition(russell,'LU1681038672',issuerNow),'Original immutable fixture remains qualified on its historical date')
+console.log('Russell method renewal: current sealed document, dated previous controls, unchanged weights and refusal of unknown/renewed obsolete proofs verified.')
