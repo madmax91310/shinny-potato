@@ -75,9 +75,15 @@ def parse_capture(capture,metadata_raw,isin,now):
             or capture.get('publisherRowCount')!=int(census[1])):
         raise ValueError('Unqualified public economic-index table or census/date')
     rows=payload['holdings']
-    if (not isinstance(rows,list)or len(rows)!=int(census[1])
-            or not index['minimumMembers']<=len(rows)<=index['maximumMembers']):
+    if not isinstance(rows,list)or len(rows)!=int(census[1]):
         raise ValueError('Truncated economic index; top ten is not a full composition')
+    if not index['minimumMembers']<=len(rows)<=index['maximumMembers']:
+        raise ValueError(
+            f'Economic-index membership outside qualified contract: {share["indexId"]}, '
+            f'asOf={stamp}, received={len(rows)}, publisher={int(census[1])}, '
+            f'expected={index["minimumMembers"]}..{index["maximumMembers"]}; '
+            'effective membership and corporate-action treatment require dated evidence; '
+            'composition refused, no rows removed or weights normalized')
     identities=set();output=[]
     for row in rows:
         identity,name,weight=row.get('isin'),row.get('name'),row.get('weight')
