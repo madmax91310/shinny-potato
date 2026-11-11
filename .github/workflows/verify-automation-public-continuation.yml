@@ -11,7 +11,7 @@ permissions:
   issues: write
 concurrency:
   group: isolated-public-automation-20261111
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   verify-public:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
           node-version: 24
       - name: Preserve isolated verifier before checkout of the actually served snapshot
         run: |
-          python -c 'import os; open(os.environ["GITHUB_ENV"], "a").write("RECIPE_OUTPUT=" + os.environ["RUNNER_TEMP"] + "/automation-public-proof\\n")'
+          python -c 'import os; open(os.environ["GITHUB_ENV"], "a").write("RECIPE_OUTPUT=" + os.environ["RUNNER_TEMP"] + "/automation-public-proof\n")'
           cp scripts/private-automation-continuation/probe-runner.py "$RUNNER_TEMP/probe-runner.py"
           cp scripts/private-automation-continuation/probe-extract.mjs "$RUNNER_TEMP/probe-extract.mjs"
           cp scripts/private-automation-continuation/probe-public-browser.mjs "$RUNNER_TEMP/probe-public-browser.mjs"
