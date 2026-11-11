@@ -1,0 +1,497 @@
+{
+  "total_count": 4,
+  "jobs": [
+    {
+      "id": 130429842740,
+      "run_id": 42992902996,
+      "workflow_name": "Refresh 35 portfolio exposure ETFs",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42992902996",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeXjl1NA",
+      "head_sha": "b13dd7f0374821c97a14159d312cab12c3aaea44",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130429842740",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42992902996/job/130429842740",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-11T09:10:20Z",
+      "started_at": "2026-11-11T09:10:22Z",
+      "completed_at": "2026-11-11T09:13:03Z",
+      "name": "refresh",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T09:10:23Z",
+          "completed_at": "2026-11-11T09:10:24Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-11T09:10:24Z",
+          "completed_at": "2026-11-11T09:10:55Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T09:10:55Z",
+          "completed_at": "2026-11-11T09:10:55Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-11T09:10:55Z",
+          "completed_at": "2026-11-11T09:11:00Z"
+        },
+        {
+          "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-11T09:11:00Z",
+          "completed_at": "2026-11-11T09:11:16Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-11T09:11:16Z",
+          "completed_at": "2026-11-11T09:11:19Z"
+        },
+        {
+          "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-11T09:11:19Z",
+          "completed_at": "2026-11-11T09:11:21Z"
+        },
+        {
+          "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-11T09:11:21Z",
+          "completed_at": "2026-11-11T09:11:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_exposure_expansion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-11T09:11:22Z",
+          "completed_at": "2026-11-11T09:11:23Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_exposure_publication.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-11T09:11:23Z",
+          "completed_at": "2026-11-11T09:11:25Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-11T09:11:25Z",
+          "completed_at": "2026-11-11T09:11:25Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_country_allocation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-11T09:11:25Z",
+          "completed_at": "2026-11-11T09:11:30Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-11T09:11:30Z",
+          "completed_at": "2026-11-11T09:11:31Z"
+        },
+        {
+          "name": "Collect exact-share observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-11T09:11:31Z",
+          "completed_at": "2026-11-11T09:12:02Z"
+        },
+        {
+          "name": "Validate expanded exposures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-11T09:12:02Z",
+          "completed_at": "2026-11-11T09:12:50Z"
+        },
+        {
+          "name": "Verify DCA holdings in browser",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-11-11T09:12:50Z",
+          "completed_at": "2026-11-11T09:12:50Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-11T09:12:50Z",
+          "completed_at": "2026-11-11T09:12:51Z"
+        },
+        {
+          "name": "Validate collected observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-11T09:12:51Z",
+          "completed_at": "2026-11-11T09:12:51Z"
+        },
+        {
+          "name": "Commit validated observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-11T09:12:51Z",
+          "completed_at": "2026-11-11T09:13:00Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-11T09:13:00Z",
+          "completed_at": "2026-11-11T09:13:00Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-11T09:13:00Z",
+          "completed_at": "2026-11-11T09:13:01Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-11-11T09:13:01Z",
+          "completed_at": "2026-11-11T09:13:01Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-11-11T09:13:01Z",
+          "completed_at": "2026-11-11T09:13:01Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130429842740",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000045978,
+      "runner_name": "GitHub Actions 1000045978",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 130431115295,
+      "run_id": 42992902996,
+      "workflow_name": "Refresh 35 portfolio exposure ETFs",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42992902996",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeXkzgHw",
+      "head_sha": "b13dd7f0374821c97a14159d312cab12c3aaea44",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130431115295",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42992902996/job/130431115295",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-11T09:13:03Z",
+      "started_at": "2026-11-11T09:13:08Z",
+      "completed_at": "2026-11-11T09:16:15Z",
+      "name": "deploy / publish",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T09:13:09Z",
+          "completed_at": "2026-11-11T09:13:12Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-11T09:13:12Z",
+          "completed_at": "2026-11-11T09:13:49Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T09:13:49Z",
+          "completed_at": "2026-11-11T09:13:49Z"
+        },
+        {
+          "name": "Run node scripts/test-validated-data-publisher.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-11T09:13:49Z",
+          "completed_at": "2026-11-11T09:13:50Z"
+        },
+        {
+          "name": "Run node scripts/prepare-validated-data.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-11T09:13:50Z",
+          "completed_at": "2026-11-11T09:13:51Z"
+        },
+        {
+          "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"72751babb2c6541cd2519d3a20fa20941c0fb99f\" --data \"d802f909a90b924dd3eda7494bcb9beb1519d7c8\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-11T09:13:51Z",
+          "completed_at": "2026-11-11T09:14:18Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-11T09:14:18Z",
+          "completed_at": "2026-11-11T09:14:21Z"
+        },
+        {
+          "name": "Run npm run audit:data-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-11T09:14:21Z",
+          "completed_at": "2026-11-11T09:14:23Z"
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-11T09:14:23Z",
+          "completed_at": "2026-11-11T09:14:58Z"
+        },
+        {
+          "name": "Require the producer's exact validated observations after all generators",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-11T09:14:58Z",
+          "completed_at": "2026-11-11T09:14:58Z"
+        },
+        {
+          "name": "Seal actual composite data",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-11T09:14:58Z",
+          "completed_at": "2026-11-11T09:14:58Z"
+        },
+        {
+          "name": "Record actual code and data identities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-11T09:14:58Z",
+          "completed_at": "2026-11-11T09:14:58Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-11T09:14:58Z",
+          "completed_at": "2026-11-11T09:15:20Z"
+        },
+        {
+          "name": "Run node scripts/smoke-data-routes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-11T09:15:20Z",
+          "completed_at": "2026-11-11T09:15:53Z"
+        },
+        {
+          "name": "Run actions/configure-pages@v6.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-11T09:15:53Z",
+          "completed_at": "2026-11-11T09:15:54Z"
+        },
+        {
+          "name": "Run actions/upload-pages-artifact@v5.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-11T09:15:54Z",
+          "completed_at": "2026-11-11T09:15:58Z"
+        },
+        {
+          "name": "Restore source identity for the publication order guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-11T09:15:58Z",
+          "completed_at": "2026-11-11T09:15:58Z"
+        },
+        {
+          "name": "Run bash scripts/check-pages-head.sh",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-11T09:15:58Z",
+          "completed_at": "2026-11-11T09:15:59Z"
+        },
+        {
+          "name": "Run node scripts/deploy-validated-pages.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-11T09:15:59Z",
+          "completed_at": "2026-11-11T09:16:07Z"
+        },
+        {
+          "name": "Verify actual public data",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-11T09:16:07Z",
+          "completed_at": "2026-11-11T09:16:08Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-11T09:16:08Z",
+          "completed_at": "2026-11-11T09:16:10Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-11T09:16:10Z",
+          "completed_at": "2026-11-11T09:16:11Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-11-11T09:16:11Z",
+          "completed_at": "2026-11-11T09:16:11Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-11-11T09:16:11Z",
+          "completed_at": "2026-11-11T09:16:11Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-11-11T09:16:11Z",
+          "completed_at": "2026-11-11T09:16:12Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130431115295",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000045981,
+      "runner_name": "GitHub Actions 1000045981",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 130432610096,
+      "run_id": 42992902996,
+      "workflow_name": "Refresh 35 portfolio exposure ETFs",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42992902996",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeXmOvMA",
+      "head_sha": "b13dd7f0374821c97a14159d312cab12c3aaea44",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130432610096",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42992902996/job/130432610096",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-11T09:16:15Z",
+      "started_at": "2026-11-11T09:16:15Z",
+      "completed_at": "2026-11-11T09:16:15Z",
+      "name": "deploy / publish-code",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130432610096",
+      "labels": [],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 130432611654,
+      "run_id": 42992902996,
+      "workflow_name": "Refresh 35 portfolio exposure ETFs",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42992902996",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeXmO1Rg",
+      "head_sha": "b13dd7f0374821c97a14159d312cab12c3aaea44",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130432611654",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42992902996/job/130432611654",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-11T09:16:16Z",
+      "started_at": "2026-11-11T09:16:16Z",
+      "completed_at": "2026-11-11T09:16:15Z",
+      "name": "report-failures",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130432611654",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    }
+  ]
+}
