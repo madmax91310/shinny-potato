@@ -582,6 +582,12 @@ def parse_listings(body,source,url,checked):
         digest=hashlib.sha256(body).hexdigest();isin=source['isin']
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"}for r in listing_rows(body,source,url,checked)]
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
+    # This existing issuer API already supplies other common characteristics.
+    # Its listing authority is restricted to the exact-share public endpoint;
+    # page suggestions and arbitrary legacy-host documents cannot renew quotes.
+    legacy=urlsplit(url)
+    if legacy.hostname=='etf.deutsche-am.com' and (legacy.netloc!='etf.deutsche-am.com' or legacy.query or legacy.fragment
+        or not re.fullmatch(r'/api/pdp/(?:en-gb|fr-fr)/etf/'+re.escape(source['isin'])+r'/pdpMetaTagsTealium',legacy.path)):return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     if urlsplit(url).hostname=='apidata.londonstockexchange.com':
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"}for r in lse_listing_rows(body,source,url,checked)]
