@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-11-11T08:09:57.322358+00:00",
+  "master": "b9abb21b7a0ceabb1ad77ae88db82e3d85075bf5",
+  "ownedFiles": [
+    ".github/workflows/update-instrument-metadata.yml",
+    "docs/data-operations-coordination.md",
+    "scripts/collect_instrument_metadata.py",
+    "scripts/fixtures/metadata-connections/lse-IUES-reference-20261111.json",
+    "scripts/history-publication-compatibility.mjs",
+    "scripts/instrument-metadata-supplemental-sources.json",
+    "scripts/listing-source-hosts.json",
+    "scripts/prepare-validated-data.mjs",
+    "scripts/test-fallback-snapshot.mjs",
+    "scripts/test-validated-data-publisher.mjs",
+    "scripts/test_instrument_metadata.py",
+    "scripts/test_metadata_lse_listing_reference.py"
+  ],
+  "concurrent": [
+    {
+      "pr": 1222,
+      "state": "open",
+      "head": "95814e292444a117c587d97a45ca5c8e270edd98",
+      "overlap": []
+    },
+    {
+      "pr": 1201,
+      "state": "open",
+      "head": "6f0095f6fa06b60eb20c37a77517dc9f90167b33",
+      "overlap": []
+    },
+    {
+      "pr": 1061,
+      "state": "open",
+      "head": "042f665560f152454644b2e29db88ac4ebd81b09",
+      "overlap": []
+    }
+  ]
+}

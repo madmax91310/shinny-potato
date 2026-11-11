@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-11T08:15:24.711621+00:00",
+  "profile": "https://indexes.nikkei.co.jp/en/nkave/index/profile?idx=nk225",
+  "reuseConditions": "https://indexes.nikkei.co.jp/nkave/data/index.en.html",
+  "expected": "Exact Nikkei225 month-end securities book; HTTP access is not reuse authorization. No production admission or raw book publication.",
+  "weightLinks": [
+    "/nkave/archives/file/nikkei_stock_average_weight_en.csv"
+  ],
+  "localProbeCorrection": "Official download returned HTTP200 throughout; initial local decoding was corrected to cp932. No production source failure or success date inferred from this inspection.",
+  "url": "https://indexes.nikkei.co.jp/nkave/archives/file/nikkei_stock_average_weight_en.csv",
+  "httpStatus": 200,
+  "sha256": "4403a9eb39795d087c6c0c330446edada2e3eca5fe5bc6ccec6327a545a03f94",
+  "bytes": 20210,
+  "reuseQualification": "Public page documents a license requirement beyond personal use/quotation; no application-specific redistribution authorization found in current repository. This is distinct from an HTTP/access failure and from security/company identity mapping.",
+  "encoding": "cp932",
+  "header": [
+    [
+      "Date of Data",
+      "Code",
+      "Company Name",
+      "Nikkei Industrial Classification",
+      "Sector",
+      "Weight"
+    ],
+    [
+      "2026/10/30",
+      "1332",
+      "NISSUI CORP.",
+      "Fishery",
+      "Consumer Goods",
+      "0.0592%"
+    ]
+  ],
+  "csvRows": 227,
+  "bodyNotPublished": true,
+  "actualSecurities": 225,
+  "effectiveDates": [
+    "2026/10/30"
+  ],
+  "rawWeightTotalPct": 99.99980000000001
+}

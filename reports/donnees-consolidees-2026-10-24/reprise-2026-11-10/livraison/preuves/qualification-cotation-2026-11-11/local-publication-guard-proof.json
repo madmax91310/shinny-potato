@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-11-11T07:43:34.168268+00:00",
+  "candidateHead": "054583717206c2dbb83deb28846e35d9b1c70397",
+  "scope": "Local isolated publisher/fallback tests; not supplier, cron or production proof",
+  "paths": [
+    "scripts/listing-source-hosts.json",
+    "scripts/prepare-validated-data.mjs",
+    "scripts/history-publication-compatibility.mjs"
+  ],
+  "cases": [
+    "new shared listing authority alone requests full code gate",
+    "original producer receipt frozen before public lookup and deferred publication",
+    "used authority missing from code refuses fallback before overlay",
+    "compatible authority permits existing protections",
+    "unused declared authority does not block independent observations",
+    "unqualified mirror is not promoted",
+    "previous projected listing evidence also guarded"
+  ],
+  "financialValuesChanged": false
+}

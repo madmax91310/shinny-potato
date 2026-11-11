@@ -1,0 +1,425 @@
+{
+  "checkedAt": "2026-11-11T09:56:01.606712+00:00",
+  "sourceRun": 42992902996,
+  "nativeShareItems": 36,
+  "nativeUniqueIsins": 36,
+  "verificationSubset": 12,
+  "public": {
+    "sha": "72751babb2c6541cd2519d3a20fa20941c0fb99f",
+    "dataSha": "d802f909a90b924dd3eda7494bcb9beb1519d7c8",
+    "lane": "validated-data",
+    "builtAt": "2026-11-11T09:14:58.649Z"
+  },
+  "sourceFileBlob": "c016e326ae5ed1b56bc46d081ed91a3f1c2409d4",
+  "bindings": [
+    {
+      "isin": "FR0007054358",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 7,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "091f895fb01618c9a2616ec663a20d03e7b4af1e9c580cdf64eb7922cb144235"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "cba9d9ec4031909f663bfe18727d4c90d926eaf5073efdcd2a1af43a022d146c"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "742437ffa018ec4dc1ed59a91e0ddfff90d7ad986aa1d853c753c52a6a91af10"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "FR0007054358"
+    },
+    {
+      "isin": "FR0011869304",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 14,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "6024016b4ba41d4979edb120c1f051bae4a0c96eb0cc61b2c78d1a40a4f4094b"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 2,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "140ebc4ce12b877f8e79cee73c638fa46b4abd23c35641d6782c06fa5af7e3d5"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "b75c1eb14f505405e90a0a750b1c64e53fc666d3bbaa3130cfe82094510c4510"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "FR0011869304"
+    },
+    {
+      "isin": "FR0013412269",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 4,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "839c5a5c747a234906170640f4b07de1fca9f7b683461a12352537fc779e5944"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "cc47ba0a00b7debd301e73f7cd3d08e445d8d960d84fa77ff4499a647bc6acb5"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "690f849f4913913ac091363f7adf385ba6cf1c310836892a0271829f2725bca0"
+        }
+      ],
+      "presentationAdmitted": false,
+      "dcaReference": "FR0013412269"
+    },
+    {
+      "isin": "IE0003XJA0J9",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 46,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "fa23dd126567da3ae8cd096dbf186cbdd2959d0b7c8411c24f188d25a506f109"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "66c12326c2b8c404670a77a64424ffa25878d2b0793e773377849154427f2cb4"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "c99b74b7af3b5ce7689880ba297ac42c5b3b8e9d96e1a974b1c38b7e961980fc"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "IE0003XJA0J9"
+    },
+    {
+      "isin": "IE0009HF1MK9",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 46,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "fa23dd126567da3ae8cd096dbf186cbdd2959d0b7c8411c24f188d25a506f109"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "66c12326c2b8c404670a77a64424ffa25878d2b0793e773377849154427f2cb4"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "c99b74b7af3b5ce7689880ba297ac42c5b3b8e9d96e1a974b1c38b7e961980fc"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "IE0009HF1MK9"
+    },
+    {
+      "isin": "IE00BFY0GT14",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-10",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 23,
+          "sourceUrl": null,
+          "valueSha256": "db6271ef7ebfa190059977f0928eb41fd8ae0c9017731aa7e801149a1d1c3388"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-10",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 11,
+          "sourceUrl": null,
+          "valueSha256": "c39874c951f95c44eb0afd3d4e401e74eb9fce8689b60f3b185bca4f30a59e8d"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-10",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx",
+          "valueSha256": "ad5e5e848bf1da4a1703e4ad1a26261a13564d3dc50a902782c38fedef0e6631"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "IE00BFY0GT14"
+    },
+    {
+      "isin": "IE00BKWQ0Q14",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-10",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 15,
+          "sourceUrl": null,
+          "valueSha256": "baf27814e7f30f6928df5ba10502db909c5c6085eab17aca98342313c2f198c5"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-10",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 11,
+          "sourceUrl": null,
+          "valueSha256": "171c2090987cb07c760444c003d2ce4343172f49412703e5a30b9ac4066465bb"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-10",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx",
+          "valueSha256": "6d485e247aec69dc69666d3807ac3c09e6f17847100b04730931a522eed1e99e"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "IE00BKWQ0Q14"
+    },
+    {
+      "isin": "IE00BLCHJB90",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 11,
+          "sourceUrl": "https://globalxetfs.eu/funds/botz/",
+          "valueSha256": "063a42299d8ec6737f2362aa62b4c10da5b66e0424905fece5175e7ba56f2a83"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 7,
+          "sourceUrl": "https://globalxetfs.eu/funds/botz/",
+          "valueSha256": "5339cec60be100aa01acf61a865cfc634719484403b6c4bdc27ddabf6187ae74"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-10",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://globalxetfs.eu/funds/botz/",
+          "valueSha256": "a1afa2d68244603003bfffbbd2857563533203d0c4920adbfdfdf3c9dfec1b84"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "IE00BLCHJB90"
+    },
+    {
+      "isin": "LU1681038672",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 1,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "7a54960d3482363b2dd9c6e65f66057ecacef1be3a6748312c739d142a293e41"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "6141f2815bc57d1e9a741fb59b29198da28d005a3b2ea61c730a7818def2a94b"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "index",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "24db58331720147f7775e75793421aa4ca01ea9bdbfd2615f413cb66407ea81d"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "LU1681038672"
+    },
+    {
+      "isin": "LU1681040223",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 17,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "d208afebb7a46c3f726c47f0fc5f8d4c070c464ad9520a29f9afebaddfc203be"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "f6a6036f1f14ce7030ab628c1734f048bbad3b6c36d695166a6da60a61558613"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "cf4a8bd106d66b8046c0e5b942321d677263075839e8d9541a538e7cab9cfc97"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "LU1681040223"
+    },
+    {
+      "isin": "LU1829219390",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 11,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "9d1a4b8e7a462ece755e6322df1bcda405d3da7691539e94839d4180aec7dd5c"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 1,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "26fa8c8f64c1c57bade69b89d73bd0e302d1a2e65a796d911efc4475b52b5bea"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "33f7325eee7545cfa3040db6fb2e727583e56698e0c2924eda488981460a24e9"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "LU1829219390"
+    },
+    {
+      "isin": "LU3180074463",
+      "recordedFields": [
+        {
+          "field": "countries",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 15,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "abe499bd35d4a0d11688efa6a3094599188c2be2a3e77f633e8e5aebe8f4dd16"
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 9,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "52ada98d4bea02fdbc27e63c2dcaa6375a835c9dd5781d7910a82091e567b3a6"
+        },
+        {
+          "field": "holdings",
+          "asOf": "2026-11-09",
+          "checkedAt": "2026-11-11",
+          "basis": "fund",
+          "rows": 10,
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valueSha256": "2dd4af6bf01b1e4d4e8c005f129d6ec9ee1061a66421e139b909fa99babce37e"
+        }
+      ],
+      "presentationAdmitted": true,
+      "dcaReference": "LU3180074463"
+    }
+  ],
+  "scope": "Each newly changed snapshot field matches its original ordinary native source result and recorded/published source file. No all-fields/catalogue certificate inferred from workflow status."
+}

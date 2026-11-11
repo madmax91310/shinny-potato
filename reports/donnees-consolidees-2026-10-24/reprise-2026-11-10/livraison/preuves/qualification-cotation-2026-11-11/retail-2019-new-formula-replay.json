@@ -1,0 +1,68 @@
+{
+  "replaySource": "https://raw.githubusercontent.com/madmax91310/shinny-potato/b9abb21b7a0ceabb1ad77ae88db82e3d85075bf5/reports/reliquat-2026-10-23/preuves/DE000A0H08P6-blackrock.json.gz",
+  "originalCompressedGitBlob": "a916cc871dab8d205ae2c5d0690019294ba547cf",
+  "isFreshSupplierCollection": false,
+  "hypothesis": "Check a distinct ex-date NAV reinvestment formula against the retained source; no formula or admission changed. Annual agreement alone cannot qualify the monthly series.",
+  "checks": [
+    {
+      "exDate": "2019-10-15",
+      "prior": "2019-10-14",
+      "after": "2019-10-15",
+      "amount": "0.086569",
+      "currency": "EUR ",
+      "navBefore": 31.8683,
+      "navEx": 32.5545,
+      "observedFactor": 1.002723863017094,
+      "cashBackAdjustmentExpected": 1.0027238604467454,
+      "exDateReinvestmentExpected": 1.002659202260824,
+      "backDifference": 2.570348600627881e-09,
+      "exDateDifference": 6.466075626998524e-05,
+      "exDateMatchesExistingPrecision": false
+    },
+    {
+      "exDate": "2019-07-15",
+      "prior": "2019-07-12",
+      "after": "2019-07-15",
+      "amount": "0.374603",
+      "currency": "EUR ",
+      "navBefore": 31.3251,
+      "navEx": 30.9668,
+      "observedFactor": 1.0120990293613583,
+      "cashBackAdjustmentExpected": 1.0121032951425626,
+      "exDateReinvestmentExpected": 1.0120969231564128,
+      "backDifference": -4.265781204271235e-06,
+      "exDateDifference": 2.10620494556224e-06,
+      "exDateMatchesExistingPrecision": false
+    },
+    {
+      "exDate": "2019-04-15",
+      "prior": "2019-04-12",
+      "after": "2019-04-15",
+      "amount": "0.075611",
+      "currency": "EUR ",
+      "navBefore": 32.2221,
+      "navEx": 32.3806,
+      "observedFactor": 1.0023407310458916,
+      "cashBackAdjustmentExpected": 1.0023520764584897,
+      "exDateReinvestmentExpected": 1.002335070999302,
+      "backDifference": -1.1345412598062765e-05,
+      "exDateDifference": 5.660046589639478e-06,
+      "exDateMatchesExistingPrecision": false
+    },
+    {
+      "exDate": "2019-01-15",
+      "prior": "2019-01-14",
+      "after": "2019-01-15",
+      "amount": "0.211425",
+      "currency": "EUR ",
+      "navBefore": 27.9044,
+      "navEx": 27.6824,
+      "observedFactor": 1.0076346045685565,
+      "cashBackAdjustmentExpected": 1.0076346076938285,
+      "exDateReinvestmentExpected": 1.0076375242031037,
+      "backDifference": -3.1252720411600876e-09,
+      "exDateDifference": -2.9196345472382035e-06,
+      "exDateMatchesExistingPrecision": false
+    }
+  ]
+}
