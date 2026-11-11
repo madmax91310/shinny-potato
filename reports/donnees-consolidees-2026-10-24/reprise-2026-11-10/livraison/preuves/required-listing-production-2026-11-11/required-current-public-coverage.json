@@ -1,0 +1,1071 @@
+[
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://apidata.londonstockexchange.com/nrdp/v1?tidm=IUES",
+      "https://extraetf.com/fr/etf-profile/IE00B42NKQ00",
+      "https://www.blackrock.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-no.pdf",
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-s-p500-energy-usd-a-IE00B42NKQ00-IUES-USD-USD-XSWX/seance",
+      "https://www.justetf.com/en/etf-profile.html?isin=IE00B42NKQ00",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00B42NKQ00"
+    ],
+    "id": "IE00B42NKQ00",
+    "name": "iShares S&P 500 Energy Sector UCITS ETF",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://www.blackrock.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-no.pdf",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00B42NKQ00-XETR-QDVF-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00B42NKQ00-XETR-QDVF-EUR": [
+        "preferred-display"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00B42NKQ00-XLON-IUES-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://apidata.londonstockexchange.com/nrdp/v1?tidm=IUES"
+      },
+      {
+        "evidenceId": "IE00B42NKQ00-XLON-IESU-GBP",
+        "checkedAt": "2026-11-03",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      },
+      {
+        "evidenceId": "IE00B42NKQ00-XMEX-IUES-MXN",
+        "checkedAt": "2026-11-03",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      },
+      {
+        "evidenceId": "IE00B42NKQ00-XSWX-IUES-USD",
+        "checkedAt": "2026-11-03",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x-artificial-intel-big-da-1c-IE00BGV5VN51-XAIX-CHF-XSWX/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BGV5VN51"
+    ],
+    "id": "IE00BGV5VN51",
+    "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BGV5VN51-ETFP-XAIX-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BGV5VN51-ETFP-XAIX-EUR": [
+        "preferred-display",
+        "scripts/monthly-automation.json:etfAiBigData"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BGV5VN51-XETR-XAIX-EUR",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BGV5VN51-XLON-XAID-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BGV5VN51-XLON-XAIX-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU0380865021/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/LU0380865021/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-euro-stoxx-50-ucits-LU0380865021-XESC-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=LU0380865021"
+    ],
+    "id": "LU0380865021",
+    "name": "Xtrackers EURO STOXX 50 UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "LU0380865021-ETFP-XESC-EUR",
+      "LU0380865021-XETR-XESC-EUR"
+    ],
+    "requiredListingUses": {
+      "LU0380865021-ETFP-XESC-EUR": [
+        "preferred-display"
+      ],
+      "LU0380865021-XETR-XESC-EUR": [
+        "scripts/monthly-automation.json:etfLU0380865021"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "LU0380865021-XLON-XESC-GBX",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x-ftse-all-world-etf-1c-IE000L6ZMMC4-XALL-EUR-ETFP-EUR-XSWX/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE000L6ZMMC4"
+    ],
+    "id": "IE000L6ZMMC4",
+    "name": "Xtrackers FTSE All-World UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE000L6ZMMC4-ETFP-ALLW-EUR"
+    ],
+    "requiredListingUses": {
+      "IE000L6ZMMC4-ETFP-ALLW-EUR": [
+        "preferred-display",
+        "scripts/monthly-automation.json:etfIE000L6ZMMC4"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE000L6ZMMC4-XETR-ALLW-EUR",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE000L6ZMMC4-XLON-ALLG-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE000L6ZMMC4-XLON-ALLW-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU0290358497/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/LU0290358497/pdpMetaTagsTealium",
+      "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
+      "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x2-eur-cash-sw-LU0290358497-XEON-EUR-ETFP-EUR-XSWX/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=LU0290358497"
+    ],
+    "id": "LU0290358497",
+    "name": "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "LU0290358497-ETFP-XEON-EUR"
+    ],
+    "requiredListingUses": {
+      "LU0290358497-ETFP-XEON-EUR": [
+        "preferred-display"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "LU0290358497-XETR-XEON-EUR",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-emerg-markets-u-IE00BTJRMP35-XMME-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BTJRMP35"
+    ],
+    "id": "IE00BTJRMP35",
+    "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BTJRMP35-ETFP-XMME-EUR",
+      "IE00BTJRMP35-XETR-XMME-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BTJRMP35-ETFP-XMME-EUR": [
+        "preferred-display"
+      ],
+      "IE00BTJRMP35-XETR-XMME-EUR": [
+        "scripts/monthly-automation.json:etfIE00BTJRMP35"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BTJRMP35-XLON-XMME-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BTJRMP35-XLON-XMMS-GBX",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU0274209237/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/LU0274209237/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-europe-ucits-et-LU0274209237-XMEU-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=LU0274209237",
+      "https://www.quantalys.com/Fonds/418626"
+    ],
+    "id": "LU0274209237",
+    "name": "Xtrackers MSCI Europe UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "LU0274209237-ETFP-XMEU-EUR",
+      "LU0274209237-XETR-XMEU-EUR"
+    ],
+    "requiredListingUses": {
+      "LU0274209237-ETFP-XMEU-EUR": [
+        "preferred-display"
+      ],
+      "LU0274209237-XETR-XMEU-EUR": [
+        "scripts/monthly-automation.json:etfLU0274209237"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "LU0274209237-XLON-XMED-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "LU0274209237-XLON-XMEU-GBX",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+      "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
+      "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-ex-usa-uc-IE0006WW1TQ4-EXUS-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE0006WW1TQ4"
+    ],
+    "id": "IE0006WW1TQ4",
+    "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE0006WW1TQ4-ETFP-EXUS-EUR",
+      "IE0006WW1TQ4-XETR-EXUS-EUR"
+    ],
+    "requiredListingUses": {
+      "IE0006WW1TQ4-ETFP-EXUS-EUR": [
+        "preferred-display"
+      ],
+      "IE0006WW1TQ4-XETR-EXUS-EUR": [
+        "scripts/monthly-automation.json:etfWorldExUs"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE0006WW1TQ4-XLON-EXUS-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE0006WW1TQ4-XSWX-EXUS-CHF",
+        "checkedAt": "2026-11-03",
+        "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3"
+      },
+      {
+        "evidenceId": "IE0006WW1TQ4-XLON-XMWX-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
+      "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-heal-care-IE00BM67HK77-XDWH-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HK77"
+    ],
+    "id": "IE00BM67HK77",
+    "name": "Xtrackers MSCI World Health Care UCITS ETF",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BM67HK77-ETFP-XDWH-EUR",
+      "IE00BM67HK77-XETR-XDWH-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BM67HK77-ETFP-XDWH-EUR": [
+        "preferred-display"
+      ],
+      "IE00BM67HK77-XETR-XDWH-EUR": [
+        "scripts/monthly-automation.json:etfIE00BM67HK77"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BM67HK77-XLON-XDWH-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BM67HK77-XLON-XWHS-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-industr-u-IE00BM67HV82-XDWI-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HV82"
+    ],
+    "id": "IE00BM67HV82",
+    "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BM67HV82-ETFP-XDWI-EUR",
+      "IE00BM67HV82-XETR-XDWI-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BM67HV82-ETFP-XDWI-EUR": [
+        "preferred-display"
+      ],
+      "IE00BM67HV82-XETR-XDWI-EUR": [
+        "scripts/monthly-automation.json:etfIndustrials"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BM67HV82-XLON-XDWI-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BM67HV82-XLON-XWIS-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/london-stock-exchange/xtrackers-ie-plc-msci-world-IE00BM67HS53-XDWM-USD-XLON/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HS53",
+      "https://www.quantalys.com/Fonds/418601"
+    ],
+    "id": "IE00BM67HS53",
+    "name": "Xtrackers MSCI World Materials UCITS ETF",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BM67HS53-ETFP-XDWM-EUR",
+      "IE00BM67HS53-XLON-XDWM-USD"
+    ],
+    "requiredListingUses": {
+      "IE00BM67HS53-ETFP-XDWM-EUR": [
+        "preferred-display"
+      ],
+      "IE00BM67HS53-XLON-XDWM-USD": [
+        "scripts/monthly-automation.json:etfWorldMaterialsDws"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BM67HS53-XLON-XSMW-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-ucits-etf-IE00BJ0KDQ92-XDWD-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ0KDQ92",
+      "https://www.quantalys.com/Fonds/418582"
+    ],
+    "id": "IE00BJ0KDQ92",
+    "name": "Xtrackers MSCI World UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BJ0KDQ92-ETFP-XDWD-EUR",
+      "IE00BJ0KDQ92-XETR-XDWD-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BJ0KDQ92-ETFP-XDWD-EUR": [
+        "preferred-display"
+      ],
+      "IE00BJ0KDQ92-XETR-XDWD-EUR": [
+        "scripts/monthly-automation.json:etfIE00BJ0KDQ92"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BJ0KDQ92-XLON-XDWD-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BJ0KDQ92-XLON-XWLD-GBX",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BK1PV551/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BK1PV551/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/london-stock-exchange/xtrackers-ie-plc-msci-world-IE00BK1PV551-XDWP-GBP-XLON/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK1PV551",
+      "https://www.quantalys.com/Fonds/540138"
+    ],
+    "id": "IE00BK1PV551",
+    "name": "Xtrackers MSCI World UCITS ETF 1D",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BK1PV551-XETR-XDWL-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BK1PV551-XETR-XDWL-EUR": [
+        "preferred-display",
+        "scripts/monthly-automation.json:etfIE00BK1PV551"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BK1PV551-XLON-XDWK-HKD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BK1PV551-XLON-XDWL-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BK1PV551-XLON-XDWP-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-utilities-IE00BM67HQ30-XDWU-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HQ30"
+    ],
+    "id": "IE00BM67HQ30",
+    "name": "Xtrackers MSCI World Utilities UCITS ETF",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BM67HQ30-ETFP-XDWU-EUR",
+      "IE00BM67HQ30-XETR-XDWU-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BM67HQ30-ETFP-XDWU-EUR": [
+        "preferred-display"
+      ],
+      "IE00BM67HQ30-XETR-XDWU-EUR": [
+        "scripts/monthly-automation.json:etfWorldUtilities"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BM67HQ30-XLON-XDWU-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BM67HQ30-XLON-XWUS-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU1875395870/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/LU1875395870/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-nikkei-225-ucits-etf-LU1875395870-XDJE-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=LU1875395870"
+    ],
+    "id": "LU1875395870",
+    "name": "Xtrackers Nikkei 225 UCITS ETF",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "LU1875395870-ETFP-XDJE-EUR",
+      "LU1875395870-XETR-XDJE-EUR"
+    ],
+    "requiredListingUses": {
+      "LU1875395870-ETFP-XDJE-EUR": [
+        "preferred-display"
+      ],
+      "LU1875395870-XETR-XDJE-EUR": [
+        "scripts/monthly-automation.json:etfLU1875395870"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": []
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU2196470426/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/LU2196470426/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/xetra/xtr-nikkei-225-1c-yn-LU2196470426-XNKY-EUR-XETR/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=LU2196470426"
+    ],
+    "id": "LU2196470426",
+    "name": "Xtrackers Nikkei 225 UCITS ETF 1C (Acc)",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "LU2196470426-XETR-XNKY-EUR"
+    ],
+    "requiredListingUses": {
+      "LU2196470426-XETR-XNKY-EUR": [
+        "preferred-display",
+        "scripts/monthly-automation.json:etfLU2196470426"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": []
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
+      "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x-sp-ew-dr-IE00BLNMYC90-XDEW-CHF-XSWX/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BLNMYC90",
+      "https://www.quantalys.com/Fonds/418592"
+    ],
+    "id": "IE00BLNMYC90",
+    "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "IE00BLNMYC90-ETFP-XDEW-EUR"
+    ],
+    "requiredListingUses": {
+      "IE00BLNMYC90-ETFP-XDEW-EUR": [
+        "preferred-display"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "IE00BLNMYC90-XETR-XDEW-EUR",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BLNMYC90-XLON-XDEW-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "IE00BLNMYC90-XLON-XDWE-GBX",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+      "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU2903252349/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/LU2903252349/pdpMetaTagsTealium",
+      "https://www.justetf.com/fr/etf-profile.html?isin=LU2903252349"
+    ],
+    "id": "LU2903252349",
+    "name": "Xtrackers Scalable MSCI AC World UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "LU2903252349-ETFP-SCWX-EUR"
+    ],
+    "requiredListingUses": {
+      "LU2903252349-ETFP-SCWX-EUR": [
+        "preferred-display",
+        "scripts/monthly-automation.json:etfLU2903252349"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "LU2903252349-XETR-SCWX-EUR",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "LU2903252349-XLON-SCWX-USD",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium"
+      },
+      {
+        "evidenceId": "LU2903252349-XLON-SCXW-GBP",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium"
+      }
+    ]
+  },
+  {
+    "diagnostic": {
+      "code": "observed",
+      "reason": null
+    },
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "automationConfigured": true,
+    "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+    "sourceUrls": [
+      "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/fr-fr/etf/LU0328475792/pdpMetaTagsTealium",
+      "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-stoxx-europe-600-uci-LU0328475792-XSX6-EUR-ETFP/seance",
+      "https://www.justetf.com/fr/etf-profile.html?isin=LU0328475792",
+      "https://www.quantalys.com/Fonds/418698"
+    ],
+    "id": "LU0328475792",
+    "name": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
+    "type": "instrument",
+    "field": "listings",
+    "label": "Cotations",
+    "state": "current",
+    "present": true,
+    "checkedAt": "2026-11-11",
+    "asOf": null,
+    "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+    "reason": null,
+    "requiredListingIds": [
+      "LU0328475792-ETFP-XSX6-EUR",
+      "LU0328475792-XETR-XSX6-EUR"
+    ],
+    "requiredListingUses": {
+      "LU0328475792-ETFP-XSX6-EUR": [
+        "preferred-display"
+      ],
+      "LU0328475792-XETR-XSX6-EUR": [
+        "scripts/monthly-automation.json:etfLU0328475792"
+      ]
+    },
+    "missingListingIds": [],
+    "retainedListingReferences": [
+      {
+        "evidenceId": "LU0328475792-XLON-XSX6-GBX",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium"
+      }
+    ]
+  }
+]

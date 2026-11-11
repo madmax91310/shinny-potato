@@ -1,0 +1,41 @@
+{
+  "oldCode": "99d974afa4a21712c92cc91ca84b7464f75585d8",
+  "currentCode": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+  "codeFiles": {
+    "src/data/market-history.js": {
+      "old": "48d67ffbcf173c3f6a096e5b1e7a6b407b6a32a5",
+      "current": "48d67ffbcf173c3f6a096e5b1e7a6b407b6a32a5"
+    },
+    "src/data/history-window-quality.js": {
+      "old": "4ab78f299a05305459e15b5f9f6bec0679cea3ad",
+      "current": "4ab78f299a05305459e15b5f9f6bec0679cea3ad"
+    },
+    "src/pages/investment-calculator/lib.js": {
+      "old": "a2d97b716a62518af1c5624ba72bae382e35dc51",
+      "current": "a2d97b716a62518af1c5624ba72bae382e35dc51"
+    },
+    "src/pages/dca-profiles/analytics.js": {
+      "old": "d4d36fde38095e83d7e3ff5f6a5f442589c99a89",
+      "current": "d4d36fde38095e83d7e3ff5f6a5f442589c99a89"
+    },
+    "src/data/index-facts.js": {
+      "old": "3a937e649d22cf3dbcf414f17c3eee2d35a0b5e2",
+      "current": "3a937e649d22cf3dbcf414f17c3eee2d35a0b5e2"
+    },
+    "src/data/index-company-compositions.js": {
+      "old": "66860005f549d7c0553f3f0ab48a0f980e4df7ad",
+      "current": "66860005f549d7c0553f3f0ab48a0f980e4df7ad"
+    }
+  },
+  "currentFinancialData": {
+    "src/data/automated-monthly.json": "474142b727712860179ae8a73b6b9ab6946b70a8",
+    "src/data/automated-etf-monthly.json": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+    "src/data/non-bond-monthly-records.json": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+    "src/data/monthly-fx.json": "3dc52f31d847a8905a93bd012358e14eac75131d",
+    "src/data/dca-complete-holdings.json": "9bc55f1547dadb3bfa1d2c72f6ac9341484a3f19",
+    "src/data/exposure-etf-expansion-records.json": "c016e326ae5ed1b56bc46d081ed91a3f1c2409d4",
+    "src/data/automated-indices.json": "37a9c01164a8923bb4884eff3b50053f6c1378c0",
+    "src/data/index-company-observations.json": "6b011ec65c2acf063deed288ab9aec7ccb3a1106"
+  },
+  "meaning": "Old browser runs remain dated original executions. Identical financial code and input blobs permit bounded reuse, not a newly executed test on every instrument."
+}
