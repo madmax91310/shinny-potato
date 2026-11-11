@@ -1,0 +1,57 @@
+{
+  "purpose": "New issuer-delegated source investigation; current exact security reference still missing",
+  "delegationSource": "https://www.saab.com/investors/the-share",
+  "loader": {
+    "observedAt": "2026-11-11T11:49:28.244553+00:00",
+    "source": "https://widget.datablocks.se/api/rose/assets/js/loader-v4.js",
+    "purpose": "New issuer-delegated public widget path for exact current Saab B identity; not a Nasdaq retry or a production source success",
+    "delegationSource": "https://www.saab.com/investors/the-share",
+    "delegationHtmlSha256": "51b1a93cd99cfff42095b6b6662b4b52a81f53b2f171a9db2bcbf61af01e0740",
+    "status": 200,
+    "bytes": 5440,
+    "sha256": "018bf2565d70d1476b6d9089763ca7ded1a4011eb5e8d6da1b7bb9ce2855c7f2"
+  },
+  "stockTable": {
+    "source": "https://widget.datablocks.se/api/rose/widgets/stock-table?token=29d32a6b-242e-4fcb-bc2c-caf5a4b18410&lang=en",
+    "observedAt": "2026-11-11T11:50:13.665361+00:00",
+    "delegation": "Public widget configuration and route read from current Saab issuer HTML+loader; ordinary GET, no credential or access-control bypass",
+    "scope": "Exact stock reference only; no price-series or licence qualification inferred",
+    "status": 200,
+    "bytes": 4396,
+    "sha256": "6d04cdeb99d7cd84a99aecea35e77e17f9ee4b5f27dde12422ec12cf0c36bb7c",
+    "identityMatches": [
+      "        SAAB B",
+      "        SAAB B"
+    ]
+  },
+  "chart": {
+    "source": "https://widget.datablocks.se/api/rose/widgets/stock-chart?token=296337ba-c30f-4fca-a2c0-e67384526471&lang=en",
+    "checkedAt": "2026-11-11T11:50:48.934613+00:00",
+    "status": 200,
+    "bytes": 2000000,
+    "sha256": "cfbd502e8697a05d736cc4c4594fe2003275dded5817fd5e4f5e83fe2ad2f59c",
+    "identityMatches": [],
+    "conclusion": "No ISIN found in the bounded2MB prefix; the complete chart was NOT examined or qualified. Full stock-table response also contains no ISIN. No production clock, source success or price series updated.",
+    "responseComplete": false,
+    "readCapBytes": 2000000
+  },
+  "result": "Public issuer-delegated stock table and entire chart work locally but do not return the exact ISIN. This is incomplete identity proof, distinct from Nasdaq403. Last valid10Nov identity receipt and production clocks remain unchanged. Chart data not published or admitted; full-series reuse rights not qualified.",
+  "completeChartReferenceProbe": {
+    "source": "https://widget.datablocks.se/api/rose/widgets/stock-chart?token=296337ba-c30f-4fca-a2c0-e67384526471&lang=en",
+    "startedAt": "2026-11-11T12:10:59.989424+00:00",
+    "newQuestion": "Issuer chart metadata may follow its large plotted data. Complete only if under8MB; extract exact current share identifier, never import or publish the price chart.",
+    "readCapBytes": 8000000,
+    "status": 200,
+    "responseComplete": true,
+    "bytesRead": 7805587,
+    "contentLength": null,
+    "sha256": "decfa8bc0a885bc5ef1bfdf56c646a87c35277621e17024dcd5da167b1abad2a",
+    "identityMatches": [],
+    "dataNotPublished": true,
+    "priceSeriesNotAdmitted": true,
+    "nonIdentitySubstringMatches": [
+      "      disableNormalising: false,"
+    ],
+    "result": "Entire7,805,587-byte public issuer-delegated chart examined for exact ISIN metadata; only a Normalising setting caused an irrelevant substring match. Neither table nor full chart returns the exact current ISIN. No series, licence or production identity proof admitted."
+  }
+}

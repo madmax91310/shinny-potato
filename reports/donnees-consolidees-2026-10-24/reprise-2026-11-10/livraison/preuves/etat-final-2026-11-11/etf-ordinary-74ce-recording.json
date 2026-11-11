@@ -1,0 +1,108 @@
+{
+  "sha": "74cebc016717802603b8ac976e775a70b4cc85ca",
+  "parents": [
+    {
+      "sha": "869e8b6aaef0ea50f871a2fe0db9fe8d435b348a",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/commits/869e8b6aaef0ea50f871a2fe0db9fe8d435b348a",
+      "html_url": "https://github.com/madmax91310/shinny-potato/commit/869e8b6aaef0ea50f871a2fe0db9fe8d435b348a"
+    }
+  ],
+  "commit": {
+    "author": {
+      "name": "github-actions[bot]",
+      "email": "41898282+github-actions[bot]@users.noreply.github.com",
+      "date": "2026-11-11T11:13:17Z"
+    },
+    "committer": {
+      "name": "github-actions[bot]",
+      "email": "41898282+github-actions[bot]@users.noreply.github.com",
+      "date": "2026-11-11T11:13:17Z"
+    },
+    "message": "Refresh validated active ETF issuer data",
+    "tree": {
+      "sha": "d8ffc353e53778e236424e56763cfc59e3e4133c",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees/d8ffc353e53778e236424e56763cfc59e3e4133c"
+    },
+    "url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits/74cebc016717802603b8ac976e775a70b4cc85ca",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "files": [
+    {
+      "sha": "9b05b2f5833214bf14141ec4f15d66333b296d76",
+      "filename": "docs/asset-field-coverage.md",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/madmax91310/shinny-potato/blob/74cebc016717802603b8ac976e775a70b4cc85ca/docs%2Fasset-field-coverage.md",
+      "raw_url": "https://github.com/madmax91310/shinny-potato/raw/74cebc016717802603b8ac976e775a70b4cc85ca/docs%2Fasset-field-coverage.md",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/docs%2Fasset-field-coverage.md?ref=74cebc016717802603b8ac976e775a70b4cc85ca",
+      "patch": "@@ -15,7 +15,7 @@ Les états décrivent les observations enregistrées, pas une garantie réseau.\n | Distribution | 280/283 | 280 | 0 | 0 |\n | Domicile | 280/283 | 280 | 0 | 0 |\n | Réplication | 280/283 | 280 | 0 | 0 |\n-| Cotations | 280/283 | 278 | 2 | 0 |\n+| Cotations | 280/283 | 279 | 1 | 0 |\n | Éligibilité PEA | 257/283 | 257 | 0 | 0 |\n | Couverture de change | 280/283 | 280 | 0 | 0 |\n "
+    },
+    {
+      "sha": "9f9c3bb46b00673731664ee0450fe818897a8517",
+      "filename": "docs/automation-gaps.json",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 5,
+      "changes": 10,
+      "blob_url": "https://github.com/madmax91310/shinny-potato/blob/74cebc016717802603b8ac976e775a70b4cc85ca/docs%2Fautomation-gaps.json",
+      "raw_url": "https://github.com/madmax91310/shinny-potato/raw/74cebc016717802603b8ac976e775a70b4cc85ca/docs%2Fautomation-gaps.json",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/docs%2Fautomation-gaps.json?ref=74cebc016717802603b8ac976e775a70b4cc85ca",
+      "patch": "@@ -1096,7 +1096,7 @@\n       \"asOf\": \"2026-11-09\",\n       \"checkedAt\": \"2026-11-11\",\n       \"sourceUrl\": \"https://globalxetfs.eu/funds/silv/\",\n-      \"sha256\": \"661be1626209c42960182f483f2bb5b1b6b5d3c9c3eadf867b01dc72fa9b56d7\",\n+      \"sha256\": \"f4d13bccc1f98a1eecd17ac28445c5942512d8f032fb5813766762b3fe8f98f6\",\n       \"reason\": \"Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.\",\n       \"evidence\": {\n         \"datedCountryTable\": true,\n@@ -1832,7 +1832,7 @@\n       \"reason\": \"La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.\",\n       \"checkedAt\": \"2026-11-11\",\n       \"sourceUrl\": \"https://globalxetfs.eu/funds/qyld/\",\n-      \"sha256\": \"7cec4e02138b13192b8ecb541671e56e408fbdf689ca9dd01f0c128f9028fc2c\",\n+      \"sha256\": \"87ebd1f9d613d8e02c0a3fe9e82fc43092e3a1a0a2d42218b9f75c406ecc5484\",\n       \"evidence\": []\n     },\n     {\n@@ -1846,7 +1846,7 @@\n       \"reason\": \"Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.\",\n       \"checkedAt\": \"2026-11-11\",\n       \"sourceUrl\": \"https://globalxetfs.eu/funds/qyld/\",\n-      \"sha256\": \"7cec4e02138b13192b8ecb541671e56e408fbdf689ca9dd01f0c128f9028fc2c\",\n+      \"sha256\": \"87ebd1f9d613d8e02c0a3fe9e82fc43092e3a1a0a2d42218b9f75c406ecc5484\",\n       \"evidence\": []\n     },\n     {\n@@ -1860,7 +1860,7 @@\n       \"reason\": \"Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.\",\n       \"checkedAt\": \"2026-11-11\",\n       \"sourceUrl\": \"https://globalxetfs.eu/funds/qyld/\",\n-      \"sha256\": \"7cec4e02138b13192b8ecb541671e56e408fbdf689ca9dd01f0c128f9028fc2c\",\n+      \"sha256\": \"87ebd1f9d613d8e02c0a3fe9e82fc43092e3a1a0a2d42218b9f75c406ecc5484\",\n       \"evidence\": [\n         \"Reference Index Sector Breakdown\",\n         \"As of 31 Oct 2026\",\n@@ -1901,7 +1901,7 @@\n       \"reason\": \"Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.\",\n       \"checkedAt\": \"2026-11-11\",\n       \"sourceUrl\": \"https://globalxetfs.eu/funds/qyld/\",\n-      \"sha256\": \"7cec4e02138b13192b8ecb541671e56e408fbdf689ca9dd01f0c128f9028fc2c\",\n+      \"sha256\": \"87ebd1f9d613d8e02c0a3fe9e82fc43092e3a1a0a2d42218b9f75c406ecc5484\",\n       \"evidence\": [\n         \"Top 10 Reference Index Constituents\",\n         \"As of 06 Nov 2026\","
+    },
+    {
+      "sha": "8bf53605f05568025b2495969e557af5e0e3d753",
+      "filename": "public/data/asset-field-coverage.json",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/madmax91310/shinny-potato/blob/74cebc016717802603b8ac976e775a70b4cc85ca/public%2Fdata%2Fasset-field-coverage.json",
+      "raw_url": "https://github.com/madmax91310/shinny-potato/raw/74cebc016717802603b8ac976e775a70b4cc85ca/public%2Fdata%2Fasset-field-coverage.json",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/public%2Fdata%2Fasset-field-coverage.json?ref=74cebc016717802603b8ac976e775a70b4cc85ca"
+    },
+    {
+      "sha": "fa8ad0272d67ed9556fa296bea9a395ec9c68d93",
+      "filename": "scripts/instrument-metadata-sources.json",
+      "status": "modified",
+      "additions": 17,
+      "deletions": 15,
+      "changes": 32,
+      "blob_url": "https://github.com/madmax91310/shinny-potato/blob/74cebc016717802603b8ac976e775a70b4cc85ca/scripts%2Finstrument-metadata-sources.json",
+      "raw_url": "https://github.com/madmax91310/shinny-potato/raw/74cebc016717802603b8ac976e775a70b4cc85ca/scripts%2Finstrument-metadata-sources.json",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/scripts%2Finstrument-metadata-sources.json?ref=74cebc016717802603b8ac976e775a70b4cc85ca",
+      "patch": "@@ -7368,18 +7368,6 @@\n           \"sha256\": \"33d06688df78e4205a0d9d6789a1e6aff5b2a6336d2680658dd3675ea2607c69\",\n           \"evidenceId\": \"IE00BM67HS53-XETR-XDWM-EUR\"\n         },\n-        {\n-          \"ticker\": \"XDWM\",\n-          \"mic\": \"XLON\",\n-          \"exchange\": \"London Stock Exchange\",\n-          \"currency\": \"USD\",\n-          \"symbol\": \"XDWM.L\",\n-          \"excerpt\": \"IE00BM67HS53 | London Stock Exchange | XDWM LN | USD | XDWM.L\",\n-          \"sourceUrl\": \"https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium\",\n-          \"checkedAt\": \"2026-11-11\",\n-          \"sha256\": \"33d06688df78e4205a0d9d6789a1e6aff5b2a6336d2680658dd3675ea2607c69\",\n-          \"evidenceId\": \"IE00BM67HS53-XLON-XDWM-USD\"\n-        },\n         {\n           \"ticker\": \"XDWM\",\n           \"mic\": \"ETFP\",\n@@ -7392,6 +7380,18 @@\n           \"sha256\": \"33d06688df78e4205a0d9d6789a1e6aff5b2a6336d2680658dd3675ea2607c69\",\n           \"evidenceId\": \"IE00BM67HS53-ETFP-XDWM-EUR\"\n         },\n+        {\n+          \"ticker\": \"XDWM\",\n+          \"mic\": \"XLON\",\n+          \"exchange\": \"London Stock Exchange\",\n+          \"currency\": \"USD\",\n+          \"symbol\": \"XDWM.L\",\n+          \"excerpt\": \"IE00BM67HS53 | London Stock Exchange | XDWM LN | USD | XDWM.L\",\n+          \"sourceUrl\": \"https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium\",\n+          \"checkedAt\": \"2026-11-11\",\n+          \"sha256\": \"33d06688df78e4205a0d9d6789a1e6aff5b2a6336d2680658dd3675ea2607c69\",\n+          \"evidenceId\": \"IE00BM67HS53-XLON-XDWM-USD\"\n+        },\n         {\n           \"ticker\": \"XSMW\",\n           \"mic\": \"XLON\",\n@@ -9993,7 +9993,8 @@\n         \"https://extraetf.com/fr/etf-profile/IE00B42NKQ00\",\n         \"https://www.justetf.com/fr/etf-profile.html?isin=IE00B42NKQ00\",\n         \"https://apidata.londonstockexchange.com/nrdp/v1?tidm=IUES\",\n-        \"https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-s-p500-energy-usd-a-IE00B42NKQ00-IUES-USD-USD-XSWX/seance\"\n+        \"https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-s-p500-energy-usd-a-IE00B42NKQ00-IUES-USD-USD-XSWX/seance\",\n+        \"https://www.blackrock.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-no.pdf\"\n       ]\n     },\n     {\n@@ -10670,9 +10671,10 @@\n         \"checkedAt\": \"2026-11-11\"\n       },\n       \"urls\": [\n-        \"https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98\",\n+        \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\",\n         \"https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98/\",\n-        \"https://www.justetf.com/fr/etf-profile.html?isin=IE0002Y8CX98\"\n+        \"https://www.justetf.com/fr/etf-profile.html?isin=IE0002Y8CX98\",\n+        \"https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98\"\n       ]\n     },\n     {"
+    },
+    {
+      "sha": "cf3ecc9f5e26486346c16dc16f3df9b1db9e49bc",
+      "filename": "src/data/automated-etf.json",
+      "status": "modified",
+      "additions": 5866,
+      "deletions": 5900,
+      "changes": 11766,
+      "blob_url": "https://github.com/madmax91310/shinny-potato/blob/74cebc016717802603b8ac976e775a70b4cc85ca/src%2Fdata%2Fautomated-etf.json",
+      "raw_url": "https://github.com/madmax91310/shinny-potato/raw/74cebc016717802603b8ac976e775a70b4cc85ca/src%2Fdata%2Fautomated-etf.json",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/src%2Fdata%2Fautomated-etf.json?ref=74cebc016717802603b8ac976e775a70b4cc85ca"
+    },
+    {
+      "sha": "37a9c01164a8923bb4884eff3b50053f6c1378c0",
+      "filename": "src/data/automated-indices.json",
+      "status": "modified",
+      "additions": 7,
+      "deletions": 7,
+      "changes": 14,
+      "blob_url": "https://github.com/madmax91310/shinny-potato/blob/74cebc016717802603b8ac976e775a70b4cc85ca/src%2Fdata%2Fautomated-indices.json",
+      "raw_url": "https://github.com/madmax91310/shinny-potato/raw/74cebc016717802603b8ac976e775a70b4cc85ca/src%2Fdata%2Fautomated-indices.json",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/src%2Fdata%2Fautomated-indices.json?ref=74cebc016717802603b8ac976e775a70b4cc85ca",
+      "patch": "@@ -19742,7 +19742,7 @@\n       \"source\": {\n         \"url\": \"https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225\",\n         \"checkedAt\": \"2026-11-11\",\n-        \"sha256\": \"ce88d64c391a3c3792099322a5602330e7bd8bb7a86f72dbac930d7d32e89171\",\n+        \"sha256\": \"e9764ed4c81c6fe3d53a610e61c335c77f8e7a0a821c370fb58eacae41d9e7a1\",\n         \"label\": \"Composition officielle automatisée · Nikkei 225\"\n       },\n       \"provenance\": \"Publication officielle Nikkei ; classification sectorielle propre à Nikkei.\"\n@@ -19958,7 +19958,7 @@\n       \"source\": {\n         \"url\": \"https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr\",\n         \"checkedAt\": \"2026-11-11\",\n-        \"sha256\": \"0b50e066d8437df759a0cde30c609663c868d51e5a2f886833ca71e82f99e321\",\n+        \"sha256\": \"2832d66844c387805ff85e2abc74b21c356610da2e31d6ca93378e1b531b46e7\",\n         \"label\": \"Rendements calendaires officiels automatisés · Nikkei 225\"\n       },\n       \"performance\": {\n@@ -20086,7 +20086,7 @@\n       \"source\": {\n         \"url\": \"https://stoxx.com/index/sxxr/\",\n         \"checkedAt\": \"2026-11-11\",\n-        \"sha256\": \"e066708e03f71a6b0040d1b2587e91b642eb1de03616047bd85c6541158b616e\",\n+        \"sha256\": \"16c0d2ae7f5807aee0ce45bc81ba78a230bfc25d14310d36e82ede4b24f9da91\",\n         \"label\": \"Rendements calendaires officiels automatisés · STOXX Europe 600\"\n       },\n       \"performance\": {\n@@ -21786,7 +21786,7 @@\n       \"source\": {\n         \"url\": \"https://stoxx.com/index/sx5t/\",\n         \"checkedAt\": \"2026-11-11\",\n-        \"sha256\": \"1764386538f2ffc5a90f9f689a6e572c142ec985d6a8f3d532d7aaec79cfeff7\",\n+        \"sha256\": \"5ccbd5caee14a66f5127052d6530277e1851504c9ccb4dedd7a7db753ea64c22\",\n         \"label\": \"Rendements calendaires officiels automatisés · EURO STOXX 50\"\n       },\n       \"performance\": {\n@@ -23444,7 +23444,7 @@\n       \"source\": {\n         \"url\": \"https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy\",\n         \"checkedAt\": \"2026-11-11\",\n-        \"sha256\": \"0a6703174917a53818678167b10e4c50615121009991dbd0c72df9fac3357100\",\n+        \"sha256\": \"13b115c8307152c9d7b428a7c73388c662100bb177ee53f590e18ca1cea629ef\",\n         \"label\": \"Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income\"\n       },\n       \"performance\": {\n@@ -24078,7 +24078,7 @@\n       \"source\": {\n         \"url\": \"https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy\",\n         \"checkedAt\": \"2026-11-11\",\n-        \"sha256\": \"122eb2ff54bffb35ef41f97f9e3c406ac3da915931407858f3d4e914f7c169e8\",\n+        \"sha256\": \"84407755ccbdd29f8b6e60cb0d6fa9c7a8dba5c61b9198df72b562e08719a9e5\",\n         \"label\": \"Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats\"\n       },\n       \"performance\": {\n@@ -24584,7 +24584,7 @@\n       \"source\": {\n         \"url\": \"https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf\",\n         \"checkedAt\": \"2026-11-11\",\n-        \"sha256\": \"9bdc56e3a3158cc130e46dc4b69392a6c0fddd0be548a9d34849b21aa74f0c73\",\n+        \"sha256\": \"c0c94d13f4082371f82643d7181cc19271e3cbcb6a3778019cea7aa7b60d8e48\",\n         \"label\": \"Rendements calendaires officiels automatisés · TOPIX\"\n       },\n       \"performance\": {"
+    }
+  ]
+}

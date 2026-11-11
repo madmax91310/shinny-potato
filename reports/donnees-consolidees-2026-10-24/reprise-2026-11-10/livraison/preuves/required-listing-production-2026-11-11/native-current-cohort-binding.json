@@ -1,0 +1,710 @@
+{
+  "ordinaryRun": 43009243171,
+  "nativeCheckedAt": "2026-11-11T11:14:31.429180+00:00",
+  "currentPublic": {
+    "sha": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+    "builtAt": "2026-11-11T12:03:46Z"
+  },
+  "bindings": [
+    {
+      "isin": "IE00B42NKQ00",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00B42NKQ00",
+          "https://extraetf.com/fr/etf-profile/IE00B42NKQ00",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B42NKQ00",
+          "https://apidata.londonstockexchange.com/nrdp/v1?tidm=IUES",
+          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-s-p500-energy-usd-a-IE00B42NKQ00-IUES-USD-USD-XSWX/seance",
+          "https://www.blackrock.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-no.pdf"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00B42NKQ00-XETR-QDVF-EUR",
+          "sourceUrl": "https://www.blackrock.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-no.pdf",
+          "checkedAt": "2026-11-11",
+          "sha256": "f811832a87c01efdde7c7565d9b396e516df28c90653b00a21f5b9919c08d8c9",
+          "uses": [
+            "preferred-display"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BGV5VN51",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BGV5VN51",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x-artificial-intel-big-da-1c-IE00BGV5VN51-XAIX-CHF-XSWX/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BGV5VN51-ETFP-XAIX-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "a670c242d276730c518a206b36feade5864ca504a383d49cdbe0afa08c98cde4",
+          "uses": [
+            "preferred-display",
+            "scripts/monthly-automation.json:etfAiBigData"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0380865021",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU0380865021/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=LU0380865021",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/LU0380865021/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-euro-stoxx-50-ucits-LU0380865021-XESC-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "LU0380865021-ETFP-XESC-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "c16bd0f1274bf0df9f05ba37cb4fa3f45241dd6883c297658346f8528557b2ad",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "LU0380865021-XETR-XESC-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "c16bd0f1274bf0df9f05ba37cb4fa3f45241dd6883c297658346f8528557b2ad",
+          "uses": [
+            "scripts/monthly-automation.json:etfLU0380865021"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE000L6ZMMC4",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE000L6ZMMC4",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x-ftse-all-world-etf-1c-IE000L6ZMMC4-XALL-EUR-ETFP-EUR-XSWX/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE000L6ZMMC4-ETFP-ALLW-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "69ede4af71d64beb28cd69d597a2813b4ea2c33439d5a73188767e348487a353",
+          "uses": [
+            "preferred-display",
+            "scripts/monthly-automation.json:etfIE000L6ZMMC4"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0290358497",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+          "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU0290358497/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=LU0290358497",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/LU0290358497/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x2-eur-cash-sw-LU0290358497-XEON-EUR-ETFP-EUR-XSWX/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "LU0290358497-ETFP-XEON-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "5d0aa0cbe230e0d3cedce24d20aae7813ca096a97f387283549e3098e74bbb83",
+          "uses": [
+            "preferred-display"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BTJRMP35",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BTJRMP35",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-emerg-markets-u-IE00BTJRMP35-XMME-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BTJRMP35-ETFP-XMME-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "82a25e3cdab5a09555b6ba2789e98179db5f2e2ec4abd48f3fd5b36ebd36aa62",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "IE00BTJRMP35-XETR-XMME-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "82a25e3cdab5a09555b6ba2789e98179db5f2e2ec4abd48f3fd5b36ebd36aa62",
+          "uses": [
+            "scripts/monthly-automation.json:etfIE00BTJRMP35"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0274209237",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "https://www.quantalys.com/Fonds/418626",
+          "https://www.justetf.com/fr/etf-profile.html?isin=LU0274209237",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/LU0274209237/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-europe-ucits-et-LU0274209237-XMEU-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "LU0274209237-ETFP-XMEU-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "787091d0fe6c19126e2dc533d8a156d071538aac78e05537b1347d4930bb01b5",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "LU0274209237-XETR-XMEU-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "787091d0fe6c19126e2dc533d8a156d071538aac78e05537b1347d4930bb01b5",
+          "uses": [
+            "scripts/monthly-automation.json:etfLU0274209237"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE0006WW1TQ4",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE0006WW1TQ4",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-ex-usa-uc-IE0006WW1TQ4-EXUS-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE0006WW1TQ4-ETFP-EXUS-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "01cb75f18830dfd0676813934534e1363ec14cfb59593431acd34b51730e0c67",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "IE0006WW1TQ4-XETR-EXUS-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "01cb75f18830dfd0676813934534e1363ec14cfb59593431acd34b51730e0c67",
+          "uses": [
+            "scripts/monthly-automation.json:etfWorldExUs"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HK77",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HK77",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-heal-care-IE00BM67HK77-XDWH-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BM67HK77-ETFP-XDWH-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "1bd897df80b0482d2abb9ab0a0c9e674b6fc1771a5cdace874f4e0ad22fb652c",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "IE00BM67HK77-XETR-XDWH-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "1bd897df80b0482d2abb9ab0a0c9e674b6fc1771a5cdace874f4e0ad22fb652c",
+          "uses": [
+            "scripts/monthly-automation.json:etfIE00BM67HK77"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HV82",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BM67HV82/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HV82",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HV82/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-industr-u-IE00BM67HV82-XDWI-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BM67HV82-ETFP-XDWI-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "97d36d4db5892fd328612c4b47375c938a55a94583ea6554af19e9b43cdf5ccf",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "IE00BM67HV82-XETR-XDWI-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "97d36d4db5892fd328612c4b47375c938a55a94583ea6554af19e9b43cdf5ccf",
+          "uses": [
+            "scripts/monthly-automation.json:etfIndustrials"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HS53",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "https://www.quantalys.com/Fonds/418601",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HS53",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/xtrackers-ie-plc-msci-world-IE00BM67HS53-XDWM-USD-XLON/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "c34c8ac011066f8796e80d17662e8a8feab562a6fb780c4b578faddfba72f955",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "c34c8ac011066f8796e80d17662e8a8feab562a6fb780c4b578faddfba72f955",
+          "uses": [
+            "scripts/monthly-automation.json:etfWorldMaterialsDws"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJ0KDQ92",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "https://www.quantalys.com/Fonds/418582",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ0KDQ92",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-ucits-etf-IE00BJ0KDQ92-XDWD-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BJ0KDQ92-ETFP-XDWD-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "a02f3f6521b0e95b2fa6d72b1fab9aeac5546331dda965068a3c69129ad3bddd",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "IE00BJ0KDQ92-XETR-XDWD-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "a02f3f6521b0e95b2fa6d72b1fab9aeac5546331dda965068a3c69129ad3bddd",
+          "uses": [
+            "scripts/monthly-automation.json:etfIE00BJ0KDQ92"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BK1PV551",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "https://www.quantalys.com/Fonds/540138",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK1PV551",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/xtrackers-ie-plc-msci-world-IE00BK1PV551-XDWP-GBP-XLON/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BK1PV551-XETR-XDWL-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "fbd1410fd966187cde15d2484b517f9a6d0264478a69682f84dc3b3b9adbda30",
+          "uses": [
+            "preferred-display",
+            "scripts/monthly-automation.json:etfIE00BK1PV551"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HQ30",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BM67HQ30",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-utilities-IE00BM67HQ30-XDWU-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "046cf42580e12f4b6e2ef73972d4c08d3b1fdfdf08bddda5e5eec462b8a0ee8e",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "046cf42580e12f4b6e2ef73972d4c08d3b1fdfdf08bddda5e5eec462b8a0ee8e",
+          "uses": [
+            "scripts/monthly-automation.json:etfWorldUtilities"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU1875395870",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU1875395870/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=LU1875395870",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/LU1875395870/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-nikkei-225-ucits-etf-LU1875395870-XDJE-EUR-ETFP/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "LU1875395870-ETFP-XDJE-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "27ca5bbf530f4ad821a32b477ec27738b75b8fd6e63647c8fe40ed2b4d130768",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "LU1875395870-XETR-XDJE-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "27ca5bbf530f4ad821a32b477ec27738b75b8fd6e63647c8fe40ed2b4d130768",
+          "uses": [
+            "scripts/monthly-automation.json:etfLU1875395870"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU2196470426",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU2196470426/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=LU2196470426",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/LU2196470426/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/xetra/xtr-nikkei-225-1c-yn-LU2196470426-XNKY-EUR-XETR/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "LU2196470426-XETR-XNKY-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "38f871016ca145a25a6814b1c797d5b07b75806ccf916b9ccf35af67b331b4bf",
+          "uses": [
+            "preferred-display",
+            "scripts/monthly-automation.json:etfLU2196470426"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BLNMYC90",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+          "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
+          "https://www.quantalys.com/Fonds/418592",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BLNMYC90",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x-sp-ew-dr-IE00BLNMYC90-XDEW-CHF-XSWX/seance"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "IE00BLNMYC90-ETFP-XDEW-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "8e23a5f145a6ad7aa5b576decfb400435110c187c0a8f0ca50a480efe31d9239",
+          "uses": [
+            "preferred-display"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU2903252349",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU2903252349/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=LU2903252349",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/LU2903252349/pdpMetaTagsTealium"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "LU2903252349-ETFP-SCWX-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "12268c98343d8c403f33b146810c257ac4df1303d7feab4e7f43f1514a2f8dfa",
+          "uses": [
+            "preferred-display",
+            "scripts/monthly-automation.json:etfLU2903252349"
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0328475792",
+      "nativeFieldSuccess": true,
+      "sourceAttempt": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-11T11:14:31.429180+00:00",
+        "lastSuccessAt": "2026-11-11",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU0328475792/pdpMetaTagsTealium",
+          "https://www.justetf.com/fr/etf-profile.html?isin=LU0328475792",
+          "https://etf.dws.com/api/pdp/fr-fr/etf/LU0328475792/pdpMetaTagsTealium",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-stoxx-europe-600-uci-LU0328475792-XSX6-EUR-ETFP/seance",
+          "https://www.quantalys.com/Fonds/418698"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "publishedRequiredQuotes": [
+        {
+          "evidenceId": "LU0328475792-ETFP-XSX6-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "a1ec9d81ef41357eace5b6be95149355cb0e2245df0e4f63db2e5dcb3471815a",
+          "uses": [
+            "preferred-display"
+          ]
+        },
+        {
+          "evidenceId": "LU0328475792-XETR-XSX6-EUR",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "a1ec9d81ef41357eace5b6be95149355cb0e2245df0e4f63db2e5dcb3471815a",
+          "uses": [
+            "scripts/monthly-automation.json:etfLU0328475792"
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "Every required reference matches the original ordinary native receipt and actual public projection; other fields/quotes/source errors are not certified by this result."
+}

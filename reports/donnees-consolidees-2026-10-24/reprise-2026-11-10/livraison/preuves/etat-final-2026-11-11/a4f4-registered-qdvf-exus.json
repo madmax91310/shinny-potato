@@ -1,0 +1,111 @@
+{
+  "commit": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+  "parent": "74cebc016717802603b8ac976e775a70b4cc85ca",
+  "metadataBlob": "f00f9127464371e6558ab1c0aa0f25bbcf821861",
+  "registeredQuotes": {
+    "IE00B42NKQ00": [
+      {
+        "ticker": "QDVF",
+        "mic": "XETR",
+        "exchange": "Xetra",
+        "currency": "EUR",
+        "symbol": "QDVF.DE",
+        "priceScale": 1,
+        "referenceDate": "2026-11-06",
+        "excerpt": "IE00B42NKQ00 | Deutsche Boerse Xetra | QDVF | EUR | QDVF.DE | document reference 2026-11-06",
+        "sourceUrl": "https://www.blackrock.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-no.pdf",
+        "checkedAt": "2026-11-11",
+        "sha256": "f811832a87c01efdde7c7565d9b396e516df28c90653b00a21f5b9919c08d8c9",
+        "evidenceId": "IE00B42NKQ00-XETR-QDVF-EUR"
+      },
+      {
+        "ticker": "IESU",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "GBP",
+        "symbol": "IESU.L",
+        "excerpt": "IE00B42NKQ00 | London Stock Exchange | IESU | GBP | IESU.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-11-03",
+        "sha256": "f3b9514929dfa58b619f5af4c16a952831c909b8f85ce1624d964cf4920ca3a8",
+        "evidenceId": "IE00B42NKQ00-XLON-IESU-GBP"
+      },
+      {
+        "ticker": "IUES",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "USD",
+        "symbol": "IUES.L",
+        "referenceDate": "2026-11-11",
+        "excerpt": "IE00B42NKQ00 | {\"bidStatus\": \"1\", \"calendarDate\": \"11/11/2026\", \"countryOfRegister\": \"IE\", \"currency\": \"USD\", \"description\": \"IS SP ENERGY\", \"displayIssuerName\": \"iShares Plc\", \"displayissuercode\": \"ISHARESGROUPID\", \"exchangeMarketSize\": \"3000\", \"firstTradingDate\": \"23 November 2015\", \"instrumentId\": \"138941\", \"instrumentName\": \"ISHRS S&P 500 ENERGY SECT ETF USD (ACC)\", \"instrumentStatus\": \"0\", \"investmentFund\": \"false\", \"isinCode\": \"IE00B42NKQ00\", \"issuerCode\": \"ISISAM\", \"issuerName\": \"Ishares V Public Limited Company\", \"issuerNameInstrumentName\": \"Ishares V Public Limited Company ISHRS S&P 500 ENERGY SECT ETF USD (ACC)\", \"issuerNameUrl\": \"ishares-v-public-limited-company\", \"lotSize\": \"1\", \"mic\": \"XLON\", \"mifirIdentifier\": \"ETFS\", \"nextTradingDate\": null, \"parentIssuerName\": \"ISHARES\", \"parentissuercode\": \"ISHARESGROUPID\", \"sector\": \"UET5\", \"securityType\": \"SP\", \"sedol\": \"B42NKQ0\", \"segmentCode\": \"EUET\", \"tidm\": \"IUES\", \"tradingAllowed\": \"1\", \"typology\": \"ETPs\", \"unitOfQuotation\": \"1\"}",
+        "sourceUrl": "https://apidata.londonstockexchange.com/nrdp/v1?tidm=IUES",
+        "checkedAt": "2026-11-11",
+        "sha256": "3525602f5d67094cf8886e824fb7b02600e13e23c039f3754df2556dcb7abdbd",
+        "evidenceId": "IE00B42NKQ00-XLON-IUES-USD"
+      },
+      {
+        "ticker": "IUES",
+        "mic": "XMEX",
+        "exchange": "Bolsa Mexicana De Valores",
+        "currency": "MXN",
+        "symbol": "IUESN.MX",
+        "excerpt": "IE00B42NKQ00 | Bolsa Mexicana De Valores | IUES | MXN | IUESN.MX",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-11-03",
+        "sha256": "f3b9514929dfa58b619f5af4c16a952831c909b8f85ce1624d964cf4920ca3a8",
+        "evidenceId": "IE00B42NKQ00-XMEX-IUES-MXN"
+      },
+      {
+        "ticker": "IUES",
+        "mic": "XSWX",
+        "exchange": "SIX Swiss Exchange",
+        "currency": "USD",
+        "symbol": "ISIUES.S",
+        "excerpt": "IE00B42NKQ00 | SIX Swiss Exchange | IUES | USD | ISIUES.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-11-03",
+        "sha256": "f3b9514929dfa58b619f5af4c16a952831c909b8f85ce1624d964cf4920ca3a8",
+        "evidenceId": "IE00B42NKQ00-XSWX-IUES-USD"
+      }
+    ],
+    "IE0006WW1TQ4": [
+      {
+        "ticker": "EXUS",
+        "mic": "ETFP",
+        "exchange": "Borsa Italiana",
+        "currency": "EUR",
+        "symbol": "EXUS.MI",
+        "excerpt": "IE0006WW1TQ4 | Borsa Italiana | EXUS IM | EUR | EXUS.MI",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+        "checkedAt": "2026-11-11",
+        "sha256": "01cb75f18830dfd0676813934534e1363ec14cfb59593431acd34b51730e0c67",
+        "evidenceId": "IE0006WW1TQ4-ETFP-EXUS-EUR"
+      },
+      {
+        "ticker": "EXUS",
+        "mic": "XETR",
+        "exchange": "Xetra",
+        "currency": "EUR",
+        "symbol": "EXUS.DE",
+        "excerpt": "IE0006WW1TQ4 | XETRA | EXUS GY | EUR | EXUS.DE",
+        "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+        "checkedAt": "2026-11-11",
+        "sha256": "01cb75f18830dfd0676813934534e1363ec14cfb59593431acd34b51730e0c67",
+        "evidenceId": "IE0006WW1TQ4-XETR-EXUS-EUR"
+      },
+      {
+        "ticker": "EXUS",
+        "mic": "XSWX",
+        "exchange": "SIX Swiss Exchange",
+        "currency": "CHF",
+        "symbol": "EXUS.S",
+        "excerpt": "IE0006WW1TQ4 | SIX - Swiss Exchange EXUS SW EXUS.S CHF",
+        "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
+        "checkedAt": "2026-11-03",
+        "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
+        "evidenceId": "IE0006WW1TQ4-XSWX-EXUS-CHF"
+      }
+    ]
+  },
+  "meaning": "Ordinary GitHub producer acquisition/validation/recording observed, publication still must be checked"
+}

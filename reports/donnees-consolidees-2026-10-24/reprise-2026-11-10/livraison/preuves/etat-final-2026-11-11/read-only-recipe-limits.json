@@ -1,0 +1,21 @@
+{
+  "scope": "Read-only verification harnesses are separate from production supplier workflows and financial repairs.",
+  "listingVerifierFailedAttempt": {
+    "run": 43017219492,
+    "cause": "Local Python variable q shadowed the exact QDVF list; failed before financial browser scenarios. Native source and public field were valid; only verifier corrected.",
+    "successfulNewRun": 43022860319
+  },
+  "compositionVerifierFailedAttempt": {
+    "run": 43023674196,
+    "cause": "Harness assumed every DCA reference key equaled the ISIN. Existing aliases were found but not used when composing test lines; no application failure demonstrated. Exact-ISIN alias resolution corrected only in private verifier.",
+    "newRun": 43024183475,
+    "newRunStatus": "completed/success; 51 actual public receipts archived separately"
+  },
+  "failedProductionPublicationPreserved": {
+    "run": 43009243105,
+    "cause": "New underlying Mexican government-bond ISINs acquired while the first frozen snapshot was being tested. Guard correctly rejected adoption by that older snapshot.",
+    "ordinaryAutomaticRecovery": 43009243190,
+    "actualPublicCodeAndData": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+    "scope": "Complete ordinary 14-gate validation and real deployment of the new snapshot. No guard bypass, source relaunch, threshold change or retrospective success on the failed attempt."
+  }
+}

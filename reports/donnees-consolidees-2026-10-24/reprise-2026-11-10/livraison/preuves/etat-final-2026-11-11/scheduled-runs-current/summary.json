@@ -1,0 +1,101 @@
+[
+  {
+    "workflow": "refresh-automated-index-sheets.yml",
+    "scheduleUTC": [
+      "40 6 * * *"
+    ],
+    "latestRun": 42841850697,
+    "createdAt": "2026-11-10T15:12:00Z",
+    "conclusion": "failure",
+    "latestAfter1232": false,
+    "meaning": "Source-step and individual outcome proof remain separate. Schedule metadata and a green parent are not a financial certificate.",
+    "nextNominalUTC": "2026-11-12T06:40:00Z",
+    "postCorrectionSourceCronObserved": false,
+    "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  },
+  {
+    "workflow": "update-market-monthly.yml",
+    "scheduleUTC": [
+      "15 6 2,4,8,16 * *",
+      "45 6 * * *"
+    ],
+    "latestRun": 42842184286,
+    "createdAt": "2026-11-10T15:13:55Z",
+    "conclusion": "failure",
+    "latestAfter1232": false,
+    "meaning": "Source-step and individual outcome proof remain separate. Schedule metadata and a green parent are not a financial certificate.",
+    "nextNominalUTC": "2026-11-12T06:45:00Z",
+    "postCorrectionSourceCronObserved": false,
+    "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  },
+  {
+    "workflow": "collect-etf-pilot.yml",
+    "scheduleUTC": [
+      "10 7 * * *"
+    ],
+    "latestRun": 42845267353,
+    "createdAt": "2026-11-10T15:31:44Z",
+    "conclusion": "failure",
+    "latestAfter1232": false,
+    "meaning": "Source-step and individual outcome proof remain separate. Schedule metadata and a green parent are not a financial certificate.",
+    "nextNominalUTC": "2026-11-12T07:10:00Z",
+    "postCorrectionSourceCronObserved": false,
+    "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  },
+  {
+    "workflow": "update-non-bond-expansion.yml",
+    "scheduleUTC": [
+      "15 7 * * *"
+    ],
+    "latestRun": 42845464106,
+    "createdAt": "2026-11-10T15:32:52Z",
+    "conclusion": "failure",
+    "latestAfter1232": false,
+    "meaning": "Source-step and individual outcome proof remain separate. Schedule metadata and a green parent are not a financial certificate.",
+    "nextNominalUTC": "2026-11-12T07:15:00Z",
+    "postCorrectionSourceCronObserved": false,
+    "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  },
+  {
+    "workflow": "update-exposure-expansion.yml",
+    "scheduleUTC": [
+      "45 7 * * *"
+    ],
+    "latestRun": 42848056797,
+    "createdAt": "2026-11-10T15:47:36Z",
+    "conclusion": "failure",
+    "latestAfter1232": false,
+    "meaning": "Source-step and individual outcome proof remain separate. Schedule metadata and a green parent are not a financial certificate.",
+    "nextNominalUTC": "2026-11-12T07:45:00Z",
+    "postCorrectionSourceCronObserved": false,
+    "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  },
+  {
+    "workflow": "update-qualified-exposures.yml",
+    "scheduleUTC": [
+      "50 7 * * *"
+    ],
+    "latestRun": 42848294871,
+    "createdAt": "2026-11-10T15:48:57Z",
+    "conclusion": "cancelled",
+    "latestAfter1232": false,
+    "meaning": "Source-step and individual outcome proof remain separate. Schedule metadata and a green parent are not a financial certificate.",
+    "nextNominalUTC": "2026-11-12T07:50:00Z",
+    "postCorrectionSourceCronObserved": false,
+    "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  },
+  {
+    "workflow": "update-instrument-metadata.yml",
+    "scheduleUTC": [
+      "20 9 * * *"
+    ],
+    "checkedAt": "2026-11-11T12:45:10.890603+00:00",
+    "latestRun": 42861845151,
+    "createdAt": "2026-11-10T17:08:38Z",
+    "conclusion": "failure",
+    "sourceSchedulePostCorrectionObserved": false,
+    "nextNominalUTC": "2026-11-12T09:20:00Z",
+    "postCorrectionSourceCronObserved": false,
+    "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  }
+]

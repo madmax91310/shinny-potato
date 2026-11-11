@@ -1,0 +1,44 @@
+{
+  "mergedCode": "869e8b6aaef0ea50f871a2fe0db9fe8d435b348a",
+  "selectedFullGate": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+  "changedDataPaths": [
+    "docs/asset-field-coverage.md",
+    "docs/automation-gaps.json",
+    "public/data/asset-field-coverage.json",
+    "scripts/instrument-metadata-sources.json",
+    "src/data/automated-etf.json",
+    "src/data/automated-indices.json",
+    "src/data/automated-instrument-metadata.json",
+    "src/data/instrument-metadata-status.json"
+  ],
+  "heldBack": [
+    {
+      "file": "src/data/automated-etf.json",
+      "ids": [
+        "MX0MGO0000R8",
+        "MX0MGO0001D6"
+      ]
+    }
+  ],
+  "meaning": "Exact first-attempt guard reproduced in an isolated worktree. Full ordinary gate validates this new data snapshot; no unknown identifier guard or financial threshold is relaxed.",
+  "fundContext": {
+    "isin": "IE00BFZPF546",
+    "name": "iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc)",
+    "newUnderlyingIdentifiers": [
+      "MX0MGO0000R8",
+      "MX0MGO0001D6"
+    ],
+    "scope": "Existing bond fund, underlying turnover; no new catalogue product or equity overlap admission",
+    "asOf": "2026-11-10"
+  },
+  "automaticRecovery": {
+    "run": 43009243190,
+    "codeSha": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+    "publicBuild": {
+      "sha": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+      "builtAt": "2026-11-11T12:03:46Z"
+    },
+    "firstMainFailedAttempt": 43009243105,
+    "unknownIdentifierGuardPreserved": true
+  }
+}

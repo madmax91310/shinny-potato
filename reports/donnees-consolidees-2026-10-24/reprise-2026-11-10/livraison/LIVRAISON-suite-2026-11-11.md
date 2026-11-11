@@ -1,3 +1,24 @@
+État public vérifié le 2026-11-11T12:57:36.855922+00:00. Code `a4f4f31489de2e42eb9fa308d47502794ed356dc` ; données `a4f4f31489de2e42eb9fa308d47502794ed356dc`. Suivi unique [#881](https://github.com/madmax91310/shinny-potato/issues/881).
+
+Livraison publiée, dont #1232, #1233 et #1234. Les voies Bitwise Paris, palladium Londres, protections WisdomTree, publication transactionnelle et collectes WTI/Wheat/Russell/Dow antérieures sont préservées. Aucun changement de maquette, tweet, PNG, convention ou seuil.
+
+- Réparations : trois cibles de collecte iShares rétablies et réellement collectées ; 18 renouvellements DWS et références IUES/USD Londres puis QDVF/EUR Xetra, publiés et consommés. #1234 supprime le faux retard causé par une place EXUS non utilisée, tout en exigeant chaque cotation nécessaire et en conservant les anciennes preuves. Le registre des autorités est désormais une dépendance de publication ; un ancien code ne peut pas ignorer les nouvelles preuves.
+- Usages : 73/79 cas mensuels avec au moins une voie qualifiée, dont les 71 acquis. Deux cas 2023/2024 rétablis par Paris ; ancienne divergence Xetra distincte. Palladium : usages 2014/2015 et récents vérifiés, refus 2025 conservé. Fiches/DCA : trois iShares, SMH/JEPG réellement consommés, sans faux recouvrement intégral.
+- Reprises indépendantes : douze compositions actualisées par le bot dans d802f909 (28 reçus datés), puis nouvelles observations du producteur ETF ordinaire43009243190 dans74cebc01. La recette courante de 51 parcours vérifie leurs consommateurs sur vingt et un fonds existants, sans recollecte fournisseur par le vérificateur. Le nom historique du workflow mentionne35 ; son vrai périmètre reste celui du contrat natif.
+- Preuves : fournisseur GitHub ordinaire, observations individuelles et publication vérifiées ; huit nouveaux parcours calculateur ordinateur/mobile, quatre fiches QDVF/EXUS puis 51 parcours courants de composition (40 fiches et onze portefeuilles) couvrant vingt et un fonds existants. Les anciennes recettes restent datées ; seuls les calculs historiques dont les entrées prix/change et le code sont identiques sont réutilisés dans leurs limites explicites.
+- Supervision : 10803 identités dans l’export public complet courant ; répartitions archivées, aucune baisse assimilée à une réparation. Deux photographies initiales de 10706 et 10745 identités conservées séparément, sans les additionner comme des pannes. Sur les 19 clés de cotation renouvelées et leur périmètre corrigé, 0 restent actuellement rendues failure ; voir le détail exact et les éventuelles erreurs de source primaire, sans les masquer.
+- Publication courante : le premier essai code869 a conservé son refus d’adopter les deux nouveaux ISIN sous-jacents mexicains du fonds obligataire déjà présent IE00BFZPF546. La reprise automatique ordinaire43009243190 a validé le snapshotA4 avec ses14contrôles puis publié CODE/DATAa4f4 ; aucune protection désactivée, aucun ajout de catalogue, aucune relance fournisseur pour obtenir un vert. Voir automatic-promotion-recovery.json.
+- Publication ancienne : reçu original non-obligataire adopté 4/4 au manifeste actuel ; run initial échoué conservé et nouveau transport réellement exercé ailleurs. L’échec d’intégration du3novembre est précisément rattaché au test DCA corrigé926dc0ee, dont le blob courant est identique ; les nouveaux contrôles et les exports démontrent le fonctionnement actuel, pas une réussite rétroactive de ses sept anciens fichiers. Ni redéploiement pour obtenir un vert, ni falsification d’historique.
+- Sources de rendement uniquement : bitcoin, ethereum, gold-physical et silver-physical n’exigent pas de composition d’entreprises ; elles ne sont pas comptées comme quatre livres manquants.
+- Les crons fournisseurs postcorrectifs ne sont pas encore observés : prochaines occurrences nominales UTC du12novembre, indices06:40, mensuels06:45 (reprise supplémentaire16novembre06:15), ETF07:10, non-obligataires07:15, expansion07:45, positions intégrales07:50 et cotations09:20. Une exécution de supervision ne les remplace pas.
+- Restent : six cas mensuels sans voie, anciennes huit routes refusées, palladium NAV décembre 2014/marché 2025, livres exacts/identités/poids et accès fournisseurs détaillés. Prochains crons postcorrectifs non encore observés restent une réserve, pas une panne inventée ni une autonomie certifiée.
+
+[Historiques : tableau, preuves et limites](HISTORIQUES-PERFORMANCES-suite-2026-11-11.md) · [Compositions : tableau, preuves et limites](COMPOSITIONS-EXPOSITIONS-suite-2026-11-11.md) · [Matrice par outil](bilan-par-outil-suite-2026-11-11.csv). L’automatisation complète n’est pas revendiquée tant que ces données nécessaires ne disposent pas de voie démontrée.
+
+
+<details>
+<summary>États antérieurs datés et preuves conservées</summary>
+
 État intermédiaire du lot livré99d974af — 11novembre06:16UTC. Les preuves et recettes du lot#1232 ci-dessous sont acquises. La suite reste ouverte : le nouvel export contient19échecs de renouvellement des cotations, dont18DWS partagent une autorité alternative déjà collectée mais omise de la liste des sources de cotations. Défaut reproduit sur une réponse officielle réelle ; correction et vérification GitHub en cours. Une réponse BlackRock actuellement limitée à une autre place ne renouvelle pas les anciennes cotations. Ne pas lire le bilan daté ci-dessous comme une clôture de ce nouveau reliquat.
 
 État vérifié le 2026-11-11T06:12:08.202105+00:00. Code public `99d974afa4a21712c92cc91ca84b7464f75585d8`, données `a0e61daefde633afe5538b9871365a7364bf38a1`. Suivi unique [#881](https://github.com/madmax91310/shinny-potato/issues/881). Ces versions proviennent de build-info et du manifeste réellement servis ; ce n’est pas une prévision de déploiement.
@@ -63,6 +84,9 @@ Preuves séparées : [delta intégral qualifié](preuves/delta-8512-metadonnees.
 ## Preuves locales retrouvées après reprise
 
 Le 2026-11-11T03:20:33.576805+00:00 : l’environnement local répond de nouveau. L’export intégral original du10novembre17:15 (10745identités uniques) et les preuves d’adoption de23:11 ont été retrouvés et conservés dans [preuves/reprise1715-retrouvee-2026-11-11](preuves/reprise1715-retrouvee-2026-11-11/). La réserve précédente sur leur indisponibilité décrit donc une limite temporaire désormais levée, pas une perte définitive. [Le rapprochement des10745identités](reconciliation-diagnostics-reprise1715-suite-2026-11-11.csv) conserve chaque identité et les archives, distingue photographie remplacée et présence active, et ne déduit aucune résolution d’une absence. Il complète la vue initiale10706 sans la remplacer ni créer un autre suivi. Les consultations réussies sans changement, pièces financières manquantes et tentatives échouées restent datées séparément.
+
+
+</details>
 
 
 </details>
