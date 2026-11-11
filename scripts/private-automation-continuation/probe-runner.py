@@ -48,8 +48,10 @@ finally:run('git','worktree','remove','--force',str(forensic),stdout=subprocess.
 # branch, so its precise identifier can be reviewed before final deployment.
 proof_path=FOLDER+'/automatic-promotion-held-identifiers.json';proof_bytes=(OUT/'automatic-promotion-held-identifiers.json').read_bytes()
 request={'message':'Record the exact automatic publication guard and current full revalidation scope','branch':BRANCH,'content':base64.b64encode(proof_bytes).decode()}
-res=subprocess.run(['gh','api','-X','PUT','repos/madmax91310/shinny-potato/contents/'+proof_path,'--input','-'],input=json.dumps(request),capture_output=True,text=True)
-assert res.returncode==0,'Forensic report path already exists or cannot be saved; preserve it for review'
+# An earlier read-only attempt saved the immutable forensic receipt. Verify
+# byte identity, never overwrite or manufacture an old run's attempted scope.
+old=read(API+'/contents/'+proof_path+'?ref='+BRANCH,True)
+assert base64.b64decode(old['content'])==proof_bytes,'Original forensic receipt changed'
 print('EXACT_GUARD_RECEIPT_SAVED',proof_path,flush=True)
 
 plan=json.loads((ROOT/'scripts/private-automation-continuation/metadata-candidate-plan.json').read_text());save('verification-plan.json',{'expectedCode':EXPECTED,'sourceMode':'Ordinary push producer; no recollection by this verifier','originalScope':plan});targets=plan['instruments'];deadline=time.monotonic()+5700
@@ -57,8 +59,8 @@ while True:
  b=read(BASE+'build-info.json')
  if b['sha']==EXPECTED:
   data=b.get('dataSha')or b['sha'];snapshot=read(BASE+'data/publication-manifest.json');source=read(API+'/git/blobs/'+snapshot['files']['src/data/automated-instrument-metadata.json'],True);records=json.loads(base64.b64decode(source['content']))
-  q=[r for r in records.get('IE00B42NKQ00',{}).get('listings',{}).get('value',[])if r.get('evidenceId')=='IE00B42NKQ00-XETR-QDVF-EUR'and r.get('checkedAt')=='2026-11-11'and r.get('sourceUrl','').startswith('https://www.blackrock.com/gls-download/literature/fact-sheet/iues-')]
-  if len(q)==1 and all(records.get(t['isin'],{}).get('listings',{}).get('checkedAt')=='2026-11-11' for t in targets):break
+  qdvf=[r for r in records.get('IE00B42NKQ00',{}).get('listings',{}).get('value',[])if r.get('evidenceId')=='IE00B42NKQ00-XETR-QDVF-EUR'and r.get('checkedAt')=='2026-11-11'and r.get('sourceUrl','').startswith('https://www.blackrock.com/gls-download/literature/fact-sheet/iues-')]
+  if len(qdvf)==1 and all(records.get(t['isin'],{}).get('listings',{}).get('checkedAt')=='2026-11-11' for t in targets):break
  if time.monotonic()>deadline:raise RuntimeError('Ordinary publication of fresh listing evidence not observed; no production claim')
  print('WAITING_CODE_AND_METADATA_PUBLICATION',b['sha'],b.get('dataSha'),flush=True);time.sleep(45)
 m=read(BASE+'data/publication-manifest.json');save('public-build-info.json',b);save('publication-manifest.json',m)
@@ -88,12 +90,12 @@ for t in targets:
  assert row['state']=='current'and not row['missingListingIds'],(t['isin'],row)
  required.append(row)
 save('required-current-public-coverage.json',required)
-assert len(q)==1 and q[0]['mic']=='XETR'and q[0]['ticker']=='QDVF'and q[0]['currency']=='EUR'and q[0]['symbol']=='QDVF.DE'
-assert q[0]['referenceDate']<='2026-11-11'and q[0]['referenceDate']!='2026-10-31'
+assert len(qdvf)==1 and qdvf[0]['mic']=='XETR'and qdvf[0]['ticker']=='QDVF'and qdvf[0]['currency']=='EUR'and qdvf[0]['symbol']=='QDVF.DE'
+assert qdvf[0]['referenceDate']<='2026-11-11'and qdvf[0]['referenceDate']!='2026-10-31'
 for isin,ids in {'IE00B42NKQ00':['IE00B42NKQ00-XLON-IESU-GBP','IE00B42NKQ00-XMEX-IUES-MXN','IE00B42NKQ00-XSWX-IUES-USD'],'IE0006WW1TQ4':['IE0006WW1TQ4-XSWX-EXUS-CHF']}.items():
  for id in ids:
   row=next(r for r in records[isin]['listings']['value']if r['evidenceId']==id);assert row['checkedAt']=='2026-11-03',(id,row)
-save('exact-q dvf-reference.json'.replace(' ',''),q[0])
+save('exact-q dvf-reference.json'.replace(' ',''),qdvf[0])
 
 run('git','fetch','--depth=1','origin',EXPECTED,stdout=subprocess.DEVNULL);os.environ['EXPECTED_CODE_SHA']=EXPECTED
 run('npm','ci');run('node','scripts/build-dca-exposures.mjs');run('node','scripts/build-index-company-compositions.mjs');run('npx','playwright','install','--with-deps','chromium');shutil.copyfile(TEMP/'probe-public-browser.mjs',ROOT/'scripts/probe-listing-public.mjs');run('node','scripts/probe-listing-public.mjs')
