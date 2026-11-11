@@ -1,0 +1,708 @@
+{
+  "total_count": 5,
+  "jobs": [
+    {
+      "id": 130367688672,
+      "run_id": 42973671232,
+      "workflow_name": "Update exact instrument metadata",
+      "head_branch": "fix/dws-shared-listing-authority-20261111",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42973671232",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeWoUP4A",
+      "head_sha": "a54836c1df08aca0290027becb2ed35c0bad0c2b",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130367688672",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42973671232/job/130367688672",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-11T06:36:56Z",
+      "started_at": "2026-11-11T06:36:58Z",
+      "completed_at": "2026-11-11T06:44:04Z",
+      "name": "source-evidence",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T06:36:59Z",
+          "completed_at": "2026-11-11T06:37:00Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-11T06:37:00Z",
+          "completed_at": "2026-11-11T06:37:32Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T06:37:32Z",
+          "completed_at": "2026-11-11T06:37:32Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-11T06:37:32Z",
+          "completed_at": "2026-11-11T06:37:32Z"
+        },
+        {
+          "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-11T06:37:32Z",
+          "completed_at": "2026-11-11T06:37:35Z"
+        },
+        {
+          "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-11T06:37:35Z",
+          "completed_at": "2026-11-11T06:37:36Z"
+        },
+        {
+          "name": "Run pip download beautifulsoup4==4.15.0 --dest \"$RUNNER_TEMP/metadata-python-runtime\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-11T06:37:36Z",
+          "completed_at": "2026-11-11T06:37:38Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-11T06:37:38Z",
+          "completed_at": "2026-11-11T06:37:39Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test*metadata*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-11T06:37:39Z",
+          "completed_at": "2026-11-11T06:37:42Z"
+        },
+        {
+          "name": "Run node scripts/test-automated-characteristics.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-11T06:37:42Z",
+          "completed_at": "2026-11-11T06:37:43Z"
+        },
+        {
+          "name": "Run node scripts/test-metadata-notes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-11T06:37:43Z",
+          "completed_at": "2026-11-11T06:37:43Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-11T06:37:43Z",
+          "completed_at": "2026-11-11T06:37:46Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-11T06:37:46Z",
+          "completed_at": "2026-11-11T06:38:07Z"
+        },
+        {
+          "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-11T06:38:07Z",
+          "completed_at": "2026-11-11T06:38:11Z"
+        },
+        {
+          "name": "Run node scripts/build-automation-targets.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-11T06:38:11Z",
+          "completed_at": "2026-11-11T06:38:12Z"
+        },
+        {
+          "name": "Freeze source evidence scope before any collection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-11T06:38:12Z",
+          "completed_at": "2026-11-11T06:38:12Z"
+        },
+        {
+          "name": "Exercise the ordinary producer for exact changed field routes only",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-11-11T06:38:13Z",
+          "completed_at": "2026-11-11T06:38:13Z"
+        },
+        {
+          "name": "Retain all other valid metadata in the isolated consumer fixture",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-11-11T06:38:13Z",
+          "completed_at": "2026-11-11T06:38:13Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-11T06:38:13Z",
+          "completed_at": "2026-11-11T06:38:13Z"
+        },
+        {
+          "name": "Observe representative source formats without changing registries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-11T06:38:13Z",
+          "completed_at": "2026-11-11T06:39:14Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-11T06:39:14Z",
+          "completed_at": "2026-11-11T06:39:16Z"
+        },
+        {
+          "name": "Observe all public exact-share sources without changing registries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-11T06:39:16Z",
+          "completed_at": "2026-11-11T06:43:52Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-11T06:43:52Z",
+          "completed_at": "2026-11-11T06:43:52Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-11T06:43:52Z",
+          "completed_at": "2026-11-11T06:43:53Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-11T06:43:53Z",
+          "completed_at": "2026-11-11T06:43:56Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-11T06:43:56Z",
+          "completed_at": "2026-11-11T06:43:58Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-11T06:43:58Z",
+          "completed_at": "2026-11-11T06:44:00Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-11T06:44:00Z",
+          "completed_at": "2026-11-11T06:44:02Z"
+        },
+        {
+          "name": "Preserve a failed targeted source result after retaining its proofs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 29,
+          "started_at": "2026-11-11T06:44:02Z",
+          "completed_at": "2026-11-11T06:44:02Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-11-11T06:44:02Z",
+          "completed_at": "2026-11-11T06:44:02Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-11-11T06:44:02Z",
+          "completed_at": "2026-11-11T06:44:02Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-11-11T06:44:02Z",
+          "completed_at": "2026-11-11T06:44:02Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-11-11T06:44:02Z",
+          "completed_at": "2026-11-11T06:44:02Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130367688672",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000045883,
+      "runner_name": "GitHub Actions 1000045883",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 130370307257,
+      "run_id": 42973671232,
+      "workflow_name": "Update exact instrument metadata",
+      "head_branch": "fix/dws-shared-listing-authority-20261111",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42973671232",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeWq0EuQ",
+      "head_sha": "a54836c1df08aca0290027becb2ed35c0bad0c2b",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130370307257",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42973671232/job/130370307257",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-11T06:44:04Z",
+      "started_at": "2026-11-11T06:44:07Z",
+      "completed_at": "2026-11-11T06:47:48Z",
+      "name": "verify",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T06:44:07Z",
+          "completed_at": "2026-11-11T06:44:08Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-11T06:44:08Z",
+          "completed_at": "2026-11-11T06:44:39Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T06:44:39Z",
+          "completed_at": "2026-11-11T06:44:40Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-11T06:44:40Z",
+          "completed_at": "2026-11-11T06:44:40Z"
+        },
+        {
+          "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-11T06:44:40Z",
+          "completed_at": "2026-11-11T06:44:42Z"
+        },
+        {
+          "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-11T06:44:42Z",
+          "completed_at": "2026-11-11T06:44:43Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-11T06:44:43Z",
+          "completed_at": "2026-11-11T06:44:48Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-11T06:44:48Z",
+          "completed_at": "2026-11-11T06:44:49Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_targeted_scope.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-11T06:44:49Z",
+          "completed_at": "2026-11-11T06:44:49Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_lse_listing_reference.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-11T06:44:49Z",
+          "completed_at": "2026-11-11T06:44:49Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_listing_retention.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-11T06:44:49Z",
+          "completed_at": "2026-11-11T06:44:49Z"
+        },
+        {
+          "name": "Run node scripts/test-metadata-freshness-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-11T06:44:49Z",
+          "completed_at": "2026-11-11T06:44:54Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_instrument_metadata.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-11T06:44:54Z",
+          "completed_at": "2026-11-11T06:44:56Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-11T06:44:56Z",
+          "completed_at": "2026-11-11T06:44:56Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_completion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-11T06:44:56Z",
+          "completed_at": "2026-11-11T06:44:56Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_connections.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-11T06:44:56Z",
+          "completed_at": "2026-11-11T06:44:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_quantalys_metadata.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-11T06:44:57Z",
+          "completed_at": "2026-11-11T06:44:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_evidence_replay.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-11T06:44:57Z",
+          "completed_at": "2026-11-11T06:44:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_transport.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-11T06:44:57Z",
+          "completed_at": "2026-11-11T06:44:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-11T06:44:57Z",
+          "completed_at": "2026-11-11T06:44:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_automation_renewals.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-11T06:44:57Z",
+          "completed_at": "2026-11-11T06:44:58Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_qualification.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-11T06:44:58Z",
+          "completed_at": "2026-11-11T06:44:58Z"
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-11T06:44:58Z",
+          "completed_at": "2026-11-11T06:45:43Z"
+        },
+        {
+          "name": "Run node scripts/test-automated-characteristics.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-11T06:45:43Z",
+          "completed_at": "2026-11-11T06:45:43Z"
+        },
+        {
+          "name": "Run node scripts/test-comparison-etf-details.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-11T06:45:43Z",
+          "completed_at": "2026-11-11T06:45:43Z"
+        },
+        {
+          "name": "Run node scripts/test-metadata-notes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-11T06:45:43Z",
+          "completed_at": "2026-11-11T06:45:44Z"
+        },
+        {
+          "name": "Run node scripts/test-property-infrastructure-step-two.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-11T06:45:44Z",
+          "completed_at": "2026-11-11T06:45:44Z"
+        },
+        {
+          "name": "Run node scripts/test-full-auto-routing.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-11T06:45:44Z",
+          "completed_at": "2026-11-11T06:45:46Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-11T06:45:46Z",
+          "completed_at": "2026-11-11T06:46:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-full-auto-routing.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-11T06:46:07Z",
+          "completed_at": "2026-11-11T06:46:34Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-field-ui.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-11T06:46:34Z",
+          "completed_at": "2026-11-11T06:46:50Z"
+        },
+        {
+          "name": "Run node scripts/playwright-metadata-completion.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-11T06:46:50Z",
+          "completed_at": "2026-11-11T06:47:09Z"
+        },
+        {
+          "name": "Run node scripts/playwright-metadata-connections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-11T06:47:09Z",
+          "completed_at": "2026-11-11T06:47:45Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-11T06:47:45Z",
+          "completed_at": "2026-11-11T06:47:46Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66,
+          "started_at": "2026-11-11T06:47:46Z",
+          "completed_at": "2026-11-11T06:47:46Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67,
+          "started_at": "2026-11-11T06:47:46Z",
+          "completed_at": "2026-11-11T06:47:47Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68,
+          "started_at": "2026-11-11T06:47:47Z",
+          "completed_at": "2026-11-11T06:47:47Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69,
+          "started_at": "2026-11-11T06:47:47Z",
+          "completed_at": "2026-11-11T06:47:47Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130370307257",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000045888,
+      "runner_name": "GitHub Actions 1000045888",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 130371697890,
+      "run_id": 42973671232,
+      "workflow_name": "Update exact instrument metadata",
+      "head_branch": "fix/dws-shared-listing-authority-20261111",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42973671232",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeWsI84g",
+      "head_sha": "a54836c1df08aca0290027becb2ed35c0bad0c2b",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130371697890",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42973671232/job/130371697890",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-11T06:47:49Z",
+      "started_at": "2026-11-11T06:47:49Z",
+      "completed_at": "2026-11-11T06:47:49Z",
+      "name": "deploy",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130371697890",
+      "labels": [],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 130371697955,
+      "run_id": 42973671232,
+      "workflow_name": "Update exact instrument metadata",
+      "head_branch": "fix/dws-shared-listing-authority-20261111",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42973671232",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeWsI9Iw",
+      "head_sha": "a54836c1df08aca0290027becb2ed35c0bad0c2b",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130371697955",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42973671232/job/130371697955",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-11T06:47:49Z",
+      "started_at": "2026-11-11T06:47:49Z",
+      "completed_at": "2026-11-11T06:47:49Z",
+      "name": "report-failures",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130371697955",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 130371698116,
+      "run_id": 42973671232,
+      "workflow_name": "Update exact instrument metadata",
+      "head_branch": "fix/dws-shared-listing-authority-20261111",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42973671232",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeWsI9xA",
+      "head_sha": "a54836c1df08aca0290027becb2ed35c0bad0c2b",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130371698116",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42973671232/job/130371698116",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-11T06:47:49Z",
+      "started_at": "2026-11-11T06:47:49Z",
+      "completed_at": "2026-11-11T06:47:49Z",
+      "name": "refresh",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130371698116",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    }
+  ]
+}
