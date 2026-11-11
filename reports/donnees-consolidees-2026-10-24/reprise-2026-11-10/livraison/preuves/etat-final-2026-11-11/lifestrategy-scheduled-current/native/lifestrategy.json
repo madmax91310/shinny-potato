@@ -1,0 +1,1038 @@
+{
+  "checkedAt": "2026-11-11T12:55:21.817150+00:00",
+  "records": [
+    {
+      "id": "lifestrategy20",
+      "isin": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "currency": "EUR",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+      "checkedAt": "2026-11-11",
+      "pageSha256": "67b01aa86beed2a985193c97fc8527115d7e539739f220c14971d70fb88b67d8",
+      "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2",
+      "terPct": 0.25,
+      "characteristics": {
+        "terPct": 0.25,
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "listings": [
+          {
+            "ticker": "V20A",
+            "mic": "XETR",
+            "exchange": "Xetra",
+            "currency": "EUR",
+            "symbol": "V20A.DE",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+            "checkedAt": "2026-11-11",
+            "evidenceId": "IE00BMVB5K07-XETR-V20A-EUR",
+            "excerpt": "IE00BMVB5K07 | Deutsche Börse | EUR | V20A | V20A.DE"
+          }
+        ],
+        "index": "Gestion active multi-actifs 20/80, sans indice de référence",
+        "distribution": "Accumulating",
+        "domicile": "Irlande",
+        "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+      },
+      "aum": {
+        "amount": 101000000.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+            "weightPct": 19.4
+          },
+          {
+            "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 19.2
+          },
+          {
+            "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 19.1
+          },
+          {
+            "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 16.1
+          },
+          {
+            "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 16.1
+          },
+          {
+            "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 5.9
+          },
+          {
+            "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 3.2
+          },
+          {
+            "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+            "weightPct": 0.8
+          },
+          {
+            "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+            "weightPct": 0.1
+          }
+        ]
+      },
+      "assetAllocation": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Obligations",
+            "weightPct": 79.62
+          },
+          {
+            "name": "Liquidités",
+            "weightPct": 0.02
+          },
+          {
+            "name": "Actions",
+            "weightPct": 20.36
+          }
+        ]
+      },
+      "performance": {
+        "basis": "fund",
+        "currency": "EUR",
+        "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+        "years": {
+          "2021": 2.49,
+          "2022": -15.69,
+          "2023": 7.29,
+          "2024": 5.1,
+          "2025": 4.23
+        },
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "51e687c3ca3ec939a2e5017433ef00a0170ed95a8797257b9883442823ba171c",
+        "checkedAt": "2026-11-11"
+      },
+      "fieldQualification": {
+        "countries": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+          "sha256": "67b01aa86beed2a985193c97fc8527115d7e539739f220c14971d70fb88b67d8",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": 0,
+            "underlyingFunds": 9,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2"
+          }
+        },
+        "sectors": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+          "sha256": "67b01aa86beed2a985193c97fc8527115d7e539739f220c14971d70fb88b67d8",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": null,
+            "underlyingFunds": 9,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2"
+          }
+        }
+      },
+      "unavailable": [
+        "countries: no qualified whole-fund look-through",
+        "sectors: asset allocation is not an equity sector table"
+      ]
+    },
+    {
+      "id": "lifestrategy40",
+      "isin": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "currency": "EUR",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+      "checkedAt": "2026-11-11",
+      "pageSha256": "6947eca17192961a9efeb635fead17e7c71c3ba825fed88ccd5a7425dd5c827a",
+      "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9",
+      "terPct": 0.25,
+      "characteristics": {
+        "terPct": 0.25,
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "listings": [
+          {
+            "ticker": "V40A",
+            "mic": "XETR",
+            "exchange": "Xetra",
+            "currency": "EUR",
+            "symbol": "V40A.DE",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+            "checkedAt": "2026-11-11",
+            "evidenceId": "IE00BMVB5M21-XETR-V40A-EUR",
+            "excerpt": "IE00BMVB5M21 | Deutsche Börse | EUR | V40A | V40A.DE"
+          }
+        ],
+        "index": "Gestion active multi-actifs 40/60, sans indice de référence",
+        "distribution": "Accumulating",
+        "domicile": "Irlande",
+        "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+      },
+      "aum": {
+        "amount": 247000000.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+            "weightPct": 19.5
+          },
+          {
+            "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 19.2
+          },
+          {
+            "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+            "weightPct": 18.6
+          },
+          {
+            "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 15.3
+          },
+          {
+            "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 9.9
+          },
+          {
+            "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 9.8
+          },
+          {
+            "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 3.7
+          },
+          {
+            "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+            "weightPct": 2.1
+          },
+          {
+            "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 1.9
+          }
+        ]
+      },
+      "assetAllocation": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Obligations",
+            "weightPct": 59.71
+          },
+          {
+            "name": "Liquidités",
+            "weightPct": 0.06
+          },
+          {
+            "name": "Actions",
+            "weightPct": 40.23
+          }
+        ]
+      },
+      "performance": {
+        "basis": "fund",
+        "currency": "EUR",
+        "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+        "years": {
+          "2021": 8.28,
+          "2022": -14.73,
+          "2023": 9.85,
+          "2024": 9.81,
+          "2025": 5.41
+        },
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "6bb0e094ab37ff138af588b65421180bc5c80059f6db431219334a4cf51350fc",
+        "checkedAt": "2026-11-11"
+      },
+      "fieldQualification": {
+        "countries": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+          "sha256": "6947eca17192961a9efeb635fead17e7c71c3ba825fed88ccd5a7425dd5c827a",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": 0,
+            "underlyingFunds": 9,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9"
+          }
+        },
+        "sectors": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+          "sha256": "6947eca17192961a9efeb635fead17e7c71c3ba825fed88ccd5a7425dd5c827a",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": null,
+            "underlyingFunds": 9,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9"
+          }
+        }
+      },
+      "unavailable": [
+        "countries: no qualified whole-fund look-through",
+        "sectors: asset allocation is not an equity sector table"
+      ]
+    },
+    {
+      "id": "lifestrategy60",
+      "isin": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "currency": "EUR",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+      "checkedAt": "2026-11-11",
+      "pageSha256": "12ffabb4b1d4c513226c75ac66a9f7a202ebeda9d3b91fe81681480cb2bfe4bc",
+      "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1",
+      "terPct": 0.25,
+      "characteristics": {
+        "terPct": 0.25,
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "listings": [
+          {
+            "ticker": "V60A",
+            "mic": "XETR",
+            "exchange": "Xetra",
+            "currency": "EUR",
+            "symbol": "V60A.DE",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+            "checkedAt": "2026-11-11",
+            "evidenceId": "IE00BMVB5P51-XETR-V60A-EUR",
+            "excerpt": "IE00BMVB5P51 | Deutsche Börse | EUR | V60A | V60A.DE"
+          }
+        ],
+        "index": "Gestion active multi-actifs 60/40, sans indice de référence",
+        "distribution": "Accumulating",
+        "domicile": "Irlande",
+        "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+      },
+      "aum": {
+        "amount": 992000000.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+            "weightPct": 19.3
+          },
+          {
+            "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+            "weightPct": 19.3
+          },
+          {
+            "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 19.1
+          },
+          {
+            "name": "Vanguard FTSE North America UCITS ETF",
+            "weightPct": 12.7
+          },
+          {
+            "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 7.7
+          },
+          {
+            "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 5.0
+          },
+          {
+            "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 5.0
+          },
+          {
+            "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+            "weightPct": 4.2
+          },
+          {
+            "name": "Vanguard FTSE Developed Europe UCITS ETF (EUR) Accumulating",
+            "weightPct": 2.7
+          },
+          {
+            "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 1.8
+          },
+          {
+            "name": "Vanguard FTSE Japan UCITS ETF (USD) Accumulating",
+            "weightPct": 1.2
+          },
+          {
+            "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating",
+            "weightPct": 1.0
+          },
+          {
+            "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 0.9
+          }
+        ]
+      },
+      "assetAllocation": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Obligations",
+            "weightPct": 39.42
+          },
+          {
+            "name": "Liquidités",
+            "weightPct": 0.29
+          },
+          {
+            "name": "Actions",
+            "weightPct": 60.29
+          }
+        ]
+      },
+      "performance": {
+        "basis": "fund",
+        "currency": "EUR",
+        "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+        "years": {
+          "2021": 14.34,
+          "2022": -13.86,
+          "2023": 12.48,
+          "2024": 14.72,
+          "2025": 6.36
+        },
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "e8a7e71fc8f6dc50454b0399a52f2d24a150a4336bf52127330f917253c6888a",
+        "checkedAt": "2026-11-11"
+      },
+      "fieldQualification": {
+        "countries": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+          "sha256": "12ffabb4b1d4c513226c75ac66a9f7a202ebeda9d3b91fe81681480cb2bfe4bc",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": 0,
+            "underlyingFunds": 13,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1"
+          }
+        },
+        "sectors": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+          "sha256": "12ffabb4b1d4c513226c75ac66a9f7a202ebeda9d3b91fe81681480cb2bfe4bc",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": null,
+            "underlyingFunds": 13,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1"
+          }
+        }
+      },
+      "unavailable": [
+        "countries: no qualified whole-fund look-through",
+        "sectors: asset allocation is not an equity sector table"
+      ]
+    },
+    {
+      "id": "lifestrategy80",
+      "isin": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "currency": "EUR",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+      "checkedAt": "2026-11-11",
+      "pageSha256": "c1f9a1a5d3ba70392d5523fbc7aa76221dea96f23b6c6f2dc201a2cd4756ab75",
+      "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6",
+      "terPct": 0.25,
+      "characteristics": {
+        "terPct": 0.25,
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "listings": [
+          {
+            "ticker": "V80A",
+            "mic": "XETR",
+            "exchange": "Xetra",
+            "currency": "EUR",
+            "symbol": "V80A.DE",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+            "checkedAt": "2026-11-11",
+            "evidenceId": "IE00BMVB5R75-XETR-V80A-EUR",
+            "excerpt": "IE00BMVB5R75 | Deutsche Börse | EUR | V80A | V80A.DE"
+          }
+        ],
+        "index": "Gestion active multi-actifs 80/20, sans indice de référence",
+        "distribution": "Accumulating",
+        "domicile": "Irlande",
+        "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+      },
+      "aum": {
+        "amount": 1275000000.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Vanguard FTSE North America UCITS ETF",
+            "weightPct": 19.4
+          },
+          {
+            "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+            "weightPct": 19.3
+          },
+          {
+            "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+            "weightPct": 19.3
+          },
+          {
+            "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 18.8
+          },
+          {
+            "name": "Vanguard S&P 500 UCITS ETF (USD) Accumulating",
+            "weightPct": 6.4
+          },
+          {
+            "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+            "weightPct": 6.1
+          },
+          {
+            "name": "Vanguard FTSE Developed Europe UCITS ETF (EUR) Accumulating",
+            "weightPct": 5.4
+          },
+          {
+            "name": "Vanguard FTSE Japan UCITS ETF (USD) Accumulating",
+            "weightPct": 2.4
+          },
+          {
+            "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating",
+            "weightPct": 2.0
+          },
+          {
+            "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 0.3
+          },
+          {
+            "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 0.2
+          },
+          {
+            "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 0.2
+          },
+          {
+            "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+            "weightPct": 0.1
+          },
+          {
+            "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+            "weightPct": 0.0
+          }
+        ]
+      },
+      "assetAllocation": {
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "Obligations",
+            "weightPct": 19.56
+          },
+          {
+            "name": "Liquidités",
+            "weightPct": 0.06
+          },
+          {
+            "name": "Actions",
+            "weightPct": 80.38
+          }
+        ]
+      },
+      "performance": {
+        "basis": "fund",
+        "currency": "EUR",
+        "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+        "years": {
+          "2021": 20.73,
+          "2022": -13.0,
+          "2023": 15.09,
+          "2024": 19.87,
+          "2025": 7.14
+        },
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "9ce7d87c257a0db646d71982f7b919710796ba93c076ac4999cd716a87f2e8f0",
+        "checkedAt": "2026-11-11"
+      },
+      "fieldQualification": {
+        "countries": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+          "sha256": "c1f9a1a5d3ba70392d5523fbc7aa76221dea96f23b6c6f2dc201a2cd4756ab75",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": 0,
+            "underlyingFunds": 14,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6"
+          }
+        },
+        "sectors": {
+          "status": "not-published",
+          "checkedAt": "2026-11-11",
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+          "sha256": "c1f9a1a5d3ba70392d5523fbc7aa76221dea96f23b6c6f2dc201a2cd4756ab75",
+          "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+          "evidence": {
+            "headings": [],
+            "marketAllocationRows": null,
+            "underlyingFunds": 14,
+            "holdingsAsOf": "2026-09-30",
+            "assetAllocationAsOf": "2026-09-30",
+            "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6"
+          }
+        }
+      },
+      "unavailable": [
+        "countries: no qualified whole-fund look-through",
+        "sectors: asset allocation is not an equity sector table"
+      ]
+    }
+  ],
+  "failed": [],
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "IE00BMVB5K07",
+          "instrument": "IE00BMVB5K07",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5M21",
+          "instrument": "IE00BMVB5M21",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5P51",
+          "instrument": "IE00BMVB5P51",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5R75",
+          "instrument": "IE00BMVB5R75",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_lifestrategy",
+      "reportStem": "lifestrategy",
+      "declaredAt": "2026-11-11T12:55:21.747267+00:00",
+      "nonce": "ddaf0aaf-fd7e-4702-aff8-c9571e710626",
+      "codeSha": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+      "durablePlan": true,
+      "runId": "43024377331",
+      "attempt": "1",
+      "sha256": "0c94522ab35d58888dc972f3916421e96aa82efbcc88988f5d4c5ab15249c2fe"
+    },
+    "scope": {
+      "kind": "collect_lifestrategy",
+      "mode": "full",
+      "expectedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "requestedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "items": [
+        {
+          "id": "IE00BMVB5K07",
+          "instrument": "IE00BMVB5K07",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5M21",
+          "instrument": "IE00BMVB5M21",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5P51",
+          "instrument": "IE00BMVB5P51",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5R75",
+          "instrument": "IE00BMVB5R75",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-11T12:55:21.747267+00:00",
+      "planSha256": "0c94522ab35d58888dc972f3916421e96aa82efbcc88988f5d4c5ab15249c2fe",
+      "attemptedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "networkAttemptUnknownIds": [],
+      "runId": "43024377331",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "ddaf0aaf-fd7e-4702-aff8-c9571e710626"
+    },
+    "outcomes": [
+      {
+        "id": "IE00BMVB5K07",
+        "instrument": "IE00BMVB5K07",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "checkedAt": "2026-11-11",
+        "currency": "EUR",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "dataPeriods": {
+          "aum": "2026-09-30",
+          "holdings": "2026-09-30",
+          "assetAllocation": "2026-09-30"
+        },
+        "fieldQualifications": {
+          "countries": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+            "sha256": "67b01aa86beed2a985193c97fc8527115d7e539739f220c14971d70fb88b67d8",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": 0,
+              "underlyingFunds": 9,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2"
+            }
+          },
+          "sectors": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+            "sha256": "67b01aa86beed2a985193c97fc8527115d7e539739f220c14971d70fb88b67d8",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": null,
+              "underlyingFunds": 9,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2"
+            }
+          }
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "IE00BMVB5M21",
+        "instrument": "IE00BMVB5M21",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "checkedAt": "2026-11-11",
+        "currency": "EUR",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "dataPeriods": {
+          "aum": "2026-09-30",
+          "holdings": "2026-09-30",
+          "assetAllocation": "2026-09-30"
+        },
+        "fieldQualifications": {
+          "countries": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+            "sha256": "6947eca17192961a9efeb635fead17e7c71c3ba825fed88ccd5a7425dd5c827a",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": 0,
+              "underlyingFunds": 9,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9"
+            }
+          },
+          "sectors": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+            "sha256": "6947eca17192961a9efeb635fead17e7c71c3ba825fed88ccd5a7425dd5c827a",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": null,
+              "underlyingFunds": 9,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9"
+            }
+          }
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "IE00BMVB5P51",
+        "instrument": "IE00BMVB5P51",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "checkedAt": "2026-11-11",
+        "currency": "EUR",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "dataPeriods": {
+          "aum": "2026-09-30",
+          "holdings": "2026-09-30",
+          "assetAllocation": "2026-09-30"
+        },
+        "fieldQualifications": {
+          "countries": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+            "sha256": "12ffabb4b1d4c513226c75ac66a9f7a202ebeda9d3b91fe81681480cb2bfe4bc",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": 0,
+              "underlyingFunds": 13,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1"
+            }
+          },
+          "sectors": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+            "sha256": "12ffabb4b1d4c513226c75ac66a9f7a202ebeda9d3b91fe81681480cb2bfe4bc",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": null,
+              "underlyingFunds": 13,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1"
+            }
+          }
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "IE00BMVB5R75",
+        "instrument": "IE00BMVB5R75",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "checkedAt": "2026-11-11",
+        "currency": "EUR",
+        "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "dataPeriods": {
+          "aum": "2026-09-30",
+          "holdings": "2026-09-30",
+          "assetAllocation": "2026-09-30"
+        },
+        "fieldQualifications": {
+          "countries": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+            "sha256": "c1f9a1a5d3ba70392d5523fbc7aa76221dea96f23b6c6f2dc201a2cd4756ab75",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": 0,
+              "underlyingFunds": 14,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6"
+            }
+          },
+          "sectors": {
+            "status": "not-published",
+            "checkedAt": "2026-11-11",
+            "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+            "sha256": "c1f9a1a5d3ba70392d5523fbc7aa76221dea96f23b6c6f2dc201a2cd4756ab75",
+            "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
+            "evidence": {
+              "headings": [],
+              "marketAllocationRows": null,
+              "underlyingFunds": 14,
+              "holdingsAsOf": "2026-09-30",
+              "assetAllocationAsOf": "2026-09-30",
+              "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6"
+            }
+          }
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

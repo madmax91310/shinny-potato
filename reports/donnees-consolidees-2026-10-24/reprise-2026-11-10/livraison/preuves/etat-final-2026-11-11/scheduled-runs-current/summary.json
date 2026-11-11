@@ -97,5 +97,21 @@
     "nextNominalUTC": "2026-11-12T09:20:00Z",
     "postCorrectionSourceCronObserved": false,
     "limit": "Latest available source schedules precede these corrections; next nominal cron is not a guaranteed execution time, ordinary push or manual launch is not schedule proof."
+  },
+  {
+    "workflow": ".github/workflows/update-lifestrategy.yml",
+    "latestRun": 43024377331,
+    "createdAt": "2026-11-11T12:54:23Z",
+    "conclusion": "success",
+    "event": "schedule",
+    "sourceScheduleObserved": true,
+    "exactScope": [
+      "IE00BMVB5K07",
+      "IE00BMVB5M21",
+      "IE00BMVB5P51",
+      "IE00BMVB5R75"
+    ],
+    "sourceNativeProof": "../lifestrategy-scheduled-current/ordinary-native-publication-binding.json",
+    "limit": "Four exact Vanguard LifeStrategy source records, not a cron proof for the seven repaired producers above. Financial values and observation dates unchanged; missing economic transparency remains not-published."
   }
 ]

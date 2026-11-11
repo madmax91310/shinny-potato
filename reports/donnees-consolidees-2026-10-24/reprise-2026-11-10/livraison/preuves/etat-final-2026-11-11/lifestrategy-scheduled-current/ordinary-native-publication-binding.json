@@ -1,0 +1,54 @@
+{
+  "sourceRun": 43024377331,
+  "sourceEvent": "schedule",
+  "nativeRecords": 4,
+  "nativeSourceValuesEqualRegistered": true,
+  "sourceContractIssues": [],
+  "publicationReceipt": {
+    "schemaVersion": 1,
+    "commit": "9f30b22fe29b7bb8e2436cb39c719754778fcc95",
+    "files": {
+      "src/data/lifestrategy.json": "bc2e2e8516daca52a5545f84b4b1277b077cf934"
+    }
+  },
+  "actualPublicVerified": {
+    "sha": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+    "dataSha": "9f30b22fe29b7bb8e2436cb39c719754778fcc95",
+    "lane": "validated-data",
+    "builtAt": "2026-11-11T12:57:48.093Z"
+  },
+  "publicFilesVerifiedByOrdinaryPublisher": 42,
+  "meaning": "Exact native source contract and registry equality for4parts plus ordinary receipt/blob adoption. No monthly price history, other control date or missing transparency recertified.",
+  "nativeOutcomes": [
+    {
+      "id": "IE00BMVB5K07",
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "IE00BMVB5M21",
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "IE00BMVB5P51",
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "IE00BMVB5R75",
+      "status": "succeeded",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    }
+  ],
+  "expectedExactIds": [
+    "IE00BMVB5K07",
+    "IE00BMVB5M21",
+    "IE00BMVB5P51",
+    "IE00BMVB5R75"
+  ]
+}

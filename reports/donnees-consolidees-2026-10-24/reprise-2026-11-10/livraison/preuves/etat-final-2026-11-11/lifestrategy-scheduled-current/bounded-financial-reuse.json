@@ -1,0 +1,1591 @@
+{
+  "checkedAt": "2026-11-11T13:05:50.838846+00:00",
+  "actualPublic": {
+    "sha": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+    "dataSha": "9f30b22fe29b7bb8e2436cb39c719754778fcc95",
+    "lane": "validated-data",
+    "builtAt": "2026-11-11T12:57:48.093Z"
+  },
+  "browserReceiptsRemainDatedOn": "A4/A4; no new browser execution claimed",
+  "changedPublicManifestBlobs": {
+    "public/data/asset-automation.csv": {
+      "old": "6d5f41aff28e26458013edee04fb00546b202e75",
+      "current": "e47f949a6e4794b6f63806f8e617b956e5794792"
+    },
+    "public/data/asset-field-coverage.json": {
+      "old": "bac59d120066c39dc87f97e5673dddbd670fa9de",
+      "current": "12dacc8c5fbdec81722d8c32feb90e51158130c0"
+    },
+    "public/data/data-automation-inventory.json": {
+      "old": "084ecc653cadfa0a62a0640684e98d3508829e1e",
+      "current": "38c2e083684adee116fcc6f2d1ce14b5d463dd72"
+    },
+    "public/data/data-automation-inventory.md": {
+      "old": "a7856ce0446858ca1aa437902ac2c4a9d18018dc",
+      "current": "84a047f09094d8fb9d18e04adc25d9009b8231e4"
+    },
+    "public/data/data-automation-summary.json": {
+      "old": "f9c8b378ecbee3f617aaf129a43f576a2b04bdb9",
+      "current": "d86ab11a16fb54f8579aefc591637a11eab8cf10"
+    },
+    "public/data/shared-market-coverage.json": {
+      "old": "6214da23cd274ae0168b172ee6237a2607ab7df1",
+      "current": "96f3f085958a643d09a9953f0ab42eb4c09781e3"
+    },
+    "public/data/tweet-bank-catalog.json": {
+      "old": "8df03424e6e15abbaa89d02ecb17c64755732958",
+      "current": "63a819c7179c6d2c04f9ddb5bbc8ab3acce7dd78"
+    },
+    "src/data/lifestrategy.json": {
+      "old": "61afb92c1a65f0c0a26a74ccc7e508163a8e896f",
+      "current": "bc2e2e8516daca52a5545f84b4b1277b077cf934"
+    },
+    "src/data/ranking-annual.json": {
+      "old": "a1740e5b346c294d5b3ea9b9b97a297d7a0e9e8e",
+      "current": "38164b00cf15963fdb4ad08ebabb47774c90d47d"
+    },
+    "src/pages/dca-profiles/exposures.json": {
+      "old": "4ec31e629359579848e3c3e5d41bbb8e62d3ee07",
+      "current": "e05ddf4921de05f2d0f74c898caaefc51a0f20e6"
+    }
+  },
+  "otherPublicManifestBlobsIdentical": 373,
+  "fourExactIsins": [
+    "IE00BMVB5K07",
+    "IE00BMVB5M21",
+    "IE00BMVB5P51",
+    "IE00BMVB5R75"
+  ],
+  "changedSourceLeafCount": 48,
+  "sourceFinancialValuesAndObservationDatesIdentical": true,
+  "nativeProducerSourceRecordEquality": true,
+  "publicCoverageLifeStrategyRows": [
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "reason": null,
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "unidentifiedWeightPct": 0,
+      "unidentifiedSecurityCount": 0
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "ter",
+      "label": "Frais",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "performance",
+      "label": "Performances annuelles",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2025",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "investment-calculator",
+        "performance-rankings",
+        "portfolio-generator",
+        "portfolio-duels"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "monthly",
+      "label": "Historique mensuel",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-08",
+      "asOf": "2026-10",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/V20A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+      "reason": null,
+      "currency": "EUR",
+      "periodStart": "2021-01",
+      "periodEnd": "2026-10",
+      "method": "Cours de la part capitalisante ajustés des divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus",
+      "seriesFingerprint": "db0f6ceb035d70fc3071aefdefeafc36b10f761dca2efdb4000f07ff2a121819",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/V20A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/V20A.DE?period1=1609459200&period2=1793491200&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "countries",
+      "label": "Pays",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "sectors",
+      "label": "Secteurs",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "holdings",
+      "label": "Principales positions",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07: Metadata source cooldown after HTTP 403; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5K07",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07"
+      ],
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "distribution",
+      "label": "Distribution",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07: Metadata source cooldown after HTTP 403; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5K07",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07"
+      ],
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "domicile",
+      "label": "Domicile",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07: Metadata source cooldown after HTTP 403; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5K07",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07"
+      ],
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "replicationMethod",
+      "label": "Réplication",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07: Metadata source cooldown after HTTP 403; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets",
+        "investment-calculator"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5K07",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07"
+      ],
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "listings",
+      "label": "Cotations",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "reason": null,
+      "requiredListingIds": [
+        "IE00BMVB5K07-XETR-V20A-EUR"
+      ],
+      "requiredListingUses": {
+        "IE00BMVB5K07-XETR-V20A-EUR": [
+          "preferred-display",
+          "scripts/monthly-automation.json:etfLifeStrategy20"
+        ]
+      },
+      "missingListingIds": [],
+      "retainedListingReferences": []
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5K07",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07"
+      ],
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "pea",
+      "label": "Éligibilité PEA",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07: Metadata source cooldown after HTTP 403; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5K07",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07"
+      ],
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "currencyHedge",
+      "label": "Couverture de change",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": null,
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07: Metadata source cooldown after HTTP 403; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "reason": null,
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "unidentifiedWeightPct": 0,
+      "unidentifiedSecurityCount": 0
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "ter",
+      "label": "Frais",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "performance",
+      "label": "Performances annuelles",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2025",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "investment-calculator",
+        "performance-rankings",
+        "portfolio-generator",
+        "portfolio-duels"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "monthly",
+      "label": "Historique mensuel",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-08",
+      "asOf": "2026-10",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/V40A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+      "reason": null,
+      "currency": "EUR",
+      "periodStart": "2021-01",
+      "periodEnd": "2026-10",
+      "method": "Cours de la part capitalisante ajustés des divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus",
+      "seriesFingerprint": "02fdc7cd7c0f96c3cd94b35a9cdb4ec017c30d951f4ce62cb011136f9db9d09b",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/V40A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/V40A.DE?period1=1609459200&period2=1793491200&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "countries",
+      "label": "Pays",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "sectors",
+      "label": "Secteurs",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "holdings",
+      "label": "Principales positions",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5M21",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21"
+      ],
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "distribution",
+      "label": "Distribution",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5M21",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21"
+      ],
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "domicile",
+      "label": "Domicile",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5M21",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21"
+      ],
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "replicationMethod",
+      "label": "Réplication",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets",
+        "investment-calculator"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5M21",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21"
+      ],
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "listings",
+      "label": "Cotations",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "reason": null,
+      "requiredListingIds": [
+        "IE00BMVB5M21-XETR-V40A-EUR"
+      ],
+      "requiredListingUses": {
+        "IE00BMVB5M21-XETR-V40A-EUR": [
+          "preferred-display",
+          "scripts/monthly-automation.json:etfLifeStrategy40"
+        ]
+      },
+      "missingListingIds": [],
+      "retainedListingReferences": []
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5M21",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21"
+      ],
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "pea",
+      "label": "Éligibilité PEA",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5M21",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21"
+      ],
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "currencyHedge",
+      "label": "Couverture de change",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": null,
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "reason": null,
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "unidentifiedWeightPct": 0,
+      "unidentifiedSecurityCount": 0
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "ter",
+      "label": "Frais",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "performance",
+      "label": "Performances annuelles",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2025",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "investment-calculator",
+        "performance-rankings",
+        "portfolio-generator",
+        "portfolio-duels"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "monthly",
+      "label": "Historique mensuel",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-08",
+      "asOf": "2026-10",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/V60A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+      "reason": null,
+      "currency": "EUR",
+      "periodStart": "2021-01",
+      "periodEnd": "2026-10",
+      "method": "Cours de la part capitalisante ajustés des divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus",
+      "seriesFingerprint": "13f32c3c9a4c01e87d427be7a7d894dc7145505ff0253032ee960f6988ec54d1",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/V60A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/V60A.DE?period1=1609459200&period2=1793491200&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "countries",
+      "label": "Pays",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "sectors",
+      "label": "Secteurs",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "holdings",
+      "label": "Principales positions",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5P51",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51"
+      ],
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "distribution",
+      "label": "Distribution",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5P51",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51"
+      ],
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "domicile",
+      "label": "Domicile",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5P51",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51"
+      ],
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "replicationMethod",
+      "label": "Réplication",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets",
+        "investment-calculator"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5P51",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51"
+      ],
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "listings",
+      "label": "Cotations",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "reason": null,
+      "requiredListingIds": [
+        "IE00BMVB5P51-XETR-V60A-EUR"
+      ],
+      "requiredListingUses": {
+        "IE00BMVB5P51-XETR-V60A-EUR": [
+          "preferred-display",
+          "scripts/monthly-automation.json:etfLifeStrategy60"
+        ]
+      },
+      "missingListingIds": [],
+      "retainedListingReferences": []
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5P51",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51"
+      ],
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "pea",
+      "label": "Éligibilité PEA",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5P51",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51"
+      ],
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "currencyHedge",
+      "label": "Couverture de change",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": null,
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "reason": null,
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "unidentifiedWeightPct": 0,
+      "unidentifiedSecurityCount": 0
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "ter",
+      "label": "Frais",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "performance",
+      "label": "Performances annuelles",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2025",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "investment-calculator",
+        "performance-rankings",
+        "portfolio-generator",
+        "portfolio-duels"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "monthly",
+      "label": "Historique mensuel",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-08",
+      "asOf": "2026-10",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/V80A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+      "reason": null,
+      "currency": "EUR",
+      "periodStart": "2021-01",
+      "periodEnd": "2026-10",
+      "method": "Cours de la part capitalisante ajustés des divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus",
+      "seriesFingerprint": "061b10553a7ee11562b3484b9e299af20555a5bdfdea6bc21fa78907b13c84cd",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/V80A.DE?period1=1609459200&period2=1793491200&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/V80A.DE?period1=1609459200&period2=1793491200&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "countries",
+      "label": "Pays",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "not-published",
+        "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "sectors",
+      "label": "Secteurs",
+      "state": "not-published",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+      "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier."
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "holdings",
+      "label": "Principales positions",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5R75",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75"
+      ],
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "distribution",
+      "label": "Distribution",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5R75",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75"
+      ],
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "domicile",
+      "label": "Domicile",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5R75",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75"
+      ],
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "replicationMethod",
+      "label": "Réplication",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets",
+        "investment-calculator"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5R75",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75"
+      ],
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "listings",
+      "label": "Cotations",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "reason": null,
+      "requiredListingIds": [
+        "IE00BMVB5R75-XETR-V80A-EUR"
+      ],
+      "requiredListingUses": {
+        "IE00BMVB5R75-XETR-V80A-EUR": [
+          "preferred-display",
+          "scripts/monthly-automation.json:etfLifeStrategy80"
+        ]
+      },
+      "missingListingIds": [],
+      "retainedListingReferences": []
+    },
+    {
+      "diagnostic": {
+        "code": "observed",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5R75",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75"
+      ],
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "pea",
+      "label": "Éligibilité PEA",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-11",
+      "asOf": null,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-11-11T11:14:31.429180+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00BMVB5R75",
+        "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+        "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75"
+      ],
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "type": "instrument",
+      "field": "currencyHedge",
+      "label": "Couverture de change",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-10",
+      "asOf": null,
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75",
+      "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75: Metadata source cooldown after HTTP 403; no new field evidence · https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance: Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+    }
+  ],
+  "limits": "These are fund-of-fund holdings/allocation, not complete economic company positions. Country/sector not-published retained; no full overlap admission. Current generated freshness/consumer projections changed, not falsely claimed byte-identical. Earlier full UI export remains dated A4/A4; this is a scoped complement, not a new global export."
+}
