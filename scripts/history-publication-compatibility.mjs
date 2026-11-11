@@ -31,7 +31,33 @@ function contract(ref, git) {
   return value
 }
 
+// Listing authorities are compiled into the financial consumer. Only hosts
+// actually used by a listing in this data snapshot require newer code; an unused
+// registry addition does not hold back unrelated observations.
+function requireListingAuthorities({codeSha, dataSha, git}) {
+  const read = (ref, file) => git('ls-tree', '--name-only', ref, '--', file)
+    ? JSON.parse(git('show', `${ref}:${file}`)) : null
+  const registry = 'scripts/listing-source-hosts.json'
+  const dataHosts = new Set(read(dataSha, registry)?.hosts ?? [])
+  const codeHosts = new Set(read(codeSha, registry)?.hosts ?? [])
+  const metadata = read(dataSha, 'src/data/automated-instrument-metadata.json') ?? {}
+  const previous = read(dataSha, 'src/data/qualified-listing-records.json') ?? {}
+  const required = new Set()
+  for (const rows of [...Object.values(metadata).map(record => record.listings?.value ?? []), ...Object.values(previous)]) {
+    for (const row of rows) {
+      try {
+        const url = new URL(row.sourceUrl)
+        if (url.protocol === 'https:' && dataHosts.has(url.hostname)) required.add(url.hostname)
+      } catch { /* Invalid evidence remains rejected by the financial consumer. */ }
+    }
+  }
+  const missing = [...required].filter(host => !codeHosts.has(host)).sort()
+  assert.equal(missing.length, 0,
+    `Publication refusée : le code ${codeSha} ne reconnaît pas les autorités de cotation utilisées par les données ${dataSha} (${missing.join(', ')}). Attendre le code qualifié ; ne pas publier ces preuves avec un consommateur qui les ignore.`)
+}
+
 export function requireHistoryPublicationCompatibility({codeSha, dataSha, git}) {
+  requireListingAuthorities({codeSha, dataSha, git})
   // Earlier prepared snapshots already contain refusals, even before the marker
   // was introduced. Missing metadata must never downgrade their protection.
   const declared = contract(dataSha, git)
