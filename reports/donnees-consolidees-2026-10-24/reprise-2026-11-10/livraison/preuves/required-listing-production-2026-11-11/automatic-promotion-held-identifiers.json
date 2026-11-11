@@ -1,0 +1,24 @@
+{
+  "mergedCode": "869e8b6aaef0ea50f871a2fe0db9fe8d435b348a",
+  "selectedFullGate": "a4f4f31489de2e42eb9fa308d47502794ed356dc",
+  "changedDataPaths": [
+    "docs/asset-field-coverage.md",
+    "docs/automation-gaps.json",
+    "public/data/asset-field-coverage.json",
+    "scripts/instrument-metadata-sources.json",
+    "src/data/automated-etf.json",
+    "src/data/automated-indices.json",
+    "src/data/automated-instrument-metadata.json",
+    "src/data/instrument-metadata-status.json"
+  ],
+  "heldBack": [
+    {
+      "file": "src/data/automated-etf.json",
+      "ids": [
+        "MX0MGO0000R8",
+        "MX0MGO0001D6"
+      ]
+    }
+  ],
+  "meaning": "Exact first-attempt guard reproduced in an isolated worktree. Full ordinary gate validates this new data snapshot; no unknown identifier guard or financial threshold is relaxed."
+}
