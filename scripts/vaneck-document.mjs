@@ -67,10 +67,20 @@ export async function initialiseRegionalGate(page, gate, timeout = 10000) {
   const continuation = page.getByRole('button', { name: /^(Accept & Continue|Accepter et continuer)$/i });
   const ready = await continuation.waitFor({ state: 'visible', timeout }).then(() => true, () => false);
   if (!ready) return false;
-  const individual = page.locator('button#retail[value="Individual Investor"]');
+  // Bind the exact public retail identity and label, never country/professional controls.
+  const individual = page.locator('#retail:is(button, [role="menuitem"])')
+    .filter({ hasText: /^\s*(Individual Investor|Retail Investor|Investisseur individuel)\s*$/i });
   await individual.waitFor({ state: 'visible', timeout: Math.min(timeout, 5000) });
   await individual.click({ timeout: 5000 });
+  // A PDF download can retain the old gate; a committed navigation can still
+  // wait for slow page resources. requestDocument must still validate the PDF.
+  const completed = Promise.any([
+    continuation.waitFor({ state: 'hidden', timeout }),
+    page.waitForEvent('framenavigated', { predicate: frame => frame === page.mainFrame(), timeout }),
+    page.waitForEvent('download', { timeout }),
+  ]).then(() => ({ ok: true }), error => ({ ok: false, error }));
   await continuation.click({ timeout: 5000, noWaitAfter: true });
-  await continuation.waitFor({ state: 'hidden', timeout });
+  const result = await completed;
+  if (!result.ok) throw new Error('Official VanEck retail confirmation not observed', { cause: result.error });
   return true;
 }
