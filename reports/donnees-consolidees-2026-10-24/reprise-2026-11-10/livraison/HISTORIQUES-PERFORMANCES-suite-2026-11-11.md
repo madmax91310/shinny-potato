@@ -15,3 +15,11 @@ Les autres pièces: DE000A0H08P6/2019 exige les facteurs officiels de réinvesti
 Prochains horaires nominaux UTC après ce relevé: reprise mensuelle conditionnelle11nov06:45, cycle mensuel16nov06:15, cotations nonbond11nov07:15. Les derniers crons consultés sont antérieurs aux derniers correctifs: lancement manuel/push prouvé, premier cron postcorrectif pas encore observé. L’attente ne bloque pas les autres réparations.
 
 CSV: [toutes les routes](performances-mensuelles-suite-2026-11-11.csv), [79cas](fenetres-79-suite-2026-11-11.csv). 774routes inventoriées: ce dénominateur n’est pas un nombre de parts uniques ni une certification indépendante de tous les champs.
+
+
+Les changes historiques BCE et le secours officiel de la Federal Reserve ont également été reconsultés par le producteur 42930361553, à 00:31 UTC le 11 novembre. La période des cours de change mensuels reste distincte de cette date de contrôle. Le délai FRED et le secours réellement acquis restent enregistrés ; aucune lecture de cache n’est présentée comme un contrôle source.
+
+WTI/Wheat disposent bien d’un cron fournisseur observé le 10 novembre. Pour les nouvelles voies Paris/IPDM et les derniers correctifs de publication, le prochain cron reste à observer : la reprise du 11 novembre à 06:45 UTC est conditionnelle et peut normalement ne pas retenter une série déjà courante ; le prochain cycle mensuel complet est prévu le 16 novembre à 06:15 UTC. Les autres refus par période restent explicités dans le CSV, sans limiter la réserve à la seule année 2025.
+
+
+Limite de supervision observée pendant la recette publique : « Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer. » La page et son export intégral ont fonctionné, sans erreur JavaScript, mais ce contrôle précis n’est pas déclaré réparé. Notre recette directe des données et outils ne le remplace pas. Preuve : [public-inbox-browser.json](preuves/suite-2026-11-11/public-inbox-browser.json).

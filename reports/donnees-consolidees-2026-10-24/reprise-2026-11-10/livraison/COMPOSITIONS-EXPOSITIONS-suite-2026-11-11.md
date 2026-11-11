@@ -18,3 +18,6 @@ Correction financière démontrée: Quantum au9novembre possède47mêmesISIN sur
 Recette publique: six portfolios DCA avec calcul, qualification, invariance à l’ordre et PNG identique à l’aperçu, ordinateur/mobile; six présentationsETF avec sélection/copie et12exports. Les pays/secteurs indépendants ne sont pas retirés avec les classements. Prochains horaires nominaux11novUTC: indices06:40,ETF07:10,expositions07:45,livres07:50; premier cron après derniers correctifs à observer. Radar reste arrêté; aucun composant IA/Analyse d’entreprise restauré.
 
 CSV: [fonds et supports](compositions-expositions-suite-2026-11-11.csv), [indices](compositions-indices-suite-2026-11-11.csv). Accès fournisseur, absence de livre, qualification financière et licence restent distincts; aucun top10 renormalisé à100%.
+
+
+Limite de supervision observée pendant la recette publique : « Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer. » La page et son export intégral ont fonctionné, sans erreur JavaScript, mais ce contrôle précis n’est pas déclaré réparé. Notre recette directe des données et outils ne le remplace pas. Preuve : [public-inbox-browser.json](preuves/suite-2026-11-11/public-inbox-browser.json).

@@ -9,3 +9,9 @@ L’ancienne alerte de publication est analysée par reçus originaux et emprein
 L’exécution des producteurs a été réelle, mais le premier cron postcorrectif demeure à observer. Les403 natifs WisdomTree, les pièces de distributions/bornes des six cas et les identités/périmètres de compositions restent ouverts. Le correctif du transport data-only Pages est testé; son exercice effectif se lit dans les étapes des runs archivés, jamais déduit d’un simple job publication vert qui a délégué au gate complet.
 
 [Historiques/performance](HISTORIQUES-PERFORMANCES-suite-2026-11-11.md) et [Compositions/expositions](COMPOSITIONS-EXPOSITIONS-suite-2026-11-11.md) donnent deux tableaux séparés. Automatisation complète non revendiquée. Les maquettes, conventions, données partagées et arrêts Radar/IA sont préservés.
+
+
+Précision sur les anciennes publications : le reçu non-bond 42845464106 est recoupé exactement pour ses **4 fichiers sur 4** dans le manifeste public actuel. Pour le reçu mensuel 42893015896, **2 fichiers sur 9** sont encore identiques, les sept autres ont été mis à jour depuis. Pour le reçu onboard 41639923023, **0 sur 7** reste identique. Ces deux derniers reçus ne sont donc pas globalement clôturés par une simple présence des fichiers courants. Les preuves d’adoption antérieures et les nouvelles observations restent distinguées. Le détail est conservé dans [legacy-receipt-adoption.json](preuves/suite-2026-11-11/legacy-receipt-adoption.json).
+
+
+Limite de supervision observée pendant la recette publique : « Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer. » La page et son export intégral ont fonctionné, sans erreur JavaScript, mais ce contrôle précis n’est pas déclaré réparé. Notre recette directe des données et outils ne le remplace pas. Preuve : [public-inbox-browser.json](preuves/suite-2026-11-11/public-inbox-browser.json).
