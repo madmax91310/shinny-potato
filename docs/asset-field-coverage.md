@@ -15,7 +15,7 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Distribution | 280/283 | 280 | 0 | 0 |
 | Domicile | 280/283 | 280 | 0 | 0 |
 | Réplication | 280/283 | 280 | 0 | 0 |
-| Cotations | 280/283 | 261 | 19 | 0 |
+| Cotations | 280/283 | 278 | 2 | 0 |
 | Éligibilité PEA | 257/283 | 257 | 0 | 0 |
 | Couverture de change | 280/283 | 280 | 0 | 0 |
 
