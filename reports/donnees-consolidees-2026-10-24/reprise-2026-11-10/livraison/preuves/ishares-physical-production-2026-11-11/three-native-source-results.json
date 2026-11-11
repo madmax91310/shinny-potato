@@ -1,0 +1,80 @@
+{
+  "run": 42964580497,
+  "event": "push",
+  "trigger": "99d974afa4a21712c92cc91ca84b7464f75585d8",
+  "observations": {
+    "IE0008471009": {
+      "asOf": "2026-11-09",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "ca94faf8ec37c153d075bb956f6ae86fd311fa6d1ebee19f676b781be1218294",
+      "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+      "completeFile": true,
+      "rows": 50,
+      "publishedEquityWeightPct": 99.46827,
+      "identifiedEquityWeightPct": 99.46827
+    },
+    "IE0008470928": {
+      "asOf": "2026-11-09",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "b79243c7083a31dd192835fbeb7e885a5ed30c67b058819f1a424a680a5aa355",
+      "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+      "completeFile": true,
+      "rows": 50,
+      "publishedEquityWeightPct": 99.45085,
+      "identifiedEquityWeightPct": 99.45085
+    },
+    "IE00B1YZSC51": {
+      "asOf": "2026-11-09",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "8f3f64a42575a71a9b0b31fb6d8da17d9981f949a734d3893ee1825b5b2e9e6a",
+      "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+      "completeFile": true,
+      "rows": 384,
+      "publishedEquityWeightPct": 99.40662999999999,
+      "identifiedEquityWeightPct": 99.40662999999999
+    }
+  },
+  "additionalChangedConsumerBooks": {
+    "IE00BMC38736": {
+      "asOf": "2026-11-10",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194732&pageid=233164&ticker=UCTSMH&reactlang=en&reactctr=uk",
+      "sha256": "ee27408aab09177dce2e19ffe50cafea655be4c1c5c011882a725cd2fb1a01f5",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "identitySourceUrl": "https://www.vaneck.com/uk/en/investments/semiconductor-etf/",
+      "identitySha256": "5c762ae214e0cc3eb6d85e32411051035f1f14af508561f3c1e01945edb0f876",
+      "completeFile": true,
+      "rows": 25,
+      "publishedEquityWeightPct": 99.98,
+      "identifiedEquityWeightPct": 99.98
+    },
+    "IE0003UVYC20": {
+      "asOf": "2026-11-10",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "basis": "fund",
+      "scope": "direct-equity-securities",
+      "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+      "sha256": "fd8af873e38b776f889b3c5cfabe42bb781fae5a91f76d051894cb6025e93053",
+      "method": "Complete direct equity and listed REIT positions in dailyHoldingsAll; index options, cash and rights retained separately, with native portfolio market-value weights; headline AUM is a separate metric; no option look-through or renormalisation",
+      "completeFile": true,
+      "rows": 233,
+      "publishedEquityWeightPct": 99.42731763580763,
+      "identifiedEquityWeightPct": 99.42731763580763
+    }
+  },
+  "otherErrorsPreserved": [
+    {
+      "id": "dca-holdings:FR0011550193",
+      "field": "Composition complète",
+      "error": "Economic-index membership outside qualified contract: stoxx600, asOf=2026-10-30, received=601, publisher=601, expected=600..600; effective membership and corporate-action treatment require dated evidence; composition refused, no rows removed or weights normalized"
+    }
+  ],
+  "meaning": "These three source/validation outcomes are distinct from global parent failure and other qualification limits."
+}

@@ -1,0 +1,2757 @@
+{
+  "checkedAt": "2026-11-11T06:01:44.329252+00:00",
+  "public": {
+    "sha": "99d974afa4a21712c92cc91ca84b7464f75585d8",
+    "dataSha": "a0e61daefde633afe5538b9871365a7364bf38a1",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T06:01:20.453Z"
+  },
+  "blobs": {
+    "src/data/dca-complete-holdings.json": "9bc55f1547dadb3bfa1d2c72f6ac9341484a3f19",
+    "src/data/dca-holdings-status.json": "f78aef0f446560f9877710f69424fcefbdf6be78"
+  },
+  "sourceConfiguration": {
+    "IE0008471009": {
+      "isin": "IE0008471009",
+      "name": "iShares Core EURO STOXX 50 UCITS ETF Dist",
+      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    "IE0008470928": {
+      "isin": "IE0008470928",
+      "name": "iShares STOXX Europe 50 UCITS ETF Dist",
+      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    "IE00B1YZSC51": {
+      "isin": "IE00B1YZSC51",
+      "name": "iShares Core MSCI Europe UCITS ETF Dist",
+      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    }
+  },
+  "registered": {
+    "IE0008471009": {
+      "asOf": "2026-11-09",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "complete": true,
+      "rows": [
+        {
+          "isin": "NL0010273215",
+          "name": "ASML HOLDING",
+          "weightPct": 9.03626
+        },
+        {
+          "isin": "DE0007164600",
+          "name": "SAP",
+          "weightPct": 4.71851
+        },
+        {
+          "isin": "DE0007236101",
+          "name": "SIEMENS N AG",
+          "weightPct": 4.40657
+        },
+        {
+          "isin": "FR0000120271",
+          "name": "TOTALENERGIES",
+          "weightPct": 3.98024
+        },
+        {
+          "isin": "DE0008404005",
+          "name": "ALLIANZ",
+          "weightPct": 3.85076
+        },
+        {
+          "isin": "ES0113900J37",
+          "name": "BANCO SANTANDER",
+          "weightPct": 3.68316
+        },
+        {
+          "isin": "ES0144580Y14",
+          "name": "IBERDROLA",
+          "weightPct": 3.15789
+        },
+        {
+          "isin": "FR0000121972",
+          "name": "SCHNEIDER ELECTRIC",
+          "weightPct": 3.00402
+        },
+        {
+          "isin": "ES0113211835",
+          "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
+          "weightPct": 2.87829
+        },
+        {
+          "isin": "IT0005239360",
+          "name": "UNICREDIT",
+          "weightPct": 2.7248
+        },
+        {
+          "isin": "NL0000235190",
+          "name": "AIRBUS GROUP",
+          "weightPct": 2.68845
+        },
+        {
+          "isin": "FR0000120073",
+          "name": "LAIR LIQUIDE SOCIETE ANONYME POUR",
+          "weightPct": 2.67583
+        },
+        {
+          "isin": "FR0000073272",
+          "name": "SAFRAN SA",
+          "weightPct": 2.50015
+        },
+        {
+          "isin": "FR0000120321",
+          "name": "LOREAL SA",
+          "weightPct": 2.36568
+        },
+        {
+          "isin": "DE000ENER6Y0",
+          "name": "SIEMENS ENERGY N AG",
+          "weightPct": 2.23881
+        },
+        {
+          "isin": "IT0000072618",
+          "name": "INTESA SANPAOLO",
+          "weightPct": 2.19326
+        },
+        {
+          "isin": "FR0000121014",
+          "name": "LVMH",
+          "weightPct": 2.18797
+        },
+        {
+          "isin": "FR0000131104",
+          "name": "BNP PARIBAS SA",
+          "weightPct": 2.15975
+        },
+        {
+          "isin": "FR0000120578",
+          "name": "SANOFI SA",
+          "weightPct": 2.12725
+        },
+        {
+          "isin": "DE0005557508",
+          "name": "DEUTSCHE TELEKOM N AG",
+          "weightPct": 2.00459
+        },
+        {
+          "isin": "NL0011821202",
+          "name": "ING GROEP",
+          "weightPct": 1.87546
+        },
+        {
+          "isin": "FR0000120628",
+          "name": "AXA SA",
+          "weightPct": 1.77472
+        },
+        {
+          "isin": "BE0974293251",
+          "name": "ANHEUSER-BUSCH INBEV SA",
+          "weightPct": 1.7381
+        },
+        {
+          "isin": "IT0003128367",
+          "name": "ENEL",
+          "weightPct": 1.69348
+        },
+        {
+          "isin": "DE0008430026",
+          "name": "MUENCHENER RUECKVERSICHERUNGS-GESE",
+          "weightPct": 1.59391
+        },
+        {
+          "isin": "ES0148396007",
+          "name": "INDUSTRIA DE DISENO TEXTIL SA",
+          "weightPct": 1.47058
+        },
+        {
+          "isin": "DE0006231004",
+          "name": "INFINEON TECHNOLOGIES AG",
+          "weightPct": 1.40406
+        },
+        {
+          "isin": "FR0000125486",
+          "name": "VINCI SA",
+          "weightPct": 1.39538
+        },
+        {
+          "isin": "DE0005140008",
+          "name": "DEUTSCHE BANK AG",
+          "weightPct": 1.37566
+        },
+        {
+          "isin": "FR0000121667",
+          "name": "ESSILORLUXOTTICA SA",
+          "weightPct": 1.32743
+        },
+        {
+          "isin": "DE0005810055",
+          "name": "DEUTSCHE BOERSE AG",
+          "weightPct": 1.29599
+        },
+        {
+          "isin": "FI4000297767",
+          "name": "NORDEA BANK",
+          "weightPct": 1.26108
+        },
+        {
+          "isin": "DE000BAY0017",
+          "name": "BAYER AG",
+          "weightPct": 1.23367
+        },
+        {
+          "isin": "DE0005552004",
+          "name": "DHL AG",
+          "weightPct": 1.23046
+        },
+        {
+          "isin": "NL0010832176",
+          "name": "ARGENX",
+          "weightPct": 1.1885
+        },
+        {
+          "isin": "IT0003132476",
+          "name": "ENI",
+          "weightPct": 1.12284
+        },
+        {
+          "isin": "FR0010208488",
+          "name": "ENGIE SA",
+          "weightPct": 1.07874
+        },
+        {
+          "isin": "DE000BASF111",
+          "name": "BASF N",
+          "weightPct": 1.06594
+        },
+        {
+          "isin": "NL0013654783",
+          "name": "PROSUS NV CLASS N",
+          "weightPct": 1.05816
+        },
+        {
+          "isin": "FR0000052292",
+          "name": "HERMES INTERNATIONAL",
+          "weightPct": 1.05457
+        },
+        {
+          "isin": "NL0011585146",
+          "name": "FERRARI",
+          "weightPct": 0.9963
+        },
+        {
+          "isin": "FR0000120644",
+          "name": "DANONE SA",
+          "weightPct": 0.96358
+        },
+        {
+          "isin": "FI0009000681",
+          "name": "NOKIA",
+          "weightPct": 0.8833
+        },
+        {
+          "isin": "DE0007030009",
+          "name": "RHEINMETALL AG",
+          "weightPct": 0.87721
+        },
+        {
+          "isin": "FR0000125007",
+          "name": "COMPAGNIE DE SAINT GOBAIN SA",
+          "weightPct": 0.82243
+        },
+        {
+          "isin": "DE000A1EWWW0",
+          "name": "ADIDAS N AG",
+          "weightPct": 0.71243
+        },
+        {
+          "isin": "NL0011794037",
+          "name": "KONINKLIJKE AHOLD DELHAIZE",
+          "weightPct": 0.66853
+        },
+        {
+          "isin": "DE0007100000",
+          "name": "MERCEDES-BENZ GROUP N AG",
+          "weightPct": 0.6683
+        },
+        {
+          "isin": "NL0012969182",
+          "name": "ADYEN",
+          "weightPct": 0.61888
+        },
+        {
+          "isin": "DE0005190003",
+          "name": "BMW",
+          "weightPct": 0.43634
+        }
+      ],
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-11-09",
+        "sourceRowCount": 56,
+        "selectedRowCount": 50,
+        "excludedRowCount": 6,
+        "publishedNetWeightPct": 99.99999000000003,
+        "selectedWeightPct": 99.46827,
+        "sourceWeightPctByType": {
+          "Equity": 99.46827000000002,
+          "Cash": 0.36627000000000004,
+          "Money Market": 0.1306,
+          "Cash Collateral and Margins": 0.03485,
+          "Futures": 0.0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.36627000000000004,
+          "Money Market": 0.1306,
+          "Cash Collateral and Margins": 0.03485,
+          "Futures": 0.0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+      "compositionFacts": {
+        "asOf": "2026-11-09",
+        "basis": "fund",
+        "method": "same-snapshot-equity-country-of-risk-and-sector",
+        "countries": {
+          "asOf": "2026-11-09",
+          "rows": [
+            {
+              "name": "France",
+              "weightPct": 32.10618999999999
+            },
+            {
+              "name": "Germany",
+              "weightPct": 29.11321000000001
+            },
+            {
+              "name": "Netherlands",
+              "weightPct": 13.257290000000001
+            },
+            {
+              "name": "Spain",
+              "weightPct": 11.189919999999999
+            },
+            {
+              "name": "Italy",
+              "weightPct": 8.730680000000001
+            },
+            {
+              "name": "Belgium",
+              "weightPct": 2.9265999999999996
+            },
+            {
+              "name": "Finland",
+              "weightPct": 2.14438
+            }
+          ]
+        },
+        "sectors": {
+          "asOf": "2026-11-09",
+          "rows": [
+            {
+              "name": "Financials",
+              "weightPct": 27.28572
+            },
+            {
+              "name": "Industrials",
+              "weightPct": 19.163480000000003
+            },
+            {
+              "name": "Information Technology",
+              "weightPct": 16.04213
+            },
+            {
+              "name": "Consumer Discretionary",
+              "weightPct": 8.58465
+            },
+            {
+              "name": "Utilities",
+              "weightPct": 5.93011
+            },
+            {
+              "name": "Health Care",
+              "weightPct": 5.876849999999999
+            },
+            {
+              "name": "Consumer Staples",
+              "weightPct": 5.7358899999999995
+            },
+            {
+              "name": "Energy",
+              "weightPct": 5.10308
+            },
+            {
+              "name": "Materials",
+              "weightPct": 3.74177
+            },
+            {
+              "name": "Communication",
+              "weightPct": 2.00459
+            }
+          ]
+        }
+      },
+      "sha256": "ca94faf8ec37c153d075bb956f6ae86fd311fa6d1ebee19f676b781be1218294",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00"
+    },
+    "IE0008470928": {
+      "asOf": "2026-11-09",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "complete": true,
+      "rows": [
+        {
+          "isin": "NL0010273215",
+          "name": "ASML HOLDING",
+          "weightPct": 7.70649
+        },
+        {
+          "isin": "CH1499059983",
+          "name": "ROCHE PS PAR AG",
+          "weightPct": 4.52399
+        },
+        {
+          "isin": "CH0012005267",
+          "name": "NOVARTIS AG",
+          "weightPct": 4.06196
+        },
+        {
+          "isin": "GB0005405286",
+          "name": "HSBC HOLDINGS PLC",
+          "weightPct": 4.06114
+        },
+        {
+          "isin": "GB0009895292",
+          "name": "ASTRAZENECA PLC",
+          "weightPct": 3.85901
+        },
+        {
+          "isin": "GB00BP6MXD84",
+          "name": "SHELL",
+          "weightPct": 3.63708
+        },
+        {
+          "isin": "CH0038863350",
+          "name": "NESTLE SA",
+          "weightPct": 3.56262
+        },
+        {
+          "isin": "DE0007164600",
+          "name": "SAP",
+          "weightPct": 3.14708
+        },
+        {
+          "isin": "DE0007236101",
+          "name": "SIEMENS N AG",
+          "weightPct": 2.93888
+        },
+        {
+          "isin": "FR0000120271",
+          "name": "TOTALENERGIES",
+          "weightPct": 2.65491
+        },
+        {
+          "isin": "DE0008404005",
+          "name": "ALLIANZ",
+          "weightPct": 2.56864
+        },
+        {
+          "isin": "ES0113900J37",
+          "name": "BANCO SANTANDER",
+          "weightPct": 2.45651
+        },
+        {
+          "isin": "ES0144580Y14",
+          "name": "IBERDROLA",
+          "weightPct": 2.10369
+        },
+        {
+          "isin": "FR0000121972",
+          "name": "SCHNEIDER ELECTRIC",
+          "weightPct": 2.00368
+        },
+        {
+          "isin": "CH0244767585",
+          "name": "UBS GROUP AG",
+          "weightPct": 1.95578
+        },
+        {
+          "isin": "GB00B63H8491",
+          "name": "ROLLS-ROYCE HOLDINGS PLC",
+          "weightPct": 1.94409
+        },
+        {
+          "isin": "ES0113211835",
+          "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
+          "weightPct": 1.92053
+        },
+        {
+          "isin": "GB00BVZK7T90",
+          "name": "UNILEVER PLC",
+          "weightPct": 1.90015
+        },
+        {
+          "isin": "IT0005239360",
+          "name": "UNICREDIT",
+          "weightPct": 1.81822
+        },
+        {
+          "isin": "NL0000235190",
+          "name": "AIRBUS GROUP",
+          "weightPct": 1.78828
+        },
+        {
+          "isin": "FR0000120073",
+          "name": "LAIR LIQUIDE SOCIETE ANONYME POUR",
+          "weightPct": 1.78282
+        },
+        {
+          "isin": "DK0062498333",
+          "name": "NOVO NORDISK CLASS B",
+          "weightPct": 1.73167
+        },
+        {
+          "isin": "CH0012221716",
+          "name": "ABB LTD",
+          "weightPct": 1.71533
+        },
+        {
+          "isin": "GB0002875804",
+          "name": "BRITISH AMERICAN TOBACCO",
+          "weightPct": 1.71068
+        },
+        {
+          "isin": "FR0000073272",
+          "name": "SAFRAN SA",
+          "weightPct": 1.66817
+        },
+        {
+          "isin": "GB0007980591",
+          "name": "BP PLC",
+          "weightPct": 1.62261
+        },
+        {
+          "isin": "FR0000120321",
+          "name": "LOREAL SA",
+          "weightPct": 1.57983
+        },
+        {
+          "isin": "CH0011075394",
+          "name": "ZURICH INSURANCE GROUP AG",
+          "weightPct": 1.5359
+        },
+        {
+          "isin": "DE000ENER6Y0",
+          "name": "SIEMENS ENERGY N AG",
+          "weightPct": 1.49062
+        },
+        {
+          "isin": "CH0210483332",
+          "name": "COMPAGNIE FINANCIERE RICHEMONT SA",
+          "weightPct": 1.4726
+        },
+        {
+          "isin": "IT0000072618",
+          "name": "INTESA SANPAOLO",
+          "weightPct": 1.46109
+        },
+        {
+          "isin": "FR0000121014",
+          "name": "LVMH",
+          "weightPct": 1.46078
+        },
+        {
+          "isin": "FR0000131104",
+          "name": "BNP PARIBAS SA",
+          "weightPct": 1.44093
+        },
+        {
+          "isin": "FR0000120578",
+          "name": "SANOFI SA",
+          "weightPct": 1.41712
+        },
+        {
+          "isin": "GB00BN7SWP63",
+          "name": "GLAXOSMITHKLINE",
+          "weightPct": 1.36272
+        },
+        {
+          "isin": "DE0005557508",
+          "name": "DEUTSCHE TELEKOM N AG",
+          "weightPct": 1.34143
+        },
+        {
+          "isin": "NL0011821202",
+          "name": "ING GROEP",
+          "weightPct": 1.24814
+        },
+        {
+          "isin": "GB0007188757",
+          "name": "RIO TINTO",
+          "weightPct": 1.22136
+        },
+        {
+          "isin": "FR0000120628",
+          "name": "AXA SA",
+          "weightPct": 1.1851
+        },
+        {
+          "isin": "GB00BDR05C01",
+          "name": "NATIONAL GRID PLC",
+          "weightPct": 1.16586
+        },
+        {
+          "isin": "BE0974293251",
+          "name": "ANHEUSER-BUSCH INBEV SA",
+          "weightPct": 1.15787
+        },
+        {
+          "isin": "IT0003128367",
+          "name": "ENEL",
+          "weightPct": 1.13509
+        },
+        {
+          "isin": "DE0008430026",
+          "name": "MUENCHENER RUECKVERSICHERUNGS-GESE",
+          "weightPct": 1.06243
+        },
+        {
+          "isin": "GB0031348658",
+          "name": "BARCLAYS PLC",
+          "weightPct": 1.02261
+        },
+        {
+          "isin": "GB00B2B0DG97",
+          "name": "RELX PLC",
+          "weightPct": 0.96216
+        },
+        {
+          "isin": "FR0000125486",
+          "name": "VINCI SA",
+          "weightPct": 0.92955
+        },
+        {
+          "isin": "FR0000121667",
+          "name": "ESSILORLUXOTTICA SA",
+          "weightPct": 0.88181
+        },
+        {
+          "isin": "GB00B0SWJX34",
+          "name": "LONDON STOCK EXCHANGE GROUP PLC",
+          "weightPct": 0.78678
+        },
+        {
+          "isin": "FR0000052292",
+          "name": "HERMES INTERNATIONAL",
+          "weightPct": 0.70331
+        },
+        {
+          "isin": "DE0007030009",
+          "name": "RHEINMETALL AG",
+          "weightPct": 0.58175
+        }
+      ],
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-11-09",
+        "sourceRowCount": 60,
+        "selectedRowCount": 50,
+        "excludedRowCount": 10,
+        "publishedNetWeightPct": 100.0,
+        "selectedWeightPct": 99.45085,
+        "sourceWeightPctByType": {
+          "Equity": 99.45085,
+          "Cash": 0.44441,
+          "Money Market": 0.06652,
+          "Cash Collateral and Margins": 0.03808,
+          "FX": 0.00014,
+          "Futures": 0.0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.44441,
+          "Money Market": 0.06652,
+          "Cash Collateral and Margins": 0.03808,
+          "FX": 0.00014,
+          "Futures": 0.0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+      "compositionFacts": {
+        "asOf": "2026-11-09",
+        "basis": "fund",
+        "method": "same-snapshot-equity-country-of-risk-and-sector",
+        "countries": {
+          "asOf": "2026-11-09",
+          "rows": [
+            {
+              "name": "United Kingdom",
+              "weightPct": 25.25625
+            },
+            {
+              "name": "France",
+              "weightPct": 19.49629
+            },
+            {
+              "name": "Switzerland",
+              "weightPct": 18.82818
+            },
+            {
+              "name": "Germany",
+              "weightPct": 13.13083
+            },
+            {
+              "name": "Netherlands",
+              "weightPct": 8.95463
+            },
+            {
+              "name": "Spain",
+              "weightPct": 6.48073
+            },
+            {
+              "name": "Italy",
+              "weightPct": 4.4144
+            },
+            {
+              "name": "Denmark",
+              "weightPct": 1.73167
+            },
+            {
+              "name": "Belgium",
+              "weightPct": 1.15787
+            }
+          ]
+        },
+        "sectors": {
+          "asOf": "2026-11-09",
+          "rows": [
+            {
+              "name": "Financials",
+              "weightPct": 24.523799999999998
+            },
+            {
+              "name": "Health Care",
+              "weightPct": 17.83828
+            },
+            {
+              "name": "Industrials",
+              "weightPct": 16.02251
+            },
+            {
+              "name": "Information Technology",
+              "weightPct": 10.85357
+            },
+            {
+              "name": "Consumer Staples",
+              "weightPct": 9.91115
+            },
+            {
+              "name": "Energy",
+              "weightPct": 7.9146
+            },
+            {
+              "name": "Utilities",
+              "weightPct": 4.40464
+            },
+            {
+              "name": "Consumer Discretionary",
+              "weightPct": 3.6366899999999998
+            },
+            {
+              "name": "Materials",
+              "weightPct": 3.00418
+            },
+            {
+              "name": "Communication",
+              "weightPct": 1.34143
+            }
+          ]
+        }
+      },
+      "sha256": "b79243c7083a31dd192835fbeb7e885a5ed30c67b058819f1a424a680a5aa355",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00"
+    },
+    "IE00B1YZSC51": {
+      "asOf": "2026-11-09",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "complete": true,
+      "rows": [
+        {
+          "isin": "NL0010273215",
+          "name": "ASML HOLDING",
+          "weightPct": 4.15916
+        },
+        {
+          "isin": "CH1499059983",
+          "name": "ROCHE PS PAR AG",
+          "weightPct": 2.44164
+        },
+        {
+          "isin": "GB0005405286",
+          "name": "HSBC HOLDINGS PLC",
+          "weightPct": 2.1936
+        },
+        {
+          "isin": "CH0012005267",
+          "name": "NOVARTIS AG",
+          "weightPct": 2.11772
+        },
+        {
+          "isin": "GB00BP6MXD84",
+          "name": "SHELL",
+          "weightPct": 2.04399
+        },
+        {
+          "isin": "GB0009895292",
+          "name": "ASTRAZENECA PLC",
+          "weightPct": 2.03069
+        },
+        {
+          "isin": "CH0038863350",
+          "name": "NESTLE SA",
+          "weightPct": 1.92282
+        },
+        {
+          "isin": "DE0007164600",
+          "name": "SAP",
+          "weightPct": 1.71057
+        },
+        {
+          "isin": "DE0007236101",
+          "name": "SIEMENS N AG",
+          "weightPct": 1.56318
+        },
+        {
+          "isin": "DE0008404005",
+          "name": "ALLIANZ",
+          "weightPct": 1.38636
+        },
+        {
+          "isin": "ES0113900J37",
+          "name": "BANCO SANTANDER",
+          "weightPct": 1.25981
+        },
+        {
+          "isin": "FR0000120271",
+          "name": "TOTALENERGIES",
+          "weightPct": 1.22023
+        },
+        {
+          "isin": "ES0144580Y14",
+          "name": "IBERDROLA",
+          "weightPct": 1.138
+        },
+        {
+          "isin": "CH0244767585",
+          "name": "UBS GROUP AG",
+          "weightPct": 1.0782
+        },
+        {
+          "isin": "GB00B63H8491",
+          "name": "ROLLS-ROYCE HOLDINGS PLC",
+          "weightPct": 1.05212
+        },
+        {
+          "isin": "ES0113211835",
+          "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
+          "weightPct": 1.0367
+        },
+        {
+          "isin": "FR0000121972",
+          "name": "SCHNEIDER ELECTRIC",
+          "weightPct": 1.02745
+        },
+        {
+          "isin": "GB00BVZK7T90",
+          "name": "UNILEVER PLC",
+          "weightPct": 1.01169
+        },
+        {
+          "isin": "NL0000235190",
+          "name": "AIRBUS GROUP",
+          "weightPct": 0.97879
+        },
+        {
+          "isin": "FR0000120073",
+          "name": "LAIR LIQUIDE SOCIETE ANONYME POUR",
+          "weightPct": 0.94008
+        },
+        {
+          "isin": "DK0062498333",
+          "name": "NOVO NORDISK CLASS B",
+          "weightPct": 0.93727
+        },
+        {
+          "isin": "CH0012221716",
+          "name": "ABB LTD",
+          "weightPct": 0.91914
+        },
+        {
+          "isin": "IT0005239360",
+          "name": "UNICREDIT",
+          "weightPct": 0.88541
+        },
+        {
+          "isin": "GB0002875804",
+          "name": "BRITISH AMERICAN TOBACCO",
+          "weightPct": 0.85546
+        },
+        {
+          "isin": "FR0000120321",
+          "name": "LOREAL SA",
+          "weightPct": 0.85362
+        },
+        {
+          "isin": "FR0000073272",
+          "name": "SAFRAN SA",
+          "weightPct": 0.84278
+        },
+        {
+          "isin": "GB0007980591",
+          "name": "BP PLC",
+          "weightPct": 0.838
+        },
+        {
+          "isin": "CH0011075394",
+          "name": "ZURICH INSURANCE GROUP AG",
+          "weightPct": 0.8151
+        },
+        {
+          "isin": "FR0000121014",
+          "name": "LVMH",
+          "weightPct": 0.7956
+        },
+        {
+          "isin": "CH0210483332",
+          "name": "COMPAGNIE FINANCIERE RICHEMONT SA",
+          "weightPct": 0.7956
+        },
+        {
+          "isin": "DE000ENER6Y0",
+          "name": "SIEMENS ENERGY N AG",
+          "weightPct": 0.76697
+        },
+        {
+          "isin": "FR0000120578",
+          "name": "SANOFI SA",
+          "weightPct": 0.74732
+        },
+        {
+          "isin": "FR0000131104",
+          "name": "BNP PARIBAS SA",
+          "weightPct": 0.74323
+        },
+        {
+          "isin": "GB00BN7SWP63",
+          "name": "GLAXOSMITHKLINE",
+          "weightPct": 0.73589
+        },
+        {
+          "isin": "IT0000072618",
+          "name": "INTESA SANPAOLO",
+          "weightPct": 0.7167
+        },
+        {
+          "isin": "DE0005557508",
+          "name": "DEUTSCHE TELEKOM N AG",
+          "weightPct": 0.70664
+        },
+        {
+          "isin": "NL0011821202",
+          "name": "ING GROEP",
+          "weightPct": 0.67619
+        },
+        {
+          "isin": "GB0007188757",
+          "name": "RIO TINTO",
+          "weightPct": 0.65347
+        },
+        {
+          "isin": "LU1778762911",
+          "name": "SPOTIFY TECHNOLOGY",
+          "weightPct": 0.63698
+        },
+        {
+          "isin": "IT0003128367",
+          "name": "ENEL",
+          "weightPct": 0.59734
+        },
+        {
+          "isin": "GB00BDR05C01",
+          "name": "NATIONAL GRID PLC",
+          "weightPct": 0.59682
+        },
+        {
+          "isin": "DE0008430026",
+          "name": "MUENCHENER RUECKVERSICHERUNGS-GESE",
+          "weightPct": 0.573
+        },
+        {
+          "isin": "FR0000120628",
+          "name": "AXA SA",
+          "weightPct": 0.56779
+        },
+        {
+          "isin": "GB0031348658",
+          "name": "BARCLAYS PLC",
+          "weightPct": 0.55377
+        },
+        {
+          "isin": "BE0974293251",
+          "name": "ANHEUSER-BUSCH INBEV SA",
+          "weightPct": 0.54273
+        },
+        {
+          "isin": "GB0008706128",
+          "name": "LLOYDS BANKING GROUP PLC",
+          "weightPct": 0.54037
+        },
+        {
+          "isin": "SE0015811963",
+          "name": "INVESTOR CLASS B",
+          "weightPct": 0.53994
+        },
+        {
+          "isin": "GB0002634946",
+          "name": "BAE SYSTEMS PLC",
+          "weightPct": 0.53378
+        },
+        {
+          "isin": "ES0148396007",
+          "name": "INDUSTRIA DE DISENO TEXTIL SA",
+          "weightPct": 0.52018
+        },
+        {
+          "isin": "DE0006231004",
+          "name": "INFINEON TECHNOLOGIES AG",
+          "weightPct": 0.50662
+        },
+        {
+          "isin": "GB00B2B0DG97",
+          "name": "RELX PLC",
+          "weightPct": 0.49776
+        },
+        {
+          "isin": "JE00B4T3BW64",
+          "name": "GLENCORE PLC",
+          "weightPct": 0.4629
+        },
+        {
+          "isin": "GB00BM8PJY71",
+          "name": "NATWEST GROUP PLC",
+          "weightPct": 0.45628
+        },
+        {
+          "isin": "DE0005810055",
+          "name": "DEUTSCHE BOERSE AG",
+          "weightPct": 0.45313
+        },
+        {
+          "isin": "DE0005140008",
+          "name": "DEUTSCHE BANK AG",
+          "weightPct": 0.44522
+        },
+        {
+          "isin": "FR0000121667",
+          "name": "ESSILORLUXOTTICA SA",
+          "weightPct": 0.4414
+        },
+        {
+          "isin": "DE000BAY0017",
+          "name": "BAYER AG",
+          "weightPct": 0.43954
+        },
+        {
+          "isin": "DE0005552004",
+          "name": "DHL AG",
+          "weightPct": 0.43268
+        },
+        {
+          "isin": "NL0010832176",
+          "name": "ARGENX",
+          "weightPct": 0.42598
+        },
+        {
+          "isin": "FR0000125486",
+          "name": "VINCI SA",
+          "weightPct": 0.42586
+        },
+        {
+          "isin": "FI4000297767",
+          "name": "NORDEA BANK",
+          "weightPct": 0.40893
+        },
+        {
+          "isin": "GB00BD6K4575",
+          "name": "COMPASS GROUP PLC",
+          "weightPct": 0.4065
+        },
+        {
+          "isin": "GB0002374006",
+          "name": "DIAGEO PLC",
+          "weightPct": 0.40313
+        },
+        {
+          "isin": "CH0013841017",
+          "name": "LONZA GROUP AG",
+          "weightPct": 0.39897
+        },
+        {
+          "isin": "GB00BTK05J60",
+          "name": "ANGLO AMERICAN PLC",
+          "weightPct": 0.39625
+        },
+        {
+          "isin": "GB00B0SWJX34",
+          "name": "LONDON STOCK EXCHANGE GROUP PLC",
+          "weightPct": 0.39475
+        },
+        {
+          "isin": "CH0126881561",
+          "name": "SWISS RE AG",
+          "weightPct": 0.38082
+        },
+        {
+          "isin": "FR0000052292",
+          "name": "HERMES INTERNATIONAL",
+          "weightPct": 0.37023
+        },
+        {
+          "isin": "DE000BASF111",
+          "name": "BASF N",
+          "weightPct": 0.36992
+        },
+        {
+          "isin": "IT0003132476",
+          "name": "ENI",
+          "weightPct": 0.36573
+        },
+        {
+          "isin": "GB0004082847",
+          "name": "STANDARD CHARTERED PLC",
+          "weightPct": 0.36163
+        },
+        {
+          "isin": "NL0011585146",
+          "name": "FERRARI",
+          "weightPct": 0.35871
+        },
+        {
+          "isin": "NL0013654783",
+          "name": "PROSUS NV CLASS N",
+          "weightPct": 0.3581
+        },
+        {
+          "isin": "SE0000115446",
+          "name": "VOLVO CLASS B",
+          "weightPct": 0.35621
+        },
+        {
+          "isin": "FR0010208488",
+          "name": "ENGIE SA",
+          "weightPct": 0.35469
+        },
+        {
+          "isin": "SE0017486889",
+          "name": "ATLAS COPCO CLASS A",
+          "weightPct": 0.34522
+        },
+        {
+          "isin": "FR0000120644",
+          "name": "DANONE SA",
+          "weightPct": 0.3411
+        },
+        {
+          "isin": "DE000ENAG999",
+          "name": "E.ON N",
+          "weightPct": 0.34052
+        },
+        {
+          "isin": "GB00BSZBP530",
+          "name": "RECKITT BENCKISER GROUP PLC",
+          "weightPct": 0.34004
+        },
+        {
+          "isin": "CH0012214059",
+          "name": "HOLCIM LTD AG",
+          "weightPct": 0.33498
+        },
+        {
+          "isin": "ES0140609019",
+          "name": "CAIXABANK SA",
+          "weightPct": 0.33477
+        },
+        {
+          "isin": "GB00BLGZ9862",
+          "name": "TESCO PLC",
+          "weightPct": 0.33142
+        },
+        {
+          "isin": "FR0000130809",
+          "name": "SOCIETE GENERALE SA",
+          "weightPct": 0.33109
+        },
+        {
+          "isin": "CH0010645932",
+          "name": "GIVAUDAN SA",
+          "weightPct": 0.32067
+        },
+        {
+          "isin": "DE0007030009",
+          "name": "RHEINMETALL AG",
+          "weightPct": 0.31569
+        },
+        {
+          "isin": "CH1243598427",
+          "name": "SANDOZ GROUP AG",
+          "weightPct": 0.30667
+        },
+        {
+          "isin": "GB0007908733",
+          "name": "SSE PLC",
+          "weightPct": 0.30614
+        },
+        {
+          "isin": "CH1335392721",
+          "name": "GALDERMA GROUP N AG",
+          "weightPct": 0.30054
+        },
+        {
+          "isin": "FI0009000681",
+          "name": "NOKIA",
+          "weightPct": 0.29727
+        },
+        {
+          "isin": "DE0007037129",
+          "name": "RWE AG",
+          "weightPct": 0.29675
+        },
+        {
+          "isin": "DK0060079531",
+          "name": "DSV",
+          "weightPct": 0.293
+        },
+        {
+          "isin": "BE0003739530",
+          "name": "UCB SA",
+          "weightPct": 0.29194
+        },
+        {
+          "isin": "AT0000652011",
+          "name": "ERSTE GROUP BANK AG",
+          "weightPct": 0.28015
+        },
+        {
+          "isin": "GB00BMX86B70",
+          "name": "HALEON PLC",
+          "weightPct": 0.27757
+        },
+        {
+          "isin": "SE0007100581",
+          "name": "ASSA ABLOY B",
+          "weightPct": 0.27704
+        },
+        {
+          "isin": "FR0010307819",
+          "name": "LEGRAND SA",
+          "weightPct": 0.27339
+        },
+        {
+          "isin": "SE0000667891",
+          "name": "SANDVIK",
+          "weightPct": 0.26924
+        },
+        {
+          "isin": "FR0000125007",
+          "name": "COMPAGNIE DE SAINT GOBAIN SA",
+          "weightPct": 0.2665
+        },
+        {
+          "isin": "CH0432492467",
+          "name": "ALCON AG",
+          "weightPct": 0.26273
+        },
+        {
+          "isin": "GB00B19NLV48",
+          "name": "EXPERIAN PLC",
+          "weightPct": 0.25828
+        },
+        {
+          "isin": "IT0000062072",
+          "name": "ASSICURAZIONI GENERALI",
+          "weightPct": 0.25682
+        },
+        {
+          "isin": "ES0173516115",
+          "name": "REPSOL",
+          "weightPct": 0.25619
+        },
+        {
+          "isin": "NL0000334118",
+          "name": "ASM INTERNATIONAL NV",
+          "weightPct": 0.25464
+        },
+        {
+          "isin": "CH0418792922",
+          "name": "SIKA AG",
+          "weightPct": 0.24943
+        },
+        {
+          "isin": "SE0000242455",
+          "name": "SWEDBANK",
+          "weightPct": 0.24848
+        },
+        {
+          "isin": "IT0004176001",
+          "name": "PRYSMIAN",
+          "weightPct": 0.23913
+        },
+        {
+          "isin": "DK0010274414",
+          "name": "DANSKE BANK",
+          "weightPct": 0.23797
+        },
+        {
+          "isin": "NL0011794037",
+          "name": "KONINKLIJKE AHOLD DELHAIZE",
+          "weightPct": 0.23724
+        },
+        {
+          "isin": "CH0014852781",
+          "name": "SWISS LIFE HOLDING AG",
+          "weightPct": 0.23587
+        },
+        {
+          "isin": "GB00B1YW4409",
+          "name": "3I GROUP FUND PLC",
+          "weightPct": 0.23418
+        },
+        {
+          "isin": "DE000A1EWWW0",
+          "name": "ADIDAS N AG",
+          "weightPct": 0.23322
+        },
+        {
+          "isin": "SE0000148884",
+          "name": "SKANDINAVISKA ENSKILDA BANKEN",
+          "weightPct": 0.22854
+        },
+        {
+          "isin": "DK0010272202",
+          "name": "GENMAB",
+          "weightPct": 0.22853
+        },
+        {
+          "isin": "GB0007099541",
+          "name": "PRUDENTIAL PLC",
+          "weightPct": 0.22563
+        },
+        {
+          "isin": "DE0007100000",
+          "name": "MERCEDES-BENZ GROUP N AG",
+          "weightPct": 0.22506
+        },
+        {
+          "isin": "FR0000133308",
+          "name": "ORANGE SA",
+          "weightPct": 0.22292
+        },
+        {
+          "isin": "BE0003565737",
+          "name": "KBC GROEP",
+          "weightPct": 0.21811
+        },
+        {
+          "isin": "DK0061539921",
+          "name": "VESTAS WIND SYSTEMS",
+          "weightPct": 0.21682
+        },
+        {
+          "isin": "GB00BPQY8M80",
+          "name": "AVIVA PLC",
+          "weightPct": 0.20915
+        },
+        {
+          "isin": "NL0011540547",
+          "name": "ABN AMRO BANK NV",
+          "weightPct": 0.20732
+        },
+        {
+          "isin": "ES0109067019",
+          "name": "AMADEUS IT GROUP",
+          "weightPct": 0.2035
+        },
+        {
+          "isin": "NL0000226223",
+          "name": "STMICROELECTRONICS",
+          "weightPct": 0.20239
+        },
+        {
+          "isin": "NL0015001FS8",
+          "name": "FERROVIAL NV",
+          "weightPct": 0.20165
+        },
+        {
+          "isin": "NL0009805522",
+          "name": "NEBIUS NV CLASS A",
+          "weightPct": 0.20077
+        },
+        {
+          "isin": "NL0000687663",
+          "name": "AERCAP HOLDINGS",
+          "weightPct": 0.20037
+        },
+        {
+          "isin": "GB00BH4HKS39",
+          "name": "VODAFONE GROUP PLC",
+          "weightPct": 0.19947
+        },
+        {
+          "isin": "GB0004544929",
+          "name": "IMPERIAL BRANDS PLC",
+          "weightPct": 0.19822
+        },
+        {
+          "isin": "NO0010161896",
+          "name": "DNB BANK",
+          "weightPct": 0.19762
+        },
+        {
+          "isin": "SE0000108656",
+          "name": "ERICSSON B",
+          "weightPct": 0.19543
+        },
+        {
+          "isin": "LU1598757687",
+          "name": "ARCELORMITTAL SA",
+          "weightPct": 0.19203
+        },
+        {
+          "isin": "NO0010096985",
+          "name": "EQUINOR",
+          "weightPct": 0.1914
+        },
+        {
+          "isin": "IE00BF0L3536",
+          "name": "AIB GROUP PLC",
+          "weightPct": 0.19065
+        },
+        {
+          "isin": "DE0006047004",
+          "name": "HEIDELBERG MATERIALS AG",
+          "weightPct": 0.19023
+        },
+        {
+          "isin": "FR0000130577",
+          "name": "PUBLICIS GROUPE",
+          "weightPct": 0.18851
+        },
+        {
+          "isin": "DE000CBK1001",
+          "name": "COMMERZBANK AG",
+          "weightPct": 0.18747
+        },
+        {
+          "isin": "NL0012969182",
+          "name": "ADYEN",
+          "weightPct": 0.18587
+        },
+        {
+          "isin": "GB00BHJYC057",
+          "name": "INTERCONTINENTAL HOTELS GROUP PLC",
+          "weightPct": 0.18516
+        },
+        {
+          "isin": "FI4000552500",
+          "name": "SAMPO CLASS A",
+          "weightPct": 0.1832
+        },
+        {
+          "isin": "DE000FRE5EN2",
+          "name": "FRESENIUS N",
+          "weightPct": 0.17644
+        },
+        {
+          "isin": "NL0000009165",
+          "name": "HEINEKEN NV",
+          "weightPct": 0.17547
+        },
+        {
+          "isin": "DK0060336014",
+          "name": "NOVOZYMES B",
+          "weightPct": 0.17411
+        },
+        {
+          "isin": "ES0105046017",
+          "name": "AENA SME SA",
+          "weightPct": 0.17316
+        },
+        {
+          "isin": "SE0017486897",
+          "name": "ATLAS COPCO CLASS B",
+          "weightPct": 0.17306
+        },
+        {
+          "isin": "IT0005508921",
+          "name": "BANCA MONTE DEI PASCHI DI SIENA SP",
+          "weightPct": 0.17219
+        },
+        {
+          "isin": "GB0032089863",
+          "name": "NEXT PLC",
+          "weightPct": 0.17097
+        },
+        {
+          "isin": "FR0000121329",
+          "name": "THALES SA",
+          "weightPct": 0.16997
+        },
+        {
+          "isin": "NL0000009538",
+          "name": "KONINKLIJKE PHILIPS",
+          "weightPct": 0.16885
+        },
+        {
+          "isin": "IT0003796171",
+          "name": "POSTE ITALIANE",
+          "weightPct": 0.16626
+        },
+        {
+          "isin": "NL0010773842",
+          "name": "NN GROUP",
+          "weightPct": 0.16589
+        },
+        {
+          "isin": "FR001400AJ45",
+          "name": "MICHELIN",
+          "weightPct": 0.16411
+        },
+        {
+          "isin": "GB00BDCPN049",
+          "name": "COCA COLA EUROPACIFIC PARTNERS PLC",
+          "weightPct": 0.16397
+        },
+        {
+          "isin": "SE0007100599",
+          "name": "SVENSKA HANDELSBANKEN-A SHS",
+          "weightPct": 0.16225
+        },
+        {
+          "isin": "CH0030170408",
+          "name": "GEBERIT AG",
+          "weightPct": 0.16157
+        },
+        {
+          "isin": "FR0000124141",
+          "name": "VEOLIA ENVIRON. SA",
+          "weightPct": 0.16113
+        },
+        {
+          "isin": "CH0008742519",
+          "name": "SWISSCOM AG",
+          "weightPct": 0.16004
+        },
+        {
+          "isin": "NL0000395903",
+          "name": "WOLTERS KLUWER",
+          "weightPct": 0.15995
+        },
+        {
+          "isin": "IT0003856405",
+          "name": "LEONARDO FINMECCANICA SPA",
+          "weightPct": 0.15832
+        },
+        {
+          "isin": "SE0015961909",
+          "name": "HEXAGON CLASS B",
+          "weightPct": 0.15696
+        },
+        {
+          "isin": "DE0006599905",
+          "name": "MERCK",
+          "weightPct": 0.15384
+        },
+        {
+          "isin": "DE000A0D9PT0",
+          "name": "MTU AERO ENGINES HOLDING AG",
+          "weightPct": 0.1535
+        },
+        {
+          "isin": "DE000DTR0CK8",
+          "name": "DAIMLER TRUCK HOLDING E AG",
+          "weightPct": 0.15285
+        },
+        {
+          "isin": "CH0466642201",
+          "name": "HELVETIA BALOISE HOLDING N AG",
+          "weightPct": 0.15254
+        },
+        {
+          "isin": "CH1256740924",
+          "name": "SGS SA",
+          "weightPct": 0.1517
+        },
+        {
+          "isin": "FR0000125338",
+          "name": "CAPGEMINI",
+          "weightPct": 0.15097
+        },
+        {
+          "isin": "DE0005190003",
+          "name": "BMW",
+          "weightPct": 0.15095
+        },
+        {
+          "isin": "GB0005603997",
+          "name": "LEGAL AND GENERAL GROUP PLC",
+          "weightPct": 0.15078
+        },
+        {
+          "isin": "FI0009013403",
+          "name": "KONE",
+          "weightPct": 0.15048
+        },
+        {
+          "isin": "IT0000066123",
+          "name": "BPER BANCA",
+          "weightPct": 0.14893
+        },
+        {
+          "isin": "SE0021921269",
+          "name": "SAAB CLASS B",
+          "weightPct": 0.14663
+        },
+        {
+          "isin": "IE00BD1RP616",
+          "name": "BANK OF IRELAND GROUP PLC",
+          "weightPct": 0.14348
+        },
+        {
+          "isin": "DE0008402215",
+          "name": "HANNOVER RUECK",
+          "weightPct": 0.14246
+        },
+        {
+          "isin": "NL0015000IY2",
+          "name": "UNIVERSAL MUSIC GROUP",
+          "weightPct": 0.14206
+        },
+        {
+          "isin": "FR0014003TT8",
+          "name": "DASSAULT SYSTEMES",
+          "weightPct": 0.13854
+        },
+        {
+          "isin": "CH1216478797",
+          "name": "DSM FIRMENICH AG",
+          "weightPct": 0.13838
+        },
+        {
+          "isin": "ES0113860A34",
+          "name": "BANCO DE SABADELL",
+          "weightPct": 0.13676
+        },
+        {
+          "isin": "NL0000009082",
+          "name": "KONINKLIJKE KPN NV",
+          "weightPct": 0.13606
+        },
+        {
+          "isin": "ES0167050915",
+          "name": "ACS ACTIVIDADES DE CONSTRUCCION Y",
+          "weightPct": 0.1288
+        },
+        {
+          "isin": "CH0024608827",
+          "name": "PARTNERS GROUP HOLDING AG",
+          "weightPct": 0.12701
+        },
+        {
+          "isin": "CH0102484968",
+          "name": "JULIUS BAER GRUPPE AG",
+          "weightPct": 0.12662
+        },
+        {
+          "isin": "PTEDP0AM0009",
+          "name": "EDP ENERGIAS DE PORTUGAL",
+          "weightPct": 0.1225
+        },
+        {
+          "isin": "GB0030913577",
+          "name": "BT GROUP PLC",
+          "weightPct": 0.12144
+        },
+        {
+          "isin": "CH0311864901",
+          "name": "VAT GROUP AG",
+          "weightPct": 0.12079
+        },
+        {
+          "isin": "IE0004906560",
+          "name": "KERRY GROUP PLC",
+          "weightPct": 0.12062
+        },
+        {
+          "isin": "GB0004052071",
+          "name": "HALMA PLC",
+          "weightPct": 0.12016
+        },
+        {
+          "isin": "DE000SHL1006",
+          "name": "SIEMENS HEALTHINEERS AG",
+          "weightPct": 0.11859
+        },
+        {
+          "isin": "DE0007664039",
+          "name": "VOLKSWAGEN NON-VOTING PREF AG",
+          "weightPct": 0.11848
+        },
+        {
+          "isin": "CH0012549785",
+          "name": "SONOVA HOLDING AG",
+          "weightPct": 0.11847
+        },
+        {
+          "isin": "SE0009922164",
+          "name": "ESSITY CLASS B",
+          "weightPct": 0.11772
+        },
+        {
+          "isin": "IE0004927939",
+          "name": "KINGSPAN GROUP PLC",
+          "weightPct": 0.11699
+        },
+        {
+          "isin": "IT0005218380",
+          "name": "BANCO BPM",
+          "weightPct": 0.11694
+        },
+        {
+          "isin": "SE0000695876",
+          "name": "ALFA LAVAL",
+          "weightPct": 0.11599
+        },
+        {
+          "isin": "IT0003242622",
+          "name": "TERNA RETE ELETTRICA NAZIONALE",
+          "weightPct": 0.11319
+        },
+        {
+          "isin": "FR0000045072",
+          "name": "CREDIT AGRICOLE SA",
+          "weightPct": 0.11278
+        },
+        {
+          "isin": "ES0130670112",
+          "name": "ENDESA SA",
+          "weightPct": 0.11024
+        },
+        {
+          "isin": "IT0000072170",
+          "name": "FINECOBANK BANCA FINECO",
+          "weightPct": 0.10976
+        },
+        {
+          "isin": "CH0024638196",
+          "name": "SCHINDLER HOLDING PAR AG",
+          "weightPct": 0.10975
+        },
+        {
+          "isin": "SE0020050417",
+          "name": "BOLIDEN",
+          "weightPct": 0.10832
+        },
+        {
+          "isin": "GB00B5ZN1N88",
+          "name": "SEGRO REIT PLC",
+          "weightPct": 0.10821
+        },
+        {
+          "isin": "NO0013536151",
+          "name": "KONGSBERG GRUPPEN",
+          "weightPct": 0.10803
+        },
+        {
+          "isin": "SE0015658109",
+          "name": "EPIROC CLASS A",
+          "weightPct": 0.10799
+        },
+        {
+          "isin": "FR0000120693",
+          "name": "PERNOD RICARD SA",
+          "weightPct": 0.10794
+        },
+        {
+          "isin": "GB0000456144",
+          "name": "ANTOFAGASTA PLC",
+          "weightPct": 0.10742
+        },
+        {
+          "isin": "CH1175448666",
+          "name": "STRAUMANN HOLDING AG",
+          "weightPct": 0.10589
+        },
+        {
+          "isin": "GB00B39J2M42",
+          "name": "UNITED UTILITIES GROUP PLC",
+          "weightPct": 0.10573
+        },
+        {
+          "isin": "FR0000121485",
+          "name": "KERING SA",
+          "weightPct": 0.10465
+        },
+        {
+          "isin": "GB00B8C3BL03",
+          "name": "THE SAGE GROUP",
+          "weightPct": 0.10461
+        },
+        {
+          "isin": "GB00BMJ6DW54",
+          "name": "INFORMA PLC",
+          "weightPct": 0.10338
+        },
+        {
+          "isin": "DE000A1ML7J1",
+          "name": "VONOVIA SE",
+          "weightPct": 0.10271
+        },
+        {
+          "isin": "FI0009003727",
+          "name": "WARTSILA",
+          "weightPct": 0.10207
+        },
+        {
+          "isin": "NL0006294274",
+          "name": "EURONEXT NV",
+          "weightPct": 0.10179
+        },
+        {
+          "isin": "CH0012032113",
+          "name": "ROCHE HOLDING AG",
+          "weightPct": 0.10113
+        },
+        {
+          "isin": "ES0178430E18",
+          "name": "TELEFONICA SA",
+          "weightPct": 0.10107
+        },
+        {
+          "isin": "DK0010181759",
+          "name": "CARLSBERG AS  CL B",
+          "weightPct": 0.09985
+        },
+        {
+          "isin": "CH0025751329",
+          "name": "LOGITECH INTERNATIONAL",
+          "weightPct": 0.09868
+        },
+        {
+          "isin": "NL0011872643",
+          "name": "ASR NEDERLAND",
+          "weightPct": 0.09868
+        },
+        {
+          "isin": "ES0105066007",
+          "name": "CELLNEX TELECOM",
+          "weightPct": 0.09809
+        },
+        {
+          "isin": "DE0006048432",
+          "name": "HENKEL & KGAA PREF AG",
+          "weightPct": 0.09776
+        },
+        {
+          "isin": "IT0003153415",
+          "name": "SNAM",
+          "weightPct": 0.09759
+        },
+        {
+          "isin": "AT0000BAWAG2",
+          "name": "BAWAG GROUP AG",
+          "weightPct": 0.09758
+        },
+        {
+          "isin": "GB00B02J6398",
+          "name": "ADMIRAL GROUP PLC",
+          "weightPct": 0.0973
+        },
+        {
+          "isin": "CH0025238863",
+          "name": "KUEHNE UND NAGEL INTERNATIONAL AG",
+          "weightPct": 0.09698
+        },
+        {
+          "isin": "ES0116870314",
+          "name": "NATURGY ENERGY GROUP SA",
+          "weightPct": 0.09681
+        },
+        {
+          "isin": "DE000SYM9999",
+          "name": "SYMRISE AG",
+          "weightPct": 0.09634
+        },
+        {
+          "isin": "SE0012853455",
+          "name": "EQT",
+          "weightPct": 0.09553
+        },
+        {
+          "isin": "FI0009013296",
+          "name": "NESTE",
+          "weightPct": 0.09291
+        },
+        {
+          "isin": "GB0001826634",
+          "name": "DIPLOMA PLC",
+          "weightPct": 0.09181
+        },
+        {
+          "isin": "FI0009014377",
+          "name": "ORION CLASS B",
+          "weightPct": 0.09132
+        },
+        {
+          "isin": "CH0008038389",
+          "name": "SWISS PRIME SITE AG",
+          "weightPct": 0.09124
+        },
+        {
+          "isin": "GB0031638363",
+          "name": "INTERTEK GROUP PLC",
+          "weightPct": 0.09084
+        },
+        {
+          "isin": "IT0004810054",
+          "name": "UNIPOL ASSICURAZIONI SPA",
+          "weightPct": 0.0897
+        },
+        {
+          "isin": "GB0031274896",
+          "name": "MARKS AND SPENCER GROUP PLC",
+          "weightPct": 0.08887
+        },
+        {
+          "isin": "FI0009014575",
+          "name": "METSO CORPORATION",
+          "weightPct": 0.08869
+        },
+        {
+          "isin": "FI4000603337",
+          "name": "UPM-KYMMENE",
+          "weightPct": 0.08804
+        },
+        {
+          "isin": "GB00BL6K5J42",
+          "name": "ENDEAVOUR MINING",
+          "weightPct": 0.08737
+        },
+        {
+          "isin": "BE0974264930",
+          "name": "AGEAS",
+          "weightPct": 0.08702
+        },
+        {
+          "isin": "IE00BYTBXV33",
+          "name": "RYANAIR HOLDINGS PLC",
+          "weightPct": 0.08669
+        },
+        {
+          "isin": "GB00B0744B38",
+          "name": "BUNZL",
+          "weightPct": 0.08571
+        },
+        {
+          "isin": "GB00B1FH8J72",
+          "name": "SEVERN TRENT PLC",
+          "weightPct": 0.0849
+        },
+        {
+          "isin": "AT0000743059",
+          "name": "OMV",
+          "weightPct": 0.08471
+        },
+        {
+          "isin": "FI0009007132",
+          "name": "FORTUM",
+          "weightPct": 0.08403
+        },
+        {
+          "isin": "GB0009223206",
+          "name": "SMITH AND NEPHEW PLC",
+          "weightPct": 0.08386
+        },
+        {
+          "isin": "DE0006602006",
+          "name": "GEA GROUP AG",
+          "weightPct": 0.08337
+        },
+        {
+          "isin": "NL0012866412",
+          "name": "BE SEMICONDUCTOR INDUSTRIES NV",
+          "weightPct": 0.0824
+        },
+        {
+          "isin": "NL0000008977",
+          "name": "HEINEKEN HOLDING NV",
+          "weightPct": 0.08111
+        },
+        {
+          "isin": "SE0000667925",
+          "name": "TELIA COMPANY",
+          "weightPct": 0.08083
+        },
+        {
+          "isin": "GB00B082RF11",
+          "name": "RENTOKIL INITIAL PLC",
+          "weightPct": 0.07991
+        },
+        {
+          "isin": "FR0013326246",
+          "name": "UNIBAIL RODAMCO WE STAPLED UNITS",
+          "weightPct": 0.07906
+        },
+        {
+          "isin": "CH0010570759",
+          "name": "CHOCOLADEFABRIKEN LINDT & SPRUENGL",
+          "weightPct": 0.079
+        },
+        {
+          "isin": "GB00B1WY2338",
+          "name": "SMITHS GROUP PLC",
+          "weightPct": 0.07869
+        },
+        {
+          "isin": "IT0004965148",
+          "name": "MONCLER",
+          "weightPct": 0.07822
+        },
+        {
+          "isin": "FR0006174348",
+          "name": "BUREAU VERITAS SA",
+          "weightPct": 0.07821
+        },
+        {
+          "isin": "CH0198251305",
+          "name": "COCA COLA HBC AG",
+          "weightPct": 0.07806
+        },
+        {
+          "isin": "FR0014000MR3",
+          "name": "EUROFINS SCIENTIFIC",
+          "weightPct": 0.07773
+        },
+        {
+          "isin": "NL0015002SN0",
+          "name": "QIAGEN",
+          "weightPct": 0.07746
+        },
+        {
+          "isin": "BMG0112X1056",
+          "name": "AEGON",
+          "weightPct": 0.07729
+        },
+        {
+          "isin": "NL0013267909",
+          "name": "AKZO NOBEL NV",
+          "weightPct": 0.07559
+        },
+        {
+          "isin": "ES0113679I37",
+          "name": "BANKINTER",
+          "weightPct": 0.07502
+        },
+        {
+          "isin": "DK0060252690",
+          "name": "PANDORA",
+          "weightPct": 0.07496
+        },
+        {
+          "isin": "FR0000120503",
+          "name": "BOUYGUES SA",
+          "weightPct": 0.07476
+        },
+        {
+          "isin": "NO0010345853",
+          "name": "AKER BP",
+          "weightPct": 0.07432
+        },
+        {
+          "isin": "FR0000120404",
+          "name": "ACCOR SA",
+          "weightPct": 0.07365
+        },
+        {
+          "isin": "NO0003054108",
+          "name": "MOWI",
+          "weightPct": 0.073
+        },
+        {
+          "isin": "PTBCP0AM0015",
+          "name": "BANCO COMERCIAL PORTUGUES SA",
+          "weightPct": 0.0723
+        },
+        {
+          "isin": "NL0015002MS2",
+          "name": "MAGNUM ICE CREAM",
+          "weightPct": 0.07191
+        },
+        {
+          "isin": "DK0060094928",
+          "name": "ORSTED A/S",
+          "weightPct": 0.07165
+        },
+        {
+          "isin": "NO0005052605",
+          "name": "NORSK HYDRO",
+          "weightPct": 0.07143
+        },
+        {
+          "isin": "DK0010244508",
+          "name": "A P MOLLER MAERSK B",
+          "weightPct": 0.0703
+        },
+        {
+          "isin": "DK0060448595",
+          "name": "COLOPLAST B",
+          "weightPct": 0.06931
+        },
+        {
+          "isin": "SE0000108227",
+          "name": "SKF B",
+          "weightPct": 0.0689
+        },
+        {
+          "isin": "CH0010570767",
+          "name": "CHOCOLADEFABRIKEN LINDT & SPRUENGL",
+          "weightPct": 0.0687
+        },
+        {
+          "isin": "GB00BKFB1C65",
+          "name": "M&G PLC",
+          "weightPct": 0.0686
+        },
+        {
+          "isin": "SE0000113250",
+          "name": "SKANSKA B",
+          "weightPct": 0.06855
+        },
+        {
+          "isin": "GB00B033F229",
+          "name": "CENTRICA PLC",
+          "weightPct": 0.06839
+        },
+        {
+          "isin": "FR0000121964",
+          "name": "KLEPIERRE REIT SA",
+          "weightPct": 0.06784
+        },
+        {
+          "isin": "LU2598331598",
+          "name": "TENARIS SA",
+          "weightPct": 0.06758
+        },
+        {
+          "isin": "SE0012673267",
+          "name": "EVOLUTION",
+          "weightPct": 0.0672
+        },
+        {
+          "isin": "DE0005439004",
+          "name": "CONTINENTAL AG",
+          "weightPct": 0.06694
+        },
+        {
+          "isin": "SE0000114837",
+          "name": "TRELLEBORG B",
+          "weightPct": 0.06659
+        },
+        {
+          "isin": "FR0000120172",
+          "name": "CARREFOUR SA",
+          "weightPct": 0.06615
+        },
+        {
+          "isin": "FR0010451203",
+          "name": "REXEL SA",
+          "weightPct": 0.06553
+        },
+        {
+          "isin": "DE000TLX1005",
+          "name": "TALANX AG",
+          "weightPct": 0.0655
+        },
+        {
+          "isin": "NO0010063308",
+          "name": "TELENOR",
+          "weightPct": 0.06542
+        },
+        {
+          "isin": "SE0014781795",
+          "name": "ADDTECH CLASS B",
+          "weightPct": 0.06436
+        },
+        {
+          "isin": "NL00150001Q9",
+          "name": "STELLANTIS",
+          "weightPct": 0.06418
+        },
+        {
+          "isin": "DE0005200000",
+          "name": "BEIERSDORF AG",
+          "weightPct": 0.06348
+        },
+        {
+          "isin": "SE0000107203",
+          "name": "INDUSTRIVARDEN SERIES",
+          "weightPct": 0.06341
+        },
+        {
+          "isin": "GB00BGXQNP29",
+          "name": "STANDARD LIFE PLC",
+          "weightPct": 0.06284
+        },
+        {
+          "isin": "FR0000130452",
+          "name": "EIFFAGE SA",
+          "weightPct": 0.06218
+        },
+        {
+          "isin": "DE0005785802",
+          "name": "FRESENIUS MEDICAL CARE AG",
+          "weightPct": 0.06146
+        },
+        {
+          "isin": "CH1101098163",
+          "name": "BELIMO N AG",
+          "weightPct": 0.06123
+        },
+        {
+          "isin": "AT0000606306",
+          "name": "RAIFFEISEN BANK INTERNATIONAL AG",
+          "weightPct": 0.06109
+        },
+        {
+          "isin": "SE0000872095",
+          "name": "SWEDISH ORPHAN BIOVITRUM",
+          "weightPct": 0.06093
+        },
+        {
+          "isin": "DE000A1DAHH0",
+          "name": "BRENNTAG",
+          "weightPct": 0.05889
+        },
+        {
+          "isin": "GB0033195214",
+          "name": "KINGFISHER PLC",
+          "weightPct": 0.05834
+        },
+        {
+          "isin": "PTGAL0AM0009",
+          "name": "GALP ENERGIA SGPS SA CLASS B",
+          "weightPct": 0.05797
+        },
+        {
+          "isin": "JE00BQKY0816",
+          "name": "WISE PLC CLASS A",
+          "weightPct": 0.05753
+        },
+        {
+          "isin": "GB00B019KW72",
+          "name": "SAINSBURY(J) PLC",
+          "weightPct": 0.05716
+        },
+        {
+          "isin": "GB0006776081",
+          "name": "PEARSON PLC",
+          "weightPct": 0.05683
+        },
+        {
+          "isin": "SE0000163594",
+          "name": "SECURITAS B",
+          "weightPct": 0.05678
+        },
+        {
+          "isin": "LU0038705702",
+          "name": "MILLICOM INTERNATIONAL CELLULAR",
+          "weightPct": 0.05675
+        },
+        {
+          "isin": "SE0005190238",
+          "name": "TELE2 B",
+          "weightPct": 0.05673
+        },
+        {
+          "isin": "DE0007165631",
+          "name": "SARTORIUS PREF AG",
+          "weightPct": 0.05625
+        },
+        {
+          "isin": "GB00BNGDN821",
+          "name": "MELROSE INDUSTRIES PLC",
+          "weightPct": 0.05579
+        },
+        {
+          "isin": "FI0009000202",
+          "name": "KESKO CORP CLASS B",
+          "weightPct": 0.05562
+        },
+        {
+          "isin": "GB00BWFGQN14",
+          "name": "SPIRAX GROUP PLC",
+          "weightPct": 0.05525
+        },
+        {
+          "isin": "SE0015658117",
+          "name": "EPIROC CLASS B",
+          "weightPct": 0.05421
+        },
+        {
+          "isin": "DE0006048408",
+          "name": "HENKEL AG",
+          "weightPct": 0.05412
+        },
+        {
+          "isin": "NL0012059018",
+          "name": "EXOR NV",
+          "weightPct": 0.05382
+        },
+        {
+          "isin": "GB0006731235",
+          "name": "ASSOCIATED BRITISH FOODS PLC",
+          "weightPct": 0.05347
+        },
+        {
+          "isin": "SE0000106270",
+          "name": "HENNES & MAURITZ",
+          "weightPct": 0.05328
+        },
+        {
+          "isin": "FR0013154002",
+          "name": "SARTORIUS STEDIM BIOTECH SA",
+          "weightPct": 0.05283
+        },
+        {
+          "isin": "DE000KBX1006",
+          "name": "KNORR BREMSE AG",
+          "weightPct": 0.05268
+        },
+        {
+          "isin": "NO0003733800",
+          "name": "ORKLA",
+          "weightPct": 0.05237
+        },
+        {
+          "isin": "DK0060636678",
+          "name": "TRYG",
+          "weightPct": 0.05213
+        },
+        {
+          "isin": "NO0010208051",
+          "name": "YARA INTERNATIONAL",
+          "weightPct": 0.05143
+        },
+        {
+          "isin": "SE0001515552",
+          "name": "INDUTRADE",
+          "weightPct": 0.05129
+        },
+        {
+          "isin": "CH0024638212",
+          "name": "SCHINDLER HOLDING AG",
+          "weightPct": 0.05084
+        },
+        {
+          "isin": "CH0016440353",
+          "name": "EMS-CHEMIE HOLDING AG",
+          "weightPct": 0.0508
+        },
+        {
+          "isin": "DK0010244425",
+          "name": "A P MOLLER MAERSK",
+          "weightPct": 0.05052
+        },
+        {
+          "isin": "ES0177542018",
+          "name": "INTERNATIONAL AIRLINES GROUP",
+          "weightPct": 0.05042
+        },
+        {
+          "isin": "BE0003822393",
+          "name": "ELIA GROUP SA",
+          "weightPct": 0.05
+        },
+        {
+          "isin": "SE0015949748",
+          "name": "BEIJER REF CLASS B",
+          "weightPct": 0.0493
+        },
+        {
+          "isin": "SE0000112724",
+          "name": "SVENSKA CELLULOSA B",
+          "weightPct": 0.04823
+        },
+        {
+          "isin": "BE0003797140",
+          "name": "GROUPE BRUXELLES LAMBERT NV",
+          "weightPct": 0.04799
+        },
+        {
+          "isin": "BE0003604155",
+          "name": "LOTUS BAKERIES NV",
+          "weightPct": 0.04716
+        },
+        {
+          "isin": "PTJMT0AE0001",
+          "name": "JERONIMO MARTINS SA",
+          "weightPct": 0.04673
+        },
+        {
+          "isin": "SE0015949201",
+          "name": "LIFCO CLASS B",
+          "weightPct": 0.04649
+        },
+        {
+          "isin": "FR0004125920",
+          "name": "AMUNDI SA",
+          "weightPct": 0.04615
+        },
+        {
+          "isin": "GB00B2QPKJ12",
+          "name": "FRESNILLO PLC",
+          "weightPct": 0.0461
+        },
+        {
+          "isin": "ES0118594417",
+          "name": "INDRA SISTEMAS SA",
+          "weightPct": 0.04584
+        },
+        {
+          "isin": "DE000ZAL1111",
+          "name": "ZALANDO",
+          "weightPct": 0.04558
+        },
+        {
+          "isin": "FR0014004L86",
+          "name": "DASSAULT AVIATION SA",
+          "weightPct": 0.04537
+        },
+        {
+          "isin": "GB00BYW0PQ60",
+          "name": "LAND SECURITIES GROUP REIT PLC",
+          "weightPct": 0.04464
+        },
+        {
+          "isin": "SE0015988019",
+          "name": "NIBE INDUSTRIER CLASS B",
+          "weightPct": 0.04433
+        },
+        {
+          "isin": "SE0000190126",
+          "name": "INDUSTRIVARDEN A",
+          "weightPct": 0.04396
+        },
+        {
+          "isin": "FR0010533075",
+          "name": "GETLINK",
+          "weightPct": 0.04379
+        },
+        {
+          "isin": "FR0012333284",
+          "name": "ABIVAX SA",
+          "weightPct": 0.04325
+        },
+        {
+          "isin": "DE000EVNK013",
+          "name": "EVONIK INDUSTRIES AG",
+          "weightPct": 0.04296
+        },
+        {
+          "isin": "DE0006070006",
+          "name": "HOCHTIEF AG",
+          "weightPct": 0.04271
+        },
+        {
+          "isin": "IT0005211237",
+          "name": "ITALGAS",
+          "weightPct": 0.04258
+        },
+        {
+          "isin": "DE0008232125",
+          "name": "DEUTSCHE LUFTHANSA AG",
+          "weightPct": 0.04216
+        },
+        {
+          "isin": "CH0012255151",
+          "name": "THE SWATCH GROUP AG",
+          "weightPct": 0.04174
+        },
+        {
+          "isin": "FI0009007884",
+          "name": "ELISA",
+          "weightPct": 0.04166
+        },
+        {
+          "isin": "FR0010259150",
+          "name": "IPSEN SA",
+          "weightPct": 0.04107
+        },
+        {
+          "isin": "DE000A2E4K43",
+          "name": "DELIVERY HERO",
+          "weightPct": 0.04044
+        },
+        {
+          "isin": "FR0000131906",
+          "name": "RENAULT SA",
+          "weightPct": 0.04042
+        },
+        {
+          "isin": "FI0009005961",
+          "name": "STORA ENSO CLASS R",
+          "weightPct": 0.04036
+        },
+        {
+          "isin": "BE0974464977",
+          "name": "SYENSQO NV",
+          "weightPct": 0.04011
+        },
+        {
+          "isin": "IT0004776628",
+          "name": "BANCA MEDIOLANUM",
+          "weightPct": 0.04006
+        },
+        {
+          "isin": "DE000HAG0005",
+          "name": "HENSOLDT AG",
+          "weightPct": 0.03989
+        },
+        {
+          "isin": "ES0125220311",
+          "name": "ACCIONA",
+          "weightPct": 0.03943
+        },
+        {
+          "isin": "FR0000121220",
+          "name": "SODEXO SA",
+          "weightPct": 0.03918
+        },
+        {
+          "isin": "NO0010582521",
+          "name": "GJENSIDIGE FORSIKRING",
+          "weightPct": 0.03908
+        },
+        {
+          "isin": "DE000PAG9113",
+          "name": "DR ING HC F PORSCHE PRF AG",
+          "weightPct": 0.03855
+        },
+        {
+          "isin": "BE0003823409",
+          "name": "FINANCIERE DE TUBIZE SA",
+          "weightPct": 0.03848
+        },
+        {
+          "isin": "ES0173093024",
+          "name": "REDEIA CORPORACION SA",
+          "weightPct": 0.03835
+        },
+        {
+          "isin": "AT0000746409",
+          "name": "VERBUND AG",
+          "weightPct": 0.03819
+        },
+        {
+          "isin": "CH0023405456",
+          "name": "AVOLTA AG",
+          "weightPct": 0.03742
+        },
+        {
+          "isin": "CH0009002962",
+          "name": "BARRY CALLEBAUT AG",
+          "weightPct": 0.0349
+        },
+        {
+          "isin": "NO0011202772",
+          "name": "VAR ENERGI",
+          "weightPct": 0.03465
+        },
+        {
+          "isin": "SE0000108847",
+          "name": "LUNDBERGFORETAGEN CLASS B",
+          "weightPct": 0.03444
+        },
+        {
+          "isin": "DK0060738599",
+          "name": "DEMANT",
+          "weightPct": 0.0329
+        },
+        {
+          "isin": "ES0127797019",
+          "name": "EDP RENEWABLES SA",
+          "weightPct": 0.03246
+        },
+        {
+          "isin": "BE0974259880",
+          "name": "DIETEREN (D) SA",
+          "weightPct": 0.03069
+        },
+        {
+          "isin": "CH0531751755",
+          "name": "BC VAUD N",
+          "weightPct": 0.03059
+        },
+        {
+          "isin": "DE000PAH0038",
+          "name": "PORSCHE AUTOMOBIL HOLDING PREF",
+          "weightPct": 0.03056
+        },
+        {
+          "isin": "BE0003717312",
+          "name": "SOFINA SA",
+          "weightPct": 0.03014
+        },
+        {
+          "isin": "NL0015435975",
+          "name": "DAVIDE CAMPARI MILANO NV",
+          "weightPct": 0.0299
+        },
+        {
+          "isin": "FR0010220475",
+          "name": "ALSTOM SA",
+          "weightPct": 0.02986
+        },
+        {
+          "isin": "DE0006452907",
+          "name": "NEMETSCHEK",
+          "weightPct": 0.02967
+        },
+        {
+          "isin": "FR0010340141",
+          "name": "AEROPORTS DE PARIS SA",
+          "weightPct": 0.02956
+        },
+        {
+          "isin": "ES0124244E34",
+          "name": "MAPFRE SA",
+          "weightPct": 0.02954
+        },
+        {
+          "isin": "NO0010310956",
+          "name": "SALMAR",
+          "weightPct": 0.02944
+        },
+        {
+          "isin": "FR0013280286",
+          "name": "BIOMERIEUX SA",
+          "weightPct": 0.02918
+        },
+        {
+          "isin": "FR0013258662",
+          "name": "AYVENS SA",
+          "weightPct": 0.02636
+        },
+        {
+          "isin": "IT0001347308",
+          "name": "BUZZI",
+          "weightPct": 0.0259
+        },
+        {
+          "isin": "DE0007010803",
+          "name": "RATIONAL AG",
+          "weightPct": 0.02511
+        },
+        {
+          "isin": "GB00BKDRYJ47",
+          "name": "AIRTEL AFRICA PLC",
+          "weightPct": 0.02381
+        },
+        {
+          "isin": "JE00BRX98089",
+          "name": "CVC CAPITAL PARTNERS PLC",
+          "weightPct": 0.02329
+        },
+        {
+          "isin": "FR0010040865",
+          "name": "GECINA SA",
+          "weightPct": 0.02288
+        },
+        {
+          "isin": "FR0000064578",
+          "name": "COVIVIO SA",
+          "weightPct": 0.02183
+        },
+        {
+          "isin": "GB00BVMN1558",
+          "name": "VERISURE PLC",
+          "weightPct": 0.02104
+        },
+        {
+          "isin": "CH0130293662",
+          "name": "BKW N AG",
+          "weightPct": 0.02001
+        },
+        {
+          "isin": "FI4000625470",
+          "name": "KESKO OYJ",
+          "weightPct": 0.00149
+        }
+      ],
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-11-09",
+        "sourceRowCount": 399,
+        "selectedRowCount": 384,
+        "excludedRowCount": 15,
+        "publishedNetWeightPct": 100.00010000000002,
+        "selectedWeightPct": 99.40662999999999,
+        "sourceWeightPctByType": {
+          "Equity": 99.40663000000002,
+          "Cash": 0.38184,
+          "Money Market": 0.17613,
+          "Cash Collateral and Margins": 0.0355,
+          "Futures": 0.0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.38184,
+          "Money Market": 0.17613,
+          "Cash Collateral and Margins": 0.0355,
+          "Futures": 0.0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+      "sha256": "8f3f64a42575a71a9b0b31fb6d8da17d9981f949a734d3893ee1825b5b2e9e6a",
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00"
+    }
+  },
+  "status": {
+    "IE0008471009": {
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "lastSuccessAt": "2026-11-11T05:18:04.248972+00:00",
+      "status": "validated",
+      "asOf": "2026-11-09"
+    },
+    "IE0008470928": {
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "lastSuccessAt": "2026-11-11T05:18:04.248972+00:00",
+      "status": "validated",
+      "asOf": "2026-11-09"
+    },
+    "IE00B1YZSC51": {
+      "checkedAt": "2026-11-11T05:18:04.248972+00:00",
+      "lastSuccessAt": "2026-11-11T05:18:04.248972+00:00",
+      "status": "validated",
+      "asOf": "2026-11-09"
+    }
+  },
+  "meaning": "Three existing exact funds. Complete physical equity books and their original cash/weights/dates, not exact index portfolios."
+}
