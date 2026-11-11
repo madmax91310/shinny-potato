@@ -639,6 +639,9 @@ def parse_listings(body,source,url,checked):
     else:
         text=text_of(body)
         scoped=[]
+        if body.startswith(b'%PDF') and urlsplit(url).hostname=='www.blackrock.com':
+            from blackrock_xetra_reference import blackrock_xetra_reference
+            scoped=blackrock_xetra_reference(text,isin,url,checked)
         if body.startswith(b'%PDF') and urlsplit(url).hostname=='www.borsaitaliana.it':scoped=scoped_supplement_listings(text,isin)
         if body.startswith(b'%PDF') and urlsplit(url).hostname=='etf.dws.com':scoped=dws_factsheet_listings(text,isin)
         if scoped:

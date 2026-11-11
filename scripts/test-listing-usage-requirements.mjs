@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {listingUsageRequirements,requiredListingEvidence}from'./listing-usage-requirements.mjs';
+const preferred={A:{evidenceId:'A-EUR'},B:{evidenceId:'B-EUR'}};
+const sources=[{registry:'monthly',series:[{id:'usd',isin:'A',listingEvidenceId:'A-USD'},{id:'disabled',isin:'A',listingEvidenceId:'A-OLD',disabled:true},{id:'nav',isin:'B'}]}];
+const uses=listingUsageRequirements(preferred,sources);
+assert.deepEqual(uses,{A:{'A-EUR':['preferred-display'],'A-USD':['monthly:usd']},B:{'B-EUR':['preferred-display']}});
+const row=(id,checkedAt)=>({evidenceId:id,checkedAt,sourceUrl:'https://issuer.example'}),classify=r=>!r.checkedAt?'undated-check':r.checkedAt>'2026-11-11'?'invalid-date':r.checkedAt<'2026-11-04'?'check-overdue':'current';
+const current=row('A-EUR','2026-11-11'),old=row('A-USD','2026-11-03'),unused=row('A-OLD','2026-10-01');
+let result=requiredListingEvidence([current,unused],{'A-EUR':['preferred-display']},classify);
+assert.equal(result.state,'current');assert.equal(result.value.checkedAt,'2026-11-11');assert.deepEqual(result.retainedListingReferences,[unused]);assert.equal(unused.checkedAt,'2026-10-01');
+result=requiredListingEvidence([current,old,unused],uses.A,classify);assert.equal(result.state,'check-overdue');assert.equal(result.value.evidenceId,'A-USD');
+assert.equal(requiredListingEvidence([row('A-EUR','2026-11-03'),row('other','2026-11-11')],{'A-EUR':['preferred-display']},classify).state,'check-overdue');
+result=requiredListingEvidence([current],uses.A,classify);assert.equal(result.state,'unqualified');assert.deepEqual(result.missingListingIds,['A-USD']);
+assert.equal(requiredListingEvidence([current,{...old,checkedAt:null}],uses.A,classify).state,'unqualified');
+assert.equal(requiredListingEvidence([current,row('A-USD','2026-11-12')],uses.A,classify).state,'invalid-date');
+assert.equal(requiredListingEvidence([unused],{},classify).state,'not-applicable');
+assert.equal(requiredListingEvidence([current,old],{'A-EUR':['x'],'A-USD':['y']},classify).value.checkedAt,'2026-11-03');
+console.log('Required quotation consumers, stale required rows, missing proofs and untouched retained aliases verified.');
