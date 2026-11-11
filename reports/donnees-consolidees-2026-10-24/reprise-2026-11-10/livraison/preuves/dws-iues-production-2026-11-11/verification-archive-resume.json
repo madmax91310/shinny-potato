@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-11T09:15:33.249206+00:00",
+  "originalFinancialRun": 42986450005,
+  "actualFullInboxRun": 42992945306,
+  "reusedActualReceipts": 8,
+  "reusedFullActualUIExport": true,
+  "resumeScope": "Fetch missing code commit trees, record exact financial blob boundaries and archive already acquired original native/public proofs",
+  "ownHarnessFailure": "Previous resume captured the entire real public UI export successfully, then tried resolving a code commit absent from its shallow checkout. No application, supplier or data failure.",
+  "supplierRecollection": false,
+  "browserRerun": false,
+  "redeployment": false,
+  "public": {
+    "sha": "72751babb2c6541cd2519d3a20fa20941c0fb99f",
+    "dataSha": "b13dd7f0374821c97a14159d312cab12c3aaea44",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T09:04:35.876Z"
+  }
+}

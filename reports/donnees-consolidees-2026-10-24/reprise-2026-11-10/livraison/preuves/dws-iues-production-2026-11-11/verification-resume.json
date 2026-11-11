@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-11-11T09:11:17.384546+00:00",
+  "originalReadOnlyRun": 42986450005,
+  "reusedActualReceipts": 8,
+  "resumeScope": [
+    "complete actual public inbox export",
+    "source/code blob boundaries",
+    "archive existing native/source/consumer receipts"
+  ],
+  "originalFailure": "Own harness wrote Python into the JS inbox helper after the 8 public calculation/export cases and 73/79 extraction had succeeded. No application/supplier/data failure.",
+  "supplierRecollection": false,
+  "redeployment": false,
+  "public": {
+    "sha": "72751babb2c6541cd2519d3a20fa20941c0fb99f",
+    "dataSha": "b13dd7f0374821c97a14159d312cab12c3aaea44",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T09:04:35.876Z"
+  }
+}
