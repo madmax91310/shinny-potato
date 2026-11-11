@@ -1,0 +1,16 @@
+{
+  "public": {
+    "sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+    "dataSha": "6b55fc5dd981b3d08fd9ad4669c3ce5a66ee0a74",
+    "lane": "validated-data",
+    "builtAt": "2026-11-11T05:27:33.007Z"
+  },
+  "expectedBlobs": {
+    "src/data/dca-complete-holdings.json": "9bc55f1547dadb3bfa1d2c72f6ac9341484a3f19",
+    "src/data/dca-holdings-status.json": "f78aef0f446560f9877710f69424fcefbdf6be78"
+  },
+  "matched": {
+    "src/data/dca-complete-holdings.json": true,
+    "src/data/dca-holdings-status.json": true
+  }
+}

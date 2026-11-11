@@ -1,0 +1,3331 @@
+{
+  "workflow": "update-market-monthly.yml",
+  "workflowBlob": "538574ffd733f57d95faa9c6434ff94f4f33b700",
+  "scheduleUTC": [
+    "15 6 2,4,8,16 * *",
+    "45 6 * * *"
+  ],
+  "checkedAt": "2026-11-11T05:31:54.337316+00:00",
+  "runs": [
+    {
+      "run": {
+        "id": 42842184286,
+        "name": "Update active monthly market histories",
+        "node_id": "WFR_kwLODBcmZM8AAAAJ-ZfaXg",
+        "head_branch": "master",
+        "head_sha": "200166e59320852553b6c720076fff8d461485c1",
+        "path": ".github/workflows/update-market-monthly.yml",
+        "display_title": "Update active monthly market histories",
+        "run_number": 829,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "workflow_id": 376153093,
+        "check_suite_id": 116025802000,
+        "check_suite_node_id": "CS_kwDODBcmZM8AAAAbA609EA",
+        "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42842184286",
+        "pull_requests": [],
+        "created_at": "2026-11-10T15:13:55Z",
+        "updated_at": "2026-11-10T15:45:49Z",
+        "actor": {
+          "login": "madmax91310",
+          "id": 54199744,
+          "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/madmax91310",
+          "html_url": "https://github.com/madmax91310",
+          "followers_url": "https://api.github.com/users/madmax91310/followers",
+          "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+          "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+          "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+          "repos_url": "https://api.github.com/users/madmax91310/repos",
+          "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "run_attempt": 1,
+        "referenced_workflows": [
+          {
+            "path": "madmax91310/shinny-potato/.github/workflows/publish-validated-data.yml@200166e59320852553b6c720076fff8d461485c1",
+            "sha": "200166e59320852553b6c720076fff8d461485c1",
+            "ref": "refs/heads/master"
+          },
+          {
+            "path": "madmax91310/shinny-potato/.github/workflows/deploy-pages.yml@200166e59320852553b6c720076fff8d461485c1",
+            "sha": "200166e59320852553b6c720076fff8d461485c1",
+            "ref": "refs/heads/master"
+          }
+        ],
+        "run_started_at": "2026-11-10T15:13:55Z",
+        "triggering_actor": {
+          "login": "madmax91310",
+          "id": 54199744,
+          "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/madmax91310",
+          "html_url": "https://github.com/madmax91310",
+          "followers_url": "https://api.github.com/users/madmax91310/followers",
+          "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+          "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+          "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+          "repos_url": "https://api.github.com/users/madmax91310/repos",
+          "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "jobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286/jobs",
+        "logs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286/logs",
+        "check_suite_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-suites/116025802000",
+        "artifacts_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286/artifacts",
+        "cancel_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286/cancel",
+        "rerun_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286/rerun",
+        "previous_attempt_url": null,
+        "workflow_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/376153093",
+        "head_commit": {
+          "id": "200166e59320852553b6c720076fff8d461485c1",
+          "tree_id": "eaad6d1958ae275983fe70be381d6983b85d413d",
+          "message": "Refresh Vanguard LifeStrategy issuer data",
+          "timestamp": "2026-11-10T13:44:31Z",
+          "author": {
+            "name": "github-actions[bot]",
+            "email": "41898282+github-actions[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "github-actions[bot]",
+            "email": "41898282+github-actions[bot]@users.noreply.github.com"
+          }
+        },
+        "repository": {
+          "id": 202843748,
+          "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+          "name": "shinny-potato",
+          "full_name": "madmax91310/shinny-potato",
+          "private": false,
+          "owner": {
+            "login": "madmax91310",
+            "id": 54199744,
+            "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/madmax91310",
+            "html_url": "https://github.com/madmax91310",
+            "followers_url": "https://api.github.com/users/madmax91310/followers",
+            "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+            "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+            "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+            "repos_url": "https://api.github.com/users/madmax91310/repos",
+            "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/madmax91310/shinny-potato",
+          "description": "Yo",
+          "fork": false,
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+          "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+          "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+          "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+          "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+          "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+          "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+          "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+          "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+          "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+          "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+          "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+          "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+          "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+          "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+        },
+        "head_repository": {
+          "id": 202843748,
+          "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+          "name": "shinny-potato",
+          "full_name": "madmax91310/shinny-potato",
+          "private": false,
+          "owner": {
+            "login": "madmax91310",
+            "id": 54199744,
+            "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/madmax91310",
+            "html_url": "https://github.com/madmax91310",
+            "followers_url": "https://api.github.com/users/madmax91310/followers",
+            "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+            "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+            "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+            "repos_url": "https://api.github.com/users/madmax91310/repos",
+            "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/madmax91310/shinny-potato",
+          "description": "Yo",
+          "fork": false,
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+          "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+          "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+          "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+          "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+          "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+          "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+          "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+          "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+          "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+          "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+          "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+          "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+          "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+          "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+        }
+      },
+      "jobs": [
+        {
+          "id": 129920017773,
+          "run_id": 42842184286,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeP9YlbQ",
+          "head_sha": "200166e59320852553b6c720076fff8d461485c1",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129920017773",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42842184286/job/129920017773",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-10T15:13:55Z",
+          "started_at": "2026-11-10T15:14:06Z",
+          "completed_at": "2026-11-10T15:28:27Z",
+          "name": "refresh",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-10T15:14:07Z",
+              "completed_at": "2026-11-10T15:14:08Z"
+            },
+            {
+              "name": "Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-10T15:14:08Z",
+              "completed_at": "2026-11-10T15:14:45Z"
+            },
+            {
+              "name": "Run actions/setup-python@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-10T15:14:45Z",
+              "completed_at": "2026-11-10T15:14:45Z"
+            },
+            {
+              "name": "Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-10T15:14:45Z",
+              "completed_at": "2026-11-10T15:14:49Z"
+            },
+            {
+              "name": "Install issuer PDF parser",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-10T15:14:49Z",
+              "completed_at": "2026-11-10T15:14:57Z"
+            },
+            {
+              "name": "Run npm ci",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-10T15:14:57Z",
+              "completed_at": "2026-11-10T15:14:58Z"
+            },
+            {
+              "name": "Run npx playwright install --with-deps chromium",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-10T15:14:58Z",
+              "completed_at": "2026-11-10T15:15:09Z"
+            },
+            {
+              "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-10T15:15:09Z",
+              "completed_at": "2026-11-10T15:15:13Z"
+            },
+            {
+              "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-10T15:15:13Z",
+              "completed_at": "2026-11-10T15:15:14Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-10T15:15:14Z",
+              "completed_at": "2026-11-10T15:15:51Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-10T15:15:51Z",
+              "completed_at": "2026-11-10T15:15:54Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-10T15:15:54Z",
+              "completed_at": "2026-11-10T15:15:54Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-10T15:15:54Z",
+              "completed_at": "2026-11-10T15:15:54Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_distributing_nav.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-10T15:15:54Z",
+              "completed_at": "2026-11-10T15:15:55Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-10T15:15:55Z",
+              "completed_at": "2026-11-10T15:15:55Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-10T15:15:55Z",
+              "completed_at": "2026-11-10T15:16:01Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_dws_income_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-10T15:16:01Z",
+              "completed_at": "2026-11-10T15:16:02Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-10T15:16:02Z",
+              "completed_at": "2026-11-10T15:16:02Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_performance_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-10T15:16:02Z",
+              "completed_at": "2026-11-10T15:16:06Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_landg_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-10T15:16:06Z",
+              "completed_at": "2026-11-10T15:16:06Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_bnp_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-10T15:16:06Z",
+              "completed_at": "2026-11-10T15:16:07Z"
+            },
+            {
+              "name": "Run node scripts/test-bnp-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-10T15:16:07Z",
+              "completed_at": "2026-11-10T15:16:07Z"
+            },
+            {
+              "name": "Run node scripts/test-dws-income-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-10T15:16:07Z",
+              "completed_at": "2026-11-10T15:16:08Z"
+            },
+            {
+              "name": "Run node scripts/test-qualified-return-windows.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-11-10T15:16:08Z",
+              "completed_at": "2026-11-10T15:16:08Z"
+            },
+            {
+              "name": "Run node scripts/test-wisdomtree-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-10T15:16:08Z",
+              "completed_at": "2026-11-10T15:16:10Z"
+            },
+            {
+              "name": "Run node scripts/test-income-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-10T15:16:10Z",
+              "completed_at": "2026-11-10T15:16:13Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-10T15:16:13Z",
+              "completed_at": "2026-11-10T15:16:13Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28,
+              "started_at": "2026-11-10T15:16:13Z",
+              "completed_at": "2026-11-10T15:16:14Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29,
+              "started_at": "2026-11-10T15:16:14Z",
+              "completed_at": "2026-11-10T15:16:14Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 30,
+              "started_at": "2026-11-10T15:16:14Z",
+              "completed_at": "2026-11-10T15:16:15Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31,
+              "started_at": "2026-11-10T15:16:15Z",
+              "completed_at": "2026-11-10T15:16:15Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly*units.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 32,
+              "started_at": "2026-11-10T15:16:15Z",
+              "completed_at": "2026-11-10T15:16:16Z"
+            },
+            {
+              "name": "Run node scripts/test-investment-history-units.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 33,
+              "started_at": "2026-11-10T15:16:16Z",
+              "completed_at": "2026-11-10T15:16:20Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_qualification.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 34,
+              "started_at": "2026-11-10T15:16:20Z",
+              "completed_at": "2026-11-10T15:16:20Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 35,
+              "started_at": "2026-11-10T15:16:20Z",
+              "completed_at": "2026-11-10T15:16:20Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 36,
+              "started_at": "2026-11-10T15:16:20Z",
+              "completed_at": "2026-11-10T15:16:20Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 37,
+              "started_at": "2026-11-10T15:16:20Z",
+              "completed_at": "2026-11-10T15:16:20Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_h10_fx.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 38,
+              "started_at": "2026-11-10T15:16:20Z",
+              "completed_at": "2026-11-10T15:16:25Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 39,
+              "started_at": "2026-11-10T15:16:25Z",
+              "completed_at": "2026-11-10T15:16:25Z"
+            },
+            {
+              "name": "Run node scripts/test-nasdaq-total-return.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 40,
+              "started_at": "2026-11-10T15:16:25Z",
+              "completed_at": "2026-11-10T15:16:26Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_data_automation.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 41,
+              "started_at": "2026-11-10T15:16:26Z",
+              "completed_at": "2026-11-10T15:16:26Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 42,
+              "started_at": "2026-11-10T15:16:26Z",
+              "completed_at": "2026-11-10T15:16:26Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 43,
+              "started_at": "2026-11-10T15:16:26Z",
+              "completed_at": "2026-11-10T15:16:26Z"
+            },
+            {
+              "name": "Refresh exact issuer listing tables",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 44,
+              "started_at": "2026-11-10T15:16:26Z",
+              "completed_at": "2026-11-10T15:16:29Z"
+            },
+            {
+              "name": "Validate shared identity consumers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 45,
+              "started_at": "2026-11-10T15:16:29Z",
+              "completed_at": "2026-11-10T15:16:30Z"
+            },
+            {
+              "name": "Run node scripts/build-equity-history-links.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 46,
+              "started_at": "2026-11-10T15:16:30Z",
+              "completed_at": "2026-11-10T15:16:30Z"
+            },
+            {
+              "name": "Refresh exact ranking histories and ECB conversion",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 47,
+              "started_at": "2026-11-10T15:16:30Z",
+              "completed_at": "2026-11-10T15:16:31Z"
+            },
+            {
+              "name": "Qualify missing equity histories",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 48,
+              "started_at": "2026-11-10T15:16:31Z",
+              "completed_at": "2026-11-10T15:16:32Z"
+            },
+            {
+              "name": "Qualify missing exact-share monthly histories",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 49,
+              "started_at": "2026-11-10T15:16:32Z",
+              "completed_at": "2026-11-10T15:16:33Z"
+            },
+            {
+              "name": "Run node scripts/export-monthly-baseline.mjs > \"$RUNNER_TEMP/baseline.json\"",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 50,
+              "started_at": "2026-11-10T15:16:33Z",
+              "completed_at": "2026-11-10T15:16:33Z"
+            },
+            {
+              "name": "Collect observations: collect",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 51,
+              "started_at": "2026-11-10T15:16:33Z",
+              "completed_at": "2026-11-10T15:16:35Z"
+            },
+            {
+              "name": "Run node scripts/build-equity-history-links.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 52,
+              "started_at": "2026-11-10T15:16:35Z",
+              "completed_at": "2026-11-10T15:16:35Z"
+            },
+            {
+              "name": "Run node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 53,
+              "started_at": "2026-11-10T15:16:35Z",
+              "completed_at": "2026-11-10T15:16:38Z"
+            },
+            {
+              "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 54,
+              "started_at": "2026-11-10T15:16:38Z",
+              "completed_at": "2026-11-10T15:16:38Z"
+            },
+            {
+              "name": "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 55,
+              "started_at": "2026-11-10T15:16:38Z",
+              "completed_at": "2026-11-10T15:16:39Z"
+            },
+            {
+              "name": "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 56,
+              "started_at": "2026-11-10T15:16:39Z",
+              "completed_at": "2026-11-10T15:16:39Z"
+            },
+            {
+              "name": "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 57,
+              "started_at": "2026-11-10T15:16:39Z",
+              "completed_at": "2026-11-10T15:16:39Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:index-facts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 58,
+              "started_at": "2026-11-10T15:16:39Z",
+              "completed_at": "2026-11-10T15:16:39Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-automated-indices.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 59,
+              "started_at": "2026-11-10T15:16:39Z",
+              "completed_at": "2026-11-10T15:16:40Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:calculator-series",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 60,
+              "started_at": "2026-11-10T15:16:40Z",
+              "completed_at": "2026-11-10T15:16:51Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-monthly-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 61,
+              "started_at": "2026-11-10T15:16:51Z",
+              "completed_at": "2026-11-10T15:16:56Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-etf-tool-connections.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 62,
+              "started_at": "2026-11-10T15:16:56Z",
+              "completed_at": "2026-11-10T15:17:04Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:data-catalog",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 63,
+              "started_at": "2026-11-10T15:17:04Z",
+              "completed_at": "2026-11-10T15:17:06Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:data-provenance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 64,
+              "started_at": "2026-11-10T15:17:06Z",
+              "completed_at": "2026-11-10T15:17:07Z"
+            },
+            {
+              "name": "Validate observations: npm run verify:tweet-midi",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 65,
+              "started_at": "2026-11-10T15:17:07Z",
+              "completed_at": "2026-11-10T15:27:43Z"
+            },
+            {
+              "name": "Validate observations: npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 66,
+              "started_at": "2026-11-10T15:27:43Z",
+              "completed_at": "2026-11-10T15:28:13Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 67,
+              "started_at": "2026-11-10T15:28:13Z",
+              "completed_at": "2026-11-10T15:28:15Z"
+            },
+            {
+              "name": "Validate collected observations",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 68,
+              "started_at": "2026-11-10T15:28:15Z",
+              "completed_at": "2026-11-10T15:28:15Z"
+            },
+            {
+              "name": "Verify histories reach all publication tools",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 69,
+              "started_at": "2026-11-10T15:28:15Z",
+              "completed_at": "2026-11-10T15:28:16Z"
+            },
+            {
+              "name": "Commit validated observations",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 70,
+              "started_at": "2026-11-10T15:28:16Z",
+              "completed_at": "2026-11-10T15:28:24Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 138,
+              "started_at": "2026-11-10T15:28:24Z",
+              "completed_at": "2026-11-10T15:28:24Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 139,
+              "started_at": "2026-11-10T15:28:24Z",
+              "completed_at": "2026-11-10T15:28:24Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 140,
+              "started_at": "2026-11-10T15:28:24Z",
+              "completed_at": "2026-11-10T15:28:25Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 141,
+              "started_at": "2026-11-10T15:28:25Z",
+              "completed_at": "2026-11-10T15:28:25Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129920017773",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000045120,
+          "runner_name": "GitHub Actions 1000045120",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 129920019810,
+          "run_id": 42842184286,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeP9YtYg",
+          "head_sha": "200166e59320852553b6c720076fff8d461485c1",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129920019810",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42842184286/job/129920019810",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-11-10T15:13:55Z",
+          "started_at": "2026-11-10T15:13:55Z",
+          "completed_at": "2026-11-10T15:13:55Z",
+          "name": "official-nav-source-controls",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129920019810",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        },
+        {
+          "id": 129928868258,
+          "run_id": 42842184286,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeQF0xog",
+          "head_sha": "200166e59320852553b6c720076fff8d461485c1",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129928868258",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42842184286/job/129928868258",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-11-10T15:28:28Z",
+          "started_at": "2026-11-10T15:28:33Z",
+          "completed_at": "2026-11-10T15:45:43Z",
+          "name": "deploy / publish",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-10T15:28:33Z",
+              "completed_at": "2026-11-10T15:28:35Z"
+            },
+            {
+              "name": "Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-10T15:28:35Z",
+              "completed_at": "2026-11-10T15:36:12Z"
+            },
+            {
+              "name": "Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-10T15:36:12Z",
+              "completed_at": "2026-11-10T15:36:14Z"
+            },
+            {
+              "name": "Run node scripts/test-validated-data-publisher.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-10T15:36:14Z",
+              "completed_at": "2026-11-10T15:36:15Z"
+            },
+            {
+              "name": "Run node scripts/prepare-validated-data.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-10T15:36:15Z",
+              "completed_at": "2026-11-10T15:36:15Z"
+            },
+            {
+              "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"d7c50e6ed9a36302ed788c1ce5e46d9fca7530a3\" --data \"d515b99bdebe787a0b5d476285e74e68e59fa4f5\"",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-10T15:36:15Z",
+              "completed_at": "2026-11-10T15:36:25Z"
+            },
+            {
+              "name": "Run npm ci",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-10T15:36:25Z",
+              "completed_at": "2026-11-10T15:36:28Z"
+            },
+            {
+              "name": "Run npm run audit:data-catalog",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-10T15:36:28Z",
+              "completed_at": "2026-11-10T15:36:31Z"
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-10T15:36:31Z",
+              "completed_at": "2026-11-10T15:37:16Z"
+            },
+            {
+              "name": "Require the producer's exact validated observations after all generators",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-10T15:37:16Z",
+              "completed_at": "2026-11-10T15:37:16Z"
+            },
+            {
+              "name": "Seal actual composite data",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-10T15:37:16Z",
+              "completed_at": "2026-11-10T15:37:16Z"
+            },
+            {
+              "name": "Record actual code and data identities",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-10T15:37:16Z",
+              "completed_at": "2026-11-10T15:37:16Z"
+            },
+            {
+              "name": "Run npx playwright install --with-deps chromium",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-10T15:37:16Z",
+              "completed_at": "2026-11-10T15:37:35Z"
+            },
+            {
+              "name": "Run node scripts/smoke-data-routes.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-10T15:37:35Z",
+              "completed_at": "2026-11-10T15:38:10Z"
+            },
+            {
+              "name": "Run actions/configure-pages@v6.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-10T15:38:10Z",
+              "completed_at": "2026-11-10T15:38:10Z"
+            },
+            {
+              "name": "Run actions/upload-pages-artifact@v5.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-10T15:38:10Z",
+              "completed_at": "2026-11-10T15:38:15Z"
+            },
+            {
+              "name": "Restore source identity for the publication order guard",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-10T15:38:15Z",
+              "completed_at": "2026-11-10T15:38:15Z"
+            },
+            {
+              "name": "Run bash scripts/check-pages-head.sh",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-10T15:38:15Z",
+              "completed_at": "2026-11-10T15:38:16Z"
+            },
+            {
+              "name": "Run actions/deploy-pages@v5.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-10T15:38:16Z",
+              "completed_at": "2026-11-10T15:38:24Z"
+            },
+            {
+              "name": "Verify actual public data",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 20,
+              "started_at": "2026-11-10T15:38:24Z",
+              "completed_at": "2026-11-10T15:45:40Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-10T15:45:40Z",
+              "completed_at": "2026-11-10T15:45:41Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v7.0.1",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 22,
+              "started_at": "2026-11-10T15:45:41Z",
+              "completed_at": "2026-11-10T15:45:41Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 43,
+              "started_at": "2026-11-10T15:45:41Z",
+              "completed_at": "2026-11-10T15:45:41Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 44,
+              "started_at": "2026-11-10T15:45:41Z",
+              "completed_at": "2026-11-10T15:45:41Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 45,
+              "started_at": "2026-11-10T15:45:41Z",
+              "completed_at": "2026-11-10T15:45:41Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129928868258",
+          "labels": [
+            "ubuntu-26.04"
+          ],
+          "runner_id": 1000045124,
+          "runner_name": "GitHub Actions 1000045124",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 129939623254,
+          "run_id": 42842184286,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeQQFNVg",
+          "head_sha": "200166e59320852553b6c720076fff8d461485c1",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129939623254",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42842184286/job/129939623254",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-11-10T15:45:43Z",
+          "started_at": "2026-11-10T15:45:46Z",
+          "completed_at": "2026-11-10T15:45:48Z",
+          "name": "report-failures",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-10T15:45:46Z",
+              "completed_at": "2026-11-10T15:45:47Z"
+            },
+            {
+              "name": "Run echo 'Une source mensuelle a \u00e9chou\u00e9 : historique pr\u00e9c\u00e9dent conserv\u00e9. Les autres mises \u00e0 jour valid\u00e9es ont \u00e9t\u00e9 publi\u00e9es si les audits et le d\u00e9ploiement ont r\u00e9ussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 2,
+              "started_at": "2026-11-10T15:45:47Z",
+              "completed_at": "2026-11-10T15:45:47Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-10T15:45:47Z",
+              "completed_at": "2026-11-10T15:45:47Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129939623254",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000045135,
+          "runner_name": "GitHub Actions 1000045135",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 129939625398,
+          "run_id": 42842184286,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42842184286",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeQQFVtg",
+          "head_sha": "200166e59320852553b6c720076fff8d461485c1",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129939625398",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42842184286/job/129939625398",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-11-10T15:45:43Z",
+          "started_at": "2026-11-10T15:45:43Z",
+          "completed_at": "2026-11-10T15:45:43Z",
+          "name": "deploy / publish-code",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129939625398",
+          "labels": [],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        }
+      ]
+    },
+    {
+      "run": {
+        "id": 42658864512,
+        "name": "Update active monthly market histories",
+        "node_id": "WFR_kwLODBcmZM8AAAAJ7qqdgA",
+        "head_branch": "master",
+        "head_sha": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+        "path": ".github/workflows/update-market-monthly.yml",
+        "display_title": "Update active monthly market histories",
+        "run_number": 827,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "workflow_id": 376153093,
+        "check_suite_id": 115539141802,
+        "check_suite_node_id": "CS_kwDODBcmZM8AAAAa5qtkqg",
+        "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42658864512",
+        "pull_requests": [],
+        "created_at": "2026-11-09T16:50:55Z",
+        "updated_at": "2026-11-09T16:57:36Z",
+        "actor": {
+          "login": "madmax91310",
+          "id": 54199744,
+          "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/madmax91310",
+          "html_url": "https://github.com/madmax91310",
+          "followers_url": "https://api.github.com/users/madmax91310/followers",
+          "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+          "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+          "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+          "repos_url": "https://api.github.com/users/madmax91310/repos",
+          "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "run_attempt": 1,
+        "referenced_workflows": [
+          {
+            "path": "madmax91310/shinny-potato/.github/workflows/publish-validated-data.yml@0f32d770d768e02f8ff60a36afed3751fe7b8661",
+            "sha": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+            "ref": "refs/heads/master"
+          },
+          {
+            "path": "madmax91310/shinny-potato/.github/workflows/deploy-pages.yml@0f32d770d768e02f8ff60a36afed3751fe7b8661",
+            "sha": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+            "ref": "refs/heads/master"
+          }
+        ],
+        "run_started_at": "2026-11-09T16:50:55Z",
+        "triggering_actor": {
+          "login": "madmax91310",
+          "id": 54199744,
+          "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/madmax91310",
+          "html_url": "https://github.com/madmax91310",
+          "followers_url": "https://api.github.com/users/madmax91310/followers",
+          "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+          "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+          "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+          "repos_url": "https://api.github.com/users/madmax91310/repos",
+          "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "jobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512/jobs",
+        "logs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512/logs",
+        "check_suite_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-suites/115539141802",
+        "artifacts_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512/artifacts",
+        "cancel_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512/cancel",
+        "rerun_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512/rerun",
+        "previous_attempt_url": null,
+        "workflow_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/376153093",
+        "head_commit": {
+          "id": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+          "tree_id": "497b0479d36aed1575d82c667211dcf1e0a62e99",
+          "message": "Refresh validated active ETF issuer data",
+          "timestamp": "2026-11-09T14:35:31Z",
+          "author": {
+            "name": "github-actions[bot]",
+            "email": "41898282+github-actions[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "github-actions[bot]",
+            "email": "41898282+github-actions[bot]@users.noreply.github.com"
+          }
+        },
+        "repository": {
+          "id": 202843748,
+          "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+          "name": "shinny-potato",
+          "full_name": "madmax91310/shinny-potato",
+          "private": false,
+          "owner": {
+            "login": "madmax91310",
+            "id": 54199744,
+            "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/madmax91310",
+            "html_url": "https://github.com/madmax91310",
+            "followers_url": "https://api.github.com/users/madmax91310/followers",
+            "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+            "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+            "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+            "repos_url": "https://api.github.com/users/madmax91310/repos",
+            "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/madmax91310/shinny-potato",
+          "description": "Yo",
+          "fork": false,
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+          "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+          "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+          "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+          "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+          "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+          "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+          "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+          "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+          "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+          "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+          "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+          "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+          "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+          "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+        },
+        "head_repository": {
+          "id": 202843748,
+          "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+          "name": "shinny-potato",
+          "full_name": "madmax91310/shinny-potato",
+          "private": false,
+          "owner": {
+            "login": "madmax91310",
+            "id": 54199744,
+            "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/madmax91310",
+            "html_url": "https://github.com/madmax91310",
+            "followers_url": "https://api.github.com/users/madmax91310/followers",
+            "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+            "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+            "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+            "repos_url": "https://api.github.com/users/madmax91310/repos",
+            "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/madmax91310/shinny-potato",
+          "description": "Yo",
+          "fork": false,
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+          "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+          "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+          "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+          "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+          "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+          "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+          "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+          "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+          "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+          "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+          "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+          "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+          "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+          "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+        }
+      },
+      "jobs": [
+        {
+          "id": 129304658891,
+          "run_id": 42658864512,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeGyiDyw",
+          "head_sha": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129304658891",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42658864512/job/129304658891",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-11-09T16:50:56Z",
+          "started_at": "2026-11-09T16:50:58Z",
+          "completed_at": "2026-11-09T16:57:35Z",
+          "name": "refresh",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-09T16:50:59Z",
+              "completed_at": "2026-11-09T16:51:00Z"
+            },
+            {
+              "name": "Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-09T16:51:00Z",
+              "completed_at": "2026-11-09T16:51:39Z"
+            },
+            {
+              "name": "Run actions/setup-python@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-09T16:51:39Z",
+              "completed_at": "2026-11-09T16:51:39Z"
+            },
+            {
+              "name": "Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-09T16:51:39Z",
+              "completed_at": "2026-11-09T16:51:44Z"
+            },
+            {
+              "name": "Install issuer PDF parser",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-09T16:51:44Z",
+              "completed_at": "2026-11-09T16:51:53Z"
+            },
+            {
+              "name": "Run npm ci",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-09T16:51:53Z",
+              "completed_at": "2026-11-09T16:51:56Z"
+            },
+            {
+              "name": "Run npx playwright install --with-deps chromium",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-09T16:51:56Z",
+              "completed_at": "2026-11-09T16:55:15Z"
+            },
+            {
+              "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-09T16:55:15Z",
+              "completed_at": "2026-11-09T16:55:17Z"
+            },
+            {
+              "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-09T16:55:17Z",
+              "completed_at": "2026-11-09T16:55:17Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-09T16:55:17Z",
+              "completed_at": "2026-11-09T16:55:56Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-09T16:55:56Z",
+              "completed_at": "2026-11-09T16:55:59Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-09T16:55:59Z",
+              "completed_at": "2026-11-09T16:55:59Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-09T16:55:59Z",
+              "completed_at": "2026-11-09T16:56:00Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_distributing_nav.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-09T16:56:00Z",
+              "completed_at": "2026-11-09T16:56:01Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-09T16:56:01Z",
+              "completed_at": "2026-11-09T16:56:01Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-09T16:56:01Z",
+              "completed_at": "2026-11-09T16:56:09Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_dws_income_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-09T16:56:09Z",
+              "completed_at": "2026-11-09T16:56:11Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-09T16:56:11Z",
+              "completed_at": "2026-11-09T16:56:11Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_performance_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-09T16:56:11Z",
+              "completed_at": "2026-11-09T16:56:17Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_landg_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-09T16:56:17Z",
+              "completed_at": "2026-11-09T16:56:17Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_bnp_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-09T16:56:17Z",
+              "completed_at": "2026-11-09T16:56:18Z"
+            },
+            {
+              "name": "Run node scripts/test-bnp-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-09T16:56:18Z",
+              "completed_at": "2026-11-09T16:56:19Z"
+            },
+            {
+              "name": "Run node scripts/test-dws-income-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-09T16:56:19Z",
+              "completed_at": "2026-11-09T16:56:20Z"
+            },
+            {
+              "name": "Run node scripts/test-qualified-return-windows.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-11-09T16:56:20Z",
+              "completed_at": "2026-11-09T16:56:20Z"
+            },
+            {
+              "name": "Run node scripts/test-wisdomtree-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-09T16:56:20Z",
+              "completed_at": "2026-11-09T16:56:23Z"
+            },
+            {
+              "name": "Run node scripts/test-income-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-09T16:56:23Z",
+              "completed_at": "2026-11-09T16:56:28Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-09T16:56:28Z",
+              "completed_at": "2026-11-09T16:56:28Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28,
+              "started_at": "2026-11-09T16:56:28Z",
+              "completed_at": "2026-11-09T16:56:28Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29,
+              "started_at": "2026-11-09T16:56:28Z",
+              "completed_at": "2026-11-09T16:56:29Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 30,
+              "started_at": "2026-11-09T16:56:29Z",
+              "completed_at": "2026-11-09T16:56:29Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31,
+              "started_at": "2026-11-09T16:56:29Z",
+              "completed_at": "2026-11-09T16:56:30Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly*units.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 32,
+              "started_at": "2026-11-09T16:56:30Z",
+              "completed_at": "2026-11-09T16:56:31Z"
+            },
+            {
+              "name": "Run node scripts/test-investment-history-units.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 33,
+              "started_at": "2026-11-09T16:56:31Z",
+              "completed_at": "2026-11-09T16:56:37Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_qualification.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 34,
+              "started_at": "2026-11-09T16:56:37Z",
+              "completed_at": "2026-11-09T16:56:37Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 35,
+              "started_at": "2026-11-09T16:56:37Z",
+              "completed_at": "2026-11-09T16:56:38Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 36,
+              "started_at": "2026-11-09T16:56:38Z",
+              "completed_at": "2026-11-09T16:56:38Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 37,
+              "started_at": "2026-11-09T16:56:38Z",
+              "completed_at": "2026-11-09T16:56:38Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_h10_fx.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 38,
+              "started_at": "2026-11-09T16:56:38Z",
+              "completed_at": "2026-11-09T16:56:44Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 39,
+              "started_at": "2026-11-09T16:56:44Z",
+              "completed_at": "2026-11-09T16:56:44Z"
+            },
+            {
+              "name": "Run node scripts/test-nasdaq-total-return.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 40,
+              "started_at": "2026-11-09T16:56:44Z",
+              "completed_at": "2026-11-09T16:56:45Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_data_automation.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 41,
+              "started_at": "2026-11-09T16:56:45Z",
+              "completed_at": "2026-11-09T16:56:45Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 42,
+              "started_at": "2026-11-09T16:56:45Z",
+              "completed_at": "2026-11-09T16:56:45Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 43,
+              "started_at": "2026-11-09T16:56:45Z",
+              "completed_at": "2026-11-09T16:56:45Z"
+            },
+            {
+              "name": "Refresh exact issuer listing tables",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 44,
+              "started_at": "2026-11-09T16:56:45Z",
+              "completed_at": "2026-11-09T16:56:53Z"
+            },
+            {
+              "name": "Validate shared identity consumers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 45,
+              "started_at": "2026-11-09T16:56:53Z",
+              "completed_at": "2026-11-09T16:56:55Z"
+            },
+            {
+              "name": "Run node scripts/build-equity-history-links.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 46,
+              "started_at": "2026-11-09T16:56:55Z",
+              "completed_at": "2026-11-09T16:56:55Z"
+            },
+            {
+              "name": "Refresh exact ranking histories and ECB conversion",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 47,
+              "started_at": "2026-11-09T16:56:55Z",
+              "completed_at": "2026-11-09T16:56:56Z"
+            },
+            {
+              "name": "Qualify missing equity histories",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 48,
+              "started_at": "2026-11-09T16:56:56Z",
+              "completed_at": "2026-11-09T16:56:57Z"
+            },
+            {
+              "name": "Qualify missing exact-share monthly histories",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 49,
+              "started_at": "2026-11-09T16:56:57Z",
+              "completed_at": "2026-11-09T16:57:00Z"
+            },
+            {
+              "name": "Run node scripts/export-monthly-baseline.mjs > \"$RUNNER_TEMP/baseline.json\"",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 50,
+              "started_at": "2026-11-09T16:57:00Z",
+              "completed_at": "2026-11-09T16:57:00Z"
+            },
+            {
+              "name": "Collect observations: collect",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 51,
+              "started_at": "2026-11-09T16:57:00Z",
+              "completed_at": "2026-11-09T16:57:26Z"
+            },
+            {
+              "name": "Run node scripts/build-equity-history-links.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 52,
+              "started_at": "2026-11-09T16:57:26Z",
+              "completed_at": "2026-11-09T16:57:26Z"
+            },
+            {
+              "name": "Run node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 53,
+              "started_at": "2026-11-09T16:57:26Z",
+              "completed_at": "2026-11-09T16:57:31Z"
+            },
+            {
+              "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 54,
+              "started_at": "2026-11-09T16:57:31Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 55,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 56,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 57,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:index-facts",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 58,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-automated-indices.mjs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 59,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:calculator-series",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 60,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-monthly-consumers.mjs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 61,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-etf-tool-connections.mjs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 62,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:data-catalog",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 63,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:data-provenance",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 64,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: npm run verify:tweet-midi",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 65,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Validate observations: npm run build",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 66,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:32Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 67,
+              "started_at": "2026-11-09T16:57:32Z",
+              "completed_at": "2026-11-09T16:57:33Z"
+            },
+            {
+              "name": "Validate collected observations",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 68,
+              "started_at": "2026-11-09T16:57:33Z",
+              "completed_at": "2026-11-09T16:57:33Z"
+            },
+            {
+              "name": "Verify histories reach all publication tools",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 69,
+              "started_at": "2026-11-09T16:57:33Z",
+              "completed_at": "2026-11-09T16:57:33Z"
+            },
+            {
+              "name": "Commit validated observations",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 70,
+              "started_at": "2026-11-09T16:57:33Z",
+              "completed_at": "2026-11-09T16:57:33Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 138,
+              "started_at": "2026-11-09T16:57:33Z",
+              "completed_at": "2026-11-09T16:57:33Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v7.0.0",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 139,
+              "started_at": "2026-11-09T16:57:33Z",
+              "completed_at": "2026-11-09T16:57:33Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 140,
+              "started_at": "2026-11-09T16:57:33Z",
+              "completed_at": "2026-11-09T16:57:34Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 141,
+              "started_at": "2026-11-09T16:57:34Z",
+              "completed_at": "2026-11-09T16:57:34Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129304658891",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000044797,
+          "runner_name": "GitHub Actions 1000044797",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 129304661244,
+          "run_id": 42658864512,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeGyiM_A",
+          "head_sha": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129304661244",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42658864512/job/129304661244",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-11-09T16:50:56Z",
+          "started_at": "2026-11-09T16:50:56Z",
+          "completed_at": "2026-11-09T16:50:56Z",
+          "name": "official-nav-source-controls",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129304661244",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        },
+        {
+          "id": 129308424850,
+          "run_id": 42658864512,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeG2H6kg",
+          "head_sha": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129308424850",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42658864512/job/129308424850",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-11-09T16:57:36Z",
+          "started_at": "2026-11-09T16:57:36Z",
+          "completed_at": "2026-11-09T16:57:35Z",
+          "name": "deploy",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129308424850",
+          "labels": [],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        },
+        {
+          "id": 129308425586,
+          "run_id": 42658864512,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42658864512",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAeG2H9cg",
+          "head_sha": "0f32d770d768e02f8ff60a36afed3751fe7b8661",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/129308425586",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42658864512/job/129308425586",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-11-09T16:57:36Z",
+          "started_at": "2026-11-09T16:57:36Z",
+          "completed_at": "2026-11-09T16:57:36Z",
+          "name": "report-failures",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/129308425586",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        }
+      ]
+    },
+    {
+      "run": {
+        "id": 42486930861,
+        "name": "Update active monthly market histories",
+        "node_id": "WFR_kwLODBcmZM8AAAAJ5GsdrQ",
+        "head_branch": "master",
+        "head_sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+        "path": ".github/workflows/update-market-monthly.yml",
+        "display_title": "Update active monthly market histories",
+        "run_number": 826,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "workflow_id": 376153093,
+        "check_suite_id": 115090924793,
+        "check_suite_node_id": "CS_kwDODBcmZM8AAAAay_Qk-Q",
+        "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42486930861",
+        "pull_requests": [],
+        "created_at": "2026-11-08T13:51:21Z",
+        "updated_at": "2026-11-08T15:25:28Z",
+        "actor": {
+          "login": "madmax91310",
+          "id": 54199744,
+          "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/madmax91310",
+          "html_url": "https://github.com/madmax91310",
+          "followers_url": "https://api.github.com/users/madmax91310/followers",
+          "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+          "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+          "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+          "repos_url": "https://api.github.com/users/madmax91310/repos",
+          "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "run_attempt": 1,
+        "referenced_workflows": [
+          {
+            "path": "madmax91310/shinny-potato/.github/workflows/publish-validated-data.yml@595944595a2e3925759eb2e4025684a1c4e69891",
+            "sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+            "ref": "refs/heads/master"
+          },
+          {
+            "path": "madmax91310/shinny-potato/.github/workflows/deploy-pages.yml@595944595a2e3925759eb2e4025684a1c4e69891",
+            "sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+            "ref": "refs/heads/master"
+          }
+        ],
+        "run_started_at": "2026-11-08T13:51:21Z",
+        "triggering_actor": {
+          "login": "madmax91310",
+          "id": 54199744,
+          "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+          "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/madmax91310",
+          "html_url": "https://github.com/madmax91310",
+          "followers_url": "https://api.github.com/users/madmax91310/followers",
+          "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+          "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+          "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+          "repos_url": "https://api.github.com/users/madmax91310/repos",
+          "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "jobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861/jobs",
+        "logs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861/logs",
+        "check_suite_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-suites/115090924793",
+        "artifacts_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861/artifacts",
+        "cancel_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861/cancel",
+        "rerun_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861/rerun",
+        "previous_attempt_url": null,
+        "workflow_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/376153093",
+        "head_commit": {
+          "id": "595944595a2e3925759eb2e4025684a1c4e69891",
+          "tree_id": "f22268225a289ec0693ad08493ff337d8f516d0e",
+          "message": "Refresh validated monthly market histories",
+          "timestamp": "2026-11-08T13:42:22Z",
+          "author": {
+            "name": "github-actions[bot]",
+            "email": "41898282+github-actions[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "github-actions[bot]",
+            "email": "41898282+github-actions[bot]@users.noreply.github.com"
+          }
+        },
+        "repository": {
+          "id": 202843748,
+          "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+          "name": "shinny-potato",
+          "full_name": "madmax91310/shinny-potato",
+          "private": false,
+          "owner": {
+            "login": "madmax91310",
+            "id": 54199744,
+            "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/madmax91310",
+            "html_url": "https://github.com/madmax91310",
+            "followers_url": "https://api.github.com/users/madmax91310/followers",
+            "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+            "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+            "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+            "repos_url": "https://api.github.com/users/madmax91310/repos",
+            "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/madmax91310/shinny-potato",
+          "description": "Yo",
+          "fork": false,
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+          "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+          "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+          "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+          "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+          "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+          "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+          "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+          "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+          "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+          "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+          "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+          "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+          "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+          "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+        },
+        "head_repository": {
+          "id": 202843748,
+          "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+          "name": "shinny-potato",
+          "full_name": "madmax91310/shinny-potato",
+          "private": false,
+          "owner": {
+            "login": "madmax91310",
+            "id": 54199744,
+            "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/madmax91310",
+            "html_url": "https://github.com/madmax91310",
+            "followers_url": "https://api.github.com/users/madmax91310/followers",
+            "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+            "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+            "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+            "repos_url": "https://api.github.com/users/madmax91310/repos",
+            "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/madmax91310/shinny-potato",
+          "description": "Yo",
+          "fork": false,
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+          "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+          "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+          "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+          "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+          "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+          "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+          "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+          "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+          "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+          "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+          "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+          "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+          "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+          "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+        }
+      },
+      "jobs": [
+        {
+          "id": 128750729720,
+          "run_id": 42486930861,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAd-iQ5-A",
+          "head_sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/128750729720",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42486930861/job/128750729720",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-08T13:51:22Z",
+          "started_at": "2026-11-08T13:52:57Z",
+          "completed_at": "2026-11-08T15:06:50Z",
+          "name": "refresh",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-08T13:52:58Z",
+              "completed_at": "2026-11-08T13:52:59Z"
+            },
+            {
+              "name": "Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-08T13:52:59Z",
+              "completed_at": "2026-11-08T13:53:32Z"
+            },
+            {
+              "name": "Run actions/setup-python@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-08T13:53:32Z",
+              "completed_at": "2026-11-08T13:53:32Z"
+            },
+            {
+              "name": "Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-08T13:53:32Z",
+              "completed_at": "2026-11-08T13:53:36Z"
+            },
+            {
+              "name": "Install issuer PDF parser",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-08T13:53:36Z",
+              "completed_at": "2026-11-08T13:53:47Z"
+            },
+            {
+              "name": "Run npm ci",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-08T13:53:47Z",
+              "completed_at": "2026-11-08T13:53:49Z"
+            },
+            {
+              "name": "Run npx playwright install --with-deps chromium",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-08T13:53:49Z",
+              "completed_at": "2026-11-08T13:54:08Z"
+            },
+            {
+              "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-08T13:54:08Z",
+              "completed_at": "2026-11-08T13:54:11Z"
+            },
+            {
+              "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-08T13:54:11Z",
+              "completed_at": "2026-11-08T13:54:12Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-08T13:54:12Z",
+              "completed_at": "2026-11-08T13:54:59Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-08T13:54:59Z",
+              "completed_at": "2026-11-08T13:55:03Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-08T13:55:03Z",
+              "completed_at": "2026-11-08T13:55:04Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-08T13:55:04Z",
+              "completed_at": "2026-11-08T13:55:05Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_distributing_nav.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-08T13:55:05Z",
+              "completed_at": "2026-11-08T13:55:05Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-08T13:55:05Z",
+              "completed_at": "2026-11-08T13:55:06Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-08T13:55:06Z",
+              "completed_at": "2026-11-08T13:55:16Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_dws_income_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-08T13:55:16Z",
+              "completed_at": "2026-11-08T13:55:18Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-08T13:55:18Z",
+              "completed_at": "2026-11-08T13:55:19Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_performance_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-08T13:55:19Z",
+              "completed_at": "2026-11-08T13:55:26Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_landg_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-08T13:55:26Z",
+              "completed_at": "2026-11-08T13:55:26Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_bnp_nav_history.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-08T13:55:26Z",
+              "completed_at": "2026-11-08T13:55:27Z"
+            },
+            {
+              "name": "Run node scripts/test-bnp-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-08T13:55:27Z",
+              "completed_at": "2026-11-08T13:55:28Z"
+            },
+            {
+              "name": "Run node scripts/test-dws-income-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-08T13:55:28Z",
+              "completed_at": "2026-11-08T13:55:29Z"
+            },
+            {
+              "name": "Run node scripts/test-qualified-return-windows.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-11-08T13:55:29Z",
+              "completed_at": "2026-11-08T13:55:29Z"
+            },
+            {
+              "name": "Run node scripts/test-wisdomtree-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-08T13:55:29Z",
+              "completed_at": "2026-11-08T13:55:33Z"
+            },
+            {
+              "name": "Run node scripts/test-income-nav-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-08T13:55:33Z",
+              "completed_at": "2026-11-08T13:55:38Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-08T13:55:38Z",
+              "completed_at": "2026-11-08T13:55:39Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28,
+              "started_at": "2026-11-08T13:55:39Z",
+              "completed_at": "2026-11-08T13:55:39Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29,
+              "started_at": "2026-11-08T13:55:39Z",
+              "completed_at": "2026-11-08T13:55:40Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 30,
+              "started_at": "2026-11-08T13:55:40Z",
+              "completed_at": "2026-11-08T13:55:41Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31,
+              "started_at": "2026-11-08T13:55:41Z",
+              "completed_at": "2026-11-08T13:55:41Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly*units.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 32,
+              "started_at": "2026-11-08T13:55:41Z",
+              "completed_at": "2026-11-08T13:55:43Z"
+            },
+            {
+              "name": "Run node scripts/test-investment-history-units.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 33,
+              "started_at": "2026-11-08T13:55:43Z",
+              "completed_at": "2026-11-08T13:55:50Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_monthly_qualification.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 34,
+              "started_at": "2026-11-08T13:55:50Z",
+              "completed_at": "2026-11-08T13:55:50Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 35,
+              "started_at": "2026-11-08T13:55:50Z",
+              "completed_at": "2026-11-08T13:55:50Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 36,
+              "started_at": "2026-11-08T13:55:50Z",
+              "completed_at": "2026-11-08T13:55:51Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 37,
+              "started_at": "2026-11-08T13:55:51Z",
+              "completed_at": "2026-11-08T13:55:51Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_h10_fx.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 38,
+              "started_at": "2026-11-08T13:55:51Z",
+              "completed_at": "2026-11-08T13:55:58Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 39,
+              "started_at": "2026-11-08T13:55:58Z",
+              "completed_at": "2026-11-08T13:55:58Z"
+            },
+            {
+              "name": "Run node scripts/test-nasdaq-total-return.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 40,
+              "started_at": "2026-11-08T13:55:58Z",
+              "completed_at": "2026-11-08T13:55:59Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_data_automation.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 41,
+              "started_at": "2026-11-08T13:55:59Z",
+              "completed_at": "2026-11-08T13:56:00Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 42,
+              "started_at": "2026-11-08T13:56:00Z",
+              "completed_at": "2026-11-08T13:56:00Z"
+            },
+            {
+              "name": "Run python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 43,
+              "started_at": "2026-11-08T13:56:00Z",
+              "completed_at": "2026-11-08T13:56:00Z"
+            },
+            {
+              "name": "Refresh exact issuer listing tables",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 44,
+              "started_at": "2026-11-08T13:56:00Z",
+              "completed_at": "2026-11-08T13:56:08Z"
+            },
+            {
+              "name": "Validate shared identity consumers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 45,
+              "started_at": "2026-11-08T13:56:08Z",
+              "completed_at": "2026-11-08T13:56:11Z"
+            },
+            {
+              "name": "Run node scripts/build-equity-history-links.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 46,
+              "started_at": "2026-11-08T13:56:11Z",
+              "completed_at": "2026-11-08T13:56:11Z"
+            },
+            {
+              "name": "Refresh exact ranking histories and ECB conversion",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 47,
+              "started_at": "2026-11-08T13:56:11Z",
+              "completed_at": "2026-11-08T13:56:11Z"
+            },
+            {
+              "name": "Qualify missing equity histories",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 48,
+              "started_at": "2026-11-08T13:56:11Z",
+              "completed_at": "2026-11-08T13:56:13Z"
+            },
+            {
+              "name": "Qualify missing exact-share monthly histories",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 49,
+              "started_at": "2026-11-08T13:56:13Z",
+              "completed_at": "2026-11-08T13:56:16Z"
+            },
+            {
+              "name": "Run node scripts/export-monthly-baseline.mjs > \"$RUNNER_TEMP/baseline.json\"",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 50,
+              "started_at": "2026-11-08T13:56:16Z",
+              "completed_at": "2026-11-08T13:56:16Z"
+            },
+            {
+              "name": "Collect observations: collect",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 51,
+              "started_at": "2026-11-08T13:56:16Z",
+              "completed_at": "2026-11-08T13:56:28Z"
+            },
+            {
+              "name": "Run node scripts/build-equity-history-links.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 52,
+              "started_at": "2026-11-08T13:56:28Z",
+              "completed_at": "2026-11-08T13:56:28Z"
+            },
+            {
+              "name": "Run node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 53,
+              "started_at": "2026-11-08T13:56:28Z",
+              "completed_at": "2026-11-08T13:56:33Z"
+            },
+            {
+              "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 54,
+              "started_at": "2026-11-08T13:56:33Z",
+              "completed_at": "2026-11-08T13:56:34Z"
+            },
+            {
+              "name": "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 55,
+              "started_at": "2026-11-08T13:56:34Z",
+              "completed_at": "2026-11-08T13:56:34Z"
+            },
+            {
+              "name": "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 56,
+              "started_at": "2026-11-08T13:56:34Z",
+              "completed_at": "2026-11-08T13:56:34Z"
+            },
+            {
+              "name": "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 57,
+              "started_at": "2026-11-08T13:56:34Z",
+              "completed_at": "2026-11-08T13:56:35Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:index-facts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 58,
+              "started_at": "2026-11-08T13:56:35Z",
+              "completed_at": "2026-11-08T13:56:35Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-automated-indices.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 59,
+              "started_at": "2026-11-08T13:56:35Z",
+              "completed_at": "2026-11-08T13:56:36Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:calculator-series",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 60,
+              "started_at": "2026-11-08T13:56:36Z",
+              "completed_at": "2026-11-08T13:56:57Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-monthly-consumers.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 61,
+              "started_at": "2026-11-08T13:56:57Z",
+              "completed_at": "2026-11-08T13:57:04Z"
+            },
+            {
+              "name": "Validate observations: node scripts test-etf-tool-connections.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 62,
+              "started_at": "2026-11-08T13:57:05Z",
+              "completed_at": "2026-11-08T13:57:21Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:data-catalog",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 63,
+              "started_at": "2026-11-08T13:57:21Z",
+              "completed_at": "2026-11-08T13:57:24Z"
+            },
+            {
+              "name": "Validate observations: npm run audit:data-provenance",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 64,
+              "started_at": "2026-11-08T13:57:24Z",
+              "completed_at": "2026-11-08T13:57:25Z"
+            },
+            {
+              "name": "Validate observations: npm run verify:tweet-midi",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 65,
+              "started_at": "2026-11-08T13:57:25Z",
+              "completed_at": "2026-11-08T14:19:00Z"
+            },
+            {
+              "name": "Validate observations: npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 66,
+              "started_at": "2026-11-08T14:19:00Z",
+              "completed_at": "2026-11-08T14:19:47Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 67,
+              "started_at": "2026-11-08T14:19:47Z",
+              "completed_at": "2026-11-08T14:19:49Z"
+            },
+            {
+              "name": "Validate collected observations",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 68,
+              "started_at": "2026-11-08T14:19:49Z",
+              "completed_at": "2026-11-08T14:19:49Z"
+            },
+            {
+              "name": "Verify histories reach all publication tools",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 69,
+              "started_at": "2026-11-08T14:19:49Z",
+              "completed_at": "2026-11-08T14:19:52Z"
+            },
+            {
+              "name": "Commit validated observations",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 70,
+              "started_at": "2026-11-08T14:19:52Z",
+              "completed_at": "2026-11-08T15:06:45Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 138,
+              "started_at": "2026-11-08T15:06:45Z",
+              "completed_at": "2026-11-08T15:06:45Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 139,
+              "started_at": "2026-11-08T15:06:45Z",
+              "completed_at": "2026-11-08T15:06:46Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 140,
+              "started_at": "2026-11-08T15:06:46Z",
+              "completed_at": "2026-11-08T15:06:46Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 141,
+              "started_at": "2026-11-08T15:06:46Z",
+              "completed_at": "2026-11-08T15:06:46Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/128750729720",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000044506,
+          "runner_name": "GitHub Actions 1000044506",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 128750730954,
+          "run_id": 42486930861,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAd-iQ-yg",
+          "head_sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/128750730954",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42486930861/job/128750730954",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-11-08T13:51:22Z",
+          "started_at": "2026-11-08T13:51:22Z",
+          "completed_at": "2026-11-08T13:51:22Z",
+          "name": "official-nav-source-controls",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/128750730954",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        },
+        {
+          "id": 128769605127,
+          "run_id": 42486930861,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAd-0Q-Bw",
+          "head_sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/128769605127",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42486930861/job/128769605127",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-08T15:06:51Z",
+          "started_at": "2026-11-08T15:15:29Z",
+          "completed_at": "2026-11-08T15:25:20Z",
+          "name": "deploy / publish",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-08T15:15:30Z",
+              "completed_at": "2026-11-08T15:15:31Z"
+            },
+            {
+              "name": "Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-08T15:15:31Z",
+              "completed_at": "2026-11-08T15:22:35Z"
+            },
+            {
+              "name": "Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-08T15:22:35Z",
+              "completed_at": "2026-11-08T15:22:36Z"
+            },
+            {
+              "name": "Run node scripts/test-validated-data-publisher.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-08T15:22:36Z",
+              "completed_at": "2026-11-08T15:22:36Z"
+            },
+            {
+              "name": "Run node scripts/prepare-validated-data.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-08T15:22:36Z",
+              "completed_at": "2026-11-08T15:22:36Z"
+            },
+            {
+              "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"745b051fc657dd4f907e83647eb7674a0d81a1b7\" --data \"3934008ea35809c3ab3085a34bd445090fafc116\"",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-08T15:22:36Z",
+              "completed_at": "2026-11-08T15:23:24Z"
+            },
+            {
+              "name": "Run npm ci",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-08T15:23:24Z",
+              "completed_at": "2026-11-08T15:23:28Z"
+            },
+            {
+              "name": "Run npm run audit:data-catalog",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-08T15:23:28Z",
+              "completed_at": "2026-11-08T15:23:31Z"
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-08T15:23:31Z",
+              "completed_at": "2026-11-08T15:24:13Z"
+            },
+            {
+              "name": "Require the producer's exact validated observations after all generators",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-08T15:24:13Z",
+              "completed_at": "2026-11-08T15:24:13Z"
+            },
+            {
+              "name": "Seal actual composite data",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-08T15:24:13Z",
+              "completed_at": "2026-11-08T15:24:13Z"
+            },
+            {
+              "name": "Record actual code and data identities",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-08T15:24:13Z",
+              "completed_at": "2026-11-08T15:24:13Z"
+            },
+            {
+              "name": "Run npx playwright install --with-deps chromium",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-08T15:24:13Z",
+              "completed_at": "2026-11-08T15:24:29Z"
+            },
+            {
+              "name": "Run node scripts/smoke-data-routes.mjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-08T15:24:29Z",
+              "completed_at": "2026-11-08T15:25:04Z"
+            },
+            {
+              "name": "Run actions/configure-pages@v6.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-08T15:25:04Z",
+              "completed_at": "2026-11-08T15:25:04Z"
+            },
+            {
+              "name": "Run actions/upload-pages-artifact@v5.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-08T15:25:04Z",
+              "completed_at": "2026-11-08T15:25:08Z"
+            },
+            {
+              "name": "Restore source identity for the publication order guard",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-08T15:25:08Z",
+              "completed_at": "2026-11-08T15:25:09Z"
+            },
+            {
+              "name": "Run bash scripts/check-pages-head.sh",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-08T15:25:09Z",
+              "completed_at": "2026-11-08T15:25:10Z"
+            },
+            {
+              "name": "Run actions/deploy-pages@v5.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-08T15:25:10Z",
+              "completed_at": "2026-11-08T15:25:16Z"
+            },
+            {
+              "name": "Verify actual public data",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-08T15:25:16Z",
+              "completed_at": "2026-11-08T15:25:17Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-08T15:25:17Z",
+              "completed_at": "2026-11-08T15:25:17Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-08T15:25:17Z",
+              "completed_at": "2026-11-08T15:25:18Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@v7.0.0",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 43,
+              "started_at": "2026-11-08T15:25:18Z",
+              "completed_at": "2026-11-08T15:25:18Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v7.0.1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 44,
+              "started_at": "2026-11-08T15:25:18Z",
+              "completed_at": "2026-11-08T15:25:19Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 45,
+              "started_at": "2026-11-08T15:25:19Z",
+              "completed_at": "2026-11-08T15:25:19Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/128769605127",
+          "labels": [
+            "ubuntu-26.04"
+          ],
+          "runner_id": 1000044542,
+          "runner_name": "GitHub Actions 1000044542",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 128774466573,
+          "run_id": 42486930861,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAd-45sDQ",
+          "head_sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/128774466573",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42486930861/job/128774466573",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-11-08T15:25:21Z",
+          "started_at": "2026-11-08T15:25:24Z",
+          "completed_at": "2026-11-08T15:25:27Z",
+          "name": "report-failures",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-08T15:25:24Z",
+              "completed_at": "2026-11-08T15:25:24Z"
+            },
+            {
+              "name": "Run echo 'Une source mensuelle a \u00e9chou\u00e9 : historique pr\u00e9c\u00e9dent conserv\u00e9. Les autres mises \u00e0 jour valid\u00e9es ont \u00e9t\u00e9 publi\u00e9es si les audits et le d\u00e9ploiement ont r\u00e9ussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 2,
+              "started_at": "2026-11-08T15:25:24Z",
+              "completed_at": "2026-11-08T15:25:25Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-08T15:25:25Z",
+              "completed_at": "2026-11-08T15:25:25Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/128774466573",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000044555,
+          "runner_name": "GitHub Actions 1000044555",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 128774467002,
+          "run_id": 42486930861,
+          "workflow_name": "Update active monthly market histories",
+          "head_branch": "master",
+          "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42486930861",
+          "run_attempt": 1,
+          "node_id": "CR_kwDODBcmZM8AAAAd-45tug",
+          "head_sha": "595944595a2e3925759eb2e4025684a1c4e69891",
+          "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/128774467002",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42486930861/job/128774467002",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-11-08T15:25:21Z",
+          "started_at": "2026-11-08T15:25:21Z",
+          "completed_at": "2026-11-08T15:25:21Z",
+          "name": "deploy / publish-code",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/128774467002",
+          "labels": [],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        }
+      ]
+    }
+  ]
+}
