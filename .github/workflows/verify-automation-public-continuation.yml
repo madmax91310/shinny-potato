@@ -18,7 +18,6 @@ jobs:
     timeout-minutes: 180
     env:
       GH_TOKEN: ${{ github.token }}
-      RECIPE_OUTPUT: ${{ runner.temp }}/automation-public-proof
       NODE_OPTIONS: --max-old-space-size=6144
     steps:
       - uses: actions/checkout@v7.0.1
@@ -30,6 +29,7 @@ jobs:
           node-version: 24
       - name: Preserve isolated verifier before checkout of the actually served snapshot
         run: |
+          python -c 'import os; open(os.environ["GITHUB_ENV"], "a").write("RECIPE_OUTPUT=" + os.environ["RUNNER_TEMP"] + "/automation-public-proof\\n")'
           cp scripts/private-automation-continuation/probe-runner.py "$RUNNER_TEMP/probe-runner.py"
           cp scripts/private-automation-continuation/probe-extract.mjs "$RUNNER_TEMP/probe-extract.mjs"
           cp scripts/private-automation-continuation/probe-public-browser.mjs "$RUNNER_TEMP/probe-public-browser.mjs"
