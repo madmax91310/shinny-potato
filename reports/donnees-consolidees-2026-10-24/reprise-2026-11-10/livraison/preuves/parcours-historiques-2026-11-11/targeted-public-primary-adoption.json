@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-11-11T01:56:41.259406+00:00",
+  "public": {
+    "sha": "15a23e5235634fa363e958faf348fe5f5d788e15",
+    "dataSha": "8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9",
+    "lane": "validated-data",
+    "builtAt": "2026-11-11T01:43:39.136Z"
+  },
+  "effectiveDataSha": "8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9",
+  "exactSourceBlobs": {
+    "src/data/automated-etf-monthly.json": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+    "src/data/monthly-fx.json": "3dc52f31d847a8905a93bd012358e14eac75131d",
+    "scripts/source-snapshots/monthly-collection-status.json": "5b22a3a28003f3234e5eea1f66d20161f6540342",
+    "src/data/anniversary-levels.json": "022fd8b08025f42b0013faaec07200e29580d46d"
+  },
+  "meaning": "Read-only additional consumer checks; no source recollection or deployment"
+}

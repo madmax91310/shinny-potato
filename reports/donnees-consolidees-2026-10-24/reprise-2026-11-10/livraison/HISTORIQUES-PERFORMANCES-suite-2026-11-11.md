@@ -23,3 +23,10 @@ WTI/Wheat disposent bien d’un cron fournisseur observé le 10 novembre. Pour l
 
 
 Limite de supervision observée pendant la recette publique : « Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer. » La page et son export intégral ont fonctionné, sans erreur JavaScript, mais ce contrôle précis n’est pas déclaré réparé. Notre recette directe des données et outils ne le remplace pas. Preuve : [public-inbox-browser.json](preuves/suite-2026-11-11/public-inbox-browser.json).
+
+
+## Complément de recette publique ciblée
+
+Le code public 15a23e5235634fa363e958faf348fe5f5d788e15 et les données 8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9 sont restés identiques avant et après les vingt scénarios. Paris : versement unique/DCA depuis janvier2023, Performance depuis2023, anniversaire1an, comparaison/classement2023–2024, texte et PNG vérifiés sur ordinateur/mobile. Les calculs d’investissement sont recoupés par une formule indépendante sur les cours mensuels et le téléchargement est identique à l’aperçu. Palladium : 4scénarios récents janvier2026→octobre2026 réellement calculés enUSD; les quatre scénarios partant de2013 restent refusés en raison de2025. Cette recette ne modifie aucune donnée ni convention et ne prouve pas un cron.
+
+[Preuves détaillées](preuves/parcours-historiques-2026-11-11/targeted-consumers.json) et [bilan par outil](bilan-par-outil-suite-2026-11-11.csv). Les limites de supervision et les pièces financières encore manquantes ci-dessus restent ouvertes.
