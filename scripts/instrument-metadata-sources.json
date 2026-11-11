@@ -7370,18 +7370,6 @@
         },
         {
           "ticker": "XDWM",
-          "mic": "XLON",
-          "exchange": "London Stock Exchange",
-          "currency": "USD",
-          "symbol": "XDWM.L",
-          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM LN | USD | XDWM.L",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-11",
-          "sha256": "33d06688df78e4205a0d9d6789a1e6aff5b2a6336d2680658dd3675ea2607c69",
-          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD"
-        },
-        {
-          "ticker": "XDWM",
           "mic": "ETFP",
           "exchange": "Borsa Italiana",
           "currency": "EUR",
@@ -7391,6 +7379,18 @@
           "checkedAt": "2026-11-11",
           "sha256": "33d06688df78e4205a0d9d6789a1e6aff5b2a6336d2680658dd3675ea2607c69",
           "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
+        },
+        {
+          "ticker": "XDWM",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "XDWM.L",
+          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM LN | USD | XDWM.L",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-11",
+          "sha256": "33d06688df78e4205a0d9d6789a1e6aff5b2a6336d2680658dd3675ea2607c69",
+          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD"
         },
         {
           "ticker": "XSMW",
@@ -9993,7 +9993,8 @@
         "https://extraetf.com/fr/etf-profile/IE00B42NKQ00",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00B42NKQ00",
         "https://apidata.londonstockexchange.com/nrdp/v1?tidm=IUES",
-        "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-s-p500-energy-usd-a-IE00B42NKQ00-IUES-USD-USD-XSWX/seance"
+        "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-s-p500-energy-usd-a-IE00B42NKQ00-IUES-USD-USD-XSWX/seance",
+        "https://www.blackrock.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-no.pdf"
       ]
     },
     {
@@ -10670,9 +10671,10 @@
         "checkedAt": "2026-11-11"
       },
       "urls": [
-        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+        "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98/",
-        "https://www.justetf.com/fr/etf-profile.html?isin=IE0002Y8CX98"
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE0002Y8CX98",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98"
       ]
     },
     {
