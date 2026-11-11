@@ -1,4 +1,4 @@
-# Couverture et fraîcheur des actifs — 2026-11-10
+# Couverture et fraîcheur des actifs — 2026-11-11
 
 Les états décrivent les observations enregistrées, pas une garantie réseau. Contrôle en retard : plus de 7 jours pour les champs ETF (365 pour le domicile et la réplication, modifiés seulement par prospectus), 40 pour les historiques mensuels. Seuils : src/data/freshness-policy.json. Publication ancienne : seuil distinct, adapté au champ. Les caractéristiques manuelles ne sont pas comptées comme automatiques. Les principales positions ne constituent pas un portefeuille complet.
 
@@ -15,7 +15,7 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Distribution | 280/283 | 280 | 0 | 0 |
 | Domicile | 280/283 | 280 | 0 | 0 |
 | Réplication | 280/283 | 280 | 0 | 0 |
-| Cotations | 280/283 | 280 | 0 | 0 |
+| Cotations | 280/283 | 261 | 19 | 0 |
 | Éligibilité PEA | 257/283 | 257 | 0 | 0 |
 | Couverture de change | 280/283 | 280 | 0 | 0 |
 

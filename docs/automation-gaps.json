@@ -27,8 +27,8 @@
       "applicable": 283,
       "notApplicable": 0,
       "waiting": 13,
-      "notPublished": 6,
-      "unresolved": 4
+      "notPublished": 7,
+      "unresolved": 3
     },
     "countries": {
       "label": "Pays",
@@ -37,8 +37,8 @@
       "applicable": 260,
       "notApplicable": 23,
       "waiting": 0,
-      "notPublished": 5,
-      "unresolved": 4
+      "notPublished": 6,
+      "unresolved": 3
     },
     "sectors": {
       "label": "Secteurs",
@@ -407,7 +407,7 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-11-10",
+  "checkedAt": "2026-11-11",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 283,
   "covered": {
@@ -419,10 +419,10 @@
     "holdings": 256
   },
   "summary": {
-    "instrument:unqualified": 21,
+    "instrument:unqualified": 19,
     "instrument:not-applicable": 69,
     "instrument:waiting-first-year": 13,
-    "instrument:not-published": 16,
+    "instrument:not-published": 18,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
@@ -1094,9 +1094,9 @@
       "configured": true,
       "status": "not-published",
       "asOf": "2026-11-09",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-11",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "25880ba983b85d934e6161de5f56111efa2158735ba330476a75a17bc21830cb",
+      "sha256": "a06979f2844289dd222ee0c3b9373f0bc0e73a73c3c4f6c8d6ab999fb4a85dff",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1156,7 +1156,7 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-11",
       "asOf": "2026-10-31",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "3746ae8969ce086505485cc7c74176db1a1227baef6dd4dcc7038987140d77a7",
@@ -1828,12 +1828,38 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-11",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8f832820bcee400e50cc56622c3738c6d00022e6a53f3fb6ba2e69979e559041",
-      "evidence": []
+      "sha256": "189ee1a21cd4d80d8004ecb4baa7b6fd6f2fca3bc59807a237cfb3cbdc01024d",
+      "evidence": [
+        "Performance History",
+        "USD Accumulating",
+        "Avg. Annualised %",
+        "Cumulative %",
+        "As of recent",
+        "(",
+        "30 Sep 2026",
+        ")",
+        "ETF",
+        "Index",
+        "Difference",
+        "1 Year",
+        "19.39%",
+        "19.89%",
+        "-0.50%",
+        "3 Years",
+        "15.40%",
+        "15.86%",
+        "-0.46%",
+        "Since Inception",
+        "15.29%",
+        "15.75%",
+        "-0.46%",
+        "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+      ]
     },
     {
       "type": "instrument",
@@ -1842,11 +1868,11 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-11",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8f832820bcee400e50cc56622c3738c6d00022e6a53f3fb6ba2e69979e559041",
+      "sha256": "189ee1a21cd4d80d8004ecb4baa7b6fd6f2fca3bc59807a237cfb3cbdc01024d",
       "evidence": []
     },
     {
@@ -1858,9 +1884,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-11",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8f832820bcee400e50cc56622c3738c6d00022e6a53f3fb6ba2e69979e559041",
+      "sha256": "189ee1a21cd4d80d8004ecb4baa7b6fd6f2fca3bc59807a237cfb3cbdc01024d",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1898,10 +1924,10 @@
       "label": "Positions pondérées",
       "configured": true,
       "status": "source-conflict",
-      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA.",
-      "checkedAt": "2026-11-10",
+      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.",
+      "checkedAt": "2026-11-11",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8f832820bcee400e50cc56622c3738c6d00022e6a53f3fb6ba2e69979e559041",
+      "sha256": "189ee1a21cd4d80d8004ecb4baa7b6fd6f2fca3bc59807a237cfb3cbdc01024d",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 06 Nov 2026",
@@ -1927,16 +1953,6 @@
         "AMD",
         "Advanced Micro Devices Inc",
         "3.20",
-        "Country Supplement - Austria",
-        "Country Supplement - Denmark",
-        "Country Supplement - English (PL)",
-        "Country Supplement - Germany",
-        "Country Supplement - Luxembourg",
-        "Country Supplement - Polish",
-        "Country Supplement - Switzerland",
-        "Country Supplement - UK",
-        "German Consolidated Prospectus",
-        "Additional Documents",
         "TSLA",
         "Tesla Inc",
         "3.10",
