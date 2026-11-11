@@ -3,6 +3,7 @@ import {consumerChanges,requiredDataPath} from './prepare-validated-data.mjs'
 assert.deepEqual(consumerChanges(['src/data/automated-scpi.json','scripts/collect_corum.py']),[])
 assert.deepEqual(consumerChanges(['src/pages/Home.jsx','src/tools.js','src/data/editorial-calendar.js']),['src/pages/Home.jsx','src/tools.js','src/data/editorial-calendar.js'],'Pending calendar code must trigger full code publication instead of repeatedly publishing old code with newer data')
 for(const path of ['src/data/catalog.js','src/pages/scpi-presentation/lib.js','src/pages/presentations/Actors.jsx','src/pages/presentation-shared/imageExport.js','src/styles.css']) assert.deepEqual(consumerChanges([path]),[path])
+assert.deepEqual(consumerChanges(['scripts/listing-source-hosts.json']),['scripts/listing-source-hosts.json'],'Listing source authorities are compiled into the application')
 assert.equal(requiredDataPath('src/data/automated-scpi.json'),'src/data/automated-scpi.json')
 for(const path of ['../src/data/automated-scpi.json','src/data/../../other.json','src/data/config.js','src/data/actor.json;echo danger']) assert.throws(()=>requiredDataPath(path))
 console.log('Validated data publication: all application code changes block overlay; data refreshes remain independent.')
@@ -61,9 +62,10 @@ try{
  mkdirSync('public/data/investors',{recursive:true});writeFileSync('public/data/investors/test.json','{"value":1}\n');writeFileSync('public/data/investors/review-metadata.json','[]\n')
  git('add','.');git('commit','-qm','recorded source data');const base=git('rev-parse','HEAD')
  mkdirSync('src/pages',{recursive:true});writeFileSync('src/pages/test.jsx','export default 1\n');git('add','.');git('commit','-qm','pending consumer code');const next=git('rev-parse','HEAD')
+ git('checkout','-q','--detach',base);mkdirSync('scripts',{recursive:true});writeFileSync('scripts/listing-source-hosts.json',JSON.stringify({hosts:['etf.deutsche-am.com']}));git('add','.');git('commit','-qm','pending shared listing authority');const listingOnly=git('rev-parse','HEAD')
  Object.assign(process.env,{DATA_PRODUCER:'update-investor-13f.yml',REQUIRED_DATA_PATH:'',REQUIRED_DATA_RECEIPT:join(root,'required.json'),EXPECTED_DATA_RECEIPT:join(root,'receipt.json'),GITHUB_REPOSITORY:'test/repo',GITHUB_OUTPUT:join(root,'outputs')})
- for(const scenario of ['newer-public-data','pending-consumer','public-lookup-failure']){
-  git('checkout','-q','--detach',scenario==='newer-public-data'?base:next)
+ for(const scenario of ['newer-public-data','pending-consumer','pending-listing-authority','public-lookup-failure']){
+  git('checkout','-q','--detach',scenario==='newer-public-data'?base:scenario==='pending-listing-authority'?listingOnly:next)
   const source=git('rev-parse','HEAD');writeFileSync(process.env.GITHUB_OUTPUT,'')
   for(const p of [process.env.REQUIRED_DATA_RECEIPT,process.env.EXPECTED_DATA_RECEIPT])rmSync(p,{force:true})
   globalThis.fetch=async()=>{
@@ -76,7 +78,7 @@ try{
   if(scenario==='public-lookup-failure')await assert.rejects(prepare(),/isolated unavailable/)
   else await prepare()
   const outputs=readFileSync(process.env.GITHUB_OUTPUT,'utf8');assert(outputs.includes('receipt_ready=true'));assert(outputs.includes('data_sha='+source));assert(!outputs.includes('current=true'))
-  if(scenario==='pending-consumer')assert(outputs.includes('needs_code=true'))
+  if(['pending-consumer','pending-listing-authority'].includes(scenario))assert(outputs.includes('needs_code=true'))
  }
 }finally{
  globalThis.fetch=previousFetch;process.chdir(previousCwd)

@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url'
 import {automationPaths,classify} from './classify-deploy-scope.mjs'
 // Every changed application module requires the full code gate. Publishing newer
 // data over older editorial code would keep superseding the pending calendar build.
-export const consumerChanges=paths=>paths.filter(path=>/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&path!=='src/data/inflation-monthly.js')
+export const consumerChanges=paths=>paths.filter(path=>path==='scripts/listing-source-hosts.json'||/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&path!=='src/data/inflation-monthly.js')
 export function requiredDataPath(path){assert.match(path??'',/^(?:src\/data\/(?:[a-z0-9-]+\.json|inflation-monthly\.js)|public\/data\/[a-z0-9-]+(?:\.json)?)$/);return path}
 export function primaryDataPaths(paths){return [...new Set(paths.map(requiredDataPath))].filter(path=>!Object.hasOwn(DERIVED.outputs,path))}
 export function producerPaths(producer,single,registry){
@@ -44,7 +44,7 @@ export async function main(){
  assert(ancestor(info.sha,source),'Published code is outside this data history')
  if(!ancestor(info.dataSha??info.sha,source)){write('current=false\nneeds_code=false');console.log('A newer data snapshot is already public.');return}
  write('code_epoch='+publicationCodeEpoch(info.sha,source,git,automationPaths()))
- const changed=git('diff','--name-only',info.sha,source,'--','src').split('\n').filter(Boolean)
+ const changed=git('diff','--name-only',info.sha,source,'--','src','scripts/listing-source-hosts.json').split('\n').filter(Boolean)
  const blocked=consumerChanges(changed)
  if(blocked.length){write('current=false\nneeds_code=true');console.log('Data needs the full code gate for changed financial consumers: '+blocked.join(', '));return}
  // Keep legacy outputs while callers migrate to the producer registry.

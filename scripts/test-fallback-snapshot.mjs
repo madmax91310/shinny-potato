@@ -168,3 +168,25 @@ try {
   assert.throws(()=>compose({published:qualified,data:malformed,cwd:financial,allowed:[]}))
 } finally {rmSync(financial,{recursive:true,force:true})}
 console.log('Financial publication contract: unsupported old code refused before overlay; compatible code retains all masks and fresh valid observations.')
+
+// An overlay must not publish new listing evidence with an older compiled host
+// registry, even when no history feature or src JS file changed.
+{
+  const {requireHistoryPublicationCompatibility: check} = await import('./history-publication-compatibility.mjs')
+  const registry='scripts/listing-source-hosts.json', metadata='src/data/automated-instrument-metadata.json', previous='src/data/qualified-listing-records.json'
+  const source='https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium'
+  const row={sourceUrl:source,mic:'ETFP',ticker:'XAIX',currency:'EUR'}
+  const snapshots={old:{[registry]:{hosts:['etf.dws.com']}},fresh:{[registry]:{hosts:['etf.dws.com','etf.deutsche-am.com']},[metadata]:{IE00BGV5VN51:{listings:{value:[row]}}}}}
+  const git=(command,...args)=>{
+    const [ref,path]=command==='show'?args[0].split(':'):[args[1],args[3]]
+    const value=snapshots[ref]?.[path]
+    return command==='ls-tree'?(value===undefined?'':path):JSON.stringify(value)
+  }
+  const verify=(codeSha='old')=>check({codeSha,dataSha:'fresh',git})
+  assert.throws(()=>verify(),/Publication refusée.*autorités de cotation.*etf.deutsche-am.com/)
+  assert.doesNotThrow(()=>verify('fresh'))
+  snapshots.fresh[metadata]={};assert.doesNotThrow(()=>verify(),'Unused host additions do not block compatible data')
+  snapshots.fresh[previous]={IE00BGV5VN51:[row]};assert.throws(()=>verify(),/autorités de cotation/,'Previous projected evidence also needs a compatible consumer')
+  snapshots.fresh[previous]={IE00BGV5VN51:[{...row,sourceUrl:'https://unknown.example/unqualified'}]};assert.doesNotThrow(()=>verify(),'An unqualified mirror is not promoted to an accepted authority')
+}
+console.log('Financial overlays require the compiled authorities actually used by listing evidence; unused and unqualified hosts do not certify or block data.')
