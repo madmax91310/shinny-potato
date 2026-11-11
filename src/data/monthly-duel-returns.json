@@ -8657,6 +8657,58 @@
     "responseSha256": "72bff644bbb48902c13947decc34202143d9453a20bd583553b7a9fa7a5c6b9a",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
+  "IE00B4556L06": {
+    "isin": "IE00B4556L06",
+    "currency": "USD",
+    "years": {
+      "2012": 9.26291420312706,
+      "2013": 1.5873015109522992,
+      "2014": 12.689383868873882,
+      "2015": -32.415967748570075,
+      "2016": 23.282569057045,
+      "2017": 56.681795259707535,
+      "2018": 18.16865143224977,
+      "2019": 52.02573879885604,
+      "2020": 23.554973685978542,
+      "2021": -20.690221136892006,
+      "2022": -5.647223695036107,
+      "2023": -37.52452779412323
+    },
+    "calendarReturns": {
+      "2012": 9.26291420312706,
+      "2013": 1.5873015109522992,
+      "2014": 12.689383868873882,
+      "2015": -32.415967748570075,
+      "2016": 23.282569057045,
+      "2017": 56.681795259707535,
+      "2018": 18.16865143224977,
+      "2019": 52.02573879885604,
+      "2020": 23.554973685978542,
+      "2021": -20.690221136892006,
+      "2022": -5.647223695036107,
+      "2023": -37.52452779412323
+    },
+    "values": [
+      23.554973685978542,
+      -20.690221136892006,
+      -5.647223695036107,
+      -37.52452779412323,
+      null,
+      null
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1793491200&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1793491200&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1793491200&interval=1mo&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1440460800&period2=1441065600&interval=1d&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-11-11",
+    "listingEvidenceId": "IE00B4556L06-XLON-IPDM-USD",
+    "basis": "market-price",
+    "method": "Cours de la cotation exacte IPDM sur Londres en USD, ajustés des opérations sur titres ; dernière séance mensuelle recoupée avec la bougie mensuelle et les fenêtres quotidiennes nécessaires ; distincts de la NAV et du niveau réinvesti officiels. Aucun historique avant mai2011.",
+    "responseSha256": "449d2eeb97f1acc02db52cfb280188988dafe10c5d73822e5b13b6b47dddc98a",
+    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
   "IE000L2SA8K5": {
     "isin": "IE000L2SA8K5",
     "currency": "USD",
