@@ -1,0 +1,973 @@
+{
+  "scope": "Newly surfaced by metadata control, not automatically nineteen financial failures",
+  "rows": [
+    {
+      "isin": "IE00B42NKQ00",
+      "name": "iShares S&P 500 Energy Sector UCITS ETF",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "parser": "official-nav",
+          "navProvider": "blackrock",
+          "symbol": null,
+          "listingEvidenceId": null,
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "IE00B42NKQ00",
+          "qualification": [
+            {
+              "asset": "IE00B42NKQ00",
+              "label": "iShares S&P 500 Energy Sector UCITS ETF",
+              "isin": "IE00B42NKQ00",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.75836,
+              "identifiedCoverage": 99.75836,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.24164000000000385
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BGV5VN51",
+      "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfAiBigData",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfAiBigData",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XAIX.MI",
+          "listingEvidenceId": "IE00BGV5VN51-ETFP-XAIX-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "ai",
+          "qualification": [
+            {
+              "asset": "ai",
+              "label": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
+              "isin": "IE00BGV5VN51",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.94284214999995,
+              "identifiedCoverage": 99.94284214999995,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.05715785000005269
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0380865021",
+      "name": "Xtrackers EURO STOXX 50 UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. <urlopen error timed out> | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfLU0380865021",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfLU0380865021",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XESC.DE",
+          "listingEvidenceId": "LU0380865021-XETR-XESC-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "LU0380865021",
+          "qualification": [
+            {
+              "asset": "LU0380865021",
+              "label": "Xtrackers EURO STOXX 50 UCITS ETF 1C",
+              "isin": "LU0380865021",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.77338066000003,
+              "identifiedCoverage": 99.77338066000003,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.22661933999997075
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE000L6ZMMC4",
+      "name": "Xtrackers FTSE All-World UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfIE000L6ZMMC4",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfIE000L6ZMMC4",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "ALLW.MI",
+          "listingEvidenceId": "IE000L6ZMMC4-ETFP-ALLW-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "IE000L6ZMMC4",
+          "qualification": [
+            {
+              "asset": "IE000L6ZMMC4",
+              "label": "Xtrackers FTSE All-World UCITS ETF 1C",
+              "isin": "IE000L6ZMMC4",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
+              "valid": true,
+              "complete": false,
+              "reasons": [
+                "Le poids couvert est insuffisant pour une comparaison intégrale."
+              ],
+              "sourceCoverage": 94.79452495000002,
+              "identifiedCoverage": 94.79452495000002,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 5.205475049999976
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0290358497",
+      "name": "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "euroMoney",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "LU0290358497",
+          "qualification": []
+        }
+      ]
+    },
+    {
+      "isin": "IE00BTJRMP35",
+      "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfIE00BTJRMP35",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfIE00BTJRMP35",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XMME.DE",
+          "listingEvidenceId": "IE00BTJRMP35-XETR-XMME-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "emerging",
+          "qualification": [
+            {
+              "asset": "emerging",
+              "label": "Xtrackers MSCI Emerging Markets UCITS ETF",
+              "isin": "IE00BTJRMP35",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
+              "valid": true,
+              "complete": false,
+              "reasons": [
+                "Certaines positions n’ont pas d’identifiant qualifié.",
+                "Le poids couvert est insuffisant pour une comparaison intégrale."
+              ],
+              "sourceCoverage": 99.41512808000014,
+              "identifiedCoverage": 99.41512808000014,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.5848719199998555
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0274209237",
+      "name": "Xtrackers MSCI Europe UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfLU0274209237",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfLU0274209237",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XMEU.DE",
+          "listingEvidenceId": "LU0274209237-XETR-XMEU-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "LU0274209237",
+          "qualification": [
+            {
+              "asset": "LU0274209237",
+              "label": "Xtrackers MSCI Europe UCITS ETF 1C",
+              "isin": "LU0274209237",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.70936510000006,
+              "identifiedCoverage": 99.70936510000006,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.29063489999994374
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE0006WW1TQ4",
+      "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Missing or multiple exact-share identities in metadata document | No explicit supported metadata fields | Metadata source cooldown after HTTP 403; no new field evidence | Missing or multiple exact-share identities in metadata document | No explicit supported metadata fields | Metadata source cooldow | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfWorldExUs",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfWorldExUs",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "EXUS.DE",
+          "listingEvidenceId": "IE0006WW1TQ4-XETR-EXUS-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "IE0006WW1TQ4",
+          "qualification": [
+            {
+              "asset": "IE0006WW1TQ4",
+              "label": "Xtrackers MSCI World ex USA UCITS ETF 1C",
+              "isin": "IE0006WW1TQ4",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
+              "valid": true,
+              "complete": false,
+              "reasons": [
+                "Le poids couvert est insuffisant pour une comparaison intégrale."
+              ],
+              "sourceCoverage": 99.46655928999999,
+              "identifiedCoverage": 99.46655928999999,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.5334407100000078
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HK77",
+      "name": "Xtrackers MSCI World Health Care UCITS ETF",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Missing or multiple exact-share identities in metadata document | No explicit supported metadata fields | Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfIE00BM67HK77",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfIE00BM67HK77",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XDWH.DE",
+          "listingEvidenceId": "IE00BM67HK77-XETR-XDWH-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "IE00BM67HK77",
+          "qualification": [
+            {
+              "asset": "IE00BM67HK77",
+              "label": "Xtrackers MSCI World Health Care UCITS ETF",
+              "isin": "IE00BM67HK77",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
+              "valid": true,
+              "complete": false,
+              "reasons": [
+                "Le poids couvert est insuffisant pour une comparaison intégrale."
+              ],
+              "sourceCoverage": 99.22694578999997,
+              "identifiedCoverage": 99.22694578999997,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.7730542100000264
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HV82",
+      "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfIndustrials",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfIndustrials",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XDWI.DE",
+          "listingEvidenceId": "IE00BM67HV82-XETR-XDWI-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "IE00BM67HV82",
+          "qualification": [
+            {
+              "asset": "IE00BM67HV82",
+              "label": "Xtrackers MSCI World Industrials UCITS ETF 1C",
+              "isin": "IE00BM67HV82",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.83634353000005,
+              "identifiedCoverage": 99.83634353000005,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.16365646999994965
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HS53",
+      "name": "Xtrackers MSCI World Materials UCITS ETF",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfWorldMaterialsDws",
+          "currency": "USD",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfWorldMaterialsDws",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XDWM.L",
+          "listingEvidenceId": "IE00BM67HS53-XLON-XDWM-USD",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "materials",
+          "qualification": [
+            {
+              "asset": "materials",
+              "label": "Xtrackers MSCI World Materials UCITS ETF",
+              "isin": "IE00BM67HS53",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.79150182,
+              "identifiedCoverage": 99.79150182,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.20849818000000653
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJ0KDQ92",
+      "name": "Xtrackers MSCI World UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfIE00BJ0KDQ92",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfIE00BJ0KDQ92",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XDWD.DE",
+          "listingEvidenceId": "IE00BJ0KDQ92-XETR-XDWD-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "IE00BJ0KDQ92",
+          "qualification": [
+            {
+              "asset": "IE00BJ0KDQ92",
+              "label": "Xtrackers MSCI World UCITS ETF 1C",
+              "isin": "IE00BJ0KDQ92",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.68356623000004,
+              "identifiedCoverage": 99.68356623000004,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.31643376999996065
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BK1PV551",
+      "name": "Xtrackers MSCI World UCITS ETF 1D",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfIE00BK1PV551",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfIE00BK1PV551",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XDWL.DE",
+          "listingEvidenceId": "IE00BK1PV551-XETR-XDWL-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "IE00BK1PV551",
+          "qualification": [
+            {
+              "asset": "IE00BK1PV551",
+              "label": "Xtrackers MSCI World UCITS ETF 1D",
+              "isin": "IE00BK1PV551",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.68356623000004,
+              "identifiedCoverage": 99.68356623000004,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.31643376999996065
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BM67HQ30",
+      "name": "Xtrackers MSCI World Utilities UCITS ETF",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfWorldUtilities",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfWorldUtilities",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XDWU.DE",
+          "listingEvidenceId": "IE00BM67HQ30-XETR-XDWU-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "utilities",
+          "qualification": [
+            {
+              "asset": "utilities",
+              "label": "Xtrackers MSCI World Utilities UCITS ETF",
+              "isin": "IE00BM67HQ30",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.84310651000003,
+              "identifiedCoverage": 99.84310651000003,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.1568934899999732
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU1875395870",
+      "name": "Xtrackers Nikkei 225 UCITS ETF",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfLU1875395870",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        },
+        {
+          "id": "etfLU1875395870Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfLU1875395870",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XDJE.DE",
+          "listingEvidenceId": "LU1875395870-XETR-XDJE-EUR",
+          "enabled": null,
+          "active": null
+        },
+        {
+          "id": "etfLU1875395870Nav",
+          "parser": "official-nav",
+          "navProvider": "dws",
+          "symbol": null,
+          "listingEvidenceId": null,
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "LU1875395870",
+          "qualification": [
+            {
+              "asset": "LU1875395870",
+              "label": "Xtrackers Nikkei 225 UCITS ETF",
+              "isin": "LU1875395870",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.90766181999996,
+              "identifiedCoverage": 99.90766181999996,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.09233818000004135
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU2196470426",
+      "name": "Xtrackers Nikkei 225 UCITS ETF 1C (Acc)",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfLU2196470426",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        },
+        {
+          "id": "etfLU2196470426Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfLU2196470426",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XNKY.DE",
+          "listingEvidenceId": "LU2196470426-XETR-XNKY-EUR",
+          "enabled": null,
+          "active": null
+        },
+        {
+          "id": "etfLU2196470426Nav",
+          "parser": "official-nav",
+          "navProvider": "dws",
+          "symbol": null,
+          "listingEvidenceId": null,
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "LU2196470426",
+          "qualification": [
+            {
+              "asset": "LU2196470426",
+              "label": "Xtrackers Nikkei 225 UCITS ETF 1C (Acc)",
+              "isin": "LU2196470426",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.90766181999996,
+              "identifiedCoverage": 99.90766181999996,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.09233818000004135
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BLNMYC90",
+      "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Missing or multiple exact-share identities in metadata document | No explicit supported metadata fields | Metadata source cooldown after HTTP 403; no new field evidence | Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfEqualWeight",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfEqualWeight",
+          "parser": "official-nav",
+          "navProvider": "dws",
+          "symbol": null,
+          "listingEvidenceId": null,
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "equalweight",
+          "qualification": [
+            {
+              "asset": "equalweight",
+              "label": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
+              "isin": "IE00BLNMYC90",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.77633737999987,
+              "identifiedCoverage": 99.77633737999987,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.22366262000012682
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU2903252349",
+      "name": "Xtrackers Scalable MSCI AC World UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained.  | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfLU2903252349",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfLU2903252349",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "SCWX.MI",
+          "listingEvidenceId": "LU2903252349-ETFP-SCWX-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "LU2903252349",
+          "qualification": [
+            {
+              "asset": "LU2903252349",
+              "label": "Xtrackers Scalable MSCI AC World UCITS ETF 1C",
+              "isin": "LU2903252349",
+              "asOf": "2026-10-30",
+              "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
+              "valid": true,
+              "complete": false,
+              "reasons": [
+                "Liste partielle ; seules les positions publiées sont comparées.",
+                "Certaines positions n’ont pas d’identifiant qualifié.",
+                "Le poids couvert est insuffisant pour une comparaison intégrale."
+              ],
+              "sourceCoverage": 24.27,
+              "identifiedCoverage": 0,
+              "unidentifiedCoverage": 24.27,
+              "residualWeight": 75.73
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "LU0328475792",
+      "name": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
+      "field": "listings",
+      "cause": "Previously automated metadata not renewed for more than 7 days; original evidence retained. Metadata source cooldown after repeated transport timeouts or failures; no new field evidence | check-overdue; checked=2026-11-03, published=unknown",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium"
+      ],
+      "historyRoutes": [
+        {
+          "id": "etfLU0328475792",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "last": "2026-10"
+        }
+      ],
+      "producerSpecs": [
+        {
+          "id": "etfLU0328475792",
+          "parser": "yahoo",
+          "navProvider": null,
+          "symbol": "XSX6.DE",
+          "listingEvidenceId": "LU0328475792-XETR-XSX6-EUR",
+          "enabled": null,
+          "active": null
+        }
+      ],
+      "exposureSupportCount": 1,
+      "exposureQualifications": [
+        {
+          "id": "LU0328475792",
+          "qualification": [
+            {
+              "asset": "LU0328475792",
+              "label": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
+              "isin": "LU0328475792",
+              "asOf": "2026-11-09",
+              "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+              "valid": true,
+              "complete": true,
+              "reasons": [],
+              "sourceCoverage": 99.67657970999988,
+              "identifiedCoverage": 99.67657970999988,
+              "unidentifiedCoverage": 0,
+              "residualWeight": 0.3234202900001151
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+[
+  {
+    "run": 42845464106,
+    "artifact": 13784741849,
+    "event": "schedule",
+    "originalReceipt": {
+      "schemaVersion": 1,
+      "commit": "b28fc20865defe23c14ebdc3743b521ccafb1962",
+      "files": {
+        "src/data/non-bond-etf-records.json": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+        "src/data/non-bond-levels.json": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+        "src/data/non-bond-monthly-records.json": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+        "src/data/non-bond-qualified-records.json": "2d6d710df195ffedf047702f8d5194a216b0cf2c"
+      }
+    },
+    "public": {
+      "sha": "99d974afa4a21712c92cc91ca84b7464f75585d8",
+      "dataSha": "a0e61daefde633afe5538b9871365a7364bf38a1",
+      "lane": "validated-code-data",
+      "builtAt": "2026-11-11T06:01:20.453Z"
+    },
+    "checkedAt": "2026-11-11T06:03:43.378507+00:00",
+    "files": [
+      {
+        "path": "src/data/non-bond-etf-records.json",
+        "originalBlob": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+        "currentBlob": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+        "sameOriginalReceipt": true
+      },
+      {
+        "path": "src/data/non-bond-levels.json",
+        "originalBlob": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+        "currentBlob": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+        "sameOriginalReceipt": true
+      },
+      {
+        "path": "src/data/non-bond-monthly-records.json",
+        "originalBlob": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+        "currentBlob": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+        "sameOriginalReceipt": true
+      },
+      {
+        "path": "src/data/non-bond-qualified-records.json",
+        "originalBlob": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+        "currentBlob": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+        "sameOriginalReceipt": true
+      }
+    ],
+    "exactMatches": 4,
+    "fileCount": 4,
+    "meaning": "Exact original receipt versus actual served manifest; later changed files cannot retroactively certify the original run. An adopted snapshot does not turn a failed attempt into success."
+  },
+  {
+    "run": 42893015896,
+    "artifact": 13805585584,
+    "event": "push",
+    "originalReceipt": {
+      "schemaVersion": 1,
+      "commit": "8a4a8c4a4bc31db983b78fbd366a31ce4e7bd948",
+      "files": {
+        "src/data/anniversary-levels.json": "adfca694ef47c030e386edccbede46f2bc298c05",
+        "src/data/auto-history-identities.json": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+        "src/data/automated-etf-monthly.json": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+        "src/data/automated-indices.json": "2f99578a4237c302f0a283f2e1c178082fc76c52",
+        "src/data/automated-monthly.json": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "src/data/monthly-fx.json": "99f318ba79e32444533e6599a3768367d64402e0",
+        "src/data/qualified-listing-records.json": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+        "src/data/ranking-histories.json": "9f27c08a760365c538c61e03caf0fe76def48837",
+        "src/data/shared-listing-identities.json": "54d08a304c4840e8fec33784f031e1b75a38bfec"
+      }
+    },
+    "public": {
+      "sha": "99d974afa4a21712c92cc91ca84b7464f75585d8",
+      "dataSha": "a0e61daefde633afe5538b9871365a7364bf38a1",
+      "lane": "validated-code-data",
+      "builtAt": "2026-11-11T06:01:20.453Z"
+    },
+    "checkedAt": "2026-11-11T06:03:43.378507+00:00",
+    "files": [
+      {
+        "path": "src/data/anniversary-levels.json",
+        "originalBlob": "adfca694ef47c030e386edccbede46f2bc298c05",
+        "currentBlob": "022fd8b08025f42b0013faaec07200e29580d46d",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/auto-history-identities.json",
+        "originalBlob": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+        "currentBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/automated-etf-monthly.json",
+        "originalBlob": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+        "currentBlob": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/automated-indices.json",
+        "originalBlob": "2f99578a4237c302f0a283f2e1c178082fc76c52",
+        "currentBlob": "7a789f27605de5b8fba6c5a648c5aafc7cc0ae80",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/automated-monthly.json",
+        "originalBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "currentBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "sameOriginalReceipt": true
+      },
+      {
+        "path": "src/data/monthly-fx.json",
+        "originalBlob": "99f318ba79e32444533e6599a3768367d64402e0",
+        "currentBlob": "3dc52f31d847a8905a93bd012358e14eac75131d",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/qualified-listing-records.json",
+        "originalBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+        "currentBlob": "d31c96d6cf13e27124c9354b6f5f41a66d4fda69",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/ranking-histories.json",
+        "originalBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+        "currentBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+        "sameOriginalReceipt": true
+      },
+      {
+        "path": "src/data/shared-listing-identities.json",
+        "originalBlob": "54d08a304c4840e8fec33784f031e1b75a38bfec",
+        "currentBlob": "51f161b62361f11d44151fc5ff865c60d3705647",
+        "sameOriginalReceipt": false
+      }
+    ],
+    "exactMatches": 2,
+    "fileCount": 9,
+    "meaning": "Exact original receipt versus actual served manifest; later changed files cannot retroactively certify the original run. An adopted snapshot does not turn a failed attempt into success."
+  },
+  {
+    "run": 41639923023,
+    "artifact": 13232852348,
+    "event": "push",
+    "originalReceipt": {
+      "schemaVersion": 1,
+      "commit": "270cc03ff9dc0d35f7c06a7c618546c9a9b017a2",
+      "files": {
+        "src/data/auto-history-identities.json": "4197f506d6ea86b2f40922653c937e45106cecad",
+        "src/data/automated-etf-monthly.json": "595ce5c67ffcd5b68936bde042c7d3466c48086b",
+        "src/data/automated-monthly.json": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+        "src/data/dca-complete-holdings.json": "4ac8248d62009257112fa30d4a64f36de55aef82",
+        "src/data/dca-equity-exposures.json": "64e2d23b7b024192c9ab26346a91051b449d4912",
+        "src/data/qualified-exposure-etfs.json": "3dedb6e9dc0b6c4dd8d3833bde12983b6543481e",
+        "src/data/qualified-listing-records.json": "5ec0e848d0ba9eb793e75e95839e6772e3072bf1"
+      }
+    },
+    "public": {
+      "sha": "99d974afa4a21712c92cc91ca84b7464f75585d8",
+      "dataSha": "a0e61daefde633afe5538b9871365a7364bf38a1",
+      "lane": "validated-code-data",
+      "builtAt": "2026-11-11T06:01:20.453Z"
+    },
+    "checkedAt": "2026-11-11T06:03:43.378507+00:00",
+    "files": [
+      {
+        "path": "src/data/auto-history-identities.json",
+        "originalBlob": "4197f506d6ea86b2f40922653c937e45106cecad",
+        "currentBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/automated-etf-monthly.json",
+        "originalBlob": "595ce5c67ffcd5b68936bde042c7d3466c48086b",
+        "currentBlob": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/automated-monthly.json",
+        "originalBlob": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+        "currentBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/dca-complete-holdings.json",
+        "originalBlob": "4ac8248d62009257112fa30d4a64f36de55aef82",
+        "currentBlob": "9bc55f1547dadb3bfa1d2c72f6ac9341484a3f19",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/dca-equity-exposures.json",
+        "originalBlob": "64e2d23b7b024192c9ab26346a91051b449d4912",
+        "currentBlob": "78fc17bee6d606f8a163f697b54d54d844d661bf",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/qualified-exposure-etfs.json",
+        "originalBlob": "3dedb6e9dc0b6c4dd8d3833bde12983b6543481e",
+        "currentBlob": "42a0b44037e516490d7519d65ff401da104cdd45",
+        "sameOriginalReceipt": false
+      },
+      {
+        "path": "src/data/qualified-listing-records.json",
+        "originalBlob": "5ec0e848d0ba9eb793e75e95839e6772e3072bf1",
+        "currentBlob": "d31c96d6cf13e27124c9354b6f5f41a66d4fda69",
+        "sameOriginalReceipt": false
+      }
+    ],
+    "exactMatches": 0,
+    "fileCount": 7,
+    "meaning": "Exact original receipt versus actual served manifest; later changed files cannot retroactively certify the original run. An adopted snapshot does not turn a failed attempt into success."
+  }
+]

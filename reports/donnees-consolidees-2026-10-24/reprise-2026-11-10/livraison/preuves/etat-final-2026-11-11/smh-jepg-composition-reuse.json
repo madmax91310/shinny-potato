@@ -1,0 +1,49 @@
+{
+  "before": "17faf0f881f71d971f7dbb06d00fd4dbb57de4f5",
+  "after": "6b55fc5dd981b3d08fd9ad4669c3ce5a66ee0a74",
+  "checks": [
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "isin": "IE00BMC38736",
+      "sameFinancialComposition": false,
+      "beforeDigest": "cf130398541cabf785fb7d4c7a6f49aa35e38f4649d8042c8334b6588ba55de5",
+      "afterDigest": "bb065b96ab5ea263f1cbeae8f875617db66840fda41c159db6dcb4e9a9b26099"
+    },
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "isin": "IE0003UVYC20",
+      "sameFinancialComposition": false,
+      "beforeDigest": "d0e4aad200a277e77e3a6c210493508b8714ab493f318b13ee0226ef147df868",
+      "afterDigest": "ff09073c280aeec81945bcfe414414d462499ee26d8b7b5ea02c1fb599dc2cb2"
+    },
+    {
+      "path": "src/data/exposure-etf-expansion-records.json",
+      "isin": "IE00BMC38736",
+      "sameFinancialComposition": true,
+      "beforeDigest": "aeb685f9bccd688718c0ccefea003eef2e800098b30271b3232960437b932e54",
+      "afterDigest": "aeb685f9bccd688718c0ccefea003eef2e800098b30271b3232960437b932e54"
+    },
+    {
+      "path": "src/data/exposure-etf-expansion-records.json",
+      "isin": "IE0003UVYC20",
+      "sameFinancialComposition": true,
+      "beforeDigest": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "afterDigest": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "isin": "IE00BMC38736",
+      "sameFinancialComposition": true,
+      "beforeDigest": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "afterDigest": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "isin": "IE0003UVYC20",
+      "sameFinancialComposition": true,
+      "beforeDigest": "daed01cc5a6ca2fafaf1a8779b0a33b3c178dc3a837a9d3aa8763c5ed751da16",
+      "afterDigest": "daed01cc5a6ca2fafaf1a8779b0a33b3c178dc3a837a9d3aa8763c5ed751da16"
+    }
+  ],
+  "scope": "Exact consumer financial fields; control/transport digests excluded explicitly, not a certification of every record or a current supplier collection."
+}

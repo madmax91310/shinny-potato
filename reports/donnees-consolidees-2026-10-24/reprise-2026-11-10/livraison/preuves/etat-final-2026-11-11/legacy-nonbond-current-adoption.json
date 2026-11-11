@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-11T05:50:46.173352+00:00",
+  "public": {
+    "sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+    "dataSha": "a0e61daefde633afe5538b9871365a7364bf38a1",
+    "lane": "validated-data",
+    "builtAt": "2026-11-11T05:36:37.244Z"
+  },
+  "originalRun": 42845464106,
+  "originalReceipt": {
+    "schemaVersion": 1,
+    "commit": "b28fc20865defe23c14ebdc3743b521ccafb1962",
+    "files": {
+      "src/data/non-bond-etf-records.json": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+      "src/data/non-bond-levels.json": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+      "src/data/non-bond-monthly-records.json": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+      "src/data/non-bond-qualified-records.json": "2d6d710df195ffedf047702f8d5194a216b0cf2c"
+    }
+  },
+  "matches": {
+    "src/data/non-bond-etf-records.json": true,
+    "src/data/non-bond-levels.json": true,
+    "src/data/non-bond-monthly-records.json": true,
+    "src/data/non-bond-qualified-records.json": true
+  },
+  "meaning": "Adoption of exact original supplier blobs; the failed attempt remains failed, source cron after the fix not inferred."
+}
