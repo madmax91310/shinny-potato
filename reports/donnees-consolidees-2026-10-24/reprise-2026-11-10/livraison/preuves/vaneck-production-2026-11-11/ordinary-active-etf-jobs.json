@@ -1,0 +1,930 @@
+{
+  "total_count": 4,
+  "jobs": [
+    {
+      "id": 130299014814,
+      "run_id": 42952247354,
+      "workflow_name": "Update active ETF issuer data",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42952247354",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeVm0ung",
+      "head_sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130299014814",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42952247354/job/130299014814",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-11T03:21:48Z",
+      "started_at": "2026-11-11T03:24:05Z",
+      "completed_at": "2026-11-11T03:29:21Z",
+      "name": "refresh",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T03:24:05Z",
+          "completed_at": "2026-11-11T03:24:06Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-11T03:24:06Z",
+          "completed_at": "2026-11-11T03:24:36Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T03:24:36Z",
+          "completed_at": "2026-11-11T03:24:36Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-11T03:24:36Z",
+          "completed_at": "2026-11-11T03:24:41Z"
+        },
+        {
+          "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-11T03:24:41Z",
+          "completed_at": "2026-11-11T03:24:43Z"
+        },
+        {
+          "name": "Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-11T03:24:43Z",
+          "completed_at": "2026-11-11T03:24:44Z"
+        },
+        {
+          "name": "Check official HTML parser runtime before collecting",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-11T03:24:44Z",
+          "completed_at": "2026-11-11T03:24:44Z"
+        },
+        {
+          "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-11T03:24:44Z",
+          "completed_at": "2026-11-11T03:24:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_russell_composition.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-11T03:24:53Z",
+          "completed_at": "2026-11-11T03:25:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_sp_composition.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-11T03:25:01Z",
+          "completed_at": "2026-11-11T03:25:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-11T03:25:01Z",
+          "completed_at": "2026-11-11T03:25:01Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-11T03:25:01Z",
+          "completed_at": "2026-11-11T03:25:03Z"
+        },
+        {
+          "name": "Prepare the ordinary public issuer browser",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-11T03:25:03Z",
+          "completed_at": "2026-11-11T03:25:03Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_etf_publication.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-11T03:25:03Z",
+          "completed_at": "2026-11-11T03:25:24Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-11T03:25:24Z",
+          "completed_at": "2026-11-11T03:25:51Z"
+        },
+        {
+          "name": "Run node scripts/test-comparison-automation.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-11T03:25:51Z",
+          "completed_at": "2026-11-11T03:25:51Z"
+        },
+        {
+          "name": "Run node scripts/test-vaneck-document.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-11T03:25:51Z",
+          "completed_at": "2026-11-11T03:25:51Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_documents.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-11T03:25:51Z",
+          "completed_at": "2026-11-11T03:25:52Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-11T03:25:52Z",
+          "completed_at": "2026-11-11T03:25:52Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-11T03:25:52Z",
+          "completed_at": "2026-11-11T03:25:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-11T03:25:53Z",
+          "completed_at": "2026-11-11T03:25:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_document_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-11T03:25:53Z",
+          "completed_at": "2026-11-11T03:25:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-11T03:25:53Z",
+          "completed_at": "2026-11-11T03:25:56Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-11T03:25:56Z",
+          "completed_at": "2026-11-11T03:25:56Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_new_instruments.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-11T03:25:56Z",
+          "completed_at": "2026-11-11T03:25:58Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-11T03:25:58Z",
+          "completed_at": "2026-11-11T03:25:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-11T03:25:59Z",
+          "completed_at": "2026-11-11T03:25:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-11T03:25:59Z",
+          "completed_at": "2026-11-11T03:25:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-11T03:25:59Z",
+          "completed_at": "2026-11-11T03:25:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-11T03:25:59Z",
+          "completed_at": "2026-11-11T03:26:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-11T03:26:00Z",
+          "completed_at": "2026-11-11T03:26:00Z"
+        },
+        {
+          "name": "Run node scripts/test-presentation-etf.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-11T03:26:00Z",
+          "completed_at": "2026-11-11T03:26:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_product_calendars.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-11T03:26:00Z",
+          "completed_at": "2026-11-11T03:26:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-11T03:26:00Z",
+          "completed_at": "2026-11-11T03:26:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-11T03:26:00Z",
+          "completed_at": "2026-11-11T03:26:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-11T03:26:00Z",
+          "completed_at": "2026-11-11T03:26:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-11T03:26:00Z",
+          "completed_at": "2026-11-11T03:26:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-11-11T03:26:01Z",
+          "completed_at": "2026-11-11T03:26:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-11-11T03:26:01Z",
+          "completed_at": "2026-11-11T03:26:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40,
+          "started_at": "2026-11-11T03:26:01Z",
+          "completed_at": "2026-11-11T03:26:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41,
+          "started_at": "2026-11-11T03:26:01Z",
+          "completed_at": "2026-11-11T03:26:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42,
+          "started_at": "2026-11-11T03:26:01Z",
+          "completed_at": "2026-11-11T03:26:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-11-11T03:26:01Z",
+          "completed_at": "2026-11-11T03:26:02Z"
+        },
+        {
+          "name": "Qualify the exact public AUM browser route without publication",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 44,
+          "started_at": "2026-11-11T03:26:02Z",
+          "completed_at": "2026-11-11T03:26:02Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 45,
+          "started_at": "2026-11-11T03:26:02Z",
+          "completed_at": "2026-11-11T03:26:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46,
+          "started_at": "2026-11-11T03:26:02Z",
+          "completed_at": "2026-11-11T03:26:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_extensions.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47,
+          "started_at": "2026-11-11T03:26:02Z",
+          "completed_at": "2026-11-11T03:26:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 48,
+          "started_at": "2026-11-11T03:26:02Z",
+          "completed_at": "2026-11-11T03:26:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 49,
+          "started_at": "2026-11-11T03:26:02Z",
+          "completed_at": "2026-11-11T03:26:03Z"
+        },
+        {
+          "name": "Run node scripts/test-annual-rollover.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 50,
+          "started_at": "2026-11-11T03:26:03Z",
+          "completed_at": "2026-11-11T03:26:03Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_active_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 51,
+          "started_at": "2026-11-11T03:26:03Z",
+          "completed_at": "2026-11-11T03:26:03Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_incidents.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-11-11T03:26:03Z",
+          "completed_at": "2026-11-11T03:26:03Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-11-11T03:26:03Z",
+          "completed_at": "2026-11-11T03:26:04Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-11-11T03:26:04Z",
+          "completed_at": "2026-11-11T03:26:05Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-11-11T03:26:05Z",
+          "completed_at": "2026-11-11T03:26:05Z"
+        },
+        {
+          "name": "Run node scripts/export-etf-pilot-baseline.mjs > \"$RUNNER_TEMP/baseline.json\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-11-11T03:26:05Z",
+          "completed_at": "2026-11-11T03:26:05Z"
+        },
+        {
+          "name": "Run node scripts/audit-comparison-automation.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-11-11T03:26:05Z",
+          "completed_at": "2026-11-11T03:26:05Z"
+        },
+        {
+          "name": "Collect observations: ishares",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-11-11T03:26:05Z",
+          "completed_at": "2026-11-11T03:26:28Z"
+        },
+        {
+          "name": "Collect observations: amundi",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-11-11T03:26:28Z",
+          "completed_at": "2026-11-11T03:26:31Z"
+        },
+        {
+          "name": "Collect observations: ssga",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 60,
+          "started_at": "2026-11-11T03:26:31Z",
+          "completed_at": "2026-11-11T03:26:33Z"
+        },
+        {
+          "name": "Collect observations: additional",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61,
+          "started_at": "2026-11-11T03:26:33Z",
+          "completed_at": "2026-11-11T03:27:53Z"
+        },
+        {
+          "name": "Collect observations: presentation_performance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62,
+          "started_at": "2026-11-11T03:27:53Z",
+          "completed_at": "2026-11-11T03:28:05Z"
+        },
+        {
+          "name": "Collect observations: fx",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63,
+          "started_at": "2026-11-11T03:28:05Z",
+          "completed_at": "2026-11-11T03:28:08Z"
+        },
+        {
+          "name": "Collect observations: indices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64,
+          "started_at": "2026-11-11T03:28:08Z",
+          "completed_at": "2026-11-11T03:28:21Z"
+        },
+        {
+          "name": "Run node scripts/build-automation-targets.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65,
+          "started_at": "2026-11-11T03:28:21Z",
+          "completed_at": "2026-11-11T03:28:21Z"
+        },
+        {
+          "name": "Run node scripts/report-automation-coverage.mjs --write",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66,
+          "started_at": "2026-11-11T03:28:21Z",
+          "completed_at": "2026-11-11T03:28:22Z"
+        },
+        {
+          "name": "Validate ETF observations and consumers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67,
+          "started_at": "2026-11-11T03:28:22Z",
+          "completed_at": "2026-11-11T03:29:09Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68,
+          "started_at": "2026-11-11T03:29:09Z",
+          "completed_at": "2026-11-11T03:29:11Z"
+        },
+        {
+          "name": "Validate collected observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69,
+          "started_at": "2026-11-11T03:29:11Z",
+          "completed_at": "2026-11-11T03:29:11Z"
+        },
+        {
+          "name": "Commit validated observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 70,
+          "started_at": "2026-11-11T03:29:11Z",
+          "completed_at": "2026-11-11T03:29:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 138,
+          "started_at": "2026-11-11T03:29:18Z",
+          "completed_at": "2026-11-11T03:29:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 139,
+          "started_at": "2026-11-11T03:29:18Z",
+          "completed_at": "2026-11-11T03:29:18Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 140,
+          "started_at": "2026-11-11T03:29:18Z",
+          "completed_at": "2026-11-11T03:29:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 141,
+          "started_at": "2026-11-11T03:29:18Z",
+          "completed_at": "2026-11-11T03:29:18Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130299014814",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000045814,
+      "runner_name": "GitHub Actions 1000045814",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 130301740504,
+      "run_id": 42952247354,
+      "workflow_name": "Update active ETF issuer data",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42952247354",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeVpbF2A",
+      "head_sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130301740504",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42952247354/job/130301740504",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-11T03:29:22Z",
+      "started_at": "2026-11-11T03:29:27Z",
+      "completed_at": "2026-11-11T03:32:58Z",
+      "name": "deploy / publish",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T03:29:28Z",
+          "completed_at": "2026-11-11T03:29:30Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-11T03:29:30Z",
+          "completed_at": "2026-11-11T03:30:07Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T03:30:07Z",
+          "completed_at": "2026-11-11T03:30:09Z"
+        },
+        {
+          "name": "Run node scripts/test-validated-data-publisher.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-11T03:30:09Z",
+          "completed_at": "2026-11-11T03:30:09Z"
+        },
+        {
+          "name": "Run node scripts/prepare-validated-data.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-11T03:30:09Z",
+          "completed_at": "2026-11-11T03:30:10Z"
+        },
+        {
+          "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"15a23e5235634fa363e958faf348fe5f5d788e15\" --data \"17faf0f881f71d971f7dbb06d00fd4dbb57de4f5\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-11T03:30:10Z",
+          "completed_at": "2026-11-11T03:30:48Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-11T03:30:48Z",
+          "completed_at": "2026-11-11T03:30:51Z"
+        },
+        {
+          "name": "Run npm run audit:data-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-11T03:30:51Z",
+          "completed_at": "2026-11-11T03:30:54Z"
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-11T03:30:54Z",
+          "completed_at": "2026-11-11T03:31:38Z"
+        },
+        {
+          "name": "Require the producer's exact validated observations after all generators",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-11T03:31:38Z",
+          "completed_at": "2026-11-11T03:31:38Z"
+        },
+        {
+          "name": "Seal actual composite data",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-11T03:31:38Z",
+          "completed_at": "2026-11-11T03:31:39Z"
+        },
+        {
+          "name": "Record actual code and data identities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-11T03:31:39Z",
+          "completed_at": "2026-11-11T03:31:39Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-11T03:31:39Z",
+          "completed_at": "2026-11-11T03:31:58Z"
+        },
+        {
+          "name": "Run node scripts/smoke-data-routes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-11T03:31:58Z",
+          "completed_at": "2026-11-11T03:32:37Z"
+        },
+        {
+          "name": "Run actions/configure-pages@v6.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-11T03:32:37Z",
+          "completed_at": "2026-11-11T03:32:37Z"
+        },
+        {
+          "name": "Run actions/upload-pages-artifact@v5.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-11T03:32:37Z",
+          "completed_at": "2026-11-11T03:32:42Z"
+        },
+        {
+          "name": "Restore source identity for the publication order guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-11T03:32:42Z",
+          "completed_at": "2026-11-11T03:32:42Z"
+        },
+        {
+          "name": "Run bash scripts/check-pages-head.sh",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-11T03:32:42Z",
+          "completed_at": "2026-11-11T03:32:43Z"
+        },
+        {
+          "name": "Run node scripts/deploy-validated-pages.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-11T03:32:43Z",
+          "completed_at": "2026-11-11T03:32:50Z"
+        },
+        {
+          "name": "Verify actual public data",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-11T03:32:50Z",
+          "completed_at": "2026-11-11T03:32:52Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-11T03:32:52Z",
+          "completed_at": "2026-11-11T03:32:53Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-11T03:32:53Z",
+          "completed_at": "2026-11-11T03:32:55Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-11-11T03:32:55Z",
+          "completed_at": "2026-11-11T03:32:55Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-11-11T03:32:55Z",
+          "completed_at": "2026-11-11T03:32:55Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-11-11T03:32:55Z",
+          "completed_at": "2026-11-11T03:32:55Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130301740504",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000045817,
+      "runner_name": "GitHub Actions 1000045817",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 130303011576,
+      "run_id": 42952247354,
+      "workflow_name": "Update active ETF issuer data",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42952247354",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeVqoq-A",
+      "head_sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130303011576",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42952247354/job/130303011576",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-11T03:32:59Z",
+      "started_at": "2026-11-11T03:33:01Z",
+      "completed_at": "2026-11-11T03:33:04Z",
+      "name": "report-failures",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T03:33:01Z",
+          "completed_at": "2026-11-11T03:33:02Z"
+        },
+        {
+          "name": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 2,
+          "started_at": "2026-11-11T03:33:02Z",
+          "completed_at": "2026-11-11T03:33:02Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T03:33:02Z",
+          "completed_at": "2026-11-11T03:33:02Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130303011576",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000045818,
+      "runner_name": "GitHub Actions 1000045818",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 130303013232,
+      "run_id": 42952247354,
+      "workflow_name": "Update active ETF issuer data",
+      "head_branch": "master",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42952247354",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAeVqoxcA",
+      "head_sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/130303013232",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42952247354/job/130303013232",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-11T03:32:59Z",
+      "started_at": "2026-11-11T03:32:59Z",
+      "completed_at": "2026-11-11T03:32:58Z",
+      "name": "deploy / publish-code",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/130303013232",
+      "labels": [],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    }
+  ]
+}

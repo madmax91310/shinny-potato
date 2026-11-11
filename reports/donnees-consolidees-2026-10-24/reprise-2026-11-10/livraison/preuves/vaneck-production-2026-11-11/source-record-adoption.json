@@ -1,0 +1,184 @@
+{
+  "checkedAt": "2026-11-11T04:12:03.844865+00:00",
+  "public": {
+    "sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+    "dataSha": "17faf0f881f71d971f7dbb06d00fd4dbb57de4f5",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T04:11:45.581Z"
+  },
+  "path": "src/data/exposure-etf-expansion-records.json",
+  "sourceBlob": "8535013791bb22f7768e988998411072e7cfbbf6",
+  "helperBlob": "ca61be9ca7aa9e9b17b7c9c869af79a2f23b2211",
+  "instrument": "IE00BMC38736",
+  "record": {
+    "currency": "USD",
+    "productId": "IE00BMC38736",
+    "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 8324900000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-04"
+    },
+    "sectors": {
+      "asOf": "2026-10-31",
+      "basis": "fund",
+      "method": "Published Sector weights, percent of net assets, no renormalisation",
+      "sourceUrl": "https://www.vaneck.com/Main/HoldingsWeightingsChartBlock/GetContent/?blockid=194841&pageid=233164&ticker=UCTSMH&reactlang=en&reactctr=uk",
+      "discoveryUrl": "https://www.vaneck.com/uk/en/investments/semiconductor-etf/",
+      "sha256": "c371f3e8c5b4de948db6a532775e52e9268de74bce20e957b0b1bf5503142557",
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 91.5,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 8.5,
+          "label": "Other/Cash"
+        }
+      ],
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-04"
+    },
+    "countries": {
+      "asOf": "2026-10-31",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 71.07
+        },
+        {
+          "name": "Taiwan Region",
+          "weightPct": 10.57
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 9.33
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 8.51
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 0.5
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 0.03
+        }
+      ],
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-04"
+    },
+    "holdings": {
+      "asOf": "2026-10-31",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "ADVANCED MICRO DEVICES INC",
+          "weightPct": 10.78
+        },
+        {
+          "name": "TAIWAN SEMICONDUCTOR MANUFACTURING CO L",
+          "weightPct": 10.57
+        },
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 10.36
+        },
+        {
+          "name": "BROADCOM INC",
+          "weightPct": 10.14
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 9.75
+        },
+        {
+          "name": "ASML HOLDING NV",
+          "weightPct": 8.64
+        },
+        {
+          "name": "SK HYNIX INC",
+          "weightPct": 8.51
+        },
+        {
+          "name": "INTEL CORP",
+          "weightPct": 4.38
+        },
+        {
+          "name": "APPLIED MATERIALS INC",
+          "weightPct": 4.0
+        },
+        {
+          "name": "LAM RESEARCH CORP",
+          "weightPct": 3.82
+        }
+      ],
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-04"
+    },
+    "characteristics": {
+      "terPct": 0.35,
+      "index": "MarketVector US Listed Semiconductor 10% Capped Screened Index",
+      "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Full replication)",
+      "asOf": "2026-10-31",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+      "sha256": "38550d66c6e2425ef4ea57f8ff5982f2409840dd41c671e92734f3d3421e0b7c",
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-11"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, net income reinvested, net of fees",
+      "years": {
+        "2021": 43.6,
+        "2022": -34.8,
+        "2023": 73.2,
+        "2024": 23.2,
+        "2025": 50.1
+      },
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+        "asOf": "2026-10-31"
+      },
+      "index": {
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+        "asOf": "2026-10-31"
+      },
+      "domicile": {
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+        "asOf": "2026-10-31"
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+        "asOf": "2026-10-31"
+      }
+    }
+  }
+}

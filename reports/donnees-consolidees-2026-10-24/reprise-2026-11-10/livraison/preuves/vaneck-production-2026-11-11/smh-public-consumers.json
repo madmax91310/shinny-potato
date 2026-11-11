@@ -1,0 +1,677 @@
+{
+  "before": {
+    "sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+    "dataSha": "17faf0f881f71d971f7dbb06d00fd4dbb57de4f5",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T04:11:45.581Z"
+  },
+  "after": {
+    "sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+    "dataSha": "17faf0f881f71d971f7dbb06d00fd4dbb57de4f5",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T04:11:45.581Z"
+  },
+  "receipts": [
+    {
+      "tool": "Présentation ETF",
+      "isin": "IE00BMC38736",
+      "width": 1440,
+      "selection": true,
+      "copy": true,
+      "file": "etf-IE00BMC38736-1440.png",
+      "sha256": "c4561b19a3a731fb5f14926fbc88b76a2ef9b0c1fa950ae420f487fb65c7af6b",
+      "drawn": [
+        "VanEck",
+        "Semiconductor",
+        "UCITS ETF",
+        "SMH · ISIN IE00BMC38736",
+        "ÉPARGNANT LIBRE",
+        "0,35%",
+        "Frais annuels",
+        "CTO",
+        "Enveloppes",
+        "8 325 M$",
+        "Encours du fonds",
+        "au 31/10/2026",
+        "Capitalisant",
+        "physique intégrale",
+        "Domicile : Irlande",
+        "Euronext Paris ·",
+        "EUR",
+        "Part : USD",
+        "Performances annuelles · 2021–2025 · USD",
+        "2021",
+        "+43,6 %",
+        "2022",
+        "-34,8 %",
+        "2023",
+        "+73,2 %",
+        "2024",
+        "+23,2 %",
+        "2025",
+        "+50,1 %",
+        "Pas un conseil financier"
+      ]
+    },
+    {
+      "tool": "Présentation ETF",
+      "isin": "IE0003UVYC20",
+      "width": 1440,
+      "selection": true,
+      "copy": true,
+      "file": "etf-IE0003UVYC20-1440.png",
+      "sha256": "1a1c066925776e8463d59ff55fbdc283e9a5815a2bc7febae07cff4e9ccf3ad0",
+      "drawn": [
+        "JPM Global Equity",
+        "Premium Income Active",
+        "UCITS ETF USD (Dist)",
+        "JEPG · ISIN IE0003UVYC20",
+        "ÉPARGNANT LIBRE",
+        "0,35%",
+        "Frais annuels",
+        "CTO",
+        "Enveloppes",
+        "1 724 M$",
+        "Encours du fonds",
+        "au 10/11/2026",
+        "Distribuant",
+        "Physique",
+        "Domicile : Irlande",
+        "Borsa Italiana · EUR",
+        "Part : USD",
+        "Sans couverture de",
+        "change",
+        "Performances annuelles · 2024–2025 · USD",
+        "2024",
+        "+8,08 %",
+        "2025",
+        "+12,35 %",
+        "Pas un conseil financier"
+      ]
+    },
+    {
+      "tool": "Présentation ETF",
+      "isin": "IE00BMC38736",
+      "width": 390,
+      "selection": true,
+      "copy": true,
+      "file": "etf-IE00BMC38736-390.png",
+      "sha256": "c4561b19a3a731fb5f14926fbc88b76a2ef9b0c1fa950ae420f487fb65c7af6b",
+      "drawn": [
+        "VanEck",
+        "Semiconductor",
+        "UCITS ETF",
+        "SMH · ISIN IE00BMC38736",
+        "ÉPARGNANT LIBRE",
+        "0,35%",
+        "Frais annuels",
+        "CTO",
+        "Enveloppes",
+        "8 325 M$",
+        "Encours du fonds",
+        "au 31/10/2026",
+        "Capitalisant",
+        "physique intégrale",
+        "Domicile : Irlande",
+        "Euronext Paris ·",
+        "EUR",
+        "Part : USD",
+        "Performances annuelles · 2021–2025 · USD",
+        "2021",
+        "+43,6 %",
+        "2022",
+        "-34,8 %",
+        "2023",
+        "+73,2 %",
+        "2024",
+        "+23,2 %",
+        "2025",
+        "+50,1 %",
+        "Pas un conseil financier"
+      ]
+    },
+    {
+      "tool": "Présentation ETF",
+      "isin": "IE0003UVYC20",
+      "width": 390,
+      "selection": true,
+      "copy": true,
+      "file": "etf-IE0003UVYC20-390.png",
+      "sha256": "1a1c066925776e8463d59ff55fbdc283e9a5815a2bc7febae07cff4e9ccf3ad0",
+      "drawn": [
+        "JPM Global Equity",
+        "Premium Income Active",
+        "UCITS ETF USD (Dist)",
+        "JEPG · ISIN IE0003UVYC20",
+        "ÉPARGNANT LIBRE",
+        "0,35%",
+        "Frais annuels",
+        "CTO",
+        "Enveloppes",
+        "1 724 M$",
+        "Encours du fonds",
+        "au 10/11/2026",
+        "Distribuant",
+        "Physique",
+        "Domicile : Irlande",
+        "Borsa Italiana · EUR",
+        "Part : USD",
+        "Sans couverture de",
+        "change",
+        "Performances annuelles · 2024–2025 · USD",
+        "2024",
+        "+8,08 %",
+        "2025",
+        "+12,35 %",
+        "Pas un conseil financier"
+      ]
+    },
+    {
+      "tool": "DCA / Actifs et exposition",
+      "id": "smh-sp500",
+      "qualification": [
+        {
+          "asset": "IE00BMC38736",
+          "label": "VanEck Semiconductor UCITS ETF",
+          "isin": "IE00BMC38736",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194732&pageid=233164&ticker=UCTSMH&reactlang=en&reactctr=uk",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.98000000000003,
+          "identifiedCoverage": 99.98000000000003,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0199999999999676
+        },
+        {
+          "asset": "sp500",
+          "label": "iShares Core S&P 500 UCITS ETF",
+          "isin": "IE00B5BMR087",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.95718999999993,
+          "identifiedCoverage": 99.95718999999993,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.042810000000073956
+        }
+      ],
+      "pairs": [
+        {
+          "left": "VanEck Semiconductor UCITS ETF",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "common": [
+            {
+              "isin": "US67066G1040",
+              "name": "Nvidia Corp",
+              "leftWeight": 9.67,
+              "rightWeight": 6.64202,
+              "portfolioWeight": 8.15601
+            },
+            {
+              "isin": "US11135F1012",
+              "name": "Broadcom Inc",
+              "leftWeight": 10.62,
+              "rightWeight": 2.33486,
+              "portfolioWeight": 6.477429999999999
+            },
+            {
+              "isin": "US0079031078",
+              "name": "Advanced Micro Devices Inc",
+              "leftWeight": 11.61,
+              "rightWeight": 1.27538,
+              "portfolioWeight": 6.44269
+            },
+            {
+              "isin": "US5951121038",
+              "name": "Micron Technology Inc",
+              "leftWeight": 8.64,
+              "rightWeight": 1.27197,
+              "portfolioWeight": 4.955985
+            },
+            {
+              "isin": "US4581401001",
+              "name": "Intel Corp",
+              "leftWeight": 4.23,
+              "rightWeight": 0.45319,
+              "portfolioWeight": 2.3415950000000003
+            },
+            {
+              "isin": "US0382221051",
+              "name": "Applied Materials Inc",
+              "leftWeight": 4.06,
+              "rightWeight": 0.45194,
+              "portfolioWeight": 2.2559699999999996
+            },
+            {
+              "isin": "US5128073062",
+              "name": "Lam Research Corp",
+              "leftWeight": 3.78,
+              "rightWeight": 0.42542,
+              "portfolioWeight": 2.10271
+            },
+            {
+              "isin": "US8825081040",
+              "name": "Texas Instruments Inc",
+              "leftWeight": 3.73,
+              "rightWeight": 0.41488,
+              "portfolioWeight": 2.07244
+            },
+            {
+              "isin": "US0326541051",
+              "name": "Analog Devices Inc",
+              "leftWeight": 2.67,
+              "rightWeight": 0.2953,
+              "portfolioWeight": 1.4826499999999998
+            },
+            {
+              "isin": "US4824801009",
+              "name": "Kla Corp",
+              "leftWeight": 2.53,
+              "rightWeight": 0.30392,
+              "portfolioWeight": 1.41696
+            },
+            {
+              "isin": "US7475251036",
+              "name": "Qualcomm Inc",
+              "leftWeight": 2.3,
+              "rightWeight": 0.28134,
+              "portfolioWeight": 1.2906699999999998
+            },
+            {
+              "isin": "US5738741041",
+              "name": "Marvell Technology Inc",
+              "leftWeight": 1.73,
+              "rightWeight": 0.208,
+              "portfolioWeight": 0.9690000000000001
+            },
+            {
+              "isin": "US1273871087",
+              "name": "Cadence Design Systems Inc",
+              "leftWeight": 1.3,
+              "rightWeight": 0.14261,
+              "portfolioWeight": 0.721305
+            },
+            {
+              "isin": "US8716071076",
+              "name": "Synopsys Inc",
+              "leftWeight": 1.27,
+              "rightWeight": 0.13734,
+              "portfolioWeight": 0.70367
+            },
+            {
+              "isin": "US6098391054",
+              "name": "Monolithic Power Systems Inc",
+              "leftWeight": 0.81,
+              "rightWeight": 0.10476,
+              "portfolioWeight": 0.45738
+            },
+            {
+              "isin": "NL0009538784",
+              "name": "Nxp Semiconductors Nv",
+              "leftWeight": 0.73,
+              "rightWeight": 0.0988,
+              "portfolioWeight": 0.4144
+            },
+            {
+              "isin": "US8807701029",
+              "name": "Teradyne Inc",
+              "leftWeight": 0.51,
+              "rightWeight": 0.05925,
+              "portfolioWeight": 0.28462499999999996
+            },
+            {
+              "isin": "US5950171042",
+              "name": "Microchip Technology Inc",
+              "leftWeight": 0.41,
+              "rightWeight": 0.05124,
+              "portfolioWeight": 0.23062000000000002
+            },
+            {
+              "isin": "US6821891057",
+              "name": "On Semiconductor Corp",
+              "leftWeight": 0.28,
+              "rightWeight": 0.04114,
+              "portfolioWeight": 0.16057000000000002
+            }
+          ],
+          "companyCommon": [
+            {
+              "id": "US0079031078",
+              "name": "Advanced Micro Devices Inc",
+              "leftWeight": 11.61,
+              "rightWeight": 1.27538,
+              "leftSecurities": [
+                "US0079031078"
+              ],
+              "rightSecurities": [
+                "US0079031078"
+              ]
+            },
+            {
+              "id": "US11135F1012",
+              "name": "Broadcom Inc",
+              "leftWeight": 10.62,
+              "rightWeight": 2.33486,
+              "leftSecurities": [
+                "US11135F1012"
+              ],
+              "rightSecurities": [
+                "US11135F1012"
+              ]
+            },
+            {
+              "id": "US67066G1040",
+              "name": "Nvidia Corp",
+              "leftWeight": 9.67,
+              "rightWeight": 6.64202,
+              "leftSecurities": [
+                "US67066G1040"
+              ],
+              "rightSecurities": [
+                "US67066G1040"
+              ]
+            },
+            {
+              "id": "US5951121038",
+              "name": "Micron Technology Inc",
+              "leftWeight": 8.64,
+              "rightWeight": 1.27197,
+              "leftSecurities": [
+                "US5951121038"
+              ],
+              "rightSecurities": [
+                "US5951121038"
+              ]
+            },
+            {
+              "id": "US4581401001",
+              "name": "Intel Corp",
+              "leftWeight": 4.23,
+              "rightWeight": 0.45319,
+              "leftSecurities": [
+                "US4581401001"
+              ],
+              "rightSecurities": [
+                "US4581401001"
+              ]
+            },
+            {
+              "id": "US0382221051",
+              "name": "Applied Materials Inc",
+              "leftWeight": 4.06,
+              "rightWeight": 0.45194,
+              "leftSecurities": [
+                "US0382221051"
+              ],
+              "rightSecurities": [
+                "US0382221051"
+              ]
+            },
+            {
+              "id": "US5128073062",
+              "name": "Lam Research Corp",
+              "leftWeight": 3.78,
+              "rightWeight": 0.42542,
+              "leftSecurities": [
+                "US5128073062"
+              ],
+              "rightSecurities": [
+                "US5128073062"
+              ]
+            },
+            {
+              "id": "US8825081040",
+              "name": "Texas Instruments Inc",
+              "leftWeight": 3.73,
+              "rightWeight": 0.41488,
+              "leftSecurities": [
+                "US8825081040"
+              ],
+              "rightSecurities": [
+                "US8825081040"
+              ]
+            },
+            {
+              "id": "US0326541051",
+              "name": "Analog Devices Inc",
+              "leftWeight": 2.67,
+              "rightWeight": 0.2953,
+              "leftSecurities": [
+                "US0326541051"
+              ],
+              "rightSecurities": [
+                "US0326541051"
+              ]
+            },
+            {
+              "id": "US4824801009",
+              "name": "Kla Corp",
+              "leftWeight": 2.53,
+              "rightWeight": 0.30392,
+              "leftSecurities": [
+                "US4824801009"
+              ],
+              "rightSecurities": [
+                "US4824801009"
+              ]
+            },
+            {
+              "id": "US7475251036",
+              "name": "Qualcomm Inc",
+              "leftWeight": 2.3,
+              "rightWeight": 0.28134,
+              "leftSecurities": [
+                "US7475251036"
+              ],
+              "rightSecurities": [
+                "US7475251036"
+              ]
+            },
+            {
+              "id": "US5738741041",
+              "name": "Marvell Technology Inc",
+              "leftWeight": 1.73,
+              "rightWeight": 0.208,
+              "leftSecurities": [
+                "US5738741041"
+              ],
+              "rightSecurities": [
+                "US5738741041"
+              ]
+            },
+            {
+              "id": "US1273871087",
+              "name": "Cadence Design Systems Inc",
+              "leftWeight": 1.3,
+              "rightWeight": 0.14261,
+              "leftSecurities": [
+                "US1273871087"
+              ],
+              "rightSecurities": [
+                "US1273871087"
+              ]
+            },
+            {
+              "id": "US8716071076",
+              "name": "Synopsys Inc",
+              "leftWeight": 1.27,
+              "rightWeight": 0.13734,
+              "leftSecurities": [
+                "US8716071076"
+              ],
+              "rightSecurities": [
+                "US8716071076"
+              ]
+            },
+            {
+              "id": "US6098391054",
+              "name": "Monolithic Power Systems Inc",
+              "leftWeight": 0.81,
+              "rightWeight": 0.10476,
+              "leftSecurities": [
+                "US6098391054"
+              ],
+              "rightSecurities": [
+                "US6098391054"
+              ]
+            },
+            {
+              "id": "NL0009538784",
+              "name": "Nxp Semiconductors Nv",
+              "leftWeight": 0.73,
+              "rightWeight": 0.0988,
+              "leftSecurities": [
+                "NL0009538784"
+              ],
+              "rightSecurities": [
+                "NL0009538784"
+              ]
+            },
+            {
+              "id": "US8807701029",
+              "name": "Teradyne Inc",
+              "leftWeight": 0.51,
+              "rightWeight": 0.05925,
+              "leftSecurities": [
+                "US8807701029"
+              ],
+              "rightSecurities": [
+                "US8807701029"
+              ]
+            },
+            {
+              "id": "US5950171042",
+              "name": "Microchip Technology Inc",
+              "leftWeight": 0.41,
+              "rightWeight": 0.05124,
+              "leftSecurities": [
+                "US5950171042"
+              ],
+              "rightSecurities": [
+                "US5950171042"
+              ]
+            },
+            {
+              "id": "US6821891057",
+              "name": "On Semiconductor Corp",
+              "leftWeight": 0.28,
+              "rightWeight": 0.04114,
+              "leftSecurities": [
+                "US6821891057"
+              ],
+              "rightSecurities": [
+                "US6821891057"
+              ]
+            }
+          ],
+          "full": true,
+          "overlap": 14.993360000000001,
+          "sources": [
+            {
+              "asOf": "2026-11-09",
+              "url": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194732&pageid=233164&ticker=UCTSMH&reactlang=en&reactctr=uk",
+              "basis": "fund",
+              "checkedAt": "2026-11-11T00:01:55.291639+00:00",
+              "sha256": "44b4c20be6cfccc4286ddfd0fd045e59489f326831850cf746053beabd844328",
+              "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation"
+            },
+            {
+              "asOf": "2026-11-09",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "basis": "fund",
+              "checkedAt": "2026-11-11T00:01:55.291639+00:00",
+              "sha256": "e04b93eb0bfa913b2b1a15031288c18ce76c3d1b64fc13de54368afec792655f",
+              "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation"
+            }
+          ],
+          "identifiedCoverage": [
+            99.98000000000003,
+            99.95718999999993
+          ]
+        }
+      ],
+      "orderInvariant": true,
+      "file": "dca-smh-sp500.png",
+      "sha256": "26fbdbd5ae15fc7e0310c7adafdf1ccbf1bf66f6c868d8a4e26d15e7e0c35a59",
+      "drawn": []
+    },
+    {
+      "tool": "DCA / Actifs et exposition",
+      "id": "uranium-jepg",
+      "qualification": [
+        {
+          "asset": "IE0003UVYC20",
+          "label": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+          "isin": "IE0003UVYC20",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.53727688178762,
+          "identifiedCoverage": 99.53727688178762,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.46272311821238077
+        },
+        {
+          "asset": "IE000NDWFGA5",
+          "label": "Global X Uranium UCITS ETF USD Acc",
+          "isin": "IE000NDWFGA5",
+          "asOf": "2026-11-09",
+          "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Certaines positions n’ont pas d’identifiant qualifié."
+          ],
+          "sourceCoverage": 99.82099999999994,
+          "identifiedCoverage": 99.81699999999995,
+          "unidentifiedCoverage": 0.004,
+          "residualWeight": 0.1790000000000589
+        }
+      ],
+      "pairs": [
+        {
+          "left": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+          "right": "Global X Uranium UCITS ETF USD Acc",
+          "common": [],
+          "companyCommon": [],
+          "full": false,
+          "overlap": null,
+          "sources": [
+            {
+              "asOf": "2026-11-09",
+              "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "basis": "fund",
+              "checkedAt": "2026-11-11T00:01:55.291639+00:00",
+              "sha256": "3aa4efb1f0b502f36f3bb4f04f593196697a29bab343ab4f41e0708b455814cd",
+              "method": "Complete direct equity and listed REIT positions in dailyHoldingsAll; index options, cash and rights retained separately, with native portfolio market-value weights; headline AUM is a separate metric; no option look-through or renormalisation",
+              "scope": "direct-equity-securities"
+            },
+            {
+              "asOf": "2026-11-09",
+              "url": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv",
+              "basis": "fund",
+              "checkedAt": "2026-11-11T00:01:55.291639+00:00",
+              "sha256": "405d75306bc203dda13042d3604f4d04d8538f89b7962c1e419eb3ff51f34feb",
+              "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation"
+            }
+          ],
+          "identifiedCoverage": [
+            99.53727688178762,
+            99.81699999999995
+          ]
+        }
+      ],
+      "orderInvariant": true,
+      "file": "dca-uranium-jepg.png",
+      "sha256": "8f0596b7029a82972240e240f88b76552016bbc1b7128f77fc0fa67a6905175a",
+      "drawn": []
+    }
+  ],
+  "errors": []
+}

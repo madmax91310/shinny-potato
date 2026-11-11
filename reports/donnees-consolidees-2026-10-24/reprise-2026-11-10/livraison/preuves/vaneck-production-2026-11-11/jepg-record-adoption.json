@@ -1,0 +1,339 @@
+{
+  "checkedAt": "2026-11-11T04:12:06.854511+00:00",
+  "public": {
+    "sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+    "dataSha": "17faf0f881f71d971f7dbb06d00fd4dbb57de4f5",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T04:11:45.581Z"
+  },
+  "path": "src/data/automated-etf.json",
+  "sourceBlob": "a59c63a2b898966a5726c89857c3439d3f7b38c8",
+  "instrument": "IE0003UVYC20",
+  "record": {
+    "currency": "USD",
+    "productId": "IE0003UVYC20",
+    "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+    "provider": "J.P. Morgan",
+    "aum": {
+      "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+      "sha256": "4632be83f97ff27c6599fce3675f4ecbde0bc31544376e092c040bf599a4eeb1",
+      "amount": 1724353470.7,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-11-10",
+      "sourceComponent": "fundData.aum.value",
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-11"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Pharm/Medtech",
+          "weightPct": 10.8,
+          "label": "Pharmacie et technologies médicales"
+        },
+        {
+          "name": "Technology - Semi & Hardware",
+          "weightPct": 10.2,
+          "label": "Semi-conducteurs et matériel"
+        },
+        {
+          "name": "Industrial Cyclicals",
+          "weightPct": 9.9,
+          "label": "Industries cycliques"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 8.8,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Technology - Software",
+          "weightPct": 8.4,
+          "label": "Logiciels"
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 7.7,
+          "label": "Télécommunications"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 7.5,
+          "label": "Services publics"
+        },
+        {
+          "name": "Retail",
+          "weightPct": 5.5,
+          "label": "Distribution"
+        },
+        {
+          "name": "Insurance",
+          "weightPct": 4.8,
+          "label": "Assurance"
+        },
+        {
+          "name": "Banks",
+          "weightPct": 3.9,
+          "label": "Banques"
+        },
+        {
+          "name": "Health Services & Systems",
+          "weightPct": 3.9,
+          "label": "Services et systèmes de santé"
+        },
+        {
+          "name": "Financial Services",
+          "weightPct": 3.3,
+          "label": "Services financiers"
+        },
+        {
+          "name": "Basic Industries",
+          "weightPct": 3.3,
+          "label": "Industries de base"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 2.5,
+          "label": "Énergie"
+        },
+        {
+          "name": "Media",
+          "weightPct": 2.4,
+          "label": "Médias"
+        },
+        {
+          "name": "Property",
+          "weightPct": 2.4,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Transportation",
+          "weightPct": 1.5,
+          "label": "Transports"
+        },
+        {
+          "name": "Automobiles & Auto Parts",
+          "weightPct": 1.4,
+          "label": "Automobiles et équipementiers"
+        },
+        {
+          "name": "Consumer Cyclical & Services",
+          "weightPct": 1.0,
+          "label": "Consommation cyclique et services"
+        },
+        {
+          "name": "Cash",
+          "weightPct": 0.8,
+          "label": "Liquidités"
+        }
+      ],
+      "asOf": "2026-10-31",
+      "basis": "fund",
+      "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+      "sha256": "4632be83f97ff27c6599fce3675f4ecbde0bc31544376e092c040bf599a4eeb1",
+      "sourceComponent": "fundData.emeaSectorBreakdown",
+      "classification": "jpm-proprietary-sectors-v1",
+      "method": "Published JPMorgan proprietary sector allocation of the fund; no GICS/ICB equivalence or regrouping",
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-11"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 67.6
+        },
+        {
+          "name": "Japan",
+          "weightPct": 10.8
+        },
+        {
+          "name": "France",
+          "weightPct": 4.5
+        },
+        {
+          "name": "Germany",
+          "weightPct": 3.8
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.7
+        },
+        {
+          "name": "Spain",
+          "weightPct": 1.7
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 1.5
+        },
+        {
+          "name": "Italy",
+          "weightPct": 1.2
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 1.1
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 0.7
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 0.6
+        },
+        {
+          "name": "Canada",
+          "weightPct": 0.5
+        },
+        {
+          "name": "Australia",
+          "weightPct": 0.5
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.5
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 0.4
+        },
+        {
+          "name": "Israel",
+          "weightPct": 0.2
+        },
+        {
+          "name": "Finland",
+          "weightPct": 0.1
+        },
+        {
+          "name": "Norway",
+          "weightPct": 0.0
+        },
+        {
+          "name": "Austria",
+          "weightPct": 0.0
+        },
+        {
+          "name": "Portugal",
+          "weightPct": 0.0
+        },
+        {
+          "name": "Cash",
+          "weightPct": 0.8
+        }
+      ],
+      "asOf": "2026-10-31",
+      "basis": "fund",
+      "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+      "sha256": "4632be83f97ff27c6599fce3675f4ecbde0bc31544376e092c040bf599a4eeb1",
+      "sourceComponent": "fundData.emeaRegionalBreakdown",
+      "classification": "jpm-published-regional-v1",
+      "method": "Published JPMorgan regional allocation of the fund; issuer labels and cash retained, no country-of-risk equivalence inferred",
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-11"
+    },
+    "holdings": {
+      "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+      "sha256": "4632be83f97ff27c6599fce3675f4ecbde0bc31544376e092c040bf599a4eeb1",
+      "rows": [
+        {
+          "isin": "US4781601046",
+          "name": "JOHNSON & JOHNSON",
+          "weightPct": 1.95652101318734
+        },
+        {
+          "isin": "US8425871071",
+          "name": "SOUTHERN CO/THE",
+          "weightPct": 1.647554642444422
+        },
+        {
+          "isin": "US5949181045",
+          "name": "MICROSOFT CORP",
+          "weightPct": 1.586391033331428
+        },
+        {
+          "isin": "JP3463000004",
+          "name": "TAKEDA PHARMACEUTICAL CO /JPY/",
+          "weightPct": 1.577329780805979
+        },
+        {
+          "isin": "US0846707026",
+          "name": "BERKSHIRE HATHAWAY INC-CL B",
+          "weightPct": 1.473959191621016
+        },
+        {
+          "isin": "US6200763075",
+          "name": "MOTOROLA SOLUTIONS INC",
+          "weightPct": 1.420490974858211
+        },
+        {
+          "isin": "US1912161007",
+          "name": "COCA-COLA CO/THE",
+          "weightPct": 1.332099601066379
+        },
+        {
+          "isin": "US03073E1055",
+          "name": "CENCORA INC",
+          "weightPct": 1.218142810065575
+        },
+        {
+          "isin": "US00287Y1091",
+          "name": "ABBVIE INC",
+          "weightPct": 1.167976053096133
+        },
+        {
+          "isin": "US5801351017",
+          "name": "MCDONALDS CORP",
+          "weightPct": 1.165069770755304
+        }
+      ],
+      "asOf": "2026-11-10",
+      "basis": "fund",
+      "complete": false,
+      "sourceComponent": "fundData.dailyHoldings",
+      "method": "Published top ten direct equity/REIT positions; native portfolio market-value weights, no renormalisation or complete-overlap inference",
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-11-11"
+    },
+    "characteristics": {
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+      "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7",
+      "terPct": 0.35,
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-10-11"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2024": 8.08,
+        "2025": 12.35
+      },
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+      "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7",
+      "method": "calendar-year exact-share NAV total return, gross income reinvested, net of ongoing charges",
+      "checkedAt": "2026-11-11",
+      "modifiedAt": "2026-10-11"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-11-11",
+        "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+        "asOf": "2026-08-31"
+      }
+    }
+  }
+}
