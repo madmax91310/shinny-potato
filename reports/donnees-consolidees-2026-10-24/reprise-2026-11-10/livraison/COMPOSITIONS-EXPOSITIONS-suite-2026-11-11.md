@@ -1,3 +1,5 @@
+État intermédiaire vérifié 2026-11-11T04:44:42.138146+00:00 : code public c6d56dbb, données17faf0f8. PR#1231 publiée, collectes ordinaires et parcours SMH/JEPG vérifiés ; huit scénarios publics palladiumEUR supplémentaires vérifiés dans preuves/palladium-eur-2026-11-11. La suite reste ouverte : PR#1232 restaure trois cibles intégrales iShares perdues après des libellés Replicated/Optimised. Preuves fournisseur réelles acquises en PR (50/50/384positions9novembre) dans preuves/ishares-physical-candidat-2026-11-11 ; fusion et chaîne de production non encore démontrées. Les sections plus anciennes ci-dessous sont des photographies datées, pas une affirmation que leur état est encore courant.
+
 État vérifié le 2026-11-11T01:23:39.865634+00:00. Code public 15a23e5235634fa363e958faf348fe5f5d788e15; données 283e60cd56ce8c533a471ee558a3d44432d69786. Suivi unique #881. Recette isolée GitHub, sans collecte supplémentaire ni redéploiement pour obtenir un statut vert. Les anciennes matrices restent datées ; les fichiers suite-2026-11-11 donnent les vues courantes.
 
 | Composition | Périmètre / usages autorisés | Actualisation | Blocage / pièce |

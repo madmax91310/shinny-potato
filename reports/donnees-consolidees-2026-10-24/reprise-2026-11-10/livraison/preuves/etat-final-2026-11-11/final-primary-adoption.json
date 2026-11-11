@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-11-11T04:12:55.823235+00:00",
+  "public": {
+    "sha": "c6d56dbb0a63269342c73e4464280979bf9660fa",
+    "dataSha": "17faf0f881f71d971f7dbb06d00fd4dbb57de4f5",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-11T04:11:45.581Z"
+  },
+  "effectiveDataSha": "17faf0f881f71d971f7dbb06d00fd4dbb57de4f5",
+  "expectedPrimaryBlobs": {
+    "scripts/source-snapshots/monthly-collection-status.json": "5b22a3a28003f3234e5eea1f66d20161f6540342",
+    "src/data/automated-etf-monthly.json": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+    "src/data/automated-monthly.json": "474142b727712860179ae8a73b6b9ab6946b70a8",
+    "src/data/monthly-fx.json": "3dc52f31d847a8905a93bd012358e14eac75131d",
+    "src/data/dca-complete-holdings.json": "b2c03dde14ca4774d462c1e2360b859c8ea1c0bd",
+    "src/data/dca-holdings-status.json": "1a31c663d6ca18254f194cfdf4136f625405fc34",
+    "src/data/exposure-etf-expansion-records.json": "8535013791bb22f7768e988998411072e7cfbbf6",
+    "src/data/automated-etf.json": "a59c63a2b898966a5726c89857c3439d3f7b38c8",
+    "src/data/automated-indices.json": "7a789f27605de5b8fba6c5a648c5aafc7cc0ae80",
+    "src/data/index-company-observations.json": "6b011ec65c2acf063deed288ab9aec7ccb3a1106",
+    "src/data/non-bond-etf-records.json": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+    "src/data/non-bond-levels.json": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+    "src/data/non-bond-monthly-records.json": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+    "src/data/non-bond-qualified-records.json": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+    "src/data/annual-fx.json": "9d38d0fa2ee43a0b804e858d82a74d33862dd53c",
+    "src/data/official-performance-currencies.json": "beb96851b2c29a6117ab3c840262c153e3737aa1"
+  },
+  "meaning": "Actual public source identities and current consumer-engine extraction; not individual vendor rechecks or a scheduled-run claim"
+}

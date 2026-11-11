@@ -1,0 +1,44 @@
+{
+  "readAt": "2026-11-11T04:40:55.788Z",
+  "mode": "real issuer acquisition in ordinary PR producer; no production recording or publication claimed",
+  "run": 42959356411,
+  "job": 130321924641,
+  "artifact": 13828219788,
+  "sourceHead": "f8a331db0ecf95f2d6fc92c1c488c5113d4f8423",
+  "observations": [
+    {
+      "asOf": "2026-11-09",
+      "basis": "fund",
+      "checkedAt": "2026-11-11T04:31:09.571741+00:00",
+      "identifiedEquityWeightPct": 99.46827,
+      "isin": "IE0008471009",
+      "publishedEquityWeightPct": 99.46827,
+      "rows": 50,
+      "sha256": "ca94faf8ec37c153d075bb956f6ae86fd311fa6d1ebee19f676b781be1218294",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    {
+      "asOf": "2026-11-09",
+      "basis": "fund",
+      "checkedAt": "2026-11-11T04:31:09.571741+00:00",
+      "identifiedEquityWeightPct": 99.45085,
+      "isin": "IE0008470928",
+      "publishedEquityWeightPct": 99.45085,
+      "rows": 50,
+      "sha256": "b79243c7083a31dd192835fbeb7e885a5ed30c67b058819f1a424a680a5aa355",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    {
+      "asOf": "2026-11-09",
+      "basis": "fund",
+      "checkedAt": "2026-11-11T04:31:09.571741+00:00",
+      "identifiedEquityWeightPct": 99.40662999999999,
+      "isin": "IE00B1YZSC51",
+      "publishedEquityWeightPct": 99.40662999999999,
+      "rows": 384,
+      "sha256": "8f3f64a42575a71a9b0b31fb6d8da17d9981f949a734d3893ee1825b5b2e9e6a",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    }
+  ],
+  "originalRunConclusion": "failure; individual observations preserved separately"
+}
