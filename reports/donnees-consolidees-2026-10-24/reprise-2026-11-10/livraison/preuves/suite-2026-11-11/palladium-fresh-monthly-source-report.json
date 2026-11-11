@@ -1,0 +1,27 @@
+{
+  "artifact": 13816743218,
+  "run": 42930361553,
+  "event": "workflow_dispatch",
+  "report": {
+    "checkedAt": "2026-11-11T00:34:00.365220+00:00",
+    "scope": {
+      "requestedIds": [
+        "etcPalladiumMarket"
+      ],
+      "expectedIds": [
+        "etcPalladiumMarket"
+      ],
+      "selection": "explicit"
+    },
+    "series": [
+      {
+        "id": "etcPalladiumMarket",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "449d2eeb97f1acc02db52cfb280188988dafe10c5d73822e5b13b6b47dddc98a"
+      }
+    ]
+  },
+  "recordingCommit": "283e60cd56ce8c533a471ee558a3d44432d69786"
+}

@@ -1,0 +1,22 @@
+{
+  "declaredAt": "2026-11-11T01:04:51.532079+00:00",
+  "probeCommit": "2cddc287407ca6c62d41a1b9ffdace36fc7f0dc8",
+  "targetRecordingCommit": "283e60cd56ce8c533a471ee558a3d44432d69786",
+  "expectedPrimaryBlobs": {
+    "scripts/source-snapshots/monthly-collection-status.json": "5b22a3a28003f3234e5eea1f66d20161f6540342",
+    "src/data/automated-etf-monthly.json": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+    "src/data/qualified-listing-records.json": "c8ab1dc1253b9243734a7909a70e0d450c7cf86c",
+    "src/data/dca-complete-holdings.json": "b2c03dde14ca4774d462c1e2360b859c8ea1c0bd",
+    "src/data/dca-holdings-status.json": "1a31c663d6ca18254f194cfdf4136f625405fc34",
+    "src/data/exposure-etf-expansion-records.json": "5472b426e71032233db17e348bc765c151143cba",
+    "src/data/automated-indices.json": "6f44d90f7f58199211fe2219608bf518e1b295df"
+  },
+  "expectedCodeBlobs": {
+    "src/data/holding-weight-basis.js": "35f906ea979521667ff81f2206c4d9290698d0ca",
+    "src/data/etf-cards.js": "590c18652b3c2a04c00e27c87f7ac0590da0595b",
+    "scripts/monthly-automation.json": "53111578d4ab205ff93ab25f9b70acb8dbc7fb3c",
+    "scripts/lib/data-qualification.mjs": "dedef494b97aeb92518eff8ce56fc4d491946a10",
+    "src/data/history-window-quality.js": "4ab78f299a05305459e15b5f9f6bec0679cea3ad"
+  },
+  "purpose": "Read-only public qualification and export; no financial source collection or production deployment is invoked"
+}

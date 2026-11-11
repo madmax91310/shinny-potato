@@ -1,0 +1,181 @@
+[
+  {
+    "artifact": 13784741849,
+    "run": 42845464106,
+    "event": "schedule",
+    "receipt": {
+      "schemaVersion": 1,
+      "commit": "b28fc20865defe23c14ebdc3743b521ccafb1962",
+      "files": {
+        "src/data/non-bond-etf-records.json": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+        "src/data/non-bond-levels.json": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+        "src/data/non-bond-monthly-records.json": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+        "src/data/non-bond-qualified-records.json": "2d6d710df195ffedf047702f8d5194a216b0cf2c"
+      }
+    },
+    "files": [
+      {
+        "path": "src/data/non-bond-etf-records.json",
+        "producerBlob": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+        "publicBlob": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+        "matchesOriginalProducer": true
+      },
+      {
+        "path": "src/data/non-bond-levels.json",
+        "producerBlob": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+        "publicBlob": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+        "matchesOriginalProducer": true
+      },
+      {
+        "path": "src/data/non-bond-monthly-records.json",
+        "producerBlob": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+        "publicBlob": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+        "matchesOriginalProducer": true
+      },
+      {
+        "path": "src/data/non-bond-qualified-records.json",
+        "producerBlob": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+        "publicBlob": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+        "matchesOriginalProducer": true
+      }
+    ]
+  },
+  {
+    "artifact": 13805585584,
+    "run": 42893015896,
+    "event": "push",
+    "receipt": {
+      "schemaVersion": 1,
+      "commit": "8a4a8c4a4bc31db983b78fbd366a31ce4e7bd948",
+      "files": {
+        "src/data/anniversary-levels.json": "adfca694ef47c030e386edccbede46f2bc298c05",
+        "src/data/auto-history-identities.json": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+        "src/data/automated-etf-monthly.json": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+        "src/data/automated-indices.json": "2f99578a4237c302f0a283f2e1c178082fc76c52",
+        "src/data/automated-monthly.json": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "src/data/monthly-fx.json": "99f318ba79e32444533e6599a3768367d64402e0",
+        "src/data/qualified-listing-records.json": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+        "src/data/ranking-histories.json": "9f27c08a760365c538c61e03caf0fe76def48837",
+        "src/data/shared-listing-identities.json": "54d08a304c4840e8fec33784f031e1b75a38bfec"
+      }
+    },
+    "files": [
+      {
+        "path": "src/data/anniversary-levels.json",
+        "producerBlob": "adfca694ef47c030e386edccbede46f2bc298c05",
+        "publicBlob": "022fd8b08025f42b0013faaec07200e29580d46d",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/auto-history-identities.json",
+        "producerBlob": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+        "publicBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/automated-etf-monthly.json",
+        "producerBlob": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+        "publicBlob": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/automated-indices.json",
+        "producerBlob": "2f99578a4237c302f0a283f2e1c178082fc76c52",
+        "publicBlob": "6f44d90f7f58199211fe2219608bf518e1b295df",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/automated-monthly.json",
+        "producerBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "publicBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "matchesOriginalProducer": true
+      },
+      {
+        "path": "src/data/monthly-fx.json",
+        "producerBlob": "99f318ba79e32444533e6599a3768367d64402e0",
+        "publicBlob": "3dc52f31d847a8905a93bd012358e14eac75131d",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/qualified-listing-records.json",
+        "producerBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+        "publicBlob": "c8ab1dc1253b9243734a7909a70e0d450c7cf86c",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/ranking-histories.json",
+        "producerBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+        "publicBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+        "matchesOriginalProducer": true
+      },
+      {
+        "path": "src/data/shared-listing-identities.json",
+        "producerBlob": "54d08a304c4840e8fec33784f031e1b75a38bfec",
+        "publicBlob": "51f161b62361f11d44151fc5ff865c60d3705647",
+        "matchesOriginalProducer": false
+      }
+    ]
+  },
+  {
+    "artifact": 13232852348,
+    "run": 41639923023,
+    "event": "push",
+    "receipt": {
+      "schemaVersion": 1,
+      "commit": "270cc03ff9dc0d35f7c06a7c618546c9a9b017a2",
+      "files": {
+        "src/data/auto-history-identities.json": "4197f506d6ea86b2f40922653c937e45106cecad",
+        "src/data/automated-etf-monthly.json": "595ce5c67ffcd5b68936bde042c7d3466c48086b",
+        "src/data/automated-monthly.json": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+        "src/data/dca-complete-holdings.json": "4ac8248d62009257112fa30d4a64f36de55aef82",
+        "src/data/dca-equity-exposures.json": "64e2d23b7b024192c9ab26346a91051b449d4912",
+        "src/data/qualified-exposure-etfs.json": "3dedb6e9dc0b6c4dd8d3833bde12983b6543481e",
+        "src/data/qualified-listing-records.json": "5ec0e848d0ba9eb793e75e95839e6772e3072bf1"
+      }
+    },
+    "files": [
+      {
+        "path": "src/data/auto-history-identities.json",
+        "producerBlob": "4197f506d6ea86b2f40922653c937e45106cecad",
+        "publicBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/automated-etf-monthly.json",
+        "producerBlob": "595ce5c67ffcd5b68936bde042c7d3466c48086b",
+        "publicBlob": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/automated-monthly.json",
+        "producerBlob": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+        "publicBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/dca-complete-holdings.json",
+        "producerBlob": "4ac8248d62009257112fa30d4a64f36de55aef82",
+        "publicBlob": "b2c03dde14ca4774d462c1e2360b859c8ea1c0bd",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/dca-equity-exposures.json",
+        "producerBlob": "64e2d23b7b024192c9ab26346a91051b449d4912",
+        "publicBlob": "78fc17bee6d606f8a163f697b54d54d844d661bf",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/qualified-exposure-etfs.json",
+        "producerBlob": "3dedb6e9dc0b6c4dd8d3833bde12983b6543481e",
+        "publicBlob": "7376c714fbb05898cb4ff42758348a5ca0dba41a",
+        "matchesOriginalProducer": false
+      },
+      {
+        "path": "src/data/qualified-listing-records.json",
+        "producerBlob": "5ec0e848d0ba9eb793e75e95839e6772e3072bf1",
+        "publicBlob": "c8ab1dc1253b9243734a7909a70e0d450c7cf86c",
+        "matchesOriginalProducer": false
+      }
+    ]
+  }
+]
