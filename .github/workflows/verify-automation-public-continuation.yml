@@ -1,0 +1,46 @@
+name: Verify public automation continuation (isolated)
+on:
+  push:
+    branches: ['probe/automation-public-final-20261111']
+    paths:
+      - '.github/workflows/verify-automation-public-continuation.yml'
+      - 'scripts/private-automation-continuation/**'
+permissions:
+  contents: write
+  actions: read
+  issues: write
+concurrency:
+  group: isolated-public-automation-20261111
+  cancel-in-progress: false
+jobs:
+  verify-public:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RECIPE_OUTPUT: ${{ runner.temp }}/automation-public-proof
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - name: Preserve isolated verifier before checkout of the actually served snapshot
+        run: |
+          cp scripts/private-automation-continuation/probe-runner.py "$RUNNER_TEMP/probe-runner.py"
+          cp scripts/private-automation-continuation/probe-extract.mjs "$RUNNER_TEMP/probe-extract.mjs"
+          cp scripts/private-automation-continuation/probe-public-browser.mjs "$RUNNER_TEMP/probe-public-browser.mjs"
+          python -m py_compile "$RUNNER_TEMP/probe-runner.py"
+          node --check "$RUNNER_TEMP/probe-extract.mjs"
+          node --check "$RUNNER_TEMP/probe-public-browser.mjs"
+      - name: Verify ordinary publication, live consumers and complete exports; archive in the existing follow-up
+        run: python "$RUNNER_TEMP/probe-runner.py"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: isolated-public-automation-proof-20261111
+          path: ${{ runner.temp }}/automation-public-proof
+          retention-days: 30
