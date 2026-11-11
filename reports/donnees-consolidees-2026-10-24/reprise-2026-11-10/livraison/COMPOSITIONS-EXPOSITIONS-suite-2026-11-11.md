@@ -21,3 +21,12 @@ CSV: [fonds et supports](compositions-expositions-suite-2026-11-11.csv), [indice
 
 
 Limite de supervision observée pendant la recette publique : « Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer. » La page et son export intégral ont fonctionné, sans erreur JavaScript, mais ce contrôle précis n’est pas déclaré réparé. Notre recette directe des données et outils ne le remplace pas. Preuve : [public-inbox-browser.json](preuves/suite-2026-11-11/public-inbox-browser.json).
+
+
+## Dernier raccord de publication observé
+
+Le run ordinaire **42940478653**, lancé manuellement, a enregistré `8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9`. Le transport `deploy-validated-pages.mjs` a réellement abouti : code `15a23e5235634fa363e958faf348fe5f5d788e15`, données `8512b011…`, identité de déploiement égale au snapshot de données et distincte du caller `283e60cd…`. Le contrôle public a vérifié les 383 fichiers. Le chemin `validated-data`, auparavant seulement testé pour sa nouvelle route de statut, est donc désormais exercé réellement dans GitHub. Cela reste un lancement manuel, pas un cron.
+
+Le delta depuis `283e60cd…` est un seul fichier d’expositions et 66 lignes, exclusivement `sha256` et `checkedAt`. Aucun cours, poids, identifiant, périmètre, convention ou date effective de photographie n’a changé. Les matrices financières précédentes restent datées ; les nouvelles empreintes et contrôles ne sont pas présentés comme de nouvelles compositions. Les vingt derniers parcours historiques publics ont été vérifiés sur ce nouveau snapshot, sans erreur JavaScript.
+
+Preuves séparées : [delta intégral qualifié](preuves/delta-8512-metadonnees.json), [exécution et publication](preuves/publication-8512-verifiee.json). Une fragilité du secours navigateur VanEck repérée dans le précédent run partiel est traitée dans **la PR #1231, encore en validation** : aucune réparation de cette branche n’est annoncée en production avant fusion et vérification.

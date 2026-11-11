@@ -1,0 +1,307 @@
+{
+  "run": 42940478653,
+  "event": "workflow_dispatch",
+  "recordingCommit": "8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9",
+  "sourceJob": 130260825258,
+  "publicationJob": 130261778864,
+  "steps": [
+    {
+      "id": 130260825258,
+      "name": "refresh",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_exposure_expansion.py'",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_exposure_publication.py'",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_country_allocation.py'",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Collect exact-share observations",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate expanded exposures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify DCA holdings in browser",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate collected observations",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 130261778864,
+      "name": "deploy / publish",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/test-validated-data-publisher.mjs",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/prepare-validated-data.mjs",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"15a23e5235634fa363e958faf348fe5f5d788e15\" --data \"8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9\"",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run audit:data-catalog",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Require the producer's exact validated observations after all generators",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Seal actual composite data",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual code and data identities",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/smoke-data-routes.mjs",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/configure-pages@v6.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-pages-artifact@v5.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Restore source identity for the publication order guard",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bash scripts/check-pages-head.sh",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/deploy-validated-pages.mjs",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify actual public data",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 130263569919,
+      "name": "deploy / publish-code",
+      "status": "completed",
+      "conclusion": "skipped",
+      "steps": []
+    },
+    {
+      "id": 130263570141,
+      "name": "report-failures",
+      "status": "completed",
+      "conclusion": "skipped",
+      "steps": []
+    }
+  ],
+  "verifiedLines": [
+    "2026-11-11T01:46:01.0195881Z Publishable Pages snapshot: 8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9; 0 newer file change(s) remain eligible for later validated publication",
+    "2026-11-11T01:46:01.8802784Z Pages artifact 13820058326: recorded build 8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9; caller 283e60cd56ce8c533a471ee558a3d44432d69786; deployment 8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9",
+    "2026-11-11T01:46:08.0468739Z Verified public code 15a23e5235634fa363e958faf348fe5f5d788e15, data 8512b0112a89c0bd8077301b4fa6f2c2cef7a3a9, 383 data files."
+  ],
+  "artifacts": [
+    {
+      "id": 13821025990,
+      "name": "data-publication-receipt",
+      "size": 313
+    },
+    {
+      "id": 13820711754,
+      "name": "verified-data-publication",
+      "size": 1512
+    },
+    {
+      "id": 13820357834,
+      "name": "exposure-expansion-observations",
+      "size": 30463
+    },
+    {
+      "id": 13820058326,
+      "name": "validated-data-pages",
+      "size": 48196543
+    }
+  ],
+  "meaning": "Ordinary manual producer run, not a cron. The custom validated-data transport actually ran successfully, with data identity8512 different from caller283 and code15a. Per-field source outcomes remain in the native artifact; a successful job is not certification of all financial fields."
+}
