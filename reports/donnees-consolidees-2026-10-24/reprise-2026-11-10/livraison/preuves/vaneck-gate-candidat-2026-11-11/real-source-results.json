@@ -1,0 +1,123 @@
+{
+  "rows": [
+    {
+      "isin": "IE00BMC38736",
+      "region": "uk/en",
+      "startedAt": "2026-11-11T02:30:27.451Z",
+      "sourceAttempted": true,
+      "requestedDocument": "https://www.vaneck.com/uk/en/library/fact-sheets/smh-fact-sheet.pdf",
+      "landing": "https://www.vaneck.com/uk/en/?returnUrl=%2Fuk%2Fen%2Flibrary%2Ffact-sheets%2Fsmh-fact-sheet.pdf",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "retail",
+          "role": "menuitem",
+          "value": "Retail Investor",
+          "label": "Retail Investor",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "id": "pi",
+          "role": "menuitem",
+          "value": "Professional Investor",
+          "label": "Professional Investor",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "role": null,
+          "value": null,
+          "label": "Accept & Continue",
+          "visible": true
+        }
+      ],
+      "gateInitialised": true,
+      "status": "succeeded",
+      "checkedAt": "2026-11-11T02:30:35.415Z",
+      "pdfSha256": "bdbb1fcb61ea087c6a747baee4344fd52eb4e69f9fb4f74a8ee9e6a9474a3930",
+      "bytes": 121852,
+      "identityExcerpt": "           BLOOMBERG            REUTERS                          IOPV\nEXCHANGE                                      CURRENCY                 ISIN             TICKER              TICKER              TICKER           SEDOL         SYMBOL\nLONDON STOCK EXCHANGE                             USD           IE00BMC38736               SMH               SMH LN              SMH.L         BMC3873         SMHUSIV\nLONDON STOCK EXCHANGE                            GBP            IE00BMC38736              SMGB              SMGB LN             SMGB.L          BLN9ZL6        SMHUSIV\nDEUTSCHE BÖRSE                ",
+      "financialQualification": "PDF transport and exact-share identity verified. Full financial parsing and production publication remain separate producer steps.",
+      "events": [
+        {
+          "type": "main-frame-commit",
+          "url": "https://www.vaneck.com/uk/en/?returnUrl=/uk/en/library/fact-sheets/smh-fact-sheet.pdf",
+          "at": "2026-11-11T02:30:28.645Z"
+        },
+        {
+          "type": "main-frame-commit",
+          "url": "https://www.vaneck.com/uk/en/?returnUrl=/uk/en/library/fact-sheets/smh-fact-sheet.pdf",
+          "at": "2026-11-11T02:30:29.742Z"
+        },
+        {
+          "type": "download",
+          "filename": "smh-fact-sheet.pdf",
+          "at": "2026-11-11T02:30:35.201Z"
+        }
+      ]
+    },
+    {
+      "isin": "IE00BMC38736",
+      "region": "fr/en",
+      "startedAt": "2026-11-11T02:30:35.444Z",
+      "sourceAttempted": true,
+      "requestedDocument": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+      "landing": "https://www.vaneck.com/fr/en/?returnUrl=%2Ffr%2Fen%2Flibrary%2Ffact-sheets%2Fsmh-fact-sheet.pdf",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "retail",
+          "role": "menuitem",
+          "value": "Individual Investor",
+          "label": "Individual Investor",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "id": "pi",
+          "role": "menuitem",
+          "value": "Professional Investor",
+          "label": "Professional Investor",
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "role": null,
+          "value": null,
+          "label": "Accept & Continue",
+          "visible": true
+        }
+      ],
+      "gateInitialised": true,
+      "status": "succeeded",
+      "checkedAt": "2026-11-11T02:30:38.478Z",
+      "pdfSha256": "38550d66c6e2425ef4ea57f8ff5982f2409840dd41c671e92734f3d3421e0b7c",
+      "bytes": 121405,
+      "identityExcerpt": "ANGE          BLOOMBERG             REUTERS                         IOPV\nEXCHANGE                                     CURRENCY                 ISIN             TICKER             TICKER               TICKER          SEDOL         SYMBOL\nLONDON STOCK EXCHANGE                            USD           IE00BMC38736              SMH                SMH LN              SMH.L        BMC3873        SMHUSIV\nLONDON STOCK EXCHANGE                            GBP           IE00BMC38736             SMGB               SMGB LN             SMGB.L         BLN9ZL6       SMHUSIV\nDEUTSCHE BÖRSE                     ",
+      "financialQualification": "PDF transport and exact-share identity verified. Full financial parsing and production publication remain separate producer steps.",
+      "events": [
+        {
+          "type": "main-frame-commit",
+          "url": "https://www.vaneck.com/fr/en/?returnUrl=/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+          "at": "2026-11-11T02:30:36.376Z"
+        },
+        {
+          "type": "main-frame-commit",
+          "url": "https://www.vaneck.com/fr/en/?returnUrl=/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+          "at": "2026-11-11T02:30:37.613Z"
+        },
+        {
+          "type": "download",
+          "filename": "smh-fact-sheet.pdf",
+          "at": "2026-11-11T02:30:38.384Z"
+        }
+      ]
+    }
+  ],
+  "sourceCode": "912a46c76c8cbd4a29ebecd3e19b038a3790299a",
+  "helperBlob": "ca61be9ca7aa9e9b17b7c9c869af79a2f23b2211",
+  "meaning": "Actual issuer requests in GitHub using the ordinary fallback module, not a production write or scheduled run."
+}
