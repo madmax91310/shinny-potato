@@ -7,7 +7,7 @@ const service={id:'collection:radar:insee',workflow,dataId:'radar:insee',name:'R
 const shared={...service,id:'collection:shared',tools:['Radar éditorial','Pouvoir d’achat']}
 const unknown={...service,id:'collection:unknown',dataId:'fund:holdings',tools:[]}
 const conflict={...shared,id:'radar:shared',workflow:undefined,kind:'conflict',impactScope:'asset'}
-for (const row of [service,{id:'monitor:radar'},{id:'monitor:radar-proofs',tools:['Données à revoir']},{workflow,id:'workflow:'+workflow},{workflow:'update-ai-portfolios.yml'}]) assert(workflowRetirement(row),JSON.stringify(row))
+for (const row of [service,{...service,dataId:'radar-source:insee-studies'},{id:'monitor:radar'},{id:'monitor:radar-proofs',tools:['Données à revoir']},{workflow,id:'workflow:'+workflow},{workflow:'update-ai-portfolios.yml'}]) assert(workflowRetirement(row),JSON.stringify(row))
 for (const row of [shared,unknown,conflict,{...service,impactScope:'asset'},{workflow:'active.yml',tools:['Radar éditorial']}]) assert.equal(workflowRetirement(row),null,JSON.stringify(row))
 
 const active=Object.fromEntries([service,shared,unknown,conflict,{...service,id:'monitor:radar',workflow:undefined}].map(r=>[r.id,r]))

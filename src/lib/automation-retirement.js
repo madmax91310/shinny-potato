@@ -8,7 +8,7 @@ export function workflowRetirement(row) {
   if (policy.status === 'disabled-by-request') {
     if (['monitor:radar','monitor:radar-proofs','critical:radar-coverage'].includes(row.id)) return policy
     if (row.tools?.some(tool=>tool!=='Radar éditorial') || row.impactScope==='asset') return null
-    if (row.dataId && !row.dataId.startsWith('radar:')) return null
+    if (row.dataId && !['radar:','radar-source:'].some(prefix=>row.dataId.startsWith(prefix))) return null
   }
   return policy
 }

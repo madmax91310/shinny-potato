@@ -20,7 +20,7 @@ def workflow_retirement(row, identifier=None):
             return policy
         if set(row.get('tools', [])) - {'Radar éditorial'} or row.get('impactScope') == 'asset':
             return None
-        if row.get('dataId') and not row['dataId'].startswith('radar:'):
+        if row.get('dataId') and not row['dataId'].startswith(('radar:', 'radar-source:')):
             return None
     return policy
 

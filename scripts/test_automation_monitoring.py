@@ -357,7 +357,8 @@ class StoppedRadarTests(unittest.TestCase):
             ('monitor:radar',{'workflow':None,'kind':'unobserved'}),
             ('monitor:radar-proofs',{'workflow':None,'kind':'monitoring','tools':['Données à revoir']}),
             ('workflow:'+self.workflow,{}),
-            ('collection:radar:insee',{'dataId':'radar:insee'})]}
+            ('collection:radar:insee',{'dataId':'radar:insee'}),
+            ('collection:radar-source:insee',{'dataId':'radar-source:insee-studies'})]}
         prior = {'revision':4,'active':old,'events':[{'revision':4,'at':NOW}],
                  'resolved':[{'id':'older-recovery'}],'retired':[{'id':'older-retirement'}]}
         state = {'workflows':{},'monitoring':prior}
