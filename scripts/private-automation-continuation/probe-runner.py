@@ -25,10 +25,33 @@ while True:
  pr=read(API+'/pulls/1234',True)
  assert pr['head']['sha']=='2c85f22f983fd4ed577e67a0388f04aaeade4ee2','PR source changed; new evidence needed'
  if pr['merged']:
-  EXPECTED=pr['merge_commit_sha'];TRIGGER=EXPECTED;break
+  TRIGGER=pr['merge_commit_sha'];assert TRIGGER=='869e8b6aaef0ea50f871a2fe0db9fe8d435b348a'
+  break
  if pr['state']=='closed':raise RuntimeError('PR closed without merge; do not claim production')
  if time.monotonic()>merge_deadline:raise RuntimeError('Validated merge not observed; no production assertion')
  print('WAITING_VALIDATED_PR_MERGE',pr['number'],flush=True);time.sleep(45)
+# First code869 validation succeeded, then its promotion correctly stopped on
+# identifiers acquired during that gate. The existing ordinary producer has
+# already selected the current data snapshot for its own complete validation.
+gate_dir=TEMP/'ordinary-code-gate';gate_dir.mkdir()
+r=subprocess.run(['gh','run','download','43009243190','-R','madmax91310/shinny-potato','-n','validated-gate-definition','-D',str(gate_dir)],capture_output=True,text=True);assert r.returncode==0,'New ordinary gate receipt unavailable; no code substitution allowed'
+receipt=json.loads(next(gate_dir.rglob('pages-gate-definition.json')).read_text());EXPECTED=receipt['codeSha'];assert EXPECTED=='a4f4f31489de2e42eb9fa308d47502794ed356dc';save('ordinary-revalidation-gate.json',receipt)
+save('code-publication-plan.json',{'mergedCode':TRIGGER,'expectedPublicCode':EXPECTED,'ordinaryRecoveryRun':43009243190,'firstMainRun':43009243105,'firstFailureJob':130504991190,'reason':'The first fully validated merge cannot adopt a data file containing an identifier not present in its frozen tree. Existing ordinary producer automatically reruns the full gate on the current snapshot; no manual supplier rerun, guard bypass or threshold change. The prior read-only verifier waited for the original merge SHA and has not executed its financial browser cases.','previousReadOnlyWaitRun':43006046324})
+run('git','fetch','--filter=blob:none','--depth=3','origin',EXPECTED,TRIGGER,stdout=subprocess.DEVNULL)
+os.environ.update(MERGED_CODE_SHA=TRIGGER,REVALIDATED_SNAPSHOT=EXPECTED)
+forensic=TEMP/'code-promotion-forensic';run('git','worktree','add','--detach',str(forensic),TRIGGER,stdout=subprocess.DEVNULL)
+try:
+ (forensic/'scripts/probe-automatic-promotion.mjs').write_text("import{writeFileSync}from'node:fs';import{compose}from'./compose-fallback-snapshot.mjs';import{automationPaths,classify}from'./classify-deploy-scope.mjs';import{execFileSync}from'node:child_process';const g=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();const code=process.env.MERGED_CODE_SHA,data=process.env.REVALIDATED_SNAPSHOT;const delta=g('diff','--name-only',code,data).split('\\n').filter(Boolean);if(!classify(delta,automationPaths()).dataOnly)throw Error('Unreviewed source code cannot replace the validated merge');const result=compose({published:code,data,allowed:automationPaths()});writeFileSync(process.env.RECIPE_OUTPUT+'/automatic-promotion-held-identifiers.json',JSON.stringify({mergedCode:code,selectedFullGate:data,changedDataPaths:delta,heldBack:result.heldBack,meaning:'Exact first-attempt guard reproduced in an isolated worktree. Full ordinary gate validates this new data snapshot; no unknown identifier guard or financial threshold is relaxed.'},null,2));console.log('Exact first code promotion held identifiers',JSON.stringify(result.heldBack));")
+ run('node','scripts/probe-automatic-promotion.mjs',cwd=forensic)
+finally:run('git','worktree','remove','--force',str(forensic),stdout=subprocess.DEVNULL)
+# Publish only this small immutable forensic receipt in the existing report
+# branch, so its precise identifier can be reviewed before final deployment.
+proof_path=FOLDER+'/automatic-promotion-held-identifiers.json';proof_bytes=(OUT/'automatic-promotion-held-identifiers.json').read_bytes()
+request={'message':'Record the exact automatic publication guard and current full revalidation scope','branch':BRANCH,'content':base64.b64encode(proof_bytes).decode()}
+res=subprocess.run(['gh','api','-X','PUT','repos/madmax91310/shinny-potato/contents/'+proof_path,'--input','-'],input=json.dumps(request),capture_output=True,text=True)
+assert res.returncode==0,'Forensic report path already exists or cannot be saved; preserve it for review'
+print('EXACT_GUARD_RECEIPT_SAVED',proof_path,flush=True)
+
 plan=json.loads((ROOT/'scripts/private-automation-continuation/metadata-candidate-plan.json').read_text());save('verification-plan.json',{'expectedCode':EXPECTED,'sourceMode':'Ordinary push producer; no recollection by this verifier','originalScope':plan});targets=plan['instruments'];deadline=time.monotonic()+5700
 while True:
  b=read(BASE+'build-info.json')
@@ -39,6 +62,8 @@ while True:
  if time.monotonic()>deadline:raise RuntimeError('Ordinary publication of fresh listing evidence not observed; no production claim')
  print('WAITING_CODE_AND_METADATA_PUBLICATION',b['sha'],b.get('dataSha'),flush=True);time.sleep(45)
 m=read(BASE+'data/publication-manifest.json');save('public-build-info.json',b);save('publication-manifest.json',m)
+gate_jobs=read(API+'/actions/runs/43009243190/jobs?per_page=100',True);required=[j for j in gate_jobs['jobs']if j['name'].startswith('deploy / publish-code / ')and j['name'].split('deploy / publish-code / ',1)[1]in ['current-snapshot','scope','build','python-checks','smoke','exposure-browser-check','browser-checks (0)','browser-checks (1)','browser-checks (2)','browser-checks (3)','tweet-midi-checks (0)','tweet-midi-checks (1)','tweet-midi-checks (2)','tweet-midi-checks (3)']];assert len(required)==14 and all(j['conclusion']=='success'for j in required),'Public snapshot must have its own full14successful validation';save('ordinary-revalidation-jobs.json',gate_jobs)
+
 run('git','fetch','--depth=1','origin',data,stdout=subprocess.DEVNULL);run('git','checkout','--detach',data)
 paths=['src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json'];blobs={p:git('rev-parse','HEAD:'+p) for p in paths};assert all(m['files'].get(p)==v for p,v in blobs.items());save('metadata-public-adoption.json',{'checkedAt':datetime.datetime.now(datetime.UTC).isoformat(),'public':b,'files':blobs,'newFields':{t['isin']:records[t['isin']]['listings'] for t in targets},'meaning':'Listing reference proofs, not new prices/NAV and not certification of all retained quote rows.'})
 runs=read(API+'/actions/workflows/update-instrument-metadata.yml/runs?branch=master&event=push&per_page=30',True)['workflow_runs'];rs=[r for r in runs if r['head_sha']==TRIGGER];assert len(rs)==1;rid=str(rs[0]['id']);save('ordinary-source-run.json',rs[0]);save('ordinary-source-jobs.json',read(API+'/actions/runs/'+rid+'/jobs?per_page=100',True));save('ordinary-source-artifacts.json',read(API+'/actions/runs/'+rid+'/artifacts?per_page=100',True))
