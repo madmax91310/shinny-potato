@@ -38,3 +38,5 @@ assert(!result.pairs.some(p=>p.overlap!=null),'An unqualified ranking cannot pro
 const bad={...ranked,navReconciliation:native.navReconciliation}
 assert(!qualifyHoldings(bad,{isin},reference,now).complete,'Pasting a different book’s accounting does not prove the ranking denominator')
 console.log('WisdomTree: same-date financial mismatch reproduced, retained/reread ranking refused without weight edits, proved native book preserved, existing supervision incident produced.')
+
+await import('./test-ranking-publication-weights.mjs')

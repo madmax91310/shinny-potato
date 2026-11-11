@@ -1,3 +1,4 @@
+import {unqualifiedFundRankingWeights} from '../../src/data/holding-weight-basis.js'
 import RULES from '../data-qualification-rules.json' with {type:'json'}
 import {outsideEquityClassification} from './dca-asset-scope.mjs'
 
@@ -67,6 +68,9 @@ export function qualifyCoverage(row,{record={},holdingStatus,holdingSource,metad
   else {actionState='unqualified';reason=identityReason;}
  }
  if(row.diagnostic?.code==='retained-source-failure'&&actionState==='current')actionState='collection-error';
+ if(row.field==='holdings'&&actionState==='current'&&unqualifiedFundRankingWeights(record.holdings)){
+  actionState='unqualified';reason='Classement émetteur disponible et conservé ; dénominateur NAV des poids du fonds et liquidités exclues non qualifiés. Concentration, principales positions de présentation et comparaison refusées ; pays et secteurs indépendants conservés.';
+ }
  const passive=['current','archived','not-applicable','outside-equity-scope','waiting-first-year','waiting-publication'];
  const actions={
   'connector-needed':'Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.',

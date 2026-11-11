@@ -1,3 +1,4 @@
+import { unqualifiedFundRankingWeights } from '../../../data/holding-weight-basis.js'
 import { COMPARISON_ETF_DETAILS } from '../../../data/comparison-etf-details.js'
 import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
 import { FRENCH_CHARACTERISTIC_LABELS } from '../../../data/french-characteristics.js'
@@ -16,7 +17,7 @@ export function getComparisonComposition(isin, field) {
   const observation = AUTOMATED_ETF[isin]?.[field]
   const basis = observation?.basis ?? (field === 'countries' ? details?.countriesBasis : details?.basis)
   const netAssets = observation?.weightConvention === 'signed-net-assets-reconciled-holdings'
-  const rows = comparisonCompositionRows([...(details?.[field] ?? [])], netAssets)
+  const rows = field === 'holdings' && unqualifiedFundRankingWeights(observation) ? [] : comparisonCompositionRows([...(details?.[field] ?? [])], netAssets)
   return {
     rows, netAssets, hasNegativeBalance: netAssets && rows.some(([,value]) => value < 0),
     asOf: details?.[`${field}AsOf`] ?? details?.asOf,
