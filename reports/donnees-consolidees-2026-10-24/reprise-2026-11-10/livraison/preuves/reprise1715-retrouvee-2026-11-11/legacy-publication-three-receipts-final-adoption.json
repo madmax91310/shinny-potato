@@ -1,0 +1,194 @@
+{
+  "checkedAt": "2026-11-10T23:11:28.387856+00:00",
+  "rawBuildInfo": {
+    "sha": "9ec3be3197264ee1cb55ed7ba47d34ab44d8f552",
+    "builtAt": "2026-11-10T22:20:09Z"
+  },
+  "effectiveDataSha": "9ec3be3197264ee1cb55ed7ba47d34ab44d8f552",
+  "receipts": [
+    {
+      "run": 41639923023,
+      "artifact": 13232852348,
+      "recordedCommit": "270cc03ff9dc0d35f7c06a7c618546c9a9b017a2",
+      "files": [
+        {
+          "path": "src/data/auto-history-identities.json",
+          "producerBlob": "4197f506d6ea86b2f40922653c937e45106cecad",
+          "recordedCurrentBlob": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+          "publicBlob": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": false
+        },
+        {
+          "path": "src/data/automated-etf-monthly.json",
+          "producerBlob": "595ce5c67ffcd5b68936bde042c7d3466c48086b",
+          "recordedCurrentBlob": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+          "publicBlob": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": false
+        },
+        {
+          "path": "src/data/automated-monthly.json",
+          "producerBlob": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+          "recordedCurrentBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+          "publicBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": false
+        },
+        {
+          "path": "src/data/dca-complete-holdings.json",
+          "producerBlob": "4ac8248d62009257112fa30d4a64f36de55aef82",
+          "recordedCurrentBlob": "606ac552cc31aff13ab556421e2a48f74c4ed02f",
+          "publicBlob": "606ac552cc31aff13ab556421e2a48f74c4ed02f",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": false
+        },
+        {
+          "path": "src/data/dca-equity-exposures.json",
+          "producerBlob": "64e2d23b7b024192c9ab26346a91051b449d4912",
+          "recordedCurrentBlob": "66debedb5077d4a4ea1361464e4e6956169ee820",
+          "publicBlob": "66debedb5077d4a4ea1361464e4e6956169ee820",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": false
+        },
+        {
+          "path": "src/data/qualified-exposure-etfs.json",
+          "producerBlob": "3dedb6e9dc0b6c4dd8d3833bde12983b6543481e",
+          "recordedCurrentBlob": "e7bdc136207dc83543c227943e7c2be75c399362",
+          "publicBlob": "e7bdc136207dc83543c227943e7c2be75c399362",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": false
+        },
+        {
+          "path": "src/data/qualified-listing-records.json",
+          "producerBlob": "5ec0e848d0ba9eb793e75e95839e6772e3072bf1",
+          "recordedCurrentBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+          "publicBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": false
+        }
+      ],
+      "meaning": "Current adoption verified, old failed attempt remains failed. Changed files require individual source/field qualification; a file-level match is not a certificate for every field."
+    },
+    {
+      "run": 42845464106,
+      "artifact": 13784741849,
+      "recordedCommit": "b28fc20865defe23c14ebdc3743b521ccafb1962",
+      "files": [
+        {
+          "path": "src/data/non-bond-etf-records.json",
+          "producerBlob": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+          "recordedCurrentBlob": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+          "publicBlob": "43045779e05ac1c80ea1ce8ce0ffe602089d41a8",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/non-bond-levels.json",
+          "producerBlob": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+          "recordedCurrentBlob": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+          "publicBlob": "def05b1537bf9329c03e7a205d44e66dd7d14b74",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/non-bond-monthly-records.json",
+          "producerBlob": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+          "recordedCurrentBlob": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+          "publicBlob": "58a14a68511ca474db7f9b1d118856bad5b61fb2",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/non-bond-qualified-records.json",
+          "producerBlob": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+          "recordedCurrentBlob": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+          "publicBlob": "2d6d710df195ffedf047702f8d5194a216b0cf2c",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        }
+      ],
+      "meaning": "Current adoption verified, old failed attempt remains failed. Changed files require individual source/field qualification; a file-level match is not a certificate for every field."
+    },
+    {
+      "run": 42893015896,
+      "artifact": 13805585584,
+      "recordedCommit": "8a4a8c4a4bc31db983b78fbd366a31ce4e7bd948",
+      "files": [
+        {
+          "path": "src/data/anniversary-levels.json",
+          "producerBlob": "adfca694ef47c030e386edccbede46f2bc298c05",
+          "recordedCurrentBlob": "adfca694ef47c030e386edccbede46f2bc298c05",
+          "publicBlob": "adfca694ef47c030e386edccbede46f2bc298c05",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/auto-history-identities.json",
+          "producerBlob": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+          "recordedCurrentBlob": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+          "publicBlob": "f847be7b4c48323361f5f6436abad8b421cad3ca",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/automated-etf-monthly.json",
+          "producerBlob": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+          "recordedCurrentBlob": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+          "publicBlob": "e4f7712d13ca938587f1f6409a5aca73b3ad5952",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/automated-indices.json",
+          "producerBlob": "2f99578a4237c302f0a283f2e1c178082fc76c52",
+          "recordedCurrentBlob": "2f99578a4237c302f0a283f2e1c178082fc76c52",
+          "publicBlob": "2f99578a4237c302f0a283f2e1c178082fc76c52",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/automated-monthly.json",
+          "producerBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+          "recordedCurrentBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+          "publicBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/monthly-fx.json",
+          "producerBlob": "99f318ba79e32444533e6599a3768367d64402e0",
+          "recordedCurrentBlob": "99f318ba79e32444533e6599a3768367d64402e0",
+          "publicBlob": "99f318ba79e32444533e6599a3768367d64402e0",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/qualified-listing-records.json",
+          "producerBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+          "recordedCurrentBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+          "publicBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/ranking-histories.json",
+          "producerBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+          "recordedCurrentBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+          "publicBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        },
+        {
+          "path": "src/data/shared-listing-identities.json",
+          "producerBlob": "54d08a304c4840e8fec33784f031e1b75a38bfec",
+          "recordedCurrentBlob": "54d08a304c4840e8fec33784f031e1b75a38bfec",
+          "publicBlob": "54d08a304c4840e8fec33784f031e1b75a38bfec",
+          "currentRecordedEqualsPublic": true,
+          "sameAsProducer": true
+        }
+      ],
+      "meaning": "Current adoption verified, old failed attempt remains failed. Changed files require individual source/field qualification; a file-level match is not a certificate for every field."
+    }
+  ]
+}

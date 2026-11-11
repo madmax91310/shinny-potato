@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-11-10T23:11:28.387856+00:00",
+  "build": {
+    "sha": "9ec3be3197264ee1cb55ed7ba47d34ab44d8f552",
+    "builtAt": "2026-11-10T22:20:09Z"
+  },
+  "effectiveDataSha": "9ec3be3197264ee1cb55ed7ba47d34ab44d8f552",
+  "originalReceiptCommit": "7f940971992c787a2737fcf1e729eee4c22e3463",
+  "proof": "Current primary byte identities on the public manifest, not a successful outcome of the old failed attempt; retained source dates and supplier failures remain separate.",
+  "rows": [
+    {
+      "path": "public/data/holdings-discovery.json",
+      "initialProducerBlob": "4c050a0aa49a5e33c628b0f232c5af4f31a692d0",
+      "currentRecordedBlob": "35169a7048238b048e04f8fb179bf635701ef09c",
+      "publishedBlob": "35169a7048238b048e04f8fb179bf635701ef09c",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "initialProducerBlob": "1a25d421cdfe2b58d51df06a6f12674cd548bfde",
+      "currentRecordedBlob": "29f0cb4b37a0aa0183bc8b1de8d605b31054bdbc",
+      "publishedBlob": "29f0cb4b37a0aa0183bc8b1de8d605b31054bdbc",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "initialProducerBlob": "17c398d8625eeb2d33adbbec283344e945441d52",
+      "currentRecordedBlob": "606ac552cc31aff13ab556421e2a48f74c4ed02f",
+      "publishedBlob": "606ac552cc31aff13ab556421e2a48f74c4ed02f",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/dca-equity-exposures.json",
+      "initialProducerBlob": "e9a47b31087f3f5df662670ade09fe8be09bf72e",
+      "currentRecordedBlob": "66debedb5077d4a4ea1361464e4e6956169ee820",
+      "publishedBlob": "66debedb5077d4a4ea1361464e4e6956169ee820",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/dca-holdings-status.json",
+      "initialProducerBlob": "94e52dc506a53016428cbcc84f8b3e04abb8dd03",
+      "currentRecordedBlob": "bf7d1dfa5dd7a543e87378ba02e9b1b4e1289c2a",
+      "publishedBlob": "bf7d1dfa5dd7a543e87378ba02e9b1b4e1289c2a",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/dca-security-classifications.json",
+      "initialProducerBlob": "1ed03550a5c11e5cdd3a23c1ef65b54275696413",
+      "currentRecordedBlob": "e3c3e99a5e03ffa41114681fed428bcbad040667",
+      "publishedBlob": "e3c3e99a5e03ffa41114681fed428bcbad040667",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/exposure-sleeves.json",
+      "initialProducerBlob": "5c10bc247063449b2df672450b5be62ae6091119",
+      "currentRecordedBlob": "5ccbfa679d751019edf10656f36dc5596b7c7dae",
+      "publishedBlob": "5ccbfa679d751019edf10656f36dc5596b7c7dae",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/qualified-exposure-etfs.json",
+      "initialProducerBlob": "015e97044558658030ffdf8e8a7d939f6c6f65d4",
+      "currentRecordedBlob": "e7bdc136207dc83543c227943e7c2be75c399362",
+      "publishedBlob": "e7bdc136207dc83543c227943e7c2be75c399362",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "initialProducerBlob": "e9634d64f01e78be6c14685347237e7d317cd098",
+      "currentRecordedBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+      "publishedBlob": "899df42e9ab37ee3c02b39f0c73a9b37b714e450",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": false
+    },
+    {
+      "path": "src/data/security-identifier-observations.json",
+      "initialProducerBlob": "ba0bcdf2a1d47c0b5e466ff8f1eeaf6c1d39ba1f",
+      "currentRecordedBlob": "ba0bcdf2a1d47c0b5e466ff8f1eeaf6c1d39ba1f",
+      "publishedBlob": "ba0bcdf2a1d47c0b5e466ff8f1eeaf6c1d39ba1f",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": true
+    },
+    {
+      "path": "src/data/vanguard-equity-underliers.json",
+      "initialProducerBlob": "98fd366b7a8a005f9ada9e01b09a12b02c6293b5",
+      "currentRecordedBlob": "98fd366b7a8a005f9ada9e01b09a12b02c6293b5",
+      "publishedBlob": "98fd366b7a8a005f9ada9e01b09a12b02c6293b5",
+      "recordedEqualsPublished": true,
+      "unchangedSinceInitialProducer": true
+    }
+  ]
+}
