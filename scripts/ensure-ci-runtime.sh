@@ -46,7 +46,7 @@ case "${1:-}" in
     fi
     # APT may otherwise report success after failing to refresh an index.
     timeout 180s sudo apt-get -o Acquire::Retries=2 -o APT::Update::Error-Mode=any update
-    timeout 180s sudo apt-get -o Acquire::Retries=2 install -y --no-install-recommends poppler-utils
+    timeout 180s sudo apt-get -o Acquire::Retries=2 install -y poppler-utils
     pdftotext -v
     pdfinfo -v
     ;;
