@@ -16,6 +16,7 @@ permissions:
 concurrency:
   group: etf-flows-qualification-${{ github.ref }}
   cancel-in-progress: false
+  queue: max
 jobs:
   qualification:
     runs-on: ubuntu-26.04
