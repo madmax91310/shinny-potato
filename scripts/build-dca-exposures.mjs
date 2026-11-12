@@ -23,7 +23,7 @@ const mapping = {equalweight:'IE00BLNMYC90',robotics:'IE00BYZK4552',ai:'IE00BGV5
  // Or, argent, Bitcoin et Ethereum : parts exactes des registres (mêmes ETC/ETP que le Générateur), sans exposition actions.
  gold:'IE00B4ND3602',silver:'IE00B4NCWG09',btc:'GB00BLD4ZL17',eth:'GB00BLD4ZM24'}
 const aliasesByIsin=Object.fromEntries(Object.entries(mapping).map(([asset,isin])=>[isin,asset]))
-const allMapping={...mapping,...Object.fromEntries(Object.keys(exposureFunds).filter(isin=>!aliasesByIsin[isin]).map(isin=>[isin,isin]))}
+const allMapping={...mapping,...Object.fromEntries(Object.keys(exposureFunds).filter(isin=>!aliasesByIsin[isin]&&!exposureFunds[isin].internalDependencyOnly).map(isin=>[isin,isin]))}
 const catalog={}
 const holdings={}
 const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])=>{
@@ -51,7 +51,7 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
   // Use the shared qualified contract; issuer identity alone never proves GICS
   // or country-of-risk equivalence. Fund/index scopes remain separate.
   const compatibility=observation.compatibility||`${observation.classificationMetadata?.id || `${field}-support-${isin}`}:${observation.basis}`
-  record[field]={asOf:observation.asOf,basis:observation.basis,sourceUrl:observation.sourceUrl,sourceUrls:observation.sourceUrls,method:observation.method||observation.classificationMetadata?.method,classificationLabel:observation.classificationMetadata?.label,compatibility,rows:observation.rows.map(r=>({name:r.label||r.name,weightPct:r.weightPct}))}
+  record[field]={asOf:observation.asOf,basis:observation.basis,sourceUrl:observation.sourceUrl,sourceUrls:observation.sourceUrls,method:observation.method||observation.classificationMetadata?.method,classificationLabel:observation.classificationMetadata?.label,compatibility,...(observation.dependencies?{dependencies:observation.dependencies,parentPortfolioEvidence:observation.parentPortfolioEvidence,scope:observation.scope}:{}),rows:observation.rows.map(r=>({name:r.label||r.name,weightPct:r.weightPct}))}
  }
  const equityCharts=!synthetic&&equityChartObservations(complete)
  if(equityCharts&&!record.outsideClassification)Object.assign(record,equityCharts)
