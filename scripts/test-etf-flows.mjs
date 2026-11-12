@@ -45,3 +45,10 @@ for(const edited of [text.replace('+5,23','+8,23'),text.replace('−628,5','+628
 assert(text.includes('sélection'));assert(text.includes('flux nets'));assert(!text.includes('performance'))
 assert.equal(signedFlow(-628500000),'−628,5 M€')
 console.log('ETF flows: signed amounts, units, exact dates, rights/scope, contradictions, archive gate, duplicates, retention and text evidence passed. Real fixture remains unqualified.')
+
+// Explicit source zero is admissible; missing data is still rejected above.
+const zeroContract={...record,rows:[{...record.rows[0],raw:'+0 EUR',amount:0,evidence:'Valeur nulle simulée pour le contrat, pas une donnée du fournisseur.'}]}
+assert.deepEqual(validateObservation(zeroContract,now),[])
+const zeroText=buildFlowTweet(zeroContract,zeroContract.rows,{archive:true})
+assert(zeroText.includes('flux net est nul'));assert(!zeroText.includes('ont reçu des apports'))
+assert.deepEqual(checkFlowText(zeroText,zeroContract,zeroContract.rows,true),[])

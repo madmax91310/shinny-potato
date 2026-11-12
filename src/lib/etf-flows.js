@@ -79,7 +79,7 @@ export function buildFlowTweet(o, rows, {archive = false} = {}) {
 ${periodLabel(o).replace(/^du /, 'Du ')}, voici une sélection de flux nets des ${publicScope(o)} :
 ${rows.map(r => `${r.label} : ${signedFlow(r.amount, o.currency)}`).join('\n')}
 
-${rows.some(r => r.amount < 0) && rows.some(r => r.amount > 0) ? 'Des apports et des retraits coexistent.' : rows.every(r => r.amount >= 0) ? 'Ces expositions ont reçu des apports nets.' : 'Ces expositions ont enregistré des retraits nets.'}
+${rows.some(r => r.amount < 0) && rows.some(r => r.amount > 0) ? 'Des apports et des retraits coexistent.' : rows.some(r => r.amount === 0) ? 'Au moins un flux net est nul dans cette sélection.' : rows.every(r => r.amount > 0) ? 'Ces expositions ont reçu des apports nets.' : 'Ces expositions ont enregistré des retraits nets.'}
 Ce ne sont pas des rendements.
 Quel flux vous interpelle ?
 Pas un conseil financier.`
