@@ -19,6 +19,7 @@ export default function App() {
   const o = observations.find(item => item.id === id)
   const [ids, setIds] = useState(() => o?.rows.slice(0,1).map(r => r.id) ?? [])
   const [archive, setArchive] = useState(false), [edited, setEdited] = useState(null)
+  const [previousDraft, setPreviousDraft] = useState('')
   const [longText, setLongText] = useState(false), [approved, setApproved] = useState(false)
   const [input, setInput] = useState(() => JSON.stringify(blankObservation(), null, 2))
   const [message, setMessage] = useState(initial.error), [view, setView] = useState('settings')
@@ -38,7 +39,11 @@ export default function App() {
     const { renderFlowImage } = await import('./image.js')
     return renderFlowImage(o, rows, archive)
   }, [o, rows, archive])
-  function reset() { setEdited(null); setApproved(false); setMessage('') }
+  function reset() {
+    if (edited !== null) setPreviousDraft(edited)
+    setEdited(null); setApproved(false)
+    setMessage(edited !== null ? 'Ton texte précédent est conservé dans « Brouillon précédent ».' : '')
+  }
   function choose(next) { setId(next); setIds(observations.find(item => item.id === next)?.rows.slice(0,1).map(r => r.id) ?? []); setArchive(false); reset() }
   function toggle(next) { setIds(next); reset() }
   function importRecord() {
@@ -48,6 +53,7 @@ export default function App() {
       const nextLocal = all.filter(item => !FLOW_DATA.observations.some(p => p.id === item.id))
       const saved = saveFlows(nextLocal, raw.current)
       if (!saved.error) raw.current = saved.raw
+      if (edited !== null) setPreviousDraft(edited)
       setLocal(nextLocal); setId(record.id); setIds(record.rows.slice(0,1).map(r => r.id)); setArchive(false); setEdited(null); setApproved(false)
       setMessage(saved.error || 'Observation validée et enregistrée sur cet appareil. Elle n’est pas partagée avec le dépôt.')
     } catch (error) { setMessage(error.message) }
@@ -74,7 +80,7 @@ export default function App() {
         <Card><h2>Ajouter une observation sourcée</h2><p>Le JSON conserve les preuves pour chaque ligne. Utilise une source autorisant la réutilisation et documente le domicile ou la cotation en Europe. « Europe » comme exposition ne suffit pas.</p><details><summary>Guide des champs</summary><p>Dates : YYYY-MM-DD ; horodatages UTC : YYYY-MM-DDTHH:mm:ssZ. metric : net-flows ; unit : currency. basis : europe-domiciled ou europe-listed. rightsStatus : licensed ou open, avec preuve. group : asset, geography, sector ou fund. raw : montant explicitement signé, par exemple −81,9 MEUR ; amount : valeur signée en euros ou dollars, jamais un encours. Le libellé original et l’extrait justificatif restent dans originalLabel et evidence. Une 1W exige ses bornes exactes. Les classements sont toujours présentés comme des sélections.</p></details><label>Observation JSON<textarea aria-label="Observation JSON" className="flows-json" value={input} onChange={e => setInput(e.target.value)} spellCheck={false} /></label><Button onClick={importRecord}>Vérifier et enregistrer</Button><p>Stockage local à cet appareil. Pour partager une semaine avec l’application, utilise le script d’import du dépôt puis une PR. Garde une copie de ton JSON.</p></Card>
         <Card><h2>Sources et vérifications</h2><p><a href={FLOW_DATA.collection.latestCandidate.url} target="_blank" rel="noreferrer">Dernier récap ETF Express repéré</a> · <a href={FLOW_DATA.collection.reviewUrl} target="_blank" rel="noreferrer">Conditions de réutilisation</a> · <a href="https://www.trackinsight.com/services/data-services" target="_blank" rel="noreferrer">Services de données Trackinsight</a></p><p>ETF Express restitue Trackinsight : ce ne sont pas deux confirmations indépendantes. Les produits matières premières et crypto de ces récapitulatifs ne sont pas assimilés à des ETF.</p>{o && <><a href={o.source.url} target="_blank" rel="noreferrer">{o.source.publisher} · {o.source.provider}</a><p>{o.source.locator}</p><p>Périmètre : {o.universe.evidence}</p><p>Période : {o.periodEvidence}</p><p>Droits : {o.source.rightsEvidence}</p>{rows.map(r => <details key={r.id}><summary>{r.originalLabel}</summary><p>{r.raw} · {r.evidence}</p></details>)}</>}</Card>
       </div>
-      <Card className="tool-preview"><h2>Texte à publier</h2><label>Tweet<textarea aria-label="Tweet" value={text} onChange={e => {setEdited(e.target.value); setApproved(false)}} disabled={!o} /></label><p>{weighted} / 280 caractères pondérés</p><label className="flows-check"><input type="checkbox" checked={longText} onChange={e => {setLongText(e.target.checked); setApproved(false)}} />Autoriser un texte long (compte X compatible requis)</label><Button variant="secondary" disabled={!o} onClick={reset}>Rétablir le texte généré</Button>{textIssues.map(issue => <p role="alert" key={issue}>{issue}</p>)}<label className="flows-check"><input type="checkbox" checked={approved} onChange={e => setApproved(e.target.checked)} disabled={!canImage || !!textIssues.length} />J’ai relu le texte, les flux et le périmètre.</label><p>Les lignes chiffrées restent exactes. La rédaction autour de ces lignes est modifiable.</p></Card>
+      <Card className="tool-preview"><h2>Texte à publier</h2><label>Tweet<textarea aria-label="Tweet" value={text} onChange={e => {setEdited(e.target.value); setApproved(false)}} disabled={!o} /></label><p>{weighted} / 280 caractères pondérés</p><label className="flows-check"><input type="checkbox" checked={longText} onChange={e => {setLongText(e.target.checked); setApproved(false)}} />Autoriser un texte long (compte X compatible requis)</label><Button variant="secondary" disabled={!o} onClick={reset}>Rétablir le texte généré</Button>{previousDraft && <details><summary>Brouillon précédent</summary><p>Texte personnel non contrôlé, conservé pendant cette session.</p><textarea aria-label="Brouillon précédent" readOnly value={previousDraft} /></details>}{textIssues.map(issue => <p role="alert" key={issue}>{issue}</p>)}<label className="flows-check"><input type="checkbox" checked={approved} onChange={e => setApproved(e.target.checked)} disabled={!canImage || !!textIssues.length} />J’ai relu le texte, les flux et le périmètre.</label><p>Les lignes chiffrées restent exactes. La rédaction autour de ces lignes est modifiable.</p></Card>
     </ToolWorkspace>
     {message && <p className="flows-feedback" role="status" aria-live="polite">{message}</p>}
   </div>
