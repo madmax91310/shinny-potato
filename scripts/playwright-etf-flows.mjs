@@ -5,6 +5,7 @@ import {chromium} from 'playwright'
 import {expect} from 'playwright/test'
 import {waitPreview} from './wait-preview.mjs'
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/etf-flows/2026-10-12.json',import.meta.url)))
+const production = JSON.parse(readFileSync(new URL('../src/data/etf-flows.json',import.meta.url)))
 // Real historical numbers, with explicitly simulated contract metadata in this browser only.
 const record = structuredClone(fixture)
 Object.assign(record,{id:'test-browser-archive',fixture:false,status:'validated',validatedAt:'2026-11-12T21:15:00Z'})
@@ -23,7 +24,8 @@ try {
   const page=await context.newPage(), errors=[];page.setDefaultTimeout(10000);page.on('pageerror',e=>errors.push(e.message))
   await page.goto(base+'/flux-etf',{waitUntil:'networkidle'})
   await expect(page.getByRole('heading',{level:1})).toContainText('Où va l’argent des ETF ?')
-  await expect(page.getByText('Aucune semaine validée.',{exact:false})).toBeVisible()
+  if (!production.observations.length) await expect(page.getByText('Aucune semaine validée.',{exact:false})).toBeVisible()
+  else for (const observation of production.observations) await expect(page.locator('[data-selector][aria-label="Semaine enregistrée"]').locator(`button[data-value="${observation.id}"]`)).toHaveCount(1)
   await expect(page.getByRole('button',{name:'Copier le tweet',exact:true})).toBeDisabled()
   const json=page.getByRole('textbox',{name:'Observation JSON'})
   await json.fill(JSON.stringify(fixture));await page.getByRole('button',{name:'Vérifier et enregistrer'}).click()
@@ -66,7 +68,7 @@ try {
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
   await expect(tweet).toHaveValue('')
   if(width<700) await page.getByRole('button',{name:'Réglages',exact:true}).click()
-  await choices.getByRole('button',{name:/du 12\/10\/2026/}).click()
+  await choices.locator('button[data-value="test-browser-archive"]').click()
   await page.reload({waitUntil:'networkidle'})
   await expect(page.getByRole('checkbox',{name:'Préparer une archive explicitement datée'})).not.toBeChecked()
   await expect(page.getByRole('button',{name:'Copier le tweet',exact:true})).toBeDisabled()
