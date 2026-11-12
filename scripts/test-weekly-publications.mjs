@@ -30,17 +30,33 @@ try {
   // Keep the explicit approved schedule as well as comparing all registry notes,
   // titles and exact hrefs in the shared check.
   assert.deepEqual(snapshot, [
-    [0,'morning',[]], [0,'midday',['/performance-depuis']], [0,'evening',['/tweets-factsheets','/generateur-portefeuilles']],
-    [1,'morning',[]], [1,'midday',['/classements-performances']], [1,'evening',['/le-dca-de','/le-budget-de']],
-    [2,'morning',[]], [2,'midday',['/calculateur-investissement']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
-    [3,'morning',[]], [3,'midday',['/classements-performances']], [3,'evening',['/banque-tweets']],
-    [4,'morning',[]], [4,'midday',['/fiches-etf','/comparatif-etf']], [4,'evening',['/le-budget-de']],
-    [5,'morning',[]], [5,'midday',[]], [5,'evening',[]],
-    [6,'morning',['/banque-tweets']], [6,'midday',['/portefeuilles-investisseurs']], [6,'evening',['/fiches-pratiques','/faits-marquants-marches','/il-y-a-x-ans']],
+    [0,'morning',[]], [0,'midday',['/performance-depuis','/presentations','/idees-classements']], [0,'evening',['/tweets-factsheets','/generateur-portefeuilles']],
+    [1,'morning',[]], [1,'midday',['/classements-performances','/fiche-lexique','/idees-classements']], [1,'evening',['/le-dca-de','/le-budget-de']],
+    [2,'morning',[]], [2,'midday',['/calculateur-investissement','/idees-classements']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
+    [3,'morning',[]], [3,'midday',['/classements-performances','/comparateur-indices','/idees-classements']], [3,'evening',['/banque-tweets']],
+    [4,'morning',[]], [4,'midday',['/fiches-etf','/comparatif-etf','/idees-classements']], [4,'evening',['/le-budget-de']],
+    [5,'morning',[]], [5,'midday',['/idees-classements']], [5,'evening',[]],
+    [6,'morning',['/banque-tweets']], [6,'midday',['/portefeuilles-investisseurs','/il-y-a-x-ans','/idees-classements']], [6,'evening',['/fiches-pratiques','/faits-marquants-marches','/il-y-a-x-ans']],
   ])
-  assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices|Dilemme/}).count(), 0)
+  assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
   assert.equal(await page.locator('a[href$="/analyse-entreprise"]').count(), 0)
+  // The restored Thursday tool must open a real publication and export its image.
+  await page.getByRole('button', {name:'Calendrier',exact:true}).click()
+  await page.getByRole('tab', {name:/^Jeudi/}).click()
+  await page.locator('.workspace-tool-card[href$="/comparateur-indices"]').click()
+  await page.getByRole('heading', {name:"Comparateur d'indices",exact:true,level:1}).waitFor()
+  assert((await page.locator('.xc-preview-text').textContent()).includes('💬'))
+  await page.getByRole('button', {name:'Aperçu',exact:true}).click()
+  await page.getByRole('tab', {name:'Image',exact:true}).click()
+  await page.locator('.publication-image-stage img').waitFor()
+  await page.waitForFunction(() => document.querySelector('.publication-image-stage img')?.naturalWidth > 0)
+  const download = page.waitForEvent('download')
+  await page.getByRole('button', {name:'Télécharger l’image PNG',exact:true}).click()
+  assert.match((await download).suggestedFilename(), /^comparateur-indices-.+\.png$/)
+  await page.reload({waitUntil:'networkidle'})
+  await page.getByRole('heading', {name:"Comparateur d'indices",exact:true,level:1}).waitFor()
+  await page.goto(base+'/?vue=ensemble', {waitUntil:'networkidle'})
   await page.getByRole('button', {name:'Calendrier',exact:true}).click()
   await page.getByRole('tab', {name:/^Mardi/}).click()
   // Scheduled DCA links open the publication, including after reload. Switching
