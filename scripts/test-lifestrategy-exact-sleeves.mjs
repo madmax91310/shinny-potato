@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
+import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js';
 import {deriveExposureSleeves} from './derive-exposure-sleeves.mjs';
 const parents=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/lifestrategy-nav/qualified-parents.json.gz',import.meta.url))));
 const now=new Date('2026-11-12T00:00:00Z'), acc='IE00BK5BQW10',dist='IE00BKX55R35';
+assert.equal(INSTRUMENTS_BY_ISIN[acc],undefined,'internal exact held share is not a selectable catalogue extension');
 const children={};
 for(const p of Object.values(parents))for(const h of p.underlyingHoldings.rows.filter(h=>h.assetCategory==='Actions'))children[h.isin]={name:h.name,isin:h.isin,...Object.fromEntries(['countries','sectors'].map(field=>[field,{asOf:'2026-09-30',sourceUrl:'https://fund-docs.vanguard.com/test-unit.pdf',rows:[{name:'Known classification',weightPct:90}]}]))};
 children[dist]={name:'Vanguard FTSE North America UCITS ETF',countries:{asOf:'2026-09-30',sourceUrl:'https://fund-docs.vanguard.com/test-unit.pdf',rows:[{name:'Wrong class',weightPct:100}]}};
