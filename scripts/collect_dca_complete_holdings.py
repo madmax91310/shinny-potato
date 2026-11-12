@@ -7,6 +7,7 @@ from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
 from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
+from qualified_cash_rights import qualified_cash_right
 ROOT=Path(__file__).resolve().parents[1]
 def ranking_nav_downgrade(isin, previous, candidate, now):
     """Preserve a dated native book; a newer ranking cannot prove its NAV basis.
@@ -95,12 +96,19 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
     if translated_allocations:
         from collect_ishares_german import COUNTRIES, SECTORS
     rows=[]; securities=[]; allocations={'countries':{},'sectors':{}}; classified=True
-    positions=[];selected=[]
+    positions=[];selected=[];qualified_excluded=[]
     for security,name,weight,kind,country,sector,ticker,currency,exchange in zip(*cols):
         positions.append({'isin':security,'name':name,'weightPct':weight,'assetClass':kind,
-                          'ticker':ticker,'currency':currency,'exchange':exchange})
+                          'ticker':ticker,'currency':currency,'exchange':exchange,'country':country})
         if kind=='Equity' and (isinstance(weight,bool) or not isinstance(weight,(int,float)) or not __import__('math').isfinite(weight) or weight<0):raise ValueError('Invalid or short equity position')
         if kind!='Equity' or weight==0:continue
+        cash_right=qualified_cash_right(positions[-1],h['asOf'])
+        if cash_right:
+            # Retain this valued source position and the publisher's original
+            # Equity class in the NAV reconciliation; exclude only the claim
+            # from the company-share perimeter, without inventing an ISIN.
+            qualified_excluded.append(cash_right)
+            continue
         selected.append(len(positions)-1)
         rows.append({'isin':security,'name':name,'weightPct':weight})
         if translated_allocations:
@@ -122,6 +130,9 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
              'benchmark':facts.get('indexSeriesName',{}).get('value'),
              'navReconciliation':reconciliation,'financialDataQualified':False})
     record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows,'navReconciliation':reconciliation,'method':'Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation'}
+    if qualified_excluded:
+        record['qualifiedExcludedPositions']=qualified_excluded
+        record['method']+='; documented contingent cash rights retained outside company shares with their original value and source classification'
     # Attributes and equity weights come from these exact dated holdings, never
     # the independently dated exposure tables or a later security lookup.
     if classified and total <= 100:
@@ -231,7 +242,7 @@ def main():
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
-    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof'] if key in h},
+    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions'] if key in h},
         'completeFile':h.get('complete') is True,'rows':len(h['rows']),
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}
