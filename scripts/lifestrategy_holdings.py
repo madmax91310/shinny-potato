@@ -3,6 +3,7 @@ import datetime as dt
 import hashlib
 import json
 from collect_physical_holdings import checked_rows, finite_weight
+from lifestrategy_portfolio import qualified_stored_portfolio
 
 # These exact issuer fund labels already identify the allocation underliers in
 # derive-exposure-sleeves.mjs. North America is a fund-level, unhedged portfolio.
@@ -39,7 +40,8 @@ def fresh(observation, now):
 def derive(isin, record, underliers, errors, now):
     if isin not in FUNDS or record['isin'] != isin or record['currency'] != 'EUR':
         raise ValueError('Wrong LifeStrategy exact share')
-    holdings, allocation = record['holdings'], record['assetAllocation']
+    parent = qualified_stored_portfolio(record, now)
+    holdings, allocation = parent or record['holdings'], record['assetAllocation']
     dates = [fresh(holdings, now), fresh(allocation, now)]
     if not record.get('documentSha256'):
         raise ValueError('LifeStrategy fund holdings lack document evidence')
@@ -58,9 +60,9 @@ def derive(isin, record, underliers, errors, now):
         weight = finite_weight(row['weightPct'])
         if not 0 <= weight <= 100:
             raise ValueError('Invalid LifeStrategy fund weight')
-        if row['name'] in EQUITIES:
+        if (row.get('assetCategory') == 'Actions' if parent else row['name'] in EQUITIES):
             equity_weight += weight
-        elif row['name'] in BONDS:
+        elif (row.get('assetCategory') == 'Obligations' if parent else row['name'] in BONDS):
             bond_weight += weight
         else:
             raise ValueError('Unqualified LifeStrategy underlying fund: ' + row['name'])
@@ -73,7 +75,7 @@ def derive(isin, record, underliers, errors, now):
     rows, dependencies = {}, []
     sources = {holdings['sourceUrl'], allocation['sourceUrl']}
     for fund in fund_rows:
-        key = EQUITIES.get(fund['name'])
+        key = (fund['isin'] if fund['assetCategory'] == 'Actions' else None) if parent else EQUITIES.get(fund['name'])
         if key is None or fund['weightPct'] == 0:
             continue
         if key in errors:
@@ -108,9 +110,14 @@ def derive(isin, record, underliers, errors, now):
     return dict(rows=final, asOf=min(dates), sourceUrl=holdings['sourceUrl'], sourceUrls=sorted(sources),
                 checkedAt=min(controls,key=control_time),validatedAt=now.isoformat(),
                 basis='fund', complete=True, scope='equity-lookthrough',
-                equitySleeveWeightPct=allocation_rows['Actions'],
-                excludedWeightPctByType={'Bonds': allocation_rows['Obligations'],
-                                         'Cash': allocation_rows['Liquidités'],
+                equitySleeveWeightPct=equity_weight if parent else allocation_rows['Actions'],
+                excludedWeightPctByType={'Bonds': bond_weight if parent else allocation_rows['Obligations'],
+                                         'Cash and settlement positions' if parent else 'Cash': parent['assetAllocationChecks']['Liquidités']['originalNavWeightPct'] if parent else allocation_rows['Liquidités'],
                                          'Underlying non-equity positions': equity_weight-total},
+                **({'parentPortfolioEvidence':{'subjectIsin':isin,'asOf':parent['asOf'],
+                    'checkedAt':parent['checkedAt'],'sourceUrl':parent['sourceUrl'],
+                    'sha256':parent['sha256'],'sourceRowCount':parent['sourceRowCount'],
+                    'publishedNetWeightPct':parent['publishedNetWeightPct'],
+                    'weightBasis':parent['weightBasis'],'normalizationApplied':False}} if parent else {}),
                 dependencies=dependencies, sha256=hashlib.sha256(json.dumps(evidence, sort_keys=True).encode()).hexdigest(),
-                method='Complete equity look-through through exact published Vanguard underliers at the same reporting date; original rounded fund NAV weights; bonds, cash and underlying derivatives excluded; no renormalisation')
+                method=('Equity look-through through exact held Vanguard share ISINs at the same reporting date, using original precise parent fund-NAV positions; bonds, signed cash/settlement and underlying non-equity positions retained outside company shares; no renormalisation, not whole-fund company coverage' if parent else 'Complete equity look-through through exact published Vanguard underliers at the same reporting date; original rounded fund NAV weights; bonds, cash and underlying derivatives excluded; no renormalisation'))

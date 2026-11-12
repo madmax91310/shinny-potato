@@ -144,6 +144,10 @@ class WorkflowContracts(unittest.TestCase):
             refresh = workflow.split('  refresh:\n')[1].split('  deploy:\n')[0]
             self.assertNotIn('run: exit 1', refresh)
             failures = "steps.collect.outcome == 'failure'"
+            if filename == 'update-lifestrategy.yml':
+                failures += " || steps.held_share.outcome == 'failure' || steps.held_classifications.outcome == 'failure' || steps.lookthrough.outcome == 'failure'"
+                for phase in ['held_share','held_classifications','lookthrough']:
+                    self.assertIn("id: "+phase+"\n        continue-on-error: ${{ github.event_name != 'pull_request' }}",refresh)
             if filename == 'update-qualified-exposures.yml':
                 failures += " || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' || steps.sleeves.outcome == 'failure' || steps.underliers.outcome == 'failure' || steps.identifiers.outcome == 'failure'"
                 for phase in ['sleeves','underliers']:

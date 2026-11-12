@@ -1,8 +1,8 @@
-"""Exact physical fund's public economic book, not a native benchmark proxy.
+"""Exact physical funds' public economic books, not native benchmark proxies.
 
-Invesco's sampled fund page uses the internal widget variation 'index' for its
-fund exposure table. 'fund' is the separately configured basket component. Scope
-comes from the exact-share physical metadata and published sampled-fund page,
+Invesco's qualified physical fund pages use the internal widget variation 'index' for its
+fund exposure tables. 'fund' is the separately configured basket component. Scope
+comes from the exact-share physical metadata and published fund page and its exact replication mandate,
 never from that internal route name. Synthetic/hedged shares are not admitted.
 """
 import base64
@@ -35,13 +35,13 @@ def qualify_metadata(raw, isin, now):
             or data.get('distributionFrequency') != share['distribution']
             or data.get('shareClassFullName') != share['shareName']
             or data.get('shareClassCurrency') != CONTRACT['currency']
-            or account.get('accountName') != CONTRACT['fundName']
+            or account.get('accountName') != share.get('fundName', CONTRACT['fundName'])
             or account.get('currency') != CONTRACT['currency']
             or account.get('investmentVehicleType') != 'ETF' or account.get('productType') != 'ETF'
             or not isinstance(benchmarks, list) or len(benchmarks) != 1
-            or benchmarks[0].get('benchmarkFullName') != CONTRACT['benchmarkName']
+            or benchmarks[0].get('benchmarkFullName') != share.get('benchmarkName', CONTRACT['benchmarkName'])
             or benchmarks[0].get('baseCurrency') != CONTRACT['currency']
-            or benchmarks[0].get('indexBloombergTicker') != CONTRACT['benchmarkTicker']):
+            or benchmarks[0].get('indexBloombergTicker') != share.get('benchmarkTicker', CONTRACT['benchmarkTicker'])):
         raise ValueError('Wrong Invesco physical fund scope, share or benchmark')
     return data
 
@@ -53,6 +53,10 @@ def parse_capture(capture, metadata_raw, isin, now):
     url = f'https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/{isin}/holdings/index?idType=isin&loadType=initial'
     raw = base64.b64decode(capture['bodyBase64'], validate=True)
     payload = json.loads(raw)
+    mode = share.get('mandate', 'physical-sampling')
+    if mode not in ('physical-sampling', 'full-physical-replication'):
+        raise ValueError('Unqualified Invesco replication mandate')
+    mandate_field = 'physicalReplicationMandateConfirmed' if mode == 'full-physical-replication' else 'samplingMandateConfirmed'
     table = capture['tableText']
     stamp = document_date(payload['effectiveDate'], now)
     census = re.search(r'Afficher\s+1\s+à\s+10\s+de\s+(\d+)\s+produits', table)
@@ -60,7 +64,7 @@ def parse_capture(capture, metadata_raw, isin, now):
     widget = capture.get('widget', {})
     if (capture.get('isin') != isin or capture.get('pageUrl') != share['pageUrl']
             or capture.get('pageTitle') != share['shareName'] or capture.get('sourceUrl') != url
-            or capture.get('samplingMandateConfirmed') is not True
+            or capture.get(mandate_field) is not True
             or digest(raw) != capture.get('sourceSha256') or payload != capture.get('payload')
             or digest(table) != capture.get('tableTextSha256') or not census or not date
             or f'{date[3]}-{date[2]}-{date[1]}' != stamp or capture.get('asOf') != stamp
@@ -121,15 +125,15 @@ def collect(share, now, raw_identity):
                          identitySourceUrl=share['sourceUrl'], identitySha256=digest(raw_identity),
                          metadataSourceUrl=metadata_url(isin), metadataSha256=digest(raw_metadata),
                          metadataAsOf=metadata['effectiveDate'],
-                         coverageProof={'kind':'issuer-physical-sampled-fund-public-table',
+                         coverageProof={'kind':('issuer-physical-replicated-fund-public-table' if CONTRACT['shares'][isin].get('mandate')=='full-physical-replication' else 'issuer-physical-sampled-fund-public-table'),
                             'pageUrl':capture['pageUrl'], 'pageTitle':capture['pageTitle'],
                             'asOf':stamp, 'publisherRowCount':capture['publisherRowCount'],
                             'tableTextSha256':capture['tableTextSha256'],
                             'zeroEquityRowCount':sum(bool(p.get('isin')) and p['weight']==0
                                                      for p in json.loads(raw)['holdings']),
                             'normalizationApplied':False})
-    result['method'] = ('Complete public economic securities table of the exact physical sampled fund, '
+    result['method'] = ('Complete public economic securities table of the exact physical fund, '
                         'matched to the publisher table census/date and physical unhedged share metadata. '
-                        'Internal widget variation index is not a native benchmark composition. '
+                        'Internal widget variation index is not a native benchmark composition; the disabled basket component is not substituted. '
                         'Original fund NAV weights; zero weights and Cash and/or Derivatives excluded without renormalisation.')
     return result

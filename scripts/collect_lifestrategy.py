@@ -7,7 +7,8 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from bs4 import BeautifulSoup
-from collect_vanguard_etf import fetch_api, parse_api
+from collect_vanguard_etf import fetch_api, fetch_query, parse_api
+from lifestrategy_portfolio import QUERY as PORTFOLIO_QUERY, parse_portfolio
 from issuer_documents import download, pdf_text, document_date, validated_rows
 from data_automation import UTC, write_json_atomic
 
@@ -124,7 +125,21 @@ def collect_one(config, now):
     links = {a['href'] for a in soup.find_all('a', href=True) if f'_{code}_FR_INT_FR.pdf' in a['href'] and a['href'].startswith('https://fund-docs.vanguard.com/')}
     if len(links) != 1:
         raise ValueError('Current LifeStrategy factsheet link ambiguous')
-    return parse_sources(html, download(links.pop()), fetch_api(code), config, now)
+    record = parse_sources(html, download(links.pop()), fetch_api(code), config, now)
+    # Keep the published PDF table as a separate observation. Its rounded fund
+    # allocation is not a substitute for exact held ISINs and fund-NAV weights.
+    record['holdings']['weightBasis'] = 'issuer-reported-rounded-underlying-allocation'
+    try:
+        body = fetch_query(PORTFOLIO_QUERY, {'portIds': [str(code)]}, 'LifeStrategyPortfolio')
+        record['underlyingHoldings'] = parse_portfolio(body, config, record, now)
+        record['underlyingHoldingsQualification'] = {'status': 'qualified',
+            'sourceUrl': record['underlyingHoldings']['sourceUrl'],
+            'checkedAt': now.isoformat(), 'asOf': record['underlyingHoldings']['asOf']}
+    except Exception as error:
+        record['underlyingHoldingsQualification'] = {'status': 'failed',
+            'sourceUrl': 'https://www.vanguard.co.uk/gpx/graphql',
+            'attemptedAt': now.isoformat(), 'error': str(error)}
+    return record
 
 def main():
     p = argparse.ArgumentParser(); p.add_argument('--apply', action='store_true'); p.add_argument('--output', type=Path, required=True)
@@ -144,6 +159,20 @@ def main():
         prev = old.get(r['isin'])
         if prev and any(r[f]['asOf'] < prev[f]['asOf'] for f in ['aum', 'holdings', 'assetAllocation']):
             raise ValueError('LifeStrategy observation date regressed')
+        latest = r.get('underlyingHoldings')
+        retained = (prev or {}).get('underlyingHoldings')
+        if latest and retained and latest['asOf'] < retained['asOf']:
+            r['underlyingHoldingsQualification'] = {'status': 'failed',
+                'sourceUrl': latest['sourceUrl'], 'attemptedAt': now.isoformat(),
+                'error': 'Exact underlying-fund portfolio date regressed'}
+            latest = None
+        if r.get('underlyingHoldingsQualification', {}).get('status') == 'failed':
+            report['failed'].append({'isin': r['isin'], 'field': 'underlyingHoldings',
+                'error': r['underlyingHoldingsQualification']['error']})
+            if retained:
+                r['underlyingHoldings'] = retained  # Its own dates and evidence remain unchanged.
+            else:
+                r.pop('underlyingHoldings', None)
         old[r['isin']] = r
     if args.apply: write_json_atomic(path, old)
     write_json_atomic(args.output, report)
