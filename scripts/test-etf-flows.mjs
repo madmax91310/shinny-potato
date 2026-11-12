@@ -33,7 +33,7 @@ for (const mutate of [r=>r.rows[0].amount=null,r=>r.rows[0].raw='−5.23 MdEUR',
 }
 const text=buildFlowTweet(record,record.rows,{archive:true})
 assert.deepEqual(checkFlowText(text,record,record.rows,true),[])
-for(const edited of [text.replace('+5,23','+8,23'),text.replace('−628,5','+628,5'),text.replace('Md€','M€'),text.replace('Archives · ',''),text+' Cette semaine, les particuliers anticipent une hausse.']) assert(checkFlowText(edited,record,record.rows,true).length)
+for(const edited of [text.replace('+5,23','+8,23'),text.replace('−628,5','+628,5'),text.replace('Md€','M€'),text.replace('Archives · ',''),text+' Cette semaine, les particuliers anticipent une hausse.',text+'\nOr : +5,23 Md€',text.replace('sélection','classement'),text+' La semaine dernière.']) assert(checkFlowText(edited,record,record.rows,true).length)
 assert(text.includes('sélection'));assert(text.includes('flux nets'));assert(!text.includes('performance'))
 assert.equal(signedFlow(-628500000),'−628,5 M€')
 console.log('ETF flows: signed amounts, units, exact dates, rights/scope, contradictions, archive gate, duplicates, retention and text evidence passed. Real fixture remains unqualified.')

@@ -88,9 +88,12 @@ export function checkFlowText(text, o, rows, archive = false) {
   const errors = []
   const reference = buildFlowTweet(o, rows, {archive})
   const tokens = s => s.match(/[+−-]?\d+(?:[\s\u202f\u00a0.,/]\d+)*/g) ?? []
-  const allowed = new Set(tokens(reference).map(t => t.replace(/[\s\u202f\u00a0]/g, '')))
-  if (tokens(text).some(t => !allowed.has(t.replace(/[\s\u202f\u00a0]/g, '')))) errors.push('Chiffre absent de la sélection sourcée.')
-  if (!text.toLowerCase().includes(periodLabel(o)) || !text.includes(publicScope(o)) || !/flux nets/i.test(text)) errors.push('Conserver la période, le périmètre et la mention « flux nets ».')
+  const allowed = new Map()
+  for (const token of tokens(reference)) { const key = token.replace(/[\s\u202f\u00a0]/g, ''); allowed.set(key, (allowed.get(key) ?? 0) + 1) }
+  for (const token of tokens(text)) { const key = token.replace(/[\s\u202f\u00a0]/g, ''); allowed.set(key, (allowed.get(key) ?? 0) - 1) }
+  if ([...allowed.values()].some(count => count < 0)) errors.push('Chiffre absent de la sélection sourcée.')
+  if (!text.toLowerCase().includes(periodLabel(o)) || !text.includes(publicScope(o)) || !/flux nets/i.test(text) || !/sélection/i.test(text)) errors.push('Conserver la période, le périmètre, « sélection » et « flux nets ».')
+  if (/cette semaine|semaine dernière|aujourd[’']hui|actuellement/i.test(text)) errors.push('Conserver les dates exactes plutôt qu’une formulation relative ambiguë.')
   if (archive && (!text.startsWith('Archives · ') || /cette semaine|semaine dernière|aujourd’hui|actuellement/i.test(text))) errors.push('Une archive doit rester explicitement historique.')
   if (/%/.test(text)) errors.push('Aucun pourcentage de rendement dans un texte de flux.')
   if (/plus fortes|principales collectes|top\s*\d|confiance|particuliers|anticipent|anticipation|recommand[eé]|rendement[s]?\s*(de|:)/i.test(text)) errors.push('Classement ou interprétation non démontré.')
