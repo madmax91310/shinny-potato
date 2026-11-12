@@ -89,6 +89,11 @@
       "checkDays": 7,
       "dataDays": 65,
       "note": "Montant mensuel en vigueur, non une clôture de marché ; mois effectif et contrôle séparés."
+    },
+    "etf.weeklyFlows": {
+      "checkDays": 7,
+      "dataDays": 10,
+      "note": "Flux hebdomadaires : la période précédente complète est exigée pour une édition actuelle ; aucune date de validation renouvelée en cas d’échec."
     }
   },
   "calendars": {

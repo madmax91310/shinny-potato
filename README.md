@@ -13,6 +13,19 @@ Le comparateur d’indices reste un moteur interne sans route publique. Les mote
 conservés et les liens de compatibilité sont distingués des outils accessibles.
 
 
+## Où va l’argent des ETF ?
+
+`/flux-etf` prépare une sélection de flux nets hebdomadaires en tweet et PNG :
+semaines enregistrées, rubriques et lignes, texte modifiable, copie, archives datées
+et provenance séparée du visuel. Aucun créneau éditorial n’est ajouté.
+La collecte des chiffres est **bloquée** : les droits de réutilisation d’ETF Express
+et la définition de l’univers européen Trackinsight ne sont pas qualifiés.
+Le registre est vide ; aucune fixture n’est livrée comme observation actuelle.
+La saisie JSON contrôlée est disponible sur l’appareil, et le script d’import permet
+une intégration partagée par PR. Le contrôle hebdomadaire et manuel GitHub Actions
+produit un rapport de blocage, sans collecte ni nouvelle validation.
+Voir [la qualification des sources et le mode d’emploi](docs/etf-flows.md).
+
 ## Idées de publications
 
 `/idees-classements` conserve intégralement les 51 classements fournis dans six catégories

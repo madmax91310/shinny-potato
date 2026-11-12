@@ -3,6 +3,7 @@ on:
   workflow_run:
     workflows:
       - Update editorial radar
+      - ETF flows qualification (automatic collection blocked)
       - Update active ETF issuer data
       - Update exact instrument metadata
       - Update active monthly market histories
