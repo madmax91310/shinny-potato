@@ -47224,81 +47224,53 @@
     },
     "countries": {
       "asOf": "2026-11-11",
-      "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 45.48419
+          "weightPct": 45.11
         },
         {
           "name": "Canada",
-          "weightPct": 17.45523
+          "weightPct": 17.38
         },
         {
           "name": "United Kingdom",
-          "weightPct": 14.17782
+          "weightPct": 14.45
         },
         {
           "name": "Sweden",
-          "weightPct": 5.99447
+          "weightPct": 5.97
         },
         {
           "name": "Australia",
-          "weightPct": 4.44949
+          "weightPct": 4.37
         },
         {
           "name": "Switzerland",
-          "weightPct": 4.09347
+          "weightPct": 4.07
         },
         {
-          "name": "Guernsey",
-          "weightPct": 3.13449
+          "name": "Guernsey, Channel Islands",
+          "weightPct": 3.13
         },
         {
           "name": "France",
-          "weightPct": 2.06078
+          "weightPct": 2.06
         },
         {
-          "name": "Jersey",
-          "weightPct": 1.31127
-        },
-        {
-          "name": "Belgium",
-          "weightPct": 0.49486
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.43642
-        },
-        {
-          "name": "Japan",
-          "weightPct": 0.3148
-        },
-        {
-          "name": "Korea (South)",
-          "weightPct": 0.24858
-        },
-        {
-          "name": "Germany",
-          "weightPct": 0.21047
-        },
-        {
-          "name": "Brazil",
-          "weightPct": 0.08448
-        },
-        {
-          "name": "European Union",
-          "weightPct": 0.04922
-        },
-        {
-          "name": "Hong Kong",
-          "weightPct": 1e-05
+          "name": "Jersey, Channel Islands",
+          "weightPct": 1.31
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 1.76
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.37
         }
       ],
+      "sourceComponent": "exposureBreakdowns.geography.countries",
       "checkedAt": "2026-11-12",
       "modifiedAt": "2026-11-12"
     },
