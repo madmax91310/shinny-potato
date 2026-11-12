@@ -392,12 +392,17 @@
       "Présentation ETF",
       "Comparatif ETF",
       "Duel",
-      "Générateur"
+      "Générateur",
+      "DCA",
+      "Actifs et exposition"
     ],
     "collectionSteps": [
+      "Collect observations: exact held North America share",
+      "Collect observations: exact held North America allocations",
       "Collect observations: collect"
     ],
     "validationSteps": [
+      "Validate observations: same-date partial equity look-through",
       "Validate observations: node scripts test-lifestrategy.mjs",
       "Validate observations: npm run audit:instrument-catalog",
       "Validate observations: npm run build",
