@@ -85,6 +85,9 @@ on:
       - 'scripts/native_source_evidence.py'
       - 'scripts/test_native_source_evidence.py'
       - 'scripts/collect_qualified_exposures.py'
+      - 'scripts/qualified_physical_allocation.py'
+      - 'scripts/test_qualified_physical_allocation.py'
+      - 'scripts/fixtures/defence-physical-allocation/**'
       - 'scripts/dws_liquidity_funds.py'
       - 'scripts/test_dca_dws_held_funds.py'
       - 'scripts/test-dws-held-fund-consumers.mjs'
@@ -202,6 +205,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - name: Install browser for public issuer API fallback
         run: npx playwright install --with-deps chromium
+      - name: Validate independent physical allocation and primary incidents
+        run: python -m unittest discover -s scripts -p 'test_qualified_physical_allocation.py'
       - name: "Collect observations: collect"
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
