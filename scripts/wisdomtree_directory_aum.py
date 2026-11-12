@@ -129,16 +129,32 @@ def augment_aum(result,share,now,fetch=download,*,browser_fetch=None):
                 result.setdefault('collectionErrors',[]).append({'field':'aum-primary-http','url':url,
                     'phase':'acquisition','reason':'Primary HTTP directory access failed: '+attempt['reason']+'; exact native AUM independently qualified via the ordinary public browser',
                     'qualifiedFallbackAvailable':True})
+        comparison=None
         if prior and prior.get('asOf','')>=value['asOf']:
-            if prior['asOf']==value['asOf'] and any(prior.get(k)!=value.get(k)for k in ('amount','currency','scope')):
+            same_date=prior['asOf']==value['asOf']
+            different_currency=prior.get('currency')!=value['currency']
+            # A displayed USD fund AUM and a native EUR fund AUM are not
+            # contradictory amounts. Never convert either or use AUMusd as
+            # corroboration: qualify the directory's native observation itself.
+            comparable_scope=prior.get('scope')==value['scope']
+            qualified_currency=bool(re.fullmatch(r'[A-Z]{3}',str(prior.get('currency',''))))
+            comparison={'primary':prior,'directory':{**value,'sourceUrl':url,'sha256':digest},
+                        'amountsCompared':same_date and comparable_scope and not different_currency}
+            if same_date and (not comparable_scope or not qualified_currency
+                    or (not different_currency and prior.get('amount')!=value['amount'])):
+                result.setdefault('sourceAttempts',[]).append({'url':url,'status':'quarantined','fields':['aum'],
+                    'comparison':comparison,'transportAttempts':attempts})
                 result.pop('aum',None)
                 raise ValueError('Same-date primary/directory AUM conflict; previous stored value retained without renewed control')
-            result.setdefault('sourceAttempts',[]).append({'url':url,'status':'validated','fields':[],'transportAttempts':attempts,
-                'deferred':[{'field':'aum','asOf':value['asOf'],'reason':'Directory observation not newer than the independently acquired primary'}]})
-            return result
+            if not (same_date and different_currency):
+                result.setdefault('sourceAttempts',[]).append({'url':url,'status':'validated','fields':[],'transportAttempts':attempts,
+                    'deferred':[{'field':'aum','asOf':value['asOf'],'reason':'Directory observation not newer than the independently acquired primary'}]})
+                return result
+            comparison['reason']='Different published currencies; independently qualified native directory AUM selected without conversion or numerical reconciliation'
         result['aum']={**value,'sourceUrl':url,'sha256':digest,'identitySourceUrl':identity['sourceUrl'],
                        'identitySha256':identity['sha256'],'identityAsOf':identity['asOf']}
-        result.setdefault('sourceAttempts',[]).append({'url':url,'status':'validated','fields':['aum'],'sharedCurrentResponse':True,'transportAttempts':attempts})
+        result.setdefault('sourceAttempts',[]).append({'url':url,'status':'validated','fields':['aum'],'sharedCurrentResponse':True,'transportAttempts':attempts,
+            **({'comparison':comparison}if comparison else{})})
         result['unavailable']=[s.replace('AUM not published, previous dated value preserved','AUM independently collected from the official collective directory')for s in result.get('unavailable',[]) if s!='aum: not published in this factsheet']
     except (OSError,ValueError,TypeError,KeyError) as error:
         result.setdefault('sourceAttempts',[]).append({'url':url,'status':'unavailable','fields':['aum'],'reason':str(error),
@@ -182,3 +198,4 @@ if __name__=='__main__':
         'productionObservationApplied':False,'publication':'not-requested'})
     print(json.dumps({'expected':len(expected),'validated':sum(r['status']=='validated'for r in rows),'publication':'not-requested'}))
     if any(r['status']!='validated'for r in rows):raise SystemExit(1)
+
