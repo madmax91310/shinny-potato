@@ -179,10 +179,10 @@ def main():
                     raise ValueError('Only physical DWS portfolios are qualified')
                 url = c['sourceUrl'].rsplit('/', 1)[0] + '/holdings'
                 body = json.loads(get_text(url, ('application/json',), 25_000_000))
-                from dws_liquidity_funds import qualify_liquidity_fund, SOURCES as LIQUIDITY_FUNDS
+                from dws_liquidity_funds import qualify_held_fund, SOURCES as LIQUIDITY_FUNDS, EQUITY_FUNDS
                 fund_isins={p['header']['value'] for table in body.get('tables',[]) for p in table.get('values',[])
-                            if p.get('column_5',{}).get('value')=='Mutual Fund' or p.get('header',{}).get('value') in LIQUIDITY_FUNDS}
-                qualifications={fund_isin:qualify_liquidity_fund(fund_isin,now) for fund_isin in fund_isins}
+                            if p.get('column_5',{}).get('value')=='Mutual Fund' or p.get('header',{}).get('value') in (LIQUIDITY_FUNDS.keys()|EQUITY_FUNDS.keys())}
+                qualifications={fund_isin:qualify_held_fund(fund_isin,now) for fund_isin in fund_isins}
                 return isin, (parse_holdings(body, c, now, url, complete=True,non_equity_funds=qualifications)['completeHoldings'], []), None
             return isin,collect_blackrock_complete({**c,'isin':isin},now),None
         except Exception as e:return isin,None,e
