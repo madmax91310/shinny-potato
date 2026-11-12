@@ -82,6 +82,28 @@ class ReaderRevalidation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
             reader.check(self.base, end)
 
+    def test_real_nine_publication_readers_remain_separate_from_acquisition(self):
+        original=set(shared.ALLOWED['market'])
+        end=self.commit({p:'changed publication reader\n'for p in reader.PUBLICATION_READERS})
+        with self.assertRaises(ValueError):shared.check('market',self.base,end)
+        result=reader.check(self.base,end)
+        self.assertEqual(set(result['qualifiedPublicationReaders']),reader.PUBLICATION_READERS)
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        self.assertEqual(shared.ALLOWED['market'],original)
+
+    def test_publication_reader_that_becomes_an_acquisition_input_stays_refused(self):
+        for path in ['src/tools.js','src/data/editorial-calendar.js','scripts/route-budgets.json']:
+            with self.subTest(path=path):
+                self.base=self.commit({reader.BASELINE:"import '../"+path+"';\n",path:'export const value=1;\n'})
+                end=self.commit({path:'export const value=2;\n'})
+                with self.assertRaisesRegex(ValueError,'acquisition dependency'):reader.check(self.base,end)
+
+    def test_new_publication_reads_cannot_skip_consumer_validation(self):
+        text=(ROOT/'scripts/validate-market-publication.sh').read_text()
+        for command in ['test-index-comparison-copy.mjs','test-asset-selection.mjs','npm run build','audit:data-provenance','git diff --exit-code HEAD']:
+            self.assertIn(command,text)
+
     def test_unresolved_dynamic_baseline_fails_closed(self):
         self.base = self.commit({reader.BASELINE: 'import(selectedSource);\n'})
         end = self.commit({'src/pages/budget-profiles/data.js': 'changed\n'})
