@@ -6,6 +6,7 @@ on:
   push:
     branches: [master]
     paths:
+      - 'scripts/ensure-ci-runtime.sh'
       - 'scripts/collect_exposure_expansion.py'
       - 'scripts/validate_exposure_publication.py'
       - 'scripts/validate-exposure-publication.sh'
@@ -29,6 +30,7 @@ on:
       - '.github/workflows/update-exposure-expansion.yml'
   pull_request:
     paths:
+      - 'scripts/ensure-ci-runtime.sh'
       - 'scripts/collect_exposure_expansion.py'
       - 'scripts/validate_exposure_publication.py'
       - 'scripts/validate-exposure-publication.sh'
@@ -80,7 +82,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: Ensure usable PDF tools
+        run: bash scripts/ensure-ci-runtime.sh poppler
       - run: npm ci
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
@@ -98,7 +101,7 @@ jobs:
       - name: Verify DCA holdings in browser
         if: github.event_name == 'pull_request'
         run: |
-          npx playwright install --with-deps chromium
+          bash scripts/ensure-ci-runtime.sh chromium
           node scripts/playwright-dca-holdings-contracts.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
