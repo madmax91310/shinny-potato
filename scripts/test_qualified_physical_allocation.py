@@ -90,6 +90,13 @@ class QualifiedPhysicalAllocation(unittest.TestCase):
             with self.subTest(column=key), self.assertRaises(ValueError): self.prepare(body)
         with self.assertRaises(ValueError): self.prepare(BODY, {**SHARE, 'isin': 'IE00B4L5Y983'})
 
+    def test_shared_plan_change_preserves_every_original_investor_request(self):
+        proof=json.loads((FIXTURE/'13f-plan-before-after.json').read_text())
+        current=build_plan('update-investor-13f',[])
+        self.assertEqual(current,proof['originalPlan'])
+        self.assertEqual(len(current['items']),28)
+        self.assertEqual(hashlib.sha256(json.dumps(current,sort_keys=True).encode()).hexdigest(),proof['planSha256'])
+
     def test_other_funds_and_legacy_mode_are_untouched(self):
         body, result = self.prepare(config={**SHARE, 'allocationFallback': None})
         self.assertIs(body, BODY)
