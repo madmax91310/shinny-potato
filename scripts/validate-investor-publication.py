@@ -19,10 +19,13 @@ INDEPENDENT = {
     'src/data/automated-etf.json',
     'src/data/automated-indices.json',
 }
+# 12 Nov: LifeStrategy/Vanguard-only plan additions reviewed; actual 13F plans
+# before/after are identical for every manager. Acquisition and independent-input
+# exemptions are unchanged; all fingerprints remain mandatory.
 ACQUISITION_SHA256 = {
     'scripts/update-investor-13f.py': '84fe43e831b8c73a44a38546614ebec46f063c740579a992b238c4abfb70e792',
     'scripts/producer_report_contract.py': '54ee3ffe6e80be3d6ba2529172928063c3c1706f85c9973fe485db266778b463',
-    'scripts/producer_report_plans.py': '6cd72f7949b6992b5c3b8a53aead5d92a9cbb6a634e66facf79a1798c0c1d9d0',
+    'scripts/producer_report_plans.py': 'ce9fd52c1e635bcbbf2f256a95dad10a2e04d9c2e5076b5af09c0bf6a11bba64',
 }
 JOB_WINDOW = dt.timedelta(minutes=30)  # Existing producer job timeout, not data age.
 
