@@ -1,0 +1,12 @@
+import assert from'node:assert/strict';import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';
+import{projectDcaHoldings}from'./lib/dca-holdings-projection.mjs';import{portfolioAnalytics}from'../src/pages/dca-profiles/analytics.js';
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/invesco-physical/equal-weight-20261112.json.gz',import.meta.url))));
+const h=projectDcaHoldings(fixture.qualifiedRecord,false),now=new Date('2026-11-12T00:00:00Z'),isin='IE000L2SA8K5',stock='US02079K1079';
+assert.equal(h.basis,'fund');assert.equal(h.rows.length,101);assert.ok(Math.abs(h.rows.reduce((a,b)=>a+b.weightPct,0)-99.9709)<1e-9);assert.equal(h.navReconciliation.excludedWeightPctByType['Cash and/or Derivatives'],.0291);
+const refs={fund:{isin,name:'Invesco NASDAQ-100 Equal Weight UCITS ETF Acc'},stock:{isin:stock,name:'Alphabet',kind:'equity',countries:{asOf:'2026-11-11',sourceUrl:'https://example.test/isolated-unit-observation',rows:[{name:'United States',weightPct:100}]}}};
+const lines=[{asset:'fund',label:'Fund',isin,weight:50},{asset:'stock',label:'Alphabet',isin:stock,weight:50}],books={fund:h};
+const a=portfolioAnalytics(lines,refs,books,now),b=portfolioAnalytics([...lines].reverse(),refs,books,now);
+assert.equal(a.qualification.find(q=>q.isin===isin).complete,true);assert.equal(a.pairs[0].full,true);assert.equal(a.pairs[0].companyCommon.length,1);assert.equal(a.pairs[0].companyCommon[0].leftSecurities.length,2,'two share classes form one company');
+assert.ok(Math.abs(a.pairs[0].overlap-.8886)<1e-9);assert.deepEqual(a.pairs,b.pairs);
+for(const changed of [{...h,complete:false,rows:h.rows.slice(0,10)},{...h,basis:'index'}])assert.notEqual(portfolioAnalytics(lines,refs,{fund:changed},now).pairs[0]?.full,true);
+console.log('Exact Invesco fund-NAV weights, full company overlap, Alphabet class consolidation, order invariance and partial/native-index refusals passed.');
