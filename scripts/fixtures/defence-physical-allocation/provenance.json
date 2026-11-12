@@ -1,0 +1,52 @@
+{
+  "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+  "checkedAt": "2026-11-12T17:37:41.889509+00:00",
+  "scope": "Exact live primary allocation response; read-only investigation, no application data writes",
+  "status": "source-response-received",
+  "sha256": "a0e771ed648afec4260ad5a430f0544e04c39a941cfb825f22ff8e7a35d01435",
+  "bytes": 291504,
+  "primaryTables": {
+    "countries": {
+      "date": 20261111,
+      "labels": [
+        "United States",
+        "France",
+        "United Kingdom",
+        "Germany",
+        "Canada",
+        "Korea (South)",
+        "Italy",
+        "Israel",
+        "Sweden",
+        "Other",
+        "Cash and/or Derivatives"
+      ],
+      "weights": [
+        63.3,
+        12.4,
+        11.46,
+        3.42,
+        1.68,
+        1.43,
+        1.16,
+        1.08,
+        1.04,
+        1.59,
+        0.18
+      ],
+      "sum": 98.74
+    },
+    "sectors": {
+      "date": 20261111,
+      "labels": [
+        "Industrials",
+        "Cash and/or Derivatives"
+      ],
+      "weights": [
+        98.56,
+        0.18
+      ],
+      "sum": 98.74000000000001
+    }
+  }
+}

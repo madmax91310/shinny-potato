@@ -21,6 +21,13 @@ def holdings_sectors(body,as_of):
   return {'asOf':as_of,'method':'Sector of all published holdings, signed cash/derivatives included, no renormalisation','rows':[{'name':k,'weightPct':round(v,6)}for k,v in sectors.items()]}
 
 def collect_one(config,now):
+ audit={}
+ try:return _collect_one(config,now,audit)
+ except Exception as error:
+  if audit.get('primaryAllocationChecks'):error.primaryAllocationChecks=audit['primaryAllocationChecks']
+  raise
+
+def _collect_one(config,now,audit):
  share={**config,'currency':config.get('currency','USD'),'collectHoldings':True,'requireFullHistory':False}
  url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings%2CfundamentalsAndRisk')
  raw=get_text(url,('application/json',),20000000);body=json.loads(raw)
@@ -30,10 +37,12 @@ def collect_one(config,now):
  share['distribution']=v('useOfProfitsCode')
  # Hedged funds can publish gross exposure breakdowns. Use the complete signed
  # positions instead, without renormalising them or confusing exposure with NAV.
- parse_body=copy.deepcopy(body) if config.get('compositionFromHoldings') else body
+ from qualified_physical_allocation import prepare
+ parse_body,allocation_evidence=prepare(body,share,now,url,raw,audit)
+ if config.get('compositionFromHoldings'):parse_body=copy.deepcopy(parse_body)
  # A wholly unpublished country table is absent data, not a malformed one.
  # Preserve the raw response and use the exact dated holdings fallback below.
- published=body.get('componentsByNameMap',{}).get('exposureBreakdowns',{}).get('containersByNameMap',{})
+ published=parse_body.get('componentsByNameMap',{}).get('exposureBreakdowns',{}).get('containersByNameMap',{})
  country_points=published.get('geography',{}).get('subContainersByNameMap',{}).get('countries',{}).get('dataPointsByNameMap',{})
  if country_points and country_points.get('type',{}).get('value') is None and country_points.get('fund',{}).get('value') is None:
   parse_body=copy.deepcopy(body)
@@ -46,6 +55,7 @@ def collect_one(config,now):
  if config.get('compositionFromHoldings'):
   result['sectors']=holdings_sectors(body,holdings['asOf'])
   result['countries']=countries
+ if allocation_evidence:result.update(allocation_evidence)
  if not result['countries'].get('rows'):result['countries']=countries
  if any(not result[field].get('rows') for field in ['holdings','countries','sectors']):raise ValueError('Incomplete issuer composition')
  page_url=url
@@ -133,7 +143,7 @@ def main():
  if args.only:configs=[c for c in configs if c['id']in args.only]
  def one(c):
   try:return {'record':collect_one(c,now)}
-  except Exception as e:return {'id':c['id'],'isin':c['isin'],'error':str(e)}
+  except Exception as e:return {'id':c['id'],'isin':c['isin'],'error':str(e),**({'primaryAllocationChecks':e.primaryAllocationChecks}if hasattr(e,'primaryAllocationChecks')else{})}
  with ThreadPoolExecutor(max_workers=4)as pool:rows=list(pool.map(one,configs))
  report={'checkedAt':now.isoformat(),'records':[x['record']for x in rows if 'record'in x],'excluded':[x for x in rows if 'record'not in x]}
  if args.apply:
@@ -152,7 +162,7 @@ def main():
     # A partial current list cannot erase the dated proof of an active history.
     listing_archive=retain_listing_evidence(listing_archive,[previous,r],required_listing_ids)
     current=merged;r['automatedRecord']=merged[r['isin']];old[r['id']]=r;valid.append(r)
-   except (ValueError,KeyError,TypeError)as e:report['excluded'].append({'id':r['id'],'isin':r['isin'],'error':str(e)})
+   except (ValueError,KeyError,TypeError)as e:report['excluded'].append({'id':r['id'],'isin':r['isin'],'error':str(e),**({'primaryAllocationChecks':r['primaryAllocationChecks']}if r.get('primaryAllocationChecks')else{})})
   report['records']=valid
   current,old=retain_existing_records(current,old)
   write_json_atomic(path,old)
@@ -160,6 +170,9 @@ def main():
   write_json_atomic(ROOT/'src/data/automated-etf.json',current)
  active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
  for row in report['excluded']:row['active']=row['id']in active
+ if any(c.get('allocationFallback') for c in configs):
+  from qualified_physical_allocation import contract_results
+  report['contractResults']=contract_results(configs,report)
  write_json_atomic(args.output,report)
  print(json.dumps({'qualified':[r['id']for r in report['records']],'excluded':report['excluded']},ensure_ascii=False))
  # Unqualified launch candidates stay excluded; failure of an already active record is fatal.
