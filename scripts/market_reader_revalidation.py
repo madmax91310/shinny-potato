@@ -24,6 +24,20 @@ BUDGET_READERS = {
     'src/pages/budget-profiles/lib.js',
     'src/pages/budget-profiles/storage.js',
 }
+# Observed refusal43234485008: navigation/editorial/comparison publication
+# changed during acquisition. All nine paths are outside the real baseline
+# dependency graph on both snapshots; never grant them a shared-source exemption.
+PUBLICATION_READERS = {
+    'scripts/build-app-inventory.mjs',
+    'scripts/route-budgets.json',
+    'scripts/test-weekly-publications.mjs',
+    'src/App.jsx',
+    'src/data/editorial-calendar.js',
+    'src/pages/Home.jsx',
+    'src/pages/index-comparator/App.jsx',
+    'src/pages/index-comparator/index-comparator.css',
+    'src/tools.js',
+}
 AUDIT_READER = 'scripts/test_audit_workflows.py'
 WORKFLOW = '.github/workflows/update-non-bond-expansion.yml'
 OLD_GROUP = "      group: non-bond-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}"
@@ -119,10 +133,11 @@ def check(base, upstream='HEAD^'):
     paths = set(filter(None, subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
         text=True).split('\0')))
-    permitted = paths & (BUDGET_READERS | {AUDIT_READER})
-    if paths & BUDGET_READERS:
+    readers = BUDGET_READERS | PUBLICATION_READERS
+    permitted = paths & (readers | {AUDIT_READER})
+    if paths & readers:
         for ref in (base, upstream):
-            if baseline_dependencies(ref) & BUDGET_READERS:
+            if baseline_dependencies(ref) & readers:
                 raise ValueError('A supposed publication reader is an acquisition dependency')
     if WORKFLOW in paths:
         before, after = at(base, WORKFLOW), at(upstream, WORKFLOW)
