@@ -4,6 +4,9 @@ import { INVESTORS } from './data/investor-roster.js'
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  { to: '/comparateur-indices', title: 'Comparateur d’indices',
+    icon: '📐', accent: '#38bdf8',
+    description: 'Compare deux indices : expositions, règles de sélection, performances et ETF associés.', status: 'disponible' },
   { to: '/idees-classements', title: 'Idées de publications',
     icon: '📝', accent: '#2458d3',
     description: 'Tes classements et des sujets d’argent au quotidien, avec leurs angles. Recherche, catégories et copie pour écrire toi-même.', status: 'disponible' },
@@ -152,6 +155,7 @@ export const TOOLS = [
 ].map(tool => ({ ...tool, navLabel: tool.title, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
 const TOOL_SUMMARIES = {
+  '/comparateur-indices': 'Expositions, diversification et performances de deux indices.',
   '/idees-classements': 'Classements, épargne, logement et vie quotidienne : des sujets et des angles pour tes publications.',
   '/hey-grok': 'Choisis une question concrète, adapte-la ou crée la tienne.',
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
@@ -182,7 +186,7 @@ const TOOL_SUMMARIES = {
 
 // Les mêmes groupes alimentent l’accueil et la navigation.
 export const TOOL_GROUPS = [
-  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/comparatif-courtiers', '/calculateur-investissement'] },
+  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/comparateur-indices', '/classements-performances', '/comparatif-courtiers', '/calculateur-investissement'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/le-budget-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
   { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/idees-classements', '/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
@@ -190,6 +194,7 @@ export const TOOL_GROUPS = [
 
 // Publication order for the home screen, followed by occasional and maintenance tools.
 export const WEEKLY_ORDER = [
+  '/comparateur-indices',
   '/idees-classements',
   '/radar-editorial', '/fiches-pratiques',
   '/comparatif-etf', '/fiche-lexique', '/tweets-factsheets',

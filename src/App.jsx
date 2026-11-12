@@ -4,6 +4,8 @@ import Layout from './design-system/Layout'
 import ComingSoon from './pages/ComingSoon'
 import { TOOLS } from './tools'
 
+const IndexComparator = lazy(() => import('./pages/index-comparator/App'))
+
 const Home = lazy(() => import('./pages/Home'))
 
 // Each tool and its data are fetched only when its route is opened.
@@ -41,6 +43,7 @@ const FORMAT_COMPONENTS = {
 // Individual publication routes load their own engine and sources.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
+  '/comparateur-indices': <IndexComparator />,
   '/idees-classements': <RankingIdeas />,
   '/hey-grok': <HeyGrok />,
   '/classements-performances': <PerformanceRankings />,
