@@ -104,7 +104,8 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
 for(const [isin,productCode,name]of [
  ['IE00BFMXYX26',9674,'Vanguard FTSE Japan UCITS ETF (USD) Accumulating'],
  ['IE00BK5BQZ41',9676,'Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating'],
- ['IE00BKX55R35',9523,'Vanguard FTSE North America UCITS ETF']])
+ ['IE00BKX55R35',9523,'Vanguard FTSE North America UCITS ETF'],
+ ['IE00BK5BQW10',9680,'Vanguard FTSE North America UCITS ETF (USD) Accumulating']])
  holdings[isin]={isin,name,productCode,currency:'USD',parser:'vanguard-complete',catalog:false}
 writeFileSync('scripts/generated-holdings-sources.json',JSON.stringify(holdings,null,2)+'\n')
 writeFileSync('scripts/instrument-metadata-sources.json',JSON.stringify({instruments:metadata},null,2)+'\n')

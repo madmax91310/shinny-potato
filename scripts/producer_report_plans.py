@@ -117,7 +117,7 @@ def build_plan(producer, args, report_stem=None, module=None):
     elif producer=='update_inflation':add('inflation:011814631','011814631',['INSEE consumer-price annual rates','source period'])
     elif producer=='update_bitcoin_monthly':add('history:bitcoin-yahoo','BTC-USD',['monthly close','daily month-end crosscheck','USD','unadjusted cryptocurrency price'])
     elif producer=='collect_lifestrategy':
-        for _,_,isin in mod().CONFIG:add(isin,isin,['fund characteristics','asset allocation','full holdings','fieldQualification'])
+        for _,_,isin in mod().CONFIG:add(isin,isin,['fund characteristics','asset allocation','full holdings','fieldQualification','exact held-fund identities and original NAV weights'])
     elif producer=='collect_qualified_exposures':
         for c in cfg('qualified-exposure-sources'):
             selected=not only or c['id']in only
@@ -131,7 +131,7 @@ def build_plan(producer, args, report_stem=None, module=None):
             add('dca-holdings:'+isin,isin,['complete economic holdings','security identities','weights','asOf'],not only or isin in only,'Outside requested holdings selection'if only and isin not in only else None,
                 **({'phase':'validation','sourceAttempted':False}if derived else{}))
     elif producer=='collect_vanguard_sleeves':
-        for c in mod().SOURCES:add('vanguard-underlier:'+c[1],c[1],['countries','sectors','factsheet/API identity'])
+        for c in mod().SOURCES:add('vanguard-underlier:'+c[1],c[1],['countries','sectors','factsheet/API identity'],not only or c[1]in only,'Outside requested underlying-share selection'if only and c[1]not in only else None)
     elif producer=='collect_exposure_sleeves':
         m=mod()
         for isin in m.FUNDS.values():add('exposure-sleeve:'+isin,isin,['economic country/sector classification'])
