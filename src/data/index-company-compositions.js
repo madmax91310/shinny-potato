@@ -14,6 +14,9 @@ export function getIndexConcentration(id, now = new Date()) {
 export function compositionImageSheet(sheet, concentration) {
   if (!concentration.available) return sheet
   const facts = concentration.visualFacts
+  // A ten-company view does not need countries/sectors. Never borrow another
+  // photograph to turn that capability into the complete classic factsheet.
+  if(!facts?.countries?.length||!facts?.sectors?.length)return sheet
   return { ...sheet, countries: facts.countries, sectors: facts.sectors, holdings: facts.holdings,
     constituents: facts.constituents, indexFacts: { ...sheet.indexFacts, ...facts },
     concentration, snapshot: facts.asOf }

@@ -128,7 +128,7 @@ try {
       const draws = await page.evaluate(() => window.logoDraws)
       if (id === 'broadcom') {
         assert.equal(draws.length, 0)
-        assert.ok((await page.evaluate(() => window.exportLabels)).filter(v => v === 'BROADCOM').length >= 2, 'Clean fallback missing')
+        assert.equal((await page.evaluate(() => window.exportTextFrames.at(-1))).filter(row => row.value === 'BROADCOM').length, 1, 'A fallback frame must contain exactly one asset name')
       } else if (id === 'bitcoin' || id === 'microsoft') {
         assert.equal(draws.length, 0, `${id}: approved sculptural hero must not be overlaid twice`)
       } else {
@@ -193,7 +193,7 @@ try {
     await page.route('**/asset-art/official-logos/apple.svg', route => corrupt ? route.fulfill({ status: 200, contentType: 'image/svg+xml', body: '<svg broken' }) : route.abort())
     await page.goto(`${base}il-y-a-x-ans?asset=apple`); await showImage(page); await ready(page)
     assert.equal((await page.evaluate(() => window.logoDraws)).length, 0)
-    assert.equal((await page.evaluate(() => window.exportLabels)).filter(v => v === 'APPLE').length, 2)
+    assert.equal((await page.evaluate(() => window.exportTextFrames.at(-1))).filter(row => row.value === 'APPLE').length, 1, 'A missing/corrupt logo must leave exactly one asset name')
     await page.locator('.studio-preview').screenshot({ path: `${out}/missing-apple-${corrupt}-ui.png` })
     const fallback = await pixels(page, await page.locator('.publication-image-stage img').getAttribute('src'))
     const fallbackText = await page.evaluate(() => window.exportTextFrames.at(-1))

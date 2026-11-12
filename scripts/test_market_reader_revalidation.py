@@ -24,6 +24,8 @@ class ReaderRevalidation(unittest.TestCase):
         self.git('config', 'user.name', 'Isolated fixture')
         self.base = self.commit({
             reader.BASELINE: "import { ASSETS } from '../src/data/market-history.js';\n",
+            reader.ETF_BASELINE: "import { ASSETS } from '../src/data/market-history.js';\n",
+            'scripts/build-automation-targets.mjs': 'export const targets = [];\n',
             'src/data/market-history.js': 'export const ASSETS = {};\n',
             'src/pages/budget-profiles/data.js': 'export const BUDGET_PROFILES = [];\n',
             reader.AUDIT_READER: '# workflow-reader contracts\n',
@@ -137,31 +139,96 @@ class ReaderRevalidation(unittest.TestCase):
         with self.assertRaises(ValueError):
             shared.check('etf', self.base, end)
 
+    def test_etf_actual_three_reader_race_requires_financial_revalidation(self):
+        end = self.commit({p: 'downstream reader change\n' for p in reader.ETF_READERS})
+        original = set(shared.ALLOWED['etf'])
+        with self.assertRaises(ValueError):
+            shared.check('etf', self.base, end)
+        result = reader.check_etf(self.base, end)
+        self.assertEqual(set(result['qualifiedPublicationReaders']), reader.ETF_READERS)
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        self.assertEqual(shared.ALLOWED['etf'], original)
+
+    def test_etf_reader_imported_transitively_by_baseline_is_protected(self):
+        self.base = self.commit({reader.ETF_BASELINE: "import './fixture-etf-reader.mjs';\n",
+            'scripts/fixture-etf-reader.mjs': "import './lib/data-qualification.mjs';\n",
+            'scripts/lib/data-qualification.mjs': 'export const required = 1;\n'})
+        end = self.commit({'scripts/lib/data-qualification.mjs': 'export const required = 2;\n'})
+        with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
+            reader.check_etf(self.base, end)
+
+    def test_etf_unresolved_dynamic_baseline_refuses_reader_reuse(self):
+        self.base = self.commit({reader.ETF_BASELINE: 'import(selectedSource);\n'})
+        end = self.commit({'scripts/lib/data-qualification.mjs': 'reader changed\n'})
+        with self.assertRaisesRegex(ValueError, 'dynamic baseline'):
+            reader.check_etf(self.base, end)
+
+    def test_etf_target_generator_dependency_is_protected_too(self):
+        self.base = self.commit({'scripts/build-automation-targets.mjs':
+            "import './lib/data-qualification.mjs';\n",
+            'scripts/lib/data-qualification.mjs': 'export const required = 1;\n'})
+        end = self.commit({'scripts/lib/data-qualification.mjs': 'export const required = 2;\n'})
+        with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
+            reader.check_etf(self.base, end)
+
+    def test_etf_source_currency_and_unexamined_inputs_remain_protected(self):
+        for path in ['scripts/collect_etf_pilot.py', 'scripts/etf-pilot.json',
+                     'src/data/annual-fx.json', 'src/data/unexamined.json']:
+            with self.subTest(path=path):
+                end = self.commit({path: 'changed source, currency or unknown input\n'})
+                with self.assertRaises(ValueError):
+                    reader.check_etf(self.base, end)
+
+    def test_etf_publication_keeps_the_full_financial_checks_and_projection_guard(self):
+        text = (ROOT/'scripts/validate-etf-publication.sh').read_text()
+        self.assertIn('market_reader_revalidation.py --kind etf', text)
+        for command in ['test-data-qualification.mjs', 'audit:calculator-series',
+                        'audit:etf-consistency', 'audit:etf-annual-performance',
+                        'npm run build', 'git diff --exit-code HEAD']:
+            self.assertIn(command, text)
+
 
 class FinancialPublicationGate(unittest.TestCase):
     def test_reader_admission_never_skips_a_failed_financial_validation(self):
+        self.failed_financial_check('market')
+
+    def test_etf_reader_reuse_cannot_publish_before_failed_financial_check_is_repaired(self):
+        self.failed_financial_check('etf')
+
+    def failed_financial_check(self, kind):
         import shlex
         import sys
         import test_validated_data_commit as harness
         f = harness.CommitValidatedData()
         f.setUp()
         self.addCleanup(f.doCleanups)
-        path = f.local/reader.AUDIT_READER
+        changed_reader = (reader.AUDIT_READER if kind == 'market'
+                          else 'scripts/lib/data-qualification.mjs')
+        path = f.local/changed_reader
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text('# prior workflow checks\n')
-        f.git(f.local, 'add', reader.AUDIT_READER)
+        if kind == 'etf':
+            baseline = f.local/reader.ETF_BASELINE
+            baseline.parent.mkdir(parents=True, exist_ok=True)
+            baseline.write_text('export const source = 1;\n')
+            f.git(f.local, 'add', reader.ETF_BASELINE)
+            targets = f.local/'scripts/build-automation-targets.mjs'
+            targets.write_text('export const targets = [];\n')
+            f.git(f.local, 'add', 'scripts/build-automation-targets.mjs')
+        f.git(f.local, 'add', changed_reader)
         f.git(f.local, 'commit', '-m', 'acquisition base')
         f.git(f.local, 'push', 'origin', 'master')
         f.git(f.other, 'pull', '--ff-only')
-        (f.other/reader.AUDIT_READER).write_text('# updated publication reader checks\n')
-        f.git(f.other, 'add', reader.AUDIT_READER)
+        (f.other/changed_reader).write_text('# updated publication reader checks\n')
+        f.git(f.other, 'add', changed_reader)
         f.git(f.other, 'commit', '-m', 'independent upstream reader')
         f.git(f.other, 'push', 'origin', 'master')
         remote_before = f.git(f.other, 'rev-parse', 'HEAD')
         (f.local/'validated.json').write_text('validated source observation\n')
         adapter = ROOT/'scripts/market_reader_revalidation.py'
         command = (f'{shlex.quote(sys.executable)} {shlex.quote(str(adapter))} '
-                   '--base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^')
+                   f'--kind {kind} --base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^')
         env = {'VALIDATED_DATA_PREPARE': command,
                'VALIDATED_DATA_DERIVED_PATHS': '["validated.json"]',
                'VALIDATED_DATA_CHECK': 'exit 23'}

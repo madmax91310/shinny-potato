@@ -15415,7 +15415,7 @@
       "instrumentType": "ETC",
       "consumerScope": "catalog",
       "currency": "USD",
-      "periodStart": "2020-12",
+      "periodStart": "2019-12",
       "precision": 8,
       "collectAnniversary": false,
       "parser": "official-nav",
@@ -15430,6 +15430,7 @@
       "calendarRegistry": "src/data/non-bond-etf-records.json",
       "returnWindowQualification": "corroborated-calendars",
       "requiredQualifiedCalendarYears": [
+        2020,
         2021,
         2023
       ],
@@ -15437,7 +15438,12 @@
       "wisdomProductName": "WisdomTree Brent Crude Oil",
       "wisdomListingId": 2741261,
       "wisdomInception": "2012-02-21",
-      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+      "reviewedHistoryPrefix": {
+        "previousStart": "2020-12",
+        "newStart": "2019-12",
+        "qualifiedYear": 2020
+      }
     },
     {
       "id": "etc_wti_crude_oilNav",
@@ -15446,7 +15452,7 @@
       "instrumentType": "ETC",
       "consumerScope": "catalog",
       "currency": "USD",
-      "periodStart": "2020-12",
+      "periodStart": "2019-12",
       "precision": 8,
       "collectAnniversary": false,
       "parser": "official-nav",
@@ -15461,13 +15467,19 @@
       "calendarRegistry": "src/data/non-bond-etf-records.json",
       "returnWindowQualification": "corroborated-calendars",
       "requiredQualifiedCalendarYears": [
+        2020,
         2023
       ],
       "wisdomTicker": "CRUD",
       "wisdomProductName": "WisdomTree WTI Crude Oil",
       "wisdomListingId": 2740803,
       "wisdomInception": "2006-09-22",
-      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+      "reviewedHistoryPrefix": {
+        "previousStart": "2020-12",
+        "newStart": "2019-12",
+        "qualifiedYear": 2020
+      }
     },
     {
       "id": "etc_coffeeNav",
@@ -16477,6 +16489,76 @@
       ],
       "incomeMonthEndPolicy": "withhold-trailing-unreconciled-month",
       "requireReconciledCashUnits": true
+    },
+    {
+      "id": "etfIE00B4K6B022Nav",
+      "isin": "IE00B4K6B022",
+      "label": "HSBC EURO STOXX 50 UCITS ETF EUR (Dist) · VL",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "periodStart": "2023-12",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Rendement réinvesti calculé à partir des NAV officielles de la part EUR exacte et des distributions brutes officielles au détachement, réinvesties une seule fois à la NAV ex-dividende. NAV nette des frais du fonds ; aucun nouvel ajout de frais ni correction de cotation. Couverture des distributions contrôlée dans les comptes et déclarations de l’émetteur.",
+      "navProvider": "hsbc",
+      "navHistoryKind": "official-nav-and-gross-cash",
+      "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/en/institutional-investor/funds/ie00b4k6b022",
+      "navCurrency": "EUR",
+      "cashAnnouncementUrls": [
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html"
+      ]
+    },
+    {
+      "id": "etfDE000A27Z304Paris",
+      "label": "Bitwise Physical Bitcoin ETP · Paris",
+      "isin": "DE000A27Z304",
+      "ticker": "BTCE",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "BTCE.PA",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "DE000A27Z304-XPAR-BTCE-EUR",
+      "instrumentType": "ETN",
+      "method": "Cours de la part exacte sur Euronext Paris en EUR, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo ; cotation ouverte le 1er juin 2021, distincte de Xetra",
+      "collectAnniversary": true,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2021-06",
+      "verifyMonthlyDisagreements": true,
+      "dailyWindowMonths": [],
+      "timezone": "Europe/Paris"
+    },
+    {
+      "id": "etcPalladiumMarket",
+      "label": "iShares Physical Palladium (IPDM) · cours Londres",
+      "isin": "IE00B4556L06",
+      "ticker": "IPDM",
+      "mic": "XLON",
+      "currency": "USD",
+      "parser": "yahoo",
+      "symbol": "IPDM.L",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE00B4556L06-XLON-IPDM-USD",
+      "instrumentType": "ETC",
+      "method": "Cours de la cotation exacte IPDM sur Londres en USD, ajustés des opérations sur titres ; dernière séance mensuelle recoupée avec la bougie mensuelle et les fenêtres quotidiennes nécessaires ; distincts de la NAV et du niveau réinvesti officiels. Aucun historique avant mai2011.",
+      "collectAnniversary": false,
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2011-05",
+      "verifyMonthlyDisagreements": true,
+      "dailyWindowMonths": [],
+      "timezone": "Europe/London",
+      "anniversaryAvailable": false
     }
   ]
 }

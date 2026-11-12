@@ -122,7 +122,7 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    return result + remainder + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
+    return result + remainder + [s for s in old.values() if s.get('navProvider')=='hsbc'] + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
 
 
 def daily_nav_fx_factor(native, currency, latest, body):
@@ -191,6 +191,11 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             anniversary_nav,price_proof=anniversary_price_history(body,source,now,nav)
             calendar_proof.update(price_proof)
         credit='Amundi'
+    elif kind=='hsbc':
+        from hsbc_nav_history import collect as hsbc_collect
+        large=lambda url: document_fetch(url,max_bytes=20_000_000) if document_fetch is download else document_fetch(url)
+        nav,anniversary_nav,years,calendar_proof=hsbc_collect(source,now,document,large)
+        calendar_precision=1;credit='HSBC Asset Management / FCA NSM'
     elif kind=='blackrock':
         query=urllib.parse.urlencode(dict(appSubType='ISHARES',appType='PRODUCT_PAGE',component='keyFundFacts,performance',locale='en_GB',portfolioId=source['productId'],targetSite='ishares-uk',userType='individual',excludeContent='true',includeConfig='true'))
         body=data(source['sourceUrl']+'?'+query);parsed=blackrock_nav(body,isin,native,now)
@@ -282,14 +287,20 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for,acquire
         from collect_public_issuer import wisdomtree_factsheet
         graph_url,table_url=performance_urls(source)
+        # Reacquire and fully qualify the exact official product PDF before any
+        # browser alternative may use the publisher's generic chart client.
+        identity_body=document(source['factsheetUrl'])
+        fresh=wisdomtree_factsheet(identity_body,{
+            **source,'name':source['wisdomProductName'],'currency':native,'documentType':source.get('documentType','wisdomtree')},now)
+        identity_binding={'kind':'official-exact-product-pdf-v1','isin':isin,'currency':native,
+            'sourceUrl':source['factsheetUrl'],'sha256':hashlib.sha256(identity_body).hexdigest(),
+            'asOf':fresh['characteristics']['asOf'],'checkedAt':now.isoformat()}
         transport={}
         if document_fetch is download:
-            bodies,transport=acquire(source)
+            bodies,transport=acquire(source,qualified_identity=identity_binding)
             graph,table=[json.loads(document(url,supplied=bodies[url]))for url in (graph_url,table_url)]
         else:
             graph,table=[json.loads(document(url))for url in (graph_url,table_url)]
-        fresh=wisdomtree_factsheet(document(source['factsheetUrl']),{
-            **source,'name':source['wisdomProductName'],'currency':native,'documentType':source.get('documentType','wisdomtree')},now)
         registry=source['calendarRegistry']
         if registry not in ['src/data/automated-etf.json','src/data/non-bond-etf-records.json','src/data/exposure-etf-expansion-records.json']:
             raise ValueError('Unqualified WisdomTree calendar registry')
@@ -462,7 +473,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     result={**source,'points':points,**({'anniversaryPoints':anniversary_points}if source.get('collectAnniversary') is not False else {'anniversaryAvailable':False}),**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
-            'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')or source.get('navHistoryTransport')=='official-dataspan-nav-tr'else'exact-share accumulated net NAV; no exchange-price claim'),
+            'financialConvention':('internally computed total return from exact-share official raw NAV and explicit gross cash reinvested once at ex-date NAV; not an issuer-published adjusted series or exchange quote'if kind=='hsbc'else'exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')or source.get('navHistoryTransport')=='official-dataspan-nav-tr'else'exact-share accumulated net NAV; no exchange-price claim'),
             'calendarProof':{**calendar_proof,'checks':checks},
             **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows']if key in calendar_proof}),
             'proofRows':proof_rows,
@@ -490,7 +501,8 @@ def main():
         # Once recorded, subsequent PRs do not retry old failures just to count them.
         sources=[s for s in sources if registered.get(s['id'],{}).get('parser')=='official-nav' and
                  (s['id']not in observed or (s.get('navHistoryTransport')=='official-dataspan-nav-tr' and
-                  active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport']))]
+                  active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport'])
+                  or (s.get('reviewedHistoryPrefix') and active.get(s['id'],{}).get('periodStart')!=s['periodStart']))]
     scope={'requestedIds':args.only or [s['id']for s in sources],'expectedIds':[s['id']for s in sources]}
     if args.missing_source_controls:
         scope['selection']='configured-official-nav-without-transport-qualification'

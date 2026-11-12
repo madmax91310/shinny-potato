@@ -7,6 +7,8 @@ on:
     branches: [master]
     paths:
       - 'scripts/collect_exposure_expansion.py'
+      - 'scripts/validate_exposure_publication.py'
+      - 'scripts/validate-exposure-publication.sh'
       - 'scripts/collect_public_issuer.py'
       - 'scripts/wisdomtree_ranked_fields.py'
       - 'scripts/wisdomtree_country_allocation.py'
@@ -19,6 +21,8 @@ on:
       - 'scripts/collect_ishares_german.py'
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_vaneck_etf.py'
+      - 'scripts/vaneck-document.mjs'
+      - 'scripts/download-vaneck-document.mjs'
       - 'scripts/collect_invesco_allocations.py'
       - 'scripts/collect_presentation_etf.py'
       - 'scripts/exposure-etf-expansion.json'
@@ -26,6 +30,10 @@ on:
   pull_request:
     paths:
       - 'scripts/collect_exposure_expansion.py'
+      - 'scripts/validate_exposure_publication.py'
+      - 'scripts/validate-exposure-publication.sh'
+      - 'scripts/test_exposure_publication.py'
+      - 'scripts/fixtures/exposure-publication-20261109/**'
       - 'scripts/collect_public_issuer.py'
       - 'scripts/wisdomtree_ranked_fields.py'
       - 'scripts/wisdomtree_country_allocation.py'
@@ -39,6 +47,8 @@ on:
       - 'scripts/collect_ishares_german.py'
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_vaneck_etf.py'
+      - 'scripts/vaneck-document.mjs'
+      - 'scripts/download-vaneck-document.mjs'
       - 'scripts/collect_invesco_allocations.py'
       - 'scripts/collect_presentation_etf.py'
       - 'scripts/exposure-etf-expansion.json'
@@ -75,6 +85,7 @@ jobs:
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - run: python -m unittest discover -s scripts -p 'test_exposure_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_exposure_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_country_allocation.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
@@ -83,7 +94,7 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"
       - name: Validate expanded exposures
-        run: npm run build && node scripts/test-exposure-expansion.mjs
+        run: bash scripts/validate-exposure-publication.sh validate
       - name: Verify DCA holdings in browser
         if: github.event_name == 'pull_request'
         run: |
@@ -98,10 +109,14 @@ jobs:
             ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
-        run: echo 'Exact-share exposure checks passed'
+        run: echo 'Exact-share input plans, individual records and financial consumer checks passed'
       - name: Commit validated observations
         id: commit
         if: github.event_name != 'pull_request'
+        env:
+          VALIDATED_DATA_PREPARE: bash scripts/validate-exposure-publication.sh prepare
+          VALIDATED_DATA_CHECK: bash scripts/validate-exposure-publication.sh check
+          VALIDATED_DATA_DERIVED_PATHS: '["src/pages/dca-profiles/catalog.json", "src/pages/dca-profiles/exposures*.json", "src/pages/dca-profiles/holdings*.json"]'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

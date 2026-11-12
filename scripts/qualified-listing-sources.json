@@ -109,6 +109,46 @@
           "currency": "USD"
         }
       ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "format": "bitwise-trading-html",
+      "url": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "rows": [
+        {
+          "pattern": "^XETRA EUR Ticker BTCE GY Listing date: (?P<listing_date>18\\.06\\.20) ISIN DE000A27Z304 WKN A27Z30 Valoren - BTCE GY SEDOL BMWSLR9 RIC (?P<symbol>BTCE\\.DE)$",
+          "ticker": "BTCE",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "listingDate": "2020-06-18",
+          "symbol": "BTCE.DE"
+        },
+        {
+          "pattern": "^Euronext PAR EUR Ticker BTCE FP Listing date: (?P<listing_date>01\\.06\\.21) ISIN DE000A27Z304 WKN - Valoren - BTCE FP SEDOL BN0ZB02 RIC (?P<symbol>BTCE\\.PA)$",
+          "ticker": "BTCE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "listingDate": "2021-06-01",
+          "symbol": "BTCE.PA"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B4556L06",
+      "url": "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y",
+      "format": "blackrock-listings-html",
+      "rows": [
+        {
+          "pattern": "^London Stock Exchange IPDM USD 11/Apr/2011 B4556L0 IPDM LN (IPDM\\.L)$",
+          "ticker": "IPDM",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "listingDate": "2011-04-11"
+        }
+      ]
     }
   ]
 }

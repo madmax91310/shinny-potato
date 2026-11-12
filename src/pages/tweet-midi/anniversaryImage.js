@@ -34,8 +34,9 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
       ctx.save(); ctx.fillStyle = '#f6f1e6'; ctx.shadowColor = '#64a6ca'; ctx.shadowBlur = 35
       ctx.beginPath(); ctx.roundRect(180,260,1240,690,45); ctx.fill(); ctx.restore()
       drawContainedMark(ctx, images.mark, { width: Math.min(1080, art.markMaxWidth || 1080), height: Math.min(530, art.markMaxHeight || 530) })
-    } else {
-      posterText(ctx, art.indexTitle || art.title, W/2, 515, 150, { width: 1260, metal: 'silver' })
+    } else if (art.indexTitle && art.indexTitle !== art.title) {
+      // The name below the stage is the sole identity when no official logo exists.
+      posterText(ctx, art.indexTitle, W/2, 515, 150, { width: 1260, metal: 'silver' })
     }
   }
   const metal = images.silver ? 'silver' : 'gold'

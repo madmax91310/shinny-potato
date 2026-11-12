@@ -1,3 +1,4 @@
+import { unqualifiedFundRankingWeights } from './holding-weight-basis.js'
 // Observations éditoriales calculées : aucune pondération recopiée dans les tweets.
 // Le champ, sa date et son périmètre restent indissociables.
 const pct = n => `${n.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
@@ -7,6 +8,7 @@ const excluded = /cash|derivative|liquidit|^autres$|^other/i
 
 export function holdingConcentration(record) {
   const observation = record?.holdings
+  if (unqualifiedFundRankingWeights(observation)) return null
   if (!dated(observation?.asOf) || !['fund', 'index', 'tracked-index'].includes(observation?.basis)) return null
   const rows = observation.rows
   if (!Array.isArray(rows) || rows.some(r => !Number.isFinite(r.weightPct))) return null

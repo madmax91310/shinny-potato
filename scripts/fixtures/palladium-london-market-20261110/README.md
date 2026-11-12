@@ -1,0 +1,7 @@
+# Existing palladium share: distinct London market-price route
+
+IE00B4556L06, IPDM.L, XLON, USD. The issuer’s exact-share public table binds IPDM/USD/11Apr2011/SEDOLB4556L0/RICIPDM.L. The captured market observations span May2011–October2026:186 complete months, with the2015-August monthly candle checked against a separate bounded daily window. Full daily and monthly responses, source hashes, original dates and unit metadata are preserved. Adjusted and raw prices coincide in these captured observations; no factor or distribution is added.
+
+This is **market price**, not the official NAV/reinvested series. Its31December2014 daily quote23.799999237060547USD is not substituted for the disputed NAV23.584359 or reinvested level10012.1551. Current original IPDM.L2025 financial restriction remains mandatory, despite the new route ID. This allows qualified earlier comparison windows; it does not restore a2014-to-present calculation spanning the refused2025return. Original NAV2025 remains independently usable.
+
+Separate corporate-action and latest-close captures are retained in the delivery evidence only. No daily anniversary obligation is added: the currently unsupported variant is explicitly unavailable and its collector flag is false. The original NAV variant and all qualified periods remain. These local acquisitions/replays do not prove GitHub recording, publication or a scheduled trigger; those stages must be verified separately through the ordinary producer.

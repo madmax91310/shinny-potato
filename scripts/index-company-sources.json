@@ -226,6 +226,7 @@
   },
   "reviewedSecurityLabels": {
     "GOLDMAN SACHS GROUP INC": "US38141G1040",
+    "APPLE INC": "US0378331005",
     "CATERPILLAR INC": "US1491231015",
     "MICROSOFT CORP": "US5949181045",
     "AMGEN INC": "US0311621009",
@@ -244,6 +245,7 @@
     "INFINEON TECHNOLOGIES AG": "DE0006231004",
     "MUENCHENER RUECKVER AG-REG": "DE0008430026",
     "DEUTSCHE BANK NAMEN": "DE0005140008",
+    "DEUTSCHE BOERSE AG": "DE0005810055",
     "DHL GROUP (XETRA)": "DE0005552004",
     "SCHNEIDER ELECT SE": "FR0000121972",
     "TOTALENERGIES SE PARIS": "FR0000120271",
@@ -255,5 +257,42 @@
     "L OREAL (PARIS)": "FR0000120321",
     "SANOFI - PARIS": "FR0000120578",
     "AXA SA": "FR0000120628"
+  },
+  "nativeReferences": {
+    "topix": {
+      "indexId": "topix",
+      "targetIndexName": "TOPIX",
+      "sourceIndexName": "TOPIX"
+    },
+    "stoxx600": {
+      "indexId": "stoxx600",
+      "targetIndexName": "STOXX Europe 600",
+      "sourceIndexName": "STOXX® Europe 600 Total Return Index"
+    },
+    "nasdaq-pea": {
+      "indexId": "nasdaq100-notional-net",
+      "targetIndexName": "Nasdaq-100",
+      "sourceIndexName": "NASDAQ - 100 Notional NTR Index"
+    },
+    "world": {
+      "indexId": "msci-world-net",
+      "targetIndexName": "MSCI World",
+      "sourceIndexName": "MSCI World Total Return (Net) Index"
+    },
+    "mscieurope": {
+      "indexId": "msci-europe-net",
+      "targetIndexName": "MSCI Europe",
+      "sourceIndexName": "MSCI Europe Total Return (Net) Index"
+    },
+    "em-standard": {
+      "indexId": "msci-em-net",
+      "targetIndexName": "MSCI Emerging Markets",
+      "sourceIndexName": "MSCI Emerging Markets Total Return (Net) Index"
+    },
+    "russell-2000": {
+      "indexId": "russell2000-equity-members",
+      "targetIndexName": "Russell 2000",
+      "sourceIndexName": "Russell 2000 Total Return Index"
+    }
   }
 }

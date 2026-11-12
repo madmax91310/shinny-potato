@@ -30,10 +30,10 @@ concurrency:
   # Producers and master pushes share one full validation queue. The selector
   # coalesces queued requests; the publisher adopts the latest safe data prefix.
   # One group per data SHA otherwise starts 8 browser jobs for every collector.
-  # v4 isolates this gate generation from queued old definitions that cannot
-  # adopt current code after unrelated workflow additions. Publishing still uses
+  # v5 isolates the gate containing the mandatory exposure-publication check
+  # from queued v4 definitions that cannot certify it (#1218). Publishing still uses
   # the unchanged pages-production lock and published code/data ancestry checks.
-  group: ${{ inputs.validation_group == 'etf-publication-954' && 'pages-validation-etf-publication-954' || format('pages-validation-v4-{0}', github.event_name == 'pull_request' && github.ref || 'master') }}
+  group: ${{ inputs.validation_group == 'etf-publication-954' && 'pages-validation-etf-publication-954' || format('pages-validation-v5-{0}', github.event_name == 'pull_request' && github.ref || 'master') }}
   # Superseded PR revisions cannot publish; keep every production validation.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
   queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}
@@ -276,6 +276,8 @@ jobs:
       - run: node scripts/test-format-loading.mjs
       - run: node scripts/test-history-pool-initialization.mjs
       - run: npm run build
+      # The ordinary build generates the index-company projection used by this check.
+      - run: node scripts/test-index-logo-review-scope.mjs
       - run: node scripts/build-app-inventory.mjs --check
       - run: node scripts/test-format-loading.mjs --built
       - run: node scripts/test-practical-sheets.mjs
@@ -445,6 +447,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_support_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      - run: python -m unittest discover -s scripts -p "test_exposure_publication.py"
       - run: python -m unittest discover -s scripts -p "test_data_automation.py"
       - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
@@ -468,6 +471,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py' && python -m unittest discover -s scripts -p 'test_security_residual_identities.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_identity_isolation.py'
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_country_allocation.py'
+      - run: node scripts/test-wisdomtree-country-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'

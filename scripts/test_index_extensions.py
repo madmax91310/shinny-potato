@@ -8,13 +8,21 @@ from unittest.mock import patch
 import urllib.error
 from collect_index_extensions import nasdaq_returns, amundi_composition, collect_amundi_composition
 from collect_remaining_documents import collect_one as ubs_collect
-from refresh_index_sources import merge_records, ROOT
+from refresh_index_sources import merge_records
 from refresh_index_sources import collect_one as refresh_index
 from data_automation import UTC
 F=Path(__file__).parent/'fixtures/official-documents/index-extensions'
 CONFIG=json.loads((Path(__file__).parent/'index-automation.json').read_text())['indices']
 NOW=dt.datetime(2026,10,6,tzinfo=UTC)
 def cfg(id):return next(c for c in CONFIG if c['id']==id)
+def amundi_facts(id):
+    """Parse a frozen August 2026 observation compatible with the test clock."""
+    c=cfg(id);fixture=json.loads((F/(id+'.json')).read_text())
+    def extract(body,crop=None):
+        return fixture['left'] if crop==(0,300) else fixture['right'] if crop==(300,300) else fixture['full']
+    with patch('collect_index_extensions.pdf_text',side_effect=extract),patch('collect_amundi_index_exposure.pdf_text',side_effect=extract):
+        return amundi_composition(b'%PDF-proof',c,NOW,'https://example.org/source')
+
 class IndexExtensions(unittest.TestCase):
     def test_nasdaq_calendar_exact_total_usd_and_exclude_ytd(self):
         c=cfg('nasdaq-pea');t=(F/'nasdaq-total.txt').read_text()
@@ -121,14 +129,14 @@ class IndexExtensions(unittest.TestCase):
         self.assertEqual(r['returns']['currency'],'USD')
         self.assertEqual(r['returns']['variant'],'TOTAL')
         self.assertEqual(r['returns']['source']['url'],c['returnSourceUrl'])
-        with patch('collect_index_extensions.collect_amundi_composition',return_value=json.loads((ROOT/'src/data/automated-indices.json').read_text())[c['id']]['facts']),patch('refresh_index_sources.pdf_text',side_effect=ValueError('bad return document')):
+        with patch('collect_index_extensions.collect_amundi_composition',return_value=amundi_facts(c['id'])),patch('refresh_index_sources.pdf_text',side_effect=ValueError('bad return document')):
             r=refresh_index(c,NOW,lambda url:b'%PDF-proof')
         self.assertIn('facts',r)
         self.assertNotIn('returns',r)
         self.assertEqual(r['errors'][0]['field'],'returns')
     def test_derived_returns_and_composition_fail_independently(self):
         c=cfg('sp500-pea')
-        with patch('derive_index_returns.collect_one',return_value={'id':c['id'],'errors':[{'field':'returns'}]}),patch('collect_index_extensions.collect_amundi_composition',return_value=json.loads((ROOT/'src/data/automated-indices.json').read_text())[c['id']]['facts']) as composition:
+        with patch('derive_index_returns.collect_one',return_value={'id':c['id'],'errors':[{'field':'returns'}]}),patch('collect_index_extensions.collect_amundi_composition',return_value=amundi_facts(c['id'])) as composition:
             r=refresh_index(c,NOW)
             self.assertIn('facts',r)
             self.assertEqual(r['errors'],[{'field':'returns'}])
@@ -145,3 +153,4 @@ class IndexExtensions(unittest.TestCase):
         with patch('collect_remaining_documents.download',side_effect=TimeoutError('host unavailable')):
             with self.assertRaisesRegex(ValueError,'host unavailable'):ubs_collect(c,NOW)
 if __name__=='__main__':unittest.main()
+

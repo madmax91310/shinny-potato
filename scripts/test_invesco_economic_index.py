@@ -26,6 +26,34 @@ class EconomicIndex(unittest.TestCase):
             self.assertEqual(h['rows'],FIX[isin]['qualifiedRecord']['rows'])
             self.assertFalse(h['coverageProof']['normalizationApplied'])
 
+    def test_stoxx_601_received_rows_remain_unqualified_without_truncation_claim(self):
+        # Actual API bytes, with reconstructed page evidence for unit isolation.
+        # This is not an attestation that a browser census was acquired today.
+        path=Path(__file__).with_name('fixtures')/'invesco-economic-index/stoxx600-index-20261110.json'
+        raw=path.read_bytes();payload=json.loads(raw)
+        self.assertEqual(payload['effectiveDate'],'2026-10-30')
+        self.assertEqual(len(payload['holdings']),601)
+        self.assertEqual(len({r['isin'] for r in payload['holdings']}),601)
+        self.assertAlmostEqual(sum(r['weight'] for r in payload['holdings']),99.9997)
+        members={r['isin']:r for r in payload['holdings']}
+        self.assertEqual(members['FI4000603337']['weight'],0.0868)
+        self.assertEqual(members['FI4000603345']['weight'],0.0025)
+        self.assertNotIn('FI0009005987',members)
+        f=copy.deepcopy(FIX['FR0011550193']);capture=f['capture']
+        capture.update(bodyBase64=base64.b64encode(raw).decode(),sourceSha256=digest(raw),publisherRowCount=601)
+        capture['tableText']=capture['tableText'].replace('of 600','of 601').replace('20-Oct-26','30-Oct-26')
+        capture['tableTextSha256']=digest(capture['tableText'])
+        before=copy.deepcopy(capture)
+        now=dt.datetime(2026,11,10,tzinfo=dt.timezone.utc)
+        with self.assertRaisesRegex(ValueError,r'membership outside qualified contract: stoxx600, asOf=2026-10-30, received=601, publisher=601, expected=600\.\.600'):
+            parse_capture(capture,json.dumps(f['metadata']).encode(),'FR0011550193',now)
+        self.assertEqual(capture,before,'Rejected evidence must remain unmodified')
+        # A genuinely missing row still has the existing truncation diagnostic.
+        payload['holdings'].pop();truncated=json.dumps(payload).encode()
+        capture.update(bodyBase64=base64.b64encode(truncated).decode(),sourceSha256=digest(truncated))
+        with self.assertRaisesRegex(ValueError,'Truncated economic index'):
+            parse_capture(capture,json.dumps(f['metadata']).encode(),'FR0011550193',now)
+
     def test_exact_metadata_rejects_neighbour_index_fund_or_share(self):
         for isin,f in FIX.items():
             _,index=contracts(isin)
@@ -221,3 +249,26 @@ class UbsMonthlyPublication(unittest.TestCase):
             qualify_subject('IE00BD4TXV59', dt.datetime(2027, 1, 1, tzinfo=dt.timezone.utc), missing, attempts=attempts)
         self.assertEqual(len(attempts), 6)
         self.assertTrue(all(r['status']=='waiting-publication' for r in attempts))
+
+
+class CurrentRussellMethod(unittest.TestCase):
+    def test_reviewed_official_documents_keep_exact_hashes_and_financial_rules(self):
+        from invesco_economic_index import CONTRACTS, return_weight_method
+        review=json.loads((Path(__file__).with_name('fixtures')/'invesco-economic-index/russell-method-20261110.json').read_text())
+        documents=CONTRACTS['indices']['russell2000-equity-members']['returnWeightContract']['documents']
+        self.assertEqual([(d['sourceUrl'],d['sha256']) for d in documents],[(d['url'],d['sha256']) for d in review['documents']])
+        # Isolated PDF decoding, not a claim of a supplier request in this test.
+        bodies={d['sourceUrl']:('isolated-pdf-'+str(i)).encode() for i,d in enumerate(documents)}
+        hashes={bodies[d['sourceUrl']]:d['sha256'] for d in documents}
+        texts={bodies[d['sourceUrl']]:' '.join(review['documents'][i]['reviewedClauses']) for i,d in enumerate(documents)}
+        now=dt.datetime(2026,11,10,tzinfo=dt.timezone.utc)
+        with patch('invesco_economic_index.digest',side_effect=hashes.__getitem__),patch('invesco_economic_index.pdf_text',side_effect=texts.__getitem__):
+            _,proof=return_weight_method('russell2000-equity-members',now,bodies.__getitem__)
+            self.assertTrue(proof['originalWeightsUnchanged'])
+            self.assertTrue(proof['targetReturnSeriesUnchanged'])
+            for index,term in [(0,'float-adjusted, market capitalization-weighted indexes'),(0,'Net total return indexes based on specified withholding tax rates'),(1,'AEMV equals the index float-adjusted market value based on the primary exchange closing prices')]:
+                changed=dict(texts);key=bodies[documents[index]['sourceUrl']];changed[key]=changed[key].replace(term,'unqualified replacement')
+                with patch('invesco_economic_index.pdf_text',side_effect=changed.__getitem__),self.assertRaisesRegex(ValueError,'Missing official common'):
+                    return_weight_method('russell2000-equity-members',now,lambda url:bodies[url])
+        self.assertEqual(documents[0]['version'],'v7.3, November2026')
+        self.assertEqual(review['documents'][1]['sha256'],review['documents'][1]['priorSha256'])

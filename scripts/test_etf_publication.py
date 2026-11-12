@@ -33,8 +33,11 @@ class EtfPublication(unittest.TestCase):
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text('original\n')
-        for name in ['observation_rebase_guard.py', 'validate-etf-publication.sh']:
+        for name in ['observation_rebase_guard.py', 'market_reader_revalidation.py',
+                     'validate-etf-publication.sh']:
             (self.f.local / 'scripts' / name).write_bytes((ROOT / 'scripts' / name).read_bytes())
+        (self.f.local/'scripts/export-etf-pilot-baseline.mjs').write_text('export const baseline = 1;\n')
+        (self.f.local/'scripts/build-automation-targets.mjs').write_text('export const targets = [];\n')
         self.f.git(self.f.local, 'add', '.')
         self.f.git(self.f.local, 'commit', '-m', 'ETF producer inputs')
         self.f.git(self.f.local, 'push', 'origin', 'master')
@@ -109,6 +112,34 @@ if command == 'npm run build' and os.environ.get('ETF_TEST_RACE'):
         self.assertEqual(receipt['commit'], self.f.git(self.f.remote, 'rev-parse', 'master'))
         for path in PRIMARY + ['public/data/asset-field-coverage.json']:
             self.assertEqual(receipt['files'][path], self.f.git(self.f.remote, 'rev-parse', 'master:' + path))
+
+    def test_observed_three_qualification_reader_race_preserves_both_writers(self):
+        from market_reader_revalidation import ETF_READERS
+        for name in ETF_READERS:
+            p = self.f.other/name
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text('reviewed downstream reader change\n')
+        self.f.git(self.f.other, 'add', *sorted(ETF_READERS))
+        self.f.git(self.f.other, 'commit', '-m', 'three downstream qualification readers')
+        self.f.git(self.f.other, 'push', 'origin', 'master')
+        result = self.publish()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        for name in ETF_READERS:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + name),
+                             'reviewed downstream reader change')
+        for name in PRIMARY:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + name),
+                             'collected ETF observation')
+        log = (self.f.root/'checks').read_text()
+        self.assertIn('node scripts/test-data-qualification.mjs', log)
+        self.assertIn('npm run audit:etf-annual-performance', log)
+        self.assertIn('npm run build', log)
+
+    def test_qualification_reader_race_still_refuses_failed_financial_audit(self):
+        self.f.advance_remote('docs/data-operations-coordination.md')
+        before = self.f.git(self.f.remote, 'rev-parse', 'master')
+        result = self.publish(ETF_TEST_FAIL='npm run audit:etf-annual-performance')
+        self.assert_refused(result, before)
 
     def test_target_projection_precedes_coverage_after_source_url_change(self):
         self.f.advance_remote(INSURANCE)

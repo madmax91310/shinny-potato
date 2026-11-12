@@ -211,14 +211,16 @@ class JpmLivePresentation(unittest.TestCase):
                 self.assertEqual(len(result['holdings']['rows']), 10)
                 self.assertEqual(result['collectionErrors'][0]['field'], 'aum-current-source')
 
-    def test_keeps_pdf_conventions_dates_and_proprietary_api_classifications_separate(self):
+    def test_keeps_pdf_performance_and_explicitly_qualifies_new_issuer_taxonomies(self):
         result = self.collect()
         pdf = parse_jpm()
-        for field in ['characteristics', 'performance', 'countries', 'sectors']:
+        for field in ['characteristics', 'performance']:
             self.assertEqual(result[field], pdf[field])
         self.assertEqual(result['aum']['asOf'], '2026-11-05')
-        self.assertEqual(result['sectors']['asOf'], '2026-08-31')
-        self.assertEqual([a['fields'] for a in result['sourceAttempts'][-2:]], [['aum'], ['holdings']])
+        self.assertEqual(result['sectors']['asOf'], json.loads(self.raw())['fundData']['emeaSectorBreakdown']['effectiveDate'])
+        self.assertEqual(result['sectors']['classification'],'jpm-proprietary-sectors-v1')
+        self.assertIn('no GICS/ICB equivalence',result['sectors']['method'])
+        self.assertEqual([a['fields'] for a in result['sourceAttempts'][-4:]], [['aum'], ['holdings'],['countries'],['sectors']])
 
     def test_pdf_failure_does_not_renew_retained_pdf_financial_fields(self):
         def unavailable():
@@ -228,8 +230,10 @@ class JpmLivePresentation(unittest.TestCase):
         self.assertTrue(result['exposureOnly'])
         self.assertEqual(len(result['collectionErrors']), 4)
         new = merge_collection({'checkedAt':self.now.isoformat(),'shares':[result]}, old, {})
-        for field in ['characteristics', 'performance', 'countries', 'sectors']:
+        for field in ['characteristics', 'performance']:
             self.assertEqual(new['IE0003UVYC20'][field], old['IE0003UVYC20'][field])
+        for field in ['countries','sectors']:
+            self.assertEqual(new['IE0003UVYC20'][field]['asOf'],result[field]['asOf'])
         self.assertEqual(new['IE0003UVYC20']['aum']['checkedAt'], '2026-11-06')
 
     def test_api_failure_retains_newer_values_and_their_original_proof_dates(self):
@@ -237,7 +241,7 @@ class JpmLivePresentation(unittest.TestCase):
         def unavailable(*args, **kwargs):
             raise OSError('API unavailable')
         result = self.collect(fetch=unavailable)
-        self.assertEqual(len(result['collectionErrors']), 2)
+        self.assertEqual(len(result['collectionErrors']), 4)
         new = merge_collection({'checkedAt':'2026-11-07','shares':[result]}, old, {})
         for field in ['aum', 'holdings']:
             self.assertEqual(new['IE0003UVYC20'][field], old['IE0003UVYC20'][field])
@@ -264,5 +268,72 @@ class JpmLivePresentation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'JPM document:.*current API:'):
             self.collect(document=unavailable, fetch=unavailable)
 
+
+
+class JpmPublishedExposures(unittest.TestCase):
+    now=dt.datetime(2026,11,8,tzinfo=UTC)
+    def raw(self,change=None):
+        import gzip
+        data=json.loads(gzip.decompress((ROOT/'scripts/fixtures/jpm-exposures-20261108.json.gz').read_bytes()))
+        if change:change(data['fundData'])
+        return json.dumps(data).encode()
+    def live(self,change=None):
+        from jpm_live_presentation import parse_live
+        return parse_live(self.raw(change),share('IE0003UVYC20'),self.now)
+    def test_real_exact_share_fund_values_with_dates_cash_and_proprietary_labels(self):
+        r=self.live();self.assertEqual(r['countries']['asOf'],'2026-10-31');self.assertEqual(r['sectors']['asOf'],'2026-10-31')
+        self.assertEqual(r['holdings']['asOf'],'2026-11-06')
+        self.assertEqual(r['countries']['rows'][0],{'name':'United States','weightPct':67.6})
+        self.assertEqual(r['sectors']['rows'][0],{'name':'Pharm/Medtech','weightPct':10.8})
+        for field in ['countries','sectors']:
+            self.assertEqual(sum(p['weightPct']for p in r[field]['rows']),100)
+            self.assertEqual(next(p['weightPct']for p in r[field]['rows']if p['name']=='Cash'),.8)
+        self.assertNotEqual(r['countries']['rows'][0]['weightPct'],72.9) # benchmark
+        self.assertIn('no GICS/ICB equivalence',r['sectors']['method'])
+    def test_consumer_fixture_matches_all_real_api_rows(self):
+        from jpm_live_presentation import parse_live
+        c=share('IE0003UVYC20');r={**c,'productId':c['isin'],'exposureOnly':True,**self.live()}
+        merged=merge_collection({'checkedAt':'2026-11-08','shares':[r]}, {}, {})[c['isin']]
+        fixture=json.loads((ROOT/'scripts/fixtures/jpm-published-exposures-20261108.json').read_text())
+        for field in ['countries','sectors']:
+            for key in ['rows','asOf','classification','sourceComponent','method']:
+                self.assertEqual(merged[field][key],fixture[field][key])
+
+    def test_benchmark_columns_never_enter_fund_values(self):
+        r=self.live(lambda f:[p.update(secondaryValue=999,tertiaryValue=-999)for k in ['emeaRegionalBreakdown','emeaSectorBreakdown']for p in f[k]['data']])
+        for field in ['countries','sectors']:self.assertEqual(r[field]['rows'],self.live()[field]['rows'])
+    def test_missing_invalid_future_and_partial_fields_are_independently_refused(self):
+        for change in [lambda f:f.update(emeaRegionalBreakdown=None),lambda f:f['emeaRegionalBreakdown'].update(effectiveDate='2027-01-01'),lambda f:f['emeaRegionalBreakdown']['data'][0].update(value=True),lambda f:f['emeaRegionalBreakdown']['data'][0].update(value=float('nan')),lambda f:f['emeaRegionalBreakdown']['data'].pop(0)]:
+            r=self.live(change)
+            self.assertNotIn('countries',r);self.assertIn('sectors',r);self.assertIn('holdings',r)
+            self.assertEqual([e['field']for e in r['collectionErrors']],['countries-current-source'])
+    def test_same_date_cash_conflict_is_not_resolved_by_choosing_a_table(self):
+        def change(f):
+            a=f['emeaRegionalBreakdown']['data']
+            next(r for r in a if r['name']=='Cash').update(value=.9,displayValue='.9')
+            a[0].update(value=67.5,displayValue='67.5')
+        r=self.live(change)
+        self.assertNotIn('countries',r);self.assertNotIn('sectors',r)
+        self.assertIn('holdings',r)
+        self.assertEqual({e['field']for e in r['collectionErrors']},{'countries-current-source','sectors-current-source'})
+
+    def test_no_taxonomy_switch_without_exact_contract(self):
+        from jpm_published_exposures import sector_labels
+        r=self.live()['sectors'];s=share('IE0003UVYC20')
+        self.assertEqual(sector_labels(s,r)['Banks'],'Banques')
+        for patch in [{'sourceComponent':'fundData.emeaRegionalBreakdown'},{'method':'GICS'},{'basis':'index'}]:
+            with self.assertRaisesRegex(ValueError,'contract'):sector_labels(s,{**r,**patch})
+    def test_idempotent_recording_and_no_regression_after_old_pdf_or_api_failure(self):
+        from jpm_live_presentation import collect
+        s=share('IE0003UVYC20')
+        r=collect(s,self.now,document=parse_jpm,fetch=lambda *a,**k:self.raw())
+        before=merge_collection({'checkedAt':self.now.isoformat(),'shares':[r]}, {}, {})
+        again=merge_collection({'checkedAt':self.now.isoformat(),'shares':[r]},before,{})
+        self.assertEqual(before,again)
+        self.assertEqual(before[s['isin']]['sectors']['rows'][0]['label'],'Pharmacie et technologies médicales')
+        def offline(*a,**k):raise OSError('isolated API outage')
+        failed=collect(s,self.now,document=parse_jpm,fetch=offline)
+        after=merge_collection({'checkedAt':'2026-11-09','shares':[failed]},before,{})
+        for field in ['countries','sectors']:self.assertEqual(before[s['isin']][field],after[s['isin']][field])
 
 if __name__ == '__main__': unittest.main()

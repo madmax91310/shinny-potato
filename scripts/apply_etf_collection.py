@@ -78,10 +78,14 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             if active_date and incoming['asOf'] < active_date:
                 continue
             if field == 'sectors':
+                sector_names=SECTORS
+                if incoming.get('classification')=='jpm-proprietary-sectors-v1':
+                    from jpm_published_exposures import sector_labels
+                    sector_names=sector_labels(share,incoming)
                 for row in incoming['rows']:
-                    if row['name'] not in SECTORS:
+                    if row['name'] not in sector_names:
                         reject('Unknown issuer sector: ' + row['name'])
-                    row['label'] = SECTORS[row['name']]
+                    row['label'] = sector_names[row['name']]
             record[field] = checked_observation(incoming, old.get(field, {}), checked)
         # Metrics keep their own observation date; absence preserves the previous
         # value without pretending that it was checked again.

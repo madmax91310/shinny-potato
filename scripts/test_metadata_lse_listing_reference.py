@@ -25,3 +25,23 @@ class LseListingReference(unittest.TestCase):
   values,errors=collect({**self.source,'urls':[URL]},dt.datetime(2026,10,26,tzinfo=dt.timezone.utc),fetch=offline)
   self.assertEqual(values,{});self.assertTrue(errors)
 if __name__=='__main__':unittest.main()
+
+
+class IuesListingReference(unittest.TestCase):
+ def test_live_reference_fixture_renews_only_the_exact_usd_venue(self):
+  from collect_instrument_metadata import merge_field_observation
+  source=next(s for s in json.loads((ROOT/'scripts/instrument-metadata-sources.json').read_text())['instruments']if s['isin']=='IE00B42NKQ00')
+  url='https://apidata.londonstockexchange.com/nrdp/v1?tidm=IUES'
+  body=(ROOT/'scripts/fixtures/metadata-connections/lse-IUES-reference-20261111.json').read_bytes()
+  rows=parse_listings(body,source,url,'2026-11-11')
+  self.assertEqual([(r['mic'],r['ticker'],r['currency'],r['symbol'])for r in rows],[('XLON','IUES','USD','IUES.L')])
+  self.assertEqual(rows[0]['referenceDate'],'2026-11-11')
+  old=copy.deepcopy(source['listings'])
+  for row in old:row['checkedAt']='2026-11-03'
+  merged=merge_field_observation('listings',{'value':old,'checkedAt':'2026-11-03'}, {'value':rows,'checkedAt':'2026-11-11','sourceUrl':url})
+  self.assertEqual(len(merged['value']),len(old))
+  for row in merged['value']:
+   exact=(row['mic'],row['ticker'],row['currency'])==('XLON','IUES','USD')
+   self.assertEqual(row['checkedAt'],'2026-11-11'if exact else'2026-11-03')
+  # This reference is not a close, NAV, price history or blanket renewal of other venues.
+  self.assertFalse(any(k in rows[0]for k in ['close','price','nav']))

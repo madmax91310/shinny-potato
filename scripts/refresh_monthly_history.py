@@ -428,6 +428,7 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                         or not isinstance(scope['controlledCalendarYears'],list)):
                     reject('Invalid exact source-control scope')
                 dt.date.fromisoformat(scope['requestedStart'])
+            extension=False
             old=baseline.get(source['id'])
             prior=current.get(source['id'])
             from qualify_anniversary_price_units import retain_prior_review
@@ -447,20 +448,40 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                           and source.get('symbol') and source.get('timezone') and source.get('label')
                           and source.get('parser') == 'yahoo' and source.get('field') == 'adjclose'
                           and source.get('collectAnniversary') is True)
-                if not equity and (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
+                # One reviewed independent raw-NAV/cash route. The exact
+                # source identity, cash coverage and initial annual oracles are
+                # mandatory; this does not admit other official-NAV bootstraps.
+                hsbc=(source.get('id')=='etfIE00B4K6B022Nav' and source.get('isin')=='IE00B4K6B022'
+                    and source.get('navProvider')=='hsbc' and source.get('parser')=='official-nav'
+                    and source.get('currency')==source.get('navCurrency')=='EUR'
+                    and source.get('periodStart')=='2023-12' and source.get('consumerScope')=='catalog'
+                    and source.get('navHistoryKind')=='official-nav-and-gross-cash'
+                    and source.get('valuationBasis')=='fund-nav-total-return'
+                    and scope.get('constructedIncomeIndex') is True
+                    and scope.get('hsbcCashQualification',{}).get('coveredUntil')==result.get('lastOfficialValuation')
+                    and {2024,2025}<={c.get('year')for c in scope.get('checks',[])}
+                    and scope.get('controlledInstrument')==source['isin'])
+                if not equity and not hsbc and (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
                         or source.get('field') != 'adjclose' or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]', source.get('isin',''))
                         or not source.get('listingEvidenceId')):
                     reject('Unregistered monthly history bootstrap')
                 if result['points'][0][0] != source['periodStart']:
                     reject('New history coverage differs from its registered start')
             else:
-                if old['currency'] != result['currency'] or result['points'][0][0] != old['points'][0]['date']:
+                from reviewed_nav_prefix import qualified_prefix_extension
+                extension = qualified_prefix_extension(source,result,prior,old)
+                if old['currency'] != result['currency'] or (result['points'][0][0] != old['points'][0]['date'] and not extension):
                     reject('Existing series currency or coverage changed')
+                if extension:
+                    result['calendarProof']['reviewedPrefixApplied'] = {
+                        **source['reviewedHistoryPrefix'], 'unchangedPriorPoints':len(prior['points']),
+                        'method':'Earlier independently corroborated exact NAV year; every prior and baseline monthly value identical, no quote replacement'}
                 if result['periodEnd'] < old['points'][-1]['date']:reject('History would regress')
             active={k:v for k,v in result.items() if k not in ['proofRows','rawResponse']}
             previous=current.get(source['id'])
             if previous:
-                if any(previous[k] != active[k] for k in ['parser','currency','method','periodStart']):reject('Existing return convention changed')
+                if any(previous[k] != active[k] for k in ['parser','currency','method']):reject('Existing return convention changed')
+                if previous['periodStart'] != active['periodStart'] and not extension:reject('Existing return convention changed')
                 if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom','navHistoryKind','dwsIdentityBasis']):
                     reject('Existing exact series identity changed')
                 # A stale response can also rescale historical adjusted levels.
@@ -517,17 +538,23 @@ def main():
     # One clock governs selection and financial month-end validation, including
     # when an execution starts immediately before a month/year rollover.
     now=dt.datetime.now(UTC)
-    config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed,now=now)
+    registered_config=json.loads((ROOT/'scripts/monthly-automation.json').read_text())
+    config=select_series(registered_config,status,args.only,args.retry_failed,now=now)
     merged,report=refresh(config,current,json.loads(args.baseline.read_text()),now=now)
+    from reviewed_nav_prefix import recorded_prefix_config
+    accepted_config=recorded_prefix_config(registered_config,config,report['series'])
     report['scope']={'requestedIds':[s['id']for s in config['series']],'expectedIds':[s['id']for s in config['series']],'selection':'failed-or-missing'if args.retry_failed else'explicit'if args.only is not None else'configured-universe'}
     if args.evidence_output:write_json_atomic(args.evidence_output,report)
     write_json_atomic(args.output,monitoring_report(report))
+    if args.apply and accepted_config != registered_config:
+        write_json_atomic(ROOT/'scripts/monthly-automation.json',accepted_config)
     if args.apply and report['series']:
         for observation in report['series']:
             status['series'][observation['id']]={
                 'status':observation['status'],'checkedAt':report['checkedAt'],
                 **({'reason':observation['reason']} if observation['status']=='failed' else {
                     'periodEnd':observation['record']['periodEnd'],
+                    'periodStart':observation['record']['periodStart'],
                     'responseSha256':observation['evidence']['responseSha256']})}
         write_json_atomic(status_path,status)
     if args.apply and merged!=current:
@@ -560,6 +587,8 @@ def main():
 
 
 def select_series(config,status,only=None,retry_failed=False,now=None):
+    from reviewed_nav_prefix import planned_prefix_sources
+    config=planned_prefix_sources(config)
     ids={s['id'] for s in config['series']}
     if only is not None and (not only or set(only)-ids):
         reject('Unknown or empty monthly series selection')
@@ -571,6 +600,10 @@ def select_series(config,status,only=None,retry_failed=False,now=None):
         previous=status.get('series') or {}
         selected={key for key in ids if previous.get(key,{}).get('status')!='validated'
                   or previous.get(key,{}).get('periodEnd')!=latest}
+        # A reviewed prefix is pending until its exact start is actually recorded.
+        # Missing old metadata does not select any other current series.
+        selected.update(s['id'] for s in config['series'] if s.get('reviewedHistoryPrefix')
+                        and previous.get(s['id'],{}).get('periodStart') != s['periodStart'])
         if only is not None:selected &= set(only)
     else:
         selected=set(only) if only is not None else ids

@@ -24,3 +24,30 @@ for(const patch of [{isin:'wrong'},{wisdomTicker:'NGAS'},{navCurrency:'EUR'},{so
  const p=page();await assert.rejects(()=>collectPublicPerformance(p,{...source,...patch}));assert.equal(p.calls.length,0)
 }
 console.log('WisdomTree browser: exact public product precedes its two widgets; forbidden pages, wrong identity, network failures, partial/changed/oversize payloads rejected without cache.')
+
+// A fresh official PDF can independently bind the public API navigation, as
+// in the existing directory/rankings transports. No generic demo identity.
+const binding={kind:'official-exact-product-pdf-v1',isin:source.isin,currency:source.navCurrency,sourceUrl:source.factsheetUrl,sha256:'a'.repeat(64),asOf:'2026-10-31',checkedAt:new Date().toISOString()}
+function apiPage({status=200,urlChange=u=>u,contentType='application/json',body='[{}]',offline=false}={}){
+ const calls=[];return{calls,async goto(url){calls.push(url);if(offline)throw Error('network offline');return{status:()=>status,url:()=>urlChange(url),headers:()=>({'content-type':contentType}),body:async()=>Buffer.from(body)}}}
+}
+const native=apiPage(),via=await collectPublicPerformance(native,source,binding)
+assert.equal(via.publicProductPage,undefined);assert.equal(via.publicApiNavigation.productPageAttempted,false)
+assert.deepEqual(via.qualifiedIdentity,binding);assert.equal(via.results.length,2)
+assert(native.calls.every(u=>u.startsWith('https://dataspanapi.wisdomtree.com/funddetails/historical_performance/')))
+for(const mutation of [{kind:'cache'},{isin:'IE0000000000'},{currency:'EUR'},{sourceUrl:'https://example.test/identity'},{sha256:'invalid'},{checkedAt:'2020-01-01T00:00:00Z'},{checkedAt:new Date(Date.now()+600000).toISOString()},{asOf:'unknown'}]){
+ const p=apiPage();await assert.rejects(()=>collectPublicPerformance(p,source,{...binding,...mutation}));assert.equal(p.calls.length,0)
+}
+for(const options of [{status:403},{status:500},{urlChange:u=>u+'&wrong=1'},{urlChange:()=> 'https://example.test/'},{contentType:'text/html'},{body:'[]'},{body:'{}'},{body:'<html>challenge</html>'},{body:'x'.repeat(8_000_001)},{offline:true}])await assert.rejects(()=>collectPublicPerformance(apiPage(options),source,binding))
+const wti=sources.find(s=>s.wisdomTicker==='CRUD'),wtiBinding={...binding,isin:wti.isin,currency:wti.navCurrency,sourceUrl:wti.factsheetUrl}
+const redirected=await collectPublicPerformance(apiPage({urlChange:u=>u.replace('/historical_performance?','/historical_performance/?')}),wti,wtiBinding)
+assert(redirected.results.every(r=>r.actualUrl===r.url.replace('/historical_performance?','/historical_performance/?')))
+console.log('PDF-bound ordinary public API navigation: exact scope, fresh identity, canonical redirect, empty/partial/invalid/oversize/network failures; no cached or demo identity admitted.')
+
+// A failed new API navigation must never remove the previously qualified path.
+const retained=page();retained.setExtraHTTPHeaders=async()=>{};const originalGoto=retained.goto
+retained.goto=async url=>url.startsWith('https://dataspanapi.wisdomtree.com/')?{status:()=>403,url:()=>url}:originalGoto(url)
+const legacy=await collectPublicPerformance(retained,source,binding)
+assert.equal(legacy.publicProductPage.status,200);assert.equal(legacy.failedApiNavigation.status,403)
+assert(legacy.failedApiNavigation.attemptedAt);assert.equal(legacy.failedApiNavigation.checkedAt,undefined)
+assert.equal(legacy.results.length,2);assert(!legacy.publicApiNavigation)

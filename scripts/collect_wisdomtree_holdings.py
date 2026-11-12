@@ -16,6 +16,17 @@ from collect_ssga_etf import xlsx_rows
 
 IDENTITIES=[(r['isin'],r['url'])for r in json.loads((Path(__file__).with_name('security-identity-sources.json')).read_text())]
 
+def ranking_observation(*args, **kwargs):
+    from collect_physical_holdings import observation
+    result = observation(*args, **kwargs)
+    # File completeness proves the ranked securities, not their NAV denominator.
+    result['weightBasis'] = 'issuer-fund-ranking-unqualified-nav-denominator'
+    result['method'] = 'Complete published issuer Fund ranking; original ranking weights; fund NAV denominator and excluded cash not independently qualified; no renormalisation'
+    result.setdefault('coverageProof', {'rankClassificationID':1, 'rankClassification':'Fund',
+        'rowCount':len(result['rows']), 'publishedWeightPct':sum(r['weightPct'] for r in result['rows'])})
+    return result
+
+
 def known_shares():
     shares={}
     for name in ['additional-etf-sources.json','exposure-etf-expansion.json']:
@@ -110,11 +121,11 @@ def parse(page,share,now,mapping,identity_dates,*,identity_observations=None):
 
 def collect(share,now):
     from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
-    # These two existing shares expose a newer, full precision NAV book. A
+    # These existing shares expose a full precision NAV book with its cash. A
     # rounded ranking must not hide it. Only transport failure permits fallback;
     # contradictory identity/date/weight evidence still fails closed.
     api_error=None
-    if share['isin'] in ('IE00BZ56SW52','IE00BKLF1R75'):
+    if share['isin'] in CLASSES:
         try:return api_collect(share,now)
         except IssuerApiUnavailable as error:api_error=error
     rankings_error=''
@@ -169,7 +180,7 @@ def product_page(url,fetch_page=None):
 
 
 def collect_rankings(share,now):
-    from collect_physical_holdings import observation
+    observation=ranking_observation
     page,route,attempts=product_page(share['sourceUrl'])
     share={**share,'sourceUrl':route}
     from security_identifier_observations import qualified_observations,qualified,API,requires_independent_identity
@@ -391,7 +402,7 @@ def consolidate_ranked_securities(rows, mapping):
 
 
 def collect_public_rankings(share,now,fetch=download):
-    from collect_physical_holdings import observation
+    observation=ranking_observation
     raw,url,identity,listing,attempts=acquire_qualified_public_rankings(share,now,fetch)
     snapshot=complete_identity_mapping(now)
     mapping,dates,proofs=snapshot

@@ -1,4 +1,6 @@
+import {unqualifiedFundRankingWeights} from '../../src/data/holding-weight-basis.js'
 import RULES from '../data-qualification-rules.json' with {type:'json'}
+import {outsideEquityClassification} from './dca-asset-scope.mjs'
 
 const roles=new Map(RULES.groups.flatMap(group=>group.paths.map(path=>[path.startsWith('src/')?path:`src/data/${path}`,{role:group.role,reason:group.reason,reviewedAt:group.reviewedAt??RULES.reviewedAt}])));
 export function registryQualification(registry){
@@ -46,8 +48,11 @@ export function qualifyCoverage(row,{record={},holdingStatus,holdingSource,metad
   // These are equity look-through requirements, not a claim that a bond portfolio
   // or a swap has no securities. Preserve the original coverage state alongside it.
   const text=`${record.name??row.name} ${record.characteristics?.replicationMethod??''}`;
+  const outside=outsideEquityClassification(row.id,record.name??row.name);
   const commodity=/\bET[CPN]\b|commodity|physical (?:gold|silver|bitcoin|palladium|platinum)|ethereum staking|brent crude|wti crude|natural gas|wisdomtree coffee|wisdomtree cocoa|wisdomtree wheat|wisdomtree copper/i.test(text);
-  if(!row.present&&(/\bbonds?\b|\bibonds\b|treasury|govt|overnight|court terme/i.test(text)||commodity)){
+  if(outside){
+   actionState='outside-equity-scope';reason=`Le moteur de recouvrement d’entreprises exclut ce support (${outside}) selon la classification commune de sa part exacte ; ses positions, contrôles source et autres usages sont conservés.`;
+  }else if(!row.present&&(/\bbonds?\b|\bibonds\b|treasury|govt|overnight|court terme/i.test(text)||commodity)){
    actionState='outside-equity-scope';reason='Le contrôle porte sur les positions actions utilisées pour les recoupements DCA ; ce support nécessite son propre périmètre obligataire, monétaire ou matières premières.';
   }else if(!row.present&&/synthe|synthé|swap|indirect|hybrid/i.test(text)){
    actionState='tracked-index-needed';reason='Raccorder les constituants de l’indice économique exact ; le panier de substitution du fonds ne convient pas.';
@@ -56,13 +61,16 @@ export function qualifyCoverage(row,{record={},holdingStatus,holdingSource,metad
    reason=holdingStatus.error;
   }else if(!row.present&&!holdingSource){actionState='connector-needed';reason='Source de positions intégrales et contrôle de l’identité du fonds à raccorder.';}
  }
- if(row.field==='completeHoldings'&&row.present&&row.unidentifiedWeightPct>0){
+ if(row.field==='completeHoldings'&&actionState!=='outside-equity-scope'&&row.present&&row.unidentifiedWeightPct>0){
   const identityReason=`Composition officielle complète raccordée ; ${row.unidentifiedSecurityCount} identités restent inconnues (${row.unidentifiedWeightPct} % des poids publiés), sans renormalisation.`;
   // A retained partial identity qualification cannot hide today's transport failure.
   if(actionState==='collection-error'||actionState==='lookthrough-needed')reason=`${reason} ${identityReason}`;
   else {actionState='unqualified';reason=identityReason;}
  }
  if(row.diagnostic?.code==='retained-source-failure'&&actionState==='current')actionState='collection-error';
+ if(row.field==='holdings'&&actionState==='current'&&unqualifiedFundRankingWeights(record.holdings)){
+  actionState='unqualified';reason='Classement émetteur disponible et conservé ; dénominateur NAV des poids du fonds et liquidités exclues non qualifiés. Concentration, principales positions de présentation et comparaison refusées ; pays et secteurs indépendants conservés.';
+ }
  const passive=['current','archived','not-applicable','outside-equity-scope','waiting-first-year','waiting-publication'];
  const actions={
   'connector-needed':'Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.',

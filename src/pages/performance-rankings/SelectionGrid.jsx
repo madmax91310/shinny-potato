@@ -1,3 +1,4 @@
+import { selectionAssetLabel, selectionAssetName, selectionCategoryLabel } from './selectionLabels.js'
 import { useMemo, useState } from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { CATEGORIES, EXPOSURE_CATEGORIES } from './data.js'
@@ -17,7 +18,7 @@ export default function SelectionGrid({ minimum = 0, ids, currency, assets, onCh
   const selectedGroup = GROUPS.find(c => c.id === group)
   const choices = useMemo(() => Object.values(assets).filter(a =>
     (group === 'stocks' ? isStock(a) : group === 'etfs' ? a.isin && !isStock(a) && ETF_IDS.has(a.id) : EXPOSURE.has(group) ? a.isin && a.group === EXPOSURE.get(group).group : selectedGroup?.ids.includes(a.id)) &&
-    normalizeSearch(`${a.label} ${a.shortLabel} ${a.ticker ?? ''} ${a.isin ?? ''}`).includes(normalizeSearch(query)))
+    normalizeSearch(`${a.label} ${selectionAssetLabel(a)} ${a.ticker ?? ''} ${a.isin ?? ''}`).includes(normalizeSearch(query)))
     .sort((a, b) => a.label.localeCompare(b.label, 'fr')), [assets, group, query, selectedGroup])
   function toggle(id) {
     try { onChange(toggleAsset(ids, id, currency, assets)); setError('') }
@@ -27,13 +28,13 @@ export default function SelectionGrid({ minimum = 0, ids, currency, assets, onCh
     <p aria-live="polite"><strong>{ids.length}/6 sélectionnés</strong> · de deux à six actifs</p>
     <label className="rk-field">Univers à cocher<ChoicePicker aria-label="Univers à cocher" value={group} onChange={e => { setGroup(e.target.value); setLimit(30) }}>
       <option value="stocks">Toutes les actions</option><option value="etfs">ETF actions</option>
-      <optgroup label="Univers éditoriaux">{GROUPS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
-      <optgroup label="Par exposition (registre)">{EXPOSURE_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.group} · {c.universe} ETF et ETC</option>)}</optgroup>
+      <optgroup label="Univers éditoriaux">{GROUPS.map(c => <option key={c.id} value={c.id}>{selectionCategoryLabel(c)}</option>)}</optgroup>
+      <optgroup label="Toutes les expositions">{EXPOSURE_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.group} ({c.universe})</option>)}</optgroup>
     </ChoicePicker></label>
     <label className="rk-field">Rechercher dans l’univers<input type="search" value={query} onChange={e => { setQuery(e.target.value); setLimit(30) }} placeholder="Nom, ticker ou ISIN…" /></label>
     <div className="rk-checkbox-list">{choices.slice(0, limit).map(a => <label key={a.id}>
       <input type="checkbox" checked={ids.includes(a.id)} disabled={(ids.length >= 6 && !ids.includes(a.id)) || (ids.length <= minimum && ids.includes(a.id))} onChange={() => toggle(a.id)} aria-label={`Sélectionner ${a.label}`} />
-      <span><strong>{a.shortLabel}</strong><small>{a.label} · {a.currency}</small></span>
+      <span><strong>{selectionAssetLabel(a)}</strong><small>{selectionAssetName(a)} · {a.currency}</small></span>
     </label>)}</div>
     {!choices.length && <p role="status">Aucun actif ne correspond à cette recherche.</p>}
     {choices.length > limit && <button type="button" onClick={() => setLimit(value => value + 30)}>Afficher plus d’actifs</button>}

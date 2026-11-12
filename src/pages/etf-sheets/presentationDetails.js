@@ -10,8 +10,13 @@ const synthetic = facts => /swap|synthet|indirect|hybrid/i.test(facts.replicatio
 const clean = value => (value ?? '').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim()
 const normalized = value => clean(value).toLocaleLowerCase('fr-FR').replace(/[^\p{L}\p{N}]/gu,'')
 const excluded = /cash|derivative|liquidit|^autres$|^others?$|unassigned/i
-const names = {'COINBASE GLOBAL CLASS A':'Coinbase', 'CIRCLE INTERNET GROUP INC CLASS A':'Circle', 'TAIWAN SEMICONDUCTOR MANUFACTURING':'TSMC'}
-const holdingName = name => names[name] ?? clean(name)
+const names = {'COINBASE GLOBAL CLASS A':'Coinbase (classe A)', 'CIRCLE INTERNET GROUP INC CLASS A':'Circle (classe A)', 'TAIWAN SEMICONDUCTOR MANUFACTURING':'TSMC', 'APPLE INC':'Apple', 'MICROSOFT CORP':'Microsoft', 'NVIDIA CORP':'Nvidia', 'AMAZON COM INC':'Amazon', 'AMAZON.COM INC':'Amazon', 'META PLATFORMS INC CLASS A':'Meta Platforms (classe A)', 'ALPHABET INC CLASS A':'Alphabet (classe A)', 'ALPHABET INC CLASS C':'Alphabet (classe C)'}
+export const holdingName = name => {
+  const value = clean(name)
+  // Display only: retain legal suffixes and share classes for unmapped companies.
+  // The observation's source name and security identity are never rewritten.
+  return names[value] ?? (/^[^a-z]*[A-Z]/.test(value) ? value.toLocaleLowerCase('en').replace(/\b[\p{L}]/gu, c => c.toLocaleUpperCase('en')).replace(/\b(IBM|SAP|ASML|TSMC|HSBC|LVMH|ABB|BHP|AMD|ETF|REIT|PLC|AG|SE|SA)\b/gi, word => word.toUpperCase()).replace(/\b(Class|Cl) ([abc])\b/gi, (_m, _cl, share) => `(classe ${share.toUpperCase()})`) : value)
+}
 
 // Les titres du panier de substitution ne décrivent pas l'exposition d'un swap.
 export function presentationComposition(record, facts) {
@@ -21,7 +26,7 @@ export function presentationComposition(record, facts) {
   if (!c) return ''
   const scope = c.basis === 'index' ? 'de l’indice suivi' : 'du fonds'
   const positions = c.top.map(row => `${holdingName(row.name)} (${pct(row.weightPct)})`).join(', ')
-  return `Au ${date(c.asOf)}, les trois premières positions publiées ${scope} sont ${positions}. Ensemble, ces lignes pèsent ${pct(c.weight)}.`
+  return `Au ${date(c.asOf)}, ${positions} forment les trois premières lignes publiées ${scope}. Elles représentent ensemble ${pct(c.weight)}.`
 }
 
 export function presentationCountries(record, facts) {
@@ -43,7 +48,7 @@ export function completePresentation(copy) {
   const intro = benchmark && !active && !normalized(copy.whatIs).includes(normalized(benchmark).replace(/index(?:usd|eur)?$/,''))
     ? `Indice suivi : ${benchmark}.\n\n` : ''
   const description = synthetic(facts) ? copy.whatIs.replace(/Tu détiens /g, 'Tu t’exposes à ') : copy.whatIs
-  const swap = synthetic(facts) && !/swap|contrat d’échange/i.test(description) ? 'La performance est obtenue en tout ou partie par un swap, un contrat d’échange de performances. Les titres du panier de substitution ne sont pas nécessairement ceux de l’indice.' : ''
+  const swap = synthetic(facts) && !/swap|contrat d’échange/i.test(description) ? 'Le fonds utilise un swap : il échange tout ou partie de la performance de son panier de titres contre celle de l’indice. Ce panier de substitution peut donc contenir d’autres entreprises que l’indice suivi.' : ''
   const paragraphs = [intro+description, swap, presentationCountries(record,facts), presentationComposition(record,facts)]
   const count = record?.metrics?.numHoldings
   const positions = Number.isInteger(count?.value) && count.value > 0 && dated(count.asOf) && count.sourceUrl && (!facts.positionsAsOf || count.asOf>=facts.positionsAsOf)

@@ -45,6 +45,15 @@ for(const s of sources){
  assert(a.icon,`The existing share visual identity is required for PNG export: ${s.id}`)
  assert.equal(a.isin,s.isin);assert.equal(a.historyConvention,'fund-nav-total-return');assert(!a.ticker&&!a.mic)
  let start=s.periodStart
+ // A planned prefix is not a published observation. Until its ordinary producer
+ // records the new year, keep testing the actual active floor and its text.
+ if(s.reviewedHistoryPrefix&&a.points[0].date===s.reviewedHistoryPrefix.previousStart&&start===s.reviewedHistoryPrefix.newStart){
+  assert(!qualifyHistoryWindow(a,start,a.points.at(-1).date).qualified)
+  const requested={assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode:'lump',overridePriceRaw:''}
+  const actual=derive(requested)
+  assert.equal(actual.startYm,a.points[0].date,'An unrecorded prefix must not enter the calculation or its displayed period')
+  start=actual.startYm
+ }
  if(!qualifyHistoryWindow(a,start,a.points.at(-1).date).qualified){
   assert.throws(()=>derive({assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode:'lump',overridePriceRaw:''}))
   // An explicitly withheld month beyond the available series does not move

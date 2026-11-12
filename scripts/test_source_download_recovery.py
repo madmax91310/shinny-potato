@@ -32,6 +32,16 @@ class DownloadRecoveryTests(unittest.TestCase):
                     download('https://example.org', timeout=60, max_attempts=4)
                 self.assertEqual(make.return_value.open.call_count, attempts)
 
+    def test_public_metadata_is_opt_in_and_never_exports_cookies(self):
+        response=Response(b'xlsx');response.geturl=lambda:'https://www.hanaroetf.com/file'
+        response.headers={'Content-Disposition':'attachment;filename=dated.xlsx','Set-Cookie':'private','Authorization':'private'}
+        with patch('issuer_documents.urllib.request.build_opener') as make:
+            make.return_value.open.return_value=response
+            self.assertEqual(download('https://www.hanaroetf.com/file'),b'xlsx')
+            body,metadata=download('https://www.hanaroetf.com/file',return_metadata=True)
+        self.assertEqual(body,b'xlsx')
+        self.assertEqual(metadata,{'url':'https://www.hanaroetf.com/file','headers':{'Content-Disposition':'attachment;filename=dated.xlsx'}})
+
     def test_download_policy_cannot_create_unbounded_retries(self):
         for settings in [{'max_attempts': 6}, {'max_attempts': True}, {'timeout': 1000}]:
             with self.assertRaises(ValueError):

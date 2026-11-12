@@ -1,4 +1,5 @@
 import './test-consumer-field-evidence.mjs'
+import './test-ishares-physical-targets.mjs'
 import assert from 'node:assert/strict'
 import {consumerUsage} from './lib/consumer-usage.mjs'
 import {groupIncidents,incidentPresentations} from '../src/pages/data-review/incident-priority.js'

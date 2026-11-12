@@ -3,11 +3,19 @@ export function anniversaryResult(asset, gainPct, formattedPct) {
   const subject = asset.priceUnit === 'points' ? 'son niveau' : 'son prix'
   if (gainPct === null) return 'où en est-il aujourd’hui ?'
   if (gainPct === 0) return `${subject} est au même niveau`
+  if (Math.abs(gainPct) < 0.05) return `${subject} a très légèrement ${gainPct < 0 ? 'reculé' : 'progressé'}`
   if (gainPct < 0) return `${subject} a reculé de ${formattedPct.replace(/^[−-]/, '')}`
   if (gainPct === 100) return `${subject} a doublé`
+  const multiple = 1 + gainPct / 100
+  if (gainPct === 200) return `${subject} a triplé`
+  if (gainPct === 300) return `${subject} a quadruplé`
+  if (gainPct > 200) {
+    const factor = multiple.toLocaleString('fr-FR', { maximumFractionDigits: 2 })
+    return `${subject} a été multiplié par ${Number.isInteger(multiple) ? '' : 'environ '}${factor}`
+  }
   if (gainPct > 100) return `${subject} a plus que doublé`
   if (gainPct >= 90) return `${subject} a presque doublé`
-  return `${subject} a progressé de ${formattedPct}`
+  return `${subject} a progressé de ${formattedPct.replace(/^\+/, '')}`
 }
 
 export function anniversaryQuestion(asset) {

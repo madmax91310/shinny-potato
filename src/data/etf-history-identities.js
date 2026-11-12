@@ -6,6 +6,7 @@ const LANDG_AI_IDENTITY={icon:'🧠',scene:'chip',title:'INTELLIGENCE ARTIFICIEL
 export const ETF_HISTORY_IDENTITIES = {
  ...Object.fromEntries(newInstruments.map(f=>[`etf${f.isin}Nav`,{icon:f.assetClass==='Fixed Income'?'🔵':'🌍',scene:f.scene,title:f.name.replace(/^iShares /,'').replace(/ UCITS ETF.*$/,''),instrumentType:f.instrumentType}])),
  ...automaticIdentities,
+ etfIE00B4K6B022Nav:{...automaticIdentities.etfIE00B4K6B022},
  etfFR0011550185Nav:{...automaticIdentities.etfFR0011550185},
  etfIE00BK5BCD43Nav:{...LANDG_AI_IDENTITY},
  etfIE00BK5BCH80Nav:{...automaticIdentities.etfIE00BK5BCH80},

@@ -119,16 +119,21 @@ try {
   const retry=await browser.newPage();await retry.goto(base)
   await retry.route('**/asset-art/official-logos/apple.svg', route=>route.abort())
   const inspectApple = async () => {
-    const labels = [], original = CanvasRenderingContext2D.prototype.fillText
+    const labels = [], original = CanvasRenderingContext2D.prototype.fillText, originalDraw = CanvasRenderingContext2D.prototype.drawImage
+    let logo = false
+    CanvasRenderingContext2D.prototype.drawImage = function(image, ...args) {
+      if (image instanceof HTMLImageElement && image.src.endsWith('/official-logos/apple.svg')) logo = true
+      return originalDraw.call(this, image, ...args)
+    }
     CanvasRenderingContext2D.prototype.fillText = function(value, ...args) { labels.push(value); return original.call(this, value, ...args) }
     try {
       const {renderAnniversaryImage} = await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js')
       const canvas = await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:1},'200')
-      return { names: labels.filter(value => value === 'APPLE').length, png: canvas.toDataURL().startsWith('data:image/png;') }
-    } finally { CanvasRenderingContext2D.prototype.fillText = original }
+      return { logo, names: labels.filter(value => value === 'APPLE').length, png: canvas.toDataURL().startsWith('data:image/png;') }
+    } finally { CanvasRenderingContext2D.prototype.fillText = original; CanvasRenderingContext2D.prototype.drawImage = originalDraw }
   }
-  assert.deepEqual(await retry.evaluate(inspectApple), {names:2,png:true}, 'Missing logo must export a clean text fallback')
+  assert.deepEqual(await retry.evaluate(inspectApple), {names:1,png:true,logo:false}, 'Missing logo must export one clean asset name')
   await retry.unroute('**/asset-art/official-logos/apple.svg')
-  assert.deepEqual(await retry.evaluate(inspectApple), {names:1,png:true}, 'Retry must restore the official logo')
+  assert.deepEqual(await retry.evaluate(inspectApple), {names:1,png:true,logo:true}, 'Retry must restore the official logo without duplicating the asset name')
   console.log(`${records.filter(r=>!r.financialRefusal).length} anniversary exports and ${records.filter(r=>r.financialRefusal).length} explicit financial comparison refusals: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified.`)
 }finally{await browser?.close();server.kill('SIGTERM')}

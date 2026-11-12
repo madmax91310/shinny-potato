@@ -6,6 +6,10 @@ on:
     paths:
       - 'scripts/update-investor-13f.py'
       - 'scripts/test_investor_refresh.py'
+      - 'scripts/validate-investor-publication.py'
+      - 'scripts/observation_rebase_guard.py'
+      - 'scripts/producer_report_contract.py'
+      - 'scripts/producer_report_plans.py'
       - 'scripts/audit-investor-profiles.mjs'
       - 'src/pages/investor-portfolio/data.js'
       - '.github/workflows/update-investor-13f.yml'
@@ -28,6 +32,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '24'
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
@@ -36,6 +43,8 @@ jobs:
       # No commit or deployment is possible from this read-only job.
       - name: "Collect observations: python -u scripts update-investor-13f.py --output RUNNER_TEMP investor-observations.json"
         run: python -u scripts/update-investor-13f.py --output "$RUNNER_TEMP/investor-observations.json"
+      - name: Validate collected 13F observations and consumers
+        run: python -u scripts/validate-investor-publication.py validate --report "$RUNNER_TEMP/investor-observations.json"
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -56,6 +65,9 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           ref: master
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '24'
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
@@ -74,9 +86,11 @@ jobs:
             ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
-        run: echo 'Mandatory observation checks passed'
+        run: python -u scripts/validate-investor-publication.py validate --report "$RUNNER_TEMP/investor-observations.json"
       - name: Commit validated observations
         id: commit
+        env:
+          VALIDATED_DATA_CHECK: python -u scripts/validate-investor-publication.py check --report "$RUNNER_TEMP/investor-observations.json"
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

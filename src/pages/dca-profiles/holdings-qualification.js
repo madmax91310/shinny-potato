@@ -1,6 +1,6 @@
 import { qualifiedNativeIndexComposition } from '../../data/native-index-composition.js'
 import { EXPOSURE_MAX_AGE_DAYS } from './exposure.js'
-import { completeEquitySleeve } from '../../data/holdings-reconciliation.js'
+import { completeEquitySleeve, holdingsReconciliationDetails } from '../../data/holdings-reconciliation.js'
 
 const securityId = value => /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(value || '')
 export function qualifyHoldings(h, line, reference, now = new Date()) {
@@ -9,11 +9,25 @@ export function qualifyHoldings(h, line, reference, now = new Date()) {
   const age = (today-stamp)/86400000
   if (!h) return {valid:false, complete:false, reasons:['Composition absente.']}
   if (line.isin !== reference?.isin) reasons.push('Le support confirmé ne correspond pas à la référence.')
+  if (h.subjectIsin && h.subjectIsin !== line.isin) reasons.push('La composition appartient à une autre part.')
   if (!h.sourceUrl) reasons.push('Source de composition absente.')
   if (!/^\d{4}-\d{2}-\d{2}$/.test(h.asOf || '') || !Number.isFinite(stamp) || new Date(stamp).toISOString().slice(0,10) !== h.asOf) reasons.push('Date de composition invalide.')
   else if (age < 0) reasons.push('Date de composition future.')
   else if (age > EXPOSURE_MAX_AGE_DAYS) reasons.push('Composition périmée.')
   if (!['fund','index','equity'].includes(h.basis)) reasons.push('Périmètre de composition non qualifié.')
+  // A Fund ranking can exhaust the ranked equities without proving their NAV
+  // denominator or the omitted cash. This also applies to retained old reports.
+  const rankingOnly = h.weightBasis === 'issuer-fund-ranking-unqualified-nav-denominator' || (h.coverageProof?.rankClassificationID === 1 && h.coverageProof?.rankClassification === 'Fund')
+  if (rankingOnly && !holdingsReconciliationDetails(h)) {
+    reasons.push('Poids du classement émetteur : dénominateur NAV et liquidités excluses non qualifiés.')
+    const unavailableNative = h.accessAttempts?.find(a=>{
+      try { const u=new URL(a.sourceUrl);return a.status==='unavailable'&&u.hostname==='www.wisdomtree.com'&&/^\/api\/fund-holdings\/\d+$/.test(u.pathname) } catch {return false}
+    })
+    if(unavailableNative) {
+      const http=/HTTP(?:\s*Error)?\s*(\d{3})/.exec(String(unavailableNative.error||''))
+      reasons.push('Collecte du livre natif indisponible'+(http?' (HTTP '+http[1]+').':'.'))
+    }
+  }
   if ((h.synthetic || reference?.synthetic) && h.basis === 'fund') reasons.push('Panier de substitution exclu de l’exposition économique.')
   if (h.basis === 'index' && h.complete === true && !qualifiedNativeIndexComposition(h,line.isin,now)) reasons.push('Composition intégrale d’indice non qualifiée pour cette part.')
   const validRows = Array.isArray(h.rows) && h.rows.length > 0 && h.rows.every(row => Number.isFinite(row.weightPct) && row.weightPct >= 0 && row.weightPct <= 100)
