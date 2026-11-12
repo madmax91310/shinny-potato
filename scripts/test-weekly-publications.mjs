@@ -32,7 +32,7 @@ try {
   assert.deepEqual(snapshot, [
     [0,'morning',[]], [0,'midday',['/performance-depuis','/presentations','/idees-classements']], [0,'evening',['/tweets-factsheets','/generateur-portefeuilles']],
     [1,'morning',[]], [1,'midday',['/classements-performances','/fiche-lexique','/idees-classements']], [1,'evening',['/le-dca-de','/le-budget-de']],
-    [2,'morning',[]], [2,'midday',['/calculateur-investissement','/idees-classements']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
+    [2,'morning',[]], [2,'midday',['/calculateur-investissement','/france-100-menages','/idees-classements']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
     [3,'morning',[]], [3,'midday',['/classements-performances','/comparateur-indices','/idees-classements']], [3,'evening',['/banque-tweets']],
     [4,'morning',[]], [4,'midday',['/fiches-etf','/comparatif-etf','/idees-classements']], [4,'evening',['/le-budget-de']],
     [5,'morning',[]], [5,'midday',['/idees-classements']], [5,'evening',[]],
