@@ -20,6 +20,10 @@ Object.assign(record.universe,{basis:'europe-listed',label:'ETF cotés en Europe
 Object.assign(record.source,{rightsStatus:'licensed',rightsEvidence:'Autorisation simulée uniquement pour tester le validateur.'})
 const now = new Date('2026-11-13T12:00:00Z')
 assert.deepEqual(validateObservation(record,now),[])
+const rolling = {...record, start:'2026-10-09', periodKind:'rolling-1w', periodEvidence:'Intervalle de sept jours simulé pour tester le contrat 1W ; pas une observation du fournisseur.'}
+assert.deepEqual(validateObservation(rolling,now),[])
+assert(validateObservation({...rolling,start:'2026-10-08'},now).length)
+assert(validateObservation({...rolling,periodKind:'explicit-range'},now).length)
 const saved = addObservation([],record,now), before = JSON.stringify(saved)
 assert.throws(() => addObservation(saved,record,now),/Doublon/)
 assert.equal(JSON.stringify(saved),before)

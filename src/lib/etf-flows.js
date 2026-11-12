@@ -17,7 +17,8 @@ export function validateObservation(o, now = new Date()) {
   const errors = []
   if (!o || typeof o !== 'object') return ['Observation absente.']
   if (o.schemaVersion !== 1 || !present(o.id)) errors.push('Identité ou version invalide.')
-  if (!day(o.start) || !day(o.end) || o.start > o.end || (Date.parse(o.end) - Date.parse(o.start)) / 86400000 > 6) errors.push('Dates de semaine invalides (7 jours maximum).')
+  const maxSpan = o.periodKind === 'rolling-1w' ? 7 : 6
+  if (!day(o.start) || !day(o.end) || o.start > o.end || (Date.parse(o.end) - Date.parse(o.start)) / 86400000 > maxSpan) errors.push('Dates de semaine invalides (7 jours maximum).')
   if (o.complete !== true || !['explicit-range', 'rolling-1w'].includes(o.periodKind) || !present(o.periodEvidence)) errors.push('Bornes exactes et preuve de période requises, y compris pour 1W.')
   if (Date.parse(o.end) >= Date.parse(now.toISOString().slice(0, 10))) errors.push('Période incomplète ou future.')
   if (!instant(o.publishedAt) || !instant(o.retrievedAt) || !instant(o.validatedAt) || Date.parse(o.publishedAt) < Date.parse(o.end) || Date.parse(o.retrievedAt) < Date.parse(o.publishedAt) || Date.parse(o.validatedAt) < Date.parse(o.retrievedAt) || Date.parse(o.validatedAt) > +now) errors.push('Publication, récupération et validation doivent être datées et ordonnées.')
