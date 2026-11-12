@@ -15,7 +15,7 @@ assert.throws(() => addObservation([],fixture))
 // Positive contract simulation ONLY: factual values/dates above, explicitly simulated
 // universe and permission evidence. Never shipped to the app, always tested as archive.
 const record = structuredClone(fixture)
-Object.assign(record,{id:'test-contract-archive',fixture:false,status:'validated',publishedAt:'2026-10-19T10:00:00Z',validatedAt:'2026-11-12T21:15:00Z'})
+Object.assign(record,{id:'test-contract-archive',fixture:false,status:'validated',validatedAt:'2026-11-12T21:15:00Z'})
 Object.assign(record.universe,{basis:'europe-listed',label:'ETF cotés en Europe (contrat simulé)',evidence:'Simulation de contrat pour le test, pas une preuve sur ETF Express.'})
 Object.assign(record.source,{rightsStatus:'licensed',rightsEvidence:'Autorisation simulée uniquement pour tester le validateur.'})
 const now = new Date('2026-11-13T12:00:00Z')

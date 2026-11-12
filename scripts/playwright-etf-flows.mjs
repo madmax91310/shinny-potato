@@ -7,7 +7,7 @@ import {waitPreview} from './wait-preview.mjs'
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/etf-flows/2026-10-12.json',import.meta.url)))
 // Real historical numbers, with explicitly simulated contract metadata in this browser only.
 const record = structuredClone(fixture)
-Object.assign(record,{id:'test-browser-archive',fixture:false,status:'validated',publishedAt:'2026-10-19T10:00:00Z',validatedAt:'2026-11-12T21:15:00Z'})
+Object.assign(record,{id:'test-browser-archive',fixture:false,status:'validated',validatedAt:'2026-11-12T21:15:00Z'})
 Object.assign(record.universe,{basis:'europe-listed',label:'Contrat simulé de test',evidence:'Périmètre simulé uniquement pour le test, pas une preuve fournisseur.'})
 Object.assign(record.source,{rightsStatus:'licensed',rightsEvidence:'Autorisation simulée de test ; aucune autorisation ETF Express déduite.'})
 const base=process.env.ETF_FLOWS_PUBLIC_BASE ?? 'http://127.0.0.1:4401/shinny-potato'
