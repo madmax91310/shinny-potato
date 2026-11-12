@@ -58,7 +58,10 @@ jobs:
         run: node scripts/prepare-validated-data.mjs
       - id: compose
         if: steps.plan.outputs.current == 'true'
-        run: node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+        run: |
+          # Composition checks out the published code, which may predate this helper.
+          cp scripts/ensure-ci-runtime.sh "$RUNNER_TEMP/ensure-ci-runtime.sh"
+          node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
       - if: steps.plan.outputs.current == 'true'
         run: npm ci
       - if: steps.plan.outputs.current == 'true'
@@ -96,7 +99,7 @@ jobs:
           writeFileSync('dist/build-info.json',JSON.stringify({sha:process.env.CODE_SHA,dataSha:process.env.DATA_SHA,lane:'validated-data',builtAt:new Date().toISOString()})+'\n')
           JS
       - if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'
-        run: npx playwright install --with-deps chromium
+        run: bash "$RUNNER_TEMP/ensure-ci-runtime.sh" chromium
       - if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'
         run: node scripts/smoke-data-routes.mjs
       - uses: actions/configure-pages@v6.0.0
