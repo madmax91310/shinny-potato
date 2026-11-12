@@ -2,6 +2,7 @@
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from html.parser import HTMLParser
 import io
 import hashlib
@@ -46,11 +47,34 @@ def date(value, now, *, historical=False):
     return source_date(parsed.strftime('%Y%m%d'),now)
 
 
-def allocation(component, now):
+def allocation(component, now, *, published_single_country=False):
     rows=[{'name':p['name']['value'],'weightPct':number(float(p['weight']['originalValue']),positive=False)} for p in component['attrArray']]
     if not rows or len({p['name']for p in rows})!=len(rows) or not 99<=sum(p['weightPct']for p in rows)<=101:
         reject('Incomplete State Street allocation')
-    return {'asOf':date(component['asOfDateSimple'],now),'rows':rows,'basis':'fund'}
+    result = {'asOf':date(component['asOfDateSimple'],now),'rows':rows,'basis':'fund'}
+    if published_single_country and any(row['weightPct'] > 100 for row in rows):
+        # This is a separately published percentage, not a clamp or a rescaling
+        # of the higher-precision originalValue (nor of any security holdings).
+        if component.get('label') != 'Fund Geographical Weights' or len(rows) != 1 or rows[0]['name'] != 'United States':
+            reject('Qualified State Street single-country scope changed')
+        weight = component['attrArray'][0]['weight']
+        displayed = weight.get('value')
+        if not isinstance(displayed, str) or not re.fullmatch(r'100[.,]00\s*%', displayed):
+            reject('Missing explicit State Street published country percentage')
+        try:
+            original = Decimal(str(weight['originalValue']))
+            published = Decimal(displayed.rstrip().rstrip('%').strip().replace(',', '.'))
+            if not original.is_finite() or original.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP) != published:
+                reject('State Street country percentage and published precision disagree')
+        except (InvalidOperation, KeyError) as error:
+            raise ValueError('Invalid State Street country percentage evidence') from error
+        result['rows'] = [{'name':rows[0]['name'],'weightPct':float(published)}]
+        result['weightRepresentation'] = 'issuer-published-two-decimal-percent'
+        result['sourceComponent'] = 'fund-geographical-breakdown'
+        result['sourceOriginalWeightPct'] = str(original)
+        result['sourceDisplayWeight'] = displayed
+        result['normalizationApplied'] = False
+    return result
 
 
 def parse_page(body, share, now):
@@ -66,8 +90,12 @@ def parse_page(body, share, now):
         'aum':{'amount':number(float(aum['originalValue'])),'currency':share['currency'],'scope':'share-class' if 'share-class-assets-millions' in facts else 'fund',
             'asOf':date(aum['asOfDateSimple'],now)}}
     if share.get('collectComposition'):
+        representation = share.get('countryWeightRepresentation')
+        if representation not in (None, 'issuer-published-single-country-percent'):
+            reject('Unqualified State Street country weight representation')
         for key,component in [('sectors','fund-sector-breakdown'),('countries','fund-geographical-breakdown')]:
-            if component in parser.data:result[key]=allocation(parser.data[component],now)
+            if component in parser.data:
+                result[key]=allocation(parser.data[component],now,published_single_country=key=='countries' and representation is not None)
     launch = facts.get('inception-date')
     inception = date(launch.get('originalValue') or launch['value'], now, historical=True) if launch else None
     if inception:
