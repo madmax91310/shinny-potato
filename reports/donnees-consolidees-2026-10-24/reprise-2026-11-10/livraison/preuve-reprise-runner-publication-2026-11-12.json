@@ -1,0 +1,274 @@
+{
+  "run": 43305492167,
+  "failedJob": 131493709591,
+  "originalAttempt": 1,
+  "failureAnnotation": [
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/madmax91310/shinny-potato/blob/ed984e097016f191ee77332d08773a6533909e1a/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The hosted runner lost communication with the server. Anything in your workflow that terminates the runner process, starves it for CPU/Memory, or blocks its network access can cause this error.",
+      "raw_details": ""
+    }
+  ],
+  "failedJobMetadata": {
+    "id": 131493709591,
+    "run_id": 43305492167,
+    "workflow_name": "Deploy to GitHub Pages",
+    "head_branch": "master",
+    "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43305492167",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODBcmZM8AAAAenaLHFw",
+    "head_sha": "ed984e097016f191ee77332d08773a6533909e1a",
+    "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/131493709591",
+    "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43305492167/job/131493709591",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-12T21:08:29Z",
+    "started_at": "2026-11-12T21:08:32Z",
+    "completed_at": "2026-11-12T21:57:32Z",
+    "name": "tweet-midi-checks (0)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-12T21:08:32Z",
+        "completed_at": "2026-11-12T21:08:33Z"
+      },
+      {
+        "name": "Run actions/setup-node@v7.0.0",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-12T21:08:33Z",
+        "completed_at": "2026-11-12T21:08:36Z"
+      },
+      {
+        "name": "Run actions/download-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-12T21:08:36Z",
+        "completed_at": "2026-11-12T21:08:37Z"
+      },
+      {
+        "name": "Verify every entry in this partition",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 4,
+        "started_at": "2026-11-12T21:08:37Z",
+        "completed_at": null
+      },
+      {
+        "name": "Post Run actions/setup-node@v7.0.0",
+        "status": "pending",
+        "conclusion": null,
+        "number": 8,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/131493709591",
+    "labels": [
+      "ubuntu-26.04"
+    ],
+    "runner_id": 1000046890,
+    "runner_name": "GitHub Actions 1000046890",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "causeScope": "Hosted runner lost communication. Physical infrastructure cause not independently available; no financial assertion failure inferred.",
+  "artifactId": 13985005400,
+  "artifactBundleSha256": "308cbf0ab14ef6cd580a2c97d0a9b3dde5d511fa4d83c239dd5f8fa76f061911",
+  "boundedLocalDiagnostic": {
+    "budgetSeconds": 240,
+    "exitCode": 124,
+    "result": "Incomplete at600k progress; not counted as successful test"
+  },
+  "subsequentCompleteLocalTest": {
+    "timeoutSeconds": 900,
+    "exitCode": 0,
+    "scopeReceipt": {
+      "shardIndex": 0,
+      "shardCount": 4,
+      "poolSize": 4081825,
+      "checked": 1020457,
+      "failures": 0
+    },
+    "fullLog": "Anniversaires : seuil de doublement avant arrondi, baisse, stabilité, niveau manquant et questions par type vérifiés.\nOK : 44 fiches détaillées, règles fiscales, calculs, exemples et limites adaptés.\nTweet Midi 1/4: 100000 entrées vérifiées (21 s).\nTweet Midi 1/4: 200000 entrées vérifiées (42 s).\nTweet Midi 1/4: 300000 entrées vérifiées (63 s).\nTweet Midi 1/4: 400000 entrées vérifiées (85 s).\nTweet Midi 1/4: 500000 entrées vérifiées (131 s).\nTweet Midi 1/4: 600000 entrées vérifiées (187 s).\nTweet Midi 1/4: 700000 entrées vérifiées (240 s).\nTweet Midi 1/4: 800000 entrées vérifiées (292 s).\nTweet Midi 1/4: 900000 entrées vérifiées (352 s).\nTweet Midi 1/4: 1000000 entrées vérifiées (408 s).\nTWEET_MIDI_RESULT {\"shardIndex\":0,\"shardCount\":4,\"poolSize\":4081825,\"checked\":1020457,\"failures\":0}\n1020457 entrées vérifiées (partition 1/4, pool complet : 4081825).\n\n  [OK] Dilemme — 25 entrées, 0 échec(s)\n  [OK] Fiche lexique — 11 entrées, 0 échec(s)\n  [OK] Comparatif ETF — 39 entrées, 0 échec(s)\n  [OK] Il y a X ans — 433738 entrées, 0 échec(s)\n  [OK] Performance depuis — 586564 entrées, 0 échec(s)\n  [OK] Pouvoir d'achat — 80 entrées, 0 échec(s)\n\nOK — aucun problème trouvé sur la partition exhaustive.\n"
+  },
+  "githubRecovery": {
+    "kind": "single failed job re-run",
+    "requestedAt": "2026-11-12T22:01:38Z",
+    "newRunAttempt": 2,
+    "statusAtCapture": "queued after ordinary producer full-code validation",
+    "noMassCollection": true,
+    "sameFinancialChecksPreserved": true,
+    "observedOutcome": {
+      "runAttempt": 2,
+      "jobs": [
+        {
+          "completed_at": "2026-11-12T20:58:09Z",
+          "conclusion": "success",
+          "id": 131548657754,
+          "name": "current-snapshot",
+          "started_at": "2026-11-12T20:58:02Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T22:56:32Z",
+          "conclusion": "success",
+          "id": 131548657872,
+          "name": "tweet-midi-checks (0)",
+          "started_at": "2026-11-12T22:47:27Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T20:59:29Z",
+          "conclusion": "success",
+          "id": 131548658711,
+          "name": "exposure-browser-check",
+          "started_at": "2026-11-12T20:58:13Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:01:27Z",
+          "conclusion": "success",
+          "id": 131548659211,
+          "name": "python-checks",
+          "started_at": "2026-11-12T20:58:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:16:24Z",
+          "conclusion": "success",
+          "id": 131548660007,
+          "name": "tweet-midi-checks (1)",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:18:48Z",
+          "conclusion": "success",
+          "id": 131548660030,
+          "name": "tweet-midi-checks (3)",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:35:40Z",
+          "conclusion": "success",
+          "id": 131548660032,
+          "name": "browser-checks (2)",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:35:32Z",
+          "conclusion": "success",
+          "id": 131548660386,
+          "name": "browser-checks (3)",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:32:37Z",
+          "conclusion": "success",
+          "id": 131548660522,
+          "name": "browser-checks (1)",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:40:14Z",
+          "conclusion": "success",
+          "id": 131548660769,
+          "name": "browser-checks (0)",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:14:37Z",
+          "conclusion": "success",
+          "id": 131548661000,
+          "name": "tweet-midi-checks (2)",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:08:29Z",
+          "conclusion": "success",
+          "id": 131548704772,
+          "name": "build",
+          "started_at": "2026-11-12T20:58:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T21:10:27Z",
+          "conclusion": "success",
+          "id": 131548734706,
+          "name": "smoke",
+          "started_at": "2026-11-12T21:08:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T20:58:59Z",
+          "conclusion": "success",
+          "id": 131548740427,
+          "name": "scope",
+          "started_at": "2026-11-12T20:58:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T22:57:51Z",
+          "conclusion": "failure",
+          "id": 131553350399,
+          "name": "deploy",
+          "started_at": "2026-11-12T22:56:37Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T22:56:33Z",
+          "conclusion": "skipped",
+          "id": 131553351925,
+          "name": "fallback-build",
+          "started_at": "2026-11-12T22:56:33Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T22:56:33Z",
+          "conclusion": "skipped",
+          "id": 131553353401,
+          "name": "deploy-fallback",
+          "started_at": "2026-11-12T22:56:33Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-12T22:57:52Z",
+          "conclusion": "skipped",
+          "id": 131553994675,
+          "name": "advisory-checks",
+          "started_at": "2026-11-12T22:57:52Z",
+          "status": "completed"
+        }
+      ],
+      "partition0": "success131548657872, completed22:56:32UTC",
+      "publication": "Refused13155335039922:57:50UTC: oldvalidateded984snapshot cannot adopt one unknown identifier. All14financial/browser validationchecks passed; no actual Pagesdeployment from this retry. Guard preserved.",
+      "nativeErrorLines": [
+        "2026-11-12T22:57:13.7206685Z Verified full gate definition 79e765158a39cb1872786a1bc71607f15b3cd8bbd61cfa28d576a6846484364d: workflow ed984e097016f191ee77332d08773a6533909e1a, code ed984e097016f191ee77332d08773a6533909e1a",
+        "2026-11-12T22:57:13.7596592Z   VALIDATED_CODE_SHA: ed984e097016f191ee77332d08773a6533909e1a",
+        "2026-11-12T22:57:50.6433024Z AssertionError [ERR_ASSERTION]: New identifiers need their own full validation before code/data promotion",
+        "2026-11-12T22:57:50.6433846Z 1 !== 0"
+      ],
+      "independentDeliveredSnapshot": "152629fe actuallyfullyvalidatedandpublished22:47:19UTCby ordinaryproducer43305492230; not replaced by oldretry."
+    }
+  },
+  "caveat": "Local artifact test is separate from GitHub validation. Does not substitute for its publication gate, prove supplier collection or certify all prices."
+}

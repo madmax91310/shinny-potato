@@ -1,0 +1,144 @@
+{
+  "url": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx",
+  "checkedAt": "2026-11-12T21:05:31.343764+00:00",
+  "sha256": "b69ad5bb8943893be9f2529e7fd89dfa7ebc4039ea887a72380b59379360ac49",
+  "header": [
+    "ISIN",
+    "SEDOL",
+    "Security Name",
+    "Currency",
+    "Number of Shares",
+    "Percent of Fund",
+    "Trade Country Name",
+    "Local Price",
+    "Sector Classification",
+    "Industry Classification",
+    "Base Market Value"
+  ],
+  "leadingRows": [
+    [
+      "Fund Name:",
+      "State Street® SPDR® S&P® 500 UCITS ETF (Acc)"
+    ],
+    [
+      "ISIN:",
+      "IE000XZSV718"
+    ],
+    [
+      "Ticker Symbol:",
+      "SPYL GY"
+    ],
+    [
+      "Holdings As Of:",
+      "11-Nov-2026"
+    ],
+    []
+  ],
+  "firstSecurity": [
+    "US0378331005",
+    "2046251",
+    "Apple Inc.",
+    "USD",
+    "1.0023796E7",
+    "7.900911",
+    "United States",
+    "355.63",
+    "Information Technology",
+    "Technology Hardware Storage & Peripherals",
+    "3.5647626E9"
+  ],
+  "newPiste": "Independent weights from issuer monetary positions and exact fund NAV, rather than renormalising rounded weights.",
+  "monetaryColumnsPresent": true,
+  "equityRows": 504,
+  "sumPublishedEquityWeightsPct": "100.000029",
+  "sumPublishedEquityBaseMarketValues": "45118386504.2804",
+  "totalFundAssetsQuoted": "45010702889.02",
+  "totalFundAssetsAsOf": "11 Nov 2026",
+  "fundBaseCurrency": "USD",
+  "shareClassAssetsDistinct": "20056846312.88",
+  "ratioOfPublishedEquityMarketValuesToFundAssetsPct": "100.2392400214809099423297473",
+  "differenceUsd": "107683615.2604",
+  "unassignedRowsWithUnknownPublishedWeights": [
+    {
+      "ISIN": "Unassigned",
+      "SEDOL": "Unassigned",
+      "Security Name": "CONTRA HOLOGIC INCORPO",
+      "Currency": "USD",
+      "Number of Shares": "139636.0",
+      "Percent of Fund": "3.0E-6",
+      "Trade Country Name": "United States",
+      "Local Price": "0.01",
+      "Sector Classification": "Unassigned",
+      "Industry Classification": "Unassigned",
+      "Base Market Value": "1396.36"
+    },
+    {
+      "ISIN": "Unassigned",
+      "SEDOL": "Unassigned",
+      "Security Name": "British Pounds",
+      "Currency": "GBP",
+      "Number of Shares": "371196.0",
+      "Percent of Fund": "-",
+      "Trade Country Name": "United Kingdom",
+      "Local Price": "1.0",
+      "Sector Classification": "Unassigned",
+      "Industry Classification": "Unassigned",
+      "Base Market Value": "493040.53"
+    },
+    {
+      "ISIN": "Unassigned",
+      "SEDOL": "Unassigned",
+      "Security Name": "EMINI S&P DEC26",
+      "Currency": "USD",
+      "Number of Shares": "135.0",
+      "Percent of Fund": "-",
+      "Trade Country Name": "None",
+      "Local Price": "382025.0",
+      "Sector Classification": "Unassigned",
+      "Industry Classification": "Unassigned",
+      "Base Market Value": "5.1573376E7"
+    },
+    {
+      "ISIN": "Unassigned",
+      "SEDOL": "Unassigned",
+      "Security Name": "Euro",
+      "Currency": "EUR",
+      "Number of Shares": "167281.0",
+      "Percent of Fund": "-",
+      "Trade Country Name": "European Union",
+      "Local Price": "1.0",
+      "Sector Classification": "Unassigned",
+      "Industry Classification": "Unassigned",
+      "Base Market Value": "185623.84"
+    },
+    {
+      "ISIN": "Unassigned",
+      "SEDOL": "Unassigned",
+      "Security Name": "Mexican Peso",
+      "Currency": "MXN",
+      "Number of Shares": "5464728.0",
+      "Percent of Fund": "-",
+      "Trade Country Name": "Mexico",
+      "Local Price": "1.0",
+      "Sector Classification": "Unassigned",
+      "Industry Classification": "Unassigned",
+      "Base Market Value": "293479.1"
+    },
+    {
+      "ISIN": "Unassigned",
+      "SEDOL": "Unassigned",
+      "Security Name": "U.S. Dollar",
+      "Currency": "USD",
+      "Number of Shares": "3.9490428E7",
+      "Percent of Fund": "-",
+      "Trade Country Name": "United States",
+      "Local Price": "1.0",
+      "Sector Classification": "Unassigned",
+      "Industry Classification": "Unassigned",
+      "Base Market Value": "3.9490428E7"
+    }
+  ],
+  "conclusion": "Alternative monetary route investigated but NOT qualified. Same date labels do not establish compatible valuation timing/accounting scope. Unassigned cash and a futures contract have no published NAV percentage; Base Market Value for the contract must not silently be treated as NAV fair value. Do not divide by the equity sum to force100, substitute share-class assets, or invent an unexplained residual as cash. Full-overlap restriction remains. The official geographic percentage is a distinct published field, not a NAV-book certificate.",
+  "missingPiece": "Official reconciliation of whole-fund NAV and the economic holdings at the same valuation cut-off, including signed cash/payables and derivative NAV values or explicit permitted weight basis.",
+  "verificationKind": "Actual local retrieval of issuer workbook, same SHA as the GitHub top-holdings observation; not a repaired full-book supplier pipeline."
+}

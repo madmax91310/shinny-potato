@@ -1,0 +1,290 @@
+{
+  "oldCode": "73293235da289dc07c9a25d5a5b6803c7e7740f0",
+  "newCode": "4a3470790608886671e127d48adf0b94c6e3e962",
+  "sameInputFiles": true,
+  "before": {
+    "terRows": 283,
+    "internalDependencyRows": 0
+  },
+  "after": {
+    "terRows": 284,
+    "internalDependencyRows": 14,
+    "applicableFields": [
+      "completeHoldings",
+      "countries",
+      "sectors"
+    ],
+    "nonApplicable": [
+      "ter",
+      "aum",
+      "performance",
+      "monthly",
+      "holdings",
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "listings",
+      "pea",
+      "currencyHedge"
+    ]
+  },
+  "internalOnly": true,
+  "fields": [
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-12T19:04:54.703969+00:00",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "reason": null,
+      "basis": "fund",
+      "unidentifiedWeightPct": 0,
+      "unidentifiedSecurityCount": 0
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "ter",
+      "label": "Frais",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "performance",
+      "label": "Performances annuelles",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "monthly",
+      "label": "Historique mensuel",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "countries",
+      "label": "Pays",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-12",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "reason": null
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "sectors",
+      "label": "Secteurs",
+      "state": "current",
+      "present": true,
+      "checkedAt": "2026-11-12",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Accumulating_9680_FR_INT_EN.pdf",
+      "reason": null
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "holdings",
+      "label": "Principales positions",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "distribution",
+      "label": "Distribution",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "domicile",
+      "label": "Domicile",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "replicationMethod",
+      "label": "Réplication",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "listings",
+      "label": "Cotations",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "pea",
+      "label": "Éligibilité PEA",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    },
+    {
+      "id": "IE00BK5BQW10",
+      "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+      "type": "instrument",
+      "field": "currencyHedge",
+      "label": "Couverture de change",
+      "state": "not-applicable",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "sourceUrls": [],
+      "automationConfigured": false,
+      "tools": [],
+      "reason": "Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ."
+    }
+  ],
+  "githubSourceBeforeFailure": {
+    "runId": 43259274158,
+    "jobId": 131325880058,
+    "artifactId": 13970553727,
+    "error": "test-asset-field-coverage.mjs:28 — 283 actual versus284expected"
+  },
+  "githubAfterSuccess": {
+    "runId": 43297362440,
+    "jobId": 131459118844,
+    "artifactId": 13980841212,
+    "coverageValidation": "2026-11-12T20:14:54.4796379Z",
+    "builtCoverageRows": 4597
+  },
+  "caveat": "Same-data isolated replay plus real GitHub provider validation; no catalogue extension or production publication inferred."
+}

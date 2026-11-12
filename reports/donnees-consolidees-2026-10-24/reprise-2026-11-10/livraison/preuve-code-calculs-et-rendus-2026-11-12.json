@@ -1,0 +1,110 @@
+{
+  "finalMergedCommit": "1457bf3a43b7e67369d6178fda70a589800fad30",
+  "publicFunctionalCode": "152629fe89c746a4676a3149dbf6cb974f0fb950",
+  "finalOnlyDifference": "scripts/test_new_issuer_sources.py; branch compared before merge, no other intervening commits",
+  "calculationAndRenderSourceBindings": [
+    {
+      "path": "src/data/index-company-compositions.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "1fdfef5845a7ddf8eef47d334c605a1a15994094020f23b66b77072514f07f69",
+      "finalSourceSha256": "1fdfef5845a7ddf8eef47d334c605a1a15994094020f23b66b77072514f07f69"
+    },
+    {
+      "path": "src/data/index-concentration-core.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "89d2d24e29e9c19d09b3a6c2397e57ee2af00b3f57c94c0041ce0163a1135e80",
+      "finalSourceSha256": "89d2d24e29e9c19d09b3a6c2397e57ee2af00b3f57c94c0041ce0163a1135e80"
+    },
+    {
+      "path": "src/data/native-index-composition.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "c91a7b9bc2fe234c682efd04082ebcdf62ecc2817e50b0766c9ba0e68a7a11d0",
+      "finalSourceSha256": "c91a7b9bc2fe234c682efd04082ebcdf62ecc2817e50b0766c9ba0e68a7a11d0"
+    },
+    {
+      "path": "src/data/index-facts.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "6a77a9590db09ab38cc6a0bc9df3a2b1e7bceb1b4ad2fa28e95d2891f68a0f6d",
+      "finalSourceSha256": "6a77a9590db09ab38cc6a0bc9df3a2b1e7bceb1b4ad2fa28e95d2891f68a0f6d"
+    },
+    {
+      "path": "src/data/history-window-quality.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "4887ef7f3342724ee80aa41145564958e0488e75e657a4ef7157da22ea06b7b5",
+      "finalSourceSha256": "4887ef7f3342724ee80aa41145564958e0488e75e657a4ef7157da22ea06b7b5"
+    },
+    {
+      "path": "src/data/market-history.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "b9a91a2cd7cde6820a4d9e822668140f608f9d50345f52079ed47af1de8714c4",
+      "finalSourceSha256": "b9a91a2cd7cde6820a4d9e822668140f608f9d50345f52079ed47af1de8714c4"
+    },
+    {
+      "path": "src/pages/dca-profiles/engine.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "6ea7a6ac63771b0e2cb7d2f22e3c7c8e5d04a27419e13b873b510f154a06b5ad",
+      "finalSourceSha256": "6ea7a6ac63771b0e2cb7d2f22e3c7c8e5d04a27419e13b873b510f154a06b5ad"
+    },
+    {
+      "path": "src/pages/dca-profiles/analytics.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "54fdb8dd343fd8899332d197ee75e80d7238677110ab4b41825a12708332809c",
+      "finalSourceSha256": "54fdb8dd343fd8899332d197ee75e80d7238677110ab4b41825a12708332809c"
+    },
+    {
+      "path": "src/pages/dca-profiles/exposure.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "aa7781b8c8379984b7b5f3da42bc81cac8ffd829696e6a50cc42b4f8275ad046",
+      "finalSourceSha256": "aa7781b8c8379984b7b5f3da42bc81cac8ffd829696e6a50cc42b4f8275ad046"
+    },
+    {
+      "path": "src/pages/dca-profiles/image.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "1d0b90a61c5e74fe65c0210a4c3e81c7ee58b3703acad91fe804cc941a265a28",
+      "finalSourceSha256": "1d0b90a61c5e74fe65c0210a4c3e81c7ee58b3703acad91fe804cc941a265a28"
+    },
+    {
+      "path": "src/data/etf-cards.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "b3441650ee0ba2514a36dfb211e15b3ec3d6c3661c86897c3f092b9c48d00984",
+      "finalSourceSha256": "b3441650ee0ba2514a36dfb211e15b3ec3d6c3661c86897c3f092b9c48d00984"
+    },
+    {
+      "path": "src/pages/etf-sheets/lib.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "e10c573f32caff4f3000c7e0237ecd242e1a6724ff245aaf80603214feea2c58",
+      "finalSourceSha256": "e10c573f32caff4f3000c7e0237ecd242e1a6724ff245aaf80603214feea2c58"
+    },
+    {
+      "path": "src/pages/etf-sheets/editorial.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "a534b067638a4ac76f2e6d7837e55fe0c92e0b6d2359c3ae6ca120573b75c7ff",
+      "finalSourceSha256": "a534b067638a4ac76f2e6d7837e55fe0c92e0b6d2359c3ae6ca120573b75c7ff"
+    },
+    {
+      "path": "src/pages/factsheet-tweets/data.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "74bfb083841729c05fd4e32ef9748692af04e42c24856c4911c43ffbd5af12bd",
+      "finalSourceSha256": "74bfb083841729c05fd4e32ef9748692af04e42c24856c4911c43ffbd5af12bd"
+    },
+    {
+      "path": "src/pages/factsheet-tweets/editorial.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "2acd562821bf62e15a8e870a1d7aaac05f2ae6d0def3f0a0cfe08fe805a7728d",
+      "finalSourceSha256": "2acd562821bf62e15a8e870a1d7aaac05f2ae6d0def3f0a0cfe08fe805a7728d"
+    },
+    {
+      "path": "src/pages/factsheet-tweets/canvasImage.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "4ab2c66f2d355875a9564b050b17a4b5185b2a9ba843d6b9dc1a8b16ce9afe7a",
+      "finalSourceSha256": "4ab2c66f2d355875a9564b050b17a4b5185b2a9ba843d6b9dc1a8b16ce9afe7a"
+    },
+    {
+      "path": "src/pages/factsheet-tweets/lib.js",
+      "sameAsFinalMergedSource": true,
+      "localSha256": "3d8394a8f39f8fb0818a1fa9ccd4116dcb138577299bd014d978a712ef5e971f",
+      "finalSourceSha256": "3d8394a8f39f8fb0818a1fa9ccd4116dcb138577299bd014d978a712ef5e971f"
+    }
+  ],
+  "caveat": "Exact17selected calculation/render modules, not independent certification of every source field. Canonical JSON and public PNG evidence are separate."
+}

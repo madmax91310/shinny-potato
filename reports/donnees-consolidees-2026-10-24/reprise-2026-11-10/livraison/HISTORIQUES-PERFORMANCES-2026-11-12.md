@@ -1,0 +1,73 @@
+# Historiques et performances — suite consolidée du 12 novembre 2026
+
+Suivi unique : [#881, commentaire de cette intervention](https://github.com/madmax91310/shinny-potato/issues/881#issuecomment-6776720896). Suite de #1234 ; aucun audit général recommencé, aucun catalogue ajouté. Les performances annuelles, les fenêtres mensuelles et les anciennes divergences restent des objets différents.
+
+## Résultat financier et usages
+
+Le périmètre constant contient **79 couples part × année : 73 utilisables, six encore refusés**, sans régression des 71 fenêtres précédemment qualifiées. **Aucune nouvelle fenêtre de ce groupe n’est rétablie par ce lot.** Les 77 anciennes divergences et deux résidus restent suivis séparément ; une voie NAV indépendante n’explique pas l’ancienne cotation.
+
+La matrice [historiques-performances-2026-11-12.csv](historiques-performances-2026-11-12.csv) conserve les **774 routes de séries** de la matrice précédente, pas 774 instruments uniques ni 774 collectes réussies. Elle décrit périodes, devises, conventions, intervalles refusés, configurations et preuves antérieures. Les configurations déclarées ne deviennent pas des certificats réseau. La matrice finale est liée aux entrées canoniques du manifeste public ; les projections générées sont distinguées des fichiers identiques aux commits code/données.
+
+| Actif / période | Usage disponible | Blocage précis et nouvelle recherche du 12 novembre |
+|---|---|---|
+| DE000A0H08P6, Retail 2019 | Autres fenêtres admises conservées ; calendrier annuel indépendant distinct | Reconstruction 38,2409679375 % contre 38,2505510559 %, résidu −0,0095831184 point. Facteurs avril/juillet et bornes homogènes manquants ; aucune formule déjà refusée rejouée, seuil inchangé. |
+| DE000A27Z304, Bitwise 2021 | **Paris EUR juin 2021–octobre 2026** ; 2023/2024 déjà rétablis, sans double impact Xetra | Année entière sans borne décembre 2020 ni continuité suffisante de l’ancienne cotation. Le nouveau script officiel de graphique requiert un fichier déclaré par le produit ; BTCE n’en déclare pas. Aucun endpoint inventé. NAV USD à 16 h CET distincte des clôtures EUR. |
+| FR0010755611, CL2 2021 et 2024 | Périodes indépendamment admises conservées | Flux/opérations et méthode de réinvestissement sur toute la période non prouvés. Nouvelle bibliothèque de documents et avis du 26 janvier 2024 : seule la durée recommandée change, sans effet annoncé sur la VL ; pas une preuve de distribution ou split. Deux archives datées demandées renvoient 404. |
+| FR0013411998, PEA Japon couvert EUR 2025 | Calendrier annuel officiel distinct ; autres fenêtres suivant qualification | Catalogue officiel exact, annuel juin 2025 et semestriel décembre 2025 examinés. Il manque une preuve exhaustive des flux/opérations de 2025 ou une définition officielle des cellules vides. |
+| FR0013412004, PEA Amérique latine 2025 | Même distinction annuel / mensuel | Même limite documentaire, sur cette part exacte. Une politique « capitalisation et/ou distribution » et des cellules vides ne prouvent pas zéro distribution. |
+| Palladium, décembre 2014 | Cotation Londres et périodes indépendamment qualifiées conservées | **NAV décembre 2014 toujours non qualifiée.** Les usages récents ne réparent pas cette observation. |
+| Palladium, 2025 | **NAV 2025 indépendante utilisable** ; cotation IPDM.L 2025 refusée | Ne pas confondre disponibilité d’une autre voie, réparation de la cotation et explication de sa divergence. Un calcul traversant une fenêtre refusée reste bloqué. |
+
+| Part / année refusée | Pièce encore nécessaire et piste examinée |
+|---|---|
+| DE000A0H08P6 — Retail 2019 | Bornes et facteurs de réinvestissement officiels homogènes ; résidu −0,0095831184 point conservé. Reconstructions et distributions déjà acquises réutilisées ; aucun facteur supplémentaire officiel démontré. |
+| DE000A27Z304 — Bitwise 2021 | Bornes quotidiennes EUR/Xetra de décembre2020 à décembre2021, unité et continuité ; Paris ne commence qu’en juin2021. Le script graphique officiel examiné ne déclare pas de fichier NAV historique pour BTCE ; aucune URL inventée. Paris2023/2024 reste qualifié indépendamment. |
+| FR0010755611 — CL2 2021 | Événements et réinvestissement complets de la part, bornes ajustées ; la politique «Capitalisation and/or distribution» ne prouve pas zéro distribution. Bibliothèque et avis officiels examinés. |
+| FR0010755611 — CL2 2024 | Même nécessité, sur la période2024 ; l’avis du26janvier ne modifie que la durée recommandée de détention. Les deux archives datées introuvables restent tracées. |
+| FR0013411998 — Japon PEA 2025 | Preuve exhaustive des flux et facteurs aux bornes quotidiennes exactes ; séries officielles déjà acquises, qualification indépendante du rendement réinvesti encore insuffisante. |
+| FR0013412004 — Amérique latine PEA 2025 | Bornes NAV/cotation, dernier échange et clôture de valorisation rapprochés avec événements ; la différence résiduelle n’est pas déclarée prime/décote par simple soustraction. |
+
+La liste des six couples et les raisons exactes des moteurs figurent dans [six-fenetres-restantes-2026-11-12.csv](six-fenetres-restantes-2026-11-12.csv) ; les 79 cas, y compris tous les acquis, dans [statut-fenetres-79-2026-11-12.json](statut-fenetres-79-2026-11-12.json). Le refus s’applique aux fenêtres concernées : aucune exclusion globale supplémentaire d’un actif.
+
+## Corrections de production
+
+- [#1240](https://github.com/madmax91310/shinny-potato/pull/1240), fusion `f9e30620` : réutilisation du runtime nécessaire aux producteurs mensuel/indices, après relecture du correctif concurrent #1235. Les anciennes tentatives échouées ne sont pas effacées.
+- [#1243](https://github.com/madmax91310/shinny-potato/pull/1243), fusion `f9d255e9` : neuf changements de lecteurs/navigation, absents des graphes d’acquisition avant/après, peuvent être intégrés **uniquement avec régénération et revalidation financière complètes**. La garde commune reste inchangée. Une modification inconnue du collecteur, calendrier, change ou entrée financière reste refusée.
+- Rejeu exact hors production du refus d’enregistrement `f9e30620` → `dc2eef57` : les neuf fichiers sont absents des 39 dépendances du graphe de base ; vérification supplémentaire des graphes candidats 76/3/1 dépendances. Les deux nouvelles entrées financières d’un commit ultérieur restent correctement refusées.
+
+## Passages et publication
+
+- Run ordinaire mensuel [43234485008](https://github.com/madmax91310/shinny-potato/actions/runs/43234485008) : runtime et validations exécutés, 29 contrôles de cotations distinctes réussis ; **seule ancienne route mensuelle sélectionnée Bitwise Xetra en HTTP 400**, Paris opérationnel indépendamment. Enregistrement refusé lors des neuf changements de lecteurs ; aucune collecte du catalogue complet déduite.
+- Cron mensuel **réellement observé le 12 novembre**, [43249476357](https://github.com/madmax91310/shinny-potato/actions/runs/43249476357) : validations exécutées, puis enregistrement refusé sur quatre fichiers WisdomTree modifiés concurremment par #1236. La protection reste légitime ; ce passage n’est pas une publication réussie.
+- Reprise ordinaire [43258719362](https://github.com/madmax91310/shinny-potato/actions/runs/43258719362), déclenchée manuellement : validations de calculs et parcours réussies, puis **enregistrement 7fb8d6b16429337b2874623567d9c36ee8f2435b**, adopté publiquement par la voie données sur CODE ad3f267a. Les nouvelles observations validées ont réellement traversé le stockage et la publication. Ce passage ne certifie pas une nouvelle collecte de toutes les séries et ne répare pas la route Xetra échouée. Le **push ordinaire postfusion 43259309235** a également réussi sa collecte et ses validations, puis son enregistrement et la publication des observations valides. La version publique observée à 18:53 UTC est CODE `ad3f267a154102e85f3f0ca2f699b03e79165776` / DATA `04114d476bd2d8cb880c9ecbc0fdab08512235c3`, construite à 18:49:34 UTC. L’échec final de signalement reste attribué à l’ancienne route Xetra HTTP 400 ; il ne révoque pas la publication vérifiée des observations valides et ne double pas l’impact de la voie Paris opérationnelle. Ce déclenchement est un push, pas un cron.
+- Les voies Paris, WTI, Wheat, NGAS et les usages Brent/WTI 2020 déjà qualifiés sont préservés. Ce lot ne prétend pas les avoir de nouveau acquis uniquement parce qu’un workflow est vert.
+
+Prochaines tentatives configurées : reprise mensuelle quotidienne **06:45 UTC**, cycle complet les **2, 4, 8 et 16 à 06:15 UTC**. Le prochain déclenchement est nominal, jamais une réussite anticipée ; une reprise conditionnelle peut ne pas sélectionner une série déjà courante.
+
+## Vérifications
+
+Chaque PR a satisfait ses 14 contrôles requis avant fusion. Le build complet du code fusionné **f9d255e9** est réussi, y compris couverture publiée et manifeste des 42 fichiers publics construits ; preuve séparée [preuve-build-f9d255e9.json.gz](preuve-build-f9d255e9.json.gz). Les 23 régressions du lecteur mensuel et les 105 tests de la garde commune ont passé ; les calculs de comparaison et les 372 portefeuilles / 1 255 remplacements ont été vérifiés lors du lot.
+
+Les recettes historiques publiques déjà concluantes du lot précédent sont conservées avec leurs versions et dates. Aucun nouveau scénario financier n’est revendiqué sur une période refusée ; les contrôles de fenêtres de ce lot ne certifient pas indépendamment chaque prix des 774 routes.
+
+**Preuve de remise en service** : l’enregistrement et la publication de la reprise ordinaire ci-dessus sont observés ; le refus antérieur reste historique. La requalification exacte des neuf lecteurs est également démontrée par le rejeu isolé, sans suppression des gardes. Le dernier cron observé le12novembre conserve son échec propre ; les reprises manuelle et push réussies ne le transforment pas en cron réussi. Le prochain passage planifié corrigé reste à observer.
+
+Le build du dernier commit fusionné `1457bf3a43b7e67369d6178fda70a589800fad30` a également réussi le 12 novembre à 22:19:45 UTC ; les données canoniques de cours et de compositions ne sont pas modifiées manuellement. [Reçu](preuve-build-final-1457bf3a-2026-11-12.json). La perte de communication d’un runner de la validation de production est distinguée d’un échec financier ; sa reprise ciblée et le test local complet du bundle exact restent des preuves distinctes de la publication.
+
+
+## Complément final : périmètre natif et preuve nouvelle Amundi
+
+L’artefact natif **13973822602** du push mensuel 43259309235 a été relu, sans nouvelle collecte massive. Son périmètre mensuel attendu et sélectionné est **l’ancienne route Bitwise Xetra seulement**, en HTTP 400. Les **29 contrôles de cotations** sont de véritables consultations réussies. Les trois résultats de dérivation d’indices portent `sourceAttempted=false` ; ils ne prouvent pas trois nouvelles acquisitions fournisseur. Les données de change conservées datent de leur propre contrôle du 11 novembre. La réparation d’enregistrement/publication est bien démontrée, sans prétendre à une nouvelle collecte des 774 routes ni à 73 nouvelles qualifications : [contrats natifs et sélection](preuve-perimetre-natif-mensuel-2026-11-12.json.gz).
+
+Une piste nouvelle a été examinée quantitativement pour les quatre fenêtres Amundi : les niveaux quotidiens officiels `countervalorisedAdjustedNAV`, utilisés par le portail pour le graphique et l’export « Performance ». Les bornes donnent **CL2 2021 : 81,37836022 % ; CL2 2024 : 65,61976410 % ; Japon couvert 2025 : 25,86280591 % ; Amérique latine 2025 : 35,75237367 %**, en accord avec leurs calendriers officiels. La réponse quotidienne d’octobre est réutilisée avec son horodatage original ; elle n’est pas présentée comme recollectée aujourd’hui.
+
+Le portail officiel CL2 a aussi été réellement rendu le 12 novembre à 22:47 UTC, avec capture des réponses réseau et du dictionnaire. Il indique **« Ce fonds peut distribuer des dividendes »**. Les seuls textes explicitement « dividend reinvested » identifiés dans ce dictionnaire concernent les variantes HKD/RMB, pas ces parts EUR. Une égalité aux bornes annuelles et le libellé « VL ajustée » ne suffisent pas à certifier le réinvestissement quotidien sur toute la fenêtre. Il manque toujours une définition officielle de la convention EUR exacte ou l’historique exhaustif des flux et facteurs. **Aucun des quatre refus n’est retiré sur cette seule piste.** [Réponses, bornes exactes et conclusion par part](amundi-indice-ajuste-convention-2026-11-12.json.gz).
+
+### État de publication et limites
+
+Les correctifs financiers et de production du lot sont fusionnés. Le snapshot réellement servi vérifié après publication est **`152629fe89c746a4676a3149dbf6cb974f0fb950`**, données du même snapshot ; son build complet ne fournit pas de champ `dataSha` distinct. Les 111 entrées canoniques utilisées pour les matrices sont liées aux empreintes du manifeste public : [preuve](publication-et-entrees-finales-2026-11-12.json). Le commit fusionné `1457bf3a`, limité au raccord de tests SPYL, a lui aussi passé ses 14 contrôles et son build ; ses 17 modules financiers/rendus contrôlés sont identiques au code effectivement servi. Aucune publication de ce seul commit de test n’est inventée.
+
+Le premier passage planifié de la nouvelle garde mensuelle reste attendu le **13 novembre à 06:45 UTC**, pas acquis au 12 novembre. Le dernier cron du 12 garde son refus de publication légitime, la reprise et le push réussis gardent leurs propres déclenchements. Les **73 cas utilisables sont tous préservés, six restent refusés** ; les limites palladium décembre 2014 et cotation 2025 sont séparées. Les anciennes divergences ne sont pas clôturées par la disponibilité d’une autre voie fiable. Le bilan financier et documentaire reste explicitement incomplet sur ces pièces, même après réparation des étapes de production.
+
+
+Complément de la reprise ciblée GitHub : la partition texte0 a ensuite effectivement réussi à **22:56:32 UTC** (job131548657872), soit les 14 contrôles du portail réussis. La tentative de publication de cet **ancien snapshot ed984** a été refusée à22:57:50 par la garde des identifiants nouveaux lors de la promotion des données ; aucun déploiement de cette reprise n’est revendiqué, aucun contrôle assoupli. Le snapshot plus récent **152629fe**, pleinement validé et déjà publié par le producteur ordinaire à22:47, reste effectivement servi. La validation ordinaire de master1457 (tests seulement) suit son propre cours. Cette reprise ne certifie pas davantage de collectes fournisseur.

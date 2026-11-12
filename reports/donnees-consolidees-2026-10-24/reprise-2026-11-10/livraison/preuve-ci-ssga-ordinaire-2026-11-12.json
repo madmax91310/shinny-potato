@@ -1,0 +1,14 @@
+{
+  "pr": 1249,
+  "headSha": "f2cec01044f1d7906ee655e56317ba9f799b0ab5",
+  "runId": 43310217610,
+  "event": "pull_request",
+  "jobId": 131504158437,
+  "stage": "python-checks",
+  "status": "success",
+  "entryPoint": "python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'",
+  "tests": 60,
+  "spylRegressionsIncluded": 9,
+  "log": "Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'\n2026-11-12T21:28:14.3486775Z \u001b[36;1mpython -m unittest discover -s scripts -p 'test_new_issuer_sources.py'\u001b[0m\n2026-11-12T21:28:14.3519116Z shell: /usr/bin/bash -e {0}\n2026-11-12T21:28:14.3519408Z env:\n2026-11-12T21:28:14.3519702Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64\n2026-11-12T21:28:14.3520144Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig\n2026-11-12T21:28:14.3520559Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64\n2026-11-12T21:28:14.3520936Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64\n2026-11-12T21:28:14.3521330Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64\n2026-11-12T21:28:14.3521709Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib\n2026-11-12T21:28:14.3522198Z ##[endgroup]\n2026-11-12T21:28:19.1191306Z ............................................................\n2026-11-12T21:28:19.1192289Z ----------------------------------------------------------------------\n2026-11-12T21:28:19.1192845Z Ran 60 tests in 4.578s\n2026-11-12T21:28:19.1193099Z \n2026-11-12T21:28:19.1193200Z OK\n2026-11-12T21:28:19.1686928Z ",
+  "caveat": "Ordinary CI entry point actually exercised; this is regression evidence, not supplier collection or publication evidence."
+}

@@ -1,0 +1,21 @@
+{
+  "runId": 43259309235,
+  "event": "push",
+  "sourceJobId": 131326012809,
+  "publicationJobId": 131410427545,
+  "recordedDataSha": "04114d476bd2d8cb880c9ecbc0fdab08512235c3",
+  "publishedCodeSha": "ad3f267a154102e85f3f0ca2f699b03e79165776",
+  "sourceLines": [
+    "2026-11-12T18:22:58.6720399Z \u001b[36;1m  if [ \"$RETRY_FAILED\" = 'true' ]; then echo 'Sélection explicite incompatible avec retry_failed'; exit 1; fi\u001b[0m",
+    "2026-11-12T18:23:08.0553803Z Current index data, immutable historical snapshots, compatible return conventions and synthetic exposures verified.",
+    "2026-11-12T18:46:54.2455122Z \u001b[36;1mbash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/shared-listing-identities.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json\u001b[0m",
+    "2026-11-12T18:47:00.5290612Z HEAD is now at 04114d4 Refresh validated monthly market histories"
+  ],
+  "publicationLines": [
+    "2026-11-12T18:48:15.9060944Z Validated producer: 9 exact files from 04114d476bd2d8cb880c9ecbc0fdab08512235c3, published code ad3f267a154102e85f3f0ca2f699b03e79165776.",
+    "2026-11-12T18:48:52.6528186Z Fallback snapshot: code ad3f267a (published) + 146 automation data file(s) from 04114d47.",
+    "2026-11-12T18:50:24.3325515Z Pages artifact 13973777843: recorded build 04114d476bd2d8cb880c9ecbc0fdab08512235c3; caller f9d255e904bfa7c99775589b2c633f0ec88f0c2d; deployment 04114d476bd2d8cb880c9ecbc0fdab08512235c3",
+    "2026-11-12T18:50:31.2541399Z Verified public code ad3f267a154102e85f3f0ca2f699b03e79165776, data 04114d476bd2d8cb880c9ecbc0fdab08512235c3, 383 data files."
+  ],
+  "sourceCaveat": "Legacy Bitwise Xetra HTTP400 remains; public Paris is independently operational. Valid observations were recorded and adopted, not full catalogue recertification or cron proof."
+}

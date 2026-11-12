@@ -1,0 +1,145 @@
+{
+  "nativeRun": 43252709153,
+  "artifactId": 13962234029,
+  "nativeAsOf": "2026-11-11",
+  "sourceProof": "heg-production-github/_temp/physical-source-proofs/IE00BDFBTQ78-vaneck.raw",
+  "crosscheck": {
+    "checkedAt": "2026-11-12T16:59:22.918001+00:00",
+    "sourceUrl": "https://api.openfigi.com/v3/mapping",
+    "request": [
+      {
+        "idType": "ID_CUSIP",
+        "idValue": "207758RV7"
+      },
+      {
+        "idType": "ID_ISIN",
+        "idValue": "CA03062D8035",
+        "exchCode": "CN",
+        "currency": "CAD"
+      },
+      {
+        "idType": "TICKER",
+        "idValue": "USA",
+        "exchCode": "CN",
+        "currency": "CAD"
+      },
+      {
+        "idType": "ID_CUSIP",
+        "idValue": "816851BC2"
+      },
+      {
+        "idType": "ID_ISIN",
+        "idValue": "AU000000ARU5",
+        "exchCode": "AU",
+        "currency": "AUD"
+      },
+      {
+        "idType": "TICKER",
+        "idValue": "ARU",
+        "exchCode": "AU",
+        "currency": "AUD"
+      }
+    ],
+    "response": [
+      {
+        "data": [
+          {
+            "figi": "BBG005J4D8R8",
+            "name": "CT SPL TAX-A",
+            "ticker": "CT CTSGEN 5 10/01/2024",
+            "exchCode": null,
+            "compositeFIGI": null,
+            "securityType": "FIXED",
+            "marketSector": "Muni",
+            "shareClassFIGI": null,
+            "securityType2": "Muni",
+            "securityDescription": null
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "figi": "BBG000BQKDN3",
+            "name": "AMERICAS GOLD AND SILVER COR",
+            "ticker": "USA",
+            "exchCode": "CN",
+            "compositeFIGI": "BBG000BQKDN3",
+            "securityType": "Common Stock",
+            "marketSector": "Equity",
+            "shareClassFIGI": "BBG001SCXBR0",
+            "securityType2": "Common Stock",
+            "securityDescription": "USA"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "figi": "BBG000BQKDN3",
+            "name": "AMERICAS GOLD AND SILVER COR",
+            "ticker": "USA",
+            "exchCode": "CN",
+            "compositeFIGI": "BBG000BQKDN3",
+            "securityType": "Common Stock",
+            "marketSector": "Equity",
+            "shareClassFIGI": "BBG001SCXBR0",
+            "securityType2": "Common Stock",
+            "securityDescription": "USA"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "figi": "BBG00JQ4JM02",
+            "name": "SEMPRA ENERGY",
+            "ticker": "SRE F 07/15/19",
+            "exchCode": "TRACE",
+            "compositeFIGI": null,
+            "securityType": "GLOBAL",
+            "marketSector": "Corp",
+            "shareClassFIGI": null,
+            "securityType2": "Corp",
+            "securityDescription": "SRE Float 07/15/19"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "figi": "BBG000Q0V5K2",
+            "name": "ARAFURA RARE EARTHS LTD",
+            "ticker": "ARU",
+            "exchCode": "AU",
+            "compositeFIGI": "BBG000Q0V5K2",
+            "securityType": "Common Stock",
+            "marketSector": "Equity",
+            "shareClassFIGI": "BBG001SGXPT8",
+            "securityType2": "Common Stock",
+            "securityDescription": "ARU"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "figi": "BBG000Q0V5K2",
+            "name": "ARAFURA RARE EARTHS LTD",
+            "ticker": "ARU",
+            "exchCode": "AU",
+            "compositeFIGI": "BBG000Q0V5K2",
+            "securityType": "Common Stock",
+            "marketSector": "Equity",
+            "shareClassFIGI": "BBG001SGXPT8",
+            "securityType2": "Common Stock",
+            "securityDescription": "ARU"
+          }
+        ]
+      }
+    ],
+    "status": "source-response-received",
+    "sha256": "59c41ca6ecd6562b2a60c258389b2a633a55910e2acb1e690a590779b0d27d87"
+  },
+  "conclusion": "Native published CUSIPs identify unrelated bonds while ticker/venue/currency plus candidate ISIN map to common equities. No source identifier is discarded. Complete overlap remains refused for 0.07% unidentified positions. Need corrected native identifiers or a separately qualified exact economic book, not a name join."
+}

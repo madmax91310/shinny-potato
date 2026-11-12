@@ -1,0 +1,151 @@
+{
+  "sourceRun": 43257386877,
+  "sourceEvent": "schedule",
+  "sourceCheckedAt": "2026-11-12T17:03:24Z",
+  "publicFrame": {
+    "directory": "/tmp/automation-20261112/evidence/public-inputs-bc50df61-152629fe",
+    "before": {
+      "sha": "bc50df618d5b2087f57761503d927e27fc00e4ce",
+      "dataSha": "152629fe89c746a4676a3149dbf6cb974f0fb950",
+      "lane": "validated-data",
+      "builtAt": "2026-11-12T21:14:56.769Z"
+    },
+    "stable": true,
+    "failures": []
+  },
+  "targets": [
+    {
+      "isin": "IE00BYZK4776",
+      "cronSourceAsOf": "2026-11-11",
+      "publicAsOf": "2026-11-11",
+      "cronSourceSha256": "c3c2d89af91ca48de44249f8246e06eccc1bbea04bca70743273d876d5823121",
+      "publicSourceSha256": "7180084795960eee83194ed4b9d4430d5390c4d65565e5796edd4d78eefe0f5c",
+      "cronSourceRowCount": 194,
+      "publicRowCount": 194,
+      "cronSourceControl": "2026-11-12T17:03:24.049145+00:00",
+      "publicControl": "2026-11-12T19:04:54.703969+00:00",
+      "periodEqual": true,
+      "sourceHashEqual": false,
+      "rowCountEqual": true
+    },
+    {
+      "isin": "IE00BYZK4669",
+      "cronSourceAsOf": "2026-11-11",
+      "publicAsOf": "2026-11-11",
+      "cronSourceSha256": "f6d9c857cc089da7cf8b74faba0888b6b632ed28d6962e94bf40b62f3f1db357",
+      "publicSourceSha256": "f6d9c857cc089da7cf8b74faba0888b6b632ed28d6962e94bf40b62f3f1db357",
+      "cronSourceRowCount": 344,
+      "publicRowCount": 344,
+      "cronSourceControl": "2026-11-12T17:03:24.049145+00:00",
+      "publicControl": "2026-11-12T19:04:54.703969+00:00",
+      "periodEqual": true,
+      "sourceHashEqual": true,
+      "rowCountEqual": true
+    },
+    {
+      "isin": "IE000L2SA8K5",
+      "cronSourceAsOf": "2026-11-11",
+      "publicAsOf": "2026-11-11",
+      "cronSourceSha256": "7a1c821b12be5466ffc04e345b74b69e72282834a0c53ab641feae99331f7045",
+      "publicSourceSha256": "7a1c821b12be5466ffc04e345b74b69e72282834a0c53ab641feae99331f7045",
+      "cronSourceRowCount": 101,
+      "publicRowCount": 101,
+      "cronSourceControl": "2026-11-12T17:03:24.049145+00:00",
+      "publicControl": "2026-11-12T19:04:54.703969+00:00",
+      "periodEqual": true,
+      "sourceHashEqual": true,
+      "rowCountEqual": true
+    },
+    {
+      "isin": "IE00B3F81G20",
+      "cronSourceAsOf": "2026-11-11",
+      "publicAsOf": "2026-11-11",
+      "cronSourceSha256": "f3ea36c7972c52db3e3e6ae93926265f80332b080931dcf72834a58ad7a4fa0b",
+      "publicSourceSha256": "b29bdacb39f1e052a31dea5b15c653fc78ba15988fa355ad7888cb503a03c8c0",
+      "cronSourceRowCount": 1760,
+      "publicRowCount": 1760,
+      "cronSourceControl": "2026-11-12T17:03:24.049145+00:00",
+      "publicControl": "2026-11-12T19:04:54.703969+00:00",
+      "periodEqual": true,
+      "sourceHashEqual": false,
+      "rowCountEqual": true
+    },
+    {
+      "isin": "IE00BKM4GZ66",
+      "cronSourceAsOf": "2026-11-11",
+      "publicAsOf": "2026-11-11",
+      "cronSourceSha256": "d6018581e81eefc5ff9c7cbc548218c3889bb038ad35407c99ca18827e9f75d3",
+      "publicSourceSha256": "d0c7a1d5d0002d7d8df7856eadbf4139d40f0dfe0c41c773e6f8156fbff5f74b",
+      "cronSourceRowCount": 2877,
+      "publicRowCount": 2877,
+      "cronSourceControl": "2026-11-12T17:03:24.049145+00:00",
+      "publicControl": "2026-11-12T19:04:54.703969+00:00",
+      "periodEqual": true,
+      "sourceHashEqual": false,
+      "rowCountEqual": true
+    },
+    {
+      "isin": "IE000L6ZMMC4",
+      "cronSourceAsOf": "2026-11-11",
+      "publicAsOf": "2026-11-11",
+      "cronSourceSha256": "da75653f994b3b8a472b9d48d973e6cca5066f702b1a97850668700b34e8dc8d",
+      "publicSourceSha256": "58bc79031651e3a67e46a9a17217e6392700a6097562dccf971c6791d0618b56",
+      "cronSourceRowCount": 2066,
+      "publicRowCount": 2066,
+      "cronSourceControl": "2026-11-12T17:03:24.049145+00:00",
+      "publicControl": "2026-11-12T19:04:54.703969+00:00",
+      "periodEqual": true,
+      "sourceHashEqual": false,
+      "rowCountEqual": true
+    },
+    {
+      "isin": "IE00BK5BQW10",
+      "cronSourceAsOf": "2026-09-30",
+      "publicAsOf": "2026-09-30",
+      "cronSourceSha256": "eb81e8357ce271981f7cc699b82d1ab256160ed6242f588846552b066e004d35",
+      "publicSourceSha256": "eb81e8357ce271981f7cc699b82d1ab256160ed6242f588846552b066e004d35",
+      "cronSourceRowCount": 570,
+      "publicRowCount": 570,
+      "cronSourceControl": "2026-11-12T17:03:24.049145+00:00",
+      "publicControl": "2026-11-12T19:04:54.703969+00:00",
+      "periodEqual": true,
+      "sourceHashEqual": true,
+      "rowCountEqual": true
+    }
+  ],
+  "economicComparison": {
+    "previousCanonicalArchive": "/tmp/automation-20261112/evidence/public-inputs-ad3f267a-73293235/local-backups/src/data/dca-complete-holdings.json.gz",
+    "previousArchiveSha256": "a7939e392c0f14d87b691de9e6f9adee31ba765c81d4d02c3f6d33ef46465ea4",
+    "comparedFields": [
+      "rows",
+      "asOf",
+      "basis",
+      "complete",
+      "scope"
+    ],
+    "previousRecords": 205,
+    "currentPublicRecords": 205,
+    "changes": [],
+    "earlierRecordingComparison": {
+      "sourceCommit": "fdc0a418b0927323a60a579686f76d6d8be8125b",
+      "fileSha256": "65164d2388e25c342dee5602c5da10d9f550af5920628b9ffde617350427fb8c",
+      "comparisonKeys": [
+        "rows",
+        "asOf",
+        "basis",
+        "complete",
+        "scope"
+      ],
+      "oldKeys": 205,
+      "newKeys": 205,
+      "changes": [],
+      "caveat": "Recording comparison, not proof of public adoption; proof timestamps and entire NAV/cash metadata are outside this economic-row comparison."
+    }
+  },
+  "datedConsumerReceipts": [
+    "preuve-consommateurs-cvr-ad3.json.gz",
+    "preuve-consommateurs-invesco-ad3.json.gz",
+    "preuve-consommateurs-heg-dws-ad3.json.gz"
+  ],
+  "caveat": "Later source response hashes/control timestamps differ for some providers; they are explicitly preserved and not asserted byte-identical. All205canonical economic rows/asOf/basis/scope/complete remain equal; this does not independently certify each financial position. Original cron proof retains its pending-publication status at capture; dated adoption and consumer proofs complete it."
+}

@@ -1,0 +1,65 @@
+{
+  "retrievedAt": "2026-11-12T23:13:58.023329+00:00",
+  "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+  "wrapperSha256": "75646cc23fe9c3ecbc06524728b1b99561bb88ae0278e501860b2c4da7d5d2d2",
+  "decodedSha256": "480c01960f37372fbc7750a6d3c51157813b139e0ea1b148a1a0d394d68f5dcb",
+  "decodedBytes": 247912956,
+  "monitorCheckedAt": "2026-11-12T23:01:52.205045+00:00",
+  "exactWorkflowIds": [
+    "update-market-monthly.yml",
+    "refresh-automated-index-sheets.yml",
+    "update-lifestrategy.yml",
+    "update-qualified-exposures.yml"
+  ],
+  "counts": {
+    "active": 1146,
+    "resolved": 230,
+    "retired": 0
+  },
+  "workflows": {
+    "update-market-monthly.yml": {
+      "runId": 43259309235,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259309235",
+      "completedAt": "2026-11-12T18:50:43Z",
+      "collectionStatus": "failure",
+      "validationStatus": "success",
+      "recordingStatus": "success",
+      "publicationStatus": "success",
+      "publishedCodeSha": "ad3f267a154102e85f3f0ca2f699b03e79165776",
+      "publishedDataSha": "2c4f0ac8b9d4b4e4e2913083fe94d6eefe0984d8"
+    },
+    "refresh-automated-index-sheets.yml": {
+      "runId": 43249143868,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+      "completedAt": "2026-11-12T18:01:41Z",
+      "collectionStatus": "failure",
+      "validationStatus": "success",
+      "recordingStatus": "success",
+      "publicationStatus": "success",
+      "publishedCodeSha": "bc50df618d5b2087f57761503d927e27fc00e4ce",
+      "publishedDataSha": "4bfddfafa0e5ed157dcc74b67bd9826b16b1b48d"
+    },
+    "update-lifestrategy.yml": {
+      "runId": 43244573042,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43244573042",
+      "completedAt": "2026-11-12T16:19:49Z",
+      "collectionStatus": "success",
+      "validationStatus": "success",
+      "recordingStatus": "success",
+      "publicationStatus": "not-run",
+      "publishedCodeSha": null,
+      "publishedDataSha": null
+    },
+    "update-qualified-exposures.yml": {
+      "runId": 43284841717,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43284841717",
+      "completedAt": "2026-11-12T20:34:25Z",
+      "collectionStatus": "failure",
+      "validationStatus": "success",
+      "recordingStatus": "success",
+      "publicationStatus": "success",
+      "publishedCodeSha": "bc50df618d5b2087f57761503d927e27fc00e4ce",
+      "publishedDataSha": "152629fe89c746a4676a3149dbf6cb974f0fb950"
+    }
+  }
+}

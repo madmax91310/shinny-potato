@@ -1,0 +1,409 @@
+{
+  "isin": "IE00BM8R0J59",
+  "sourceUrl": "https://globalxetfs.eu/funds/qyld",
+  "localActualBrowserCheckedAt": "2026-11-12T21:37:02.557Z",
+  "nativeLocalSource": {
+    "url": "https://globalxetfs.eu/funds/qyld/",
+    "checkedAt": "2026-11-12T21:35:57.484452+00:00",
+    "sha256": "8a1cefd67a9dd7da2cc8140edf93f95b51433fec13bf8650153d3ccc96407c45",
+    "semanticSections": [
+      {
+        "title": "Top Holdings",
+        "parentTag": "div",
+        "parentAttrs": {
+          "class": [
+            "flex",
+            "items-baseline",
+            "gap-4"
+          ]
+        },
+        "text": "Top Holdings Loading..."
+      },
+      {
+        "title": "Options Contract Detail",
+        "parentTag": "div",
+        "parentAttrs": {
+          "class": [
+            "flex",
+            "flex-row",
+            "flex-wrap",
+            "items-baseline",
+            "pb-6",
+            "gap-4"
+          ]
+        },
+        "text": "Options Contract Detail As of 16 Oct 2026"
+      },
+      {
+        "title": "Index Methodology Overviews",
+        "parentTag": "a",
+        "parentAttrs": {
+          "href": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/UCITS_QYLD_IM_58d48870cf.pdf",
+          "target": "_blank"
+        },
+        "text": "Index Methodology Overviews"
+      },
+      {
+        "title": "Reference Index Sector Breakdown",
+        "parentTag": "div",
+        "parentAttrs": {
+          "class": [
+            "flex",
+            "pb-2",
+            "flex-row",
+            "items-baseline",
+            "gap-4"
+          ]
+        },
+        "text": "Reference Index Sector Breakdown As of 31 Oct 2026"
+      },
+      {
+        "title": "Top 10 Reference Index Constituents",
+        "parentTag": "div",
+        "parentAttrs": {
+          "class": [
+            "flex",
+            "flex-row",
+            "flex-wrap",
+            "items-baseline",
+            "pb-6",
+            "gap-4"
+          ]
+        },
+        "text": "Top 10 Reference Index Constituents As of 06 Nov 2026"
+      },
+      {
+        "title": "Basket Constituents",
+        "parentTag": "div",
+        "parentAttrs": {
+          "class": [
+            "flex",
+            "items-baseline",
+            "gap-4"
+          ]
+        },
+        "text": "Basket Constituents As of 11 Nov 2026"
+      }
+    ]
+  },
+  "renderedHtmlSha256": "2486e9b3aef1d3d69038b01b8fd3414bdd91809debff865ea2b9af03ded66676",
+  "nativeProductionRun": 43305492230,
+  "nativeProductionShare": {
+    "isin": "IE00BM8R0J59",
+    "provider": "Global X",
+    "status": "validated",
+    "record": {
+      "currency": "USD",
+      "productId": "IE00BM8R0J59",
+      "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "provider": "Global X",
+      "aum": {
+        "amount": 937676272.16,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-11-11",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sha256": "223a807859c7ec3c069fdcd0671a9714b23894681a4c107803385bc6cca2c15c",
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-11-12"
+      },
+      "characteristics": {
+        "asOf": "2026-11-11",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sha256": "223a807859c7ec3c069fdcd0671a9714b23894681a4c107803385bc6cca2c15c",
+        "terPct": 0.45,
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-11-12"
+      },
+      "fieldQualification": {
+        "performance": {
+          "status": "unqualified",
+          "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "sha256": "223a807859c7ec3c069fdcd0671a9714b23894681a4c107803385bc6cca2c15c",
+          "evidence": []
+        },
+        "countries": {
+          "status": "unqualified",
+          "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "sha256": "223a807859c7ec3c069fdcd0671a9714b23894681a4c107803385bc6cca2c15c",
+          "evidence": []
+        },
+        "holdings": {
+          "status": "source-conflict",
+          "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.",
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "sha256": "223a807859c7ec3c069fdcd0671a9714b23894681a4c107803385bc6cca2c15c",
+          "evidence": [
+            "Top 10 Reference Index Constituents",
+            "As of 06 Nov 2026",
+            "Weight (%)",
+            "Ticker",
+            "Name",
+            "8.50",
+            "AAPL",
+            "Apple Inc",
+            "7.70",
+            "NVDA",
+            "NVIDIA Corp",
+            "6.70",
+            "MSFT",
+            "Microsoft Corp",
+            "4.80",
+            "AMZN",
+            "Amazon.com Inc",
+            "3.70",
+            "MU",
+            "Micron Technology Inc",
+            "3.50",
+            "AMD",
+            "Advanced Micro Devices Inc",
+            "3.20",
+            "TSLA",
+            "Tesla Inc",
+            "3.10",
+            "META",
+            "Meta Platforms Inc Class A",
+            "2.90",
+            "WMT",
+            "Walmart Inc",
+            "2.90",
+            "GOOGL",
+            "Alphabet Inc Class A",
+            "9.20",
+            "NVDA",
+            "NVIDIA Corp",
+            "8.60",
+            "AAPL",
+            "Apple Inc",
+            "7.50",
+            "MSFT",
+            "Microsoft Corp",
+            "6.60",
+            "AVGO",
+            "Broadcom Inc",
+            "5.10",
+            "AMZN",
+            "Amazon.com Inc",
+            "3.80",
+            "GOOGL",
+            "Alphabet Inc Class A",
+            "3.60",
+            "GOOG",
+            "Alphabet Inc Class C",
+            "3.40",
+            "TSLA",
+            "Tesla Inc",
+            "3.00",
+            "META",
+            "Meta Platforms Inc Class A",
+            "2.20",
+            "PLTR",
+            "Palantir Technologies Inc Ordinary Shares - Class A"
+          ]
+        },
+        "sectors": {
+          "status": "unqualified",
+          "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "sha256": "223a807859c7ec3c069fdcd0671a9714b23894681a4c107803385bc6cca2c15c",
+          "evidence": [
+            "Reference Index Sector Breakdown",
+            "As of 31 Oct 2026",
+            "Sector",
+            "Weight (%)",
+            "Financials",
+            "20.1",
+            "Information Technology",
+            "18.5",
+            "Industrials",
+            "16.4",
+            "Health Care",
+            "11.5",
+            "Energy",
+            "10.9",
+            "Consumer Discretionary",
+            "10.6",
+            "Materials",
+            "6.1",
+            "Utilities",
+            "2.4",
+            "Communication Services",
+            "2.0",
+            "Consumer Staples",
+            "1.5",
+            "Real Estate",
+            "0.0"
+          ]
+        }
+      },
+      "qualificationCheckedAt": "2026-11-12",
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "asOf": "2026-11-11"
+        }
+      }
+    },
+    "unavailable": [
+      "performance: La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
+      "countries: Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
+      "holdings: Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.",
+      "sectors: Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée."
+    ],
+    "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+    "collectionErrors": [],
+    "sourceAttempts": []
+  },
+  "publishedPageTableTitle": "Top 10 Reference Index Constituents",
+  "publishedPageTableDate": "2026-11-06",
+  "tableRows": [
+    {
+      "weightPct": 8.5,
+      "ticker": "AAPL",
+      "name": "Apple Inc"
+    },
+    {
+      "weightPct": 7.7,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corp"
+    },
+    {
+      "weightPct": 6.7,
+      "ticker": "MSFT",
+      "name": "Microsoft Corp"
+    },
+    {
+      "weightPct": 4.8,
+      "ticker": "AMZN",
+      "name": "Amazon.com Inc"
+    },
+    {
+      "weightPct": 3.7,
+      "ticker": "MU",
+      "name": "Micron Technology Inc"
+    },
+    {
+      "weightPct": 3.5,
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices Inc"
+    },
+    {
+      "weightPct": 3.2,
+      "ticker": "TSLA",
+      "name": "Tesla Inc"
+    },
+    {
+      "weightPct": 3.1,
+      "ticker": "META",
+      "name": "Meta Platforms Inc Class A"
+    },
+    {
+      "weightPct": 2.9,
+      "ticker": "WMT",
+      "name": "Walmart Inc"
+    },
+    {
+      "weightPct": 2.9,
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc Class A"
+    },
+    {
+      "weightPct": 9.2,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corp"
+    },
+    {
+      "weightPct": 8.6,
+      "ticker": "AAPL",
+      "name": "Apple Inc"
+    },
+    {
+      "weightPct": 7.5,
+      "ticker": "MSFT",
+      "name": "Microsoft Corp"
+    },
+    {
+      "weightPct": 6.6,
+      "ticker": "AVGO",
+      "name": "Broadcom Inc"
+    },
+    {
+      "weightPct": 5.1,
+      "ticker": "AMZN",
+      "name": "Amazon.com Inc"
+    },
+    {
+      "weightPct": 3.8,
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc Class A"
+    },
+    {
+      "weightPct": 3.6,
+      "ticker": "GOOG",
+      "name": "Alphabet Inc Class C"
+    },
+    {
+      "weightPct": 3.4,
+      "ticker": "TSLA",
+      "name": "Tesla Inc"
+    },
+    {
+      "weightPct": 3.0,
+      "ticker": "META",
+      "name": "Meta Platforms Inc Class A"
+    },
+    {
+      "weightPct": 2.2,
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A"
+    }
+  ],
+  "rowCount": 20,
+  "distinctTickers": 13,
+  "contradictoryTickerWeights": {
+    "AAPL": [
+      8.5,
+      8.6
+    ],
+    "NVDA": [
+      7.7,
+      9.2
+    ],
+    "MSFT": [
+      6.7,
+      7.5
+    ],
+    "AMZN": [
+      4.8,
+      5.1
+    ],
+    "TSLA": [
+      3.2,
+      3.4
+    ],
+    "META": [
+      3.1,
+      3.0
+    ],
+    "GOOGL": [
+      2.9,
+      3.8
+    ]
+  },
+  "sumAllPublishedRowsPct": 100.0,
+  "sectorsDistinctDate": "2026-10-31",
+  "optionTermsDistinctDate": "2026-10-16",
+  "basketDistinctDate": "2026-11-11",
+  "basketDisclosure": "The performance of the Basket is delivered to the swap counterparties in return for the exposure on the Index being received by the Fund, there is no remaining economic exposure in the Fund to the Basket.",
+  "conclusion": "Not a CSV/flattening-only ambiguity: the rendered issuer table itself contains20rows and7contradictory tickers under one top10 heading. No first/last/majority chosen; summing100 does not make it a full exact book. Key information succeeded, economic holdings still unqualified. Sector/option/basket photographs have different dates.",
+  "missingPiece": "Unambiguous official economic reference book with exact strategy/part identity, weights, company/security identifiers and coherent effective date; current basket is explicitly not fund economic exposure. No alternative NAV denominator invented.",
+  "applicationChanged": false,
+  "verificationKind": "Actual local official-page retrieval and browser rendering; native production field-qualification evidence reused. Not a repaired supplier pipeline or new public application admission."
+}

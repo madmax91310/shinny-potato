@@ -1,0 +1,36 @@
+{
+  "originalRows": 1146,
+  "reconciledRows": 1146,
+  "uniqueOriginalIds": 1146,
+  "counts": {
+    "preuve de rapport ancien manquante ou invalide ; pas de panne source actuelle déduite": 25,
+    "ancien périmètre non démontré ; limite historique distincte des collectes actuelles": 2,
+    "ancienne voie Xetra en panne ; voie Paris indépendante opérationnelle": 1,
+    "cause initiale d’enregistrement réparée et publiée ; workflow encore partiel pour Xetra": 1,
+    "panne active de renouvellement ; dernière composition valide conservée": 1,
+    "défaut de collecte initial réparé ; qualification du recouvrement encore partielle": 1,
+    "voie indépendante qualifiée, enregistrée, publiée et consommée ; primaire non réparée": 1,
+    "qualification de photographie incohérente ; dernière photo compatible conservée": 10,
+    "qualification historique ; aucune panne actuelle déduite": 1104
+  },
+  "newActiveIds": [
+    {
+      "id": "collection:update-qualified-exposures.yml:qualified-primary:IE000U9ODG19:countries",
+      "workflow": "update-qualified-exposures.yml",
+      "cause": "Incomplete allocation",
+      "runId": 43284841717,
+      "classe_brute": "checks",
+      "classe_publique": "failure"
+    },
+    {
+      "id": "collection:update-qualified-exposures.yml:qualified-primary:IE000U9ODG19:sectors",
+      "workflow": "update-qualified-exposures.yml",
+      "cause": "Incomplete allocation",
+      "runId": 43284841717,
+      "classe_brute": "checks",
+      "classe_publique": "failure"
+    }
+  ],
+  "scopedMonitorCheckedAt": "2026-11-12T23:01:52.205045+00:00",
+  "reader": "Existing public buildInbox; no supervision or thresholds changed. Raw active may contain historical proof qualifications and is not a count of current data outages."
+}

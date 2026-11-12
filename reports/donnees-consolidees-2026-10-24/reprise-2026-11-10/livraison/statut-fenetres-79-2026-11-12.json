@@ -1,0 +1,1888 @@
+{
+  "source": "Qualification des moteurs sur les entrées canoniques liées au manifeste public ; preuve de collecte distincte",
+  "publicationFrame": {
+    "directory": "/tmp/automation-20261112/evidence/public-inputs-152629fe-152629fe",
+    "before": {
+      "sha": "152629fe89c746a4676a3149dbf6cb974f0fb950",
+      "builtAt": "2026-11-12T22:12:01Z"
+    },
+    "stable": true,
+    "failures": []
+  },
+  "all73InitiallyUsablePreserved": true,
+  "cases": 79,
+  "qualified": 73,
+  "blocked": 6,
+  "all71PreviouslyQualifiedPreserved": true,
+  "rows": [
+    {
+      "id": "IE00BLNMYC90/2021",
+      "isin": "IE00BLNMYC90",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfEqualWeight",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B4556L06/2025",
+      "isin": "IE00B4556L06",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etcPalladium",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        },
+        {
+          "id": "etcPalladiumMarket",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "IPDM.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BJ5JP436/2024",
+      "isin": "IE00BJ5JP436",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etf_world_communication",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B1XNHC34/2020",
+      "isin": "IE00B1XNHC34",
+      "year": 2020,
+      "previouslyQualified": true,
+      "start": "2019-12",
+      "end": "2020-12",
+      "routes": [
+        {
+          "id": "etf_clean_energy",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BJ5JP097/2023",
+      "isin": "IE00BJ5JP097",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etf_financials",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BQQP9F84/2018",
+      "isin": "IE00BQQP9F84",
+      "year": 2018,
+      "previouslyQualified": true,
+      "start": "2017-12",
+      "end": "2018-12",
+      "routes": [
+        {
+          "id": "etf_gold_miners",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BQQP9F84/2019",
+      "isin": "IE00BQQP9F84",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etf_gold_miners",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BQQP9F84/2025",
+      "isin": "IE00BQQP9F84",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etf_gold_miners",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BJGWQN72/2020",
+      "isin": "IE00BJGWQN72",
+      "year": 2020,
+      "previouslyQualified": true,
+      "start": "2019-12",
+      "end": "2020-12",
+      "routes": [
+        {
+          "id": "etfCloudWisdomtree",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12)."
+          }
+        },
+        {
+          "id": "etfCloudWisdomtreeNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BJGWQN72/2023",
+      "isin": "IE00BJGWQN72",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfCloudWisdomtree",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfCloudWisdomtreeNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BK5BCD43/2023",
+      "isin": "IE00BK5BCD43",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfLgArtificialIntelligence",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfIE00BK5BCD43Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BSPLC413/2023",
+      "isin": "IE00BSPLC413",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfUsaSmallValue",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BSPLC413/2024",
+      "isin": "IE00BSPLC413",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfUsaSmallValue",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BSPLC413/2025",
+      "isin": "IE00BSPLC413",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfUsaSmallValue",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0013411998/2025",
+      "isin": "FR0013411998",
+      "year": 2025,
+      "previouslyQualified": false,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfFR0013411998",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ],
+      "qualified": false
+    },
+    {
+      "id": "IE00B42NKQ00/2019",
+      "isin": "IE00B42NKQ00",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "CH0454664001/2024",
+      "isin": "CH0454664001",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfCH0454664001",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfCH0454664001Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "CH0454664001/2025",
+      "isin": "CH0454664001",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfCH0454664001",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        },
+        {
+          "id": "etfCH0454664001Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B4JNQZ49/2021",
+      "isin": "IE00B4JNQZ49",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfIE00B4JNQZ49",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0013412004/2025",
+      "isin": "FR0013412004",
+      "year": 2025,
+      "previouslyQualified": false,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfFR0013412004",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ],
+      "qualified": false
+    },
+    {
+      "id": "IE00BK5BCH80/2025",
+      "isin": "IE00BK5BCH80",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfIE00BK5BCH80",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        },
+        {
+          "id": "etfIE00BK5BCH80Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "LU1737652823/2024",
+      "isin": "LU1737652823",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfLU1737652823",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfLU1737652823Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE000M7V94E1/2025",
+      "isin": "IE000M7V94E1",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfIE000M7V94E1",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0010342592/2021",
+      "isin": "FR0010342592",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfFR0010342592",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0010342592/2023",
+      "isin": "FR0010342592",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfFR0010342592",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0010342592/2024",
+      "isin": "FR0010342592",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfFR0010342592",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE000RDRMSD1/2023",
+      "isin": "IE000RDRMSD1",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE000RDRMSD1/2025",
+      "isin": "IE000RDRMSD1",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B43HR379/2018",
+      "isin": "IE00B43HR379",
+      "year": 2018,
+      "previouslyQualified": true,
+      "start": "2017-12",
+      "end": "2018-12",
+      "routes": [
+        {
+          "id": "etfIE00B43HR379",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B43HR379/2019",
+      "isin": "IE00B43HR379",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfIE00B43HR379",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BYWQWR46/2020",
+      "isin": "IE00BYWQWR46",
+      "year": 2020,
+      "previouslyQualified": true,
+      "start": "2019-12",
+      "end": "2020-12",
+      "routes": [
+        {
+          "id": "etfIE00BYWQWR46",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B5W4TY14/2016",
+      "isin": "IE00B5W4TY14",
+      "year": 2016,
+      "previouslyQualified": true,
+      "start": "2015-12",
+      "end": "2016-12",
+      "routes": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2015-12",
+            "end": "2016-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B5W4TY14/2017",
+      "isin": "IE00B5W4TY14",
+      "year": 2017,
+      "previouslyQualified": true,
+      "start": "2016-12",
+      "end": "2017-12",
+      "routes": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2016-12",
+            "end": "2017-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BYXG2H39/2018",
+      "isin": "IE00BYXG2H39",
+      "year": 2018,
+      "previouslyQualified": true,
+      "start": "2017-12",
+      "end": "2018-12",
+      "routes": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BYXG2H39/2023",
+      "isin": "IE00BYXG2H39",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BDFBTQ78/2019",
+      "isin": "IE00BDFBTQ78",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BDFBTQ78/2021",
+      "isin": "IE00BDFBTQ78",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BDFBTQ78/2025",
+      "isin": "IE00BDFBTQ78",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE000YU9K6K2/2025",
+      "isin": "IE000YU9K6K2",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfIE000YU9K6K2",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0010755611/2021",
+      "isin": "FR0010755611",
+      "year": 2021,
+      "previouslyQualified": false,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfFR0010755611",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        }
+      ],
+      "qualified": false
+    },
+    {
+      "id": "FR0010755611/2024",
+      "isin": "FR0010755611",
+      "year": 2024,
+      "previouslyQualified": false,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfFR0010755611",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        }
+      ],
+      "qualified": false
+    },
+    {
+      "id": "FR0011871110/2021",
+      "isin": "FR0011871110",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfFR0011871110",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0011871128/2021",
+      "isin": "FR0011871128",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfFR0011871128",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "DE000A27Z304/2021",
+      "isin": "DE000A27Z304",
+      "year": 2021,
+      "previouslyQualified": false,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfDE000A27Z304",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        },
+        {
+          "id": "etfDE000A27Z304Paris",
+          "qualification": {
+            "qualified": false,
+            "reason": "Bornes ou niveaux historiques absents."
+          }
+        }
+      ],
+      "qualified": false
+    },
+    {
+      "id": "DE000A27Z304/2023",
+      "isin": "DE000A27Z304",
+      "year": 2023,
+      "previouslyQualified": false,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfDE000A27Z304",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfDE000A27Z304Paris",
+          "qualification": {
+            "qualified": true,
+            "convention": "adjusted",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "DE000A27Z304/2024",
+      "isin": "DE000A27Z304",
+      "year": 2024,
+      "previouslyQualified": false,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfDE000A27Z304",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfDE000A27Z304Paris",
+          "qualification": {
+            "qualified": true,
+            "convention": "adjusted",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0013416716/2025",
+      "isin": "FR0013416716",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfFR0013416716",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B2QWCY14/2023",
+      "isin": "IE00B2QWCY14",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B2QWCY14/2024",
+      "isin": "IE00B2QWCY14",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B2QWCY14/2025",
+      "isin": "IE00B2QWCY14",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BD1F4L37/2017",
+      "isin": "IE00BD1F4L37",
+      "year": 2017,
+      "previouslyQualified": true,
+      "start": "2016-12",
+      "end": "2017-12",
+      "routes": [
+        {
+          "id": "etfIE00BD1F4L37",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2016-12",
+            "end": "2017-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BQN1K562/2016",
+      "isin": "IE00BQN1K562",
+      "year": 2016,
+      "previouslyQualified": true,
+      "start": "2015-12",
+      "end": "2016-12",
+      "routes": [
+        {
+          "id": "etfIE00BQN1K562",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2015-12",
+            "end": "2016-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BQT3WG13/2017",
+      "isin": "IE00BQT3WG13",
+      "year": 2017,
+      "previouslyQualified": true,
+      "start": "2016-12",
+      "end": "2017-12",
+      "routes": [
+        {
+          "id": "etfIE00BQT3WG13",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2016-12",
+            "end": "2017-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0007054358/2020",
+      "isin": "FR0007054358",
+      "year": 2020,
+      "previouslyQualified": true,
+      "start": "2019-12",
+      "end": "2020-12",
+      "routes": [
+        {
+          "id": "etfFR0007054358",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+          }
+        },
+        {
+          "id": "etfFR0007054358Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "GB00B15KXQ89/2018",
+      "isin": "GB00B15KXQ89",
+      "year": 2018,
+      "previouslyQualified": true,
+      "start": "2017-12",
+      "end": "2018-12",
+      "routes": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12)."
+          }
+        },
+        {
+          "id": "etfGB00B15KXQ89Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "GB00B15KXQ89/2019",
+      "isin": "GB00B15KXQ89",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        },
+        {
+          "id": "etfGB00B15KXQ89Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BDVPNG13/2019",
+      "isin": "IE00BDVPNG13",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        },
+        {
+          "id": "etfIE00BDVPNG13Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BDVPNG13/2023",
+      "isin": "IE00BDVPNG13",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfIE00BDVPNG13Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "LU2089238385/2025",
+      "isin": "LU2089238385",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfLU2089238385",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "LU1875395870/2019",
+      "isin": "LU1875395870",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfLU1875395870",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        },
+        {
+          "id": "etfLU1875395870Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "LU2196470426/2025",
+      "isin": "LU2196470426",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etfLU2196470426",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        },
+        {
+          "id": "etfLU2196470426Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "FR0011550185/2021",
+      "isin": "FR0011550185",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etfFR0011550185",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        },
+        {
+          "id": "etfFR0011550185Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00B4K6B022/2024",
+      "isin": "IE00B4K6B022",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etfIE00B4K6B022",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfIE00B4K6B022Nav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "IE00BSPLC298/2019",
+      "isin": "IE00BSPLC298",
+      "year": 2019,
+      "previouslyQualified": true,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfSmallValueEurope",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00B78CGV99/2021",
+      "isin": "JE00B78CGV99",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etc_brent_crude_oilNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        },
+        {
+          "id": "etc_brent_crude_oil",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00B78CGV99/2022",
+      "isin": "JE00B78CGV99",
+      "year": 2022,
+      "previouslyQualified": true,
+      "start": "2021-12",
+      "end": "2022-12",
+      "routes": [
+        {
+          "id": "etc_brent_crude_oilNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_brent_crude_oil",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00B78CGV99/2023",
+      "isin": "JE00B78CGV99",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etc_brent_crude_oilNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_brent_crude_oil",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "GB00B15KXV33/2021",
+      "isin": "GB00B15KXV33",
+      "year": 2021,
+      "previouslyQualified": true,
+      "start": "2020-12",
+      "end": "2021-12",
+      "routes": [
+        {
+          "id": "etc_wti_crude_oilNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        },
+        {
+          "id": "etc_wti_crude_oil",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "GB00B15KXV33/2022",
+      "isin": "GB00B15KXV33",
+      "year": 2022,
+      "previouslyQualified": true,
+      "start": "2021-12",
+      "end": "2022-12",
+      "routes": [
+        {
+          "id": "etc_wti_crude_oilNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_wti_crude_oil",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "GB00B15KXV33/2023",
+      "isin": "GB00B15KXV33",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etc_wti_crude_oilNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_wti_crude_oil",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00BN7KB334/2022",
+      "isin": "JE00BN7KB334",
+      "year": 2022,
+      "previouslyQualified": true,
+      "start": "2021-12",
+      "end": "2022-12",
+      "routes": [
+        {
+          "id": "etc_natural_gasNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_natural_gas",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00BN7KB557/2022",
+      "isin": "JE00BN7KB557",
+      "year": 2022,
+      "previouslyQualified": true,
+      "start": "2021-12",
+      "end": "2022-12",
+      "routes": [
+        {
+          "id": "etc_coffeeNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_coffee",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00BN7KB557/2024",
+      "isin": "JE00BN7KB557",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etc_coffeeNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        },
+        {
+          "id": "etc_coffee",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00BN7KB557/2025",
+      "isin": "JE00BN7KB557",
+      "year": 2025,
+      "previouslyQualified": true,
+      "start": "2024-12",
+      "end": "2025-12",
+      "routes": [
+        {
+          "id": "etc_coffeeNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        },
+        {
+          "id": "etc_coffee",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00B2QXZK10/2023",
+      "isin": "JE00B2QXZK10",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etc_cocoaNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_cocoa",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00B2QXZK10/2024",
+      "isin": "JE00B2QXZK10",
+      "year": 2024,
+      "previouslyQualified": true,
+      "start": "2023-12",
+      "end": "2024-12",
+      "routes": [
+        {
+          "id": "etc_cocoaNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        },
+        {
+          "id": "etc_cocoa",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00BN7KB664/2022",
+      "isin": "JE00BN7KB664",
+      "year": 2022,
+      "previouslyQualified": true,
+      "start": "2021-12",
+      "end": "2022-12",
+      "routes": [
+        {
+          "id": "etc_wheatNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_wheat",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "JE00BN7KB664/2023",
+      "isin": "JE00BN7KB664",
+      "year": 2023,
+      "previouslyQualified": true,
+      "start": "2022-12",
+      "end": "2023-12",
+      "routes": [
+        {
+          "id": "etc_wheatNav",
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_wheat",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ],
+      "qualified": true
+    },
+    {
+      "id": "DE000A0H08P6/2019",
+      "isin": "DE000A0H08P6",
+      "year": 2019,
+      "previouslyQualified": false,
+      "start": "2018-12",
+      "end": "2019-12",
+      "routes": [
+        {
+          "id": "etfEuropeRetail",
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        }
+      ],
+      "qualified": false
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "runId": 43277590303,
+  "event": "workflow_dispatch",
+  "artifactId": 13974572707,
+  "nativeSourceOutcome": {
+    "id": "etf-exposure-expansion-DE0002635307",
+    "instrument": "DE0002635307",
+    "fields": [
+      "issuer share observation",
+      "individual collectionErrors",
+      "unavailable/retained fields"
+    ],
+    "selected": true,
+    "status": "succeeded",
+    "operationAttempted": true,
+    "sourceAttempted": true
+  },
+  "nativeObservation": {
+    "isin": "DE0002635307",
+    "status": "validated",
+    "record": {
+      "currency": "EUR",
+      "productId": 251931,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 9849611253.89,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-11-11",
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-11-12"
+      },
+      "sectors": {
+        "asOf": "2026-11-11",
+        "rows": [
+          {
+            "name": "Financials",
+            "weightPct": 25.37,
+            "label": "Financials"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 18.12,
+            "label": "Industrials"
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 13.3,
+            "label": "Health Care"
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 8.34,
+            "label": "Consumer Staples"
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 8.25,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 6.48,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Energy",
+            "weightPct": 5.58,
+            "label": "Energy"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 5.55,
+            "label": "Materials"
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 4.91,
+            "label": "Utilities"
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 2.72,
+            "label": "Communication"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.01,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.39,
+            "label": "Cash and/or Derivatives"
+          },
+          {
+            "name": "Other",
+            "weightPct": 0.0,
+            "label": "Autres"
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.sector",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "basis": "fund",
+        "sha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-11-12"
+      },
+      "countries": {
+        "asOf": "2026-11-11",
+        "rows": [
+          {
+            "name": "United Kingdom",
+            "weightPct": 22.84
+          },
+          {
+            "name": "France",
+            "weightPct": 14.87
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 14.32
+          },
+          {
+            "name": "Germany",
+            "weightPct": 13.1
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 7.57
+          },
+          {
+            "name": "Spain",
+            "weightPct": 5.95
+          },
+          {
+            "name": "Italy",
+            "weightPct": 5.3
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 4.84
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.69
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.95
+          },
+          {
+            "name": "Finland",
+            "weightPct": 1.83
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.24
+          },
+          {
+            "name": "Other",
+            "weightPct": 3.11
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.39
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.geography.countries",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "basis": "fund",
+        "sha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-11-12"
+      },
+      "countriesRisk": {
+        "asOf": "2026-11-11",
+        "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+        "rows": [
+          {
+            "name": "United Kingdom",
+            "weightPct": 22.86
+          },
+          {
+            "name": "France",
+            "weightPct": 14.87273
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 14.31944
+          },
+          {
+            "name": "Germany",
+            "weightPct": 13.09695
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 7.5745
+          },
+          {
+            "name": "Spain",
+            "weightPct": 5.94732
+          },
+          {
+            "name": "Italy",
+            "weightPct": 5.29581
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 4.85449
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.70412
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.95177
+          },
+          {
+            "name": "Finland",
+            "weightPct": 1.83183
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.24775
+          },
+          {
+            "name": "Poland",
+            "weightPct": 0.97795
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.71067
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.61698
+          },
+          {
+            "name": "Greece",
+            "weightPct": 0.50199
+          },
+          {
+            "name": "European Union",
+            "weightPct": 0.31522
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.30873
+          },
+          {
+            "name": "United States",
+            "weightPct": 0.01168
+          },
+          {
+            "name": "Australia",
+            "weightPct": 0.0
+          }
+        ],
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "basis": "fund",
+        "sha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-11-12"
+      },
+      "holdings": {
+        "asOf": "2026-11-11",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "ASML HOLDING",
+            "weightPct": 3.94072,
+            "isin": "NL0010273215"
+          },
+          {
+            "name": "ROCHE PS PAR AG",
+            "weightPct": 2.21098,
+            "isin": "CH1499059983"
+          },
+          {
+            "name": "HSBC HOLDINGS PLC",
+            "weightPct": 2.01171,
+            "isin": "GB0005405286"
+          },
+          {
+            "name": "NOVARTIS AG",
+            "weightPct": 1.97054,
+            "isin": "CH0012005267"
+          },
+          {
+            "name": "ASTRAZENECA PLC",
+            "weightPct": 1.86585,
+            "isin": "GB0009895292"
+          },
+          {
+            "name": "SHELL",
+            "weightPct": 1.76772,
+            "isin": "GB00BP6MXD84"
+          },
+          {
+            "name": "NESTLE SA",
+            "weightPct": 1.73127,
+            "isin": "CH0038863350"
+          },
+          {
+            "name": "SAP",
+            "weightPct": 1.5359,
+            "isin": "DE0007164600"
+          },
+          {
+            "name": "SIEMENS N AG",
+            "weightPct": 1.471,
+            "isin": "DE0007236101"
+          },
+          {
+            "name": "TOTALENERGIES",
+            "weightPct": 1.30972,
+            "isin": "FR0000120271"
+          }
+        ],
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "sha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-11-12"
+      },
+      "characteristics": {
+        "terPct": 0.2,
+        "index": "STOXX Europe 600 Index (EUR)",
+        "distribution": "Distributing",
+        "domicile": "Deutschland",
+        "replicationMethod": "Replikation",
+        "inceptionDate": "20040213",
+        "replicationMethodRaw": {
+          "productStructure": "Physisch",
+          "fundMethodologyTypeCode": "Replikation"
+        },
+        "productStructure": "Physisch",
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-10-24"
+      },
+      "performance": {
+        "currency": "EUR",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 1.58,
+          "2017": 10.79,
+          "2018": -10.97,
+          "2019": 27.64,
+          "2020": -1.89,
+          "2021": 25.06,
+          "2022": -10.44,
+          "2023": 16.02,
+          "2024": 8.96,
+          "2025": 20.02
+        },
+        "checkedAt": "2026-11-12",
+        "modifiedAt": "2026-10-16"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "index": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "distribution": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "domicile": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "replicationMethod": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "inceptionDate": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "productStructure": {
+          "checkedAt": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        }
+      }
+    },
+    "retainedFields": [],
+    "unavailable": [],
+    "collectionErrors": [],
+    "sourceAttempts": []
+  },
+  "publicManifestFrame": {
+    "directory": "/tmp/automation-20261112/evidence/public-inputs-ad3f267a-73293235",
+    "before": {
+      "sha": "ad3f267a154102e85f3f0ca2f699b03e79165776",
+      "dataSha": "73293235da289dc07c9a25d5a5b6803c7e7740f0",
+      "lane": "validated-data",
+      "builtAt": "2026-11-12T19:32:33.808Z"
+    },
+    "stable": true,
+    "failures": []
+  },
+  "fieldsVerifiedAgainstExactPublishedInput": {
+    "countries": {
+      "asOfNative": "2026-11-11",
+      "asOfPublic": "2026-11-11",
+      "sameRows": true,
+      "nativeSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicCheckedAt": "2026-11-12"
+    },
+    "sectors": {
+      "asOfNative": "2026-11-11",
+      "asOfPublic": "2026-11-11",
+      "sameRows": true,
+      "nativeSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicCheckedAt": "2026-11-12"
+    },
+    "holdings": {
+      "asOfNative": "2026-11-11",
+      "asOfPublic": "2026-11-11",
+      "sameRows": true,
+      "nativeSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicCheckedAt": "2026-11-12"
+    },
+    "countriesRisk": {
+      "asOfNative": "2026-11-11",
+      "asOfPublic": "2026-11-11",
+      "sameRows": true,
+      "nativeSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicSha256": "b0dd9c8a7223f70fbe9676b3f43e259c731b3ac5119ebacf1111f1de32895047",
+      "publicCheckedAt": "2026-11-12"
+    }
+  },
+  "independentActualSourceProvenance": {
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+    "sha256": "f22bf266e5f67afdb00cf4c01470e98a1a40dfcfde058b84b76f7d52c2209bd9",
+    "checkedAt": "2026-11-12T19:33:31.237982+00:00",
+    "share": {
+      "isin": "DE0002635307",
+      "name": "iShares STOXX Europe 600 UCITS ETF Dist",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "EUR",
+      "productId": 251931,
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251931/"
+    }
+  },
+  "oldIncident": {
+    "runId": 40893772375,
+    "completedAt": "2026-10-29T15:24:05Z",
+    "error": "Sonstige",
+    "historicalLimitation": "Exact rejected old payload/field unavailable; current branch success does not retroactively recreate that old response."
+  },
+  "result": "Current exact German share collection, dates, source identities, raw weights, recording and publication operational. Existing Sonstige-to-Other sector mapping is preserved. Historical recovery qualification remains distinct; no source repair or threshold change introduced in this lot."
+}

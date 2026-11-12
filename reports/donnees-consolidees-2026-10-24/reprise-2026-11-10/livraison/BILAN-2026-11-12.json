@@ -1,0 +1,108 @@
+{
+  "scope": {
+    "initialIsins": 694,
+    "monthlyRoutes": 774,
+    "indexReferences": 86,
+    "selectedIndices": 56,
+    "initialIncidentIdentities": 1146,
+    "allInitialIdsPreserved": true
+  },
+  "windows": {
+    "total": 79,
+    "usable": 73,
+    "refused": 6,
+    "newlyRecoveredInThisLot": 0,
+    "palladium2014andMarket2025": "Separately refused; recent independentNAV use does not resolve them"
+  },
+  "indices": {
+    "top10Formats": 37,
+    "nativeFormats": 10,
+    "fullNativeBooks": 7,
+    "nativeTopOnlyFormats": 3,
+    "qualifiedFundApproximations": 27,
+    "refusedFormats": 19,
+    "additionalUsableFormat": "MSCIEMIMI via separately qualified ETF approximation; native classic unchanged"
+  },
+  "companyOverlap": {
+    "causalRecoveredFunds": [
+      "IE00BYZK4776",
+      "IE00BYZK4669",
+      "IE000L2SA8K5",
+      "IE00B3F81G20"
+    ],
+    "fullLifeStrategy": false,
+    "all694SnapshotsQualificationCounts": {
+      "usage opérationnel selon qualification du moteur": 538,
+      "qualification financière + accès fournisseur": 6,
+      "périmètre financier à qualifier": 6,
+      "limite de couverture ou de périmètre, pas une panne déduite": 79,
+      "identité et/ou couverture à qualifier": 11,
+      "non applicable au recouvrement actions": 53,
+      "composition économique absente ou non qualifiée": 1
+    }
+  },
+  "publication": {
+    "actualServedBuildInfo": {
+      "sha": "152629fe89c746a4676a3149dbf6cb974f0fb950",
+      "builtAt": "2026-11-12T22:12:01Z"
+    },
+    "effectiveDataShaWhenAbsent": "152629fe89c746a4676a3149dbf6cb974f0fb950",
+    "sourceSnapshotVerifiedFiles": 383,
+    "canonicalBoundInputs": 111,
+    "finalMergedTestOnlyCommit": "1457bf3a43b7e67369d6178fda70a589800fad30",
+    "financialCodeBinding": "preuve-code-calculs-et-rendus-2026-11-12.json",
+    "testOnlyCommitNotClaimedPublic": true
+  },
+  "publicRecipes": {
+    "previousDated": 33,
+    "EXSA": 3,
+    "Defence": 3,
+    "SPYL": 3,
+    "EMIMI": 4,
+    "totalDistinctRecipes": 46,
+    "notAssetsOrCatalogueCertification": true
+  },
+  "monitor": {
+    "originalRows": 1146,
+    "reconciledRows": 1146,
+    "uniqueOriginalIds": 1146,
+    "counts": {
+      "preuve de rapport ancien manquante ou invalide ; pas de panne source actuelle déduite": 25,
+      "ancien périmètre non démontré ; limite historique distincte des collectes actuelles": 2,
+      "ancienne voie Xetra en panne ; voie Paris indépendante opérationnelle": 1,
+      "cause initiale d’enregistrement réparée et publiée ; workflow encore partiel pour Xetra": 1,
+      "panne active de renouvellement ; dernière composition valide conservée": 1,
+      "défaut de collecte initial réparé ; qualification du recouvrement encore partielle": 1,
+      "voie indépendante qualifiée, enregistrée, publiée et consommée ; primaire non réparée": 1,
+      "qualification de photographie incohérente ; dernière photo compatible conservée": 10,
+      "qualification historique ; aucune panne actuelle déduite": 1104
+    },
+    "newActiveIds": [
+      {
+        "id": "collection:update-qualified-exposures.yml:qualified-primary:IE000U9ODG19:countries",
+        "workflow": "update-qualified-exposures.yml",
+        "cause": "Incomplete allocation",
+        "runId": 43284841717,
+        "classe_brute": "checks",
+        "classe_publique": "failure"
+      },
+      {
+        "id": "collection:update-qualified-exposures.yml:qualified-primary:IE000U9ODG19:sectors",
+        "workflow": "update-qualified-exposures.yml",
+        "cause": "Incomplete allocation",
+        "runId": 43284841717,
+        "classe_brute": "checks",
+        "classe_publique": "failure"
+      }
+    ],
+    "scopedMonitorCheckedAt": "2026-11-12T23:01:52.205045+00:00",
+    "reader": "Existing public buildInbox; no supervision or thresholds changed. Raw active may contain historical proof qualifications and is not a count of current data outages."
+  },
+  "nextNominalUTC": {
+    "LifeStrategyGPX": "2026-11-13T05:35:00Z",
+    "monthlyRecovery": "2026-11-13T06:45:00Z",
+    "ETFSPYL": "2026-11-13T07:10:00Z",
+    "DefenceBooks": "2026-11-13T07:50:00Z"
+  },
+  "limits": "Future times are not observed successes. Source failures, native-vs-proxy, partial books, original divergences and qualified independent histories remain separately tracked."
+}
