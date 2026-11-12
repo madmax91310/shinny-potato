@@ -4,6 +4,7 @@ import Layout from './design-system/Layout'
 import ComingSoon from './pages/ComingSoon'
 import { TOOLS } from './tools'
 
+const EtfFlows = lazy(() => import('./pages/etf-flows/App'))
 const IndexComparator = lazy(() => import('./pages/index-comparator/App'))
 
 const Home = lazy(() => import('./pages/Home'))
@@ -43,6 +44,7 @@ const FORMAT_COMPONENTS = {
 // Individual publication routes load their own engine and sources.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
+  '/flux-etf': <EtfFlows />,
   '/comparateur-indices': <IndexComparator />,
   '/idees-classements': <RankingIdeas />,
   '/hey-grok': <HeyGrok />,

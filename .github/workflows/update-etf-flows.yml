@@ -1,0 +1,48 @@
+name: ETF flows qualification (automatic collection blocked)
+on:
+  schedule:
+    - cron: '35 9 * * 1'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'src/lib/etf-flows.js'
+      - 'src/data/etf-flows.json'
+      - 'src/pages/etf-flows/**'
+      - 'scripts/*etf-flows*'
+      - 'scripts/fixtures/etf-flows/**'
+      - '.github/workflows/update-etf-flows.yml'
+permissions:
+  contents: read
+concurrency:
+  group: etf-flows-qualification-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  qualification:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/lib/etf-flows.js
+            src/data/etf-flows.json
+            src/data/freshness-policy.json
+            scripts/update-etf-flows.mjs
+            scripts/test-etf-flows.mjs
+            scripts/fixtures/etf-flows
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: node scripts/test-etf-flows.mjs
+      - run: node scripts/update-etf-flows.mjs --report report/etf-flows.json
+      - name: Explain unavailable collection
+        run: |
+          echo '### Nouvelle édition indisponible' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Collecte automatique bloquée : droits de réutilisation et univers européen non qualifiés. Aucun chiffre collecté, aucune validation renouvelée. Voir le rapport et docs/etf-flows.md.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: etf-flows-qualification
+          path: report/etf-flows.json
+          retention-days: 35

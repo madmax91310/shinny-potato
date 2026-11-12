@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "etfexpress-2026-42-unqualified",
+  "fixture": true,
+  "status": "unqualified",
+  "start": "2026-10-12",
+  "end": "2026-10-16",
+  "periodKind": "explicit-range",
+  "periodEvidence": "Article introduction: activity between October 12 and October 16.",
+  "publishedAt": null,
+  "publishedLocal": "2026-10-19T09:35:49",
+  "retrievedAt": "2026-11-12T21:10:01Z",
+  "validatedAt": null,
+  "currency": "EUR",
+  "unit": "currency",
+  "metric": "net-flows",
+  "universe": {
+    "basis": "unknown",
+    "label": "European ETF activity, définition absente",
+    "evidence": "Le récap ne définit ni domicile ni cotation.",
+    "productTypes": [
+      "ETF"
+    ]
+  },
+  "source": {
+    "publisher": "ETF Express",
+    "provider": "Trackinsight",
+    "url": "https://etfexpress.com/2026/10/19/european-etf-market-wrap-flows-performance-and-leaders-week-42-2026/",
+    "locator": "Introduction et premier paragraphe des flux ; faits minimaux utilisés pour les tests, aucun article reproduit.",
+    "rightsStatus": "restricted",
+    "rightsEvidence": "https://etfexpress.com/disclaimer/ interdit redistribution et dérivés ; pas de licence obtenue."
+  },
+  "rows": [
+    {
+      "id": "equity",
+      "group": "asset",
+      "label": "Actions",
+      "originalLabel": "Equity ETFs",
+      "raw": "+5.23 MdEUR",
+      "amount": 5230000000,
+      "evidence": "Article, premier paragraphe : Equity ETFs attracted €5.23 billion."
+    },
+    {
+      "id": "financials",
+      "group": "sector",
+      "label": "Finance",
+      "originalLabel": "Financials",
+      "raw": "−628.5 MEUR",
+      "amount": -628500000,
+      "evidence": "Article, secteur : Financials (€628.5 million) recorded sector outflows."
+    }
+  ],
+  "complete": true
+}

@@ -1,0 +1,74 @@
+import assert from 'node:assert/strict'
+import {readFileSync, mkdirSync} from 'node:fs'
+import {spawn} from 'node:child_process'
+import {chromium} from 'playwright'
+import {expect} from 'playwright/test'
+import {waitPreview} from './wait-preview.mjs'
+const fixture = JSON.parse(readFileSync(new URL('./fixtures/etf-flows/2026-10-12.json',import.meta.url)))
+// Real historical numbers, with explicitly simulated contract metadata in this browser only.
+const record = structuredClone(fixture)
+Object.assign(record,{id:'test-browser-archive',fixture:false,status:'validated',publishedAt:'2026-10-19T10:00:00Z',validatedAt:'2026-11-12T21:15:00Z'})
+Object.assign(record.universe,{basis:'europe-listed',label:'Contrat simulé de test',evidence:'Périmètre simulé uniquement pour le test, pas une preuve fournisseur.'})
+Object.assign(record.source,{rightsStatus:'licensed',rightsEvidence:'Autorisation simulée de test ; aucune autorisation ETF Express déduite.'})
+const base=process.env.ETF_FLOWS_PUBLIC_BASE ?? 'http://127.0.0.1:4401/shinny-potato'
+const server=process.env.ETF_FLOWS_PUBLIC_BASE ? null : spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4401','--strictPort'],{stdio:'ignore'})
+const out='test-artifacts/etf-flows'; mkdirSync(out,{recursive:true})
+let browser
+try {
+ if(server) await waitPreview(server,base)
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH}:{})})
+ for(const width of [1280,390,320]) {
+  const context=await browser.newContext({viewport:{width,height:950},permissions:['clipboard-read','clipboard-write'],reducedMotion:'reduce'})
+  console.log('ETF flow viewport',width)
+  const page=await context.newPage(), errors=[];page.setDefaultTimeout(10000);page.on('pageerror',e=>errors.push(e.message))
+  await page.goto(base+'/flux-etf',{waitUntil:'networkidle'})
+  await expect(page.getByRole('heading',{level:1})).toContainText('Où va l’argent des ETF ?')
+  await expect(page.getByText('Aucune semaine validée.',{exact:false})).toBeVisible()
+  await expect(page.getByRole('button',{name:'Copier le tweet',exact:true})).toBeDisabled()
+  const json=page.getByRole('textbox',{name:'Observation JSON'})
+  await json.fill(JSON.stringify(fixture));await page.getByRole('button',{name:'Vérifier et enregistrer'}).click()
+  await expect(page.locator('.flows-feedback')).toContainText('non validée')
+  await json.fill(JSON.stringify(record));await page.getByRole('button',{name:'Vérifier et enregistrer'}).click()
+  await expect(page.locator('.flows-feedback')).toContainText('enregistrée')
+  await expect(page.getByRole('button',{name:'Copier le tweet',exact:true})).toBeDisabled()
+  await page.getByRole('checkbox',{name:'Préparer une archive explicitement datée'}).check()
+  await page.getByRole('checkbox',{name:'Toute cette rubrique'}).nth(1).check()
+  if(width<700) await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+  await page.getByRole('checkbox',{name:'Autoriser un texte long',exact:false}).check()
+  const tweet=page.getByRole('textbox',{name:'Tweet',exact:true}), original=await tweet.inputValue()
+  assert(original.startsWith('Archives · '));assert(original.includes('−628,5 M€'));assert(original.includes('+5,23 Md€'))
+  await tweet.fill(original.replace('+5,23','+8,23'))
+  await expect(page.getByText('Chiffre absent de la sélection sourcée.',{exact:true})).toBeVisible()
+  await expect(page.getByRole('button',{name:'Copier le tweet',exact:true})).toBeDisabled()
+  await page.getByRole('button',{name:'Rétablir le texte généré'}).click()
+  await page.getByRole('checkbox',{name:'J’ai relu le texte',exact:false}).check()
+  await page.getByRole('button',{name:'Copier le tweet',exact:true}).click()
+  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),original)
+  await page.getByRole('tab',{name:'Image',exact:true}).click()
+  const preview=page.locator('.publication-image-stage img');await expect(preview).toBeVisible()
+  const png=await preview.getAttribute('src');assert(png.startsWith('data:image/png;base64,'))
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger cet aperçu'}).click();const file=await download
+  assert(file.suggestedFilename().includes('2026-10-16-archives'));await file.saveAs(`${out}/export-${width}.png`)
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile overflow')
+  await page.screenshot({path:`${out}/preview-${width}.png`,fullPage:true})
+  if(width<700) await page.getByRole('button',{name:'Réglages',exact:true}).click()
+  // Duplication cannot refresh dates or replace the existing observation.
+  const saved=await page.evaluate(()=>localStorage.getItem('el-etf-flows-v1'))
+  await page.getByRole('button',{name:'Vérifier et enregistrer'}).click()
+  await expect(page.locator('.flows-feedback')).toContainText('Doublon')
+  assert.equal(await page.evaluate(()=>localStorage.getItem('el-etf-flows-v1')),saved)
+  const choices=page.locator('[data-selector][aria-label="Semaine enregistrée"]')
+  await choices.locator('button[data-value=""]').click()
+  if(width<700) await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+  await page.getByRole('tab',{name:'Texte',exact:true}).click()
+  await expect(tweet).toHaveValue('')
+  if(width<700) await page.getByRole('button',{name:'Réglages',exact:true}).click()
+  await choices.getByRole('button',{name:/du 12\/10\/2026/}).click()
+  await page.reload({waitUntil:'networkidle'})
+  await expect(page.getByRole('checkbox',{name:'Préparer une archive explicitement datée'})).not.toBeChecked()
+  await expect(page.getByRole('button',{name:'Copier le tweet',exact:true})).toBeDisabled()
+  assert.deepEqual(errors,[])
+  await context.close()
+ }
+ console.log('ETF flows browser: empty state, real fixture rejected, archive import, selection, edited figures blocked, copy, PNG, duplicate retention, reload and 1280/390/320px passed.')
+} finally {await browser?.close();server?.kill()}
