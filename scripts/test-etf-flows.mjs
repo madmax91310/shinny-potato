@@ -24,6 +24,10 @@ const rolling = {...record, start:'2026-10-09', periodKind:'rolling-1w', periodE
 assert.deepEqual(validateObservation(rolling,now),[])
 assert(validateObservation({...rolling,start:'2026-10-08'},now).length)
 assert(validateObservation({...rolling,periodKind:'explicit-range'},now).length)
+// A fresh Thursday-to-Thursday 1W is not stale just because Friday has ended.
+const freshRolling={...rolling,start:'2026-11-05',end:'2026-11-12',publishedAt:'2026-11-13T08:00:00Z',retrievedAt:'2026-11-13T09:00:00Z',validatedAt:'2026-11-13T10:00:00Z'}
+assert.deepEqual(publicationGate(freshRolling,{now:new Date('2026-11-14T12:00:00Z')}),[])
+assert(publicationGate(freshRolling,{now:new Date('2026-11-23T12:00:00Z')}).length)
 const saved = addObservation([],record,now), before = JSON.stringify(saved)
 assert.throws(() => addObservation(saved,record,now),/Doublon/)
 assert.equal(JSON.stringify(saved),before)

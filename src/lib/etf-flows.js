@@ -61,7 +61,7 @@ export function expectedEnd(now = new Date()) {
 export function publicationGate(o, {now = new Date(), archive = false, maxAgeDays = freshnessPolicy.fields['etf.weeklyFlows'].dataDays} = {}) {
   const errors = validateObservation(o, now)
   if (!o) return errors
-  if (!archive && (o.end < expectedEnd(now) || (+now - Date.parse(o.end)) / 86400000 > maxAgeDays)) errors.push('Nouvelle édition indisponible. Cette période est une archive ; activer le mode archive pour un texte explicitement daté.')
+  if (!archive && ((o.periodKind !== 'rolling-1w' && o.end < expectedEnd(now)) || (+now - Date.parse(o.end)) / 86400000 > maxAgeDays)) errors.push('Nouvelle édition indisponible. Cette période est une archive ; activer le mode archive pour un texte explicitement daté.')
   return errors
 }
 export function periodLabel(o) { return `du ${o.start.split('-').reverse().join('/')} au ${o.end.split('-').reverse().join('/')}` }
