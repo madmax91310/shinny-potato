@@ -103,4 +103,40 @@ class InvescoPhysical(unittest.TestCase):
                 with self.assertRaises(ValueError):self.parse(self.change_payload(transform))
 
 
+
+class EqualWeightPhysical(unittest.TestCase):
+    def setUp(self):
+        self.book=json.loads(gzip.decompress((Path(__file__).parent/'fixtures/invesco-physical/equal-weight-20261112.json.gz').read_bytes()))
+        self.now=dt.datetime(2026,11,12,tzinfo=dt.timezone.utc)
+    def parse(self):return parse_capture(self.book['capture'],self.book['metadataRaw'],'IE000L2SA8K5',self.now)
+    def test_actual_exact_replicated_fund_book_preserves_nav_weights_and_classes(self):
+        rows,date,raw,reconciliation,meta=self.parse()
+        self.assertEqual(date,'2026-11-11');self.assertEqual(len(rows),101)
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows),99.9709)
+        self.assertEqual(reconciliation['excludedWeightPctByType'],{'Cash and/or Derivatives':.0291})
+        self.assertFalse(reconciliation['normalizationApplied'])
+        self.assertEqual(len([r for r in rows if r['isin']in ['US02079K1079','US02079K3059']]),2)
+        self.assertFalse(self.book['capture']['samplingMandateConfirmed'])
+        self.assertTrue(self.book['capture']['physicalReplicationMandateConfirmed'])
+    def test_replication_mandate_and_visible_table_census_required(self):
+        for key,value in [('physicalReplicationMandateConfirmed',False),('publisherRowCount',10),('pageTitle','NASDAQ-100 Equal Weighted Index'),('asOf','2026-11-10'),('sourceSha256','0'*64)]:
+            original=copy.deepcopy(self.book);self.book['capture'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.parse()
+            self.book=original
+    def test_other_fund_benchmark_synthetic_or_hedged_metadata_rejected(self):
+        for mutation in ['fund','benchmark','synthetic','hedged','share']:
+            original=self.book['metadataRaw'];m=json.loads(original)
+            if mutation=='fund':m['account']['accountName']='Invesco FTSE All-World UCITS ETF'
+            if mutation=='benchmark':m['benchmarkRelationships'][0]['indexBloombergTicker']='NDX'
+            if mutation=='synthetic':m['replicationMethod']='Synthetic'
+            if mutation=='hedged':m['hedgedIndicator']=True
+            if mutation=='share':m['aliases']['isin']='IE000716YHJ7'
+            self.book['metadataRaw']=json.dumps(m)
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.parse()
+            self.book['metadataRaw']=original
+
+    def test_qualified_book_company_overlap_and_partial_scope_consumers(self):
+        import subprocess
+        subprocess.run(['node',str(Path(__file__).parent/'test-invesco-equalweight-consumers.mjs')],check=True,capture_output=True)
+
 if __name__ == '__main__':unittest.main()
