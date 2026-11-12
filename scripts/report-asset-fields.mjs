@@ -86,7 +86,13 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10),{
  // configuration; equivalent URL sets must produce the exact prepared report.
  // Keep every URL, including additions/removals, and all dated observations.
  const metadataSources=new Map(metadataSourceRecords.map(r=>[r.isin,[...r.urls].sort()]));
- for(const item of DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY')) {
+ const catalogInstruments=DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY');
+ const catalogIds=new Set(DATA_CATALOG.map(item=>item.id));
+ // Internal look-through dependencies deliberately stay out of asset selectors.
+ // They still require their composition controls, even before a public catalogue
+ // entry exists. Use the declared registry, not the successful observations.
+ const internalCompositions=Object.entries(compositionOnly).filter(([id])=>!catalogIds.has(id)).map(([id,record])=>({id,name:record.name,type:'instrument'}));
+ for(const item of [...catalogInstruments,...internalCompositions]) {
   const onlyComposition=!AUTOMATED_ETF[item.id]&&!!compositionOnly[item.id];
   const record=AUTOMATED_ETF[item.id]??compositionOnly[item.id]??{};
   for(const field of Object.keys(names)) {
