@@ -1,0 +1,59 @@
+{
+  "retrievedAt": "2026-11-12",
+  "sources": {
+    "IE00BZ3FDG37": {
+      "isin": "IE00BZ3FDG37",
+      "kind": "non-equity-money-market-fund",
+      "currency": "GBP",
+      "name": "Deutsche Managed Sterling Fund",
+      "sourceUrl": "https://funds.dws.com/en-IE/AssetDownload/Index?assetguid=218df76e-458a-4fda-a56e-d8e1c08bd66e",
+      "sha256": "d1cfdb4f75a42754c073aa1a9fb00497e7c23c6f1d287de36d6307e0dac8d7e7",
+      "asOf": "2026-02-16",
+      "checkedAt": "2026-11-12T00:00:00+00:00",
+      "method": "Exact Z-Class KID; short-term debt and money-market mandate; not direct equity or a cash deposit"
+    },
+    "IE00BZ3FDF20": {
+      "isin": "IE00BZ3FDF20",
+      "kind": "non-equity-money-market-fund",
+      "currency": "EUR",
+      "name": "Deutsche Managed Euro Fund",
+      "sourceUrl": "https://download.dws.com/download/asset/b306aceb1791490aa957609f005cbd9d",
+      "sha256": "a3807dbd0b4af386960b208cb9c43a604c99769a45fe01b148f5603d0d730371",
+      "asOf": "2026-02-16",
+      "checkedAt": "2026-11-12T00:00:00+00:00",
+      "method": "Exact Z-Class KID; short-term debt and money-market mandate; not direct equity or a cash deposit"
+    },
+    "LU0514695187": {
+      "isin": "LU0514695187",
+      "name": "Xtrackers MSCI India Swap UCITS ETF 1C",
+      "currency": "USD",
+      "kind": "non-transparised-equity-fund",
+      "replication": "Indirect Replication (Swap)",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0514695187/pdpMetaTagsTealium",
+      "sha256": "cf8c6af55af2bd92ed1ccc0fc77a3143c97a364bb6e993a54443bd91ff783833",
+      "asOf": "2026-11-11",
+      "checkedAt": "2026-11-12T00:00:00+00:00",
+      "method": "Exact issuer share identity only; economic look-through unavailable. Fund units and their original parent NAV weight remain separate from companies; no substitution-basket exposure reused."
+    }
+  },
+  "files": {
+    "sterling-z-kid.pdf": {
+      "sha256": "d1cfdb4f75a42754c073aa1a9fb00497e7c23c6f1d287de36d6307e0dac8d7e7",
+      "bytes": 92762
+    },
+    "euro-z-kid.pdf": {
+      "sha256": "a3807dbd0b4af386960b208cb9c43a604c99769a45fe01b148f5603d0d730371",
+      "bytes": 92815
+    },
+    "india-etf-product.json": {
+      "sha256": "cf8c6af55af2bd92ed1ccc0fc77a3143c97a364bb6e993a54443bd91ff783833",
+      "bytes": 69154,
+      "serialization": "Original response text from ordinary get_text acquisition"
+    },
+    "all-world-holdings.json": {
+      "sha256": "e954dc49e48380d2247d4b0e9fc062c8eba308fdabcf3a0df4a4fa66dd1c3c35",
+      "bytes": 897742,
+      "serialization": "Actual JSON source parsed by get_json and saved as JSON; fixture hash, not raw HTTP response hash. Parent parser separately seals canonical JSON."
+    }
+  }
+}

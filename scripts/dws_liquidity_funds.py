@@ -1,4 +1,4 @@
-"""Qualify exact non-equity fund shares from their current official KIDs."""
+"""Qualify exact held fund shares without treating units as company exposure."""
 import datetime as dt
 import hashlib
 import json
@@ -6,12 +6,23 @@ from pathlib import Path
 import re
 import threading
 from issuer_documents import download, pdf_text, document_date
+from data_automation import get_text
 
 SOURCES = {
     'IE00BYQNZ507': {'name':'Deutsche Managed Dollar Fund','currency':'USD',
         'url':'https://download.dws.com/download?elib-assetguid=890b3c75b14d4c22be88765b92b21794'},
+    'IE00BZ3FDG37': {'name':'Deutsche Managed Sterling Fund','currency':'GBP',
+        'url':'https://funds.dws.com/en-IE/AssetDownload/Index?assetguid=218df76e-458a-4fda-a56e-d8e1c08bd66e'},
     'IE00BZ3FDF20': {'name':'Deutsche Managed Euro Fund','currency':'EUR',
         'url':'https://download.dws.com/download/asset/b306aceb1791490aa957609f005cbd9d'},
+}
+# Fund units remain securities; they are never attributed to the fund manager.
+# Qualification identifies the exact held share; it does not look through its
+# substitution basket or qualify an economic composition of its benchmark.
+EQUITY_FUNDS = {
+    'LU0514695187': {'name':'Xtrackers MSCI India Swap UCITS ETF 1C','currency':'USD',
+        'replication':'Indirect Replication (Swap)',
+        'url':'https://etf.dws.com/api/pdp/en-gb/etf/LU0514695187/pdpMetaTagsTealium'},
 }
 _cache = {}
 _lock = threading.Lock()
@@ -43,4 +54,41 @@ def qualify_liquidity_fund(isin, now):
     with _lock:
         if key not in _cache:
             _cache[key]=parse_liquidity_document(download(SOURCES[isin]['url']),isin,now)
+        return dict(_cache[key])
+
+
+def parse_held_equity_fund(raw, isin, now):
+    source=EQUITY_FUNDS.get(isin)
+    if not source:raise ValueError('Unqualified held equity-fund identity')
+    body=json.loads(raw)
+    section=body['pdpResult']
+    header=section['pageFrame']['productHeader']
+    from collect_dws_etf import items
+    fields={}
+    for item in items(section['pageSections']['keyFacts']):
+        key=item['key']
+        if key in ('ISIN','Share class currency','Exchange traded fund / Non-exchange traded fund','Investment methodology','NAV date'):
+            if key in fields:raise ValueError('Ambiguous held-fund identity field: '+key)
+            fields[key]=item['value']
+    if (fields.get('ISIN')!=isin or fields.get('Share class currency')!=source['currency']
+            or fields.get('Exchange traded fund / Non-exchange traded fund')!='Exchange traded fund'
+            or fields.get('Investment methodology')!=source['replication']
+            or header['texts']['title']!=source['name']
+            or [r['value']for r in header['identifier']if r['key']=='ISIN']!=[isin]):
+        raise ValueError('Wrong held equity fund, share, currency or replication')
+    stamp=document_date(fields['NAV date'],now)
+    return {'isin':isin,'name':source['name'],'currency':source['currency'],
+        'kind':'non-transparised-equity-fund','replication':source['replication'],
+        'sourceUrl':source['url'],'sha256':hashlib.sha256(raw.encode()).hexdigest(),
+        'asOf':stamp,'checkedAt':now.isoformat(),
+        'method':'Exact issuer share identity only; economic look-through unavailable. Fund units and their original parent NAV weight remain separate from companies; no substitution-basket exposure reused.'}
+
+
+def qualify_held_fund(isin, now):
+    if isin in SOURCES:return qualify_liquidity_fund(isin,now)
+    if isin not in EQUITY_FUNDS:raise ValueError('Fund-of-funds look-through is not qualified: '+isin)
+    key=(isin,now)
+    with _lock:
+        if key not in _cache:
+            _cache[key]=parse_held_equity_fund(get_text(EQUITY_FUNDS[isin]['url'],('application/json',),3_000_000),isin,now)
         return dict(_cache[key])
