@@ -5,7 +5,7 @@ const alternating = (...paths) => paths.map((path, index) => slot(path, `Une sem
 export const EDITORIAL_WEEK = [
   { day: 'Lundi', ...recap(), midday: [slot('/performance-depuis'), slot('/presentations')], evening: alternating('/tweets-factsheets', '/generateur-portefeuilles') },
   { day: 'Mardi', ...recap(), midday: [slot('/classements-performances'), slot('/fiche-lexique')], evening: [{ ...slot('/le-dca-de', 'Au choix avec Le budget de…', 'Le DCA d’un abonné'), href: '/le-dca-de?mode=dca' }, slot('/le-budget-de', 'À la place du DCA · selon tes publications')], eveningNote: 'DCA ou budget : choisis un seul format selon tes publications. Le budget peut aussi passer le vendredi soir.' },
-  { day: 'Mercredi', ...recap(), midday: [slot('/calculateur-investissement')], evening: alternating('/comparatif-courtiers', '/hey-grok') },
+  { day: 'Mercredi', ...recap(), midday: [slot('/calculateur-investissement'), slot('/france-100-menages')], evening: alternating('/comparatif-courtiers', '/hey-grok') },
   { day: 'Jeudi', ...recap(), midday: [slot('/classements-performances'), slot('/comparateur-indices')], evening: [{ ...slot('/banque-tweets', 'Dans la Banque de tweets', 'Guide'), href: '/banque-tweets?category=Guide%20ETF' }] },
   { day: 'Vendredi', ...recap(), midday: alternating('/fiches-etf', '/comparatif-etf'), evening: [slot('/le-budget-de', 'À la place de ton tweet personnel · selon tes publications')], eveningNote: 'Ton tweet personnel ou Le budget de… si tu ne l’as pas publié mardi.' },
   { day: 'Samedi', ...recap(), midday: [], middayNote: 'Ton bilan de la semaine', evening: [], eveningNote: 'Quote de ton bilan' },
