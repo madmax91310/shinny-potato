@@ -36,8 +36,10 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - run: node scripts/test-etf-flows.mjs
-      - run: node scripts/update-etf-flows.mjs --report report/etf-flows.json
+      - name: Validate flow publication contracts
+        run: node scripts/test-etf-flows.mjs
+      - name: Report blocked flow collection
+        run: node scripts/update-etf-flows.mjs --report report/etf-flows.json
       - name: Explain unavailable collection
         run: |
           echo '### Nouvelle édition indisponible' >> "$GITHUB_STEP_SUMMARY"

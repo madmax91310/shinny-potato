@@ -49,6 +49,13 @@ try {
  assert.equal(await overview.locator('.dr-item').count(),Object.keys(registry).length+1)
  await overview.getByRole('button',{name:'En échec · 0',exact:true}).click()
  await overview.getByText('Aucune collecte pour cette sélection.').waitFor()
+ status={schemaVersion:1,workflows:{'update-etf-flows.yml':{name:registry['update-etf-flows.yml'].name,status:'success',collectionStatus:'not-applicable',validationStatus:'success',recordingStatus:'not-applicable',publicationStatus:'not-applicable',completedAt:new Date().toISOString()}}}
+ await page.reload({waitUntil:'networkidle'});await openSources()
+ const flowControl=overview.locator('.dr-item').filter({has:page.getByRole('heading',{name:registry['update-etf-flows.yml'].name,exact:true})})
+ await flowControl.getByText('Contrôle réussi',{exact:true}).waitFor()
+ assert.equal(await flowControl.getByText('Collecte réussie',{exact:true}).count(),0)
+ assert.equal(await flowControl.getByText('Sans objet',{exact:true}).count(),3)
+ assert((await flowControl.getByRole('link',{name:'Où va l’argent des ETF ?',exact:true}).getAttribute('href')).endsWith('/flux-etf'))
  status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'failure',completedAt:'2026-10-08T13:28:34Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/37784356798'}}}
  await page.reload({waitUntil:'networkidle'});await openSources()
  assert.equal(await section.locator('.dr-item').count(),1)

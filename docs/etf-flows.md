@@ -15,7 +15,7 @@ Route : `/flux-etf`. Aucun créneau du calendrier éditorial n’est ajouté ou 
 
 ## Fonctionnement disponible
 
-Le workflow `update-etf-flows.yml` contrôle le registre chaque lundi à 09:35 UTC et sur lancement manuel. Son rapport dit `mode: blocked`, `newEditionAvailable: false`, zéro requête fournisseur et zéro tentative. Un job vert signifie que les contrôles ont fonctionné, **pas qu’une collecte a réussi**. Le rapport est conservé 35 jours ; la raison figure aussi dans l’application. Aucune date d’observation n’est modifiée par ce contrôle.
+Le workflow `update-etf-flows.yml` contrôle le registre chaque lundi à 09:35 UTC et sur lancement manuel. Son rapport dit `mode: blocked`, `newEditionAvailable: false`, zéro requête fournisseur et zéro tentative. Un job vert signifie que les contrôles ont fonctionné, **pas qu’une collecte a réussi**. Le rapport est conservé 35 jours ; la raison figure aussi dans l’application. Le contrôle est enregistré dans la surveillance commune comme `validationOnly`, sans publication ni phase de collecte : un contrôle réussi y reste distinct d’une collecte réussie. Aucune date d’observation n’est modifiée par ce contrôle.
 
 Il n’y a pas de relance réseau tant que l’accès et le périmètre ne sont pas qualifiés. Pour activer une future collecte, il faudra obtenir l’autorisation, documenter l’univers exact, ajouter un adaptateur et ses fixtures réelles, puis tester la sélection de dernière période complète, les changements de structure, les corrections et les retards. Prévoir alors trois passages hebdomadaires maximum (lundi, mardi, mercredi) et un timeout réseau ; ne pas appeler ce comportement opérationnel avant son implémentation. Le présent workflow ne prétend pas découvrir de nouvelles éditions.
 
