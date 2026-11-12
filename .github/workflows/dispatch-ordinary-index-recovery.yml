@@ -1,0 +1,30 @@
+name: Dispatch ordinary financial index recovery
+on:
+  push:
+    branches: [probe/qualified-cvr-source-20261112]
+    paths: ['.github/workflows/dispatch-ordinary-index-recovery.yml']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  dispatch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/github-script@v8.0.0
+        with:
+          script: |
+            const args = {owner: context.repo.owner, repo: context.repo.repo};
+            const current = await github.rest.repos.getCommit({...args, ref: 'master'});
+            const compare = await github.rest.repos.compareCommitsWithBasehead({...args, basehead: 'f9e30620263c1f601b6df6cef81d8adda2cb5e7a...' + current.data.sha});
+            if (!['ahead','identical'].includes(compare.data.status)) throw Error('Validated runtime master is not in current history');
+            const workflow = 'refresh-automated-index-sheets.yml';
+            await github.rest.actions.createWorkflowDispatch({...args, workflow_id: workflow, ref: 'master'});
+            const receipt = {execution:'manual-workflow-dispatch', workflow, ref:'master', dispatchObservedMasterSha:current.data.sha, dispatchedAt:new Date().toISOString(), note:'Dispatcher only. Source report, recording, publication and scheduled execution require their own evidence.'};
+            require('node:fs').writeFileSync('dispatch-receipt.json', JSON.stringify(receipt,null,2));
+            core.info(JSON.stringify(receipt));
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: ordinary-index-dispatch-receipt
+          path: dispatch-receipt.json
+          retention-days: 35
