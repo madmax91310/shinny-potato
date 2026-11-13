@@ -24,10 +24,12 @@ INDEPENDENT = {
 # exemptions are unchanged; all fingerprints remain mandatory.
 # Defence-only primary-result additions also preserve every original 13F plan;
 # frozen before/after proof: fixtures/defence-physical-allocation/13f-plan-before-after.json.
+# 13 Nov: targeted anniversary/gold selection leaves all 28 13F plans intact;
+# proof: fixtures/publication/xndx-official-20261113/13f-plan-before-after.json.
 ACQUISITION_SHA256 = {
     'scripts/update-investor-13f.py': '84fe43e831b8c73a44a38546614ebec46f063c740579a992b238c4abfb70e792',
     'scripts/producer_report_contract.py': '54ee3ffe6e80be3d6ba2529172928063c3c1706f85c9973fe485db266778b463',
-    'scripts/producer_report_plans.py': 'cb4a5f14882a25b46c4699e4233c71f5add041110409ebc041be92bb86316c0a',
+    'scripts/producer_report_plans.py': '50b52581836c7e6eb08e45e84fe4ae956fcc774c90aa5f2b8e340b2125cb7fa3',
 }
 JOB_WINDOW = dt.timedelta(minutes=30)  # Existing producer job timeout, not data age.
 
