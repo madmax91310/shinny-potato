@@ -2,6 +2,14 @@
 
 Route : `/flux-etf`. Aucun créneau du calendrier éditorial n’est ajouté ou modifié.
 
+## Import manuel depuis les sites
+
+Deux liens ouvrent la recherche du récap hebdomadaire européen ETF Express et l’accueil Trackinsight (flux mondiaux). L’atelier permet de coller des lignes signées, des cartes copiées sur deux lignes ou des phrases anglaises explicitant les entrées et sorties. Il affiche les montants reconnus avant de les ajouter à une semaine. Plusieurs rubriques de même devise peuvent être réunies, sans doublons ni addition des catégories.
+
+Le formulaire renseigne les dates exactes, la publication, le périmètre, la provenance et les conditions de réutilisation sans écrire de JSON. Les périmètres européens existants sont préservés ; `global-covered` représente uniquement l’univers mondial documenté par la source, et reste explicitement présenté comme tel dans le tweet et le PNG. Il ne signifie pas une couverture mondiale exhaustive.
+
+Ce parcours effectue uniquement une conversion locale : aucune requête aux fournisseurs, aucune qualification automatique des droits, aucune déduction de dates. Des performances, encours, cumuls YTD, devises mélangées ou signes ambigus bloquent le transfert des lignes concernées. Une saisie manuelle ne remplace pas la qualification des droits ; les restrictions de sources documentées ci-dessous restent applicables. L’import JSON avancé et le stockage local existants sont conservés.
+
 ## Décision de collecte, examen du 12 novembre 2026
 
 - Trackinsight : accueil et robots.txt accessibles sans connexion. L’HTML reçu est une coque d’application ; les pages `/services/data-services` et `/en/terms-of-use` n’ont pas livré de conditions ni de contrat de données exploitable dans l’HTML. Aucun contrat d’API publique gratuite autorisant la réutilisation n’a été établi. Ne pas exploiter ses endpoints internes par supposition. Une API de service doit être qualifiée et autorisée avant tout raccordement.
@@ -46,3 +54,4 @@ Le script ajoute atomiquement une observation validée au registre, conserve les
 ## Vérifications
 
 `npm run test:etf-flows` contrôle extraction des signes/unités, dates impossibles, futur, métrique, incohérences, chevauchement de périodes locales, doublons, droits/périmètre, conservation et archives. `npm run test:etf-flows:browser` contrôle le parcours à 1280, 390 et 320 px, l’import réel refusé, les semaines archivées, le texte, la copie et le téléchargement PNG. Le cas positif est un **contrat simulé de test** autour des chiffres historiques, jamais une qualification de l’article ni une donnée livrée à l’application. Le test navigateur est ajouté aux contrôles CI existants.
+

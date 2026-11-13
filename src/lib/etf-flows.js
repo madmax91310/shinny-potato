@@ -23,7 +23,7 @@ export function validateObservation(o, now = new Date()) {
   if (Date.parse(o.end) >= Date.parse(now.toISOString().slice(0, 10))) errors.push('Période incomplète ou future.')
   if (!instant(o.publishedAt) || !instant(o.retrievedAt) || !instant(o.validatedAt) || Date.parse(o.publishedAt) < Date.parse(o.end) || Date.parse(o.retrievedAt) < Date.parse(o.publishedAt) || Date.parse(o.validatedAt) < Date.parse(o.retrievedAt) || Date.parse(o.validatedAt) > +now) errors.push('Publication, récupération et validation doivent être datées et ordonnées.')
   if (!['EUR', 'USD'].includes(o.currency) || o.metric !== 'net-flows' || o.unit !== 'currency') errors.push('Flux nets en devise requis, sans performance, volume ni variation d’encours.')
-  if (!['europe-domiciled', 'europe-listed'].includes(o.universe?.basis) || !present(o.universe?.evidence) || !present(o.universe?.label) || o.universe.label.length > 80) errors.push('Univers européen à qualifier : domicile ou cotation, avec preuve et libellé court.')
+  if (!['europe-domiciled', 'europe-listed', 'global-covered'].includes(o.universe?.basis) || !present(o.universe?.evidence) || !present(o.universe?.label) || o.universe.label.length > 80) errors.push('Univers à qualifier : européen ou mondial couvert, avec preuve et libellé court.')
   if (!Array.isArray(o.universe?.productTypes) || !o.universe.productTypes.length || o.universe.productTypes.some(t => !['ETF', 'ETC', 'ETP'].includes(t))) errors.push('Types ETF / ETC / ETP requis.')
   if (!url(o.source?.url) || !present(o.source?.publisher) || !present(o.source?.provider) || !present(o.source?.locator)) errors.push('Provenance complète et URL HTTPS requises.')
   if (!['licensed', 'open'].includes(o.source?.rightsStatus) || !present(o.source?.rightsEvidence)) errors.push('Réutilisation à documenter : licence ou autorisation ouverte.')
@@ -71,7 +71,7 @@ export function signedFlow(amount, currency = 'EUR') {
   return `${amount < 0 ? '−' : '+'}${new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 2}).format(absolute / divisor)} ${divisor === 1e9 ? 'Md' : divisor === 1e6 ? 'M' : divisor === 1e3 ? 'k' : ''}${currency === 'EUR' ? '€' : '$'}`
 }
 export function selection(o, ids) { return (o?.rows ?? []).filter(r => ids.includes(r.id)) }
-export function publicScope(o) { return `${o.universe.productTypes.join(' / ')} ${o.universe.basis === 'europe-listed' ? 'cotés' : 'domiciliés'} en Europe` }
+export function publicScope(o) { return o.universe.basis === 'global-covered' ? `${o.universe.productTypes.join(' / ')} de l’univers mondial couvert` : `${o.universe.productTypes.join(' / ')} ${o.universe.basis === 'europe-listed' ? 'cotés' : 'domiciliés'} en Europe` }
 export function buildFlowTweet(o, rows, {archive = false} = {}) {
   if (!rows.length) return ''
   return `${archive ? 'Archives · ' : ''}💸 Où va l’argent des ETF ?
@@ -105,3 +105,4 @@ export function checkFlowText(text, o, rows, archive = false) {
 export function blankObservation() {
   return { schemaVersion: 1, id: '', status: 'validated', start: '', end: '', periodKind: 'explicit-range', complete: true, periodEvidence: '', publishedAt: '', retrievedAt: '', validatedAt: '', currency: 'EUR', unit: 'currency', metric: 'net-flows', universe: {basis: '', label: '', evidence: '', productTypes: ['ETF']}, source: {publisher: '', provider: '', url: '', locator: '', rightsStatus: '', rightsEvidence: ''}, rows: [{id: '', group: 'asset', label: '', originalLabel: '', raw: '', amount: null, evidence: ''}] }
 }
+
