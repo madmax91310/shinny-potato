@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import {FLOW_SOURCES,parsePastedFlows} from '../src/pages/etf-flows/paste.js'
-assert.deepEqual(FLOW_SOURCES.map(s=>new URL(s.url).hostname),['etfexpress.com','www.trackinsight.com'])
+assert.deepEqual(FLOW_SOURCES.map(s=>new URL(s.url).hostname),['etfexpress.com'])
 const signed=parsePastedFlows('US exposures : +3,82 Md€\nEurope : +772,7 M€\nChina : −164,9 M€','geography')
 assert.deepEqual(signed.warnings,[])
 assert.deepEqual(signed.rows.map(r=>r.amount),[3820000000,772700000,-164900000])
@@ -20,3 +20,5 @@ assert.equal(parsePastedFlows('S&P 500\n+$12M','geography').rows[0].label,'S&P 5
 assert.equal(parsePastedFlows('A : +'+ '9'.repeat(400)+' M€','sector').rows.length,0)
 assert.equal(parsePastedFlows('Net assets : +5 M€','sector').rows.length,0)
 console.log('ETF paste import: real dated excerpts, signed cards, units, negative flows, duplicates and unsafe input passed.')
+
+await import('./test-etf-express-report.mjs')
