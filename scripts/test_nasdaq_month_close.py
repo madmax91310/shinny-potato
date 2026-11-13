@@ -103,8 +103,20 @@ class OfficialClosingPrice(unittest.TestCase):
 
     def test_real_refresh_preserves_last_good_record_on_official_outage_and_is_idempotent(self):
         collected = self.collect()
-        with patch('refresh_monthly_history.collect_yahoo', return_value=collected):
+        # collect_one also checks declared splits for anniversary quote units.
+        # Exercise that real qualifier with the pinned source response: this
+        # isolated test must not call Yahoo or fail a production cron on HTTP 429.
+        from qualify_anniversary_price_units import probe_url
+        expected_probe = probe_url(self.config, NOW)
+        def corporate_actions(url):
+            self.assertEqual(url, expected_probe)
+            return copy.deepcopy(self.raw[self.monthly])
+        with patch('refresh_monthly_history.collect_yahoo', return_value=collected), \
+                patch('qualify_anniversary_price_units.get_json', side_effect=corporate_actions) as probe:
             record = collect_one(self.config, NOW)
+        probe.assert_called_once_with(expected_probe)
+        self.assertEqual(record['points'], collected['points'])
+        self.assertEqual(record['anniversaryPoints'], collected['anniversaryPoints'])
         prior = {**record,'periodEnd':'2026-09','points':record['points'][:-1],
                  'anniversaryPoints':record['anniversaryPoints'][:-1],'checkedAt':'2026-10-31'}
         baseline = {'sbux':{'currency':'USD','points':[{'date':d,'price':v}for d,v in prior['points']]}}
