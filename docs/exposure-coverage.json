@@ -1,9 +1,33 @@
 {
-  "checkedAt": "2026-11-13T12:43:34.929Z",
+  "checkedAt": "2026-11-13T13:33:35.512Z",
   "total": 694,
   "outside": 53,
-  "complete": 641,
-  "gaps": [],
+  "complete": 640,
+  "gaps": [
+    {
+      "asset": "IE0003R87OG3",
+      "isin": "IE0003R87OG3",
+      "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
+      "kind": "etf",
+      "provider": "Avantis",
+      "countries": {
+        "coverage": 99.44000000000013,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0.5599999999998744,
+        "reasons": [],
+        "asOf": "2026-11-11"
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-10-31"
+      }
+    }
+  ],
   "outsideAssets": [
     {
       "asset": "gold",
