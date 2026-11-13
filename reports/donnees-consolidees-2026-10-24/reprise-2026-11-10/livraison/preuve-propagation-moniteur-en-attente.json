@@ -12,5 +12,29 @@
   ],
   "lastPendingTriggeredByLatestSource": "2026-11-13T18:19:10Z",
   "notAProducerFailure": "Source acquisition, financial validation, commit and public consumption are verified separately. Pending observer propagation is not reported as complete.",
-  "noArtificialGreenRetry": true
+  "noArtificialGreenRetry": true,
+  "subsequentCheckAt": "2026-11-13T18:29:41.941211+00:00",
+  "subsequentObserverStatuses": [
+    {
+      "id": 43481467099,
+      "event": "workflow_run",
+      "status": "pending",
+      "conclusion": null,
+      "updated_at": "2026-11-13T18:19:12Z"
+    },
+    {
+      "id": 43479683156,
+      "event": "workflow_run",
+      "status": "in_progress",
+      "conclusion": null,
+      "updated_at": "2026-11-13T18:28:33Z"
+    },
+    {
+      "id": 43479256343,
+      "event": "workflow_run",
+      "status": "completed",
+      "conclusion": "success",
+      "updated_at": "2026-11-13T18:28:30Z"
+    }
+  ]
 }

@@ -88,3 +88,5 @@ Huit photographies passent désormais le recouvrement et sept redeviennent parti
 ## Propagation du moniteur encore en file
 
 Dernier moniteur public contrôlé :13Nov18:21:09UTC ; son état du producteur de livres précède la dernière collecte effectivement publiée. L’observateur43479256343 est en cours ;43479683156 et43481467099 sont en attente. Le dernier a été déclenché par la fin de la collecte13Nov18:19:10. La résolution financière est prouvée par les observations/commits/octets publics et recettes, mais la propagation de ce dernier état dans « Données à revoir » reste **à observer**. Aucun incident n’est masqué, aucune relance destinée au seul voyant vert : [preuve de file](preuve-propagation-moniteur-en-attente.json).
+
+Contrôle ultérieur avant remise :43479256343 a terminé avec succès à18:28:30 ;43479683156 est désormais en cours ;43481467099 reste en attente. Cette progression ne vaut pas encore ingestion prouvée de la dernière collecte.
