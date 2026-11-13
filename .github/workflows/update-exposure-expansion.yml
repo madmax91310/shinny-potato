@@ -119,10 +119,12 @@ jobs:
         env:
           VALIDATED_DATA_PREPARE: bash scripts/validate-exposure-publication.sh prepare
           VALIDATED_DATA_CHECK: bash scripts/validate-exposure-publication.sh check
-          VALIDATED_DATA_DERIVED_PATHS: '["src/pages/dca-profiles/catalog.json", "src/pages/dca-profiles/exposures*.json", "src/pages/dca-profiles/holdings*.json"]'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Expand the existing tracked projection perimeter before entering the
+          # private checkout; a literal glob is not an owned concrete file.
+          export VALIDATED_DATA_DERIVED_PATHS="$(python -c 'import json,subprocess; print(json.dumps(subprocess.check_output(["git","ls-files","-z","--","src/pages/dca-profiles/catalog.json","src/pages/dca-profiles/exposures*.json","src/pages/dca-profiles/holdings*.json"]).decode().rstrip("\0").split("\0")))')"
           bash scripts/commit-validated-data.sh 'Refresh exact-share ETF exposures' src/data/exposure-etf-expansion-records.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/exposures*.json src/pages/dca-profiles/holdings*.json
   deploy:
     needs: refresh

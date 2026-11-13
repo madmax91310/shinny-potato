@@ -192,6 +192,28 @@ class ExposurePublicationGit(unittest.TestCase):
   self.assertEqual(json.loads((writer/publication.REGISTRY).read_text()),current)
   self.assertEqual(json.loads((writer/'src/pages/dca-profiles/catalog.json').read_text()),{k:(v.get('countries')or{}).get('asOf')for k,v in current.items()})
   for path in publication.INDEPENDENT:self.assertEqual(json.loads((writer/path).read_text())['value'],'new-independent-publication')
+ def test_workflow_declares_concrete_owned_projections_instead_of_literal_globs(self):
+  root,writer,base=self.setup_repository()
+  for path in ['src/pages/dca-profiles/exposures.json','src/pages/dca-profiles/exposures-extra-0.json','src/pages/dca-profiles/holdings.json','src/pages/dca-profiles/holdings-0.json','src/pages/dca-profiles/holdings-manifest.json']:
+   write(root/path,{'prepared':False})
+  write(root/'src/data/unowned.json',{'protected':True});self.git(root,'add','.');self.git(root,'commit','-m','Tracked projection partition')
+  text=(ROOT/'.github/workflows/update-exposure-expansion.yml').read_text()
+  line=next(x.strip()for x in text.splitlines()if x.strip().startswith('export VALIDATED_DATA_DERIVED_PATHS='))
+  out=subprocess.check_output(['bash','-e','-c',line+'; printf "%s" "$VALIDATED_DATA_DERIVED_PATHS"'],cwd=root,text=True)
+  paths=json.loads(out)
+  self.assertEqual(len(paths),6)
+  self.assertTrue(all('*'not in p and '?'not in p for p in paths))
+  self.assertNotIn('src/data/unowned.json',paths)
+  # Exercise the actual private staging helper with that exact producer list.
+  import stage_validated_projections as projection
+  previous=Path.cwd();self.addCleanup(os.chdir,previous);os.chdir(root)
+  write(root/'src/pages/dca-profiles/exposures-extra-0.json',{'prepared':True})
+  self.assertTrue(projection.stage(paths,paths));self.assertFalse(projection.stage(paths,paths))
+  write(root/'src/data/unowned.json',{'protected':False})
+  with self.assertRaisesRegex(ValueError,'non-projection'):
+   projection.stage(paths,paths)
+  self.assertNotEqual(self.git(root,'diff','--','src/data/unowned.json'),'')
+
  def test_unknown_input_or_custom_acquisition_change_requires_new_collection(self):
   for path in ['scripts/exposure-etf-expansion.json',publication.REGISTRY,publication.CUSTOM_COLLECTOR,'src/data/monthly-fx.json']:
    with self.subTest(path=path):
