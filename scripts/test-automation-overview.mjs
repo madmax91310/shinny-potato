@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { automationOverview, automationFailures } from '../src/pages/data-review/automation.js'
 import registry from '../src/data/automation-workflows.json' with { type: 'json' }
+import retired from '../src/data/retired-automations.json' with {type:'json'}
 const now = new Date('2026-10-13T20:00:00Z')
 assert.throws(() => automationOverview(null))
 assert.throws(() => automationOverview({ schemaVersion: 1, workflows: [] }))
@@ -17,7 +18,7 @@ assert.equal(rows.find(r => r.id === 'update-lifestrategy.yml').state, 'overdue'
 assert.equal(rows.find(r => r.id === 'partial').state, 'failure')
 assert.equal(rows.find(r => r.id === 'partial').failureCount, 1)
 assert.equal(rows.find(r => r.id === 'ambiguous').state, 'unknown', 'Un succès global ne certifie pas une collecte')
-for (const id of Object.keys(registry)) assert(rows.some(r => r.id === id), `Collecte absente : ${id}`)
+for (const id of Object.keys(registry)) assert.equal(rows.some(r => r.id === id), !Object.hasOwn(retired.workflows,id), `Périmètre de collecte incorrect : ${id}`)
 assert.equal(rows.find(r => r.id === 'update-non-bond-expansion.yml').state, 'unknown')
 assert.equal(rows.find(r => r.id === 'update-non-bond-expansion.yml').completedAt, undefined)
 const staleFailure = structuredClone(status)
@@ -81,13 +82,21 @@ assert.equal(automationOverview({schemaVersion:1,workflows:{'update-bitcoin-mont
   assert.equal(state(),'qualification','A missing companion report remains visible')
 }
 
-// Stopping automatic collection keeps old failures, without a deadline or retry claim.
-const manualId='update-editorial-radar.yml'
-for(const status of ['success','failure']) {
- const row=automationOverview({schemaVersion:1,workflows:{[manualId]:{name:'Radar',status,collectionStatus:status,completedAt:'2026-01-01T00:00:00Z'}},recovery:{[manualId]:{status:'waiting'}}},now).find(r=>r.id===manualId)
- assert.equal(row.automatic,false);assert.equal(row.maxAgeHours,null);assert.equal(row.recovery,null)
- assert.equal(row.state,status)
-}
+// A retired Radar is excluded even when a historical producer row says failure.
+const stoppedId='update-editorial-radar.yml'
+assert(!rows.some(r=>r.id===stoppedId))
+assert(!automationFailures({schemaVersion:1,workflows:{[stoppedId]:{name:'Radar',status:'failure',dataFailures:{'radar:insee':{cause:'403'}}}}}).some(r=>r.id.startsWith(stoppedId)))
+
+// An ACTIVE manual producer still keeps failures, without a deadline or retry claim.
+const manualId='test-active-manual.yml'
+registry[manualId]={name:'Active manual producer',automatic:false,maxAgeHours:18,tools:[]}
+try {
+ for(const status of ['success','failure']) {
+  const row=automationOverview({schemaVersion:1,workflows:{[manualId]:{name:'Manual',status,collectionStatus:status,completedAt:'2026-01-01T00:00:00Z'}},recovery:{[manualId]:{status:'waiting'}}},now).find(r=>r.id===manualId)
+  assert.equal(row.automatic,false);assert.equal(row.maxAgeHours,null);assert.equal(row.recovery,null)
+  assert.equal(row.state,status)
+ }
+} finally {delete registry[manualId]}
 
 // A weekly qualification check cannot certify a source collection.
 {

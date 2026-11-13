@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { prioritizeIncidents, groupIncidents, incidentPresentations } from './incident-priority.js'
 import { INCIDENT_LABELS as labels, incidentAction, incidentDiagnostic, incidentSuccessAt } from './incident-diagnostic.js'
 import retired from '../../data/retired-automations.json' with {type:'json'}
+import {workflowRetirement} from '../../lib/automation-retirement.js'
 
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(new Date(value)) : 'Non documenté'
 const safeLink = value => typeof value === 'string' && /^https:\/\/github\.com\/[^/]+\/[^/]+\/actions\/runs\/\d+$/.test(value)
@@ -20,10 +21,10 @@ export default function MonitoringIncidents({ monitor }) {
   const [kind, setKind] = useState('all')
   const [grouped,setGrouped] = useState(true)
   if (!monitor || monitor.schemaVersion !== 1 || !monitor.active || typeof monitor.active !== 'object' || Array.isArray(monitor.active) || !Array.isArray(monitor.resolved)) return null
-  const removed = Object.values(monitor.active).filter(row=>Object.hasOwn(retired.workflows,row.workflow??''))
-  const retiredRows = [...(monitor.retired??[]),...removed.map(row=>({...row,retirementReason:retired.workflows[row.workflow].reason}))]
+  const removed = Object.values(monitor.active).filter(workflowRetirement)
+  const retiredRows = [...(monitor.retired??[]),...removed.map(row=>({...row,retirementReason:workflowRetirement(row).reason}))]
   const removedNames=new Set(Object.values(retired.workflows).map(w=>w.toolName).filter(Boolean))
-  const signals = prioritizeIncidents(Object.values(monitor.active).filter(row=>!Object.hasOwn(retired.workflows,row.workflow??'')).filter(row=>!row.tools?.length||row.tools.some(t=>!removedNames.has(t))).map(row=>({...row,tools:(row.tools??[]).filter(t=>!removedNames.has(t))})))
+  const signals = prioritizeIncidents(Object.values(monitor.active).filter(row=>!workflowRetirement(row)).filter(row=>!row.tools?.length||row.tools.some(t=>!removedNames.has(t))).map(row=>({...row,tools:(row.tools??[]).filter(t=>!removedNames.has(t))})))
   const active = incidentPresentations(signals)
   const rows = active.filter(row => (kind === 'all' || row.kind === kind) && row.signals.map(signal=>`${signal.id} ${(signal.aliases??[]).join(' ')} ${signal.name} ${signal.dataId ?? ''} ${signal.field} ${signal.cause} ${(signal.tools ?? []).join(' ')}`).join(' ').toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr')))
   const groups=groupIncidents(rows)

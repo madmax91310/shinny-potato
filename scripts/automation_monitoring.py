@@ -1,14 +1,11 @@
 """Incident lifecycle and one grouped GitHub notification, independent of Pages."""
-from automation_contracts import owns_failure, RETIREMENT_REASON
+from automation_contracts import owns_failure, RETIREMENT_REASON, RETIRED_WORKFLOWS, workflow_retirement
 from monitor_notifications import notification_state, notification_plan, state_marker, fingerprint
 import datetime as dt
 import hashlib
 import json
 import copy
 import re
-from pathlib import Path
-
-RETIRED_WORKFLOWS = json.loads((Path(__file__).resolve().parents[1] / 'src/data/retired-automations.json').read_text())['workflows']
 
 REMOVED_TOOL_NAMES = {r['toolName'] for r in RETIRED_WORKFLOWS.values() if r.get('toolName')}
 REMOVED_SCOPE_REASON = 'Périmètre supprimé : l’outil consommateur a été retiré. Aucune réparation de donnée déduite.'
@@ -69,6 +66,8 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     old = previous.get('active', {})
     active = {}
     def add(key, row):
+        if workflow_retirement(row, key):
+            return
         if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:
             return
         row = {**row, 'tools': [t for t in row.get('tools', []) if t not in REMOVED_TOOL_NAMES]}
@@ -213,12 +212,12 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
                 add(key, row)
     # Radar contradictions are review signals, never confirmed market movements.
     # A missing feed retains prior alerts and cannot claim a recovery.
-    if radar is None:
+    if radar is None and not workflow_retirement({}, 'monitor:radar'):
         for key, row in old.items():
             if key.startswith('radar:'):
                 add(key, row)
         add('monitor:radar', {'kind': 'unobserved', 'name': 'Contradictions du radar', 'field': 'Lecture du radar', 'tools': ['Radar éditorial'], 'cause': 'Lecture indisponible ; alertes précédentes conservées.', 'to': '/donnees-a-revoir'})
-    else:
+    elif radar is not None:
         for error in radar.get('errors', []):
             if 'Valeur contradictoire pour la même période' not in error.get('reason', ''):
                 continue
@@ -227,18 +226,23 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             key = next((k for k,r in old.items() if k.startswith('radar:') and (r.get('conflictId') == identifier or '('+identifier+')' in r.get('cause',''))), None)
             key = key or 'radar:' + hashlib.sha256(identifier.encode()).hexdigest()[:24]
             details = incident_context(error.get('entity', ''), context, error.get('entity', 'Radar'))
+            if workflow_retirement({}, 'monitor:radar') and not set(details['tools']) - {'Radar éditorial'}:
+                continue  # A stopped service cannot open new dedicated conflicts.
             field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
             add(key, {**details, 'conflictId':identifier, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
     def retired_reason(row):
+        withdrawal = workflow_retirement(row)
+        if withdrawal:return withdrawal['reason']
         if registry.get(row.get('workflow'), {}).get('automatic') is False and row.get('id', '').startswith(('overdue:', 'unobserved:')):
             return 'Collecte passée sur demande ; échéance automatique retirée, sans réparation de donnée déduite.'
         if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:return REMOVED_SCOPE_REASON
-        if row.get('workflow') in RETIRED_WORKFLOWS:return RETIRED_WORKFLOWS[row['workflow']]['reason']
         withdrawal = workflows.get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'))
         if withdrawal:return withdrawal.get('retirementReason', 'Périmètre retiré ; aucune réparation déduite')
         if row.get('dataId') and not owns_failure(registry.get(row.get('workflow'),{}),row['dataId']):return RETIREMENT_REASON
         return None
     def retirement_status(row):
+        withdrawal = workflow_retirement(row)
+        if withdrawal:return withdrawal.get('status', 'scope-removed')
         withdrawal = workflows.get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {})
         if withdrawal.get('retirementStatus'):return withdrawal['retirementStatus']
         return 'scope-removed' if row.get('workflow') in RETIRED_WORKFLOWS or row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES else 'retired-attribution'
@@ -395,7 +399,7 @@ def issue_body(monitor, repo):
     if len(rows) > shown:
         lines.append(f"\n{len(rows) - shown} autre(s) point(s) dans le détail complet.")
     if not rows:
-        lines.append('\nRetour à la normale : tous les incidents précédemment suivis sont résolus.')
+        lines.append('\nAucun incident actif dans le périmètre suivi. Les retraits de périmètre ne prouvent aucune réparation de donnée.')
     return '\n'.join(lines)
 
 
@@ -410,7 +414,7 @@ def sync_monitoring_issue(monitor, api, repo):
     if not issues and not monitor['active']:
         return
     body = issue_body(monitor, repo)
-    title = f"Fiabilité des données : {len(monitor['active'])} point(s) à examiner" if monitor['active'] else 'Fiabilité des données : retour à la normale'
+    title = f"Fiabilité des données : {len(monitor['active'])} point(s) à examiner" if monitor['active'] else 'Fiabilité des données : aucun incident actif'
     comments=[]
     issue=max(issues,key=lambda i:i['number']) if issues else None
     if issue:

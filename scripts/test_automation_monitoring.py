@@ -1,7 +1,11 @@
 import copy
+import json
 import unittest
-from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, MARKER
-from publish_automation_status import normalize_report, update_status
+from unittest.mock import patch
+from automation_contracts import RETIRED_WORKFLOWS
+from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, issue_body, MARKER
+from monitor_notifications import critical_incidents, notification_plan, fingerprint
+from publish_automation_status import normalize_report, update_status, include_configured_workflows
 
 NOW = '2026-10-14T08:00:00Z'
 REGISTRY = {'x.yml': {'name': 'Indices', 'maxAgeHours': 48, 'tools': ['Coulisses des indices']}}
@@ -145,6 +149,7 @@ class MonitoringTests(unittest.TestCase):
         self.assertEqual(len(good['resolved']),1)
         self.assertEqual(first['active']['field:ETF:holdings']['checkedAt'],'2026-09-01')
 
+    @patch.dict(RETIRED_WORKFLOWS, {}, clear=True)
     def test_conflict_and_unreadable_radar_cannot_fake_recovery(self):
         radar = {'errors': [{'entity': 'world', 'reason': 'Valeur contradictoire pour la même période (2026-09) : Secteurs'}]}
         first = evaluate(STATE, radar=radar)
@@ -218,6 +223,12 @@ class FakeAPI:
         return self.comments[-1]
 
 class NotificationTests(unittest.TestCase):
+    def setUp(self):
+        # These tests model an ACTIVE service, independently of today's registry.
+        self.policy = patch.dict(RETIRED_WORKFLOWS, {}, clear=True)
+        self.policy.start()
+        self.addCleanup(self.policy.stop)
+
     def monitor(self, at=NOW, active=None, revision=1):
         return {'checkedAt':at,'revision':revision,'active':active or {},'events':[]}
 
@@ -315,6 +326,115 @@ class NotificationTests(unittest.TestCase):
 
     def test_healthy_first_pass_does_not_notify(self):
         api=FakeAPI();sync_monitoring_issue(evaluate(STATE),api,'test/repo');self.assertEqual(api.writes,[])
+
+
+class StoppedRadarTests(unittest.TestCase):
+    workflow = 'update-editorial-radar.yml'
+    now = '2026-11-10T12:00:00Z'
+
+    def row(self, identifier, **values):
+        return {'id':identifier,'name':identifier,'kind':'collection','workflow':self.workflow,
+                'tools':['Radar éditorial'],'cause':'HTTP 403','firstSeenAt':'2026-11-09T08:00:00Z',
+                'observations':[{'cause':'HTTP 403','attemptedAt':'2026-11-09T08:00:00Z'}],**values}
+
+    def test_stopped_service_does_not_open_feed_or_producer_incidents(self):
+        config = {self.workflow:{'name':'Radar','automatic':False,'tools':['Radar éditorial'],'maxAgeHours':18}}
+        state = {'workflows':{self.workflow:{'status':'failure','publicationStatus':'failure',
+                 'dataFailures':{'radar:insee':{'cause':'HTTP 403'}},'completedAt':NOW}},
+                 'workflowAvailability':{self.workflow:{'state':'disabled_manually'}},
+                 'observerErrors':{'radar-proofs':{'cause':'Missing ledger'}}}
+        result = evaluate_monitoring(state, CONTEXT, config, self.now)
+        self.assertEqual(result['active'], {})
+        # Manual-only scheduling alone is NOT evidence of voluntary withdrawal.
+        with patch.dict(RETIRED_WORKFLOWS, {}, clear=True):
+            active = evaluate_monitoring(state, CONTEXT, config, self.now)['active']
+        self.assertIn('monitor:radar', active)
+        self.assertIn('disabled:'+self.workflow, active)
+        self.assertIn('publication:'+self.workflow, active)
+
+    def test_existing_service_alerts_retire_once_with_original_evidence(self):
+        old = {key:self.row(key, **values) for key,values in [
+            ('monitor:radar',{'workflow':None,'kind':'unobserved'}),
+            ('monitor:radar-proofs',{'workflow':None,'kind':'monitoring','tools':['Données à revoir']}),
+            ('workflow:'+self.workflow,{}),
+            ('collection:radar:insee',{'dataId':'radar:insee'}),
+            ('collection:radar-source:insee',{'dataId':'radar-source:insee-studies'})]}
+        prior = {'revision':4,'active':old,'events':[{'revision':4,'at':NOW}],
+                 'resolved':[{'id':'older-recovery'}],'retired':[{'id':'older-retirement'}]}
+        state = {'workflows':{},'monitoring':prior}
+        before = copy.deepcopy(state)
+        result = evaluate_monitoring(state, CONTEXT, {}, self.now)
+        self.assertEqual(state, before)
+        self.assertEqual(result['active'], {})
+        self.assertEqual(result['resolved'], prior['resolved'])
+        self.assertEqual(result['events'][0], prior['events'][0])
+        for row in result['retired'][:-1]:
+            self.assertEqual(row['retirementStatus'], 'disabled-by-request')
+            for key,value in old[row['id']].items():
+                self.assertEqual(row[key], value)
+        again = evaluate_monitoring({**state,'monitoring':result}, CONTEXT, {}, self.now)
+        self.assertEqual(again, result)
+
+    def test_financial_fields_shared_conflicts_and_unknown_consumers_stay_open(self):
+        old = {
+            'radar:shared':self.row('radar:shared',workflow=None,kind='conflict',tools=['Coulisses des indices'],impactScope='asset'),
+            'collection:shared':self.row('collection:shared',dataId='radar:insee',tools=['Radar éditorial','Pouvoir d’achat']),
+            'collection:unknown':self.row('collection:unknown',dataId='exact-fund:holdings',tools=[]),
+            'field:fund':self.row('field:fund',workflow=None,tools=['Fiches ETF']),
+            'history:fund':self.row('history:fund',workflow=None,kind='history',tools=['Performance depuis'])}
+        result = evaluate_monitoring({'monitoring':{'active':old}}, CONTEXT, {}, self.now)
+        self.assertEqual(set(result['active']), set(old))
+        self.assertEqual(result['retired'], [])
+        self.assertEqual(result['resolved'], [])
+
+    def test_available_feed_only_opens_conflicts_for_other_known_consumers(self):
+        radar = {'errors':[{'entity':entity,'reason':'Valeur contradictoire pour la même période (2026-10) : Secteurs'} for entity in ('world','unknown')]}
+        result = evaluate_monitoring({}, CONTEXT, {}, self.now, radar)
+        self.assertEqual(len(result['active']), 1)
+        self.assertEqual(next(iter(result['active'].values()))['tools'], ['Coulisses des indices'])
+
+    def test_stale_monitor_cannot_send_radar_alerts_or_reminders(self):
+        old = {'monitor:radar':self.row('monitor:radar',workflow=None,kind='unobserved'),
+               'workflow:'+self.workflow:self.row('workflow:'+self.workflow),
+               **{source:self.row(source,dataId=source) for source in ('insee','fortuneo','credit-logement')}}
+        monitor = {'checkedAt':self.now,'revision':1,'active':old,'events':[]}
+        state = {'version':2,'seen':[],'rolloutAt':NOW,'lastSentAt':NOW}
+        self.assertEqual(critical_incidents(monitor), [])
+        self.assertEqual(notification_plan(monitor,state), ([],False))
+        api = FakeAPI()
+        api.issue = {'number':1,'title':'Old','body':MARKER+'\n<!-- monitor-notification-state:'+json.dumps(state)+' -->','state':'open','user':{'login':'github-actions[bot]'}}
+        sync_monitoring_issue(monitor,api,'test/repo')
+        self.assertEqual(api.comments, [])
+
+    def test_live_publication_failure_still_notifies_and_reminds_without_duplicates(self):
+        row = self.row('publication:active.yml',workflow='active.yml',kind='publication',impactScope='collector',tools=['Fiches ETF'])
+        monitor = {'checkedAt':self.now,'revision':1,'active':{row['id']:row},'events':[]}
+        state = {'version':2,'seen':[],'rolloutAt':NOW,'lastSentAt':None}
+        rows,reminder = notification_plan(monitor,state)
+        self.assertEqual([r['id'] for r in rows], [row['id']])
+        self.assertFalse(reminder)
+        state.update(seen=[fingerprint(row)],lastSentAt=self.now)
+        self.assertEqual(notification_plan(monitor,state), ([],False))
+        rows,reminder = notification_plan({**monitor,'checkedAt':'2026-11-11T12:01:00Z'},state)
+        self.assertEqual(len(rows),1)
+        self.assertTrue(reminder)
+        api = FakeAPI()
+        api.issue = {'number':1,'title':'Old','body':MARKER+'\n<!-- monitor-notification-state:'+json.dumps({**state,'seen':[],'lastSentAt':NOW})+' -->','state':'open','user':{'login':'github-actions[bot]'}}
+        sync_monitoring_issue(monitor,api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+        self.assertIn('Publication de la collecte durablement bloquée',api.comments[0]['body'])
+        sync_monitoring_issue(monitor,api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+        sync_monitoring_issue({**monitor,'checkedAt':'2026-11-11T12:01:00Z'},api,'test/repo')
+        self.assertEqual(len(api.comments),2)
+
+    def test_workflow_observations_are_kept_and_empty_issue_does_not_claim_repair(self):
+        state = {'workflows':{self.workflow:{'name':'Radar','dataFailures':{'radar:insee':{'cause':'403'}},'sourceChecks':{'radar:bank':{'checkedAt':NOW}}}}}
+        result = include_configured_workflows(state)
+        self.assertEqual(result['workflows'][self.workflow], state['workflows'][self.workflow])
+        body = issue_body({'revision':1,'active':{},'retired':[self.row('monitor:radar')]},'test/repo')
+        self.assertIn('ne prouvent aucune réparation', body)
+        self.assertNotIn('tous les incidents précédemment suivis sont résolus', body)
 
 
 class AlertCenterTests(unittest.TestCase):

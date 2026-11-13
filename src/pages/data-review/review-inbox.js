@@ -3,6 +3,7 @@ import {summarizeInbox,financialImpact,reviewOwner} from './review-summary.js'
 import {missingProducerReports} from './automation.js'
 import registry from '../../data/automation-workflows.json' with {type:'json'}
 import retired from '../../data/retired-automations.json' with {type:'json'}
+import {workflowRetirement} from '../../lib/automation-retirement.js'
 export const ISSUE_KINDS={failure:'Incidents opérationnels actuels',connection:'Données ou raccordements manquants',qualification:'Qualifications actuelles à compléter',due:'Contrôles arrivés à échéance',archive:'Archives et preuves historiques à qualifier',monitoring:'Supervision à vérifier',waiting:'Attentes normales',history:'Résolutions prouvées','not-applicable':'Retraits de périmètre et sans objet',editorial:'Revue documentaire actuelle'}
 export function projectionHealth(inventory,manifest){
  if(!inventory||!manifest)return null
@@ -91,7 +92,9 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
    action:'Suivre l’exécution liée. Aucun succès global ni nouvelle publication n’est déduit de cette attente.',evidence:{checkedAt:p.checkedAt,reports:(p.reports??[]).map(r=>r._reportEvidence).filter(Boolean)}})
  }
  for(const r of Object.values(status?.monitoring?.active??{})){
-  if(!r||typeof r.id!=='string'||Object.hasOwn(retired.workflows,r.workflow??''))continue
+  if(!r||typeof r.id!=='string')continue
+  const withdrawal=workflowRetirement(r)
+  if(withdrawal){add({...r,id:'retired:'+r.id,kind:'not-applicable',stage:'Retrait de périmètre',cause:withdrawal.reason});continue}
   const proofPending=r.proofStatus==='resolution-unproven'
   const kind=proofPending?'archive':r.kind==='freshness'||r.kind==='overdue'||r.category==='check-overdue'?'due':['unobserved','monitoring'].includes(r.kind)?'monitoring':r.kind==='history'?'connection':r.kind==='qualification'||r.kind==='review'?'qualification':'failure'
   const match=r.id.match(/^field:(?:gap:)?([^:]+):([^:]+):([^:]+)$/)
@@ -100,7 +103,7 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
   add({...r,asset:r.asset??match?.[2]??metadata?.[1]??holdings?.[1],members:r.members??r.attemptedDataIds,impactQualified:consumerTools.has(usageKey),impact:proofPending?'Dernier incident connu conservé sans preuve suffisante de résolution ; aucune nouvelle panne déduite. La contradiction ou la période initiale reste à qualifier.':consumerTools.has(usageKey)?r.impact:'Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.',...(proofPending?{qualificationBlock:'historical-resolution-unproven'}:{}),tools:consumerTools.get(usageKey)??[],collectorTools:r.tools,kind,stage:proofPending?'Qualification historique':r.kind==='publication'?'Publication':/Commit validated|Enregistrement/i.test(r.cause??'')?'Enregistrement':r.kind==='checks'?(/build|projection|génér/i.test(r.cause??'')?'Génération':'Validation'):phase(kind),key:r.id.startsWith('calendar:')?r.id:match?`${match[1]}:${match[2]}:${match[3]}`:r.id.startsWith('field:gap:usage:')?r.id.slice('field:gap:'.length):metadata?`instrument:${metadata[1]}:${metadata[2]}`:holdings?`instrument:${holdings[1]}:completeHoldings`:r.id,attemptedAt:r.attemptedAt??r.sourcePhaseStartedAt??r.evidence?.sourcePhaseStartedAt,recovery:status?.recovery?.[r.workflow]})
  }
  for(const r of status?.monitoring?.resolved??[])if(r&&typeof r.id==='string'){
-  const withdrawal=retired.workflows[r.workflow]
+  const withdrawal=workflowRetirement(r)
   const proven=historicalResolutionProof(r,now)
   add({...r,id:'history:'+r.id+':'+r.resolvedAt,kind:withdrawal?'not-applicable':proven?'history':'archive',field:r.field??'Champ historique',stage:withdrawal?'Retrait de périmètre':proven?'Historique':'Qualification historique',
    cause:(withdrawal?'Retrait de périmètre ; aucune réparation déduite : '+withdrawal.reason:proven?'Résolution documentée':'Résolution historique non démontrée ; épisode conservé, sans panne actuelle déduite')+' · '+r.resolvedAt+' · '+r.cause,

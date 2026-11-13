@@ -18,8 +18,8 @@ class RemovedScope(unittest.TestCase):
     def test_scope_removal_retires_and_does_not_repair_a_source(self):
         key='collection:update-ai-portfolios.yml:quote'
         old={'monitoring':{'active':{key:{'id':key,'workflow':'update-ai-portfolios.yml','tools':['Portefeuilles IA'],'firstSeenAt':'2026-10-20','lastSuccessAt':'2026-10-21','cause':'missing close'}}},'workflows':{'update-ai-portfolios.yml':{'dataFailures':{'quote':{'cause':'missing close'}}}}}
-        result=evaluate_monitoring(old,{'schemaVersion':1,'alerts':[],'entities':[]},{},'2026-10-24T12:00:00Z')
-        self.assertNotIn(key,result['active']);self.assertIn('monitor:radar',result['active']);self.assertFalse(result['resolved'])
+        result=evaluate_monitoring(old,{'schemaVersion':1,'alerts':[],'entities':[]},{},'2026-10-24T12:00:00Z',radar={'errors':[]})
+        self.assertNotIn(key,result['active']);self.assertEqual(result['active'],{});self.assertFalse(result['resolved'])
         self.assertEqual(result['retired'][0]['retirementStatus'],'scope-removed')
         self.assertEqual(result['retired'][0]['lastSuccessAt'],'2026-10-21')
         self.assertIn('Périmètre supprimé',result['retired'][0]['retirementReason'])
