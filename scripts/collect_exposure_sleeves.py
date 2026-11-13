@@ -1,5 +1,5 @@
 """Daily exact-security look-through for exposure charts; original net tables stay intact."""
-import argparse, datetime as dt, hashlib, json, re, csv, io, math
+import argparse, datetime as dt, hashlib, json, re, csv, io, math, os
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from data_automation import UTC, write_json_atomic
@@ -10,6 +10,12 @@ US_FUNDS=['239656','239710','239716']
 FUNDS={'251882':'IE00B4L5Y983','264659':'IE00BKM4GZ66','296576':'IE00BF4RFH31','251891':'IE00B441G979','273192':'IE00BQT3WG13'}
 
 SILVER_REPORT='https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON'
+
+def source_proof(name,body):
+    directory=os.environ.get('EXPOSURE_SOURCE_PROOF_DIR')
+    if directory and name in ('avantis-holdings.html','silv.csv','silv-morningstar.pdf'):
+        path=Path(directory);path.mkdir(parents=True,exist_ok=True)
+        (path/name).write_bytes(body.encode('utf-8')if isinstance(body,str)else body)
 
 def silver_sector_report(body,now):
     text=pdf_text(body)
@@ -152,7 +158,9 @@ def main():
     def get(url,name):
         p=args.cache/name if args.cache else None
         if p and p.exists():return p.read_text()
-        return public_page(url,('application/json','text/html','text/csv','application/octet-stream'),25000000)
+        body=public_page(url,('application/json','text/html','text/csv','application/octet-stream'),25000000)
+        source_proof(name,body)
+        return body
     def one(item):
         code,isin=item;url=API.format(code)
         try:
@@ -206,6 +214,7 @@ def main():
     try:
         cached=args.cache/'silv-morningstar.pdf' if args.cache else None
         body=cached.read_bytes() if cached and cached.exists() else download(SILVER_REPORT)
+        if not(cached and cached.exists()):source_proof('silv-morningstar.pdf',body)
         fresh.setdefault('IE000UL6CLP7',{})['sectors']=silver_sector_report(body,now)
         successful.add('morningstar-SILV')
     except Exception as e:errors.append({'source':'morningstar-SILV','error':str(e)})
