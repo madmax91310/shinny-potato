@@ -1,0 +1,193 @@
+{
+  "checkedAt": "2026-11-13T06:38:32.522Z",
+  "input": "Public-manifest-bound current projections; validation, not a new supplier collection",
+  "rows": [
+    {
+      "isin": "IE00BYZK4776",
+      "id": "IE00BYZK4776",
+      "asOf": "2026-11-11",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceCheckedAt": "2026-11-12T19:04:54.703969+00:00",
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.83622999999997,
+        "identifiedCoverage": 99.83622999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.16377000000002795
+      }
+    },
+    {
+      "isin": "IE00BYZK4669",
+      "id": "IE00BYZK4669",
+      "asOf": "2026-11-11",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=284218&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceCheckedAt": "2026-11-12T19:04:54.703969+00:00",
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.62259000000005,
+        "identifiedCoverage": 99.62259000000005,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.37740999999995495
+      }
+    },
+    {
+      "isin": "IE000L2SA8K5",
+      "id": "IE000L2SA8K5",
+      "asOf": "2026-11-11",
+      "basis": "fund",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000L2SA8K5/holdings/index?idType=isin&loadType=initial",
+      "sourceCheckedAt": "2026-11-12T19:04:54.703969+00:00",
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.97089999999997,
+        "identifiedCoverage": 99.97089999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.029100000000028103
+      }
+    },
+    {
+      "isin": "IE00B3F81G20",
+      "id": "emsmall",
+      "asOf": "2026-11-11",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceCheckedAt": "2026-11-12T19:04:54.703969+00:00",
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.56403999999998,
+        "identifiedCoverage": 99.56403999999998,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.4359600000000228
+      }
+    },
+    {
+      "isin": "IE00BKM4GZ66",
+      "id": "IE00BKM4GZ66",
+      "asOf": "2026-11-11",
+      "basis": "fund",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceCheckedAt": "2026-11-12T19:04:54.703969+00:00",
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.41513999999977,
+        "identifiedCoverage": 99.41513999999977,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.5848600000002335
+      }
+    },
+    {
+      "isin": "IE000L6ZMMC4",
+      "id": "IE000L6ZMMC4",
+      "asOf": "2026-11-11",
+      "basis": "fund",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
+      "sourceCheckedAt": "2026-11-12T19:04:54.703969+00:00",
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Liste partielle ; seules les positions publiées sont comparées.",
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 94.32610835000006,
+        "identifiedCoverage": 94.32610835000006,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 5.673891649999945
+      }
+    },
+    {
+      "isin": "IE00BMVB5K07",
+      "id": "lifestrategy20",
+      "asOf": "2026-09-30",
+      "scope": "equity-lookthrough",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceCheckedAt": "2026-11-12",
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 20.26632440993303,
+        "identifiedCoverage": 20.26632440993303,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 79.73367559006697
+      }
+    },
+    {
+      "isin": "IE00BMVB5M21",
+      "id": "lifestrategy40",
+      "asOf": "2026-09-30",
+      "scope": "equity-lookthrough",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceCheckedAt": "2026-11-12",
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 39.909759510398175,
+        "identifiedCoverage": 39.909759510398175,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 60.090240489601825
+      }
+    },
+    {
+      "isin": "IE00BMVB5P51",
+      "id": "lifestrategy60",
+      "asOf": "2026-09-30",
+      "scope": "equity-lookthrough",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceCheckedAt": "2026-11-12",
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 59.77378836553296,
+        "identifiedCoverage": 59.77378836553296,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 40.22621163446704
+      }
+    },
+    {
+      "isin": "IE00BMVB5R75",
+      "id": "lifestrategy80",
+      "asOf": "2026-09-30",
+      "scope": "equity-lookthrough",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceCheckedAt": "2026-11-12",
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 79.69919189902141,
+        "identifiedCoverage": 79.69919189902141,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 20.300808100978585
+      }
+    }
+  ]
+}

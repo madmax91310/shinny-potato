@@ -1,0 +1,384 @@
+{
+  "checkedAt": "2026-11-13",
+  "candidatePR": 1253,
+  "state": "draft; not merged or deployed",
+  "isolatedTests": {
+    "entry": "python -m unittest discover -s scripts -p test_sp_composition.py",
+    "total": 12,
+    "new": 8
+  },
+  "localQualifiedResponses": [
+    {
+      "file": "5475610-qualified.json",
+      "qualification": {
+        "index": "S&P Euro High Yield Dividend Aristocrats",
+        "asOf": "2026-10-30",
+        "constituents": 40,
+        "sectorClassification": "GICS",
+        "topWeight": 37.74,
+        "countries": [
+          [
+            "🇩🇪 Allemagne",
+            21.6985
+          ],
+          [
+            "Italy",
+            18.8586
+          ],
+          [
+            "Finland",
+            16.2904
+          ],
+          [
+            "🇫🇷 France",
+            12.7849
+          ],
+          [
+            "Netherlands",
+            12.4602
+          ],
+          [
+            "Belgium",
+            5.9153
+          ],
+          [
+            "Austria",
+            5.4861
+          ],
+          [
+            "Spain",
+            3.5632
+          ],
+          [
+            "Portugal",
+            2.9428
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            28.9695
+          ],
+          [
+            "🏭 Industrie",
+            22.4255
+          ],
+          [
+            "💡 Services publics",
+            15.312
+          ],
+          [
+            "🪨 Matériaux",
+            8.532
+          ],
+          [
+            "🏥 Santé",
+            7.0533
+          ],
+          [
+            "⚡ Énergie",
+            5.4709
+          ],
+          [
+            "📡 Communication",
+            5.136
+          ],
+          [
+            "🛒 Consommation de base",
+            3.6467
+          ],
+          [
+            "🏠 Immobilier",
+            2.1252
+          ],
+          [
+            "💻 Technologie",
+            1.3288
+          ]
+        ],
+        "holdings": [
+          [
+            "Teleperformance",
+            5.6994
+          ],
+          [
+            "Hannover Ruck SE",
+            3.9225
+          ],
+          [
+            "OMV AG",
+            3.8249
+          ],
+          [
+            "Munich Re AG",
+            3.7936
+          ],
+          [
+            "AGEAS",
+            3.7901
+          ],
+          [
+            "Unipol Gruppo Finanziario SpA Ord",
+            3.4175
+          ],
+          [
+            "NN Group N.V.",
+            3.4005
+          ],
+          [
+            "Sanofi-Aventis",
+            3.375
+          ],
+          [
+            "Wolters Kluwer NV",
+            3.3055
+          ],
+          [
+            "Valmet",
+            3.2119
+          ]
+        ],
+        "source": {
+          "url": "https://www.spglobal.com/spdji/es/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=2",
+          "checkedAt": "2026-11-13",
+          "sha256": "c76a18fa9eefacbc45046c12380cbb03814668049ab012fcf9b6da52d658669a",
+          "label": "Données publiques numériques S&P DJI"
+        },
+        "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
+      }
+    },
+    {
+      "file": "92388578-qualified.json",
+      "qualification": {
+        "index": "S&P Global Dividend Aristocrats Quality Income",
+        "asOf": "2026-10-30",
+        "constituents": 88,
+        "sectorClassification": "GICS",
+        "topWeight": 18.04,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            54.2269
+          ],
+          [
+            "🇨🇦 Canada",
+            9.108
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.8761
+          ],
+          [
+            "🇨🇳 Chine",
+            3.8874
+          ],
+          [
+            "🇫🇷 France",
+            3.5532
+          ],
+          [
+            "Italy",
+            3.1825
+          ],
+          [
+            "🇨🇭 Suisse",
+            2.6951
+          ],
+          [
+            "🇯🇵 Japon",
+            2.6218
+          ],
+          [
+            "Hong Kong SAR, China",
+            2.5316
+          ],
+          [
+            "🇰🇷 Corée du Sud",
+            2.3494
+          ],
+          [
+            "Finland",
+            2.0314
+          ],
+          [
+            "🇦🇺 Australie",
+            1.7129
+          ],
+          [
+            "Norway",
+            1.2112
+          ],
+          [
+            "Portugal",
+            1.1729
+          ],
+          [
+            "United Arab Emirates",
+            1.0113
+          ],
+          [
+            "🇲🇽 Mexique",
+            0.9933
+          ],
+          [
+            "Saudi Arabia",
+            0.9772
+          ],
+          [
+            "🇹🇼 Taïwan",
+            0.9504
+          ],
+          [
+            "Belgium",
+            0.9074
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            24.9296
+          ],
+          [
+            "💡 Services publics",
+            16.6173
+          ],
+          [
+            "🏠 Immobilier",
+            12.5995
+          ],
+          [
+            "🏭 Industrie",
+            10.9648
+          ],
+          [
+            "⚡ Énergie",
+            8.612
+          ],
+          [
+            "📡 Communication",
+            8.474
+          ],
+          [
+            "🛒 Consommation de base",
+            7.614
+          ],
+          [
+            "🏥 Santé",
+            4.1393
+          ],
+          [
+            "🪨 Matériaux",
+            3.9118
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            1.1873
+          ],
+          [
+            "💻 Technologie",
+            0.9504
+          ]
+        ],
+        "holdings": [
+          [
+            "Highwoods Properties",
+            2.103
+          ],
+          [
+            "Pfizer Inc",
+            1.9318
+          ],
+          [
+            "LTC Properties",
+            1.8606
+          ],
+          [
+            "Verizon Communications Inc",
+            1.8325
+          ],
+          [
+            "Teleperformance",
+            1.8073
+          ],
+          [
+            "John Wiley & Sons Inc. A",
+            1.7866
+          ],
+          [
+            "APA Group",
+            1.7129
+          ],
+          [
+            "ONEOK Inc",
+            1.7025
+          ],
+          [
+            "Amcor plc",
+            1.6532
+          ],
+          [
+            "Energizer Holdings Inc",
+            1.6493
+          ]
+        ],
+        "source": {
+          "url": "https://www.spglobal.com/spdji/es/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=2",
+          "checkedAt": "2026-11-13",
+          "sha256": "a0fbaa55af79db492e454dabe5162f2904d6c4460203b48321f8d8ed837bf8fd",
+          "label": "Données publiques numériques S&P DJI"
+        },
+        "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
+      }
+    }
+  ],
+  "githubNegative": {
+    "qualificationRun": 43381495777,
+    "jobs": [
+      {
+        "id": 131740044270,
+        "runner": "Ubuntu26.04",
+        "result": "Both official EN and ES APIs returned403; handoff rejected as expired"
+      },
+      {
+        "id": 131740044633,
+        "runner": "macOS15",
+        "result": "Both official EN and ES APIs returned403; handoff rejected as expired"
+      }
+    ],
+    "ordinaryETFRun": 43381495829,
+    "artifact": 14017685001,
+    "sourceCheckedAt": "2026-11-13T06:54:37.883245+00:00",
+    "individualOutcomes": [
+      {
+        "id": "index-sp-global-dividend-aristocrats-composition",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "name": "S&P Global Dividend Aristocrats Quality Income · composition",
+        "error": "S&P direct download failed: [{\"sourceUrl\": \"https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\", \"attemptedAt\": \"2026-11-13T06:54:37.883245+00:00\"}, {\"sourceUrl\": \"https://www.spglobal.com/spdji/es/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=2\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\", \"attemptedAt\": \"2026-11-13T06:54:37.883245+00:00\"}]; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+        "status": "failed",
+        "operationAttempted": true,
+        "sourceAttempted": null
+      },
+      {
+        "id": "index-sp-euro-dividend-aristocrats-composition",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "name": "S&P Euro High Yield Dividend Aristocrats · composition",
+        "error": "S&P direct download failed: [{\"sourceUrl\": \"https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\", \"attemptedAt\": \"2026-11-13T06:54:37.883245+00:00\"}, {\"sourceUrl\": \"https://www.spglobal.com/spdji/es/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=2\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\", \"attemptedAt\": \"2026-11-13T06:54:37.883245+00:00\"}]; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+        "status": "failed",
+        "operationAttempted": true,
+        "sourceAttempted": null
+      }
+    ]
+  },
+  "missing": "Official authorized source or automatic fresh qualified handoff actually accessible from ordinary GitHub producers",
+  "retained": "Previous30October photographs retain6November source control; no renewal on failed access",
+  "identity": "Global Quality Income92388578USD; Euro HighYield5475610EUR; no ESG lookalike substitution",
+  "noProductionChange": true
+}

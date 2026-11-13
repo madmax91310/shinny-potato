@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-11-13T07:07:23.184449+00:00",
+  "currentProviderCoverage": {
+    "name": "current",
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1793232000&period2=1794528000&interval=1d&events=splits",
+    "status": 200,
+    "error": null,
+    "meta": {
+      "symbol": "BTCE.DE",
+      "currency": "EUR",
+      "instrumentType": "EQUITY",
+      "firstTradeDate": 1793865600,
+      "longName": "Bitwise Physical Bitcoin ETC",
+      "shortName": "Bitwise Europe GmbH           O",
+      "exchangeTimezoneName": "Europe/Berlin",
+      "validRanges": [
+        "1d",
+        "5d",
+        "1mo",
+        "ytd",
+        "max"
+      ]
+    },
+    "points": 6,
+    "first": "2026-11-05T08:00:00+00:00",
+    "last": "2026-11-12T08:00:00+00:00",
+    "sha256": "2802e681749ca36bb35e75f6c5b030c07a98f8ff721b797bf0678fa49af6ea76"
+  },
+  "firstTradeDateMeaning": "Provider available-history start only; not financial instrument inception or proof of a corporate action",
+  "vendorFirstAvailable": "2026-11-05T08:00:00+00:00",
+  "closedOctoberRequest": {
+    "name": "october",
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1790812800&period2=1793491200&interval=1d&events=div%2Csplits",
+    "status": 400,
+    "error": {
+      "code": "Bad Request",
+      "description": "Data doesn't exist for startDate = 1790812800, endDate = 1793491200"
+    },
+    "meta": {
+      "symbol": null,
+      "currency": null,
+      "instrumentType": null,
+      "firstTradeDate": null,
+      "longName": null,
+      "shortName": null,
+      "exchangeTimezoneName": null,
+      "validRanges": null
+    },
+    "points": 0,
+    "first": null,
+    "last": null,
+    "sha256": "285cb5962da292e6285ffa7cce5df4752a29754284961d83ffd8ca205c1fbf0e"
+  },
+  "fullHistoricalRequests": "Both Yahoo hosts returned400 for2020July→2026Nov1, evidence/bitwise-hosts/attempts.json",
+  "ordinaryGithubRecentLevel": {
+    "id": "anniversary-etfDE000A27Z304",
+    "checkedAt": "2026-11-13T06:22:22.514309+00:00",
+    "asOf": "2026-11-11",
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1793232000&period2=1794528000&interval=1d&events=splits",
+    "responseSha256": "b9e1319b1eca1cc8a4d59755e07c63d8f3f6b07546f149a7daa238440ec66fdc"
+  },
+  "issuerListingIdentity": "DE000A27Z304/XETR/BTCE/EUR issuer listing18June2020 retained separately from Yahoo firstTradeDate5Nov2026",
+  "Paris": "Distinct EUR Euronext listing1June2021; monthly qualified throughOct2026. 2023/2024qualified independently,2021full-yearstillmissingDec2020bound.",
+  "historicalGapNotRepaired": true,
+  "officialExchangeCandidate": {
+    "instrumentPage": "https://live.deutsche-boerse.com/en/etf/de000a27z304-etc-issuance-gmbh-0-000/price-history/historical-prices-and-volumes",
+    "adjustmentDefinition": "https://live.deutsche-boerse.com/en/adjusted-prices",
+    "terms": "https://live.deutsche-boerse.com/en/disclaimer-en",
+    "documentedLimit": "SectionDownloadPriceHistory/I.2 treats services based on the data offered to third parties as fee-licensed value-added use. No corresponding licence evidenced for this public application.",
+    "observedAccess": "Exactinstrumentpage accessible in ordinarybrowser. Attempt tochange2021date inputs did notcomplete; no2021historyacquisitionclaimed.",
+    "activation": "Not enabled; no exchange prices copied to production or public reports."
+  }
+}

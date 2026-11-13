@@ -1,0 +1,19 @@
+{
+  "run": 43383944403,
+  "job": 131749457432,
+  "stage": "validated-data receipt; before publicdeployment",
+  "expected": "f1fa1091f222f975e6108e2a4805d0580dc92eac",
+  "actualRetainedOld": "7f56c21f91a2468894d6968bda6b1de86a47c8fe",
+  "outcome": "Old published code held back required new producer file. Guard refused partial publication; automatic ordinary codepublication fallback triggered; no guard weakened. Green job means fallback requested, not producerdata adopted.",
+  "excerpts": [
+    "2026-11-13T07:17:21.9813721Z \u001b[36;1mfor(const [path,blob] of Object.entries(required))assert.equal(execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim(),blob,'Required data was held back or changed during generation: '+path)\u001b[0m",
+    "2026-11-13T07:17:22.0229795Z AssertionError [ERR_ASSERTION]: Required data was held back or changed during generation: src/data/anniversary-levels.json",
+    "2026-11-13T07:17:22.0230878Z + '7f56c21f91a2468894d6968bda6b1de86a47c8fe'",
+    "2026-11-13T07:17:22.0231323Z - 'f1fa1091f222f975e6108e2a4805d0580dc92eac'",
+    "2026-11-13T07:17:22.0236802Z   actual: '7f56c21f91a2468894d6968bda6b1de86a47c8fe',",
+    "2026-11-13T07:17:22.0237269Z   expected: 'f1fa1091f222f975e6108e2a4805d0580dc92eac',",
+    "2026-11-13T07:17:22.0268474Z ##[error]Process completed with exit code 1.",
+    "2026-11-13T07:17:23.9622017Z Set output 'code_epoch'",
+    "2026-11-13T07:17:23.9623720Z Set output 'needs_code'"
+  ]
+}

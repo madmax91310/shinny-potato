@@ -1,0 +1,2426 @@
+[
+  {
+    "id": "history:etfDE000A27Z304",
+    "workflow": "update-market-monthly.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259309235",
+    "originalError": "HTTP Error 400: Bad Request",
+    "originalField": "Historique mensuel",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "provider historical coverage limitation; recent Xetra quote works; independent Paris route operational",
+    "publicationClaim": false,
+    "proof": "bitwise-history-cause-20261113.json"
+  },
+  {
+    "id": "qualification:acwi-imi",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:acwi",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:sp-euro-dividend-aristocrats",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:sp500-equal-weight",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:world-ex-usa",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:msci-world-health-care",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:msci-world-materials",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:msci-world-utilities",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:msci-world-industrials",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualification:msci-world-high-dividend-yield-advanced-select",
+    "workflow": "refresh-automated-index-sheets.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43249143868",
+    "originalError": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
+    "originalField": "Qualification de la composition",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "dca-holdings:IE00BLCHJB90",
+    "workflow": "update-qualified-exposures.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43284841717",
+    "originalError": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - USD', isin='', asOf='2026-11-11')",
+    "originalField": "Composition complète",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualified-primary:IE000U9ODG19:countries",
+    "workflow": "update-qualified-exposures.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43284841717",
+    "originalError": "Incomplete allocation",
+    "originalField": "countries-primary",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "qualified-primary:IE000U9ODG19:sectors",
+    "workflow": "update-qualified-exposures.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43284841717",
+    "originalError": "Incomplete allocation",
+    "originalField": "sectors-primary",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B5BMR087",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B5BMR087",
+        "instrument": "IE00B5BMR087",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B6R52259",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43009243190",
+    "originalError": "Published position count or unique listing coverage not proved",
+    "originalField": "holdings",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B6R52259",
+        "instrument": "IE00B6R52259",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE0002Y8CX98",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259274158",
+    "originalError": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+    "originalField": "aum-primary-http",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE0002Y8CX98",
+        "instrument": "IE0002Y8CX98",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BM8R0J59",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40765217296",
+    "originalError": "Unqualified Global X key-information boundary",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BM8R0J59",
+        "instrument": "IE00BM8R0J59",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B43HR379",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B43HR379",
+        "instrument": "IE00B43HR379",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-GB00BLD4ZL17",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40375386021",
+    "originalError": "CoinShares graph/overview dates cannot be aligned",
+    "originalField": "performance",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-GB00BLD4ZL17",
+        "instrument": "GB00BLD4ZL17",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-btc/",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-GB00BLD4ZM24",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40375386021",
+    "originalError": "CoinShares graph/overview dates cannot be aligned",
+    "originalField": "performance",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-GB00BLD4ZM24",
+        "instrument": "GB00BLD4ZM24",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE000UL6CLP7",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40765217296",
+    "originalError": "Incomplete Silver Miners HTML: trading details missing",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE000UL6CLP7",
+        "instrument": "IE000UL6CLP7",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE000W8WMSL2",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259274158",
+    "originalError": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+    "originalField": "aum-primary-http",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE000W8WMSL2",
+        "instrument": "IE000W8WMSL2",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BZ56SW52",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259274158",
+    "originalError": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+    "originalField": "aum-primary-http",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BZ56SW52",
+        "instrument": "IE00BZ56SW52",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BJGWQN72",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259274158",
+    "originalError": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+    "originalField": "aum-primary-http",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BJGWQN72",
+        "instrument": "IE00BJGWQN72",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BYWQWR46",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/espo-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BYWQWR46",
+        "instrument": "IE00BYWQWR46",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE0007Y8Y157",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE0007Y8Y157",
+        "instrument": "IE0007Y8Y157",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE000M7V94E1",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/nucl-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE000M7V94E1",
+        "instrument": "IE000M7V94E1",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/nucl-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE000YU9K6K2",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/jedi-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE000YU9K6K2",
+        "instrument": "IE000YU9K6K2",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE000YYE6WK5",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE000YYE6WK5",
+        "instrument": "IE000YYE6WK5",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BDFBTQ78",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BDFBTQ78",
+        "instrument": "IE00BDFBTQ78",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-NL0009690239",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-NL0009690239",
+        "instrument": "NL0009690239",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/tret-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-NL0011683594",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-NL0011683594",
+        "instrument": "NL0011683594",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/tdiv-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BQQP9F84",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41486688221",
+    "originalError": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdx-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41:27\n\nNode.js v20.20.2\n; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41:27\n\nNode.js v20.20.2\n; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41:27\n\nNode.js v20.20.2\n",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BQQP9F84",
+        "instrument": "IE00BQQP9F84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdx-fact-sheet.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-presentation-performance-IE0007Y8Y157",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41897106813",
+    "originalError": "Older cumulative observation; active performance preserved",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-CH0454664001",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42365065207",
+    "originalError": "HTTP Error 410: Gone",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-CH0454664001",
+        "instrument": "CH0454664001",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "index-sp-global-dividend-aristocrats-composition",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43317827043",
+    "originalError": "S&P direct download failed: HTTP Error 403: Forbidden; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "index-observation.json",
+      "outcome": {
+        "id": "index-sp-global-dividend-aristocrats-composition",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "name": "S&P Global Dividend Aristocrats Quality Income · composition",
+        "error": "S&P direct download failed: HTTP Error 403: Forbidden; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+        "status": "failed",
+        "operationAttempted": true,
+        "sourceAttempted": null
+      },
+      "checkedAt": "2026-11-13T03:02:47.597976+00:00"
+    },
+    "status": "current supplier block independently reconfirmed",
+    "publicationClaim": false
+  },
+  {
+    "id": "index-sp-euro-dividend-aristocrats-composition",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43317827043",
+    "originalError": "S&P direct download failed: HTTP Error 403: Forbidden; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "index-observation.json",
+      "outcome": {
+        "id": "index-sp-euro-dividend-aristocrats-composition",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "name": "S&P Euro High Yield Dividend Aristocrats · composition",
+        "error": "S&P direct download failed: HTTP Error 403: Forbidden; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+        "status": "failed",
+        "operationAttempted": true,
+        "sourceAttempted": null
+      },
+      "checkedAt": "2026-11-13T03:02:47.597976+00:00"
+    },
+    "status": "current supplier block independently reconfirmed",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00BDBRDM35",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00BDBRDM35",
+        "instrument": "IE00BDBRDM35",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "EUR",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-10-08",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-JE00B1VS3770",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259274158",
+    "originalError": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+    "originalField": "aum-primary-http",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-JE00B1VS3770",
+        "instrument": "JE00B1VS3770",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-GB00BJYDH287",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259274158",
+    "originalError": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+    "originalField": "aum-primary-http",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-GB00BJYDH287",
+        "instrument": "GB00BJYDH287",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-GB00B15KXQ89",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259274158",
+    "originalError": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+    "originalField": "aum-primary-http",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-GB00B15KXQ89",
+        "instrument": "GB00B15KXQ89",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B1FZS913",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41613500362",
+    "originalError": "Signed allocation and holdings dates disagree",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B1FZS913",
+        "instrument": "IE00B1FZS913",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B14X4S71",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41613500362",
+    "originalError": "Signed allocation and holdings dates disagree",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B14X4S71",
+        "instrument": "IE00B14X4S71",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251715&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BD4TXV59",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41600148933",
+    "originalError": "No current UBS exact-share factsheet published: https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf: <urlopen error timed out> ; https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf: <urlopen error timed out> ; https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf: <urlopen error timed out> ; https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf: <urlopen error timed out> ; https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-2026",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BD4TXV59",
+        "instrument": "IE00BD4TXV59",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B3FH7618",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B3FH7618",
+        "instrument": "IE00B3FH7618",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "EUR",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-DE000A0H08Q4",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-DE000A0H08Q4",
+        "instrument": "DE000A0H08Q4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B02KXK85",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B02KXK85",
+        "instrument": "IE00B02KXK85",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B40B8R38",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B40B8R38",
+        "instrument": "IE00B40B8R38",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=287102&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B52SF786",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B52SF786",
+        "instrument": "IE00B52SF786",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253721&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B5WHFQ43",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B5WHFQ43",
+        "instrument": "IE00B5WHFQ43",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B1FZS574",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B1FZS574",
+        "instrument": "IE00B1FZS574",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00B8KGV557",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00B8KGV557",
+        "instrument": "IE00B8KGV557",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BSKRJZ44",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BSKRJZ44",
+        "instrument": "IE00BSKRJZ44",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BZ048462",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BZ048462",
+        "instrument": "IE00BZ048462",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE00BZ6V7883",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE00BZ6V7883",
+        "instrument": "IE00BZ6V7883",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B4L5Y983",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B4L5Y983",
+        "instrument": "IE00B4L5Y983",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00BKM4GZ66",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00BKM4GZ66",
+        "instrument": "IE00BKM4GZ66",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B4L5YX21",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B4L5YX21",
+        "instrument": "IE00B4L5YX21",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00BF4RFH31",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00BF4RFH31",
+        "instrument": "IE00BF4RFH31",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00BZCQB185",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00BZCQB185",
+        "instrument": "IE00BZCQB185",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B1FZS467",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B1FZS467",
+        "instrument": "IE00B1FZS467",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE000I8KRLL9",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE000I8KRLL9",
+        "instrument": "IE000I8KRLL9",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE000RDRMSD1",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE000RDRMSD1",
+        "instrument": "IE000RDRMSD1",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B0M62X26",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B0M62X26",
+        "instrument": "IE00B0M62X26",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "EUR",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B1FZS350",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B1FZS350",
+        "instrument": "IE00B1FZS350",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-10-01",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B3F81R35",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B3F81R35",
+        "instrument": "IE00B3F81R35",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "EUR",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-10-01",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B4JNQZ49",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B4JNQZ49",
+        "instrument": "IE00B4JNQZ49",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B4WXJJ64",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B4WXJJ64",
+        "instrument": "IE00B4WXJJ64",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "EUR",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-10-01",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B53SZB19",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B53SZB19",
+        "instrument": "IE00B53SZB19",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B66F4759",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B66F4759",
+        "instrument": "IE00B66F4759",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "EUR",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-10-01",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B8FHGS14",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B8FHGS14",
+        "instrument": "IE00B8FHGS14",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00BYZK4776",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00BYZK4776",
+        "instrument": "IE00BYZK4776",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00BYYHSQ67",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00BYYHSQ67",
+        "instrument": "IE00BYYHSQ67",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00B1XNHC34",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00B1XNHC34",
+        "instrument": "IE00B1XNHC34",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE0000N55FP4",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE0000N55FP4",
+        "instrument": "IE0000N55FP4",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "EUR",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-observation-IE00BJ5JP329",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+    "originalError": "HTTP Error 403: Forbidden",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "observation.json",
+      "outcome": {
+        "id": "etf-observation-IE00BJ5JP329",
+        "instrument": "IE00BJ5JP329",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "currency": "USD",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "dataPeriods": {
+          "aum": "2026-11-11",
+          "countries": "2026-11-11",
+          "sectors": "2026-11-11",
+          "holdings": "2026-11-11",
+          "countriesRisk": "2026-11-11"
+        },
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:06.008529+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-FR0011550185",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+    "originalError": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20261031: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found",
+    "originalField": "countries",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-FR0011550185",
+        "instrument": "FR0011550185",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-FR0011550193",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42178574174",
+    "originalError": "HTTP Error 503: Service Unavailable",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-FR0011550193",
+        "instrument": "FR0011550193",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE000QDFFK00",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+    "originalError": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20261031: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found",
+    "originalField": "countries",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE000QDFFK00",
+        "instrument": "IE000QDFFK00",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-additional-observation-IE000DQLYVB9",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+    "originalError": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20261031: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found",
+    "originalField": "exposures",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": {
+      "file": "additional-observation.json",
+      "outcome": {
+        "id": "etf-additional-observation-IE000DQLYVB9",
+        "instrument": "IE000DQLYVB9",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      "checkedAt": "2026-11-13T03:00:44.142507+00:00"
+    },
+    "status": "new ordinary source success; no automatic admission of unavailable subfields",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-presentation-performance-FR001400U5Q4",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+    "originalError": "HTTP Error 404: Not Found",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "etf-presentation-performance-LU2970735911",
+    "workflow": "collect-etf-pilot.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+    "originalError": "HTTP Error 404: Not Found",
+    "originalField": "Collecte ETF",
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "not replaced by this lot; preserve original source-specific limit",
+    "publicationClaim": false
+  },
+  {
+    "id": "anniversary-nasdaq100",
+    "workflow": "update-publication-observations.yml",
+    "originalRun": null,
+    "originalRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43255824329",
+    "originalError": "Dated FRED XNDX close and both Yahoo references disagree",
+    "originalField": null,
+    "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
+    "stage": "source",
+    "latestNative13Nov": null,
+    "status": "source repaired and ordinarily collected; publication tracked separately",
+    "publicationClaim": false,
+    "newRun": 43383944403,
+    "newAsOf": "2026-11-12",
+    "source": "https://fred.stlouisfed.org/data/NASDAQXNDX"
+  }
+]

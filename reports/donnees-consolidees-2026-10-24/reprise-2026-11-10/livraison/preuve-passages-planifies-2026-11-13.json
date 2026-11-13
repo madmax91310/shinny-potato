@@ -1,0 +1,120 @@
+{
+  "checkedAt": "2026-11-13T07:31:49.257996+00:00",
+  "apiTotalScheduled13Nov": 1,
+  "rows": [
+    {
+      "workflow": "update-lifestrategy.yml",
+      "state": "active",
+      "configuredCrons": [
+        "35 5 * * *"
+      ],
+      "actualScheduledRuns13Nov": [],
+      "priorWorkflowSnapshot": {
+        "runId": 43244573042,
+        "completedAt": "2026-11-12T16:19:49Z",
+        "collectionStatus": "success",
+        "recordingStatus": "success",
+        "publicationStatus": "not-run"
+      },
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "state": "active",
+      "configuredCrons": [
+        "40 6 * * *"
+      ],
+      "actualScheduledRuns13Nov": [],
+      "priorWorkflowSnapshot": {
+        "runId": 43249143868,
+        "completedAt": "2026-11-12T18:01:41Z",
+        "collectionStatus": "failure",
+        "recordingStatus": "success",
+        "publicationStatus": "success"
+      },
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "state": "active",
+      "configuredCrons": [
+        "15 6 2,4,8,16 * *",
+        "45 6 * * *"
+      ],
+      "actualScheduledRuns13Nov": [],
+      "priorWorkflowSnapshot": {
+        "runId": 43259309235,
+        "completedAt": "2026-11-12T18:50:43Z",
+        "collectionStatus": "failure",
+        "recordingStatus": "success",
+        "publicationStatus": "not-run"
+      },
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "state": "active",
+      "configuredCrons": [
+        "10 7 * * *"
+      ],
+      "actualScheduledRuns13Nov": [],
+      "priorWorkflowSnapshot": {
+        "runId": 43317827043,
+        "completedAt": "2026-11-12T23:37:38Z",
+        "collectionStatus": "failure",
+        "recordingStatus": "success",
+        "publicationStatus": "success"
+      },
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "state": "active",
+      "configuredCrons": [
+        "40 7 * * *"
+      ],
+      "actualScheduledRuns13Nov": [],
+      "priorWorkflowSnapshot": {
+        "runId": 43255824329,
+        "completedAt": "2026-11-12T18:02:35Z",
+        "collectionStatus": "failure",
+        "recordingStatus": "success",
+        "publicationStatus": "success"
+      },
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "state": "active",
+      "configuredCrons": [
+        "50 7 * * *"
+      ],
+      "actualScheduledRuns13Nov": [],
+      "priorWorkflowSnapshot": {
+        "runId": 43284841717,
+        "completedAt": "2026-11-12T20:34:25Z",
+        "collectionStatus": "failure",
+        "recordingStatus": "success",
+        "publicationStatus": "success"
+      },
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "state": "active",
+      "configuredCrons": [
+        "45 7 * * *"
+      ],
+      "actualScheduledRuns13Nov": [],
+      "priorWorkflowSnapshot": {
+        "runId": null,
+        "completedAt": null,
+        "collectionStatus": null,
+        "recordingStatus": null,
+        "publicationStatus": null
+      },
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+    }
+  ],
+  "distinction": "02:52:43automation-status schedule is a monitor cron, not a supplier cron"
+}
