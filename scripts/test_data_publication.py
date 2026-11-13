@@ -63,6 +63,56 @@ class PublicationProofs(unittest.TestCase):
         self.assertNotEqual(old, new)
         self.assertEqual(new, self.git('hash-object', path))
 
+    def composed_new_archive(self):
+        code = self.git('rev-parse', 'HEAD')
+        archive = 'public/data/investors/archive/example/2026-06-30.json'
+        self.write(archive, '{"quarter":"2026-06-30"}\n')
+        self.write('public/data/withheld.json', '{"heldBack":true}\n')
+        self.git('add', '.')
+        self.git('commit', '-qm', 'New validated data files')
+        data = self.git('rev-parse', 'HEAD')
+        self.git('checkout', '-q', code)
+        # Same copy-based composition as the publisher: this is not a Git add.
+        self.write(archive, '{"quarter":"2026-06-30"}\n')
+        self.write('public/data/unexpected.json', '{"notValidated":true}\n')
+        return archive, data
+
+    def test_composite_archive_missing_from_code_tree_is_sealed_from_actual_bytes(self):
+        archive, data = self.composed_new_archive()
+        self.assertNotIn(archive, publication.manifest()['files'], 'Reproduce the old missing fingerprint')
+        files = publication.manifest(data)['files']
+        self.assertEqual(files[archive], self.git('hash-object', archive))
+        self.assertNotIn('public/data/withheld.json', files, 'A file absent from the served tree is not certified')
+        self.assertNotIn('public/data/unexpected.json', files, 'Untracked files outside both snapshots stay excluded')
+        self.write(archive, '{"quarter":"2026-06-30","rebuilt":true}\n')
+        self.assertEqual(publication.manifest(data)['files'][archive], self.git('hash-object', archive))
+        self.assertNotEqual(publication.manifest(data)['files'][archive], self.git('rev-parse', data + ':' + archive))
+
+    def test_source_file_missing_after_composition_is_never_certified(self):
+        archive, data = self.composed_new_archive()
+        Path(archive).unlink()
+        self.assertNotIn(archive, publication.manifest(data)['files'])
+
+    def test_frozen_sealer_outside_checkout_uses_current_worktree_policy(self):
+        import shutil
+        archive, data = self.composed_new_archive()
+        frozen = self.root.parent / (self.root.name + '-frozen-sealer.py')
+        self.addCleanup(frozen.unlink, missing_ok=True)
+        shutil.copyfile(Path(publication.__file__), frozen)
+        output = self.root / 'sealed.json'
+        subprocess.run(['python3', str(frozen), 'manifest', '--data-commit', data,
+                        '--output', str(output)], check=True, capture_output=True)
+        self.assertEqual(json.loads(output.read_text())['files'][archive], self.git('hash-object', archive))
+
+    def test_manifest_snapshot_is_explicit_and_workflow_keeps_current_sealer(self):
+        for ref in ['HEAD', '--all', '../other', 'not-a-commit']:
+            with self.subTest(ref=ref), self.assertRaises(ValueError):
+                publication.manifest(ref)
+        workflow = (publication.ROOT / '.github/workflows/publish-validated-data.yml').read_text()
+        frozen = 'cp scripts/data_publication.py "$RUNNER_TEMP/seal-data-publication.py"'
+        self.assertLess(workflow.index(frozen), workflow.index('node scripts/compose-fallback-snapshot.mjs'))
+        self.assertIn('python3 "$RUNNER_TEMP/seal-data-publication.py" manifest --data-commit "${{ steps.compose.outputs.data_sha }}"', workflow)
+
     def test_all_receipt_includes_workflow_paths(self):
         output = self.root / 'receipt.json'
         paths = publication.publication_paths(self.root)

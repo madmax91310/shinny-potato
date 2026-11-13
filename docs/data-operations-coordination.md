@@ -1,3 +1,9 @@
+## Suite du même lot #881 — manifeste des nouveaux fichiers de données
+
+Après #1265 : run ordinaire `43517469275`, 28 gérants validés, données enregistrées en `50b7d557`, 31 fichiers publics exactement recoupés, Renaissance au 30 septembre et PNG desktop/mobile vérifiés. Le moniteur `43518986078` ne confirme que 30/31 empreintes : l’archive `archive/renaissance/2026-06-30.json` est réellement servie, mais absente du manifeste. Le composite conserve HEAD sur le code publié `5c90e1fd`, dont l’arbre n’a pas encore ce fichier ; le générateur énumère seulement HEAD. Les mêmes commits et octets reproduisent l’omission en Git isolé.
+
+Branche `fix/composite-data-manifest-20261113` possède seulement le scelleur, ses tests, le gel du scelleur courant avant composition dans le publieur partagé et cette note. Le manifeste énumère l’union des fichiers de données autorisés des deux snapshots explicites, puis calcule les empreintes des seuls octets réellement présents. Aucun balayage des fichiers non suivis, aucune qualification financière ou règle de clôture du moniteur assouplie. La version courante du scelleur est conservée hors du checkout avant de restaurer l’ancien code. Les reçus producteurs, contrôle des consommateurs, ordre de publication et vérification publique restent obligatoires. Les PR #1266 (budgets), #1253 (S&P) et #1061 (encours PEA) ont été rapprochées : aucun de leurs fichiers n’est modifié par ce lot, aucun collecteur Radar réactivé.
+
 ## Reprise après audit du 13 novembre, 20:14 UTC — enregistrement 13F
 
 Branche `fix/audit-data-recording-20261113`, base `2e19c198` après rapprochement de `05289656`. Possède seulement `validate-investor-publication.py`, ses tests et ce journal. Les PR #1253 (S&P) et #1061 (encours PEA) restent indépendantes ; aucun de leurs fichiers n’est modifié. Les deux nouveaux commits observés depuis l’audit concernent fiscalité/courtiers et ETF, conservés.
