@@ -1,7 +1,6 @@
 // Local conversion only: no provider fetch, inferred dates, or licence grant.
 export const FLOW_SOURCES = [
-  {id: 'express', label: 'ETF Express · récap européen', url: 'https://etfexpress.com/?s=European+ETF+Market+Wrap', publisher: 'ETF Express', provider: 'Trackinsight'},
-  {id: 'trackinsight', label: 'Trackinsight · flux mondiaux', url: 'https://www.trackinsight.com/', publisher: 'Trackinsight', provider: 'Trackinsight'},
+  {id: 'express', label: 'ETF Express · récap européen', url: 'https://etfexpress.com/2026/11/09/european-etf-market-wrap-flows-performance-and-leaders-week-45-2026/', publisher: 'ETF Express', provider: 'Trackinsight'},
 ]
 const amountPattern = /([+−-]?)\s*([€$])\s*(\d+(?:[.,]\d+)?)\s*(billion|million|bn|Md|[BMKk])?\b|([+−-]?)\s*(\d+(?:[.,]\d+)?)\s*(billion|million|bn|Md|[BMKk])?\s*([€$])/gi
 const scales = {billion: 1e9, million: 1e6, bn: 1e9, md: 1e9, b: 1e9, m: 1e6, k: 1e3}

@@ -5,6 +5,7 @@ import PageHeader from '../../design-system/PageHeader.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace.jsx'
 import {copyPublicationText} from '../../design-system/publicationActions.js'
 import {readLocalPreferenceRecord,writeLocalPreference} from '../../lib/publication-preferences.js'
+import ReportImport from './ReportImport.jsx'
 import {FLOW_SOURCES} from './paste.js'
 import {MANUAL_KEY,emptyDraft,emptyLine,validDraft,prepareManual,manualTweet} from './manual.js'
 import './App.css'
@@ -39,11 +40,11 @@ export default function ManualEntry() {
   }
   function preview(){setShowErrors(true);if(ready)setView('preview')}
   return <div className="etf-flows flows-manual">
-    <PageHeader title="Où va l’argent des ETF ?" subtitle="Relève les chiffres sur un site, remplis les lignes et récupère ton tweet ou ton image." />
+    <PageHeader title="Où va l’argent des ETF ?" subtitle="Colle le bilan ETF Express, vérifie les flux et récupère ton tweet ou ton image." />
     <ToolWorkspace view={view} onViewChange={setView} renderImage={renderImage} imageDisabled={!ready||!approved} imageFilename={`flux-etf-${draft.end||'brouillon'}.png`} imageAlt="Sélection de flux nets relevés manuellement" actions={<Button disabled={!ready||!approved} onClick={copy}>Copier le tweet</Button>}>
       <div className="tool-settings">
-        <Card><h2>1. Consulte une source</h2><p className="flows-source-links">{FLOW_SOURCES.map(s=><a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.label} ↗</a>)}</p></Card>
-        <Card><h2>2. Renseigne la période et les flux</h2>
+        <Card><h2>1. Ouvre le bilan ETF Express</h2><p>Copie le texte de l’article. Pour une autre semaine, ouvre un autre bilan sur ETF Express.</p><p className="flows-source-links">{FLOW_SOURCES.map(s=><a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.label} ↗</a>)}</p><a href="https://etfexpress.com/?s=European+ETF+Market+Wrap" target="_blank" rel="noopener noreferrer">Trouver les autres semaines ↗</a><ReportImport onImport={result=>{setDraft(d=>({...d,start:result.start,end:result.end,scope:result.scope,url:'',currency:result.currency,rows:result.rows.map(r=>({label:r.label,amount:String(r.amount/1e6),unit:'M'}))}));setApproved(false);setMessage('')}} /></Card>
+        <Card><h2>2. Vérifie la période et les flux</h2>
           <div className="flows-date-row"><label>Du<input type="date" value={draft.start} onChange={e=>change('start',e.target.value)} /></label><label>Au<input type="date" value={draft.end} onChange={e=>change('end',e.target.value)} /></label></div>
           <label>Lien de la page consultée<input type="url" placeholder="https://…" value={draft.url} maxLength={2000} onChange={e=>change('url',e.target.value)} /></label>
           <label>Périmètre indiqué par la source<input value={draft.scope} maxLength={80} placeholder="Ex. ETF cotés en Europe" onChange={e=>change('scope',e.target.value)} /></label>
