@@ -446,7 +446,7 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(
                 (self.source.parent / path).read_bytes()).hexdigest(), digest)
 
-    def test_real_recording_preserves_three_independent_writers(self):
+    def test_real_recording_preserves_all_exact_independent_writers(self):
         for path in sorted(self.publication.INDEPENDENT):
             self.advance(path)
         result = self.record()
@@ -466,6 +466,13 @@ class PublicationTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('recollect', result.stdout + result.stderr)
         self.assertIn(path, result.stdout + result.stderr)
+
+    def test_neighbouring_exposure_and_metadata_inputs_stay_protected(self):
+        for path in ['scripts/exposure-etf-expansion.json',
+                     'scripts/collect_instrument_metadata.py',
+                     'src/pages/dca-profiles/exposures-extra-3.json']:
+            with self.subTest(path=path):
+                self.assert_remote_input_refused(path)
 
     def test_changed_acquisition_refuses(self):
         self.assert_remote_input_refused('scripts/update-investor-13f.py')

@@ -11,13 +11,23 @@ import subprocess
 import observation_rebase_guard as guard
 
 ROOT = Path(__file__).resolve().parents[1]
-# These are the only files in the actual d451cd6 -> c955674 recording collision.
+# Exact independent paths reviewed for collisions d451cd6 -> c955674,
+# 43496138701 (exposure outputs) and 43504937474 (ETF metadata outputs).
 # None is read by the reviewed 13F acquisition/plan. A changed acquisition must
 # explicitly requalify this evidence, rather than inherit an obsolete exemption.
 INDEPENDENT = {
     'docs/automation-gaps.json',
     'src/data/automated-etf.json',
     'src/data/automated-indices.json',
+    # Neither the pinned acquisition nor its 28-manager plan reads these.
+    # These are financial inputs for other tools, not for 13F. Preserve the
+    # upstream versions and rerun the full 13F audit on the combined tree.
+    'src/data/exposure-etf-expansion-records.json',
+    'src/pages/dca-profiles/exposures-extra-0.json',
+    'src/pages/dca-profiles/exposures-extra-1.json',
+    'src/pages/dca-profiles/exposures-extra-2.json',
+    'public/data/asset-field-coverage.json',
+    'scripts/instrument-metadata-sources.json',
 }
 # 12 Nov: LifeStrategy/Vanguard-only plan additions reviewed; actual 13F plans
 # before/after are identical for every manager. Acquisition and independent-input
