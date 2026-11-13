@@ -26,8 +26,8 @@ function captureCanvasText() {
 
 function assertPublicBudgetHeader(drawn, profile) {
   assert.equal(drawn[0].text, 'LE BUDGET DE')
-  assert(!drawn.some(item => /EXEMPLE DE BUDGET|\b20\d{2}\b/i.test(item.text)), 'Exports have no editorial date or example title')
-  assert(!/budget personnel|exemple|ficti[fv]|reconstitu|scénario|simulation|hypothèse/i.test(drawn.map(item=>item.text).join(' ')), 'Both image modes omit production labels')
+  assert(drawn.some(item => item.text.includes('Période :')), 'Every export retains its budget period')
+  assert(/Exemple fictif inspiré de données publiques/.test(drawn.map(item=>item.text).join(' ')), 'Both image modes disclose fictional provenance')
   const index = drawn.findIndex(item => item.text === 'RESSOURCES')
   assert(index > 0)
   const header = drawn.slice(0, index)
@@ -91,7 +91,7 @@ try {
       for (const t of drawn) {
         assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
         assert(!t.text.includes('…'), `${profile.id}: no truncated content`)
-        assert(!/prénoms? fictifs?|scénario mensuel préparé|année non précisée|du scénario|retenu pour l’exemple|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
+        assert(!/prénoms? fictifs?|scénario mensuel préparé|du scénario|retenu pour l’exemple|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
       }
       const normalize = text => text.replace(/\s+/g, ' ').trim()
       const imageText = normalize(drawn.map(t => t.text).join(' '))
@@ -108,7 +108,7 @@ try {
       if (!(await sourceDetails.evaluate(node => node.open))) await sourceDetails.locator('summary').first().click()
       await page.getByRole('button', { name: 'Copier la source pour une réponse', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), sourceReply(profile))
-      assert(!/prépar|compléments|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(profile)), 'The optional copied source also excludes production notes')
+      assert(!/prépar|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(profile)), 'The optional copied source also excludes production notes')
       await sourceDetails.locator('summary').first().click() // Capture the publication view without the expanded private audit.
       await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
       assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).published, WORKSPACE_KEY), [], 'Copying and exporting never declare publication')

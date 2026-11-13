@@ -43,7 +43,7 @@ for (const p of BUDGET_PROFILES) {
 const profile = name => BUDGET_PROFILES.find(p => p.name === name)
 const story = name => publicationContextFor(profile(name)).paragraphs.map(p => p.text).join(' ')
 const hadrien = profile('Hadrien')
-assert.equal(budgetQualification(hadrien), 'Budget prévu')
+assert.equal(budgetQualification(hadrien), 'Exemple fictif inspiré de données publiques · Budget prévu')
 assert.equal(BUDGET_EDITORIAL_CREATIONS[hadrien.id].polishReview.chronology.expensesReobserved, false)
 assert.equal(hadrien.period, 'Salaire 2026 · dépenses moyennes 2025')
 assert(/moyenne de l’année précédente/.test(buildBudgetText(hadrien)))

@@ -20,7 +20,7 @@ for (const p of BUDGET_PROFILES) {
   assert(!text.split('\n')[0].includes(' — '), 'Dates stay in verification, outside the public title')
   assert(!text.includes(p.source.publisher), 'Sources remain available in the separate source reply')
   assert(!text.includes('Situation familiale non précisée'))
-  assert(!/prénoms? fictifs?|scénario mensuel préparé|données de 2025|l’auteur|sa femme|la personne|à confirmer|placeholder|\.json|PR #/i.test(text), p.id)
+  assert(!/prénoms? fictifs?|scénario mensuel préparé|données de 2025|l’auteur|sa femme|la personne|placeholder|\.json|PR #/i.test(text), p.id)
   assert.equal(typeof BUDGET_EDITORIAL[p.id]?.publicIncomeNote, 'string', `Every profile needs a contextual editorial review: ${p.id}`)
   for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), 'Even a single resource is detailed')
   assert(!/budget personnel/i.test(text), p.id)
@@ -35,7 +35,7 @@ for (const p of BUDGET_PROFILES) {
   if (p.kind === 'planned') assert.match(text, /budget prévu/i)
   if (p.age === null) assert(!/\d+ ans/.test(text.split('\n')[0]))
   assert(sourceReply(p).includes(p.source.url))
-  assert(!/prépar|compléments|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(p)), `${p.id}: source replies must also be ready to publish`)
+  assert(!/prépar|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(p)), `${p.id}: source replies must also be ready to publish`)
   assert(!buildBudgetText(p).includes('abonné'), 'A public witness must not become a received subscriber testimony')
 }
 assert.equal(new Set(BUDGET_PROFILES.map(budgetDisplayName)).size, BUDGET_PROFILES.length)
@@ -150,7 +150,7 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
   const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id)
   if (source.kind==='prepared') assert.equal(analyzeBudget(source).balance, source.provenance?.expectedBalance ?? 0, p.id)
-  assert.match(sourceReply(p), /^Source du budget d’origine : /)
+  assert.match(sourceReply(p), /^Source d’inspiration du personnage fictif/)
   assert.match(buildBudgetText(p), /^Budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method || p.completion && BUDGET_COMPLETENESS[p.id].conclusion)

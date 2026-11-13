@@ -5,7 +5,7 @@ import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_
 export const MAX_BUDGET_LINES = 24
 export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: Number.isInteger(Math.round(Number(value) * 100) / 100) ? 0 : 2, maximumFractionDigits: 2 })
 export const dateLabel = date => new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`))
-export const budgetKind = profile => profile.kind === 'participant' ? 'Budget communiqué' : profile.editorialCreation ? 'Version éditoriale' : profile.kind === 'prepared' ? budgetQualification(profile) : profile.kind === 'planned' ? 'Budget prévu' : 'Budget déclaré'
+export const budgetKind = profile => profile.editorialCreation ? 'Exemple fictif' : profile.kind === 'participant' ? 'Budget communiqué' : profile.kind === 'prepared' ? budgetQualification(profile) : profile.kind === 'planned' ? 'Budget prévu' : 'Budget déclaré'
 const cents = value => Math.round(value * 100)
 const validAmount = value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 10000000
 const safeText = (value, max) => typeof value === 'string' && value.length <= max
@@ -76,7 +76,7 @@ export function budgetPublicPresentation(profile) {
     balanceLabel: copy?.balanceLabel ?? e?.balanceLabel ?? 'Reste disponible après versements',
     job: e?.publicJob ?? profile.job,
     household: budgetPublicContext(copy?.household ?? e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household)),
-    incomeNote: budgetPublicContext(copy?.incomeNote ?? e?.publicIncomeNote ?? profile.incomeNote),
+    incomeNote: [budgetPublicContext(copy?.incomeNote ?? e?.publicIncomeNote ?? profile.incomeNote), profile.editorialCreation?.taxTreatmentUnconfirmed && 'Traitement de l’impôt sur le revenu non précisé : solde à confirmer.'].filter(Boolean).join(' '),
     location: copy?.location ?? profile.location,
     story: e?.publicStory ?? profile.context,
     basis: copy?.basis ?? (profile.kind === 'prepared' ? (e?.publicBasis || 'Montants mensuels') : profile.incomeBasis),
@@ -123,6 +123,7 @@ export function buildBudgetText(profile) {
   return [
     budgetHeading(profile),
     presentation,
+    profile.period && `Période du budget : ${profile.period}.`,
     [`💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, textBasis, incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     expenses,
     sections.length > 1 && `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
@@ -181,7 +182,7 @@ export function refreshBudgetDraft(record) {
 
 export function sourceReply(profile) {
   if (!profile.source) return ''
-  const prefix = profile.kind === 'prepared' ? 'Source du budget d’origine' : profile.kind === 'planned' ? 'Budget prévu — source' : 'Source'
+  const prefix = profile.editorialCreation ? 'Source d’inspiration du personnage fictif (les compléments ne sont pas un témoignage de cette personne)' : profile.kind === 'prepared' ? 'Source du budget d’origine' : profile.kind === 'planned' ? 'Budget prévu — source' : 'Source'
   return `${prefix} : ${profile.source.publisher}\n${profile.source.url}`
 }
 

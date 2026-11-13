@@ -28,8 +28,9 @@ export function budgetRowSymbol(row, section = 'expenses') {
   return { kind: Object.hasOwn(symbols, kind) ? kind : 'other', emoji: symbols[kind] || symbols.other }
 }
 export function budgetQualification(profile) {
-  if (profile.kind === 'participant') return ''
-  return profile.kind === 'planned' || profile.completion?.forecast ? 'Budget prévu' : ''
+  if (profile.kind === 'participant' && !profile.editorialCreation) return ''
+  const forecast = profile.kind === 'planned' || profile.completion?.forecast
+  return [profile.editorialCreation && 'Exemple fictif inspiré de données publiques', forecast && 'Budget prévu'].filter(Boolean).join(' · ')
 }
 export function budgetPublicContext(value) {
   return value.replace(/(^| · )budget personnel(?: avec |\.?(?: · |$))/gi, '$1').replace(/ · $/, '')

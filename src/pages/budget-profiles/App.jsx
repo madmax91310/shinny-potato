@@ -92,15 +92,16 @@ export default function App() {
   }
   async function copy(value) { try { await copyPublicationText(value); setFeedback('Texte copié.') } catch { setFeedback('Copie impossible. Sélectionne le texte.') } }
   return <div className="dca-profiles-scope dca-simple budget-profiles-scope">
-    <PageHeader title="Le budget de…" subtitle="Choisis un budget public sourcé ou prépare une participation, puis récupère le texte et l’image."/>
+    <PageHeader title="Le budget de…" subtitle="Choisis un exemple fictif inspiré de données publiques ou prépare une participation, puis récupère le texte et l’image."/>
     {(!initial.readable || !usageInitial.readable || !publishedInitial.readable || !queuedInitial.readable) && <p role="alert">Un ancien enregistrement local est illisible. Il est conservé sans modification.</p>}
+    {profile.editorialCreation && <p role="note">Ce personnage et ses compléments sont fictifs, inspirés de données publiques. Ce n’est pas le témoignage d’un abonné. Conserve cette indication dans le texte et l’image, y compris après adaptation.</p>}
     <details className="dca-simple-card" onToggle={e => { if (e.currentTarget.open) setBackupOpen(true) }}><summary>Brouillons et transfert entre appareils</summary>
       {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''}</option>)}</ChoicePicker></label>}
       {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
     </details>
     <div className="dca-simple-grid">
       <section className="dca-simple-card" aria-label="Composer le budget">
-        <div className="dca-mode"><button aria-pressed={prepared} onClick={() => choose(profiles[0])}>Profils sourcés</button><button aria-pressed={!prepared} onClick={() => choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` })}>Créer une participation</button></div>
+        <div className="dca-mode"><button aria-pressed={prepared} onClick={() => choose(profiles[0])}>Exemples fictifs</button><button aria-pressed={!prepared} onClick={() => choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` })}>Créer une participation</button></div>
         {prepared && <>
           <label>Rechercher un profil<input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Profil, revenu, mois…"/></label>
           <details><summary>Filtrer les profils</summary><div className="budget-filters">

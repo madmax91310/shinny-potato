@@ -1,7 +1,7 @@
 // The explicit public projection belongs to the editorial data, never to the source photograph.
 export function createEditorialProfile(profile, review) {
   return { ...profile, ...review.publicProfile,
-    editorialCreation: { reviewedAt: review.reviewedAt, baseline: review.baseline, finance: review.finance },
+    editorialCreation: { reviewedAt: review.reviewedAt, baseline: review.baseline, finance: review.finance, taxTreatmentUnconfirmed: Boolean(review.polishReview?.tax) },
   }
 }
 export function createEditorialContext(context, review) {
