@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import reviewedProfiles from '../src/data/reviewed-broker-profiles.json' with { type: 'json' }
 import {BROKER_TARIFFS, brokerOffers, brokerFieldCopies, brokerProfile, applyBrokerProfile} from '../src/data/broker-tariffs.js'
 import {BROKERS} from '../src/pages/broker-comparator/data.js'
 import {BROKER_EDITORIAL} from '../src/pages/broker-comparator/editorial.js'
@@ -35,7 +36,23 @@ for(const[field,o]of Object.entries(BROKER_TARIFFS.saxo.fields)){
  assert(!brokerOffers('saxo',after.toISOString().slice(0,10)).includes(o.copy.full))
 }
 assert.equal(BROKER_EVIDENCE.ibkr.change.status,'partiel')
-assert.equal(BROKER_EVIDENCE.tr.garde.status,'corroboré')
+// The live adapter must follow expiry in Europe/Paris, not a permanent status
+// from a dated external review. Exercise both inclusive bounds independently.
+assert.equal(BROKER_EVIDENCE.tr.garde.status,brokerProfile('tr').garde.status)
+const custodyReview=reviewedProfiles.claims.tr.garde
+const unknownCustody=structuredClone(BROKER_TARIFFS)
+unknownCustody.tr.profile.garde={...unknownCustody.tr.profile.garde,available:null,status:'partiel'}
+for(const day of [custodyReview.checkedAt,custodyReview.reviewUntil]) {
+ const current=brokerProfile('tr',unknownCustody,day).garde
+ assert.equal(current.status,custodyReview.status)
+ assert.equal(current.reviewed,true)
+}
+const afterCustodyReview=new Date(custodyReview.reviewUntil+'T00:00:00Z')
+afterCustodyReview.setUTCDate(afterCustodyReview.getUTCDate()+1)
+const expiredCustody=brokerProfile('tr',unknownCustody,afterCustodyReview.toISOString().slice(0,10)).garde
+assert.equal(expiredCustody.status,'partiel')
+assert.equal(expiredCustody.available,null)
+assert.equal(expiredCustody.reviewed,undefined)
 for (const id of ['tr', 'caidf']) {
  assert.equal(BROKER_EVIDENCE[id].transfert.status, 'partiel', `${id}: transfer fees remain unknown`);
  assert.match(BROKER_EVIDENCE[id].transfert.summary, /confirmer|non qualifiés/);
@@ -44,7 +61,7 @@ assert.equal(transferConditionStatus({values:{available:1}}), 'partiel');
 assert.equal(transferConditionStatus({values:{available:0}}), 'confirmé');
 assert.equal(transferConditionStatus({values:{available:1,fee:0}}), 'confirmé');
 assert.equal(transferConditionStatus({values:{perLine:15,maximum:150}}), 'confirmé');
-assert.match(BROKERS.find(b=>b.id==='tr').garde.detail,/0 €.*PEA/)
+assert.equal(BROKERS.find(b=>b.id==='tr').garde.detail,brokerProfile('tr').garde.copy.full)
 assert.doesNotMatch(BROKER_EDITORIAL.tr.garde,/aucun ✅/)
 for(const id of ['xtb','caidf','saxo']) assert(BROKER_EVIDENCE[id].transfert.summary.includes(BROKER_EDITORIAL[id].entrant.split('✅').at(-1).split('❌')[0].trim().slice(0,8)) || BROKER_EVIDENCE[id].transfert.summary.includes('Transfert entrant') || BROKER_EVIDENCE[id].transfert.summary.includes('antériorité'))
 const changed=structuredClone(datedOffers)
