@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import reviewedProfiles from '../src/data/reviewed-broker-profiles.json' with { type: 'json' }
+import {partialPublicationScopes} from '../src/pages/broker-comparator/publicationScope.js'
 import {BROKER_TARIFFS, brokerOffers, brokerFieldCopies, brokerProfile, applyBrokerProfile} from '../src/data/broker-tariffs.js'
 import {BROKERS} from '../src/pages/broker-comparator/data.js'
 import {BROKER_EDITORIAL} from '../src/pages/broker-comparator/editorial.js'
@@ -53,6 +54,14 @@ const expiredCustody=brokerProfile('tr',unknownCustody,afterCustodyReview.toISOS
 assert.equal(expiredCustody.status,'partiel')
 assert.equal(expiredCustody.available,null)
 assert.equal(expiredCustody.reviewed,undefined)
+assert.equal(partialPublicationScopes(unknownCustody,custodyReview.reviewUntil).tr.garde,undefined)
+const expiredScopes=partialPublicationScopes(unknownCustody,afterCustodyReview.toISOString().slice(0,10))
+assert.match(expiredScopes.tr.garde.published,/Aucune réponse publiée/)
+assert.match(expiredScopes.tr.garde.excluded,/disponibilité ou de tarif/)
+assert.equal(expiredScopes.tr.change.excluded,'Taux ou commission propres au PEA.')
+const confirmedCustody=structuredClone(unknownCustody)
+Object.assign(confirmedCustody.tr.profile.garde,{available:true,status:'confirmé'})
+assert.equal(partialPublicationScopes(confirmedCustody,'2099-01-01').tr.garde,undefined)
 for (const id of ['tr', 'caidf']) {
  assert.equal(BROKER_EVIDENCE[id].transfert.status, 'partiel', `${id}: transfer fees remain unknown`);
  assert.match(BROKER_EVIDENCE[id].transfert.summary, /confirmer|non qualifiés/);
