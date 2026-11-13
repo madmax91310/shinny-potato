@@ -1,7 +1,7 @@
 import { GROUPS, periodLabel, signedFlow, publicScope } from './lib.js'
-export function renderFlowImage(o, rows, archive = false) {
+export function renderFlowImage(o, rows, archive = false, {manual = false} = {}) {
   if (!rows.length || rows.length > 10) throw Error('Sélectionner entre 1 et 10 lignes pour un visuel lisible.')
-  const groups = Object.entries(GROUPS).map(([id, title]) => ({title, rows: rows.filter(r => r.group === id)})).filter(g => g.rows.length)
+  const groups = manual ? [{title:'Flux sélectionnés',rows}] : Object.entries(GROUPS).map(([id, title]) => ({title, rows: rows.filter(r => r.group === id)})).filter(g => g.rows.length)
   const canvas = document.createElement('canvas'), width = 1200
   canvas.width = width; canvas.height = Math.max(960, 400 + rows.length * 110 + groups.length * 70)
   const c = canvas.getContext('2d'), height = canvas.height
@@ -9,7 +9,7 @@ export function renderFlowImage(o, rows, archive = false) {
   c.fillStyle = '#163d35'; c.fillRect(0,0,18,height)
   c.font = 'bold 64px Arial'; c.fillText('Où va l’argent des ETF ?',64,100)
   c.font = '32px Arial'; c.fillText(`${archive ? 'ARCHIVES · ' : ''}${periodLabel(o)}`,64,158)
-  c.font = '30px Arial'; c.fillText(publicScope(o),64,207)
+  c.font = '30px Arial'; c.fillText(manual ? 'Chiffres relevés manuellement' : publicScope(o),64,207)
   c.font = '24px Arial'; c.fillText(`Sélection · Flux nets en ${o.currency}`,64,251)
   c.font = '26px Arial'
   if (c.measureText(o.universe.label).width > 1072) throw Error('Libellé de périmètre trop long pour le visuel.')

@@ -2,15 +2,19 @@
 
 Route : `/flux-etf`. Aucun créneau du calendrier éditorial n’est ajouté ou modifié.
 
-## Import manuel depuis les sites
+## Saisie simple (par défaut)
 
-Deux liens ouvrent la recherche du récap hebdomadaire européen ETF Express et l’accueil Trackinsight (flux mondiaux). L’atelier permet de coller des lignes signées, des cartes copiées sur deux lignes ou des phrases anglaises explicitant les entrées et sorties. Il affiche les montants reconnus avant de les ajouter à une semaine. Plusieurs rubriques de même devise peuvent être réunies, sans doublons ni addition des catégories.
+L’écran principal présente les deux liens sources puis un formulaire : dates exactes, URL consultée, périmètre décrit par la source, devise et jusqu’à dix lignes « nom / montant / millions ou milliards ». La virgule, le point et les signes +, - ou − sont acceptés ; les milliers séparés, pourcentages et montants ambigus sont refusés. Une relecture active la copie du tweet et le PNG. Chaque modification annule la relecture.
 
-Le parcours principal comporte trois étapes : ouvrir la source, coller les chiffres, vérifier la semaine. Les références détaillées, l’état de la collecte et l’import JSON facultatif sont repliés par défaut. Les sélecteurs d’import sont des menus natifs compacts ; le collage reste directement visible sur mobile. Le parcours navigateur ouvre explicitement l’onglet Aperçu avant de contrôler le tweet sur les petits écrans.
+Aucun JSON ni formulaire de licence n’est demandé dans ce parcours. Les chiffres sont **relevés manuellement**, comme indiqué dans le texte et le visuel, et ne deviennent jamais des observations qualifiées. Aucun statut `validated`, preuve de licence, date de contrôle ou droit de réutilisation n’est fabriqué. La collecte automatique et ses exigences restent inchangées. La saisie ne doit contenir que les flux nets d’une même période, devise et d’un même périmètre.
 
-Le formulaire renseigne les dates exactes, la publication, le périmètre, la provenance et les conditions de réutilisation sans écrire de JSON. Les périmètres européens existants sont préservés ; `global-covered` représente uniquement l’univers mondial documenté par la source, et reste explicitement présenté comme tel dans le tweet et le PNG. Il ne signifie pas une couverture mondiale exhaustive.
+Le brouillon possède son propre stockage `el-etf-flows-manual-v1`. Il conserve les dates et valeurs au rechargement, sans conserver la case de relecture. Un brouillon illisible ou modifié dans un autre onglet n’est pas écrasé ; la saisie reste utilisable en session.
 
-Ce parcours effectue uniquement une conversion locale : aucune requête aux fournisseurs, aucune qualification automatique des droits, aucune déduction de dates. Des performances, encours, cumuls YTD, devises mélangées ou signes ambigus bloquent le transfert des lignes concernées. Une saisie manuelle ne remplace pas la qualification des droits ; les restrictions de sources documentées ci-dessous restent applicables. L’import JSON avancé et le stockage local existants sont conservés.
+## Anciennes observations qualifiées
+
+Le panneau fermé « Anciennes observations qualifiées » ouvre séparément l’ancien atelier, chargé à la demande. Ses observations, import par collage, compatibilité JSON et contrôles de provenance, période, réutilisation et fraîcheur sont préservés. Rien n’est déplacé depuis le brouillon simple vers le stockage qualifié.
+
+Les menus natifs de cet ancien atelier ne sont jamais montés sur l’écran principal. Le test global `noDropdown/flux-etf`, qui avait empêché le déploiement de #1252, reste appliqué sans exception. Le test navigateur couvre les deux parcours à 1280, 390 et 320 pixels : saisie simple, copie exacte, PNG, rechargement, nouvelle relecture, puis ancien import qualifié.
 
 ## Décision de collecte, examen du 12 novembre 2026
 
