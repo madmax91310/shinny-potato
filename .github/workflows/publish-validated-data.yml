@@ -61,6 +61,9 @@ jobs:
         run: |
           # Composition checks out the published code, which may predate this helper.
           cp scripts/ensure-ci-runtime.sh "$RUNNER_TEMP/ensure-ci-runtime.sh"
+          # Sealing must use the current publisher, even after checkout switches
+          # to older published code that cannot enumerate newly recorded files.
+          cp scripts/data_publication.py "$RUNNER_TEMP/seal-data-publication.py"
           node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
       - if: steps.plan.outputs.current == 'true'
         run: npm ci
@@ -87,7 +90,7 @@ jobs:
           JS
       - name: Seal actual composite data
         if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'
-        run: python3 scripts/data_publication.py manifest --output dist/data/publication-manifest.json
+        run: python3 "$RUNNER_TEMP/seal-data-publication.py" manifest --data-commit "${{ steps.compose.outputs.data_sha }}" --output dist/data/publication-manifest.json
       - name: Record actual code and data identities
         if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'
         env:

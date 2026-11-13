@@ -43,9 +43,19 @@ def tracked(commit, paths):
             if meta.split()[1] == b'blob' and is_publication_data(path.decode()) and matches(path.decode(), paths)}
 
 
-def manifest():
+def manifest(data_commit=None):
+    # A composite checkout keeps published code at HEAD. Newly recorded data
+    # files (e.g. a new 13F quarter archive) are copied into that checkout but
+    # are not in its old Git tree. Enumerate both explicit snapshots; never
+    # sweep arbitrary untracked workspace files into a publication proof.
+    paths = publication_paths(pathlib.Path.cwd())
+    names = set(tracked('HEAD', paths))
+    if data_commit is not None:
+        if not re.fullmatch(r'[a-f0-9]{40}', data_commit):
+            raise ValueError('Manifest data snapshot must be an exact commit SHA')
+        names.update(tracked(data_commit, paths))
     files = {}
-    for name in tracked('HEAD', publication_paths()):
+    for name in sorted(names):
         path = pathlib.Path(name)
         if path.is_file():
             body = path.read_bytes()
@@ -57,6 +67,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('mode', choices=['manifest', 'receipt'])
     p.add_argument('--commit')
+    p.add_argument('--data-commit', help='Exact data snapshot overlaid on published code; manifest only')
     p.add_argument('--all', action='store_true', help='Include every configured publication data path')
     p.add_argument('--output', required=True, type=pathlib.Path)
     args, paths = p.parse_known_args()
@@ -69,7 +80,7 @@ def main():
             p.error('Receipt requires the recorded commit and validated paths')
         result = {'schemaVersion': 1, 'commit': args.commit, 'files': tracked(args.commit, paths)}
     else:
-        result = manifest()
+        result = manifest(args.data_commit)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, sort_keys=True) + '\n')
 
