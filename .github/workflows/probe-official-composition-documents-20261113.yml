@@ -1,0 +1,25 @@
+name: Qualify official composition documents
+on:
+  push:
+    branches: [probe/official-composition-documents-20261113]
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Read only six new official document candidates
+        env:
+          PROBE_OUTPUT: ${{ runner.temp }}/official-composition-documents
+        run: python scripts/probe-official-composition-documents-20261113.py
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: official-composition-document-qualification
+          path: ${{ runner.temp }}/official-composition-documents/
+          retention-days: 35
