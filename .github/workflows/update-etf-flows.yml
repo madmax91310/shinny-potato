@@ -1,51 +1,52 @@
-name: ETF flows qualification (automatic collection blocked)
+name: ETF flows source access investigation
 on:
-  schedule:
-    - cron: '35 9 * * 1'
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'src/lib/etf-flows.js'
-      - 'src/data/etf-flows.json'
-      - 'src/pages/etf-flows/**'
-      - 'scripts/*etf-flows*'
-      - 'scripts/fixtures/etf-flows/**'
-      - '.github/workflows/update-etf-flows.yml'
 permissions:
   contents: read
 concurrency:
-  group: etf-flows-qualification-${{ github.ref }}
+  group: etf-source-access-investigation
   cancel-in-progress: false
   queue: max
 jobs:
-  qualification:
+  access:
     runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v7.0.1
-        with:
-          filter: blob:none
-          sparse-checkout-cone-mode: false
-          sparse-checkout: |
-            src/lib/etf-flows.js
-            src/data/etf-flows.json
-            src/data/freshness-policy.json
-            scripts/update-etf-flows.mjs
-            scripts/test-etf-flows.mjs
-            scripts/fixtures/etf-flows
-      - uses: actions/setup-node@v7.0.0
-        with:
-          node-version: 24
-      - name: Validate flow publication contracts
-        run: node scripts/test-etf-flows.mjs
-      - name: Report blocked flow collection
-        run: node scripts/update-etf-flows.mjs --report report/etf-flows.json
-      - name: Explain unavailable collection
+      - name: Probe public source access without publishing data
+        shell: python
         run: |
-          echo '### Nouvelle édition indisponible' >> "$GITHUB_STEP_SUMMARY"
-          echo 'Collecte automatique bloquée : droits de réutilisation et univers européen non qualifiés. Aucun chiffre collecté, aucune validation renouvelée. Voir le rapport et docs/etf-flows.md.' >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v7.0.1
-        with:
-          name: etf-flows-qualification
-          path: report/etf-flows.json
-          retention-days: 35
+          import urllib.request, urllib.error, hashlib, json, subprocess, tempfile, datetime
+          sources = {
+            'trackinsight': 'https://www.trackinsight.com/',
+            'trackinsight-services': 'https://www.trackinsight.com/en/services/data-services',
+            'trackinsight-terms': 'https://www.trackinsight.com/terms-of-use',
+            'amundi-page': 'https://www.amundietf.fr/fr/professionnels/comprendre-les-etf/weekly-pulse',
+            'amundi-pdf': 'https://www.amundietf.fr/pdfDocuments/amundi-etf_weekly-pulse.pdf',
+            'ishares-weekly-pdf': 'https://www.ishares.com/gls-download/literature/comments-and-analysis/tactical-flow-en-emea-pc-brochure.pdf',
+            'etfbook-api-offer': 'https://etfbook.com/delivery-methods/data-api',
+            'etfiq-weekly-index': 'https://etfiq.com/flows/weekly/',
+            'etfiq-weekly-json': 'https://etfiq.com/data/flows/weekly/2026-11-06.json',
+            'etfiq-license': 'https://etfiq.com/license/',
+          }
+          print('READ ONLY ACCESS INVESTIGATION. No observation validated or published; HTTP success is not a redistribution licence.')
+          for name, url in sources.items():
+            result = {'source': name, 'url': url, 'retrievedAt': datetime.datetime.now(datetime.timezone.utc).isoformat()}
+            try:
+              with urllib.request.urlopen(url, timeout=25) as response:
+                body = response.read(12_000_001)
+                if len(body) > 12_000_000: raise ValueError('Body exceeds investigation limit')
+                result.update(status=response.status, finalUrl=response.url, contentType=response.headers.get('Content-Type'), bytes=len(body), sha256=hashlib.sha256(body).hexdigest())
+              if 'trackinsight' in name:
+                result['challengeScript'] = b'awswaf.com' in body
+                result['containsWeeklyFigures'] = b'net_flow' in body
+              if name == 'etfiq-weekly-json':
+                data=json.loads(body)
+                result.update(edition=data['edition'], week=data['week'], licence=data['cite']['license_text'], sample={k:data['funds']['inflows'][0][k] for k in ['t','flow','from','to','complete','days','of']})
+              if name in ['amundi-pdf','ishares-weekly-pdf']:
+                with tempfile.NamedTemporaryFile(suffix='.pdf') as f:
+                  f.write(body);f.flush()
+                  text=subprocess.check_output(['pdftotext','-layout',f.name,'-'],text=True)
+                result['periodEvidence']=[line.strip() for line in text.splitlines() if any(x in line for x in ['21-day rolling','29/10/2026','04/11/2026','period 29 Oct','Weekly Pulse','09 November 2026'])][:6]
+            except Exception as error:
+              result['error']=str(error)
+            print(json.dumps(result,ensure_ascii=False))
