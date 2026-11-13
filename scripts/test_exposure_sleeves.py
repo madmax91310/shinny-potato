@@ -8,7 +8,7 @@ class EquitySleeves(unittest.TestCase):
   return {'componentsByNameMap':{'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{'isin':{'value':'EXACT'},'productStructure':{'value':'Physical'}}}}},'holdings':{'containersByNameMap':{'all':{'dataPointsByNameMap':p}}}}}
  def test_hedge_excluded_without_changing_source(self):
   body=self.body();original=copy.deepcopy(body);r,rows,_=equity_rows(body,'EXACT','https://official',NOW)
-  self.assertEqual(body,original);self.assertEqual(r['sourceCoverage'],101)
+  self.assertEqual(body,original);self.assertEqual(r['equityNavPct'],101)
   self.assertAlmostEqual(sum(v['weightPct'] for v in r['countries']['rows']),100)
   self.assertEqual(len(rows),2);self.assertEqual(r['excludedClasses'],['FX'])
  def test_identity_truncation_shorts_and_invalid_totals(self):
