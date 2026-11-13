@@ -59,16 +59,16 @@
       }
     },
     "latestLevels": {
-      "general": 103.47,
+      "general": 103.46,
       "alimentation": 101.42,
       "energie": 122.43
     },
-    "provisional": true,
+    "provisional": false,
     "sources": {
       "general": {
         "seriesId": "011814630",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-30",
+        "sourceUpdatedAt": "2026-11-13",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
         "scope": "FE",
         "frequency": "M",
@@ -274,7 +274,7 @@
           "2026-07": 102.68,
           "2026-08": 103.35,
           "2026-09": 103.07,
-          "2026-10": 103.47
+          "2026-10": 103.46
         },
         "quality": {
           "2010-01": "DEF",
@@ -478,16 +478,16 @@
           "2026-07": "DEF",
           "2026-08": "DEF",
           "2026-09": "DEF",
-          "2026-10": "P"
+          "2026-10": "DEF"
         },
         "pendingObservations": [],
-        "sha256": "5c73236736cfe7a2e9300898bd3a47a352206e66251452a4767e1a6770fb69fc",
-        "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+        "sha256": "d50eab392ca6a7472cb8773a53081d2d03a193303d57ad198b269497f3194e5d",
+        "checkedAt": "2026-11-13T09:06:54.876813+00:00"
       },
       "alimentation": {
         "seriesId": "011813717",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-30",
+        "sourceUpdatedAt": "2026-11-13",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
         "scope": "FE",
         "frequency": "M",
@@ -897,16 +897,16 @@
           "2026-07": "DEF",
           "2026-08": "DEF",
           "2026-09": "DEF",
-          "2026-10": "P"
+          "2026-10": "DEF"
         },
         "pendingObservations": [],
-        "sha256": "02af571feadac240c48c0e5314d0b33d3f03c8d8a54f5543064f91a6885eb861",
-        "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+        "sha256": "7277c046825118043b2dc633eed2adc35661514b158e8e9ba884fef424ce6d75",
+        "checkedAt": "2026-11-13T09:06:54.876813+00:00"
       },
       "energie": {
         "seriesId": "011813864",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-30",
+        "sourceUpdatedAt": "2026-11-13",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
         "scope": "FE",
         "frequency": "M",
@@ -1316,14 +1316,14 @@
           "2026-07": "DEF",
           "2026-08": "DEF",
           "2026-09": "DEF",
-          "2026-10": "P"
+          "2026-10": "DEF"
         },
         "pendingObservations": [],
-        "sha256": "0c52eac005582aec8a20a42c6b35db0b6fd0eff7f1b8997e91d282f519914495",
-        "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+        "sha256": "c718308b21bb1684aa6ce5b756e9a884ba0af8ce94baeb7c0b7e32c0df4381e7",
+        "checkedAt": "2026-11-13T09:06:54.876813+00:00"
       }
     },
-    "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+    "checkedAt": "2026-11-13T09:06:54.876813+00:00"
   },
   "irl": {
     "asOf": "2026-Q3",
@@ -1542,10 +1542,10 @@
         "2026-Q3": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "9ada96f702c20ab6d2e422c5d2b4c46e2dcfc10b01be2a565910223cc1509f9c",
-      "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+      "sha256": "6d0575e6108f7305816d2c3aa63516067268e90b0e2db4466b3b4a0e2abfc017",
+      "checkedAt": "2026-11-13T09:06:54.876813+00:00"
     },
-    "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+    "checkedAt": "2026-11-13T09:06:54.876813+00:00"
   },
   "smic": {
     "asOf": "2026-11",
@@ -2172,10 +2172,10 @@
         "2026-11": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "1544c326adfbebb571292600624487bafbd8728d24b83d76df659d9c79a076b0",
-      "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+      "sha256": "9b630919ade307c1d67736efef6655b3104a967b7ab246e8638d9bec107d4b28",
+      "checkedAt": "2026-11-13T09:06:54.876813+00:00"
     },
-    "checkedAt": "2026-11-13T07:13:03.569946+00:00"
+    "checkedAt": "2026-11-13T09:06:54.876813+00:00"
   },
   "schemaVersion": 1
 }
