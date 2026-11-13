@@ -42,7 +42,7 @@ class OfficialXndxDocumentTests(unittest.TestCase):
         self.assertEqual(calls,[m.FRED_XNDX_URL]);self.assertEqual(r['value'],34587.76)
         self.assertEqual(r['asOf'],'2026-11-12');self.assertEqual(r['parser'],'fred-document')
         self.assertEqual(r['symbol'],'XNDX');self.assertEqual(r['variant'],'TOTAL');self.assertEqual(r['currency'],'USD')
-        self.assertEqual(r['sourceEvidence']['expectedCompletedSession'],r['asOf'])
+        self.assertEqual(r['sourceEvidence']['session'],r['asOf'])
         self.assertEqual(r['sourceHashes'],{m.FRED_XNDX_URL:r['sha256']})
         self.assertNotIn('previousCloseDateEvidence',r,'The official level is not attributed to Yahoo')
     def test_only_exact_index_and_usd_total_return(self):
