@@ -20,6 +20,13 @@ Object.assign(record.universe,{basis:'europe-listed',label:'ETF cotés en Europe
 Object.assign(record.source,{rightsStatus:'licensed',rightsEvidence:'Autorisation simulée uniquement pour tester le validateur.'})
 const now = new Date('2026-11-13T12:00:00Z')
 assert.deepEqual(validateObservation(record,now),[])
+const globalRecord=structuredClone(record)
+globalRecord.universe={...globalRecord.universe,basis:'global-covered',label:'Univers mondial simulé de test'}
+assert.deepEqual(validateObservation(globalRecord,now),[])
+const globalText=buildFlowTweet(globalRecord,globalRecord.rows,{archive:true})
+assert(globalText.includes('univers mondial couvert'))
+assert(!globalText.includes('domiciliés en Europe'))
+assert.deepEqual(checkFlowText(globalText,globalRecord,globalRecord.rows,true),[])
 const rolling = {...record, start:'2026-10-09', periodKind:'rolling-1w', periodEvidence:'Intervalle de sept jours simulé pour tester le contrat 1W ; pas une observation du fournisseur.'}
 assert.deepEqual(validateObservation(rolling,now),[])
 assert(validateObservation({...rolling,start:'2026-10-08'},now).length)
@@ -52,3 +59,4 @@ assert.deepEqual(validateObservation(zeroContract,now),[])
 const zeroText=buildFlowTweet(zeroContract,zeroContract.rows,{archive:true})
 assert(zeroText.includes('flux net est nul'));assert(!zeroText.includes('ont reçu des apports'))
 assert.deepEqual(checkFlowText(zeroText,zeroContract,zeroContract.rows,true),[])
+
