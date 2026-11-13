@@ -12,21 +12,17 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
+      - name: Install PDF text extraction dependency
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils
       - name: Probe public source access without publishing data
         shell: python
         run: |
           import urllib.request, urllib.error, hashlib, json, subprocess, tempfile, datetime
           sources = {
-            'trackinsight': 'https://www.trackinsight.com/',
-            'trackinsight-services': 'https://www.trackinsight.com/en/services/data-services',
-            'trackinsight-terms': 'https://www.trackinsight.com/terms-of-use',
             'amundi-page': 'https://www.amundietf.fr/fr/professionnels/comprendre-les-etf/weekly-pulse',
             'amundi-pdf': 'https://www.amundietf.fr/pdfDocuments/amundi-etf_weekly-pulse.pdf',
             'ishares-weekly-pdf': 'https://www.ishares.com/gls-download/literature/comments-and-analysis/tactical-flow-en-emea-pc-brochure.pdf',
             'etfbook-api-offer': 'https://etfbook.com/delivery-methods/data-api',
-            'etfiq-weekly-index': 'https://etfiq.com/flows/weekly/',
-            'etfiq-weekly-json': 'https://etfiq.com/data/flows/weekly/2026-11-06.json',
-            'etfiq-license': 'https://etfiq.com/license/',
           }
           print('READ ONLY ACCESS INVESTIGATION. No observation validated or published; HTTP success is not a redistribution licence.')
           for name, url in sources.items():
