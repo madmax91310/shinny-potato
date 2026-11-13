@@ -15,5 +15,8 @@
     "2026-11-13T07:17:22.0268474Z ##[error]Process completed with exit code 1.",
     "2026-11-13T07:17:23.9622017Z Set output 'code_epoch'",
     "2026-11-13T07:17:23.9623720Z Set output 'needs_code'"
-  ]
+  ],
+  "exactHeldBackIdentifier": "expectedCompletedSession",
+  "knownByMergedCode": "Declared explicitly by new XNDX source adapter and tests in5d09e983",
+  "meaning": "Expected schema transition requires validated newer code; not permission to bypass consumer/schema guard."
 }

@@ -153,8 +153,9 @@
     "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
     "stage": "source",
     "latestNative13Nov": null,
-    "status": "not replaced by this lot; preserve original source-specific limit",
-    "publicationClaim": false
+    "status": "Blocage fournisseur actuel reproduit sur les deux lignesFX sans valeur ; dernier livre valide9Nov conservé",
+    "publicationClaim": false,
+    "proof": "globalx-source-control.json"
   },
   {
     "id": "qualified-primary:IE000U9ODG19:countries",
@@ -875,8 +876,9 @@
       },
       "checkedAt": "2026-11-13T03:02:47.597976+00:00"
     },
-    "status": "current supplier block independently reconfirmed",
-    "publicationClaim": false
+    "status": "Accès primaire403 encore actif ; relais13Nov renouvelé manuellement, ingéré et publié ; autonomie de renouvellement non démontrée",
+    "publicationClaim": false,
+    "proof": "preuve-sp-native-refus-2026-11-13.json"
   },
   {
     "id": "index-sp-euro-dividend-aristocrats-composition",
@@ -904,8 +906,9 @@
       },
       "checkedAt": "2026-11-13T03:02:47.597976+00:00"
     },
-    "status": "current supplier block independently reconfirmed",
-    "publicationClaim": false
+    "status": "Accès primaire403 encore actif ; relais13Nov renouvelé manuellement, ingéré et publié ; autonomie de renouvellement non démontrée",
+    "publicationClaim": false,
+    "proof": "preuve-sp-native-refus-2026-11-13.json"
   },
   {
     "id": "etf-observation-IE00BDBRDM35",
@@ -2416,11 +2419,18 @@
     "originalField": null,
     "initialMonitorAt": "2026-11-13T02:56:41.152604+00:00",
     "stage": "source",
-    "latestNative13Nov": null,
-    "status": "source repaired and ordinarily collected; publication tracked separately",
-    "publicationClaim": false,
+    "latestNative13Nov": {
+      "id": "anniversary-nasdaq100",
+      "checkedAt": "2026-11-13T09:06:55.895957+00:00",
+      "asOf": "2026-11-12",
+      "sourceUrl": "https://fred.stlouisfed.org/data/NASDAQXNDX",
+      "responseSha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79"
+    },
+    "status": "réparé, collecté ordinairement surpush, enregistré, publié et vérifié dans les deux formats publics ; cron non observé",
+    "publicationClaim": true,
     "newRun": 43383944403,
     "newAsOf": "2026-11-12",
-    "source": "https://fred.stlouisfed.org/data/NASDAQXNDX"
+    "source": "https://fred.stlouisfed.org/data/NASDAQXNDX",
+    "proof": "preuve-xndx-chaine-2026-11-13.json"
   }
 ]

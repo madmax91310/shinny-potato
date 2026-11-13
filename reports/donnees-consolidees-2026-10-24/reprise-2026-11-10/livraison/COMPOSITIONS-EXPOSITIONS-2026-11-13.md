@@ -2,7 +2,7 @@
 
 Même suivi#881 et mêmes matrices : **694entrées de portefeuille et86indices**, aucune extension de catalogue. Les dates de contrôle sont distinctes des photographies ; aucune renormalisation, aucune modification des maquettes, tweets ou PNG.
 
-**Publication finale en cours de validation ; aucune adoption publique de la nouvelle clôture revendiquée avant reçu final.**
+**CODE `8ad7a501d045fc03a49bd47fe41e690f2c8dfb41` / DATA `fb510c95b22e4485afdd176faced146a62f3014b`, vérifiés à 2026-11-13T09:15:11.137341+00:00.**
 
 ## Usages préservés et contrôlés publiquement
 
@@ -22,7 +22,7 @@ Quatre allocations ont été exercées sur le vrai site le13Nov : Healthcare/Age
 
 | Cause / actifs | Résultat nouveau utile | Pièce manquante et usage empêché |
 |---|---|---|
-| Deux compositions natives S&P Global QualityIncome / EuroHighYieldDividendAristocrats | Nouvelle route officielle espagnole qualifiée localement, indices exacts92388578USD et5475610EUR, photo30Oct. **Refus403 dans GitHub Ubuntu ET macOS**, également confirmé pour les deux indices dans le producteur ETF ordinaire | Accès officiel autorisé et fonctionnel depuis GitHub, ou handoff automatiquement renouvelé. #1253 reste **brouillon, non fusionnée/non déployée** ; dernière photo et vrai contrôle6Nov conservés. Aucune tolérance48h augmentée |
+| Deux compositions natives S&P Global QualityIncome / EuroHighYieldDividendAristocrats | Nouvelle route officielle espagnole qualifiée localement, indices exacts92388578USD et5475610EUR, photo30Oct. **Refus403 dans GitHub Ubuntu ET macOS**, également confirmé pour les deux indices dans le producteur ETF ordinaire | Accès officiel autorisé et fonctionnel depuis GitHub, ou handoff automatiquement renouvelé. #1253 reste **brouillon, non fusionnée/non déployée** ; relai777ff763renouvelé à07:42:53puis consommé par43387815229et publié4b7d373f ; photo30Oct et contrôle13Nov désormais utilisés. L’ancien relais expiré est historique ; le renouvellement autonome du relais reste non démontré. Aucune tolérance48h augmentée |
 | GlobalXRobotics IE00BLCHJB90 | Nouvelle collecte ciblée réelle13Nov encore refusée : deux contrats FX sans NET_ASSETS/MARKET_VALUE ; l’erreur ne vient pas du parseur qui aurait perdu un zéro | Valeurs et poids NAV officiels des deux lignes. Dernier livre valide9Nov conservé ; renouvellement complet défaillant, usages antérieurement qualifiés encore disponibles avec leur date |
 | Six livres WisdomTree Cloud/Defence/Quantum/AI/Battery/GGRA | Nouvelle piste régionale.eu réellement examinée : redirection vers la même source.com, aucun livre NAV indépendant obtenu | Livre économique exact avec dénominateur NAV, liquidités, identités et poids, plus accès automatisable autorisé. Les classements existants ne prouvent pas un recouvrement intégral |
 | Autres limites déjà documentées : Mining, QYLD, L&G, Nikkei, livres dont total/couverture refusés | Identités contradictoires, paniers de substitution, conditions non qualifiées et photographies incompatibles conservés dans chaque ligne | Aucun nouveau document concluant n’a été obtenu sur ces cas dans ce lot ; aucune ancienne acquisition n’est présentée comme une nouvelle résolution |
@@ -38,3 +38,11 @@ Requalification des694entrées par **le moteur effectif** `sharedPositions/catal
 Le producteur ETF du13Nov a livré42observations iShares,37Amundi,9SSGA,126supplémentaires,107résultats d’indices réussis et4nonapplicables, avec2échecs natifs S&P. **Ces résultats ne certifient pas tous les champs absents ni les livres complets indépendants.** Les rapports individuels et leurs véritables champs sont joints : [preuve](preuve-collecte-etf-individuelle-2026-11-13.json). SPYL et les111entrées liées au manifeste ont leur reçu de consommation distinct : [preuve initiale79entrées Git +32projections générées](public-inputs-initial-binding.json).
 
 Les crons fournisseurs postcorrectifs sont documentés au moment réellement observé, pas à leur seule heure nominale : [passages](preuve-passages-planifies-2026-11-13.json). Les anciens rapports et tentatives échouées restent dans Git et l’[archive du commentaire#881](historique-commentaire-881-avant-13nov.md). Automatisation complète **non démontrée** sur les livres et accès bloqués ci-dessus.
+
+## Contrôle final après les publications concurrentes
+
+Les quatre recettes publiques ont été **rejouées après la publication fb510c95** : résultats Healthcare/Ageing18,71%, Invesco/EMSmall0%, LifeStrategy20/80Partiel etSPYL/EMIMIPartiel, sans erreur JavaScript. Aperçu et PNG téléchargé identiques ; affichages1440et390px contrôlés. L’invariance à l’ordre reste une vérification du moteur commun, distincte de cette recette navigateur. [Reçus finaux datés et liés à leur version](preuve-consommateurs-compositions-publics-finale-2026-11-13.json).
+
+Les publications concurrentes ont aussi été rapprochées : le run ETF **43387815229** surpush a ingéré le relais S&P renouvelé manuellement à07:42:53UTC et l’a publié, tout en conservant **deux échecs primaires403**. Le producteur d’expansion **43389617455**, manuel, a36éléments attendus et36réussis — le nom historique «35 » du job ne change pas ce périmètre. Ces réussites ne qualifient ni les champs absents ni un livre complet lorsque son dénominateur ou ses identités manquent. Les garde-fous des photographies, poids inconnus et substituts sont inchangés.
+
+Au dernier relevé API13Nov, seul le **cron du moniteur** est observable ; aucun passage fournisseur du13Nov n’est démontré. Prochains contrôles nominaux le14Nov aux horaires configurés, sans préjuger du déclenchement effectif ou d’une nouvelle photographie fournisseur. Les échecs primaires, limitations de couverture et attentes de cron restent distincts dans les matrices et#881.

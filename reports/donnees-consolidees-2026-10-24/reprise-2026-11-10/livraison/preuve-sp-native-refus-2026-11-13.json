@@ -380,5 +380,69 @@
   "missing": "Official authorized source or automatic fresh qualified handoff actually accessible from ordinary GitHub producers",
   "retained": "Previous30October photographs retain6November source control; no renewal on failed access",
   "identity": "Global Quality Income92388578USD; Euro HighYield5475610EUR; no ESG lookalike substitution",
-  "noProductionChange": true
+  "noProductionChange": true,
+  "concurrentUpdate": {
+    "inputCommit": "777ff763387e4b66797acdb380ff0d4821334cb7",
+    "recordedCommit": "4b7d373f1a34f391638d2506485066f16628e8b0",
+    "ordinaryProductionRun": 43387815229,
+    "artifactId": 14019896190,
+    "event": "push",
+    "sourceClock": "2026-11-13T07:42:53.019849+00:00",
+    "photograph": "2026-10-30",
+    "primaryOutcomes": [
+      {
+        "id": "index-sp-global-dividend-aristocrats-composition",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "name": "S&P Global Dividend Aristocrats Quality Income · composition",
+        "error": "Direct S&P source control failed: HTTP Error 403: Forbidden; previously qualified composition retained without renewing its source clock (2026-11-13T07:42:53.019849+00:00).",
+        "status": "failed",
+        "operationAttempted": true,
+        "sourceAttempted": null
+      },
+      {
+        "id": "index-sp-euro-dividend-aristocrats-composition",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "name": "S&P Euro High Yield Dividend Aristocrats · composition",
+        "error": "Direct S&P source control failed: HTTP Error 403: Forbidden; previously qualified composition retained without renewing its source clock (2026-11-13T07:42:53.019849+00:00).",
+        "status": "failed",
+        "operationAttempted": true,
+        "sourceAttempted": null
+      }
+    ],
+    "retainedSourceProofs": {
+      "sp-global-dividend-aristocrats": {
+        "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1",
+        "checkedAt": "2026-11-13",
+        "sha256": "1ada31ffab2d82fecd3ee79be9022c9a2c15c32eb1437004bc3ed3de138b667a",
+        "label": "Données publiques numériques S&P DJI",
+        "retrievedAt": "2026-11-13T07:42:53.019849+00:00",
+        "transport": "official-response-handoff",
+        "primaryAccessError": "HTTP Error 403: Forbidden"
+      },
+      "sp-euro-dividend-aristocrats": {
+        "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1",
+        "checkedAt": "2026-11-13",
+        "sha256": "7249286fa3418b5e19ddeb6254142a5f9fcbcc8d61ef2e04dce184a0f01e5f51",
+        "label": "Données publiques numériques S&P DJI",
+        "retrievedAt": "2026-11-13T07:42:53.019849+00:00",
+        "transport": "official-response-handoff",
+        "primaryAccessError": "HTTP Error 403: Forbidden"
+      }
+    },
+    "publicObserved": {
+      "sha": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41",
+      "dataSha": "4b7d373f1a34f391638d2506485066f16628e8b0",
+      "builtAt": "2026-11-13T07:52:44.035Z"
+    },
+    "scope": "Handoff renewed in a user-authored commit and genuinely consumed by ordinary producer, then published. Not proof of automated upstream handoff acquisition. Primary403 still reported individually; sourceclock not renewed by the failed07:48request.",
+    "oldExpiryStatus": "Historical6Novhandoff expiry superseded by current13Novhandoff; currentdirectaccess failure persists"
+  }
 }

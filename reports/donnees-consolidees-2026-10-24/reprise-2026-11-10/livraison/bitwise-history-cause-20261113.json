@@ -24,7 +24,15 @@
     "points": 6,
     "first": "2026-11-05T08:00:00+00:00",
     "last": "2026-11-12T08:00:00+00:00",
-    "sha256": "2802e681749ca36bb35e75f6c5b030c07a98f8ff721b797bf0678fa49af6ea76"
+    "sha256": "2802e681749ca36bb35e75f6c5b030c07a98f8ff721b797bf0678fa49af6ea76",
+    "announcedTimestampCount": 6,
+    "validCloseCount": 5,
+    "lastValidCloseDate": "2026-11-11",
+    "lastAnnouncedDate": "2026-11-12",
+    "announcedMissingCloseDates": [
+      "2026-11-12"
+    ],
+    "interpretation": "Six timestamps do not mean six closing prices. Five valid closes5–11Nov;12Novclose is null despite other quote data. Ordinary collector correctly retains11Nov; no12Novclosing success inferred from regularMarketPrice or OHLC. Sourcepartial remains explicit."
   },
   "firstTradeDateMeaning": "Provider available-history start only; not financial instrument inception or proof of a corporate action",
   "vendorFirstAvailable": "2026-11-05T08:00:00+00:00",
@@ -69,5 +77,10 @@
     "documentedLimit": "SectionDownloadPriceHistory/I.2 treats services based on the data offered to third parties as fee-licensed value-added use. No corresponding licence evidenced for this public application.",
     "observedAccess": "Exactinstrumentpage accessible in ordinarybrowser. Attempt tochange2021date inputs did notcomplete; no2021historyacquisitionclaimed.",
     "activation": "Not enabled; no exchange prices copied to production or public reports."
+  },
+  "ordinaryGithubRecentLevelProduction": {
+    "run": 43383944403,
+    "asOf": "2026-11-11",
+    "checkedAt": "2026-11-13T07:13:04.790308+00:00"
   }
 }

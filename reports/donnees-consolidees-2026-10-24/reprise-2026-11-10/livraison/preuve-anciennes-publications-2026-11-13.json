@@ -1,0 +1,126 @@
+{
+  "checkedAt": "2026-11-13",
+  "incidents": [
+    {
+      "incidentId": "checks:update-qualified-exposures.yml",
+      "originalRun": 43257386877,
+      "originalCause": "Étape en échec dans une exécution non terminée : report-failures : Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> \"$GITHUB_STEP_SUMMARY\"",
+      "initialKind": "qualification",
+      "initialProofStatus": "resolution-unproven",
+      "latestWorkflow": {
+        "runId": 43284841717,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43284841717",
+        "completedAt": "2026-11-12T20:34:25Z",
+        "collectionStatus": "failure",
+        "validationStatus": "success",
+        "recordingStatus": "success",
+        "publicationStatus": "success",
+        "publishedCodeSha": "bc50df618d5b2087f57761503d927e27fc00e4ce",
+        "publishedDataSha": "152629fe89c746a4676a3149dbf6cb974f0fb950"
+      },
+      "publicInputProof": "public-inputs-initial-binding.json",
+      "preservedHistory": true,
+      "noSilentClosure": true,
+      "currentStage": "Failure quoted is report-failures signaling partialsource outcomes, not a currentfailed storage step. Latestvalidation/record/publication succeeded; GlobalXandDefenceprimary failures preserved.",
+      "notClaimed": "No original error or sourcepartial removed"
+    },
+    {
+      "incidentId": "publication:update-market-monthly.yml",
+      "originalRun": 42893015896,
+      "originalCause": "deploy / publish : Run node scripts/deploy-validated-pages.mjs ; report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+      "initialKind": "qualification",
+      "initialProofStatus": "resolution-unproven",
+      "latestWorkflow": {
+        "runId": 43259309235,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43259309235",
+        "completedAt": "2026-11-12T18:50:43Z",
+        "collectionStatus": "failure",
+        "validationStatus": "success",
+        "recordingStatus": "success",
+        "publicationStatus": "not-run",
+        "publishedCodeSha": "ad3f267a154102e85f3f0ca2f699b03e79165776",
+        "publishedDataSha": "2c4f0ac8b9d4b4e4e2913083fe94d6eefe0984d8"
+      },
+      "publicInputProof": "public-inputs-initial-binding.json",
+      "preservedHistory": true,
+      "noSilentClosure": true,
+      "currentStage": "Current774monthlyroute inputs bound byte-for-byte to publicmanifest. Prior12Novrecord/publication proof reused without inventing oldrun success. Original10Novpublisher failure remains historical qualification.",
+      "remainingHistoricalEvidence": "Exactoriginal producer-file receipt/adoption for42893015896 not newly acquired in thislot; preserved as documentary limitation, not current monthly source downtime"
+    },
+    {
+      "incidentId": "publication:update-qualified-exposures.yml",
+      "originalRun": 42668436168,
+      "originalCause": "deploy / publish-code / python-checks : Run python -m unittest discover -s scripts -p 'test_index_extensions.py' ; report-failures : Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> \"$GITHUB_STEP_SUMMARY\"",
+      "initialKind": "qualification",
+      "initialProofStatus": "resolution-unproven",
+      "latestWorkflow": {
+        "runId": 43284841717,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43284841717",
+        "completedAt": "2026-11-12T20:34:25Z",
+        "collectionStatus": "failure",
+        "validationStatus": "success",
+        "recordingStatus": "success",
+        "publicationStatus": "success",
+        "publishedCodeSha": "bc50df618d5b2087f57761503d927e27fc00e4ce",
+        "publishedDataSha": "152629fe89c746a4676a3149dbf6cb974f0fb950"
+      },
+      "publicInputProof": "public-inputs-initial-binding.json",
+      "preservedHistory": true,
+      "noSilentClosure": true,
+      "currentStage": "Later ordinarypublisher43284841717reports publication success; DATA152629fe already observed publicly then newer canonical books adoptedc495. Four maintained overlaps actually retested publicly13Nov.",
+      "notClaimed": "Original9Novsnapshot or allsourcebranches not retrospectively certified"
+    },
+    {
+      "incidentId": "publication:collect-etf-pilot.yml",
+      "originalRun": 42635169491,
+      "originalCause": "deploy / publish-code / python-checks : Run python -m unittest discover -s scripts -p 'test_index_extensions.py' ; report-failures : Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+      "initialKind": "qualification",
+      "initialProofStatus": "resolution-unproven",
+      "latestWorkflow": {
+        "runId": 43317827043,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43317827043",
+        "completedAt": "2026-11-12T23:37:38Z",
+        "collectionStatus": "failure",
+        "validationStatus": "success",
+        "recordingStatus": "success",
+        "publicationStatus": "success",
+        "publishedCodeSha": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41",
+        "publishedDataSha": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41"
+      },
+      "publicInputProof": "public-inputs-initial-binding.json",
+      "preservedHistory": true,
+      "noSilentClosure": true,
+      "currentStage": "Later ordinaryETFpublication demonstrated13Nov03:06, DATAc495bd2e, source43355654291, deployjob131659623813. BothS&Pnative source failures remain separate.",
+      "notClaimed": "Original9Novsnapshot not retrospectively claimed deployed"
+    },
+    {
+      "incidentId": "checks:update-lifestrategy.yml",
+      "originalRun": 42370053068,
+      "originalCause": "deploy / publish-code / browser-checks (2) : node scripts/test-index-ribbon.mjs — const err = new Error(message);",
+      "initialKind": "qualification",
+      "initialProofStatus": "resolution-unproven",
+      "latestWorkflow": {
+        "runId": 43244573042,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43244573042",
+        "completedAt": "2026-11-12T16:19:49Z",
+        "collectionStatus": "success",
+        "validationStatus": "success",
+        "recordingStatus": "success",
+        "publicationStatus": "not-run",
+        "publishedCodeSha": null,
+        "publishedDataSha": null
+      },
+      "publicInputProof": "public-inputs-initial-binding.json",
+      "preservedHistory": true,
+      "noSilentClosure": true,
+      "currentStage": "Currentparent/child data, dates and partial20/80usage publicly reproduced13Nov; original7Novindexribbon test separate. Currentmastervalidation is separately dated.",
+      "remainingHistoricalEvidence": "Original42370053068snapshot is not retroactively certified; current master indexribbon check follows its actual CI log"
+    }
+  ],
+  "scope": "Stage-specific historical reconciliation, no ledger deletion or retry merely to obtain a green status",
+  "proofs": [
+    "public-inputs-initial-binding.json",
+    "preuve-consommateurs-compositions-publics-2026-11-13.json",
+    "pr1251-14-checks.json"
+  ]
+}

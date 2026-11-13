@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-13T07:39:14.880974+00:00",
+  "checkedAt": "2026-11-13T09:19:37.703446+00:00",
   "counts": {
     "histories": 774,
     "compositionAssets": 694,
@@ -14,5 +14,30 @@
     "nonApplicable": 53
   },
   "caveat": "774routes ≠774instruments ;694entries include direct stocks, partialfunds,53nonapplicable ;1218monitor records include1186qualifications, not1218source failures",
-  "noDisappearance": true
+  "noDisappearance": true,
+  "currentIdentityReconciliation": {
+    "monitorCheckedAt": "2026-11-13T09:13:35.641046+00:00",
+    "publicExportAt": "2026-11-13T09:15:57.285Z",
+    "combinations": [
+      {
+        "presentInCurrentMonitor": false,
+        "presentInCurrentPublicExport": false,
+        "publicFailure": false,
+        "initialIdentities": 1
+      },
+      {
+        "presentInCurrentMonitor": true,
+        "presentInCurrentPublicExport": true,
+        "publicFailure": false,
+        "initialIdentities": 1211
+      },
+      {
+        "presentInCurrentMonitor": true,
+        "presentInCurrentPublicExport": true,
+        "publicFailure": true,
+        "initialIdentities": 6
+      }
+    ],
+    "note": "Exactly1218initialidentities retained. The public export across all application categories has10897rows; this is not10897financial failures. Absence alone never proves source repair."
+  }
 }

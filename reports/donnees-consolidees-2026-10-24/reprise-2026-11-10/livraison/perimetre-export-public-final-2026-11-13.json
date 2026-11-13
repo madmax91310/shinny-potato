@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-11-13T09:15:57.285Z",
+  "monitorCheckedAt": "2026-11-13T09:13:35.641046+00:00",
+  "allApplicationRows": 10897,
+  "summary": {
+    "points": 10897,
+    "categories": {
+      "failure": 35,
+      "connection": 266,
+      "monitoring": 375,
+      "qualification": 2659,
+      "due": 8,
+      "editorial": 28,
+      "archive": 5055,
+      "waiting": 836,
+      "not-applicable": 441,
+      "history": 1194
+    },
+    "signals": 14886,
+    "attempts": 1632,
+    "commonInterventions": 2,
+    "pointsInCommonInterventions": 4,
+    "consumerContracts": 5782,
+    "consumerStates": {
+      "blocked": 1289,
+      "qualification-needed": 1084,
+      "scheduled-evidence": 3409
+    }
+  },
+  "denominators": {
+    "fields": 4597,
+    "workflows": 25,
+    "requiredConsumerContracts": 30327
+  },
+  "sha256Uncompressed": "43c952ca4d1be09134733b9ec1f55f9a8204dd33a67c59f73268648ee3eb3951",
+  "scope": "Whole public export is evidence, not an expansion of this mission beyond the two financial families; archive/history/consumer qualifications are not data failures"
+}

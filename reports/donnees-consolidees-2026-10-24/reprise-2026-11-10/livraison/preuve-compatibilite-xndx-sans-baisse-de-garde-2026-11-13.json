@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-11-13T08:29:36.600Z",
+  "oldProducerRun": 43383944403,
+  "oldHeldBackIdentifier": "expectedCompletedSession",
+  "sameFinancialRecordAfterSchemaMapping": true,
+  "immutableFinancialRecord": {
+    "value": 34587.76,
+    "asOf": "2026-11-12",
+    "currency": "USD",
+    "parser": "fred-document",
+    "symbol": "XNDX",
+    "seriesId": "NASDAQXNDX",
+    "variant": "TOTAL",
+    "indexCode": null,
+    "sourceUrl": "https://fred.stlouisfed.org/data/NASDAQXNDX",
+    "sourceUrls": [
+      "https://fred.stlouisfed.org/data/NASDAQXNDX"
+    ],
+    "sha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79",
+    "sourceHashes": {
+      "https://fred.stlouisfed.org/data/NASDAQXNDX": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79"
+    },
+    "quoteMethod": "official-fred-xndx-document",
+    "sourceEvidence": {
+      "seriesId": "NASDAQXNDX",
+      "provider": "Nasdaq, Inc.",
+      "asOf": "2026-11-12",
+      "value": 34587.76,
+      "publisherUpdated": "2026-11-12 10:44 PM CST",
+      "sourceDateRange": "1999-03-04 to 2026-11-12",
+      "sha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79",
+      "completedSession": "2026-11-12"
+    },
+    "method": "Clôture officielle XNDX Total Return USD, dividendes bruts réinvestis ; série Nasdaq NASDAQXNDX publiée par FRED, séance et date de publication contrôlées",
+    "maxAgeDays": 7
+  },
+  "introducedIdentifierDelta": {
+    "added": [
+      "session"
+    ],
+    "removed": [
+      "expectedCompletedSession"
+    ]
+  },
+  "publishedCodeAlreadyUsesSession": true,
+  "publishedCode": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41",
+  "unchangedGuards": [
+    "compose-fallback-snapshot.mjs",
+    "classify-deploy-scope.mjs",
+    "check-pages-head.mjs",
+    "required producer file receipts"
+  ],
+  "scope": "Pure guard regression using original publication refusal and oldcode bytes, plus a new real targetedFREDsource control. Does not claimpublic adoption before actual run."
+}

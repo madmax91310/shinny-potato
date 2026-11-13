@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-13T09:16:01.653Z",
+  "responses": [
+    {
+      "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/publication-manifest.json",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/data-review-inbox.json",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/asset-field-coverage.json",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/automation-status.yml/runs",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "alerts": [],
+  "exportKeys": [
+    "generatedAt",
+    "monitorCheckedAt",
+    "reportArchiveSchemaVersion",
+    "reportScopeSchemaVersion",
+    "reportScopes",
+    "filters",
+    "summary",
+    "denominators",
+    "rows"
+  ],
+  "exportButton": "Exporter tous les 10897 diagnostics et preuves (JSON)"
+}

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-13T07:31:49.257996+00:00",
+  "checkedAt": "2026-11-13T09:14:49.186413+00:00",
   "apiTotalScheduled13Nov": 1,
   "rows": [
     {
@@ -16,7 +16,8 @@
         "recordingStatus": "success",
         "publicationStatus": "not-run"
       },
-      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess",
+      "nextNominalObservation": "2026-11-14 UTC at configured daily cron; conditional monthly full collection2026-11-16 06:15UTC; not an acquired success"
     },
     {
       "workflow": "refresh-automated-index-sheets.yml",
@@ -32,7 +33,8 @@
         "recordingStatus": "success",
         "publicationStatus": "success"
       },
-      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess",
+      "nextNominalObservation": "2026-11-14 UTC at configured daily cron; conditional monthly full collection2026-11-16 06:15UTC; not an acquired success"
     },
     {
       "workflow": "update-market-monthly.yml",
@@ -49,7 +51,8 @@
         "recordingStatus": "success",
         "publicationStatus": "not-run"
       },
-      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess",
+      "nextNominalObservation": "2026-11-14 UTC at configured daily cron; conditional monthly full collection2026-11-16 06:15UTC; not an acquired success"
     },
     {
       "workflow": "collect-etf-pilot.yml",
@@ -65,7 +68,8 @@
         "recordingStatus": "success",
         "publicationStatus": "success"
       },
-      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess",
+      "nextNominalObservation": "2026-11-14 UTC at configured daily cron; conditional monthly full collection2026-11-16 06:15UTC; not an acquired success"
     },
     {
       "workflow": "update-publication-observations.yml",
@@ -81,7 +85,8 @@
         "recordingStatus": "success",
         "publicationStatus": "success"
       },
-      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess",
+      "nextNominalObservation": "2026-11-14 UTC at configured daily cron; conditional monthly full collection2026-11-16 06:15UTC; not an acquired success"
     },
     {
       "workflow": "update-qualified-exposures.yml",
@@ -97,7 +102,8 @@
         "recordingStatus": "success",
         "publicationStatus": "success"
       },
-      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess",
+      "nextNominalObservation": "2026-11-14 UTC at configured daily cron; conditional monthly full collection2026-11-16 06:15UTC; not an acquired success"
     },
     {
       "workflow": "update-exposure-expansion.yml",
@@ -113,8 +119,28 @@
         "recordingStatus": null,
         "publicationStatus": null
       },
-      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess"
+      "interpretation": "No supplier cron13Nov observed in current API; configured time is not proof of trigger orsuccess",
+      "nextNominalObservation": "2026-11-14 UTC at configured daily cron; conditional monthly full collection2026-11-16 06:15UTC; not an acquired success"
     }
   ],
-  "distinction": "02:52:43automation-status schedule is a monitor cron, not a supplier cron"
+  "distinction": "02:52:43automation-status schedule is a monitor cron, not a supplier cron",
+  "scheduledRunsActuallyObserved": [
+    {
+      "id": 43355162420,
+      "name": "Publish automation failures",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-13T02:52:43Z",
+      "head_sha": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41"
+    }
+  ],
+  "ordinaryNewProduction": {
+    "runId": 43398418519,
+    "event": "push",
+    "sourceSuccess": true,
+    "recordedCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
+    "published": true,
+    "notAScheduledRun": true
+  }
 }
