@@ -6,3 +6,4 @@
 .flows-manual .flows-inline{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center}.flows-manual .flows-inline label{margin:4px 0}.flows-manual input[type=radio]{width:auto;max-width:none;flex:0 0 auto}.flows-manual .flows-manual-line{background:var(--surface,#fff)}.flows-manual .flows-manual-line label{min-width:0}.flows-manual .flows-manual-line input{min-width:0}.flows-manual .flows-inline legend{padding:0 4px}.flows-manual .tool-settings>section{min-width:0}
 
 .flows-page{padding-bottom:180px}.flows-page>.flows-advanced{scroll-margin-bottom:180px}
+@media(min-width:1100px){.flows-manual .workspace-tool-columns{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}.flows-manual .flows-manual-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.flows-manual-line>.flows-inline,.flows-manual-line>.workspace-button{grid-column:1/-1}.flows-manual-line>.workspace-button{justify-self:start}}
