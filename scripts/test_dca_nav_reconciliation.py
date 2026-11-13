@@ -19,8 +19,17 @@ class NavReconciliation(unittest.TestCase):
       parse_complete(body,probe['isin'],probe['sourceUrl'],dt.datetime(2026,10,29,tzinfo=dt.timezone.utc))
      continue
     h,_=parse_complete(body,probe['isin'],probe['sourceUrl'],dt.datetime(2026,10,29,tzinfo=dt.timezone.utc))
-    p=h['navReconciliation'];self.assertAlmostEqual(p['selectedWeightPct'],probe['classTotals']['Equity'])
-    self.assertEqual(len(p['unidentifiedPositions']),len(probe['unknownEquity']))
+    p=h['navReconciliation']
+    qualified=h.get('qualifiedExcludedPositions',[])
+    # This original October source already contains the exact Akero cash right
+    # whose completed merger and governing contract are now qualified. Keep
+    # the immutable source proof; reconcile it instead of pretending it is a share.
+    if probe['isin']=='IE00BF4RFH31':
+     self.assertEqual([(x['qualification']['id'],x['sourcePosition']['weightPct'])for x in qualified],
+                      [('akero-cash-cvr-20251209',.0003)])
+    else:self.assertEqual(qualified,[])
+    self.assertAlmostEqual(p['selectedWeightPct']+sum(x['sourcePosition']['weightPct']for x in qualified),probe['classTotals']['Equity'])
+    self.assertEqual(len(p['unidentifiedPositions']),len(probe['unknownEquity'])-len(qualified))
     self.assertAlmostEqual(p['publishedNetWeightPct'],sum(probe['classTotals'].values()))
     self.assertFalse(p['normalizationApplied']);self.assertEqual(len(h['rows']),p['selectedRowCount'])
  def fixture(self):
