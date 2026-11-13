@@ -68,7 +68,7 @@
     "test:new-instruments": "node scripts/build-ranking-annual.mjs && node scripts/test-new-instruments.mjs",
     "test:publication-expansion": "node scripts/test-publication-models.mjs",
     "test:income-recovery": "node scripts/build-ranking-annual.mjs && node scripts/test-income-recovery.mjs",
-    "test:etf-flows": "node scripts/test-etf-flows.mjs && node scripts/test-etf-flows-paste.mjs",
+    "test:etf-flows": "node scripts/test-etf-flows.mjs && node scripts/test-etf-flows-paste.mjs && node scripts/test-etf-flows-manual.mjs",
     "test:etf-flows:browser": "node scripts/playwright-etf-flows.mjs"
   },
   "dependencies": {
