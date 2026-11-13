@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import {parseExpressReport} from '../src/pages/etf-flows/report.js'
 // Dated ETF Express excerpt, 9 Nov 2026, week 45; not a production observation.
-const excerpt=`Here’s a recap of European ETF activity between November 2 and November 6, 2026.
+const excerpt=`European ETF Market Wrap | Week 45, 2026\nNovember 9, 2026\nHere’s a recap of European ETF activity between November 2 and November 6, from our data partners, Trackinsight.
 According to Trackinsight data, Equity ETFs attracted €10.79 billion and Fixed Income ETFs attracted €1.68 billion. Commodity products recorded €767.7 million in net outflows, while cryptocurrency products saw €93.2 million in net outflows.
 Financials Lead Sector ETF Inflows as Industrials Record Largest Outflow
 Financials ETFs recorded the largest sector inflow at €421.7 million.
@@ -26,3 +26,6 @@ for(const text of ['China saw €2 million','Unknown ETFs attracted €2 million
 assert.equal(parseExpressReport('China attracted $2 million.\nEurope attracted €1 million.').currency,null)
 assert.throws(()=>parseExpressReport('a'.repeat(50001)))
 console.log('ETF Express report: dated full excerpt, 20 flows, signs, categories, performance exclusions and ambiguity passed.')
+
+assert.equal(parseExpressReport('European ETF activity between November 2 and November 6.').start,'')
+assert(parseExpressReport('China attracted €2 million.\nEurope saw €1 million.').warnings.length)
