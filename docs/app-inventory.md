@@ -6,6 +6,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Outil | Route |
 |---|---|
+| Où va l’argent des ETF ? | /flux-etf |
 | Comparateur d’indices | /comparateur-indices |
 | Idées de publications | /idees-classements |
 | Hey @Grok | /hey-grok |
