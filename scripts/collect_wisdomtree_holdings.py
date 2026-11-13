@@ -184,8 +184,8 @@ def collect_rankings(share,now):
     page,route,attempts=product_page(share['sourceUrl'])
     share={**share,'sourceUrl':route}
     from security_identifier_observations import qualified_observations,qualified,API,requires_independent_identity
-    required={r['descriptorB']for r in rankings(page)['ranking']} if requires_independent_identity(share['isin']) else set()
-    static=qualified_observations(now) if required else {}
+    required={r['descriptorB']for r in rankings(page)['ranking']}
+    static=qualified_observations(now) if requires_independent_identity(share['isin']) else {}
     if requires_independent_identity(share['isin']) and required and required.issubset(static):
         evidence={key:static[key]for key in required}
         mapping={key:qualified(value,now)[1]for key,value in evidence.items()}
@@ -196,7 +196,7 @@ def collect_rankings(share,now):
           identityCheckedAt={key:value['checkedAt']for key,value in evidence.items()},identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
           identityQualification='Independent common FIGI proofs under the existing static-identity freshness policy; portfolio date unchanged',
           sourceUrls=[share['sourceUrl'],*proofs],accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}])
-    snapshot=complete_identity_mapping(now)
+    snapshot=complete_identity_mapping(now,required)
     mapping,dates,proofs=snapshot
     rows,stamp=parse(page,share,now,mapping,dates)
     return observation(rows,stamp,share['sourceUrl'],page,identitySourceHashes=proofs,identityAsOfDates=dates,
@@ -213,7 +213,7 @@ class IdentitySnapshot(tuple):
         result.source_failures=failures
         return result
 
-def qualified_identity_books(now):
+def qualified_identity_books(now,required=None):
     mapping={};dates=[];proofs={};failures=[]
     for expected,url in IDENTITIES:
         try:
@@ -221,34 +221,48 @@ def qualified_identity_books(now):
         except Exception as error:
             failures.append({'isin':expected,'sourceUrl':url,'error':str(error)[:350]})
             continue
+        if required is not None:
+            values={key:value for key,value in values.items() if key in required}
+        if not values:continue
         # Two valid but contradictory identifiers must still fail closed.
         if any(k in mapping and mapping[k]!=v for k,v in values.items()):raise ValueError('Contradictory identity sources')
         mapping.update(values);dates.append(stamp);proofs[url]=hashlib.sha256(raw).hexdigest()
     return mapping,dates,proofs,failures
 
-def complete_identity_mapping(now):
+def complete_identity_mapping(now,required=None):
+    # A conflict concerning another portfolio must not certify OR strand this
+    # fund. Declare its entire native security perimeter before joining proofs.
+    if required is not None:
+        if not required or any(not isinstance(key,str) or not re.fullmatch(r'[A-Z0-9]{7}',key) for key in required):
+            raise ValueError('Invalid requested WisdomTree security identity perimeter')
+        required=tuple(sorted(set(required)))
     # lru_cache alone allows concurrent misses to repeat all issuer downloads.
-    with _IDENTITY_SNAPSHOT_LOCK:return _cached_identity_mapping(now)
+    with _IDENTITY_SNAPSHOT_LOCK:return _cached_identity_mapping(now,required)
 
-@lru_cache(maxsize=2)
-def _cached_identity_mapping(now):
-    mapping,dates,proofs,failures=qualified_identity_books(now)
+@lru_cache(maxsize=32)
+def _cached_identity_mapping(now,required=None):
+    mapping,dates,proofs,failures=qualified_identity_books(now,required)
     retained=json.loads((Path(__file__).resolve().parents[1]/'src/data/dca-complete-holdings.json').read_text())
-    from security_identifier_observations import mappings,retained_identity_pairs
+    from security_identifier_observations import mappings,retained_identity_pairs,API
     for record in retained.values():
-        pairs=retained_identity_pairs(record,now)
+        pairs=[row for row in retained_identity_pairs(record,now)
+               if required is None or row['sedol'] in required]
         if not pairs:continue
         stamp=record['asOf']
         for row in pairs:
             key,value=row['sedol'],row['isin']
-            if key in mapping and mapping[key]!=value:raise ValueError('Conflicting retained identity')
+            if key in mapping and mapping[key]!=value:
+                raise ValueError(f'Conflicting retained identity for SEDOL {key}: {mapping[key]} versus {value}')
             mapping[key]=value
         proofs[record['sourceUrl']]=record['sha256'];dates.append(stamp)
     crosswalk,identifier_proofs=mappings(now)
     for key,value in crosswalk.items():
+        if required is not None and key not in required:continue
         if key in mapping and mapping[key]!=value:raise ValueError('Conflicting qualified identifier crosswalk')
         mapping[key]=value
-    proofs.update(identifier_proofs)
+    proofs.update(identifier_proofs if required is None else
+                  {f'{API}#SEDOL={key}':identifier_proofs[f'{API}#SEDOL={key}']
+                   for key in required if f'{API}#SEDOL={key}' in identifier_proofs})
     return IdentitySnapshot((mapping,dates,proofs),failures)
 
 
@@ -404,7 +418,10 @@ def consolidate_ranked_securities(rows, mapping):
 def collect_public_rankings(share,now,fetch=download):
     observation=ranking_observation
     raw,url,identity,listing,attempts=acquire_qualified_public_rankings(share,now,fetch)
-    snapshot=complete_identity_mapping(now)
+    # Read the perimeter from every native Fund row, never from successful
+    # identity matches or just the top ten. The parser validates it first.
+    unjoined,_=parse_public_rankings(json.loads(raw),share,now,{},listing['ticker'],require_identity=False)
+    snapshot=complete_identity_mapping(now,{row['sedol']for row in unjoined})
     mapping,dates,proofs=snapshot
     rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping,listing['ticker'])
     native_rows = rows
