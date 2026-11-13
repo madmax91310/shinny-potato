@@ -67,10 +67,31 @@ class QualifiedPhysicalAllocation(unittest.TestCase):
         self.assertEqual(record['holdings']['coverageProof']['positionCount'], 96)
         self.assertEqual(record['countriesRisk']['method'], 'Country of risk, all published holdings including cash/derivatives, no renormalisation')
         self.assertEqual({e['field'] for e in record['collectionErrors']}, {'countries-primary', 'sectors-primary'})
-        current = json.loads((ROOT/'src/data/automated-etf.json').read_text())
+        # This is the immutable 11-Nov source fixture, not a fresh observation.
+        # Never mix it with the advancing production registry: a newer real
+        # photograph must correctly win the merge instead of failing this test.
+        current = {fallback.ISIN: {'currency': record['currency'],
+                                   'productId': record['productId']}}
         merged = collector.merge_collection({'checkedAt': NOW.isoformat(), 'shares': [record]}, current, {})
         self.assertEqual(merged[fallback.ISIN]['countries']['asOf'], '2026-11-11')
         self.assertAlmostEqual(sum(r['weightPct'] for r in merged[fallback.ISIN]['sectors']['rows']), 100.00005)
+
+    def test_older_fixture_never_overwrites_newer_observation_or_renews_its_proof(self):
+        old = self.collect()
+        # Isolated hypothetical later photograph. Not written to production.
+        newer = {fallback.ISIN: {'currency': old['currency'], 'productId': old['productId']}}
+        for field in ['countries', 'countriesRisk', 'sectors', 'holdings']:
+            value = copy.deepcopy(old[field])
+            value['asOf'] = '2026-11-12'
+            value['checkedAt'] = '2026-11-13T07:50:00+00:00'
+            newer[fallback.ISIN][field] = value
+        before = copy.deepcopy(newer)
+        result = collector.merge_collection({'checkedAt': NOW.isoformat(), 'shares': [old]}, newer, {})
+        self.assertEqual(newer, before)
+        for field in ['countries', 'countriesRisk', 'sectors', 'holdings']:
+            self.assertEqual(result[fallback.ISIN][field], before[fallback.ISIN][field])
+        # The unchanged fixture still retains its original date/control.
+        self.assertEqual(old['countries']['asOf'], '2026-11-11')
 
     def test_identity_mandate_count_dates_and_missing_classification_refuse(self):
         paths = [(['productId'], 1), (['currencyCode'], 'EUR'),

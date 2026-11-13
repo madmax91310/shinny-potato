@@ -384,6 +384,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
+      - run: python -m unittest discover -s scripts -p 'test_qualified_physical_allocation.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_share_nav.py'
