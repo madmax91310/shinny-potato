@@ -1,0 +1,48 @@
+name: Qualify ordinary ACPR document browser
+on:
+  push:
+    branches: [probe/acpr-official-browser-20261113]
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: brew install poppler
+      - run: python -m pip install -c scripts/python-constraints.txt -r scripts/economic-requirements.txt
+      - name: Real ordinary browser, two exact official hosts only
+        env:
+          PROBE_OUTPUT: ${{ runner.temp }}/acpr-browser
+        run: node scripts/probe-acpr-official-browser-20261113.mjs
+      - name: Qualify exact annual population, convention and year using unchanged parser
+        env:
+          PROBE_OUTPUT: ${{ runner.temp }}/acpr-browser
+        run: |
+          python - <<'PY'
+          import pathlib,json,os,sys,datetime
+          sys.path.insert(0,'scripts')
+          from collect_economic_data import parse_funds_euros
+          root=pathlib.Path(os.environ['PROBE_OUTPUT']);data=json.loads((root/'attempts.json').read_text());valid=[]
+          for attempt in data['attempts']:
+            if attempt.get('pdfFile'):
+              observation=parse_funds_euros(pathlib.Path(attempt['pdfFile']).read_bytes(),attempt['url'],datetime.datetime.now(datetime.timezone.utc).date().isoformat())
+              if observation['year']!=2025:raise ValueError('Wrong exact annual observation')
+              valid.append(observation)
+          (root/'qualification.json').write_text(json.dumps({'sourceAcquired':bool(valid),'qualified':valid,'scope':'Read-only source transport proof, not production or scheduled run'},ensure_ascii=False,indent=2))
+          if not valid:raise SystemExit('No qualified source PDF from ordinary GitHub Chrome')
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: acpr-ordinary-browser-qualification
+          path: ${{ runner.temp }}/acpr-browser/
+          retention-days: 35
