@@ -1,0 +1,61 @@
+## Automatisation — point de reprise du13novembre,17h20UTC
+
+Périmètre inchangé : historiques/performances et compositions/expositions, même suivi#881. Aucun Radar réactivé, aucun ancien outil restauré.
+
+- **PR#1256/#1257/#1258 fusionnées et consommation publique démontrée** : périmètre d’identités WisdomTree, poids NAV Avantis/SILV et continuité Weatherford.
+- **Crons réellement observés** :43454784772 (Nasdaq/Paris) et43455295963 (compositions). Observations individuelles et octets publics rapprochés pour12instruments/voies, dont DWS/Defence/SPYL. Le second contient200contrôles source réussis,4transparisations calculées,1échec Uranium ; ce n’est pas205certifications de livres NAV. CODEabd48f76 / DATAffaa8610 vérifiés.
+- **PR#1259/#1260/#1261/#1262 fusionnées**,14contrôles requis réussis chacune : qualification Akero/Esperion, test mensuel isolé, revalidation du reçu INSEE indépendant, chemins concrets des projections. Leurs étapes ordinaires et publications sont encore contrôlées ; pas d’annonce anticipée des nouveaux recouvrements.
+- **PR#1263 en cours** : le premier push43467009533 s’est arrêté avant acquisition sur un test Defence dépendant du registre vivant. Reproduction et correction isolées ; conservation des données plus récentes vérifiée. Complément : empêcher un droit cash exactement connu de redevenir une action lorsque ses marqueurs sont contradictoires, même avec ISIN valide. Aucune mutation de recette appliquée en production.58tests DCA,12tests physiques et contrats consommateurs locaux réussis ; validation CI du dernier head19f9f49e en cours.
+- **73/79 fenêtres préservées**,6refus ciblés, restrictions Palladium distinctes. Aucun ajustement HSBC réappliqué.
+- **Limites persistantes** : poids NAV/liquidités WisdomTree ;2FX ZAR et2identités Verdera ; accès primaires S&P403 ; consolidation Russell (titres≠entreprises) ; identités Mining ; périmètres partiels LifeStrategy et substituts. Les4PCF L&G courants confirment une exclusion déjà implémentée, pas une réparation de source. Deux ventilations BCOM31Oct publient Autres=-0,11%, rejetées sans relever le seuil.
+
+Les1218identités initiales restent dans la même matrice, avec présence actuelle et preuve de réparation séparées. Les anciennes qualifications de rapport ne deviennent pas des pannes financières actuelles et les preuves passées inconnues ne sont pas inventées. Rapports définitifs et matrice seront actualisés au même emplacement après vérification des lots en production.
+
+---
+### État du matin conservé comme historique
+
+## Chantier consolidé —13 novembre2026,09:23UTC
+
+Périmètre inchangé : **historiques/performances et compositions/expositions**. Pas de réactivation du Radar, de Portefeuilles IA ou d’Analyse d’entreprise ; aucune publication sur X. Les travaux concurrents#1252/#1222/#1061 restent à leurs propriétaires. Ce commentaire remplace son ancien bilan sans supprimer ses preuves : [texte intégral précédent archivé](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/historique-commentaire-881-avant-13nov.md).
+
+### Réparation effectivement publiée
+
+- **#1251 fusionnée5d09e983, #1254 fusionnée5904a61d** : clôture Nasdaq XNDX via document officiel FRED/Nasdaq, USD TotalReturn ; contrats Yahoo historiques et FRED distincts, séance/date/hash contrôlés. Test consommateur avant et après collecte. Aucune modification des seuils ni de la garde de publication.
+- Producteur ordinaire **[43398418519](https://github.com/madmax91310/shinny-potato/actions/runs/43398418519)**, événement **push**, contrôle réel13Nov09:06UTC :704sources réussies et une dérivation d’or, sans erreur. **34 587,76points au12Novembre** pour XNDX ; stockage **fb510c95**.
+- Publication Pages et reçu exact vérifiés **09:12:34UTC**. Identités réellement servies : **CODE8ad7a501 / DATAfb510c95**. Le client est inchangé ; les scripts producteurs fusionnés ont tourné dans GitHub. Aucun remplacement de source Yahoo historique présenté comme explication d’une divergence ancienne.
+- **Il y a X ans, simple et comparatif** : nouvelle valeur consommée sans saisie, calcul/texte/aperçu/PNG vérifiés publiquement sur1440et390px. [Chaîne, preuves natives, tests et recettes](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/preuve-xndx-chaine-2026-11-13.json). Build du commit finalfb510c95 réussi ; quatorze contrôles requis de chaque PR et vérification consommateur sur les vraies données réussis.
+
+### Historiques : disponibilités et limites
+
+**73/79fenêtres préservées, six refus ciblés**, aucun nouveau déblocage mensuel revendiqué : DE000A0H08P6/2019, DE000A27Z304/2021, FR0010755611/2021et2024, FR0013411998/2025, FR0013412004/2025. [Pièces exactes et pistes examinées](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/six-fenetres-restantes-2026-11-12.csv).
+
+Bitwise Paris mensuel demeure utilisable ; Xetra récent fournit cinq clôtures valides5–11Nov, mais l’historique long reste refusé400 et le12Nov est explicitement nul. L’ancienne voie n’est pas déclarée réparée. La nouvelle piste officielle Xetra demande une qualification des ajustements et des droits de réutilisation ; aucun export non autorisé recopié. Trois fiches Amundi exactes acquises13Nov ne définissent pas suffisamment le rendement quotidien ajusté EUR des fonds. **Palladium décembre2014 et cotation2025 restent séparés de la voie NAV2025.** Les77anciennes divergences et deux résidus restent suivis séparément.
+
+Référence annuelle fonds euros : le producteur ordinaire43396884761 confirme le refus403des deux documents officiels ; piste ChromeGitHub/macOS également refusée. Valeur2025 conservée avec son contrôle8Nov, pas artificiellement renouvelée. Les sorties valides des autres sources sont enregistrées/publiées sans absorber cet échec.
+
+### Compositions : usages préservés, pas de faux livres complets
+
+Les quatre recettes publiques ont été rejouées sur DATAfb510c95 : **Healthcare/Ageing18,71%**, **InvescoEqualWeight/EMSmall0%**, **LifeStrategy20/80Partiel**, **SPYL/EMIMIPartiel**. PNG identiques aux aperçus, deux tailles d’écran, sans erreurJS. Invariance à l’ordre vérifiée séparément dans le moteur. [Reçus publics](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/preuve-consommateurs-compositions-publics-finale-2026-11-13.json).
+
+- S&P : relais renouvelé **manuellement**13Nov07:42, ingéré par le push43387815229 et publié4b7d373f. Les deux voies primaires restent403, y compris la nouvelle piste espagnole dans GitHubUbuntu/macOS. **#1253 reste brouillon non fusionné**. Autonomie du renouvellement amont du relais non démontrée.
+- GlobalXRobotics : deux valeurs FX officielles absentes ; livre valide9Nov conservé, nouvelle collecte refusée explicitement.
+- Six livres WisdomTree : classement disponible mais dénominateur NAV/liquidités/identités économiques insuffisamment qualifiés. La piste régionale.eu redirige vers la même source.com ; pas de preuve indépendante nouvelle.
+- Russell1000 : secteurs/pays et nombre de titres préservés, livre ou top10 **d’entreprises consolidées** pondérées toujours manquant.
+- LifeStrategy20/40/60/80 : transparisation des poches actions seulement. EMIMI : substitut ETF explicitement identifié, pas livre exact d’indice. Aucun recouvrement intégral débloqué par ces couvertures partielles.
+- Producteur d’expansion manuel43389617455 : **36attendus/36réussis**, liste exacte des champs dans le rapport ; une réussite de wrapper ne qualifie pas un champ absent. [Productions concurrentes](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/preuve-productions-concurrentes-compositions-2026-11-13.json).
+
+### Supervision et autonomie observée
+
+**1218identités initiales conservées et rapprochées individuellement** :1211encore qualifiées/suivies sans panne publique,6encore associées à une panne publique,1incident individuel Nasdaq absent après réparation prouvée. Pas1218pannes. L’ancien état global du workflow et la CI échouée avant#1254 restent des traces distinctes, sans succès rétroactif inventé. [Réconciliation](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/reconciliation-incidents-2026-11-13.csv).
+
+L’export public complet a été téléchargé dans le navigateur :10897points tous états et toute application, dont archives/attentes/nonapplicables ; ce n’est pas10897pannes et cela n’étend pas cette mission aux autres familles. [Export complet compressé](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/export-boite-publique-complet-2026-11-13.json.gz), [preuve de chargement de la boîte](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/preuve-boite-publique-2026-11-13.json).
+
+**Aucun cron fournisseur du13Nov observable au relevé final** ; seul le cron du moniteur est démontré. Push et lancements manuels ne sont pas requalifiés en passages planifiés. Prochaines observations nominales14Nov : Life05:35, indices06:40, reprise mensuelle06:45, ETF07:10, niveaux07:40, expansion07:45, livres07:50UTC ; complet mensuel16Nov06:15UTC. Ce sont des échéances, pas des réussites acquises. [Crons et preuves](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/preuve-passages-planifies-2026-11-13.json).
+
+### Livrables du suivi existant
+
+- [Historiques : bilan par usage](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/HISTORIQUES-PERFORMANCES-2026-11-13.md) · [même matrice774routes](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/historiques-performances-2026-11-12.csv).
+- [Compositions : bilan et blocages](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/COMPOSITIONS-EXPOSITIONS-2026-11-13.md) · [même matrice694entrées](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/compositions-expositions-2026-11-12.csv) · [même matrice86indices](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/compositions-indices-2026-11-12.csv).
+- [Version publique et111liaisons exactes au manifeste](https://github.com/madmax91310/shinny-potato/blob/e7da7bc0b5d162954e8dbd1605d1a2eeefb29f88/reports/donnees-consolidees-2026-10-24/reprise-2026-11-10/livraison/publication-et-entrees-finales-2026-11-13.json) ; les32projections générées sont distinguées des79entrées Git. Ce contrôle ne certifie pas indépendamment chaque champ financier.
+
+**Automatisation complète non démontrée** : blocages fournisseurs/qualification et passages planifiés restent ouverts avec leurs pièces précises. Aucun seuil abaissé, aucune photographie partielle renormalisée, aucune ancienne tentative effacée.

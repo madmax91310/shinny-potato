@@ -1,0 +1,18 @@
+{
+  "inline": [],
+  "elements": [
+    "<button aria-expanded=\"false\" aria-label=\"Footnote 1\" class=\"hero__note hero__note--name\" data-content=\"Inception date (start of NAV calculation) was on 8 June 2020.\" data-custom-class=\"hero__note-popover\" data-html=\"true\" data-placement=\"top\" data-toggle=\"popover\" data-trigger=\"manual\" type=\"button\">[1]</button>",
+    "<div class=\"buy-now-broker\" data-brokers='{\"cz\":[{\"name\":\"Interactive Brokers\",\"img\":{\"framed\":{\"dark\":\"\\/static\\/images\\/logotypes\\/framed-dark\\/interactive-brokers-colored-dark.svg\",\"light\":\"\\/static\\/images\\/logotypes\\/framed-light\\/interactive-brokers-colored-light.svg\"}},\"logo\":\"\\/static\\/images\\/logotypes\\/brokers-light\\/interactive-brokers_colored.svg\",\"logo_dark\":\"\\/static\\/images\\/logotypes\\/brokers-dark\\/interactive-brokers_colored.svg\",\"product_list\":\"all\",\"homepage_url\":\"https:\\/\\/ww"
+  ],
+  "script": {
+    "url": "https://bitwiseinvestments.eu/static/js/products-defer.min.js?hash=49f8e2ffb1108097f025769a2f74b3893d596b17",
+    "sha256": "abe643ae1e02ee55538cef926e8ab484b5b07a05d661aff464c4b7ef29e9bd33",
+    "bytes": 13673,
+    "fragments": [
+      "function load_etc_info(){$.getJSON(\"/etc_info.json?date=\"+dateNum,update_etc_info)}function update_etc_performance(e,t){e&&($.each(e,(function(e,o){$(`.js-${t}-`+e).text(o)})),$(`.js-${t}-xetra`).attr(\"href\",e.prodlink))}function update_etc_info(e){w",
+      "itle\"),d=$(t).data(\"subtitle\"),r=$(t).data(\"file-name\"),s=$(t).data(\"after\");var c=`/chart-json/${r}.json?rnd=${dateNum}`;if(!e)return;const p=/fact-sheet/i.test(window.location.pathname),m=/bitwise-msci-digital-assets-select-20-etp/i.test(window.location.pathname);p&&(Chart.defaults.font.size=7),m&&(c=`",
+      "ame);p&&(Chart.defaults.font.size=7),m&&(c=`/products/bitwise-msci-digital-assets-select-20-etp/${r}.json?rnd=${dateNum}`),$.ajax({url:c,dataType:\"json\"}).done(t=>{const r={labels:t.data.map(t=>t.x),datasets:[{xLabel:i,label:a,borderColor:t.comparative_line_color?t.comparative_line_color:\"#1226AA\",backgr",
+      "ont.size=7),m&&(c=`/products/bitwise-msci-digital-assets-select-20-etp/${r}.json?rnd=${dateNum}`),$.ajax({url:c,dataType:\"json\"}).done(t=>{const r={labels:t.data.map(t=>t.x),datasets:[{xLabel:i,label:a,borderColor:t.comparative_line_color?t.comparative_line_color:\"#1226AA\",backgroundColor:t.comparative_"
+    ]
+  }
+}

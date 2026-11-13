@@ -1,0 +1,15 @@
+......DWS: original NAV weights, separate money-market/equity-fund units, partial company overlap and ordering preserved.
+.............................................Exact HEG identity; EM Small Cap admitted, EM IMI stays partial, original weights/proofs preserved, overlap order invariant.
+.......
+----------------------------------------------------------------------
+Ran 58 tests in 4.445s
+
+OK
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.185s
+
+OK
+Holdings contracts: shared completeness, real source metadata, stale/incompatible/neutral/synthetic safeguards, exact identifiers and no double counting verified.
+World Small Cap: qualified cash right retained with original NAV; full company overlap restored on the real source fixture; order invariant.
+Biotech: both documented cash-only rights retained outside company shares; complete overlap restored on exact native fixture.

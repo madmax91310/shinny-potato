@@ -1,0 +1,446 @@
+{
+  "checkedAt": "2026-11-13T18:19:49.984Z",
+  "before": {
+    "sha": "d715820a698c92bde94480e5c47056863f21d6b0",
+    "dataSha": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+    "lane": "validated-data",
+    "builtAt": "2026-11-13T18:18:03.591Z"
+  },
+  "after": {
+    "sha": "d715820a698c92bde94480e5c47056863f21d6b0",
+    "dataSha": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+    "lane": "validated-data",
+    "builtAt": "2026-11-13T18:18:03.591Z"
+  },
+  "receipts": [
+    {
+      "asset": "IE0003R87OG3",
+      "field": "countries",
+      "viewport": 1440,
+      "expected": {
+        "coverage": 99.44000000000013,
+        "missing": 0.5599999999998744,
+        "omitted": []
+      },
+      "rendered": [
+        "Géographie : 99,44 % ventilés · 0,56 % non ventilés",
+        "Secteurs : 100 % ventilés"
+      ],
+      "sourceObservation": {
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+        "sourceUrls": [
+          "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/119/?type=etf",
+          "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/120/?type=etf",
+          "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "method": "Published equity positions joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and unrepresented NAV remain unallocated; no renormalisation",
+        "compatibility": "exact-isin-lookthrough-countries",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 68.02000000000018
+          },
+          {
+            "name": "Japan",
+            "weightPct": 9.73999999999996
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 3.739999999999993
+          },
+          {
+            "name": "Canada",
+            "weightPct": 3.1299999999999955
+          },
+          {
+            "name": "Australia",
+            "weightPct": 2.939999999999994
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 1.520000000000001
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 1.3000000000000005
+          },
+          {
+            "name": "Israel",
+            "weightPct": 1.1500000000000006
+          },
+          {
+            "name": "Germany",
+            "weightPct": 1.0200000000000005
+          },
+          {
+            "name": "France",
+            "weightPct": 1.0100000000000005
+          },
+          {
+            "name": "Bermuda",
+            "weightPct": 0.8999999999999999
+          },
+          {
+            "name": "Italy",
+            "weightPct": 0.7700000000000002
+          },
+          {
+            "name": "Norway",
+            "weightPct": 0.65
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 0.5700000000000001
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 0.56
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 0.43000000000000005
+          },
+          {
+            "name": "Spain",
+            "weightPct": 0.4
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 0.3800000000000001
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 0.3500000000000001
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.33
+          },
+          {
+            "name": "Finland",
+            "weightPct": 0.29000000000000004
+          },
+          {
+            "name": "Monaco",
+            "weightPct": 0.09
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.06999999999999999
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.060000000000000005
+          },
+          {
+            "name": "New Zealand",
+            "weightPct": 0.02
+          },
+          {
+            "name": "Greece",
+            "weightPct": 0
+          }
+        ]
+      },
+      "png": {
+        "bytes": 1281294,
+        "sha256": "d7d1e5a18ed05b3fdd7d16e4b38483cad8874534758378179461428fc7029045",
+        "previewDownloadIdentical": true
+      }
+    },
+    {
+      "asset": "IE0003R87OG3",
+      "field": "countries",
+      "viewport": 390,
+      "expected": {
+        "coverage": 99.44000000000013,
+        "missing": 0.5599999999998744,
+        "omitted": []
+      },
+      "rendered": [
+        "Géographie : 99,44 % ventilés · 0,56 % non ventilés",
+        "Secteurs : 100 % ventilés"
+      ],
+      "sourceObservation": {
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+        "sourceUrls": [
+          "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/119/?type=etf",
+          "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/120/?type=etf",
+          "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "method": "Published equity positions joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and unrepresented NAV remain unallocated; no renormalisation",
+        "compatibility": "exact-isin-lookthrough-countries",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 68.02000000000018
+          },
+          {
+            "name": "Japan",
+            "weightPct": 9.73999999999996
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 3.739999999999993
+          },
+          {
+            "name": "Canada",
+            "weightPct": 3.1299999999999955
+          },
+          {
+            "name": "Australia",
+            "weightPct": 2.939999999999994
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 1.520000000000001
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 1.3000000000000005
+          },
+          {
+            "name": "Israel",
+            "weightPct": 1.1500000000000006
+          },
+          {
+            "name": "Germany",
+            "weightPct": 1.0200000000000005
+          },
+          {
+            "name": "France",
+            "weightPct": 1.0100000000000005
+          },
+          {
+            "name": "Bermuda",
+            "weightPct": 0.8999999999999999
+          },
+          {
+            "name": "Italy",
+            "weightPct": 0.7700000000000002
+          },
+          {
+            "name": "Norway",
+            "weightPct": 0.65
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 0.5700000000000001
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 0.56
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 0.43000000000000005
+          },
+          {
+            "name": "Spain",
+            "weightPct": 0.4
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 0.3800000000000001
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 0.3500000000000001
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.33
+          },
+          {
+            "name": "Finland",
+            "weightPct": 0.29000000000000004
+          },
+          {
+            "name": "Monaco",
+            "weightPct": 0.09
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.06999999999999999
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.060000000000000005
+          },
+          {
+            "name": "New Zealand",
+            "weightPct": 0.02
+          },
+          {
+            "name": "Greece",
+            "weightPct": 0
+          }
+        ]
+      },
+      "png": {
+        "bytes": 1281294,
+        "sha256": "d7d1e5a18ed05b3fdd7d16e4b38483cad8874534758378179461428fc7029045",
+        "previewDownloadIdentical": true
+      }
+    },
+    {
+      "asset": "IE000UL6CLP7",
+      "field": "sectors",
+      "viewport": 1440,
+      "expected": {
+        "coverage": 99.96,
+        "missing": 0.04000000000000625,
+        "omitted": []
+      },
+      "rendered": [
+        "Géographie : 100 % ventilés",
+        "Secteurs : 99,96 % ventilés · 0,04 % non ventilés"
+      ],
+      "sourceObservation": {
+        "asOf": "2026-11-10",
+        "basis": "fund",
+        "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
+        "method": "Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified",
+        "compatibility": "morningstar-equity-sectors",
+        "rows": [
+          {
+            "name": "Basic Materials",
+            "weightPct": 99.81006
+          },
+          {
+            "name": "Consumer Cyclical",
+            "weightPct": 0
+          },
+          {
+            "name": "Financial Services",
+            "weightPct": 0
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 0
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 0
+          },
+          {
+            "name": "Energy",
+            "weightPct": 0
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 0
+          },
+          {
+            "name": "Technology",
+            "weightPct": 0
+          },
+          {
+            "name": "Consumer Defensive",
+            "weightPct": 0.14994
+          },
+          {
+            "name": "Healthcare",
+            "weightPct": 0
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 0
+          }
+        ]
+      },
+      "png": {
+        "bytes": 1264859,
+        "sha256": "cc3463d9db85b52b393688348f0893d6de72bd31a960742465a0ec151a68433e",
+        "previewDownloadIdentical": true
+      }
+    },
+    {
+      "asset": "IE000UL6CLP7",
+      "field": "sectors",
+      "viewport": 390,
+      "expected": {
+        "coverage": 99.96,
+        "missing": 0.04000000000000625,
+        "omitted": []
+      },
+      "rendered": [
+        "Géographie : 100 % ventilés",
+        "Secteurs : 99,96 % ventilés · 0,04 % non ventilés"
+      ],
+      "sourceObservation": {
+        "asOf": "2026-11-10",
+        "basis": "fund",
+        "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
+        "method": "Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified",
+        "compatibility": "morningstar-equity-sectors",
+        "rows": [
+          {
+            "name": "Basic Materials",
+            "weightPct": 99.81006
+          },
+          {
+            "name": "Consumer Cyclical",
+            "weightPct": 0
+          },
+          {
+            "name": "Financial Services",
+            "weightPct": 0
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 0
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 0
+          },
+          {
+            "name": "Energy",
+            "weightPct": 0
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 0
+          },
+          {
+            "name": "Technology",
+            "weightPct": 0
+          },
+          {
+            "name": "Consumer Defensive",
+            "weightPct": 0.14994
+          },
+          {
+            "name": "Healthcare",
+            "weightPct": 0
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 0
+          }
+        ]
+      },
+      "png": {
+        "bytes": 1264859,
+        "sha256": "cc3463d9db85b52b393688348f0893d6de72bd31a960742465a0ec151a68433e",
+        "previewDownloadIdentical": true
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,518 @@
+{
+  "checkedAt": "2026-11-13T17:09:32.672862+00:00",
+  "before": {
+    "sha": "abd48f76b8f5d9c0f3f4793ec62e4908e3b09a0e",
+    "dataSha": "ffaa86100924b57a2941d9c308bae10b8b832e19",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-13T17:00:09.815Z"
+  },
+  "after": {
+    "sha": "abd48f76b8f5d9c0f3f4793ec62e4908e3b09a0e",
+    "dataSha": "ffaa86100924b57a2941d9c308bae10b8b832e19",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-13T17:00:09.815Z"
+  },
+  "stable": true,
+  "proofs": [
+    {
+      "runId": 43454784772,
+      "event": "schedule",
+      "commit": "7e3877a4ef7c016a492dbe0cbe83dd10a157d3f6",
+      "path": "src/data/anniversary-levels.json",
+      "publicGitBlob": "039a383d8e96ebc5ceca2d1c6798c74ca9070ee7",
+      "nativeReport": "publication-cron-native/anniversary-observation.json",
+      "items": [
+        {
+          "instrument": "nasdaq100",
+          "outcome": {
+            "id": "anniversary-nasdaq100",
+            "instrument": "nasdaq100",
+            "fields": [
+              "dated closing level",
+              "close",
+              "USD"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:41:07.384008+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://fred.stlouisfed.org/data/NASDAQXNDX",
+            "responseSha256": "5d23a8dc289eaf069af3f36a4e6d4d7c9f5f5aa0ab279e6d5d608ebd9cf7a749",
+            "status": "unchanged-verified",
+            "sourceAttempted": true,
+            "reason": "Explicit conditional/cache outcome",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:41:07.384008+00:00",
+            "value": 34587.76,
+            "currency": "USD",
+            "variant": "TOTAL",
+            "sourceUrl": "https://fred.stlouisfed.org/data/NASDAQXNDX",
+            "sha256": "5d23a8dc289eaf069af3f36a4e6d4d7c9f5f5aa0ab279e6d5d608ebd9cf7a749",
+            "basis": null,
+            "scope": null,
+            "weightBasis": null,
+            "complete": null
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "etfDE000A27Z304Paris",
+          "outcome": {
+            "id": "anniversary-etfDE000A27Z304Paris",
+            "instrument": "DE000A27Z304",
+            "fields": [
+              "dated closing level",
+              "close",
+              "EUR"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:41:07.384008+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1793232000&period2=1794528000&interval=1d&events=splits",
+            "responseSha256": "fa4e6dff33631a7b11277ccbb2ed17c03118e932e43e6dd339858b1b4f6f9c26",
+            "status": "succeeded",
+            "operationAttempted": true,
+            "sourceAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:41:07.384008+00:00",
+            "value": 57.04999923706055,
+            "currency": "EUR",
+            "variant": null,
+            "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1793232000&period2=1794528000&interval=1d&events=splits",
+            "sha256": "fa4e6dff33631a7b11277ccbb2ed17c03118e932e43e6dd339858b1b4f6f9c26",
+            "basis": null,
+            "scope": null,
+            "weightBasis": null,
+            "complete": null
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        }
+      ],
+      "scopeSourceAttempts": 704,
+      "scopeFailures": []
+    },
+    {
+      "runId": 43455295963,
+      "event": "schedule",
+      "commit": "d90a81ff",
+      "path": "src/data/dca-complete-holdings.json",
+      "publicGitBlob": "741745d7c26d5cb3b9c94a654bd56487c6ba38f5",
+      "nativeReport": "compositions-cron-native/dca-complete-holdings.json",
+      "items": [
+        {
+          "instrument": "IE00BLCHJB90",
+          "outcome": {
+            "id": "dca-holdings:IE00BLCHJB90",
+            "instrument": "IE00BLCHJB90",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://globalxetfs.eu/api/funds/botz/topholdingscsv",
+            "sha256": "997ea29d16bb932eec19f1a4371c4a66b6da880ab7fcbbb326ca142bb9911fa5",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 58,
+            "publishedEquityWeightPct": 99.70700000000001,
+            "identifiedEquityWeightPct": 99.70700000000001,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://globalxetfs.eu/api/funds/botz/topholdingscsv",
+            "sha256": "997ea29d16bb932eec19f1a4371c4a66b6da880ab7fcbbb326ca142bb9911fa5",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": null,
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE00BZ56SW52",
+          "outcome": {
+            "id": "dca-holdings:IE00BZ56SW52",
+            "instrument": "IE00BZ56SW52",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+            "sha256": "52586bf8fa3f232ef4aeb4c2ae5e887e907def0599e1f27b09b01bfc9a31eacf",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 439,
+            "publishedEquityWeightPct": 100.0006,
+            "identifiedEquityWeightPct": 100.0006,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+            "sha256": "52586bf8fa3f232ef4aeb4c2ae5e887e907def0599e1f27b09b01bfc9a31eacf",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE0002Y8CX98",
+          "outcome": {
+            "id": "dca-holdings:IE0002Y8CX98",
+            "instrument": "IE0002Y8CX98",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+            "sha256": "4253669fc97f3ae08887e6344e9737fbe13947df5be11f9fd36253c69c1cfa4b",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 42,
+            "publishedEquityWeightPct": 100.0001,
+            "identifiedEquityWeightPct": 100.0001,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+            "sha256": "4253669fc97f3ae08887e6344e9737fbe13947df5be11f9fd36253c69c1cfa4b",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE000W8WMSL2",
+          "outcome": {
+            "id": "dca-holdings:IE000W8WMSL2",
+            "instrument": "IE000W8WMSL2",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+            "sha256": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 47,
+            "publishedEquityWeightPct": 99.9998,
+            "identifiedEquityWeightPct": 99.9998,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+            "sha256": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE00BJGWQN72",
+          "outcome": {
+            "id": "dca-holdings:IE00BJGWQN72",
+            "instrument": "IE00BJGWQN72",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+            "sha256": "34e9dc820aa6d8386903b371061fe4bbc431194d4487f78bb62605c2ba25fc93",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 64,
+            "publishedEquityWeightPct": 99.9999,
+            "identifiedEquityWeightPct": 99.9999,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+            "sha256": "34e9dc820aa6d8386903b371061fe4bbc431194d4487f78bb62605c2ba25fc93",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE00BDVPNG13",
+          "outcome": {
+            "id": "dca-holdings:IE00BDVPNG13",
+            "instrument": "IE00BDVPNG13",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+            "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 58,
+            "publishedEquityWeightPct": 99.9999,
+            "identifiedEquityWeightPct": 99.9999,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+            "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE00BKLF1R75",
+          "outcome": {
+            "id": "dca-holdings:IE00BKLF1R75",
+            "instrument": "IE00BKLF1R75",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+            "sha256": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 111,
+            "publishedEquityWeightPct": 99.9999,
+            "identifiedEquityWeightPct": 99.9999,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+            "sha256": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE000L6ZMMC4",
+          "outcome": {
+            "id": "dca-holdings:IE000L6ZMMC4",
+            "instrument": "IE000L6ZMMC4",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
+            "sha256": "de783cfb7bd35401f8f23dd90b1f8ff043c2760a52856cb747da1b06d913974b",
+            "basis": "fund",
+            "completeFile": false,
+            "rows": 2066,
+            "publishedEquityWeightPct": 98.15158768,
+            "identifiedEquityWeightPct": 98.15158768,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
+            "sha256": "de783cfb7bd35401f8f23dd90b1f8ff043c2760a52856cb747da1b06d913974b",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": null,
+            "complete": false
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE000U9ODG19",
+          "outcome": {
+            "id": "dca-holdings:IE000U9ODG19",
+            "instrument": "IE000U9ODG19",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "75b3f3cb98e96f10c0a098cbd05524f417b78fefec84e6509aff00943e42cbe9",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 96,
+            "publishedEquityWeightPct": 99.83713,
+            "identifiedEquityWeightPct": 99.83713,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "75b3f3cb98e96f10c0a098cbd05524f417b78fefec84e6509aff00943e42cbe9",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": null,
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        },
+        {
+          "instrument": "IE000XZSV718",
+          "outcome": {
+            "id": "dca-holdings:IE000XZSV718",
+            "instrument": "IE000XZSV718",
+            "fields": [
+              "complete economic holdings",
+              "security identities",
+              "weights",
+              "asOf"
+            ],
+            "selected": true,
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx",
+            "sha256": "bb431fa923db448b2afa74e13b0db3f6588f9416f63d4031f9bd41659cc57915",
+            "basis": "fund",
+            "completeFile": true,
+            "rows": 504,
+            "publishedEquityWeightPct": 99.999955,
+            "identifiedEquityWeightPct": 99.999955,
+            "sourceAttempted": true,
+            "status": "succeeded",
+            "operationAttempted": true
+          },
+          "publicRecord": {
+            "asOf": "2026-11-12",
+            "checkedAt": "2026-11-13T15:47:23.613354+00:00",
+            "value": null,
+            "currency": null,
+            "variant": null,
+            "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx",
+            "sha256": "bb431fa923db448b2afa74e13b0db3f6588f9416f63d4031f9bd41659cc57915",
+            "basis": "fund",
+            "scope": null,
+            "weightBasis": null,
+            "complete": true
+          },
+          "financialCompletenessNotInferredFromSourceOutcome": true
+        }
+      ],
+      "scopeSourceAttempts": 204,
+      "scopeFailures": [
+        {
+          "id": "dca-holdings:IE000NDWFGA5",
+          "field": "Composition complète",
+          "error": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-11-12')"
+        }
+      ]
+    }
+  ],
+  "note": "Only named source outcomes bound to public canonical bytes; source green is not a certificate of every field. WisdomTree NAV completeness remains refused. Price/Nav/total-return conventions are unchanged."
+}

@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-13T18:27:36.005159+00:00",
+  "latestPublicMonitorAt": "2026-11-13T18:21:09.855876+00:00",
+  "sourceRun": 43479483363,
+  "sourceRecordedAndPublished": true,
+  "sourcePublicDataSha": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+  "observerWorkflow": "automation-status.yml",
+  "observerCurrentRun": 43479256343,
+  "pendingObserverRuns": [
+    43479683156,
+    43481467099
+  ],
+  "lastPendingTriggeredByLatestSource": "2026-11-13T18:19:10Z",
+  "notAProducerFailure": "Source acquisition, financial validation, commit and public consumption are verified separately. Pending observer propagation is not reported as complete.",
+  "noArtificialGreenRetry": true
+}

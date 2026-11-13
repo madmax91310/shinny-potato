@@ -1,0 +1,811 @@
+{
+  "runId": 43433710130,
+  "event": "push",
+  "recordCommit": "45622235e91296f9a66ecfd3c497b39ae102b331",
+  "nativeSleevesReport": {
+    "checkedAt": "2026-11-13T13:30:14.027331+00:00",
+    "updated": [
+      "IE00B441G979",
+      "IE00BQT3WG13",
+      "US8740391003",
+      "GB0009895292",
+      "IE000UL6CLP7",
+      "IE0003R87OG3",
+      "IE00BM8R0J59"
+    ],
+    "successes": [
+      {
+        "id": "exposure-sleeve:239656",
+        "scope": "security-classification-reference",
+        "asOf": "2026-11-12",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+        "portfolioWeightsUsed": false,
+        "identifiedReferenceRows": 36,
+        "unidentifiedReferenceRows": 0,
+        "negativeReferenceRows": 0,
+        "responseSha256": "eb67ae326a8fef36e10dadb33f78ded0fb7e4dbdc98d9d663f1682070cd567b0"
+      },
+      {
+        "id": "exposure-sleeve:239710",
+        "scope": "security-classification-reference",
+        "asOf": "2026-11-12",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+        "portfolioWeightsUsed": false,
+        "identifiedReferenceRows": 1967,
+        "unidentifiedReferenceRows": 3,
+        "negativeReferenceRows": 0,
+        "responseSha256": "300d894c4317541aa29de55d89e1437b4502b137b2cddaabf0ddd6a77450fc48"
+      },
+      {
+        "id": "exposure-sleeve:239716",
+        "scope": "security-classification-reference",
+        "asOf": "2026-11-12",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+        "portfolioWeightsUsed": false,
+        "identifiedReferenceRows": 1356,
+        "unidentifiedReferenceRows": 6,
+        "negativeReferenceRows": 0,
+        "responseSha256": "4340e24cd883fc60ada018aec40f8cb05514c2748f6a1b199562fed39875c3f1"
+      },
+      {
+        "id": "exposure-sleeve:GB0009895292"
+      },
+      {
+        "id": "exposure-sleeve:IE0003R87OG3"
+      },
+      {
+        "id": "exposure-sleeve:IE000UL6CLP7"
+      },
+      {
+        "id": "exposure-sleeve:IE00B441G979"
+      },
+      {
+        "id": "exposure-sleeve:IE00B4L5Y983"
+      },
+      {
+        "id": "exposure-sleeve:IE00BF4RFH31"
+      },
+      {
+        "id": "exposure-sleeve:IE00BKM4GZ66"
+      },
+      {
+        "id": "exposure-sleeve:IE00BM8R0J59"
+      },
+      {
+        "id": "exposure-sleeve:IE00BQT3WG13"
+      },
+      {
+        "id": "exposure-sleeve:US8740391003"
+      },
+      {
+        "id": "exposure-sleeve:avantis-AVDV"
+      },
+      {
+        "id": "exposure-sleeve:avantis-AVUV"
+      },
+      {
+        "id": "exposure-sleeve:morningstar-SILV"
+      }
+    ],
+    "classificationReferences": {
+      "239656": {
+        "scope": "security-classification-reference",
+        "asOf": "2026-11-12",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+        "portfolioWeightsUsed": false,
+        "identifiedReferenceRows": 36,
+        "unidentifiedReferenceRows": 0,
+        "negativeReferenceRows": 0,
+        "responseSha256": "eb67ae326a8fef36e10dadb33f78ded0fb7e4dbdc98d9d663f1682070cd567b0"
+      },
+      "239710": {
+        "scope": "security-classification-reference",
+        "asOf": "2026-11-12",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+        "portfolioWeightsUsed": false,
+        "identifiedReferenceRows": 1967,
+        "unidentifiedReferenceRows": 3,
+        "negativeReferenceRows": 0,
+        "responseSha256": "300d894c4317541aa29de55d89e1437b4502b137b2cddaabf0ddd6a77450fc48"
+      },
+      "239716": {
+        "scope": "security-classification-reference",
+        "asOf": "2026-11-12",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+        "portfolioWeightsUsed": false,
+        "identifiedReferenceRows": 1356,
+        "unidentifiedReferenceRows": 6,
+        "negativeReferenceRows": 0,
+        "responseSha256": "4340e24cd883fc60ada018aec40f8cb05514c2748f6a1b199562fed39875c3f1"
+      }
+    },
+    "errors": [],
+    "resultContract": {
+      "schemaVersion": 1,
+      "protocol": "producer-results-v1",
+      "inputPlan": {
+        "items": [
+          {
+            "id": "exposure-sleeve:IE00B4L5Y983",
+            "instrument": "IE00B4L5Y983",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BKM4GZ66",
+            "instrument": "IE00BKM4GZ66",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BF4RFH31",
+            "instrument": "IE00BF4RFH31",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00B441G979",
+            "instrument": "IE00B441G979",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BQT3WG13",
+            "instrument": "IE00BQT3WG13",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:239656",
+            "instrument": "239656",
+            "fields": [
+              "US holdings classification source"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:239710",
+            "instrument": "239710",
+            "fields": [
+              "US holdings classification source"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:239716",
+            "instrument": "239716",
+            "fields": [
+              "US holdings classification source"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:US8740391003",
+            "instrument": "US8740391003",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:GB0009895292",
+            "instrument": "GB0009895292",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE000UL6CLP7",
+            "instrument": "IE000UL6CLP7",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE0003R87OG3",
+            "instrument": "IE0003R87OG3",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BM8R0J59",
+            "instrument": "IE00BM8R0J59",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:avantis-AVDV",
+            "instrument": "avantis-AVDV",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:avantis-AVUV",
+            "instrument": "avantis-AVUV",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:morningstar-SILV",
+            "instrument": "morningstar-SILV",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          }
+        ],
+        "mode": "full",
+        "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+        "emptyReason": null,
+        "cacheRequested": false,
+        "producer": "collect_exposure_sleeves",
+        "reportStem": "exposure-sleeves",
+        "declaredAt": "2026-11-13T13:30:14.003593+00:00",
+        "nonce": "374413e1-b538-4990-bb55-3221da296a0b",
+        "codeSha": "13b98ae046dd974c1c62d20a88500d56f7b6dc66",
+        "durablePlan": true,
+        "runId": "43433710130",
+        "attempt": "1",
+        "sha256": "d232d7986afa17999d10488a9dcbcd089468d5ca2dad8a1dde1e85d663cc9fb2"
+      },
+      "scope": {
+        "kind": "collect_exposure_sleeves",
+        "mode": "full",
+        "expectedIds": [
+          "exposure-sleeve:IE00B4L5Y983",
+          "exposure-sleeve:IE00BKM4GZ66",
+          "exposure-sleeve:IE00BF4RFH31",
+          "exposure-sleeve:IE00B441G979",
+          "exposure-sleeve:IE00BQT3WG13",
+          "exposure-sleeve:239656",
+          "exposure-sleeve:239710",
+          "exposure-sleeve:239716",
+          "exposure-sleeve:US8740391003",
+          "exposure-sleeve:GB0009895292",
+          "exposure-sleeve:IE000UL6CLP7",
+          "exposure-sleeve:IE0003R87OG3",
+          "exposure-sleeve:IE00BM8R0J59",
+          "exposure-sleeve:avantis-AVDV",
+          "exposure-sleeve:avantis-AVUV",
+          "exposure-sleeve:morningstar-SILV"
+        ],
+        "requestedIds": [
+          "exposure-sleeve:IE00B4L5Y983",
+          "exposure-sleeve:IE00BKM4GZ66",
+          "exposure-sleeve:IE00BF4RFH31",
+          "exposure-sleeve:IE00B441G979",
+          "exposure-sleeve:IE00BQT3WG13",
+          "exposure-sleeve:239656",
+          "exposure-sleeve:239710",
+          "exposure-sleeve:239716",
+          "exposure-sleeve:US8740391003",
+          "exposure-sleeve:GB0009895292",
+          "exposure-sleeve:IE000UL6CLP7",
+          "exposure-sleeve:IE0003R87OG3",
+          "exposure-sleeve:IE00BM8R0J59",
+          "exposure-sleeve:avantis-AVDV",
+          "exposure-sleeve:avantis-AVUV",
+          "exposure-sleeve:morningstar-SILV"
+        ],
+        "items": [
+          {
+            "id": "exposure-sleeve:IE00B4L5Y983",
+            "instrument": "IE00B4L5Y983",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BKM4GZ66",
+            "instrument": "IE00BKM4GZ66",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BF4RFH31",
+            "instrument": "IE00BF4RFH31",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00B441G979",
+            "instrument": "IE00B441G979",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BQT3WG13",
+            "instrument": "IE00BQT3WG13",
+            "fields": [
+              "economic country/sector classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:239656",
+            "instrument": "239656",
+            "fields": [
+              "US holdings classification source"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:239710",
+            "instrument": "239710",
+            "fields": [
+              "US holdings classification source"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:239716",
+            "instrument": "239716",
+            "fields": [
+              "US holdings classification source"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:US8740391003",
+            "instrument": "US8740391003",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:GB0009895292",
+            "instrument": "GB0009895292",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE000UL6CLP7",
+            "instrument": "IE000UL6CLP7",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE0003R87OG3",
+            "instrument": "IE0003R87OG3",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:IE00BM8R0J59",
+            "instrument": "IE00BM8R0J59",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:avantis-AVDV",
+            "instrument": "avantis-AVDV",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:avantis-AVUV",
+            "instrument": "avantis-AVUV",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          },
+          {
+            "id": "exposure-sleeve:morningstar-SILV",
+            "instrument": "morningstar-SILV",
+            "fields": [
+              "economic sleeve classification"
+            ],
+            "selected": true
+          }
+        ],
+        "emptyReason": null,
+        "declaredAt": "2026-11-13T13:30:14.003593+00:00",
+        "planSha256": "d232d7986afa17999d10488a9dcbcd089468d5ca2dad8a1dde1e85d663cc9fb2",
+        "attemptedIds": [
+          "exposure-sleeve:IE00B4L5Y983",
+          "exposure-sleeve:IE00BKM4GZ66",
+          "exposure-sleeve:IE00BF4RFH31",
+          "exposure-sleeve:IE00B441G979",
+          "exposure-sleeve:IE00BQT3WG13",
+          "exposure-sleeve:239656",
+          "exposure-sleeve:239710",
+          "exposure-sleeve:239716",
+          "exposure-sleeve:US8740391003",
+          "exposure-sleeve:GB0009895292",
+          "exposure-sleeve:IE000UL6CLP7",
+          "exposure-sleeve:IE0003R87OG3",
+          "exposure-sleeve:IE00BM8R0J59",
+          "exposure-sleeve:avantis-AVDV",
+          "exposure-sleeve:avantis-AVUV",
+          "exposure-sleeve:morningstar-SILV"
+        ],
+        "attemptUnknownIds": [],
+        "networkRequestedIds": [
+          "exposure-sleeve:IE00B4L5Y983",
+          "exposure-sleeve:IE00BKM4GZ66",
+          "exposure-sleeve:IE00BF4RFH31",
+          "exposure-sleeve:IE00B441G979",
+          "exposure-sleeve:IE00BQT3WG13",
+          "exposure-sleeve:239656",
+          "exposure-sleeve:239710",
+          "exposure-sleeve:239716",
+          "exposure-sleeve:US8740391003",
+          "exposure-sleeve:GB0009895292",
+          "exposure-sleeve:IE000UL6CLP7",
+          "exposure-sleeve:IE0003R87OG3",
+          "exposure-sleeve:IE00BM8R0J59",
+          "exposure-sleeve:avantis-AVDV",
+          "exposure-sleeve:avantis-AVUV",
+          "exposure-sleeve:morningstar-SILV"
+        ],
+        "networkAttemptUnknownIds": [],
+        "runId": "43433710130",
+        "attempt": "1",
+        "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+        "nonce": "374413e1-b538-4990-bb55-3221da296a0b"
+      },
+      "outcomes": [
+        {
+          "id": "exposure-sleeve:IE00B4L5Y983",
+          "instrument": "IE00B4L5Y983",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BKM4GZ66",
+          "instrument": "IE00BKM4GZ66",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BF4RFH31",
+          "instrument": "IE00BF4RFH31",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:IE00B441G979",
+          "instrument": "IE00B441G979",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BQT3WG13",
+          "instrument": "IE00BQT3WG13",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:239656",
+          "instrument": "239656",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true,
+          "scope": "security-classification-reference",
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "portfolioWeightsUsed": false,
+          "identifiedReferenceRows": 36,
+          "unidentifiedReferenceRows": 0,
+          "negativeReferenceRows": 0,
+          "responseSha256": "eb67ae326a8fef36e10dadb33f78ded0fb7e4dbdc98d9d663f1682070cd567b0",
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:239710",
+          "instrument": "239710",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true,
+          "scope": "security-classification-reference",
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "portfolioWeightsUsed": false,
+          "identifiedReferenceRows": 1967,
+          "unidentifiedReferenceRows": 3,
+          "negativeReferenceRows": 0,
+          "responseSha256": "300d894c4317541aa29de55d89e1437b4502b137b2cddaabf0ddd6a77450fc48",
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:239716",
+          "instrument": "239716",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true,
+          "scope": "security-classification-reference",
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "portfolioWeightsUsed": false,
+          "identifiedReferenceRows": 1356,
+          "unidentifiedReferenceRows": 6,
+          "negativeReferenceRows": 0,
+          "responseSha256": "4340e24cd883fc60ada018aec40f8cb05514c2748f6a1b199562fed39875c3f1",
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:US8740391003",
+          "instrument": "US8740391003",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:GB0009895292",
+          "instrument": "GB0009895292",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:IE000UL6CLP7",
+          "instrument": "IE000UL6CLP7",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:IE0003R87OG3",
+          "instrument": "IE0003R87OG3",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BM8R0J59",
+          "instrument": "IE00BM8R0J59",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:avantis-AVDV",
+          "instrument": "avantis-AVDV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:avantis-AVUV",
+          "instrument": "avantis-AVUV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "exposure-sleeve:morningstar-SILV",
+          "instrument": "morningstar-SILV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        }
+      ],
+      "issues": [],
+      "unscopedFailures": []
+    }
+  },
+  "recordProof": {
+    "checkedAt": "2026-11-13T13:41:02.609845+00:00",
+    "recordCommit": "45622235e91296f9a66ecfd3c497b39ae102b331",
+    "sourceRun": 43433710130,
+    "event": "push",
+    "records": {
+      "IE0003R87OG3": {
+        "field": "countries",
+        "asOf": "2026-11-11",
+        "checkedAt": "2026-11-13",
+        "holdingsAsOf": "2026-11-12",
+        "sumWeights": 99.44000000000013,
+        "sourceCoverage": 99.49,
+        "unclassified": [
+          {
+            "isin": "SG1R43925234",
+            "weightPct": 0.02
+          },
+          {
+            "isin": "JP3105350007",
+            "weightPct": 0.01
+          },
+          {
+            "isin": "IT0001469383",
+            "weightPct": 0.01
+          },
+          {
+            "isin": "SE0007439443",
+            "weightPct": 0.01
+          },
+          {
+            "isin": "NO0010633951",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "JP3122010006",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "JP3428800001",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "JP3637280003",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "DE0005759807",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "GB00B2NDK765",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "BMG524181036",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "BMG0534V1256",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "NO0010833262",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "DK0010295922",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "BE0003820371",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "AU000000EQT1",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "AU0000464257",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "IL0012125394",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "IL0011708935",
+            "weightPct": 0.0
+          }
+        ],
+        "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+        "sha256": null,
+        "method": "Published equity positions joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and unrepresented NAV remain unallocated; no renormalisation"
+      },
+      "IE000UL6CLP7": {
+        "field": "sectors",
+        "asOf": "2026-11-10",
+        "checkedAt": "2026-11-13",
+        "holdingsAsOf": null,
+        "sumWeights": 99.96,
+        "sourceCoverage": 99.96,
+        "unclassified": null,
+        "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
+        "sha256": "641b4ae1c2e38c614ef98db8070ec08e9776e4647bac94a238bdc6720ea15de8",
+        "method": "Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified"
+      }
+    }
+  },
+  "note": "Sixteen source sleeve results; source errors in independent holdings are not erased."
+}

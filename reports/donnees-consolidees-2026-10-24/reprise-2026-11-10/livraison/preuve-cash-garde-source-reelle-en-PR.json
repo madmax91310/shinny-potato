@@ -1,0 +1,42 @@
+{
+  "runId": 43471624354,
+  "head": "19f9f49e1097199912e4cbb60d9ebfdf0397d39e",
+  "event": "pull_request",
+  "readOnly": true,
+  "records": [
+    {
+      "isin": "IE00BF4RFH31",
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T17:22:12.893666+00:00",
+      "rights": [
+        [
+          "AKERO THERAPEUTICS CVR",
+          0.0003
+        ]
+      ]
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T17:22:12.893666+00:00",
+      "rights": [
+        [
+          "AKERO THERAPEUTICS CVR",
+          0.00263
+        ],
+        [
+          "ESPERION THERAPEUTICS (CVR)",
+          0.0003
+        ]
+      ]
+    }
+  ],
+  "sourceErrors": [
+    {
+      "id": "dca-holdings:IE000NDWFGA5",
+      "field": "Composition compl\u00e8te",
+      "error": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-11-12')"
+    }
+  ],
+  "notProductionPublicationEvidence": true
+}

@@ -1,0 +1,37 @@
+{
+  "globalx-page": {
+    "url": "https://globalxetfs.eu/funds/botz/",
+    "attemptedAt": "2026-11-13T11:32:05.091124+00:00",
+    "status": 200,
+    "finalUrl": "https://globalxetfs.eu/funds/botz",
+    "sha256": "43a02254e80de914624b6e3955e888959f78e77b67478725d34cca92e6135681",
+    "bytes": 403445,
+    "candidateLinks": [
+      {
+        "text": "Holdings",
+        "href": "#holdings-characteristics"
+      },
+      {
+        "text": "Documents",
+        "href": "#documents"
+      },
+      {
+        "text": "Download Full Holdings (.csv)",
+        "href": "/api/funds/botz/topholdingscsv"
+      }
+    ]
+  },
+  "russell-weights": {
+    "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+    "attemptedAt": "2026-11-13T11:32:05.092129+00:00",
+    "status": 200,
+    "finalUrl": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+    "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
+    "bytes": 295588
+  },
+  "wt-page": {
+    "url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wisdomtree-europe-defence-ucits-etf",
+    "attemptedAt": "2026-11-13T11:32:05.092973+00:00",
+    "error": "HTTP Error 404: Not Found"
+  }
+}

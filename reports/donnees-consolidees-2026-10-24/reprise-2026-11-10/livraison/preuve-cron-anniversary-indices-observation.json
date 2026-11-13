@@ -1,0 +1,395 @@
+{
+  "checkedAt": "2026-11-13T15:41:07.215695+00:00",
+  "successes": [],
+  "errors": [],
+  "contractSkipped": [
+    {
+      "id": "anniversary-index-msciEurope",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-msciUsa",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-msciIndia",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-msciEmergingExChina",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-msciWorldMomentum",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-msciWorldQuality",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-msciWorldValue",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-russell2000",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    },
+    {
+      "id": "anniversary-index-ftseAllWorld",
+      "status": "cached",
+      "reason": "Completed month and source configuration already present; no network control in this invocation"
+    }
+  ],
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "anniversary-index-msciEurope",
+          "instrument": "msciEurope",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciUsa",
+          "instrument": "msciUsa",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciIndia",
+          "instrument": "msciIndia",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciEmergingExChina",
+          "instrument": "msciEmergingExChina",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldMomentum",
+          "instrument": "msciWorldMomentum",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldQuality",
+          "instrument": "msciWorldQuality",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldValue",
+          "instrument": "msciWorldValue",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-russell2000",
+          "instrument": "russell2000",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-ftseAllWorld",
+          "instrument": "ftseAllWorld",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_anniversary_indices",
+      "reportStem": "anniversary-indices-observation",
+      "declaredAt": "2026-11-13T15:41:07.187788+00:00",
+      "nonce": "3fc596bb-44f5-46f0-9ef4-3eb70f99cf5c",
+      "codeSha": "f5ef257551b17e610d1233fdf30216ccef5d7cb8",
+      "durablePlan": true,
+      "runId": "43454784772",
+      "attempt": "1",
+      "sha256": "51327e7ff651b60e444f658f6114aae16017b563c3227766f728f399f174fddc"
+    },
+    "scope": {
+      "kind": "refresh_anniversary_indices",
+      "mode": "full",
+      "expectedIds": [
+        "anniversary-index-msciEurope",
+        "anniversary-index-msciUsa",
+        "anniversary-index-msciIndia",
+        "anniversary-index-msciEmergingExChina",
+        "anniversary-index-msciWorldMomentum",
+        "anniversary-index-msciWorldQuality",
+        "anniversary-index-msciWorldValue",
+        "anniversary-index-russell2000",
+        "anniversary-index-ftseAllWorld"
+      ],
+      "requestedIds": [
+        "anniversary-index-msciEurope",
+        "anniversary-index-msciUsa",
+        "anniversary-index-msciIndia",
+        "anniversary-index-msciEmergingExChina",
+        "anniversary-index-msciWorldMomentum",
+        "anniversary-index-msciWorldQuality",
+        "anniversary-index-msciWorldValue",
+        "anniversary-index-russell2000",
+        "anniversary-index-ftseAllWorld"
+      ],
+      "items": [
+        {
+          "id": "anniversary-index-msciEurope",
+          "instrument": "msciEurope",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciUsa",
+          "instrument": "msciUsa",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciIndia",
+          "instrument": "msciIndia",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciEmergingExChina",
+          "instrument": "msciEmergingExChina",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldMomentum",
+          "instrument": "msciWorldMomentum",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldQuality",
+          "instrument": "msciWorldQuality",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldValue",
+          "instrument": "msciWorldValue",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-russell2000",
+          "instrument": "russell2000",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-ftseAllWorld",
+          "instrument": "ftseAllWorld",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-13T15:41:07.187788+00:00",
+      "planSha256": "51327e7ff651b60e444f658f6114aae16017b563c3227766f728f399f174fddc",
+      "attemptedIds": [],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [],
+      "runId": "43454784772",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "3fc596bb-44f5-46f0-9ef4-3eb70f99cf5c"
+    },
+    "outcomes": [
+      {
+        "id": "anniversary-index-msciEurope",
+        "instrument": "msciEurope",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-msciUsa",
+        "instrument": "msciUsa",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-msciIndia",
+        "instrument": "msciIndia",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-msciEmergingExChina",
+        "instrument": "msciEmergingExChina",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-msciWorldMomentum",
+        "instrument": "msciWorldMomentum",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-msciWorldQuality",
+        "instrument": "msciWorldQuality",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-msciWorldValue",
+        "instrument": "msciWorldValue",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-russell2000",
+        "instrument": "russell2000",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      },
+      {
+        "id": "anniversary-index-ftseAllWorld",
+        "instrument": "ftseAllWorld",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "cached",
+        "reason": "Completed month and source configuration already present; no network control in this invocation",
+        "operationAttempted": false,
+        "sourceAttempted": false
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

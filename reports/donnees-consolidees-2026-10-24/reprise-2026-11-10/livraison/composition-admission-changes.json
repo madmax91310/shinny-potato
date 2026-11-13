@@ -1,0 +1,623 @@
+{
+  "checkedAt": "2026-11-13T18:22:38.891905+00:00",
+  "changes": {
+    "admitted": [
+      {
+        "id": "europe",
+        "isin": "FR0011550193",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-11-03",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+          "scope": "equity-index",
+          "basis": "index",
+          "complete": true,
+          "rows": 600
+        },
+        "qualification": {
+          "asset": "europe",
+          "label": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
+          "isin": "FR0011550193",
+          "asOf": "2026-11-03",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 100.0000000000001,
+          "identifiedCoverage": 100.0000000000001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -9.947598300641403e-14
+        }
+      },
+      {
+        "id": "small",
+        "isin": "IE00BF4RFH31",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "basis": "fund",
+          "complete": true,
+          "rows": 3585,
+          "navReconciliation": {
+            "schemaVersion": 1,
+            "asOf": "2026-11-12",
+            "sourceRowCount": 3621,
+            "selectedRowCount": 3585,
+            "excludedRowCount": 36,
+            "publishedNetWeightPct": 100.00028999999999,
+            "selectedWeightPct": 99.58645,
+            "sourceWeightPctByType": {
+              "Equity": 99.58675,
+              "Money Market": 0.1613,
+              "Cash": 0.22158000000000005,
+              "Cash Collateral and Margins": 0.03087,
+              "Futures": 0,
+              "FX": -0.00021
+            },
+            "excludedWeightPctByType": {
+              "Money Market": 0.1613,
+              "Cash": 0.22158000000000005,
+              "Cash Collateral and Margins": 0.03087,
+              "Equity": 0.0003,
+              "Futures": 0,
+              "FX": -0.00021
+            },
+            "unidentifiedPositions": [],
+            "normalizationApplied": false,
+            "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+          }
+        },
+        "qualification": {
+          "asset": "small",
+          "label": "iShares MSCI World Small Cap UCITS ETF",
+          "isin": "IE00BF4RFH31",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.58645,
+          "identifiedCoverage": 99.58645,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.41355000000000075
+        }
+      },
+      {
+        "id": "IE00B469F816",
+        "isin": "IE00B469F816",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spym-gy.xlsx",
+          "basis": "fund",
+          "complete": true,
+          "rows": 1174
+        },
+        "qualification": {
+          "asset": "IE00B469F816",
+          "label": "SPDR MSCI Emerging Markets UCITS ETF",
+          "isin": "IE00B469F816",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spym-gy.xlsx",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99999999999999,
+          "identifiedCoverage": 99.99999999999999,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 1.4210854715202004e-14
+        }
+      },
+      {
+        "id": "IE000XZSV718",
+        "isin": "IE000XZSV718",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx",
+          "basis": "fund",
+          "complete": true,
+          "rows": 504
+        },
+        "qualification": {
+          "asset": "IE000XZSV718",
+          "label": "SPDR S&P 500 UCITS ETF Acc",
+          "isin": "IE000XZSV718",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.99995500000001,
+          "identifiedCoverage": 99.99995500000001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 4.4999999985861905e-05
+        }
+      },
+      {
+        "id": "IE00B441G979",
+        "isin": "IE00B441G979",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "basis": "fund",
+          "complete": true,
+          "rows": 1246,
+          "navReconciliation": {
+            "schemaVersion": 1,
+            "asOf": "2026-11-12",
+            "sourceRowCount": 1332,
+            "selectedRowCount": 1246,
+            "excludedRowCount": 86,
+            "publishedNetWeightPct": 100.00007999999993,
+            "selectedWeightPct": 99.63058,
+            "sourceWeightPctByType": {
+              "Equity": 99.63057999999992,
+              "Cash": 0.34876999999999986,
+              "Money Market": 0.49543,
+              "Cash Collateral and Margins": 0.0527,
+              "Forwards": -0.5274,
+              "FX": 0,
+              "Futures": 0
+            },
+            "excludedWeightPctByType": {
+              "Cash": 0.34876999999999986,
+              "Money Market": 0.49543,
+              "Cash Collateral and Margins": 0.0527,
+              "Forwards": -0.5274,
+              "Equity": 0,
+              "FX": 0,
+              "Futures": 0
+            },
+            "unidentifiedPositions": [],
+            "normalizationApplied": false,
+            "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+          }
+        },
+        "qualification": {
+          "asset": "IE00B441G979",
+          "label": "iShares MSCI World EUR Hedged UCITS ETF (Acc)",
+          "isin": "IE00B441G979",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.63057999999992,
+          "identifiedCoverage": 99.63057999999992,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.36942000000007624
+        }
+      },
+      {
+        "id": "IE00BYXG2H39",
+        "isin": "IE00BYXG2H39",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "basis": "fund",
+          "complete": true,
+          "rows": 244,
+          "navReconciliation": {
+            "schemaVersion": 1,
+            "asOf": "2026-11-12",
+            "sourceRowCount": 256,
+            "selectedRowCount": 244,
+            "excludedRowCount": 12,
+            "publishedNetWeightPct": 99.99998999999998,
+            "selectedWeightPct": 99.78841,
+            "sourceWeightPctByType": {
+              "Equity": 99.79133999999998,
+              "Cash": 0.19795000000000001,
+              "Cash Collateral and Margins": 0.0107,
+              "Futures": 0
+            },
+            "excludedWeightPctByType": {
+              "Cash": 0.19795000000000001,
+              "Cash Collateral and Margins": 0.0107,
+              "Equity": 0.00293,
+              "Futures": 0
+            },
+            "unidentifiedPositions": [],
+            "normalizationApplied": false,
+            "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+          }
+        },
+        "qualification": {
+          "asset": "IE00BYXG2H39",
+          "label": "iShares Nasdaq US Biotechnology UCITS ETF",
+          "isin": "IE00BYXG2H39",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.78840999999998,
+          "identifiedCoverage": 99.78840999999998,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.21159000000001527
+        }
+      },
+      {
+        "id": "FR0013412038",
+        "isin": "FR0013412038",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-09-29",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
+          "scope": "equity-index",
+          "basis": "index",
+          "complete": true,
+          "rows": 386
+        },
+        "qualification": {
+          "asset": "FR0013412038",
+          "label": "Amundi PEA MSCI Europe UCITS ETF (Acc)",
+          "isin": "FR0013412038",
+          "asOf": "2026-09-29",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.9999000000001,
+          "identifiedCoverage": 99.9999000000001,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 9.999999990384367e-05
+        }
+      },
+      {
+        "id": "IE00B6YX5D40",
+        "isin": "IE00B6YX5D40",
+        "before": false,
+        "after": true,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyd-gy.xlsx",
+          "basis": "fund",
+          "complete": true,
+          "rows": 154
+        },
+        "qualification": {
+          "asset": "IE00B6YX5D40",
+          "label": "SPDR S&P US Dividend Aristocrats UCITS ETF",
+          "isin": "IE00B6YX5D40",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyd-gy.xlsx",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.9999989999999,
+          "identifiedCoverage": 99.9999989999999,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 1.0000000969512257e-06
+        }
+      }
+    ],
+    "becamePartial": [
+      {
+        "id": "world",
+        "isin": "IE00B4L5Y983",
+        "before": true,
+        "after": false,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "basis": "fund",
+          "complete": true,
+          "rows": 1246,
+          "navReconciliation": {
+            "schemaVersion": 1,
+            "asOf": "2026-11-12",
+            "sourceRowCount": 1295,
+            "selectedRowCount": 1246,
+            "excludedRowCount": 49,
+            "publishedNetWeightPct": 100.00007000000002,
+            "selectedWeightPct": 99.49939,
+            "sourceWeightPctByType": {
+              "Equity": 99.49939000000002,
+              "Money Market": 0.43637,
+              "Cash": 0.03202999999999995,
+              "Cash Collateral and Margins": 0.03195,
+              "FX": 0.00033000000000000016,
+              "Futures": 0
+            },
+            "excludedWeightPctByType": {
+              "Money Market": 0.43637,
+              "Cash": 0.03202999999999995,
+              "Cash Collateral and Margins": 0.03195,
+              "FX": 0.00033000000000000016,
+              "Equity": 0,
+              "Futures": 0
+            },
+            "unidentifiedPositions": [],
+            "normalizationApplied": false,
+            "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+          }
+        },
+        "qualification": {
+          "asset": "world",
+          "label": "iShares Core MSCI World UCITS ETF (Acc)",
+          "isin": "IE00B4L5Y983",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.49939000000002,
+          "identifiedCoverage": 99.49939000000002,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.5006099999999805
+        }
+      },
+      {
+        "id": "FR0011871110",
+        "isin": "FR0011871110",
+        "before": true,
+        "after": false,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+          "scope": "equity-index",
+          "basis": "index",
+          "complete": true,
+          "rows": 101
+        },
+        "qualification": {
+          "asset": "FR0011871110",
+          "label": "Amundi PEA Nasdaq-100 UCITS ETF",
+          "isin": "FR0011871110",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+          ],
+          "sourceCoverage": 100.00010000000002,
+          "identifiedCoverage": 100.00010000000002,
+          "unidentifiedCoverage": 0,
+          "residualWeight": -0.00010000000001753051
+        }
+      },
+      {
+        "id": "LU1681047236",
+        "isin": "LU1681047236",
+        "before": true,
+        "after": false,
+        "book": {
+          "asOf": "2026-11-11",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "basis": "fund",
+          "complete": true,
+          "rows": 56
+        },
+        "qualification": {
+          "asset": "LU1681047236",
+          "label": "Amundi Core EURO STOXX 50 UCITS ETF",
+          "isin": "LU1681047236",
+          "asOf": "2026-11-11",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.40338027658495,
+          "identifiedCoverage": 99.40338027658495,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.5966197234150457
+        }
+      },
+      {
+        "id": "IE0003R87OG3",
+        "isin": "IE0003R87OG3",
+        "before": true,
+        "after": false,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+          "basis": "fund",
+          "complete": true,
+          "rows": 1470
+        },
+        "qualification": {
+          "asset": "IE0003R87OG3",
+          "label": "Avantis Global Small Cap Value UCITS ETF USD Acc",
+          "isin": "IE0003R87OG3",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.4900000000017,
+          "identifiedCoverage": 99.4900000000017,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.5099999999982998
+        }
+      },
+      {
+        "id": "IE0006WW1TQ4",
+        "isin": "IE0006WW1TQ4",
+        "before": true,
+        "after": false,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
+          "basis": "fund",
+          "complete": true,
+          "rows": 736,
+          "navReconciliation": {
+            "schemaVersion": 1,
+            "asOf": "2026-11-12",
+            "sourceRowCount": 753,
+            "selectedRowCount": 736,
+            "excludedRowCount": 17,
+            "publishedNetWeightPct": 99.99999621000006,
+            "selectedWeightPct": 98.77345821,
+            "sourceWeightPctByType": {
+              "Equities": 97.90465623000006,
+              "Mutual Fund": 1.05772565,
+              "Depository Receipts": 0.24841378,
+              "Cash": 0.16881235000000003,
+              "Preferred Stock": 0.19252086000000002,
+              "Real Estate Investment Trust": 0.42713018,
+              "Right": 0.00073716,
+              "Future": 0
+            },
+            "excludedWeightPctByType": {
+              "Mutual Fund": 1.05772565,
+              "Cash": 0.16881235000000003,
+              "Future": 0
+            },
+            "unidentifiedPositions": [],
+            "normalizationApplied": false,
+            "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference",
+            "qualifiedExcludedPositions": [
+              {
+                "isin": "IE00BYQNZ507",
+                "name": "Deutsche Managed Dollar Fund",
+                "weightPct": 1.05772565,
+                "sourceAssetClass": "Mutual Fund",
+                "kind": "non-equity-money-market-fund",
+                "sourceUrl": "https://download.dws.com/download?elib-assetguid=890b3c75b14d4c22be88765b92b21794",
+                "sha256": "81b453539c4576b839df87613a2f66958e1e7c573eed22460cb1d76b476a24dc",
+                "asOf": "2026-02-16",
+                "checkedAt": "2026-11-13T18:10:01.674251+00:00"
+              }
+            ]
+          }
+        },
+        "qualification": {
+          "asset": "IE0006WW1TQ4",
+          "label": "Xtrackers MSCI World ex USA UCITS ETF 1C",
+          "isin": "IE0006WW1TQ4",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 98.77345821000007,
+          "identifiedCoverage": 98.77345821000007,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 1.2265417899999278
+        }
+      },
+      {
+        "id": "IE0003UVYC20",
+        "isin": "IE0003UVYC20",
+        "before": true,
+        "after": false,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "scope": "direct-equity-securities",
+          "basis": "fund",
+          "complete": true,
+          "rows": 233
+        },
+        "qualification": {
+          "asset": "IE0003UVYC20",
+          "label": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+          "isin": "IE0003UVYC20",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.45826891667669,
+          "identifiedCoverage": 99.45826891667669,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.5417310833233131
+        }
+      },
+      {
+        "id": "IE00BQN1K786",
+        "isin": "IE00BQN1K786",
+        "before": true,
+        "after": false,
+        "book": {
+          "asOf": "2026-11-12",
+          "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=272019&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "basis": "fund",
+          "complete": true,
+          "rows": 122,
+          "navReconciliation": {
+            "schemaVersion": 1,
+            "asOf": "2026-11-12",
+            "sourceRowCount": 134,
+            "selectedRowCount": 122,
+            "excludedRowCount": 12,
+            "publishedNetWeightPct": 100.00001,
+            "selectedWeightPct": 99.45339,
+            "sourceWeightPctByType": {
+              "Equity": 99.45339,
+              "Cash": 0.44702000000000003,
+              "Money Market": 0.06836,
+              "Cash Collateral and Margins": 0.03124,
+              "Futures": 0
+            },
+            "excludedWeightPctByType": {
+              "Cash": 0.44702000000000003,
+              "Money Market": 0.06836,
+              "Cash Collateral and Margins": 0.03124,
+              "Futures": 0
+            },
+            "unidentifiedPositions": [],
+            "normalizationApplied": false,
+            "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+          }
+        },
+        "qualification": {
+          "asset": "IE00BQN1K786",
+          "label": "iShares Edge MSCI Europe Momentum Factor UCITS ETF",
+          "isin": "IE00BQN1K786",
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=272019&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Le poids couvert est insuffisant pour une comparaison intégrale."
+          ],
+          "sourceCoverage": 99.45339,
+          "identifiedCoverage": 99.45339,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.5466100000000012
+        }
+      }
+    ]
+  },
+  "rule": "Different issuer photographs, original weights, unchanged admission rules; no permanent admission independent of future data quality"
+}

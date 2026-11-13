@@ -1,0 +1,12 @@
+{
+  "old": {
+    "tests": 11,
+    "successful": false,
+    "log": "........F..\n======================================================================\nFAIL: test_real_record_and_merge_keep_top_ten_distinct_from_full_source_count (isolated_merge_old.QualifiedPhysicalAllocation.test_real_record_and_merge_keep_top_ten_distinct_from_full_source_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/automation-20261113/final-master/scripts/test_qualified_physical_allocation.py\", line 72, in test_real_record_and_merge_keep_top_ten_distinct_from_full_source_count\n    self.assertEqual(merged[fallback.ISIN]['countries']['asOf'], '2026-11-11')\nAssertionError: '2026-11-12' != '2026-11-11'\n- 2026-11-12\n?          ^\n+ 2026-11-11\n?          ^\n\n\n----------------------------------------------------------------------\nRan 11 tests in 0.263s\n\nFAILED (failures=1)\n"
+  },
+  "new": {
+    "tests": 12,
+    "successful": true,
+    "log": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.161s\n\nOK\n"
+  }
+}

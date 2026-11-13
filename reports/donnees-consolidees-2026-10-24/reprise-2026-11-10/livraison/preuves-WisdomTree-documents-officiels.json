@@ -1,0 +1,78 @@
+{
+  "rows": [
+    {
+      "name": "globalx-annual",
+      "url": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Annual_Report_and_Audited_Financial_Statements_1_f4a7f3867b.pdf",
+      "attemptedAt": "2026-11-13T11:44:09.561770+00:00",
+      "sourceAuthenticated": false,
+      "scope": "Read-only candidate official document, identity and financial qualification still required",
+      "status": 200,
+      "finalUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Annual_Report_and_Audited_Financial_Statements_1_f4a7f3867b.pdf",
+      "bytes": 3671945,
+      "sha256": "17b58cf5b41bda5dbf3ff5ff9cc52256141fa50e9b0bcc68f989aa83d51f5e5b",
+      "isPdf": true,
+      "completedAt": "2026-11-13T11:44:11.544425+00:00"
+    },
+    {
+      "name": "globalx-semiannual",
+      "url": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Semi_Annual_Financial_Statements_2025_65b69869d5.pdf",
+      "attemptedAt": "2026-11-13T11:44:09.562575+00:00",
+      "sourceAuthenticated": false,
+      "scope": "Read-only candidate official document, identity and financial qualification still required",
+      "status": 200,
+      "finalUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Semi_Annual_Financial_Statements_2025_65b69869d5.pdf",
+      "bytes": 2516434,
+      "sha256": "00d0b14542e279f785427f7c77fc7a3a2b463b909b81d96b4325d80650ce1d94",
+      "isPdf": true,
+      "completedAt": "2026-11-13T11:44:11.535260+00:00"
+    },
+    {
+      "name": "wisdomtree-annual",
+      "url": "https://dataspanapi.wisdomtree.com/pdr/documents/ANNUAL_REPORT/UCITS/GB/EN-GB/IE0002Y8CX98",
+      "attemptedAt": "2026-11-13T11:44:11.535572+00:00",
+      "sourceAuthenticated": false,
+      "scope": "Read-only candidate official document, identity and financial qualification still required",
+      "status": 200,
+      "finalUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/ANNUAL_REPORT/UCITS/GB/EN-GB/IE0002Y8CX98/",
+      "bytes": 16349210,
+      "sha256": "e4b4913c4556a87d043540c6a7c66a6a2e4ac1b85051f28cb36c7cb952b2c0da",
+      "isPdf": true,
+      "completedAt": "2026-11-13T11:44:13.004367+00:00"
+    },
+    {
+      "name": "wisdomtree-semiannual",
+      "url": "https://dataspanapi.wisdomtree.com/pdr/documents/SEMI_ANNUAL_REPORT/UCITS/IT/EN-IT/IE0002Y8CX98",
+      "attemptedAt": "2026-11-13T11:44:11.544828+00:00",
+      "sourceAuthenticated": false,
+      "scope": "Read-only candidate official document, identity and financial qualification still required",
+      "status": 200,
+      "finalUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/SEMI_ANNUAL_REPORT/UCITS/IT/EN-IT/IE0002Y8CX98/",
+      "bytes": 12136117,
+      "sha256": "c5a77be23e6219c3faf2b942a31a6f9eda4e002ed40dce3ee0009dc2d85287fc",
+      "isPdf": true,
+      "completedAt": "2026-11-13T11:44:12.987636+00:00"
+    },
+    {
+      "name": "sp-global-static-candidate",
+      "url": "https://www.spglobal.com/spdji/en/documents/factsheets/factsheet-sp-global-dividend-aristocrats-quality-income-index.pdf",
+      "attemptedAt": "2026-11-13T11:44:12.988827+00:00",
+      "sourceAuthenticated": false,
+      "scope": "Read-only candidate official document, identity and financial qualification still required",
+      "error": "HTTPError: HTTP Error 403: Forbidden",
+      "completedAt": "2026-11-13T11:44:13.221268+00:00"
+    },
+    {
+      "name": "sp-euro-static-candidate",
+      "url": "https://www.spglobal.com/spdji/en/documents/factsheets/factsheet-sp-euro-high-yield-dividend-aristocrats-index.pdf",
+      "attemptedAt": "2026-11-13T11:44:13.005703+00:00",
+      "sourceAuthenticated": false,
+      "scope": "Read-only candidate official document, identity and financial qualification still required",
+      "error": "HTTPError: HTTP Error 403: Forbidden",
+      "completedAt": "2026-11-13T11:44:13.221133+00:00"
+    }
+  ],
+  "event": "push",
+  "runId": "43419329160",
+  "production": false,
+  "scheduled": false
+}

@@ -1,0 +1,120 @@
+{
+  "checkedAt": "2026-11-13T14:35:14.449446+00:00",
+  "runId": 43442615466,
+  "event": "push",
+  "recordCommit": "1b6921b79e7d65e80d404c77eb32c956f7f8e2ab",
+  "GGRA": {
+    "asOf": "2026-11-12",
+    "checkedAt": "2026-11-13T14:28:28.280550+00:00",
+    "weatherford": {
+      "isin": "IE00BLNN3691",
+      "sedol": "BLNN369",
+      "name": "Weatherford International Pl",
+      "weightPct": 0.0437
+    },
+    "identityContinuityResolutions": [
+      {
+        "sedol": "BLNN369",
+        "sourceIdentities": [
+          "IE00BLNN3691",
+          "US94708K1034"
+        ],
+        "selectedIsin": "IE00BLNN3691",
+        "portfolioAsOf": "2026-11-12",
+        "effectiveDate": "2026-11-13",
+        "scope": "Dated holdings identity and economic-company consolidation only; never price continuity or return adjustment",
+        "evidence": [
+          {
+            "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18941",
+            "publishedAt": "2026-11-12",
+            "sha256": "cb784435949b72b6cbbe100d386fa2b6934b9e81038159b4595e0177f31483b6"
+          },
+          {
+            "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18951",
+            "publishedAt": "2026-11-13",
+            "sha256": "24c357050b5dd912a84f6147dd77c6cc7d63fcc4a983cc8a697f2a431a45418f"
+          }
+        ],
+        "reason": "Completed one-for-one redomestication; identity selected by native portfolio date, not source retrieval date"
+      }
+    ],
+    "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+    "rowCount": 439,
+    "rawSourceSha256": "fda3df4d5afe9171d8fb4d58620468ded7b756d237ec85bd49d833660fb9c474"
+  },
+  "wisdomtreeBooks": {
+    "IE0002Y8CX98": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T14:28:28.280550+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sha256": "4253669fc97f3ae08887e6344e9737fbe13947df5be11f9fd36253c69c1cfa4b",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null
+    },
+    "IE000W8WMSL2": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T14:28:28.280550+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+      "sha256": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null
+    },
+    "IE00BZ56SW52": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T14:28:28.280550+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+      "sha256": "fda3df4d5afe9171d8fb4d58620468ded7b756d237ec85bd49d833660fb9c474",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": [
+        {
+          "sedol": "BLNN369",
+          "sourceIdentities": [
+            "IE00BLNN3691",
+            "US94708K1034"
+          ],
+          "selectedIsin": "IE00BLNN3691",
+          "portfolioAsOf": "2026-11-12",
+          "effectiveDate": "2026-11-13",
+          "scope": "Dated holdings identity and economic-company consolidation only; never price continuity or return adjustment",
+          "evidence": [
+            {
+              "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18941",
+              "publishedAt": "2026-11-12",
+              "sha256": "cb784435949b72b6cbbe100d386fa2b6934b9e81038159b4595e0177f31483b6"
+            },
+            {
+              "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18951",
+              "publishedAt": "2026-11-13",
+              "sha256": "24c357050b5dd912a84f6147dd77c6cc7d63fcc4a983cc8a697f2a431a45418f"
+            }
+          ],
+          "reason": "Completed one-for-one redomestication; identity selected by native portfolio date, not source retrieval date"
+        }
+      ]
+    },
+    "IE00BJGWQN72": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T14:28:28.280550+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+      "sha256": "34e9dc820aa6d8386903b371061fe4bbc431194d4487f78bb62605c2ba25fc93",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null
+    },
+    "IE00BDVPNG13": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T14:28:28.280550+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+      "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null
+    },
+    "IE00BKLF1R75": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T14:28:28.280550+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+      "sha256": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null
+    }
+  }
+}

@@ -1,761 +1,28 @@
 {
-  "checkedAt": "2026-11-13T09:15:11.137341+00:00",
-  "buildInfo": {
-    "sha": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41",
-    "dataSha": "fb510c95b22e4485afdd176faced146a62f3014b",
-    "lane": "validated-data",
-    "builtAt": "2026-11-13T09:11:28.207Z"
-  },
+  "checkedAt": "2026-11-13T18:19:14.309138+00:00",
   "before": {
-    "sha": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41",
-    "dataSha": "fb510c95b22e4485afdd176faced146a62f3014b",
+    "sha": "d715820a698c92bde94480e5c47056863f21d6b0",
+    "dataSha": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
     "lane": "validated-data",
-    "builtAt": "2026-11-13T09:11:28.207Z"
+    "builtAt": "2026-11-13T18:18:03.591Z"
   },
   "after": {
-    "sha": "8ad7a501d045fc03a49bd47fe41e690f2c8dfb41",
-    "dataSha": "fb510c95b22e4485afdd176faced146a62f3014b",
+    "sha": "d715820a698c92bde94480e5c47056863f21d6b0",
+    "dataSha": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
     "lane": "validated-data",
-    "builtAt": "2026-11-13T09:11:28.207Z"
+    "builtAt": "2026-11-13T18:18:03.591Z"
   },
   "stable": true,
-  "inputBindings": [
-    {
-      "path": "src/data/anniversary-index-history.json",
-      "publicGitBlob": "e1fe716aaca82126881a06e71a049dd6681a9247",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/anniversary-levels.json",
-      "publicGitBlob": "d14ba2fd696a653aefc8555d84628a36a59aee2d",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/annual-fx.json",
-      "publicGitBlob": "4e9067e3e4145c81a508d73e6a30fd17304fd9bd",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/auto-history-identities.json",
-      "publicGitBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automated-broker-tariffs.json",
-      "publicGitBlob": "1fafd6dd5693e5be17ff1420be15eaa33218616a",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/automated-economic.json",
-      "publicGitBlob": "60b5e4756e538979b358516db858eac109704bea",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/automated-etf-monthly.json",
-      "publicGitBlob": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automated-etf.json",
-      "publicGitBlob": "a74c078f7c6a50a12b234c28b2e8c2a01e6386de",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/automated-indices.json",
-      "publicGitBlob": "320a0c663fbfe4d0cf27a75db59012a6c5828296",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/automated-instrument-metadata.json",
-      "publicGitBlob": "6a1e35c1a7d73f7fab76560bc97510b8c6861435",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automated-insurance.json",
-      "publicGitBlob": "85f9dc1ad100ac08b41052c804809fa2b7268304",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automated-monthly.json",
-      "publicGitBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automated-practical-sheets.json",
-      "publicGitBlob": "0ed9929cbccf94d2f37461f878f8fbd3f2e46271",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automated-presentation-actors.json",
-      "publicGitBlob": "f89ccc46db7a32ddb07dd9dfd27214a9491847b2",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automated-regulatory.json",
-      "publicGitBlob": "1c8937c8f93f5abbb1cf4e64b79376908ccde612",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/automated-scpi.json",
-      "publicGitBlob": "021bae5ae287d9d77dfde58a8ac713c223071bee",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/automation-workflows.json",
-      "publicGitBlob": "fa624215991e75883feab7709b436438b5968627",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/benchmark-changes.json",
-      "publicGitBlob": "cc11183095b215dabc413c336b7ad52a63f7b331",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/bitcoin-yahoo-monthly.json",
-      "publicGitBlob": "334693c48e210de6cc4c94f00b6312bcc8ba8d73",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/data-source-conditions.json",
-      "publicGitBlob": "d0e59f4a7502a4aa0568470f54808e497fe4b64f",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/dca-complete-holdings.json",
-      "publicGitBlob": "3052f85a23b93151bae75aaa940fdd785b9c74e5",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/dca-equity-exposures.json",
-      "publicGitBlob": "ab0913d25b276888df4ecee1d05c25c4df4af63c",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/dca-holdings-status.json",
-      "publicGitBlob": "346103948cd712c2f8c413bcfa523980ab2f0b1f",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/dca-security-classifications.json",
-      "publicGitBlob": "ed5a5b92b5f3398aa05acea4f4e33fdae3455445",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/dynamic-data-consumers.json",
-      "publicGitBlob": "be8bbab9da3f8757a1e2245780d20fab414f8146",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/equity-candidates.json",
-      "publicGitBlob": "9c1339f7bd834985ab6c1a2ea2042d5a3f1696e1",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/equity-duel-returns.json",
-      "publicGitBlob": "67bd4e21f06e24b6a95c0992afedc2de8e34e6b2",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/equity-history-links.json",
-      "publicGitBlob": "e5381fc4f9d70bbb76f00ec7b72d491ce516a6a3",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/etf-presentation-reviewed-ids.json",
-      "publicGitBlob": "f5dd5be4724d28c90ac06fe4f0aefa2ce9493a94",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/exposure-etf-expansion-records.json",
-      "publicGitBlob": "58f3c5d6a481c4cb6fd58f56a05cd095f12b9456",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/exposure-sleeves.json",
-      "publicGitBlob": "52610ad7eeeb75b7a5ef6437f0ab43ce625c709a",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/financial-history-restrictions.json",
-      "publicGitBlob": "522daccfbe0e2549eca5b2c866a6fc4e15ce73ce",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/financial-source-repairs.json",
-      "publicGitBlob": "f533379275831ad1a92d4d8ee43c9668964e8d55",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/french-characteristics.json",
-      "publicGitBlob": "2766379fa3c2799d267877628f9919b688a830b1",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/freshness-policy.json",
-      "publicGitBlob": "f87c9030bf4c4425f6284da93087c28bcdb190aa",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/global-equities.json",
-      "publicGitBlob": "ce5c7191941103077adfafa862e4ca5f0953f88f",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/history-window-restrictions.json",
-      "publicGitBlob": "f837293556809bfecf1e01f5eac910dc8da9c6dc",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/index-company-identities.json",
-      "publicGitBlob": "8152d33cc38dd24f5e83107f11b1f09f12dd9ea1",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/index-company-observations.json",
-      "publicGitBlob": "bb94a432ac2003547d9c469c09338047a084230e",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/index-company-qualified.json",
-      "publicGitBlob": "55cfadaeb0ef09baa8f5e0ca649e7a3ed7b65704",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/instrument-metadata-status.json",
-      "publicGitBlob": "b3b400b75eea772e9f0effd9db871e2f87296bc4",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/investor-model-classes.json",
-      "publicGitBlob": "b8a9cf3246b96d6e550599730edf14cb8d0c9075",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/lifestrategy.json",
-      "publicGitBlob": "b034e12a34d29af326dcef5c59b20b1eed80c0f0",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/manual-source-routes.json",
-      "publicGitBlob": "d5be210e70f1fb5cbe4fa60e7b6334e2a7e02e63",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/monthly-duel-returns.json",
-      "publicGitBlob": "dde3bb304d97264c41428f6562da21f09fbbaeb8",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/monthly-fx.json",
-      "publicGitBlob": "3dc52f31d847a8905a93bd012358e14eac75131d",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/native-index-composition-contracts.json",
-      "publicGitBlob": "4c8487ef4a91b8a1a0287f7144aa3abdf13546e0",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/new-instrument-comparisons.json",
-      "publicGitBlob": "eb3e81fd28f1d197f8fdad33117192b0289405f8",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/new-instrument-copy.json",
-      "publicGitBlob": "7c3e7d1bba6cedb4c764aca37804c81e8dacc66e",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/new-instrument-identities.json",
-      "publicGitBlob": "a8f6133b56e4b674d3964cd53ac9f79d61fc4293",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/non-bond-company-histories.json",
-      "publicGitBlob": "288732cbdaf47b8894be159fc38ada47d10987c5",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/non-bond-etf-records.json",
-      "publicGitBlob": "6aa964f0306bd9f50b3b07270b589765d117455b",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/non-bond-levels.json",
-      "publicGitBlob": "f90ddd95ed7af9bffb89b0c1623b9fdccb022d6c",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/non-bond-monthly-records.json",
-      "publicGitBlob": "291528064b329d41b499299187dbc781e4bccde9",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/non-bond-qualified-records.json",
-      "publicGitBlob": "a9d5a607cbbca01d664229ac90b0e3c64f7e6bc2",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/official-performance-currencies.json",
-      "publicGitBlob": "beb96851b2c29a6117ab3c840262c153e3737aa1",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/performance-links.json",
-      "publicGitBlob": "42661580cd75ed93cb9964dc37bb8615068234c5",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/purchasing-power-observations.json",
-      "publicGitBlob": "c001145fce4fa2086c88c687aa98059047e4c5f4",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/qualified-exposure-etfs.json",
-      "publicGitBlob": "e89a5aaf1250b3e24be346c78de28bdfe7a3af30",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/qualified-listing-records.json",
-      "publicGitBlob": "e87d3f91667e6a9f343750bc836f2178d32480eb",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/ranking-annual.json",
-      "publicGitBlob": "6d906d69659ac96f29f6bc4e909515a7cfe045bb",
-      "status": "generated-projection-byte-identical-to-public",
-      "notClaimedCommittedInput": true,
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/ranking-ftse.json",
-      "publicGitBlob": "fdd082a723a7cca3d7727f2d3d7a80d03f6798d4",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/ranking-histories.json",
-      "publicGitBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/ranking-index-annual.json",
-      "publicGitBlob": "ff56b94ab809950313295e15ac7adb536fb817bd",
-      "status": "generated-projection-byte-identical-to-public",
-      "notClaimedCommittedInput": true,
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/data/retired-automations.json",
-      "publicGitBlob": "eaaf3eab312e3cf6bd357fc8bc4181dcb68ab2aa",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/reviewed-broker-profiles.json",
-      "publicGitBlob": "943fa864d56082d74b500c35205470cb26fd46a6",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/security-identifier-observations.json",
-      "publicGitBlob": "805cf21264826d8efab46cc93ae1c6175d8b2d6b",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/shared-listing-identities.json",
-      "publicGitBlob": "7c1d43c38f620b0dd2cbc8004d9f2b933976cdb3",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/simulation-links.json",
-      "publicGitBlob": "dc25d7a3ba735d6af675433d01f9dc20c7a279a6",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/tool-links.json",
-      "publicGitBlob": "393d68e900f672cbdcc47d1519d2b079a7f4229f",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/vanguard-equity-underliers.json",
-      "publicGitBlob": "293c56bad935ba3d5f3c6e7e02dd952e4aba4862",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/data/worldbank-gold-monthly.json",
-      "publicGitBlob": "8a8d22d76f09d404c6dda1b3491f1e95268f6cb3",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/catalog.json",
-      "publicGitBlob": "811be41670aa0edf29b8a32926ae86b31f14310b",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/exposures-extra-0.json",
-      "publicGitBlob": "791f9de1d4e61bb13f3bf3b4136deb921c3d966b",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/exposures-extra-1.json",
-      "publicGitBlob": "af941e03f270161806fe655f4715ef666facea95",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/exposures-extra-2.json",
-      "publicGitBlob": "5e0178273574a3376341a3e6c0c98c2b81e7f346",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/exposures.json",
-      "publicGitBlob": "9c5c7dd031fadacb05f34aebb319fda807facbc1",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-0.json",
-      "publicGitBlob": "92fa94c6c6a1377e5ecaa26258c1e80e0e29b156",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-1.json",
-      "publicGitBlob": "cc42a879928ff8071c02f43fb1a04bc18e66e5d3",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-10.json",
-      "publicGitBlob": "1ade6d166baf80199a2593f2c5cea09b4945e2fd",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-11.json",
-      "publicGitBlob": "174bec19e9f176538828f55458ea9592efb5b815",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-12.json",
-      "publicGitBlob": "bea7b8e591d733f7c7cef163d6082e0027c1d3a8",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-13.json",
-      "publicGitBlob": "0208337458b2f35bb0fe71939d6ea607a05f3727",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-14.json",
-      "publicGitBlob": "0975e1c0eb308d9f5ea479b95d81bca4bf8ff2ed",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-15.json",
-      "publicGitBlob": "a21b4b7fa53f56a9cca9155060aa90469ec38a85",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-16.json",
-      "publicGitBlob": "7c28ed4a4027c1afbf739e99afe91e0804a631d6",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-17.json",
-      "publicGitBlob": "b66658e8865a85611512d702f4aa5fac8c957ce8",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-18.json",
-      "publicGitBlob": "b286a074932eec38c9aa912d417c86bc18b0531e",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-19.json",
-      "publicGitBlob": "6f50ab7eaecbe84080ece7dcdcb5fec2f2c45d56",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-2.json",
-      "publicGitBlob": "f36334ac96f7377daaf0b0c87b78c11de7b36722",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-20.json",
-      "publicGitBlob": "4bd7d9a2e5d2e102ca26ad1a088c8b765d0ecc2d",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-21.json",
-      "publicGitBlob": "79959b892b4602e1f55266c5075afd008987f95e",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-22.json",
-      "publicGitBlob": "7f3d1df5adb94769b09717441cad2007303fd23e",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-23.json",
-      "publicGitBlob": "b4331ee3c072649441a3ef4af95ef47e6bc2beb4",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-24.json",
-      "publicGitBlob": "21f807e6e7badcd5e1bc3f9da7c5e854cafc2117",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-25.json",
-      "publicGitBlob": "2622ae46c0e24ebf5d4fe86537e7b701ee323a74",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-26.json",
-      "publicGitBlob": "9f48060dc812140ef67aa23d76e4239e2ffbc5a7",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-27.json",
-      "publicGitBlob": "808a23a1f622e80620e2a14228d75f436c46f3ec",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-28.json",
-      "publicGitBlob": "76d9f9760b0ac1b4d41fd14300d93d16b5866ee2",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-29.json",
-      "publicGitBlob": "5c5d0398c963b0569502067942dbc4f2a8835c18",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-3.json",
-      "publicGitBlob": "a2f4cc2a3460b6b4163af48662d8baa260e8b5d7",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-30.json",
-      "publicGitBlob": "996d60be62aeed2b57573d7f07f7b8e600b20f98",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-31.json",
-      "publicGitBlob": "26cca598609ca4110d682bf8745c1e536235bd95",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-4.json",
-      "publicGitBlob": "579fdb7f08b8f1b537e824a51ceda8ccda1f71cb",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-5.json",
-      "publicGitBlob": "0d30793f7ffe0fea7b05d2f3b5efedd0f7c3d9fd",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-6.json",
-      "publicGitBlob": "bb8638bcaef1f9007a3b486e28875c7b0c8f5096",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-7.json",
-      "publicGitBlob": "c6e3beb30281795e3e584ab80d645c835ec33c91",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-8.json",
-      "publicGitBlob": "05c3809c7fa524165c2c8cc372728b5e3512efd9",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-9.json",
-      "publicGitBlob": "38427f8a28aa56f639a8933c3726cb06e052766d",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings-manifest.json",
-      "publicGitBlob": "1ca5bcb4ddb6bf359c14df299e16c02a50b0272d",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": true
-    },
-    {
-      "path": "src/pages/dca-profiles/holdings.json",
-      "publicGitBlob": "576a3fe88fd4604eb95f9baff2d8e4f0030cb3bc",
-      "exactCommit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "sameAsPriorPublicInput": false
-    }
-  ],
-  "failures": [],
-  "all111Bound": true,
-  "committedCanonicalInputs": 109,
-  "generatedProjectionsBoundSeparately": 2,
-  "XNDX": {
-    "runId": 43398418519,
-    "event": "push",
-    "sourceOutcome": {
-      "id": "anniversary-nasdaq100",
-      "checkedAt": "2026-11-13T09:06:55.895957+00:00",
-      "asOf": "2026-11-12",
-      "sourceUrl": "https://fred.stlouisfed.org/data/NASDAQXNDX",
-      "responseSha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79"
-    },
-    "record": {
-      "value": 34587.76,
-      "asOf": "2026-11-12",
-      "currency": "USD",
-      "parser": "fred-document",
-      "symbol": "XNDX",
-      "seriesId": "NASDAQXNDX",
-      "variant": "TOTAL",
-      "indexCode": null,
-      "sourceUrl": "https://fred.stlouisfed.org/data/NASDAQXNDX",
-      "sourceUrls": [
-        "https://fred.stlouisfed.org/data/NASDAQXNDX"
-      ],
-      "sha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79",
-      "sourceHashes": {
-        "https://fred.stlouisfed.org/data/NASDAQXNDX": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79"
-      },
-      "quoteMethod": "official-fred-xndx-document",
-      "sourceEvidence": {
-        "seriesId": "NASDAQXNDX",
-        "provider": "Nasdaq, Inc.",
-        "asOf": "2026-11-12",
-        "value": 34587.76,
-        "publisherUpdated": "2026-11-12 10:44 PM CST",
-        "sourceDateRange": "1999-03-04 to 2026-11-12",
-        "sha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79",
-        "session": "2026-11-12"
-      },
-      "method": "Clôture officielle XNDX Total Return USD, dividendes bruts réinvestis ; série Nasdaq NASDAQXNDX publiée par FRED, séance et date de publication contrôlées",
-      "maxAgeDays": 7,
-      "checkedAt": "2026-11-13T09:06:55.895957+00:00"
-    },
-    "requiredPublicationReceipt": {
-      "schemaVersion": 1,
-      "commit": "fb510c95b22e4485afdd176faced146a62f3014b",
-      "files": {
-        "src/data/anniversary-index-history.json": "e1fe716aaca82126881a06e71a049dd6681a9247",
-        "src/data/anniversary-levels.json": "d14ba2fd696a653aefc8555d84628a36a59aee2d",
-        "src/data/purchasing-power-observations.json": "c001145fce4fa2086c88c687aa98059047e4c5f4"
-      }
-    },
-    "publicFileExact": true
-  },
   "publicManifest": {
     "files": {
-      "public/data/asset-automation.csv": "67118fdf582d28d0c7b349d4eb515109dcb5b735",
-      "public/data/asset-field-coverage.json": "9f67f03d7e8583c2fa8acb0bccb67abcb3d92135",
-      "public/data/data-automation-inventory.json": "c1066daf1cbf42096938e9a9303ded59d8f95a57",
-      "public/data/data-automation-inventory.md": "1912e9d5b48d32bef52737889c419cf5857c2a6e",
-      "public/data/data-automation-summary.json": "6ba8e3366f94f20dfcf6b408ab36817500df61c9",
-      "public/data/data-connections-backlog.csv": "73e4a0512c8db625fa6b49920a78c6e06623530f",
+      "public/data/asset-automation.csv": "a93875441dcd13bbf0ada3cf8198213c09adec83",
+      "public/data/asset-field-coverage.json": "6aae5c1c68c5fe682e9df529c74648fb731dfc62",
+      "public/data/data-automation-inventory.json": "5e991d39da95fd310b64c040f6f2d93062b123eb",
+      "public/data/data-automation-inventory.md": "e1f91338e7c121f09f74815b7cc288c838f2e8f2",
+      "public/data/data-automation-summary.json": "abe4986957e6c056a6569df99a2e751fb02a8d4f",
+      "public/data/data-connections-backlog.csv": "079b06789e69ffdceafc54cf745b38183f25221f",
       "public/data/financial-reconciliation.json": "e32a7ef88e6af09ad10f1a433d99811584fad119",
-      "public/data/holdings-discovery.json": "8f7914e3778d99012db49b423c2c976a5f86fbca",
+      "public/data/holdings-discovery.json": "eb37fbd45e78bd2fb3b0979506e1eec7393ed45d",
       "public/data/investors/ackman.json": "811ba04c2eb8626d1bf2cd7cf4a7617652508921",
       "public/data/investors/archive/gayner/2026-06-30.json": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
       "public/data/investors/aschenbrenner.json": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
@@ -786,10 +53,10 @@
       "public/data/investors/thiel.json": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
       "public/data/investors/vinall.json": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
       "public/data/investors/watsa.json": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
-      "public/data/pea-automation.csv": "c8296baed3f2ee857d74f8a15dc049b25642e319",
-      "public/data/pending-source-checks.json": "99212986b8e086f234419099e40a6f018a5ced0a",
-      "public/data/shared-market-coverage.json": "20cbe9933b98bf7a07a1249cd1acb32d74acd30f",
-      "public/data/tweet-bank-catalog.json": "fbdc349567de4b85f70b0f3718c6a49a9beb3803",
+      "public/data/pea-automation.csv": "7aa1ca43d535dccd85b7e5ada9f4e1f356e5d86a",
+      "public/data/pending-source-checks.json": "0e70cc5841f42f7fb9e3bea2fffe0c17f9def9c8",
+      "public/data/shared-market-coverage.json": "24ecceecae1870cabdbf31f7fef1fd4a9664fc94",
+      "public/data/tweet-bank-catalog.json": "9955e3c16055648122b497cb97e7209e961cdf33",
       "scripts/source-snapshots/anniversary-indices.json": "d6ed989444e87c14b9dd4a2c7d2ea3f6150a12eb",
       "scripts/source-snapshots/automation-recovery-2026-10-10.json": "aa7cbfb38cf221de839d4e5d09cdd5485e7a373c",
       "scripts/source-snapshots/bitcoin-automated.json": "2290ad82a9a80ad1317a1842217c708441190bc3",
@@ -832,7 +99,7 @@
       "scripts/source-snapshots/household-benchmarks-2026-10-03.json": "83a68d487071bfaa607c49c48e04c6d19ae70ca4",
       "scripts/source-snapshots/index-comparison-emerging-series-2026-10-04.json": "080c94bedbaa445ef58136c2ca9700bc87d659c4",
       "scripts/source-snapshots/index-comparison-returns-2026-10-04.json": "ff882efce430bcaf82f0b285dbd6d6ff18f53a3e",
-      "scripts/source-snapshots/inflation-automated.json": "6dea13985737e65d71c529701657df9e8d7aa237",
+      "scripts/source-snapshots/inflation-automated.json": "46a4d0e9ce8dcb5a9adb190a66c31e1bfe6bfa6a",
       "scripts/source-snapshots/instrument-listings-2026-09-30.json": "03813cc4cdce8b0437df3786bfe46029b2667d32",
       "scripts/source-snapshots/instrument-profiles-2026-09-30.json": "11f1a3035b068cc189322d3b274c92fa5654cdbd",
       "scripts/source-snapshots/instrument-supports-2026-10-03.json": "d8488fcb9c5e375c69ef117194d3b26d7a983fbb",
@@ -840,15 +107,15 @@
       "scripts/source-snapshots/live-data-connections-2026-10-20.json": "5120bb7bbc987a578075d0eacb602e5f7962cf62",
       "scripts/source-snapshots/monthly-automated-round4.json": "fd91fb369758f0e77a98d86e855722d9f7cce65e",
       "scripts/source-snapshots/monthly-automated.json": "057860a2160bdb1f1f031e3a8a5ecf26f5138a3d",
-      "scripts/source-snapshots/monthly-collection-status.json": "174964504a53259f38fab550189b286f56870f35",
+      "scripts/source-snapshots/monthly-collection-status.json": "ee3717cf03ed533ecad2703b6b3ecefbfba6ca5f",
       "scripts/source-snapshots/monthly-history-additions-2026-10-03.json": "f909f75635d69b5f41446fb8fffecf52ac6b07b4",
       "scripts/source-snapshots/monthly-lifestrategy.json": "2503909b7ea6a6ba2a42c3299eb4debaec54b4ee",
       "scripts/source-snapshots/monthly-qualification-status.json": "c2f3a79f4b622c390aa394157d9fef66fc22f147",
       "scripts/source-snapshots/nasdaq-price-legacy.json": "0225a4ba735d8db64f24f0bf95c5beda9cf67212",
-      "scripts/source-snapshots/non-bond-monthly-active.json": "464601271ccc1c39f9f5d83c947903b46f54bb06",
+      "scripts/source-snapshots/non-bond-monthly-active.json": "9c9ccf6582d972b9ce55c5f27741e02631269fac",
       "scripts/source-snapshots/non-bond-monthly-validation.json": "a0e9d08e6f1c77aea2670b7fb13d837cf3e257ca",
       "scripts/source-snapshots/property-infrastructure-2026-10-05.json": "b8a5b11681ee3343dd90a021c0be82f6109db78d",
-      "scripts/source-snapshots/ranking-collection-status.json": "d3e2abce0caa6e9dd825905d7faf3bb7c7641e39",
+      "scripts/source-snapshots/ranking-collection-status.json": "59eff38ca08a890b5473fd6b4e64fb58e2555ff8",
       "scripts/source-snapshots/ranking-histories.json": "571b04f28733e24f2ffe1b0d30c806a354dc130f",
       "scripts/source-snapshots/remaining-sources-2026-10-10.json": "4b4f48712ef36e9bd504d56cbdeb3961dfb60f68",
       "scripts/source-snapshots/roadmap-monthly-validation.json": "9d76641fcb1f03bf90f9897c446898d79f36567b",
@@ -859,9 +126,9 @@
       "src/data/allowed-media.js": "09b37276fb7195192184f13044b4b3463ec43327",
       "src/data/anniversary-index-history.json": "e1fe716aaca82126881a06e71a049dd6681a9247",
       "src/data/anniversary-levels.js": "e2e38aeb32c278820b3de1ca57f86135d2b8601a",
-      "src/data/anniversary-levels.json": "d14ba2fd696a653aefc8555d84628a36a59aee2d",
+      "src/data/anniversary-levels.json": "039a383d8e96ebc5ceca2d1c6798c74ca9070ee7",
       "src/data/anniversary-price-quality.js": "0a14fc59f6b1d188da9bbc531ef27cd3fbe105e2",
-      "src/data/annual-fx.json": "4e9067e3e4145c81a508d73e6a30fd17304fd9bd",
+      "src/data/annual-fx.json": "44a2c56dfd160a19085e2437fbf946a9783ff887",
       "src/data/annual-performance-currency.js": "8c02f44c19592de42ce84f37162c3090b30559af",
       "src/data/annual-portfolio-funds.js": "a5608b13f39b377315263342d649c2324ff3b0d0",
       "src/data/annual-window.js": "05aa8ca6c6909a8f93b973333bfdf852b909a2f5",
@@ -870,24 +137,24 @@
       "src/data/asset-selection.js": "86c42c97cc8e5973514afdaf4c8d76702c681a4e",
       "src/data/aum-observations.js": "ddf488f07e4d37357183bae22df856dd43b0b091",
       "src/data/auto-history-identities.json": "2b72eec67c38ae74c34ac92956df4b517435f739",
-      "src/data/automated-broker-tariffs.json": "1fafd6dd5693e5be17ff1420be15eaa33218616a",
+      "src/data/automated-broker-tariffs.json": "121f2e19c3cae6969d4f7c22cd9001cdba169845",
       "src/data/automated-characteristics.js": "3543808a2ba8a997b5a811aced8939868dfaa6d1",
-      "src/data/automated-economic.json": "60b5e4756e538979b358516db858eac109704bea",
+      "src/data/automated-economic.json": "669642f7d49212aeb49ff94d8ea0dd1af46234dc",
       "src/data/automated-equity-history.js": "7b9460851519ba7e228807b43896d7e7aaf54438",
       "src/data/automated-etf-monthly.json": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
       "src/data/automated-etf.js": "a3805b01cc44fca516581603ba4db3949e3a9ae6",
-      "src/data/automated-etf.json": "a74c078f7c6a50a12b234c28b2e8c2a01e6386de",
+      "src/data/automated-etf.json": "59ee59881df50b26375f37ffeaeece2f791e9d1d",
       "src/data/automated-index-sheets.js": "262dfe15e54a151217df5e238c39151906971ddc",
       "src/data/automated-indices.js": "758cce8fa90c7e0de363c3b4732eb7d3f3ab62a6",
-      "src/data/automated-indices.json": "320a0c663fbfe4d0cf27a75db59012a6c5828296",
-      "src/data/automated-instrument-metadata.json": "6a1e35c1a7d73f7fab76560bc97510b8c6861435",
-      "src/data/automated-insurance.json": "85f9dc1ad100ac08b41052c804809fa2b7268304",
+      "src/data/automated-indices.json": "191c562727b6dd5e2f18223c86678b29b7361e48",
+      "src/data/automated-instrument-metadata.json": "75460966a3512c1a40de31f4e76eaaeb4bb53b1d",
+      "src/data/automated-insurance.json": "a7782fb22ee29b4678fe4be5ee438394d864cbb5",
       "src/data/automated-monthly.json": "474142b727712860179ae8a73b6b9ab6946b70a8",
       "src/data/automated-portfolio-funds.js": "966e1abc9e274a93634b742d705e56d8c7e1afc7",
-      "src/data/automated-practical-sheets.json": "0ed9929cbccf94d2f37461f878f8fbd3f2e46271",
-      "src/data/automated-presentation-actors.json": "f89ccc46db7a32ddb07dd9dfd27214a9491847b2",
+      "src/data/automated-practical-sheets.json": "371bca39844f99cb8bd6b94f159b3db9ee145a51",
+      "src/data/automated-presentation-actors.json": "e541202bbb3c94b5d7a4b4fdcb3efc183132b9ec",
       "src/data/automated-regulatory.json": "1c8937c8f93f5abbb1cf4e64b79376908ccde612",
-      "src/data/automated-scpi.json": "021bae5ae287d9d77dfde58a8ac713c223071bee",
+      "src/data/automated-scpi.json": "514e019c077aa2950f836d75076d2a3b01ee1ade",
       "src/data/automation-workflows.json": "fa624215991e75883feab7709b436438b5968627",
       "src/data/benchmark-changes.js": "79031709afe943b2e6caeff350998a17050c1044",
       "src/data/benchmark-changes.json": "cc11183095b215dabc413c336b7ad52a63f7b331",
@@ -907,10 +174,10 @@
       "src/data/comparator-return-evidence.js": "5346806e540a67b6f1f10589b0ed011b22f4876d",
       "src/data/comparison-etf-details.js": "8cbeed70958ca9d76f54a562b539ba7efb975640",
       "src/data/data-source-conditions.json": "d0e59f4a7502a4aa0568470f54808e497fe4b64f",
-      "src/data/dca-complete-holdings.json": "3052f85a23b93151bae75aaa940fdd785b9c74e5",
-      "src/data/dca-equity-exposures.json": "ab0913d25b276888df4ecee1d05c25c4df4af63c",
-      "src/data/dca-holdings-status.json": "346103948cd712c2f8c413bcfa523980ab2f0b1f",
-      "src/data/dca-security-classifications.json": "ed5a5b92b5f3398aa05acea4f4e33fdae3455445",
+      "src/data/dca-complete-holdings.json": "2b8162f9d844d8cba945124e7c592ff6a3ca4085",
+      "src/data/dca-equity-exposures.json": "d452d6dbc3d1f36a148ea48ab78cbfb9c22cbb11",
+      "src/data/dca-holdings-status.json": "9c9c67eac7d88b84a8513d5a864a0ecca94c5383",
+      "src/data/dca-security-classifications.json": "8554e42e6d100e7157ee802e32b654c49481a2d1",
       "src/data/distinct-asset-selections.js": "31d609e2be111b0e3ab92f655d7f310e25f8c8e9",
       "src/data/distinct-portfolio-assets.js": "fbbb21ec125e9116d65c84b9c0a5f3f9cb5e524b",
       "src/data/diversification-history.js": "2615695d110896568477885a886a42032ca996e5",
@@ -923,7 +190,7 @@
       "src/data/equity-candidates.json": "9c1339f7bd834985ab6c1a2ea2042d5a3f1696e1",
       "src/data/equity-duel-returns.json": "67bd4e21f06e24b6a95c0992afedc2de8e34e6b2",
       "src/data/equity-history-identities.js": "4aac8ca90da498a0861bc70328ed589e663b6711",
-      "src/data/equity-history-links.json": "e5381fc4f9d70bbb76f00ec7b72d491ce516a6a3",
+      "src/data/equity-history-links.json": "b79c29b76458e9fe8eff281472c5a8dd2f2cb0ad",
       "src/data/etf-cards.js": "590c18652b3c2a04c00e27c87f7ac0590da0595b",
       "src/data/etf-development.js": "75272ab9644442310f34968a71a26adac44f72ea",
       "src/data/etf-flows-tool.json": "3a546729e60f58b5f7b8c241eac614f85bf62ac3",
@@ -940,10 +207,10 @@
       "src/data/evidence-freshness.js": "82ef98dff124ff59f40cbbe28d5d04b5aed706b8",
       "src/data/evidence.js": "aa30e2d7b85943a349135dfaf7a117038c2df8aa",
       "src/data/exposure-additions.js": "b41d6536b90338fdfaf0f0a01e9d2577dacb98e6",
-      "src/data/exposure-etf-expansion-records.json": "58f3c5d6a481c4cb6fd58f56a05cd095f12b9456",
+      "src/data/exposure-etf-expansion-records.json": "7b82b74eeb047dd9b464600b5f2b97ef695639ce",
       "src/data/exposure-etf-expansion.js": "85a3671835c729e94daf4c8052707334c668842f",
       "src/data/exposure-observations.js": "bed33674f485e1150443c9893f5d416f26dc18cb",
-      "src/data/exposure-sleeves.json": "52610ad7eeeb75b7a5ef6437f0ab43ce625c709a",
+      "src/data/exposure-sleeves.json": "750e73dc57bd1f6dc8fb95271f8b4c03027b6fea",
       "src/data/fee-field-evidence.js": "45b7c0560c9d8cfbed9b657712997702655d9249",
       "src/data/financial-history-restrictions.json": "522daccfbe0e2549eca5b2c866a6fc4e15ce73ce",
       "src/data/financial-lexicon.js": "6b4307c26cccdbadc42084ea36a73c996b185fe0",
@@ -966,9 +233,9 @@
       "src/data/household-statistics.js": "e52fa1e7a25d50710f58ffd9e1bebad5610581d3",
       "src/data/index-company-compositions.js": "66860005f549d7c0553f3f0ab48a0f980e4df7ad",
       "src/data/index-company-facts.js": "425cfa8582a3e06f830d9b504d2cb0b61526a526",
-      "src/data/index-company-identities.json": "8152d33cc38dd24f5e83107f11b1f09f12dd9ea1",
-      "src/data/index-company-observations.json": "bb94a432ac2003547d9c469c09338047a084230e",
-      "src/data/index-company-qualified.json": "55cfadaeb0ef09baa8f5e0ca649e7a3ed7b65704",
+      "src/data/index-company-identities.json": "c18f0acb6ed002c1549c95fcce368be53677741b",
+      "src/data/index-company-observations.json": "7489a790975d0ea4b7a07223ae7b2bd4b0218722",
+      "src/data/index-company-qualified.json": "0427a5eb07bdbb342817b545800cc813989ae172",
       "src/data/index-comparison-composition.js": "50d0abcdca3ec423983b02dae78dae124b33a9c5",
       "src/data/index-comparison-editorial.js": "95c81c46c58f2c694a8c0e170bae2abb118ecaef",
       "src/data/index-comparison-pairs.js": "b06cbbc8b6cff11a5d11873f8b10cf64d718799d",
@@ -992,7 +259,7 @@
       "src/data/instrument-comparator-returns.js": "55ee563072fbebe53d3e7b8bffcef7275d3ee9ee",
       "src/data/instrument-facts.js": "026ff504af310bfc8cd028ccd1a2078100e49f11",
       "src/data/instrument-listings.js": "e8b7946b0448fac1893f20556755b7eaa7a919de",
-      "src/data/instrument-metadata-status.json": "b3b400b75eea772e9f0effd9db871e2f87296bc4",
+      "src/data/instrument-metadata-status.json": "5bac74fa742bf519a89bd76d63355f60a80c980b",
       "src/data/instrument-metadata.js": "0a68de8f5cd456e0431ba5b91e37580b3c638b7a",
       "src/data/instrument-pea.js": "da8b0e4c2c0451b0c29b8708c64549e9f05c0d5f",
       "src/data/instrument-performance-review.js": "ffe50e8790e996f65eed0b5b086160b139f4c6e0",
@@ -1007,7 +274,7 @@
       "src/data/investor-profiles.js": "c29c6014da0eb402b1490e63e5dcbf4bbcb6a532",
       "src/data/investor-roster.js": "9a5bcf13eb12fe180898d29c0a40790eb61bb1a4",
       "src/data/lifestrategy.js": "cecd2d07ff2e4d6767a625d4898702f5d7b0988d",
-      "src/data/lifestrategy.json": "b034e12a34d29af326dcef5c59b20b1eed80c0f0",
+      "src/data/lifestrategy.json": "7237913e9c68778365f23f729d4b5ddd442a9626",
       "src/data/maintenance-links.js": "f93ee04fccc2fbaffbf5dc652250778075c85d90",
       "src/data/manual-source-routes.json": "d5be210e70f1fb5cbe4fa60e7b6334e2a7e02e63",
       "src/data/market-calendar-performance.js": "5143a7cbdd9de4901dd744eb8bf3dc01d60df805",
@@ -1015,7 +282,7 @@
       "src/data/market-history.js": "48d67ffbcf173c3f6a096e5b1e7a6b407b6a32a5",
       "src/data/market-story-selection.js": "7c0949187a46181ff7d86ffb7f15b96bdaeea635",
       "src/data/monthly-automation.js": "bf216f9f0e1bcb66c3e61769da1cd72021ddf8be",
-      "src/data/monthly-duel-returns.json": "dde3bb304d97264c41428f6562da21f09fbbaeb8",
+      "src/data/monthly-duel-returns.json": "2227c9ca64fc447c7e1afbb75606bdd7a8deed2d",
       "src/data/monthly-fx.json": "3dc52f31d847a8905a93bd012358e14eac75131d",
       "src/data/monthly-history-additions.js": "8cdc34d6a7365168d3adb23da423882087ced435",
       "src/data/msci-history.js": "bb3b567d7977bb337749e859875cf6388bfb35b4",
@@ -1028,11 +295,11 @@
       "src/data/new-instrument-identities.json": "a8f6133b56e4b674d3964cd53ac9f79d61fc4293",
       "src/data/new-instrument-sheets.js": "6907c3ba0d31a80eceb03dbeb26098e60c30e2d2",
       "src/data/non-bond-company-histories.json": "288732cbdaf47b8894be159fc38ada47d10987c5",
-      "src/data/non-bond-etf-records.json": "6aa964f0306bd9f50b3b07270b589765d117455b",
+      "src/data/non-bond-etf-records.json": "dad812dd4ed76dc2a8b0d2813ca14bec2b94b2dc",
       "src/data/non-bond-expansion.js": "6b91922d8002e983a0ee9de793d8f3c64577a362",
-      "src/data/non-bond-levels.json": "f90ddd95ed7af9bffb89b0c1623b9fdccb022d6c",
-      "src/data/non-bond-monthly-records.json": "291528064b329d41b499299187dbc781e4bccde9",
-      "src/data/non-bond-qualified-records.json": "a9d5a607cbbca01d664229ac90b0e3c64f7e6bc2",
+      "src/data/non-bond-levels.json": "749054ccabd8623d61c5e15e9980cd9dcf3c76d1",
+      "src/data/non-bond-monthly-records.json": "aa835a1db91070153b0027fa5682eefc524037a3",
+      "src/data/non-bond-qualified-records.json": "b27beee6643bee2f747761bfa68afa758d7b7c73",
       "src/data/official-performance-currencies.json": "beb96851b2c29a6117ab3c840262c153e3737aa1",
       "src/data/pea-group-status.js": "88cc2038bcbce9cbcd8effe98a824e851878cb8a",
       "src/data/pea-sector-completion.js": "bc265d72655afde0fef464a1ba77742e4b351e4b",
@@ -1054,19 +321,19 @@
       "src/data/presentation-etf-expansion.js": "626566034b621be9b28fba0d24ac3149213a4637",
       "src/data/property-infrastructure-additions.js": "1466a686abe6df58796f49d50652e99e2f323353",
       "src/data/publication-selections.js": "0d1c6916d1f5410a5e42be453da33e257ba08e25",
-      "src/data/purchasing-power-observations.json": "c001145fce4fa2086c88c687aa98059047e4c5f4",
+      "src/data/purchasing-power-observations.json": "df73ea0d55fac3626992471d941f8cf613230524",
       "src/data/purchasing-power.js": "a1227cc5ba6b7678b20da6829638896e2a44675a",
       "src/data/qualified-annual-calendars.js": "1856501d2360ee0cf4269382f090b15d7a8be3ec",
       "src/data/qualified-etf-comparisons.js": "24d8f6a82413bb463257c18944eebe8c4e575599",
-      "src/data/qualified-exposure-etfs.json": "e89a5aaf1250b3e24be346c78de28bdfe7a3af30",
+      "src/data/qualified-exposure-etfs.json": "08921245944ca678009ba8bff3543182d85edfe3",
       "src/data/qualified-exposure-metrics.js": "0d5b5a5fc6f867368448f9725117a2706e4b6fcc",
       "src/data/qualified-exposure-sheets.js": "dc6221f18603cbca2c81c8cf2e89d4cfd6336610",
-      "src/data/qualified-listing-records.json": "e87d3f91667e6a9f343750bc836f2178d32480eb",
+      "src/data/qualified-listing-records.json": "8b32ed7864a5a734ccc6f835817b877a4c8d6ded",
       "src/data/qualified-listings.js": "d6bb01e96e60fbdcaf00e4e1450cd3b776f9b6be",
-      "src/data/ranking-annual.json": "6d906d69659ac96f29f6bc4e909515a7cfe045bb",
+      "src/data/ranking-annual.json": "f37d5ae17980a870a45bb6d111850d64b845df79",
       "src/data/ranking-ftse.json": "fdd082a723a7cca3d7727f2d3d7a80d03f6798d4",
       "src/data/ranking-histories.json": "9f27c08a760365c538c61e03caf0fe76def48837",
-      "src/data/ranking-index-annual.json": "ff56b94ab809950313295e15ac7adb536fb817bd",
+      "src/data/ranking-index-annual.json": "6006c364fd8bc2cd98a4df8280e4411b0315d4f6",
       "src/data/regulatory-data.js": "334e20ed46db54c190d24b9302afd4cecdc84434",
       "src/data/resource-selections.js": "0f5df8adca3ef691f06be46128bba32a0165be73",
       "src/data/retired-automations.json": "eaaf3eab312e3cf6bd357fc8bc4181dcb68ab2aa",
@@ -1079,10 +346,10 @@
       "src/data/routing-presentations.js": "d6a57b40c18746b99616579a90c348e1bee4e236",
       "src/data/scpi.js": "700e40f1ce305f7a86f9a5f53d5d30f5ac8781a9",
       "src/data/search-text.js": "3e0f1faa6eea3fc0921a4a254469ee2b84d08b9e",
-      "src/data/security-identifier-observations.json": "805cf21264826d8efab46cc93ae1c6175d8b2d6b",
+      "src/data/security-identifier-observations.json": "aef2c7c99127f8bc0abf78cbab6f88eb5578aaac",
       "src/data/selection-search.js": "e001a4495176be27aafff3ebdab4b60000e86777",
       "src/data/shared-index-history.js": "a002f454c774af9474302e2e064615b84c203367",
-      "src/data/shared-listing-identities.json": "7c1d43c38f620b0dd2cbc8004d9f2b933976cdb3",
+      "src/data/shared-listing-identities.json": "868978773d4316c73ad5131208154f4044ed19b6",
       "src/data/shared-qualified-histories.js": "d045335f8e9e3b74e28eb56c63351b09339ab042",
       "src/data/simulation-links.js": "d62d38e367c9390041be93c8269106a7b5104669",
       "src/data/simulation-links.json": "dc25d7a3ba735d6af675433d01f9dc20c7a279a6",
@@ -1091,55 +358,1567 @@
       "src/data/tool-links.js": "346ef895fa18c6bc1725d60b18214b02ae97f375",
       "src/data/tool-links.json": "393d68e900f672cbdcc47d1519d2b079a7f4229f",
       "src/data/tool-summaries.json": "3b889e1cd93c0911b0e251df8ba597daab067f74",
-      "src/data/vanguard-equity-underliers.json": "293c56bad935ba3d5f3c6e7e02dd952e4aba4862",
+      "src/data/vanguard-equity-underliers.json": "6f05c41ce66dbd76970356ee252581b1a0e1fb41",
       "src/data/verified-returns.js": "c7c27ab3a0b263a531889568c147f7f95b0d2af5",
       "src/data/world-factor-additions.js": "2f8aeef16c9d47e81d70f7a91de4beab007e425b",
       "src/data/worldbank-gold-monthly.json": "8a8d22d76f09d404c6dda1b3491f1e95268f6cb3",
-      "src/pages/dca-profiles/catalog.json": "811be41670aa0edf29b8a32926ae86b31f14310b",
-      "src/pages/dca-profiles/exposures-extra-0.json": "791f9de1d4e61bb13f3bf3b4136deb921c3d966b",
-      "src/pages/dca-profiles/exposures-extra-1.json": "af941e03f270161806fe655f4715ef666facea95",
-      "src/pages/dca-profiles/exposures-extra-2.json": "5e0178273574a3376341a3e6c0c98c2b81e7f346",
-      "src/pages/dca-profiles/exposures.json": "9c5c7dd031fadacb05f34aebb319fda807facbc1",
-      "src/pages/dca-profiles/holdings-0.json": "92fa94c6c6a1377e5ecaa26258c1e80e0e29b156",
-      "src/pages/dca-profiles/holdings-1.json": "cc42a879928ff8071c02f43fb1a04bc18e66e5d3",
-      "src/pages/dca-profiles/holdings-10.json": "1ade6d166baf80199a2593f2c5cea09b4945e2fd",
-      "src/pages/dca-profiles/holdings-11.json": "174bec19e9f176538828f55458ea9592efb5b815",
-      "src/pages/dca-profiles/holdings-12.json": "bea7b8e591d733f7c7cef163d6082e0027c1d3a8",
-      "src/pages/dca-profiles/holdings-13.json": "0208337458b2f35bb0fe71939d6ea607a05f3727",
-      "src/pages/dca-profiles/holdings-14.json": "0975e1c0eb308d9f5ea479b95d81bca4bf8ff2ed",
-      "src/pages/dca-profiles/holdings-15.json": "a21b4b7fa53f56a9cca9155060aa90469ec38a85",
-      "src/pages/dca-profiles/holdings-16.json": "7c28ed4a4027c1afbf739e99afe91e0804a631d6",
-      "src/pages/dca-profiles/holdings-17.json": "b66658e8865a85611512d702f4aa5fac8c957ce8",
-      "src/pages/dca-profiles/holdings-18.json": "b286a074932eec38c9aa912d417c86bc18b0531e",
-      "src/pages/dca-profiles/holdings-19.json": "6f50ab7eaecbe84080ece7dcdcb5fec2f2c45d56",
-      "src/pages/dca-profiles/holdings-2.json": "f36334ac96f7377daaf0b0c87b78c11de7b36722",
-      "src/pages/dca-profiles/holdings-20.json": "4bd7d9a2e5d2e102ca26ad1a088c8b765d0ecc2d",
-      "src/pages/dca-profiles/holdings-21.json": "79959b892b4602e1f55266c5075afd008987f95e",
-      "src/pages/dca-profiles/holdings-22.json": "7f3d1df5adb94769b09717441cad2007303fd23e",
-      "src/pages/dca-profiles/holdings-23.json": "b4331ee3c072649441a3ef4af95ef47e6bc2beb4",
-      "src/pages/dca-profiles/holdings-24.json": "21f807e6e7badcd5e1bc3f9da7c5e854cafc2117",
-      "src/pages/dca-profiles/holdings-25.json": "2622ae46c0e24ebf5d4fe86537e7b701ee323a74",
-      "src/pages/dca-profiles/holdings-26.json": "9f48060dc812140ef67aa23d76e4239e2ffbc5a7",
-      "src/pages/dca-profiles/holdings-27.json": "808a23a1f622e80620e2a14228d75f436c46f3ec",
-      "src/pages/dca-profiles/holdings-28.json": "76d9f9760b0ac1b4d41fd14300d93d16b5866ee2",
-      "src/pages/dca-profiles/holdings-29.json": "5c5d0398c963b0569502067942dbc4f2a8835c18",
-      "src/pages/dca-profiles/holdings-3.json": "a2f4cc2a3460b6b4163af48662d8baa260e8b5d7",
-      "src/pages/dca-profiles/holdings-30.json": "996d60be62aeed2b57573d7f07f7b8e600b20f98",
-      "src/pages/dca-profiles/holdings-31.json": "26cca598609ca4110d682bf8745c1e536235bd95",
-      "src/pages/dca-profiles/holdings-4.json": "579fdb7f08b8f1b537e824a51ceda8ccda1f71cb",
-      "src/pages/dca-profiles/holdings-5.json": "0d30793f7ffe0fea7b05d2f3b5efedd0f7c3d9fd",
-      "src/pages/dca-profiles/holdings-6.json": "bb8638bcaef1f9007a3b486e28875c7b0c8f5096",
-      "src/pages/dca-profiles/holdings-7.json": "c6e3beb30281795e3e584ab80d645c835ec33c91",
-      "src/pages/dca-profiles/holdings-8.json": "05c3809c7fa524165c2c8cc372728b5e3512efd9",
-      "src/pages/dca-profiles/holdings-9.json": "38427f8a28aa56f639a8933c3726cb06e052766d",
+      "src/pages/dca-profiles/catalog.json": "1dfdeb2b8163e083db12a0779979df319cb89ff7",
+      "src/pages/dca-profiles/exposures-extra-0.json": "99020ef357a3c01ba5342ad0e71363f67d03b457",
+      "src/pages/dca-profiles/exposures-extra-1.json": "4178c2dcc140e9c6263c9bb9fc9a578d80a141de",
+      "src/pages/dca-profiles/exposures-extra-2.json": "8341bb8f8eb2091892e58216f88b1819a8eb4673",
+      "src/pages/dca-profiles/exposures.json": "3683772291cb506c79a91812f31d5be399c90535",
+      "src/pages/dca-profiles/holdings-0.json": "ac015c1bd761d7af0a5166d2d44bbf8aa93e4f71",
+      "src/pages/dca-profiles/holdings-1.json": "c7f56ef5377fe2e28dc9e2efffdf7f5d292a69f9",
+      "src/pages/dca-profiles/holdings-10.json": "edc84a240898b829cce9412a403cfb765935b601",
+      "src/pages/dca-profiles/holdings-11.json": "c34a1597feea74492481bad8cfe1c5a6e19d19fb",
+      "src/pages/dca-profiles/holdings-12.json": "9ecb02eb6d08f0e365c1612342cee35d76fcbeae",
+      "src/pages/dca-profiles/holdings-13.json": "32a7393c677e9983a59e35e72eca77145b9eb9b2",
+      "src/pages/dca-profiles/holdings-14.json": "18b3cdf71b591358b6aaaae85ce755c89534ce33",
+      "src/pages/dca-profiles/holdings-15.json": "f843abc689328ce10cafc7487cb258302325161e",
+      "src/pages/dca-profiles/holdings-16.json": "af93fd6c637d6be63fd887fe744a21840bd23aba",
+      "src/pages/dca-profiles/holdings-17.json": "9ad79572e1678f27f8b5200b1f6d29d0cbff3434",
+      "src/pages/dca-profiles/holdings-18.json": "33b3f21e42dd9dade0149c0dcca3baf72a43d08f",
+      "src/pages/dca-profiles/holdings-19.json": "eb6af680b99544496233fe9ace2184af303bff2a",
+      "src/pages/dca-profiles/holdings-2.json": "aa1d560ba116c2e66b440d336099b7f570c589db",
+      "src/pages/dca-profiles/holdings-20.json": "91107e99a3c344415147902806e0a25bec7e40e8",
+      "src/pages/dca-profiles/holdings-21.json": "46fd72291d9f3875cca3d34f6f779879952b84de",
+      "src/pages/dca-profiles/holdings-22.json": "e61c297f6604fc927fd332b5b6424ab216a9a7d7",
+      "src/pages/dca-profiles/holdings-23.json": "2d760fa458a0463d05a3b4d05f10a04a405866ff",
+      "src/pages/dca-profiles/holdings-24.json": "27427df96983278b203bad87d8f2a6fb78ad9e68",
+      "src/pages/dca-profiles/holdings-25.json": "1e64e418fe0b62bd598bfb48d9929ad6e68ab258",
+      "src/pages/dca-profiles/holdings-26.json": "9c5ed3fb4d6c96c48a94e67395594a58279599ad",
+      "src/pages/dca-profiles/holdings-27.json": "e5002315064dce2852238de5b63d4e2733b35d74",
+      "src/pages/dca-profiles/holdings-28.json": "93464c21f88643577a5f568373c7a7a12051ca8f",
+      "src/pages/dca-profiles/holdings-29.json": "7399447f76d5dde79713ca93af913ac10714fd6b",
+      "src/pages/dca-profiles/holdings-3.json": "3507da72da8ef9c0806bc465ddef55885858f950",
+      "src/pages/dca-profiles/holdings-30.json": "0bfee1df46268954e10f19acf19e5124b08d6f9b",
+      "src/pages/dca-profiles/holdings-31.json": "9d87a58a45a54a8067e1e325a09dba26016f7c16",
+      "src/pages/dca-profiles/holdings-4.json": "49234baf9d665de676b00149fd1abf3eeeabe53b",
+      "src/pages/dca-profiles/holdings-5.json": "358f8912dc304e775062978a5ebb2855841cd9f8",
+      "src/pages/dca-profiles/holdings-6.json": "6d4384660b9996b4d195058093de8ca2a27544f8",
+      "src/pages/dca-profiles/holdings-7.json": "3bb860aad6b8d2a6703e3e3d6713e39ccd1588cf",
+      "src/pages/dca-profiles/holdings-8.json": "f7818e9861bcdf91ce32a5a6d1feb7621334f5ca",
+      "src/pages/dca-profiles/holdings-9.json": "49b6b43d8f983d4cc07cd873ecf4be253460b64c",
       "src/pages/dca-profiles/holdings-manifest.json": "1ca5bcb4ddb6bf359c14df299e16c02a50b0272d",
-      "src/pages/dca-profiles/holdings.json": "576a3fe88fd4604eb95f9baff2d8e4f0030cb3bc"
+      "src/pages/dca-profiles/holdings.json": "cd287fe0d6a8726b970f3c1f86a20debdc2d7721"
     },
     "schemaVersion": 1
   },
+  "inputBindings": [
+    {
+      "path": "src/data/anniversary-index-history.json",
+      "publicGitBlob": "e1fe716aaca82126881a06e71a049dd6681a9247",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/anniversary-levels.json",
+      "publicGitBlob": "039a383d8e96ebc5ceca2d1c6798c74ca9070ee7",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/annual-fx.json",
+      "publicGitBlob": "44a2c56dfd160a19085e2437fbf946a9783ff887",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/auto-history-identities.json",
+      "publicGitBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/automated-broker-tariffs.json",
+      "publicGitBlob": "121f2e19c3cae6969d4f7c22cd9001cdba169845",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-economic.json",
+      "publicGitBlob": "669642f7d49212aeb49ff94d8ea0dd1af46234dc",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "publicGitBlob": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "publicGitBlob": "59ee59881df50b26375f37ffeaeece2f791e9d1d",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "publicGitBlob": "191c562727b6dd5e2f18223c86678b29b7361e48",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-instrument-metadata.json",
+      "publicGitBlob": "75460966a3512c1a40de31f4e76eaaeb4bb53b1d",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-insurance.json",
+      "publicGitBlob": "a7782fb22ee29b4678fe4be5ee438394d864cbb5",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "publicGitBlob": "474142b727712860179ae8a73b6b9ab6946b70a8",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/automated-practical-sheets.json",
+      "publicGitBlob": "371bca39844f99cb8bd6b94f159b3db9ee145a51",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-presentation-actors.json",
+      "publicGitBlob": "e541202bbb3c94b5d7a4b4fdcb3efc183132b9ec",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-regulatory.json",
+      "publicGitBlob": "1c8937c8f93f5abbb1cf4e64b79376908ccde612",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automated-scpi.json",
+      "publicGitBlob": "514e019c077aa2950f836d75076d2a3b01ee1ade",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/automation-workflows.json",
+      "publicGitBlob": "fa624215991e75883feab7709b436438b5968627",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/benchmark-changes.json",
+      "publicGitBlob": "cc11183095b215dabc413c336b7ad52a63f7b331",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/bitcoin-yahoo-monthly.json",
+      "publicGitBlob": "334693c48e210de6cc4c94f00b6312bcc8ba8d73",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/data-source-conditions.json",
+      "publicGitBlob": "d0e59f4a7502a4aa0568470f54808e497fe4b64f",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "publicGitBlob": "2b8162f9d844d8cba945124e7c592ff6a3ca4085",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/dca-equity-exposures.json",
+      "publicGitBlob": "d452d6dbc3d1f36a148ea48ab78cbfb9c22cbb11",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/dca-holdings-status.json",
+      "publicGitBlob": "9c9c67eac7d88b84a8513d5a864a0ecca94c5383",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/dca-security-classifications.json",
+      "publicGitBlob": "8554e42e6d100e7157ee802e32b654c49481a2d1",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/dynamic-data-consumers.json",
+      "publicGitBlob": "be8bbab9da3f8757a1e2245780d20fab414f8146",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/equity-candidates.json",
+      "publicGitBlob": "9c1339f7bd834985ab6c1a2ea2042d5a3f1696e1",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/equity-duel-returns.json",
+      "publicGitBlob": "67bd4e21f06e24b6a95c0992afedc2de8e34e6b2",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/equity-history-links.json",
+      "publicGitBlob": "b79c29b76458e9fe8eff281472c5a8dd2f2cb0ad",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/etf-presentation-reviewed-ids.json",
+      "publicGitBlob": "f5dd5be4724d28c90ac06fe4f0aefa2ce9493a94",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/exposure-etf-expansion-records.json",
+      "publicGitBlob": "7b82b74eeb047dd9b464600b5f2b97ef695639ce",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/exposure-sleeves.json",
+      "publicGitBlob": "750e73dc57bd1f6dc8fb95271f8b4c03027b6fea",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/financial-history-restrictions.json",
+      "publicGitBlob": "522daccfbe0e2549eca5b2c866a6fc4e15ce73ce",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/financial-source-repairs.json",
+      "publicGitBlob": "f533379275831ad1a92d4d8ee43c9668964e8d55",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/french-characteristics.json",
+      "publicGitBlob": "2766379fa3c2799d267877628f9919b688a830b1",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/freshness-policy.json",
+      "publicGitBlob": "f87c9030bf4c4425f6284da93087c28bcdb190aa",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/global-equities.json",
+      "publicGitBlob": "ce5c7191941103077adfafa862e4ca5f0953f88f",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/history-window-restrictions.json",
+      "publicGitBlob": "f837293556809bfecf1e01f5eac910dc8da9c6dc",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/index-company-identities.json",
+      "publicGitBlob": "c18f0acb6ed002c1549c95fcce368be53677741b",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/index-company-observations.json",
+      "publicGitBlob": "7489a790975d0ea4b7a07223ae7b2bd4b0218722",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/index-company-qualified.json",
+      "publicGitBlob": "0427a5eb07bdbb342817b545800cc813989ae172",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/instrument-metadata-status.json",
+      "publicGitBlob": "5bac74fa742bf519a89bd76d63355f60a80c980b",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/investor-model-classes.json",
+      "publicGitBlob": "b8a9cf3246b96d6e550599730edf14cb8d0c9075",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/lifestrategy.json",
+      "publicGitBlob": "7237913e9c68778365f23f729d4b5ddd442a9626",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/manual-source-routes.json",
+      "publicGitBlob": "d5be210e70f1fb5cbe4fa60e7b6334e2a7e02e63",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/monthly-duel-returns.json",
+      "publicGitBlob": "2227c9ca64fc447c7e1afbb75606bdd7a8deed2d",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "publicGitBlob": "3dc52f31d847a8905a93bd012358e14eac75131d",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/native-index-composition-contracts.json",
+      "publicGitBlob": "4c8487ef4a91b8a1a0287f7144aa3abdf13546e0",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/new-instrument-comparisons.json",
+      "publicGitBlob": "eb3e81fd28f1d197f8fdad33117192b0289405f8",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/new-instrument-copy.json",
+      "publicGitBlob": "7c3e7d1bba6cedb4c764aca37804c81e8dacc66e",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/new-instrument-identities.json",
+      "publicGitBlob": "a8f6133b56e4b674d3964cd53ac9f79d61fc4293",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/non-bond-company-histories.json",
+      "publicGitBlob": "288732cbdaf47b8894be159fc38ada47d10987c5",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/non-bond-etf-records.json",
+      "publicGitBlob": "dad812dd4ed76dc2a8b0d2813ca14bec2b94b2dc",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/non-bond-levels.json",
+      "publicGitBlob": "749054ccabd8623d61c5e15e9980cd9dcf3c76d1",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/non-bond-monthly-records.json",
+      "publicGitBlob": "aa835a1db91070153b0027fa5682eefc524037a3",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/non-bond-qualified-records.json",
+      "publicGitBlob": "b27beee6643bee2f747761bfa68afa758d7b7c73",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/official-performance-currencies.json",
+      "publicGitBlob": "beb96851b2c29a6117ab3c840262c153e3737aa1",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/performance-links.json",
+      "publicGitBlob": "42661580cd75ed93cb9964dc37bb8615068234c5",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/purchasing-power-observations.json",
+      "publicGitBlob": "df73ea0d55fac3626992471d941f8cf613230524",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/qualified-exposure-etfs.json",
+      "publicGitBlob": "08921245944ca678009ba8bff3543182d85edfe3",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "publicGitBlob": "8b32ed7864a5a734ccc6f835817b877a4c8d6ded",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/ranking-annual.json",
+      "publicGitBlob": "f37d5ae17980a870a45bb6d111850d64b845df79",
+      "status": "generated-projection-byte-identical-to-public",
+      "notClaimedCommittedInput": true,
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/ranking-ftse.json",
+      "publicGitBlob": "fdd082a723a7cca3d7727f2d3d7a80d03f6798d4",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "publicGitBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/ranking-index-annual.json",
+      "publicGitBlob": "6006c364fd8bc2cd98a4df8280e4411b0315d4f6",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/retired-automations.json",
+      "publicGitBlob": "eaaf3eab312e3cf6bd357fc8bc4181dcb68ab2aa",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/reviewed-broker-profiles.json",
+      "publicGitBlob": "943fa864d56082d74b500c35205470cb26fd46a6",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/security-identifier-observations.json",
+      "publicGitBlob": "aef2c7c99127f8bc0abf78cbab6f88eb5578aaac",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/shared-listing-identities.json",
+      "publicGitBlob": "868978773d4316c73ad5131208154f4044ed19b6",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/simulation-links.json",
+      "publicGitBlob": "dc25d7a3ba735d6af675433d01f9dc20c7a279a6",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/tool-links.json",
+      "publicGitBlob": "393d68e900f672cbdcc47d1519d2b079a7f4229f",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/data/vanguard-equity-underliers.json",
+      "publicGitBlob": "6f05c41ce66dbd76970356ee252581b1a0e1fb41",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/data/worldbank-gold-monthly.json",
+      "publicGitBlob": "8a8d22d76f09d404c6dda1b3491f1e95268f6cb3",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/pages/dca-profiles/catalog.json",
+      "publicGitBlob": "1dfdeb2b8163e083db12a0779979df319cb89ff7",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures-extra-0.json",
+      "publicGitBlob": "99020ef357a3c01ba5342ad0e71363f67d03b457",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures-extra-1.json",
+      "publicGitBlob": "4178c2dcc140e9c6263c9bb9fc9a578d80a141de",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures-extra-2.json",
+      "publicGitBlob": "8341bb8f8eb2091892e58216f88b1819a8eb4673",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures.json",
+      "publicGitBlob": "3683772291cb506c79a91812f31d5be399c90535",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-0.json",
+      "publicGitBlob": "ac015c1bd761d7af0a5166d2d44bbf8aa93e4f71",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-1.json",
+      "publicGitBlob": "c7f56ef5377fe2e28dc9e2efffdf7f5d292a69f9",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-10.json",
+      "publicGitBlob": "edc84a240898b829cce9412a403cfb765935b601",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-11.json",
+      "publicGitBlob": "c34a1597feea74492481bad8cfe1c5a6e19d19fb",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-12.json",
+      "publicGitBlob": "9ecb02eb6d08f0e365c1612342cee35d76fcbeae",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-13.json",
+      "publicGitBlob": "32a7393c677e9983a59e35e72eca77145b9eb9b2",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-14.json",
+      "publicGitBlob": "18b3cdf71b591358b6aaaae85ce755c89534ce33",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-15.json",
+      "publicGitBlob": "f843abc689328ce10cafc7487cb258302325161e",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-16.json",
+      "publicGitBlob": "af93fd6c637d6be63fd887fe744a21840bd23aba",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-17.json",
+      "publicGitBlob": "9ad79572e1678f27f8b5200b1f6d29d0cbff3434",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-18.json",
+      "publicGitBlob": "33b3f21e42dd9dade0149c0dcca3baf72a43d08f",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-19.json",
+      "publicGitBlob": "eb6af680b99544496233fe9ace2184af303bff2a",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-2.json",
+      "publicGitBlob": "aa1d560ba116c2e66b440d336099b7f570c589db",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-20.json",
+      "publicGitBlob": "91107e99a3c344415147902806e0a25bec7e40e8",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-21.json",
+      "publicGitBlob": "46fd72291d9f3875cca3d34f6f779879952b84de",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-22.json",
+      "publicGitBlob": "e61c297f6604fc927fd332b5b6424ab216a9a7d7",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-23.json",
+      "publicGitBlob": "2d760fa458a0463d05a3b4d05f10a04a405866ff",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-24.json",
+      "publicGitBlob": "27427df96983278b203bad87d8f2a6fb78ad9e68",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-25.json",
+      "publicGitBlob": "1e64e418fe0b62bd598bfb48d9929ad6e68ab258",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-26.json",
+      "publicGitBlob": "9c5ed3fb4d6c96c48a94e67395594a58279599ad",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-27.json",
+      "publicGitBlob": "e5002315064dce2852238de5b63d4e2733b35d74",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-28.json",
+      "publicGitBlob": "93464c21f88643577a5f568373c7a7a12051ca8f",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-29.json",
+      "publicGitBlob": "7399447f76d5dde79713ca93af913ac10714fd6b",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-3.json",
+      "publicGitBlob": "3507da72da8ef9c0806bc465ddef55885858f950",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-30.json",
+      "publicGitBlob": "0bfee1df46268954e10f19acf19e5124b08d6f9b",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-31.json",
+      "publicGitBlob": "9d87a58a45a54a8067e1e325a09dba26016f7c16",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-4.json",
+      "publicGitBlob": "49234baf9d665de676b00149fd1abf3eeeabe53b",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-5.json",
+      "publicGitBlob": "358f8912dc304e775062978a5ebb2855841cd9f8",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-6.json",
+      "publicGitBlob": "6d4384660b9996b4d195058093de8ca2a27544f8",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-7.json",
+      "publicGitBlob": "3bb860aad6b8d2a6703e3e3d6713e39ccd1588cf",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-8.json",
+      "publicGitBlob": "f7818e9861bcdf91ce32a5a6d1feb7621334f5ca",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-9.json",
+      "publicGitBlob": "49b6b43d8f983d4cc07cd873ecf4be253460b64c",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-manifest.json",
+      "publicGitBlob": "1ca5bcb4ddb6bf359c14df299e16c02a50b0272d",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings.json",
+      "publicGitBlob": "cd287fe0d6a8726b970f3c1f86a20debdc2d7721",
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "sameAsInitial": false
+    }
+  ],
+  "all111Bound": true,
+  "failures": [],
+  "committedCanonicalInputs": 110,
+  "generatedProjectionsBoundSeparately": 1,
+  "criticalBindings": {
+    "src/data/exposure-sleeves.json": {
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "publicGitBlob": "750e73dc57bd1f6dc8fb95271f8b4c03027b6fea"
+    },
+    "src/data/dca-complete-holdings.json": {
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "publicGitBlob": "2b8162f9d844d8cba945124e7c592ff6a3ca4085"
+    },
+    "src/data/index-company-identities.json": {
+      "exactCommit": "ff7aa255e53d9d29687896050b629d4e4ee23af7",
+      "publicGitBlob": "c18f0acb6ed002c1549c95fcce368be53677741b"
+    }
+  },
+  "originalNavConsumers": {
+    "IE0003R87OG3": {
+      "field": "countries",
+      "record": {
+        "asOf": "2026-11-12",
+        "holdingsAsOf": "2026-11-12",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+        "sourceUrls": [
+          "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/119/?type=etf",
+          "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/120/?type=etf",
+          "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "basis": "fund",
+        "compatibility": "exact-isin-lookthrough-countries",
+        "weightBasis": "original-fund-nav-percentage",
+        "normalizationApplied": false,
+        "sourceCoverage": 99.49,
+        "method": "Published equity positions joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and unrepresented NAV remain unallocated; no renormalisation",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 68.02000000000018
+          },
+          {
+            "name": "Japan",
+            "weightPct": 9.73999999999996
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 3.739999999999993
+          },
+          {
+            "name": "Canada",
+            "weightPct": 3.1299999999999955
+          },
+          {
+            "name": "Australia",
+            "weightPct": 2.939999999999994
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 1.520000000000001
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 1.3000000000000005
+          },
+          {
+            "name": "Israel",
+            "weightPct": 1.1500000000000006
+          },
+          {
+            "name": "Germany",
+            "weightPct": 1.0200000000000005
+          },
+          {
+            "name": "France",
+            "weightPct": 1.0100000000000005
+          },
+          {
+            "name": "Bermuda",
+            "weightPct": 0.8999999999999999
+          },
+          {
+            "name": "Italy",
+            "weightPct": 0.7700000000000002
+          },
+          {
+            "name": "Norway",
+            "weightPct": 0.65
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 0.5700000000000001
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 0.56
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 0.43000000000000005
+          },
+          {
+            "name": "Spain",
+            "weightPct": 0.4
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 0.3800000000000001
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 0.3500000000000001
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.33
+          },
+          {
+            "name": "Finland",
+            "weightPct": 0.29000000000000004
+          },
+          {
+            "name": "Monaco",
+            "weightPct": 0.09
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.06999999999999999
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.060000000000000005
+          },
+          {
+            "name": "New Zealand",
+            "weightPct": 0.02
+          },
+          {
+            "name": "Greece",
+            "weightPct": 0.0
+          }
+        ],
+        "unclassified": [
+          {
+            "isin": "SG1R43925234",
+            "weightPct": 0.02
+          },
+          {
+            "isin": "JP3105350007",
+            "weightPct": 0.01
+          },
+          {
+            "isin": "IT0001469383",
+            "weightPct": 0.01
+          },
+          {
+            "isin": "SE0007439443",
+            "weightPct": 0.01
+          },
+          {
+            "isin": "NO0010633951",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "JP3122010006",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "JP3428800001",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "JP3637280003",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "DE0005759807",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "GB00B2NDK765",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "BMG524181036",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "BMG0534V1256",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "NO0010833262",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "DK0010295922",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "BE0003820371",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "AU000000EQT1",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "AU0000464257",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "IL0012125394",
+            "weightPct": 0.0
+          },
+          {
+            "isin": "IL0011708935",
+            "weightPct": 0.0
+          }
+        ]
+      },
+      "publicGitBlob": "750e73dc57bd1f6dc8fb95271f8b4c03027b6fea"
+    },
+    "IE000UL6CLP7": {
+      "field": "sectors",
+      "record": {
+        "asOf": "2026-11-10",
+        "checkedAt": "2026-11-13",
+        "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
+        "sha256": "e05e9ee97f43cc8b9afd3b768e0e87cb8ea4650a842c69ce39602c13978344e8",
+        "basis": "fund",
+        "compatibility": "morningstar-equity-sectors",
+        "classificationLabel": "Secteurs actions Morningstar",
+        "weightBasis": "original-fund-nav-percentage",
+        "normalizationApplied": false,
+        "sourceCoverage": 99.96,
+        "method": "Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified",
+        "rows": [
+          {
+            "name": "Basic Materials",
+            "weightPct": 99.81006
+          },
+          {
+            "name": "Consumer Cyclical",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Financial Services",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Energy",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Technology",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Consumer Defensive",
+            "weightPct": 0.14994
+          },
+          {
+            "name": "Healthcare",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 0.0
+          }
+        ]
+      },
+      "publicGitBlob": "750e73dc57bd1f6dc8fb95271f8b4c03027b6fea"
+    }
+  },
+  "weatherfordCompanyRegistryPublished": true,
+  "wisdomtreeBooks": {
+    "IE0002Y8CX98": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sha256": "a603eeb21d116d5667032b2ddfb2810e187746d23ddde360e4cca8e02b2a9c4e",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null,
+      "identityAsOfDates": [
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12"
+      ],
+      "identitySourceHashes": {
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx": "0b241e210f68a451d2033c1bb87f83613f8ab3d9d941f36fefbf440e0f78f3d0",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx": "dff384e594796e8e8d26357b6b1a0a308bf1b7c8fa0b4f0fef74d678bb4ec91d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx": "043b17ddfbbb3c64630feadbf868ad668f3af9bf671397870a61f261b2cb1089",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx": "af49c6bf708198737a95a8314865356238b57de60eb4b6965e45e8a399f5de96",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprx-gy.xlsx": "562971d4f27a5f83e367fe01a9f71135330250d8d41967703bc61fa86f09425c",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB": "4253669fc97f3ae08887e6344e9737fbe13947df5be11f9fd36253c69c1cfa4b",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB": "52586bf8fa3f232ef4aeb4c2ae5e887e907def0599e1f27b09b01bfc9a31eacf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=0066701": "6acc629c9bc126a7f2f9890df88202b4d404457c5dfd9eb10a9a75ba883d1818",
+        "https://api.openfigi.com/v3/mapping#SEDOL=0263494": "7b0b7c9010ae8684233b1128f6e143d6c3c8c1097ef32b82fd1820b2dd3cf713",
+        "https://api.openfigi.com/v3/mapping#SEDOL=0336299": "5ba90c07cb75c5e5f8f14da54c56bda3e2a79f8b755573b9a3079967029103c7",
+        "https://api.openfigi.com/v3/mapping#SEDOL=0378105": "78b39df7d3b29232f41a30455ab5c81ab57ea41d32b16b1a1ba19f0d4e1e916a",
+        "https://api.openfigi.com/v3/mapping#SEDOL=0797379": "3057646deaed16f44ff29194fb8416cf4a53cb2f68bca4b7c3fdeb7858dde696",
+        "https://api.openfigi.com/v3/mapping#SEDOL=0969703": "059c66f15abf5fd384d522b0a9aa5e42dcac8f637e4bab7cf2a10de4f0a17771",
+        "https://api.openfigi.com/v3/mapping#SEDOL=4012250": "c46c6d19f084db6c86f1eb4016e8aa78e0890907711a273eeb6ed98742aa8883",
+        "https://api.openfigi.com/v3/mapping#SEDOL=4162791": "fd258ac1c0f061fb431715a5352265f03e9ea13b18bb0e20aa56b233f8efdbc9",
+        "https://api.openfigi.com/v3/mapping#SEDOL=4476210": "ef32f56b34442a0d754dcf090cc67d742146fe477225e206b8bacf0a518c406b",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5334588": "f918ef19a48192d4b3d8ed51e2b088281c796fccf4b5508f422aea68a042d670",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5399684": "df3ce6045b3ae3a96b39d429fe46da534f7b5ffdd8bb9507ae4f09b028f5f893",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5451302": "1fcf5cb476f65023ae0714e49bc69cf681876c9fa3d14a901b7545cd33374586",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5792982": "5a888b5203839f73a7c88be6692f63c314ec47c1adc39d582f11243d4eb58061",
+        "https://api.openfigi.com/v3/mapping#SEDOL=7058228": "653206c7ca7887b810e8c058355c527068c52644ba81e79a5c1636b51a47a224",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B00ZQQ2": "07eee43d2d728d7a4d40bc6d73f93ea3c4d8fd7ad27dfb66c578689da4397ee8",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B058TZ6": "2275218ea4c173cb2f3ddf45d8dd7ace7425e8a33b883665e3e9b79ac73af01c",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B06BGH5": "4b49abb658fc7ac56e8c55e50c605b6bac050fc99c1fd31897d6d15ae61e0d0e",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B06G108": "4e92c56591f1195d1f6e874c9e7927fb824034eb9b378c267ea3c212ac47f077",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B0DJNG0": "51716da7922525e06563afcde7031578be444a9b05d5fd5dcffb2ccf500957d9",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B0M7KJ7": "094c7b129484da481366f7881cc32049803c6b2b50d0d9b629b6a0f044426e3f",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B0WMWD0": "232926080eff626824c049fc215c5c109c3b00d61456840a1e9ab6712ef7e6aa",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B0YD2B9": "ef23ffb1ed36ce321ce631207afffcaf49364f79073b459e29cd9e678aaf4c20",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B0YW9N7": "5f1e37a5f8452934d2252cd423c9399f23f183539ae273596b7d0313fc029cf6",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B45C9X4": "ca90d2cb2fa317761ece712da1f3b07116de70a990bef439e1c6ef95c4dfdcbe",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B63H849": "5e7f927a38020327bfe57f1296b7d1a079a1fdbaeb607f8f308179a67b66471d",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD21M27": "fe167a7d6439ef5a326c6422eb3c1f481c8b64f0f0f3b0f79537d345f988b7a1",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BM8H426": "bdb6e2f818f62b6bbc528fe2e89c31c8f24a55fb7cba933fbe871c7f7ee3f16f",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMD6RR4": "a8aa62195b903c9faa47be838a62242cc9646fc5738244efff2a9ad08b5f8644",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMT9L19": "6fee01abbc3424b1ef326285485a4e2c749604a3678748669e9deacbabf76e11",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMYGDM0": "cb2d173774e9942c7de123deba46a36d5d2295624480bc91e05be038b1630565",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BN0SDX8": "edb286a0ca12e5546473d362e2efdb57327c9f685a445c25d4a5c5a834f1f881",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BNGDN82": "9a56a5b3bf090ef7a706e4ff95182bd158badcbba4b3c4ec7a8238bdc50b339e",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BPXZH27": "7a26d475be6179b147b6825824ae3abf4348fe49069398967a9da4f522fad212",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BQ7WV85": "d3c9a4dce025866ce063f73b6efbed4d9efd50de37ff0302a22acbe17e850cc3",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BQKMP24": "2bccd1d7e1752d6f9bd092bd37ff6fea53422a1a239120a7ae153e08b003afc3",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BS801X7": "74854c550d1d406df5a523bdc2e8beb08121202d4c4a1bf6554f1c7b7d339bf7",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BSTRB82": "2ce8a08e0ca61216098964189baabf42ccbec703c949ae537f188f85f5c9fe78",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BT19SD7": "658de9721ead87dfd31debe5584610ae9b857b3366fa6c4cbac54fe566f7a7b0",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BTQKW99": "16adbd182e799ed0a303980830b57a20b7fe677cf2d3c71119d597de7310e991",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BVMZHV9": "aefc05d89e85e1e969b5b571a42c2b5fd1e22c1721a632168aba782c0dd7386a",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BW5VWD8": "ee34d7cbc4428a3f91bcd91a6167176e98f0cd2a2f6a2f4e4b3a7979cde062e1",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BYWZZF0": "0273b64bbe4c8be131a1956640b69fa60d278e5cf0780d5cb86aa4ef859ac3d0"
+      }
+    },
+    "IE000W8WMSL2": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+      "sha256": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null,
+      "identityAsOfDates": [
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12"
+      ],
+      "identitySourceHashes": {
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx": "0b241e210f68a451d2033c1bb87f83613f8ab3d9d941f36fefbf440e0f78f3d0",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx": "bb431fa923db448b2afa74e13b0db3f6588f9416f63d4031f9bd41659cc57915",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx": "dff384e594796e8e8d26357b6b1a0a308bf1b7c8fa0b4f0fef74d678bb4ec91d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx": "043b17ddfbbb3c64630feadbf868ad668f3af9bf671397870a61f261b2cb1089",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprr-gy.xlsx": "a7c7c17f431c31eea1d5e003cfe59296e5cad2268a30ce8387ebc71efe5ae5be",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx": "af49c6bf708198737a95a8314865356238b57de60eb4b6965e45e8a399f5de96",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spym-gy.xlsx": "d9ff150de424c877dbbd8e23c665ebacb82d21c02d839ed29fa60e2db79100e2",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyd-gy.xlsx": "84044c5ebd47d0e7d81713d674713784f2c8927347fd566e8ca108a46580219d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprx-gy.xlsx": "562971d4f27a5f83e367fe01a9f71135330250d8d41967703bc61fa86f09425c",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprv-gy.xlsx": "909a9f3551d5cc5c307cb9f6b09adce8388369dc22002684ddb2957b5f6ae32f",
+        "https://globalxetfs.eu/api/funds/botz/topholdingscsv": "997ea29d16bb932eec19f1a4371c4a66b6da880ab7fcbbb326ca142bb9911fa5",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB": "4253669fc97f3ae08887e6344e9737fbe13947df5be11f9fd36253c69c1cfa4b",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB": "52586bf8fa3f232ef4aeb4c2ae5e887e907def0599e1f27b09b01bfc9a31eacf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5962343": "440d50e210caae8a3e4de24265c3143b7d445090ca3e40c3b329012bf0b129bf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6599483": "3aef8f308b04ca6b983597847fcf6a21ff846a31f21032f561aeba249f529593",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B00ZQQ2": "07eee43d2d728d7a4d40bc6d73f93ea3c4d8fd7ad27dfb66c578689da4397ee8",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BJJRL67": "68031857c697fe94390e3844ca81cb5dbe19236d617b7ea353faa1328a5a487a",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMW1X61": "5de5da5f787824642ba3f00e95baa2f795f192a0d65bc521a4327db0619abb15",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMW7F63": "d3c01134ef456aced66aec59697c036c756091d6123025d9ad62c98e3f3220de",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BNBXP47": "0ae1647cf0a90b826e8fe1b26f6e333661d11013458b3d5f1f3391d11004f6e1",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP4W0F1": "159e13485c599af27b057094fcac01380bdd3832bbcc05aa488729d7919dd852",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BS9B786": "02a0d83c7b2c1b5ab85a1319b85da55ccd396569d9ff0762459471a667671ab7",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BTCLFZ3": "6afba8f0955368f640fbed3513bf0c3e5c990709bd71ca8b178c4d046ecf3d82",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BW9NLS8": "a054a5a0479daff300bc3b519a284dd849f67f75803ab77ab326e98195900ae0",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BWTYYX7": "1bd36e1557f79c2aa0334a2e9f0f4eb90f0328cf9f97e199d3f6458f585d1de6"
+      }
+    },
+    "IE00BZ56SW52": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+      "sha256": "c2d64d3231e087d6a1eb1ddf4e89088a86420cfd22cdc1be3c902b21bfa51a61",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": [
+        {
+          "sedol": "BLNN369",
+          "sourceIdentities": [
+            "IE00BLNN3691",
+            "US94708K1034"
+          ],
+          "selectedIsin": "IE00BLNN3691",
+          "portfolioAsOf": "2026-11-12",
+          "effectiveDate": "2026-11-13",
+          "scope": "Dated holdings identity and economic-company consolidation only; never price continuity or return adjustment",
+          "evidence": [
+            {
+              "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18941",
+              "publishedAt": "2026-11-12",
+              "sha256": "cb784435949b72b6cbbe100d386fa2b6934b9e81038159b4595e0177f31483b6"
+            },
+            {
+              "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18951",
+              "publishedAt": "2026-11-13",
+              "sha256": "24c357050b5dd912a84f6147dd77c6cc7d63fcc4a983cc8a697f2a431a45418f"
+            }
+          ],
+          "reason": "Completed one-for-one redomestication; identity selected by native portfolio date, not source retrieval date"
+        }
+      ],
+      "identityAsOfDates": [
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12"
+      ],
+      "identitySourceHashes": {
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx": "0b241e210f68a451d2033c1bb87f83613f8ab3d9d941f36fefbf440e0f78f3d0",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx": "bb431fa923db448b2afa74e13b0db3f6588f9416f63d4031f9bd41659cc57915",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx": "dff384e594796e8e8d26357b6b1a0a308bf1b7c8fa0b4f0fef74d678bb4ec91d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx": "043b17ddfbbb3c64630feadbf868ad668f3af9bf671397870a61f261b2cb1089",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprr-gy.xlsx": "a7c7c17f431c31eea1d5e003cfe59296e5cad2268a30ce8387ebc71efe5ae5be",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx": "af49c6bf708198737a95a8314865356238b57de60eb4b6965e45e8a399f5de96",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyw-gy.xlsx": "710940cd0902f090a3b096cd06597cfcaa3c9999c6fe1970f7917af4ae28a97a",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyd-gy.xlsx": "84044c5ebd47d0e7d81713d674713784f2c8927347fd566e8ca108a46580219d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprg-gy.xlsx": "bdc75b96cf4a590b6e6505c77a4defd5a1b3675ed9a3ebcd9c69af57d93be7f4",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-wnrg-na.xlsx": "1bd51e6a532fe946887cd4bf9506265b895ce1d3d3a76373922f477d136b4def",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprx-gy.xlsx": "562971d4f27a5f83e367fe01a9f71135330250d8d41967703bc61fa86f09425c",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprv-gy.xlsx": "909a9f3551d5cc5c307cb9f6b09adce8388369dc22002684ddb2957b5f6ae32f",
+        "https://globalxetfs.eu/api/funds/copx/topholdingscsv": "2212e517aa7ef06801251d5767b5f8c2dfa457ba15a24deccf7e37b170110ad4",
+        "https://globalxetfs.eu/api/funds/botz/topholdingscsv": "997ea29d16bb932eec19f1a4371c4a66b6da880ab7fcbbb326ca142bb9911fa5",
+        "https://globalxetfs.eu/api/funds/bug/topholdingscsv": "503df2d5a2c8e147cf77fd6366051e60c013389517a0aa477d48aebabde8309a",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB": "4253669fc97f3ae08887e6344e9737fbe13947df5be11f9fd36253c69c1cfa4b",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+        "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18941": "cb784435949b72b6cbbe100d386fa2b6934b9e81038159b4595e0177f31483b6",
+        "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18951": "24c357050b5dd912a84f6147dd77c6cc7d63fcc4a983cc8a697f2a431a45418f",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB": "52586bf8fa3f232ef4aeb4c2ae5e887e907def0599e1f27b09b01bfc9a31eacf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=0263494": "7b0b7c9010ae8684233b1128f6e143d6c3c8c1097ef32b82fd1820b2dd3cf713",
+        "https://api.openfigi.com/v3/mapping#SEDOL=4012250": "c46c6d19f084db6c86f1eb4016e8aa78e0890907711a273eeb6ed98742aa8883",
+        "https://api.openfigi.com/v3/mapping#SEDOL=4162791": "fd258ac1c0f061fb431715a5352265f03e9ea13b18bb0e20aa56b233f8efdbc9",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5334588": "f918ef19a48192d4b3d8ed51e2b088281c796fccf4b5508f422aea68a042d670",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5962343": "440d50e210caae8a3e4de24265c3143b7d445090ca3e40c3b329012bf0b129bf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6245883": "23bc436571701b8d0a5bef5940d91fa59c15a34df1aa371401ba69cd94ea2dde",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6437947": "26318c2f47c5c2fc512c81d46b0f0e464f05c359cf6e85cf417fce00b022574c",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6639163": "8f6a57e9e265850c61d5354879f787a67b329dea65c2af32a347ff03552530a5",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6900182": "078a5eadbd99e22de311e7f21934ffe3e6b2d12b74788d957ef191a4390f57df",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B01DCL2": "b5472e27169de452ea4472ce998de10e5c7dcb1abe5c3bf03c1b7202cfd10ff0",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B058TZ6": "2275218ea4c173cb2f3ddf45d8dd7ace7425e8a33b883665e3e9b79ac73af01c",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B1QH7Y4": "dc860e20bcc5acacd4ef5af49a6284d20dd1c23d892491b5d5e5ba0fca1a7921",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B3CY709": "3eafe1cf6a76552c8ad707cbf5d2adeeb701c09bd8035a206ef8b1b7218966b7",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B4PFFW4": "087f1771b7dc841804c1d7b80cadbf10fda452d16c1ff3fd0a494a6182b94064",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B5M6XQ7": "2ec7eae78d22a5f240e62b66017603da6f1b0ae0ef9e793e75ee56249c20b684",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B63H849": "5e7f927a38020327bfe57f1296b7d1a079a1fdbaeb607f8f308179a67b66471d",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B8BRV46": "9bd5cb4bf66ccf89794399dcb15b8339b6dc1b22e020e707a03641e9fbbffa22",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BGMJQJ7": "ef034e2582f4e4b82059ce041286189fdd9d3b045d91e346d5eca0a1aa5e2dc4",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BKF1H51": "b9d37459e6a1cc23294442ae46bac631da658fb9f762fbe671763a9d841d727f",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BKLNP24": "6ebdf409c8a828e9532765d764563a8bfc4ded96bc21e72f8401c02a7079919f",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BKT7807": "8113023422ca9abdf2e330e1413c3ec4a051f0f3a709ed38d118043bddc28848",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BLGJ610": "2854414187d953853ac1755ff309ca5e747a5344ad0fdd9278ca4840099d3dbf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BLHDDX2": "16ed6fce12ed1d01d6bf04f746c57f5ce71c6928049a05292118e62c3e1878b4",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMT9L19": "6fee01abbc3424b1ef326285485a4e2c749604a3678748669e9deacbabf76e11",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMV1436": "df4519df662e45017ffd471d4c490e48ca959af9b51b96e19f63178cf5fe2298",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BN0SDX8": "edb286a0ca12e5546473d362e2efdb57327c9f685a445c25d4a5c5a834f1f881",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BPXZH27": "7a26d475be6179b147b6825824ae3abf4348fe49069398967a9da4f522fad212",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BSTRB82": "2ce8a08e0ca61216098964189baabf42ccbec703c949ae537f188f85f5c9fe78",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BYSJJ43": "7f3b128785e3c71f2fbfee53db9a9e17b95b93852cf2a1e63dfa94aeadc6f980",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BZ404X1": "56cf46bc2973f5d9863fc4088655c029b8974fab40d431321cadc6a3e2681276"
+      }
+    },
+    "IE00BJGWQN72": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+      "sha256": "34e9dc820aa6d8386903b371061fe4bbc431194d4487f78bb62605c2ba25fc93",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null,
+      "identityAsOfDates": [
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12"
+      ],
+      "identitySourceHashes": {
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx": "0b241e210f68a451d2033c1bb87f83613f8ab3d9d941f36fefbf440e0f78f3d0",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx": "bb431fa923db448b2afa74e13b0db3f6588f9416f63d4031f9bd41659cc57915",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx": "043b17ddfbbb3c64630feadbf868ad668f3af9bf671397870a61f261b2cb1089",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprr-gy.xlsx": "a7c7c17f431c31eea1d5e003cfe59296e5cad2268a30ce8387ebc71efe5ae5be",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx": "af49c6bf708198737a95a8314865356238b57de60eb4b6965e45e8a399f5de96",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprv-gy.xlsx": "909a9f3551d5cc5c307cb9f6b09adce8388369dc22002684ddb2957b5f6ae32f",
+        "https://globalxetfs.eu/api/funds/botz/topholdingscsv": "997ea29d16bb932eec19f1a4371c4a66b6da880ab7fcbbb326ca142bb9911fa5",
+        "https://globalxetfs.eu/api/funds/bug/topholdingscsv": "503df2d5a2c8e147cf77fd6366051e60c013389517a0aa477d48aebabde8309a",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB": "34e9dc820aa6d8386903b371061fe4bbc431194d4487f78bb62605c2ba25fc93",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BN7GN02": "5c8aa3af00f42e9281d3d398eca478c8b1b83608e1275f4656ac1a49e42571ac"
+      }
+    },
+    "IE00BDVPNG13": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+      "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null,
+      "identityAsOfDates": [
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12"
+      ],
+      "identitySourceHashes": {
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx": "0b241e210f68a451d2033c1bb87f83613f8ab3d9d941f36fefbf440e0f78f3d0",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx": "bb431fa923db448b2afa74e13b0db3f6588f9416f63d4031f9bd41659cc57915",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx": "dff384e594796e8e8d26357b6b1a0a308bf1b7c8fa0b4f0fef74d678bb4ec91d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx": "043b17ddfbbb3c64630feadbf868ad668f3af9bf671397870a61f261b2cb1089",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprr-gy.xlsx": "a7c7c17f431c31eea1d5e003cfe59296e5cad2268a30ce8387ebc71efe5ae5be",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx": "af49c6bf708198737a95a8314865356238b57de60eb4b6965e45e8a399f5de96",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spym-gy.xlsx": "d9ff150de424c877dbbd8e23c665ebacb82d21c02d839ed29fa60e2db79100e2",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyd-gy.xlsx": "84044c5ebd47d0e7d81713d674713784f2c8927347fd566e8ca108a46580219d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprv-gy.xlsx": "909a9f3551d5cc5c307cb9f6b09adce8388369dc22002684ddb2957b5f6ae32f",
+        "https://globalxetfs.eu/api/funds/botz/topholdingscsv": "997ea29d16bb932eec19f1a4371c4a66b6da880ab7fcbbb326ca142bb9911fa5",
+        "https://globalxetfs.eu/api/funds/bug/topholdingscsv": "503df2d5a2c8e147cf77fd6366051e60c013389517a0aa477d48aebabde8309a",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB": "34e9dc820aa6d8386903b371061fe4bbc431194d4487f78bb62605c2ba25fc93",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB": "52586bf8fa3f232ef4aeb4c2ae5e887e907def0599e1f27b09b01bfc9a31eacf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=2639736": "a0e0bba96e89eec45477ff0b98faec249c56084f9767ea9e434fcff6214d290c",
+        "https://api.openfigi.com/v3/mapping#SEDOL=5962343": "440d50e210caae8a3e4de24265c3143b7d445090ca3e40c3b329012bf0b129bf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B908F01": "bf7fdf5228c23d01c38fe1895475320c716d062f331b24c8753c329ff3525762",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP41ZD1": "196af78a7bbee79eb5613911cfa74f6f8cde23a5b2bd6039fde452699dc750a6",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BWJFCD6": "753689d555f60107d84ed06b96f91949e9e6dc8ff801be9999864e5b3c5be69e"
+      }
+    },
+    "IE00BKLF1R75": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+      "sha256": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+      "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+      "identityContinuityResolutions": null,
+      "identityAsOfDates": [
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12",
+        "2026-11-12"
+      ],
+      "identitySourceHashes": {
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx": "0b241e210f68a451d2033c1bb87f83613f8ab3d9d941f36fefbf440e0f78f3d0",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx": "bb431fa923db448b2afa74e13b0db3f6588f9416f63d4031f9bd41659cc57915",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx": "dff384e594796e8e8d26357b6b1a0a308bf1b7c8fa0b4f0fef74d678bb4ec91d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx": "043b17ddfbbb3c64630feadbf868ad668f3af9bf671397870a61f261b2cb1089",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprr-gy.xlsx": "a7c7c17f431c31eea1d5e003cfe59296e5cad2268a30ce8387ebc71efe5ae5be",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx": "af49c6bf708198737a95a8314865356238b57de60eb4b6965e45e8a399f5de96",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spym-gy.xlsx": "d9ff150de424c877dbbd8e23c665ebacb82d21c02d839ed29fa60e2db79100e2",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyd-gy.xlsx": "84044c5ebd47d0e7d81713d674713784f2c8927347fd566e8ca108a46580219d",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-wnrg-na.xlsx": "1bd51e6a532fe946887cd4bf9506265b895ce1d3d3a76373922f477d136b4def",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprx-gy.xlsx": "562971d4f27a5f83e367fe01a9f71135330250d8d41967703bc61fa86f09425c",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprv-gy.xlsx": "909a9f3551d5cc5c307cb9f6b09adce8388369dc22002684ddb2957b5f6ae32f",
+        "https://globalxetfs.eu/api/funds/copx/topholdingscsv": "2212e517aa7ef06801251d5767b5f8c2dfa457ba15a24deccf7e37b170110ad4",
+        "https://globalxetfs.eu/api/funds/urnu/topholdingscsv": "7ea0e3a2d804adac5d554af75cc6a525a3bdea6bb6843f68b336ffcc4f8357a4",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB": "4253669fc97f3ae08887e6344e9737fbe13947df5be11f9fd36253c69c1cfa4b",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB": "5e085a4c9a37fbd41d4a5e5507ee1cbfc03998040e01d50c0a5e957bed988ee1",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB": "8d160b26dd1027161eee6df48d6f11171bf2fcbc8b2863c0ea8df48c4fbd93f2",
+        "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB": "52586bf8fa3f232ef4aeb4c2ae5e887e907def0599e1f27b09b01bfc9a31eacf",
+        "https://api.openfigi.com/v3/mapping#SEDOL=2120371": "b9fdf45b67cbd5fe446dfd89a6e6dc9886f1c879b387b3dba9e2304cd876108e",
+        "https://api.openfigi.com/v3/mapping#SEDOL=2771122": "63c2fe81d04eda0772900dd17c44e8cefd29c726970246dc16e4cc0981bb3ef0",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6184306": "7c0d1bd36d2bd951dce09ce2a6a336627617f1782054d22243f09895f09a7a39",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6641168": "41ab3fc8e26e931378f3e5a907c46b74819a313e04364b06693c0b2a325c7670",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6666343": "b8a087c0021c0328357ceee741bd4ecf4ded67c4f6f5b68bb347350ed8ed8cf5",
+        "https://api.openfigi.com/v3/mapping#SEDOL=6744250": "465c57d3562b681359b7fc1546b9ce587854a068c36f9b99b51293ffdb5256ab",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B0ZV9X3": "6b4b0afa70333772a0aa8e055724ec3de54a9911330d08698e6a0c72d5148a51",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B1XDJC7": "dbcba9293e40d31f24e655d53a29f750546b912a918e3a1b6a33e7aebb699e95",
+        "https://api.openfigi.com/v3/mapping#SEDOL=B63H849": "5e7f927a38020327bfe57f1296b7d1a079a1fdbaeb607f8f308179a67b66471d",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD580M1": "a01fcc6ebe7b94226a50197cd0425a4968b0b4b18d33b577cc001798a0afa489",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5C777": "bd5585d5f264ca39bc7e25e9b34b508b991f1c9b03fac1eae93c1b456b103cbc",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5C8H4": "9f72b93269487ea6196f8fd2f76102efd8b2c3ce08c93e1e1ce361c233e17422",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5C960": "29aa99c2fd1314b31718970d0e7cc04d281d3fe4d0974355d49a2234859ab0a8",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5CGV4": "dbb1518a10297754849fb59bf8974399f019e86f608dc6774b34ace5d1be6038",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5CKD4": "a81d3244d690623846839d6ce3986ea4a7411fabb4524189ecabb93e7144e62e",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5CQT2": "185ee148936507f9441f119399d380477abc921d0684cfc7655fb4badfe247c3",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5LRQ3": "8076087bb78e1e42c6497fba2a3be6bfb2f3512f40239a616dff86bcebe4701e",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD5LSZ9": "a81ba686ca79a9cdd680c6095ab57d3b85b111c793529434e1311794b02418c6",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD73L54": "8c12457d43be50dced026d3df52e058547a6af6b14484df53271b492916cd227",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD760M3": "aadcd0de82fa0329a2104b098634688d2691a2843a7a35b506a1ea3e4cabc264",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD76119": "6deb7f44da16dfa68bb08dfc056337e5e5181cdb2caafa87d5b264521a21e0b6",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BD76120": "91be71df84c8f5b109de6c6b3fa23bdb1c59aafbeeea2cd54b112e5f349f3a53",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BFCCQ55": "ad12355d90e7d5f1e9f48edbbcd2518f04fbdc1cdf9c6bf4f408f6b0d518f334",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BHQPSF8": "1947c1dae8842fe2405a5cb72723266c6e7ae368c9079bff0cb57d1cf7e4e5da",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BK71726": "f23b6889c1cfad6d8e5771c7c22f2b9c8a1096e1eb14a394a91b68da9a113298",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BK71FC2": "5fe50cbaf5f82d7400fe97e622454b54421e5fff57b4c2ca720eb5242e6692d0",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BLC7SW3": "3860efa57a9c735233a86e16b16ae485b9694e9f19a471b51539326b5993de7f",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BMBR1M2": "62ad9c9afa573df08a714ff4f155ddfa5551036f61d21543e40c03f25404f433",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BNHNGG0": "0b942caea689354cbaf6f22a18a33e79e96d179e47302d3d8295287845bcfbee",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BNHPNL0": "9fd79f68c6e8a624515bb3bc238af270427f9d3ee2f7a8b7eb16fd951e754da7",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BNRLFZ6": "c5ff1de589e8b9ab608a32d64370000ab561b734c7d60cd79a3c94a64950eca3",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP3R7V2": "c0db029af7a56bcf64baebf090ffae463fe54cf8da5e74e35beba4caa976788a",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP3R9W7": "0b83c4edbad1f66f71dad0dbeed3278e1534f9160e802c3fe1769b9d001a5500",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP3RJ05": "847c8a90e4f23f5bd15199e115d59489ca2b3e2896fa86cea65121cb9ec26b62",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP91MC4": "b26a9ee439054d950b1f91a648b47f8e6d2afde41cd35ec185332097e3f08f33",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP91MY6": "672dca482fa238191921e03d0780c7e1f3a1098c55ef228e532ae11cc1ae2cb0",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BP91NN2": "bcbca9ddb4abd8d090ba2742cf870961f338d2912f5bf640f0afc6d2d54dfe05",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BQ0QV95": "894661ecb107a520d3e69751f9d8dac423c13e1cbf13d92293609c009a6a3fd9",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BQ3RX55": "077939658945098aa8a8be7a2ede336f2318cf5d0261067bd076773ff7d49bc8",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BS28Y61": "ebc4d6c767eba42b7d3731b5ec64f6ad3a6449ba93990b83d621dbd04303fe7b",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BSTRB82": "2ce8a08e0ca61216098964189baabf42ccbec703c949ae537f188f85f5c9fe78",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BTFRHB8": "11904d8e1d5771e2ceddcb374985d0d59886f6c3f46b42edb30593d2d9f98a64",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BZ1JH10": "eb34d0e7199e016812372fb4e58a4d86620131e7f87ed548ee49eb32f8eb6e81",
+        "https://api.openfigi.com/v3/mapping#SEDOL=BZ7NDP2": "5ab90b6d23bee1b407f807ba1963aba475162779448a15cf496dc9a15e1824da"
+      }
+    }
+  },
+  "qualifiedCashRightsPublished": true,
+  "qualifiedCashRights": {
+    "IE00BF4RFH31": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "rights": [
+        {
+          "sourcePosition": {
+            "isin": null,
+            "name": "AKERO THERAPEUTICS CVR",
+            "weightPct": 0.0003,
+            "assetClass": "Equity",
+            "ticker": "AKE",
+            "currency": "USD",
+            "exchange": "NASDAQ",
+            "country": "United States"
+          },
+          "asOf": "2026-11-12",
+          "qualifiedKind": "contingent-cash-right",
+          "qualification": {
+            "id": "akero-cash-cvr-20251209",
+            "issuer": "Akero Therapeutics, Inc.",
+            "effectiveDate": "2025-12-09",
+            "terminationDate": "2031-06-30",
+            "reviewedAt": "2026-11-13",
+            "kind": "contingent-cash-right",
+            "method": "Completed merger: common shares cancelled for cash and one contractual cash-only CVR; governing agreement section 2.5 excludes equity, ownership, voting and dividend rights. No Novo Nordisk share exposure or security identifier is inferred.",
+            "sourceMetadataNote": "The observed BlackRock Equity / NASDAQ / AKE markers are retained verbatim. They do not prove a live listed share or an executable CVR quote; the completed merger delisted the common stock and the CVR contract is nontransferable except permitted transfers.",
+            "sources": [
+              {
+                "url": "https://www.sec.gov/Archives/edgar/data/1744659/000114036125044946/ef20060786_8k.htm",
+                "sha256": "ecb2b17d2a78d27afd177c36329e42ea22db45c5ac55face358eb2085699fd22",
+                "documentDate": "2025-12-09",
+                "cik": "1744659",
+                "role": "completed merger and cancelled/delisted common stock"
+              },
+              {
+                "url": "https://www.sec.gov/Archives/edgar/data/1744659/000119312525235919/d42650dex21.htm",
+                "sha256": "ee7fa62ec1ea052ad57c151fcc6db3a6ff96b7576630d15bebf5d709925a13b0",
+                "documentDate": "2025-10-09",
+                "cik": "1744659",
+                "role": "governing merger agreement incorporated by completion filing; annex CVR sections 2.2 and 2.5 and termination date"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "IE00BYXG2H39": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+      "rights": [
+        {
+          "sourcePosition": {
+            "isin": null,
+            "name": "AKERO THERAPEUTICS CVR",
+            "weightPct": 0.00263,
+            "assetClass": "Equity",
+            "ticker": "AKE",
+            "currency": "USD",
+            "exchange": "NASDAQ",
+            "country": "United States"
+          },
+          "asOf": "2026-11-12",
+          "qualifiedKind": "contingent-cash-right",
+          "qualification": {
+            "id": "akero-cash-cvr-20251209",
+            "issuer": "Akero Therapeutics, Inc.",
+            "effectiveDate": "2025-12-09",
+            "terminationDate": "2031-06-30",
+            "reviewedAt": "2026-11-13",
+            "kind": "contingent-cash-right",
+            "method": "Completed merger: common shares cancelled for cash and one contractual cash-only CVR; governing agreement section 2.5 excludes equity, ownership, voting and dividend rights. No Novo Nordisk share exposure or security identifier is inferred.",
+            "sourceMetadataNote": "The observed BlackRock Equity / NASDAQ / AKE markers are retained verbatim. They do not prove a live listed share or an executable CVR quote; the completed merger delisted the common stock and the CVR contract is nontransferable except permitted transfers.",
+            "sources": [
+              {
+                "url": "https://www.sec.gov/Archives/edgar/data/1744659/000114036125044946/ef20060786_8k.htm",
+                "sha256": "ecb2b17d2a78d27afd177c36329e42ea22db45c5ac55face358eb2085699fd22",
+                "documentDate": "2025-12-09",
+                "cik": "1744659",
+                "role": "completed merger and cancelled/delisted common stock"
+              },
+              {
+                "url": "https://www.sec.gov/Archives/edgar/data/1744659/000119312525235919/d42650dex21.htm",
+                "sha256": "ee7fa62ec1ea052ad57c151fcc6db3a6ff96b7576630d15bebf5d709925a13b0",
+                "documentDate": "2025-10-09",
+                "cik": "1744659",
+                "role": "governing merger agreement incorporated by completion filing; annex CVR sections 2.2 and 2.5 and termination date"
+              }
+            ]
+          }
+        },
+        {
+          "sourcePosition": {
+            "isin": "US296CVR0207",
+            "name": "ESPERION THERAPEUTICS (CVR)",
+            "weightPct": 0.0003,
+            "assetClass": "Equity",
+            "ticker": null,
+            "currency": "USD",
+            "exchange": "NASDAQ",
+            "country": "United States"
+          },
+          "asOf": "2026-11-12",
+          "qualifiedKind": "contingent-cash-right",
+          "qualification": {
+            "id": "esperion-cash-cvr-20260713",
+            "issuer": "Esperion Therapeutics, Inc.",
+            "effectiveDate": "2026-07-13",
+            "qualificationValidThrough": "2030-12-31",
+            "reviewedAt": "2026-11-13",
+            "kind": "contingent-cash-right",
+            "method": "Completed merger; contractual contingent cash payments only. Executed CVR agreement section 2.5 excludes equity, ownership, voting and dividend rights. The original provider ISIN is preserved, not inferred from the former common shares.",
+            "reviewBoundaryNote": "2030-12-31 is the final contractual milestone-year boundary and a limit of this qualification, not an asserted payment or termination date. Section 6.1 preserves earned unpaid amounts and requires final milestone determination; a new review is required thereafter.",
+            "sourceMetadataNote": "Observed Equity / NASDAQ / null ticker and US296CVR0207 retained verbatim; no common-share or parent exposure is inferred.",
+            "sources": [
+              {
+                "url": "https://www.sec.gov/Archives/edgar/data/1434868/000110465926082926/tm2620034d3_8k.htm",
+                "sha256": "3f003a4465792428257b6fa6990ac3543c3b6033a1179061adf9af8528666212",
+                "documentDate": "2026-07-13",
+                "cik": "1434868",
+                "role": "completed acquisition and cash-only CVR"
+              },
+              {
+                "url": "https://www.sec.gov/Archives/edgar/data/1434868/000110465926082926/tm2620034d3_ex10-1.htm",
+                "sha256": "731286629eabf478b7fc8dfb277e301005934b65bc2a19049fbc6c9ba268e22f",
+                "documentDate": "2026-07-13",
+                "cik": "1434868",
+                "role": "executed CVR agreement sections 2.5 and 6.1; milestone periods"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
   "limits": [
-    "Published client code identity remains8ad7a501; collector1254merged5904a61d ran ordinarily and recordedfb510c95",
-    "Push success is not a scheduled source execution",
-    "Manifest binding is not independent certification of every financial field"
+    "Manifest binding is not independent certification of every financial field",
+    "Real push acquisition does not prove the supplier cron",
+    "WisdomTree ranking NAV denominator remains unqualified even when source acquisition succeeds"
   ]
 }

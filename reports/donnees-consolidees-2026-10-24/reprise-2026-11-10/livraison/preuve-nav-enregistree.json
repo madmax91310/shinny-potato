@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-11-13T13:41:02.609845+00:00",
+  "recordCommit": "45622235e91296f9a66ecfd3c497b39ae102b331",
+  "sourceRun": 43433710130,
+  "event": "push",
+  "records": {
+    "IE0003R87OG3": {
+      "field": "countries",
+      "asOf": "2026-11-11",
+      "checkedAt": "2026-11-13",
+      "holdingsAsOf": "2026-11-12",
+      "sumWeights": 99.44000000000013,
+      "sourceCoverage": 99.49,
+      "unclassified": [
+        {
+          "isin": "SG1R43925234",
+          "weightPct": 0.02
+        },
+        {
+          "isin": "JP3105350007",
+          "weightPct": 0.01
+        },
+        {
+          "isin": "IT0001469383",
+          "weightPct": 0.01
+        },
+        {
+          "isin": "SE0007439443",
+          "weightPct": 0.01
+        },
+        {
+          "isin": "NO0010633951",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "JP3122010006",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "JP3428800001",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "JP3637280003",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "DE0005759807",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "GB00B2NDK765",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "BMG524181036",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "BMG0534V1256",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "NO0010833262",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "DK0010295922",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "BE0003820371",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "AU000000EQT1",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "AU0000464257",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "IL0012125394",
+          "weightPct": 0.0
+        },
+        {
+          "isin": "IL0011708935",
+          "weightPct": 0.0
+        }
+      ],
+      "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
+      "sha256": null,
+      "method": "Published equity positions joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and unrepresented NAV remain unallocated; no renormalisation"
+    },
+    "IE000UL6CLP7": {
+      "field": "sectors",
+      "asOf": "2026-11-10",
+      "checkedAt": "2026-11-13",
+      "holdingsAsOf": null,
+      "sumWeights": 99.96,
+      "sourceCoverage": 99.96,
+      "unclassified": null,
+      "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
+      "sha256": "641b4ae1c2e38c614ef98db8070ec08e9776e4647bac94a238bdc6720ea15de8",
+      "method": "Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified"
+    }
+  }
+}

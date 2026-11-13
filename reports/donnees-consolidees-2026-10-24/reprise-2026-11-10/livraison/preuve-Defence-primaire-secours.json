@@ -1,0 +1,224 @@
+{
+  "checkedAt": "2026-11-13T14:02:25.139795+00:00",
+  "sourceRun": 43433710130,
+  "event": "push",
+  "primaryAllocationChecks": [
+    {
+      "id": "qualified-primary:IE000U9ODG19:countries",
+      "instrument": "IE000U9ODG19",
+      "field": "countries-primary",
+      "sourceAttempted": true,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "7cb1a97ada400e78a39b25dc03ff008d966568118d0ca9d70600bcafb3ebb914",
+      "attemptedAt": "2026-11-13T13:28:23.597186+00:00",
+      "phase": "validation",
+      "publishedWeightPct": 98.74,
+      "asOf": "2026-11-11",
+      "status": "failed",
+      "error": "Incomplete allocation",
+      "qualifiedFallbackAvailable": true,
+      "fallbackAsOf": "2026-11-11"
+    },
+    {
+      "id": "qualified-primary:IE000U9ODG19:sectors",
+      "instrument": "IE000U9ODG19",
+      "field": "sectors-primary",
+      "sourceAttempted": true,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "7cb1a97ada400e78a39b25dc03ff008d966568118d0ca9d70600bcafb3ebb914",
+      "attemptedAt": "2026-11-13T13:28:23.597186+00:00",
+      "phase": "validation",
+      "publishedWeightPct": 98.74000000000001,
+      "asOf": "2026-11-11",
+      "status": "failed",
+      "error": "Incomplete allocation",
+      "qualifiedFallbackAvailable": true,
+      "fallbackAsOf": "2026-11-11"
+    }
+  ],
+  "independentCompositionQualification": {
+    "kind": "independently-qualified-complete-physical-fund-allocation",
+    "isin": "IE000U9ODG19",
+    "asOf": "2026-11-11",
+    "checkedAt": "2026-11-13T13:28:23.597186+00:00",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "7cb1a97ada400e78a39b25dc03ff008d966568118d0ca9d70600bcafb3ebb914",
+    "sourceComponent": "holdings.all",
+    "portfolioWeightPct": 100.00005,
+    "positionCount": 96,
+    "unidentifiedSecurityCount": 0,
+    "unidentifiedWeightPct": 0.0,
+    "overlapQualified": false,
+    "normalizationApplied": false,
+    "primaryRepaired": false,
+    "indexCompositionCertified": false,
+    "note": "Another qualified field source; the primary allocation discrepancy remains unexplained."
+  },
+  "countries": {
+    "asOf": "2026-11-11",
+    "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+    "rows": [
+      {
+        "name": "United States",
+        "weightPct": 63.71543
+      },
+      {
+        "name": "France",
+        "weightPct": 12.55683
+      },
+      {
+        "name": "United Kingdom",
+        "weightPct": 11.79631
+      },
+      {
+        "name": "Germany",
+        "weightPct": 3.46644
+      },
+      {
+        "name": "Canada",
+        "weightPct": 1.73057
+      },
+      {
+        "name": "Korea (South)",
+        "weightPct": 1.48061
+      },
+      {
+        "name": "Italy",
+        "weightPct": 1.17061
+      },
+      {
+        "name": "Israel",
+        "weightPct": 1.1172
+      },
+      {
+        "name": "Sweden",
+        "weightPct": 1.07362
+      },
+      {
+        "name": "Norway",
+        "weightPct": 0.80809
+      },
+      {
+        "name": "Singapore",
+        "weightPct": 0.57813
+      },
+      {
+        "name": "European Union",
+        "weightPct": 0.24107
+      },
+      {
+        "name": "Australia",
+        "weightPct": 0.14258
+      },
+      {
+        "name": "Japan",
+        "weightPct": 0.07522
+      },
+      {
+        "name": "Switzerland",
+        "weightPct": 0.04734
+      },
+      {
+        "name": "Other",
+        "weightPct": 0.0
+      }
+    ],
+    "portfolioWeightPct": 100.00005,
+    "positionCount": 96,
+    "unidentifiedSecurityCount": 0,
+    "unidentifiedWeightPct": 0.0,
+    "overlapQualified": false,
+    "basis": "fund",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "7cb1a97ada400e78a39b25dc03ff008d966568118d0ca9d70600bcafb3ebb914",
+    "sourceComponent": "holdings.all",
+    "coverageProof": {
+      "kind": "independently-qualified-complete-physical-fund-allocation",
+      "isin": "IE000U9ODG19",
+      "asOf": "2026-11-11",
+      "checkedAt": "2026-11-13T13:28:23.597186+00:00",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "7cb1a97ada400e78a39b25dc03ff008d966568118d0ca9d70600bcafb3ebb914",
+      "sourceComponent": "holdings.all",
+      "portfolioWeightPct": 100.00005,
+      "positionCount": 96,
+      "unidentifiedSecurityCount": 0,
+      "unidentifiedWeightPct": 0.0,
+      "overlapQualified": false,
+      "normalizationApplied": false,
+      "primaryRepaired": false,
+      "indexCompositionCertified": false,
+      "note": "Another qualified field source; the primary allocation discrepancy remains unexplained."
+    }
+  },
+  "sectors": {
+    "basis": "fund",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "7cb1a97ada400e78a39b25dc03ff008d966568118d0ca9d70600bcafb3ebb914",
+    "sourceComponent": "holdings.all",
+    "coverageProof": {
+      "kind": "independently-qualified-complete-physical-fund-allocation",
+      "isin": "IE000U9ODG19",
+      "asOf": "2026-11-11",
+      "checkedAt": "2026-11-13T13:28:23.597186+00:00",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "7cb1a97ada400e78a39b25dc03ff008d966568118d0ca9d70600bcafb3ebb914",
+      "sourceComponent": "holdings.all",
+      "portfolioWeightPct": 100.00005,
+      "positionCount": 96,
+      "unidentifiedSecurityCount": 0,
+      "unidentifiedWeightPct": 0.0,
+      "overlapQualified": false,
+      "normalizationApplied": false,
+      "primaryRepaired": false,
+      "indexCompositionCertified": false,
+      "note": "Another qualified field source; the primary allocation discrepancy remains unexplained."
+    },
+    "asOf": "2026-11-11",
+    "method": "GICS sectors of every published physical-fund position, signed cash/derivatives included; original NAV weights, no renormalisation",
+    "rows": [
+      {
+        "name": "Industrials",
+        "weightPct": 99.8186
+      },
+      {
+        "name": "Cash and/or Derivatives",
+        "weightPct": 0.18145000000000003
+      }
+    ]
+  },
+  "actualCompanyBook": {
+    "asOf": "2026-11-11",
+    "checkedAt": "2026-11-13T13:30:30.988485+00:00",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-11-11",
+      "sourceRowCount": 123,
+      "selectedRowCount": 96,
+      "excludedRowCount": 27,
+      "publishedNetWeightPct": 100.00004999999997,
+      "selectedWeightPct": 99.8186,
+      "sourceWeightPctByType": {
+        "Equity": 99.81859999999998,
+        "Cash": 0.17348000000000008,
+        "Cash Collateral and Margins": 0.00796,
+        "FX": 1e-05,
+        "Futures": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.17348000000000008,
+        "Cash Collateral and Margins": 0.00796,
+        "FX": 1e-05,
+        "Futures": 0.0
+      },
+      "unidentifiedPositions": [],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    }
+  },
+  "limits": [
+    "Primaries still98.74pct; independent complete-book fields not a primary repair",
+    "Fund composition is not exact benchmark composition"
+  ]
+}
