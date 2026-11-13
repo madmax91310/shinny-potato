@@ -530,6 +530,15 @@ Le même run acquiert une nouvelle photographie GlobalXRobotics au12Nov :58titre
 Les lots concurrents#1252/#1255 (saisie des flux), #1253 (candidate S&P non déployée), #1222 (Radar arrêté) et#1061 (encours) sont rapprochés ; aucun de leurs fichiers applicatifs n’est modifié. La production déjà en cours reste préservée. Les73fenêtres, BitwiseParis, les quatre recouvrements acquis et les limites LifeStrategy/EMIMI restent inchangés. Les recettes publiques, la collecte corrigée et sa publication sont encore à prouver avant annonce de réparation.
 
 
+## 13 novembre — même suivi#881, poids NAV des ventilations jointes
+
+Lot dépendant de#1256, branche `fix/exposure-original-nav-20261113` : seulement `collect_exposure_sleeves.py`, ses régressions et cette note. Défaut reproduit sur AVWS IE0003R87OG3 : les positions actions retenues par l’adaptateur totalisent99,49%NAV mais `joined` les ramène à100%avant classement pays. Les actions non classées sont également surévaluées. Le raccord conserve désormais chaque poids NAV et son résidu ; les données par ISIN/pays/date ne sont pas remplacées par un indice. Le contrôle de rétention compare la qualité de classification dans son dénominateur déclaré, pas une baisse purement causée par la correction d’un ancien dénominateur actions. Son seuil0,001 et la rétention lors d’une véritable perte de classification en collecte partielle restent inchangés ; aucune ancienne date n’est renouvelée.
+
+Même correction pour le rapport sectoriel SILV IE000UL6CLP7 : ses pourcentages «%Equity» sont multipliés par le poids net des actions publié dans la même photographie pour exprimer le NAV du fonds ; le solde non-actions reste non attribué. L’export GlobalXCSV de secours réutilise le parseur intégral commun : une valeur vide, notamment une ligneFX, n’est plus transformée en zéro ni omise. Les normalisations explicitement définies dans les autres conventions de poches restent distinctes ; les quatre recouvrements acquis, les livres et refus financiers ne changent pas. Aucun générateur d’image ni maquette modifié. Collecte ordinaire, publication et consommateurs doivent être vérifiés avant clôture.
+
+La collecte indépendante `sleeves` précède désormais `holdings` dans le même producteur : elle lit ses sources et son registre propre, jamais les positions complètes produites dans ce run. Cela permet sa qualification GitHub en PR même si un livre sans rapport reste refusé. Identités, plans attendus, noms des rapports, contrôles, publication et collecte complète en production restent identiques ; aucun échec individuel n’est ignoré.
+
+
 ### 2026-11-13 — Weatherford : continuité économique et identités datées
 Responsable : chantier Automatisation, périmètre compositions uniquement ; pas de changement des prix, dividendes, séries, contrôles NAV ou interfaces. Après le lot #1256, seul GGRA restait bloqué par le conflit SEDOL BLNN369 entre IE00BLNN3691 (livre du 11 novembre) et US94708K1034 (classeur SSGA du 12 novembre téléchargé le 13).
 
