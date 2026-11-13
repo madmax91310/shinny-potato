@@ -430,5 +430,40 @@
     "name": "Epiroc",
     "sourceUrl": "https://www.epirocgroup.com/en/investors",
     "reviewedAt": "2026-10-21"
+  },
+  "IE00BLNN3691": {
+    "issuerId": "US94708K1034",
+    "name": "Weatherford",
+    "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18951",
+    "reviewedAt": "2026-11-13",
+    "securityContinuity": {
+      "kind": "completed-one-for-one-redomestication",
+      "sedol": "BLNN369",
+      "predecessorIsin": "IE00BLNN3691",
+      "successorIsin": "US94708K1034",
+      "lastPredecessorTradingDate": "2026-11-12",
+      "effectiveDate": "2026-11-13",
+      "successorCusip": "94708K103",
+      "ratio": 1,
+      "scope": "Dated holdings identity and economic-company consolidation only; never price continuity or return adjustment",
+      "evidence": [
+        {
+          "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18941",
+          "publishedAt": "2026-11-12",
+          "sha256": "cb784435949b72b6cbbe100d386fa2b6934b9e81038159b4595e0177f31483b6"
+        },
+        {
+          "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18951",
+          "publishedAt": "2026-11-13",
+          "sha256": "24c357050b5dd912a84f6147dd77c6cc7d63fcc4a983cc8a697f2a431a45418f"
+        }
+      ]
+    }
+  },
+  "US94708K1034": {
+    "issuerId": "US94708K1034",
+    "name": "Weatherford",
+    "sourceUrl": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/news-article/?ItemID=18951",
+    "reviewedAt": "2026-11-13"
   }
 }

@@ -84,3 +84,17 @@ assert.ok(elevenResult.top.some(r=>r.id===rows[8].isin))
 await import('./test-native-index-company-view.mjs')
 
 await import('./test-dow-concentration-refresh.mjs')
+
+// Completed one-for-one redomestication: same economic company, two dated
+// securities. Never alter the source ISINs, dates, NAV weights or price series.
+{
+ const rows=[{isin:'IE00BLNN3691',name:'Weatherford International plc',weightPct:.0441},
+  {isin:'US94708K1034',name:'Weatherford International Corp',weightPct:.090565}]
+ const before=JSON.stringify(rows)
+ const a=aggregateCompanies(rows,identities),b=aggregateCompanies([...rows].reverse(),identities)
+ assert.equal(a.length,1);assert.equal(a[0].id,'US94708K1034')
+ assert.ok(Math.abs(a[0].weightPct-.134665)<1e-12)
+ assert.equal(b[0].weightPct,a[0].weightPct)
+ assert.deepEqual(new Set(a[0].securities),new Set(rows.map(r=>r.isin)))
+ assert.equal(JSON.stringify(rows),before)
+}
