@@ -183,6 +183,8 @@ def collect_rankings(share,now):
     observation=ranking_observation
     page,route,attempts=product_page(share['sourceUrl'])
     share={**share,'sourceUrl':route}
+    from collect_public_issuer import wisdomtree
+    wisdomtree(page,share,now)  # Exact share/currency before requesting identity proofs.
     from security_identifier_observations import qualified_observations,qualified,API,requires_independent_identity
     required={r['descriptorB']for r in rankings(page)['ranking']}
     static=qualified_observations(now) if requires_independent_identity(share['isin']) else {}
