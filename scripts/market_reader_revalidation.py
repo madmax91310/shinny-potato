@@ -70,7 +70,13 @@ ETF_ACQUISITION_ENTRIES = (ETF_BASELINE, 'scripts/build-automation-targets.mjs')
 # retain the shared source guard and the complete merged-tree financial checks.
 ETF_READERS = {'docs/data-operations-coordination.md',
                'scripts/lib/data-qualification.mjs',
-               'scripts/test-data-qualification.mjs'}
+               'scripts/test-data-qualification.mjs',
+               # Cron43451234453: an independent INSEE receipt advanced during
+               # ETF acquisition. Neither acquisition baseline/target generator
+               # imports it. Check both trees below, preserve the newer receipt,
+               # and rebuild/revalidate the complete financial publication.
+               # Active inflation data, collector code and configs stay guarded.
+               'scripts/source-snapshots/inflation-automated.json'}
 
 
 def at(ref, path):

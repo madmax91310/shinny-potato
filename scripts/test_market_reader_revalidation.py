@@ -172,6 +172,31 @@ class ReaderRevalidation(unittest.TestCase):
         self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
         self.assertEqual(shared.ALLOWED['etf'], original)
 
+    def test_etf_insee_receipt_race_requires_both_dependency_graphs_and_full_revalidation(self):
+        receipt = 'scripts/source-snapshots/inflation-automated.json'
+        end = self.commit({receipt: json.dumps({'rates': {'2026-10': .4}, 'checkedAt': '2026-11-13'})})
+        with self.assertRaises(ValueError):
+            shared.check('etf', self.base, end)
+        result = reader.check_etf(self.base, end)
+        self.assertEqual(result['qualifiedPublicationReaders'], [receipt])
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        for entry in reader.ETF_ACQUISITION_ENTRIES:
+            with self.subTest(entry=entry):
+                self.base = self.commit({entry: "import './source-snapshots/inflation-automated.json';\n"})
+                changed = self.commit({receipt: json.dumps({'rates': {'2026-10': .5}, 'fixtureReader': entry})})
+                with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
+                    reader.check_etf(self.base, changed)
+                self.base = self.commit({entry: 'export const restored = true;\n'})
+
+    def test_etf_live_inflation_and_neighbouring_source_files_stay_protected(self):
+        for path in ['src/data/inflation-monthly.js', 'scripts/collect_inflation.py',
+                     'scripts/source-snapshots/another-financial-source.json']:
+            with self.subTest(path=path):
+                end = self.commit({path: 'changed financial dependency\n'})
+                with self.assertRaises(ValueError):
+                    reader.check_etf(self.base, end)
+
     def test_etf_reader_imported_transitively_by_baseline_is_protected(self):
         self.base = self.commit({reader.ETF_BASELINE: "import './fixture-etf-reader.mjs';\n",
             'scripts/fixture-etf-reader.mjs': "import './lib/data-qualification.mjs';\n",
