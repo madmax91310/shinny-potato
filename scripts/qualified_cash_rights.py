@@ -141,3 +141,21 @@ def qualified_cash_right(position, as_of):
         return None  # A new qualification is required beyond the contractual payment date.
     return {'sourcePosition': copy.deepcopy(position), 'asOf': as_of,
             'qualifiedKind': ARCELLX['kind'], 'qualification': copy.deepcopy(ARCELLX)}
+
+
+def cash_right_for_company_perimeter(position, as_of):
+    """Refuse known cash claims with contradictory markers; never recast as shares.
+
+    A valid native ISIN identifies a security, not an equity ownership interest.
+    Unrelated companies (including CVR Energy/CVRx) and unknown positions keep
+    their existing handling. No position, value or date is rewritten here.
+    """
+    qualification = qualified_cash_right(position, as_of)
+    known = (position.get('name') in {
+        'ARCELLX INC CVR', 'AKERO THERAPEUTICS CVR',
+        'ESPERION THERAPEUTICS (CVR)'}
+        or position.get('isin') == 'US296CVR0207')
+    if known and qualification is None:
+        raise ValueError('Known cash-only right has unqualified native markers or date; '
+                         'not admitted as a company share: ' + str(position.get('name')))
+    return qualification

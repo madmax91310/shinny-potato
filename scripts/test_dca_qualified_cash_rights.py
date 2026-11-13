@@ -220,5 +220,37 @@ class QualifiedEsperionAndBiotech(unittest.TestCase):
         self.assertIsNone(qualified_cash_right(p,'2026-07-12'));self.assertIsNotNone(qualified_cash_right(p,'2026-07-13'))
         self.assertIsNotNone(qualified_cash_right(p,'2030-12-31'));self.assertIsNone(qualified_cash_right(p,'2031-01-01'))
 
+
+class KnownCashContradictions(unittest.TestCase):
+    def test_valid_isin_cannot_turn_a_contradictory_cash_right_into_a_company(self):
+        original=json.loads(gzip.decompress((FIXTURES/'IE00BYXG2H39.json.gz').read_bytes()))
+        for field,value in [('marketCurrencyCode','EUR'),('ticker','ESPR'),('exchange','OTHER MARKET'),('countryOfRisk','Canada'),('issueName','ESPERION THERAPEUTICS')]:
+            body=copy.deepcopy(original)
+            p=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+            index=p['issueName']['value'].index('ESPERION THERAPEUTICS (CVR)')
+            p[field]['value'][index]=value
+            unchanged=copy.deepcopy(body)
+            with self.subTest(field=field),self.assertRaisesRegex(ValueError,'Known cash-only right.*not admitted as a company share'):
+                parse_complete(body,'IE00BYXG2H39','https://www.blackrock.com/?portfolioId=291450',dt.datetime(2026,11,13,tzinfo=dt.timezone.utc))
+            self.assertEqual(body,unchanged)
+        # An expired reference also requires renewed qualification, never a
+        # silent reclassification to an ordinary company with the same ISIN.
+        from qualified_cash_rights import cash_right_for_company_perimeter
+        live=parse_complete(original,'IE00BYXG2H39','https://www.blackrock.com/?portfolioId=291450',dt.datetime(2026,11,13,tzinfo=dt.timezone.utc))[0]
+        right=next(x['sourcePosition']for x in live['qualifiedExcludedPositions']if x['sourcePosition']['isin']=='US296CVR0207')
+        with self.assertRaisesRegex(ValueError,'Known cash-only right'):
+            cash_right_for_company_perimeter(right,'2031-01-01')
+
+    def test_only_known_contracts_fail_closed_and_ordinary_cvr_named_shares_survive(self):
+        from qualified_cash_rights import cash_right_for_company_perimeter
+        for name,isin in [('CVR ENERGY INC','US12662P1084'),('CVRX INC','US1266381052'),('UNQUALIFIED CVR',None)]:
+            p={'name':name,'isin':isin,'assetClass':'Equity','currency':'USD','weightPct':.2}
+            self.assertIsNone(cash_right_for_company_perimeter(p,'2026-11-12'))
+        body=json.loads(gzip.decompress((FIXTURES/'IE00BF4RFH31.json.gz').read_bytes()))
+        p=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        ix=p['issueName']['value'].index('AKERO THERAPEUTICS CVR');p['isin']['value'][ix]='US00973Y1082'
+        with self.assertRaisesRegex(ValueError,'Known cash-only right'):
+            parse_complete(body,'IE00BF4RFH31','https://www.blackrock.com/?portfolioId=296576',dt.datetime(2026,11,13,tzinfo=dt.timezone.utc))
+
 if __name__ == '__main__':
     unittest.main()

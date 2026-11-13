@@ -7,7 +7,7 @@ from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
 from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
-from qualified_cash_rights import qualified_cash_right
+from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
 from qualified_corporate_identities import qualified_corporate_identity
 ROOT=Path(__file__).resolve().parents[1]
 def ranking_nav_downgrade(isin, previous, candidate, now):
