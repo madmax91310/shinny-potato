@@ -43,7 +43,7 @@ def silver_sector_report(body,now):
     rows=[{**row,'weightPct':row['weightPct']*equity_nav_pct/100} for row in rows]
     return {'asOf':stamp,'checkedAt':now.date().isoformat(),'sourceUrl':SILVER_REPORT,'sha256':hashlib.sha256(body).hexdigest(),
             'basis':'fund','compatibility':'morningstar-equity-sectors','classificationLabel':'Secteurs actions Morningstar',
-            'weightBasis':'original-fund-nav-percentage','normalizationApplied':False,'equityNavPct':equity_nav_pct,
+            'weightBasis':'original-fund-nav-percentage','normalizationApplied':False,'sourceCoverage':equity_nav_pct,
             'method':'Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified',
             'rows':rows}
 
@@ -133,8 +133,8 @@ def joined(rows, stamp, url, index, now, field):
         sources.add(evidence['sourceUrl']);dates.append(evidence['asOf'])
     if (dt.date.fromisoformat(max(dates))-dt.date.fromisoformat(min(dates))).days>45:raise ValueError('Classification dates too far apart')
     return {'asOf':min(dates),'holdingsAsOf':stamp,'checkedAt':now.date().isoformat(),'sourceUrl':url,'sourceUrls':sorted(sources|{url}),'basis':'fund','compatibility':'exact-isin-lookthrough-'+field,
-            'weightBasis':'original-fund-nav-percentage','normalizationApplied':False,'equityNavPct':total,
-            'method':'Official complete equity holdings joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and non-equity NAV remain unallocated; no renormalisation',
+            'weightBasis':'original-fund-nav-percentage','normalizationApplied':False,'sourceCoverage':total,
+            'method':'Published equity positions joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and unrepresented NAV remain unallocated; no renormalisation',
             'rows':[{'name':n,'weightPct':w} for n,w in sorted(weights.items(),key=lambda x:-x[1])],
             'unclassified':[{'isin':r['isin'],'weightPct':r['weightPct']} for r in missing]}
 
@@ -144,7 +144,7 @@ def classification_coverage(record):
     Legacy observations use the equity-relative denominator100. A lower NAV
     allocation after conversion is not evidence of lost classifications.
     """
-    denominator=record.get('equityNavPct') if record.get('weightBasis')=='original-fund-nav-percentage' else 100
+    denominator=record.get('sourceCoverage') if record.get('weightBasis')=='original-fund-nav-percentage' else 100
     if type(denominator)not in(int,float) or not math.isfinite(denominator) or denominator<=0:
         raise ValueError('Missing classification denominator')
     return sum(r['weightPct']for r in record['rows'])*100/denominator

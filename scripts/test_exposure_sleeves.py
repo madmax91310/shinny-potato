@@ -8,7 +8,7 @@ class EquitySleeves(unittest.TestCase):
   return {'componentsByNameMap':{'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{'isin':{'value':'EXACT'},'productStructure':{'value':'Physical'}}}}},'holdings':{'containersByNameMap':{'all':{'dataPointsByNameMap':p}}}}}
  def test_hedge_excluded_without_changing_source(self):
   body=self.body();original=copy.deepcopy(body);r,rows,_=equity_rows(body,'EXACT','https://official',NOW)
-  self.assertEqual(body,original);self.assertEqual(r['equityNavPct'],101)
+  self.assertEqual(body,original);self.assertEqual(r['sourceCoverage'],101)
   self.assertAlmostEqual(sum(v['weightPct'] for v in r['countries']['rows']),100)
   self.assertEqual(len(rows),2);self.assertEqual(r['excludedClasses'],['FX'])
  def test_identity_truncation_shorts_and_invalid_totals(self):
@@ -39,7 +39,7 @@ class EquitySleeves(unittest.TestCase):
   column='Sector Weightings % Equity\n'+'\n'.join(label+' '+('99.89' if i==0 else '0.11' if label=='Consumer Defensive' else '-') for i,label in enumerate(labels))
   with patch('collect_exposure_sleeves.pdf_text',side_effect=[header,column]):
    r=silver_sector_report(b'pdf fixture',NOW)
-   self.assertEqual(r['asOf'],'2026-10-15');self.assertAlmostEqual(sum(x['weightPct'] for x in r['rows']),99.96);self.assertEqual(r['equityNavPct'],99.96);self.assertFalse(r['normalizationApplied'])
+   self.assertEqual(r['asOf'],'2026-10-15');self.assertAlmostEqual(sum(x['weightPct'] for x in r['rows']),99.96);self.assertEqual(r['sourceCoverage'],99.96);self.assertFalse(r['normalizationApplied'])
   for bad in [header.replace('IE000UL6CLP7','WRONG'),header.replace('15 Oct 2026','15 Jan 2026'),header.replace('0.00','1.00')]:
    with patch('collect_exposure_sleeves.pdf_text',return_value=bad):
     with self.assertRaises(ValueError):silver_sector_report(b'pdf fixture',NOW)
@@ -53,18 +53,18 @@ class EquitySleeves(unittest.TestCase):
   original=copy.deepcopy(rows)
   r=joined(rows,'2026-10-15','https://holdings',{'A':{'countryOfRisk':'Taiwan','asOf':'2026-10-14','sourceUrl':'https://classification'}},NOW,'countries')
   self.assertEqual(r['rows'],[{'name':'Taiwan','weightPct':60}]);self.assertEqual(r['unclassified'],[{'isin':'B','weightPct':20}])
-  self.assertEqual(r['equityNavPct'],80);self.assertEqual(rows,original);self.assertFalse(r['normalizationApplied'])
+  self.assertEqual(r['sourceCoverage'],80);self.assertEqual(rows,original);self.assertFalse(r['normalizationApplied'])
   self.assertEqual(classification_coverage(r),75,'Quality ratio is separate from unchanged NAV exposure60')
  def test_nav_conversion_is_not_retained_as_a_false_coverage_drop(self):
   old={'rows':[{'name':'Taiwan','weightPct':99.94974369283291}],'checkedAt':'2026-11-12'}
   new={'rows':[{'name':'Taiwan','weightPct':99.44}],'unclassified':[{'isin':'B','weightPct':.05}],
-       'weightBasis':'original-fund-nav-percentage','equityNavPct':99.49,'normalizationApplied':False}
+       'weightBasis':'original-fund-nav-percentage','sourceCoverage':99.49,'normalizationApplied':False}
   original=copy.deepcopy((old,new))
   self.assertAlmostEqual(classification_coverage(old),classification_coverage(new))
   self.assertFalse(retain_previous_classification(old,new,[{'error':'Unrelated supplier failure'}]))
   self.assertEqual((old,new),original)
  def test_real_classification_loss_and_unchanged_prior_clock_still_protected(self):
-  old={'rows':[{'name':'Taiwan','weightPct':99.44}],'weightBasis':'original-fund-nav-percentage','equityNavPct':99.49,'checkedAt':'2026-11-12'}
+  old={'rows':[{'name':'Taiwan','weightPct':99.44}],'weightBasis':'original-fund-nav-percentage','sourceCoverage':99.49,'checkedAt':'2026-11-12'}
   new={**old,'rows':[{'name':'Taiwan','weightPct':90}],'checkedAt':'2026-11-13'}
   self.assertTrue(retain_previous_classification(old,new,[{'error':'Classification source unavailable'}]))
   self.assertEqual(old['checkedAt'],'2026-11-12')
@@ -73,7 +73,7 @@ class EquitySleeves(unittest.TestCase):
  def test_missing_or_invalid_nav_denominator_never_becomes_zero(self):
   for value in [None,0,float('nan'),-1,True]:
    with self.subTest(value=value),self.assertRaises(ValueError):
-    classification_coverage({'rows':[],'weightBasis':'original-fund-nav-percentage','equityNavPct':value})
+    classification_coverage({'rows':[],'weightBasis':'original-fund-nav-percentage','sourceCoverage':value})
  def test_joined_invalid_raw_weights_or_empty_perimeter_are_refused(self):
   for value in [float('nan'),float('inf'),-1,True,101]:
    with self.subTest(value=value),self.assertRaises(ValueError):
