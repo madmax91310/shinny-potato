@@ -1,5 +1,5 @@
 """Daily exact-security look-through for exposure charts; original net tables stay intact."""
-import argparse, datetime as dt, hashlib, json, re, csv, io
+import argparse, datetime as dt, hashlib, json, re, csv, io, math
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from data_automation import UTC, write_json_atomic
@@ -31,9 +31,14 @@ def silver_sector_report(body,now):
         if len(values)!=1:raise ValueError('Missing or duplicate sector '+label)
         rows.append({'name':label,'weightPct':0 if values[0]=='-' else float(values[0])})
     validated_rows(rows)
+    equity_nav_pct=float(stock[3])
+    # The report labels sectors '% Equity', not '% NAV'. Its independently
+    # published stock allocation converts that denominator without filling cash.
+    rows=[{**row,'weightPct':row['weightPct']*equity_nav_pct/100} for row in rows]
     return {'asOf':stamp,'checkedAt':now.date().isoformat(),'sourceUrl':SILVER_REPORT,'sha256':hashlib.sha256(body).hexdigest(),
             'basis':'fund','compatibility':'morningstar-equity-sectors','classificationLabel':'Secteurs actions Morningstar',
-            'method':'Morningstar equity-sector classification, percentage of equity holdings excluding cash; exact UCITS share and portfolio date verified',
+            'weightBasis':'original-fund-nav-percentage','normalizationApplied':False,'equityNavPct':equity_nav_pct,
+            'method':'Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified',
             'rows':rows}
 
 def equity_rows(body, isin, url, now, *, classification_only=False):
@@ -113,16 +118,33 @@ def issuer_classifications(text, name, ticker, now):
 
 def joined(rows, stamp, url, index, now, field):
     total=sum(r['weightPct'] for r in rows);weights={};missing=[];sources=set();dates=[stamp]
+    if not rows or any(type(r['weightPct'])not in(int,float) or not math.isfinite(r['weightPct']) or r['weightPct']<0 for r in rows) or not 0<total<=100.5:
+        raise ValueError('Invalid original NAV weights in classification perimeter')
     for r in rows:
         evidence=index.get(r['isin']);key='countryOfRisk' if field=='countries' else 'sectorName'
         if not evidence or not evidence.get(key) or evidence[key]=='-':missing.append(r);continue
-        label=evidence[key];weights[label]=weights.get(label,0)+100*r['weightPct']/total
+        label=evidence[key];weights[label]=weights.get(label,0)+r['weightPct']
         sources.add(evidence['sourceUrl']);dates.append(evidence['asOf'])
     if (dt.date.fromisoformat(max(dates))-dt.date.fromisoformat(min(dates))).days>45:raise ValueError('Classification dates too far apart')
     return {'asOf':min(dates),'holdingsAsOf':stamp,'checkedAt':now.date().isoformat(),'sourceUrl':url,'sourceUrls':sorted(sources|{url}),'basis':'fund','compatibility':'exact-isin-lookthrough-'+field,
-            'method':'Official complete equity holdings joined by exact ISIN to dated issuer security classifications; unknown positions remain unallocated',
+            'weightBasis':'original-fund-nav-percentage','normalizationApplied':False,'equityNavPct':total,
+            'method':'Official complete equity holdings joined by exact ISIN to dated issuer security classifications; original fund NAV weights unchanged; unknown positions and non-equity NAV remain unallocated; no renormalisation',
             'rows':[{'name':n,'weightPct':w} for n,w in sorted(weights.items(),key=lambda x:-x[1])],
-            'unclassified':[{'isin':r['isin'],'weightPct':100*r['weightPct']/total} for r in missing]}
+            'unclassified':[{'isin':r['isin'],'weightPct':r['weightPct']} for r in missing]}
+
+def classification_coverage(record):
+    """Quality ratio only; never rescale the published exposure rows.
+
+    Legacy observations use the equity-relative denominator100. A lower NAV
+    allocation after conversion is not evidence of lost classifications.
+    """
+    denominator=record.get('equityNavPct') if record.get('weightBasis')=='original-fund-nav-percentage' else 100
+    if type(denominator)not in(int,float) or not math.isfinite(denominator) or denominator<=0:
+        raise ValueError('Missing classification denominator')
+    return sum(r['weightPct']for r in record['rows'])*100/denominator
+
+def retain_previous_classification(previous,incoming,errors):
+    return bool(errors and previous and classification_coverage(incoming)+.001<classification_coverage(previous))
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--cache',type=Path);ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
@@ -176,12 +198,9 @@ def main():
                   'method':('Direct ordinary share classification' if adr==ordinary else 'Depositary receipt issuer classification; underlying ordinary share '+ordinary),
                   'rows':[{'name':r[key],'weightPct':100}]} for field,key in [('countries','countryOfRisk'),('sectors','sectorName')]}
     try:
-        url='https://globalxetfs.eu/api/funds/silv/topholdingscsv';text=get(url,'silv.csv');raw=list(csv.DictReader(io.StringIO(text)))
-        raw=[r for r in raw if re.fullmatch(r'\d{4}-\d{2}-\d{2}',r.get('AS_OF_DATE') or '')]
-        stamp=document_date(max(r['AS_OF_DATE'] for r in raw),now)
-        if len({r['AS_OF_DATE'] for r in raw})!=1:raise ValueError('Mixed Silver Miners dates')
-        rows=[{'isin':r['ISIN'],'weightPct':float(r['NET_ASSETS'])} for r in raw if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('ISIN') or '') and float(r['NET_ASSETS'] or 0)>0]
-        if not 99<=sum(r['weightPct'] for r in rows)<=101:raise ValueError('Incomplete Silver Miners portfolio')
+        from collect_physical_holdings import globalx_csv
+        url='https://globalxetfs.eu/api/funds/silv/topholdingscsv';text=get(url,'silv.csv')
+        rows,stamp=globalx_csv(text.encode('utf-8'),now)
         fresh['IE000UL6CLP7']={'sectors':joined(rows,stamp,url,index,now,'sectors')}
     except Exception as e:errors.append({'isin':'IE000UL6CLP7','error':str(e)})
     try:
@@ -209,7 +228,7 @@ def main():
             if f not in r:continue
             if r[f]['asOf']<previous.get(isin,{}).get(f,{}).get('asOf',''):raise ValueError('Date regression '+isin)
             old=previous.get(isin,{}).get(f)
-            if errors and old and sum(x['weightPct'] for x in r[f]['rows'])+0.001<sum(x['weightPct'] for x in old['rows']):r[f]=old
+            if retain_previous_classification(old,r[f],errors):r[f]=old
         previous[isin]={**previous.get(isin,{}),**r}
     if args.apply:write_json_atomic(path,previous)
     report={'checkedAt':now.isoformat(),'updated':list(fresh),'successes':[{'id':'exposure-sleeve:'+isin,**classification_references.get(isin,{})} for isin in sorted(set(fresh)|successful)],

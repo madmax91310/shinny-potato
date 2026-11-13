@@ -1,5 +1,5 @@
 import datetime as dt,unittest,copy,json
-from collect_exposure_sleeves import equity_rows,parse_avantis,joined,issuer_classifications,silver_sector_report
+from collect_exposure_sleeves import equity_rows,parse_avantis,joined,issuer_classifications,silver_sector_report,classification_coverage,retain_previous_classification
 NOW=dt.datetime(2026,10,16,tzinfo=dt.timezone.utc)
 class EquitySleeves(unittest.TestCase):
  def body(self):
@@ -39,11 +39,45 @@ class EquitySleeves(unittest.TestCase):
   column='Sector Weightings % Equity\n'+'\n'.join(label+' '+('99.89' if i==0 else '0.11' if label=='Consumer Defensive' else '-') for i,label in enumerate(labels))
   with patch('collect_exposure_sleeves.pdf_text',side_effect=[header,column]):
    r=silver_sector_report(b'pdf fixture',NOW)
-   self.assertEqual(r['asOf'],'2026-10-15');self.assertEqual(sum(x['weightPct'] for x in r['rows']),100)
+   self.assertEqual(r['asOf'],'2026-10-15');self.assertAlmostEqual(sum(x['weightPct'] for x in r['rows']),99.96);self.assertEqual(r['equityNavPct'],99.96);self.assertFalse(r['normalizationApplied'])
   for bad in [header.replace('IE000UL6CLP7','WRONG'),header.replace('15 Oct 2026','15 Jan 2026'),header.replace('0.00','1.00')]:
    with patch('collect_exposure_sleeves.pdf_text',return_value=bad):
     with self.assertRaises(ValueError):silver_sector_report(b'pdf fixture',NOW)
   for bad in [column.replace('% Equity','% Net'),column.replace('99.89','89.89'),column.replace('Utilities -','')]:
    with patch('collect_exposure_sleeves.pdf_text',side_effect=[header,bad]):
     with self.assertRaises(ValueError):silver_sector_report(b'pdf fixture',NOW)
+
+
+ def test_original_nav_weights_preserve_non_equity_and_unclassified_remainders(self):
+  rows=[{'isin':'A','weightPct':60},{'isin':'B','weightPct':20}]
+  original=copy.deepcopy(rows)
+  r=joined(rows,'2026-10-15','https://holdings',{'A':{'countryOfRisk':'Taiwan','asOf':'2026-10-14','sourceUrl':'https://classification'}},NOW,'countries')
+  self.assertEqual(r['rows'],[{'name':'Taiwan','weightPct':60}]);self.assertEqual(r['unclassified'],[{'isin':'B','weightPct':20}])
+  self.assertEqual(r['equityNavPct'],80);self.assertEqual(rows,original);self.assertFalse(r['normalizationApplied'])
+  self.assertEqual(classification_coverage(r),75,'Quality ratio is separate from unchanged NAV exposure60')
+ def test_nav_conversion_is_not_retained_as_a_false_coverage_drop(self):
+  old={'rows':[{'name':'Taiwan','weightPct':99.94974369283291}],'checkedAt':'2026-11-12'}
+  new={'rows':[{'name':'Taiwan','weightPct':99.44}],'unclassified':[{'isin':'B','weightPct':.05}],
+       'weightBasis':'original-fund-nav-percentage','equityNavPct':99.49,'normalizationApplied':False}
+  original=copy.deepcopy((old,new))
+  self.assertAlmostEqual(classification_coverage(old),classification_coverage(new))
+  self.assertFalse(retain_previous_classification(old,new,[{'error':'Unrelated supplier failure'}]))
+  self.assertEqual((old,new),original)
+ def test_real_classification_loss_and_unchanged_prior_clock_still_protected(self):
+  old={'rows':[{'name':'Taiwan','weightPct':99.44}],'weightBasis':'original-fund-nav-percentage','equityNavPct':99.49,'checkedAt':'2026-11-12'}
+  new={**old,'rows':[{'name':'Taiwan','weightPct':90}],'checkedAt':'2026-11-13'}
+  self.assertTrue(retain_previous_classification(old,new,[{'error':'Classification source unavailable'}]))
+  self.assertEqual(old['checkedAt'],'2026-11-12')
+  self.assertFalse(retain_previous_classification(old,new,[]))
+  self.assertFalse(retain_previous_classification(None,new,[{'error':'source'}]))
+ def test_missing_or_invalid_nav_denominator_never_becomes_zero(self):
+  for value in [None,0,float('nan'),-1,True]:
+   with self.subTest(value=value),self.assertRaises(ValueError):
+    classification_coverage({'rows':[],'weightBasis':'original-fund-nav-percentage','equityNavPct':value})
+ def test_joined_invalid_raw_weights_or_empty_perimeter_are_refused(self):
+  for value in [float('nan'),float('inf'),-1,True,101]:
+   with self.subTest(value=value),self.assertRaises(ValueError):
+    joined([{'isin':'A','weightPct':value}],'2026-10-15','https://holdings',{},NOW,'countries')
+  with self.assertRaises(ValueError):joined([],'2026-10-15','https://holdings',{},NOW,'countries')
+
 if __name__=='__main__':unittest.main()

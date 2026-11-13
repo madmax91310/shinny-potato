@@ -235,6 +235,12 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - name: Discover complete issuer portfolios without replacing qualified values on failure
         run: python scripts/discover_holdings_sources.py
+      # Independent source classifier: acquire its NAV weights even when a
+      # later complete-holdings route is refused. It reads no staged holdings.
+      - name: "Collect observations: sleeves"
+        id: sleeves
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/collect_exposure_sleeves.py --apply --output "$RUNNER_TEMP/exposure-sleeves.json"
       - name: "Collect observations: holdings"
         id: holdings
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -242,10 +248,6 @@ jobs:
           WISDOMTREE_BROWSER_CAPTURE: '1'
           PHYSICAL_SOURCE_PROOF_DIR: ${{ runner.temp }}/physical-source-proofs
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
-      - name: "Collect observations: sleeves"
-        id: sleeves
-        continue-on-error: ${{ github.event_name != 'pull_request' }}
-        run: python scripts/collect_exposure_sleeves.py --apply --output "$RUNNER_TEMP/exposure-sleeves.json"
       - name: "Collect observations: underliers"
         id: underliers
         continue-on-error: ${{ github.event_name != 'pull_request' }}
