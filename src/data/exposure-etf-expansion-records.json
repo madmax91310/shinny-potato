@@ -2086,7 +2086,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
-      "sha256": "c8fefc08ccf70f973e619fd26952b1d0bc6d324525e967f7f5221d27e377fbb4",
+      "sha256": "6fbe0fab2ee47fe0e32d29ab0a7e9a19cd61dfee7c09a6c0176ddacb4659836b",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "10.50 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -2098,7 +2098,7 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/holdings",
-      "sha256": "a0ac056bd66e46a479f4520e68a777f80735904c88f80462699b587ffa04d9c5",
+      "sha256": "21cf0957896aadd1827ee0bcf21699003f6e182f30bdcacf8ca97e689208e675",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -2170,13 +2170,13 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/holdings",
-      "sha256": "a0ac056bd66e46a479f4520e68a777f80735904c88f80462699b587ffa04d9c5",
+      "sha256": "21cf0957896aadd1827ee0bcf21699003f6e182f30bdcacf8ca97e689208e675",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "France",
-          "weightPct": 29.481199
+          "weightPct": 32.158648
         },
         {
           "name": "Germany",
@@ -2184,7 +2184,7 @@
         },
         {
           "name": "Netherlands",
-          "weightPct": 15.982012
+          "weightPct": 13.510706
         },
         {
           "name": "Spain",
@@ -2195,12 +2195,16 @@
           "weightPct": 8.685337
         },
         {
-          "name": "Belgium",
-          "weightPct": 2.950406
-        },
-        {
           "name": "Finland",
           "weightPct": 2.173559
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 1.734498
+        },
+        {
+          "name": "China",
+          "weightPct": 1.009765
         },
         {
           "name": "Ireland",
@@ -2218,55 +2222,55 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/holdings",
-      "sha256": "a0ac056bd66e46a479f4520e68a777f80735904c88f80462699b587ffa04d9c5",
+      "sha256": "21cf0957896aadd1827ee0bcf21699003f6e182f30bdcacf8ca97e689208e675",
       "rows": [
         {
-          "name": "ASML HOLDING NV",
+          "name": "ASML HOLDING",
           "isin": "NL0010273215",
           "weightPct": 9.1298707
         },
         {
-          "name": "SAP SE",
+          "name": "SAP",
           "isin": "DE0007164600",
           "weightPct": 4.6737464
         },
         {
-          "name": "SIEMENS AG REG",
+          "name": "SIEMENS N AG",
           "isin": "DE0007236101",
           "weightPct": 4.51764104
         },
         {
-          "name": "TOTALENERGIES SE",
+          "name": "TOTALENERGIES",
           "isin": "FR0000120271",
           "weightPct": 4.01961531
         },
         {
-          "name": "ALLIANZ SE REG",
+          "name": "ALLIANZ",
           "isin": "DE0008404005",
           "weightPct": 3.9265444
         },
         {
-          "name": "BANCO SANTANDER SA",
+          "name": "BANCO SANTANDER",
           "isin": "ES0113900J37",
           "weightPct": 3.63664941
         },
         {
-          "name": "IBERDROLA SA",
+          "name": "IBERDROLA",
           "isin": "ES0144580Y14",
           "weightPct": 3.16245684
         },
         {
-          "name": "SCHNEIDER ELECTRIC SE",
+          "name": "SCHNEIDER ELECTRIC",
           "isin": "FR0000121972",
           "weightPct": 3.09479418
         },
         {
-          "name": "BANCO BILBAO VIZCAYA ARGENTA",
+          "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
           "isin": "ES0113211835",
           "weightPct": 2.86937525
         },
         {
-          "name": "UNICREDIT SPA",
+          "name": "UNICREDIT",
           "isin": "IT0005239360",
           "weightPct": 2.77551558
         }
@@ -2347,7 +2351,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
-      "sha256": "ae57c55cf068515cff4ef4d378546cb98ebb64f3b3a6a540023f79514ad72be9",
+      "sha256": "d1383283d3ab1d087fee9256844cbe1d804e270ff75e6246c00024d6a3cc02f2",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "5.01 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -2359,7 +2363,7 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
-      "sha256": "5ed362c0b4e9940a944d5dd7e3719caab776673878b097073019e5e05ec88293",
+      "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -2436,29 +2440,29 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
-      "sha256": "5ed362c0b4e9940a944d5dd7e3719caab776673878b097073019e5e05ec88293",
+      "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 21.722663
+          "weightPct": 21.227297
         },
         {
           "name": "Switzerland",
-          "weightPct": 15.229503
+          "weightPct": 14.787096
         },
         {
           "name": "France",
-          "weightPct": 13.468093
+          "weightPct": 14.355947
         },
         {
           "name": "Germany",
-          "weightPct": 13.1029
+          "weightPct": 13.055444
         },
         {
           "name": "Netherlands",
-          "weightPct": 8.584883
+          "weightPct": 7.765144
         },
         {
           "name": "Spain",
@@ -2466,7 +2470,7 @@
         },
         {
           "name": "Italy",
-          "weightPct": 5.127516
+          "weightPct": 5.204473
         },
         {
           "name": "Sweden",
@@ -2477,24 +2481,28 @@
           "weightPct": 2.70382
         },
         {
-          "name": "Belgium",
-          "weightPct": 1.954422
-        },
-        {
           "name": "Finland",
           "weightPct": 1.827549
         },
         {
-          "name": "Ireland",
-          "weightPct": 1.204189
+          "name": "Belgium",
+          "weightPct": 1.552241
         },
         {
           "name": "Norway",
-          "weightPct": 1.19251
+          "weightPct": 1.103383
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.009733
         },
         {
           "name": "Poland",
           "weightPct": 0.968661
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.927961
         },
         {
           "name": "Austria",
@@ -2502,11 +2510,15 @@
         },
         {
           "name": "Greece",
-          "weightPct": 0.500548
+          "weightPct": 0.467259
         },
         {
           "name": "Luxembourg",
-          "weightPct": 0.375695
+          "weightPct": 0.34895
+        },
+        {
+          "name": "China",
+          "weightPct": 0.334066
         },
         {
           "name": "Portugal",
@@ -2515,6 +2527,10 @@
         {
           "name": "Hong Kong",
           "weightPct": 0.206529
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.202284
         },
         {
           "name": "Cash and/or Derivatives",
@@ -2526,23 +2542,27 @@
         },
         {
           "name": "Bermuda",
-          "weightPct": 0.055248
+          "weightPct": 0.099601
         },
         {
-          "name": "South Africa",
-          "weightPct": 0.048622
+          "name": "Jersey",
+          "weightPct": 0.086986
         },
         {
-          "name": "Mexico",
-          "weightPct": 0.038949
+          "name": "Korea, Republic of",
+          "weightPct": 0.047456
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.044773
         },
         {
           "name": "United States",
           "weightPct": 0.028358
         },
         {
-          "name": "Jersey",
-          "weightPct": 0.026036
+          "name": "Jordan",
+          "weightPct": 0.023228
         },
         {
           "name": "Georgia",
@@ -2553,11 +2573,7 @@
           "weightPct": 0.019672
         },
         {
-          "name": "Peru",
-          "weightPct": 0.011545
-        },
-        {
-          "name": "Czech Republic",
+          "name": "Ukraine",
           "weightPct": 0.01123
         },
         {
@@ -2572,15 +2588,15 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
-      "sha256": "5ed362c0b4e9940a944d5dd7e3719caab776673878b097073019e5e05ec88293",
+      "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
       "rows": [
         {
-          "name": "ASML HOLDING NV",
+          "name": "ASML HOLDING",
           "isin": "NL0010273215",
           "weightPct": 3.86191482
         },
         {
-          "name": "ROCHE HOLDING AG",
+          "name": "ROCHE PS PAR AG",
           "isin": "CH1499059983",
           "weightPct": 2.23416331
         },
@@ -2590,7 +2606,7 @@
           "weightPct": 2.01028784
         },
         {
-          "name": "NOVARTIS AG REG",
+          "name": "NOVARTIS AG",
           "isin": "CH0012005267",
           "weightPct": 1.99062404
         },
@@ -2600,27 +2616,27 @@
           "weightPct": 1.86828324
         },
         {
-          "name": "SHELL PLC",
+          "name": "SHELL",
           "isin": "GB00BP6MXD84",
           "weightPct": 1.76594559
         },
         {
-          "name": "NESTLE SA REG",
+          "name": "NESTLE SA",
           "isin": "CH0038863350",
           "weightPct": 1.74489885
         },
         {
-          "name": "SAP SE",
+          "name": "SAP",
           "isin": "DE0007164600",
           "weightPct": 1.54584172
         },
         {
-          "name": "SIEMENS AG REG",
+          "name": "SIEMENS N AG",
           "isin": "DE0007236101",
           "weightPct": 1.49420479
         },
         {
-          "name": "TOTALENERGIES SE",
+          "name": "TOTALENERGIES",
           "isin": "FR0000120271",
           "weightPct": 1.32991023
         }
@@ -4892,7 +4908,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "fd1cd2cf30c3ab433c76f0b16d240f38a3dd668091fa56c46a4d650d4565b4a4",
+      "sha256": "f61dc066f801e89386f724b45bf2df6b206f6af607a6802839211ce47bfbde96",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "identityAsOf": "2026-09-30",
@@ -5090,7 +5106,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "fd1cd2cf30c3ab433c76f0b16d240f38a3dd668091fa56c46a4d650d4565b4a4",
+      "sha256": "f61dc066f801e89386f724b45bf2df6b206f6af607a6802839211ce47bfbde96",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "identityAsOf": "2026-09-30",
@@ -5330,7 +5346,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "a15732902b2333329b3681b4416d79fa743fcdbf617b5c7bbf246b87e7a0496e",
+      "sha256": "2565318d516443e4958a843c749cfab561f339524af7f812ff3c97329d5077ed",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5375,7 +5391,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "a15732902b2333329b3681b4416d79fa743fcdbf617b5c7bbf246b87e7a0496e",
+      "sha256": "2565318d516443e4958a843c749cfab561f339524af7f812ff3c97329d5077ed",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5429,7 +5445,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "a15732902b2333329b3681b4416d79fa743fcdbf617b5c7bbf246b87e7a0496e",
+      "sha256": "2565318d516443e4958a843c749cfab561f339524af7f812ff3c97329d5077ed",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5479,14 +5495,14 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "a15732902b2333329b3681b4416d79fa743fcdbf617b5c7bbf246b87e7a0496e",
+      "sha256": "2565318d516443e4958a843c749cfab561f339524af7f812ff3c97329d5077ed",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
     "characteristics": {
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "a15732902b2333329b3681b4416d79fa743fcdbf617b5c7bbf246b87e7a0496e",
+      "sha256": "2565318d516443e4958a843c749cfab561f339524af7f812ff3c97329d5077ed",
       "terPct": 0.5,
       "index": "Indxx Global Robotics & Artificial Intelligence Thematic v2 Index",
       "checkedAt": "2026-11-13",
@@ -5525,7 +5541,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "a15732902b2333329b3681b4416d79fa743fcdbf617b5c7bbf246b87e7a0496e",
+      "sha256": "2565318d516443e4958a843c749cfab561f339524af7f812ff3c97329d5077ed",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5543,7 +5559,7 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-          "sha256": "a15732902b2333329b3681b4416d79fa743fcdbf617b5c7bbf246b87e7a0496e",
+          "sha256": "2565318d516443e4958a843c749cfab561f339524af7f812ff3c97329d5077ed",
           "checkedAt": "2026-11-13",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5575,7 +5591,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "a5f8314297f6940b29cf17702cd7287dcf3e645360d065a44eecb14c758dcb11",
+      "sha256": "fb2a37bebfbc7d64a09946fa9a9cb582db358768a5e2f202ae699b3f070bdb4c",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5610,7 +5626,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "a5f8314297f6940b29cf17702cd7287dcf3e645360d065a44eecb14c758dcb11",
+      "sha256": "fb2a37bebfbc7d64a09946fa9a9cb582db358768a5e2f202ae699b3f070bdb4c",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5664,7 +5680,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "a5f8314297f6940b29cf17702cd7287dcf3e645360d065a44eecb14c758dcb11",
+      "sha256": "fb2a37bebfbc7d64a09946fa9a9cb582db358768a5e2f202ae699b3f070bdb4c",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5714,14 +5730,14 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "a5f8314297f6940b29cf17702cd7287dcf3e645360d065a44eecb14c758dcb11",
+      "sha256": "fb2a37bebfbc7d64a09946fa9a9cb582db358768a5e2f202ae699b3f070bdb4c",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
     "characteristics": {
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "a5f8314297f6940b29cf17702cd7287dcf3e645360d065a44eecb14c758dcb11",
+      "sha256": "fb2a37bebfbc7d64a09946fa9a9cb582db358768a5e2f202ae699b3f070bdb4c",
       "terPct": 0.65,
       "index": "Solactive Global Uranium & Nuclear Components Total Return v2 Index",
       "checkedAt": "2026-11-13",
@@ -5760,7 +5776,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "a5f8314297f6940b29cf17702cd7287dcf3e645360d065a44eecb14c758dcb11",
+      "sha256": "fb2a37bebfbc7d64a09946fa9a9cb582db358768a5e2f202ae699b3f070bdb4c",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5778,7 +5794,7 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-          "sha256": "a5f8314297f6940b29cf17702cd7287dcf3e645360d065a44eecb14c758dcb11",
+          "sha256": "fb2a37bebfbc7d64a09946fa9a9cb582db358768a5e2f202ae699b3f070bdb4c",
           "checkedAt": "2026-11-13",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5810,7 +5826,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "42a481360e3f87e7d4cf2fe457442b7dcde688502a82d5d9b0cd60ee494557d8",
+      "sha256": "5a115730980f14cf82845fa68b87cb756bf13d1475759b844c09d4965040caec",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5830,7 +5846,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "42a481360e3f87e7d4cf2fe457442b7dcde688502a82d5d9b0cd60ee494557d8",
+      "sha256": "5a115730980f14cf82845fa68b87cb756bf13d1475759b844c09d4965040caec",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5860,7 +5876,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "42a481360e3f87e7d4cf2fe457442b7dcde688502a82d5d9b0cd60ee494557d8",
+      "sha256": "5a115730980f14cf82845fa68b87cb756bf13d1475759b844c09d4965040caec",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -5910,14 +5926,14 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "42a481360e3f87e7d4cf2fe457442b7dcde688502a82d5d9b0cd60ee494557d8",
+      "sha256": "5a115730980f14cf82845fa68b87cb756bf13d1475759b844c09d4965040caec",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
     "characteristics": {
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "42a481360e3f87e7d4cf2fe457442b7dcde688502a82d5d9b0cd60ee494557d8",
+      "sha256": "5a115730980f14cf82845fa68b87cb756bf13d1475759b844c09d4965040caec",
       "terPct": 0.5,
       "index": "Indxx Cybersecurity v2 Index",
       "checkedAt": "2026-11-13",
@@ -5956,7 +5972,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "42a481360e3f87e7d4cf2fe457442b7dcde688502a82d5d9b0cd60ee494557d8",
+      "sha256": "5a115730980f14cf82845fa68b87cb756bf13d1475759b844c09d4965040caec",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5974,7 +5990,7 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-          "sha256": "42a481360e3f87e7d4cf2fe457442b7dcde688502a82d5d9b0cd60ee494557d8",
+          "sha256": "5a115730980f14cf82845fa68b87cb756bf13d1475759b844c09d4965040caec",
           "checkedAt": "2026-11-13",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -6006,7 +6022,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
-      "sha256": "762faef44d2347cc9767c579d8f2a96907f0dcbe779062ea2c78b6115bf3c4a8",
+      "sha256": "e4421fb774be5e0a31b57240b24afa6c3fe81f4996ba2b49cfa0b925454fef7c",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "7.51 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -6018,7 +6034,7 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/holdings",
-      "sha256": "149185921f0567e3a994bd342cc89304e39afa841d3805dcdf29c6b30bcb8e03",
+      "sha256": "314944497d2c4866a9a15686520039b8a2190e9c6ad061287ae8e2e12e779840",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -6095,69 +6111,77 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/holdings",
-      "sha256": "149185921f0567e3a994bd342cc89304e39afa841d3805dcdf29c6b30bcb8e03",
+      "sha256": "314944497d2c4866a9a15686520039b8a2190e9c6ad061287ae8e2e12e779840",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 21.562688
+          "weightPct": 20.87339
         },
         {
           "name": "Switzerland",
-          "weightPct": 16.001061
-        },
-        {
-          "name": "Germany",
-          "weightPct": 13.682987
+          "weightPct": 15.536314
         },
         {
           "name": "France",
-          "weightPct": 13.21796
+          "weightPct": 14.19795
+        },
+        {
+          "name": "Germany",
+          "weightPct": 13.643446
         },
         {
           "name": "Netherlands",
-          "weightPct": 9.256652
+          "weightPct": 8.37204
         },
         {
           "name": "Spain",
           "weightPct": 5.889873
         },
         {
-          "name": "Sweden",
-          "weightPct": 5.362578
+          "name": "Italy",
+          "weightPct": 4.873693
         },
         {
-          "name": "Italy",
-          "weightPct": 4.792949
+          "name": "Sweden",
+          "weightPct": 4.790703
         },
         {
           "name": "Denmark",
           "weightPct": 2.590631
         },
         {
-          "name": "Belgium",
-          "weightPct": 1.850083
-        },
-        {
           "name": "Finland",
           "weightPct": 1.732769
         },
         {
+          "name": "Belgium",
+          "weightPct": 1.412023
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.096346
+        },
+        {
           "name": "Ireland",
-          "weightPct": 1.310759
+          "weightPct": 1.062266
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.97259
         },
         {
           "name": "Norway",
-          "weightPct": 0.999895
+          "weightPct": 0.951479
         },
         {
           "name": "Austria",
           "weightPct": 0.571691
         },
         {
-          "name": "Luxembourg",
-          "weightPct": 0.426132
+          "name": "China",
+          "weightPct": 0.34268
         },
         {
           "name": "Portugal",
@@ -6168,6 +6192,10 @@
           "weightPct": 0.226906
         },
         {
+          "name": "Singapore",
+          "weightPct": 0.211851
+        },
+        {
           "name": "Chile",
           "weightPct": 0.105017
         },
@@ -6176,8 +6204,16 @@
           "weightPct": 0.08298
         },
         {
-          "name": "Mexico",
-          "weightPct": 0.041893
+          "name": "Jersey",
+          "weightPct": 0.080909
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.048415
+        },
+        {
+          "name": "Korea, Republic of",
+          "weightPct": 0.039541
         },
         {
           "name": "United Arab Emirates",
@@ -6191,15 +6227,15 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/holdings",
-      "sha256": "149185921f0567e3a994bd342cc89304e39afa841d3805dcdf29c6b30bcb8e03",
+      "sha256": "314944497d2c4866a9a15686520039b8a2190e9c6ad061287ae8e2e12e779840",
       "rows": [
         {
-          "name": "ASML HOLDING NV",
+          "name": "ASML HOLDING",
           "isin": "NL0010273215",
           "weightPct": 4.22823912
         },
         {
-          "name": "ROCHE HOLDING AG",
+          "name": "ROCHE PS PAR AG",
           "isin": "CH1499059983",
           "weightPct": 2.44494186
         },
@@ -6209,12 +6245,12 @@
           "weightPct": 2.20104314
         },
         {
-          "name": "NOVARTIS AG REG",
+          "name": "NOVARTIS AG",
           "isin": "CH0012005267",
           "weightPct": 2.10434626
         },
         {
-          "name": "SHELL PLC",
+          "name": "SHELL",
           "isin": "GB00BP6MXD84",
           "weightPct": 2.00776056
         },
@@ -6224,22 +6260,22 @@
           "weightPct": 1.99335327
         },
         {
-          "name": "NESTLE SA REG",
+          "name": "NESTLE SA",
           "isin": "CH0038863350",
           "weightPct": 1.90955561
         },
         {
-          "name": "SAP SE",
+          "name": "SAP",
           "isin": "DE0007164600",
           "weightPct": 1.70371368
         },
         {
-          "name": "SIEMENS AG REG",
+          "name": "SIEMENS N AG",
           "isin": "DE0007236101",
           "weightPct": 1.61148555
         },
         {
-          "name": "ALLIANZ SE REG",
+          "name": "ALLIANZ",
           "isin": "DE0008404005",
           "weightPct": 1.42307741
         }
@@ -7801,7 +7837,7 @@
       "replicationMethod": "Physical (Full replication)",
       "asOf": "2026-10-31",
       "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
-      "sha256": "f000852a178fbb0877586e272ae52f5bbfcfea201edb14830226a5318b02b6e2",
+      "sha256": "e1e4bed62203df6f58eee24ac3e29bf9982e2cf907ce3117a3777806ff50276f",
       "checkedAt": "2026-11-13",
       "modifiedAt": "2026-11-13"
     },
@@ -7858,7 +7894,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
-      "sha256": "9003978cf19e3c6330a6624f171f0621fea732a16d498a3270ea7952de3cfd68",
+      "sha256": "0f60d08617ae7bb1d3b42c5bb1e7493e7ca0da0146a74011767af50a21091a41",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "23.52 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -7870,7 +7906,7 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/holdings",
-      "sha256": "1010057bac5ec83e1b49a7e01f05e807bd233d1ddc1eca9c86bebd7ffcbc7c62",
+      "sha256": "0a9c3496a33d43cd9e2c66882d71c155c977dab110281b2f955c8ec6a8292e37",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -7947,13 +7983,13 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/holdings",
-      "sha256": "1010057bac5ec83e1b49a7e01f05e807bd233d1ddc1eca9c86bebd7ffcbc7c62",
+      "sha256": "0a9c3496a33d43cd9e2c66882d71c155c977dab110281b2f955c8ec6a8292e37",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 71.219866
+          "weightPct": 71.940804
         },
         {
           "name": "Japan",
@@ -7961,67 +7997,63 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.510577
+          "weightPct": 3.321427
         },
         {
           "name": "Canada",
-          "weightPct": 3.379197
+          "weightPct": 3.274432
         },
         {
           "name": "Switzerland",
-          "weightPct": 2.725739
-        },
-        {
-          "name": "Germany",
-          "weightPct": 2.126531
+          "weightPct": 2.413031
         },
         {
           "name": "France",
-          "weightPct": 2.05342
+          "weightPct": 2.205174
+        },
+        {
+          "name": "Germany",
+          "weightPct": 2.120482
         },
         {
           "name": "Australia",
-          "weightPct": 1.599495
+          "weightPct": 1.650944
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.51077
+          "weightPct": 1.373236
         },
         {
           "name": "Spain",
           "weightPct": 0.915924
         },
         {
-          "name": "Ireland",
-          "weightPct": 0.869343
+          "name": "Italy",
+          "weightPct": 0.757438
         },
         {
           "name": "Sweden",
-          "weightPct": 0.83448
+          "weightPct": 0.745785
         },
         {
-          "name": "Italy",
-          "weightPct": 0.745422
+          "name": "Ireland",
+          "weightPct": 0.597357
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.482495
+          "weightPct": 0.432582
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.421822
         },
         {
           "name": "Denmark",
           "weightPct": 0.403839
         },
         {
-          "name": "Singapore",
-          "weightPct": 0.393113
-        },
-        {
           "name": "Cash and/or Derivatives",
           "weightPct": 0.289736
-        },
-        {
-          "name": "Belgium",
-          "weightPct": 0.286132
         },
         {
           "name": "Finland",
@@ -8032,24 +8064,28 @@
           "weightPct": 0.268041
         },
         {
+          "name": "Belgium",
+          "weightPct": 0.218662
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.150812
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.14824
+        },
+        {
           "name": "Norway",
-          "weightPct": 0.154633
+          "weightPct": 0.146974
+        },
+        {
+          "name": "China",
+          "weightPct": 0.100778
         },
         {
           "name": "Austria",
           "weightPct": 0.087225
-        },
-        {
-          "name": "Uruguay",
-          "weightPct": 0.074464
-        },
-        {
-          "name": "Luxembourg",
-          "weightPct": 0.065891
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.060689
         },
         {
           "name": "New Zealand",
@@ -8061,23 +8097,31 @@
         },
         {
           "name": "Chile",
-          "weightPct": 0.01628
+          "weightPct": 0.032101
+        },
+        {
+          "name": "Cayman Islands",
+          "weightPct": 0.026061
+        },
+        {
+          "name": "Zambia",
+          "weightPct": 0.018345
         },
         {
           "name": "Thailand",
           "weightPct": 0.013942
         },
         {
-          "name": "China",
-          "weightPct": 0.009412
-        },
-        {
-          "name": "Mexico",
-          "weightPct": 0.006593
-        },
-        {
           "name": "Macao",
-          "weightPct": 0.003481
+          "weightPct": 0.013494
+        },
+        {
+          "name": "Jersey",
+          "weightPct": 0.011994
+        },
+        {
+          "name": "Korea, Republic of",
+          "weightPct": 0.006049
         }
       ],
       "checkedAt": "2026-11-13",
@@ -8087,30 +8131,30 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/holdings",
-      "sha256": "1010057bac5ec83e1b49a7e01f05e807bd233d1ddc1eca9c86bebd7ffcbc7c62",
+      "sha256": "0a9c3496a33d43cd9e2c66882d71c155c977dab110281b2f955c8ec6a8292e37",
       "rows": [
         {
-          "name": "APPLE INC",
+          "name": "APPLE",
           "isin": "US0378331005",
           "weightPct": 5.78992368
         },
         {
-          "name": "NVIDIA CORP",
+          "name": "NVIDIA",
           "isin": "US67066G1040",
           "weightPct": 4.24305096
         },
         {
-          "name": "MICROSOFT CORP",
+          "name": "MICROSOFT",
           "isin": "US5949181045",
           "weightPct": 4.09882457
         },
         {
-          "name": "AMAZON.COM INC",
+          "name": "AMAZON COM INC",
           "isin": "US0231351067",
           "weightPct": 2.87695484
         },
         {
-          "name": "ALPHABET INC CL A",
+          "name": "ALPHABET CLASS A",
           "isin": "US02079K3059",
           "weightPct": 1.94773644
         },
@@ -8120,17 +8164,17 @@
           "weightPct": 1.82884583
         },
         {
-          "name": "ALPHABET INC CL C",
+          "name": "ALPHABET CLASS C",
           "isin": "US02079K1079",
           "weightPct": 1.53441952
         },
         {
-          "name": "META PLATFORMS INC CLASS A",
+          "name": "META PLATFORMS CLASS A",
           "isin": "US30303M1027",
           "weightPct": 1.52084473
         },
         {
-          "name": "ELI LILLY + CO",
+          "name": "ELI LILLY",
           "isin": "US5324571083",
           "weightPct": 1.26879653
         },
@@ -8216,7 +8260,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
-      "sha256": "79a0252d7e5c7f06b9433c0a7785519473db9db83d4013e7e6165c9c91ddac05",
+      "sha256": "3133eab999434adf0d36e0dae196093c4670f240e20d7ef5b658f3e49b34ed9e",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "23.52 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -8228,7 +8272,7 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
-      "sha256": "6afd68a0d30fab0961f010e0e73189ab6a103529662437e4e4f3ecb1fb5150ff",
+      "sha256": "ba683607cb27cf37f8012ec3f318dd60b2f3a13ef0b74c06a214047a44d8fd3c",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -8305,13 +8349,13 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
-      "sha256": "6afd68a0d30fab0961f010e0e73189ab6a103529662437e4e4f3ecb1fb5150ff",
+      "sha256": "ba683607cb27cf37f8012ec3f318dd60b2f3a13ef0b74c06a214047a44d8fd3c",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 71.219866
+          "weightPct": 71.940804
         },
         {
           "name": "Japan",
@@ -8319,67 +8363,63 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.510577
+          "weightPct": 3.321427
         },
         {
           "name": "Canada",
-          "weightPct": 3.379197
+          "weightPct": 3.274432
         },
         {
           "name": "Switzerland",
-          "weightPct": 2.725739
-        },
-        {
-          "name": "Germany",
-          "weightPct": 2.126531
+          "weightPct": 2.413031
         },
         {
           "name": "France",
-          "weightPct": 2.05342
+          "weightPct": 2.205174
+        },
+        {
+          "name": "Germany",
+          "weightPct": 2.120482
         },
         {
           "name": "Australia",
-          "weightPct": 1.599495
+          "weightPct": 1.650944
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.51077
+          "weightPct": 1.373236
         },
         {
           "name": "Spain",
           "weightPct": 0.915924
         },
         {
-          "name": "Ireland",
-          "weightPct": 0.869343
+          "name": "Italy",
+          "weightPct": 0.757438
         },
         {
           "name": "Sweden",
-          "weightPct": 0.83448
+          "weightPct": 0.745785
         },
         {
-          "name": "Italy",
-          "weightPct": 0.745422
+          "name": "Ireland",
+          "weightPct": 0.597357
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.482495
+          "weightPct": 0.432582
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.421822
         },
         {
           "name": "Denmark",
           "weightPct": 0.403839
         },
         {
-          "name": "Singapore",
-          "weightPct": 0.393113
-        },
-        {
           "name": "Cash and/or Derivatives",
           "weightPct": 0.289736
-        },
-        {
-          "name": "Belgium",
-          "weightPct": 0.286132
         },
         {
           "name": "Finland",
@@ -8390,24 +8430,28 @@
           "weightPct": 0.268041
         },
         {
+          "name": "Belgium",
+          "weightPct": 0.218662
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.150812
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.14824
+        },
+        {
           "name": "Norway",
-          "weightPct": 0.154633
+          "weightPct": 0.146974
+        },
+        {
+          "name": "China",
+          "weightPct": 0.100778
         },
         {
           "name": "Austria",
           "weightPct": 0.087225
-        },
-        {
-          "name": "Uruguay",
-          "weightPct": 0.074464
-        },
-        {
-          "name": "Luxembourg",
-          "weightPct": 0.065891
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.060689
         },
         {
           "name": "New Zealand",
@@ -8419,23 +8463,31 @@
         },
         {
           "name": "Chile",
-          "weightPct": 0.01628
+          "weightPct": 0.032101
+        },
+        {
+          "name": "Cayman Islands",
+          "weightPct": 0.026061
+        },
+        {
+          "name": "Zambia",
+          "weightPct": 0.018345
         },
         {
           "name": "Thailand",
           "weightPct": 0.013942
         },
         {
-          "name": "China",
-          "weightPct": 0.009412
-        },
-        {
-          "name": "Mexico",
-          "weightPct": 0.006593
-        },
-        {
           "name": "Macao",
-          "weightPct": 0.003481
+          "weightPct": 0.013494
+        },
+        {
+          "name": "Jersey",
+          "weightPct": 0.011994
+        },
+        {
+          "name": "Korea, Republic of",
+          "weightPct": 0.006049
         }
       ],
       "checkedAt": "2026-11-13",
@@ -8445,30 +8497,30 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
-      "sha256": "6afd68a0d30fab0961f010e0e73189ab6a103529662437e4e4f3ecb1fb5150ff",
+      "sha256": "ba683607cb27cf37f8012ec3f318dd60b2f3a13ef0b74c06a214047a44d8fd3c",
       "rows": [
         {
-          "name": "APPLE INC",
+          "name": "APPLE",
           "isin": "US0378331005",
           "weightPct": 5.78992368
         },
         {
-          "name": "NVIDIA CORP",
+          "name": "NVIDIA",
           "isin": "US67066G1040",
           "weightPct": 4.24305096
         },
         {
-          "name": "MICROSOFT CORP",
+          "name": "MICROSOFT",
           "isin": "US5949181045",
           "weightPct": 4.09882457
         },
         {
-          "name": "AMAZON.COM INC",
+          "name": "AMAZON COM INC",
           "isin": "US0231351067",
           "weightPct": 2.87695484
         },
         {
-          "name": "ALPHABET INC CL A",
+          "name": "ALPHABET CLASS A",
           "isin": "US02079K3059",
           "weightPct": 1.94773644
         },
@@ -8478,17 +8530,17 @@
           "weightPct": 1.82884583
         },
         {
-          "name": "ALPHABET INC CL C",
+          "name": "ALPHABET CLASS C",
           "isin": "US02079K1079",
           "weightPct": 1.53441952
         },
         {
-          "name": "META PLATFORMS INC CLASS A",
+          "name": "META PLATFORMS CLASS A",
           "isin": "US30303M1027",
           "weightPct": 1.52084473
         },
         {
-          "name": "ELI LILLY + CO",
+          "name": "ELI LILLY",
           "isin": "US5324571083",
           "weightPct": 1.26879653
         },
@@ -8574,7 +8626,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
-      "sha256": "41d8064862571931b5c9b98db78da51f0d6ded9b88f820a224d01905c52e60d5",
+      "sha256": "d5054dcef7946ca18a08a12f3f84f495cede2664c1270eff2a107bf33816689a",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "760.93 M GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
