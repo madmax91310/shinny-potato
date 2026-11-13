@@ -643,7 +643,15 @@
       "compositionIndexId": 92388578,
       "compositionDataUrl": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1",
       "compositionDataName": "S&P Global Dividend Aristocrats Quality Income Index (USD)",
-      "compositionPageUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-global-dividend-aristocrats-quality-income-index/"
+      "compositionPageUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-global-dividend-aristocrats-quality-income-index/",
+      "compositionAlternativeDataSources": [
+        {
+          "url": "https://www.spglobal.com/spdji/es/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=2",
+          "pageUrl": "https://www.spglobal.com/spdji/es/indices/dividends-factors/sp-global-dividend-aristocrats-quality-income-index/",
+          "locale": "es",
+          "languageId": 2
+        }
+      ]
     },
     {
       "id": "sp-euro-dividend-aristocrats",
@@ -668,7 +676,15 @@
       "compositionIndexId": 5475610,
       "compositionDataUrl": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1",
       "compositionDataName": "S&P Euro High Yield Dividend Aristocrats Index",
-      "compositionPageUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-euro-high-yield-dividend-aristocrats/"
+      "compositionPageUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-euro-high-yield-dividend-aristocrats/",
+      "compositionAlternativeDataSources": [
+        {
+          "url": "https://www.spglobal.com/spdji/es/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=2",
+          "pageUrl": "https://www.spglobal.com/spdji/es/indices/dividends-factors/sp-euro-high-yield-dividend-aristocrats/",
+          "locale": "es",
+          "languageId": 2
+        }
+      ]
     },
     {
       "id": "topix",

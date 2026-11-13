@@ -7,6 +7,8 @@ import gzip
 from collect_sp_composition import parse_composition, parse_legend
 from collect_sp_composition import parse_public_data
 from data_automation import UTC
+# Included by the ordinary explicit S&P test entry point in both CI producers.
+from test_sp_localized_composition import LocalizedSpTests
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 class CompositionTests(unittest.TestCase):
  def public_fixture(self, euro=False):
