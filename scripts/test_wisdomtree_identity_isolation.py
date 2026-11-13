@@ -125,6 +125,16 @@ class DatedCorporateContinuity(unittest.TestCase):
    mapping,dates,proofs,_=qualified_identity_books(self.now,{'BLNN369'},'2026-11-11')
   self.assertEqual(mapping,{'BLNN369':'IE00BLNN3691'})
   self.assertEqual(dates,['2026-11-12','2026-11-11']);self.assertEqual(len(proofs),4)
+ def test_common_contract_and_helper_trigger_both_producer_paths(self):
+  from pathlib import Path
+  import yaml
+  workflow=yaml.safe_load((Path(__file__).resolve().parents[1]/'.github/workflows/update-qualified-exposures.yml').read_text())
+  triggers=workflow.get('on',workflow.get(True))
+  for event in ['push','pull_request']:
+   paths=triggers[event]['paths']
+   self.assertIn('scripts/security_identity_continuity.py',paths)
+   self.assertIn('src/data/index-company-identities.json',paths)
+   self.assertIn('scripts/fixtures/weatherford-*-20261113.html.gz',paths)
  def test_future_native_date_is_rejected(self):
   from collect_wisdomtree_holdings import complete_identity_mapping
   with self.assertRaisesRegex(ValueError,'native portfolio date'):
