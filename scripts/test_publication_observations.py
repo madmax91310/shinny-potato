@@ -90,6 +90,9 @@ class PublicationTests(unittest.TestCase):
     def test_xndx_forming_only_publication_retains_exact_previous_session(self):
         from refresh_anniversary_levels import XNDX_URLS
         config=next(c for c in configurations()if c['id']=='nasdaq100')
+        # Preserve the original Yahoo-route regressions independently of the
+        # new production FRED document route.
+        config.update(parser='yahoo',symbol='^XNDX')
         now=dt.datetime(2026,10,23,15,tzinfo=UTC)
         raw=json.loads((ROOT/'scripts/fixtures/publication/xndx-intraday-20261023.json').read_text())
         def fetch(url):
@@ -118,6 +121,9 @@ class PublicationTests(unittest.TestCase):
     def xndx_recovery_case(self):
         from refresh_anniversary_levels import XNDX_URLS
         config=next(c for c in configurations()if c['id']=='nasdaq100')
+        # Preserve the original Yahoo-route regressions independently of the
+        # new production FRED document route.
+        config.update(parser='yahoo',symbol='^XNDX')
         now=dt.datetime(2026,10,28,19,3,2,tzinfo=UTC)
         raw={window:json.loads((ROOT/f'scripts/fixtures/publication/xndx-recovery-20261028-yahoo{window}.json').read_text())for window in ['5d','1d']}
         def collect(c,n):return collect_level(c,n,json_fetch=lambda url:copy.deepcopy(raw['5d'if 'range=5d'in url else'1d']))
@@ -203,6 +209,9 @@ class PublicationTests(unittest.TestCase):
     def test_xndx_supported_ranges_and_completed_session(self):
         from refresh_anniversary_levels import XNDX_URLS
         config=next(c for c in configurations()if c['id']=='nasdaq100')
+        # Preserve the original Yahoo-route regressions independently of the
+        # new production FRED document route.
+        config.update(parser='yahoo',symbol='^XNDX')
         stamp=int(dt.datetime(2026,10,7,20,15,tzinfo=UTC).timestamp())
         def body(url,stamp=stamp):
             return {'chart':{'error':None,'result':[{'meta':{'symbol':'^XNDX','currency':'USD','dataGranularity':'1d','exchangeTimezoneName':'America/New_York','instrumentType':'INDEX','longName':'NASDAQ-100 Total Return','range':'5d'if 'range=5d'in url else '1d'},'timestamp':[stamp],'indicators':{'quote':[{'close':[36000.25]}]}}]}}

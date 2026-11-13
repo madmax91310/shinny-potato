@@ -146,9 +146,10 @@ def build_plan(producer, args, report_stem=None, module=None):
             selected=not only or c['id']in only
             add('anniversary-'+c['id'],c.get('isin',c['id']),['dated closing level',c.get('field','close'),c.get('currency','')],
                 selected,'Outside explicit anniversary selection'if not selected else None)
-        # The native collector always validates the existing EUR gold derivation,
-        # including in targeted mode; this is not a new external source control.
-        add('anniversary-or','or',['derived EUR gold level; no new source control'])
+        # Targeted mode returns before the local gold derivation. Preserve its
+        # identity without inventing an attempt or closing its earlier incident.
+        add('anniversary-or','or',['derived EUR gold level; no new source control'],
+            not only,'Local gold derivation is outside explicit anniversary selection'if only else None)
     elif producer=='refresh_anniversary_indices':
         for c in mod().configurations():add('anniversary-index-'+c['id'],c['id'],['completed official monthly index levels',c.get('currency','USD')])
     elif producer=='collect_instrument_metadata':

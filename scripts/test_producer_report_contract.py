@@ -166,10 +166,12 @@ class ProducerEntryPoints(unittest.TestCase):
         ])
         p=plans.build_plan('refresh_anniversary_levels',['--only','source-A'],module=module)
         selected=[r['id']for r in p['items']if r['selected']]
-        self.assertEqual(selected,['anniversary-source-A','anniversary-or'])
+        self.assertEqual(selected,['anniversary-source-A'])
         self.assertFalse(next(r for r in p['items']if r['id']=='anniversary-source-B')['selected'])
+        self.assertFalse(next(r for r in p['items']if r['id']=='anniversary-or')['selected'])
         contract_plan=plan(tuple(r['id']for r in p['items']),set(selected))
-        result=c.normalize_contract(finished({'outcomes':[{'id':'anniversary-or','status':'not-attempted','sourceAttempted':False}]},contract_plan)['resultContract'])
+        # The target is genuinely omitted; the unattempted derivation is not.
+        result=c.normalize_contract(finished({'outcomes':[]},contract_plan)['resultContract'])
         self.assertEqual([r['expectedId']for r in result['errors']],['anniversary-source-A'])
         self.assertFalse(result['successes'])
         for invalid in ['unknown-source','TEST-ISIN-A','anniversary-source-A']:
@@ -191,7 +193,8 @@ class ProducerEntryPoints(unittest.TestCase):
                 selected.append(value)
             with self.subTest(command=command),patch('urllib.request.urlopen',side_effect=AssertionError('No source request during planning')):
                 p=plans.build_plan('refresh_anniversary_levels',args)
-                self.assertEqual({r['id']for r in p['items']if r['selected']},{'anniversary-'+value for value in selected}|{'anniversary-or'})
+                self.assertEqual({r['id']for r in p['items']if r['selected']},{'anniversary-'+value for value in selected})
+                self.assertFalse(next(r for r in p['items']if r['id']=='anniversary-or')['selected'])
 
     def test_real_listing_and_hedge_metadata_sources_declare_only_owned_fields(self):
         sources=plans.read('scripts/instrument-metadata-sources.json')['instruments']
