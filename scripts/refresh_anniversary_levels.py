@@ -150,7 +150,7 @@ def collect_xndx_document(config, now, fetch=xndx_fred_date_bytes):
         'sourceHashes':{FRED_XNDX_URL:sha},'quoteMethod':'official-fred-xndx-document',
         'sourceEvidence':{'seriesId':'NASDAQXNDX','provider':'Nasdaq, Inc.',
             'asOf':asof,'value':value,'publisherUpdated':metadata['Last Updated'],
-            'sourceDateRange':metadata['Date Range'],'sha256':sha,'expectedCompletedSession':expected},
+            'sourceDateRange':metadata['Date Range'],'sha256':sha,'session':expected},
         'method':'Clôture officielle XNDX Total Return USD, dividendes bruts réinvestis ; série Nasdaq NASDAQXNDX publiée par FRED, séance et date de publication contrôlées',
         'maxAgeDays':7}
 
@@ -259,7 +259,7 @@ def xndx_source_upgrade(identifier,old,record):
             and re.fullmatch(r'[a-f0-9]{64}',record.get('sha256','')) is not None
             and evidence.get('sha256')==record['sha256'] and evidence.get('seriesId')=='NASDAQXNDX'
             and evidence.get('provider')=='Nasdaq, Inc.' and evidence.get('asOf')==record.get('asOf')
-            and evidence.get('value')==record.get('value') and evidence.get('expectedCompletedSession')==record.get('asOf')
+            and evidence.get('value')==record.get('value') and evidence.get('session')==record.get('asOf')
             and all(old.get(k)==record.get(k)for k in ('indexCode','isin','ticker','mic','listingEvidenceId')))
     if convention(old)!=('fred','XNDX','USD','TOTAL')or old.get('seriesId')!='NASDAQXNDX':return False
     if convention(record)!=('yahoo','^XNDX','USD','TOTAL')or record.get('quoteMethod')!='supported-xndx-ranges':return False

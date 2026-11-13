@@ -96,6 +96,8 @@ jobs:
         run: node scripts/test-anniversary-indices.mjs
       - name: "Validate observations: node scripts test-publication-consumers.mjs"
         run: node scripts/test-publication-consumers.mjs
+      - name: "Validate observations: exact Nasdaq monthly and current-level consumers"
+        run: node scripts/test-nasdaq-total-return.mjs
       - id: prices
         name: Collect INSEE price levels, IRL and SMIC
         continue-on-error: true
@@ -122,6 +124,8 @@ jobs:
         run: node scripts/test-anniversary-indices.mjs
       - name: "Validate observations: node scripts test-publication-consumers.mjs"
         run: node scripts/test-publication-consumers.mjs
+      - name: "Validate observations: exact Nasdaq monthly and current-level consumers"
+        run: node scripts/test-nasdaq-total-return.mjs
       - name: "Validate observations: node scripts test-household-benchmarks.mjs"
         run: node scripts/test-household-benchmarks.mjs
       - name: "Validate observations: node scripts test-purchasing-power-editorial.mjs"
