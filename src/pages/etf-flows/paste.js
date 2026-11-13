@@ -16,7 +16,7 @@ export function parsePastedFlows(text, group) {
     // Trackinsight's copied cards often put the label on the preceding line.
     if (/^[+−-]\s*(?:[€$]|\d)/.test(line) && i && !/[€$%]/.test(lines[i-1]) && !/^\d+$/.test(lines[i-1])) line=lines[i-1]+' : '+line
     // Never turn a performance, asset size or year-to-date card into weekly flows.
-    if (/%|\b(?:returns?|performance|AuM|assets under management|YTD)\b/i.test(line)) {
+    if (/%|\b(?:returns?|performance|AuM|net assets|assets under management|encours|fees?|expense ratio|YTD)\b/i.test(line)) {
       if (/[€$%]/.test(line)) warnings.push('Ligne exclue (performance, encours ou YTD) : '+line)
       continue
     }
@@ -47,8 +47,9 @@ export function parsePastedFlows(text, group) {
       if (!label || label.length>60 || /\b(?:According to|followed by|followed|while|ahead of)\b/i.test(label)) {warnings.push('Libellé à simplifier : '+line);continue}
       const key=label.toLowerCase()
       if (labels.has(key)) {warnings.push('Doublon à vérifier : '+label);continue}
-      labels.add(key);currencies.add(currency)
       const amount=Number(n.replace(',','.'))*(scales[suffix.toLowerCase()]??1)*((/[−-]/.test(sign)||(!sign&&negative))?-1:1)
+      if (!Number.isFinite(amount)) {warnings.push('Montant hors limites : '+label);continue}
+      labels.add(key);currencies.add(currency)
       const raw=`${amount<0?'−':'+'}${Math.abs(amount)} ${currency}`
       rows.push({id:`paste-${rows.length+1}`,group,label,originalLabel:label,raw,amount,evidence:line})
     }
