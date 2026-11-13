@@ -13,6 +13,7 @@ import re
 import subprocess
 import tempfile
 import urllib.error
+from urllib.parse import urlsplit, parse_qs
 from data_automation import reject
 from issuer_documents import download, pdf_text, proof, document_date, validated_rows
 from collect_index_documents import COUNTRY_LABELS, SECTOR_LABELS
@@ -119,26 +120,58 @@ def parse_composition(text, legend_a, legend_b, config, now):
             'sectors':[[SECTOR_LABELS.get(r['name'],r['name']),r['weightPct']]for r in sorted(sectors_a,key=lambda r:-r['weightPct'])],
             'holdings':[], 'provenance':'Publication officielle de l’indice exact ; pays de domiciliation et comptage extraits des tables. Secteurs : légende imprimée lue à deux résolutions concordantes, total contrôlé. Poids individuels des principales lignes non publiés ; aucune substitution par le portefeuille ETF. Rendements conservés dans leur registre séparé.'}
 
+def public_data_routes(config):
+    routes=[{'url':config['compositionDataUrl'],'pageUrl':config['compositionPageUrl']}]
+    alternatives=config.get('compositionAlternativeDataSources',[])
+    if not isinstance(alternatives,list) or len(alternatives)>1:
+        reject('Unbounded S&P alternative source configuration')
+    for route in alternatives:
+        if not isinstance(route,dict):reject('Invalid S&P alternative source configuration')
+        url=urlsplit(route.get('url',''));page=urlsplit(route.get('pageUrl',''))
+        expected_page=config['compositionPageUrl'].replace('/en/','/es/')
+        if (config.get('compositionIndexId')not in(5475610,92388578)
+                or route.get('locale')!='es' or type(route.get('languageId'))is not int or route['languageId']!=2
+                or url.scheme!='https' or url.netloc!='www.spglobal.com' or url.fragment
+                or url.path!='/spdji/es/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot'
+                or parse_qs(url.query)!={'indexId':[str(config['compositionIndexId'])],'language_id':['2']}
+                or route.get('pageUrl')!=expected_page or page.query or page.fragment):
+            reject('Unqualified exact-index S&P alternative route')
+        routes.append(route)
+    return routes
+
+
 def collect(config, now, fetch=download):
     if config.get('compositionDataUrl'):
-        if fetch is download:
+        attempts=[]
+        for route in public_data_routes(config):
             try:
-                body = download(config['compositionDataUrl'], headers={
+                body = download(route['url'], headers={
                     'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-                    'Accept':'application/json', 'Accept-Language':'en-GB,en;q=0.9',
-                    'Referer':config['compositionPageUrl']})
+                    'Accept':'application/json', 'Accept-Language':'es-ES,es;q=0.9'if route.get('locale')=='es'else'en-GB,en;q=0.9',
+                    'Referer':route['pageUrl']}) if fetch is download else fetch(route['url'])
             except (urllib.error.URLError, TimeoutError) as error:
-                if config.get('allowPublicHandoff', True) is False:
-                    raise
-                from sp_public_feed import read_response
-                try:
-                    retained = read_response(config, now)
-                    retained['source']['primaryAccessError'] = str(error)
-                    return retained
-                except Exception as feed_error:
-                    reject(f'S&P direct download failed: {error}; official handoff failed: {feed_error}')
-        else: body = fetch(config['compositionDataUrl'])
-        return parse_public_data(body, config, now)
+                attempts.append({'sourceUrl':route['url'],'status':'unavailable','error':str(error),
+                                 'attemptedAt':now.isoformat()})
+                continue
+            # A downloaded but financially invalid response never permits a
+            # language fallback or a retained handoff to hide its contradiction.
+            facts=parse_public_data(body,{**config,'compositionDataUrl':route['url']},now)
+            if attempts:
+                facts['source']['primaryAccessError']=attempts[0]['error']
+                facts['source']['accessAttempts']=attempts+[{'sourceUrl':route['url'],'status':'validated','attemptedAt':now.isoformat()}]
+            if route.get('locale'):
+                facts['source'].update(transport='official-public-localized-service',locale=route['locale'],languageId=route['languageId'])
+            return facts
+        if config.get('allowPublicHandoff',True)is False:
+            reject('S&P public downloads unavailable: '+json.dumps(attempts))
+        from sp_public_feed import read_response
+        try:
+            retained=read_response(config,now)
+            retained['source']['primaryAccessError']=attempts[0]['error']
+            retained['source']['accessAttempts']=attempts
+            return retained
+        except Exception as feed_error:
+            reject('S&P direct download failed: '+json.dumps(attempts)+'; official handoff failed: '+str(feed_error))
     try:
         body=fetch(config['sourceUrl'])
     except urllib.error.HTTPError as error:
