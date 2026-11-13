@@ -176,9 +176,26 @@ def parse(id_, documents, today):
   initial=val(r'1er appel : ([\d,.]+)% à la souscription',t)
   semester=val(r'Puis ([\d,.]+)% par semestre',t)
   soup=BeautifulSoup(documents[1],'html.parser')
-  card=soup.select_one('#campaign-widget-axclimat-i')
-  if not card or card.get('data-campaign-state')!='Souscriptions terminées':raise ValueError('AxClimat subscription status changed; qualify new offer status')
-  stamp=required(r'Cloturé le (\d{2})/(\d{2})/(20\d{2})',card.get_text(' ',strip=True))
+  legacy=soup.select('#campaign-widget-axclimat-i')
+  cards=[card for card in soup.select('article.front-card[data-item][data-cls="fund"]')
+         if any(h.get_text(' ',strip=True)=='AxClimat I' for h in card.select('h3.front-card-title'))]
+  # A missing widget is not a status change. The redesigned financed-operations
+  # page exposes a dated status tag in the card identified by the exact fund name.
+  if len(legacy)>1 or len(cards)>1:raise ValueError('Ambiguous AxClimat subscription evidence')
+  dates=[]
+  if legacy:
+   if legacy[0].get('data-campaign-state')!='Souscriptions terminées':raise ValueError('AxClimat subscription status changed; qualify new offer status')
+   dates+=re.findall(r'Cl[oô]turé le (\d{2})/(\d{2})/(20\d{2})',legacy[0].get_text(' ',strip=True))
+   if len(dates)!=1:raise ValueError('Missing or ambiguous AxClimat closure date')
+  if cards:
+   tags=cards[0].select('.front-tag--status')
+   if len(tags)!=1:raise ValueError('Missing or ambiguous AxClimat subscription status')
+   stamp=re.fullmatch(r'Cl[oô]turé le (\d{2})/(\d{2})/(20\d{2})',tags[0].get_text(' ',strip=True))
+   if not stamp:raise ValueError('AxClimat subscription status changed; qualify new offer status')
+   dates.append(stamp.groups())
+  if not dates:raise ValueError('AxClimat subscription evidence unavailable; prior terms retained')
+  if len(set(dates))!=1:raise ValueError('Conflicting AxClimat closure dates')
+  stamp=(None,*dates[0])
   closed=f'{stamp[3]}-{stamp[2]}-{stamp[1]}'
   if dt.date.fromisoformat(closed)>today:raise ValueError('Future AxClimat closure')
   for key,part in [('axclimat-i','E'),('axclimat-i-b','B')]:

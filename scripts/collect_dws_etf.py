@@ -15,7 +15,7 @@ from zoneinfo import ZoneInfo
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 from issuer_documents import bounded_return, document_date, validated_rows, download
 from apply_etf_collection import apply
-from dws_liquidity_funds import SOURCES as LIQUIDITY_FUNDS
+from dws_liquidity_funds import SOURCES as LIQUIDITY_FUNDS, EQUITY_FUNDS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -159,6 +159,8 @@ def parse_holdings(body, share, now, url, *, complete=False, non_equity_funds=No
         if isinstance(value, bool) or not isinstance(value, (float, int)) or not math.isfinite(value) or not -100 <= value <= 100:
             reject('Invalid DWS securities weight')
         asset = p['column_5']['value']
+        if p['header']['value'] in EQUITY_FUNDS and asset not in ('Equities','Mutual Fund'):
+            reject('Contradictory held equity-fund source classification')
         if asset in ('Equities', 'Depository Receipts', 'Preferred Stock', 'Right', 'Real Estate Investment Trust'):
             if value < 0:
                 reject('Unqualified DWS equity exposure')
@@ -204,9 +206,16 @@ def parse_holdings(body, share, now, url, *, complete=False, non_equity_funds=No
     if complete:
         excluded=[]
         for position in holdings:
-            if position.get('assetClass') != 'Mutual Fund' and position['isin'] not in LIQUIDITY_FUNDS:continue
+            if position.get('assetClass') != 'Mutual Fund' and position['isin'] not in LIQUIDITY_FUNDS and position['isin'] not in EQUITY_FUNDS:continue
             evidence=(non_equity_funds or {}).get(position['isin'],{})
-            if (evidence.get('isin')!=position['isin'] or evidence.get('kind')!='non-equity-money-market-fund'
+            equity=position['isin'] in EQUITY_FUNDS
+            expected_kind='non-transparised-equity-fund' if equity else 'non-equity-money-market-fund'
+            if equity and (evidence.get('name')!=EQUITY_FUNDS[position['isin']]['name']
+                    or evidence.get('replication')!=EQUITY_FUNDS[position['isin']]['replication']
+                    or evidence.get('currency')!=EQUITY_FUNDS[position['isin']]['currency']
+                    or evidence.get('sourceUrl')!=EQUITY_FUNDS[position['isin']]['url']):
+                reject('Unbound held equity-fund qualification')
+            if (evidence.get('isin')!=position['isin'] or evidence.get('kind')!=expected_kind
                     or not re.fullmatch(r'[0-9a-f]{64}',evidence.get('sha256',''))
                     or not evidence.get('sourceUrl') or not evidence.get('asOf') or not evidence.get('checkedAt')):
                 reject('Fund-of-funds look-through is not qualified')
@@ -226,12 +235,18 @@ def parse_holdings(body, share, now, url, *, complete=False, non_equity_funds=No
             'sourceAssetClass':next(a['assetClass']for a in accounting if a['isin']==p['isin']),
             **{key:p['qualification'][key]for key in ['kind','sourceUrl','sha256','asOf','checkedAt']}}
             for p in excluded]
+        equity_funds=[p for p in excluded if p['qualification']['kind']=='non-transparised-equity-fund']
         result['completeHoldings'] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url,
-            'sha256': digest, 'complete': True, 'rows': direct,
-            'excludedPositions':excluded,'excludedNonEquityFundWeightPct':sum(p['weightPct'] for p in excluded),
+            'sha256': digest, 'complete': not equity_funds, 'rows': direct,
+            'excludedPositions':excluded,
+            'excludedNonEquityFundWeightPct':sum(p['weightPct'] for p in excluded if p['qualification']['kind']=='non-equity-money-market-fund'),
+            'untransparisedEquityFundWeightPct':sum(p['weightPct'] for p in equity_funds),
             'navReconciliation':reconciliation,
+            'qualifiedExcludedPositions':reconciliation['qualifiedExcludedPositions'],
             'method':'Complete physical securities; qualified non-equity money-market fund shares and net cash/derivatives excluded; original fund NAV weights, no renormalisation',
             'sourceUrls':[url,*sorted({p['qualification']['sourceUrl'] for p in excluded})]}
+        if equity_funds:
+            result['completeHoldings']['method']='Partial direct-company perimeter from the complete issuer portfolio; non-transparised equity-fund units, qualified money-market fund units and net cash/derivatives retained separately at original NAV weights; no renormalisation or index/basket substitution'
     holdings = sorted(holdings, key=lambda r: -r['weightPct'])[:10]
     names = [p['name'] for p in holdings]
     for p in holdings:

@@ -6,6 +6,9 @@ import datetime as dt
 import json
 from pathlib import Path
 import unittest
+
+# The ordinary issuer CI explicitly loads this module, including these regressions.
+from test_ssga_published_country import PublishedCountry
 import urllib.error
 import html
 from unittest.mock import patch

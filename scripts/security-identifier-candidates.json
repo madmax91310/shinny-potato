@@ -334,6 +334,18 @@
       "sourceResponseSha256": "d1db495ba0316a7e191a2b93da07af55b3f8561580ae90afa2c1a094ffc6da8f",
       "sourceCheckedAt": "2026-10-29T22:17:01.960023+00:00",
       "method": "Lookup hypothesis only; a fresh independent exact ISIN query must return the issuer FIGI. No name-based assignment."
+    },
+    {
+      "figi": "BBG009S39JX6",
+      "isin": "US02079K3059",
+      "name": "Alphabet Inc Class A (issuer label Google Inc)",
+      "sourceUrls": [
+        "https://www.wisdomtree.com/api/fund-holdings/58690128",
+        "https://api.openfigi.com/v3/mapping"
+      ],
+      "sourceResponseSha256": "a0f1e6429f6a3d35b9a90b1b189e347c8814154eaca403e9ca3e2ff5f1155080",
+      "sourceCheckedAt": "2026-11-10T18:21:04.976254+00:00",
+      "method": "Lookup hypothesis only: existing exact Quantum holding names Alphabet Class A while the native API says Google Inc. An independent exact ISIN query must return the same issuer FIGI; no company-name assignment."
     }
   ],
   "venueTickerFunds": [

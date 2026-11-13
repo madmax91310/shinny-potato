@@ -82,6 +82,28 @@ class ReaderRevalidation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
             reader.check(self.base, end)
 
+    def test_real_nine_publication_readers_remain_separate_from_acquisition(self):
+        original=set(shared.ALLOWED['market'])
+        end=self.commit({p:'changed publication reader\n'for p in reader.PUBLICATION_READERS})
+        with self.assertRaises(ValueError):shared.check('market',self.base,end)
+        result=reader.check(self.base,end)
+        self.assertEqual(set(result['qualifiedPublicationReaders']),reader.PUBLICATION_READERS)
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        self.assertEqual(shared.ALLOWED['market'],original)
+
+    def test_publication_reader_that_becomes_an_acquisition_input_stays_refused(self):
+        for path in ['src/tools.js','src/data/editorial-calendar.js','scripts/route-budgets.json']:
+            with self.subTest(path=path):
+                self.base=self.commit({reader.BASELINE:"import '../"+path+"';\n",path:'export const value=1;\n'})
+                end=self.commit({path:'export const value=2;\n'})
+                with self.assertRaisesRegex(ValueError,'acquisition dependency'):reader.check(self.base,end)
+
+    def test_new_publication_reads_cannot_skip_consumer_validation(self):
+        text=(ROOT/'scripts/validate-market-publication.sh').read_text()
+        for command in ['test-index-comparison-copy.mjs','test-asset-selection.mjs','npm run build','audit:data-provenance','git diff --exit-code HEAD']:
+            self.assertIn(command,text)
+
     def test_unresolved_dynamic_baseline_fails_closed(self):
         self.base = self.commit({reader.BASELINE: 'import(selectedSource);\n'})
         end = self.commit({'src/pages/budget-profiles/data.js': 'changed\n'})
@@ -149,6 +171,31 @@ class ReaderRevalidation(unittest.TestCase):
         self.assertTrue(result['financialRevalidationRequired'])
         self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
         self.assertEqual(shared.ALLOWED['etf'], original)
+
+    def test_etf_insee_receipt_race_requires_both_dependency_graphs_and_full_revalidation(self):
+        receipt = 'scripts/source-snapshots/inflation-automated.json'
+        end = self.commit({receipt: json.dumps({'rates': {'2026-10': .4}, 'checkedAt': '2026-11-13'})})
+        with self.assertRaises(ValueError):
+            shared.check('etf', self.base, end)
+        result = reader.check_etf(self.base, end)
+        self.assertEqual(result['qualifiedPublicationReaders'], [receipt])
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        for entry in reader.ETF_ACQUISITION_ENTRIES:
+            with self.subTest(entry=entry):
+                self.base = self.commit({entry: "import './source-snapshots/inflation-automated.json';\n"})
+                changed = self.commit({receipt: json.dumps({'rates': {'2026-10': .5}, 'fixtureReader': entry})})
+                with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
+                    reader.check_etf(self.base, changed)
+                self.base = self.commit({entry: 'export const restored = true;\n'})
+
+    def test_etf_live_inflation_and_neighbouring_source_files_stay_protected(self):
+        for path in ['src/data/inflation-monthly.js', 'scripts/collect_inflation.py',
+                     'scripts/source-snapshots/another-financial-source.json']:
+            with self.subTest(path=path):
+                end = self.commit({path: 'changed financial dependency\n'})
+                with self.assertRaises(ValueError):
+                    reader.check_etf(self.base, end)
 
     def test_etf_reader_imported_transitively_by_baseline_is_protected(self):
         self.base = self.commit({reader.ETF_BASELINE: "import './fixture-etf-reader.mjs';\n",

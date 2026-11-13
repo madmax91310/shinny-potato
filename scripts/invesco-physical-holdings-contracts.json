@@ -12,11 +12,21 @@
       "pageUrl": "https://www.invesco.com/fr/fr/financial-products/etfs/invesco-ftse-all-world-ucits-etf-dist.html",
       "shareName": "Invesco FTSE All-World UCITS ETF Dist",
       "distribution": "Quarterly"
+    },
+    "IE000L2SA8K5": {
+      "pageUrl": "https://www.invesco.com/fr/fr/financial-products/etfs/invesco-nasdaq-100-equal-weight-ucits-etf-acc.html",
+      "shareName": "Invesco NASDAQ-100 Equal Weight UCITS ETF Acc",
+      "distribution": "Accumulating",
+      "fundName": "Invesco NASDAQ-100 Equal Weight UCITS ETF",
+      "benchmarkName": "NASDAQ-100 Equal Weighted Net Notional Return Index",
+      "benchmarkTicker": "NETRNNR",
+      "mandate": "full-physical-replication",
+      "mandateLiteral": "Le fonds cherche à atteindre son objectif en achetant et en détenant, dans la mesure du possible et de la pratique, tous les titres de l'indice de référence dans leurs pondérations respectives."
     }
   },
   "fundName": "Invesco FTSE All-World UCITS ETF",
   "currency": "USD",
   "benchmarkName": "FTSE All-World Index",
   "benchmarkTicker": "TAWNT01U",
-  "note": "The issuer's physical sampled fund page publishes the full economic holdings table behind its ten-row view. Its internal API variationType is index; this is not an admitted native FTSE index composition. The fund scope must be independently confirmed by exact-share physical metadata, sampling mandate and the publisher's complete table census/date. Never apply this contract to a synthetic or hedged share."
+  "note": "The issuer's physical sampled fund page publishes the full economic holdings table behind its ten-row view. Its internal API variationType is index; this is not an admitted native FTSE index composition. The fund scope must be independently confirmed by exact-share physical metadata, sampling mandate and the publisher's complete table census/date. Never apply this contract to a synthetic or hedged share. The separately qualified NASDAQ-100 Equal Weight share uses its own exact physical replication mandate, fund identity and NETRNNR benchmark; its visible fund-exposure widget is not presented as an exact native index book."
 }

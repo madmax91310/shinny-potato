@@ -75,6 +75,43 @@ class ActorTermsTests(unittest.TestCase):
   self.assertIn('1,2 € TTC',bricks['fields']['fees']['value'])
   self.assertIn('année glissante',bricks['fields']['fees']['value'])
   with self.assertRaises(ValueError):parse('bricks',[docs['bricks'][0],docs['bricks'][1].replace('offrons 2 retraits','offrons 3 retraits')],TODAY)
+ def test_axclimat_redesigned_official_card_preserves_both_parts(self):
+  docs=self.fixtures()['anaxago']
+  card=(ROOT/'fixtures/presentation-actors/anaxago-financed-card.html').read_text()
+  expected=parse('anaxago',docs,TODAY)
+  for page in (card,card.replace('Clôturé','Cloturé'),docs[1]+card):
+   with self.subTest(page=page[:80]):
+    actual=parse('anaxago',[docs[0],page],TODAY)
+    self.assertEqual(actual['offers'],expected['offers'])
+    self.assertEqual([s['url'] for s in actual['sources']],SOURCES['anaxago'])
+ def test_axclimat_missing_conflicting_and_reopened_evidence_is_atomic(self):
+  docs=self.fixtures()['anaxago']
+  card=(ROOT/'fixtures/presentation-actors/anaxago-financed-card.html').read_text()
+  prior={'anaxago':parse('anaxago',docs,TODAY)}
+  cases={
+   'missing card':'<main>Opérations financées</main>',
+   'other fund':card.replace('AxClimat I','AxClimat II'),
+   'date outside card':card.replace('Clôturé le 04/02/2026','')+'Clôturé le 04/02/2026',
+   'open':card.replace('Clôturé le 04/02/2026','Souscriptions ouvertes'),
+   'missing status class':card.replace('front-tag--status','other'),
+   'duplicate status':card.replace('Clôturé le 04/02/2026','Clôturé le 04/02/2026</span><span class="front-tag--status">Souscriptions ouvertes'),
+   'future':card.replace('04/02/2026','04/02/2027'),
+   'invalid date':card.replace('04/02/2026','31/02/2026'),
+   'duplicate card':card+card,
+   'conflicting dates':docs[1]+card.replace('04/02/2026','05/02/2026'),
+   'legacy open':docs[1].replace('Souscriptions terminées','Ouvert')+card,
+   'new open':docs[1]+card.replace('Clôturé le 04/02/2026','Souscriptions ouvertes'),
+   'duplicate legacy':docs[1]+docs[1],
+   'legacy proof disappeared':docs[1].replace('campaign-widget-axclimat-i','removed'),
+  }
+  for label,page in cases.items():
+   with self.subTest(case=label):
+    with self.assertRaises(ValueError):parse('anaxago',[docs[0],page],TODAY)
+    data,report=refresh(prior,{'anaxago':lambda day:parse('anaxago',[docs[0],page],day)},TODAY)
+    self.assertEqual(data,prior)
+    self.assertEqual(report['observations'][0]['status'],'failure')
+  with self.assertRaisesRegex(ValueError,'evidence unavailable'):
+   parse('anaxago',[docs[0],cases['missing card']],TODAY)
  def test_atomic_preservation_and_independent_recovery(self):
   # Stable fixture dates: production observations advance on each automatic refresh.
   previous={id_:parse(id_,docs,TODAY) for id_,docs in self.fixtures().items()}

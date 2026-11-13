@@ -7,7 +7,34 @@ from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
 from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
+from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
+from qualified_corporate_identities import qualified_corporate_identity
 ROOT=Path(__file__).resolve().parents[1]
+def ranking_nav_downgrade(isin, previous, candidate, now):
+    """Preserve a dated native book; a newer ranking cannot prove its NAV basis.
+
+    This is retention, not new admission of the previous book: consumer identity,
+    completeness and freshness checks remain mandatory on its original dates.
+    """
+    if candidate.get('weightBasis')!='issuer-fund-ranking-unqualified-nav-denominator':
+        return None
+    from wisdomtree_api_holdings import CLASS_CONFIG
+    config=CLASS_CONFIG.get(isin)
+    if not config or (previous.get('sourceUrl')!=f'https://www.wisdomtree.com/api/fund-holdings/{config["classId"]}'
+            or previous.get('subjectIsin')!=isin or previous.get('scope')!='complete-equity-sleeve-with-published-cash'
+            or previous.get('basis')!='fund' or previous.get('complete')is not True
+            or previous.get('navReconciliation',{}).get('normalizationApplied')is not False):
+        return None
+    return {'kind':'unqualified-ranking-nav-denominator','subjectIsin':isin,
+        'asOf':candidate['asOf'],'checkedAt':now.isoformat(),'sourceUrl':candidate['sourceUrl'],
+        'sha256':candidate.get('sha256'),'financialDataQualified':False,'normalizationApplied':False,
+        'weightBasis':candidate['weightBasis'],'rowCount':len(candidate['rows']),
+        'publishedEquityWeightPct':sum(r['weightPct']for r in candidate['rows']),
+        'retainedAsOf':previous.get('asOf'),'retainedSourceSha256':previous.get('sha256'),
+        'accessAttempts':candidate.get('accessAttempts',[]),
+        'reason':'Native book unavailable; Fund ranking has no qualified NAV denominator. Original dated native book retained; no source-success date renewed. '+next((str(a.get('error',''))[:800] for a in candidate.get('accessAttempts',[]) if a.get('status')=='unavailable' and a.get('sourceUrl')==previous.get('sourceUrl')),'')}
+
+
 def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
     """Retry only a missing component on an otherwise exact product response."""
     attempts=[]
@@ -70,12 +97,25 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
     if translated_allocations:
         from collect_ishares_german import COUNTRIES, SECTORS
     rows=[]; securities=[]; allocations={'countries':{},'sectors':{}}; classified=True
-    positions=[];selected=[]
+    positions=[];selected=[];qualified_excluded=[];qualified_identities=[]
     for security,name,weight,kind,country,sector,ticker,currency,exchange in zip(*cols):
         positions.append({'isin':security,'name':name,'weightPct':weight,'assetClass':kind,
-                          'ticker':ticker,'currency':currency,'exchange':exchange})
+                          'ticker':ticker,'currency':currency,'exchange':exchange,'country':country})
         if kind=='Equity' and (isinstance(weight,bool) or not isinstance(weight,(int,float)) or not __import__('math').isfinite(weight) or weight<0):raise ValueError('Invalid or short equity position')
         if kind!='Equity' or weight==0:continue
+        cash_right=qualified_cash_right(positions[-1],h['asOf'])
+        if cash_right:
+            # Retain this valued source position and the publisher's original
+            # Equity class in the NAV reconciliation; exclude only the claim
+            # from the company-share perimeter, without inventing an ISIN.
+            qualified_excluded.append(cash_right)
+            continue
+        identity=qualified_corporate_identity(positions[-1],h['asOf'],isin,now)
+        if identity:
+            qualified_identities.append(identity)
+            security=identity['qualifiedIsin']
+            positions[-1]['sourceIsin']=positions[-1]['isin']
+            positions[-1]['isin']=security
         selected.append(len(positions)-1)
         rows.append({'isin':security,'name':name,'weightPct':weight})
         if translated_allocations:
@@ -97,6 +137,12 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
              'benchmark':facts.get('indexSeriesName',{}).get('value'),
              'navReconciliation':reconciliation,'financialDataQualified':False})
     record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows,'navReconciliation':reconciliation,'method':'Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation'}
+    if qualified_excluded:
+        record['qualifiedExcludedPositions']=qualified_excluded
+        record['method']+='; documented contingent cash rights retained outside company shares with their original value and source classification'
+    if qualified_identities:
+        record['qualifiedIdentityPositions']=qualified_identities
+        record['method']+='; exact issuer corporate-action identity references retained separately from original source positions'
     # Attributes and equity weights come from these exact dated holdings, never
     # the independently dated exposure tables or a later security lookup.
     if classified and total <= 100:
@@ -143,10 +189,10 @@ def main():
                     raise ValueError('Only physical DWS portfolios are qualified')
                 url = c['sourceUrl'].rsplit('/', 1)[0] + '/holdings'
                 body = json.loads(get_text(url, ('application/json',), 25_000_000))
-                from dws_liquidity_funds import qualify_liquidity_fund, SOURCES as LIQUIDITY_FUNDS
+                from dws_liquidity_funds import qualify_held_fund, SOURCES as LIQUIDITY_FUNDS, EQUITY_FUNDS
                 fund_isins={p['header']['value'] for table in body.get('tables',[]) for p in table.get('values',[])
-                            if p.get('column_5',{}).get('value')=='Mutual Fund' or p.get('header',{}).get('value') in LIQUIDITY_FUNDS}
-                qualifications={fund_isin:qualify_liquidity_fund(fund_isin,now) for fund_isin in fund_isins}
+                            if p.get('column_5',{}).get('value')=='Mutual Fund' or p.get('header',{}).get('value') in (LIQUIDITY_FUNDS.keys()|EQUITY_FUNDS.keys())}
+                qualifications={fund_isin:qualify_held_fund(fund_isin,now) for fund_isin in fund_isins}
                 return isin, (parse_holdings(body, c, now, url, complete=True,non_equity_funds=qualifications)['completeHoldings'], []), None
             return isin,collect_blackrock_complete({**c,'isin':isin},now),None
         except Exception as e:return isin,None,e
@@ -158,6 +204,11 @@ def main():
                 if isinstance(error,HoldingsSourceError):rejected[isin]=error.diagnostic
                 continue
             h,securities=result
+            downgrade=ranking_nav_downgrade(isin,previous.get(isin,{}),h,now)
+            if downgrade:
+                errors[isin]=downgrade['reason']
+                rejected[isin]=downgrade
+                continue
             if previous.get(isin,{}).get('asOf','')>h['asOf']:
                 errors[isin]='Date regression'+('; access attempts: '+json.dumps(h['accessAttempts'])[:2400] if h.get('accessAttempts') else '')
                 rejected[isin]={'kind':'older-source-observation','subjectIsin':isin,
@@ -201,7 +252,7 @@ def main():
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
-    observations={isin:{**{key:h[key] for key in ['asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof'] if key in h},
+    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions','qualifiedIdentityPositions'] if key in h},
         'completeFile':h.get('complete') is True,'rows':len(h['rows']),
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}

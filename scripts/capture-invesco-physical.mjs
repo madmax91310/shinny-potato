@@ -47,13 +47,17 @@ try{
  const count=tableText.match(/Afficher\s+1\s+à\s+10\s+de\s+(\d+)\s+produits/)
  const stamp=tableText.match(/\bau\s+(\d{2})\/(\d{2})\/(\d{4})\b/)
  const sampling=literal(bodyText).toLowerCase().includes("le fonds détiendra un nombre de titres inférieur à celui de l'indice de référence")
- if(pageTitle!==share.shareName||!count||!stamp||!sampling||config.top10Holdings!==true||config.apiResponseKey!=='holdings')throw Error('Unqualified physical sampled fund context: '+JSON.stringify({pageTitle,hasCount:!!count,hasDate:!!stamp,sampling,top10Holdings:config.top10Holdings,apiResponseKey:config.apiResponseKey}))
+ const mode=share.mandate||'physical-sampling'
+ if(!['physical-sampling','full-physical-replication'].includes(mode))throw Error('Unqualified replication mandate')
+ const replicated=mode==='full-physical-replication'&&Boolean(share.mandateLiteral)&&literal(bodyText).includes(share.mandateLiteral)
+ const mandateConfirmed=mode==='full-physical-replication'?replicated:sampling
+ if(pageTitle!==share.shareName||!count||!stamp||!mandateConfirmed||config.top10Holdings!==true||config.apiResponseKey!=='holdings')throw Error('Unqualified physical sampled fund context: '+JSON.stringify({pageTitle,hasCount:!!count,hasDate:!!stamp,sampling,replicated,top10Holdings:config.top10Holdings,apiResponseKey:config.apiResponseKey}))
  const asOf=`${stamp[3]}-${stamp[2]}-${stamp[1]}`
  const total=Number(count[1])
  if(!Array.isArray(payload.holdings)||total<11||total!==payload.holdings.length||payload.effectiveDate!==asOf)throw Error('Incomplete or mismatched publisher table census/date')
  process.stdout.write(JSON.stringify({isin,pageUrl:share.pageUrl,pageTitle,asOf,publisherRowCount:total,
   sourceUrl:endpoint,sourceSha256:hash(raw),bodyBase64:raw.toString('base64'),payload,tableText,tableTextSha256:hash(tableText),
-  samplingMandateConfirmed:true,widget:{isin:config.isin,tableVariation:config.tableVariation,
+  samplingMandateConfirmed:sampling,...(mode==='full-physical-replication'?{physicalReplicationMandateConfirmed:replicated}:{}),widget:{isin:config.isin,tableVariation:config.tableVariation,
    variationType:config.variationType,apiResponseKey:config.apiResponseKey,top10Holdings:config.top10Holdings,
    displayComponent:config.displayComponent,maxRowCount:config.maxRowCount}}))
 }catch(error){process.stderr.write(error.message+'\n');process.exitCode=1}

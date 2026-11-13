@@ -1,0 +1,7 @@
+# Same-part/same-date weight denominator investigation
+
+Exact existing share IE000W8WMSL2, issuer API class58690128, WQTM LN, portfolio2026-11-09, queried2026-11-10. `issuer-api.json.gz` is the original53-row response. `native-qualified.json` is the independently identified47-equity interpretation with the6literal cash rows retained in its accounting evidence; no weight normalization. Its identity qualification and the native endpoint’s GitHub403 remain separately documented in draftPR#1225. A replay is not a live GitHub supplier success.
+
+`rankings-retained.json` is the actual retained production record from master9c9bec68c98073e6c3cb00c53929b5c9f4f28043, raw response hash and exact issuer source URL included. The47ISINs are identical; their weights are not. Native equity total99.7068663385412%, cash0.2931336614588322%; ranking equity total99.9998%. The approximate proportional factor does not demonstrate a normalization rule:6positions exceed the naive single-rounding bound. Snapshot attribution, denomination and rounding remain unresolved. We neither choose a factor nor patch either book.
+
+The source-specific regression prevents a complete Fund ranking without a closed original-NAV/cash denominator from certifying full financial overlap. It covers old records, projection, rewritten method descriptions, copied incompatible accounting, and existing incident reduction. Native records with compatible accounting remain accepted. The supplier book is preserved, and other source observations are unaffected.

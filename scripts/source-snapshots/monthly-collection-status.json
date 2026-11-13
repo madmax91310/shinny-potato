@@ -2270,7 +2270,7 @@
     },
     "etfDE000A27Z304": {
       "status": "failed",
-      "checkedAt": "2026-11-10T15:16:34.144192+00:00",
+      "checkedAt": "2026-11-13T17:10:53.652200+00:00",
       "reason": "HTTP Error 400: Bad Request"
     },
     "etfGB00BLD4ZL17": {
@@ -5023,6 +5023,20 @@
       "periodEnd": "2026-10",
       "periodStart": "2023-12",
       "responseSha256": "ab0b0baebb7cbe20a44395721ffa2b4ba6947de3952a22c326bbb49ef2503043"
+    },
+    "etfDE000A27Z304Paris": {
+      "status": "validated",
+      "checkedAt": "2026-11-10T20:15:40.426575+00:00",
+      "periodEnd": "2026-10",
+      "periodStart": "2021-06",
+      "responseSha256": "5c0c7331e27f3d7712758053814abcfc24aaf476bcc645de704923da0d21ff87"
+    },
+    "etcPalladiumMarket": {
+      "status": "validated",
+      "checkedAt": "2026-11-11T00:34:00.365220+00:00",
+      "periodEnd": "2026-10",
+      "periodStart": "2011-05",
+      "responseSha256": "449d2eeb97f1acc02db52cfb280188988dafe10c5d73822e5b13b6b47dddc98a"
     }
   }
 }

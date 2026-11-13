@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-10T15:16:30.995341+00:00",
+  "checkedAt": "2026-11-13T17:10:49.773197+00:00",
   "attemptedIds": [],
   "fxFailed": false,
   "crossFxFailed": false,
@@ -7,11 +7,11 @@
     "TWD": {
       "id": "fx:TWD",
       "status": "validated",
-      "checkedAt": "2026-11-08T13:20:03.366132+00:00",
+      "checkedAt": "2026-11-11T00:31:04.116155+00:00",
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-08",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-11",
           "error": "The read operation timed out"
         },
         {
@@ -21,14 +21,14 @@
         {
           "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
           "status": "downloaded",
-          "sha256": "1c312d2fc1de99f174c26178a2cb1f0f0f6a4a08b6dce25b043603fec9a3f24a"
+          "sha256": "1f9fd18709b09d082b29d01621f52672426eca108a4f74224fa8f190a5f801b2"
         }
       ]
     },
     "ECB": {
       "id": "fx:ECB",
       "status": "validated",
-      "checkedAt": "2026-11-08T13:20:03.366132+00:00"
+      "checkedAt": "2026-11-11T00:31:04.116155+00:00"
     }
   },
   "series": [

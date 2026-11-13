@@ -22,6 +22,8 @@ node scripts/test-market-calendar-performance.mjs
 node scripts/test-performance-rankings.mjs
 node scripts/build-performance-links.mjs
 node scripts/test-etf-tool-connections.mjs
+node scripts/test-index-comparison-copy.mjs
+node scripts/test-asset-selection.mjs
 npm run audit:data-catalog
 npm run audit:data-provenance
 npm run verify:tweet-midi

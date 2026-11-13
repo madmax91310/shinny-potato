@@ -432,6 +432,45 @@
           "versions": [
             null
           ]
+        },
+        {
+          "name": "lifestrategy-held-share.json",
+          "steps": [
+            "Collect observations: exact held North America share"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "references"
+          ],
+          "versions": [
+            null
+          ]
+        },
+        {
+          "name": "lifestrategy-held-allocations.json",
+          "steps": [
+            "Collect observations: exact held North America allocations"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "statuses"
+          ],
+          "versions": [
+            null
+          ]
+        },
+        {
+          "name": "lifestrategy-lookthrough.json",
+          "steps": [
+            "Validate observations: same-date partial equity look-through"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "references"
+          ],
+          "versions": [
+            null
+          ]
         }
       ]
     },

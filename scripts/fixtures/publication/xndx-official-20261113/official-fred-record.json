@@ -1,0 +1,32 @@
+{
+  "value": 34587.76,
+  "asOf": "2026-11-12",
+  "currency": "USD",
+  "parser": "fred-document",
+  "symbol": "XNDX",
+  "seriesId": "NASDAQXNDX",
+  "variant": "TOTAL",
+  "indexCode": null,
+  "sourceUrl": "https://fred.stlouisfed.org/data/NASDAQXNDX",
+  "sourceUrls": [
+    "https://fred.stlouisfed.org/data/NASDAQXNDX"
+  ],
+  "sha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79",
+  "sourceHashes": {
+    "https://fred.stlouisfed.org/data/NASDAQXNDX": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79"
+  },
+  "quoteMethod": "official-fred-xndx-document",
+  "sourceEvidence": {
+    "seriesId": "NASDAQXNDX",
+    "provider": "Nasdaq, Inc.",
+    "asOf": "2026-11-12",
+    "value": 34587.76,
+    "publisherUpdated": "2026-11-12 10:44 PM CST",
+    "sourceDateRange": "1999-03-04 to 2026-11-12",
+    "sha256": "0ee9d7bab072712ad78a211937814d221f7507d4645b5d31972ec0d796a77c79",
+    "expectedCompletedSession": "2026-11-12"
+  },
+  "method": "Clôture officielle XNDX Total Return USD, dividendes bruts réinvestis ; série Nasdaq NASDAQXNDX publiée par FRED, séance et date de publication contrôlées",
+  "maxAgeDays": 7,
+  "checkedAt": "2026-11-13T07:13:04.790308+00:00"
+}

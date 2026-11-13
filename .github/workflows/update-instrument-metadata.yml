@@ -13,6 +13,10 @@ on:
     paths:
       - '.github/workflows/update-instrument-metadata.yml'
       - 'scripts/collect_instrument_metadata.py'
+      - 'scripts/blackrock_xetra_reference.py'
+      - 'scripts/listing-usage-requirements.mjs'
+      - 'scripts/report-asset-fields.mjs'
+      - 'scripts/check-active-data-freshness.mjs'
       - 'scripts/instrument-metadata-fields.json'
       - 'scripts/automation_contracts.py'
       - 'scripts/download-exchange-document.mjs'
@@ -21,6 +25,7 @@ on:
       - 'scripts/metadata-qualification-holds.json'
       - 'scripts/metadata_transport.py'
       - 'scripts/listing-candidates.json'
+      - 'scripts/listing-source-hosts.json'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/split-etf-records.mjs'
       - 'src/data/automated-characteristics.js'
@@ -29,9 +34,15 @@ on:
     paths:
       - '*full-auto*'
       - 'scripts/*metadata*'
+      - 'scripts/blackrock_xetra_reference.py'
+      - 'scripts/listing-usage-requirements.mjs'
+      - 'scripts/test-listing-usage-requirements.mjs'
+      - 'scripts/report-asset-fields.mjs'
+      - 'scripts/check-active-data-freshness.mjs'
       - 'scripts/download-exchange-document.mjs'
       - 'scripts/download-quantalys-document.mjs'
       - 'scripts/listing-candidates.json'
+      - 'scripts/listing-source-hosts.json'
       - 'scripts/*equity*'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/build-monthly-duel-returns.mjs'
@@ -187,6 +198,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_lse_listing_reference.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_listing_retention.py'
       - run: node scripts/test-metadata-freshness-scope.mjs
+      - run: node scripts/test-listing-usage-requirements.mjs
+      - run: python -m unittest discover -s scripts -p 'test_metadata_blackrock_xetra_reference.py'
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
       - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'

@@ -5,6 +5,8 @@ from unittest.mock import patch
 import urllib.error
 import wisdomtree_directory_aum as module
 from wisdomtree_directory_aum import parse,augment_aum,acquire
+from collect_public_issuer import wisdomtree
+from apply_etf_collection import merge_collection
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 NOW=dt.datetime(2026,10,30,tzinfo=dt.timezone.utc)
 
@@ -145,5 +147,96 @@ class DirectoryAum(unittest.TestCase):
   def primary(*a,**k):raise OSError('isolated primary403')
   result=augment_aum(self.result(),self.share,NOW,primary,browser_fetch=lambda url:json.dumps(wrong).encode())
   self.assertNotIn('aum',result);self.assertEqual(result['collectionErrors'][-1]['field'],'aum')
+
+
+
+CURRENCY_NOW=dt.datetime(2026,11,12,tzinfo=dt.timezone.utc)
+DEFENCE_ISIN='IE0002Y8CX98'
+
+class PublishedCurrencies(unittest.TestCase):
+    def setUp(self):
+        module._RESPONSES.clear()
+        self.fixture=json.loads((ROOT/'scripts/fixtures/wisdomtree-complete/defence-aum-currencies-20261112.json').read_text())
+        self.share=next(s for s in json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments'] if s['isin']==DEFENCE_ISIN)
+        self.share={**self.share,'sourceUrl':self.fixture['primaryUrl']}
+        self.primary=wisdomtree(self.fixture['primaryTablesHtml'],self.share,CURRENCY_NOW)
+        self.payload=self.fixture['directoryRows']
+
+    def augment(self, result=None, payload=None):
+        raw=json.dumps(self.payload if payload is None else payload).encode()
+        return module.augment_aum(copy.deepcopy(self.primary if result is None else result),self.share,CURRENCY_NOW,lambda *a,**k:raw)
+
+    def test_real_same_date_usd_display_and_eur_native_are_not_compared(self):
+        primary=self.primary['aum']
+        self.assertEqual((primary['amount'],primary['currency'],primary['scope'],primary['asOf']),
+                         (4892739482,'USD','fund','2026-11-11'))
+        out=self.augment()
+        self.assertEqual((out['aum']['amount'],out['aum']['currency'],out['aum']['scope'],out['aum']['asOf']),
+                         (4384384000,'EUR','fund','2026-11-11'))
+        self.assertNotIn('collectionErrors',out)
+        self.assertEqual(out['aum']['controlledListingIds'],['3474438'])
+        self.assertEqual(out['aum']['nonNativeListingsExcluded'],2)
+        comparison=out['sourceAttempts'][-1]['comparison']
+        self.assertFalse(comparison['amountsCompared'])
+        self.assertEqual(comparison['primary'],primary)
+        self.assertEqual(comparison['directory']['sha256'],out['aum']['sha256'])
+        self.assertEqual(out['characteristics'],self.primary['characteristics'])
+
+    def test_aumusd_net_assets_and_non_native_rows_cannot_change_selected_amount(self):
+        payload=copy.deepcopy(self.payload)
+        for row in payload:
+            row.update(AUMusd=1,Net_Assets=2,NAV=3,NAV_Date='1900-01-01')
+            if row['listingCCY']!='EUR':row['AUM']=4
+        self.assertEqual(self.augment(payload=payload)['aum']['amount'],4384384000)
+
+    def test_same_currency_conflict_preserves_stored_value_and_all_its_clocks(self):
+        primary=copy.deepcopy(self.primary)
+        primary['aum'].update(currency='EUR',amount=1)
+        out=self.augment(primary)
+        self.assertNotIn('aum',out)
+        self.assertEqual(out['collectionErrors'][-1]['field'],'aum')
+        proof=out['sourceAttempts'][-2]['comparison']
+        self.assertTrue(proof['amountsCompared'])
+        self.assertEqual(proof['primary']['amount'],1)
+        self.assertEqual(proof['directory']['amount'],4384384000)
+        stored={**self.primary,'aum':{'amount':4334789120,'currency':'EUR','scope':'fund',
+                'asOf':'2026-11-10','checkedAt':'2026-11-11','modifiedAt':'2026-11-11',
+                'sourceUrl':module.ROUTES['wisdomtree']['fundDirectory'],'sha256':'a'*64}}
+        merged=merge_collection({'checkedAt':CURRENCY_NOW.isoformat(),'shares':[out]},{DEFENCE_ISIN:stored},{})
+        self.assertEqual(merged[DEFENCE_ISIN]['aum'],stored['aum'])
+
+    def test_scope_or_missing_currency_still_quarantines_even_with_different_currency(self):
+        for change in ({'scope':'share-class'},{'currency':None}):
+            with self.subTest(change=change):
+                primary=copy.deepcopy(self.primary);primary['aum'].update(change)
+                out=self.augment(primary)
+                self.assertNotIn('aum',out)
+                self.assertIn('Same-date',out['collectionErrors'][-1]['reason'])
+
+    def test_newer_primary_is_never_regressed_even_when_currency_differs(self):
+        primary=copy.deepcopy(self.primary);primary['aum']['asOf']='2026-11-12'
+        out=self.augment(primary)
+        self.assertEqual(out['aum'],primary['aum'])
+        self.assertEqual(out['sourceAttempts'][-1]['fields'],[])
+
+    def test_invalid_native_or_missing_native_keeps_independently_acquired_primary(self):
+        for mode in ('missing','invalid'):
+            payload=copy.deepcopy(self.payload)
+            if mode=='missing':payload=[r for r in payload if r['listingCCY']!='EUR']
+            else:
+                next(r for r in payload if r['listingCCY']=='EUR')['AUM']=None
+            out=self.augment(payload=payload)
+            self.assertEqual(out['aum'],self.primary['aum'])
+            self.assertTrue(out['collectionErrors'][-1]['retainedPrimary'])
+
+    def test_qualified_native_merge_uses_its_own_source_and_observation_date(self):
+        out=self.augment()
+        merged=merge_collection({'checkedAt':CURRENCY_NOW.isoformat(),'shares':[out]},{},{})[DEFENCE_ISIN]
+        self.assertEqual(merged['aum']['amount'],4384384000)
+        self.assertEqual(merged['aum']['sourceUrl'],module.ROUTES['wisdomtree']['fundDirectory'])
+        self.assertEqual(merged['aum']['asOf'],'2026-11-11')
+        self.assertEqual(merged['aum']['checkedAt'],'2026-11-12')
+
+
 
 if __name__=='__main__':unittest.main()

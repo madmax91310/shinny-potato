@@ -16,9 +16,17 @@ const newIssuers=process.argv.includes('--new-issuers')
 const physical=ishares||process.argv.includes('--physical')||newIssuers||wisdomtree||defence||discovered
 const selected=ishares?['IE00BYX2JD69','IE00BFY0GT14']:discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:defence?['IE0002Y8CX98','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
 const lines=selected.map(isin=>{const [asset,r]=Object.entries(references).find(([,r])=>r.isin===isin);return {asset,isin,label:r.name,weight:50}})
-const expectedPair=sharedPositions(lines,references,new Date(),Object.fromEntries(lines.map(line=>[line.asset,raw[line.isin]]))).pairs[0]
-assert(expectedPair && expectedPair.common.length>10 && expectedPair.companyCommon.length>10,'Overlap uses detailed issuer portfolios beyond their top ten')
-if(selected.some(isin=>raw[isin].rows.reduce((sum,row)=>sum+row.weightPct,0)>100.00001||raw[isin].rows.some(row=>!/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(row.isin??'')))){
+const expected=sharedPositions(lines,references,new Date(),Object.fromEntries(lines.map(line=>[line.asset,raw[line.isin]])))
+const expectedPair=expected.pairs[0]
+const rankingWithoutNav=selected.filter(isin=>raw[isin]?.coverageProof?.rankClassificationID===1&&raw[isin]?.coverageProof?.rankClassification==='Fund'&&!raw[isin]?.navReconciliation)
+if(rankingWithoutNav.length){
+ assert.equal(expected.pairs.length,0,'A complete issuer ranking without its original NAV denominator cannot authorize financial overlap')
+ for(const isin of rankingWithoutNav){
+  const q=expected.qualification.find(q=>q.isin===isin)
+  assert(q&&!q.valid&&!q.complete&&q.reasons.some(r=>r.includes('dénominateur NAV')),'The exact missing financial evidence must be explicit')
+ }
+}else assert(expectedPair && expectedPair.common.length>10 && expectedPair.companyCommon.length>10,'Overlap uses detailed issuer portfolios beyond their top ten')
+if(expectedPair&&selected.some(isin=>raw[isin].rows.reduce((sum,row)=>sum+row.weightPct,0)>100.00001||raw[isin].rows.some(row=>!/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(row.isin??'')))){
  assert.equal(expectedPair.full,false,'Unknown identities or published weights above 100% must not be silently normalized into a full overlap')
  assert.equal(expectedPair.overlap,null)
 }
@@ -55,7 +63,7 @@ const base='http://127.0.0.1:4392/shinny-potato'
 let browser
 try{
  for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
- browser=await chromium.launch({headless:true})
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})})
  mkdirSync('test-artifacts/live-data-connections',{recursive:true})
  for(const width of [390,1280]){
   const page=await browser.newPage({viewport:{width,height:900}}),errors=[]
@@ -73,10 +81,20 @@ try{
 
   await page.getByText('Voir l’analyse détaillée',{exact:true}).click()
   await page.getByText(/^Recouvrement entre les supports ·/).click()
-  await page.locator('.dca-pair-grid article').first().waitFor()
-  const pair=await page.locator('.dca-pair-grid article').first().innerText()
-  assert.equal(pair.includes('Partiel'),!expectedPair.full,'The interface must preserve the qualified scope, including unknown identities and unnormalized weight totals')
-  assert.equal(Number(/(\d+) entreprises communes/.exec(pair)?.[1]),expectedPair.companyCommon.length,'Displayed company count matches the verified consolidation of full issuer portfolios')
+  if(expectedPair){
+   await page.locator('.dca-pair-grid article').first().waitFor()
+   const pair=await page.locator('.dca-pair-grid article').first().innerText()
+   assert.equal(pair.includes('Partiel'),!expectedPair.full,'The interface must preserve the qualified scope, including unknown identities and unnormalized weight totals')
+   assert.equal(Number(/(\d+) entreprises communes/.exec(pair)?.[1]),expectedPair.companyCommon.length,'Displayed company count matches the verified consolidation of full issuer portfolios')
+  }else{
+   assert(rankingWithoutNav.length,'An unexpected missing pair must still fail this test')
+   assert.equal(await page.locator('.dca-pair-grid article').count(),0,'No stale overlap from an unqualified ranking')
+   await page.locator('summary').filter({hasText:'Sources, couverture du catalogue et détail des comparaisons'}).click()
+   const source=page.getByRole('region',{name:'Vérification des expositions',exact:true})
+   await source.getByText('Positions communes entre ETF et actions',{exact:true}).click()
+   await source.getByText('Pourquoi certaines comparaisons restent partielles ou impossibles',{exact:true}).click()
+   assert((await source.innerText()).includes('dénominateur NAV'),'The reason for refusing the current weights reaches the real user interface')
+  }
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/live-data-connections/${newIssuers?'new-issuers-':physical?'physical-':''}holdings-${width}.png`,fullPage:true})
   await page.goto(`${base}/fiches-etf?isin=IE00BM8R0J59`,{waitUntil:'networkidle'})

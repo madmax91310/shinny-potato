@@ -17,8 +17,18 @@ on:
       - 'scripts/native-index-source-candidates.json'
       - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
+      - 'scripts/qualified_cash_rights.py'
+      - 'scripts/qualified_corporate_identities.py'
+      - 'scripts/test_dca_qualified_heg_identity.py'
+      - 'scripts/test-qualified-heg-consumers.mjs'
+      - 'scripts/fixtures/qualified-heg-identity/**'
+      - 'scripts/test_dca_qualified_cash_rights.py'
+      - 'scripts/fixtures/qualified-cash-rights/**'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/security_identity_continuity.py'
+      - 'src/data/index-company-identities.json'
+      - 'scripts/fixtures/weatherford-*-20261113.html.gz'
       - 'scripts/download-wisdomtree-rankings.mjs'
       - 'scripts/wisdomtree_rankings_transport.py'
       - 'scripts/test_wisdomtree_rankings_transport.py'
@@ -48,11 +58,18 @@ on:
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/dws_liquidity_funds.py'
+      - 'scripts/test_dca_dws_held_funds.py'
+      - 'scripts/test-dws-held-fund-consumers.mjs'
+      - 'scripts/fixtures/dws-held-funds-20261112/**'
       - 'scripts/hsbc_holdings.py'
       - 'scripts/jpm_holdings.py'
       - 'scripts/check_pending_sources.py'
       - 'scripts/lifestrategy_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
+      - 'scripts/lifestrategy_portfolio.py'
+      - 'scripts/test_lifestrategy_portfolio.py'
+      - 'scripts/test-lifestrategy-exact-sleeves.mjs'
+      - 'scripts/fixtures/lifestrategy-nav/**'
       - 'scripts/test_physical_holdings.py'
       - 'scripts/invesco_physical_holdings.py'
       - 'scripts/capture-invesco-physical.mjs'
@@ -71,7 +88,13 @@ on:
       - 'scripts/native_source_evidence.py'
       - 'scripts/test_native_source_evidence.py'
       - 'scripts/collect_qualified_exposures.py'
+      - 'scripts/qualified_physical_allocation.py'
+      - 'scripts/test_qualified_physical_allocation.py'
+      - 'scripts/fixtures/defence-physical-allocation/**'
       - 'scripts/dws_liquidity_funds.py'
+      - 'scripts/test_dca_dws_held_funds.py'
+      - 'scripts/test-dws-held-fund-consumers.mjs'
+      - 'scripts/fixtures/dws-held-funds-20261112/**'
       - 'scripts/hsbc_holdings.py'
       - 'scripts/jpm_holdings.py'
       - 'scripts/check_pending_sources.py'
@@ -89,8 +112,18 @@ on:
       - 'scripts/native-index-source-candidates.json'
       - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
+      - 'scripts/qualified_cash_rights.py'
+      - 'scripts/qualified_corporate_identities.py'
+      - 'scripts/test_dca_qualified_heg_identity.py'
+      - 'scripts/test-qualified-heg-consumers.mjs'
+      - 'scripts/fixtures/qualified-heg-identity/**'
+      - 'scripts/test_dca_qualified_cash_rights.py'
+      - 'scripts/fixtures/qualified-cash-rights/**'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/security_identity_continuity.py'
+      - 'src/data/index-company-identities.json'
+      - 'scripts/fixtures/weatherford-*-20261113.html.gz'
       - 'scripts/download-wisdomtree-rankings.mjs'
       - 'scripts/wisdomtree_rankings_transport.py'
       - 'scripts/test_wisdomtree_rankings_transport.py'
@@ -120,6 +153,10 @@ on:
       - 'scripts/test_topix_holdings.py'
       - 'scripts/lifestrategy_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
+      - 'scripts/lifestrategy_portfolio.py'
+      - 'scripts/test_lifestrategy_portfolio.py'
+      - 'scripts/test-lifestrategy-exact-sleeves.mjs'
+      - 'scripts/fixtures/lifestrategy-nav/**'
       - 'scripts/test_physical_holdings.py'
       - 'scripts/invesco_physical_holdings.py'
       - 'scripts/capture-invesco-physical.mjs'
@@ -174,6 +211,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - name: Install browser for public issuer API fallback
         run: npx playwright install --with-deps chromium
+      - name: Validate independent physical allocation and primary incidents
+        run: python -m unittest discover -s scripts -p 'test_qualified_physical_allocation.py'
       - name: "Collect observations: collect"
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -202,6 +241,14 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - name: Discover complete issuer portfolios without replacing qualified values on failure
         run: python scripts/discover_holdings_sources.py
+      # Independent source classifier: acquire its NAV weights even when a
+      # later complete-holdings route is refused. It reads no staged holdings.
+      - name: "Collect observations: sleeves"
+        id: sleeves
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        env:
+          EXPOSURE_SOURCE_PROOF_DIR: ${{ runner.temp }}/exposure-source-proofs
+        run: python scripts/collect_exposure_sleeves.py --apply --output "$RUNNER_TEMP/exposure-sleeves.json"
       - name: "Collect observations: holdings"
         id: holdings
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -209,10 +256,6 @@ jobs:
           WISDOMTREE_BROWSER_CAPTURE: '1'
           PHYSICAL_SOURCE_PROOF_DIR: ${{ runner.temp }}/physical-source-proofs
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
-      - name: "Collect observations: sleeves"
-        id: sleeves
-        continue-on-error: ${{ github.event_name != 'pull_request' }}
-        run: python scripts/collect_exposure_sleeves.py --apply --output "$RUNNER_TEMP/exposure-sleeves.json"
       - name: "Collect observations: underliers"
         id: underliers
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -254,6 +297,8 @@ jobs:
             ${{ runner.temp }}/dca-equities.json
             ${{ runner.temp }}/dca-complete-holdings.json
             ${{ runner.temp }}/physical-source-proofs
+            ${{ runner.temp }}/exposure-source-proofs
+            src/data/exposure-sleeves.json
             ${{ runner.temp }}/exposure-sleeves.json
             ${{ runner.temp }}/vanguard-sleeves.json
             public/data/pending-source-checks.json

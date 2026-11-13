@@ -97,3 +97,12 @@ try {
   assert.equal(row.state,status)
  }
 } finally {delete registry[manualId]}
+
+// A weekly qualification check cannot certify a source collection.
+{
+ const id='update-etf-flows.yml'
+ assert.equal(registry[id].validationOnly,true);assert.equal(registry[id].publishes,false)
+ assert.deepEqual(registry[id].collectionSteps,[])
+ const row=automationOverview({schemaVersion:1,workflows:{[id]:{name:registry[id].name,status:'success',collectionStatus:'not-applicable',validationStatus:'success',completedAt:now.toISOString()}}},now).find(row=>row.id===id)
+ assert.equal(row.state,'success');assert.equal(row.collectionStatus,'not-applicable');assert.equal(row.lastCollectionSuccessAt,undefined)
+}

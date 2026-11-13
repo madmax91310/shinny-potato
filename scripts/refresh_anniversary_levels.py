@@ -23,13 +23,14 @@ def configurations():
     active = json.loads((ROOT/'src/data/automated-monthly.json').read_text())
     equities = [s for s in sources if s.get('consumerScope') == 'equity' and s['id'] in active]
     sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs or s in equities]
-    # XNDX publishes daily candles for its supported 1d/5d ranges, not arbitrary
-    # period1/period2 windows. Its monthly economic series remains FRED XNDX.
+    # The dated official FRED document identifies the same Nasdaq XNDX TOTAL USD
+    # index as the monthly series. Yahoo's sparse intraday candle is not a dated
+    # preceding close; do not assign its previousClose to an exchange date.
     for source in sources:
         if source['id'] == 'nasdaq100':
             if (source.get('symbol'),source.get('currency'),source.get('variant'),source.get('seriesId')) != ('XNDX','USD','TOTAL','NASDAQXNDX'):
                 reject('Nasdaq monthly/daily return convention differs')
-            source.update(parser='yahoo',symbol='^XNDX',timezone='America/New_York')
+            source.update(parser='fred-document',symbol='XNDX',timezone='America/New_York')
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
     if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs} | {s['id'] for s in equities}: reject('Configuration anniversaire incomplète')
@@ -44,9 +45,11 @@ def completed(rows, now, timezone='UTC'):
     if (today - day).days > 7: reject('Dernière séance trop ancienne')
     return day.isoformat(), number(value)
 
-def collect_one(config, now, json_fetch=None, byte_fetch=download):
+def collect_one(config, now, json_fetch=None, byte_fetch=download, fred_fetch=xndx_fred_date_bytes):
     start, end = now.date()-dt.timedelta(days=15), now.date()
     parser = config['parser']
+    if parser == 'fred-document':
+        return collect_xndx_document(config, now, fred_fetch)
     # Daily levels need the same bounded transient recovery as monthly MSCI
     # histories. Keep Yahoo on its existing retry policy and injected fetches
     # unchanged for deterministic validation.
@@ -108,6 +111,48 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
 
 XNDX_URLS=[f'https://query{host}.finance.yahoo.com/v8/finance/chart/%5EXNDX?range={window}&interval=1d&includePrePost=false'for host,window in [(1,'5d'),(2,'1d')]]
+
+class OfficialPublicationPending(ValueError):
+    def __init__(self, evidence):
+        super().__init__('Official XNDX document has not published the last completed session')
+        self.evidence=evidence
+
+
+def collect_xndx_document(config, now, fetch=xndx_fred_date_bytes):
+    if tuple(config.get(k) for k in ('id','symbol','seriesId','currency','variant')) != ('nasdaq100','XNDX','NASDAQXNDX','USD','TOTAL'):
+        reject('Wrong official XNDX closing-level identity')
+    raw=fetch(FRED_XNDX_URL)
+    rows,metadata=parse_fred_xndx_document(raw,now)
+    import exchange_calendars as xcals
+    calendar=xcals.get_calendar('XNYS')
+    day=now.astimezone(ZoneInfo('America/New_York')).date().isoformat()
+    expected=calendar.date_to_session(day,direction='previous')
+    # Includes half-days and holidays. A current session is not closed merely
+    # because the provider has printed today's date.
+    if calendar.session_close(expected).timestamp()+900 > now.timestamp():
+        expected=calendar.previous_session(expected)
+    expected=expected.date().isoformat()
+    points=[(d,number(float(v))) for d,v in rows if v not in ('','.')]
+    if not points:reject('Official XNDX document has no numeric closing level')
+    asof,value=points[-1]
+    if asof>expected:reject('Official XNDX value is not a completed exchange session')
+    if not calendar.is_session(asof):reject('Official XNDX value is not an exchange session')
+    if (now.date()-dt.date.fromisoformat(asof)).days>7:
+        reject('Official XNDX document exceeds the existing closing-level age limit')
+    if asof<expected:
+        raise OfficialPublicationPending({'sourceUrl':FRED_XNDX_URL,'publishedAsOf':asof,
+            'expectedSession':expected,'publisherUpdated':metadata['Last Updated'],
+            'responseSha256':hashlib.sha256(raw).hexdigest()})
+    sha=hashlib.sha256(raw).hexdigest()
+    return {'value':value,'asOf':asof,'currency':'USD','parser':'fred-document',
+        'symbol':'XNDX','seriesId':'NASDAQXNDX','variant':'TOTAL','indexCode':config.get('indexCode'),
+        'sourceUrl':FRED_XNDX_URL,'sourceUrls':[FRED_XNDX_URL],'sha256':sha,
+        'sourceHashes':{FRED_XNDX_URL:sha},'quoteMethod':'official-fred-xndx-document',
+        'sourceEvidence':{'seriesId':'NASDAQXNDX','provider':'Nasdaq, Inc.',
+            'asOf':asof,'value':value,'publisherUpdated':metadata['Last Updated'],
+            'sourceDateRange':metadata['Date Range'],'sha256':sha,'session':expected},
+        'method':'Clôture officielle XNDX Total Return USD, dividendes bruts réinvestis ; série Nasdaq NASDAQXNDX publiée par FRED, séance et date de publication contrôlées',
+        'maxAgeDays':7}
 
 class PublicationPending(ValueError):
     def __init__(self, evidence):
@@ -204,6 +249,18 @@ def xndx_dated_previous_close(config, old, evidence, expected, now, fetch):
 def xndx_source_upgrade(identifier,old,record):
     if identifier!='nasdaq100' or not old:return False
     convention=lambda r:tuple(r.get(k)for k in ('parser','symbol','currency','variant'))
+    if convention(record)==('fred-document','XNDX','USD','TOTAL'):
+        if convention(old) not in [('yahoo','^XNDX','USD','TOTAL'),('fred','XNDX','USD','TOTAL')]:return False
+        if old.get('parser')=='fred' and old.get('seriesId')!='NASDAQXNDX':return False
+        evidence=record.get('sourceEvidence',{})
+        return (record.get('seriesId')=='NASDAQXNDX' and record.get('quoteMethod')=='official-fred-xndx-document'
+            and record.get('sourceUrl')==FRED_XNDX_URL and record.get('sourceUrls')==[FRED_XNDX_URL]
+            and record.get('sourceHashes')=={FRED_XNDX_URL:record.get('sha256')}
+            and re.fullmatch(r'[a-f0-9]{64}',record.get('sha256','')) is not None
+            and evidence.get('sha256')==record['sha256'] and evidence.get('seriesId')=='NASDAQXNDX'
+            and evidence.get('provider')=='Nasdaq, Inc.' and evidence.get('asOf')==record.get('asOf')
+            and evidence.get('value')==record.get('value') and evidence.get('session')==record.get('asOf')
+            and all(old.get(k)==record.get(k)for k in ('indexCode','isin','ticker','mic','listingEvidenceId')))
     if convention(old)!=('fred','XNDX','USD','TOTAL')or old.get('seriesId')!='NASDAQXNDX':return False
     if convention(record)!=('yahoo','^XNDX','USD','TOTAL')or record.get('quoteMethod')!='supported-xndx-ranges':return False
     if any(old.get(k)!=record.get(k)for k in ('indexCode','isin','ticker','mic','listingEvidenceId')):return False
@@ -225,7 +282,7 @@ def refresh(current, now, collect=collect_one, selected=None, date_fetch=xndx_fr
         return {'checkedAt':now.isoformat(),'scope':{'requestedIds':['anniversary-'+c['id']for c in requested]+(['anniversary-or']if selected is None else[]),'expectedIds':['anniversary-'+c['id']for c in requested]+(['anniversary-or']if selected is None else[]),'networkRequestedIds':['anniversary-'+c['id']for c in requested],'derivedIds':['anniversary-or']if selected is None else[]},'successes':successes,'errors':errors,'waiting':waiting,'derived':derived,'outcomes':outcomes+pending+failed}
     def one(config):
         try:return config['id'],collect(config,now),None
-        except PublicationPending as e:return config['id'],None,e
+        except (PublicationPending,OfficialPublicationPending) as e:return config['id'],None,e
         except Exception as e:
             # Keep the actual failed public endpoint. A generic410 otherwise
             # gets attributed to a configured factsheet which was not requested.
@@ -234,6 +291,11 @@ def refresh(current, now, collect=collect_one, selected=None, date_fetch=xndx_fr
                 **({'sourceUrl':url}if url else{})}
     with ThreadPoolExecutor(max_workers=4) as pool:
         for id_,record,error in pool.map(one,requested):
+            if isinstance(error,OfficialPublicationPending):
+                waiting.append({'id':'anniversary-'+id_,'status':'waiting-publication',
+                    'lastAttemptAt':now.isoformat(),'retainedAsOf':merged.get(id_,{}).get('asOf'),
+                    'reason':str(error),'evidence':error.evidence})
+                continue
             if isinstance(error,PublicationPending):
                 try:
                     import exchange_calendars as xcals

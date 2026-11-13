@@ -36,6 +36,7 @@ class RankedFields(unittest.TestCase):
                 self.assertEqual(len(values['holdings']['rows']), 10)
                 self.assertLess(sum(r['weightPct'] for r in values['holdings']['rows']), 100)
                 self.assertEqual(values['holdings']['scope'], 'top-10')
+                self.assertEqual(values['holdings']['weightBasis'], 'issuer-fund-ranking-unqualified-nav-denominator')
                 self.assertNotIn('complete', values['holdings'])
                 self.assertEqual(values['sectors']['rankClassificationID'], 2)
                 self.assertEqual(values['sectors']['rows'], [{'name': r['name'], 'weightPct': r['pct']*100} for r in data if r['rankClassificationID']==2])

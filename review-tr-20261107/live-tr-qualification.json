@@ -1,0 +1,1041 @@
+{
+  "checkedAt": "2026-11-07",
+  "trFailures": {},
+  "tariffValidated": true,
+  "before": {
+    "asOf": null,
+    "checkedAt": "2026-11-02",
+    "sourceUrl": "https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution",
+    "sha256": "572a52af6f18ac22c9967fce4863b596a66f59c4c21e4982b084fde37c09e7eb",
+    "page": null,
+    "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+    "dateStatus": "not-published",
+    "scope": "Trade Republic France ; frais externes des transactions ponctuelles hors plans ; Direct Price non recertifié",
+    "values": {
+      "minimum": 1.0
+    },
+    "copy": {
+      "resume": "1 € hors plans",
+      "full": "1 € de règlement externe par transaction ponctuelle hors plans d’épargne. Tarif Direct Price distinct ; spread et coûts tiers possibles.",
+      "detail": "Trade Republic France ; frais externes des transactions ponctuelles hors plans ; Direct Price non recertifié"
+    },
+    "fields": {
+      "gardeCto": {
+        "asOf": null,
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
+        "sha256": "59004318012cd0c89cd4d4eee39ae167c3dc0bfc474d5cbf56401c12479119c2",
+        "page": null,
+        "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+        "dateStatus": "not-published",
+        "scope": "tr ; gardeCto ; conditions explicites de la page officielle",
+        "values": {
+          "fee": 0
+        },
+        "copy": {
+          "resume": "Compte-titres : aucun frais de garde annoncé. Cette page ne qualifie pas les frais du PEA.",
+          "full": "Compte-titres : aucun frais de garde annoncé. Cette page ne qualifie pas les frais du PEA."
+        },
+        "discoveryUrl": null
+      },
+      "sortantCto": {
+        "asOf": null,
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/825-How-long-does-a-securities-account-transfer-from-Trade-Republic-to-a-third_party-custody-account-take",
+        "sha256": "f8c74fd734a1c27e7aab8112ea936c12763db5ab525c5f8e875d87d62cb3268c",
+        "page": null,
+        "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+        "dateStatus": "not-published",
+        "scope": "tr ; sortantCto ; conditions explicites de la page officielle",
+        "values": {
+          "fee": 0
+        },
+        "copy": {
+          "resume": "Compte-titres : aucun frais de transfert facturé par Trade Republic ; frais de tiers possibles. Cette page ne qualifie pas le transfert PEA.",
+          "full": "Compte-titres : aucun frais de transfert facturé par Trade Republic ; frais de tiers possibles. Cette page ne qualifie pas le transfert PEA."
+        },
+        "discoveryUrl": null
+      },
+      "directPrice": {
+        "asOf": null,
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c",
+        "sha256": "262bb0746757c267dcb00085c272d2d6ef3e3fbaf9c8fea50e52e15afcdfb789",
+        "page": null,
+        "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+        "dateStatus": "not-published",
+        "scope": "tr ; directPrice ; conditions explicites de la page officielle",
+        "values": {
+          "fee": 2.0,
+          "standardFee": 1.0,
+          "venueFee": 1.0
+        },
+        "copy": {
+          "resume": "Direct Price : 2 € par transaction, dont 1 € de règlement et 1 € de place. Spread, conversion et autres coûts possibles.",
+          "full": "Direct Price : 2 € par transaction, dont 1 € de règlement et 1 € de place. Spread, conversion et autres coûts possibles."
+        },
+        "discoveryUrl": null
+      },
+      "entrant": {
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+        "page": 189,
+        "method": "Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais",
+        "dateStatus": "not-published",
+        "publicationMonth": "2026-09",
+        "note": "Contrat daté 2026-09 ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.",
+        "scope": "Trade Republic France ; transfert PEA ; frais non qualifiés",
+        "values": {
+          "available": 1,
+          "unlistedAccepted": 0
+        },
+        "copy": {
+          "resume": "possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause.",
+          "full": "possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause."
+        },
+        "discoveryUrl": null
+      },
+      "sortant": {
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+        "page": 189,
+        "method": "Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais",
+        "dateStatus": "not-published",
+        "publicationMonth": "2026-09",
+        "note": "Contrat daté 2026-09 ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.",
+        "scope": "Trade Republic France ; transfert PEA ; frais non qualifiés",
+        "values": {
+          "available": 1
+        },
+        "copy": {
+          "resume": "Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas.",
+          "full": "Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas."
+        },
+        "discoveryUrl": null
+      }
+    },
+    "discoveryUrl": null,
+    "profile": {
+      "dca": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles.",
+          "full": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles."
+        },
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+        "refs": [
+          {
+            "document": "trPeaHelp",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "beb56b41b97627d13277cc1c8d340e002d8644a2eaeaecf0fce0be967fd3a7a7",
+            "kind": "page",
+            "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne"
+          }
+        ],
+        "scope": "tr ; dca ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "beb56b41b97627d13277cc1c8d340e002d8644a2eaeaecf0fce0be967fd3a7a7",
+        "values": {},
+        "decisiveDocument": "trPeaHelp",
+        "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+            "sha256": "beb56b41b97627d13277cc1c8d340e002d8644a2eaeaecf0fce0be967fd3a7a7"
+          }
+        ]
+      },
+      "pea": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "PEA proposé ✅",
+          "full": "PEA proposé ✅"
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 189,
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+            "kind": "pdf",
+            "statement": "PEA Account Opening; Transfer"
+          }
+        ],
+        "scope": "tr ; pea ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "PEA Account Opening; Transfer",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
+          }
+        ]
+      },
+      "pme": {
+        "available": null,
+        "status": "non établi",
+        "copy": {
+          "resume": "PEA-PME : disponibilité non confirmée par le contrat public.",
+          "full": "PEA-PME : disponibilité non confirmée par le contrat public."
+        },
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 3,
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+            "kind": "pdf",
+            "statement": "PEA"
+          }
+        ],
+        "scope": "tr ; pme ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "440ab54e20e06a778e3c2e056d12bcdaaf095f6f0b82bb1681afdeaa7fc7f75d",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "PEA",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+            "sha256": "beb56b41b97627d13277cc1c8d340e002d8644a2eaeaecf0fce0be967fd3a7a7"
+          }
+        ]
+      },
+      "jeune": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "PEA accessible aux majeurs rattachés, plafond de versements de 20 000 €.",
+          "full": "PEA accessible aux majeurs rattachés, plafond de versements de 20 000 €."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 190,
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+            "kind": "pdf",
+            "statement": "parents according to Article D221-109 FMFC may undertake cash deposits of up to EUR 20,000"
+          }
+        ],
+        "scope": "tr ; jeune ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "parents according to Article D221-109 FMFC may undertake cash deposits of up to EUR 20,000",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
+          }
+        ]
+      },
+      "ifu": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "IFU pour l’offre française après migration ; anciens comptes étrangers distincts.",
+          "full": "IFU pour l’offre française après migration ; anciens comptes étrangers distincts."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 4,
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+            "kind": "pdf",
+            "statement": "tax reporting obligations like the Imprimé Fiscal Unique (IFU)"
+          }
+        ],
+        "scope": "tr ; ifu ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "tax reporting obligations like the Imprimé Fiscal Unique (IFU)",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
+          }
+        ]
+      },
+      "cash": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "Intérêts possibles sur le compte général sous conditions et après activation ; espèces du PEA exclues.",
+          "full": "Intérêts possibles sur le compte général sous conditions et après activation ; espèces du PEA exclues."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 190,
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+            "kind": "pdf",
+            "statement": "not forward any interest"
+          }
+        ],
+        "scope": "tr ; cash ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "not forward any interest",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
+          }
+        ]
+      },
+      "change": {
+        "conversion": {
+          "incomeToEuro": true,
+          "marginByCurrency": true,
+          "publishedMargins": {
+            "AED": 0.0065,
+            "AUD": 0.0018,
+            "BGN": 0.0023,
+            "BRL": 0.0,
+            "CAD": 0.0018,
+            "CHF": 0.0014,
+            "CNH": 0.0093,
+            "CZK": 0.0306,
+            "DKK": 0.0089,
+            "GBP": 0.0011,
+            "HKD": 0.0112,
+            "HRK": 0.0089,
+            "HUF": 0.3717,
+            "IDR": 24.0,
+            "ILS": 0.0049,
+            "INR": 0.0,
+            "JPY": 0.1536,
+            "MXN": 0.0277,
+            "MYR": 0.0076,
+            "NOK": 0.0112,
+            "NZD": 0.0019,
+            "PEN": 0.0046,
+            "PHP": 0.09,
+            "PLN": 0.005,
+            "QAR": 0.0052,
+            "RON": 0.0055,
+            "RUB": 0.0818,
+            "SAR": 0.0053,
+            "SEK": 0.0114,
+            "SGD": 0.0019,
+            "THB": 0.0585,
+            "TRY": 0.0054,
+            "TWD": 0.0,
+            "USD": 0.0014,
+            "ZAR": 0.0178
+          },
+          "marginUnit": "valeurs de la grille officielle ; pas des pourcentages"
+        },
+        "available": null,
+        "status": "partiel",
+        "copy": {
+          "resume": "Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée.",
+          "full": "Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée."
+        },
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/414",
+        "refs": [
+          {
+            "document": "trDividendsFx",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/414",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "48c055a3616227f6f1c10ecb6b9e137d6ddf4f498b05523c9a728b585f82b731",
+            "kind": "page",
+            "statement": "Si des dividendes ou un rendement sont payés dans une autre devise (autre que l’euro), nous convertissons directement pour vous cette devise en euro"
+          },
+          {
+            "document": "trFxRules",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "35e9c5414938fbd12c652e5a694327310dfa914acc4a8c0cecff1a4ddce3ffed",
+            "kind": "page",
+            "statement": "Les cours d’achat ou de vente des devises nécessaires à la conversion monétaire sont calculés sur la base de ces cours et en prenant en compte une majoration ou une minoration correspondant aux marges d’achat et de vente figurant dans la liste ci-dessous Marges spécifiques à la devise pour la conversion : Abréviation ISO - devise AED - 0,0065 AUD - 0,0018 BGN - 0,0023 BRL - 0 CAD - 0,0018 CHF - 0,0014 CNH - 0,0093 CZK - 0,0306 DKK - 0,0089 GBP - 0,0011 HKD - 0,0112 HRK - 0,0089 HUF - 0,3717 IDR - 24 ILS - 0,0049 INR - 0 JPY - 0,1536 MXN - 0,0277 MYR - 0,0076 NOK - 0,0112 NZD - 0,0019 PEN - 0,0046 PHP - 0,09 PLN - 0,005 QAR - 0,0052 RON - 0,0055 RUB - 0,0818 SAR - 0,0053 SEK - 0,0114 SGD - 0,0019 THB - 0,0585 TRY - 0,0054 TWD - 0 USD - 0,0014 ZAR - 0,0178"
+          }
+        ],
+        "scope": "tr ; change ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "7f6841989f3d8362eee23ab4df312f587af94e873ac9cc1207d9d8626a1225f6",
+        "values": {},
+        "decisiveDocument": "trDividendsFx",
+        "statement": "Si des dividendes ou un rendement sont payés dans une autre devise (autre que l’euro), nous convertissons directement pour vous cette devise en euro",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/414",
+            "sha256": "48c055a3616227f6f1c10ecb6b9e137d6ddf4f498b05523c9a728b585f82b731"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
+            "sha256": "35e9c5414938fbd12c652e5a694327310dfa914acc4a8c0cecff1a4ddce3ffed"
+          },
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
+            "sha256": "8194741a6d119a73d8217012041f0bea542d01f05d06ca1b9ee2be57d71e0747"
+          }
+        ]
+      },
+      "garde": {
+        "available": null,
+        "status": "partiel",
+        "copy": {
+          "resume": "Frais de garde PEA à confirmer dans le barème ; gratuité du CTO distincte.",
+          "full": "Frais de garde PEA à confirmer dans le barème ; gratuité du CTO distincte."
+        },
+        "checkedAt": "2026-11-02",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 3,
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
+            "kind": "pdf",
+            "statement": "PEA"
+          },
+          {
+            "document": "trFees",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "8194741a6d119a73d8217012041f0bea542d01f05d06ca1b9ee2be57d71e0747",
+            "kind": "page",
+            "statement": "Il n’y a pas de frais de garde"
+          }
+        ],
+        "scope": "tr ; garde ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "ae789fc7296ea0676e462d94b1ba47941ce2827b0a08d3775d1d9ef44d478f9b",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "PEA",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
+            "sha256": "8194741a6d119a73d8217012041f0bea542d01f05d06ca1b9ee2be57d71e0747"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+            "sha256": "beb56b41b97627d13277cc1c8d340e002d8644a2eaeaecf0fce0be967fd3a7a7"
+          }
+        ]
+      }
+    }
+  },
+  "after": {
+    "asOf": null,
+    "checkedAt": "2026-11-07",
+    "sourceUrl": "https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution?web_view=true",
+    "sha256": "8774aa837287c7bffc3dbf50df6849487f28e22456f29b43f988dd62dba09590",
+    "page": null,
+    "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+    "dateStatus": "not-published",
+    "scope": "Trade Republic France ; frais externes des transactions ponctuelles hors plans ; Direct Price non recertifié",
+    "values": {
+      "minimum": 1.0
+    },
+    "copy": {
+      "resume": "1 € hors plans",
+      "full": "1 € de règlement externe par transaction ponctuelle hors plans d’épargne. Tarif Direct Price distinct ; spread et coûts tiers possibles.",
+      "detail": "Trade Republic France ; frais externes des transactions ponctuelles hors plans ; Direct Price non recertifié"
+    },
+    "fields": {
+      "gardeCto": {
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true",
+        "sha256": "59004318012cd0c89cd4d4eee39ae167c3dc0bfc474d5cbf56401c12479119c2",
+        "page": null,
+        "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+        "dateStatus": "not-published",
+        "scope": "tr ; gardeCto ; conditions explicites de la page officielle",
+        "values": {
+          "fee": 0
+        },
+        "copy": {
+          "resume": "Compte-titres : aucun frais de garde annoncé. Cette page ne qualifie pas les frais du PEA.",
+          "full": "Compte-titres : aucun frais de garde annoncé. Cette page ne qualifie pas les frais du PEA."
+        },
+        "discoveryUrl": null
+      },
+      "sortantCto": {
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/825-How-long-does-a-securities-account-transfer-from-Trade-Republic-to-a-third_party-custody-account-take?web_view=true",
+        "sha256": "f8c74fd734a1c27e7aab8112ea936c12763db5ab525c5f8e875d87d62cb3268c",
+        "page": null,
+        "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+        "dateStatus": "not-published",
+        "scope": "tr ; sortantCto ; conditions explicites de la page officielle",
+        "values": {
+          "fee": 0
+        },
+        "copy": {
+          "resume": "Compte-titres : aucun frais de transfert facturé par Trade Republic ; frais de tiers possibles. Cette page ne qualifie pas le transfert PEA.",
+          "full": "Compte-titres : aucun frais de transfert facturé par Trade Republic ; frais de tiers possibles. Cette page ne qualifie pas le transfert PEA."
+        },
+        "discoveryUrl": null
+      },
+      "directPrice": {
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c?web_view=true",
+        "sha256": "262bb0746757c267dcb00085c272d2d6ef3e3fbaf9c8fea50e52e15afcdfb789",
+        "page": null,
+        "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+        "dateStatus": "not-published",
+        "scope": "tr ; directPrice ; conditions explicites de la page officielle",
+        "values": {
+          "fee": 2.0,
+          "standardFee": 1.0,
+          "venueFee": 1.0
+        },
+        "copy": {
+          "resume": "Direct Price : 2 € par transaction, dont 1 € de règlement et 1 € de place. Spread, conversion et autres coûts possibles.",
+          "full": "Direct Price : 2 € par transaction, dont 1 € de règlement et 1 € de place. Spread, conversion et autres coûts possibles."
+        },
+        "discoveryUrl": null
+      },
+      "entrant": {
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+        "page": 189,
+        "method": "Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais",
+        "dateStatus": "not-published",
+        "publicationMonth": "2026-09",
+        "note": "Contrat daté 2026-09 ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.",
+        "scope": "Trade Republic France ; transfert PEA ; frais non qualifiés",
+        "values": {
+          "available": 1,
+          "unlistedAccepted": 0
+        },
+        "copy": {
+          "resume": "possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause.",
+          "full": "possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause."
+        },
+        "discoveryUrl": null
+      },
+      "sortant": {
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+        "page": 189,
+        "method": "Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais",
+        "dateStatus": "not-published",
+        "publicationMonth": "2026-09",
+        "note": "Contrat daté 2026-09 ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.",
+        "scope": "Trade Republic France ; transfert PEA ; frais non qualifiés",
+        "values": {
+          "available": 1
+        },
+        "copy": {
+          "resume": "Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas.",
+          "full": "Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas."
+        },
+        "discoveryUrl": null
+      }
+    },
+    "discoveryUrl": null,
+    "profile": {
+      "dca": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles.",
+          "full": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+        "refs": [
+          {
+            "document": "trPeaHelp",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "15d7d167592fb720da074ed12d3e35f5dddf5b62a9a7837b94020cc060aa6dd9",
+            "kind": "page",
+            "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne"
+          }
+        ],
+        "scope": "tr ; dca ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "15d7d167592fb720da074ed12d3e35f5dddf5b62a9a7837b94020cc060aa6dd9",
+        "values": {},
+        "decisiveDocument": "trPeaHelp",
+        "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+            "sha256": "15d7d167592fb720da074ed12d3e35f5dddf5b62a9a7837b94020cc060aa6dd9"
+          }
+        ]
+      },
+      "pea": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "PEA proposé ✅",
+          "full": "PEA proposé ✅"
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 189,
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+            "kind": "pdf",
+            "statement": "PEA Account Opening; Transfer"
+          }
+        ],
+        "scope": "tr ; pea ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "PEA Account Opening; Transfer",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+          }
+        ]
+      },
+      "pme": {
+        "available": null,
+        "status": "non établi",
+        "copy": {
+          "resume": "PEA-PME : disponibilité non confirmée par le contrat public.",
+          "full": "PEA-PME : disponibilité non confirmée par le contrat public."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 3,
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+            "kind": "pdf",
+            "statement": "PEA"
+          }
+        ],
+        "scope": "tr ; pme ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "a4f3ebcd2379dbe0e14ee771eea111c57e3dae93380bed6521f4a2c550f0299c",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "PEA",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+            "sha256": "15d7d167592fb720da074ed12d3e35f5dddf5b62a9a7837b94020cc060aa6dd9"
+          }
+        ]
+      },
+      "jeune": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "PEA accessible aux majeurs rattachés, plafond de versements de 20 000 €.",
+          "full": "PEA accessible aux majeurs rattachés, plafond de versements de 20 000 €."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 190,
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+            "kind": "pdf",
+            "statement": "parents according to Article D221-109 FMFC may undertake cash deposits of up to EUR 20,000"
+          }
+        ],
+        "scope": "tr ; jeune ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "parents according to Article D221-109 FMFC may undertake cash deposits of up to EUR 20,000",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+          }
+        ]
+      },
+      "ifu": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "IFU pour l’offre française après migration ; anciens comptes étrangers distincts.",
+          "full": "IFU pour l’offre française après migration ; anciens comptes étrangers distincts."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 4,
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+            "kind": "pdf",
+            "statement": "tax reporting obligations like the Imprimé Fiscal Unique (IFU)"
+          }
+        ],
+        "scope": "tr ; ifu ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "tax reporting obligations like the Imprimé Fiscal Unique (IFU)",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+          }
+        ]
+      },
+      "cash": {
+        "available": true,
+        "status": "confirmé",
+        "copy": {
+          "resume": "Intérêts possibles sur le compte général sous conditions et après activation ; espèces du PEA exclues.",
+          "full": "Intérêts possibles sur le compte général sous conditions et après activation ; espèces du PEA exclues."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 190,
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+            "kind": "pdf",
+            "statement": "not forward any interest"
+          }
+        ],
+        "scope": "tr ; cash ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "not forward any interest",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+          }
+        ]
+      },
+      "change": {
+        "conversion": {
+          "incomeToEuro": true,
+          "marginByCurrency": true,
+          "publishedMargins": {
+            "AED": 0.0065,
+            "AUD": 0.0018,
+            "BGN": 0.0023,
+            "BRL": 0.0,
+            "CAD": 0.0018,
+            "CHF": 0.0014,
+            "CNH": 0.0093,
+            "CZK": 0.0306,
+            "DKK": 0.0089,
+            "GBP": 0.0011,
+            "HKD": 0.0112,
+            "HRK": 0.0089,
+            "HUF": 0.3717,
+            "IDR": 24.0,
+            "ILS": 0.0049,
+            "INR": 0.0,
+            "JPY": 0.1536,
+            "MXN": 0.0277,
+            "MYR": 0.0076,
+            "NOK": 0.0112,
+            "NZD": 0.0019,
+            "PEN": 0.0046,
+            "PHP": 0.09,
+            "PLN": 0.005,
+            "QAR": 0.0052,
+            "RON": 0.0055,
+            "RUB": 0.0818,
+            "SAR": 0.0053,
+            "SEK": 0.0114,
+            "SGD": 0.0019,
+            "THB": 0.0585,
+            "TRY": 0.0054,
+            "TWD": 0.0,
+            "USD": 0.0014,
+            "ZAR": 0.0178
+          },
+          "marginUnit": "valeurs de la grille officielle ; pas des pourcentages"
+        },
+        "available": null,
+        "status": "partiel",
+        "copy": {
+          "resume": "Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée.",
+          "full": "Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/414?web_view=true",
+        "refs": [
+          {
+            "document": "trDividendsFx",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/414?web_view=true",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "824b1f108dee5feb31b4670cb580ee3360772066ffcdbd82ddb7a2fef5ce91ee",
+            "kind": "page",
+            "statement": "Si des dividendes ou un rendement sont payés dans une autre devise (autre que l’euro), nous convertissons directement pour vous cette devise en euro"
+          },
+          {
+            "document": "trFxRules",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "35e9c5414938fbd12c652e5a694327310dfa914acc4a8c0cecff1a4ddce3ffed",
+            "kind": "page",
+            "statement": "Les cours d’achat ou de vente des devises nécessaires à la conversion monétaire sont calculés sur la base de ces cours et en prenant en compte une majoration ou une minoration correspondant aux marges d’achat et de vente figurant dans la liste ci-dessous Marges spécifiques à la devise pour la conversion : Abréviation ISO - devise AED - 0,0065 AUD - 0,0018 BGN - 0,0023 BRL - 0 CAD - 0,0018 CHF - 0,0014 CNH - 0,0093 CZK - 0,0306 DKK - 0,0089 GBP - 0,0011 HKD - 0,0112 HRK - 0,0089 HUF - 0,3717 IDR - 24 ILS - 0,0049 INR - 0 JPY - 0,1536 MXN - 0,0277 MYR - 0,0076 NOK - 0,0112 NZD - 0,0019 PEN - 0,0046 PHP - 0,09 PLN - 0,005 QAR - 0,0052 RON - 0,0055 RUB - 0,0818 SAR - 0,0053 SEK - 0,0114 SGD - 0,0019 THB - 0,0585 TRY - 0,0054 TWD - 0 USD - 0,0014 ZAR - 0,0178"
+          }
+        ],
+        "scope": "tr ; change ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "9139f12099092f702972bf86f1c4e9c8b73039f0f5dce7805a377c5f1796564b",
+        "values": {},
+        "decisiveDocument": "trDividendsFx",
+        "statement": "Si des dividendes ou un rendement sont payés dans une autre devise (autre que l’euro), nous convertissons directement pour vous cette devise en euro",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/414?web_view=true",
+            "sha256": "824b1f108dee5feb31b4670cb580ee3360772066ffcdbd82ddb7a2fef5ce91ee"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
+            "sha256": "35e9c5414938fbd12c652e5a694327310dfa914acc4a8c0cecff1a4ddce3ffed"
+          },
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true",
+            "sha256": "ffac5460f4096f9c6f0747e970c68024583ad6941489074aef72056f075c4474"
+          }
+        ]
+      },
+      "garde": {
+        "available": null,
+        "status": "partiel",
+        "copy": {
+          "resume": "Frais de garde PEA à confirmer dans le barème ; gratuité du CTO distincte.",
+          "full": "Frais de garde PEA à confirmer dans le barème ; gratuité du CTO distincte."
+        },
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "refs": [
+          {
+            "document": "trContract",
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "discoveryUrl": null,
+            "page": 3,
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba",
+            "kind": "pdf",
+            "statement": "PEA"
+          },
+          {
+            "document": "trFees",
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true",
+            "discoveryUrl": null,
+            "page": null,
+            "sha256": "ffac5460f4096f9c6f0747e970c68024583ad6941489074aef72056f075c4474",
+            "kind": "page",
+            "statement": "Il n’y a pas de frais de garde"
+          }
+        ],
+        "scope": "tr ; garde ; portée exacte des sources publiques",
+        "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+        "sha256": "8f64832c1e57f72aeeca43e828b67cdb5d9794e1c6947ea3767a79d5b951f117",
+        "values": {},
+        "decisiveDocument": "trContract",
+        "statement": "PEA",
+        "checkedSources": [
+          {
+            "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+            "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true",
+            "sha256": "ffac5460f4096f9c6f0747e970c68024583ad6941489074aef72056f075c4474"
+          },
+          {
+            "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+            "sha256": "15d7d167592fb720da074ed12d3e35f5dddf5b62a9a7837b94020cc060aa6dd9"
+          }
+        ]
+      }
+    }
+  },
+  "sourceResolution": {
+    "https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution?web_view=true": {
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution?web_view=true",
+      "mode": "fallback",
+      "catalogueErrors": [
+        "https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution: Redirect outside official broker scope: https://traderepublic.com/support"
+      ]
+    },
+    "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf": {
+      "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+      "mode": "direct",
+      "catalogueErrors": []
+    },
+    "https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c?web_view=true": {
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c?web_view=true",
+      "mode": "direct",
+      "catalogueErrors": []
+    },
+    "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true": {
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true",
+      "mode": "direct",
+      "catalogueErrors": []
+    },
+    "https://support.traderepublic.com/fr-fr/825-How-long-does-a-securities-account-transfer-from-Trade-Republic-to-a-third_party-custody-account-take?web_view=true": {
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/825-How-long-does-a-securities-account-transfer-from-Trade-Republic-to-a-third_party-custody-account-take?web_view=true",
+      "mode": "direct",
+      "catalogueErrors": []
+    },
+    "https://support.traderepublic.com/fr-fr/414?web_view=true": {
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/414?web_view=true",
+      "mode": "direct",
+      "catalogueErrors": []
+    },
+    "https://support.traderepublic.com/fr-fr/319?web_view=true": {
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
+      "mode": "direct",
+      "catalogueErrors": []
+    },
+    "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true": {
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+      "mode": "direct",
+      "catalogueErrors": []
+    }
+  },
+  "discovery": {
+    "tr:profile:change": {
+      "hubs": [
+        {
+          "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+          "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+        },
+        {
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true",
+          "sha256": "ffac5460f4096f9c6f0747e970c68024583ad6941489074aef72056f075c4474"
+        },
+        {
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/414?web_view=true",
+          "sha256": "824b1f108dee5feb31b4670cb580ee3360772066ffcdbd82ddb7a2fef5ce91ee"
+        },
+        {
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
+          "sha256": "35e9c5414938fbd12c652e5a694327310dfa914acc4a8c0cecff1a4ddce3ffed"
+        }
+      ],
+      "candidates": [],
+      "errors": []
+    },
+    "tr:profile:garde": {
+      "hubs": [
+        {
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+          "sha256": "15d7d167592fb720da074ed12d3e35f5dddf5b62a9a7837b94020cc060aa6dd9"
+        },
+        {
+          "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+          "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+        },
+        {
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true",
+          "sha256": "ffac5460f4096f9c6f0747e970c68024583ad6941489074aef72056f075c4474"
+        }
+      ],
+      "candidates": [],
+      "errors": []
+    },
+    "tr:profile:pme": {
+      "hubs": [
+        {
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f?web_view=true",
+          "sha256": "15d7d167592fb720da074ed12d3e35f5dddf5b62a9a7837b94020cc060aa6dd9"
+        },
+        {
+          "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+          "sha256": "6f2214ba95ade487f593878cf67c1c9f171557699495e0fb67d1c9ca85e3ebba"
+        }
+      ],
+      "candidates": [],
+      "errors": []
+    }
+  }
+}

@@ -4,6 +4,8 @@ import assert from 'node:assert/strict';
 import {scpiWaitingForPublication,fieldState,buildAssetFieldReport,completeHoldingsEvidence} from './report-asset-fields.mjs';
 import {applyAutomatedCharacteristics} from '../src/data/automated-characteristics.js';
 import {buildInbox} from '../src/pages/data-review/review-inbox.js';
+import {DATA_CATALOG} from '../src/data/catalog.js';
+import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js';
 assert.equal(fieldState({checkedAt:'2026-10-16',asOf:'2026-01-01'},'2026-10-16'),'publication-old');
 assert.equal(fieldState({checkedAt:'2026-10-01',asOf:'2026-09-30'},'2026-10-16'),'check-overdue');
 assert.equal(fieldState({checkedAt:'2026-10-17'},'2026-10-16'),'invalid-date');
@@ -31,6 +33,22 @@ assert.deepEqual(new Set(r.rows.filter(row=>row.type==='instrument'&&row.field==
 assert(r.rows.some(x=>x.type==='equity'&&x.field==='monthly'));
 assert(r.rows.some(x=>x.id==='IE00BM8R0J59'&&x.field==='holdings'&&typeof x.state==='string'));
 for(const s of Object.values(r.summary))assert.equal(Object.values(s.states).reduce((a,b)=>a+b,0),s.total);
+// A collected LifeStrategy dependency must not disappear merely because it is
+// intentionally unavailable as a standalone investment in the catalogue.
+const internalUnderliers=Object.entries(UNDERLIERS).filter(([,value])=>value.internalDependencyOnly);
+assert(internalUnderliers.some(([id])=>id==='IE00BK5BQW10'));
+for(const [id,value] of internalUnderliers){
+ assert.equal(INSTRUMENTS_BY_ISIN[id],undefined,'No new selectable instrument');
+ assert(!DATA_CATALOG.some(item=>item.id===id),'No public catalogue extension');
+ const fields=r.rows.filter(row=>row.type==='instrument'&&row.id===id);
+ assert(fields.some(row=>row.field==='completeHoldings'&&row.state!=='not-applicable'));
+ for(const name of ['countries','sectors']){
+  const row=fields.find(field=>field.field===name);
+  assert(row.present);assert.notEqual(row.state,'not-applicable');
+  assert.equal(row.asOf,value[name].asOf);assert.equal(row.sourceUrl,value[name].sourceUrl);
+ }
+ assert(fields.filter(row=>!['countries','sectors','completeHoldings'].includes(row.field)).every(row=>row.state==='not-applicable'&&!row.present));
+}
 console.log('Field freshness, missing fields, metadata provenance and all-asset coverage validated.');
 
 for(const isin of ['IE00BFMXYX26','IE00BK5BQZ41','IE00BKX55R35']) {

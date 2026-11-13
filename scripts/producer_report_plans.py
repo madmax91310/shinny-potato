@@ -117,11 +117,14 @@ def build_plan(producer, args, report_stem=None, module=None):
     elif producer=='update_inflation':add('inflation:011814631','011814631',['INSEE consumer-price annual rates','source period'])
     elif producer=='update_bitcoin_monthly':add('history:bitcoin-yahoo','BTC-USD',['monthly close','daily month-end crosscheck','USD','unadjusted cryptocurrency price'])
     elif producer=='collect_lifestrategy':
-        for _,_,isin in mod().CONFIG:add(isin,isin,['fund characteristics','asset allocation','full holdings','fieldQualification'])
+        for _,_,isin in mod().CONFIG:add(isin,isin,['fund characteristics','asset allocation','full holdings','fieldQualification','exact held-fund identities and original NAV weights'])
     elif producer=='collect_qualified_exposures':
         for c in cfg('qualified-exposure-sources'):
             selected=not only or c['id']in only
             add(c['isin'],c['isin'],['countries','sectors','holdings','aum','identity'],selected,'Outside qualified-exposure selection'if not selected else None)
+            if c.get('allocationFallback')=='exact-defence-physical-book':
+                for field in ('countries','sectors'):
+                    add('qualified-primary:'+c['isin']+':'+field,c['isin'],[field+'-primary'],selected,'Outside qualified-exposure selection'if not selected else None)
     elif producer=='collect_dca_equities':
         for key,isin in read('scripts/dca-equity-identities.json').items():add('dca-equity:'+key,isin,['country of risk','sector'])
     elif producer=='collect_dca_complete_holdings':
@@ -131,7 +134,7 @@ def build_plan(producer, args, report_stem=None, module=None):
             add('dca-holdings:'+isin,isin,['complete economic holdings','security identities','weights','asOf'],not only or isin in only,'Outside requested holdings selection'if only and isin not in only else None,
                 **({'phase':'validation','sourceAttempted':False}if derived else{}))
     elif producer=='collect_vanguard_sleeves':
-        for c in mod().SOURCES:add('vanguard-underlier:'+c[1],c[1],['countries','sectors','factsheet/API identity'])
+        for c in mod().SOURCES:add('vanguard-underlier:'+c[1],c[1],['countries','sectors','factsheet/API identity'],not only or c[1]in only,'Outside requested underlying-share selection'if only and c[1]not in only else None)
     elif producer=='collect_exposure_sleeves':
         m=mod()
         for isin in m.FUNDS.values():add('exposure-sleeve:'+isin,isin,['economic country/sector classification'])
@@ -143,9 +146,10 @@ def build_plan(producer, args, report_stem=None, module=None):
             selected=not only or c['id']in only
             add('anniversary-'+c['id'],c.get('isin',c['id']),['dated closing level',c.get('field','close'),c.get('currency','')],
                 selected,'Outside explicit anniversary selection'if not selected else None)
-        # The native collector always validates the existing EUR gold derivation,
-        # including in targeted mode; this is not a new external source control.
-        add('anniversary-or','or',['derived EUR gold level; no new source control'])
+        # Targeted mode returns before the local gold derivation. Preserve its
+        # identity without inventing an attempt or closing its earlier incident.
+        add('anniversary-or','or',['derived EUR gold level; no new source control'],
+            not only,'Local gold derivation is outside explicit anniversary selection'if only else None)
     elif producer=='refresh_anniversary_indices':
         for c in mod().configurations():add('anniversary-index-'+c['id'],c['id'],['completed official monthly index levels',c.get('currency','USD')])
     elif producer=='collect_instrument_metadata':

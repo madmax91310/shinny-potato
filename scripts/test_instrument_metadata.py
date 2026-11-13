@@ -82,6 +82,24 @@ class MetadataTests(unittest.TestCase):
         wrong=json.loads(body)
         wrong['pdpResult']['pageSections']['keyFacts']['accordionItems'][0]['listBundle'][0]['items'][0]['value']=self.ISIN
         with self.assertRaises(ValueError):parse_listings(json.dumps(wrong).encode(),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
+    def test_dws_existing_issuer_alias_renews_only_its_exact_api_listing_rows(self):
+        from pathlib import Path
+        from copy import deepcopy
+        body=Path(__file__).with_name('fixtures').joinpath('official-documents','dws-exact-share.json').read_bytes()
+        isin='IE00BLNMYC90';source={'isin':isin};path='/api/pdp/en-gb/etf/'+isin+'/pdpMetaTagsTealium'
+        original=parse_listings(body,source,'https://etf.dws.com'+path,'2026-11-11')
+        alias=parse_listings(body,source,'https://etf.deutsche-am.com'+path,'2026-11-11')
+        fields=['mic','ticker','currency','symbol','evidenceId','sha256','checkedAt']
+        self.assertTrue(alias)
+        self.assertEqual([{k:r[k]for k in fields}for r in alias],[{k:r[k]for k in fields}for r in original])
+        self.assertTrue(all(r['sourceUrl']=='https://etf.deutsche-am.com'+path for r in alias))
+        for url in ['https://etf.deutsche-am.com.evil.example'+path,'https://etf.deutsche-am.com/document',
+                    'https://etf.deutsche-am.com'+path.replace(isin,self.ISIN),
+                    'https://etf.deutsche-am.com'+path+'?isin='+self.ISIN]:
+            self.assertEqual(parse_listings(body,source,url,'2026-11-11'),[],url)
+        wrong=json.loads(body);wrong['pdpResult']['pageSections']['keyFacts']['accordionItems'][0]['listBundle'][0]['items'][0]['value']=self.ISIN
+        with self.assertRaises(ValueError):parse_listings(json.dumps(wrong).encode(),source,'https://etf.deutsche-am.com'+path,'2026-11-11')
+
     def test_dws_collateral_and_recommendations_cannot_change_product_listings(self):
         from pathlib import Path
         from copy import deepcopy

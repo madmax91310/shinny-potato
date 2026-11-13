@@ -16514,6 +16514,51 @@
         "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
         "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html"
       ]
+    },
+    {
+      "id": "etfDE000A27Z304Paris",
+      "label": "Bitwise Physical Bitcoin ETP · Paris",
+      "isin": "DE000A27Z304",
+      "ticker": "BTCE",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "BTCE.PA",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "DE000A27Z304-XPAR-BTCE-EUR",
+      "instrumentType": "ETN",
+      "method": "Cours de la part exacte sur Euronext Paris en EUR, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo ; cotation ouverte le 1er juin 2021, distincte de Xetra",
+      "collectAnniversary": true,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2021-06",
+      "verifyMonthlyDisagreements": true,
+      "dailyWindowMonths": [],
+      "timezone": "Europe/Paris"
+    },
+    {
+      "id": "etcPalladiumMarket",
+      "label": "iShares Physical Palladium (IPDM) · cours Londres",
+      "isin": "IE00B4556L06",
+      "ticker": "IPDM",
+      "mic": "XLON",
+      "currency": "USD",
+      "parser": "yahoo",
+      "symbol": "IPDM.L",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE00B4556L06-XLON-IPDM-USD",
+      "instrumentType": "ETC",
+      "method": "Cours de la cotation exacte IPDM sur Londres en USD, ajustés des opérations sur titres ; dernière séance mensuelle recoupée avec la bougie mensuelle et les fenêtres quotidiennes nécessaires ; distincts de la NAV et du niveau réinvesti officiels. Aucun historique avant mai2011.",
+      "collectAnniversary": false,
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2011-05",
+      "verifyMonthlyDisagreements": true,
+      "dailyWindowMonths": [],
+      "timezone": "Europe/London",
+      "anniversaryAvailable": false
     }
   ]
 }

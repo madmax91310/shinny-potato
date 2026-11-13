@@ -384,6 +384,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
+      - run: python -m unittest discover -s scripts -p 'test_qualified_physical_allocation.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_share_nav.py'
@@ -532,7 +533,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - id: portable-engines
         run: node scripts/browser-portability-engines.mjs ${{ matrix.shard }} 4
@@ -542,7 +543,7 @@ jobs:
           path: |
             ~/.cache/ms-playwright/firefox-*
             ~/.cache/ms-playwright/webkit-*
-          key: portable-engines-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
+          key: portable-engines-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - if: steps.portable-engines.outputs.extra == 'true'
         run: npx playwright install --with-deps firefox webkit
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
@@ -591,7 +592,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-exposure-scope.mjs
       - uses: actions/upload-artifact@v7.0.1
@@ -633,7 +634,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: node scripts/smoke-data-routes.mjs
 
@@ -802,7 +803,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: node scripts/smoke-data-routes.mjs
       - uses: actions/configure-pages@v6.0.0

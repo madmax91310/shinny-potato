@@ -1,9 +1,15 @@
+import TOOL_SUMMARIES from './data/tool-summaries.json' with {type: 'json'}
+import ETF_FLOW_TOOL from './data/etf-flows-tool.json' with {type: 'json'}
 import { publicationLabel } from './data/editorial-calendar.js'
 import { INVESTORS } from './data/investor-roster.js'
 // Registre central des outils : source unique pour le dashboard, la nav et les routes.
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  ETF_FLOW_TOOL,
+  { to: '/comparateur-indices', title: 'Comparateur d’indices',
+    icon: '📐', accent: '#38bdf8',
+    description: 'Compare deux indices : expositions, règles de sélection, performances et ETF associés.', status: 'disponible' },
   { to: '/idees-classements', title: 'Idées de publications',
     icon: '📝', accent: '#2458d3',
     description: 'Tes classements et des sujets d’argent au quotidien, avec leurs angles. Recherche, catégories et copie pour écrire toi-même.', status: 'disponible' },
@@ -151,45 +157,19 @@ export const TOOLS = [
   },
 ].map(tool => ({ ...tool, navLabel: tool.title, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
-const TOOL_SUMMARIES = {
-  '/idees-classements': 'Classements, épargne, logement et vie quotidienne : des sujets et des angles pour tes publications.',
-  '/hey-grok': 'Choisis une question concrète, adapte-la ou crée la tienne.',
-  '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
-  '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',
-  '/le-budget-de': 'Le budget d’une personne ou d’un foyer, avec ses dépenses, son texte et son image.',
-  '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
-  '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
-  '/presentations': 'Un acteur, son offre et ce que tu détiens réellement.',
-  '/comparatif-courtiers': 'Frais, PEA et services des courtiers en face à face.',
-  '/calculateur-investissement': 'Ce que serait devenu ton investissement au fil du temps.',
-  '/generateur-portefeuilles': 'Explore des allocations selon le profil et le risque.',
-  '/duels-portefeuilles': 'Deux portefeuilles, deux façons d’investir.',
-  '/portefeuilles-investisseurs': 'Les positions déclarées de grands investisseurs.',
-  '/fiche-lexique': 'Un terme financier expliqué avec un texte prêt à publier.',
-  '/comparatif-etf': 'Compare les expositions, frais et performances de deux ETF.',
-  '/il-y-a-x-ans': 'Compare un prix historique au dernier niveau automatique disponible, avec saisie manuelle facultative.',
-  '/performance-depuis': 'Les performances annuelles d’un actif sur la période choisie.',
-  '/pouvoir-achat': 'Mesure l’évolution du pouvoir d’achat sur la période choisie.',
-  '/dilemme': 'Deux choix de placement pour ouvrir la discussion.',
-  '/fiches-etf': 'Un ETF expliqué, avec son texte et ses visuels.',
-  '/tweets-factsheets': 'Décrypte la composition et les caractéristiques des indices.',
-  '/faits-marquants-marches': 'Des histoires de marchés documentées, prêtes à publier.',
-  '/france-100-menages': 'Le patrimoine et les revenus en chiffres et en images.',
-  '/banque-tweets': 'Retrouve tes publications et prépare leur réutilisation.',
-  '/bibliotheque-donnees': 'Recherche un actif, ses chiffres et ses sources.',
-  '/donnees-a-revoir': 'Les données à actualiser et leurs prochaines échéances.',
-}
 
 // Les mêmes groupes alimentent l’accueil et la navigation.
 export const TOOL_GROUPS = [
-  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/comparatif-courtiers', '/calculateur-investissement'] },
+  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/comparateur-indices', '/classements-performances', '/comparatif-courtiers', '/calculateur-investissement'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/le-budget-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/idees-classements', '/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/flux-etf', '/idees-classements', '/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })).filter(tool => !tool.hidden) }))
 
 // Publication order for the home screen, followed by occasional and maintenance tools.
 export const WEEKLY_ORDER = [
+  '/flux-etf',
+  '/comparateur-indices',
   '/idees-classements',
   '/radar-editorial', '/fiches-pratiques',
   '/comparatif-etf', '/fiche-lexique', '/tweets-factsheets',

@@ -1,0 +1,36 @@
+name: Validate CI runtime setup
+on:
+  pull_request:
+    paths:
+      - 'scripts/ensure-ci-runtime.sh'
+      - 'scripts/test_ci_runtime.py'
+      - '.github/workflows/validate-ci-runtime.yml'
+      - '.github/workflows/publish-validated-data.yml'
+      - '.github/workflows/update-exposure-expansion.yml'
+      - 'package-lock.json'
+permissions:
+  contents: read
+jobs:
+  runtime:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-26.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: bash -n scripts/ensure-ci-runtime.sh
+      - run: python -m unittest discover -s scripts -p 'test_ci_runtime.py'
+      - run: npm ci
+      - run: bash scripts/ensure-ci-runtime.sh poppler
+      - name: Exercise the preserved helper with the locked browser
+        run: |
+          cp scripts/ensure-ci-runtime.sh "$RUNNER_TEMP/ensure-ci-runtime.sh"
+          bash "$RUNNER_TEMP/ensure-ci-runtime.sh" chromium

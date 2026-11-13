@@ -144,6 +144,10 @@ class WorkflowContracts(unittest.TestCase):
             refresh = workflow.split('  refresh:\n')[1].split('  deploy:\n')[0]
             self.assertNotIn('run: exit 1', refresh)
             failures = "steps.collect.outcome == 'failure'"
+            if filename == 'update-lifestrategy.yml':
+                failures += " || steps.held_share.outcome == 'failure' || steps.held_classifications.outcome == 'failure' || steps.lookthrough.outcome == 'failure'"
+                for phase in ['held_share','held_classifications','lookthrough']:
+                    self.assertIn("id: "+phase+"\n        continue-on-error: ${{ github.event_name != 'pull_request' }}",refresh)
             if filename == 'update-qualified-exposures.yml':
                 failures += " || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' || steps.sleeves.outcome == 'failure' || steps.underliers.outcome == 'failure' || steps.identifiers.outcome == 'failure'"
                 for phase in ['sleeves','underliers']:
@@ -182,7 +186,10 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn(required,workflow)
         self.assertLess(workflow.index('npm run build'),workflow.index('hash-object'))
         self.assertLess(workflow.index('hash-object'),workflow.index('smoke-data-routes.mjs'))
-        self.assertLess(workflow.index('smoke-data-routes.mjs'),workflow.index('uses: actions/deploy-pages@'))
+        self.assertLess(workflow.index('smoke-data-routes.mjs'),workflow.index('node scripts/deploy-validated-pages.mjs'))
+        self.assertLess(workflow.index('node scripts/deploy-validated-pages.mjs'),workflow.index('node scripts/verify-pages-publication.mjs'))
+        self.assertIn('PAGES_ARTIFACT_ID: ${{ steps.pages_artifact.outputs.artifact_id }}',workflow)
+        self.assertIn('PAGES_DATA_SHA: ${{ steps.compose.outputs.data_sha }}',workflow)
         self.assertIn("if: steps.order.outputs.current == 'true'",workflow)
         self.assertIn("steps.producer.outcome == 'failure'",workflow)
         self.assertIn("if: needs.publish.outputs.needs_code == 'true'",workflow)

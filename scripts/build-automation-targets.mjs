@@ -74,7 +74,10 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const url=r.sourceUrl??''
  const share=issuerShares.get(isin)
  const method=r.characteristics?.replicationMethod??facts.replicationMethod??''
- if(!hasPhysicalPortfolio(method,facts.replicationMethod??'',{issuer:share?.expansionKind}))continue
+ if(!hasPhysicalPortfolio(method,facts.replicationMethod??'',{
+  issuer:share?.parser==='ishares'?'ishares':share?.expansionKind,
+  productStructure:r.characteristics?.productStructure
+ }))continue
  if(['IE00BMVB5K07','IE00BMVB5M21','IE00BMVB5P51','IE00BMVB5R75'].includes(isin))holdings[isin]={isin,name,currency:'EUR',parser:'lifestrategy-lookthrough'}
  else if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={isin,name,url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
  // A fund total may be displayed in another currency; it cannot identify a share.
@@ -101,7 +104,8 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
 for(const [isin,productCode,name]of [
  ['IE00BFMXYX26',9674,'Vanguard FTSE Japan UCITS ETF (USD) Accumulating'],
  ['IE00BK5BQZ41',9676,'Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating'],
- ['IE00BKX55R35',9523,'Vanguard FTSE North America UCITS ETF']])
+ ['IE00BKX55R35',9523,'Vanguard FTSE North America UCITS ETF'],
+ ['IE00BK5BQW10',9680,'Vanguard FTSE North America UCITS ETF (USD) Accumulating']])
  holdings[isin]={isin,name,productCode,currency:'USD',parser:'vanguard-complete',catalog:false}
 writeFileSync('scripts/generated-holdings-sources.json',JSON.stringify(holdings,null,2)+'\n')
 writeFileSync('scripts/instrument-metadata-sources.json',JSON.stringify({instruments:metadata},null,2)+'\n')

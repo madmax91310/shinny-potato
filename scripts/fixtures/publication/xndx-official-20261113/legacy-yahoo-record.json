@@ -1,0 +1,23 @@
+{
+  "value": 33914.578125,
+  "asOf": "2026-11-10",
+  "currency": "USD",
+  "parser": "yahoo",
+  "symbol": "^XNDX",
+  "indexCode": null,
+  "variant": "TOTAL",
+  "sourceUrl": "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false",
+  "sha256": "bf9f046dee76c1534d12755820e8564ae744ea1e3a9face4da19882b8125d28d",
+  "method": "Clôture XNDX Total Return USD, dividendes bruts réinvestis ; réponses quotidiennes concordantes sur deux hôtes Yahoo et séance terminée",
+  "maxAgeDays": 7,
+  "sourceUrls": [
+    "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false",
+    "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=1d&interval=1d&includePrePost=false"
+  ],
+  "sourceHashes": {
+    "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false": "477aab09bf0a501ba87a514be97a3d9e0913893c93ae3d70aa0553cc0bd02f03",
+    "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=1d&interval=1d&includePrePost=false": "cfbf9861d3a125d9f327f73eada506f06cc859dfdce2b18358f0ddd698ade6e2"
+  },
+  "quoteMethod": "supported-xndx-ranges",
+  "checkedAt": "2026-11-10T23:23:33.652606+00:00"
+}

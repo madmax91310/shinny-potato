@@ -5,13 +5,13 @@
     "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
     "currency": "EUR",
     "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-    "checkedAt": "2026-11-10",
-    "pageSha256": "d6bfd9508834ec469d9f10a1c39743d4feee5a02e3791651c188d04c90375001",
+    "checkedAt": "2026-11-13",
+    "pageSha256": "4d274145c4a44f288dd4d86b8c9393e03fa9d7c192eaa35b68ef944b3cc36b5a",
     "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2",
     "terPct": 0.25,
     "characteristics": {
       "terPct": 0.25,
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
       "listings": [
         {
@@ -21,7 +21,7 @@
           "currency": "EUR",
           "symbol": "V20A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
-          "checkedAt": "2026-11-10",
+          "checkedAt": "2026-11-13",
           "evidenceId": "IE00BMVB5K07-XETR-V20A-EUR",
           "excerpt": "IE00BMVB5K07 | Deutsche Börse | EUR | V20A | V20A.DE"
         }
@@ -36,13 +36,13 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
       "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
     },
     "holdings": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
       "basis": "fund",
       "rows": [
@@ -82,11 +82,12 @@
           "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
           "weightPct": 0.1
         }
-      ]
+      ],
+      "weightBasis": "issuer-reported-rounded-underlying-allocation"
     },
     "assetAllocation": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
       "basis": "fund",
       "rows": [
@@ -117,14 +118,14 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "51e687c3ca3ec939a2e5017433ef00a0170ed95a8797257b9883442823ba171c",
-      "checkedAt": "2026-11-10"
+      "checkedAt": "2026-11-13"
     },
     "fieldQualification": {
       "countries": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-        "sha256": "d6bfd9508834ec469d9f10a1c39743d4feee5a02e3791651c188d04c90375001",
+        "sha256": "4d274145c4a44f288dd4d86b8c9393e03fa9d7c192eaa35b68ef944b3cc36b5a",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -137,9 +138,9 @@
       },
       "sectors": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-        "sha256": "d6bfd9508834ec469d9f10a1c39743d4feee5a02e3791651c188d04c90375001",
+        "sha256": "4d274145c4a44f288dd4d86b8c9393e03fa9d7c192eaa35b68ef944b3cc36b5a",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -154,7 +155,274 @@
     "unavailable": [
       "countries: no qualified whole-fund look-through",
       "sectors: asset allocation is not an equity sector table"
-    ]
+    ],
+    "underlyingHoldings": {
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "0088874038d818dbc548b6bf9d9c49f8e6500d2f9d68af4af59163bde3b339cb",
+      "subjectIsin": "IE00BMVB5K07",
+      "weightBasis": "original-fund-nav-percentage",
+      "complete": true,
+      "sourceRowCount": 13,
+      "publishedNetWeightPct": 100.0,
+      "rows": [
+        {
+          "isin": "IE00BK5BQT80",
+          "name": "Vanguard FTSE All-World UCITS ETF",
+          "weightPct": 19.43583,
+          "assetCategory": "Actions",
+          "sedol": "BK5XTF1"
+        },
+        {
+          "isin": "IE00BMX0B631",
+          "name": "Vanguard USD Treasury Bond UCITS ETF",
+          "weightPct": 19.17569,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTB8"
+        },
+        {
+          "isin": "IE00BG47KH54",
+          "name": "Vanguard Global Aggregate Bond UCITS ETF",
+          "weightPct": 19.01107,
+          "assetCategory": "Obligations",
+          "sedol": "BK5BFR9"
+        },
+        {
+          "isin": "IE00BH04GL39",
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+          "weightPct": 16.1597,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJMY4"
+        },
+        {
+          "isin": "IE00BGYWFL94",
+          "name": "Vanguard USD Corporate Bond UCITS ETF",
+          "weightPct": 16.10672,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTC9"
+        },
+        {
+          "isin": "IE00BGYWT403",
+          "name": "Vanguard EUR Corporate Bond UCITS ETF",
+          "weightPct": 5.92958,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJNJ6"
+        },
+        {
+          "isin": "IE00BMX0B524",
+          "name": "Vanguard U.K. Gilt UCITS ETF",
+          "weightPct": 3.23292,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRT85"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "name": "Vanguard FTSE Developed World UCITS ETF",
+          "weightPct": 0.80717,
+          "assetCategory": "Actions",
+          "sedol": "BJGTN15"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF",
+          "weightPct": 0.12121,
+          "assetCategory": "Actions",
+          "sedol": "BJGTNT3"
+        }
+      ],
+      "nonFundPositions": [
+        {
+          "securityLongDescription": "08A34420HI3SL4OV",
+          "marketValuePercentage": 0.19452,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "US Dollar",
+          "marketValuePercentage": 0.01525,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "Euro",
+          "marketValuePercentage": 0.00486,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "08A34420HI3SL4OV",
+          "marketValuePercentage": -0.19452,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        }
+      ],
+      "assetAllocationChecks": {
+        "Actions": {
+          "originalNavWeightPct": 20.36421,
+          "publishedDisplayPct": 20.36
+        },
+        "Obligations": {
+          "originalNavWeightPct": 79.61568,
+          "publishedDisplayPct": 79.62
+        },
+        "Liquidités": {
+          "originalNavWeightPct": 0.02011,
+          "publishedDisplayPct": 0.02
+        }
+      },
+      "normalizationApplied": false,
+      "sourceResponse": {
+        "data": {
+          "funds": [
+            {
+              "profile": {
+                "portId": "9490",
+                "fundCurrency": "EUR",
+                "etfReplicationMethodology": "Physical",
+                "assetClassificationLevel1": "Balanced/Diversified",
+                "identifiers": [
+                  {
+                    "altId": "ISIN",
+                    "altIdValue": "IE00BMVB5K07"
+                  }
+                ]
+              }
+            }
+          ],
+          "borHoldings": [
+            {
+              "holdings": {
+                "items": [
+                  {
+                    "securityLongDescription": "Vanguard FTSE All-World UCITS ETF",
+                    "marketValuePercentage": 19.43583,
+                    "sedol1": "BK5XTF1",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQT80"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Treasury Bond UCITS ETF",
+                    "marketValuePercentage": 19.17569,
+                    "sedol1": "BJJRTB8",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B631"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard Global Aggregate Bond UCITS ETF",
+                    "marketValuePercentage": 19.01107,
+                    "sedol1": "BK5BFR9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BG47KH54"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+                    "marketValuePercentage": 16.1597,
+                    "sedol1": "BGMJMY4",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BH04GL39"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 16.10672,
+                    "sedol1": "BJJRTC9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWFL94"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 5.92958,
+                    "sedol1": "BGMJNJ6",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWT403"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard U.K. Gilt UCITS ETF",
+                    "marketValuePercentage": 3.23292,
+                    "sedol1": "BJJRT85",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B524"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed World UCITS ETF",
+                    "marketValuePercentage": 0.80717,
+                    "sedol1": "BJGTN15",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQV03"
+                  },
+                  {
+                    "securityLongDescription": "08A34420HI3SL4OV",
+                    "marketValuePercentage": 0.19452,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Emerging Markets UCITS ETF",
+                    "marketValuePercentage": 0.12121,
+                    "sedol1": "BJGTNT3",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BR733"
+                  },
+                  {
+                    "securityLongDescription": "US Dollar",
+                    "marketValuePercentage": 0.01525,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "Euro",
+                    "marketValuePercentage": 0.00486,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "08A34420HI3SL4OV",
+                    "marketValuePercentage": -0.19452,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  }
+                ],
+                "totalHoldings": 13,
+                "lastItemKey": null
+              }
+            }
+          ]
+        }
+      },
+      "method": "Complete same-date issuer fund portfolio, exact held share ISINs and original fund-NAV weights; cash and signed settlement positions retained. Published 2dp asset allocation corroborated separately. Not a whole-fund company look-through or the rounded PDF allocation table."
+    },
+    "underlyingHoldingsQualification": {
+      "status": "qualified",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "asOf": "2026-09-30"
+    }
   },
   "IE00BMVB5M21": {
     "id": "lifestrategy40",
@@ -162,13 +430,13 @@
     "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
     "currency": "EUR",
     "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-    "checkedAt": "2026-11-10",
-    "pageSha256": "1abb716b91a904164ae4974e6a947faef40391a91e2773a9dd2ae0a80f37c415",
+    "checkedAt": "2026-11-13",
+    "pageSha256": "0c6fa3f29722bf095533b41e085b1912b794f6bc214ba6899b42484c5dce726c",
     "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9",
     "terPct": 0.25,
     "characteristics": {
       "terPct": 0.25,
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
       "listings": [
         {
@@ -178,7 +446,7 @@
           "currency": "EUR",
           "symbol": "V40A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
-          "checkedAt": "2026-11-10",
+          "checkedAt": "2026-11-13",
           "evidenceId": "IE00BMVB5M21-XETR-V40A-EUR",
           "excerpt": "IE00BMVB5M21 | Deutsche Börse | EUR | V40A | V40A.DE"
         }
@@ -193,13 +461,13 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
       "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
     },
     "holdings": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
       "basis": "fund",
       "rows": [
@@ -239,11 +507,12 @@
           "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
           "weightPct": 1.9
         }
-      ]
+      ],
+      "weightBasis": "issuer-reported-rounded-underlying-allocation"
     },
     "assetAllocation": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
       "basis": "fund",
       "rows": [
@@ -274,14 +543,14 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "6bb0e094ab37ff138af588b65421180bc5c80059f6db431219334a4cf51350fc",
-      "checkedAt": "2026-11-10"
+      "checkedAt": "2026-11-13"
     },
     "fieldQualification": {
       "countries": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-        "sha256": "1abb716b91a904164ae4974e6a947faef40391a91e2773a9dd2ae0a80f37c415",
+        "sha256": "0c6fa3f29722bf095533b41e085b1912b794f6bc214ba6899b42484c5dce726c",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -294,9 +563,9 @@
       },
       "sectors": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-        "sha256": "1abb716b91a904164ae4974e6a947faef40391a91e2773a9dd2ae0a80f37c415",
+        "sha256": "0c6fa3f29722bf095533b41e085b1912b794f6bc214ba6899b42484c5dce726c",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -311,7 +580,274 @@
     "unavailable": [
       "countries: no qualified whole-fund look-through",
       "sectors: asset allocation is not an equity sector table"
-    ]
+    ],
+    "underlyingHoldings": {
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "379d64209e7dff81a07353c633393076c34f8899a9fe86b93527a256f9b12f93",
+      "subjectIsin": "IE00BMVB5M21",
+      "weightBasis": "original-fund-nav-percentage",
+      "complete": true,
+      "sourceRowCount": 13,
+      "publishedNetWeightPct": 100.0,
+      "rows": [
+        {
+          "isin": "IE00BK5BQT80",
+          "name": "Vanguard FTSE All-World UCITS ETF",
+          "weightPct": 19.45166,
+          "assetCategory": "Actions",
+          "sedol": "BK5XTF1"
+        },
+        {
+          "isin": "IE00BG47KH54",
+          "name": "Vanguard Global Aggregate Bond UCITS ETF",
+          "weightPct": 19.23916,
+          "assetCategory": "Obligations",
+          "sedol": "BK5BFR9"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "name": "Vanguard FTSE Developed World UCITS ETF",
+          "weightPct": 18.70258,
+          "assetCategory": "Actions",
+          "sedol": "BJGTN15"
+        },
+        {
+          "isin": "IE00BMX0B631",
+          "name": "Vanguard USD Treasury Bond UCITS ETF",
+          "weightPct": 15.23737,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTB8"
+        },
+        {
+          "isin": "IE00BGYWFL94",
+          "name": "Vanguard USD Corporate Bond UCITS ETF",
+          "weightPct": 9.85062,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTC9"
+        },
+        {
+          "isin": "IE00BH04GL39",
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+          "weightPct": 9.81945,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJMY4"
+        },
+        {
+          "isin": "IE00BGYWT403",
+          "name": "Vanguard EUR Corporate Bond UCITS ETF",
+          "weightPct": 3.64869,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJNJ6"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF",
+          "weightPct": 2.07208,
+          "assetCategory": "Actions",
+          "sedol": "BJGTNT3"
+        },
+        {
+          "isin": "IE00BMX0B524",
+          "name": "Vanguard U.K. Gilt UCITS ETF",
+          "weightPct": 1.92013,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRT85"
+        }
+      ],
+      "nonFundPositions": [
+        {
+          "securityLongDescription": "T12N8LIVE2CEGL4B",
+          "marketValuePercentage": 1.15725,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "Euro",
+          "marketValuePercentage": 0.05652,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "US Dollar",
+          "marketValuePercentage": 0.00173,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "T12N8LIVE2CEGL4B",
+          "marketValuePercentage": -1.15724,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        }
+      ],
+      "assetAllocationChecks": {
+        "Actions": {
+          "originalNavWeightPct": 40.22632,
+          "publishedDisplayPct": 40.23
+        },
+        "Obligations": {
+          "originalNavWeightPct": 59.71542,
+          "publishedDisplayPct": 59.71
+        },
+        "Liquidités": {
+          "originalNavWeightPct": 0.05826,
+          "publishedDisplayPct": 0.06
+        }
+      },
+      "normalizationApplied": false,
+      "sourceResponse": {
+        "data": {
+          "funds": [
+            {
+              "profile": {
+                "portId": "9492",
+                "fundCurrency": "EUR",
+                "etfReplicationMethodology": "Physical",
+                "assetClassificationLevel1": "Balanced/Diversified",
+                "identifiers": [
+                  {
+                    "altId": "ISIN",
+                    "altIdValue": "IE00BMVB5M21"
+                  }
+                ]
+              }
+            }
+          ],
+          "borHoldings": [
+            {
+              "holdings": {
+                "items": [
+                  {
+                    "securityLongDescription": "Vanguard FTSE All-World UCITS ETF",
+                    "marketValuePercentage": 19.45166,
+                    "sedol1": "BK5XTF1",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQT80"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard Global Aggregate Bond UCITS ETF",
+                    "marketValuePercentage": 19.23916,
+                    "sedol1": "BK5BFR9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BG47KH54"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed World UCITS ETF",
+                    "marketValuePercentage": 18.70258,
+                    "sedol1": "BJGTN15",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQV03"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Treasury Bond UCITS ETF",
+                    "marketValuePercentage": 15.23737,
+                    "sedol1": "BJJRTB8",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B631"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 9.85062,
+                    "sedol1": "BJJRTC9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWFL94"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+                    "marketValuePercentage": 9.81945,
+                    "sedol1": "BGMJMY4",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BH04GL39"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 3.64869,
+                    "sedol1": "BGMJNJ6",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWT403"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Emerging Markets UCITS ETF",
+                    "marketValuePercentage": 2.07208,
+                    "sedol1": "BJGTNT3",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BR733"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard U.K. Gilt UCITS ETF",
+                    "marketValuePercentage": 1.92013,
+                    "sedol1": "BJJRT85",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B524"
+                  },
+                  {
+                    "securityLongDescription": "T12N8LIVE2CEGL4B",
+                    "marketValuePercentage": 1.15725,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "Euro",
+                    "marketValuePercentage": 0.05652,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "US Dollar",
+                    "marketValuePercentage": 0.00173,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "T12N8LIVE2CEGL4B",
+                    "marketValuePercentage": -1.15724,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  }
+                ],
+                "totalHoldings": 13,
+                "lastItemKey": null
+              }
+            }
+          ]
+        }
+      },
+      "method": "Complete same-date issuer fund portfolio, exact held share ISINs and original fund-NAV weights; cash and signed settlement positions retained. Published 2dp asset allocation corroborated separately. Not a whole-fund company look-through or the rounded PDF allocation table."
+    },
+    "underlyingHoldingsQualification": {
+      "status": "qualified",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "asOf": "2026-09-30"
+    }
   },
   "IE00BMVB5P51": {
     "id": "lifestrategy60",
@@ -319,13 +855,13 @@
     "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
     "currency": "EUR",
     "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-    "checkedAt": "2026-11-10",
-    "pageSha256": "c238525b3cd13e122de15f27272000539ffe5091f2d7fa176d6f9e4058f91128",
+    "checkedAt": "2026-11-13",
+    "pageSha256": "ee2288e910c87317e821026c41b64aac00bc108eceda571f76708e0fbdedc93a",
     "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1",
     "terPct": 0.25,
     "characteristics": {
       "terPct": 0.25,
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
       "listings": [
         {
@@ -335,7 +871,7 @@
           "currency": "EUR",
           "symbol": "V60A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
-          "checkedAt": "2026-11-10",
+          "checkedAt": "2026-11-13",
           "evidenceId": "IE00BMVB5P51-XETR-V60A-EUR",
           "excerpt": "IE00BMVB5P51 | Deutsche Börse | EUR | V60A | V60A.DE"
         }
@@ -350,13 +886,13 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
       "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
     },
     "holdings": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
       "basis": "fund",
       "rows": [
@@ -412,11 +948,12 @@
           "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
           "weightPct": 0.9
         }
-      ]
+      ],
+      "weightBasis": "issuer-reported-rounded-underlying-allocation"
     },
     "assetAllocation": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
       "basis": "fund",
       "rows": [
@@ -447,14 +984,14 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "e8a7e71fc8f6dc50454b0399a52f2d24a150a4336bf52127330f917253c6888a",
-      "checkedAt": "2026-11-10"
+      "checkedAt": "2026-11-13"
     },
     "fieldQualification": {
       "countries": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-        "sha256": "c238525b3cd13e122de15f27272000539ffe5091f2d7fa176d6f9e4058f91128",
+        "sha256": "ee2288e910c87317e821026c41b64aac00bc108eceda571f76708e0fbdedc93a",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -467,9 +1004,9 @@
       },
       "sectors": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-        "sha256": "c238525b3cd13e122de15f27272000539ffe5091f2d7fa176d6f9e4058f91128",
+        "sha256": "ee2288e910c87317e821026c41b64aac00bc108eceda571f76708e0fbdedc93a",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -484,7 +1021,398 @@
     "unavailable": [
       "countries: no qualified whole-fund look-through",
       "sectors: asset allocation is not an equity sector table"
-    ]
+    ],
+    "underlyingHoldings": {
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "b5cb96187e7789b3b9112cb2ee489588ecdb21ca279e081a99369574a0b9ade3",
+      "subjectIsin": "IE00BMVB5P51",
+      "weightBasis": "original-fund-nav-percentage",
+      "complete": true,
+      "sourceRowCount": 21,
+      "publishedNetWeightPct": 100.0,
+      "rows": [
+        {
+          "isin": "IE00BK5BQT80",
+          "name": "Vanguard FTSE All-World UCITS ETF",
+          "weightPct": 19.22193,
+          "assetCategory": "Actions",
+          "sedol": "BK5XTF1"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "name": "Vanguard FTSE Developed World UCITS ETF",
+          "weightPct": 19.21787,
+          "assetCategory": "Actions",
+          "sedol": "BJGTN15"
+        },
+        {
+          "isin": "IE00BG47KH54",
+          "name": "Vanguard Global Aggregate Bond UCITS ETF",
+          "weightPct": 19.08946,
+          "assetCategory": "Obligations",
+          "sedol": "BK5BFR9"
+        },
+        {
+          "isin": "IE00BK5BQW10",
+          "name": "Vanguard FTSE North America UCITS ETF",
+          "weightPct": 12.70134,
+          "assetCategory": "Actions",
+          "sedol": "BJSB5N5"
+        },
+        {
+          "isin": "IE00BMX0B631",
+          "name": "Vanguard USD Treasury Bond UCITS ETF",
+          "weightPct": 7.70698,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTB8"
+        },
+        {
+          "isin": "IE00BH04GL39",
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+          "weightPct": 4.9612,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJMY4"
+        },
+        {
+          "isin": "IE00BGYWFL94",
+          "name": "Vanguard USD Corporate Bond UCITS ETF",
+          "weightPct": 4.94199,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTC9"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF",
+          "weightPct": 4.18338,
+          "assetCategory": "Actions",
+          "sedol": "BJGTNT3"
+        },
+        {
+          "isin": "IE00BK5BQX27",
+          "name": "Vanguard FTSE Developed Europe UCITS ETF",
+          "weightPct": 2.70728,
+          "assetCategory": "Actions",
+          "sedol": "BJSBDD1"
+        },
+        {
+          "isin": "IE00BGYWT403",
+          "name": "Vanguard EUR Corporate Bond UCITS ETF",
+          "weightPct": 1.77009,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJNJ6"
+        },
+        {
+          "isin": "IE00BFMXYX26",
+          "name": "Vanguard FTSE Japan UCITS ETF",
+          "weightPct": 1.24035,
+          "assetCategory": "Actions",
+          "sedol": "BJGTMW9"
+        },
+        {
+          "isin": "IE00BK5BQZ41",
+          "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+          "weightPct": 1.02237,
+          "assetCategory": "Actions",
+          "sedol": "BJGTN71"
+        },
+        {
+          "isin": "IE00BMX0B524",
+          "name": "Vanguard U.K. Gilt UCITS ETF",
+          "weightPct": 0.95025,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRT85"
+        }
+      ],
+      "nonFundPositions": [
+        {
+          "securityLongDescription": "Euro",
+          "marketValuePercentage": 0.28387,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "HSN9402D0J1KK08T",
+          "marketValuePercentage": 0.27645,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "NH6VCBDSK1NDHBRP",
+          "marketValuePercentage": 0.12077,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "QAQT22LGBKIJH2JN",
+          "marketValuePercentage": 0.07796,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "US Dollar",
+          "marketValuePercentage": 0.00106,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "QAQT22LGBKIJH2JN",
+          "marketValuePercentage": -0.07783,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "NH6VCBDSK1NDHBRP",
+          "marketValuePercentage": -0.12077,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "HSN9402D0J1KK08T",
+          "marketValuePercentage": -0.276,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        }
+      ],
+      "assetAllocationChecks": {
+        "Actions": {
+          "originalNavWeightPct": 60.29452,
+          "publishedDisplayPct": 60.29
+        },
+        "Obligations": {
+          "originalNavWeightPct": 39.41997,
+          "publishedDisplayPct": 39.42
+        },
+        "Liquidités": {
+          "originalNavWeightPct": 0.28551,
+          "publishedDisplayPct": 0.29
+        }
+      },
+      "normalizationApplied": false,
+      "sourceResponse": {
+        "data": {
+          "funds": [
+            {
+              "profile": {
+                "portId": "9494",
+                "fundCurrency": "EUR",
+                "etfReplicationMethodology": "Physical",
+                "assetClassificationLevel1": "Balanced/Diversified",
+                "identifiers": [
+                  {
+                    "altId": "ISIN",
+                    "altIdValue": "IE00BMVB5P51"
+                  }
+                ]
+              }
+            }
+          ],
+          "borHoldings": [
+            {
+              "holdings": {
+                "items": [
+                  {
+                    "securityLongDescription": "Vanguard FTSE All-World UCITS ETF",
+                    "marketValuePercentage": 19.22193,
+                    "sedol1": "BK5XTF1",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQT80"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed World UCITS ETF",
+                    "marketValuePercentage": 19.21787,
+                    "sedol1": "BJGTN15",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQV03"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard Global Aggregate Bond UCITS ETF",
+                    "marketValuePercentage": 19.08946,
+                    "sedol1": "BK5BFR9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BG47KH54"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE North America UCITS ETF",
+                    "marketValuePercentage": 12.70134,
+                    "sedol1": "BJSB5N5",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQW10"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Treasury Bond UCITS ETF",
+                    "marketValuePercentage": 7.70698,
+                    "sedol1": "BJJRTB8",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B631"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+                    "marketValuePercentage": 4.9612,
+                    "sedol1": "BGMJMY4",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BH04GL39"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 4.94199,
+                    "sedol1": "BJJRTC9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWFL94"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Emerging Markets UCITS ETF",
+                    "marketValuePercentage": 4.18338,
+                    "sedol1": "BJGTNT3",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BR733"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed Europe UCITS ETF",
+                    "marketValuePercentage": 2.70728,
+                    "sedol1": "BJSBDD1",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQX27"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 1.77009,
+                    "sedol1": "BGMJNJ6",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWT403"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Japan UCITS ETF",
+                    "marketValuePercentage": 1.24035,
+                    "sedol1": "BJGTMW9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BFMXYX26"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+                    "marketValuePercentage": 1.02237,
+                    "sedol1": "BJGTN71",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQZ41"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard U.K. Gilt UCITS ETF",
+                    "marketValuePercentage": 0.95025,
+                    "sedol1": "BJJRT85",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B524"
+                  },
+                  {
+                    "securityLongDescription": "Euro",
+                    "marketValuePercentage": 0.28387,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "HSN9402D0J1KK08T",
+                    "marketValuePercentage": 0.27645,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "NH6VCBDSK1NDHBRP",
+                    "marketValuePercentage": 0.12077,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "QAQT22LGBKIJH2JN",
+                    "marketValuePercentage": 0.07796,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "US Dollar",
+                    "marketValuePercentage": 0.00106,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "QAQT22LGBKIJH2JN",
+                    "marketValuePercentage": -0.07783,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "NH6VCBDSK1NDHBRP",
+                    "marketValuePercentage": -0.12077,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "HSN9402D0J1KK08T",
+                    "marketValuePercentage": -0.276,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  }
+                ],
+                "totalHoldings": 21,
+                "lastItemKey": null
+              }
+            }
+          ]
+        }
+      },
+      "method": "Complete same-date issuer fund portfolio, exact held share ISINs and original fund-NAV weights; cash and signed settlement positions retained. Published 2dp asset allocation corroborated separately. Not a whole-fund company look-through or the rounded PDF allocation table."
+    },
+    "underlyingHoldingsQualification": {
+      "status": "qualified",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "asOf": "2026-09-30"
+    }
   },
   "IE00BMVB5R75": {
     "id": "lifestrategy80",
@@ -492,13 +1420,13 @@
     "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
     "currency": "EUR",
     "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-    "checkedAt": "2026-11-10",
-    "pageSha256": "01d63b25c78e4461a92935e3366a71728b686351839d42f35192d76cfc1b47bd",
+    "checkedAt": "2026-11-13",
+    "pageSha256": "95f752be5582129c1a10a9b41743228fcab19f34d8351dfdaa3ca5ece359ff9b",
     "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6",
     "terPct": 0.25,
     "characteristics": {
       "terPct": 0.25,
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
       "listings": [
         {
@@ -508,7 +1436,7 @@
           "currency": "EUR",
           "symbol": "V80A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
-          "checkedAt": "2026-11-10",
+          "checkedAt": "2026-11-13",
           "evidenceId": "IE00BMVB5R75-XETR-V80A-EUR",
           "excerpt": "IE00BMVB5R75 | Deutsche Börse | EUR | V80A | V80A.DE"
         }
@@ -523,13 +1451,13 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
       "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
     },
     "holdings": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
       "basis": "fund",
       "rows": [
@@ -589,11 +1517,12 @@
           "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
           "weightPct": 0.0
         }
-      ]
+      ],
+      "weightBasis": "issuer-reported-rounded-underlying-allocation"
     },
     "assetAllocation": {
       "asOf": "2026-09-30",
-      "checkedAt": "2026-11-10",
+      "checkedAt": "2026-11-13",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
       "basis": "fund",
       "rows": [
@@ -624,14 +1553,14 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "9ce7d87c257a0db646d71982f7b919710796ba93c076ac4999cd716a87f2e8f0",
-      "checkedAt": "2026-11-10"
+      "checkedAt": "2026-11-13"
     },
     "fieldQualification": {
       "countries": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-        "sha256": "01d63b25c78e4461a92935e3366a71728b686351839d42f35192d76cfc1b47bd",
+        "sha256": "95f752be5582129c1a10a9b41743228fcab19f34d8351dfdaa3ca5ece359ff9b",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -644,9 +1573,9 @@
       },
       "sectors": {
         "status": "not-published",
-        "checkedAt": "2026-11-10",
+        "checkedAt": "2026-11-13",
         "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-        "sha256": "01d63b25c78e4461a92935e3366a71728b686351839d42f35192d76cfc1b47bd",
+        "sha256": "95f752be5582129c1a10a9b41743228fcab19f34d8351dfdaa3ca5ece359ff9b",
         "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
         "evidence": {
           "headings": [],
@@ -661,6 +1590,348 @@
     "unavailable": [
       "countries: no qualified whole-fund look-through",
       "sectors: asset allocation is not an equity sector table"
-    ]
+    ],
+    "underlyingHoldings": {
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "0e61fbe9b1d1503614ad8f9d49f1484573ebd496a6d0f2013c236725721c8211",
+      "subjectIsin": "IE00BMVB5R75",
+      "weightBasis": "original-fund-nav-percentage",
+      "complete": true,
+      "sourceRowCount": 18,
+      "publishedNetWeightPct": 100.00002,
+      "rows": [
+        {
+          "isin": "IE00BK5BQW10",
+          "name": "Vanguard FTSE North America UCITS ETF",
+          "weightPct": 19.37793,
+          "assetCategory": "Actions",
+          "sedol": "BJSB5N5"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "name": "Vanguard FTSE Developed World UCITS ETF",
+          "weightPct": 19.31337,
+          "assetCategory": "Actions",
+          "sedol": "BJGTN15"
+        },
+        {
+          "isin": "IE00BK5BQT80",
+          "name": "Vanguard FTSE All-World UCITS ETF",
+          "weightPct": 19.30127,
+          "assetCategory": "Actions",
+          "sedol": "BK5XTF1"
+        },
+        {
+          "isin": "IE00BG47KH54",
+          "name": "Vanguard Global Aggregate Bond UCITS ETF",
+          "weightPct": 18.80737,
+          "assetCategory": "Obligations",
+          "sedol": "BK5BFR9"
+        },
+        {
+          "isin": "IE00BFMXXD54",
+          "name": "Vanguard S&P 500 UCITS ETF",
+          "weightPct": 6.40855,
+          "assetCategory": "Actions",
+          "sedol": "BH3T3H0"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF",
+          "weightPct": 6.11657,
+          "assetCategory": "Actions",
+          "sedol": "BJGTNT3"
+        },
+        {
+          "isin": "IE00BK5BQX27",
+          "name": "Vanguard FTSE Developed Europe UCITS ETF",
+          "weightPct": 5.4291,
+          "assetCategory": "Actions",
+          "sedol": "BJSBDD1"
+        },
+        {
+          "isin": "IE00BFMXYX26",
+          "name": "Vanguard FTSE Japan UCITS ETF",
+          "weightPct": 2.43046,
+          "assetCategory": "Actions",
+          "sedol": "BJGTMW9"
+        },
+        {
+          "isin": "IE00BK5BQZ41",
+          "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+          "weightPct": 2.00313,
+          "assetCategory": "Actions",
+          "sedol": "BJGTN71"
+        },
+        {
+          "isin": "IE00BMX0B631",
+          "name": "Vanguard USD Treasury Bond UCITS ETF",
+          "weightPct": 0.27477,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTB8"
+        },
+        {
+          "isin": "IE00BH04GL39",
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+          "weightPct": 0.18857,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJMY4"
+        },
+        {
+          "isin": "IE00BGYWFL94",
+          "name": "Vanguard USD Corporate Bond UCITS ETF",
+          "weightPct": 0.18821,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRTC9"
+        },
+        {
+          "isin": "IE00BGYWT403",
+          "name": "Vanguard EUR Corporate Bond UCITS ETF",
+          "weightPct": 0.06691,
+          "assetCategory": "Obligations",
+          "sedol": "BGMJNJ6"
+        },
+        {
+          "isin": "IE00BMX0B524",
+          "name": "Vanguard U.K. Gilt UCITS ETF",
+          "weightPct": 0.03829,
+          "assetCategory": "Obligations",
+          "sedol": "BJJRT85"
+        }
+      ],
+      "nonFundPositions": [
+        {
+          "securityLongDescription": "Euro",
+          "marketValuePercentage": 0.04855,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "UE8N9B82707FJBMH",
+          "marketValuePercentage": 0.02248,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "US Dollar",
+          "marketValuePercentage": 0.00701,
+          "sedol1": null,
+          "securityType": "CRNY",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        },
+        {
+          "securityLongDescription": "UE8N9B82707FJBMH",
+          "marketValuePercentage": -0.02252,
+          "sedol1": null,
+          "securityType": "CT.SPOT",
+          "effectiveDate": "2026-09-30",
+          "isin": null
+        }
+      ],
+      "assetAllocationChecks": {
+        "Actions": {
+          "originalNavWeightPct": 80.38038,
+          "publishedDisplayPct": 80.38
+        },
+        "Obligations": {
+          "originalNavWeightPct": 19.56412,
+          "publishedDisplayPct": 19.56
+        },
+        "Liquidités": {
+          "originalNavWeightPct": 0.05552,
+          "publishedDisplayPct": 0.06
+        }
+      },
+      "normalizationApplied": false,
+      "sourceResponse": {
+        "data": {
+          "funds": [
+            {
+              "profile": {
+                "portId": "9496",
+                "fundCurrency": "EUR",
+                "etfReplicationMethodology": "Physical",
+                "assetClassificationLevel1": "Balanced/Diversified",
+                "identifiers": [
+                  {
+                    "altId": "ISIN",
+                    "altIdValue": "IE00BMVB5R75"
+                  }
+                ]
+              }
+            }
+          ],
+          "borHoldings": [
+            {
+              "holdings": {
+                "items": [
+                  {
+                    "securityLongDescription": "Vanguard FTSE North America UCITS ETF",
+                    "marketValuePercentage": 19.37793,
+                    "sedol1": "BJSB5N5",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQW10"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed World UCITS ETF",
+                    "marketValuePercentage": 19.31337,
+                    "sedol1": "BJGTN15",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQV03"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE All-World UCITS ETF",
+                    "marketValuePercentage": 19.30127,
+                    "sedol1": "BK5XTF1",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQT80"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard Global Aggregate Bond UCITS ETF",
+                    "marketValuePercentage": 18.80737,
+                    "sedol1": "BK5BFR9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BG47KH54"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard S&P 500 UCITS ETF",
+                    "marketValuePercentage": 6.40855,
+                    "sedol1": "BH3T3H0",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BFMXXD54"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Emerging Markets UCITS ETF",
+                    "marketValuePercentage": 6.11657,
+                    "sedol1": "BJGTNT3",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BR733"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed Europe UCITS ETF",
+                    "marketValuePercentage": 5.4291,
+                    "sedol1": "BJSBDD1",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQX27"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Japan UCITS ETF",
+                    "marketValuePercentage": 2.43046,
+                    "sedol1": "BJGTMW9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BFMXYX26"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+                    "marketValuePercentage": 2.00313,
+                    "sedol1": "BJGTN71",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BK5BQZ41"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Treasury Bond UCITS ETF",
+                    "marketValuePercentage": 0.27477,
+                    "sedol1": "BJJRTB8",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B631"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+                    "marketValuePercentage": 0.18857,
+                    "sedol1": "BGMJMY4",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BH04GL39"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard USD Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 0.18821,
+                    "sedol1": "BJJRTC9",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWFL94"
+                  },
+                  {
+                    "securityLongDescription": "Vanguard EUR Corporate Bond UCITS ETF",
+                    "marketValuePercentage": 0.06691,
+                    "sedol1": "BGMJNJ6",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BGYWT403"
+                  },
+                  {
+                    "securityLongDescription": "Euro",
+                    "marketValuePercentage": 0.04855,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "Vanguard U.K. Gilt UCITS ETF",
+                    "marketValuePercentage": 0.03829,
+                    "sedol1": "BJJRT85",
+                    "securityType": "EQ.ETF",
+                    "effectiveDate": "2026-09-30",
+                    "isin": "IE00BMX0B524"
+                  },
+                  {
+                    "securityLongDescription": "UE8N9B82707FJBMH",
+                    "marketValuePercentage": 0.02248,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "US Dollar",
+                    "marketValuePercentage": 0.00701,
+                    "sedol1": null,
+                    "securityType": "CRNY",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  },
+                  {
+                    "securityLongDescription": "UE8N9B82707FJBMH",
+                    "marketValuePercentage": -0.02252,
+                    "sedol1": null,
+                    "securityType": "CT.SPOT",
+                    "effectiveDate": "2026-09-30",
+                    "isin": null
+                  }
+                ],
+                "totalHoldings": 18,
+                "lastItemKey": null
+              }
+            }
+          ]
+        }
+      },
+      "method": "Complete same-date issuer fund portfolio, exact held share ISINs and original fund-NAV weights; cash and signed settlement positions retained. Published 2dp asset allocation corroborated separately. Not a whole-fund company look-through or the rounded PDF allocation table."
+    },
+    "underlyingHoldingsQualification": {
+      "status": "qualified",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "checkedAt": "2026-11-13T13:23:26.373634+00:00",
+      "asOf": "2026-09-30"
+    }
   }
 }

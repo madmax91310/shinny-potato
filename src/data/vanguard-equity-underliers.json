@@ -2,8 +2,9 @@
   "IE00BFMXYX26": {
     "name": "Vanguard FTSE Japan UCITS ETF",
     "isin": "IE00BFMXYX26",
-    "checkedAt": "2026-11-10",
+    "checkedAt": "2026-11-13",
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Japan_UCITS_ETF_USD_Accumulating_9674_FR_INT_EN.pdf",
+    "documentSha256": "6da812281b3595e7b222f14fa97ba761629b9e32a7321efeff7e8cb32d593995",
     "countries": {
       "asOf": "2026-09-30",
       "basis": "fund",
@@ -77,8 +78,9 @@
   "IE00BKX55R35": {
     "name": "Vanguard FTSE North America UCITS ETF",
     "isin": "IE00BKX55R35",
-    "checkedAt": "2026-11-10",
+    "checkedAt": "2026-11-13",
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Distributing_9523_FR_INT_EN.pdf",
+    "documentSha256": "eb620e3c64507a218e9766d40715b995cc4c2ec5bd29ae8be4fa70ede09a805c",
     "countries": {
       "asOf": "2026-09-30",
       "basis": "fund",
@@ -160,8 +162,9 @@
   "IE00BK5BQZ41": {
     "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
     "isin": "IE00BK5BQZ41",
-    "checkedAt": "2026-11-10",
+    "checkedAt": "2026-11-13",
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Asia_Pacific_ex_Japan_UCITS_ETF_USD_Accumulating_9676_FR_INT_EN.pdf",
+    "documentSha256": "7ded01352f2cd5a7218fd09ae968a96c495c4da55200ac5265adceefeacf4289",
     "countries": {
       "asOf": "2026-09-30",
       "basis": "fund",
@@ -247,5 +250,90 @@
       ]
     },
     "note": "Fund-level underlying allocation; North America PDF uses the distributing class of the same unhedged physical fund."
+  },
+  "IE00BK5BQW10": {
+    "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
+    "isin": "IE00BK5BQW10",
+    "checkedAt": "2026-11-13",
+    "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Accumulating_9680_FR_INT_EN.pdf",
+    "documentSha256": "9e3e2e1d4abcf36c7a3132e1b57df1ae1b446022bcde5b05e86e00813f9e519c",
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "method": "FTSE Country of Risk",
+      "sha256": "935c2cc76060a557e951b0f7036d2e57670ad38d978823ebb9d3dc0171f59bc2",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 95.4762
+        },
+        {
+          "name": "Canada",
+          "weightPct": 4.46218
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 0.06162
+        },
+        {
+          "name": "Other",
+          "weightPct": 0
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Accumulating_9680_FR_INT_EN.pdf",
+      "rows": [
+        {
+          "name": "Technology",
+          "weightPct": 44.7
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 3.2
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 11.3
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 2.1
+        },
+        {
+          "name": "Financials",
+          "weightPct": 10.5
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.1
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 10.3
+        },
+        {
+          "name": "Basic Materials",
+          "weightPct": 1.9
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 8.3
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.5
+        },
+        {
+          "name": "Energy",
+          "weightPct": 4.0
+        }
+      ]
+    },
+    "internalDependencyOnly": true,
+    "note": "Exact accumulating share held by LifeStrategy; internal composition dependency, not a new selectable fund."
   }
 }

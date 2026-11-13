@@ -33,7 +33,8 @@ def parse_fields(payload, share, now, listing):
         rows = sorted(rows, key=lambda r: (-r['weightPct'], r['name'], r['sedol']))[:10]
         values['holdings'] = {'rows': validated_rows([{'name': r['name'], 'weightPct': r['weightPct']} for r in rows], complete=False),
                               'asOf': stamp, 'basis': 'fund', 'rankClassificationID': 1,
-                              'scope': 'top-10', 'method': 'Top ten of the exact issuer Fund ranking; original fund weights, not renormalised'}
+                              'scope': 'top-10', 'weightBasis': 'issuer-fund-ranking-unqualified-nav-denominator',
+                              'method': 'Top ten of the exact issuer Fund ranking; original published pct weights, NAV denominator and excluded cash not qualified; not renormalised'}
     except (KeyError, TypeError, ValueError) as error:
         errors.append({'field': 'holdings', 'reason': str(error)})
     try:

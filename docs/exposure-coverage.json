@@ -1,24 +1,22 @@
 {
-  "checkedAt": "2026-11-10T15:59:13.112Z",
+  "checkedAt": "2026-11-13T18:12:20.935Z",
   "total": 694,
   "outside": 53,
   "complete": 640,
   "gaps": [
     {
-      "asset": "IE000XZSV718",
-      "isin": "IE000XZSV718",
-      "name": "SPDR S&P 500 UCITS ETF Acc",
+      "asset": "IE0003R87OG3",
+      "isin": "IE0003R87OG3",
+      "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
       "kind": "etf",
-      "provider": "State Street",
+      "provider": "Avantis",
       "countries": {
-        "coverage": 0,
+        "coverage": 99.44000000000013,
         "eligible": 100,
         "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
+        "missing": 0.5599999999998744,
+        "reasons": [],
+        "asOf": "2026-11-12"
       },
       "sectors": {
         "coverage": 100,
@@ -26,7 +24,7 @@
         "outside": false,
         "missing": 0,
         "reasons": [],
-        "asOf": "2026-11-09"
+        "asOf": "2026-10-31"
       }
     }
   ],

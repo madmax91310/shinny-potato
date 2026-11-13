@@ -392,12 +392,17 @@
       "Présentation ETF",
       "Comparatif ETF",
       "Duel",
-      "Générateur"
+      "Générateur",
+      "DCA",
+      "Actifs et exposition"
     ],
     "collectionSteps": [
+      "Collect observations: exact held North America share",
+      "Collect observations: exact held North America allocations",
       "Collect observations: collect"
     ],
     "validationSteps": [
+      "Validate observations: same-date partial equity look-through",
       "Validate observations: node scripts test-lifestrategy.mjs",
       "Validate observations: npm run audit:instrument-catalog",
       "Validate observations: npm run build",
@@ -658,5 +663,24 @@
       "Run npm run build"
     ],
     "publishes": true
+  },
+  "update-etf-flows.yml": {
+    "name": "Contrôle des flux ETF · collecte bloquée",
+    "workflowName": "ETF flows qualification (automatic collection blocked)",
+    "collectionJob": "qualification",
+    "maxAgeHours": 192,
+    "tools": [
+      "Où va l’argent des ETF ?"
+    ],
+    "paths": [
+      "/flux-etf"
+    ],
+    "publishes": false,
+    "validationOnly": true,
+    "collectionSteps": [],
+    "validationSteps": [
+      "Validate flow publication contracts",
+      "Report blocked flow collection"
+    ]
   }
 }

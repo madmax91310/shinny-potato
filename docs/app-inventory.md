@@ -6,6 +6,8 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Outil | Route |
 |---|---|
+| Où va l’argent des ETF ? | /flux-etf |
+| Comparateur d’indices | /comparateur-indices |
 | Idées de publications | /idees-classements |
 | Hey @Grok | /hey-grok |
 | Qui a vraiment gagné ? | /classements-performances |
@@ -47,7 +49,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | portfolio | 8 |
 | reference | 11 |
 | scpi | 8 |
-| series | 779 |
+| series | 781 |
 
 ## Champs des instruments
 
@@ -64,6 +66,5 @@ Les raisons des absences figurent dans [l’inventaire des lacunes](automation-g
 
 ## Moteurs internes et compatibilité
 
-- Comparateur d’indices (`src/pages/index-comparator/`) : moteur et tests conservés, aucune route publique déclarée. Ne pas le présenter comme un outil accessible ; une réouverture exige une décision produit.
 - `/tweet-midi` : route de compatibilité conservée ; les formats disposent des routes dédiées ci-dessus.
 - `/presentation-assurance-vie` et `/presentation-scpi` : redirections vers Présentations.

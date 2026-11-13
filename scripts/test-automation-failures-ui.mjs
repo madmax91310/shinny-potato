@@ -1,4 +1,5 @@
 import registry from '../src/data/automation-workflows.json' with { type: 'json' }
+import retired from '../src/data/retired-automations.json' with { type: 'json' }
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
@@ -41,14 +42,33 @@ try {
  status={schemaVersion:1,workflows:{economic:{status:'success',collectionStatus:'success',name:'Données économiques',completedAt:'2026-10-09T10:00:00Z',lastSuccessAt:'2026-10-09T10:00:00Z'},pending:{status:'unknown',name:'Collecte non documentée'}}}
  await page.reload({waitUntil:'networkidle'});await openSources();assert.equal(await section.count(),0)
  const overview=page.getByRole('region',{name:'Bilan des collectes automatiques'})
- assert.equal(await overview.locator('.dr-item').count(),Object.keys(registry).length+2)
+ // The overview lists active registered producers plus unknown producers from the snapshot.
+ // Compare identities as well as the count: a missing active service must still fail.
+ const expectedIds=[...new Set([...Object.keys(registry),...Object.keys(status.workflows)])].filter(id=>!Object.hasOwn(retired.workflows,id))
+ const assertOverviewIds=async(ids)=>{
+  const displayed=await overview.locator('.dr-item h3').allTextContents()
+  const expected=ids.map(id=>status.workflows[id]?.name??registry[id].name)
+  assert.deepEqual(displayed.sort(),expected.sort())
+ }
+ assert(Object.hasOwn(registry,'update-editorial-radar.yml'))
+ assert.equal(retired.workflows['update-editorial-radar.yml'].status,'disabled-by-request')
+ await assertOverviewIds(expectedIds)
+ assert.equal(await overview.locator('.dr-item').count(),expectedIds.length)
  await overview.getByRole('button',{name:'Réussies · 1',exact:true}).click()
  assert.equal(await overview.locator('.dr-item').count(),1)
  assert.match(await overview.textContent(),/09\/10\/2026/)
- await overview.getByRole('button',{name:`État non documenté · ${Object.keys(registry).length+1}`,exact:true}).click()
- assert.equal(await overview.locator('.dr-item').count(),Object.keys(registry).length+1)
+ await overview.getByRole('button',{name:`État non documenté · ${expectedIds.length-1}`,exact:true}).click()
+ assert.equal(await overview.locator('.dr-item').count(),expectedIds.length-1)
+ await assertOverviewIds(expectedIds.filter(id=>id!=='economic'))
  await overview.getByRole('button',{name:'En échec · 0',exact:true}).click()
  await overview.getByText('Aucune collecte pour cette sélection.').waitFor()
+ status={schemaVersion:1,workflows:{'update-etf-flows.yml':{name:registry['update-etf-flows.yml'].name,status:'success',collectionStatus:'not-applicable',validationStatus:'success',recordingStatus:'not-applicable',publicationStatus:'not-applicable',completedAt:new Date().toISOString()}}}
+ await page.reload({waitUntil:'networkidle'});await openSources()
+ const flowControl=overview.locator('.dr-item').filter({has:page.getByRole('heading',{name:registry['update-etf-flows.yml'].name,exact:true})})
+ await flowControl.getByText('Contrôle réussi',{exact:true}).waitFor()
+ assert.equal(await flowControl.getByText('Collecte réussie',{exact:true}).count(),0)
+ assert.equal(await flowControl.getByText('Sans objet',{exact:true}).count(),3)
+ assert((await flowControl.getByRole('link',{name:'Où va l’argent des ETF ?',exact:true}).getAttribute('href')).endsWith('/flux-etf'))
  status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'failure',completedAt:'2026-10-08T13:28:34Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/37784356798'}}}
  await page.reload({waitUntil:'networkidle'});await openSources()
  assert.equal(await section.locator('.dr-item').count(),1)

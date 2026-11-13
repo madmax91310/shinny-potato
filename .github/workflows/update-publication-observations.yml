@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '40 7 * * *'
   workflow_dispatch:
+    inputs:
+      anniversary_series:
+        description: 'Reprise ciblée des clôtures (identifiants séparés par des virgules) ; vide = collecte ordinaire complète'
+        type: string
+        default: ''
   push:
     branches: [master]
     paths:
@@ -91,22 +96,36 @@ jobs:
         run: node scripts/test-anniversary-indices.mjs
       - name: "Validate observations: node scripts test-publication-consumers.mjs"
         run: node scripts/test-publication-consumers.mjs
+      - name: "Validate observations: exact Nasdaq monthly and current-level consumers"
+        run: node scripts/test-nasdaq-total-return.mjs
       - id: prices
         name: Collect INSEE price levels, IRL and SMIC
         continue-on-error: true
+        if: inputs.anniversary_series == ''
         run: python scripts/refresh_purchasing_power.py --apply --output "$RUNNER_TEMP/purchasing-observation.json"
       - id: indices
         name: Collect completed official anniversary index months
         continue-on-error: true
+        if: inputs.anniversary_series == ''
         run: python scripts/refresh_anniversary_indices.py --apply --output "$RUNNER_TEMP/anniversary-indices-observation.json"
       - id: levels
         name: Collect completed anniversary levels
         continue-on-error: true
-        run: python scripts/refresh_anniversary_levels.py --apply --output "$RUNNER_TEMP/anniversary-observation.json"
+        env:
+          ANNIVERSARY_SERIES: ${{ inputs.anniversary_series }}
+        run: |
+          if [[ -n "$ANNIVERSARY_SERIES" ]]; then
+            IFS=',' read -ra selected <<< "$ANNIVERSARY_SERIES"
+            python scripts/refresh_anniversary_levels.py --apply --only "${selected[@]}" --output "$RUNNER_TEMP/anniversary-observation.json"
+          else
+            python scripts/refresh_anniversary_levels.py --apply --output "$RUNNER_TEMP/anniversary-observation.json"
+          fi
       - name: "Validate observations: node scripts test-anniversary-indices.mjs"
         run: node scripts/test-anniversary-indices.mjs
       - name: "Validate observations: node scripts test-publication-consumers.mjs"
         run: node scripts/test-publication-consumers.mjs
+      - name: "Validate observations: exact Nasdaq monthly and current-level consumers"
+        run: node scripts/test-nasdaq-total-return.mjs
       - name: "Validate observations: node scripts test-household-benchmarks.mjs"
         run: node scripts/test-household-benchmarks.mjs
       - name: "Validate observations: node scripts test-purchasing-power-editorial.mjs"

@@ -6,7 +6,7 @@ from issuer_documents import download,pdf_text,document_date,validated_rows
 from collect_vanguard_etf import fetch_api,parse_api
 from data_automation import UTC,write_json_atomic
 ROOT=Path(__file__).resolve().parents[1]
-SOURCES=[('9674','IE00BFMXYX26','FTSE_Japan','Japan'),('9676','IE00BK5BQZ41','FTSE_Developed_Asia_Pacific_ex_Japan','Developed Asia Pacific ex Japan'),('9523','IE00BKX55R35','FTSE_North_America','North America')]
+SOURCES=[('9674','IE00BFMXYX26','FTSE_Japan','Japan'),('9676','IE00BK5BQZ41','FTSE_Developed_Asia_Pacific_ex_Japan','Developed Asia Pacific ex Japan'),('9523','IE00BKX55R35','FTSE_North_America','North America'),('9680','IE00BK5BQW10','FTSE_North_America','North America')]
 def collect(c,now):
  code,isin,file,name=c;policy='Distributing' if code=='9523' else 'Accumulating'
  url=f'https://fund-docs.vanguard.com/{file}_UCITS_ETF_USD_{policy}_{code}_FR_INT_EN.pdf'
@@ -21,16 +21,21 @@ def collect(c,now):
  validated_rows(rows)
  api=parse_api(fetch_api(code),{'isin':isin,'productCode':code,'currency':'USD'},now)
  if not api.get('countries'):raise ValueError('Vanguard complete country table absent')
- return isin,{'name':f'Vanguard FTSE {name} UCITS ETF','isin':isin,'checkedAt':now.date().isoformat(),'sourceUrl':url,'countries':api['countries'],
-  'sectors':{'asOf':stamp,'basis':'fund','sourceUrl':url,'rows':rows},'note':'Fund-level underlying allocation; North America PDF uses the distributing class of the same unhedged physical fund.'}
+ internal = isin=='IE00BK5BQW10'
+ return isin,{'name':f'Vanguard FTSE {name} UCITS ETF'+(' (USD) Accumulating' if internal else ''),'isin':isin,'checkedAt':now.date().isoformat(),'sourceUrl':url,'documentSha256':__import__('hashlib').sha256(body).hexdigest(),'countries':api['countries'],
+  'sectors':{'asOf':stamp,'basis':'fund','sourceUrl':url,'rows':rows},
+  **({'internalDependencyOnly':True} if internal else {}),
+  'note':('Exact accumulating share held by LifeStrategy; internal composition dependency, not a new selectable fund.' if internal else 'Fund-level underlying allocation; North America PDF uses the distributing class of the same unhedged physical fund.')}
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--output',type=Path,required=True);args=ap.parse_args();now=dt.datetime.now(UTC)
+ ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--only',nargs='+');ap.add_argument('--output',type=Path,required=True);args=ap.parse_args();now=dt.datetime.now(UTC)
+ selected=[c for c in SOURCES if not args.only or c[1]in args.only]
+ if args.only and set(args.only)-{c[1]for c in SOURCES}:raise ValueError('Unknown Vanguard composition dependency')
  path=ROOT/'src/data/vanguard-equity-underliers.json';old=json.loads(path.read_text()) if path.exists() else {};errors=[];updated=[]
  def one(c):
   try:return collect(c,now),None
   except Exception as e:return None,{'isin':c[1],'error':str(e)}
  with ThreadPoolExecutor(max_workers=3) as pool:
-  for value,error in pool.map(one,SOURCES):
+  for value,error in pool.map(one,selected):
    if error:errors.append(error);continue
    isin,r=value
    if any(r[f]['asOf']<old.get(isin,{}).get(f,{}).get('asOf','') for f in ['countries','sectors']):raise ValueError('Date regression')
