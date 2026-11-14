@@ -1,3 +1,4 @@
+import { isManualLine, outsideClassification } from './placements.js'
 import { qualifyHoldings } from './holdings-qualification.js'
 import { aggregateCompanies } from '../../data/index-concentration-core.js'
 import COMPANY_IDENTITIES from '../../data/index-company-identities.json' with { type: 'json' }
@@ -18,7 +19,8 @@ export function sharedPositions(lines,references,now=new Date(),observations={})
  const eligible=[],unavailable=[],qualification=[],incompatiblePairs=[]
  for(const line of lines.filter(l=>l.weight>0).slice().sort((a,b)=>a.asset.localeCompare(b.asset))){
   const r=references[line.asset]
-  if(r?.outsideClassification)continue // No company positions for bonds, cash, metals or crypto.
+  if(outsideClassification(line,references))continue // No company positions for bonds, cash, metals or crypto.
+  if(isManualLine(line)){unavailable.push(line.label);qualification.push({asset:line.asset,label:line.label,valid:false,complete:false,reasons:['Composition inconnue (placement manuel).']});continue}
   const o=r?.countries||r?.sectors
   const h=r?.kind==='equity'&&r.isin&&o?{asOf:o.asOf,sourceUrl:o.sourceUrl,basis:'equity',complete:true,rows:[{isin:r.isin,name:r.name,weightPct:100}]}:observations[line.asset]
   const q=qualifyHoldings(h,line,r,now)

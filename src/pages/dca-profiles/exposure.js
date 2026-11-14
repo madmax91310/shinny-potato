@@ -1,3 +1,4 @@
+import { isManualLine, outsideClassification } from './placements.js'
 import { frenchCharacteristic } from '../../data/french-characteristics.js'
 export const EXPOSURE_MAX_AGE_DAYS=93
 export const EXPOSURE_MAX_SPREAD_DAYS=45
@@ -16,9 +17,9 @@ export function dcaExposure(lines,references,field,now=new Date(),{synthesis=fal
  const groups=new Map(),neutralRows=[],excluded=[]
  const today=Date.parse(new Date(now).toISOString().slice(0,10)+'T00:00:00Z')
  for(let l of lines.filter(l=>l.weight>0)){
-  const outside=neutral[l.asset]||(l.isin===references[l.asset]?.isin&&references[l.asset]?.outsideClassification)
+  const outside=neutral[l.asset]||((isManualLine(l)||references[l.asset]?.kind==='savings'||l.isin===references[l.asset]?.isin)&&outsideClassification(l,references))
   if(outside){neutralRows.push({name:outside,weight:l.weight});continue}
-  const r=references[l.asset],o=r?.[field]
+  const r=isManualLine(l)?undefined:references[l.asset],o=r?.[field]
   if(r?.equitySleeve&&l.isin===r.isin){
    const sleeve=r.equitySleeve,age=(today-stamp(sleeve.asOf))/day
    if(Number.isFinite(age)&&age>=0&&age<=EXPOSURE_MAX_AGE_DAYS&&sleeve.sourceUrl&&Number.isFinite(sleeve.weightPct)&&sleeve.weightPct>=0&&sleeve.weightPct<=100){
@@ -26,7 +27,7 @@ export function dcaExposure(lines,references,field,now=new Date(),{synthesis=fal
     l={...l,weight:l.weight*sleeve.weightPct/100}
    }else{excluded.push({asset:l.asset,label:l.label,weight:l.weight,reason:'Allocation actions trop ancienne ou non qualifiée'});continue}
   }
-  let reason=!l.isin?'Support non confirmé':r?.isin&&l.isin!==r.isin?'Support différent de la référence':!o?'Ventilation absente':null
+  let reason=isManualLine(l)?'Composition inconnue (placement manuel)':!l.isin?'Support non confirmé':r?.isin&&l.isin!==r.isin?'Support différent de la référence':!o?'Ventilation absente':null
   if(!reason){
    const date=stamp(o.asOf),age=(today-date)/day
    if(!Number.isFinite(date)||age<0||age>EXPOSURE_MAX_AGE_DAYS)reason='Observation trop ancienne ou date invalide'
@@ -94,6 +95,6 @@ export function exposureView(exposure){
  return {...display,eligible,group,excludedAssets:exposure.neutralRows||[],
   rows:(group?.rows||[]).map(row=>({...row,portfolioWeight:row.weight,weight:row.weight*scale})),
   missing:display.missing*scale,portfolioMissing:display.missing,
-  scope:eligible>0?`Poche actions · ${Number(eligible.toFixed(2)).toLocaleString('fr-FR')} % du portefeuille`:'Aucune poche actions',
+  scope:eligible>0?`Périmètre pays/secteurs · ${Number(eligible.toFixed(2)).toLocaleString('fr-FR')} % du portefeuille`:'Aucun support concerné',
  }
 }

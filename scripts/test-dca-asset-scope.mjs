@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { SAVINGS_REFERENCES } from '../src/pages/dca-profiles/placements.js'
 import {outsideEquityClassification} from './lib/dca-asset-scope.mjs'
 import {buildAssetFieldReport} from './report-asset-fields.mjs'
 import {references} from '../src/pages/dca-profiles/engine.js'
@@ -6,6 +7,7 @@ import {portfolioCompanies} from '../src/pages/dca-profiles/companies.js'
 import {publishedExposure} from '../src/pages/dca-profiles/exposure.js'
 
 for(const r of Object.values(references)) {
+ if(!r.isin){assert(Object.values(SAVINGS_REFERENCES).includes(r));continue}
  if(r.outsideClassification)assert.equal(outsideEquityClassification(r.isin,r.name),r.outsideClassification)
 }
 const rows=buildAssetFieldReport('2026-10-29').rows

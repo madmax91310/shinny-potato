@@ -76,3 +76,40 @@ L'éditeur DCA présente allocation et versements en deux listes, liées au mêm
 L'historique garde la clé `el-dca-used-v1` : lecture des anciens tableaux d'IDs sans écriture au montage, puis écriture v2 `{version:2,entries:[{id,publishedAt}]}` au marquage explicite. `publishedAt: null` signifie date ancienne inconnue. Date du nouveau marquage, annulation et filtre des non-publiés ; historique local à l'appareil. Copie/téléchargement ne le modifient pas. Une donnée illisible ou un changement entre lecture et écriture empêche toute réécriture partielle.
 
 Recette : `npm run test:dca`, `node scripts/test-dca-usage-storage.mjs`, build, puis `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-eight.mjs` et `node scripts/playwright-dca-usage-storage.mjs`. `test-dca-images.mjs` couvre désormais 636 rendus, dont 1/2/4/8 positions avec noms longs, petits poids, gros montants, égalités et zéros. Les anciennes allocations de 50 positions restent testées dans le parcours d'expositions. [Roadmap courante](../../../docs/portefeuille-dca-roadmap.md).
+
+## Supports d’épargne et placements manuels
+
+`placements.js` définit les sept supports descriptifs (Livret A, LDDS, LEP, PEL,
+fonds en euros, compte à terme, liquidités), sans ISIN ni taux. Ils complètent
+les références à l’exécution et dans la projection Vite ; les fichiers générés
+`catalog.json` et `exposures*.json` ne sont pas édités à la main.
+
+L’éditeur commun propose une saisie par formulaire, sans JSON : nom personnalisable
+obligatoire (250 caractères maximum), catégorie, poids et, en DCA, versement
+facultatif initialisé à zéro. Chaque ligne manuelle porte `manual: true`, une clé
+`asset` de forme `manual:<UUID>` et sa catégorie. Deux noms ou catégories identiques
+peuvent coexister. Le nom n’est jamais utilisé pour retrouver un instrument.
+Les remplacements conservent poids et versement et remplacent toute l’identité.
+Les formats de stockage et de transport historiques restent compatibles ; les
+identifiants manuels sont conservés lors des copies, sauvegardes et restaurations.
+
+Tous les supports entrent dans l’allocation détenue et les totaux. Les limites
+restent 8 positions DCA et 50 en analyse/transport, sans troncature. Un poids nul
+avec un versement positif est accepté en DCA ; une position détenue sans versement
+reste dans l’allocation, mais pas dans la liste des versements exportée.
+
+Les supports d’épargne et catégories manuelles explicitement hors classification
+restent hors des donuts pays/secteurs. Les autres lignes manuelles conservent une
+part « Non ventilé ici » : leur composition est inconnue, sans erreur de validité
+liée à l’absence d’ISIN. Aucun pays, secteur, titre ni recouvrement n’est inventé.
+Les graphiques indiquent leur périmètre ; le détail conserve les parts du
+portefeuille entier. Un fonds en euros n’est pas assimilé à des obligations.
+L’assurance-vie est une enveloppe : le formulaire rappelle de saisir les supports
+sans ajouter le contrat une deuxième fois. Aucune projection d’intérêts n’est ajoutée.
+
+Recette : `npm run test:dca` inclut `test-dca-placements.mjs` ; après le build,
+`CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-placements.mjs`
+exerce les deux parcours à 1440, 390 et 320 px. Le contrôle existant
+`test-dca-images.mjs` couvre désormais 644 rendus, dont le portefeuille mixte et
+les sept supports d’épargne. Les PNG et fichiers de recette sont dans
+`test-artifacts/dca*` (non versionnés).

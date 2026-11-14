@@ -1,3 +1,4 @@
+import { SAVINGS } from './placements.js'
 import { CONTROVERSIAL_SCENARIOS } from './controversial-profiles.js'
 import catalog from './catalog.json' with {type:'json'}
 // Scénarios éditoriaux fictifs : les revenus ne sont pas des statistiques salariales.
@@ -47,6 +48,7 @@ export const ASSETS = {
   sap: ['🖥️', 'SAP'], asml: ['🔬', 'ASML'],
   microsoft: ['🖥️', 'Microsoft'], apple: ['📱', 'Apple'], alphabet: ['🔍', 'Alphabet'],
   amazon: ['📦', 'Amazon'], nvidia: ['🧠', 'Nvidia'], btc: ['₿', 'Bitcoin'], gold: ['🪙', 'ETC sur l’or physique'],
+  ...Object.fromEntries(Object.entries(SAVINGS).map(([key,r])=>[key,['🏦',r.name]])),
 }
 function profile(id, emoji, name, age, family, job, location, income, allocations, variable = false, holdings = [], editorialGroup = 'classic') {
   const lines = allocations.map(([asset, amount]) => ({ asset, amount, emoji: ASSETS[asset][0], label: ASSETS[asset][1] }))

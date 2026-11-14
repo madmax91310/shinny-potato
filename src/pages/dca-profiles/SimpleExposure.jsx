@@ -1,3 +1,4 @@
+import { validManualIdentity } from './placements.js'
 import { useSelectedRecords } from '../../lib/use-selected-records.js'
 import { exposureRecords } from './records.js'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
@@ -13,7 +14,7 @@ import Portfolios from './Portfolios.jsx'
 import { useImageExport } from './useImageExport.js'
 const Analytics = lazy(() => import('./Analytics.jsx'))
 const draftKey='simple-exposure-draft'
-const validDraft=d=>d&&Array.isArray(d.lines)&&d.lines.length<=MAX_EXPOSURE_POSITIONS&&d.lines.every(l=>l&&Object.hasOwn(ASSETS,l.asset)&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight)))&&['all','both','countries','sectors','overlap'].includes(d.field)&&[3,4,6].includes(d.exposureLimit)
+const validDraft=d=>d&&Array.isArray(d.lines)&&d.lines.length<=MAX_EXPOSURE_POSITIONS&&d.lines.every(l=>l&&(Object.hasOwn(ASSETS,l.asset)||validManualIdentity(l))&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight)))&&['all','both','countries','sectors','overlap'].includes(d.field)&&[3,4,6].includes(d.exposureLimit)
 export default function SimpleExposure({isin}){
  const [saved]=useState(()=>{const asset=Object.keys(references).find(key=>references[key]?.isin===isin&&ASSETS[key]);return asset?{lines:[newLine(asset,100)],field:'all',exposureLimit:4}:readPreference(draftKey,null,validDraft)})
  const [lines,setLines]=useState(()=>confirmLines(saved?.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight}))||[])),[field,setField]=useState(saved?.field||'all')
@@ -44,7 +45,7 @@ export default function SimpleExposure({isin}){
   </div>
     {!analysis.errors.length&&<details className="dca-note">
      <summary>Détails des données · pays {pct(exposureDisplay(analysis.countries).coverage)} · secteurs {pct(exposureDisplay(analysis.sectors).coverage)}</summary>
-     <p>Synthèse indicative des répartitions publiées. Les méthodes des sources peuvent différer ; les ETF synthétiques utilisent une exposition d’indice documentée, sans leur panier de substitution. Les donuts sont rapportés à la poche actions. Or, cryptos, matières premières et obligations et supports explicitement monétaires restent dans l’allocation. Les données manquantes gardent leur poids dans les donuts ; elles ne sont pas redistribuées.</p>
+     <p>Synthèse indicative des répartitions publiées. Les méthodes des sources peuvent différer ; les ETF synthétiques utilisent une exposition d’indice documentée, sans leur panier de substitution. Les donuts sont rapportés au périmètre pays/secteurs indiqué. Les supports d’épargne, fonds en euros, métaux, cryptos et supports explicitement obligataires ou monétaires restent dans l’allocation, hors de ces donuts. Les données manquantes gardent leur poids dans les donuts ; elles ne sont pas redistribuées.</p>
      {['countries','sectors'].map(f=>{const e=analysis[f],d=exposureDisplay(e);return <div key={f}>
       <strong>{f==='countries'?'Géographie':'Secteurs'} : {pct(d.coverage)} ventilés{e.neutralWeight>0?` · ${pct(e.neutralWeight)} hors classification`:''}{d.missing>0.01?` · ${pct(d.missing)} non ventilés`:''}</strong>
       {d.omitted.map((o,i)=><p key={`${o.asset}-${i}`}>{o.label||o.asset} : {o.reason} ({pct(o.weight)}).</p>)}
@@ -57,7 +58,7 @@ export default function SimpleExposure({isin}){
      <summary>Tous les pays et secteurs</summary>
      {['countries','sectors'].map(f=>{const v=exposureView(analysis[f]);return <section key={f}>
       <h3>{f==='countries'?'Pays':'Secteurs'}</h3><p>{v.scope}</p>
-      {v.eligible>0?<table><thead><tr><th>Exposition</th><th>Part de la poche actions</th><th>Part du portefeuille</th></tr></thead><tbody>
+      {v.eligible>0?<table><thead><tr><th>Exposition</th><th>Part du périmètre</th><th>Part du portefeuille</th></tr></thead><tbody>
        {v.rows.map(row=><tr key={row.name}><td>{row.name}</td><td>{pct(row.weight)}</td><td>{pct(row.portfolioWeight)}</td></tr>)}
        {v.missing>0.001&&<tr><td>Non ventilé ici</td><td>{pct(v.missing)}</td><td>{pct(v.portfolioMissing)}</td></tr>}
       </tbody></table>:<p>La géographie et les secteurs ne s’appliquent pas à ces actifs.</p>}

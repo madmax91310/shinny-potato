@@ -43,7 +43,10 @@ try{
   for(const b of r.boxes)assert(b.l>=0&&b.r<=b.width&&b.t>=0&&b.b<=b.height,`${r.name}: clipped ${b.value}`)
   for(const [i,a] of r.boxes.entries())for(const b of r.boxes.slice(i+1))assert(!(Math.min(a.r,b.r)-Math.max(a.l,b.l)>1&&Math.min(a.b,b.b)-Math.max(a.t,b.t)>1),`${r.name}: overlap ${a.value} / ${b.value}`)
   if(r.name.startsWith('ranking')){const labels=r.boxes.map(b=>b.value);assert(!labels.includes('−0,0 %'));assert.equal(labels.filter(v=>v==='+0,0 %').length,r.name==='ranking-annual'?2:0);assert(labels.includes('−0,04 %'));assert(labels.includes('+< 0,01 %'))}
-  if(r.name.startsWith('dca'))assert(!r.boxes.some(b=>/Poche actions|100 % du portefeuille/.test(b.value)),'Removed scope banners must not return in the full image')
+  if(r.name.startsWith('dca')){
+   assert.equal(r.boxes.filter(b=>/Périmètre pays\/secteurs|Aucun support concerné/.test(b.value)).length,2,'Each exposure panel must state its scope')
+   assert(!r.boxes.some(b=>/Poche actions|100 % ventilés|couverture complète/i.test(b.value)),'No artificial full-coverage claim')
+  }
   if(r.name==='dca-8-covered')for(const name of ['États-Unis','Technologie','Autres expositions'])assert(Math.max(...r.boxes.filter(b=>b.value===name).map(b=>parseFloat(b.font.match(/[\d.]+px/)[0])))>=30,'Dense donut legend too small: '+name)
   if(r.name.startsWith('dca-8'))assert(r.boxes.filter(b=>/allocation|diversifiée|long terme/.test(b.value)).every(b=>parseFloat(b.font.match(/[\d.]+px/)[0])>=36),'Dense allocation labels must not shrink')
  }

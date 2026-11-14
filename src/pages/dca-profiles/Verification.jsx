@@ -16,7 +16,7 @@ export default function Verification({profile,analysis,onHoldingsChange}){
  useEffect(()=>{let active=true;setLoading(true);setHoldings({});setLoadError(false);loadHoldingsState(assets.split('|')).then(({holdings,failedAssets})=>{if(active){setHoldings(holdings);setLoadError(failedAssets.length>0);if(retry)onHoldingsChange()}}).catch(()=>{if(active){setHoldings({});setLoadError(true)}}).finally(()=>{if(active)setLoading(false)});return ()=>{active=false}},[assets,retry,onHoldingsChange])
  const shared=useMemo(()=>sharedPositions(profile.lines,references,new Date(),holdings),[profile.lines,holdings])
  const complete=catalog.filter(r=>r.countries.coverage>=99.5&&r.sectors.coverage>=99.5).length
- const filtered=catalog.filter(r=>(!onlyMissing||r.countries.coverage<99.5||r.sectors.coverage<99.5)&&`${r.name} ${r.isin} ${r.tickers?.join(' ')}`.toLowerCase().includes(query.toLowerCase()))
+ const filtered=catalog.filter(r=>(!onlyMissing||(r.countries.coverage<99.5&&r.countries.outside<99.5)||(r.sectors.coverage<99.5&&r.sectors.outside<99.5))&&`${r.name} ${r.isin} ${r.tickers?.join(' ')}`.toLowerCase().includes(query.toLowerCase()))
  return <section className="dca-verification" aria-label="Vérification des expositions">
  <h2>Vérifier les expositions</h2>
  <p className="dca-note">Les poids ci-dessous sont des parts du portefeuille entier. Une couverture partielle ne permet pas de conclure sur l’ensemble du portefeuille.</p>
@@ -67,10 +67,10 @@ export default function Verification({profile,analysis,onHoldingsChange}){
  </details>
  <details onToggle={e=>setCatalogOpen(e.currentTarget.open)}><summary>Couverture du catalogue{catalog.length?` · ${catalog.length} supports`:''}</summary>
  {!catalog.length&&<p role="status">{catalogError?<>Le catalogue n’a pas pu être chargé. <button onClick={()=>setCatalogRetry(n=>n+1)}>Réessayer</button></>:'Chargement du catalogue…'}</p>}
- <p>{complete} supports ont au moins 99,5 % de données exploitables dans chacun des deux champs, pris individuellement. Leur compatibilité dans un même graphique dépend aussi des méthodes et des dates. Les métaux et cryptomonnaies restent hors classification.</p>
+ <p>{complete} supports ont au moins 99,5 % de données exploitables dans chacun des deux champs, pris individuellement. Leur compatibilité dans un même graphique dépend aussi des méthodes et des dates. Les supports d’épargne, fonds en euros, métaux, cryptomonnaies et supports explicitement obligataires ou monétaires restent hors classification.</p>
  <label>Rechercher dans la couverture<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Nom, ticker ou ISIN"/></label>
  <label><input type="checkbox" checked={onlyMissing} onChange={e=>setOnlyMissing(e.target.checked)}/>Afficher seulement les couvertures incomplètes</label>
- <div className="dca-catalog-list">{filtered.map(r=><article key={r.asset}><b>{r.name}</b><p>{r.isin} · {r.kind==='equity'?'Action':r.kind.toUpperCase()}</p>{catalogue[r.asset]?.holdings&&<p>Positions : {catalogue[r.asset].holdings.complete?'composition complète publiée':'liste partielle'} · {pct(catalogue[r.asset].holdings.identifiedCoverage)} identifiés · {catalogue[r.asset].holdings.asOf}</p>}{catalogue[r.asset]?.holdingsStatus?.status==='failed'&&<p>Dernière collecte des positions en échec ; observation antérieure conservée avec sa date.</p>}{['countries','sectors'].map(f=><p key={f}>{f==='countries'?'Pays':'Secteurs'} : {pct(r[f].coverage)} · {r[f].reason}{r[f].date&&` · ${r[f].date}`}</p>)}</article>)}</div>
+ <div className="dca-catalog-list">{filtered.map(r=><article key={r.asset}><b>{r.name}</b><p>{r.isin} · {r.kind==='equity'?'Action':r.kind==='savings'?'Épargne':r.kind.toUpperCase()}</p>{catalogue[r.asset]?.holdings&&<p>Positions : {catalogue[r.asset].holdings.complete?'composition complète publiée':'liste partielle'} · {pct(catalogue[r.asset].holdings.identifiedCoverage)} identifiés · {catalogue[r.asset].holdings.asOf}</p>}{catalogue[r.asset]?.holdingsStatus?.status==='failed'&&<p>Dernière collecte des positions en échec ; observation antérieure conservée avec sa date.</p>}{['countries','sectors'].map(f=><p key={f}>{f==='countries'?'Pays':'Secteurs'} : {pct(r[f].coverage)} · {r[f].reason}{r[f].date&&` · ${r[f].date}`}</p>)}</article>)}</div>
  </details>
  </section>
 }

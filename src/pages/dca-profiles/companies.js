@@ -1,9 +1,10 @@
+import { outsideClassification } from './placements.js'
 import { aggregateCompanies } from '../../data/index-concentration-core.js'
 import identities from '../../data/index-company-identities.json' with {type:'json'}
 import { portfolioAnalytics } from './analytics.js'
 
 export function portfolioCompanies(lines, references, holdings, now=new Date()) {
- const equityLines=lines.filter(l=>!references[l.asset]?.outsideClassification)
+ const equityLines=lines.filter(l=>!outsideClassification(l,references))
  const groups=portfolioAnalytics(equityLines,references,holdings,now).groups.sort((a,b)=>b.coverage-a.coverage)
  const group=groups[0]
  if(!group)return {rows:[],complete:false,coverage:0,topWeight:0}
