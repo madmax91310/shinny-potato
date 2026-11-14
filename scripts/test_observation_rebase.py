@@ -45,6 +45,7 @@ PRIVATE_SERVICE_READERS = [
 
 
 SCPI_ETF_RACE = json.loads((ROOT/'scripts/fixtures/scpi-etf-recording-race-20261106.json').read_text())['changedPaths']
+ETF_BUDGET_RACE = json.loads((ROOT/'scripts/fixtures/etf-budget-recording-race-20261114.json').read_text())['changedPaths']
 
 ECONOMIC_PATH = 'src/data/automated-economic.json'
 
@@ -104,6 +105,7 @@ class ObservationRebaseTests(unittest.TestCase):
                      'docs/editorial-radar-couverture-2026-10-25.md', 'scripts/lib/radar-consumer.mjs',
                      'scripts/lib/radar-publications.mjs', 'scripts/test-radar-coverage.mjs',
                      'scripts/refresh_monthly_history.py', 'scripts/monthly-automation.json',
+                     'scripts/collect_etf_pilot.py', 'scripts/etf-pilot.json',
                      '.github/workflows/investment-image-check.yml', 'scripts/test-export-copy.mjs',
                      'scripts/test-investment-emerald.mjs',
                      'src/pages/investment-calculator/editorialArt.js',
@@ -130,7 +132,7 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/dca-profiles/holdings-8.json',
                      'src/pages/dca-profiles/holdings.json',
                      *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS, *BUDGET_EDITORIAL_READERS,
-                     *SCPI_ETF_RACE, 'src/data/freshness-policy.json',
+                     *SCPI_ETF_RACE, *ETF_BUDGET_RACE, 'src/data/freshness-policy.json',
                      'src/pages/budget-profiles/data.js',
                      'src/pages/budget-profiles/lib.js',
                      'src/pages/budget-profiles/unqualified-context.json']:
@@ -272,6 +274,40 @@ else:
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
         for path in BUDGET_EDITORIAL_READERS:
             self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_actual_etf_budget_race_preserves_both_writers_and_revalidates(self):
+        for path in ETF_BUDGET_RACE:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {shlex.quote(path)})" = "concurrent update"' for path in ETF_BUDGET_RACE)
+        result = self.publish('etf', validation)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+        for path in ETF_BUDGET_RACE:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_etf_budget_race_never_bypasses_failed_validation(self):
+        self.assert_refused(ETF_BUDGET_RACE[-1], 'etf', 'false')
+
+    def test_etf_budget_race_still_refuses_acquisition_input(self):
+        for path in ETF_BUDGET_RACE:
+            self.f.advance_remote(path)
+        self.assert_refused('scripts/collect_etf_pilot.py', 'etf')
+
+    def test_etf_budget_race_still_refuses_its_source_configuration(self):
+        self.assert_refused('scripts/etf-pilot.json', 'etf')
+
+    def test_etf_budget_race_does_not_qualify_neighbours_or_other_writers(self):
+        import observation_rebase_guard as guard
+        self.assertEqual(guard.ETF_BUDGET_READERS, set(ETF_BUDGET_RACE))
+        for path in ['src/pages/budget-profiles/data.js', 'src/pages/budget-profiles/lib.js',
+                     'src/pages/budget-profiles/unqualified-context.json', 'scripts/unqualified-budget-test.mjs']:
+            self.assertNotIn(path, guard.ALLOWED['etf'])
+        self.assert_refused('src/pages/budget-profiles/data.js', 'etf')
+
+    def test_etf_budget_race_does_not_extend_to_monthly_or_publication(self):
+        import observation_rebase_guard as guard
+        for kind in ['market', 'publication']:
+            self.assertTrue(set(ETF_BUDGET_RACE).isdisjoint(guard.ALLOWED[kind]))
 
     def test_budget_editorial_race_never_bypasses_financial_validation(self):
         self.assert_refused(BUDGET_EDITORIAL_READERS[-1], 'market', 'false')
@@ -694,6 +730,24 @@ else:
 
 
 class CurrentAcquisitionIndependence(unittest.TestCase):
+    def test_etf_acquisition_and_baseline_do_not_read_exact_budget_readers(self):
+        self.python_graph(['collect_etf_pilot.py', 'collect_amundi_etf.py',
+                           'collect_ssga_etf.py', 'refresh_additional_etf.py',
+                           'collect_presentation_performance.py', 'collect_annual_fx.py',
+                           'collect_performance_currency.py', 'refresh_index_sources.py',
+                           'wisdomtree_directory_aum.py'], ETF_BUDGET_RACE, match_names=False)
+        pending = [ROOT/'scripts/export-etf-pilot-baseline.mjs'];seen=set()
+        while pending:
+            path=pending.pop().resolve()
+            if path in seen:continue
+            seen.add(path)
+            self.assertNotIn(path, [ROOT/name for name in ETF_BUDGET_RACE])
+            if path.suffix not in ('.js','.mjs'):continue
+            text=path.read_text()
+            for name in ETF_BUDGET_RACE:self.assertNotIn(pathlib.Path(name).name,text,str(path))
+            for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]",text):pending.append(path.parent/relative)
+        self.assertGreater(len(seen),1)
+
     def python_graph(self, roots, forbidden, match_names=True):
         pending = [ROOT / 'scripts' / name for name in roots]
         seen = set()

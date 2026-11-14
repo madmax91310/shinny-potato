@@ -93,7 +93,22 @@ MARKET_READER_ONLY_CHANGES = {
 # ETF acquisition/baselines do not read this exact monthly gold registry.
 # Keep the newer gold source receipt and rebuild/revalidate all consumers;
 # publication/anniversary acquisition still treats it as a protected input.
-ETF_INDEPENDENT = {'src/data/worldbank-gold-monthly.json',
+# Actual refusal43587066187 across #1272. These eight exact Budget prose,
+# review/history readers and isolated tests are not read by ETF acquisition or
+# its baseline. Preserve them and require the usual merged-tree regeneration
+# and financial checks. Budget data/calculators and every neighbour remain
+# protected; this does not qualify the DCA-engine race43585016495.
+ETF_BUDGET_READERS = {
+    'docs/audit-budget-2026-11-13/rapport.md',
+    'docs/budget-guillaume-pel-2026-11-14.md',
+    'scripts/budget-audit-history.mjs',
+    'scripts/test-budget-audit-20261113.mjs',
+    'scripts/test-budget-editorial-lives.mjs',
+    'scripts/test-budget-final-copy.mjs',
+    'scripts/test-budget-narrative.mjs',
+    'src/pages/budget-profiles/editorial-lives-2026-11-06.json',
+}
+ETF_INDEPENDENT = ETF_BUDGET_READERS | {'src/data/worldbank-gold-monthly.json',
                    'src/data/automated-presentation-actors.json',
                    'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
                    'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json',
