@@ -113,3 +113,36 @@ exerce les deux parcours à 1440, 390 et 320 px. Le contrôle existant
 `test-dca-images.mjs` couvre désormais 644 rendus, dont le portefeuille mixte et
 les sept supports d’épargne. Les PNG et fichiers de recette sont dans
 `test-artifacts/dca*` (non versionnés).
+
+## Profils reçus d’abonnés
+
+L’onglet « Profils d’abonnés » (`?mode=subscribers`) ouvre une bibliothèque locale,
+chargée à la demande, puis réutilise le même éditeur DCA. « Ajouter un profil d’abonné »
+commence avec un pseudonyme et une allocation vides, sans reprendre un scénario fictif.
+Le pseudonyme et l’allocation à 100 % permettent d’enregistrer le profil ; un brouillon
+incomplet reste conservé automatiquement. La liste se recherche par pseudonyme ou activité.
+
+Les enregistrements réutilisent `el-dca-portfolios-v2`, ses validations et sa limite
+commune de 50 sauvegardes. Les anciennes participations enregistrées apparaissent
+sans déplacement ni réécriture au montage. Les scénarios préparés et allocations
+sans identité restent disponibles dans « Mes portefeuilles ». Les fichiers de
+portefeuille restent compatibles et accessibles depuis le parcours DCA habituel.
+
+Chaque nouveau profil porte une identité `subscriber:<UUID>`, distincte des scénarios
+préparés et des autres profils du même nom. Les anciennes participations reçoivent
+une identité stable dérivée de leur sauvegarde à l’ouverture ; la sauvegarde d’origine
+reste inchangée jusqu’à sa mise à jour explicite. L’historique de publication existant
+est réutilisé, sans déduire la publication d’un abonné de celle d’un scénario préparé.
+Ouvrir un profil révoque toujours son autorisation de publication.
+
+La mise à jour garde l’identifiant de la sauvegarde, le texte personnalisé, les lignes
+manuelles et les options d’image. Le brouillon conserve la sauvegarde sélectionnée
+après rechargement, afin de mettre à jour le même profil. Changer de profil avec des
+modifications non enregistrées propose de les enregistrer ou de les abandonner
+explicitement. Une suppression garde le brouillon ouvert. Les conflits entre onglets,
+corruptions et quotas ne remplacent pas silencieusement les données enregistrées.
+
+Validation : `node scripts/test-subscriber-profiles.mjs` (inclus dans `test:dca`),
+`CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-subscriber-profiles.mjs`
+après build. La recette couvre 1440, 390 et 320 px et figure dans les contrôles CI
+navigateur. Les captures sont dans `test-artifacts/subscriber-profiles/`.

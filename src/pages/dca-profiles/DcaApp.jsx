@@ -1,3 +1,4 @@
+import { newSubscriberProfile, subscriberId, subscriberSignature } from './subscriber-profiles.js'
 import { validManualIdentity } from './placements.js'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelectedRecords } from '../../lib/use-selected-records.js'
@@ -9,7 +10,7 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { MAX_POSITIONS, MAX_EXPOSURE_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
-import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord } from './management.js'
+import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord, readSavedState } from './management.js'
 import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
@@ -17,6 +18,7 @@ import ImageOptions from './ImageOptions.jsx'
 import Portfolios from './Portfolios.jsx'
 import { useImageExport } from './useImageExport.js'
 const Analytics = lazy(() => import('./Analytics.jsx'))
+const SubscriberProfiles = lazy(() => import('./SubscriberProfiles.jsx'))
 const profiles=ALL_PROFILES.map(prepareProfile)
 const draftKey='el-dca-draft-v1'
 function initialDraft(){
@@ -29,8 +31,9 @@ function initialDraft(){
   return {...saved,profile:{...p,approved:false,lines:confirmLines(p.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight,amount:p.imageOnly&&!Number.isFinite(l.amount)?0:l.amount===null?NaN:l.amount})))},field:['all','both','countries','sectors','overlap'].includes(saved.field)?saved.field:'all'}
  }catch{return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all',damagedDraft:raw,error:'L’ancien brouillon est illisible. Il est conservé sur cet appareil.'}}
 }
-export default function DcaApp(){
+export default function DcaApp({subscriberMode=false}){
  const [initial]=useState(initialDraft)
+ const [subscriberSession,setSubscriberSession]=useState(()=>initial.subscriberSession&&typeof initial.subscriberSession.id==='string'&&typeof initial.subscriberSession.source==='string'&&typeof initial.subscriberSession.baseline==='string'?initial.subscriberSession:null)
  const [profile,setProfile]=useState(initial.profile),[draft,setDraft]=useState(initial.draft),[field,setField]=useState(initial.field)
  const [feedback,setFeedback]=useState(''),[showAnalysis,setShowAnalysis]=useState(false),[portfolioReset,setPortfolioReset]=useState(0)
  const [baseline,setBaseline]=useState(null),[draftError,setDraftError]=useState(initial.error)
@@ -46,10 +49,10 @@ export default function DcaApp(){
     if(initial.damagedDraft===null||localStorage.getItem(draftKey)!==initial.damagedDraft)throw Error('Brouillon inaccessible ou modifié ailleurs')
     preserveLocalRecord(localStorage,draftKey,initial.damagedDraft);archivedDraft.current=true
    }
-   localStorage.setItem(draftKey,JSON.stringify({profile,draft,field,draftEdited:draftEdited.current}))
+   localStorage.setItem(draftKey,JSON.stringify({profile,draft,field,draftEdited:draftEdited.current,subscriberSession}))
    if(initial.error)setDraftError('L’ancien brouillon est conservé à part. Le nouveau brouillon est enregistré automatiquement.')
   }catch{setFeedback('Le brouillon ne peut pas être enregistré sur cet appareil.')}
- },[profile,draft,field,initial.error])
+ },[profile,draft,field,initial.error,subscriberSession])
  const records=useSelectedRecords(profile.lines.map(line=>line.asset),exposureRecords)
  const a=analyzeProfile(profile)
  const total=profile.lines.reduce((sum,line)=>sum+(Number.isFinite(line.weight)?line.weight:0),0)
@@ -63,27 +66,47 @@ export default function DcaApp(){
  function edit(patch){update({...profile,...patch})}
  function editImage(patch){setProfile(current=>({...current,...patch,approved:false}))}
  function changeImageField(next){setField(next);editImage({})}
- function select(next){if(!next)return;setPortfolioReset(n=>n+1);if(preparedPicker.current)preparedPicker.current.open=false;draftEdited.current=false;update(structuredClone(next));seen.current.add(next.id)}
+ function select(next){if(!next)return;setSubscriberSession(null);setPortfolioReset(n=>n+1);if(preparedPicker.current)preparedPicker.current.open=false;draftEdited.current=false;update(structuredClone(next));seen.current.add(next.id)}
  function changeSelection(selection){
   const nextFilters={...filters,selection}
   setFilters(nextFilters)
   const next=filterProfiles(profiles,nextFilters,used)[0]
   if(next)select(next)
  }
- function participate(){edit({mode:'participant',imageOnly:false})}
+ function participate(){if(profile.mode!=='participant')setSubscriberSession(null);edit({id:profile.mode==='participant'?profile.id:newSubscriberProfile().id,mode:'participant',imageOnly:false})}
  function toggleUsed(){
   // Commit in the event, never in a React updater that may be deferred/replayed.
   const next=toggleUsageHistory(usage,profile.id)
   setUsage(next)
  }
+ function loadPortfolio(item){
+  draftEdited.current=item.draft!==buildTweetText(item.profile)
+  setFilters(current=>({...current,selection:profileSelection(item.profile)}))
+  const next={...item.profile,lines:confirmLines(item.profile.lines),approved:false}
+  if(next.mode==='participant'&&!next.imageOnly)next.id=subscriberId(item)
+  setProfile(next);setDraft(item.draft);setField(item.field)
+  let stored=null
+  try{stored=readSavedState(localStorage).items.find(record=>record.id===item.id)}catch{/* Keep an imported draft usable when local saves cannot be read. */}
+  setSubscriberSession(next.mode==='participant'&&!next.imageOnly&&stored?{id:item.id,source:JSON.stringify(stored),baseline:subscriberSignature({profile:next,draft:item.draft,field:item.field})}:null)
+ }
+ function createSubscriber(){
+  setProfile(newSubscriberProfile());setDraft('');setField('all');setSubscriberSession(null);setBaseline(null);setPortfolioReset(n=>n+1);draftEdited.current=false
+ }
+ function subscriberSaved(item){
+  setProfile(current=>({...current,id:item.profile.id}))
+  setSubscriberSession({id:item.id,source:JSON.stringify(item),baseline:subscriberSignature(item)})
+ }
+ const subscriberDirty=profile.mode==='participant'&&!profile.imageOnly&&!!(profile.name.trim()||profile.lines.length||draft.trim())&&(!subscriberSession||subscriberSession.baseline!==subscriberSignature({profile,draft,field}))
+ const showComposer=!subscriberMode||profile.mode==='participant'
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
  return <div className="dca-profiles-scope dca-simple">
- <PageHeader title="Le DCA d’un abonné" subtitle="Choisis un profil ou saisis une participation, puis récupère le texte et l’image."/>
+ <PageHeader title={subscriberMode?"Profils d’abonnés":"Le DCA d’un abonné"} subtitle={subscriberMode?"Enregistre les profils reçus et retrouve-les pour préparer leur publication.":"Choisis un profil ou saisis une participation, puis récupère le texte et l’image."}/>
  {draftError&&<p role="alert">{draftError}</p>}
  {usage.error&&<p role="alert">{usage.error}</p>}
- <div className="dca-simple-grid">
+ {subscriberMode&&<Suspense fallback={<p role="status">Chargement des profils enregistrés…</p>}><SubscriberProfiles profile={profile} draft={draft} field={field} session={subscriberSession} dirty={subscriberDirty} onNew={createSubscriber} onOpen={loadPortfolio} onSaved={subscriberSaved} onRemoved={id=>{if(subscriberSession?.id===id)setSubscriberSession(null)}} usage={usage} onToggleUsed={id=>setUsage(toggleUsageHistory(usage,id))}/></Suspense>}
+ {showComposer&&<><div className="dca-simple-grid">
   <section className="dca-simple-card" id="dca-compose" aria-label="Composer le DCA">
-   <div className="dca-mode"><button aria-pressed={profile.mode==='prepared'} onClick={()=>{const next=filterProfiles(profiles,filters,used)[0];if(next)select(next);else setFeedback('Aucun profil ne correspond dans cette sélection. Modifie les filtres.')}}>Profils préparés</button><button aria-pressed={profile.mode==='participant'} onClick={participate}>Créer une participation</button></div>
+   {!subscriberMode&&<div className="dca-mode"><button aria-pressed={profile.mode==='prepared'} onClick={()=>{const next=filterProfiles(profiles,filters,used)[0];if(next)select(next);else setFeedback('Aucun profil ne correspond dans cette sélection. Modifie les filtres.')}}>Profils préparés</button><button aria-pressed={profile.mode==='participant'} onClick={participate}>Créer une participation</button></div>}
    {profile.mode==='prepared'&&<label>Sélection de profils<ChoicePicker aria-label="Sélection de profils" value={filters.selection} onChange={e=>changeSelection(e.target.value)}><option value="classic">Profils classiques</option><option value="controversial">Profils polémiques</option></ChoicePicker></label>}
    {profile.mode==='prepared'&&!filtered.length&&<p role="status">Aucun résultat dans cette sélection avec les filtres actuels. Le profil de {profile.name} reste ouvert ; modifie les filtres pour choisir un autre profil.</p>}
    {profile.mode==='prepared'&&<details ref={preparedPicker} className="dca-prepared"><summary>Choisir un profil préparé · {profile.name}</summary>
@@ -113,7 +136,7 @@ export default function DcaApp(){
     <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{edit({imageOnly:e.target.checked});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>
     {profile.scope==='PEA'&&profile.lines.some(l=>references[l.asset]?.pea!==true)&&<p className="dca-note">L’éligibilité PEA de certains supports n’est pas établie. Vérifie le périmètre choisi.</p>}
    </details>
-   <Portfolios resetSignal={portfolioReset} profile={profile} draft={draft} field={field} onLoad={item=>{draftEdited.current=item.draft!==buildTweetText(item.profile);setFilters(current=>({...current,selection:profileSelection(item.profile)}));setProfile({...item.profile,lines:confirmLines(item.profile.lines),approved:false});setDraft(item.draft);setField(item.field)}}/>
+   {!subscriberMode&&<Portfolios resetSignal={portfolioReset} profile={profile} draft={draft} field={field} onLoad={loadPortfolio}/>}
   </section>
   <div className="dca-publication-column">
    <ImageExport image={image} reason={reason} filename={`dca-${profile.id}.png`} alt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`}>
@@ -129,5 +152,6 @@ export default function DcaApp(){
   </div>
  </div>
  {!a.errors.length&&<details className="dca-analysis-drawer" onToggle={e=>setShowAnalysis(e.currentTarget.open)}><summary>Voir l’analyse détaillée</summary>{showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={a} baseline={baseline} onBaselineChange={setBaseline} onHoldingsChange={refreshImage} onViewChange={analysisView=>editImage({analysisView})}/></Suspense>}</details>}
+ </>}
  </div>
 }
