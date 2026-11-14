@@ -3,11 +3,12 @@ import { readFileSync } from 'node:fs'
 import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, budgetPublicPresentation, blankBudget, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
+import { budgetBeforePelCorrection } from './budget-audit-history.mjs'
 const ledger=JSON.parse(readFileSync(new URL('../docs/audit-budget-2026-11-13/calculs-verifies.json',import.meta.url)))
 assert.equal(BUDGET_PROFILES.length,70)
 assert.equal(new Set(BUDGET_PROFILES.map(p=>p.id)).size,70)
 for(const p of BUDGET_PROFILES){
- const a=analyzeBudget(p),old=ledger[p.id]
+ const a=analyzeBudget(budgetBeforePelCorrection(p)),old=ledger[p.id]
  assert.deepEqual(a.errors,[])
  for(const k of ['income','expenses','savings','available','balance'])assert.equal(Math.round(a[k]*100),old[k],`${p.id}: original financial totals preserved`)
  const text=buildBudgetText(p)
@@ -20,4 +21,7 @@ for(const p of BUDGET_PROFILES){
  assert.equal(BUDGET_ORIGINAL_PROFILES.find(o=>o.id===p.id).id,p.id)
 }
 assert.equal(budgetQualification(blankBudget()),'','A genuinely blank participation is not automatically fictional')
+const guillaume=BUDGET_PROFILES.find(p=>p.id==='prepared-gritz-2026-10-30')
+assert.deepEqual(analyzeBudget(guillaume), { ...analyzeBudget(budgetBeforePelCorrection(guillaume)), savings:395, balance:29 })
+assert.equal(guillaume.savings.find(row=>row.label==='PEL').amount*12,540)
 console.log('Audit 2026-11-13 : 70 profils, calculs inchangés, périodes, fiscalité et présentation neutre et provenance interne conservée.')

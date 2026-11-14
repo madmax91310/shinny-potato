@@ -4,6 +4,7 @@ import { BUDGET_PROFILES, BUDGET_RELIABLE_PROFILES, BUDGET_ORIGINAL_PROFILES, BU
 import { analyzeBudget, buildBudgetText, budgetPublicPresentation, budgetImageExpenses, publicationContextFor, refreshBudgetDraft, budgetPublicIncomeRows } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
+import { budgetBeforePelCorrection } from './budget-audit-history.mjs'
 const expected=JSON.parse(readFileSync(new URL('./fixtures/budget-editorial-lives-2026-11-06.json',import.meta.url))).profiles
 const forbidden=/exemple|ficti[fv]|version éditoriale|reconstitu|scénario|simulation|hypothèse|modèle|préparé le|vérifié le/i
 for(const [i,p]of BUDGET_PROFILES.entries()){
@@ -22,7 +23,7 @@ for(const [i,p]of BUDGET_PROFILES.entries()){
  assert(!forbidden.test([view.name,view.job,view.household,view.basis,view.incomeNote,...budgetPublicIncomeRows(p).map(r=>r.label)].join(' ')),p.id)
  assert(c.paragraphs.length>=1&&c.paragraphs.length<=3,p.id)
  assert(c.questions.length>=1&&c.questions.length<=2)
- for(const [profile,ledger]of [[old,expected[p.id].before],[p,expected[p.id].after]]){
+ for(const [profile,ledger]of [[old,expected[p.id].before],[budgetBeforePelCorrection(p),expected[p.id].after]]){
   const a=analyzeBudget(profile);assert.deepEqual(a.errors,[],p.id)
   for(const k of['income','expenses','savings','available','balance'])assert.equal(Math.round(a[k]*100),ledger[k],`${p.id}: independent ${k}`)
   assert.equal(Math.round(a.expenseShare),ledger.expensePercent)

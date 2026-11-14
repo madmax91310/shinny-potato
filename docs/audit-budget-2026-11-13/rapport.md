@@ -1,5 +1,7 @@
 # Le budget de… — reprise de la PR #1266 au 14 novembre 2026
 
+**Correctif ultérieur :** le versement PEL de Guillaume est passé de 28 à 45 €/mois après cet audit. Ses versements totalisent désormais 395 € et son reste est de 29 €. Le tableau et les reçus ci-dessous conservent la photographie auditée antérieure (378 € et 46 €). Voir le [correctif et la suite des contrôles PNG](../budget-guillaume-pel-2026-11-14.md).
+
 Format contrôlé : personnages éditoriaux avec prénoms changés et compléments cohérents autorisés. La présence d’une participation réellement reçue n’est pas un critère de validation de cette banque. Les sources et photographies originales sont conservées, et les créations restent traçables dans la fiche de contrôle et les données internes. Aucun texte ne prétend qu’un personnage a envoyé un témoignage.
 
 ## Résultat final
