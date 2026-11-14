@@ -68,6 +68,17 @@ class UnqualifiedOverviewDate(ValueError):
     """Primary identity is checked, but its overview clock cannot be used."""
 
 
+def wisdomtree_fee_percent(value):
+    # The exact labelled fee cells can use a decimal comma on regional pages.
+    # Never apply this to AUM, position weights or general financial numbers.
+    if not isinstance(value, str) or not re.fullmatch(r'(?:\d+(?:\.\d+)?|\d+,\d{1,2})%?', value.strip()):
+        reject('Invalid WisdomTree labelled fee percentage')
+    result = float(value.strip().rstrip('%').replace(',', '.'))
+    if not 0 <= result <= 5:
+        reject('Invalid WisdomTree fee percentage range')
+    return result
+
+
 def wisdomtree(text, share, now):
     page = Page(text)
     def table(title):
@@ -95,13 +106,13 @@ def wisdomtree(text, share, now):
     charges = dict(fees[1:])
     fee = charges.get('Total expense ratio (TER)', charges.get('Management Fee (MER)'))
     if fee is None: reject('Missing WisdomTree explicit fee')
-    ter = float(fee.rstrip('%'))
+    ter = wisdomtree_fee_percent(fee)
     if not 0 <= ter <= 5: reject('Invalid WisdomTree expenses')
     digest = proof(text.encode()); result = base(share, fees_stamp, digest)
     result['characteristics'].update(terPct=round(ter, 4))
     # MER/TER and the separately disclosed commodity swap charge have different labels.
     if 'Annual Swap Rate' in charges:
-        swap=float(charges['Annual Swap Rate'].rstrip('%'))
+        swap=wisdomtree_fee_percent(charges['Annual Swap Rate'])
         if not 0<=swap<=5:reject('Invalid WisdomTree swap rate')
         result['characteristics']['annualSwapRatePct']=swap
     nav = table('Net Asset Value'); amount, currency = money(dict(nav[1:])['Total AUM of fund'])

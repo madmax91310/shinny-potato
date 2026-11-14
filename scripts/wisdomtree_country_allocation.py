@@ -61,7 +61,16 @@ def primary_country(page,share,display_rows,now):
             for child in value:visit(child)
     for value in flight_values(page):visit(value)
     try:
-        shown=sorted((str(name).strip(),Decimal(str(weight).rstrip('%')))for name,weight in display_rows)
+        shown_rows=[]
+        for name,weight in display_rows:
+            token=str(weight).strip().rstrip('%')
+            # Regional HTML uses a decimal comma. The source fractions below
+            # remain numeric, dated and exact-share qualified; no locale guess
+            # or tolerance change is made for them.
+            if not re.fullmatch(r'(?:\d+(?:\.\d+)?|\d+,\d{1,2})',token):
+                raise ValueError('Invalid rendered country percentage')
+            shown_rows.append((str(name).strip(),Decimal(token.replace(',','.'))))
+        shown=sorted(shown_rows)
         if not shown or any(not weight.is_finite() or not 0<=weight<=100 for _,weight in shown):raise ValueError('Invalid rendered country percentage')
     except (InvalidOperation,TypeError) as error:raise ValueError('Invalid rendered country percentage') from error
     matched={}
@@ -79,7 +88,7 @@ def primary_country(page,share,display_rows,now):
         return {**qualified[0],'dateProof':'Exact rendered table reconciled to its publisher country rows; overview/NAV clock excluded'}
     # A matching date can be used without guessing between definitions whose
     # rendered values happen to coincide. Preserve the original table precision.
-    return {'rows':validated_rows([{'name':n,'weightPct':float(str(w).rstrip('%'))}for n,w in display_rows]),
+    return {'rows':validated_rows([{'name':n,'weightPct':float(w)}for n,w in shown_rows]),
             'asOf':next(iter(matched.values()))['asOf'],'basis':'fund','method':'Exact rendered issuer Country Allocation; date confirmed by matching publisher rows; original display precision'}
 
 

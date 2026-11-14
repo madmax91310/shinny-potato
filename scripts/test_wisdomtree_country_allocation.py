@@ -37,6 +37,49 @@ class CountryAllocation(unittest.TestCase):
         # Aggregate Country is independently published with different weights.
         aggregate=next(r for r in self.payload if r['rankClassificationID']==16 and r['name']=='United States')
         self.assertNotEqual(primary['rows'][0]['weightPct'],aggregate['pct']*100)
+    def test_real_nl_primary_countries_survive_localised_fee_without_substitute(self):
+        import hashlib
+        folder=FIX/'wisdomtree-locale-20261114'
+        raw=gzip.decompress((folder/'nl-wdef.html.gz').read_bytes())
+        evidence=json.loads((folder/'provenance.json').read_text())
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),evidence['sha256'])
+        share=next(s for s in known_shares()if s['isin']=='IE0002Y8CX98')
+        share={**share,'sourceUrl':evidence['sourceUrl']}
+        result=wisdomtree(raw.decode(),share,dt.datetime(2026,11,14,tzinfo=dt.timezone.utc))
+        self.assertEqual(result['characteristics']['terPct'],.40)
+        self.assertNotIn('collectionErrors',result)
+        self.assertEqual(result['countries']['sourceUrl'],evidence['sourceUrl'])
+        self.assertEqual(result['countries']['asOf'],'2026-11-12')
+        self.assertEqual(result['countries']['rankClassificationID'],6)
+        self.assertAlmostEqual(sum(r['weightPct']for r in result['countries']['rows']),99.9999)
+        self.assertNotEqual(sum(r['weightPct']for r in result['countries']['rows']),100)
+        self.assertAlmostEqual(sum(r['weightPct']for r in result['holdings']['rows']),83.97)
+        self.assertEqual(len(result['holdings']['rows']),10)
+        self.assertEqual(sum(r['weightPct']for r in result['sectors']['rows']),100)
+
+    def test_regional_decimal_comma_still_requires_exact_dated_publisher_match(self):
+        comma=[[name,weight.replace('.',',')]for name,weight in self.display]
+        expected=primary_country(self.page,self.share,self.display,NOW)
+        actual=primary_country(self.page,self.share,comma,NOW)
+        self.assertEqual(actual,expected)
+        changed=copy.deepcopy(comma);changed[0][1]='1,23%'
+        with self.assertRaises(ValueError):primary_country(self.page,self.share,changed,NOW)
+        for invalid in ['1,000%', '1.2,3%', '1,2.3%', 'NaN%', '-0,01%', '100,01%']:
+            rows=copy.deepcopy(comma);rows[0][1]=invalid
+            with self.subTest(invalid=invalid),self.assertRaises(ValueError):
+                primary_country(self.page,self.share,rows,NOW)
+        with patch('wisdomtree_country_allocation.flight_values',return_value=iter([])):
+            with self.assertRaises(ValueError):primary_country(self.page,self.share,comma,NOW)
+
+    def test_regional_display_without_country_policy_preserves_display_order_and_precision(self):
+        config={k:v for k,v in CLASS_CONFIG[self.share['isin']].items()if k!='countryAllocationDefinition'}
+        comma=[[name,weight.replace('.',',')]for name,weight in self.display]
+        with patch.dict(CLASS_CONFIG,{self.share['isin']:config}):
+            expected=primary_country(self.page,self.share,self.display,NOW)
+            actual=primary_country(self.page,self.share,comma,NOW)
+        self.assertEqual(actual,expected)
+        self.assertEqual([r['name']for r in actual['rows']],[r[0]for r in self.display])
+
     def test_unqualified_share_never_borrows_the_country_policy(self):
         config={k:v for k,v in CLASS_CONFIG[self.share['isin']].items() if k!='countryAllocationDefinition'}
         with patch.dict(CLASS_CONFIG,{self.share['isin']:config}):
