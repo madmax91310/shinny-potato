@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import reviewedProfiles from '../src/data/reviewed-broker-profiles.json' with { type: 'json' }
-import {partialPublicationScopes} from '../src/pages/broker-comparator/publicationScope.js'
+import {PARTIAL_PUBLICATION_SCOPE} from '../src/pages/broker-comparator/publicationScope.js'
+import {brokerShortCopy as scopedBrokerCopy} from '../src/pages/broker-comparator/shortCopy.js'
 import {BROKER_TARIFFS, brokerOffers, brokerFieldCopies, brokerProfile, applyBrokerProfile} from '../src/data/broker-tariffs.js'
 import {BROKERS} from '../src/pages/broker-comparator/data.js'
 import {BROKER_EDITORIAL} from '../src/pages/broker-comparator/editorial.js'
@@ -54,14 +55,19 @@ const expiredCustody=brokerProfile('tr',unknownCustody,afterCustodyReview.toISOS
 assert.equal(expiredCustody.status,'partiel')
 assert.equal(expiredCustody.available,null)
 assert.equal(expiredCustody.reviewed,undefined)
-assert.equal(partialPublicationScopes(unknownCustody,custodyReview.reviewUntil).tr.garde,undefined)
-const expiredScopes=partialPublicationScopes(unknownCustody,afterCustodyReview.toISOString().slice(0,10))
-assert.match(expiredScopes.tr.garde.published,/Aucune réponse publiée/)
-assert.match(expiredScopes.tr.garde.excluded,/disponibilité ou de tarif/)
-assert.equal(expiredScopes.tr.change.excluded,'Taux ou commission propres au PEA.')
+// Partial publication policies preserve known PEA terms and exclude unknown CTO
+// terms; they never upgrade an expired review or turn an unknown fee into zero.
+assert.match(PARTIAL_PUBLICATION_SCOPE.tr.garde.published,/Aucune réponse publiée/)
+assert.match(PARTIAL_PUBLICATION_SCOPE.tr.garde.excluded,/gratuité du CTO non transposable/)
+for(const id of ['bourso','fortuneo','bd']) {
+ assert.equal(PARTIAL_PUBLICATION_SCOPE[id].cash.published,'Espèces du PEA non rémunérées.')
+ assert.match(PARTIAL_PUBLICATION_SCOPE[id].cash.excluded,/Présence ou absence.*CTO/)
+ assert.equal(scopedBrokerCopy(id,BROKER_TARIFFS,'2099-01-01').cash,'❌ Sur PEA.')
+}
+assert.equal(PARTIAL_PUBLICATION_SCOPE.tr.change.excluded,'Taux ou commission propres au PEA.')
 const confirmedCustody=structuredClone(unknownCustody)
 Object.assign(confirmedCustody.tr.profile.garde,{available:true,status:'confirmé'})
-assert.equal(partialPublicationScopes(confirmedCustody,'2099-01-01').tr.garde,undefined)
+assert.equal(brokerProfile('tr',confirmedCustody,'2099-01-01').garde.status,'confirmé')
 for (const id of ['tr', 'caidf']) {
  assert.equal(BROKER_EVIDENCE[id].transfert.status, 'partiel', `${id}: transfer fees remain unknown`);
  assert.match(BROKER_EVIDENCE[id].transfert.summary, /confirmer|non qualifiés/);
