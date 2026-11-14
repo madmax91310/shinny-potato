@@ -28,6 +28,13 @@ INDEPENDENT = {
     'src/pages/dca-profiles/exposures-extra-2.json',
     'public/data/asset-field-coverage.json',
     'scripts/instrument-metadata-sources.json',
+    # Actual schedule43625726669 / recovery43626949024 refusals. These four
+    # exact downstream paths are not inputs of the fingerprinted 13F collector
+    # or its manager plan. Keep the upstream bytes and rerun the combined audit.
+    'src/data/anniversary-levels.json',
+    'scripts/playwright-dca-eight.mjs',
+    'src/pages/dca-profiles/DcaApp.jsx',
+    'src/pages/dca-profiles/README.md',
 }
 # 12 Nov: LifeStrategy/Vanguard-only plan additions reviewed; actual 13F plans
 # before/after are identical for every manager. Acquisition and independent-input
