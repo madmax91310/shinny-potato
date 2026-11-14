@@ -18325,39 +18325,24 @@
     }
   },
   "CH0454664001": {
-    "checkedAt": "2026-11-14T17:45:03.656641+00:00",
+    "checkedAt": "2026-11-14T17:54:27.146733+00:00",
     "observed": [
       "listings",
-      "pea"
-    ],
-    "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "currencyHedge"
+      "currencyHedge",
+      "pea"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-11-11T05:26:50.040509+00:00",
-      "domicile": "2026-11-11T05:26:50.040509+00:00",
-      "replicationMethod": "2026-11-11T05:26:50.040509+00:00",
-      "currencyHedge": "2026-11-11T05:26:50.040509+00:00"
-    },
-    "errors": [
-      {
-        "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      }
-    ],
+    "pending": [],
+    "firstPendingAt": {},
+    "errors": [],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-11-14T17:45:03.656641+00:00",
-        "lastSuccessAt": "2026-11-10",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-14T17:54:27.146733+00:00",
+        "lastSuccessAt": "2026-11-14",
         "sourceUrls": [
           "https://api.secondary.21shares.com/api/product_details/ABTC",
           "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
@@ -18365,23 +18350,14 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
           "https://bourse.fortuneo.fr/api/search?term=CH0454664001"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-11-14T17:45:03.656641+00:00",
-        "lastSuccessAt": "2026-11-10",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-14T17:54:27.146733+00:00",
+        "lastSuccessAt": "2026-11-14",
         "sourceUrls": [
           "https://api.secondary.21shares.com/api/product_details/ABTC",
           "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
@@ -18389,23 +18365,14 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
           "https://bourse.fortuneo.fr/api/search?term=CH0454664001"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-11-14T17:45:03.656641+00:00",
-        "lastSuccessAt": "2026-11-10",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-14T17:54:27.146733+00:00",
+        "lastSuccessAt": "2026-11-14",
         "sourceUrls": [
           "https://api.secondary.21shares.com/api/product_details/ABTC",
           "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
@@ -18413,22 +18380,13 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
           "https://bourse.fortuneo.fr/api/search?term=CH0454664001"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-11-14T17:45:03.656641+00:00",
+        "lastAttemptAt": "2026-11-14T17:54:27.146733+00:00",
         "lastSuccessAt": "2026-11-14",
         "sourceUrls": [
           "https://api.secondary.21shares.com/api/product_details/ABTC",
@@ -18441,10 +18399,10 @@
         "sourceErrors": []
       },
       "currencyHedge": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-11-14T17:45:03.656641+00:00",
-        "lastSuccessAt": "2026-11-10",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-11-14T17:54:27.146733+00:00",
+        "lastSuccessAt": "2026-11-14",
         "sourceUrls": [
           "https://api.secondary.21shares.com/api/product_details/ABTC",
           "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
@@ -18452,22 +18410,13 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
           "https://bourse.fortuneo.fr/api/search?term=CH0454664001"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-11-14T17:45:03.656641+00:00",
+        "lastAttemptAt": "2026-11-14T17:54:27.146733+00:00",
         "lastSuccessAt": "2026-11-14",
         "sourceUrls": [
           "https://api.secondary.21shares.com/api/product_details/ABTC",
