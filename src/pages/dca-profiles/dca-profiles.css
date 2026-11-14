@@ -158,3 +158,9 @@
 .dca-manual-form{margin:16px 0;padding:16px;border:1px solid var(--border,#64748b);border-radius:12px}
 .dca-manual-fields{display:grid;gap:12px;margin:12px 0;min-width:0}
 .dca-manual-fields label{display:grid;gap:6px;min-width:0}
+
+.dca-subscriber-library{margin-bottom:24px}
+.dca-subscriber-list{display:grid;gap:14px;min-width:0}
+.dca-subscriber-row,.dca-subscriber-pending{padding:16px;border:1px solid #ccd4dc;border-radius:12px;min-width:0;overflow-wrap:anywhere}
+.dca-subscriber-row h3{margin:0 0 8px}
+.dca-subscriber-row .dca-buttons{margin-top:12px}
