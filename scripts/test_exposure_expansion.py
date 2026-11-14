@@ -8,6 +8,66 @@ from collect_dws_etf import parse_holdings
 from collect_invesco_allocations import parse_allocations
 
 class Expansion(unittest.TestCase):
+    def test_explicit_recovery_selects_only_requested_existing_instruments(self):
+        from collect_exposure_expansion import selected_instruments
+        config=json.loads((Path(__file__).parent/'exposure-etf-expansion.json').read_text())['instruments']
+        before=copy.deepcopy(config)
+        self.assertEqual(selected_instruments(config,None),config)
+        selected=selected_instruments(config,['LU0328475792'])
+        self.assertEqual([s['isin']for s in selected],['LU0328475792'])
+        self.assertEqual(config,before)
+        for request in [[],['UNKNOWN'],['LU0328475792','UNKNOWN'],['LU0328475792','LU0328475792']]:
+            with self.subTest(request=request),self.assertRaises(ValueError):
+                selected_instruments(config,request)
+
+    def test_missing_exposure_retains_actual_source_failure_reason(self):
+        share={'isin':'LU0328475792'}
+        value={**share,'unavailable':['composition: HTTP Error 403: Forbidden']}
+        with self.assertRaisesRegex(ValueError,'Missing dated exposure: countries ; composition: HTTP Error 403'):
+            qualify(value,share)
+        value['unavailable']=['composition: Future DWS portfolio date']
+        with self.assertRaisesRegex(ValueError,'Future DWS portfolio date'):
+            qualify(value,share)
+
+    def test_targeted_contract_preserves_other_items_and_detects_omitted_target(self):
+        import hashlib
+        import producer_report_plans as plans
+        import producer_report_contract as contract
+        p=plans.build_plan('collect_exposure_expansion',['--only','LU0328475792'],report_stem='exposure-expansion')
+        self.assertEqual([r['instrument']for r in p['items']if r['selected']],['LU0328475792'])
+        p.update(producer='collect_exposure_expansion',reportStem='exposure-expansion',declaredAt='2026-11-14T18:00:00Z',nonce='isolated-test')
+        p['sha256']=hashlib.sha256(json.dumps(p,sort_keys=True).encode()).hexdigest()
+        result=contract.finish({'shares':[]},p)['resultContract']
+        errors=contract.normalize_contract(result)['errors']
+        self.assertEqual([e['expectedId']for e in errors],['etf-exposure-expansion-LU0328475792'])
+        self.assertTrue(all(x['status']=='not-attempted'and x['reason']for x in result['outcomes']if x['instrument']!='LU0328475792'))
+        for request in [['--only','UNKNOWN'],['--only','LU0328475792','UNKNOWN']]:
+            with self.assertRaisesRegex(ValueError,'Unknown producer target'):
+                plans.build_plan('collect_exposure_expansion',request)
+
+    def test_workflow_executes_exact_target_arguments_and_rejects_malformed_scope(self):
+        import os, re, subprocess, tempfile, textwrap
+        workflow=(Path(__file__).parents[1]/'.github/workflows/update-exposure-expansion.yml').read_text()
+        block=workflow.split('name: Collect exact-share observations',1)[1].split('      - name:',1)[0]
+        command=textwrap.dedent(block.split('        run: |\n',1)[1])
+        with tempfile.TemporaryDirectory()as folder:
+            root=Path(folder);binary=root/'python';output=root/'argv.json'
+            binary.write_text('#!/usr/bin/env python3\nimport os,sys,json\nopen(os.environ["PROBE_ARGS"],"w").write(json.dumps(sys.argv[1:]))\n')
+            binary.chmod(0o755)
+            for value,targets in [('',[]),('LU0328475792',['LU0328475792']),('LU0328475792,LU0380865021',['LU0328475792','LU0380865021'])]:
+                env={**os.environ,'PATH':str(root)+os.pathsep+os.environ['PATH'],'PROBE_ARGS':str(output),'RUNNER_TEMP':folder,'EXPOSURE_ISINS':value}
+                result=subprocess.run(['bash','-c',command],env=env,capture_output=True,text=True)
+                self.assertEqual(result.returncode,0,result.stderr)
+                argv=json.loads(output.read_text())
+                if targets:self.assertEqual(argv[argv.index('--only')+1:argv.index('--apply')],targets)
+                else:self.assertNotIn('--only',argv)
+                output.unlink()
+            for value in [' ', 'LU0328475792,', ',LU0328475792', 'LU0328475792,,LU0380865021', 'LU0328475792;echo test']:
+                env={**os.environ,'PATH':str(root)+os.pathsep+os.environ['PATH'],'PROBE_ARGS':str(output),'RUNNER_TEMP':folder,'EXPOSURE_ISINS':value}
+                result=subprocess.run(['bash','-c',command],env=env,capture_output=True,text=True)
+                self.assertEqual(result.returncode,2)
+                self.assertFalse(output.exists(),'No collector started on malformed scope')
+
     def test_panx_exact_index_not_collateral_or_nasdaq(self):
         from collect_amundi_index_exposure import parse_product
         config=json.loads((Path(__file__).parent/'exposure-etf-expansion.json').read_text())

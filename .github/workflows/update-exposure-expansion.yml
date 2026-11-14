@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '45 7 * * *'
   workflow_dispatch:
+    inputs:
+      isins:
+        description: 'Reprise ciblée : ISIN existants séparés par des virgules, sans espaces ; vide = périmètre ordinaire complet'
+        type: string
+        default: ''
   push:
     branches: [master]
     paths:
@@ -95,7 +100,19 @@ jobs:
       - name: Collect exact-share observations
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
-        run: python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"
+        env:
+          EXPOSURE_ISINS: ${{ inputs.isins }}
+        run: |
+          if [[ -n "$EXPOSURE_ISINS" ]]; then
+            if [[ ! "$EXPOSURE_ISINS" =~ ^[A-Z]{2}[A-Z0-9]{9}[0-9](,[A-Z]{2}[A-Z0-9]{9}[0-9])*$ ]]; then
+              echo 'Invalid explicit ISIN selection; no source requested' >&2
+              exit 2
+            fi
+            IFS=',' read -ra selected <<< "$EXPOSURE_ISINS"
+            python scripts/collect_exposure_expansion.py --only "${selected[@]}" --apply --report "$RUNNER_TEMP/exposure-expansion.json"
+          else
+            python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"
+          fi
       - name: Validate expanded exposures
         run: bash scripts/validate-exposure-publication.sh validate
       - name: Verify DCA holdings in browser

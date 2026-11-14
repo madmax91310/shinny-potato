@@ -84,6 +84,18 @@ def collect(share, now):
     return result
 
 
+def selected_instruments(config, requested):
+    if requested is None:
+        return config
+    if not requested or len(set(requested)) != len(requested):
+        raise ValueError('Explicit exposure selection must be non-empty and unique')
+    known = {share['isin'] for share in config}
+    unknown = set(requested) - known
+    if unknown:
+        raise ValueError('Unknown exposure instrument: ' + ', '.join(sorted(unknown)))
+    return [share for share in config if share['isin'] in set(requested)]
+
+
 def qualify(result, share):
     if result.get('isin') != share['isin']:
         raise ValueError('Collector returned another ISIN')
@@ -91,7 +103,10 @@ def qualify(result, share):
     for field in ('countries', 'sectors'):
         value = result.get(field)
         if not value or not value.get('asOf'):
-            raise ValueError('Missing dated exposure: ' + field)
+            detail = [str(reason) for reason in result.get('unavailable', [])
+                      if str(reason).startswith('composition:')]
+            context = (' ; ' + ' ; '.join(detail)) if detail else ''
+            raise ValueError('Missing dated exposure: ' + field + context)
         validated_rows(value['rows'])
 
 
@@ -135,7 +150,10 @@ def main():
     parser.add_argument('--report', default='/tmp/exposure-expansion-report.json')
     args=parser.parse_args()
     config=json.loads(CONFIG.read_text())['instruments']
-    if args.only: config=[s for s in config if s['isin'] in args.only]
+    try:
+        config = selected_instruments(config, args.only)
+    except ValueError as error:
+        parser.error(str(error))
     now=dt.datetime.now(UTC)
     current=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {}
     def gather(share):
