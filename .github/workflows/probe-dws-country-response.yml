@@ -1,0 +1,25 @@
+name: Diagnose one DWS country response
+on:
+  push:
+    branches: [diag/dws-country-response-20261114]
+    paths:
+      - scripts/probe_dws_country_response.py
+      - .github/workflows/probe-dws-country-response.yml
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python scripts/probe_dws_country_response.py
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: dws-country-response-proof
+          path: dws-country-response-proof
+          if-no-files-found: error
