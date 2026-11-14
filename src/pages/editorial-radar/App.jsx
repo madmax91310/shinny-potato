@@ -1,6 +1,6 @@
 import {editorialTreatments,treatmentFor,saveTreatment,EDITORIAL_EVENT} from '../../lib/radar-workflow-state.js'
 import PublicationCard from './PublicationCard.jsx'
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { fetchRadar, markRead, readIds, READ_EVENT, staleFeed, cacheSignalGroups } from './client.js'
@@ -19,22 +19,25 @@ export default function App() {
   const [sourceOpen,setSourceOpen] = useState(false), [filtersOpen,setFiltersOpen]=useState(false), [calendarOpen,setCalendarOpen]=useState(false), [coverageOpen,setCoverageOpen]=useState(false)
   const [view, setView] = useState(subject ? 'history' : 'selection')
   const [feed, setFeed] = useState(null), [error, setError] = useState(''), [loading, setLoading] = useState(true)
+  const refreshSequence = useRef(0)
   const [family, setFamily] = useState('all'), [topic, setTopic] = useState('all'), [mode, setMode] = useState('all'), [search, setSearch] = useState(''), [read, setRead] = useState(readIds), [message, setMessage] = useState('')
   const refresh = useCallback(async (signal) => {
+    const sequence = ++refreshSequence.current
     try {
       const next = await fetchRadar(signal)
+      if (signal?.aborted || sequence !== refreshSequence.current) return
       cacheSignalGroups(next.selection.ready.map(group=>group.readIds))
       setFeed(next); setError('')
     }
-    catch (e) { if (e.name !== 'AbortError') setError(e.message) }
-    finally { if (!signal?.aborted) setLoading(false) }
+    catch (e) { if (sequence === refreshSequence.current && e.name !== 'AbortError') setError(e.message) }
+    finally { if (sequence === refreshSequence.current && !signal?.aborted) setLoading(false) }
   }, [])
   useEffect(() => {
     const controller = new AbortController()
     const updateRead = () => {setRead(readIds());setTreatments(editorialTreatments())}
     refresh(controller.signal)
     window.addEventListener(EDITORIAL_EVENT,updateRead); window.addEventListener(READ_EVENT, updateRead); window.addEventListener('storage', updateRead)
-    return () => { controller.abort(); window.removeEventListener(EDITORIAL_EVENT,updateRead); window.removeEventListener(READ_EVENT, updateRead); window.removeEventListener('storage', updateRead) }
+    return () => { ++refreshSequence.current; controller.abort(); window.removeEventListener(EDITORIAL_EVENT,updateRead); window.removeEventListener(READ_EVENT, updateRead); window.removeEventListener('storage', updateRead) }
   }, [refresh])
   useEffect(() => {
     if (!subject || !feed) return
