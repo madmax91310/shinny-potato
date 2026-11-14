@@ -115,6 +115,7 @@ try {
     await page.getByRole('button', { name: 'Retirer dépenses 4', exact: true }).click()
     await expect(text).toHaveValue(prior)
     await capture(page, `${width}-household`)
+    await page.screenshot({ path: `${output}/${width}-composer.png`, fullPage: true })
     await expect(page.getByLabel('Profil publié', { exact: true })).not.toBeChecked()
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('')
     await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeDisabled()
