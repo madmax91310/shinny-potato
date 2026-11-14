@@ -1,6 +1,6 @@
 # Compositions, expositions et publication 13F — bilan du lot
 
-Correctifs fusionnés : [PR #1265](https://github.com/madmax91310/shinny-potato/pull/1265), enregistrement 13F ; [PR #1267](https://github.com/madmax91310/shinny-potato/pull/1267), manifeste de publication. Pages effectivement observé : **code `642e702a`, données `c9281f74`**, construction **2026-11-14T03:45:04.686Z**. Les versions de code et de données sont distinguées.
+Correctifs fusionnés : [PR #1265](https://github.com/madmax91310/shinny-potato/pull/1265), enregistrement 13F ; [PR #1267](https://github.com/madmax91310/shinny-potato/pull/1267), manifeste de publication. Pages effectivement observé : **code `642e702a`, données `c9281f74`**, construction **2026-11-14T03:46:56.588Z**. Les versions de code et de données sont distinguées.
 Complément [PR #1268](https://github.com/madmax91310/shinny-potato/pull/1268) : contrôle de promotion et quatre portées de publication après expiration des revues. Les maquettes, tweets et PNG restent inchangés.
 Complément [PR #1269](https://github.com/madmax91310/shinny-potato/pull/1269) : ordre des lectures archivées et scellement des trois voies composites. Radar reste arrêté ; les quatre scénarios sont isolés et ne collectent aucune nouvelle publication.
 

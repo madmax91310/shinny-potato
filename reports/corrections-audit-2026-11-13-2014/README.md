@@ -28,7 +28,7 @@ Portefeuilles IA reste supprimé, Radar reste arrêté. Aucune publication sur X
 
 Documents complémentaires : `incidents-publics-finaux-par-cause.csv` conserve les 20 lignes failure sous 11 causes ; `collecte-concurrente-indices-113-resultats.csv` conserve les 113 résultats de contrat individuels, sans les assimiler à des champs tous certifiés. Le moniteur brut complet est fourni séparément en gzip ; les vues 13F/Pages/1218 sont des projections limitées explicitement décrites.
 
-La livraison est vérifiée le 2026-11-14T04:16:12.460402+00:00. Les dates du 13 novembre dans les noms désignent l’audit et le début du lot, pas une date artificielle des observations finales.
+La livraison est vérifiée le 2026-11-14T04:26:45.719307+00:00. Les dates du 13 novembre dans les noms désignent l’audit et le début du lot, pas une date artificielle des observations finales.
 
 Navigateurs éprouvés : Chromium, formats 1440 et 390 px ; Safari et les appareils physiques restent non vérifiés.
 

@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-11-14T04:16:12.460022+00:00",
+  "observedAt": "2026-11-14T04:26:45.719046+00:00",
   "pullRequests": [
     1265,
     1267,
@@ -21,8 +21,8 @@
   "publicBuild": {
     "sha": "642e702aead994fabf539e901cf886e98379a41a",
     "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
-    "lane": "validated-code-data",
-    "builtAt": "2026-11-14T03:45:04.686Z"
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T03:46:56.588Z"
   },
   "productionRuns": {
     "13F": 43517469275,
@@ -42,5 +42,11 @@
     "wholeWorkflowNotEquivalentToEveryFieldSuccess": true
   },
   "effectiveDataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
-  "dataSnapshotInterpretation": "Explicit dataSha when composite; otherwise the ordinary complete build snapshot at sha, with no newer-data overlay, verified by publication-branches-proof.json and the exact public manifest. Raw build-info is preserved."
+  "dataSnapshotInterpretation": "Explicit dataSha when composite; otherwise the ordinary complete build snapshot at sha, with no newer-data overlay, verified by publication-branches-proof.json and the exact public manifest. Raw build-info is preserved.",
+  "codePromotionPublicBuild": {
+    "sha": "642e702aead994fabf539e901cf886e98379a41a",
+    "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-14T03:45:04.686Z"
+  }
 }
