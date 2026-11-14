@@ -13,6 +13,17 @@ import subprocess
 import observation_rebase_guard as guard
 
 BUDGET_READERS = {
+    # Actual monthly refusal43603436956 after Budget1279; exact paths only.
+    'scripts/test-budget-editorial-context.mjs',  # Existing monthly reader; same ETF acquisition proof.
+    'docs/budget-scope-2026-11-14/rapport.md',
+    'scripts/fixtures/budget-scope/2026-11-14.json',
+    'scripts/playwright-budget-subscribers.mjs',
+    'scripts/test-budget-completeness.mjs',
+    'scripts/test-budget-final-copy.mjs',
+    'scripts/test-budget-presentation.mjs',
+    'scripts/test-budget-scope-salary.mjs',
+    'src/pages/budget-profiles/editorial-lives-2026-11-06.json',
+    'src/pages/budget-profiles/presentation.js',
     'docs/budget-ten-additional-2026-10-30.md',
     'src/pages/budget-profiles/additional-profiles-2026-10-30.json',
     'src/pages/budget-profiles/image.js',
@@ -129,11 +140,12 @@ def check_etf(base, upstream='HEAD^'):
     paths = set(filter(None, subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
         text=True).split('\0')))
-    permitted = paths & ETF_READERS
+    readers = ETF_READERS | BUDGET_READERS
+    permitted = paths & readers
     if permitted:
         for ref in (base, upstream):
             for entry in ETF_ACQUISITION_ENTRIES:
-                if baseline_dependencies(ref, entry) & ETF_READERS:
+                if baseline_dependencies(ref, entry) & readers:
                     raise ValueError('An ETF qualification reader is an acquisition dependency: ' + entry)
     permitted |= subscriber_readers(base, upstream, paths, ETF_ACQUISITION_ENTRIES)
     return checked_readers('etf', base, upstream, permitted)
@@ -173,8 +185,9 @@ def check(base, upstream='HEAD^'):
     permitted = paths & (readers | {AUDIT_READER})
     if paths & readers:
         for ref in (base, upstream):
-            if baseline_dependencies(ref) & readers:
-                raise ValueError('A supposed publication reader is an acquisition dependency')
+            for entry in MARKET_ACQUISITION_ENTRIES:
+                if baseline_dependencies(ref, entry) & readers:
+                    raise ValueError('A supposed publication reader is an acquisition dependency: ' + entry)
     permitted |= subscriber_readers(base, upstream, paths, MARKET_ACQUISITION_ENTRIES)
     if WORKFLOW in paths:
         before, after = at(base, WORKFLOW), at(upstream, WORKFLOW)

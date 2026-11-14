@@ -1,0 +1,37 @@
+{
+  "failedRun": 43603436956,
+  "event": "push",
+  "minimalReproductionBase": "14f6d4a28b1f11c7c96ed6471313e06fae476fee",
+  "upstream": "85de119c1fad5a024d814e961fb240129875aafe",
+  "newlyBlockedReaders": [
+    "docs/budget-scope-2026-11-14/rapport.md",
+    "scripts/fixtures/budget-scope/2026-11-14.json",
+    "scripts/playwright-budget-subscribers.mjs",
+    "scripts/test-budget-completeness.mjs",
+    "scripts/test-budget-final-copy.mjs",
+    "scripts/test-budget-presentation.mjs",
+    "scripts/test-budget-scope-salary.mjs",
+    "src/pages/budget-profiles/editorial-lives-2026-11-06.json",
+    "src/pages/budget-profiles/presentation.js"
+  ],
+  "changedPaths": [
+    "docs/budget-scope-2026-11-14/rapport.md",
+    "scripts/fixtures/budget-scope/2026-11-14.json",
+    "scripts/playwright-budget-profiles.mjs",
+    "scripts/playwright-budget-subscribers.mjs",
+    "scripts/test-budget-completeness.mjs",
+    "scripts/test-budget-editorial-context.mjs",
+    "scripts/test-budget-final-copy.mjs",
+    "scripts/test-budget-presentation.mjs",
+    "scripts/test-budget-profiles.mjs",
+    "scripts/test-budget-scope-salary.mjs",
+    "src/data/anniversary-levels.json",
+    "src/data/purchasing-power-observations.json",
+    "src/pages/budget-profiles/App.jsx",
+    "src/pages/budget-profiles/editorial-lives-2026-11-06.json",
+    "src/pages/budget-profiles/lib.js",
+    "src/pages/budget-profiles/presentation.js"
+  ],
+  "financialRevalidationRequired": true,
+  "scope": "Minimal replay of actual Budget1279 refusal; not a reconstructed whole producer scope."
+}
