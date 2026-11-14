@@ -1,6 +1,6 @@
 # Couverture des expositions
 
-Contrôle automatique : 2026-11-13T18:12:20.935Z.
+Contrôle automatique : 2026-11-14T10:30:31.568Z.
 
 694 actifs distincts ; 640 avec au moins 99,5 % de pays et secteurs ; 53 hors classification ; 1 à compléter. Les alias d’un même ISIN sont comptés une fois.
 
@@ -8,4 +8,4 @@ Les actifs hors classification ne sont pas des lacunes. Une date expirée, une t
 
 | Actif | ISIN | Pays | Secteurs | Motifs |
 |---|---|---:|---:|---|
-| Avantis Global Small Cap Value UCITS ETF USD Acc | IE0003R87OG3 | 99.44 % | 100.00 % | Table partielle |
+| Avantis Global Small Cap Value UCITS ETF USD Acc | IE0003R87OG3 | 98.84 % | 100.00 % | Table partielle |
