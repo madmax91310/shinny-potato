@@ -128,8 +128,9 @@ export default function DcaApp({subscriberMode=false}){
     <label>Localisation générale<input maxLength={60} value={profile.location||''} onChange={e=>edit({location:e.target.value})}/></label>
     <label>Revenu net mensuel (facultatif)<input type="number" min="0" value={profile.income||''} onChange={e=>edit({income:Math.max(0,Number(e.target.value))})}/></label>
    </div></details>
-   {!profile.multiImage&&profile.lines.length>=8&&<p>Pour ajouter jusqu’à 50 positions, active « Plusieurs images » dans « Personnaliser l’image ».</p>}
-   <AllocationEditor maxPositions={profilePositionLimit(profile)} ordered lines={profile.lines} onChange={lines=>edit({lines})} dca={!profile.imageOnly}/>
+   {!profile.multiImage&&profile.lines.length>=8&&<p>Tu peux ajouter jusqu’à 50 positions. Au-delà de 8, les donuts seront automatiquement exportés sur des images séparées.</p>}
+   {!profile.multiImage&&profile.lines.length>8&&<p role="alert">Publication bloquée : active « Plusieurs images » ou modifie l’allocation pour exporter toutes les positions.</p>}
+   <AllocationEditor maxPositions={MAX_EXPOSURE_POSITIONS} ordered lines={profile.lines} onChange={lines=>edit({lines,...(lines.length>8?{multiImage:true}:{})})} dca={!profile.imageOnly}/>
    {!profile.imageOnly&&<p className="dca-note">Versements : {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</p>}
    <ImageOptions multiImage={profile.multiImage===true} onMultiImageChange={multiImage=>edit({multiImage})} field={field} onFieldChange={changeImageField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>editImage({exposureLimit})} showCompanies={profile.showCompanies===true} onCompaniesChange={showCompanies=>editImage({showCompanies})}/>
    <details><summary>Détails du portefeuille</summary>
