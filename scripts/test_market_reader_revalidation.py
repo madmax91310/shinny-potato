@@ -9,6 +9,7 @@ import market_reader_revalidation as reader
 import observation_rebase_guard as shared
 
 ROOT = Path(__file__).resolve().parents[1]
+SUBSCRIBER = json.loads((ROOT/'scripts/fixtures/subscriber-reader-recording-race-20261114.json').read_text())
 
 
 class ReaderRevalidation(unittest.TestCase):
@@ -63,6 +64,45 @@ class ReaderRevalidation(unittest.TestCase):
         self.assertTrue(proof['financialRevalidationRequired'])
         self.assertFalse(proof['sourceControlsRenewedByThisAdapter'])
         self.assertNotIn(reader.WORKFLOW, shared.ALLOWED['market'])
+
+    def subscriber_snapshots(self, imported=None):
+        files={path:json.dumps(values['before'])for path,values in SUBSCRIBER['inputs'].items()}
+        for path in reader.MARKET_ACQUISITION_ENTRIES:
+            files[path]='export const acquisition = [];\n'
+        for path in reader.SUBSCRIBER_READERS:files[path]='export const reader = [];\n'
+        if imported:files[reader.BASELINE]="import '../"+imported+"';\n"
+        self.base=self.commit(files)
+        after={path:json.dumps(values['after'])for path,values in SUBSCRIBER['inputs'].items()}
+        after.update({path:'export const reader = [1];\n'for path in reader.SUBSCRIBER_READERS})
+        return self.commit(after)
+
+    def test_subscriber_package_and_readers_require_the_adapter_not_a_global_exemption(self):
+        end=self.subscriber_snapshots();original=set(shared.ALLOWED['market'])
+        with self.assertRaises(ValueError):shared.check('market',self.base,end)
+        result=reader.check(self.base,end)
+        self.assertEqual(set(result['qualifiedPublicationReaders']),reader.SUBSCRIBER_READERS|reader.SUBSCRIBER_TEST_INPUTS)
+        self.assertTrue(result['financialRevalidationRequired']);self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        self.assertEqual(shared.ALLOWED['market'],original)
+
+    def test_subscriber_reader_already_used_by_acquisition_is_never_exempted(self):
+        for path in ['src/pages/dca-profiles/subscriber-profiles.js','src/pages/dca-profiles/App.jsx',
+                     'package.json','scripts/ci-browser-checks.json']:
+            with self.subTest(path=path):
+                end=self.subscriber_snapshots(imported=path)
+                with self.assertRaisesRegex(ValueError,'acquisition dependency'):reader.check(self.base,end)
+
+    def test_new_acquisition_dependency_on_a_subscriber_reader_fails_on_upstream_tree(self):
+        self.subscriber_snapshots()
+        self.base=self.git('rev-parse','HEAD')
+        end=self.commit({reader.BASELINE:"import '../src/pages/dca-profiles/subscriber-profiles.js';\n",
+                         'src/pages/dca-profiles/subscriber-profiles.js':'export const reader=[2];\n'})
+        with self.assertRaisesRegex(ValueError,'acquisition dependency'):reader.check(self.base,end)
+
+    def test_adding_a_reader_test_never_allows_changed_dependencies_or_removed_gates(self):
+        end=self.subscriber_snapshots()
+        package=json.loads((self.repo/'package.json').read_text());package.setdefault('dependencies',{})['unqualified']='1.0'
+        end=self.commit({'package.json':json.dumps(package)})
+        with self.assertRaisesRegex(ValueError,'Protected.*configuration'):reader.check(self.base,end)
 
     def test_workflow_acquisition_command_cannot_hide_in_the_migration(self):
         before = (self.repo/reader.WORKFLOW).read_text()

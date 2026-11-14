@@ -337,6 +337,47 @@ def economic_values_unchanged(base, upstream):
             == json.dumps(signatures[1], sort_keys=True, allow_nan=False))
 
 
+def subscriber_test_addition_only(base, upstream, path):
+    """The exact extra UI test, never removed checks or changed acquisition code.
+
+    Package dependencies, lifecycle commands and every other script stay exact.
+    The browser gate keeps every original check, in order, and may append only
+    the reviewed subscriber regression. Code publication must independently
+    validate its current gate definition; this does not change that mechanism.
+    """
+    if path not in ('package.json', 'scripts/ci-browser-checks.json'):
+        return False
+    before, after = git_json(base, path), git_json(upstream, path)
+    canonical = lambda value: json.dumps(value, sort_keys=True, allow_nan=False)
+    if path == 'scripts/ci-browser-checks.json':
+        command = 'node scripts/playwright-subscriber-profiles.mjs'
+        if (not isinstance(before, list) or not isinstance(after, list) or not before or not after
+                or any(not isinstance(item, str) for item in before + after)
+                or len(set(before)) != len(before) or len(set(after)) != len(after)):
+            return False
+        if canonical(before) == canonical(after):
+            return True
+        if command in before:
+            return False
+        return after == before + [command]
+    if path != 'package.json' or not isinstance(before, dict) or not isinstance(after, dict):
+        return False
+    left, right = copy.deepcopy(before), copy.deepcopy(after)
+    for value in (left, right):
+        if not isinstance(value.get('scripts'), dict) or not isinstance(value['scripts'].get('test:dca'), str):
+            return False
+    if canonical(left) == canonical(right):
+        return True
+    original, changed = (value['scripts']['test:dca'].split(' && ') for value in (left, right))
+    command = 'node scripts/test-subscriber-profiles.mjs'
+    if command in original or changed.count(command) != 1:
+        return False
+    if [item for item in changed if item != command] != original:
+        return False
+    right['scripts']['test:dca'] = left['scripts']['test:dca']
+    return canonical(left) == canonical(right)
+
+
 def check(kind, base, upstream):
     paths = subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
