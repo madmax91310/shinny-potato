@@ -46,6 +46,7 @@ PRIVATE_SERVICE_READERS = [
 
 SCPI_ETF_RACE = json.loads((ROOT/'scripts/fixtures/scpi-etf-recording-race-20261106.json').read_text())['changedPaths']
 ETF_BUDGET_RACE = json.loads((ROOT/'scripts/fixtures/etf-budget-recording-race-20261114.json').read_text())['changedPaths']
+SUBSCRIBER_RACE = json.loads((ROOT/'scripts/fixtures/subscriber-reader-recording-race-20261114.json').read_text())
 
 ECONOMIC_PATH = 'src/data/automated-economic.json'
 
@@ -95,6 +96,44 @@ class EconomicInputSignatureTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.eligible(invalid,copy.deepcopy(invalid))
 
 
+class SubscriberInputSignatureTests(unittest.TestCase):
+    def eligible(self, path, before=None, after=None):
+        import observation_rebase_guard as guard
+        source=SUBSCRIBER_RACE['inputs'][path]
+        with patch.object(guard,'git_json',side_effect=[source['before']if before is None else before,source['after']if after is None else after]):
+            return guard.subscriber_test_addition_only('base','upstream',path)
+
+    def test_actual_package_and_browser_additions_are_not_acquisition_changes(self):
+        for path in SUBSCRIBER_RACE['inputs']:
+            with self.subTest(path=path):self.assertTrue(self.eligible(path))
+
+    def test_dependencies_lifecycle_commands_and_financial_checks_remain_protected(self):
+        original=SUBSCRIBER_RACE['inputs']['package.json']['after']
+        mutations=[
+            lambda r:r.setdefault('dependencies',{}).__setitem__('unqualified','1.0'),
+            lambda r:r['scripts'].__setitem__('preinstall','unqualified'),
+            lambda r:r['scripts'].__setitem__('build','unqualified'),
+            lambda r:r['scripts'].__setitem__('verify:tweet-midi','unqualified'),
+            lambda r:r['scripts'].__setitem__('test:dca',r['scripts']['test:dca'].replace('node scripts/test-dca-engine.mjs && ','')),
+            lambda r:r['scripts'].__setitem__('test:dca',r['scripts']['test:dca']+' && node scripts/unqualified.mjs'),
+            lambda r:r['scripts'].__setitem__('test:dca',r['scripts']['test:dca']+' && node scripts/test-subscriber-profiles.mjs'),
+            lambda r:r.__setitem__('private',1),
+        ]
+        for n,mutate in enumerate(mutations):
+            after=copy.deepcopy(original);mutate(after)
+            with self.subTest(mutation=n):self.assertFalse(self.eligible('package.json',after=after))
+
+    def test_browser_gate_addition_never_removes_reorders_or_replaces_existing_checks(self):
+        original=SUBSCRIBER_RACE['inputs']['scripts/ci-browser-checks.json']['after']
+        for after in [original[1:],list(reversed(original)),original+['unknown'],original+[original[-1]],{'checks':original}]:
+            with self.subTest(change=str(after)[:50]):self.assertFalse(self.eligible('scripts/ci-browser-checks.json',after=after))
+
+    def test_current_unchanged_values_are_allowed_but_removal_is_not_an_addition(self):
+        for path,values in SUBSCRIBER_RACE['inputs'].items():
+            self.assertTrue(self.eligible(path,before=values['after']))
+            self.assertFalse(self.eligible(path,before=values['after'],after=values['before']))
+
+
 class ObservationRebaseTests(unittest.TestCase):
     def setUp(self):
         self.f = harness.CommitValidatedData()
@@ -132,7 +171,7 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/dca-profiles/holdings-8.json',
                      'src/pages/dca-profiles/holdings.json',
                      *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS, *BUDGET_EDITORIAL_READERS,
-                     *SCPI_ETF_RACE, *ETF_BUDGET_RACE, 'src/data/freshness-policy.json',
+                     *SCPI_ETF_RACE, *ETF_BUDGET_RACE, *SUBSCRIBER_RACE['changedPaths'], 'src/data/freshness-policy.json',
                      'src/pages/budget-profiles/data.js',
                      'src/pages/budget-profiles/lib.js',
                      'src/pages/budget-profiles/unqualified-context.json']:
@@ -308,6 +347,82 @@ else:
         import observation_rebase_guard as guard
         for kind in ['market', 'publication']:
             self.assertTrue(set(ETF_BUDGET_RACE).isdisjoint(guard.ALLOWED[kind]))
+
+    def subscriber_late_race(self, kind='market', fail_retry=False, extra_path=None):
+        for path,values in SUBSCRIBER_RACE['inputs'].items():
+            target=self.f.local/path;target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_text(json.dumps(values['before']))
+        exports=['scripts/export-monthly-baseline.mjs','scripts/export-equity-candidates.mjs',
+                 'scripts/export-monthly-candidates.mjs','scripts/export-etf-pilot-baseline.mjs','scripts/build-automation-targets.mjs']
+        for path in exports:(self.f.local/path).write_text('export const acquisition = [];\n')
+        self.f.git(self.f.local,'add','package.json','scripts/ci-browser-checks.json',*exports)
+        self.f.git(self.f.local,'commit','-m','actual input signatures')
+        self.f.git(self.f.local,'push','origin','master')
+        self.f.git(self.f.other,'pull','--ff-only')
+        script=self.f.root/'validate-subscriber-late-race.py'
+        script.write_text(f'''import json,pathlib,subprocess,sys
+counter=pathlib.Path({str(self.f.root/'subscriber-validation-count')!r})
+attempt=int(counter.read_text())+1 if counter.exists() else 1
+counter.write_text(str(attempt))
+inputs={SUBSCRIBER_RACE['inputs']!r}
+paths={sorted(set(SUBSCRIBER_RACE['changedPaths'])-set(SUBSCRIBER_RACE['inputs']))!r}
+if attempt==1:
+    other=pathlib.Path({str(self.f.other)!r})
+    for name in paths:
+        (other/name).write_text('concurrent update\\n')
+    for name,values in inputs.items():
+        (other/name).write_text(json.dumps(values['after']))
+    extra={extra_path!r}
+    if extra:
+        target=other/extra;target.parent.mkdir(parents=True,exist_ok=True);target.write_text('changed protected input\\n')
+    for args in [['add','.'],['commit','-m','subscriber writer during validation'],['push','origin','master']]:
+        subprocess.run(['git','-C',str(other),*args],check=True,capture_output=True)
+else:
+    for name in paths:assert pathlib.Path(name).read_text()=='concurrent update\\n'
+    for name,values in inputs.items():assert json.loads(pathlib.Path(name).read_text())==values['after']
+    if {fail_retry!r}:sys.exit(1)
+''')
+        validation=f'{shlex.quote(sys.executable)} {shlex.quote(str(script))}'
+        if kind not in ('market','etf'):return self.publish(kind,validation)
+        adapter=ROOT/'scripts/market_reader_revalidation.py'
+        command=(f'{shlex.quote(sys.executable)} {shlex.quote(str(adapter))} --kind {kind} '
+                 f'--base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^ && {validation}')
+        return self.f.publish({'VALIDATED_DATA_CHECK':command})
+
+    def test_actual_subscriber_race_during_market_validation_revalidates_and_preserves_both_writers(self):
+        result=self.subscriber_late_race()
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual((self.f.root/'subscriber-validation-count').read_text(),'2')
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+        for path,values in SUBSCRIBER_RACE['inputs'].items():
+            self.assertEqual(json.loads(self.f.git(self.f.remote,'show','master:'+path)),values['after'])
+
+    def test_subscriber_race_is_independent_of_etf_acquisition_too(self):
+        result=self.subscriber_late_race(kind='etf')
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual((self.f.root/'subscriber-validation-count').read_text(),'2')
+
+    def test_subscriber_race_never_publishes_a_failed_second_validation(self):
+        result=self.subscriber_late_race(fail_retry=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual((self.f.root/'subscriber-validation-count').read_text(),'2')
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
+
+    def test_subscriber_readers_cannot_hide_changed_collection_inputs(self):
+        result=self.subscriber_late_race(extra_path='scripts/monthly-automation.json')
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn('scripts/monthly-automation.json',result.stderr)
+        self.assertEqual((self.f.root/'subscriber-validation-count').read_text(),'1')
+
+    def test_subscriber_readers_do_not_qualify_financial_engines(self):
+        result=self.subscriber_late_race(extra_path='src/pages/dca-profiles/engine.js')
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn('src/pages/dca-profiles/engine.js',result.stderr)
+
+    def test_subscriber_allowance_does_not_extend_to_other_producers(self):
+        result=self.subscriber_late_race(kind='publication')
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual((self.f.root/'subscriber-validation-count').read_text(),'1')
 
     def test_budget_editorial_race_never_bypasses_financial_validation(self):
         self.assert_refused(BUDGET_EDITORIAL_READERS[-1], 'market', 'false')
@@ -730,6 +845,30 @@ else:
 
 
 class CurrentAcquisitionIndependence(unittest.TestCase):
+    def test_subscriber_readers_are_outside_market_etf_and_baseline_acquisition(self):
+        import market_reader_revalidation as reader
+        self.python_graph(['refresh_monthly_history.py','collect_ranking_sources.py',
+                           'qualify_monthly_candidates.py','refresh_qualified_listings.py',
+                           'collect_etf_pilot.py','collect_amundi_etf.py','collect_ssga_etf.py',
+                           'refresh_additional_etf.py','collect_presentation_performance.py',
+                           'collect_annual_fx.py','collect_performance_currency.py','refresh_index_sources.py'],
+                          reader.SUBSCRIBER_READERS,match_names=False)
+        pending=[ROOT/'scripts'/name for name in ['export-monthly-baseline.mjs','export-equity-candidates.mjs',
+                                                 'export-monthly-candidates.mjs','export-etf-pilot-baseline.mjs']]
+        seen=set()
+        while pending:
+            path=pending.pop().resolve()
+            if path in seen:continue
+            seen.add(path)
+            self.assertNotIn(path,[ROOT/name for name in reader.SUBSCRIBER_READERS])
+            if path.suffix not in('.js','.mjs'):continue
+            text=path.read_text()
+            # App.jsx also occurs in unrelated reader comments. The resolved
+            # import path above, not that shared basename, identifies the module.
+            for name in reader.SUBSCRIBER_READERS:self.assertNotIn(name,text,str(path))
+            for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]",text):pending.append(path.parent/relative)
+        self.assertGreater(len(seen),4)
+
     def test_etf_acquisition_and_baseline_do_not_read_exact_budget_readers(self):
         self.python_graph(['collect_etf_pilot.py', 'collect_amundi_etf.py',
                            'collect_ssga_etf.py', 'refresh_additional_etf.py',

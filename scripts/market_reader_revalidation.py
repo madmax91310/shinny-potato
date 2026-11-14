@@ -77,6 +77,21 @@ ETF_READERS = {'docs/data-operations-coordination.md',
                # and rebuild/revalidate the complete financial publication.
                # Active inflation data, collector code and configs stay guarded.
                'scripts/source-snapshots/inflation-automated.json'}
+# Actual late refusal43591714596 after #1275. These readers are qualified only
+# after checking both original and upstream acquisition graphs below.
+SUBSCRIBER_READERS = {
+    'scripts/playwright-subscriber-profiles.mjs',
+    'scripts/test-subscriber-profiles.mjs',
+    'src/pages/dca-profiles/App.jsx',
+    'src/pages/dca-profiles/DcaApp.jsx',
+    'src/pages/dca-profiles/README.md',
+    'src/pages/dca-profiles/SubscriberProfiles.jsx',
+    'src/pages/dca-profiles/dca-profiles.css',
+    'src/pages/dca-profiles/subscriber-profiles.js',
+}
+SUBSCRIBER_TEST_INPUTS = {'package.json', 'scripts/ci-browser-checks.json'}
+MARKET_ACQUISITION_ENTRIES = (BASELINE, 'scripts/export-equity-candidates.mjs',
+                              'scripts/export-monthly-candidates.mjs')
 
 
 def at(ref, path):
@@ -120,7 +135,22 @@ def check_etf(base, upstream='HEAD^'):
             for entry in ETF_ACQUISITION_ENTRIES:
                 if baseline_dependencies(ref, entry) & ETF_READERS:
                     raise ValueError('An ETF qualification reader is an acquisition dependency: ' + entry)
+    permitted |= subscriber_readers(base, upstream, paths, ETF_ACQUISITION_ENTRIES)
     return checked_readers('etf', base, upstream, permitted)
+
+
+def subscriber_readers(base, upstream, paths, entries):
+    requested = paths & (SUBSCRIBER_READERS | SUBSCRIBER_TEST_INPUTS)
+    if not requested:
+        return set()
+    for ref in (base, upstream):
+        for entry in entries:
+            if baseline_dependencies(ref, entry) & (SUBSCRIBER_READERS | SUBSCRIBER_TEST_INPUTS):
+                raise ValueError('A subscriber reader/test configuration is an acquisition dependency: ' + entry)
+    for path in paths & SUBSCRIBER_TEST_INPUTS:
+        if not guard.subscriber_test_addition_only(base, upstream, path):
+            raise ValueError('Protected acquisition/validation configuration changed: ' + path)
+    return requested
 
 
 def checked_readers(kind, base, upstream, permitted):
@@ -145,6 +175,7 @@ def check(base, upstream='HEAD^'):
         for ref in (base, upstream):
             if baseline_dependencies(ref) & readers:
                 raise ValueError('A supposed publication reader is an acquisition dependency')
+    permitted |= subscriber_readers(base, upstream, paths, MARKET_ACQUISITION_ENTRIES)
     if WORKFLOW in paths:
         before, after = at(base, WORKFLOW), at(upstream, WORKFLOW)
         if before is not None and before.count(OLD_GROUP) == 1 and before.replace(OLD_GROUP, NEW_GROUP, 1) == after:
