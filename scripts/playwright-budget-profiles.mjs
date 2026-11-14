@@ -185,7 +185,7 @@ try {
     await page.getByRole('button', { name: 'Confirmer la publication', exact: true }).click()
     await expect(publication).toBeChecked()
     const participationId = await page.evaluate(key => JSON.parse(localStorage.getItem(key)).activeId, WORKSPACE_KEY)
-    await page.getByRole('button', { name: 'Créer une participation', exact: true }).click()
+    await page.getByRole('button', { name: 'Créer un profil d’abonné', exact: true }).click()
     await expect(publication).not.toBeChecked()
     await page.getByRole('button', { name: 'Profils', exact: true }).click()
     await picker.locator(`[data-value="${lastId}"]`).click()

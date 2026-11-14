@@ -16,6 +16,7 @@ const profiles = [...BUDGET_PROFILES].sort(compareBudgetRecency)
 const BackupPanel = lazy(() => import('./BackupPanel.jsx'))
 const SourceEvidencePanel = lazy(() => import('./SourceEvidencePanel.jsx'))
 const ParticipantEditor = lazy(() => import('./ParticipantEditor.jsx'))
+const SubscriberProfiles = lazy(() => import('./SubscriberProfiles.jsx'))
 
 export default function App() {
   const [initial] = useState(() => {
@@ -30,6 +31,7 @@ export default function App() {
   const [publicationDates, setPublicationDates] = useState(publishedInitial.dates)
   const [queuedInitial] = useState(loadQueued), [queued, setQueued] = useState(queuedInitial.value)
   const [saved, setSaved] = useState(loadSavedDrafts)
+  const [subscriberOpen, setSubscriberOpen] = useState(initial.value.profile.kind === 'participant')
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
   const [imageMode, setImageMode] = useState('detailed'), [backupOpen, setBackupOpen] = useState(false)
   const [evidenceOpen, setEvidenceOpen] = useState(false)
@@ -64,9 +66,10 @@ export default function App() {
   }
   function adapt() {
     const p = { ...structuredClone(profile), id: `participation-${crypto.randomUUID()}`, name: budgetDisplayName(profile), kind: 'participant', source: null, publishedAt: null, checkedAt: null,
-      incomeNote: '', context: '', caveat: '', hook: '', question: 'Quel poste pèse le plus dans ton budget ?' }
-    choose(p)
+      incomeNote: '', context: '', caveat: '', hook: '', question: '' }
+    setSubscriberOpen(true); choose(p)
   }
+  function createSubscriber() { setSubscriberOpen(true); choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` }) }
   function toggleUsed() {
     const next = used.includes(profile.id) ? used.filter(id => id !== profile.id) : [...used, profile.id]
     if (saveUsage(next)) { setUsed(next); setFeedback('Historique mis à jour.') }
@@ -98,9 +101,13 @@ export default function App() {
       {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''}</option>)}</ChoicePicker></label>}
       {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
     </details>
+    <details className="dca-simple-card budget-subscribers" open={subscriberOpen} onToggle={e => setSubscriberOpen(e.currentTarget.open)}>
+      <summary>Mes profils d’abonnés</summary>
+      {subscriberOpen && <Suspense fallback={<p>Chargement des profils…</p>}><SubscriberProfiles drafts={saved} activeId={profile.id} onCreate={createSubscriber} onChoose={choose}/></Suspense>}
+    </details>
     <div className="dca-simple-grid">
       <section className="dca-simple-card" aria-label="Composer le budget">
-        <div className="dca-mode"><button aria-pressed={prepared} onClick={() => choose(profiles[0])}>Profils</button><button aria-pressed={!prepared} onClick={() => choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` })}>Créer une participation</button></div>
+        <div className="dca-mode"><button aria-pressed={prepared} onClick={() => choose(profiles[0])}>Profils</button><button aria-pressed={!prepared} onClick={createSubscriber}>Créer un profil d’abonné</button></div>
         {prepared && <>
           <label>Rechercher un profil<input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Profil, revenu, mois…"/></label>
           <details><summary>Filtrer les profils</summary><div className="budget-filters">
@@ -148,7 +155,7 @@ export default function App() {
           <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false, textFinance: budgetFinancialReference(profile) }) }}>Rétablir le texte</Button></div>
           <PublicationStatus key={profile.id} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/>
           <label className="budget-check"><input type="checkbox" checked={queued.includes(profile.id)} onChange={e => markQueued(e.target.checked)}/>À publier prochainement</label><p className="dca-note">Trois statuts indépendants, enregistrés manuellement dans ce navigateur.</p>
-          {edited && <p className="dca-note">Texte personnalisé conservé. « Rétablir le texte » reprend les chiffres du budget.</p>}
+          {edited && <p className="dca-note">{prepared ? 'Texte personnalisé conservé. « Rétablir le texte » reprend les chiffres du budget.' : 'Texte personnalisé conservé. « Rétablir le texte » réactive la mise à jour depuis les lignes et garde vos questions.'}</p>}
           {!prepared && <label className="budget-check"><input type="checkbox" checked={approved} onChange={e => setApproved(e.target.checked)}/>La personne a validé les informations à publier.</label>}
           {!prepared && !approved && <p className="dca-note">Participation à faire valider avant publication.</p>}
           <p role="status" aria-live="polite">{feedback}</p>

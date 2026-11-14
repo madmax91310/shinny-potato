@@ -137,7 +137,7 @@ export function buildBudgetText(profile) {
     ] : [
       e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
       p.story,
-      p.question && `💬 ${p.question}`,
+      p.question && p.question.split(/\r?\n/).map(line => line.trim()).filter(Boolean).map(line => line.startsWith('💬') ? line : `💬 ${line}`).join('\n'),
     ]),
   ].filter(Boolean).join('\n\n')
 }
@@ -186,7 +186,7 @@ export function sourceReply(profile) {
 
 export function blankBudget() {
   return { id: 'participation', currency: 'EUR', name: '', age: null, job: '', location: '', household: '', kind: 'participant', approximate: false,
-    publishedAt: null, checkedAt: null, period: '', source: null, incomeBasis: 'Net après impôt', incomeNote: '',
-    income: [{ label: 'Salaire net après impôt', amount: null }], expenses: [{ label: 'Loyer et charges', amount: null, category: 'housing' }],
-    savings: [], capacity: null, context: '', caveat: '', hook: '', question: 'Quel poste pèse le plus dans ton budget ?' }
+    publishedAt: null, checkedAt: null, period: '', source: null, incomeBasis: 'Montants mensuels', incomeNote: '',
+    income: [{ label: '', amount: null }], expenses: [{ label: '', amount: null, category: 'other' }],
+    savings: [], capacity: null, context: '', caveat: '', hook: '', question: '' }
 }
