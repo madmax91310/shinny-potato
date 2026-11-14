@@ -60,7 +60,12 @@ try{
   const fiftyPages=await renderImageSeries(fifty,'all')
   const texts=[];const original=CanvasRenderingContext2D.prototype.fillText
   CanvasRenderingContext2D.prototype.fillText=function(value,...args){texts.push(String(value));return original.call(this,value,...args)}
-  try{await renderImageSeries(saved.profile,'all')}finally{CanvasRenderingContext2D.prototype.fillText=original}
+  try{
+   await renderImageSeries(saved.profile,'all')
+   const longEight={...saved.profile,lines:Array.from({length:8},(_,i)=>newManualLine({label:`Placement ${i} — `+'Libellé long '.repeat(15),category:'Fonds en euros',weight:12.5,amount:10}))}
+   const pages=await renderImageSeries(longEight,'all')
+   if(pages[1].canvas.height<=1000)throw Error('Long labels must expand the individual image')
+  }finally{CanvasRenderingContext2D.prototype.fillText=original}
   return {height:plan.height,width:plan.width,count:plan.labels.length,collisions,centerText:texts.filter(s=>s==='100 %'||s==='du patrimoine'||s==='du portefeuille'),names:plan.labels.map(l=>l.name),fiftyPages:fiftyPages.map(p=>p.id)}
  })
  assert.equal(audit.count,15);assert.deepEqual(audit.collisions,[]);assert.deepEqual(audit.centerText,[])

@@ -34,20 +34,24 @@ export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={})
   }
   return canvas
  }
- canvas.width=1600;canvas.height=1000
- const ctx=base(canvas,title)
+ canvas.width=1600
+ const measure=canvas.getContext('2d');measure.font='400 34px Arial'
+ const layout=rows.map(row=>{const lines=wrapDonutLabel(value=>measure.measureText(value).width,row.name,580);return {...row,lines,height:Math.max(84,lines.length*42+26)}})
+ const totalHeight=layout.reduce((sum,row)=>sum+row.height,0)
+ canvas.height=Math.max(1000,330+totalHeight+50)
+ const ctx=base(canvas,title),cy=330+totalHeight/2
  if(scope)text(ctx,scope,800,226,24,'center',false,'#aec8df')
- ring(ctx,rows,440,560,255,85)
+ ring(ctx,rows,440,cy,255,85)
  if(!allocation&&rows.length&&rows[0].name!=='Sans objet'){
-  text(ctx,pct(rows[0].weight),440,558,48,'center',true)
-  text(ctx,rows[0].name,440,605,25,'center',true)
+  text(ctx,pct(rows[0].weight),440,cy-2,48,'center',true)
+  text(ctx,rows[0].name,440,cy+45,25,'center',true)
  }
- const gap=Math.min(96,600/Math.max(rows.length,1)),top=330
- rows.forEach((row,i)=>{
-  const y=top+i*gap;ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(810,y-12,8,0,Math.PI*2);ctx.fill()
-  ctx.font='400 34px Arial'
-  wrapDonutLabel(value=>ctx.measureText(value).width,row.name,580).forEach((line,j)=>text(ctx,line,835,y+j*39))
+ let y=330
+ for(const row of layout){
+  ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(810,y-12,8,0,Math.PI*2);ctx.fill()
+  row.lines.forEach((line,j)=>text(ctx,line,835,y+j*42))
   text(ctx,pct(row.weight),1510,y,36,'right')
- })
+  y+=row.height
+ }
  return canvas
 }
