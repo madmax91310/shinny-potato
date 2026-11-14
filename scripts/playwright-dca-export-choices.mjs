@@ -58,15 +58,16 @@ try{
   // An old multiImage=false draft with 50 holdings remains renderable and lossless.
   const fifty={...saved.profile,lines:Array.from({length:50},(_,i)=>newManualLine({label:`Placement ${i+1}`,category:'Fonds en euros',weight:2,amount:10}))}
   const fiftyPages=await renderImageSeries(fifty,'all')
-  const texts=[];const original=CanvasRenderingContext2D.prototype.fillText
-  CanvasRenderingContext2D.prototype.fillText=function(value,...args){texts.push(String(value));return original.call(this,value,...args)}
+  const texts=[],allocationCanvases=[];const original=CanvasRenderingContext2D.prototype.fillText
+  CanvasRenderingContext2D.prototype.fillText=function(value,...args){texts.push({text:String(value),canvas:this.canvas});return original.call(this,value,...args)}
   try{
-   await renderImageSeries(saved.profile,'all')
+   allocationCanvases.push((await renderImageSeries(saved.profile,'all')).find(p=>p.id==='allocation').canvas)
    const longEight={...saved.profile,lines:Array.from({length:8},(_,i)=>newManualLine({label:`Placement ${i} — `+'Libellé long '.repeat(15),category:'Fonds en euros',weight:12.5,amount:10}))}
    const pages=await renderImageSeries(longEight,'all')
+   allocationCanvases.push(pages[1].canvas)
    if(pages[1].canvas.height<=1000)throw Error('Long labels must expand the individual image')
   }finally{CanvasRenderingContext2D.prototype.fillText=original}
-  return {height:plan.height,width:plan.width,count:plan.labels.length,collisions,centerText:texts.filter(s=>s==='100 %'||s==='du patrimoine'||s==='du portefeuille'),names:plan.labels.map(l=>l.name),fiftyPages:fiftyPages.map(p=>p.id)}
+  return {height:plan.height,width:plan.width,count:plan.labels.length,collisions,centerText:texts.filter(d=>allocationCanvases.includes(d.canvas)&&['100 %','du patrimoine','du portefeuille'].includes(d.text)).map(d=>d.text),names:plan.labels.map(l=>l.name),fiftyPages:fiftyPages.map(p=>p.id)}
  })
  assert.equal(audit.count,15);assert.deepEqual(audit.collisions,[]);assert.deepEqual(audit.centerText,[])
  assert.deepEqual(new Set(audit.names),new Set(fixture.names));assert.deepEqual(audit.fiftyPages,['complete','allocation','countries','sectors'])
