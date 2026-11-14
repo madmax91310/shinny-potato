@@ -16,6 +16,39 @@ def portfolio():
             for i in range(12)]
 
 class ApiHoldings(unittest.TestCase):
+    def test_actual_volt_renminbi_cash_keeps_its_negative_nav_weight(self):
+        import gzip,hashlib,json
+        from pathlib import Path
+        folder=Path(__file__).parent/'fixtures/wisdomtree-volt-cash-20261114'
+        manifest=json.loads((folder/'manifest.json').read_text())
+        raw=gzip.decompress((folder/'issuer-api.json.gz').read_bytes())
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),manifest['sha256'])
+        payload=json.loads(raw);now=dt.datetime(2026,11,14,tzinfo=dt.timezone.utc)
+        share={'isin':'IE00BKLF1R75'}
+        first=next(r for r in payload if r.get('figi'))
+        # Synthetic single mapping for this parser test: other securities stay unknown, never
+        # promoted to a complete overlap merely by qualifying this cash label.
+        mapping={first['figi']:'US0378331005'}
+        rows,stamp,cash=parse(payload,share,now,mapping)
+        account=next(r for r in payload if r['securityName']=='CHINESE RENMINBI')
+        self.assertEqual(account['figi'],None);self.assertEqual(account['securityTicker'],None)
+        self.assertEqual(account['shares'],-29266.13)
+        self.assertEqual(account['marketValueBase'],-4385.37)
+        self.assertLess(account['wgt'],0)
+        self.assertEqual(stamp,'2026-11-12')
+        self.assertFalse(any(r['name']=='CHINESE RENMINBI' for r in rows))
+        self.assertAlmostEqual(sum(r['weightPct'] for r in rows)+cash,100)
+        equities=[r for r in payload if r.get('figi')]
+        self.assertEqual([r['weightPct'] for r in rows],[r['wgt']*100 for r in equities])
+        self.assertTrue(any(r['isin']is None for r in rows))
+        legacy=copy.deepcopy(payload)
+        next(r for r in legacy if r['securityName']=='CHINESE RENMINBI')['securityName']='CHINESE RENIMBI'
+        self.assertEqual(parse(legacy,share,now,mapping),(rows,stamp,cash))
+        for field,value in [('securityName','UNKNOWN ACCOUNT'),('figi','BBG000B9XRY4'),('securityTicker','CNY STOCK')]:
+            bad=copy.deepcopy(payload)
+            next(r for r in bad if r['securityName']=='CHINESE RENMINBI')[field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):parse(bad,share,now,mapping)
+
     def test_real_quantum_nav_book_and_independent_alphabet_class_query(self):
         import gzip,json
         from pathlib import Path
