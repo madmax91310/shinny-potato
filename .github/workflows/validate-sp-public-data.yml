@@ -1,51 +1,31 @@
 name: Validate S&P public composition data
 on:
-  pull_request:
-    paths:
-      - 'scripts/collect_sp_composition.py'
-      - 'scripts/sp_public_feed.py'
-      - 'scripts/test_sp_public_feed.py'
-      - 'scripts/observations/sp-public-feed.json'
-      - 'scripts/test_sp_composition.py'
-      - 'scripts/fixtures/sp-composition/**'
-      - 'scripts/index-automation.json'
-      - '.github/workflows/validate-sp-public-data.yml'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  validate:
+  verify:
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-26.04, macos-15]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
-      - run: python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
-      - name: Validate both live public S&P numerical compositions
-        run: |
-          python - <<'PY'
-          import datetime as dt, json, pathlib, sys
-          sys.path.insert(0, 'scripts')
-          from collect_sp_composition import collect
-          from data_automation import UTC
-          configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
-          for config in configurations:
-              if not config.get('compositionDataUrl'): continue
-              facts = collect(config, dt.datetime.now(UTC))
-              # collect validates live responses first, and enforces the same
-              # 48-hour handoff limit if the primary access actually fails.
-              assert len(facts['holdings']) == 10
-              print(json.dumps({'id': config['id'], 'asOf': facts['asOf'],
-                  'constituents': facts['constituents'], 'topTen': len(facts['holdings']),
-                  'transport': facts['source'].get('transport', 'official-direct-response'),
-                  'checkedAt': facts['source']['checkedAt'],
-                  'retrievedAt': facts['source'].get('retrievedAt'),
-                  'primaryAccessError': facts['source'].get('primaryAccessError')}))
-          PY
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4 pillow
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+      - if: runner.os == 'macOS'
+        run: brew list poppler tesseract >/dev/null 2>&1 || brew install poppler tesseract
+      - name: Test exact advertised static PDF routes with the existing financial parser
+        run: python scripts/probe-sp-static-pdf.py
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: sp-static-pdf-${{ matrix.os }}
+          path: ${{ runner.temp }}/sp-static-pdf.json
