@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { renderBudgetImage } from './image.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 
 export function useBudgetImage(profile, enabled, mode = 'social') {
@@ -10,6 +9,7 @@ export function useBudgetImage(profile, enabled, mode = 'social') {
     let active = true, url
     const timer = setTimeout(async () => {
       try {
+        const { renderBudgetImage } = await import('./image.js')
         const canvas = await renderBudgetImage(JSON.parse(key).profile, JSON.parse(key).mode)
         const blob = await new Promise((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error()), 'image/png'))
         if (!active) return
