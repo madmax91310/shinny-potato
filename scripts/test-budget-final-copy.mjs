@@ -5,6 +5,7 @@ import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_EDITORIAL_CREATIONS }
 import { analyzeBudget, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicPresentation, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { budgetPublicBasis, budgetQualification } from '../src/pages/budget-profiles/presentation.js'
+import { budgetBeforePelCorrection } from './budget-audit-history.mjs'
 
 const audit = JSON.parse(readFileSync(new URL('../docs/budget-final-copy/2026-11-07.json', import.meta.url)))
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex')
@@ -18,10 +19,11 @@ for (const p of BUDGET_PROFILES) {
   assert.equal(review.sourceConsultedAgain, false)
   assert.equal(review.monthlyAmountsChanged, false)
   assert.deepEqual(context.evidence.at(-1).polishReview.notes, review.notes)
-  assert.equal(budgetFinancialReference(p), expected.financialReference, `${p.id}: preserve monthly rows, stock, project funding and horizons`)
+  assert.equal(budgetFinancialReference(budgetBeforePelCorrection(p)), expected.financialReference, `${p.id}: preserve historical rows except the documented PEL correction`)
   const cents = key => p[key].reduce((sum, row) => sum + Math.round(row.amount * 100), 0)
   const income = cents('income'), expenses = cents('expenses'), savings = cents('savings'), balance = income - expenses - savings
-  assert.deepEqual({ income, expenses, savings, balance }, expected.before, p.id)
+  const expectedCurrent = p.id === 'prepared-gritz-2026-10-30' ? { ...expected.before, savings:39500, balance:2900 } : expected.before
+  assert.deepEqual({ income, expenses, savings, balance }, expectedCurrent, p.id)
   const calculated = analyzeBudget(p)
   for (const [key, value] of Object.entries({ income, expenses, savings, balance })) assert.equal(Math.round(calculated[key] * 100), value)
   assert(Math.abs(calculated.expenseShare - expenses / income * 100) < 1e-10)
@@ -36,7 +38,7 @@ for (const p of BUDGET_PROFILES) {
   }
   const custom = { profile: p, text: 'Mon ancien texte personnalisé\nMes propres phrases et chiffres.', edited: true, textFinance: expected.financialReference }
   assert.equal(refreshBudgetDraft(custom).text, custom.text)
-  assert.equal(staleBudgetText(refreshBudgetDraft(custom)), false, 'Prose-only edits do not manufacture an obsolete-amount warning')
+  assert.equal(staleBudgetText(refreshBudgetDraft(custom)), p.id === 'prepared-gritz-2026-10-30', 'Only the PEL correction marks the old custom financial text as stale')
   assert.equal(refreshBudgetDraft({ ...custom, edited: false }).text, text)
   assert(context.questions.length + Number(Boolean(context.budgetQuestion)) <= 2)
 }

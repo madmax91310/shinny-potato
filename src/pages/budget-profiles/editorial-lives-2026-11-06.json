@@ -6500,13 +6500,23 @@
       "Vous accepteriez un crédit pour conserver une partie des placements, ou vous attendriez de pouvoir acheter comptant ?"
     ],
     "budgetQuestion": "",
-    "coherence": "Revenus, dépenses, versements, devise et période conservés ; stocks distincts des flux. Les déclarations sources restent dans la photographie originale. Les nouveaux stocks et projets sont des créations autorisées ; aucune nouvelle recette ne sert à effacer un déficit. Les éléments narratifs créés restent propres au personnage éditorial ; les faits conservés gardent leur provenance antérieure.",
+    "coherence": "Revenus, dépenses, versements, devise et période conservés ; stocks distincts des flux. Les déclarations sources restent dans la photographie originale. Les nouveaux stocks et projets sont des créations autorisées ; aucune nouvelle recette ne sert à effacer un déficit. Les éléments narratifs créés restent propres au personnage éditorial ; les faits conservés gardent leur provenance antérieure. Correction du 14/11/2026 autorisée : PEL porté de 28 à 45 €/mois (540 €/an). PEA maintenu à 350 €, total des versements 395 €, reste 29 €. Revenus, dépenses et stocks inchangés.",
     "sourceConsultationClaim": false,
     "publicationPolicy": "Personnage éditorial inspiré de données publiques ; prénoms changés et compléments cohérents autorisés. Aucune attribution à un abonné ayant envoyé un témoignage. Présentation publique neutre ; sources, photographies et créations traçables dans la fiche de contrôle et la documentation.",
     "publicProfile": {
       "incomeBasis": "Montants mensuels",
       "context": "Guillaume détient un PEL de 43 600 €, un PEA de 38 000 €, un PEE de 43 000 € et 20 000 € sur Livret A.\n\nGuillaume envisage un achat immobilier et préfère éviter le crédit. Il a aussi des besoins à environ un an et des projets à deux ou quatre ans : une partie de son argent doit pouvoir servir avant les placements de long terme.",
-      "question": "Combien garderiez-vous accessible pour les prochaines années avant de renforcer les placements à long terme ?\nVous accepteriez un crédit pour conserver une partie des placements, ou vous attendriez de pouvoir acheter comptant ?"
+      "question": "Combien garderiez-vous accessible pour les prochaines années avant de renforcer les placements à long terme ?\nVous accepteriez un crédit pour conserver une partie des placements, ou vous attendriez de pouvoir acheter comptant ?",
+      "savings": [
+        {
+          "label": "PEA",
+          "amount": 350
+        },
+        {
+          "label": "PEL",
+          "amount": 45
+        }
+      ]
     },
     "finance": [],
     "contextEntries": {
@@ -6598,6 +6608,22 @@
           "sourceConsultedAgain": false,
           "provenance": "Relecture des sorties générées et des éléments déjà conservés dans le dépôt. Créations éditoriales et photographies sources restent distinctes ; aucune nouvelle information présentée comme une déclaration vérifiée.",
           "limits": []
+        },
+        "financialCorrection": {
+          "reviewedAt": "2026-11-14",
+          "reason": "Respect du minimum annuel de versements sur le PEL.",
+          "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F16140",
+          "annualMinimum": 540,
+          "before": {
+            "pelMonthly": 28,
+            "savings": 378,
+            "balance": 46
+          },
+          "after": {
+            "pelMonthly": 45,
+            "savings": 395,
+            "balance": 29
+          }
         }
       }
     },
@@ -6635,6 +6661,22 @@
       "sourceConsultedAgain": false,
       "provenance": "Relecture des sorties générées et des éléments déjà conservés dans le dépôt. Créations éditoriales et photographies sources restent distinctes ; aucune nouvelle information présentée comme une déclaration vérifiée.",
       "limits": []
+    },
+    "financialCorrection": {
+      "reviewedAt": "2026-11-14",
+      "reason": "Respect du minimum annuel de versements sur le PEL.",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F16140",
+      "annualMinimum": 540,
+      "before": {
+        "pelMonthly": 28,
+        "savings": 378,
+        "balance": 46
+      },
+      "after": {
+        "pelMonthly": 45,
+        "savings": 395,
+        "balance": 29
+      }
     }
   },
   "prepared-tom281-2026-10-30": {

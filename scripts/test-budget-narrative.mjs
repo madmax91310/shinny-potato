@@ -4,9 +4,10 @@ import { readFileSync } from 'node:fs'
 import { BUDGET_PROFILES, BUDGET_EDITORIAL_CREATIONS } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
+import { budgetBeforePelCorrection } from './budget-audit-history.mjs'
 
 const baseline = JSON.parse(readFileSync(new URL('./fixtures/budget-narrative-2026-11-06.json', import.meta.url)))
-const monthly = BUDGET_PROFILES.map(p => [p.id, p.currency || 'EUR', ...['income', 'expenses', 'savings'].map(k => p[k].map(r => Math.round(r.amount * 100))), p.capacity])
+const monthly = BUDGET_PROFILES.map(budgetBeforePelCorrection).map(p => [p.id, p.currency || 'EUR', ...['income', 'expenses', 'savings'].map(k => p[k].map(r => Math.round(r.amount * 100))), p.capacity])
 assert.equal(BUDGET_PROFILES.length, baseline.count)
 assert.equal(createHash('sha256').update(JSON.stringify(monthly)).digest('hex'), baseline.monthlyAmountsHash, 'Every monthly amount and its perimeter is unchanged')
 for (const p of BUDGET_PROFILES) {
