@@ -1270,6 +1270,9 @@
       "basis": "Montants mensuels",
       "expenseLabels": {
         "Charges": "Charges de copropriété hors énergie"
+      },
+      "savingsLabels": {
+        "Versement PEA au budget": "Versement sur le PEA"
       }
     },
     "paragraphs": [
@@ -1462,6 +1465,15 @@
           "scope": "Budget individuel propriétaire. Charges 60 définies hors énergie ; les impôts 260 restent une dépense explicite après simplification du salaire. Cuisine 2 500 : réduction du PEA envisagée, pas versement travaux déjà réalisé.",
           "sourceConsultedAgain": false,
           "monthlyAmountsChanged": false
+        },
+        "naturalCopyReview": {
+          "reviewedAt": "2026-11-14",
+          "sourceConsultedAgain": false,
+          "monthlyAmountsChanged": false,
+          "savingsLabel": {
+            "before": "Versement PEA au budget",
+            "after": "Versement sur le PEA"
+          }
         }
       }
     },
@@ -1536,6 +1548,15 @@
           "incomeNote": "",
           "basis": "Montants mensuels"
         }
+      }
+    },
+    "naturalCopyReview": {
+      "reviewedAt": "2026-11-14",
+      "sourceConsultedAgain": false,
+      "monthlyAmountsChanged": false,
+      "savingsLabel": {
+        "before": "Versement PEA au budget",
+        "after": "Versement sur le PEA"
       }
     }
   },
@@ -6640,7 +6661,8 @@
       },
       "incomeNote": "",
       "basis": "Moyennes 2025 · revenus exceptionnels inclus",
-      "balanceLabel": "Reste avant placements"
+      "balanceLabel": "Reste avant placements",
+      "omitReportedCapacity": true
     },
     "paragraphs": [
       "Depuis 2022, Romain investit surtout en actions mondiales, sur compte-titres et dans son troisième pilier auquel il verse le maximum annuel. Ses placements représentent alors environ 109 700 CHF.",
@@ -6770,6 +6792,16 @@
           "scope": "Moyenne comprenant héritage et ventes, pas salaire récurrent de 7 393. Le solde avant placements inclut le troisième pilier annuel, aucun deuxième prélèvement mensuel inventé.",
           "sourceConsultedAgain": false,
           "monthlyAmountsChanged": false
+        },
+        "naturalCopyReview": {
+          "reviewedAt": "2026-11-14",
+          "sourceConsultedAgain": false,
+          "monthlyAmountsChanged": false,
+          "capacityNote": {
+            "sourceAmount": 3750,
+            "calculatedAvailable": 3749,
+            "reason": "Arrondi annoncé conservé en interne ; doublon public retiré du texte et des deux images, sans modifier le solde ni créer un versement."
+          }
         }
       }
     },
@@ -6839,6 +6871,16 @@
       "definitions": {},
       "salaryPolicy": "Libellé public Salaire, qualificatifs de temps de travail, moyenne, prime et prévision préservés ; traitement fiscal d’origine conservé dans la photographie et les métadonnées.",
       "sourceLimits": "Aucune nouvelle déclaration ni consultation source revendiquée. Les limites de la photographie antérieure restent dans le panneau de vérification."
+    },
+    "naturalCopyReview": {
+      "reviewedAt": "2026-11-14",
+      "sourceConsultedAgain": false,
+      "monthlyAmountsChanged": false,
+      "capacityNote": {
+        "sourceAmount": 3750,
+        "calculatedAvailable": 3749,
+        "reason": "Arrondi annoncé conservé en interne ; doublon public retiré du texte et des deux images, sans modifier le solde ni créer un versement."
+      }
     }
   },
   "prepared-nicolas1499-2026-10-30": {
@@ -7851,7 +7893,7 @@
     },
     "paragraphs": [
       "Thomas envisage d’acheter le parking qu’il loue et d’y créer cinq places de moto : une pour lui, quatre à louer. Il voudrait emprunter sans apport sur une longue durée pour continuer à investir.",
-      "Un crédit à la consommation plus court est aussi évoqué. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus."
+      "Il compare cette option avec un crédit à la consommation plus court. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus."
     ],
     "questions": [
       "Le projet tiendrait-il avec un crédit plus court et plusieurs mois sans locataires ?",
@@ -7863,7 +7905,7 @@
     "publicationPolicy": "Personnage éditorial inspiré de données publiques ; prénoms changés et compléments cohérents autorisés. Aucune attribution à un abonné ayant envoyé un témoignage. Présentation publique neutre ; sources, photographies et créations traçables dans la fiche de contrôle et la documentation.",
     "publicProfile": {
       "incomeBasis": "Montants mensuels",
-      "context": "Thomas envisage d’acheter le parking qu’il loue et d’y créer cinq places de moto : une pour lui, quatre à louer. Il voudrait emprunter sans apport sur une longue durée pour continuer à investir.\n\nUn crédit à la consommation plus court est aussi évoqué. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus.",
+      "context": "Thomas envisage d’acheter le parking qu’il loue et d’y créer cinq places de moto : une pour lui, quatre à louer. Il voudrait emprunter sans apport sur une longue durée pour continuer à investir.\n\nIl compare cette option avec un crédit à la consommation plus court. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus.",
       "question": "Le projet tiendrait-il avec un crédit plus court et plusieurs mois sans locataires ?\nQuelle mensualité maximale accepteriez-vous pour continuer à alimenter le PEA ?",
       "incomeNote": "Les avantages repas éventuels ne sont pas comptés dans les ressources."
     },
@@ -7881,7 +7923,7 @@
           "basis": "consulted-source"
         },
         {
-          "text": "Un crédit à la consommation plus court est aussi évoqué. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus.",
+          "text": "Il compare cette option avec un crédit à la consommation plus court. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus.",
           "evidence": [
             5
           ],
@@ -7906,6 +7948,13 @@
                 3
               ],
               "basis": "consulted-source"
+            },
+            {
+              "text": "Un crédit à la consommation plus court est aussi évoqué. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus.",
+              "evidence": [
+                5
+              ],
+              "basis": "editorial-preparation"
             }
           ]
         }
@@ -7967,6 +8016,15 @@
           "scope": "Budget individuel ; loyer du parking futur exclu des ressources. Paiement téléphone 62 distinct des abonnements et d’un forfait mobile éventuel ; complément fiscal 90 conservé.",
           "sourceConsultedAgain": false,
           "monthlyAmountsChanged": false
+        },
+        "naturalCopyReview": {
+          "reviewedAt": "2026-11-14",
+          "sourceConsultedAgain": false,
+          "monthlyAmountsChanged": false,
+          "paragraph": {
+            "before": "Un crédit à la consommation plus court est aussi évoqué. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus.",
+            "after": "Il compare cette option avec un crédit à la consommation plus court. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus."
+          }
         }
       }
     },
@@ -8029,6 +8087,15 @@
       "definitions": {},
       "salaryPolicy": "Libellé public Salaire, qualificatifs de temps de travail, moyenne, prime et prévision préservés ; traitement fiscal d’origine conservé dans la photographie et les métadonnées.",
       "sourceLimits": "Aucune nouvelle déclaration ni consultation source revendiquée. Les limites de la photographie antérieure restent dans le panneau de vérification."
+    },
+    "naturalCopyReview": {
+      "reviewedAt": "2026-11-14",
+      "sourceConsultedAgain": false,
+      "monthlyAmountsChanged": false,
+      "paragraph": {
+        "before": "Un crédit à la consommation plus court est aussi évoqué. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus.",
+        "after": "Il compare cette option avec un crédit à la consommation plus court. Les 67 € de location actuels pourraient servir au remboursement, mais il faudrait aussi payer les frais et taxes du parking. Aucun futur loyer des quatre places n’est compté dans ses revenus."
+      }
     }
   },
   "prepared-alessgiu-2026-10-30": {
@@ -10429,7 +10496,7 @@
       "incomeLabels": {
         "Salaire net hors primes": "Salaire net hors primes"
       },
-      "incomeNote": "Les aides évoquées ne sont pas comptées dans ce budget.",
+      "incomeNote": "Les aides éventuelles ne sont pas incluses.",
       "basis": "Montants mensuels",
       "expenseLabels": {
         "Loyer et charges": "Loyer et charges hors énergie et eau"
@@ -10449,7 +10516,7 @@
     "publicationPolicy": "Personnage éditorial inspiré de données publiques ; prénoms changés et compléments cohérents autorisés. Aucune attribution à un abonné ayant envoyé un témoignage. Présentation publique neutre ; sources, photographies et créations traçables dans la fiche de contrôle et la documentation.",
     "publicProfile": {
       "incomeBasis": "Montants mensuels",
-      "incomeNote": "Les aides évoquées ne sont pas comptées dans ce budget.",
+      "incomeNote": "Les aides éventuelles ne sont pas incluses.",
       "context": "Céline a 900 € sur Livret A. Elle doit remplacer son lave-linge pour environ 600 € d’ici neuf mois et veut éviter un achat à crédit.\n\nEn consacrant les 100 € mensuels de l’enveloppe projets à la machine pendant six mois, elle réunirait les 600 €, sans prendre sur les 900 € actuels ni sur les 150 € mensuels de précaution. Reste à choisir quelle place garder aux vacances et quand acheter la machine.",
       "question": "Vous prendriez les 600 € sur le livret maintenant ou vous mettriez 100 € de côté pendant six mois ?\nQuelle place garderiez-vous aux vacances pendant la préparation de cet achat ?"
     },
@@ -10606,6 +10673,15 @@
           "scope": "Budget monoparental : loyer 620 défini hors énergie/eau 100, salaire hors primes et aides non ajoutées. Machine 600 financée par six versements projets de 100, pas par deux enveloppes à la fois.",
           "sourceConsultedAgain": false,
           "monthlyAmountsChanged": false
+        },
+        "naturalCopyReview": {
+          "reviewedAt": "2026-11-14",
+          "sourceConsultedAgain": false,
+          "monthlyAmountsChanged": false,
+          "incomeNote": {
+            "before": "Les aides évoquées ne sont pas comptées dans ce budget.",
+            "after": "Les aides éventuelles ne sont pas incluses."
+          }
         }
       }
     },
@@ -10703,6 +10779,15 @@
           "incomeNote": "Les aides évoquées ne sont pas comptées dans ce budget.",
           "basis": "Montants mensuels"
         }
+      }
+    },
+    "naturalCopyReview": {
+      "reviewedAt": "2026-11-14",
+      "sourceConsultedAgain": false,
+      "monthlyAmountsChanged": false,
+      "incomeNote": {
+        "before": "Les aides évoquées ne sont pas comptées dans ce budget.",
+        "after": "Les aides éventuelles ne sont pas incluses."
       }
     }
   },

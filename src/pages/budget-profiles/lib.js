@@ -93,10 +93,14 @@ export function budgetPublicExpenseRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.expenseLabels || {}
   return profile.expenses.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
 }
+export function budgetPublicSavingsRows(profile) {
+  const labels = publicationContextFor(profile)?.budget?.savingsLabels || {}
+  return profile.savings.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
+}
 
 // A reported capacity is useful when it differs from the calculated remainder.
 // Keeping the source value in the profile does not require printing it twice.
-export const hasSeparateBudgetCapacity = (profile, a = analyzeBudget(profile)) => profile.capacity !== null &&
+export const hasSeparateBudgetCapacity = (profile, a = analyzeBudget(profile)) => !publicationContextFor(profile)?.budget?.omitReportedCapacity && profile.capacity !== null &&
   cents(profile.capacity) !== cents(a.available) && cents(profile.capacity) !== cents(a.balance)
 
 export const budgetPossessive = name => /^(?:[aàâäeéèêëiîïoôöuùûüyœ]|h(?:ugo|adrien))/i.test(name) ? `d’${name}` : `de ${name}`
@@ -122,7 +126,7 @@ export function buildBudgetText(profile) {
   const textBasis = publicBasis !== p.basis ? publicBasis : context?.budget?.textBasis ?? (p.basis === 'Montants mensuels' || publicIncome.length === 1 && publicIncome[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : budgetPublicBasis(profile, p.basis))
   const incomeHeading = publicIncome.every(row => /salaire/i.test(row.label)) ? `Revenus mensuels${publicIncome.some(row => /moyen/i.test(row.label)) ? ' moyens' : ''}` : 'Ressources mensuelles'
   const incomeRows = publicIncome.map(row => `• ${budgetRowSymbol(row, 'income').emoji} ${row.label} : ${money(row.amount)}`).join('\n')
-  const savings = profile.savings.map(row => `• ${budgetRowSymbol(row, 'savings').emoji} ${row.label} : ${money(row.amount)}`).join('\n')
+  const savings = budgetPublicSavingsRows(profile).map(row => `• ${budgetRowSymbol(row, 'savings').emoji} ${row.label} : ${money(row.amount)}`).join('\n')
   const transfersHeading = context?.budget?.transfersHeading || 'Versements'
   const transfers = budgetTransfers(profile, transfersHeading)
   return [
