@@ -9,7 +9,7 @@ import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
-import { MAX_POSITIONS, MAX_EXPOSURE_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
+import { profilePositionLimit, MAX_EXPOSURE_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
 import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord, readSavedState } from './management.js'
 import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
@@ -128,9 +128,10 @@ export default function DcaApp({subscriberMode=false}){
     <label>Localisation générale<input maxLength={60} value={profile.location||''} onChange={e=>edit({location:e.target.value})}/></label>
     <label>Revenu net mensuel (facultatif)<input type="number" min="0" value={profile.income||''} onChange={e=>edit({income:Math.max(0,Number(e.target.value))})}/></label>
    </div></details>
-   <AllocationEditor ordered lines={profile.lines} onChange={lines=>edit({lines})} dca={!profile.imageOnly}/>
+   {!profile.multiImage&&profile.lines.length>=8&&<p>Pour ajouter jusqu’à 50 positions, active « Plusieurs images » dans « Personnaliser l’image ».</p>}
+   <AllocationEditor maxPositions={profilePositionLimit(profile)} ordered lines={profile.lines} onChange={lines=>edit({lines})} dca={!profile.imageOnly}/>
    {!profile.imageOnly&&<p className="dca-note">Versements : {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</p>}
-   <ImageOptions field={field} onFieldChange={changeImageField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>editImage({exposureLimit})} showCompanies={profile.showCompanies===true} onCompaniesChange={showCompanies=>editImage({showCompanies})}/>
+   <ImageOptions multiImage={profile.multiImage===true} onMultiImageChange={multiImage=>edit({multiImage})} field={field} onFieldChange={changeImageField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>editImage({exposureLimit})} showCompanies={profile.showCompanies===true} onCompaniesChange={showCompanies=>editImage({showCompanies})}/>
    <details><summary>Détails du portefeuille</summary>
     <label>Périmètre<ChoicePicker aria-label="Périmètre du portefeuille" value={profile.scope} onChange={e=>edit({scope:e.target.value})}>{PROFILE_SCOPES.map(s=><option key={s} value={s}>{s}</option>)}</ChoicePicker></label>
     <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{edit({imageOnly:e.target.checked});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>
@@ -144,7 +145,7 @@ export default function DcaApp({subscriberMode=false}){
    </ImageExport>
    <section className="dca-simple-card dca-text-card">
     <label htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{draftEdited.current=true;setDraft(e.target.value);setProfile({...profile,approved:false})}}/>
-    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()||profile.lines.length>MAX_POSITIONS}>Copier le texte</Button><Button variant="secondary" disabled={profile.lines.length>MAX_POSITIONS} onClick={()=>{draftEdited.current=false;setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
+    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()||profile.lines.length>profilePositionLimit(profile)}>Copier le texte</Button><Button variant="secondary" disabled={profile.lines.length>profilePositionLimit(profile)} onClick={()=>{draftEdited.current=false;setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
     {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" disabled={!!a.errors.length} checked={!!profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>La personne a validé le texte, le visuel et les informations à publier.</label>}
     {profile.mode==='participant'&&!profile.approved&&<p className="dca-note">Brouillon à faire valider avant publication. Le téléchargement reste disponible.</p>}
     <p role="status" aria-live="polite">{feedback}</p>

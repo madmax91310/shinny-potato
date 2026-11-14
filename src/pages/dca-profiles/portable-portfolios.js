@@ -10,7 +10,7 @@ function checked(record) {
       (line.emoji !== undefined && (typeof line.emoji !== 'string' || line.emoji.length > 30))) ||
     ['name','job','family','location','emoji'].some(key=>item.profile[key]!==undefined && (typeof item.profile[key]!=='string' || item.profile[key].length>250)) ||
     ['age','income','monthly'].some(key=>item.profile[key]!==undefined && item.profile[key]!==null && (!Number.isFinite(item.profile[key]) || item.profile[key]<0)) ||
-    ['imageOnly','showCompanies','variable'].some(key=>item.profile[key]!==undefined && typeof item.profile[key]!=='boolean') ||
+    ['imageOnly','showCompanies','variable','multiImage'].some(key=>item.profile[key]!==undefined && typeof item.profile[key]!=='boolean') ||
     (item.profile.mode !== undefined && !['prepared', 'participant', 'custom'].includes(item.profile.mode)) ||
     (item.profile.exposureLimit !== undefined && ![3, 4, 6].includes(item.profile.exposureLimit)) ||
     (item.profile.analysisView !== undefined && (!item.profile.analysisView ||

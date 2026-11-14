@@ -1,6 +1,6 @@
 import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
-import { MAX_POSITIONS, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
+import { profilePositionLimit, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
 import { incomeLabel, sortHoldings, sortContributions } from './lib.js'
 import { portfolioAnalytics, analyzedLines, analysisView, selectConcentrationGroup } from './analytics.js'
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
@@ -217,7 +217,7 @@ async function loadDcaFont(){
  if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(()=>{fontReady=undefined;return false})
  return fontReady
 }
-export async function renderDcaImage(input,field='countries',maxPositions=MAX_POSITIONS){
+export async function renderDcaImage(input,field='countries',maxPositions=profilePositionLimit(input)){
  await loadDcaFont()
  const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input)
  await Promise.all([...new Set(p.lines.map(line=>line.asset))].map(id=>exposureRecords.load(id)))
