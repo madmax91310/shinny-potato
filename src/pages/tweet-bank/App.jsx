@@ -101,7 +101,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
   const textareaRef = useRef(null)
   const [manualCopy, setManualCopy] = useState('')
   const [copyLabel, setCopyLabel] = useState('📋 Copier')
-  const badge = publicationBadge(lastPublished)
+  const badge = publicationBadge(lastPublished, today)
   const isQuestion = tweet.category === 'Question dimanche'
   const validity = contentValidity(tweet, draft, today)
   const text = draft?.text ?? tweet.text
@@ -202,6 +202,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
         {isQuestion ? <label className="tb-published"><input type="checkbox" checked={Boolean(lastPublished)} onChange={event => event.target.checked ? onMarkToday(tweet.id) : onClearDate(tweet.id)} /> Publié</label> : <Button type="button" variant="secondary" disabled={!validity.ready} onClick={() => onMarkToday(tweet.id)}>
           Marquer publié aujourd'hui
         </Button>}
+        {isQuestion && lastPublished && badge?.status === 'available' && <Button type="button" variant="secondary" disabled={!validity.ready} onClick={() => onMarkToday(tweet.id)}>Marquer republié aujourd’hui</Button>}
         <input
           type="date"
           className="tb-date-input"
@@ -369,10 +370,10 @@ export default function App() {
         {!sunday && <ChipRow options={CATEGORIES} allLabel="Toutes catégories" value={filters.category} onChange={(v) => set({ category: v, month: null, format: null })} gold />}
         {!sunday && <ChipRow options={FORMATS} allLabel="Tous les formats" value={filters.format} onChange={(v) => set({ format: v })} />}
         <label className="tb-toggle"><input type="checkbox" checked={filters.unpublished} onChange={e => set({ unpublished: e.target.checked })} /> Non publiées</label>
-        {!sunday && <label className="tb-toggle">
+        <label className="tb-toggle">
           <input type="checkbox" checked={filters.hideCooldown} onChange={(e) => set({ hideCooldown: e.target.checked })} />
-          Masquer les tweets encore en repos (moins de {COOLDOWN_DAYS} jours)
-        </label>}
+          Masquer les {sunday ? 'questions' : 'tweets'} encore en repos (moins de {COOLDOWN_DAYS} jours)
+        </label>
         <label className="tb-toggle">
           <input type="checkbox" checked={filters.sortByAge} onChange={(e) => set({ sortByAge: e.target.checked })} />
           Trier par ancienneté (jamais publiés puis les plus anciens d'abord)

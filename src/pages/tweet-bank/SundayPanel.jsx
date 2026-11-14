@@ -3,7 +3,8 @@ import Button from '../../design-system/Button.jsx'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { normalizeText } from '../../lib/tweet-discovery.js'
 import { SUNDAY_THEMES } from './sunday-questions.js'
-import { randomUnpublishedQuestion } from './lib.js'
+import { isInCooldown, randomAvailableQuestion } from './lib.js'
+import { COOLDOWN_DAYS } from './data.js'
 const QuestionCounter = lazy(() => import('./QuestionCounter.jsx'))
 
 export default function SundayPanel({ tweets, drafts, setDrafts, resetFilters, list, groupDates, randomId, setRandomId }) {
@@ -24,9 +25,10 @@ export default function SundayPanel({ tweets, drafts, setDrafts, resetFilters, l
   }
   return <section className="tb-sunday-intro">
         <h2>Question dimanche</h2>
-        <p>Une question le dimanche matin pour parler argent, choix et vécu. Personnalise le texte, puis copie-le. Coche « Publié » après publication.</p>
+        <p>Une question le dimanche soir pour parler argent, choix et vécu. Personnalise le texte, puis copie-le. Coche « Publié » après publication.</p>
+        <p>Chaque question publiée reste au repos pendant {COOLDOWN_DAYS} jours, puis peut être tirée à nouveau. Après une nouvelle publication, clique sur « Marquer republié aujourd’hui » pour relancer le délai.</p>
         <p>Questions personnelles, modifications et dates sont conservées dans ce navigateur.</p>
-        <Button type="button" disabled={!list.some(t => !groupDates[t.id])} onClick={() => setRandomId(randomUnpublishedQuestion(list, groupDates)?.id ?? null)}>Tirer une question non publiée</Button>
+        <Button type="button" disabled={!list.some(t => !isInCooldown(groupDates[t.id]))} onClick={() => setRandomId(randomAvailableQuestion(list, groupDates)?.id ?? null)}>Tirer une question disponible</Button>
         {randomId && <Button type="button" variant="ghost" onClick={() => setRandomId(null)}>Revoir toutes les questions</Button>}
         <details className="tb-personal-question">
           <summary>＋ Ajouter une question personnelle</summary>
