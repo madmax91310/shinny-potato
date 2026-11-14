@@ -136,7 +136,7 @@ export default function DcaApp({subscriberMode=false}){
     <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{edit({imageOnly:e.target.checked});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>
     {profile.scope==='PEA'&&profile.lines.some(l=>references[l.asset]?.pea!==true)&&<p className="dca-note">L’éligibilité PEA de certains supports n’est pas établie. Vérifie le périmètre choisi.</p>}
    </details>
-   {!subscriberMode&&<Portfolios resetSignal={portfolioReset} profile={profile} draft={draft} field={field} onLoad={loadPortfolio}/>}
+   {!subscriberMode&&<Portfolios resetSignal={portfolioReset} profile={profile} draft={draft} field={field} onLoad={loadPortfolio} activeRecordId={subscriberSession?.id} onSaved={item=>{if(item.profile.mode==='participant'&&!item.profile.imageOnly)subscriberSaved(item)}} onRemoved={id=>{if(subscriberSession?.id===id)setSubscriberSession(null)}}/>}
   </section>
   <div className="dca-publication-column">
    <ImageExport image={image} reason={reason} filename={`dca-${profile.id}.png`} alt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`}>
