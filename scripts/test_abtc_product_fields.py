@@ -29,7 +29,7 @@ class AbtcProductFields(unittest.TestCase):
         self.assertEqual(r['aum']['asOf'],'2026-10-30') # Not future effective_date2026-11-02.
         self.assertEqual(r['characteristics']['terPct'],1.49)
         self.assertNotIn('asOf',r['characteristics']) # NAV date is not the fee effective date.
-        self.assertEqual(r['sourceUrl'],'https://api.primary.21shares.com/api/product_details/ABTC')
+        self.assertEqual(r['sourceUrl'],SHARE['sourceUrl'])
         self.assertNotIn('performance',r)
         self.assertEqual([x['field']for x in r['collectionErrors']],['performance'])
 
@@ -93,7 +93,7 @@ class AbtcProductFields(unittest.TestCase):
         with patch('collect_product_calendars.download',return_value=b'{}'),self.assertRaises(ValueError):collect_one(SHARE,NOW)
 
     def test_calendar_failure_keeps_actual_endpoint_and_valid_product_fields(self):
-        endpoint='https://api.primary.21shares.com/api/product_valuation_history/ABTC'
+        endpoint=SHARE['calendarApiBase']+'/api/product_valuation_history/ABTC'
         with patch('collect_product_calendars.download',return_value=json.dumps(self.live()).encode()),patch('collect_product_calendars.collect_abtc_calendar',side_effect=HTTPError(endpoint,410,'Gone',None,None)):
             r=collect_one(SHARE,NOW)
         self.assertEqual(r['collectionErrors'][0]['url'],endpoint)
@@ -101,7 +101,7 @@ class AbtcProductFields(unittest.TestCase):
 
     def test_anniversary_failure_does_not_misattribute_generic410_or_re_date_old_nav(self):
         from refresh_anniversary_levels import refresh
-        endpoint='https://api.primary.21shares.com/api/product_valuation_history/ABTC'
+        endpoint=SHARE['calendarApiBase']+'/api/product_valuation_history/ABTC'
         old={'etfCH0454664001Nav':{'value':23,'asOf':'2026-10-06','checkedAt':'2026-10-07'}}
         original=copy.deepcopy(old)
         def failed(config,now):raise HTTPError(endpoint,410,'Gone',None,None)

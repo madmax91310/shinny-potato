@@ -113,6 +113,9 @@ class OfficialListing(unittest.TestCase):
         code = """import assert from 'node:assert/strict';
 import {officialListingSource} from './src/data/qualified-listings.js';
 assert(officialListingSource({sourceUrl:'https://api.primary.21shares.com/api/product_details/ABTC'}));
+assert(officialListingSource({sourceUrl:'https://api.secondary.21shares.com/api/product_details/ABTC'}));
+assert(!officialListingSource({sourceUrl:'http://api.secondary.21shares.com/api/product_details/ABTC'}));
+assert(!officialListingSource({sourceUrl:'https://api.secondary.21shares.com.evil.invalid/api/product_details/ABTC'}));
 for(const sourceUrl of ['http://api.primary.21shares.com/api/product_details/ABTC',
 'https://api.primary.21shares.com.evil.invalid/api/product_details/ABTC',
 'https://extraetf.com/fr/etf-profile/CH0454664001'])assert(!officialListingSource({sourceUrl}));

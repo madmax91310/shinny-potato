@@ -9,7 +9,7 @@ NOW=dt.datetime(2026,10,27,tzinfo=dt.timezone.utc)
 class AbtcNav(unittest.TestCase):
     def setUp(self):
         self.fx=patch('collect_official_share_history.get_text',return_value=gzip.decompress((FOLDER/'fx.xml.gz').read_bytes()).decode());self.fx.start();self.addCleanup(self.fx.stop)
-        self.source=next(s for s in configurations() if s['id']=='etfCH0454664001Nav')
+        self.source=next(s for s in configurations() if s['id']=='etfCH0454664001Nav')|{'sourceUrl':'https://api.primary.21shares.com/api/product_valuation_history/ABTC'} # Preserve the original dated primary-source fixture.
         manifest=json.loads((FOLDER/'sources.json').read_text())
         self.bodies={url:gzip.decompress((FOLDER/name).read_bytes()) for url,name in manifest['files'].items()}
     def fetch(self,url):return self.bodies[url]
