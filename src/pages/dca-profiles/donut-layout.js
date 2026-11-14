@@ -25,7 +25,8 @@ export function radialDonutLayout(rows,measure) {
  const cy=670
  const labels=items.map(row=>{
   const cos=Math.cos(row.angle),sin=Math.sin(row.angle),anchor=row===top||row===bottom?'center':cos>0?'left':'right'
-  const x=cx+(outer+52)*cos,y=cy+390*sin
+  const position=items.indexOf(row),previous=items[(position+items.length-1)%items.length],next=items[(position+1)%items.length]
+  const x=anchor==='center'?cx+(outer+30)*(Math.cos(previous.angle)+Math.cos(next.angle))/2:cx+(outer+52)*cos,y=cy+390*sin
   const width=Math.max(...row.lines.map(measure),measure(`${Number(row.weight.toFixed(2))} %`)),height=(row.lines.length+1)*gap
   const left=anchor==='center'?x-width/2:anchor==='right'?x-width:x
   return {...row,x,y,anchor,left,right:left+width,top:y-height/2,bottom:y+height/2,height,font,gap}

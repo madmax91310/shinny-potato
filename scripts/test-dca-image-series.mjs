@@ -28,3 +28,9 @@ for(const count of [9,15,50]){
  }
 }
 console.log('Complete + individual choices, unchanged weights, all labels and collision-free 9/15/50 position layouts passed.')
+// A small holding near the top must not cover its neighbour's leader line.
+const names=['ETF World','Livret A','Fonds en euros','ETF S&P 500','ETF Europe','ETF émergents','LDDS','Air Liquide','Vinci','TotalEnergies','ETF Nasdaq-100','ETF small caps','SCPI','Or physique','Bitcoin']
+const weights=[25,15,12,10,8,6,5,4,3,3,2,2,2,2,1]
+const around=radialDonutLayout(names.map((name,i)=>({name,weight:weights[i]})),value=>value.length*16)
+const topLabel=around.labels.find(row=>row.name==='Air Liquide'),neighbour=around.labels.find(row=>row.name==='Vinci')
+assert(topLabel.left>around.cx+(around.outer+30)*Math.cos(neighbour.angle))
