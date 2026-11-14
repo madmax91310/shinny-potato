@@ -20,7 +20,7 @@ jobs:
       matrix:
         os: [ubuntu-26.04, macos-15]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-python@v7.0.0
@@ -28,24 +28,38 @@ jobs:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
-      - name: Validate both live public S&P numerical compositions
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise ordinary public navigation and same-session JSON
+        id: browser
+        continue-on-error: true
+        run: node scripts/probe-sp-public-browser.mjs "$RUNNER_TEMP/sp-browser-envelope.json"
+      - name: Qualify acquired exact-index responses with the existing financial parser
+        if: always()
         run: |
-          python - <<'PY'
-          import datetime as dt, json, pathlib, sys
-          sys.path.insert(0, 'scripts')
-          from collect_sp_composition import collect
-          from data_automation import UTC
-          configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
-          for config in configurations:
-              if not config.get('compositionDataUrl'): continue
-              facts = collect(config, dt.datetime.now(UTC))
-              # collect validates live responses first, and enforces the same
-              # 48-hour handoff limit if the primary access actually fails.
-              assert len(facts['holdings']) == 10
-              print(json.dumps({'id': config['id'], 'asOf': facts['asOf'],
-                  'constituents': facts['constituents'], 'topTen': len(facts['holdings']),
-                  'transport': facts['source'].get('transport', 'official-direct-response'),
-                  'checkedAt': facts['source']['checkedAt'],
-                  'retrievedAt': facts['source'].get('retrievedAt'),
-                  'primaryAccessError': facts['source'].get('primaryAccessError')}))
-          PY
+          python - <<'PYTHON'
+          import base64,datetime,json,os,pathlib,sys
+          sys.path.insert(0,'scripts')
+          from collect_sp_composition import parse_public_data
+          p=pathlib.Path(os.environ['RUNNER_TEMP'])/'sp-browser-envelope.json'
+          report=json.loads(p.read_text());configs={c['id']:c for c in json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']if c.get('compositionDataUrl')}
+          assert {r['id']for r in report['expected']}==set(configs)
+          for r in report['outcomes']:
+              if r['status']!='acquired':continue
+              try:
+                  facts=parse_public_data(base64.b64decode(r['bodyBase64'],validate=True),configs[r['id']],datetime.datetime.now(datetime.timezone.utc))
+                  r['financialStatus']='validated';r['effectiveDate']=facts['asOf'];r['constituents']=facts['constituents'];r['topTen']=len(facts['holdings'])
+              except Exception as error:r['financialStatus']='failed';r['financialError']=str(error)
+          (p.parent/'sp-browser-qualified.json').write_text(json.dumps(report,indent=2))
+          for r in report['outcomes']:print(json.dumps({k:v for k,v in r.items()if k!='bodyBase64'}))
+          assert all(r.get('financialStatus')=='validated'for r in report['outcomes']), 'Direct source not qualified; no cached handoff accepted'
+          PYTHON
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: sp-public-browser-${{ matrix.os }}
+          path: ${{ runner.temp }}/sp-browser-*.json
+          retention-days: 14
