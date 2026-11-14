@@ -6,7 +6,7 @@ export { references }
 export const MAX_POSITIONS=8
 // Actifs & expositions and lossless recovery retain their existing capacity.
 export const MAX_EXPOSURE_POSITIONS=50
-export const profilePositionLimit = profile => profile?.multiImage === true ? MAX_EXPOSURE_POSITIONS : MAX_POSITIONS
+export const profilePositionLimit = () => MAX_EXPOSURE_POSITIONS
 export const PROFILE_SCOPES = ['Portefeuille investi','PEA + CTO','PEA','CTO','Ensemble des placements']
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`
 export const euro = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} €`
