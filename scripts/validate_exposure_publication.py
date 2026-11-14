@@ -21,7 +21,10 @@ REGISTRY = 'src/data/exposure-etf-expansion-records.json'
 INDEPENDENT = {'src/data/anniversary-levels.json',
                'src/data/purchasing-power-observations.json'}
 CUSTOM_COLLECTOR = 'scripts/collect_exposure_expansion.py'
-CUSTOM_SHA256 = '1a3340e6a862a47d536bf8f3d520ce55da46a6c85797e26a97386571fb62954f'
+# Requalified 2026-11-14: explicit selection preflight and failure context only.
+# collect/collect_amundi/qualify_refresh/fund_siblings keep their financial paths;
+# neither independent registry is read. Unknown collector versions stay refused.
+CUSTOM_SHA256 = '164a37ea32c94b2ea7a239cc61f2a4e932ebe8e1744a6d86ad4a1e2b84291a34'
 
 
 def git_bytes(root, ref, path):
