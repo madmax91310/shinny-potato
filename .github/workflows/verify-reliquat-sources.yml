@@ -18,6 +18,10 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - if: runner.os == 'macOS'
+        run: brew list poppler >/dev/null 2>&1 || brew install poppler
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
