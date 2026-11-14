@@ -1,51 +1,51 @@
-# Historiques et performances — bilan du lot
+# Historiques et performances — livraison consolidée
 
-Correctifs fusionnés : [PR #1265](https://github.com/madmax91310/shinny-potato/pull/1265), enregistrement 13F ; [PR #1267](https://github.com/madmax91310/shinny-potato/pull/1267), manifeste de publication. Pages effectivement observé : **code `642e702a`, données `c9281f74`**, construction **2026-11-14T03:46:56.588Z**. Les versions de code et de données sont distinguées.
-Complément [PR #1268](https://github.com/madmax91310/shinny-potato/pull/1268) : contrôle de promotion et quatre portées de publication après expiration des revues. Les maquettes, tweets et PNG restent inchangés.
-Complément [PR #1269](https://github.com/madmax91310/shinny-potato/pull/1269) : ordre des lectures archivées et scellement des trois voies composites. Radar reste arrêté ; les quatre scénarios sont isolés et ne collectent aucune nouvelle publication.
+Code public : `332ce044c94085ed30eee75445c5f52bf0134d15`. Données : `a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae`. Contrôle : 2026-11-14T21:46:02.242694+00:00.
 
-## Résultat
+## Résultat par outil et donnée
 
-**Aucune nouvelle fenêtre n’a été forcée ni nouvelle convention introduite.** Le contrôle exécuté sur les entrées de master confirme les **73 cas utilisables sur le groupe constant de 79**. Ces 79 cas ne sont pas tout le catalogue. L’inventaire existant de 774 routes et ses preuves restent la référence, sans nouvelle campagne de collecte.
+| Donnée / outils | Disponibilité et consommation | Actualisation démontrée | Limite restante |
+|---|---|---|---|
+| Groupe constant des 79 fenêtres litigieuses ; Performance depuis, investissement, comparaison et moteurs compatibles selon leurs capacités | **73 fenêtres qualifiées, six refus préservés**. Vérification du registre public et des six identités exactes | Aucune nouvelle admission de ces six dans ce lot ; les autres historiques du catalogue ne sont pas certifiés par ce dénominateur | Pièces exactes dans six-fenetres-refusees-conservees.csv ; 77 anciennes divergences et deux résidus distincts des usages rétablis |
+| Bitwise DE000A27Z304, cotation Paris EUR | Sélecteur, calcul, texte, aperçu et PNG publics à 1440/390 px ; 1 000 EUR janvier 2023 → octobre 2026 = 3 047,90 EUR | Voie Paris préservée ; l’ancienne voie Xetra reste en HTTP 400 | Paris commence en juin 2021 : manque décembre 2020 pour qualifier l’année 2021. L’échec Xetra n’est pas une indisponibilité générale de Bitwise |
+| ABTC CH0454664001 — NAV exacte, source USD convertie en EUR | 92 points mars 2019 → octobre 2026 strictement conservés ; split 14:1 déjà intégré une fois. Investissement : 1 000 EUR mars 2021 → octobre 2026 = 1 270,175379 EUR. Performance depuis : 2025 complète −15,8 %. Il y a X ans : NAV au 13 novembre, 22,525 USD → 20,380926529135 EUR au change BCE de même date. Texte, aperçu et PNG testés à 1440/390 px | Voie secondaire officielle acquise dans GitHub : calendrier sur push, NAV, cotation et quotidien en reprises ciblées ordinaires. Reçus 4/4,9/9,2/2 et3/3 publiés ; aucune nouvelle période financière. Cron postmigration non observé. | Aucun cron postmigration encore démontré pour ces trois entrées. Aucun nouveau mois ou cours de marché fabriqué à partir de la NAV |
+| Enregistrement des historiques mensuels | Courses Budget/profils corrigées par #1273/#1276/#1282 ; nouvelle validation financière obligatoire à chaque changement de l’arbre | Production ordinaire sur push 43613864303 : enregistrement e6f3f413 réussi. Ses neuf chemins sont ensuite publiés par le reçu qualifié NAV bd4cfe22, neuf empreintes publiques vérifiées | Le reçu ancien e6f n’a pas été observé exactement 9/9 ; distinguer son successeur qualifié. L’acquisition tentée restait l’ancienne Xetra en échec ; aucun prix neuf revendiqué |
+| Mensuel planifié | Cron 43601518941 du 14 novembre à 13:47 effectivement observé, validation et enregistrement 049558ce, neuf fichiers publiés | Un historique Xetra tenté : HTTP 400 ; 29 contrôles d’annuaires, neuf réussis et vingt inchangés réellement vérifiés | Ni 29 historiques ni tout le catalogue actualisé. Prochain mensuel complet nominal : **16 novembre 06:15 UTC**, preuve à observer |
+| Nasdaq XNDX USD, rendement réinvesti | Preuve source planifiée 43454784772 du 13 novembre conservée : observation du 12 novembre, 34 587,76 | Producteur publication-observations planifié 43604901220 du 14 novembre : trois fichiers publiés | Cette preuve Nasdaq ne démontre pas le cron mensuel complet |
+| Or et matières premières, WTI/Wheat compris | Voies et usages qualifiés préservés. Reprise réelle or 43527632485 : 142 moyennes jusqu’à octobre 2026, registre enregistré et publié | Dates et périodes d’origine conservées ; un contrôle sans changement ne crée pas une nouvelle période | Aucun nouveau cron fournisseur revendiqué pour chaque matière première |
 
-| Chaîne / usage | Disponibilité et actualisation | Preuve conservée / réserve |
+## Corrections d’enregistrement et de publication
+
+- #1265 : contrôle 13F revalidant les changements ETF indépendants, tout en gardant les empreintes d’acquisition et la fenêtre de validation de 30 minutes.
+- #1267 : manifeste des vrais chemins code/données et scellement sur les octets effectifs.
+- #1268 : contrôle de revue selon la date et quatre périmètres financiers exacts ; aucune expiration assouplie.
+- #1269 : ordre de réponses d’un lecteur archivé, nécessaire à la CI ; Radar n’est pas réactivé.
+- #1273/#1276/#1282 : lecteurs Budget/profils précisément qualifiés sur les graphes d’entrées des deux arbres, puis revalidation complète. Les trois entrées d’acquisition mensuelles et les deux entrées ETF sont examinées ; dépendance inconnue, dynamique ou nouvelle configuration financière = refus.
+- #1280 : API officielle secondaire ABTC qualifiée, avec les anciens hôtes/preuves conservés et contrôles stricts de l’origine, de la part, de la devise et du split.
+
+Le producteur ETF 43591714636 a publié quatre fichiers : 316 résultats réussis, 11 échecs, quatre non applicables sur 331 résultats déclarés. Le producteur 43603436898 a enregistré 14f6d4a2 : 315 réussites, 12 échecs, quatre non applicables ; son nouvel échec ABTC 410 a motivé #1280. Ces résultats ne sont pas autant de champs financièrement certifiés.
+
+**Rectification de preuve de publication :** trois fichiers de l’ancien reçu 14f correspondent ; le fichier divergent était **automated-etf.json**, pas le fichier indices. Son successeur qualifié du cron 43605419666 a onze fichiers effectivement publiés. Comparaison exhaustive : 144 différences sur 12 instruments, dont 132 adresses de provenance et 12 libellés de réplication normalisés ; les autres clés, valeurs, types et ordres des tableaux sont conservés, notamment les données numériques. L’ancienne conclusion de simple sérialisation, fondée sur le mauvais fichier, est retirée et sa trace conservée. Aucun reçu ni statut natif réécrit. Voir les preuves etf-1276-proof-scope-correction.json et etf-1276-qualified-successor-corrected-proof.json.
+
+Les refus 43607073199 (sources ABTC modifiées pendant la reprise) et 43613858603 (configuration CI DCA changée) restent des refus justifiés de sorties anciennes. Le passage frais 43613864303 puis la NAV 43614083063 prouvent la chaîne ultérieure ; ils ne transforment pas ces tentatives historiques en réussites.
+
+## Six fenêtres refusées et Palladium
+
+Un refus mensuel ne retire pas un calendrier annuel déjà qualifié ; ces calendriers ne comptent pas comme nouveaux usages mensuels.
+
+| Actif / période | Preuves acquises | Pièce exacte restant nécessaire |
 |---|---|---|
-| Historiques communs : Performance depuis, Et si tu avais investi, comparaison et classements, portefeuilles selon admission | Fenêtres qualifiées et données mensuelles complètes d’octobre 2026 préservées ; nouvelles périodes soumises aux mêmes gardes. | Le push réparé 43467518507 a publié ses données valides, avec un échec individuel Xetra. **Pas de cron mensuel postcorrectif observé dans ce relevé.** |
-| Nasdaq / Il y a X ans | Voie quotidienne FRED XNDX à rendement total en USD conservée. | Cron 43454784772 acquis dans le lot précédent : niveau du 12 novembre, enregistrement et publication prouvés. Ce n’est pas la preuve du producteur mensuel. |
-| Bitwise Paris | Voie EUR depuis juin 2021, années 2023/2024 qualifiées ; pas de retour à l’ancienne voie par défaut. | L’ancien historique Xetra reste tronqué chez Yahoo ; des cours récents peuvent néanmoins y être présents. Pas de double attribution d’indisponibilité à tout Bitwise. |
-| Matières premières, dont WTI/Wheat, et changes communs | Voies et conventions déjà qualifiées conservées. | Aucun nouveau défaut justifiant de refaire les collectes concluantes. Une NAV n’est pas substituée silencieusement à une cotation. |
-| Six refus et Palladium | Restrictions ciblées conservées ; périodes indépendantes utilisables maintenues. | [Six cas exacts](six-fenetres-refusees-conservees.csv) et [pièces manquantes](RELIQUAT.md). NAV décembre 2014 et cotation 2025 Palladium restent distinctes. |
+| DE000A0H08P6 / 2019 | Dividende officiel juillet 0,374603 EUR ; facteur reproduit 1,012099029361 au lieu de 1,012103295143 ; avril diverge aussi, janvier/octobre concordent | Unités/facteurs officiels et bornes XETR du 28/12/2018 et 30/12/2019 ; résidu 2,44422892 points, aucun seuil relevé |
+| DE000A27Z304 / 2021 | Paris qualifié à partir de juin 2021, ancienne voie Xetra distincte | Borne EUR décembre 2020 et continuité/opérations exactes ; le point récent BTCF.DE ne prouve pas 2021 |
+| FR0010755611 / 2021 et 2024 | Séries officielles quotidiennes présentes, anciennes divergences conservées | Bornes CL2.PA 31/12/2020–31/12/2021 et 29/12/2023–31/12/2024, facteurs et convention de revenu ; résidus 5,62997039 et 2,54861047 points |
+| FR0013411998 / 2025 | Bornes XPAR 37,772 → 48,552 EUR déjà recoupées | Horaires de valorisation, revenus/ajustements et convention ; résidu 2,67685035 points |
+| FR0013412004 / 2025 | Bornes XPAR 17,635 → 24,316 EUR déjà recoupées | Horaires de valorisation, revenus/ajustements et convention ; résidu 2,13251246 points |
+| Palladium IE00B4556L06 | NAV 2025 qualifiée ; cotation IPDM XLON USD décembre 2014 qualifiée | NAV décembre 2014 encore refusée ; cotation 2025 encore refusée. Une longue fenêtre de marché traversant 2025 reste refusée |
 
-## Vérifications
+Nouvelle acquisition Amundi réelle du 14 novembre à 10:57 : les niveaux quotidiens existent pour les trois parts/quatre fenêtres, mais les sources indiquent « Capitalisation and/or distribution » / C/D. La clause de dividendes de l’indice ne prouve pas celle du fonds. Il manque la qualification officielle des revenus et ajustements de la part : aucune distribution nulle déduite et aucun mode réinvesti imposé. Nouvelle piste du 14 novembre à 20:34–20:46 : trois DIC exacts, interface officielle et rapports annuels consultés ; montants de dividendes API non renseignés (`null`), CL2 ne publie qu’une devise sans montant. Les cellules blanches et les déclarations spécifiques HK/RMB ne qualifient pas ces parts françaises. Ces nouvelles preuves ne lèvent aucun des quatre refus Amundi ; détails dans income-qualification-conclusion.json.
 
-Le moteur conserve les 73 fenêtres ; contrôle des cinq parts iShares avec oracle de rendement réinvesti, conversions historiques, absence de double cash et NAV d’anniversaire distincte. La régression Palladium maintient décembre 2014 explicitement refusé sans bloquer les mois valides. Build et CI complète de #1265 réussis. Aucun moteur, seuil, source historique, maquette ou format de tweet modifié.
+## Tests et réserves
 
-## À observer
+CI et build des PR fusionnées vérifiés séparément des collectes. Régressions pertinentes : vraies courses Git à deux auteurs, revalidation échouée bloquante, périmètres ciblés, identité et origine ABTC, conventions et conversions. Recettes publiques Chromium 1440/390 px : sélection, résultat, texte, presse-papiers, aperçu et téléchargement ; aucun appareil physique ni Safari testé. Les succès manuels ou sur push ne prouvent pas un déclenchement planifié.
 
-Créneaux **nominaux**, pas des réussites : reprise quotidienne le **14 novembre à 06:45 UTC**, collecte complète le **16 novembre à 06:15 UTC**. Vérifier alors résultats individuels, enregistrement, publication et consommateurs. Aucun lancement mensuel n’a été effectué pour remplir cette preuve.
-
-Les divergences financières anciennes et résidus restent suivis séparément. Une voie indépendante utilisable ne les explique pas automatiquement.
-
-## Publication finale et preuves distinctes
-
-Le producteur ordinaire [43527632485](https://github.com/madmax91310/shinny-potato/actions/runs/43527632485) (`workflow_dispatch`) a réellement acquis le classeur Banque mondiale, validé et enregistré son contrôle au 13 novembre. Les **142 moyennes mensuelles jusqu’à octobre 2026 sont inchangées**, classeur publié le 3 novembre. Le commit `a6ffeaf7` ne change que `checkedAt`, jamais la période des valeurs. Ce n’est pas une réparation nouvelle de la source or ni une preuve cron.
-
-Lors du passage fournisseur du 13 novembre à 23:41 UTC, la voie de publication corrigée a figé son outil avant de composer le code `1c45b9b4` et les données `a6ffeaf7` : le manifeste public contient **387 empreintes**, dont les **31 du reçu 13F**. Cela prouve la publication des fichiers, pas l’exactitude indépendante de chaque champ financier. Après la promotion finale, le moniteur confirme nativement `matching-public-source-fingerprints`, 31 fichiers, contrôle à 2026-11-14T03:49:03.639572+00:00. Aucun incident n’a été clôturé par édition du moniteur.
-
-Le parcours public Données à revoir est exercé à 1 440/390 px, export complet acquis sans erreur JavaScript. La lecture figée du moniteur utilise le commit `7cea78c060accd620d929fb927546e4feafcd630` et son empreinte exacte ; la lecture de branche via cache peut être plus ancienne et n’est pas confondue avec cet instantané. Le contrôle final de promotion et ses états publiés sont conservés séparément dans moniteur-promotion-code-final.json.
-
-## Promotion du code : régression d’expiration corrigée
-
-La [PR #1268](https://github.com/madmax91310/shinny-potato/pull/1268), fusion `e0c165bf55da99bb84fa0fd0022c2e5f17fb095c`, corrige le test qui exigeait encore une revue garde TR corroborée après sa date d’expiration. Le produit avait correctement conservé le statut partiel. Quatre portées manquaient aussi au contrôle obligatoire : garde PEA TR inconnue et gratuité CTO non transposable ; cash Bourso/Fortuneo/BD avec PEA documenté et CTO inconnu. Ces quatre portées exactes complètent les six existantes ; aucun mécanisme générique n’admet les futurs champs inconnus. L’adaptateur courant, les bornes inclusives, le lendemain et les périmètres PEA/CTO sont vérifiés sans modifier données, échéances ou règles. Build local et CI vérifiés ; cette correction de contrôle ne répare ni ne certifie la donnée du courtier.
-
-## Dernière dépendance de publication
-
-Le premier passage master 43536546079 a échoué sur la recette du lecteur de signaux archivés. Reproduction isolée : une ancienne réussite vide effaçait une panne plus récente et les derniers signaux. La PR #1269 protège l’ordre des réponses et le cache ; le test original reste inchangé et quatre cas supplémentaires couvrent les deux ordres succès/échec à 1440/390 px. Aucun collecteur ou notification Radar n’est réactivé.
-
-Le même secours a reproduit l’omission du manifeste (386 empreintes, archive absente), tout en conservant les 31 fichiers réellement accessibles. Le correctif #1267 couvrait la voie partagée ; #1269 étend le scellement aux deux autres constructeurs, promotion avec données plus récentes et secours. Les neuf tests et le contrôle de couverture des trois chemins passent sans assouplir le contrôle financier ou l’ordre des publications. Les branches conditionnelles non rencontrées sont signalées séparément dans publication-branches-proof.json, sans panne provoquée en production.
-
-## Données concurrentes préservées
-
-La publication finale a réellement intégré le commit `c9281f74` produit par le collecteur ETF 43552458543, lancé par `workflow_dispatch`. Le scellement du composite code/données plus récent a donc été exercé en production ; le secours reste démontré par les tests/CI, sans panne provoquée. Le workflow concurrent reste en échec partiel ; ses données valides sont publiées, sans transformer les champs retenus en succès. Cette collecte parallèle ne compte pas comme une réparation propre à ce lot, ni comme un cron. Son contrat indices comporte 113 résultats : 107 `succeeded`, deux accès S&P `failed`, quatre `not-applicable`. Ce sont des résultats de contrat, pas 107 indices ni 107 champs financièrement certifiés. Le détail exact des instruments et périmètres est conservé dans collecte-concurrente-indices-113-resultats.csv ; les livres intégraux et historiques mensuels ne sont pas requalifiés par les résultats de composition ou de calendrier annuel.
-
-La promotion finale ordinaire sur push de master **43548986618** est réussie et sa version de code exacte est effectivement servie : `642e702aead994fabf539e901cf886e98379a41a`. Recette publique du panneau de preuves à 1 440/390 px sans erreur JavaScript ; les 31 fichiers 13F restent identiques au reçu après ce déploiement. Ce push valide une publication de code, pas un cron fournisseur.
+Linxea Vie, ACPR, XTB et flux ETF manuels restent identifiés dans le suivi ; pas de modification concurrente de ces chantiers. Aucune automatisation globale complète annoncée.

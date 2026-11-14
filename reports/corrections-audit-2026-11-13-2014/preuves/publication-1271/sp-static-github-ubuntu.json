@@ -1,0 +1,42 @@
+{
+  "kind": "isolated public-source experiment; no production write",
+  "checkedAt": "2026-11-14T10:13:45.974387+00:00",
+  "expected": [
+    {
+      "id": "sp-global-dividend-aristocrats",
+      "fields": [
+        "composition"
+      ],
+      "indexId": 92388578
+    },
+    {
+      "id": "sp-euro-dividend-aristocrats",
+      "fields": [
+        "composition"
+      ],
+      "indexId": 5475610
+    }
+  ],
+  "results": [
+    {
+      "id": "sp-global-dividend-aristocrats",
+      "selected": true,
+      "sourceAttempted": true,
+      "cachedMetadataOnlySelectsFilename": true,
+      "sourceUrl": "https://www.spglobal.com/spdji/en/documents/factsheets/fs-sp-global-dividend-aristocrats-quality-income-index-usd.pdf",
+      "advertisedFilename": "fs-sp-global-dividend-aristocrats-quality-income-index-usd.pdf",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "sp-euro-dividend-aristocrats",
+      "selected": true,
+      "sourceAttempted": true,
+      "cachedMetadataOnlySelectsFilename": true,
+      "sourceUrl": "https://www.spglobal.com/spdji/en/documents/factsheets/fs-sp-euro-high-yield-dividend-aristocrats-index.pdf",
+      "advertisedFilename": "fs-sp-euro-high-yield-dividend-aristocrats-index.pdf",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "run": 43623803268,
+  "event": "push",
+  "checkedAt": "2026-11-14T18:01:23.805756+00:00",
+  "fullReportSha256": "6065b8031212b836433599734b24a36a30c7894691bad6f1a200033be71579f7",
+  "share": {
+    "isin": "IE0002Y8CX98",
+    "provider": "WisdomTree",
+    "status": "validated",
+    "record": {
+      "currency": "EUR",
+      "productId": "IE0002Y8CX98",
+      "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "provider": "WisdomTree",
+      "aum": {
+        "amount": 4253883904.0,
+        "currency": "EUR",
+        "scope": "fund",
+        "asOf": "2026-11-12",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3474438"
+        ],
+        "nonNativeListingsExcluded": 2,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "21e59f137ebcda3233b8653deef212584616447e15ea2cdcdaa1049a3c1059ba",
+        "identitySourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "identitySha256": "33df332f04be193fc368c906c17b207a66a557b40e537b27acb669c571f4614a",
+        "identityAsOf": "2026-11-12",
+        "checkedAt": "2026-11-14",
+        "modifiedAt": "2026-11-14"
+      },
+      "sectors": {
+        "rows": [
+          {
+            "name": "Industrials",
+            "weightPct": 97.48,
+            "label": "Industrials"
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 2.16,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 0.36,
+            "label": "Communication"
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "sha256": "33df332f04be193fc368c906c17b207a66a557b40e537b27acb669c571f4614a",
+        "checkedAt": "2026-11-14",
+        "modifiedAt": "2026-11-14"
+      },
+      "countries": {
+        "rows": [
+          {
+            "name": "France",
+            "weightPct": 34.2248
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 25.2669
+          },
+          {
+            "name": "Germany",
+            "weightPct": 14.5088
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 7.9081
+          },
+          {
+            "name": "Italy",
+            "weightPct": 7.677
+          },
+          {
+            "name": "Norway",
+            "weightPct": 7.1626
+          },
+          {
+            "name": "Spain",
+            "weightPct": 1.6625
+          },
+          {
+            "name": "Cyprus",
+            "weightPct": 0.4926
+          },
+          {
+            "name": "Czech Republic",
+            "weightPct": 0.4618
+          },
+          {
+            "name": "Finland",
+            "weightPct": 0.261
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 0.196
+          },
+          {
+            "name": "Luxembourg",
+            "weightPct": 0.1089
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 0.0558
+          },
+          {
+            "name": "Poland",
+            "weightPct": 0.0131
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "dateProof": "Exact rendered table reconciled to its publisher country rows; overview/NAV clock excluded",
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "sha256": "33df332f04be193fc368c906c17b207a66a557b40e537b27acb669c571f4614a",
+        "checkedAt": "2026-11-14",
+        "modifiedAt": "2026-11-14"
+      },
+      "holdings": {
+        "rows": [
+          {
+            "name": "BAE Systems PLC",
+            "weightPct": 12.81
+          },
+          {
+            "name": "Thales SA",
+            "weightPct": 12.77
+          },
+          {
+            "name": "Rheinmetall AG",
+            "weightPct": 9.61
+          },
+          {
+            "name": "Airbus SE",
+            "weightPct": 8.07
+          },
+          {
+            "name": "SAAB AB-B SEK NPV",
+            "weightPct": 7.58
+          },
+          {
+            "name": "Rolls-Royce Holdings PLC",
+            "weightPct": 7.47
+          },
+          {
+            "name": "Safran SA",
+            "weightPct": 7.36
+          },
+          {
+            "name": "Leonardo Spa",
+            "weightPct": 6.9
+          },
+          {
+            "name": "Kongsberg Gruppen Asa",
+            "weightPct": 6.66
+          },
+          {
+            "name": "DASSAULT AVIATION EUR 0.8",
+            "weightPct": 4.74
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "sha256": "33df332f04be193fc368c906c17b207a66a557b40e537b27acb669c571f4614a",
+        "checkedAt": "2026-11-14",
+        "modifiedAt": "2026-11-14"
+      },
+      "characteristics": {
+        "asOf": "2026-11-12",
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "sha256": "33df332f04be193fc368c906c17b207a66a557b40e537b27acb669c571f4614a",
+        "terPct": 0.4,
+        "checkedAt": "2026-11-14",
+        "modifiedAt": "2026-11-14"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-14",
+          "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "asOf": "2026-11-12"
+        }
+      }
+    },
+    "unavailable": [
+      "performance: HTML calendar series not published; prior exact-share history preserved"
+    ],
+    "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "collectionErrors": [],
+    "sourceAttempts": [
+      {
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "status": "validated"
+      },
+      {
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "status": "validated",
+        "fields": [
+          "aum"
+        ],
+        "sharedCurrentResponse": true,
+        "transportAttempts": [
+          {
+            "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+            "transport": "http",
+            "status": "downloaded"
+          }
+        ],
+        "comparison": {
+          "primary": {
+            "amount": 4707550422.0,
+            "currency": "USD",
+            "scope": "fund",
+            "asOf": "2026-11-12",
+            "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+            "sha256": "33df332f04be193fc368c906c17b207a66a557b40e537b27acb669c571f4614a"
+          },
+          "directory": {
+            "amount": 4253883904.0,
+            "currency": "EUR",
+            "scope": "fund",
+            "asOf": "2026-11-12",
+            "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+            "controlledListingIds": [
+              "3474438"
+            ],
+            "nonNativeListingsExcluded": 2,
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+            "sha256": "21e59f137ebcda3233b8653deef212584616447e15ea2cdcdaa1049a3c1059ba"
+          },
+          "amountsCompared": false,
+          "reason": "Different published currencies; independently qualified native directory AUM selected without conversion or numerical reconciliation"
+        }
+      }
+    ]
+  },
+  "recordedCommit": "bfa517dc7ccfaf4b858eed9965397e373df28f5e",
+  "publicationPending": true
+}

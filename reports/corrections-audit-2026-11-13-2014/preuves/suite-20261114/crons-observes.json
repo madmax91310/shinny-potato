@@ -1,0 +1,90 @@
+{
+  "update-market-monthly.yml": [
+    {
+      "id": 43447157146,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-13T14:54:03Z",
+      "head_sha": "1bcf28156ec7214c7732a12e590ee28af16e9a6e",
+      "event": "schedule"
+    },
+    {
+      "id": 43249476357,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-12T15:35:38Z",
+      "head_sha": "b66846693da18d1fa3310b51177d3c7bc38df896",
+      "event": "schedule"
+    }
+  ],
+  "collect-etf-pilot.yml": [
+    {
+      "id": 43451234453,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-13T15:18:12Z",
+      "head_sha": "a8e3696df1380060fea7cda9685ec53094e11cd1",
+      "event": "schedule"
+    },
+    {
+      "id": 43252975150,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-12T15:55:10Z",
+      "head_sha": "7fc47aa031e6c5d379e28dba44f62ebbc35f70d4",
+      "event": "schedule"
+    }
+  ],
+  "update-gold-monthly.yml": [
+    {
+      "id": 42846194655,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-10T15:36:58Z",
+      "head_sha": "35b5207468ed9941121bccb9e84f2df01ec0a5e0",
+      "event": "schedule"
+    },
+    {
+      "id": 42665674392,
+      "status": "completed",
+      "conclusion": "cancelled",
+      "created_at": "2026-11-09T17:32:52Z",
+      "head_sha": "e998106b7a2098d951f0a0935d77734a0322fa37",
+      "event": "schedule"
+    }
+  ],
+  "observedAt": "2026-11-14T08:45:10.476046+00:00",
+  "update-investor-13f.yml": [
+    {
+      "id": 43496138701,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-13T19:51:39Z",
+      "head_sha": "5c90e1fd558ebceaff6b7a774e21adcc1089985a",
+      "event": "schedule"
+    }
+  ],
+  "update-exposure-expansion.yml": [
+    {
+      "id": 43455198250,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-13T15:41:52Z",
+      "head_sha": "95606e98a8f9c3c0c179a4dc01688fd806c4d226",
+      "event": "schedule"
+    }
+  ],
+  "update-qualified-exposures.yml": [
+    {
+      "id": 43455295963,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-13T15:42:27Z",
+      "head_sha": "95606e98a8f9c3c0c179a4dc01688fd806c4d226",
+      "event": "schedule"
+    }
+  ],
+  "update-index-histories.yml": {
+    "nameRequiresResolution": true
+  }
+}

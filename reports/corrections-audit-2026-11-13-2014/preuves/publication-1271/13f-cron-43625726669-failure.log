@@ -1,0 +1,117 @@
+update	Commit validated observations	﻿2026-11-14T18:25:15.3551678Z ##[group]Run git config user.name 'github-actions[bot]'
+update	Commit validated observations	2026-11-14T18:25:15.3552270Z [36;1mgit config user.name 'github-actions[bot]'[0m
+update	Commit validated observations	2026-11-14T18:25:15.3552815Z [36;1mgit config user.email '41898282+github-actions[bot]@users.noreply.github.com'[0m
+update	Commit validated observations	2026-11-14T18:25:15.3553579Z [36;1mbash scripts/commit-validated-data.sh 'Update SEC 13F portfolios and preserve prior quarters' public/data/investors[0m
+update	Commit validated observations	2026-11-14T18:25:15.3585243Z shell: /usr/bin/bash -e {0}
+update	Commit validated observations	2026-11-14T18:25:15.3585647Z env:
+update	Commit validated observations	2026-11-14T18:25:15.3585998Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+update	Commit validated observations	2026-11-14T18:25:15.3586607Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+update	Commit validated observations	2026-11-14T18:25:15.3587100Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+update	Commit validated observations	2026-11-14T18:25:15.3587565Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+update	Commit validated observations	2026-11-14T18:25:15.3588072Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+update	Commit validated observations	2026-11-14T18:25:15.3588787Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+update	Commit validated observations	2026-11-14T18:25:15.3589629Z   VALIDATED_DATA_CHECK: python -u scripts/validate-investor-publication.py check --report "$RUNNER_TEMP/investor-observations.json"
+update	Commit validated observations	2026-11-14T18:25:15.3590266Z ##[endgroup]
+update	Commit validated observations	2026-11-14T18:25:15.4263803Z Preparing worktree (detached HEAD eb1642e)
+update	Commit validated observations	2026-11-14T18:25:16.4429996Z Updating files:  24% (2045/8372)
+update	Commit validated observations	2026-11-14T18:25:16.4647917Z Updating files:  25% (2093/8372)
+update	Commit validated observations	2026-11-14T18:25:16.5154135Z Updating files:  26% (2177/8372)
+update	Commit validated observations	2026-11-14T18:25:16.5526374Z Updating files:  27% (2261/8372)
+update	Commit validated observations	2026-11-14T18:25:16.6086679Z Updating files:  28% (2345/8372)
+update	Commit validated observations	2026-11-14T18:25:16.6316257Z Updating files:  29% (2428/8372)
+update	Commit validated observations	2026-11-14T18:25:16.7658813Z Updating files:  30% (2512/8372)
+update	Commit validated observations	2026-11-14T18:25:16.8342687Z Updating files:  31% (2596/8372)
+update	Commit validated observations	2026-11-14T18:25:16.9350082Z Updating files:  32% (2680/8372)
+update	Commit validated observations	2026-11-14T18:25:16.9544475Z Updating files:  33% (2763/8372)
+update	Commit validated observations	2026-11-14T18:25:17.0776653Z Updating files:  34% (2847/8372)
+update	Commit validated observations	2026-11-14T18:25:17.2495523Z Updating files:  35% (2931/8372)
+update	Commit validated observations	2026-11-14T18:25:17.2702819Z Updating files:  36% (3014/8372)
+update	Commit validated observations	2026-11-14T18:25:17.3122904Z Updating files:  37% (3098/8372)
+update	Commit validated observations	2026-11-14T18:25:17.4709553Z Updating files:  38% (3182/8372)
+update	Commit validated observations	2026-11-14T18:25:17.9292854Z Updating files:  38% (3222/8372)
+update	Commit validated observations	2026-11-14T18:25:18.0309045Z Updating files:  39% (3266/8372)
+update	Commit validated observations	2026-11-14T18:25:18.1083344Z Updating files:  40% (3349/8372)
+update	Commit validated observations	2026-11-14T18:25:18.1580850Z Updating files:  41% (3433/8372)
+update	Commit validated observations	2026-11-14T18:25:18.3426693Z Updating files:  42% (3517/8372)
+update	Commit validated observations	2026-11-14T18:25:18.4507879Z Updating files:  43% (3600/8372)
+update	Commit validated observations	2026-11-14T18:25:18.8807768Z Updating files:  43% (3611/8372)
+update	Commit validated observations	2026-11-14T18:25:18.9301411Z Updating files:  44% (3684/8372)
+update	Commit validated observations	2026-11-14T18:25:19.4468869Z Updating files:  45% (3768/8372)
+update	Commit validated observations	2026-11-14T18:25:19.6797318Z Updating files:  45% (3818/8372)
+update	Commit validated observations	2026-11-14T18:25:20.1692262Z Updating files:  46% (3852/8372)
+update	Commit validated observations	2026-11-14T18:25:20.2870368Z Updating files:  47% (3935/8372)
+update	Commit validated observations	2026-11-14T18:25:20.3295164Z Updating files:  48% (4019/8372)
+update	Commit validated observations	2026-11-14T18:25:20.5068734Z Updating files:  49% (4103/8372)
+update	Commit validated observations	2026-11-14T18:25:20.5295799Z Updating files:  49% (4149/8372)
+update	Commit validated observations	2026-11-14T18:25:20.5695607Z Updating files:  50% (4186/8372)
+update	Commit validated observations	2026-11-14T18:25:20.6376657Z Updating files:  51% (4270/8372)
+update	Commit validated observations	2026-11-14T18:25:20.6959046Z Updating files:  52% (4354/8372)
+update	Commit validated observations	2026-11-14T18:25:21.0393483Z Updating files:  53% (4438/8372)
+update	Commit validated observations	2026-11-14T18:25:21.1472829Z Updating files:  54% (4521/8372)
+update	Commit validated observations	2026-11-14T18:25:21.2816654Z Updating files:  55% (4605/8372)
+update	Commit validated observations	2026-11-14T18:25:21.4390973Z Updating files:  56% (4689/8372)
+update	Commit validated observations	2026-11-14T18:25:21.4681223Z Updating files:  56% (4702/8372)
+update	Commit validated observations	2026-11-14T18:25:21.4905171Z Updating files:  57% (4773/8372)
+update	Commit validated observations	2026-11-14T18:25:21.5261910Z Updating files:  58% (4856/8372)
+update	Commit validated observations	2026-11-14T18:25:21.5387678Z Updating files:  59% (4940/8372)
+update	Commit validated observations	2026-11-14T18:25:21.5471845Z Updating files:  60% (5024/8372)
+update	Commit validated observations	2026-11-14T18:25:21.5777721Z Updating files:  61% (5107/8372)
+update	Commit validated observations	2026-11-14T18:25:21.5989763Z Updating files:  62% (5191/8372)
+update	Commit validated observations	2026-11-14T18:25:21.6147509Z Updating files:  63% (5275/8372)
+update	Commit validated observations	2026-11-14T18:25:21.6201925Z Updating files:  64% (5359/8372)
+update	Commit validated observations	2026-11-14T18:25:21.6263637Z Updating files:  65% (5442/8372)
+update	Commit validated observations	2026-11-14T18:25:21.6314702Z Updating files:  66% (5526/8372)
+update	Commit validated observations	2026-11-14T18:25:21.6373595Z Updating files:  67% (5610/8372)
+update	Commit validated observations	2026-11-14T18:25:21.6497278Z Updating files:  68% (5693/8372)
+update	Commit validated observations	2026-11-14T18:25:21.6717059Z Updating files:  69% (5777/8372)
+update	Commit validated observations	2026-11-14T18:25:21.7149562Z Updating files:  70% (5861/8372)
+update	Commit validated observations	2026-11-14T18:25:21.7260418Z Updating files:  71% (5945/8372)
+update	Commit validated observations	2026-11-14T18:25:21.7590478Z Updating files:  72% (6028/8372)
+update	Commit validated observations	2026-11-14T18:25:21.7756368Z Updating files:  73% (6112/8372)
+update	Commit validated observations	2026-11-14T18:25:21.7900313Z Updating files:  74% (6196/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8085468Z Updating files:  75% (6279/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8166139Z Updating files:  76% (6363/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8323622Z Updating files:  77% (6447/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8519269Z Updating files:  78% (6531/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8596916Z Updating files:  79% (6614/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8657109Z Updating files:  80% (6698/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8702224Z Updating files:  81% (6782/8372)
+update	Commit validated observations	2026-11-14T18:25:21.8754380Z Updating files:  82% (6866/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9459569Z Updating files:  83% (6949/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9550926Z Updating files:  84% (7033/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9591514Z Updating files:  85% (7117/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9629473Z Updating files:  86% (7200/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9670558Z Updating files:  87% (7284/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9716581Z Updating files:  88% (7368/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9761594Z Updating files:  89% (7452/8372)
+update	Commit validated observations	2026-11-14T18:25:21.9805636Z Updating files:  90% (7535/8372)
+update	Commit validated observations	2026-11-14T18:25:22.1302684Z Updating files:  91% (7619/8372)
+update	Commit validated observations	2026-11-14T18:25:22.1453670Z Updating files:  92% (7703/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2197500Z Updating files:  93% (7786/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2226293Z Updating files:  94% (7870/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2302444Z Updating files:  95% (7954/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2737218Z Updating files:  96% (8038/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2781197Z Updating files:  97% (8121/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2844255Z Updating files:  98% (8205/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2886583Z Updating files:  99% (8289/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2887325Z Updating files: 100% (8372/8372)
+update	Commit validated observations	2026-11-14T18:25:22.2887933Z Updating files: 100% (8372/8372), done.
+update	Commit validated observations	2026-11-14T18:25:22.2966023Z HEAD is now at eb1642e Update SEC 13F portfolios and preserve prior quarters
+update	Commit validated observations	2026-11-14T18:25:22.6693514Z From https://github.com/madmax91310/shinny-potato
+update	Commit validated observations	2026-11-14T18:25:22.6694277Z  * branch            master     -> FETCH_HEAD
+update	Commit validated observations	2026-11-14T18:25:22.6694731Z    bfa517d..5109bc1  master     -> origin/master
+update	Commit validated observations	2026-11-14T18:25:23.4311984Z Rebasing (1/1)
+update	Commit validated observations	2026-11-14T18:25:23.4312678Z Successfully rebased and updated detached HEAD.
+update	Commit validated observations	2026-11-14T18:25:23.4930681Z Traceback (most recent call last):
+update	Commit validated observations	2026-11-14T18:25:23.4932158Z   File "/tmp/tmp.JvrXt1FMmZ/checkout/scripts/validate-investor-publication.py", line 168, in <module>
+update	Commit validated observations	2026-11-14T18:25:23.4933230Z     main()
+update	Commit validated observations	2026-11-14T18:25:23.4934284Z   File "/tmp/tmp.JvrXt1FMmZ/checkout/scripts/validate-investor-publication.py", line 161, in main
+update	Commit validated observations	2026-11-14T18:25:23.4935402Z     print('Qualified 13F upstream changes:', qualify_race(ROOT, base, upstream))
+update	Commit validated observations	2026-11-14T18:25:23.4936536Z                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+update	Commit validated observations	2026-11-14T18:25:23.4937588Z   File "/tmp/tmp.JvrXt1FMmZ/checkout/scripts/validate-investor-publication.py", line 64, in qualify_race
+update	Commit validated observations	2026-11-14T18:25:23.4938638Z     return guard.check(kind, base, upstream)
+update	Commit validated observations	2026-11-14T18:25:23.4939256Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+update	Commit validated observations	2026-11-14T18:25:23.4940145Z   File "/tmp/tmp.JvrXt1FMmZ/checkout/scripts/observation_rebase_guard.py", line 410, in check
+update	Commit validated observations	2026-11-14T18:25:23.4941574Z     raise ValueError('Collection inputs may have changed; recollect from master: ' + ', '.join(blocked))
+update	Commit validated observations	2026-11-14T18:25:23.4942874Z ValueError: Collection inputs may have changed; recollect from master: src/data/anniversary-levels.json
+update	Commit validated observations	2026-11-14T18:25:25.4622104Z ##[error]Process completed with exit code 1.

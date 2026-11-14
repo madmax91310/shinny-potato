@@ -1,0 +1,17 @@
+{
+  "run": 43613858617,
+  "event": "push",
+  "checkedAt": "2026-11-14T16:09:11.526167+00:00",
+  "error": {
+    "id": "anniversary-etfCH0454664001Nav",
+    "error": "HTTP Error 410: Gone [source: https://api.secondary.21shares.com/api/product_details/ABTC]",
+    "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+    "attemptedAt": "2026-11-14T16:09:11.526167+00:00",
+    "lastSuccessAt": "2026-11-14T11:49:26.567972+00:00",
+    "asOf": "2026-11-13"
+  },
+  "scopeDeclaredBeforeResultsSha256": "e1864f90dd96f9b016ef3ed73e503f04de977a33d440c97c18d2e179a134c605",
+  "completeReportSha256": "20f7e74b7a3d8dc5900d538df39a53f6a85871089b74c516ec7c4c18ffc56f25",
+  "localCurrentTransportProof": "ordinary-default-transport-recheck.json",
+  "scope": "Ordinary acquisition still failed410; separate successful local/PR calls do not close this result."
+}

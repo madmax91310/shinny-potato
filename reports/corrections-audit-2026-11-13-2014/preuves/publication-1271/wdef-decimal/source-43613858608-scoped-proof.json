@@ -1,0 +1,90 @@
+{
+  "run": 43613858608,
+  "event": "push",
+  "checkedAt": "2026-11-14T17:03:17.759552+00:00",
+  "fullReportSha256": "2b2fc1323c0af2d9f6bf5f01f8364be68df8c7e74945e00faa5dea6d5fdf3122",
+  "inputPlanSha256": "8c623df0b3bcac06562391ba6b302e2ae37f02fdb36bc066de10b9a369a09d2e",
+  "rows": [
+    {
+      "isin": "CH0454664001",
+      "status": "validated",
+      "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "reason": null,
+      "collectionErrors": [],
+      "fields": {
+        "performance": {
+          "currency": "USD",
+          "basis": "fund",
+          "years": {
+            "2020": 277.89,
+            "2021": 65.02,
+            "2022": -65.41,
+            "2023": 151.83,
+            "2024": 114.17,
+            "2025": -4.71
+          },
+          "asOf": "2026-11-13",
+          "sourceUrl": "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+          "sha256": "acffaa4b90795a37ca8dc7842c82f4e61b4115e18ceab0c224f15e58173248fa",
+          "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
+          "validationSources": [
+            "https://api.secondary.21shares.com/api/product_details/ABTC",
+            "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC"
+          ],
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        },
+        "characteristics": {
+          "terPct": 1.49,
+          "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+          "sha256": "a05351743afc2c73c6347ad1e1a09b6bf4c31e603c193d80b11cc7f313d7e098",
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        }
+      },
+      "individualOutcomes": [
+        {
+          "id": "etf-additional-observation-CH0454664001",
+          "instrument": "CH0454664001",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        }
+      ]
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "status": "failed",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "reason": "could not convert string to float: '0,40'",
+      "collectionErrors": null,
+      "fields": {},
+      "individualOutcomes": [
+        {
+          "id": "etf-additional-observation-IE0002Y8CX98",
+          "instrument": "IE0002Y8CX98",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true,
+          "name": "ETF IE0002Y8CX98",
+          "field": "Collecte ETF",
+          "error": "could not convert string to float: '0,40'",
+          "status": "failed",
+          "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "operationAttempted": true,
+          "sourceAttempted": null
+        }
+      ]
+    }
+  ]
+}

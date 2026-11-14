@@ -1,0 +1,5143 @@
+{
+  "checkedAt": "2026-11-14T13:47:12.254339+00:00",
+  "indices": [
+    {
+      "id": "msci-world-minimum-volatility-usd",
+      "name": "MSCI World Minimum Volatility (USD)",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Minimum Volatility (USD)",
+        "asOf": "2026-10-30",
+        "constituents": 295,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            67.59
+          ],
+          [
+            "🇯🇵 Japon",
+            11.09
+          ],
+          [
+            "🇨🇦 Canada",
+            3.35
+          ],
+          [
+            "🇨🇭 Suisse",
+            2.98
+          ],
+          [
+            "🇫🇷 France",
+            2.39
+          ],
+          [
+            "🌍 Autres",
+            12.6
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            24.35
+          ],
+          [
+            "🏥 Santé",
+            14.77
+          ],
+          [
+            "🏦 Finance",
+            14.15
+          ],
+          [
+            "🛒 Consommation de base",
+            10.25
+          ],
+          [
+            "📡 Communication",
+            9.13
+          ],
+          [
+            "🏭 Industrie",
+            7.77
+          ],
+          [
+            "💡 Services publics",
+            7.41
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            5.43
+          ],
+          [
+            "⚡ Énergie",
+            5.18
+          ],
+          [
+            "🏠 Immobilier",
+            1.16
+          ],
+          [
+            "🪨 Matériaux",
+            0.41
+          ]
+        ],
+        "holdings": [
+          [
+            "EXXONMOBIL HOLDINGS",
+            1.62
+          ],
+          [
+            "JOHNSON & JOHNSON",
+            1.47
+          ],
+          [
+            "DUKE ENERGY CORP",
+            1.39
+          ],
+          [
+            "MICROSOFT CORP",
+            1.38
+          ],
+          [
+            "MOTOROLA SOLUTIONS",
+            1.35
+          ],
+          [
+            "SOUTHERN COMPANY (THE)",
+            1.31
+          ],
+          [
+            "BERKSHIRE HATHAWAY B",
+            1.27
+          ],
+          [
+            "CISCO SYSTEMS",
+            1.26
+          ],
+          [
+            "NOVARTIS",
+            1.21
+          ],
+          [
+            "TAKEDA PHARMACEUTICAL",
+            1.17
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-minimum-volatility-index.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Minimum Volatility (USD)",
+          "sha256": "1061814f820ff2ef0dcc060e67d762ccffbf07b5bac6d98bad13be4620cf6976"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            10.54
+          ],
+          [
+            2024,
+            10.87
+          ],
+          [
+            2023,
+            7.42
+          ],
+          [
+            2022,
+            -9.79
+          ],
+          [
+            2021,
+            14.26
+          ],
+          [
+            2020,
+            2.61
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-minimum-volatility-index-net.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "9d81cd0fab6aee5345317c2d28908b4ae5f78834a0ad44df8af26e89fbe2b9a8",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Minimum Volatility (USD)"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Minimum Volatility (USD) · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "world-ex-usa",
+      "name": "MSCI World ex USA",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World ex USA",
+        "asOf": "2026-10-30",
+        "constituents": 734,
+        "countries": [
+          [
+            "🇯🇵 Japon",
+            20.99
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            12.91
+          ],
+          [
+            "🇨🇦 Canada",
+            12.65
+          ],
+          [
+            "🇨🇭 Suisse",
+            8.6
+          ],
+          [
+            "🇫🇷 France",
+            8.15
+          ],
+          [
+            "🌍 Autres",
+            36.7
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            27.3
+          ],
+          [
+            "🏭 Industrie",
+            17.2
+          ],
+          [
+            "💻 Technologie",
+            10.12
+          ],
+          [
+            "🏥 Santé",
+            9.84
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            7.51
+          ],
+          [
+            "🪨 Matériaux",
+            6.81
+          ],
+          [
+            "🛒 Consommation de base",
+            6.6
+          ],
+          [
+            "⚡ Énergie",
+            6.14
+          ],
+          [
+            "💡 Services publics",
+            3.71
+          ],
+          [
+            "📡 Communication",
+            3.44
+          ],
+          [
+            "🏠 Immobilier",
+            1.31
+          ]
+        ],
+        "holdings": [
+          [
+            "ASML HLDG",
+            2.51
+          ],
+          [
+            "ROCHE HOLDING PART",
+            1.41
+          ],
+          [
+            "SHELL",
+            1.28
+          ],
+          [
+            "NOVARTIS",
+            1.22
+          ],
+          [
+            "HSBC HOLDINGS (GB)",
+            1.2
+          ],
+          [
+            "ASTRAZENECA",
+            1.16
+          ],
+          [
+            "ROYAL BANK OF CANADA",
+            1.16
+          ],
+          [
+            "NESTLE",
+            1.09
+          ],
+          [
+            "SAP",
+            0.98
+          ],
+          [
+            "MITSUBISHI UFJ FIN GRP",
+            0.96
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World ex USA",
+          "sha256": "5d53b27a884608f6180af13b6c7bc9dd1ac3b7d70ddeaa381d7797f9b1dbd4bb"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "GROSS",
+        "values": [
+          [
+            2025,
+            32.55
+          ],
+          [
+            2024,
+            5.26
+          ],
+          [
+            2023,
+            18.6
+          ],
+          [
+            2022,
+            -13.82
+          ],
+          [
+            2021,
+            13.17
+          ],
+          [
+            2020,
+            8.09
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "5d53b27a884608f6180af13b6c7bc9dd1ac3b7d70ddeaa381d7797f9b1dbd4bb",
+          "label": "Rendements calendaires officiels automatisés · MSCI World ex USA"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World ex USA, rendement brut en dollars, dividendes réinvestis",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "msci-world-enhanced-value",
+      "name": "MSCI World Enhanced Value",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Enhanced Value",
+        "asOf": "2026-10-30",
+        "constituents": 391,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            47.76
+          ],
+          [
+            "🇯🇵 Japon",
+            20.43
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            8.42
+          ],
+          [
+            "🇫🇷 France",
+            6.11
+          ],
+          [
+            "🇩🇪 Allemagne",
+            4.41
+          ],
+          [
+            "🌍 Autres",
+            12.87
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            31.48
+          ],
+          [
+            "🏦 Finance",
+            15.5
+          ],
+          [
+            "🏭 Industrie",
+            10.64
+          ],
+          [
+            "🏥 Santé",
+            9.42
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            8.64
+          ],
+          [
+            "📡 Communication",
+            7.84
+          ],
+          [
+            "🛒 Consommation de base",
+            5.03
+          ],
+          [
+            "⚡ Énergie",
+            4.49
+          ],
+          [
+            "🪨 Matériaux",
+            3.06
+          ],
+          [
+            "💡 Services publics",
+            2.32
+          ],
+          [
+            "🏠 Immobilier",
+            1.58
+          ]
+        ],
+        "holdings": [
+          [
+            "MICRON TECHNOLOGY",
+            13.62
+          ],
+          [
+            "CISCO SYSTEMS",
+            2.95
+          ],
+          [
+            "VERIZON COMMUNICATIONS",
+            2.07
+          ],
+          [
+            "TOYOTA MOTOR CORP",
+            1.78
+          ],
+          [
+            "AT&T",
+            1.48
+          ],
+          [
+            "HEWLETT PACKARD ENT CO",
+            1.43
+          ],
+          [
+            "QUALCOMM",
+            1.41
+          ],
+          [
+            "SHELL",
+            1.38
+          ],
+          [
+            "COMCAST CORP A (NEW)",
+            1.34
+          ],
+          [
+            "PFIZER",
+            1.28
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Enhanced Value",
+          "sha256": "c69dc98a2b86f5413bcdf4956d4c01298e29b45e456b2876f26c61120942bdfa"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            39.39
+          ],
+          [
+            2024,
+            5.09
+          ],
+          [
+            2023,
+            19.31
+          ],
+          [
+            2022,
+            -9.89
+          ],
+          [
+            2021,
+            20.04
+          ],
+          [
+            2020,
+            -3.97
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "c69dc98a2b86f5413bcdf4956d4c01298e29b45e456b2876f26c61120942bdfa",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Enhanced Value"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Enhanced Value · USD · dividendes nets réinvestis",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "msci-world-sector-neutral-quality",
+      "name": "MSCI World Sector Neutral Quality",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Sector Neutral Quality",
+        "asOf": "2026-10-30",
+        "constituents": 289,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            73.2
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.46
+          ],
+          [
+            "🇨🇭 Suisse",
+            3.61
+          ],
+          [
+            "🇯🇵 Japon",
+            3.18
+          ],
+          [
+            "Netherlands",
+            3.0
+          ],
+          [
+            "🌍 Autres",
+            12.55
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            29.6
+          ],
+          [
+            "🏦 Finance",
+            16.68
+          ],
+          [
+            "🏭 Industrie",
+            10.72
+          ],
+          [
+            "🏥 Santé",
+            9.99
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            9.0
+          ],
+          [
+            "📡 Communication",
+            7.32
+          ],
+          [
+            "🛒 Consommation de base",
+            5.16
+          ],
+          [
+            "⚡ Énergie",
+            4.21
+          ],
+          [
+            "🪨 Matériaux",
+            3.13
+          ],
+          [
+            "💡 Services publics",
+            2.62
+          ],
+          [
+            "🏠 Immobilier",
+            1.57
+          ]
+        ],
+        "holdings": [
+          [
+            "MICROSOFT CORP",
+            6.5
+          ],
+          [
+            "APPLE",
+            5.99
+          ],
+          [
+            "NVIDIA",
+            4.82
+          ],
+          [
+            "VISA A",
+            3.93
+          ],
+          [
+            "META PLATFORMS A",
+            3.56
+          ],
+          [
+            "LILLY (ELI) & COMPANY",
+            3.06
+          ],
+          [
+            "ASML HLDG",
+            2.8
+          ],
+          [
+            "MASTERCARD A",
+            2.26
+          ],
+          [
+            "TJX COMPANIES",
+            2.0
+          ],
+          [
+            "LAM RESEARCH CORP",
+            1.54
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Sector Neutral Quality",
+          "sha256": "5d05f19fd5924b20cd3a9f281b187ab0108eae91edddf4a8f4b9b95882a0ec66"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            15.49
+          ],
+          [
+            2024,
+            16.81
+          ],
+          [
+            2023,
+            25.83
+          ],
+          [
+            2022,
+            -19.16
+          ],
+          [
+            2021,
+            23.42
+          ],
+          [
+            2020,
+            14.98
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "5d05f19fd5924b20cd3a9f281b187ab0108eae91edddf4a8f4b9b95882a0ec66",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Sector Neutral Quality"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Sector Neutral Quality · USD · dividendes nets réinvestis",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "sp500-equal-weight",
+      "name": "S&P 500 Equal Weight",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "S&P 500 Equal Weight",
+        "asOf": "2026-10-31",
+        "constituents": 503,
+        "countries": [
+          [
+            "États-Unis",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrie",
+            16.56
+          ],
+          [
+            "Technologies de l'info.",
+            14.98
+          ],
+          [
+            "Finance",
+            14.8
+          ],
+          [
+            "Santé",
+            12.93
+          ],
+          [
+            "Conso Cyclique",
+            9.55
+          ],
+          [
+            "Conso non Cyclique",
+            6.89
+          ],
+          [
+            "Services publics",
+            6.14
+          ],
+          [
+            "Immobilier",
+            5.78
+          ],
+          [
+            "Matériaux",
+            4.75
+          ],
+          [
+            "Énergie",
+            4.19
+          ],
+          [
+            "Services de communication",
+            3.45
+          ]
+        ],
+        "holdings": [
+          [
+            "MODERNA INC",
+            0.32
+          ],
+          [
+            "PTC INC",
+            0.29
+          ],
+          [
+            "ILLUMINA INC",
+            0.28
+          ],
+          [
+            "EVERPURE INC-A",
+            0.28
+          ],
+          [
+            "ACCENTURE PLC -A",
+            0.27
+          ],
+          [
+            "CHARLES RIV LAB INT",
+            0.26
+          ],
+          [
+            "HASBRO INC",
+            0.26
+          ],
+          [
+            "REVVITY INC",
+            0.26
+          ],
+          [
+            "METTLER-TOLEDO INTERNATIONAL",
+            0.26
+          ],
+          [
+            "GARTNER INC",
+            0.26
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-11-14",
+          "sha256": "d7767737635eb583bb7a755c59ed2ec61bad5ccdad27f68105d07dce70d8fe25",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "returns": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            11.25
+          ],
+          [
+            2024,
+            12.81
+          ],
+          [
+            2023,
+            13.72
+          ],
+          [
+            2022,
+            -11.67
+          ],
+          [
+            2021,
+            29.35
+          ],
+          [
+            2020,
+            12.74
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.invesco.com/content/dam/invesco/us/en/product-documents/etf/fact-sheet/rsp-invesco-s-p-500-equal-weight-etf-fact-sheet.pdf.coredownload.inline.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "65a76c60bbedad724b838b6fd42ea6d421b7c2f15d066416fba4e8cd88bb943c",
+          "label": "Rendements calendaires officiels automatisés · S&P 500 Equal Weight"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P 500 Equal Weight · USD · dividendes réinvestis (SPXEWTR, ligne indice Invesco ; publication trimestrielle)",
+          "date": "2026-09-30"
+        }
+      }
+    },
+    {
+      "id": "msci-world-materials",
+      "name": "MSCI World Materials",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Materials",
+        "asOf": "2026-10-30",
+        "constituents": 88,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            41.2
+          ],
+          [
+            "🇨🇦 Canada",
+            14.7
+          ],
+          [
+            "🇦🇺 Australie",
+            11.62
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            8.33
+          ],
+          [
+            "🇯🇵 Japon",
+            6.58
+          ],
+          [
+            "🌍 Autres",
+            17.56
+          ]
+        ],
+        "sectors": [
+          [
+            "🪨 Matériaux",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "LINDE (NEW)",
+            8.41
+          ],
+          [
+            "BHP GROUP (AU)",
+            7.28
+          ],
+          [
+            "AIR LIQUIDE",
+            4.44
+          ],
+          [
+            "NEWMONT CORP",
+            3.99
+          ],
+          [
+            "FREEPORT MCMORAN B",
+            3.18
+          ],
+          [
+            "RIO TINTO PLC (GB)",
+            3.08
+          ],
+          [
+            "AGNICO EAGLE MINES",
+            2.97
+          ],
+          [
+            "ECOLAB",
+            2.71
+          ],
+          [
+            "SHERWIN-WILLIAMS CO",
+            2.68
+          ],
+          [
+            "AIR PRODUCTS & CHEMICALS",
+            2.43
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Materials",
+          "sha256": "f2adb68c547a57f6d3ad78ee686e31f5b5ae20b86e25a98371734cebe0630eee"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            25.79
+          ],
+          [
+            2024,
+            -5.5
+          ],
+          [
+            2023,
+            14.77
+          ],
+          [
+            2022,
+            -10.75
+          ],
+          [
+            2021,
+            16.32
+          ],
+          [
+            2020,
+            19.94
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "f2adb68c547a57f6d3ad78ee686e31f5b5ae20b86e25a98371734cebe0630eee",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Materials"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Materials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "msci-world-utilities",
+      "name": "MSCI World Utilities",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Utilities",
+        "asOf": "2026-10-30",
+        "constituents": 74,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            59.55
+          ],
+          [
+            "Spain",
+            8.69
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            7.28
+          ],
+          [
+            "Italy",
+            5.1
+          ],
+          [
+            "🇩🇪 Allemagne",
+            3.96
+          ],
+          [
+            "🌍 Autres",
+            15.42
+          ]
+        ],
+        "sectors": [
+          [
+            "💡 Services publics",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "NEXTERA ENERGY",
+            7.79
+          ],
+          [
+            "IBERDROLA",
+            6.85
+          ],
+          [
+            "SOUTHERN COMPANY (THE)",
+            4.71
+          ],
+          [
+            "DUKE ENERGY CORP",
+            4.43
+          ],
+          [
+            "NATIONAL GRID",
+            3.73
+          ],
+          [
+            "CONSTELLATION ENERGY",
+            3.66
+          ],
+          [
+            "ENEL",
+            3.54
+          ],
+          [
+            "AMERICAN ELECTRIC POWER",
+            3.16
+          ],
+          [
+            "DOMINION ENERGY",
+            2.61
+          ],
+          [
+            "SEMPRA ENERGY",
+            2.51
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Utilities",
+          "sha256": "3c87f3fdc09feab28bf4cdfe36a9db3df66a6f35f3ad1237e3c43f4bf95e72b0"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            24.75
+          ],
+          [
+            2024,
+            12.96
+          ],
+          [
+            2023,
+            0.28
+          ],
+          [
+            2022,
+            -4.66
+          ],
+          [
+            2021,
+            9.84
+          ],
+          [
+            2020,
+            4.76
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "3c87f3fdc09feab28bf4cdfe36a9db3df66a6f35f3ad1237e3c43f4bf95e72b0",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Utilities"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Utilities · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "msci-world-health-care",
+      "name": "MSCI World Health Care",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Health Care",
+        "asOf": "2026-10-30",
+        "constituents": 111,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            73.7
+          ],
+          [
+            "🇨🇭 Suisse",
+            9.44
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.73
+          ],
+          [
+            "🇯🇵 Japon",
+            3.29
+          ],
+          [
+            "🇫🇷 France",
+            2.09
+          ],
+          [
+            "🌍 Autres",
+            6.75
+          ]
+        ],
+        "sectors": [
+          [
+            "🏥 Santé",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "LILLY (ELI) & COMPANY",
+            12.43
+          ],
+          [
+            "JOHNSON & JOHNSON",
+            7.2
+          ],
+          [
+            "ABBVIE",
+            5.71
+          ],
+          [
+            "UNITEDHEALTH GROUP",
+            4.05
+          ],
+          [
+            "MERCK & CO",
+            4.04
+          ],
+          [
+            "ROCHE HOLDING PART",
+            3.77
+          ],
+          [
+            "NOVARTIS",
+            3.26
+          ],
+          [
+            "ASTRAZENECA",
+            3.1
+          ],
+          [
+            "THERMO FISHER SCIENTIFIC",
+            2.84
+          ],
+          [
+            "AMGEN",
+            2.75
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Health Care",
+          "sha256": "f7a6bbe6e1ff517f5fe13b3498e88c4e95724c2e54647fd98ebc42e9c8c9911e"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            14.83
+          ],
+          [
+            2024,
+            1.13
+          ],
+          [
+            2023,
+            3.76
+          ],
+          [
+            2022,
+            -5.41
+          ],
+          [
+            2021,
+            19.8
+          ],
+          [
+            2020,
+            13.52
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "f7a6bbe6e1ff517f5fe13b3498e88c4e95724c2e54647fd98ebc42e9c8c9911e",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Health Care"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Health Care · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "msci-world-financials",
+      "name": "MSCI World Financials",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Financials",
+        "asOf": "2026-10-30",
+        "constituents": 229,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            53.96
+          ],
+          [
+            "🇨🇦 Canada",
+            8.62
+          ],
+          [
+            "🇯🇵 Japon",
+            6.75
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            5.26
+          ],
+          [
+            "🇦🇺 Australie",
+            4.24
+          ],
+          [
+            "🌍 Autres",
+            21.17
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "JPMORGAN CHASE & CO",
+            6.19
+          ],
+          [
+            "BERKSHIRE HATHAWAY B",
+            5.29
+          ],
+          [
+            "VISA A",
+            4.74
+          ],
+          [
+            "MASTERCARD A",
+            3.58
+          ],
+          [
+            "BANK OF AMERICA CORP",
+            2.24
+          ],
+          [
+            "HSBC HOLDINGS (GB)",
+            2.03
+          ],
+          [
+            "ROYAL BANK OF CANADA",
+            1.95
+          ],
+          [
+            "GOLDMAN SACHS GROUP",
+            1.82
+          ],
+          [
+            "WELLS FARGO & CO",
+            1.75
+          ],
+          [
+            "MITSUBISHI UFJ FIN GRP",
+            1.62
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Financials",
+          "sha256": "5998de605c3823fa88aa22b1355e4fb6b854c692fce86280a9f6a5a4e02f6b4c"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            28.74
+          ],
+          [
+            2024,
+            26.67
+          ],
+          [
+            2023,
+            16.16
+          ],
+          [
+            2022,
+            -10.19
+          ],
+          [
+            2021,
+            27.87
+          ],
+          [
+            2020,
+            -2.84
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "5998de605c3823fa88aa22b1355e4fb6b854c692fce86280a9f6a5a4e02f6b4c",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Financials"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Financials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-10-30"
+        }
+      }
+    },
+    {
+      "id": "msci-world-energy",
+      "name": "MSCI World Energy",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI World Energy",
+        "asOf": "2026-10-30",
+        "constituents": 50,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            63.59
+          ],
+          [
+            "🇨🇦 Canada",
+            13.6
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            10.83
+          ],
+          [
+            "🇫🇷 France",
+            4.5
+          ],
+          [
+            "🇦🇺 Australie",
+            1.6
+          ],
+          [
+            "🌍 Autres",
+            5.89
+          ]
+        ],
+        "sectors": [
+          [
+            "⚡ Énergie",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "EXXONMOBIL HOLDINGS",
+            18.87
+          ],
+          [
+            "CHEVRON CORP",
+            10.55
+          ],
+          [
+            "SHELL",
+            7.62
+          ],
+          [
+            "CONOCOPHILLIPS",
+            4.56
+          ],
+          [
+            "TOTALENERGIES",
+            4.5
+          ],
+          [
+            "BP",
+            3.21
+          ],
+          [
+            "MARATHON PETROLEUM",
+            3.16
+          ],
+          [
+            "VALERO ENERGY CORP",
+            2.89
+          ],
+          [
+            "CANADIAN NAT RESOURCES",
+            2.84
+          ],
+          [
+            "PHILLIPS 66",
+            2.76
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "label": "Composition officielle automatisée · MSCI World Energy",
+          "sha256": "8af3fa6a5c5a1634aac2911a14c90a00d1433470d9ff15e8cb856f58f241e5f6"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "returns": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            13.32
+          ],
+          [
+            2024,
+            2.7
+          ],
+          [
+            2023,
+            2.54
+          ],
+          [
+            2022,
+            46.01
+          ],
+          [
+            2021,
+            40.09
+          ],
+          [
+            2020,
+            -31.46
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
+          "checkedAt": "2026-11-14",
+          "sha256": "8af3fa6a5c5a1634aac2911a14c90a00d1433470d9ff15e8cb856f58f241e5f6",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Energy"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Energy · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-10-30"
+        }
+      }
+    }
+  ],
+  "status": "validated",
+  "notQualified": [],
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "index-acwi-imi-composition",
+          "instrument": "acwi-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-acwi-imi-returns",
+          "instrument": "acwi-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-2000-composition",
+          "instrument": "russell-2000",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-2000-returns",
+          "instrument": "russell-2000",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-momentum-composition",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-momentum-returns",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-composition",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-returns",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-composition",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-returns",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-composition",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-returns",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-em-standard-composition",
+          "instrument": "em-standard",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-em-standard-returns",
+          "instrument": "em-standard",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-composition",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-returns",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-small-cap-composition",
+          "instrument": "world-small-cap",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-small-cap-returns",
+          "instrument": "world-small-cap",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-ex-usa-composition",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-ex-usa-returns",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-esg-composition",
+          "instrument": "em-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-em-esg-returns",
+          "instrument": "em-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-1000-composition",
+          "instrument": "russell-1000",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-1000-returns",
+          "instrument": "russell-1000",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-1000-quarterly-composition",
+          "instrument": "russell-1000",
+          "fields": [
+            "same-date official index countries",
+            "printed sectors",
+            "quarterly top ten",
+            "constituent count"
+          ],
+          "selected": false,
+          "reason": "Outside requested quarterly index partition"
+        },
+        {
+          "id": "index-msci-em-asia-screened-composition",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-asia-screened-returns",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-em-composition",
+          "instrument": "ftse-em",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-em-returns",
+          "instrument": "ftse-em",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-composition",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-returns",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-china-50-composition",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-china-50-returns",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-acwi-composition",
+          "instrument": "acwi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-acwi-returns",
+          "instrument": "acwi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-composition",
+          "instrument": "world",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-returns",
+          "instrument": "world",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-mscieurope-composition",
+          "instrument": "mscieurope",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-mscieurope-returns",
+          "instrument": "mscieurope",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-usa-composition",
+          "instrument": "msci-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-usa-returns",
+          "instrument": "msci-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-india-composition",
+          "instrument": "msci-india",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-india-returns",
+          "instrument": "msci-india",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-ex-china-composition",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-ex-china-returns",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-enhanced-value-composition",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-enhanced-value-returns",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-composition",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-returns",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-growth-composition",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-growth-returns",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-composition",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-returns",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-composition",
+          "instrument": "msci-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-returns",
+          "instrument": "msci-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-a-composition",
+          "instrument": "msci-china-a",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-a-returns",
+          "instrument": "msci-china-a",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-japan-imi-composition",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-japan-imi-returns",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-emea-esg-composition",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-emea-esg-returns",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-composition",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-returns",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-imi-composition",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-imi-returns",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nikkei225-composition",
+          "instrument": "nikkei225",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nikkei225-returns",
+          "instrument": "nikkei225",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-stoxx600-composition",
+          "instrument": "stoxx600",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-stoxx600-returns",
+          "instrument": "stoxx600",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-eurostoxx50-composition",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-eurostoxx50-returns",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-composition",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-returns",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-composition",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-returns",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-topix-composition",
+          "instrument": "topix",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-topix-returns",
+          "instrument": "topix",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-composition",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-returns",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp500-pea-composition",
+          "instrument": "sp500-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-sp500-pea-returns",
+          "instrument": "sp500-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-composition",
+          "instrument": "bitcoin",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-returns",
+          "instrument": "bitcoin",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-composition",
+          "instrument": "ethereum",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-returns",
+          "instrument": "ethereum",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-gold-physical-composition",
+          "instrument": "gold-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-gold-physical-returns",
+          "instrument": "gold-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-silver-physical-composition",
+          "instrument": "silver-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-silver-physical-returns",
+          "instrument": "silver-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nasdaq-pea-composition",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nasdaq-pea-returns",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp500-equal-weight-composition",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-equal-weight-returns",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-industrials-composition",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-industrials-returns",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-consumer-staples-composition",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-consumer-staples-returns",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-materials-composition",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-materials-returns",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-composition",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-returns",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-islamic-composition",
+          "instrument": "world-islamic",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-islamic-returns",
+          "instrument": "world-islamic",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-health-care-composition",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-health-care-returns",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-composition",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-returns",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-composition",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-returns",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-composition",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-returns",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-communication-services-composition",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-communication-services-returns",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        }
+      ],
+      "mode": "targeted",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_index_sources",
+      "reportStem": "selected-index-observations",
+      "declaredAt": "2026-11-14T13:47:12.234289+00:00",
+      "nonce": "719ac08a-2a18-4b97-916d-4d4e229fa8e1",
+      "codeSha": "3694014fa6480bb969f272c38bd5570014289346",
+      "durablePlan": true,
+      "runId": "43601401302",
+      "attempt": "1",
+      "sha256": "b14fc9537d07c591800bdfba387b81b0d04beb7e24c5390c9ae03c0d735cb210"
+    },
+    "scope": {
+      "kind": "refresh_index_sources",
+      "mode": "targeted",
+      "expectedIds": [
+        "index-acwi-imi-composition",
+        "index-acwi-imi-returns",
+        "index-russell-2000-composition",
+        "index-russell-2000-returns",
+        "index-msci-world-momentum-composition",
+        "index-msci-world-momentum-returns",
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-ftse-epra-nareit-developed-dividend-plus-composition",
+        "index-ftse-epra-nareit-developed-dividend-plus-returns",
+        "index-ftse-global-core-infrastructure-composition",
+        "index-ftse-global-core-infrastructure-returns",
+        "index-em-standard-composition",
+        "index-em-standard-returns",
+        "index-ftse-all-world-composition",
+        "index-ftse-all-world-returns",
+        "index-world-small-cap-composition",
+        "index-world-small-cap-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-em-esg-composition",
+        "index-em-esg-returns",
+        "index-russell-1000-composition",
+        "index-russell-1000-returns",
+        "index-russell-1000-quarterly-composition",
+        "index-msci-em-asia-screened-composition",
+        "index-msci-em-asia-screened-returns",
+        "index-ftse-em-composition",
+        "index-ftse-em-returns",
+        "index-ftse-all-world-high-dividend-yield-composition",
+        "index-ftse-all-world-high-dividend-yield-returns",
+        "index-ftse-china-50-composition",
+        "index-ftse-china-50-returns",
+        "index-acwi-composition",
+        "index-acwi-returns",
+        "index-world-composition",
+        "index-world-returns",
+        "index-mscieurope-composition",
+        "index-mscieurope-returns",
+        "index-msci-usa-composition",
+        "index-msci-usa-returns",
+        "index-msci-india-composition",
+        "index-msci-india-returns",
+        "index-msci-em-ex-china-composition",
+        "index-msci-em-ex-china-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-msci-world-growth-composition",
+        "index-msci-world-growth-returns",
+        "index-msci-world-high-dividend-yield-advanced-select-composition",
+        "index-msci-world-high-dividend-yield-advanced-select-returns",
+        "index-msci-china-composition",
+        "index-msci-china-returns",
+        "index-msci-china-a-composition",
+        "index-msci-china-a-returns",
+        "index-msci-japan-imi-composition",
+        "index-msci-japan-imi-returns",
+        "index-msci-em-emea-esg-composition",
+        "index-msci-em-emea-esg-returns",
+        "index-msci-em-latin-america-composition",
+        "index-msci-em-latin-america-returns",
+        "index-msci-em-imi-composition",
+        "index-msci-em-imi-returns",
+        "index-nikkei225-composition",
+        "index-nikkei225-returns",
+        "index-stoxx600-composition",
+        "index-stoxx600-returns",
+        "index-eurostoxx50-composition",
+        "index-eurostoxx50-returns",
+        "index-sp-global-dividend-aristocrats-composition",
+        "index-sp-global-dividend-aristocrats-returns",
+        "index-sp-euro-dividend-aristocrats-composition",
+        "index-sp-euro-dividend-aristocrats-returns",
+        "index-topix-composition",
+        "index-topix-returns",
+        "index-msci-em-latin-america-selection-composition",
+        "index-msci-em-latin-america-selection-returns",
+        "index-sp500-pea-composition",
+        "index-sp500-pea-returns",
+        "index-bitcoin-composition",
+        "index-bitcoin-returns",
+        "index-ethereum-composition",
+        "index-ethereum-returns",
+        "index-gold-physical-composition",
+        "index-gold-physical-returns",
+        "index-silver-physical-composition",
+        "index-silver-physical-returns",
+        "index-nasdaq-pea-composition",
+        "index-nasdaq-pea-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-industrials-composition",
+        "index-msci-world-industrials-returns",
+        "index-msci-world-consumer-staples-composition",
+        "index-msci-world-consumer-staples-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-world-islamic-composition",
+        "index-world-islamic-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns",
+        "index-msci-world-consumer-discretionary-composition",
+        "index-msci-world-consumer-discretionary-returns",
+        "index-msci-world-communication-services-composition",
+        "index-msci-world-communication-services-returns"
+      ],
+      "requestedIds": [
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns"
+      ],
+      "items": [
+        {
+          "id": "index-acwi-imi-composition",
+          "instrument": "acwi-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-acwi-imi-returns",
+          "instrument": "acwi-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-2000-composition",
+          "instrument": "russell-2000",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-2000-returns",
+          "instrument": "russell-2000",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-momentum-composition",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-momentum-returns",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-composition",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-returns",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-composition",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-returns",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-composition",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-returns",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-em-standard-composition",
+          "instrument": "em-standard",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-em-standard-returns",
+          "instrument": "em-standard",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-composition",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-returns",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-small-cap-composition",
+          "instrument": "world-small-cap",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-small-cap-returns",
+          "instrument": "world-small-cap",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-ex-usa-composition",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-ex-usa-returns",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-esg-composition",
+          "instrument": "em-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-em-esg-returns",
+          "instrument": "em-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-1000-composition",
+          "instrument": "russell-1000",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-1000-returns",
+          "instrument": "russell-1000",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-russell-1000-quarterly-composition",
+          "instrument": "russell-1000",
+          "fields": [
+            "same-date official index countries",
+            "printed sectors",
+            "quarterly top ten",
+            "constituent count"
+          ],
+          "selected": false,
+          "reason": "Outside requested quarterly index partition"
+        },
+        {
+          "id": "index-msci-em-asia-screened-composition",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-asia-screened-returns",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-em-composition",
+          "instrument": "ftse-em",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-em-returns",
+          "instrument": "ftse-em",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-composition",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-returns",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-china-50-composition",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-ftse-china-50-returns",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-acwi-composition",
+          "instrument": "acwi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-acwi-returns",
+          "instrument": "acwi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-composition",
+          "instrument": "world",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-returns",
+          "instrument": "world",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-mscieurope-composition",
+          "instrument": "mscieurope",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-mscieurope-returns",
+          "instrument": "mscieurope",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-usa-composition",
+          "instrument": "msci-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-usa-returns",
+          "instrument": "msci-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-india-composition",
+          "instrument": "msci-india",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-india-returns",
+          "instrument": "msci-india",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-ex-china-composition",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-ex-china-returns",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-enhanced-value-composition",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-enhanced-value-returns",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-composition",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-returns",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-growth-composition",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-growth-returns",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-composition",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-returns",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-composition",
+          "instrument": "msci-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-returns",
+          "instrument": "msci-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-a-composition",
+          "instrument": "msci-china-a",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-china-a-returns",
+          "instrument": "msci-china-a",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-japan-imi-composition",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-japan-imi-returns",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-emea-esg-composition",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-emea-esg-returns",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-composition",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-returns",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-imi-composition",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-imi-returns",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nikkei225-composition",
+          "instrument": "nikkei225",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nikkei225-returns",
+          "instrument": "nikkei225",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-stoxx600-composition",
+          "instrument": "stoxx600",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-stoxx600-returns",
+          "instrument": "stoxx600",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-eurostoxx50-composition",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-eurostoxx50-returns",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-composition",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-returns",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-composition",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-returns",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-topix-composition",
+          "instrument": "topix",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-topix-returns",
+          "instrument": "topix",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-composition",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-returns",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp500-pea-composition",
+          "instrument": "sp500-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-sp500-pea-returns",
+          "instrument": "sp500-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-composition",
+          "instrument": "bitcoin",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-returns",
+          "instrument": "bitcoin",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-composition",
+          "instrument": "ethereum",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-returns",
+          "instrument": "ethereum",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-gold-physical-composition",
+          "instrument": "gold-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-gold-physical-returns",
+          "instrument": "gold-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-silver-physical-composition",
+          "instrument": "silver-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-silver-physical-returns",
+          "instrument": "silver-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nasdaq-pea-composition",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-nasdaq-pea-returns",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-sp500-equal-weight-composition",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-equal-weight-returns",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-industrials-composition",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-industrials-returns",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-consumer-staples-composition",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-consumer-staples-returns",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-materials-composition",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-materials-returns",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-composition",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-returns",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-islamic-composition",
+          "instrument": "world-islamic",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-world-islamic-returns",
+          "instrument": "world-islamic",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-health-care-composition",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-health-care-returns",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-composition",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-returns",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-composition",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-returns",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-composition",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-returns",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-communication-services-composition",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        },
+        {
+          "id": "index-msci-world-communication-services-returns",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "returns"
+          ],
+          "selected": false,
+          "reason": "Outside requested index partition"
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-14T13:47:12.234289+00:00",
+      "planSha256": "b14fc9537d07c591800bdfba387b81b0d04beb7e24c5390c9ae03c0d735cb210",
+      "attemptedIds": [
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns"
+      ],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns"
+      ],
+      "networkAttemptUnknownIds": [],
+      "runId": "43601401302",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "719ac08a-2a18-4b97-916d-4d4e229fa8e1"
+    },
+    "outcomes": [
+      {
+        "id": "index-acwi-imi-composition",
+        "instrument": "acwi-imi",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-acwi-imi-returns",
+        "instrument": "acwi-imi",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-russell-2000-composition",
+        "instrument": "russell-2000",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-russell-2000-returns",
+        "instrument": "russell-2000",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-momentum-composition",
+        "instrument": "msci-world-momentum",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-momentum-returns",
+        "instrument": "msci-world-momentum",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-minimum-volatility-usd-composition",
+        "instrument": "msci-world-minimum-volatility-usd",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-minimum-volatility-usd-returns",
+        "instrument": "msci-world-minimum-volatility-usd",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-ftse-epra-nareit-developed-dividend-plus-composition",
+        "instrument": "ftse-epra-nareit-developed-dividend-plus",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-epra-nareit-developed-dividend-plus-returns",
+        "instrument": "ftse-epra-nareit-developed-dividend-plus",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-global-core-infrastructure-composition",
+        "instrument": "ftse-global-core-infrastructure",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-global-core-infrastructure-returns",
+        "instrument": "ftse-global-core-infrastructure",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-em-standard-composition",
+        "instrument": "em-standard",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-em-standard-returns",
+        "instrument": "em-standard",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-all-world-composition",
+        "instrument": "ftse-all-world",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-all-world-returns",
+        "instrument": "ftse-all-world",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-world-small-cap-composition",
+        "instrument": "world-small-cap",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-world-small-cap-returns",
+        "instrument": "world-small-cap",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-world-ex-usa-composition",
+        "instrument": "world-ex-usa",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-world-ex-usa-returns",
+        "instrument": "world-ex-usa",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-em-esg-composition",
+        "instrument": "em-esg",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-em-esg-returns",
+        "instrument": "em-esg",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-russell-1000-composition",
+        "instrument": "russell-1000",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-russell-1000-returns",
+        "instrument": "russell-1000",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-russell-1000-quarterly-composition",
+        "instrument": "russell-1000",
+        "fields": [
+          "same-date official index countries",
+          "printed sectors",
+          "quarterly top ten",
+          "constituent count"
+        ],
+        "selected": false,
+        "reason": "Outside requested quarterly index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-asia-screened-composition",
+        "instrument": "msci-em-asia-screened",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-asia-screened-returns",
+        "instrument": "msci-em-asia-screened",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-em-composition",
+        "instrument": "ftse-em",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-em-returns",
+        "instrument": "ftse-em",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-all-world-high-dividend-yield-composition",
+        "instrument": "ftse-all-world-high-dividend-yield",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-all-world-high-dividend-yield-returns",
+        "instrument": "ftse-all-world-high-dividend-yield",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-china-50-composition",
+        "instrument": "ftse-china-50",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-ftse-china-50-returns",
+        "instrument": "ftse-china-50",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-acwi-composition",
+        "instrument": "acwi",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-acwi-returns",
+        "instrument": "acwi",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-world-composition",
+        "instrument": "world",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-world-returns",
+        "instrument": "world",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-mscieurope-composition",
+        "instrument": "mscieurope",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-mscieurope-returns",
+        "instrument": "mscieurope",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-usa-composition",
+        "instrument": "msci-usa",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-usa-returns",
+        "instrument": "msci-usa",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-india-composition",
+        "instrument": "msci-india",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-india-returns",
+        "instrument": "msci-india",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-ex-china-composition",
+        "instrument": "msci-em-ex-china",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-ex-china-returns",
+        "instrument": "msci-em-ex-china",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-enhanced-value-composition",
+        "instrument": "msci-world-enhanced-value",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-enhanced-value-returns",
+        "instrument": "msci-world-enhanced-value",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-sector-neutral-quality-composition",
+        "instrument": "msci-world-sector-neutral-quality",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-sector-neutral-quality-returns",
+        "instrument": "msci-world-sector-neutral-quality",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-growth-composition",
+        "instrument": "msci-world-growth",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-growth-returns",
+        "instrument": "msci-world-growth",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-high-dividend-yield-advanced-select-composition",
+        "instrument": "msci-world-high-dividend-yield-advanced-select",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-high-dividend-yield-advanced-select-returns",
+        "instrument": "msci-world-high-dividend-yield-advanced-select",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-china-composition",
+        "instrument": "msci-china",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-china-returns",
+        "instrument": "msci-china",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-china-a-composition",
+        "instrument": "msci-china-a",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-china-a-returns",
+        "instrument": "msci-china-a",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-japan-imi-composition",
+        "instrument": "msci-japan-imi",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-japan-imi-returns",
+        "instrument": "msci-japan-imi",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-emea-esg-composition",
+        "instrument": "msci-em-emea-esg",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-emea-esg-returns",
+        "instrument": "msci-em-emea-esg",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-latin-america-composition",
+        "instrument": "msci-em-latin-america",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-latin-america-returns",
+        "instrument": "msci-em-latin-america",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-imi-composition",
+        "instrument": "msci-em-imi",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-imi-returns",
+        "instrument": "msci-em-imi",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-nikkei225-composition",
+        "instrument": "nikkei225",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-nikkei225-returns",
+        "instrument": "nikkei225",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-stoxx600-composition",
+        "instrument": "stoxx600",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-stoxx600-returns",
+        "instrument": "stoxx600",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-eurostoxx50-composition",
+        "instrument": "eurostoxx50",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-eurostoxx50-returns",
+        "instrument": "eurostoxx50",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-sp-global-dividend-aristocrats-composition",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-sp-global-dividend-aristocrats-returns",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-sp-euro-dividend-aristocrats-composition",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-sp-euro-dividend-aristocrats-returns",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-topix-composition",
+        "instrument": "topix",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-topix-returns",
+        "instrument": "topix",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-latin-america-selection-composition",
+        "instrument": "msci-em-latin-america-selection",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-em-latin-america-selection-returns",
+        "instrument": "msci-em-latin-america-selection",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-sp500-pea-composition",
+        "instrument": "sp500-pea",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "validatedAt": "2026-11-14T13:47:12.254339+00:00"
+      },
+      {
+        "id": "index-sp500-pea-returns",
+        "instrument": "sp500-pea",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "validatedAt": "2026-11-14T13:47:12.254339+00:00"
+      },
+      {
+        "id": "index-bitcoin-composition",
+        "instrument": "bitcoin",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "validatedAt": "2026-11-14T13:47:12.254339+00:00"
+      },
+      {
+        "id": "index-bitcoin-returns",
+        "instrument": "bitcoin",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "validatedAt": "2026-11-14T13:47:12.254339+00:00"
+      },
+      {
+        "id": "index-ethereum-composition",
+        "instrument": "ethereum",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "validatedAt": "2026-11-14T13:47:12.254339+00:00"
+      },
+      {
+        "id": "index-ethereum-returns",
+        "instrument": "ethereum",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "validatedAt": "2026-11-14T13:47:12.254339+00:00"
+      },
+      {
+        "id": "index-gold-physical-composition",
+        "instrument": "gold-physical",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-gold-physical-returns",
+        "instrument": "gold-physical",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-silver-physical-composition",
+        "instrument": "silver-physical",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-silver-physical-returns",
+        "instrument": "silver-physical",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-nasdaq-pea-composition",
+        "instrument": "nasdaq-pea",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-nasdaq-pea-returns",
+        "instrument": "nasdaq-pea",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-sp500-equal-weight-composition",
+        "instrument": "sp500-equal-weight",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-sp500-equal-weight-returns",
+        "instrument": "sp500-equal-weight",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-industrials-composition",
+        "instrument": "msci-world-industrials",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-industrials-returns",
+        "instrument": "msci-world-industrials",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-consumer-staples-composition",
+        "instrument": "msci-world-consumer-staples",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-consumer-staples-returns",
+        "instrument": "msci-world-consumer-staples",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-materials-composition",
+        "instrument": "msci-world-materials",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-materials-returns",
+        "instrument": "msci-world-materials",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-utilities-composition",
+        "instrument": "msci-world-utilities",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-utilities-returns",
+        "instrument": "msci-world-utilities",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-world-islamic-composition",
+        "instrument": "world-islamic",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-world-islamic-returns",
+        "instrument": "world-islamic",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-health-care-composition",
+        "instrument": "msci-world-health-care",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-health-care-returns",
+        "instrument": "msci-world-health-care",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-financials-composition",
+        "instrument": "msci-world-financials",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-financials-returns",
+        "instrument": "msci-world-financials",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-energy-composition",
+        "instrument": "msci-world-energy",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-energy-returns",
+        "instrument": "msci-world-energy",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "index-msci-world-consumer-discretionary-composition",
+        "instrument": "msci-world-consumer-discretionary",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-consumer-discretionary-returns",
+        "instrument": "msci-world-consumer-discretionary",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-communication-services-composition",
+        "instrument": "msci-world-communication-services",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-msci-world-communication-services-returns",
+        "instrument": "msci-world-communication-services",
+        "fields": [
+          "returns"
+        ],
+        "selected": false,
+        "reason": "Outside requested index partition",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

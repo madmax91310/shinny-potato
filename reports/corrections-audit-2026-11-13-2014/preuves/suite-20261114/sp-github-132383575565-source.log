@@ -1,0 +1,10 @@
+2026-11-14T08:01:30.3692403Z Download action repository 'actions/upload-artifact@v7.0.1' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-11-14T08:01:55.7634031Z Updating files:  40% (3328/8320)
+2026-11-14T08:02:10.9353703Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-11-14T08:02:17.9039069Z {"id":"sp-global-dividend-aristocrats","status":"failed","reason":"Official index page refused: 403","attemptedAt":"2026-11-14T08:02:17.640Z","stage":"ordinary-public-navigation","pageStatus":403,"finalPageUrl":"https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-global-dividend-aristocrats-quality-income-index/"}
+2026-11-14T08:02:18.0559523Z {"id":"sp-euro-dividend-aristocrats","status":"failed","reason":"Official index page refused: 403","attemptedAt":"2026-11-14T08:02:17.903Z","stage":"ordinary-public-navigation","pageStatus":403,"finalPageUrl":"https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-euro-high-yield-dividend-aristocrats/"}
+2026-11-14T08:02:18.0903600Z [36;1m    except Exception as error:r['financialStatus']='failed';r['financialError']=str(error)[0m
+2026-11-14T08:02:18.1357137Z Traceback (most recent call last):
+2026-11-14T08:02:18.1357703Z AssertionError: Direct source not qualified; no cached handoff accepted
+2026-11-14T08:02:18.1358698Z {"id": "sp-global-dividend-aristocrats", "status": "failed", "reason": "Official index page refused: 403", "attemptedAt": "2026-11-14T08:02:17.640Z", "stage": "ordinary-public-navigation", "pageStatus": 403, "finalPageUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-global-dividend-aristocrats-quality-income-index/"}
+2026-11-14T08:02:18.1360188Z {"id": "sp-euro-dividend-aristocrats", "status": "failed", "reason": "Official index page refused: 403", "attemptedAt": "2026-11-14T08:02:17.903Z", "stage": "ordinary-public-navigation", "pageStatus": 403, "finalPageUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-euro-high-yield-dividend-aristocrats/"}

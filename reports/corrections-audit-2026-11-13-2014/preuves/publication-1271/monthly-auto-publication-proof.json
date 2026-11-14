@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-11-14T13:58:43.350757+00:00",
+  "build": {
+    "sha": "dd59ec24f8ab2b8c223e5ca2e4bce35ac65f0dc6",
+    "builtAt": "2026-11-14T13:25:31Z"
+  },
+  "run": 43596221440,
+  "event": "workflow_dispatch",
+  "automaticRecoveryActor": "github-actions[bot]",
+  "receiptCommit": "fa7146b0323aedd5a381691143c1974c13a4f745",
+  "files": [
+    {
+      "path": "src/data/anniversary-levels.json",
+      "expected": "0734ab7569ba3d2155796a395c3a59f47713ad36",
+      "actual": "0734ab7569ba3d2155796a395c3a59f47713ad36",
+      "matches": true
+    },
+    {
+      "path": "src/data/auto-history-identities.json",
+      "expected": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "actual": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "expected": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+      "actual": "56897eeb1ab27407697cfbe03742eaf8e4fe6d8d",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "expected": "1429fbec8e24fcb2e465a82b8c7cc6dd20b24c9d",
+      "actual": "1429fbec8e24fcb2e465a82b8c7cc6dd20b24c9d",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "expected": "474142b727712860179ae8a73b6b9ab6946b70a8",
+      "actual": "474142b727712860179ae8a73b6b9ab6946b70a8",
+      "matches": true
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "expected": "3dc52f31d847a8905a93bd012358e14eac75131d",
+      "actual": "3dc52f31d847a8905a93bd012358e14eac75131d",
+      "matches": true
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "expected": "9b067bdef0fd69180917cd9fce2c182abb0e7e55",
+      "actual": "9b067bdef0fd69180917cd9fce2c182abb0e7e55",
+      "matches": true
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "expected": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "actual": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "matches": true
+    },
+    {
+      "path": "src/data/shared-listing-identities.json",
+      "expected": "f632d24d513c0d21d20ddd49ebca113af4f8cdf3",
+      "actual": "f632d24d513c0d21d20ddd49ebca113af4f8cdf3",
+      "matches": true
+    }
+  ],
+  "allMatch": true,
+  "scope": "Recording/publication of targeted recovery. The failed Xetra acquisition is not repaired; this does not demonstrate a supplier cron."
+}

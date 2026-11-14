@@ -1,0 +1,19 @@
+{
+  "entireWireSizeAndSHA256Verified": true,
+  "decodedBytes": 242290381,
+  "decodedSha256": "458b0764f302cb45e9bc0782a0eafeb4332d343bc0cc21579749cee2af943431",
+  "allReceiptRecordsHashedAndAllReferencesMatched": true,
+  "recordCount": 5978,
+  "projectedWorkflows": [
+    "update-investor-13f.yml",
+    "update-market-monthly.yml",
+    "collect-etf-pilot.yml",
+    "update-publication-observations.yml",
+    "update-qualified-exposures.yml",
+    "update-exposure-expansion.yml",
+    "update-instrument-metadata.yml",
+    "deploy-pages.yml"
+  ],
+  "initialIDsPreserved": 1218,
+  "reason": "Resource-limited local extraction after full decoder process was OOM-killed; exact projected receipts are expanded by unchanged official reader. This is evidence extraction only, no application or monitor modified."
+}

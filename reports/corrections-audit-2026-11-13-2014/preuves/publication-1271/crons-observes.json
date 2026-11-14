@@ -1,0 +1,111 @@
+{
+  "update-market-monthly.yml": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-13T14:54:03Z",
+      "databaseId": 43447157146,
+      "event": "schedule",
+      "headSha": "1bcf28156ec7214c7732a12e590ee28af16e9a6e",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-12T15:35:38Z",
+      "databaseId": 43249476357,
+      "event": "schedule",
+      "headSha": "b66846693da18d1fa3310b51177d3c7bc38df896",
+      "status": "completed"
+    }
+  ],
+  "update-investor-13f.yml": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-13T19:51:39Z",
+      "databaseId": 43496138701,
+      "event": "schedule",
+      "headSha": "5c90e1fd558ebceaff6b7a774e21adcc1089985a",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-11-12T20:06:44Z",
+      "databaseId": 43296996190,
+      "event": "schedule",
+      "headSha": "bc50df618d5b2087f57761503d927e27fc00e4ce",
+      "status": "completed"
+    }
+  ],
+  "update-publication-observations.yml": [
+    {
+      "conclusion": "success",
+      "createdAt": "2026-11-13T15:39:24Z",
+      "databaseId": 43454784772,
+      "event": "schedule",
+      "headSha": "f5ef257551b17e610d1233fdf30216ccef5d7cb8",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-12T16:10:52Z",
+      "databaseId": 43255824329,
+      "event": "schedule",
+      "headSha": "783e8a70aff99a5949cbf42566f2c60600d5414c",
+      "status": "completed"
+    }
+  ],
+  "update-gold-monthly.yml": [
+    {
+      "conclusion": "success",
+      "createdAt": "2026-11-10T15:36:58Z",
+      "databaseId": 42846194655,
+      "event": "schedule",
+      "headSha": "35b5207468ed9941121bccb9e84f2df01ec0a5e0",
+      "status": "completed"
+    },
+    {
+      "conclusion": "cancelled",
+      "createdAt": "2026-11-09T17:32:52Z",
+      "databaseId": 42665674392,
+      "event": "schedule",
+      "headSha": "e998106b7a2098d951f0a0935d77734a0322fa37",
+      "status": "completed"
+    }
+  ],
+  "collect-etf-pilot.yml": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-13T15:18:12Z",
+      "databaseId": 43451234453,
+      "event": "schedule",
+      "headSha": "a8e3696df1380060fea7cda9685ec53094e11cd1",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-12T15:55:10Z",
+      "databaseId": 43252975150,
+      "event": "schedule",
+      "headSha": "7fc47aa031e6c5d379e28dba44f62ebbc35f70d4",
+      "status": "completed"
+    }
+  ],
+  "update-qualified-exposures.yml": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-13T15:42:27Z",
+      "databaseId": 43455295963,
+      "event": "schedule",
+      "headSha": "95606e98a8f9c3c0c179a4dc01688fd806c4d226",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-11-12T16:19:24Z",
+      "databaseId": 43257386877,
+      "event": "schedule",
+      "headSha": "4ef6361872ac470ff5c36478cecfce0a1550a422",
+      "status": "completed"
+    }
+  ],
+  "checkedAt": "2026-11-14T10:45:31.679674+00:00"
+}

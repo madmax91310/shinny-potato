@@ -1,0 +1,33 @@
+{
+  "productIds": [
+    "FR0010755611",
+    "FR0013411998",
+    "FR0013412004"
+  ],
+  "context": {
+    "countryCode": "FRA",
+    "languageCode": "fr",
+    "userProfileName": "INSTIT"
+  },
+  "characteristics": [
+    "ISIN",
+    "CURRENCY",
+    "LAUNCH_DATE",
+    "DISTRIBUTION_POLICY"
+  ],
+  "breakDown": {
+    "aggregationFields": []
+  },
+  "historics": [
+    {
+      "indicator": "dividendAmount",
+      "startDate": "2015-01-01",
+      "endDate": "2026-11-14"
+    },
+    {
+      "indicator": "dividendCurrency",
+      "startDate": "2015-01-01",
+      "endDate": "2026-11-14"
+    }
+  ]
+}

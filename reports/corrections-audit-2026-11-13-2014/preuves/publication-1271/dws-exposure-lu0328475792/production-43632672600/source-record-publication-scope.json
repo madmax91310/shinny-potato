@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-11-14T20:55:06.528767+00:00",
+  "build": {
+    "sha": "332ce044c94085ed30eee75445c5f52bf0134d15",
+    "builtAt": "2026-11-14T20:15:50Z"
+  },
+  "run": 43632672600,
+  "event": "push",
+  "receiptCommit": "332ce044c94085ed30eee75445c5f52bf0134d15",
+  "files": {
+    "src/data/exposure-etf-expansion-records.json": true
+  },
+  "allMatch": true,
+  "scopedFields": [
+    {
+      "isin": "LU0328475792",
+      "controlledFields": [
+        "countries",
+        "sectors"
+      ],
+      "asOf": "2026-11-12",
+      "sameExactPublishedValues": true
+    },
+    {
+      "isin": "IE00BK1PV551",
+      "controlledFields": [
+        "countries",
+        "sectors"
+      ],
+      "asOf": "2026-11-12",
+      "sameExactPublishedValues": true
+    }
+  ],
+  "expectedResults": 36,
+  "outcomes": {
+    "succeeded": 34,
+    "failedPrimaryAumWithSeparatelyQualifiedFallback": 2
+  }
+}

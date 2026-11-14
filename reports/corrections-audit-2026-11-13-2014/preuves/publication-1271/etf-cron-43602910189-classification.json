@@ -1,0 +1,15 @@
+{
+  "observedAt": "2026-11-14T14:15:44.655610+00:00",
+  "run": 43602910189,
+  "event": "schedule",
+  "stage": "recording",
+  "status": "failed-safe",
+  "cause": "Source capture predates correction1276. Its frozen guard correctly refuses the changed source guard/revalidation/test files before recording. These are protected collection inputs, unlike the qualified downstream subscriber readers.",
+  "lastValidDataPreserved": true,
+  "notSupplierFailure": true,
+  "oldOutputsNotRepublished": true,
+  "followupOrdinaryRun": 43603436898,
+  "followupEvent": "push",
+  "followupRef": "master with1276; fresh source acquisition required",
+  "evidence": "etf-cron-43602910189-failure.log"
+}

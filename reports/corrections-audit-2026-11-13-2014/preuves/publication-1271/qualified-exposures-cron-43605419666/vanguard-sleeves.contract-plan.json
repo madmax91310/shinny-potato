@@ -1,0 +1,215 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "vanguard-underlier:IE00BFMXYX26",
+          "instrument": "IE00BFMXYX26",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQZ41",
+          "instrument": "IE00BK5BQZ41",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "vanguard-underlier:IE00BKX55R35",
+          "instrument": "IE00BKX55R35",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQW10",
+          "instrument": "IE00BK5BQW10",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_vanguard_sleeves",
+      "reportStem": "vanguard-sleeves",
+      "declaredAt": "2026-11-14T14:52:36.238837+00:00",
+      "nonce": "a1a55176-db8f-44bf-9043-c43c53ccded0",
+      "codeSha": "f876bf22cb53665a3d56e1efe5b1363629cbf094",
+      "durablePlan": true,
+      "runId": "43605419666",
+      "attempt": "1",
+      "sha256": "2d5ff9a265b1e01f56e1e7a6fec934814da146c979049f47cc4fd6e5a45ec40b"
+    },
+    "scope": {
+      "kind": "collect_vanguard_sleeves",
+      "mode": "full",
+      "expectedIds": [
+        "vanguard-underlier:IE00BFMXYX26",
+        "vanguard-underlier:IE00BK5BQZ41",
+        "vanguard-underlier:IE00BKX55R35",
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "requestedIds": [
+        "vanguard-underlier:IE00BFMXYX26",
+        "vanguard-underlier:IE00BK5BQZ41",
+        "vanguard-underlier:IE00BKX55R35",
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "items": [
+        {
+          "id": "vanguard-underlier:IE00BFMXYX26",
+          "instrument": "IE00BFMXYX26",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQZ41",
+          "instrument": "IE00BK5BQZ41",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "vanguard-underlier:IE00BKX55R35",
+          "instrument": "IE00BKX55R35",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQW10",
+          "instrument": "IE00BK5BQW10",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-14T14:52:36.238837+00:00",
+      "planSha256": "2d5ff9a265b1e01f56e1e7a6fec934814da146c979049f47cc4fd6e5a45ec40b",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "vanguard-underlier:IE00BFMXYX26",
+        "vanguard-underlier:IE00BK5BQZ41",
+        "vanguard-underlier:IE00BKX55R35",
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "vanguard-underlier:IE00BFMXYX26",
+        "vanguard-underlier:IE00BK5BQZ41",
+        "vanguard-underlier:IE00BKX55R35",
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "runId": "43605419666",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "a1a55176-db8f-44bf-9043-c43c53ccded0"
+    },
+    "outcomes": [
+      {
+        "id": "vanguard-underlier:IE00BFMXYX26",
+        "instrument": "IE00BFMXYX26",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : countries, sectors, factsheet/API identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "vanguard-underlier:IE00BK5BQZ41",
+        "instrument": "IE00BK5BQZ41",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : countries, sectors, factsheet/API identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "vanguard-underlier:IE00BKX55R35",
+        "instrument": "IE00BKX55R35",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : countries, sectors, factsheet/API identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "vanguard-underlier:IE00BK5BQW10",
+        "instrument": "IE00BK5BQW10",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : countries, sectors, factsheet/API identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

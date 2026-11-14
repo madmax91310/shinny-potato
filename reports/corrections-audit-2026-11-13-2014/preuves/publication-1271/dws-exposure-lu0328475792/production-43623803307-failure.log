@@ -1,0 +1,41 @@
+Z Updating files:  92% (7698/8367)
+2026-11-14T17:58:26.5282040Z Updating files:  93% (7782/8367)
+2026-11-14T17:58:26.5309755Z Updating files:  94% (7865/8367)
+2026-11-14T17:58:26.5368699Z Updating files:  95% (7949/8367)
+2026-11-14T17:58:26.5653658Z Updating files:  96% (8033/8367)
+2026-11-14T17:58:26.5693183Z Updating files:  97% (8116/8367)
+2026-11-14T17:58:26.5743567Z Updating files:  98% (8200/8367)
+2026-11-14T17:58:26.5781665Z Updating files:  99% (8284/8367)
+2026-11-14T17:58:26.5781966Z Updating files: 100% (8367/8367)
+2026-11-14T17:58:26.5782250Z Updating files: 100% (8367/8367), done.
+2026-11-14T17:58:26.5832758Z HEAD is now at d190a17 Refresh exact-share ETF exposures
+2026-11-14T17:58:27.0906955Z From https://github.com/madmax91310/shinny-potato
+2026-11-14T17:58:27.0907254Z  * branch            master     -> FETCH_HEAD
+2026-11-14T17:58:27.0907454Z    7bbe800..f744fc3  master     -> origin/master
+2026-11-14T17:58:27.9835696Z Rebasing (1/1)
+2026-11-14T17:58:27.9835986Z Successfully rebased and updated detached HEAD.
+2026-11-14T17:58:28.0215750Z Traceback (most recent call last):
+2026-11-14T17:58:28.0216200Z   File "/tmp/tmp.94vVC7wilM/checkout/scripts/validate_exposure_publication.py", line 228, in <module>
+2026-11-14T17:58:28.0216719Z     main()
+2026-11-14T17:58:28.0217141Z   File "/tmp/tmp.94vVC7wilM/checkout/scripts/validate_exposure_publication.py", line 217, in main
+2026-11-14T17:58:28.0217861Z     print('Independent publication outputs:', inputs(ROOT, args.base, args.upstream))
+2026-11-14T17:58:28.0218254Z                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T17:58:28.0218756Z   File "/tmp/tmp.94vVC7wilM/checkout/scripts/validate_exposure_publication.py", line 36, in inputs
+2026-11-14T17:58:28.0219135Z     changed = guard.check('etf', base, upstream)
+2026-11-14T17:58:28.0219456Z               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T17:58:28.0219931Z   File "/tmp/tmp.94vVC7wilM/checkout/scripts/observation_rebase_guard.py", line 410, in check
+2026-11-14T17:58:28.0220499Z     raise ValueError('Collection inputs may have changed; recollect from master: ' + ', '.join(blocked))
+2026-11-14T17:58:28.0221686Z ValueError: Collection inputs may have changed; recollect from master: docs/budget-natural-copy-2026-11-14/rapport.md, scripts/playwright-budget-profiles.mjs, scripts/test-budget-scope-salary.mjs, src/pages/budget-profiles/App.jsx, src/pages/budget-profiles/image.js, src/pages/budget-profiles/lib.js, src/pages/budget-profiles/presentation.js
+2026-11-14T17:58:29.6864123Z ##[error]Process completed with exit code 1.
+2026-11-14T17:58:29.6944820Z Post job cleanup.
+2026-11-14T17:58:29.7504067Z [command]/usr/bin/git version
+2026-11-14T17:58:29.7539709Z git version 2.56.1
+2026-11-14T17:58:29.7577706Z Temporarily overriding HOME='/home/runner/work/_temp/7a0113d7-d007-4a1e-bc2a-73fe6f792fbf' before making global git config changes
+2026-11-14T17:58:29.7591131Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T17:58:29.7592159Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/shinny-potato/shinny-potato
+2026-11-14T17:58:29.7609740Z Removing SSH command configuration
+2026-11-14T17:58:29.7614141Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T17:58:29.7644186Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T17:58:29.7861518Z Removing HTTP extra header
+2026-11-14T17:58:29.7865844Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T17:58:29.7904211Z [command]/usr/bin/git

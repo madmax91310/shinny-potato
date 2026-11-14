@@ -1,0 +1,33 @@
+{
+  "snapshotProof": {
+    "checkedAt": "2026-11-14T13:08:34.641151+00:00",
+    "commit": "8cdaf332d6ca322a0e8a72e5cc5c1214db13a3e3",
+    "commitAt": "2026-11-14T13:03:31Z",
+    "fileBlob": "84ab14ff2db99b08e98220ce402e31d17b9a1df6",
+    "fetchedBlob": "84ab14ff2db99b08e98220ce402e31d17b9a1df6",
+    "bytes": 42830497,
+    "immutableSnapshot": true
+  },
+  "decodedChecksumVerified": true,
+  "workflow": "update-market-monthly.yml",
+  "recovery": {
+    "attempts": [
+      {
+        "at": "2026-11-14T12:42:29.241691+00:00",
+        "reason": "recording-failed",
+        "sourceRunId": 43591714596,
+        "status": "dispatched",
+        "ref": "master",
+        "inputs": {
+          "series": "etfDE000A27Z304"
+        },
+        "error": null
+      }
+    ],
+    "reason": "recording-failed",
+    "lastSuccessAt": "2026-11-09T16:57:00.600305+00:00",
+    "observedRunId": 43591714596,
+    "nextAttemptAt": "2026-11-14T13:42:29.241691+00:00",
+    "status": "awaiting-current-run"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-14T15:37:58.328033+00:00",
+  "run": 43601401302,
+  "receiptCommit": "9173751d07ad6fae0f0254a3c1787fcecc373699",
+  "build": {
+    "sha": "85de119c1fad5a024d814e961fb240129875aafe",
+    "dataSha": "5414be7381db77f2e7bd175ead9c64f17114a4c0",
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T15:36:48.427Z"
+  },
+  "files": [
+    {
+      "path": "src/data/automated-indices.json",
+      "expected": "1429fbec8e24fcb2e465a82b8c7cc6dd20b24c9d",
+      "actual": "db4b17e45c50e0f248c4b862584b8c39222f3b50",
+      "matches": false
+    },
+    {
+      "path": "src/data/index-company-observations.json",
+      "expected": "53be4682ee4b0cbb880f92ab3c2ec4969bdd8cc5",
+      "actual": "53be4682ee4b0cbb880f92ab3c2ec4969bdd8cc5",
+      "matches": true
+    },
+    {
+      "path": "src/data/index-company-qualified.json",
+      "expected": "3074c7a4026939409c5fbf1e768f6fc79cb97843",
+      "actual": "3074c7a4026939409c5fbf1e768f6fc79cb97843",
+      "matches": true
+    }
+  ],
+  "allMatch": false,
+  "scope": "Direct public manifest comparison, not inferred from workflow status. Earlier successful proofs retained independently of legitimate later updates."
+}

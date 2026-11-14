@@ -1,0 +1,198 @@
+{
+  "as_of": "2026-10-15T04:41:02.508857+00:00",
+  "data": {
+    "identity": {
+      "slug": "gerstner",
+      "archetype": "hedge_fund",
+      "displayName": "Brad Gerstner",
+      "entityName": "Altimeter Capital Management LP",
+      "dataProvider": "FolioFact"
+    },
+    "snapshot": {
+      "periodEnd": "2026-06-30",
+      "holdings": [
+        {
+          "issuerName": "Nvidia Corporation",
+          "ticker": "NVDA",
+          "putCall": null,
+          "weight": 0.19162024766731325,
+          "isNew": false,
+          "sharesChangePct": 0.8
+        },
+        {
+          "issuerName": "Cerebras Systems Inc.",
+          "ticker": "CBRS",
+          "putCall": null,
+          "weight": 0.16244005547949483,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Meta Platforms Inc.",
+          "ticker": "META",
+          "putCall": null,
+          "weight": 0.0776477564734493,
+          "isNew": false,
+          "sharesChangePct": -30.6
+        },
+        {
+          "issuerName": "Taiwan Semiconductor Manufacturing",
+          "ticker": "TSM",
+          "putCall": null,
+          "weight": 0.06944451082647611,
+          "isNew": false,
+          "sharesChangePct": 4.7
+        },
+        {
+          "issuerName": "Coreweave Inc.",
+          "ticker": "CRWV",
+          "putCall": null,
+          "weight": 0.06150513785434354,
+          "isNew": false,
+          "sharesChangePct": 35.0
+        },
+        {
+          "issuerName": "ARM Holdings PLC",
+          "ticker": "ARM",
+          "putCall": null,
+          "weight": 0.059228197278893065,
+          "isNew": false,
+          "sharesChangePct": -4.3
+        },
+        {
+          "issuerName": "Amazon.com Inc.",
+          "ticker": "AMZN",
+          "putCall": null,
+          "weight": 0.05880744548210423,
+          "isNew": false,
+          "sharesChangePct": 16.1
+        },
+        {
+          "issuerName": "Uber Technologies Inc.",
+          "ticker": "UBER",
+          "putCall": null,
+          "weight": 0.05412134136176271,
+          "isNew": false,
+          "sharesChangePct": -7.5
+        },
+        {
+          "issuerName": "Snowflake Inc.",
+          "ticker": "SNOW",
+          "putCall": null,
+          "weight": 0.04987250911411821,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Microsoft Corp.",
+          "ticker": "MSFT",
+          "putCall": null,
+          "weight": 0.04812161963114753,
+          "isNew": false,
+          "sharesChangePct": 7.1
+        },
+        {
+          "issuerName": "Qualcomm Inc.",
+          "ticker": "QCOM",
+          "putCall": null,
+          "weight": 0.03538929598960328,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Space Exploration Technologies Corp.",
+          "ticker": "SPCX",
+          "putCall": null,
+          "weight": 0.030878964390419036,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Micron Technology Inc.",
+          "ticker": "MU",
+          "putCall": null,
+          "weight": 0.024603743966410088,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Applied Matls Inc.",
+          "ticker": "AMAT",
+          "putCall": null,
+          "weight": 0.019267150068901714,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "KLA Corp",
+          "ticker": "KLAC",
+          "putCall": null,
+          "weight": 0.017748068827750745,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Lam Research Corp.",
+          "ticker": "LRCX",
+          "putCall": null,
+          "weight": 0.017372564400526307,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Robinhood Markets, Inc.",
+          "ticker": "HOOD",
+          "putCall": null,
+          "weight": 0.00917843166800825,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Alphabet Inc.",
+          "ticker": "GOOG(L)",
+          "putCall": null,
+          "weight": 0.006368884748664874,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Synopsys Inc.",
+          "ticker": "SNPS",
+          "putCall": null,
+          "weight": 0.006368755242875426,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Grab Holdings Limited",
+          "ticker": "GRABW",
+          "putCall": null,
+          "weight": 1.5319527737498253e-05,
+          "isNew": true,
+          "sharesChangePct": null
+        }
+      ],
+      "quarterChanges": {
+        "priorPeriodLabel": "Q1 2026",
+        "exits": [
+          {
+            "issuerName": "AXON Enterprise Inc.",
+            "ticker": "AXON",
+            "putCall": null
+          },
+          {
+            "issuerName": "Broadcom Inc.",
+            "ticker": "AVGO",
+            "putCall": null
+          },
+          {
+            "issuerName": "Grab Holdings Limited - CUSIP G0370L116 needs mapping",
+            "ticker": "Unmapped CUSIP",
+            "putCall": null
+          }
+        ]
+      }
+    },
+    "sourceUrl": "https://foliofact.com/funds/altimeter-capital-management"
+  }
+}

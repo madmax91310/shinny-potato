@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-11-14T18:11:41.136667+00:00",
+  "scope": {
+    "instruments": [
+      "LU0328475792"
+    ],
+    "locales": [
+      "en-gb",
+      "en-lu"
+    ],
+    "purpose": "Read-only diagnosis, not production acquisition or publication"
+  },
+  "results": [
+    {
+      "locale": "en-gb",
+      "isin": "LU0328475792",
+      "replication": "Direct Replication (physically)",
+      "fields": {
+        "countries": {
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+          "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
+          "rows": 34,
+          "weightSum": 99.999998
+        },
+        "sectors": {
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+          "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
+          "rows": 13,
+          "weightSum": 99.999998
+        },
+        "holdings": {
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+          "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
+          "rows": 10,
+          "weightSum": 19.84607443
+        }
+      },
+      "unavailable": [],
+      "allExposureFieldsPresent": true,
+      "events": [
+        {
+          "url": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "status": "received-json",
+          "bytes": 127707,
+          "sha256": "c1469b327791f2ac2ef30279d6f5173d67893aae1df78fa548336cbce625fdb3"
+        },
+        {
+          "url": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+          "status": "received-json",
+          "bytes": 244763,
+          "sha256": "ebbad0945f5bf806466691e099c46117e52b8a97e81abfefc3d4ade1b9c2bdf5"
+        }
+      ]
+    },
+    {
+      "locale": "en-lu",
+      "isin": "LU0328475792",
+      "errorType": "ValueError",
+      "error": "Invalid DWS share launch date",
+      "events": [
+        {
+          "url": "https://etf.dws.com/api/pdp/en-lu/etf/LU0328475792/pdpMetaTagsTealium",
+          "status": "received-json",
+          "bytes": 127653,
+          "sha256": "9e7b54be62f08dbfa181cbe63e3688e8bbfbcd3694abd59c479be2f080ca436d"
+        }
+      ],
+      "allExposureFieldsPresent": false
+    }
+  ]
+}

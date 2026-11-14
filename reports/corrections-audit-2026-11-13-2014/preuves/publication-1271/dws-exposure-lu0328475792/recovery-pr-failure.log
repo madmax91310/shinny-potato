@@ -1,0 +1,82 @@
+refresh	Collect exact-share observations	﻿2026-11-14T18:50:33.8350734Z ##[group]Run if [[ -n "$EXPOSURE_ISINS" ]]; then
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8351160Z [36;1mif [[ -n "$EXPOSURE_ISINS" ]]; then[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8351609Z [36;1m  if [[ ! "$EXPOSURE_ISINS" =~ ^[A-Z]{2}[A-Z0-9]{9}[0-9](,[A-Z]{2}[A-Z0-9]{9}[0-9])*$ ]]; then[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8352159Z [36;1m    echo 'Invalid explicit ISIN selection; no source requested' >&2[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8352566Z [36;1m    exit 2[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8352776Z [36;1m  fi[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8353049Z [36;1m  IFS=',' read -ra selected <<< "$EXPOSURE_ISINS"[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8353720Z [36;1m  python scripts/collect_exposure_expansion.py --only "${selected[@]}" --apply --report "$RUNNER_TEMP/exposure-expansion.json"[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8354346Z [36;1melse[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8354801Z [36;1m  python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8355615Z [36;1mfi[0m
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8375943Z shell: /usr/bin/bash -e {0}
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8376235Z env:
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8376504Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8376966Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8377421Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8377825Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8378236Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8378640Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8378982Z   EXPOSURE_ISINS: 
+refresh	Collect exact-share observations	2026-11-14T18:50:33.8379193Z ##[endgroup]
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4292208Z LU1681038672 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4343301Z FR0011869304 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4413773Z FR0013346681 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4466765Z LU3180074463 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4517427Z LU1829219390 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4568289Z FR0007054358 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4619600Z LU1681040223 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4671906Z IE0003XJA0J9 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4724842Z IE0009HF1MK9 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4777951Z LU0380865021 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4830812Z LU0328475792 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4883761Z LU0274209237 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4936026Z IE00BJ0KDQ92 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4938426Z IE00BK1PV551 failed Missing dated exposure: countries ; composition: physical securities portfolio not yet collected ; composition: Missing/ambiguous DWS securities table
+refresh	Collect exact-share observations	2026-11-14T18:51:40.4987778Z LU2903252349 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5040724Z IE0008471009 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5093830Z IE0008470928 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5149672Z DE0002635307 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5202074Z IE00B1YZSC51 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5253487Z IE00BK5BQX27 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5304806Z IE00B945VV12 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5358261Z IE00B3RBWM25 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5410003Z IE00BK5BQV03 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5460790Z IE00BFMXXD54 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5511592Z IE00B3XXRP09 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5562993Z IE00BKWQ0Q14 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5614807Z IE00BFY0GT14 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5666586Z IE000716YHJ7 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5863515Z IE0000QLH0G6 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5867641Z IE00BMC38736 failed Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/smh-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{"id":"","role":null,"label":"I agree","visible":false}]
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5870957Z file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5872182Z   if (!result.body) throw new Error('Official VanEck regional gate still active');
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5872842Z                           ^
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5873078Z 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5873384Z Error: Official VanEck regional gate still active
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5874899Z     at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5875709Z 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5875855Z Node.js v20.20.2
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5876832Z ; browser initialisation failed: Public VanEck gate controls: [{"id":"","role":null,"label":"I agree","visible":false}]
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5878176Z file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5879225Z   if (!result.body) throw new Error('Official VanEck regional gate still active');
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5879871Z                           ^
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5880111Z 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5880409Z Error: Official VanEck regional gate still active
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5881345Z     at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5881998Z 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5882138Z Node.js v20.20.2
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5882340Z 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5915538Z IE00BDVPNG13 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.5967968Z IE00BKLF1R75 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.6019663Z IE00BLCHJB90 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.6071731Z IE000NDWFGA5 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.6122913Z IE00BMH5Y871 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.6174493Z FR0013412269 validated 
+refresh	Collect exact-share observations	2026-11-14T18:51:40.6826649Z ##[error]Process completed with exit code 1.
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	﻿2026-11-14T18:51:48.7729652Z ##[group]Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T18:51:48.7730939Z [36;1mecho 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"[0m
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T18:51:48.7731720Z [36;1mexit 1[0m
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T18:51:50.3963909Z shell: /usr/bin/bash -e {0}
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T18:51:50.3964916Z ##[endgroup]
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T18:51:50.4103508Z ##[error]Process completed with exit code 1.

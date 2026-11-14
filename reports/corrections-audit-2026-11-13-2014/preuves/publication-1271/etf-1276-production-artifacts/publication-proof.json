@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-11-14T15:37:58.328033+00:00",
+  "run": 43603436898,
+  "receiptCommit": "14f6d4a28b1f11c7c96ed6471313e06fae476fee",
+  "build": {
+    "sha": "85de119c1fad5a024d814e961fb240129875aafe",
+    "dataSha": "5414be7381db77f2e7bd175ead9c64f17114a4c0",
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T15:36:48.427Z"
+  },
+  "files": [
+    {
+      "path": "src/data/annual-fx.json",
+      "expected": "44a2c56dfd160a19085e2437fbf946a9783ff887",
+      "actual": "44a2c56dfd160a19085e2437fbf946a9783ff887",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "expected": "ed083cf57a22d3dd93eb6b71f49bd7f3f5110a78",
+      "actual": "e22064896d0b32ddd9e2b94f3e514dc949bc3bca",
+      "matches": false
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "expected": "db4b17e45c50e0f248c4b862584b8c39222f3b50",
+      "actual": "db4b17e45c50e0f248c4b862584b8c39222f3b50",
+      "matches": true
+    },
+    {
+      "path": "src/data/official-performance-currencies.json",
+      "expected": "beb96851b2c29a6117ab3c840262c153e3737aa1",
+      "actual": "beb96851b2c29a6117ab3c840262c153e3737aa1",
+      "matches": true
+    }
+  ],
+  "allMatch": false,
+  "scope": "Direct public manifest comparison, not inferred from workflow status. Earlier successful proofs retained independently of legitimate later updates."
+}

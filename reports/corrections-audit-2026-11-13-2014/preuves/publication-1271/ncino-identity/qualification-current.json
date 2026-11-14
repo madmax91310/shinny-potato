@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-11-14T10:37:05.422707+00:00",
+  "fundPosition": {
+    "asOf": "2026-11-12",
+    "figi": "BBG00XTV91S5",
+    "ticker": "NCNO US",
+    "weightPct": 1.6580923883190035
+  },
+  "queries": [
+    {
+      "query": {
+        "idType": "ID_ISIN",
+        "idValue": "US63947U1079",
+        "includeUnlistedEquities": true
+      },
+      "resultCount": 141,
+      "shareClasses": [
+        "BBG00B5C2HS3"
+      ],
+      "exactNativeFigi": [
+        {
+          "figi": "BBG00XTV91S5",
+          "name": "NCINO INC",
+          "ticker": "NCNOGBP",
+          "exchCode": "XM",
+          "compositeFIGI": "BBG00XTV9123",
+          "securityType": "Common Stock",
+          "marketSector": "Equity",
+          "shareClassFIGI": "BBG00B5C2HS3",
+          "securityType2": "Common Stock",
+          "securityDescription": "NCNOGBP"
+        }
+      ]
+    },
+    {
+      "query": {
+        "idType": "ID_ISIN",
+        "idValue": "US63947X1019"
+      },
+      "resultCount": 97,
+      "shareClasses": [
+        "BBG014GJ8XJ0"
+      ],
+      "exactNativeFigi": []
+    },
+    {
+      "query": {
+        "idType": "ID_BB_GLOBAL",
+        "idValue": "BBG00XTV91S5"
+      },
+      "resultCount": 1,
+      "shareClasses": [
+        "BBG00B5C2HS3"
+      ],
+      "exactNativeFigi": [
+        {
+          "figi": "BBG00XTV91S5",
+          "name": "NCINO INC",
+          "ticker": "NCNOGBP",
+          "exchCode": "XM",
+          "compositeFIGI": "BBG00XTV9123",
+          "securityType": "Common Stock",
+          "marketSector": "Equity",
+          "shareClassFIGI": "BBG00B5C2HS3",
+          "securityType2": "Common Stock",
+          "securityDescription": "NCNOGBP"
+        }
+      ]
+    }
+  ],
+  "decision": "Refusal preserved: current fund row identity contradicts the independently identified historical class. Need exact issuer portfolio identity or applicable continuity proof; no name-only remapping."
+}

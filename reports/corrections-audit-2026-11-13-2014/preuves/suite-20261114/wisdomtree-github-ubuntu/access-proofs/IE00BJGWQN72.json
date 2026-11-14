@@ -1,0 +1,28 @@
+{
+  "subjectIsin": "IE00BJGWQN72",
+  "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+  "attempts": [
+    {
+      "url": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+      "status": "unavailable",
+      "error": "Public product page HTTP 403"
+    },
+    {
+      "url": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+      "status": "unavailable",
+      "error": "Public product page HTTP 403"
+    },
+    {
+      "url": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+      "status": "unavailable",
+      "error": "Public issuer API unavailable in browser: HTTP 403"
+    },
+    {
+      "url": "https://www.wisdomtree.com/investments",
+      "status": "unavailable",
+      "transport": "ordinary-issuer-home-same-session-fetch",
+      "error": "Public issuer home refused: 403"
+    }
+  ],
+  "acquired": false
+}

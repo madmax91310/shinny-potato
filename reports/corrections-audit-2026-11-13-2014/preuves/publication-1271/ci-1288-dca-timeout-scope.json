@@ -1,0 +1,13 @@
+{
+  "failedRun": 43630719552,
+  "failedJob": 132559962297,
+  "failedCommand": "node scripts/playwright-dca-image-series.mjs",
+  "failure": "Timeout waiting for navigation Images \u00e0 exporter after draft reload",
+  "sameExactDcaConsumerAndGeneratedDataTreeAsGreen1287": "9c01c8a2c4317f095d72f5cc6d5fe00f3e048aaa",
+  "green1287Run": 43628715853,
+  "sameRecipeBlob": true,
+  "isolatedUnchangedAppLocalScenario": "dca-ci-timeout-diagnostic.log",
+  "localScenarioPassed": true,
+  "noControlRemovedOrTimeoutRaised": true,
+  "causeNotDemonstratedNotClaimedAsFinancialSourceFailure": true
+}

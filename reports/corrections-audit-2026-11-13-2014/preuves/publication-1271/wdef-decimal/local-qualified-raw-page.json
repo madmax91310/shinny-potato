@@ -1,0 +1,165 @@
+{
+  "isin": "IE0002Y8CX98",
+  "name": "WisdomTree Europe Defence UCITS ETF",
+  "currency": "EUR",
+  "provider": "WisdomTree",
+  "parser": "wisdomtree-html",
+  "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+  "enabled": true,
+  "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+  "documentType": "wisdomtree-ucits",
+  "documentName": "WisdomTree Europe Defence UCITS ETF - EUR Acc",
+  "productId": "IE0002Y8CX98",
+  "unavailable": [
+    "performance: HTML calendar series not published; prior exact-share history preserved"
+  ],
+  "characteristics": {
+    "asOf": "2026-11-12",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "sha256": "05447e4e423ab65e2b4e4befec7c35353b87cfdf8198d1f3445d7c2c99a864de",
+    "terPct": 0.4
+  },
+  "aum": {
+    "amount": 4707550422.0,
+    "currency": "USD",
+    "scope": "fund",
+    "asOf": "2026-11-12",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "sha256": "05447e4e423ab65e2b4e4befec7c35353b87cfdf8198d1f3445d7c2c99a864de"
+  },
+  "holdings": {
+    "rows": [
+      {
+        "name": "BAE Systems PLC",
+        "weightPct": 12.81
+      },
+      {
+        "name": "Thales SA",
+        "weightPct": 12.77
+      },
+      {
+        "name": "Rheinmetall AG",
+        "weightPct": 9.61
+      },
+      {
+        "name": "Airbus SE",
+        "weightPct": 8.07
+      },
+      {
+        "name": "SAAB AB-B SEK NPV",
+        "weightPct": 7.58
+      },
+      {
+        "name": "Rolls-Royce Holdings PLC",
+        "weightPct": 7.47
+      },
+      {
+        "name": "Safran SA",
+        "weightPct": 7.36
+      },
+      {
+        "name": "Leonardo Spa",
+        "weightPct": 6.9
+      },
+      {
+        "name": "Kongsberg Gruppen Asa",
+        "weightPct": 6.66
+      },
+      {
+        "name": "DASSAULT AVIATION EUR 0.8",
+        "weightPct": 4.74
+      }
+    ],
+    "asOf": "2026-11-12",
+    "basis": "fund",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "sha256": "05447e4e423ab65e2b4e4befec7c35353b87cfdf8198d1f3445d7c2c99a864de"
+  },
+  "sectors": {
+    "rows": [
+      {
+        "name": "Industrials",
+        "weightPct": 97.48
+      },
+      {
+        "name": "Information Technology",
+        "weightPct": 2.16
+      },
+      {
+        "name": "Communication Services",
+        "weightPct": 0.36
+      }
+    ],
+    "asOf": "2026-11-12",
+    "basis": "fund",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "sha256": "05447e4e423ab65e2b4e4befec7c35353b87cfdf8198d1f3445d7c2c99a864de"
+  },
+  "countries": {
+    "rows": [
+      {
+        "name": "France",
+        "weightPct": 34.2248
+      },
+      {
+        "name": "United Kingdom",
+        "weightPct": 25.2669
+      },
+      {
+        "name": "Germany",
+        "weightPct": 14.5088
+      },
+      {
+        "name": "Sweden",
+        "weightPct": 7.9081
+      },
+      {
+        "name": "Italy",
+        "weightPct": 7.677
+      },
+      {
+        "name": "Norway",
+        "weightPct": 7.1626
+      },
+      {
+        "name": "Spain",
+        "weightPct": 1.6625
+      },
+      {
+        "name": "Cyprus",
+        "weightPct": 0.4926
+      },
+      {
+        "name": "Czech Republic",
+        "weightPct": 0.4618
+      },
+      {
+        "name": "Finland",
+        "weightPct": 0.261
+      },
+      {
+        "name": "Denmark",
+        "weightPct": 0.196
+      },
+      {
+        "name": "Luxembourg",
+        "weightPct": 0.1089
+      },
+      {
+        "name": "Switzerland",
+        "weightPct": 0.0558
+      },
+      {
+        "name": "Poland",
+        "weightPct": 0.0131
+      }
+    ],
+    "asOf": "2026-11-12",
+    "basis": "fund",
+    "rankClassificationID": 6,
+    "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+    "dateProof": "Exact rendered table reconciled to its publisher country rows; overview/NAV clock excluded",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "sha256": "05447e4e423ab65e2b4e4befec7c35353b87cfdf8198d1f3445d7c2c99a864de"
+  }
+}

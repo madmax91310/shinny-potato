@@ -1,0 +1,67 @@
+{
+  "scope": "Historical captured official response only, no new source check or admission",
+  "parserRefusal": "Official cash adjustment not reconciled: 2019-07-15",
+  "cashEvents2019": [
+    {
+      "exDate": "2019-10-15",
+      "before": "2019-10-14",
+      "after": "2019-10-15",
+      "cash": 0.086569,
+      "currency": "EUR ",
+      "navBefore": 31.8683,
+      "navAfter": 32.5545,
+      "observedFactor": 1.002723863017094,
+      "backAdjustedFactor": 1.0027238604467454,
+      "exNavReinvestmentFactor": 1.002659202260824,
+      "differencePrior": 2.570348600627881e-09,
+      "differenceEx": 6.466075626998524e-05
+    },
+    {
+      "exDate": "2019-07-15",
+      "before": "2019-07-12",
+      "after": "2019-07-15",
+      "cash": 0.374603,
+      "currency": "EUR ",
+      "navBefore": 31.3251,
+      "navAfter": 30.9668,
+      "observedFactor": 1.0120990293613583,
+      "backAdjustedFactor": 1.0121032951425626,
+      "exNavReinvestmentFactor": 1.0120969231564128,
+      "differencePrior": -4.265781204271235e-06,
+      "differenceEx": 2.10620494556224e-06
+    },
+    {
+      "exDate": "2019-04-15",
+      "before": "2019-04-12",
+      "after": "2019-04-15",
+      "cash": 0.075611,
+      "currency": "EUR ",
+      "navBefore": 32.2221,
+      "navAfter": 32.3806,
+      "observedFactor": 1.0023407310458916,
+      "backAdjustedFactor": 1.0023520764584897,
+      "exNavReinvestmentFactor": 1.002335070999302,
+      "differencePrior": -1.1345412598062765e-05,
+      "differenceEx": 5.660046589639478e-06
+    },
+    {
+      "exDate": "2019-01-15",
+      "before": "2019-01-14",
+      "after": "2019-01-15",
+      "cash": 0.211425,
+      "currency": "EUR ",
+      "navBefore": 27.9044,
+      "navAfter": 27.6824,
+      "observedFactor": 1.0076346045685565,
+      "backAdjustedFactor": 1.0076346076938285,
+      "exNavReinvestmentFactor": 1.0076375242031037,
+      "differencePrior": -3.1252720411600876e-09,
+      "differenceEx": -2.9196345472382035e-06
+    }
+  ],
+  "analysisAt": "2026-11-14T11:29:13.487685+00:00",
+  "sourceAcquisitionNotRepeated": true,
+  "historicalCapturePath": "reports/reliquat-2026-10-23/preuves/DE000A0H08P6-blackrock.json.gz",
+  "rawSha256": "973ee284696f7b1c8a55042d00bd2b73ab2e716b6dc896b50097322b91f1130d",
+  "missingEvidence": "Issuer confirmation/correction of the NAV/income adjustment and cash units on2019-04-15/2019-07-15, in addition to the XETR bound proof. No universal reinvestment formula substituted; old market/NAV divergence remains separate."
+}

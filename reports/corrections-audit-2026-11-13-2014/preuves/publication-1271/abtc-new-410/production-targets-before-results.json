@@ -1,0 +1,26 @@
+{
+  "requestedAt": "2026-11-14T16:09:50.784941+00:00",
+  "scopeDeclaredBeforeResults": [
+    {
+      "workflow": "update-market-monthly.yml",
+      "event": "workflow_dispatch",
+      "series": [
+        "etfCH0454664001Nav"
+      ],
+      "reason": "Exercise exact migrated NAV supplier route, including BCE and ordinary validation/recording; no catalogue-wide refresh."
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "event": "workflow_dispatch",
+      "assets": [
+        "CH0454664001"
+      ],
+      "reason": "Exercise shared exact Paris EUR listing proof on secondary official route; no other asset requested."
+    }
+  ],
+  "expectedMasterContains": [
+    "d26a9faad0a9eeef2d91bbc290ab003992a4d31e",
+    "00bc1f933ca3a095f98b12efecabef63af1c4b25"
+  ],
+  "notScheduledProof": true
+}

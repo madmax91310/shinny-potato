@@ -1,0 +1,47 @@
+{
+  "src/data/automated-etf-monthly.json": [
+    "etfCH0454664001Nav"
+  ],
+  "src/data/monthly-duel-returns.json": [
+    "DE000A0H08K7",
+    "JE00B2QXZK10",
+    "DE000A0Q4R02",
+    "JE00BN7KB557",
+    "IE00B441G979",
+    "GB00B15KXV33",
+    "IE00B4WXJG34",
+    "DE000A0H08L5",
+    "JE00BN7KB334",
+    "DE000A0H08H3",
+    "IE00B0M63284",
+    "IE00B27YCN58",
+    "JE00B78CGV99",
+    "DE000A0H08P6",
+    "IE000L2SA8K5",
+    "JE00BN7KB664",
+    "IE000SNLFDR7",
+    "DE000A0H08R2",
+    "DE000A0F5UJ7"
+  ],
+  "src/data/ranking-annual.json": [
+    "annual-JE00BN7KB334",
+    "annual-DE000A0F5UJ7",
+    "annual-GB00B15KXV33",
+    "annual-DE000A0H08K7",
+    "annual-IE00B27YCN58",
+    "annual-IE00BSPLC298",
+    "annual-JE00B78CGV99",
+    "annual-JE00BN7KB664",
+    "annual-JE00B2QXZK10",
+    "annual-JE00BN7KB557",
+    "annual-IE00BSPLC413",
+    "annual-IE000L2SA8K5"
+  ],
+  "scripts/source-snapshots/monthly-collection-status.json": [
+    "series"
+  ],
+  "scripts/source-snapshots/monthly-automated.json": [
+    "etfCH0454664001Nav"
+  ],
+  "scopeNote": "The two shared generated projections changed only other instruments, not ABTC; those own generated changes were restored to HEAD to preserve scope. ABTC92monthly financial points and all other source statuses remain unchanged."
+}

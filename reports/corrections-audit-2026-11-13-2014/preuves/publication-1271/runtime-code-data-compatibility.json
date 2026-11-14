@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-14T21:47:23.490270+00:00",
+  "publicCodeSha": "332ce044c94085ed30eee75445c5f52bf0134d15",
+  "publicDataSha": "a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae",
+  "backendCorrectedAt": "3c5b386734c628bbe1b01bb24bb172663fd36d79",
+  "runtimeChangedPaths": [],
+  "changedPaths": [
+    "docs/automation-gaps.json",
+    "docs/data-operations-coordination.md",
+    "public/data/investors/ackman.json",
+    "public/data/investors/archive/cathie-wood/2026-06-30.json",
+    "public/data/investors/archive/icahn/2026-06-30.json",
+    "public/data/investors/archive/klarman/2026-06-30.json",
+    "public/data/investors/archive/pabrai/2026-06-30.json",
+    "public/data/investors/cathie-wood.json",
+    "public/data/investors/icahn.json",
+    "public/data/investors/klarman.json",
+    "public/data/investors/pabrai.json",
+    "public/data/investors/review-metadata.json",
+    "scripts/test_investor_refresh.py",
+    "scripts/validate-investor-publication.py",
+    "src/data/automated-broker-tariffs.json",
+    "src/data/automated-etf.json",
+    "src/data/automated-indices.json"
+  ],
+  "scope": "Runtime frontend unchanged; validated-data lane carries exact newer public investor observations. Backend producer executed corrected master. No deployment triggered only to change a green status."
+}

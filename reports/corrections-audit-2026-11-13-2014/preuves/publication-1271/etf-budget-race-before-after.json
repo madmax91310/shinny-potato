@@ -1,0 +1,12 @@
+{
+  "before": {
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/dev/shm/corrections-suite-20261114/etf-recording-guard-before.py\", line 364, in <module>\n    print('Qualified upstream changes; financial revalidation still required:', check(a.kind, a.base, a.upstream))\n                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/dev/shm/corrections-suite-20261114/etf-recording-guard-before.py\", line 354, in check\n    raise ValueError('Collection inputs may have changed; recollect from master: ' + ', '.join(blocked))\nValueError: Collection inputs may have changed; recollect from master: docs/audit-budget-2026-11-13/rapport.md, docs/budget-guillaume-pel-2026-11-14.md, scripts/budget-audit-history.mjs, scripts/test-budget-audit-20261113.mjs, scripts/test-budget-editorial-lives.mjs, scripts/test-budget-final-copy.mjs, scripts/test-budget-narrative.mjs, src/pages/budget-profiles/editorial-lives-2026-11-06.json\n"
+  },
+  "after": {
+    "returncode": 0,
+    "stdout": "Qualified upstream changes; financial revalidation still required: ['docs/audit-budget-2026-11-13/rapport.md', 'docs/budget-guillaume-pel-2026-11-14.md', 'scripts/budget-audit-history.mjs', 'scripts/test-budget-audit-20261113.mjs', 'scripts/test-budget-editorial-lives.mjs', 'scripts/test-budget-final-copy.mjs', 'scripts/test-budget-narrative.mjs', 'src/pages/budget-profiles/editorial-lives-2026-11-06.json']\n",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-11-14T20:52:15.076986+00:00",
+  "workflows": [
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "runs": [
+        {
+          "id": 43602910189,
+          "event": "schedule",
+          "created_at": "2026-11-14T14:04:07Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "9173751d07ad6fae0f0254a3c1787fcecc373699",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43602910189"
+        },
+        {
+          "id": 43451234453,
+          "event": "schedule",
+          "created_at": "2026-11-13T15:18:12Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "a8e3696df1380060fea7cda9685ec53094e11cd1",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43451234453"
+        }
+      ]
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "runs": [
+        {
+          "id": 43601518941,
+          "event": "schedule",
+          "created_at": "2026-11-14T13:47:24Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "3694014fa6480bb969f272c38bd5570014289346",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43601518941"
+        },
+        {
+          "id": 43447157146,
+          "event": "schedule",
+          "created_at": "2026-11-13T14:54:03Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "1bcf28156ec7214c7732a12e590ee28af16e9a6e",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43447157146"
+        }
+      ]
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "runs": [
+        {
+          "id": 43604901220,
+          "event": "schedule",
+          "created_at": "2026-11-14T14:26:49Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "14f6d4a28b1f11c7c96ed6471313e06fae476fee",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43604901220"
+        },
+        {
+          "id": 43454784772,
+          "event": "schedule",
+          "created_at": "2026-11-13T15:39:24Z",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "f5ef257551b17e610d1233fdf30216ccef5d7cb8",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43454784772"
+        }
+      ]
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "runs": [
+        {
+          "id": 43612530634,
+          "event": "schedule",
+          "created_at": "2026-11-14T15:52:46Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "799d4d12c77297f3ac926d30bc3be50ca66b9487",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43612530634"
+        },
+        {
+          "id": 43471096831,
+          "event": "schedule",
+          "created_at": "2026-11-13T17:16:06Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "12c72253ae8787b92531ad772b690d7072f54887",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43471096831"
+        }
+      ]
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "runs": [
+        {
+          "id": 43625726669,
+          "event": "schedule",
+          "created_at": "2026-11-14T18:17:02Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "bfa517dc7ccfaf4b858eed9965397e373df28f5e",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43625726669"
+        },
+        {
+          "id": 43496138701,
+          "event": "schedule",
+          "created_at": "2026-11-13T19:51:39Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "5c90e1fd558ebceaff6b7a774e21adcc1089985a",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43496138701"
+        }
+      ]
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "runs": [
+        {
+          "id": 43605378610,
+          "event": "schedule",
+          "created_at": "2026-11-14T14:32:20Z",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "0a7c05b946d4ffa3459394f0e2095761699adc16",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43605378610"
+        },
+        {
+          "id": 43455198250,
+          "event": "schedule",
+          "created_at": "2026-11-13T15:41:52Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "95606e98a8f9c3c0c179a4dc01688fd806c4d226",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43455198250"
+        }
+      ]
+    }
+  ],
+  "scope": "Observed GitHub event metadata only; per-instrument results and public receipt proofs remain separate."
+}

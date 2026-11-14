@@ -1,0 +1,4185 @@
+{
+  "run": {
+    "id": 43630719552,
+    "name": "Deploy to GitHub Pages",
+    "node_id": "WFR_kwLODBcmZM8AAAAKKJfyQA",
+    "head_branch": "fix/investor-concurrent-readers-20261114",
+    "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+    "path": ".github/workflows/deploy-pages.yml",
+    "display_title": "Pr\u00e9server la publication 13F face aux \u00e9critures ind\u00e9pendantes anniversaire et DCA",
+    "run_number": 3901,
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 334128726,
+    "check_suite_id": 118134737415,
+    "check_suite_node_id": "CS_kwDODBcmZM8AAAAbgWEKBw",
+    "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+    "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552",
+    "pull_requests": [
+      {
+        "url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls/1288",
+        "id": 5315208581,
+        "number": 1288,
+        "head": {
+          "ref": "fix/investor-concurrent-readers-20261114",
+          "sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+          "repo": {
+            "id": 202843748,
+            "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+            "name": "shinny-potato"
+          }
+        },
+        "base": {
+          "ref": "master",
+          "sha": "fc7ff1896a95063bf3075bc8ac5a9b1192df9353",
+          "repo": {
+            "id": 202843748,
+            "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+            "name": "shinny-potato"
+          }
+        }
+      }
+    ],
+    "created_at": "2026-11-14T19:11:18Z",
+    "updated_at": "2026-11-14T19:56:02Z",
+    "actor": {
+      "login": "madmax91310",
+      "id": 54199744,
+      "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/madmax91310",
+      "html_url": "https://github.com/madmax91310",
+      "followers_url": "https://api.github.com/users/madmax91310/followers",
+      "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+      "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+      "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+      "repos_url": "https://api.github.com/users/madmax91310/repos",
+      "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T19:11:18Z",
+    "triggering_actor": {
+      "login": "madmax91310",
+      "id": 54199744,
+      "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/madmax91310",
+      "html_url": "https://github.com/madmax91310",
+      "followers_url": "https://api.github.com/users/madmax91310/followers",
+      "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+      "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+      "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+      "repos_url": "https://api.github.com/users/madmax91310/repos",
+      "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552/jobs",
+    "logs_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552/logs",
+    "check_suite_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-suites/118134737415",
+    "artifacts_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552/artifacts",
+    "cancel_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552/cancel",
+    "rerun_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/334128726",
+    "head_commit": {
+      "id": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "tree_id": "e3dd54f7fd5fe544ab972a0d61864506240c1448",
+      "message": "Revalidate 13F across exact independent anniversary and DCA publications",
+      "timestamp": "2026-11-14T19:11:00Z",
+      "author": {
+        "name": "Codex",
+        "email": "codex@openai.com"
+      },
+      "committer": {
+        "name": "Codex",
+        "email": "codex@openai.com"
+      }
+    },
+    "repository": {
+      "id": 202843748,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+      "name": "shinny-potato",
+      "full_name": "madmax91310/shinny-potato",
+      "private": false,
+      "owner": {
+        "login": "madmax91310",
+        "id": 54199744,
+        "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/madmax91310",
+        "html_url": "https://github.com/madmax91310",
+        "followers_url": "https://api.github.com/users/madmax91310/followers",
+        "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+        "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+        "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+        "repos_url": "https://api.github.com/users/madmax91310/repos",
+        "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/madmax91310/shinny-potato",
+      "description": "Yo",
+      "fork": false,
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+      "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+      "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+      "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+      "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+      "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+      "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+      "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+      "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+      "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+      "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+      "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+      "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+      "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+      "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+    },
+    "head_repository": {
+      "id": 202843748,
+      "node_id": "MDEwOlJlcG9zaXRvcnkyMDI4NDM3NDg=",
+      "name": "shinny-potato",
+      "full_name": "madmax91310/shinny-potato",
+      "private": false,
+      "owner": {
+        "login": "madmax91310",
+        "id": 54199744,
+        "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/madmax91310",
+        "html_url": "https://github.com/madmax91310",
+        "followers_url": "https://api.github.com/users/madmax91310/followers",
+        "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+        "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+        "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+        "repos_url": "https://api.github.com/users/madmax91310/repos",
+        "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/madmax91310/shinny-potato",
+      "description": "Yo",
+      "fork": false,
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato",
+      "forks_url": "https://api.github.com/repos/madmax91310/shinny-potato/forks",
+      "keys_url": "https://api.github.com/repos/madmax91310/shinny-potato/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/madmax91310/shinny-potato/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/madmax91310/shinny-potato/teams",
+      "hooks_url": "https://api.github.com/repos/madmax91310/shinny-potato/hooks",
+      "issue_events_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/madmax91310/shinny-potato/events",
+      "assignees_url": "https://api.github.com/repos/madmax91310/shinny-potato/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/madmax91310/shinny-potato/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/tags",
+      "blobs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/madmax91310/shinny-potato/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/madmax91310/shinny-potato/languages",
+      "stargazers_url": "https://api.github.com/repos/madmax91310/shinny-potato/stargazers",
+      "contributors_url": "https://api.github.com/repos/madmax91310/shinny-potato/contributors",
+      "subscribers_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscribers",
+      "subscription_url": "https://api.github.com/repos/madmax91310/shinny-potato/subscription",
+      "commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/madmax91310/shinny-potato/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/madmax91310/shinny-potato/merges",
+      "archive_url": "https://api.github.com/repos/madmax91310/shinny-potato/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/madmax91310/shinny-potato/downloads",
+      "issues_url": "https://api.github.com/repos/madmax91310/shinny-potato/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/madmax91310/shinny-potato/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/madmax91310/shinny-potato/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/madmax91310/shinny-potato/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/madmax91310/shinny-potato/labels{/name}",
+      "releases_url": "https://api.github.com/repos/madmax91310/shinny-potato/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/madmax91310/shinny-potato/deployments"
+    }
+  },
+  "jobs": [
+    {
+      "id": 132556468502,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3PsxFg",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132556468502",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132556468502",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:11:19Z",
+      "started_at": "2026-11-14T19:11:21Z",
+      "completed_at": "2026-11-14T19:11:30Z",
+      "name": "current-snapshot",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:11:22Z",
+          "completed_at": "2026-11-14T19:11:23Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:11:23Z",
+          "completed_at": "2026-11-14T19:11:26Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:11:26Z",
+          "completed_at": "2026-11-14T19:11:27Z"
+        },
+        {
+          "name": "Run node scripts/resolve-pages-snapshot.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:11:27Z",
+          "completed_at": "2026-11-14T19:11:27Z"
+        },
+        {
+          "name": "Run node scripts/public-validation-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:11:27Z",
+          "completed_at": "2026-11-14T19:11:27Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:11:27Z",
+          "completed_at": "2026-11-14T19:11:28Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T19:11:28Z",
+          "completed_at": "2026-11-14T19:11:28Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T19:11:28Z",
+          "completed_at": "2026-11-14T19:11:28Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T19:11:28Z",
+          "completed_at": "2026-11-14T19:11:28Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132556468502",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048973,
+      "runner_name": "GitHub Actions 1000048973",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132556522247,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3PwDBw",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132556522247",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132556522247",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:11:30Z",
+      "started_at": "2026-11-14T19:11:33Z",
+      "completed_at": "2026-11-14T19:11:37Z",
+      "name": "scope",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:11:34Z",
+          "completed_at": "2026-11-14T19:11:34Z"
+        },
+        {
+          "name": "Keep full public validation for pull requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:11:35Z",
+          "completed_at": "2026-11-14T19:11:35Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3,
+          "started_at": "2026-11-14T19:11:35Z",
+          "completed_at": "2026-11-14T19:11:35Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-11-14T19:11:35Z",
+          "completed_at": "2026-11-14T19:11:35Z"
+        },
+        {
+          "name": "Record the data snapshot requested for publication",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-11-14T19:11:35Z",
+          "completed_at": "2026-11-14T19:11:35Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-11-14T19:11:35Z",
+          "completed_at": "2026-11-14T19:11:35Z"
+        },
+        {
+          "name": "Run node scripts/classify-deploy-scope.mjs --published-url \"https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json\"",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-11-14T19:11:35Z",
+          "completed_at": "2026-11-14T19:11:35Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:11:35Z",
+          "completed_at": "2026-11-14T19:11:35Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132556522247",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048976,
+      "runner_name": "GitHub Actions 1000048976",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132556522270,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3PwDHg",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132556522270",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132556522270",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:11:30Z",
+      "started_at": "2026-11-14T19:11:32Z",
+      "completed_at": "2026-11-14T19:12:37Z",
+      "name": "exposure-browser-check",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:11:33Z",
+          "completed_at": "2026-11-14T19:11:34Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:11:34Z",
+          "completed_at": "2026-11-14T19:12:00Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:12:00Z",
+          "completed_at": "2026-11-14T19:12:06Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:12:06Z",
+          "completed_at": "2026-11-14T19:12:07Z"
+        },
+        {
+          "name": "Run node scripts/build-dca-exposures.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:12:07Z",
+          "completed_at": "2026-11-14T19:12:09Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:12:09Z",
+          "completed_at": "2026-11-14T19:12:12Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:12:12Z",
+          "completed_at": "2026-11-14T19:12:24Z"
+        },
+        {
+          "name": "Run node scripts/playwright-exposure-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:12:24Z",
+          "completed_at": "2026-11-14T19:12:35Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-11-14T19:12:35Z",
+          "completed_at": "2026-11-14T19:12:35Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T19:12:35Z",
+          "completed_at": "2026-11-14T19:12:35Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-14T19:12:35Z",
+          "completed_at": "2026-11-14T19:12:35Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T19:12:35Z",
+          "completed_at": "2026-11-14T19:12:35Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-14T19:12:35Z",
+          "completed_at": "2026-11-14T19:12:35Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132556522270",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048977,
+      "runner_name": "GitHub Actions 1000048977",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132556522284,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3PwDLA",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132556522284",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132556522284",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:11:30Z",
+      "started_at": "2026-11-14T19:11:33Z",
+      "completed_at": "2026-11-14T19:23:33Z",
+      "name": "build",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:11:34Z",
+          "completed_at": "2026-11-14T19:11:36Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:11:36Z",
+          "completed_at": "2026-11-14T19:12:12Z"
+        },
+        {
+          "name": "Record the exact built snapshot",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:12:12Z",
+          "completed_at": "2026-11-14T19:12:12Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:12:12Z",
+          "completed_at": "2026-11-14T19:12:18Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:12:18Z",
+          "completed_at": "2026-11-14T19:12:20Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:12:20Z",
+          "completed_at": "2026-11-14T19:12:20Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:12:20Z",
+          "completed_at": "2026-11-14T19:12:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:12:22Z",
+          "completed_at": "2026-11-14T19:12:23Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:12:23Z",
+          "completed_at": "2026-11-14T19:12:23Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_h10_fx.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:12:23Z",
+          "completed_at": "2026-11-14T19:12:29Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T19:12:29Z",
+          "completed_at": "2026-11-14T19:12:29Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T19:12:29Z",
+          "completed_at": "2026-11-14T19:12:29Z"
+        },
+        {
+          "name": "Run node scripts/test-performance-rankings.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T19:12:29Z",
+          "completed_at": "2026-11-14T19:12:33Z"
+        },
+        {
+          "name": "Run node scripts/test-official-nav-consumers.mjs && node scripts/test-abtc-nav-consumers.mjs && node scripts/test-amundi-reit-nav-consumers.mjs && node scripts/test-nikkei-nav-consumers.mjs && node scripts/test-copper-manual-nav-consumers.mjs && node scripts/test-exact-share-annual-consumers.mjs && node scripts/test-dws-income-consumers.mjs && node scripts/test-qualified-return-windows.mjs && node scripts/test-wisdomtree-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T19:12:33Z",
+          "completed_at": "2026-11-14T19:12:46Z"
+        },
+        {
+          "name": "Run node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-14T19:12:46Z",
+          "completed_at": "2026-11-14T19:12:49Z"
+        },
+        {
+          "name": "Run node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T19:12:49Z",
+          "completed_at": "2026-11-14T19:12:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-14T19:12:53Z",
+          "completed_at": "2026-11-14T19:12:54Z"
+        },
+        {
+          "name": "Run node scripts/test-required-data-gaps.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T19:12:54Z",
+          "completed_at": "2026-11-14T19:12:54Z"
+        },
+        {
+          "name": "Run node scripts/test-index-proxy-identity.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-14T19:12:54Z",
+          "completed_at": "2026-11-14T19:12:54Z"
+        },
+        {
+          "name": "Run node scripts/test-shared-listing-identities.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-14T19:12:54Z",
+          "completed_at": "2026-11-14T19:12:54Z"
+        },
+        {
+          "name": "Run node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-14T19:12:54Z",
+          "completed_at": "2026-11-14T19:13:01Z"
+        },
+        {
+          "name": "Run node --max-old-space-size=4096 scripts/test-tool-projections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-14T19:13:01Z",
+          "completed_at": "2026-11-14T19:13:25Z"
+        },
+        {
+          "name": "Run node scripts/test-light-registries.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-14T19:13:25Z",
+          "completed_at": "2026-11-14T19:13:30Z"
+        },
+        {
+          "name": "Run node scripts/test-browser-shards.mjs && node scripts/test-ci-browser-runner.mjs && node scripts/test-vite-file-boundary.mjs && node scripts/test-public-validation-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-14T19:13:30Z",
+          "completed_at": "2026-11-14T19:13:31Z"
+        },
+        {
+          "name": "Run node scripts/test-broker-automation.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-14T19:13:31Z",
+          "completed_at": "2026-11-14T19:13:31Z"
+        },
+        {
+          "name": "Run node scripts/test-lifestrategy.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-14T19:13:31Z",
+          "completed_at": "2026-11-14T19:13:32Z"
+        },
+        {
+          "name": "Run node scripts/test-resource-selections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-14T19:13:32Z",
+          "completed_at": "2026-11-14T19:13:33Z"
+        },
+        {
+          "name": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-14T19:13:33Z",
+          "completed_at": "2026-11-14T19:13:43Z"
+        },
+        {
+          "name": "Run node scripts/test-exposure-classification.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-14T19:13:43Z",
+          "completed_at": "2026-11-14T19:13:43Z"
+        },
+        {
+          "name": "Run node scripts/test-equity-exposure-qualification.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-14T19:13:43Z",
+          "completed_at": "2026-11-14T19:13:43Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_exposure_sleeves.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-14T19:13:43Z",
+          "completed_at": "2026-11-14T19:13:43Z"
+        },
+        {
+          "name": "Run node scripts/test-global-audit.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-14T19:13:43Z",
+          "completed_at": "2026-11-14T19:13:43Z"
+        },
+        {
+          "name": "Run node scripts/test-portfolio-roadmap.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-14T19:13:43Z",
+          "completed_at": "2026-11-14T19:13:44Z"
+        },
+        {
+          "name": "Run node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-14T19:13:44Z",
+          "completed_at": "2026-11-14T19:13:44Z"
+        },
+        {
+          "name": "Run node scripts/test-exposure-observations.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T19:13:44Z",
+          "completed_at": "2026-11-14T19:13:45Z"
+        },
+        {
+          "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T19:13:45Z",
+          "completed_at": "2026-11-14T19:13:46Z"
+        },
+        {
+          "name": "Run node scripts/test-market-calendar-performance.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T19:13:46Z",
+          "completed_at": "2026-11-14T19:13:46Z"
+        },
+        {
+          "name": "Run node scripts/test-presentation-etf.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-11-14T19:13:46Z",
+          "completed_at": "2026-11-14T19:13:46Z"
+        },
+        {
+          "name": "Run node scripts/test-scpi.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-11-14T19:13:46Z",
+          "completed_at": "2026-11-14T19:13:47Z"
+        },
+        {
+          "name": "Run node scripts/test-insurance.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40,
+          "started_at": "2026-11-14T19:13:47Z",
+          "completed_at": "2026-11-14T19:13:47Z"
+        },
+        {
+          "name": "Run npm run test:radar",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41,
+          "started_at": "2026-11-14T19:13:47Z",
+          "completed_at": "2026-11-14T19:13:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_performance_currency.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42,
+          "started_at": "2026-11-14T19:13:57Z",
+          "completed_at": "2026-11-14T19:13:58Z"
+        },
+        {
+          "name": "Run node scripts/test-performance-currency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-11-14T19:13:58Z",
+          "completed_at": "2026-11-14T19:14:01Z"
+        },
+        {
+          "name": "Run node scripts/test-cross-tool-currency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-11-14T19:14:01Z",
+          "completed_at": "2026-11-14T19:14:03Z"
+        },
+        {
+          "name": "Run node scripts/test-annual-rollover.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-11-14T19:14:03Z",
+          "completed_at": "2026-11-14T19:14:03Z"
+        },
+        {
+          "name": "Run node scripts/test-inflation-consistency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46,
+          "started_at": "2026-11-14T19:14:03Z",
+          "completed_at": "2026-11-14T19:14:04Z"
+        },
+        {
+          "name": "Run node scripts/test-fx-consistency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47,
+          "started_at": "2026-11-14T19:14:04Z",
+          "completed_at": "2026-11-14T19:14:04Z"
+        },
+        {
+          "name": "Run npm run test:index-concentration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 48,
+          "started_at": "2026-11-14T19:14:04Z",
+          "completed_at": "2026-11-14T19:14:06Z"
+        },
+        {
+          "name": "Run node scripts/test-automated-indices.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 49,
+          "started_at": "2026-11-14T19:14:06Z",
+          "completed_at": "2026-11-14T19:14:06Z"
+        },
+        {
+          "name": "Run node scripts/test-automated-index-sheets.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 50,
+          "started_at": "2026-11-14T19:14:06Z",
+          "completed_at": "2026-11-14T19:14:08Z"
+        },
+        {
+          "name": "Run node scripts/test-automation-gap-inventory.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 51,
+          "started_at": "2026-11-14T19:14:08Z",
+          "completed_at": "2026-11-14T19:14:09Z"
+        },
+        {
+          "name": "Run node scripts/test-consumer-usage.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-11-14T19:14:09Z",
+          "completed_at": "2026-11-14T19:14:14Z"
+        },
+        {
+          "name": "Run node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-instrument-metadata-retention.mjs && node scripts/test-review-reconciliation.mjs && node scripts/test-financial-window-safety.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-11-14T19:14:14Z",
+          "completed_at": "2026-11-14T19:14:27Z"
+        },
+        {
+          "name": "Run node scripts/test-etf-completeness.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-11-14T19:14:27Z",
+          "completed_at": "2026-11-14T19:14:27Z"
+        },
+        {
+          "name": "Run node scripts/test-priority-issuer-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-11-14T19:14:27Z",
+          "completed_at": "2026-11-14T19:14:28Z"
+        },
+        {
+          "name": "Run npm run audit:portfolio-provenance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-11-14T19:14:28Z",
+          "completed_at": "2026-11-14T19:14:28Z"
+        },
+        {
+          "name": "Run node scripts/build-equity-duel-returns.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-11-14T19:14:28Z",
+          "completed_at": "2026-11-14T19:14:29Z"
+        },
+        {
+          "name": "Run npm run audit:portfolio-duels",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-11-14T19:14:29Z",
+          "completed_at": "2026-11-14T19:14:30Z"
+        },
+        {
+          "name": "Run node scripts/test-equity-duels.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-11-14T19:14:30Z",
+          "completed_at": "2026-11-14T19:14:31Z"
+        },
+        {
+          "name": "Run node scripts/test-manual-equity-duels.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 60,
+          "started_at": "2026-11-14T19:14:31Z",
+          "completed_at": "2026-11-14T19:14:31Z"
+        },
+        {
+          "name": "Run npm run audit:broker-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61,
+          "started_at": "2026-11-14T19:14:31Z",
+          "completed_at": "2026-11-14T19:14:31Z"
+        },
+        {
+          "name": "Run npm run audit:data-review",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62,
+          "started_at": "2026-11-14T19:14:31Z",
+          "completed_at": "2026-11-14T19:14:34Z"
+        },
+        {
+          "name": "Run node scripts/test-data-review-reminder.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63,
+          "started_at": "2026-11-14T19:14:34Z",
+          "completed_at": "2026-11-14T19:14:38Z"
+        },
+        {
+          "name": "Run npm run audit:performance-consistency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64,
+          "started_at": "2026-11-14T19:14:38Z",
+          "completed_at": "2026-11-14T19:14:38Z"
+        },
+        {
+          "name": "Run npm run audit:etf-annual-performance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65,
+          "started_at": "2026-11-14T19:14:38Z",
+          "completed_at": "2026-11-14T19:14:39Z"
+        },
+        {
+          "name": "Run npm run audit:etf-completeness",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66,
+          "started_at": "2026-11-14T19:14:39Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run npm run audit:etf-consistency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run node scripts/test-four-issuer-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run npm run audit:instrument-listings",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:41Z"
+        },
+        {
+          "name": "Run npm run audit:instrument-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 70,
+          "started_at": "2026-11-14T19:14:41Z",
+          "completed_at": "2026-11-14T19:14:42Z"
+        },
+        {
+          "name": "Run node scripts/audit-support-enrichment.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 71,
+          "started_at": "2026-11-14T19:14:42Z",
+          "completed_at": "2026-11-14T19:14:42Z"
+        },
+        {
+          "name": "Run npm run audit:calculator-series",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 72,
+          "started_at": "2026-11-14T19:14:42Z",
+          "completed_at": "2026-11-14T19:14:58Z"
+        },
+        {
+          "name": "Run node scripts/test-gold-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 73,
+          "started_at": "2026-11-14T19:14:58Z",
+          "completed_at": "2026-11-14T19:15:00Z"
+        },
+        {
+          "name": "Run node scripts/test-monthly-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 74,
+          "started_at": "2026-11-14T19:15:00Z",
+          "completed_at": "2026-11-14T19:15:06Z"
+        },
+        {
+          "name": "Run node scripts/test-investment-history-units.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 75,
+          "started_at": "2026-11-14T19:15:06Z",
+          "completed_at": "2026-11-14T19:15:13Z"
+        },
+        {
+          "name": "Run node scripts/test-equity-monthly.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 76,
+          "started_at": "2026-11-14T19:15:13Z",
+          "completed_at": "2026-11-14T19:15:17Z"
+        },
+        {
+          "name": "Run node scripts/test-investment-crisis.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 77,
+          "started_at": "2026-11-14T19:15:17Z",
+          "completed_at": "2026-11-14T19:15:18Z"
+        },
+        {
+          "name": "Run node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 78,
+          "started_at": "2026-11-14T19:15:18Z",
+          "completed_at": "2026-11-14T19:15:27Z"
+        },
+        {
+          "name": "Run node scripts/test-investment-conclusions.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 79,
+          "started_at": "2026-11-14T19:15:27Z",
+          "completed_at": "2026-11-14T19:15:32Z"
+        },
+        {
+          "name": "Run node scripts/test-anniversary-indices.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 80,
+          "started_at": "2026-11-14T19:15:32Z",
+          "completed_at": "2026-11-14T19:15:36Z"
+        },
+        {
+          "name": "Run node scripts/test-existing-asset-formats.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 81,
+          "started_at": "2026-11-14T19:15:36Z",
+          "completed_at": "2026-11-14T19:15:37Z"
+        },
+        {
+          "name": "Run node scripts/test-publication-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 82,
+          "started_at": "2026-11-14T19:15:37Z",
+          "completed_at": "2026-11-14T19:15:42Z"
+        },
+        {
+          "name": "Run node scripts/test-household-benchmarks.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 83,
+          "started_at": "2026-11-14T19:15:42Z",
+          "completed_at": "2026-11-14T19:15:43Z"
+        },
+        {
+          "name": "Run npm run audit:publishable-content",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 84,
+          "started_at": "2026-11-14T19:15:43Z",
+          "completed_at": "2026-11-14T19:15:43Z"
+        },
+        {
+          "name": "Run node scripts/test-etf-themes-coverage.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 85,
+          "started_at": "2026-11-14T19:15:43Z",
+          "completed_at": "2026-11-14T19:15:43Z"
+        },
+        {
+          "name": "Run node scripts/test-tweet-bank-validity.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 86,
+          "started_at": "2026-11-14T19:15:43Z",
+          "completed_at": "2026-11-14T19:15:44Z"
+        },
+        {
+          "name": "Run npm run audit:source-inventory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 87,
+          "started_at": "2026-11-14T19:15:44Z",
+          "completed_at": "2026-11-14T19:15:44Z"
+        },
+        {
+          "name": "Run node scripts/test-comparison-etf-details.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 88,
+          "started_at": "2026-11-14T19:15:44Z",
+          "completed_at": "2026-11-14T19:15:45Z"
+        },
+        {
+          "name": "Run node scripts/test-tweet-midi-shards.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 89,
+          "started_at": "2026-11-14T19:15:45Z",
+          "completed_at": "2026-11-14T19:15:46Z"
+        },
+        {
+          "name": "Run node scripts/build-tweet-midi-verifier.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 90,
+          "started_at": "2026-11-14T19:15:46Z",
+          "completed_at": "2026-11-14T19:15:48Z"
+        },
+        {
+          "name": "Run npm run audit:investor-profiles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 91,
+          "started_at": "2026-11-14T19:15:48Z",
+          "completed_at": "2026-11-14T19:15:49Z"
+        },
+        {
+          "name": "Run npm run audit:household-statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 92,
+          "started_at": "2026-11-14T19:15:49Z",
+          "completed_at": "2026-11-14T19:15:50Z"
+        },
+        {
+          "name": "Run node scripts/test-diversification-lot-one.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 93,
+          "started_at": "2026-11-14T19:15:50Z",
+          "completed_at": "2026-11-14T19:15:51Z"
+        },
+        {
+          "name": "Run node scripts/test-gaming-medical-reuse.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 94,
+          "started_at": "2026-11-14T19:15:51Z",
+          "completed_at": "2026-11-14T19:15:51Z"
+        },
+        {
+          "name": "Run node scripts/test-world-factors-step-one.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 95,
+          "started_at": "2026-11-14T19:15:51Z",
+          "completed_at": "2026-11-14T19:15:52Z"
+        },
+        {
+          "name": "Run node scripts/test-property-infrastructure-step-two.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 96,
+          "started_at": "2026-11-14T19:15:52Z",
+          "completed_at": "2026-11-14T19:15:53Z"
+        },
+        {
+          "name": "Run node scripts/test-data-reuse.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 97,
+          "started_at": "2026-11-14T19:15:53Z",
+          "completed_at": "2026-11-14T19:15:53Z"
+        },
+        {
+          "name": "Run node scripts/test-market-stories.mjs && node scripts/test-market-story-selection.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 98,
+          "started_at": "2026-11-14T19:15:53Z",
+          "completed_at": "2026-11-14T19:15:54Z"
+        },
+        {
+          "name": "Run npm run audit:data-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 99,
+          "started_at": "2026-11-14T19:15:54Z",
+          "completed_at": "2026-11-14T19:15:56Z"
+        },
+        {
+          "name": "Run npm run audit:data-provenance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 100,
+          "started_at": "2026-11-14T19:15:56Z",
+          "completed_at": "2026-11-14T19:15:57Z"
+        },
+        {
+          "name": "Run node scripts/test-index-comparison-copy.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 101,
+          "started_at": "2026-11-14T19:15:57Z",
+          "completed_at": "2026-11-14T19:15:58Z"
+        },
+        {
+          "name": "Run npm run audit:index-facts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 102,
+          "started_at": "2026-11-14T19:15:58Z",
+          "completed_at": "2026-11-14T19:15:58Z"
+        },
+        {
+          "name": "Run npm run audit:index-completeness",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 103,
+          "started_at": "2026-11-14T19:15:58Z",
+          "completed_at": "2026-11-14T19:15:59Z"
+        },
+        {
+          "name": "Run npm run verify:factsheet-tweets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 104,
+          "started_at": "2026-11-14T19:15:59Z",
+          "completed_at": "2026-11-14T19:15:59Z"
+        },
+        {
+          "name": "Run node scripts/test-portfolio-editorial.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 105,
+          "started_at": "2026-11-14T19:15:59Z",
+          "completed_at": "2026-11-14T19:16:05Z"
+        },
+        {
+          "name": "Run node scripts/test-publication-preferences.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 106,
+          "started_at": "2026-11-14T19:16:05Z",
+          "completed_at": "2026-11-14T19:16:05Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-selection.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 107,
+          "started_at": "2026-11-14T19:16:05Z",
+          "completed_at": "2026-11-14T19:16:28Z"
+        },
+        {
+          "name": "Run node scripts/test-portfolio-recipes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 108,
+          "started_at": "2026-11-14T19:16:28Z",
+          "completed_at": "2026-11-14T19:17:45Z"
+        },
+        {
+          "name": "Run node scripts/test-generator-controls.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 109,
+          "started_at": "2026-11-14T19:17:45Z",
+          "completed_at": "2026-11-14T19:18:07Z"
+        },
+        {
+          "name": "Run node scripts/test-etf-routing-expansion.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 110,
+          "started_at": "2026-11-14T19:18:07Z",
+          "completed_at": "2026-11-14T19:18:08Z"
+        },
+        {
+          "name": "Run node scripts/audit-asset-tool-routing.mjs --write",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 111,
+          "started_at": "2026-11-14T19:18:08Z",
+          "completed_at": "2026-11-14T19:18:10Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-routing-blockers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 112,
+          "started_at": "2026-11-14T19:18:10Z",
+          "completed_at": "2026-11-14T19:18:10Z"
+        },
+        {
+          "name": "Run node scripts/test-publication-reliability.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 113,
+          "started_at": "2026-11-14T19:18:10Z",
+          "completed_at": "2026-11-14T19:18:11Z"
+        },
+        {
+          "name": "Run node scripts/test-historical-publications.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 114,
+          "started_at": "2026-11-14T19:18:11Z",
+          "completed_at": "2026-11-14T19:18:19Z"
+        },
+        {
+          "name": "Run npm run stress-test:portfolios",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 115,
+          "started_at": "2026-11-14T19:18:19Z",
+          "completed_at": "2026-11-14T19:21:46Z"
+        },
+        {
+          "name": "Run node scripts/test-observation-freshness.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 116,
+          "started_at": "2026-11-14T19:21:46Z",
+          "completed_at": "2026-11-14T19:21:47Z"
+        },
+        {
+          "name": "Run node scripts/test-automation-overview.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 117,
+          "started_at": "2026-11-14T19:21:47Z",
+          "completed_at": "2026-11-14T19:21:47Z"
+        },
+        {
+          "name": "Run node scripts/test-review-inbox.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 118,
+          "started_at": "2026-11-14T19:21:47Z",
+          "completed_at": "2026-11-14T19:21:55Z"
+        },
+        {
+          "name": "Run node scripts/test-monitoring-context.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 119,
+          "started_at": "2026-11-14T19:21:55Z",
+          "completed_at": "2026-11-14T19:21:57Z"
+        },
+        {
+          "name": "Run node scripts/test-producer-result-contracts.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 120,
+          "started_at": "2026-11-14T19:21:57Z",
+          "completed_at": "2026-11-14T19:21:57Z"
+        },
+        {
+          "name": "Run node scripts/test-format-loading.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 121,
+          "started_at": "2026-11-14T19:21:57Z",
+          "completed_at": "2026-11-14T19:22:10Z"
+        },
+        {
+          "name": "Run node scripts/test-history-pool-initialization.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 122,
+          "started_at": "2026-11-14T19:22:10Z",
+          "completed_at": "2026-11-14T19:22:11Z"
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 123,
+          "started_at": "2026-11-14T19:22:11Z",
+          "completed_at": "2026-11-14T19:22:54Z"
+        },
+        {
+          "name": "Run node scripts/test-index-logo-review-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 124,
+          "started_at": "2026-11-14T19:22:54Z",
+          "completed_at": "2026-11-14T19:22:54Z"
+        },
+        {
+          "name": "Run node scripts/build-app-inventory.mjs --check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 125,
+          "started_at": "2026-11-14T19:22:54Z",
+          "completed_at": "2026-11-14T19:22:55Z"
+        },
+        {
+          "name": "Run node scripts/test-format-loading.mjs --built",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 126,
+          "started_at": "2026-11-14T19:22:55Z",
+          "completed_at": "2026-11-14T19:23:09Z"
+        },
+        {
+          "name": "Run node scripts/test-practical-sheets.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 127,
+          "started_at": "2026-11-14T19:23:09Z",
+          "completed_at": "2026-11-14T19:23:11Z"
+        },
+        {
+          "name": "Run node scripts/test-performance-links.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 128,
+          "started_at": "2026-11-14T19:23:11Z",
+          "completed_at": "2026-11-14T19:23:16Z"
+        },
+        {
+          "name": "Run node scripts/test-deploy-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 129,
+          "started_at": "2026-11-14T19:23:16Z",
+          "completed_at": "2026-11-14T19:23:16Z"
+        },
+        {
+          "name": "Run node scripts/test-pages-gate-definition.mjs && node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 130,
+          "started_at": "2026-11-14T19:23:16Z",
+          "completed_at": "2026-11-14T19:23:17Z"
+        },
+        {
+          "name": "Run node scripts/test-fallback-snapshot.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 131,
+          "started_at": "2026-11-14T19:23:17Z",
+          "completed_at": "2026-11-14T19:23:19Z"
+        },
+        {
+          "name": "Run node scripts/test-validated-data-publisher.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 132,
+          "started_at": "2026-11-14T19:23:19Z",
+          "completed_at": "2026-11-14T19:23:19Z"
+        },
+        {
+          "name": "Run node scripts/test-code-data-refresh.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 133,
+          "started_at": "2026-11-14T19:23:19Z",
+          "completed_at": "2026-11-14T19:23:19Z"
+        },
+        {
+          "name": "Run node scripts/test-browser-check-error.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 134,
+          "started_at": "2026-11-14T19:23:19Z",
+          "completed_at": "2026-11-14T19:23:19Z"
+        },
+        {
+          "name": "Run node scripts/test-freshness-policy.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 135,
+          "started_at": "2026-11-14T19:23:19Z",
+          "completed_at": "2026-11-14T19:23:20Z"
+        },
+        {
+          "name": "Run node scripts/test-benchmark-changes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 136,
+          "started_at": "2026-11-14T19:23:20Z",
+          "completed_at": "2026-11-14T19:23:20Z"
+        },
+        {
+          "name": "Record the published commit for the data-only lane",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 137,
+          "started_at": "2026-11-14T19:23:20Z",
+          "completed_at": "2026-11-14T19:23:20Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 138,
+          "started_at": "2026-11-14T19:23:20Z",
+          "completed_at": "2026-11-14T19:23:26Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 139,
+          "started_at": "2026-11-14T19:23:26Z",
+          "completed_at": "2026-11-14T19:23:27Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 140,
+          "started_at": "2026-11-14T19:23:27Z",
+          "completed_at": "2026-11-14T19:23:29Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 141,
+          "started_at": "2026-11-14T19:23:29Z",
+          "completed_at": "2026-11-14T19:23:30Z"
+        },
+        {
+          "name": "Run actions/configure-pages@v6.0.0",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 142,
+          "started_at": "2026-11-14T19:23:30Z",
+          "completed_at": "2026-11-14T19:23:30Z"
+        },
+        {
+          "name": "Run actions/upload-pages-artifact@v5.0.0",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 143,
+          "started_at": "2026-11-14T19:23:30Z",
+          "completed_at": "2026-11-14T19:23:30Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 284,
+          "started_at": "2026-11-14T19:23:30Z",
+          "completed_at": "2026-11-14T19:23:31Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 285,
+          "started_at": "2026-11-14T19:23:31Z",
+          "completed_at": "2026-11-14T19:23:31Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 286,
+          "started_at": "2026-11-14T19:23:31Z",
+          "completed_at": "2026-11-14T19:23:31Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 287,
+          "started_at": "2026-11-14T19:23:31Z",
+          "completed_at": "2026-11-14T19:23:31Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132556522284",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048975,
+      "runner_name": "GitHub Actions 1000048975",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132556522296,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3PwDOA",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132556522296",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132556522296",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:11:30Z",
+      "started_at": "2026-11-14T19:11:32Z",
+      "completed_at": "2026-11-14T19:15:27Z",
+      "name": "python-checks",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:11:33Z",
+          "completed_at": "2026-11-14T19:11:34Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:11:34Z",
+          "completed_at": "2026-11-14T19:12:03Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:12:03Z",
+          "completed_at": "2026-11-14T19:12:08Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:12:08Z",
+          "completed_at": "2026-11-14T19:12:10Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:12:10Z",
+          "completed_at": "2026-11-14T19:12:10Z"
+        },
+        {
+          "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:12:10Z",
+          "completed_at": "2026-11-14T19:12:13Z"
+        },
+        {
+          "name": "Run python -m pip install -c scripts/python-constraints.txt -r scripts/python-requirements.in",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:12:13Z",
+          "completed_at": "2026-11-14T19:12:24Z"
+        },
+        {
+          "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:12:24Z",
+          "completed_at": "2026-11-14T19:12:33Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_dca*py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:12:33Z",
+          "completed_at": "2026-11-14T19:12:38Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_broker_tariff*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:12:38Z",
+          "completed_at": "2026-11-14T19:12:47Z"
+        },
+        {
+          "name": "Run python scripts/audit_broker_coverage.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T19:12:47Z",
+          "completed_at": "2026-11-14T19:12:47Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T19:12:47Z",
+          "completed_at": "2026-11-14T19:12:48Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_active_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T19:12:48Z",
+          "completed_at": "2026-11-14T19:12:48Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_incidents.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T19:12:48Z",
+          "completed_at": "2026-11-14T19:12:49Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-14T19:12:49Z",
+          "completed_at": "2026-11-14T19:12:50Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_documents.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T19:12:50Z",
+          "completed_at": "2026-11-14T19:12:51Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_russell_composition.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-14T19:12:51Z",
+          "completed_at": "2026-11-14T19:13:06Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_sp_composition.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T19:13:06Z",
+          "completed_at": "2026-11-14T19:13:07Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_physical_allocation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-14T19:13:07Z",
+          "completed_at": "2026-11-14T19:13:07Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-14T19:13:07Z",
+          "completed_at": "2026-11-14T19:13:11Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-14T19:13:11Z",
+          "completed_at": "2026-11-14T19:13:11Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_dws_share_nav.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-14T19:13:11Z",
+          "completed_at": "2026-11-14T19:13:12Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_dws_income_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-14T19:13:12Z",
+          "completed_at": "2026-11-14T19:13:14Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-14T19:13:14Z",
+          "completed_at": "2026-11-14T19:13:14Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_landg_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-14T19:13:14Z",
+          "completed_at": "2026-11-14T19:13:15Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_bnp_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-14T19:13:15Z",
+          "completed_at": "2026-11-14T19:13:15Z"
+        },
+        {
+          "name": "Run node scripts/test-bnp-nav-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-14T19:13:15Z",
+          "completed_at": "2026-11-14T19:13:16Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_initial_diagnostics.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-14T19:13:16Z",
+          "completed_at": "2026-11-14T19:13:17Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-14T19:13:17Z",
+          "completed_at": "2026-11-14T19:13:17Z"
+        },
+        {
+          "name": "Install the official PDF reader for split qualification regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-14T19:13:17Z",
+          "completed_at": "2026-11-14T19:13:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-14T19:13:18Z",
+          "completed_at": "2026-11-14T19:13:19Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly*units.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-14T19:13:19Z",
+          "completed_at": "2026-11-14T19:13:20Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-14T19:13:20Z",
+          "completed_at": "2026-11-14T19:13:20Z"
+        },
+        {
+          "name": "Run node scripts/test-nasdaq-total-return.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-14T19:13:20Z",
+          "completed_at": "2026-11-14T19:13:21Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_roadmap_assets.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T19:13:21Z",
+          "completed_at": "2026-11-14T19:13:21Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_roadmap.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T19:13:21Z",
+          "completed_at": "2026-11-14T19:13:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_aum_retention.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T19:13:22Z",
+          "completed_at": "2026-11-14T19:13:22Z"
+        },
+        {
+          "name": "Run node scripts/test-qualified-aum-retention.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-11-14T19:13:22Z",
+          "completed_at": "2026-11-14T19:13:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-11-14T19:13:22Z",
+          "completed_at": "2026-11-14T19:13:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40,
+          "started_at": "2026-11-14T19:13:22Z",
+          "completed_at": "2026-11-14T19:13:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41,
+          "started_at": "2026-11-14T19:13:22Z",
+          "completed_at": "2026-11-14T19:13:23Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_document_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42,
+          "started_at": "2026-11-14T19:13:23Z",
+          "completed_at": "2026-11-14T19:13:23Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-11-14T19:13:23Z",
+          "completed_at": "2026-11-14T19:13:30Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-11-14T19:13:30Z",
+          "completed_at": "2026-11-14T19:13:31Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-11-14T19:13:31Z",
+          "completed_at": "2026-11-14T19:13:31Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qyld_qualification.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46,
+          "started_at": "2026-11-14T19:13:31Z",
+          "completed_at": "2026-11-14T19:13:32Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47,
+          "started_at": "2026-11-14T19:13:32Z",
+          "completed_at": "2026-11-14T19:13:33Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_lifestrategy.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 48,
+          "started_at": "2026-11-14T19:13:33Z",
+          "completed_at": "2026-11-14T19:13:33Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_physical_etc.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 49,
+          "started_at": "2026-11-14T19:13:33Z",
+          "completed_at": "2026-11-14T19:13:33Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_product_calendars.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 50,
+          "started_at": "2026-11-14T19:13:33Z",
+          "completed_at": "2026-11-14T19:13:33Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 51,
+          "started_at": "2026-11-14T19:13:33Z",
+          "completed_at": "2026-11-14T19:13:33Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-11-14T19:13:33Z",
+          "completed_at": "2026-11-14T19:13:34Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-11-14T19:13:34Z",
+          "completed_at": "2026-11-14T19:13:34Z"
+        },
+        {
+          "name": "Run python scripts/test_radar_review_583.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-11-14T19:13:34Z",
+          "completed_at": "2026-11-14T19:13:34Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-11-14T19:13:34Z",
+          "completed_at": "2026-11-14T19:13:34Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-11-14T19:13:34Z",
+          "completed_at": "2026-11-14T19:13:34Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-11-14T19:13:34Z",
+          "completed_at": "2026-11-14T19:13:35Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-11-14T19:13:35Z",
+          "completed_at": "2026-11-14T19:13:35Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-11-14T19:13:35Z",
+          "completed_at": "2026-11-14T19:13:35Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_extensions.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 60,
+          "started_at": "2026-11-14T19:13:35Z",
+          "completed_at": "2026-11-14T19:13:36Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_world_sector_indices.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61,
+          "started_at": "2026-11-14T19:13:36Z",
+          "completed_at": "2026-11-14T19:13:36Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62,
+          "started_at": "2026-11-14T19:13:36Z",
+          "completed_at": "2026-11-14T19:13:36Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_companies.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63,
+          "started_at": "2026-11-14T19:13:36Z",
+          "completed_at": "2026-11-14T19:13:36Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_korea_companies.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64,
+          "started_at": "2026-11-14T19:13:36Z",
+          "completed_at": "2026-11-14T19:13:36Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65,
+          "started_at": "2026-11-14T19:13:36Z",
+          "completed_at": "2026-11-14T19:13:37Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_scpi.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66,
+          "started_at": "2026-11-14T19:13:37Z",
+          "completed_at": "2026-11-14T19:13:37Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67,
+          "started_at": "2026-11-14T19:13:37Z",
+          "completed_at": "2026-11-14T19:13:38Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_vaneck_nav_routes.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68,
+          "started_at": "2026-11-14T19:13:38Z",
+          "completed_at": "2026-11-14T19:13:43Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_corum.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69,
+          "started_at": "2026-11-14T19:13:43Z",
+          "completed_at": "2026-11-14T19:13:43Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_corum_vector.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 70,
+          "started_at": "2026-11-14T19:13:43Z",
+          "completed_at": "2026-11-14T19:13:49Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_actors.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 71,
+          "started_at": "2026-11-14T19:13:49Z",
+          "completed_at": "2026-11-14T19:13:50Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_partial_official_publications.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 72,
+          "started_at": "2026-11-14T19:13:50Z",
+          "completed_at": "2026-11-14T19:13:50Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_extended_scpi.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 73,
+          "started_at": "2026-11-14T19:13:50Z",
+          "completed_at": "2026-11-14T19:13:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_scpi_current_bulletins.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 74,
+          "started_at": "2026-11-14T19:13:53Z",
+          "completed_at": "2026-11-14T19:13:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_insurance.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 75,
+          "started_at": "2026-11-14T19:13:53Z",
+          "completed_at": "2026-11-14T19:13:54Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_publication_periods.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 76,
+          "started_at": "2026-11-14T19:13:54Z",
+          "completed_at": "2026-11-14T19:13:54Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_expansion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 77,
+          "started_at": "2026-11-14T19:13:54Z",
+          "completed_at": "2026-11-14T19:13:55Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 78,
+          "started_at": "2026-11-14T19:13:55Z",
+          "completed_at": "2026-11-14T19:13:55Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_support_expansion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 79,
+          "started_at": "2026-11-14T19:13:55Z",
+          "completed_at": "2026-11-14T19:13:56Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_publication*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 80,
+          "started_at": "2026-11-14T19:13:56Z",
+          "completed_at": "2026-11-14T19:14:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_investor_refresh.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 81,
+          "started_at": "2026-11-14T19:14:18Z",
+          "completed_at": "2026-11-14T19:14:24Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_exposure_publication.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 82,
+          "started_at": "2026-11-14T19:14:24Z",
+          "completed_at": "2026-11-14T19:14:26Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_data_automation.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 83,
+          "started_at": "2026-11-14T19:14:26Z",
+          "completed_at": "2026-11-14T19:14:26Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_gold_monthly.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 84,
+          "started_at": "2026-11-14T19:14:26Z",
+          "completed_at": "2026-11-14T19:14:27Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_pages_head.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 85,
+          "started_at": "2026-11-14T19:14:27Z",
+          "completed_at": "2026-11-14T19:14:36Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_automation*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 86,
+          "started_at": "2026-11-14T19:14:36Z",
+          "completed_at": "2026-11-14T19:14:39Z"
+        },
+        {
+          "name": "Verify producer result contracts and omission detection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 87,
+          "started_at": "2026-11-14T19:14:39Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_sec_transport.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 88,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_holdings_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 89,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_download_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 90,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 91,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_lse_listing_reference.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 92,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:40Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_listing_retention.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 93,
+          "started_at": "2026-11-14T19:14:40Z",
+          "completed_at": "2026-11-14T19:14:41Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_incidents.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 94,
+          "started_at": "2026-11-14T19:14:41Z",
+          "completed_at": "2026-11-14T19:14:41Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_venue_ticker_identities.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 95,
+          "started_at": "2026-11-14T19:14:41Z",
+          "completed_at": "2026-11-14T19:14:41Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_invesco_physical_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 96,
+          "started_at": "2026-11-14T19:14:41Z",
+          "completed_at": "2026-11-14T19:14:42Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_physical_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 97,
+          "started_at": "2026-11-14T19:14:42Z",
+          "completed_at": "2026-11-14T19:14:42Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 98,
+          "started_at": "2026-11-14T19:14:42Z",
+          "completed_at": "2026-11-14T19:14:42Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 99,
+          "started_at": "2026-11-14T19:14:42Z",
+          "completed_at": "2026-11-14T19:14:43Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 100,
+          "started_at": "2026-11-14T19:14:43Z",
+          "completed_at": "2026-11-14T19:14:52Z"
+        },
+        {
+          "name": "Run node scripts/test-issuer-product-routes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 101,
+          "started_at": "2026-11-14T19:14:52Z",
+          "completed_at": "2026-11-14T19:14:52Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_security_candidate_names.py' && python -m unittest discover -s scripts -p 'test_security_residual_identities.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_identity_isolation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 102,
+          "started_at": "2026-11-14T19:14:52Z",
+          "completed_at": "2026-11-14T19:14:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_lg_discovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 103,
+          "started_at": "2026-11-14T19:14:53Z",
+          "completed_at": "2026-11-14T19:14:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 104,
+          "started_at": "2026-11-14T19:14:53Z",
+          "completed_at": "2026-11-14T19:14:53Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_country_allocation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 105,
+          "started_at": "2026-11-14T19:14:53Z",
+          "completed_at": "2026-11-14T19:15:00Z"
+        },
+        {
+          "name": "Run node scripts/test-wisdomtree-country-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 106,
+          "started_at": "2026-11-14T19:15:00Z",
+          "completed_at": "2026-11-14T19:15:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_topix_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 107,
+          "started_at": "2026-11-14T19:15:00Z",
+          "completed_at": "2026-11-14T19:15:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 108,
+          "started_at": "2026-11-14T19:15:00Z",
+          "completed_at": "2026-11-14T19:15:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 109,
+          "started_at": "2026-11-14T19:15:00Z",
+          "completed_at": "2026-11-14T19:15:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 110,
+          "started_at": "2026-11-14T19:15:01Z",
+          "completed_at": "2026-11-14T19:15:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_pending_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 111,
+          "started_at": "2026-11-14T19:15:01Z",
+          "completed_at": "2026-11-14T19:15:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_native_source_evidence.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 112,
+          "started_at": "2026-11-14T19:15:01Z",
+          "completed_at": "2026-11-14T19:15:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_audit_workflows.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 113,
+          "started_at": "2026-11-14T19:15:01Z",
+          "completed_at": "2026-11-14T19:15:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 114,
+          "started_at": "2026-11-14T19:15:02Z",
+          "completed_at": "2026-11-14T19:15:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 115,
+          "started_at": "2026-11-14T19:15:02Z",
+          "completed_at": "2026-11-14T19:15:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_projection_recording.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 116,
+          "started_at": "2026-11-14T19:15:02Z",
+          "completed_at": "2026-11-14T19:15:04Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 117,
+          "started_at": "2026-11-14T19:15:04Z",
+          "completed_at": "2026-11-14T19:15:04Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 118,
+          "started_at": "2026-11-14T19:15:04Z",
+          "completed_at": "2026-11-14T19:15:05Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_amundi_distributing_nav.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 119,
+          "started_at": "2026-11-14T19:15:05Z",
+          "completed_at": "2026-11-14T19:15:05Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 120,
+          "started_at": "2026-11-14T19:15:05Z",
+          "completed_at": "2026-11-14T19:15:06Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_nav_daily_cross.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 121,
+          "started_at": "2026-11-14T19:15:06Z",
+          "completed_at": "2026-11-14T19:15:06Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 122,
+          "started_at": "2026-11-14T19:15:06Z",
+          "completed_at": "2026-11-14T19:15:15Z"
+        },
+        {
+          "name": "Run node scripts/test-income-nav-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 123,
+          "started_at": "2026-11-14T19:15:15Z",
+          "completed_at": "2026-11-14T19:15:21Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_hsbc_adjustment_investigation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 124,
+          "started_at": "2026-11-14T19:15:21Z",
+          "completed_at": "2026-11-14T19:15:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data_use_matrix.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 125,
+          "started_at": "2026-11-14T19:15:22Z",
+          "completed_at": "2026-11-14T19:15:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 126,
+          "started_at": "2026-11-14T19:15:22Z",
+          "completed_at": "2026-11-14T19:15:22Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_validated_data_commit.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 127,
+          "started_at": "2026-11-14T19:15:22Z",
+          "completed_at": "2026-11-14T19:15:23Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data_publication.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 128,
+          "started_at": "2026-11-14T19:15:23Z",
+          "completed_at": "2026-11-14T19:15:24Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_publication_safety.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 129,
+          "started_at": "2026-11-14T19:15:24Z",
+          "completed_at": "2026-11-14T19:15:25Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 256,
+          "started_at": "2026-11-14T19:15:25Z",
+          "completed_at": "2026-11-14T19:15:25Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 257,
+          "started_at": "2026-11-14T19:15:25Z",
+          "completed_at": "2026-11-14T19:15:25Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 258,
+          "started_at": "2026-11-14T19:15:25Z",
+          "completed_at": "2026-11-14T19:15:25Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 259,
+          "started_at": "2026-11-14T19:15:25Z",
+          "completed_at": "2026-11-14T19:15:25Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132556522296",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048978,
+      "runner_name": "GitHub Actions 1000048978",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962194,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAUg",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962194",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962194",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:36Z",
+      "completed_at": "2026-11-14T19:31:20Z",
+      "name": "tweet-midi-checks (1)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:37Z",
+          "completed_at": "2026-11-14T19:23:38Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:38Z",
+          "completed_at": "2026-11-14T19:23:42Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:23:42Z",
+          "completed_at": "2026-11-14T19:23:43Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:23:43Z",
+          "completed_at": "2026-11-14T19:31:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:31:18Z",
+          "completed_at": "2026-11-14T19:31:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:31:18Z",
+          "completed_at": "2026-11-14T19:31:18Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962194",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048980,
+      "runner_name": "GitHub Actions 1000048980",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962196,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAVA",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962196",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962196",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:36Z",
+      "completed_at": "2026-11-14T19:34:25Z",
+      "name": "tweet-midi-checks (2)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:36Z",
+          "completed_at": "2026-11-14T19:23:37Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:37Z",
+          "completed_at": "2026-11-14T19:23:41Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:23:41Z",
+          "completed_at": "2026-11-14T19:23:42Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:23:42Z",
+          "completed_at": "2026-11-14T19:34:24Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:34:24Z",
+          "completed_at": "2026-11-14T19:34:24Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:34:24Z",
+          "completed_at": "2026-11-14T19:34:24Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962196",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048979,
+      "runner_name": "GitHub Actions 1000048979",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962206,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAXg",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962206",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962206",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:36Z",
+      "completed_at": "2026-11-14T19:25:28Z",
+      "name": "smoke",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:37Z",
+          "completed_at": "2026-11-14T19:23:38Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:38Z",
+          "completed_at": "2026-11-14T19:24:12Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:24:12Z",
+          "completed_at": "2026-11-14T19:24:20Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:24:20Z",
+          "completed_at": "2026-11-14T19:24:22Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:24:22Z",
+          "completed_at": "2026-11-14T19:24:23Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:24:23Z",
+          "completed_at": "2026-11-14T19:24:24Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:24:24Z",
+          "completed_at": "2026-11-14T19:24:27Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:24:27Z",
+          "completed_at": "2026-11-14T19:24:31Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:24:31Z",
+          "completed_at": "2026-11-14T19:24:46Z"
+        },
+        {
+          "name": "Run node scripts/smoke-data-routes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:24:46Z",
+          "completed_at": "2026-11-14T19:25:25Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T19:25:25Z",
+          "completed_at": "2026-11-14T19:25:25Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-14T19:25:25Z",
+          "completed_at": "2026-11-14T19:25:25Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-14T19:25:25Z",
+          "completed_at": "2026-11-14T19:25:25Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-14T19:25:25Z",
+          "completed_at": "2026-11-14T19:25:26Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962206",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048984,
+      "runner_name": "GitHub Actions 1000048984",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962218,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAag",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962218",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962218",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:37Z",
+      "completed_at": "2026-11-14T19:34:26Z",
+      "name": "tweet-midi-checks (0)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:38Z",
+          "completed_at": "2026-11-14T19:23:39Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:39Z",
+          "completed_at": "2026-11-14T19:23:45Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:23:45Z",
+          "completed_at": "2026-11-14T19:23:47Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:23:47Z",
+          "completed_at": "2026-11-14T19:34:22Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:34:22Z",
+          "completed_at": "2026-11-14T19:34:22Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:34:22Z",
+          "completed_at": "2026-11-14T19:34:22Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962218",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048982,
+      "runner_name": "GitHub Actions 1000048982",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962223,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAbw",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962223",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962223",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:36Z",
+      "completed_at": "2026-11-14T19:31:19Z",
+      "name": "tweet-midi-checks (3)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:37Z",
+          "completed_at": "2026-11-14T19:23:39Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:39Z",
+          "completed_at": "2026-11-14T19:23:43Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:23:43Z",
+          "completed_at": "2026-11-14T19:23:44Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:23:44Z",
+          "completed_at": "2026-11-14T19:31:17Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:31:17Z",
+          "completed_at": "2026-11-14T19:31:17Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:31:17Z",
+          "completed_at": "2026-11-14T19:31:17Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962223",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048981,
+      "runner_name": "GitHub Actions 1000048981",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962240,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAgA",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962240",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962240",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:36Z",
+      "completed_at": "2026-11-14T19:43:06Z",
+      "name": "browser-checks (1)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:36Z",
+          "completed_at": "2026-11-14T19:23:38Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:38Z",
+          "completed_at": "2026-11-14T19:24:06Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:24:06Z",
+          "completed_at": "2026-11-14T19:24:13Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:24:13Z",
+          "completed_at": "2026-11-14T19:24:14Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:24:14Z",
+          "completed_at": "2026-11-14T19:24:15Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:24:15Z",
+          "completed_at": "2026-11-14T19:24:16Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:24:16Z",
+          "completed_at": "2026-11-14T19:24:18Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:24:18Z",
+          "completed_at": "2026-11-14T19:24:21Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:24:21Z",
+          "completed_at": "2026-11-14T19:24:31Z"
+        },
+        {
+          "name": "Run node scripts/browser-portability-engines.mjs 1 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:24:31Z",
+          "completed_at": "2026-11-14T19:24:31Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-11-14T19:24:31Z",
+          "completed_at": "2026-11-14T19:24:31Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps firefox webkit",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-11-14T19:24:31Z",
+          "completed_at": "2026-11-14T19:24:31Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 1 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T19:24:31Z",
+          "completed_at": "2026-11-14T19:43:00Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T19:43:00Z",
+          "completed_at": "2026-11-14T19:43:01Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-14T19:43:01Z",
+          "completed_at": "2026-11-14T19:43:03Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-11-14T19:43:03Z",
+          "completed_at": "2026-11-14T19:43:03Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-14T19:43:03Z",
+          "completed_at": "2026-11-14T19:43:03Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-14T19:43:03Z",
+          "completed_at": "2026-11-14T19:43:03Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-14T19:43:03Z",
+          "completed_at": "2026-11-14T19:43:03Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-14T19:43:03Z",
+          "completed_at": "2026-11-14T19:43:03Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962240",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048983,
+      "runner_name": "GitHub Actions 1000048983",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962297,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAuQ",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962297",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962297",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:36Z",
+      "completed_at": "2026-11-14T19:47:55Z",
+      "name": "browser-checks (2)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:37Z",
+          "completed_at": "2026-11-14T19:23:38Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:38Z",
+          "completed_at": "2026-11-14T19:24:26Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:24:26Z",
+          "completed_at": "2026-11-14T19:24:34Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:24:34Z",
+          "completed_at": "2026-11-14T19:24:35Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:24:35Z",
+          "completed_at": "2026-11-14T19:24:37Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:24:37Z",
+          "completed_at": "2026-11-14T19:24:38Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:24:38Z",
+          "completed_at": "2026-11-14T19:24:42Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:24:42Z",
+          "completed_at": "2026-11-14T19:24:47Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:24:47Z",
+          "completed_at": "2026-11-14T19:25:00Z"
+        },
+        {
+          "name": "Run node scripts/browser-portability-engines.mjs 2 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:25:00Z",
+          "completed_at": "2026-11-14T19:25:00Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-11-14T19:25:00Z",
+          "completed_at": "2026-11-14T19:25:00Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps firefox webkit",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-11-14T19:25:00Z",
+          "completed_at": "2026-11-14T19:25:00Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 2 4",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 13,
+          "started_at": "2026-11-14T19:25:00Z",
+          "completed_at": "2026-11-14T19:47:22Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T19:47:22Z",
+          "completed_at": "2026-11-14T19:47:23Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-14T19:47:23Z",
+          "completed_at": "2026-11-14T19:47:23Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T19:47:23Z",
+          "completed_at": "2026-11-14T19:47:52Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 30,
+          "started_at": "2026-11-14T19:47:52Z",
+          "completed_at": "2026-11-14T19:47:52Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 31,
+          "started_at": "2026-11-14T19:47:52Z",
+          "completed_at": "2026-11-14T19:47:52Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-14T19:47:52Z",
+          "completed_at": "2026-11-14T19:47:53Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-14T19:47:53Z",
+          "completed_at": "2026-11-14T19:47:53Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962297",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048986,
+      "runner_name": "GitHub Actions 1000048986",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962308,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCAxA",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962308",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962308",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:36Z",
+      "completed_at": "2026-11-14T19:49:32Z",
+      "name": "browser-checks (3)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:37Z",
+          "completed_at": "2026-11-14T19:23:38Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:38Z",
+          "completed_at": "2026-11-14T19:24:11Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:24:11Z",
+          "completed_at": "2026-11-14T19:24:18Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:24:18Z",
+          "completed_at": "2026-11-14T19:24:20Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:24:20Z",
+          "completed_at": "2026-11-14T19:24:21Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:24:21Z",
+          "completed_at": "2026-11-14T19:24:22Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:24:22Z",
+          "completed_at": "2026-11-14T19:24:25Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:24:25Z",
+          "completed_at": "2026-11-14T19:24:30Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:24:30Z",
+          "completed_at": "2026-11-14T19:24:41Z"
+        },
+        {
+          "name": "Run node scripts/browser-portability-engines.mjs 3 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:24:41Z",
+          "completed_at": "2026-11-14T19:24:41Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T19:24:41Z",
+          "completed_at": "2026-11-14T19:24:44Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps firefox webkit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T19:24:44Z",
+          "completed_at": "2026-11-14T19:25:09Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 3 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T19:25:09Z",
+          "completed_at": "2026-11-14T19:49:27Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T19:49:27Z",
+          "completed_at": "2026-11-14T19:49:28Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-14T19:49:28Z",
+          "completed_at": "2026-11-14T19:49:29Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-11-14T19:49:29Z",
+          "completed_at": "2026-11-14T19:49:29Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-14T19:49:29Z",
+          "completed_at": "2026-11-14T19:49:29Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-14T19:49:29Z",
+          "completed_at": "2026-11-14T19:49:29Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-14T19:49:29Z",
+          "completed_at": "2026-11-14T19:49:29Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-14T19:49:29Z",
+          "completed_at": "2026-11-14T19:49:29Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-14T19:49:29Z",
+          "completed_at": "2026-11-14T19:49:29Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962308",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048985,
+      "runner_name": "GitHub Actions 1000048985",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132559962399,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3TCBHw",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132559962399",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132559962399",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:23:33Z",
+      "started_at": "2026-11-14T19:23:37Z",
+      "completed_at": "2026-11-14T19:56:01Z",
+      "name": "browser-checks (0)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:23:38Z",
+          "completed_at": "2026-11-14T19:23:39Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:23:39Z",
+          "completed_at": "2026-11-14T19:24:11Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:24:11Z",
+          "completed_at": "2026-11-14T19:24:18Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:24:18Z",
+          "completed_at": "2026-11-14T19:24:20Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:24:20Z",
+          "completed_at": "2026-11-14T19:24:21Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T19:24:21Z",
+          "completed_at": "2026-11-14T19:24:22Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T19:24:22Z",
+          "completed_at": "2026-11-14T19:24:27Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T19:24:27Z",
+          "completed_at": "2026-11-14T19:24:32Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T19:24:32Z",
+          "completed_at": "2026-11-14T19:24:42Z"
+        },
+        {
+          "name": "Run node scripts/browser-portability-engines.mjs 0 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:24:42Z",
+          "completed_at": "2026-11-14T19:24:43Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-11-14T19:24:43Z",
+          "completed_at": "2026-11-14T19:24:43Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps firefox webkit",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-11-14T19:24:43Z",
+          "completed_at": "2026-11-14T19:24:43Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 0 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T19:24:43Z",
+          "completed_at": "2026-11-14T19:55:56Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T19:55:56Z",
+          "completed_at": "2026-11-14T19:55:57Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-14T19:55:57Z",
+          "completed_at": "2026-11-14T19:55:57Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-11-14T19:55:57Z",
+          "completed_at": "2026-11-14T19:55:57Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-14T19:55:57Z",
+          "completed_at": "2026-11-14T19:55:58Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-14T19:55:58Z",
+          "completed_at": "2026-11-14T19:55:58Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-14T19:55:58Z",
+          "completed_at": "2026-11-14T19:55:58Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-14T19:55:58Z",
+          "completed_at": "2026-11-14T19:55:58Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132559962399",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": 1000048987,
+      "runner_name": "GitHub Actions 1000048987",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132568988123,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3bo52w",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132568988123",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132568988123",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-14T19:56:02Z",
+      "started_at": "2026-11-14T19:56:02Z",
+      "completed_at": "2026-11-14T19:56:01Z",
+      "name": "deploy",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132568988123",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 132568988264,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3bo6aA",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132568988264",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132568988264",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-14T19:56:02Z",
+      "started_at": "2026-11-14T19:56:02Z",
+      "completed_at": "2026-11-14T19:56:01Z",
+      "name": "fallback-build",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132568988264",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 132568988353,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3bo6wQ",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132568988353",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132568988353",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-14T19:56:02Z",
+      "started_at": "2026-11-14T19:56:02Z",
+      "completed_at": "2026-11-14T19:56:01Z",
+      "name": "advisory-checks",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132568988353",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 132568988362,
+      "run_id": 43630719552,
+      "workflow_name": "Deploy to GitHub Pages",
+      "head_branch": "fix/investor-concurrent-readers-20261114",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/43630719552",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAe3bo6yg",
+      "head_sha": "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/132568988362",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43630719552/job/132568988362",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-11-14T19:56:02Z",
+      "started_at": "2026-11-14T19:56:02Z",
+      "completed_at": "2026-11-14T19:56:01Z",
+      "name": "deploy-fallback",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/132568988362",
+      "labels": [
+        "ubuntu-26.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    }
+  ],
+  "reason": "One DOM timeout; exact same DCA tree and recipe passed1287 and isolated local scenario; no threshold or application change."
+}

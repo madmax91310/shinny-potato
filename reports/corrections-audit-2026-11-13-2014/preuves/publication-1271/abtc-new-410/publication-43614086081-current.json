@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-11-14T18:52:30.559500+00:00",
+  "run": 43614086081,
+  "receiptCommit": "ede4ac08679a01ac7ddee04d2f5202a8e980dc8a",
+  "build": {
+    "sha": "f744fc311bdc4dbdf44bd79f457aafe0a31a27f8",
+    "dataSha": "5109bc15ae12bffa4002854cdf5505b28f4b0ebb",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-14T18:43:19.994Z"
+  },
+  "files": [
+    {
+      "path": "src/data/automated-instrument-metadata.json",
+      "expected": "f40d30a800bdd9face440c7b99d34915babd3fe3",
+      "public": "f40d30a800bdd9face440c7b99d34915babd3fe3",
+      "matches": true
+    },
+    {
+      "path": "src/data/instrument-metadata-status.json",
+      "expected": "aab47c429d2f6e9704f4714039e3ccc87fb041dc",
+      "public": "aab47c429d2f6e9704f4714039e3ccc87fb041dc",
+      "matches": true
+    }
+  ],
+  "allMatch": true
+}

@@ -1,0 +1,393 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "anniversary-index-msciEurope",
+          "instrument": "msciEurope",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciUsa",
+          "instrument": "msciUsa",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciIndia",
+          "instrument": "msciIndia",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciEmergingExChina",
+          "instrument": "msciEmergingExChina",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldMomentum",
+          "instrument": "msciWorldMomentum",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldQuality",
+          "instrument": "msciWorldQuality",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldValue",
+          "instrument": "msciWorldValue",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-russell2000",
+          "instrument": "russell2000",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-ftseAllWorld",
+          "instrument": "ftseAllWorld",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_anniversary_indices",
+      "reportStem": "anniversary-indices-observation",
+      "declaredAt": "2026-11-14T14:28:32.362137+00:00",
+      "nonce": "ed58ca15-f1b2-4dfb-bf3a-192ecf5e0302",
+      "codeSha": "14f6d4a28b1f11c7c96ed6471313e06fae476fee",
+      "durablePlan": true,
+      "runId": "43604901220",
+      "attempt": "1",
+      "sha256": "968c8af80f91489653abee6619ede5c3839ad9941414661b9de78039318f4828"
+    },
+    "scope": {
+      "kind": "refresh_anniversary_indices",
+      "mode": "full",
+      "expectedIds": [
+        "anniversary-index-msciEurope",
+        "anniversary-index-msciUsa",
+        "anniversary-index-msciIndia",
+        "anniversary-index-msciEmergingExChina",
+        "anniversary-index-msciWorldMomentum",
+        "anniversary-index-msciWorldQuality",
+        "anniversary-index-msciWorldValue",
+        "anniversary-index-russell2000",
+        "anniversary-index-ftseAllWorld"
+      ],
+      "requestedIds": [
+        "anniversary-index-msciEurope",
+        "anniversary-index-msciUsa",
+        "anniversary-index-msciIndia",
+        "anniversary-index-msciEmergingExChina",
+        "anniversary-index-msciWorldMomentum",
+        "anniversary-index-msciWorldQuality",
+        "anniversary-index-msciWorldValue",
+        "anniversary-index-russell2000",
+        "anniversary-index-ftseAllWorld"
+      ],
+      "items": [
+        {
+          "id": "anniversary-index-msciEurope",
+          "instrument": "msciEurope",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciUsa",
+          "instrument": "msciUsa",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciIndia",
+          "instrument": "msciIndia",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciEmergingExChina",
+          "instrument": "msciEmergingExChina",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldMomentum",
+          "instrument": "msciWorldMomentum",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldQuality",
+          "instrument": "msciWorldQuality",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-msciWorldValue",
+          "instrument": "msciWorldValue",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-russell2000",
+          "instrument": "russell2000",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        },
+        {
+          "id": "anniversary-index-ftseAllWorld",
+          "instrument": "ftseAllWorld",
+          "fields": [
+            "completed official monthly index levels",
+            "USD"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-14T14:28:32.362137+00:00",
+      "planSha256": "968c8af80f91489653abee6619ede5c3839ad9941414661b9de78039318f4828",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "anniversary-index-msciEurope",
+        "anniversary-index-msciUsa",
+        "anniversary-index-msciIndia",
+        "anniversary-index-msciEmergingExChina",
+        "anniversary-index-msciWorldMomentum",
+        "anniversary-index-msciWorldQuality",
+        "anniversary-index-msciWorldValue",
+        "anniversary-index-russell2000",
+        "anniversary-index-ftseAllWorld"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "anniversary-index-msciEurope",
+        "anniversary-index-msciUsa",
+        "anniversary-index-msciIndia",
+        "anniversary-index-msciEmergingExChina",
+        "anniversary-index-msciWorldMomentum",
+        "anniversary-index-msciWorldQuality",
+        "anniversary-index-msciWorldValue",
+        "anniversary-index-russell2000",
+        "anniversary-index-ftseAllWorld"
+      ],
+      "runId": "43604901220",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "ed58ca15-f1b2-4dfb-bf3a-192ecf5e0302"
+    },
+    "outcomes": [
+      {
+        "id": "anniversary-index-msciEurope",
+        "instrument": "msciEurope",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-msciUsa",
+        "instrument": "msciUsa",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-msciIndia",
+        "instrument": "msciIndia",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-msciEmergingExChina",
+        "instrument": "msciEmergingExChina",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-msciWorldMomentum",
+        "instrument": "msciWorldMomentum",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-msciWorldQuality",
+        "instrument": "msciWorldQuality",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-msciWorldValue",
+        "instrument": "msciWorldValue",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-russell2000",
+        "instrument": "russell2000",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "anniversary-index-ftseAllWorld",
+        "instrument": "ftseAllWorld",
+        "fields": [
+          "completed official monthly index levels",
+          "USD"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : completed official monthly index levels, USD",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

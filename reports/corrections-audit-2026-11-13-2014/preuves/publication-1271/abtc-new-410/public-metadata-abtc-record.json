@@ -1,0 +1,53 @@
+{
+  "dataSha": "5109bc15ae12bffa4002854cdf5505b28f4b0ebb",
+  "record": {
+    "replicationMethod": {
+      "value": "Physical",
+      "checkedAt": "2026-11-14",
+      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
+      "sha256": "ca8fe1c163388ed65d088b5920cd236b9322c3e1f6578d814c303f6097893fb2"
+    },
+    "distribution": {
+      "value": "Accumulating",
+      "checkedAt": "2026-11-14",
+      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
+      "sha256": "ca8fe1c163388ed65d088b5920cd236b9322c3e1f6578d814c303f6097893fb2"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "ABTC",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "CH0454664001 | Euronext Paris | ABTC FP | EUR | issuer response 2026-11-14T17:10:30.939Z",
+          "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+          "checkedAt": "2026-11-14",
+          "sha256": "ec070ed43fb005eaf76346ffbf7fe4e83f9b3b474ec54b2ef643d68200f60ebd",
+          "evidenceId": "CH0454664001-XPAR-ABTC-EUR"
+        }
+      ],
+      "checkedAt": "2026-11-14",
+      "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "sha256": "ec070ed43fb005eaf76346ffbf7fe4e83f9b3b474ec54b2ef643d68200f60ebd"
+    },
+    "domicile": {
+      "value": "Switzerland",
+      "checkedAt": "2026-11-14",
+      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
+      "sha256": "ca8fe1c163388ed65d088b5920cd236b9322c3e1f6578d814c303f6097893fb2"
+    },
+    "currencyHedge": {
+      "value": false,
+      "checkedAt": "2026-11-14",
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
+      "sha256": "6506b0fb293ef43c4f422f4156928c4af5a571a559688db1ca868cd54cb21f2d"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-11-14",
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-21shares-btc-etp-ABTC-CH0454664001-23",
+      "sha256": "6e5612eb66a0200fb7bda8df1fb871fd4ec959f844302e982c3d1d71a2027f48"
+    }
+  }
+}

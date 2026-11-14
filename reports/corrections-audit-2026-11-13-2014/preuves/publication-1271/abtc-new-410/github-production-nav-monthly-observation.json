@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-14T17:26:40.528892+00:00",
+  "scope": {
+    "requestedIds": [
+      "etfCH0454664001Nav"
+    ],
+    "expectedIds": [
+      "etfCH0454664001Nav"
+    ],
+    "selection": "explicit"
+  },
+  "series": [
+    {
+      "id": "etfCH0454664001Nav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "5a6b3905f103188b3c66d710968da302b4cd3d5bf09a7043ab4b6dbde2b53478",
+      "controlScope": {
+        "controlledInstrument": "CH0454664001",
+        "controlledFields": [
+          "product_details.details.isin",
+          "product_details.ticker",
+          "product_details.currency.short_name",
+          "product_details.inception_date",
+          "product_details.valuation_date",
+          "product_details.nav_per_unit",
+          "product_valuation_history.valuation_date",
+          "product_valuation_history.nav_per_share",
+          "product_valuation_history.fiat_denominator",
+          "product_valuation_history.index:split-check-only",
+          "product_performance_metrics.performance_monthly",
+          "product_performance_metrics.performance_details"
+        ],
+        "requestedStart": "2019-03-01",
+        "controlledCalendarYears": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    }
+  ]
+}

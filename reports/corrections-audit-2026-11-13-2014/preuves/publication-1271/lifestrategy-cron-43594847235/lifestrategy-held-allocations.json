@@ -1,0 +1,207 @@
+{
+  "updated": [
+    "IE00BK5BQW10"
+  ],
+  "successes": [
+    {
+      "id": "vanguard-underlier:IE00BK5BQW10"
+    }
+  ],
+  "errors": [],
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "vanguard-underlier:IE00BFMXYX26",
+          "instrument": "IE00BFMXYX26",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": false,
+          "reason": "Outside requested underlying-share selection"
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQZ41",
+          "instrument": "IE00BK5BQZ41",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": false,
+          "reason": "Outside requested underlying-share selection"
+        },
+        {
+          "id": "vanguard-underlier:IE00BKX55R35",
+          "instrument": "IE00BKX55R35",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": false,
+          "reason": "Outside requested underlying-share selection"
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQW10",
+          "instrument": "IE00BK5BQW10",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "targeted",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_vanguard_sleeves",
+      "reportStem": "lifestrategy-held-allocations",
+      "declaredAt": "2026-11-14T12:34:12.528873+00:00",
+      "nonce": "3551d0e8-7fa3-443e-9dd5-2c4dc7f0593f",
+      "codeSha": "62534ca446cb5c75a460abaac20fc59c0c99cb15",
+      "durablePlan": true,
+      "runId": "43594847235",
+      "attempt": "1",
+      "sha256": "fbf9930e11915f4157ada56ae5aa7fc2ed65753decd0ab8d4912d5b1fb84c4f6"
+    },
+    "scope": {
+      "kind": "collect_vanguard_sleeves",
+      "mode": "targeted",
+      "expectedIds": [
+        "vanguard-underlier:IE00BFMXYX26",
+        "vanguard-underlier:IE00BK5BQZ41",
+        "vanguard-underlier:IE00BKX55R35",
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "requestedIds": [
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "items": [
+        {
+          "id": "vanguard-underlier:IE00BFMXYX26",
+          "instrument": "IE00BFMXYX26",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": false,
+          "reason": "Outside requested underlying-share selection"
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQZ41",
+          "instrument": "IE00BK5BQZ41",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": false,
+          "reason": "Outside requested underlying-share selection"
+        },
+        {
+          "id": "vanguard-underlier:IE00BKX55R35",
+          "instrument": "IE00BKX55R35",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": false,
+          "reason": "Outside requested underlying-share selection"
+        },
+        {
+          "id": "vanguard-underlier:IE00BK5BQW10",
+          "instrument": "IE00BK5BQW10",
+          "fields": [
+            "countries",
+            "sectors",
+            "factsheet/API identity"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-14T12:34:12.528873+00:00",
+      "planSha256": "fbf9930e11915f4157ada56ae5aa7fc2ed65753decd0ab8d4912d5b1fb84c4f6",
+      "attemptedIds": [
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [
+        "vanguard-underlier:IE00BK5BQW10"
+      ],
+      "networkAttemptUnknownIds": [],
+      "runId": "43594847235",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "3551d0e8-7fa3-443e-9dd5-2c4dc7f0593f"
+    },
+    "outcomes": [
+      {
+        "id": "vanguard-underlier:IE00BFMXYX26",
+        "instrument": "IE00BFMXYX26",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": false,
+        "reason": "Outside requested underlying-share selection",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "vanguard-underlier:IE00BK5BQZ41",
+        "instrument": "IE00BK5BQZ41",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": false,
+        "reason": "Outside requested underlying-share selection",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "vanguard-underlier:IE00BKX55R35",
+        "instrument": "IE00BKX55R35",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": false,
+        "reason": "Outside requested underlying-share selection",
+        "operationAttempted": false,
+        "status": "not-attempted",
+        "sourceAttempted": false
+      },
+      {
+        "id": "vanguard-underlier:IE00BK5BQW10",
+        "instrument": "IE00BK5BQW10",
+        "fields": [
+          "countries",
+          "sectors",
+          "factsheet/API identity"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

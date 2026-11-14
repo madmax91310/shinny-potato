@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-11-14T07:42:36.181187+00:00",
+  "source": "https://query1.finance.yahoo.com/v8/finance/chart/BTCF.DE?range=max&interval=1mo&events=div%2Csplits&includeAdjustedClose=true",
+  "sha256": "02496539531d5c6bcf0857e23b8d1ca53cafc82404de49fc57daa92a31bd97b5",
+  "kind": "real-local-acquisition",
+  "meta": {
+    "currency": "USD",
+    "symbol": "BTCF.DE",
+    "exchangeName": "GER",
+    "fullExchangeName": "XETRA",
+    "instrumentType": "EQUITY",
+    "firstTradeDate": null,
+    "regularMarketTime": 1794587749,
+    "hasPrePostMarketData": false,
+    "gmtoffset": 3600,
+    "timezone": "CET",
+    "exchangeTimezoneName": "Europe/Berlin",
+    "regularMarketPrice": 60.35,
+    "regularMarketChangePercent": -4.153,
+    "fulldayPrice": 60.35,
+    "fulldayChange": -2.615,
+    "fulldayChangePercent": -4.153,
+    "fiftyTwoWeekHigh": 60.94,
+    "fiftyTwoWeekLow": 60.35,
+    "regularMarketDayHigh": 60.94,
+    "regularMarketDayLow": 60.35,
+    "regularMarketVolume": 4936,
+    "longName": "Bitwise Physical Bitcoin ETC",
+    "shortName": "Bitwise Europe GmbH           O",
+    "chartPreviousClose": 62.965,
+    "priceHint": 2,
+    "currentTradingPeriod": {
+      "pre": {
+        "timezone": "CET",
+        "start": 1794549600,
+        "end": 1794556800,
+        "gmtoffset": 3600
+      },
+      "regular": {
+        "timezone": "CET",
+        "start": 1794556800,
+        "end": 1794587400,
+        "gmtoffset": 3600
+      },
+      "post": {
+        "timezone": "CET",
+        "start": 1794587400,
+        "end": 1794598200,
+        "gmtoffset": 3600
+      }
+    },
+    "dataGranularity": "1y",
+    "range": "max",
+    "validRanges": [
+      "1d",
+      "5d"
+    ]
+  },
+  "months": 1,
+  "first": "2026-11-13T16:35:49+00:00",
+  "last": "2026-11-13T16:35:49+00:00",
+  "validCloses": 1,
+  "events": {}
+}

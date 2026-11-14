@@ -1,0 +1,85 @@
+..............................................................
+----------------------------------------------------------------------
+Ran 62 tests in 4.551s
+
+OK
+...................................................................................................EEE..............E.....................................
+======================================================================
+ERROR: test_archived_nav_anchor_does_not_admit_a_different_class_or_currency (test_wisdomtree_performance_history.ExistingBlockedShares.test_archived_nav_anchor_does_not_admit_a_different_class_or_currency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/test_wisdomtree_performance_history.py", line 144, in test_archived_nav_anchor_does_not_admit_a_different_class_or_currency
+    with self.assertRaises(ValueError):anchor_for({**s,**patch})
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/wisdomtree_performance_history.py", line 73, in anchor_for
+    raw = gzip.decompress((ROOT/anchor['navFile']).read_bytes())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/wisdomtree-decimal-20261114/reports/reliquat-2026-10-23/preuves/IE00BDVPNG13-wisdom-daily.json.gz'
+
+======================================================================
+ERROR: test_five_exact_existing_shares_retain_dates_units_and_all_calendar_gates (test_wisdomtree_performance_history.ExistingBlockedShares.test_five_exact_existing_shares_retain_dates_units_and_all_calendar_gates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/test_wisdomtree_performance_history.py", line 118, in test_five_exact_existing_shares_retain_dates_units_and_all_calendar_gates
+    r=collect_one(s,NOW,document_fetch=fetch)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/collect_official_share_history.py", line 312, in collect_one
+    nav,calendar_proof=performance_parse(graph,table,source,anchor_for(source),now)
+                                                            ^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/wisdomtree_performance_history.py", line 73, in anchor_for
+    raw = gzip.decompress((ROOT/anchor['navFile']).read_bytes())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/wisdomtree-decimal-20261114/reports/reliquat-2026-10-23/preuves/IE00BDVPNG13-wisdom-daily.json.gz'
+
+======================================================================
+ERROR: test_independently_refreshed_table_requires_each_closed_calendar_match (test_wisdomtree_performance_history.ExistingBlockedShares.test_independently_refreshed_table_requires_each_closed_calendar_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/test_wisdomtree_performance_history.py", line 135, in test_independently_refreshed_table_requires_each_closed_calendar_match
+    g=json.loads(fixture(s,'graph'));t=json.loads(fixture(s,'tabular'));a=anchor_for(s)
+                                                                          ^^^^^^^^^^^^^
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/wisdomtree_performance_history.py", line 73, in anchor_for
+    raw = gzip.decompress((ROOT/anchor['navFile']).read_bytes())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/wisdomtree-decimal-20261114/reports/reliquat-2026-10-23/preuves/IE00BDVPNG13-wisdom-daily.json.gz'
+
+======================================================================
+ERROR: test_real_feed_shape_withholds_october_and_preserves_earlier_months (test_wisdomtree_performance_history.TrailingMonth.test_real_feed_shape_withholds_october_and_preserves_earlier_months)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/test_wisdomtree_performance_history.py", line 84, in test_real_feed_shape_withholds_october_and_preserves_earlier_months
+    points,proof=parse(graph,table,s,anchor_for(s),now)
+                                     ^^^^^^^^^^^^^
+  File "/dev/shm/wisdomtree-decimal-20261114/scripts/wisdomtree_performance_history.py", line 73, in anchor_for
+    raw = gzip.decompress((ROOT/anchor['navFile']).read_bytes())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/wisdomtree-decimal-20261114/reports/reliquat-2026-10-23/preuves/JE00BN7KB334-wisdom-daily.json.gz'
+
+----------------------------------------------------------------------
+Ran 154 tests in 9.209s
+
+FAILED (errors=4)

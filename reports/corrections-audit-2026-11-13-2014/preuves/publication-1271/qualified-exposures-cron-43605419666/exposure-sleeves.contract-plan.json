@@ -1,0 +1,611 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "exposure-sleeve:IE00B4L5Y983",
+          "instrument": "IE00B4L5Y983",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BKM4GZ66",
+          "instrument": "IE00BKM4GZ66",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BF4RFH31",
+          "instrument": "IE00BF4RFH31",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00B441G979",
+          "instrument": "IE00B441G979",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BQT3WG13",
+          "instrument": "IE00BQT3WG13",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:239656",
+          "instrument": "239656",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:239710",
+          "instrument": "239710",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:239716",
+          "instrument": "239716",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:US8740391003",
+          "instrument": "US8740391003",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:GB0009895292",
+          "instrument": "GB0009895292",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE000UL6CLP7",
+          "instrument": "IE000UL6CLP7",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE0003R87OG3",
+          "instrument": "IE0003R87OG3",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BM8R0J59",
+          "instrument": "IE00BM8R0J59",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:avantis-AVDV",
+          "instrument": "avantis-AVDV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:avantis-AVUV",
+          "instrument": "avantis-AVUV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:morningstar-SILV",
+          "instrument": "morningstar-SILV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_exposure_sleeves",
+      "reportStem": "exposure-sleeves",
+      "declaredAt": "2026-11-14T14:51:03.719927+00:00",
+      "nonce": "1e027595-d5d2-41cb-9e21-804f19d14d21",
+      "codeSha": "f876bf22cb53665a3d56e1efe5b1363629cbf094",
+      "durablePlan": true,
+      "runId": "43605419666",
+      "attempt": "1",
+      "sha256": "b1dc0649b084af02bc86716101197116f3f0c9943352258d3710e804ed795fca"
+    },
+    "scope": {
+      "kind": "collect_exposure_sleeves",
+      "mode": "full",
+      "expectedIds": [
+        "exposure-sleeve:IE00B4L5Y983",
+        "exposure-sleeve:IE00BKM4GZ66",
+        "exposure-sleeve:IE00BF4RFH31",
+        "exposure-sleeve:IE00B441G979",
+        "exposure-sleeve:IE00BQT3WG13",
+        "exposure-sleeve:239656",
+        "exposure-sleeve:239710",
+        "exposure-sleeve:239716",
+        "exposure-sleeve:US8740391003",
+        "exposure-sleeve:GB0009895292",
+        "exposure-sleeve:IE000UL6CLP7",
+        "exposure-sleeve:IE0003R87OG3",
+        "exposure-sleeve:IE00BM8R0J59",
+        "exposure-sleeve:avantis-AVDV",
+        "exposure-sleeve:avantis-AVUV",
+        "exposure-sleeve:morningstar-SILV"
+      ],
+      "requestedIds": [
+        "exposure-sleeve:IE00B4L5Y983",
+        "exposure-sleeve:IE00BKM4GZ66",
+        "exposure-sleeve:IE00BF4RFH31",
+        "exposure-sleeve:IE00B441G979",
+        "exposure-sleeve:IE00BQT3WG13",
+        "exposure-sleeve:239656",
+        "exposure-sleeve:239710",
+        "exposure-sleeve:239716",
+        "exposure-sleeve:US8740391003",
+        "exposure-sleeve:GB0009895292",
+        "exposure-sleeve:IE000UL6CLP7",
+        "exposure-sleeve:IE0003R87OG3",
+        "exposure-sleeve:IE00BM8R0J59",
+        "exposure-sleeve:avantis-AVDV",
+        "exposure-sleeve:avantis-AVUV",
+        "exposure-sleeve:morningstar-SILV"
+      ],
+      "items": [
+        {
+          "id": "exposure-sleeve:IE00B4L5Y983",
+          "instrument": "IE00B4L5Y983",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BKM4GZ66",
+          "instrument": "IE00BKM4GZ66",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BF4RFH31",
+          "instrument": "IE00BF4RFH31",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00B441G979",
+          "instrument": "IE00B441G979",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BQT3WG13",
+          "instrument": "IE00BQT3WG13",
+          "fields": [
+            "economic country/sector classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:239656",
+          "instrument": "239656",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:239710",
+          "instrument": "239710",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:239716",
+          "instrument": "239716",
+          "fields": [
+            "US holdings classification source"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:US8740391003",
+          "instrument": "US8740391003",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:GB0009895292",
+          "instrument": "GB0009895292",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE000UL6CLP7",
+          "instrument": "IE000UL6CLP7",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE0003R87OG3",
+          "instrument": "IE0003R87OG3",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:IE00BM8R0J59",
+          "instrument": "IE00BM8R0J59",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:avantis-AVDV",
+          "instrument": "avantis-AVDV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:avantis-AVUV",
+          "instrument": "avantis-AVUV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "exposure-sleeve:morningstar-SILV",
+          "instrument": "morningstar-SILV",
+          "fields": [
+            "economic sleeve classification"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-14T14:51:03.719927+00:00",
+      "planSha256": "b1dc0649b084af02bc86716101197116f3f0c9943352258d3710e804ed795fca",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "exposure-sleeve:IE00B4L5Y983",
+        "exposure-sleeve:IE00BKM4GZ66",
+        "exposure-sleeve:IE00BF4RFH31",
+        "exposure-sleeve:IE00B441G979",
+        "exposure-sleeve:IE00BQT3WG13",
+        "exposure-sleeve:239656",
+        "exposure-sleeve:239710",
+        "exposure-sleeve:239716",
+        "exposure-sleeve:US8740391003",
+        "exposure-sleeve:GB0009895292",
+        "exposure-sleeve:IE000UL6CLP7",
+        "exposure-sleeve:IE0003R87OG3",
+        "exposure-sleeve:IE00BM8R0J59",
+        "exposure-sleeve:avantis-AVDV",
+        "exposure-sleeve:avantis-AVUV",
+        "exposure-sleeve:morningstar-SILV"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "exposure-sleeve:IE00B4L5Y983",
+        "exposure-sleeve:IE00BKM4GZ66",
+        "exposure-sleeve:IE00BF4RFH31",
+        "exposure-sleeve:IE00B441G979",
+        "exposure-sleeve:IE00BQT3WG13",
+        "exposure-sleeve:239656",
+        "exposure-sleeve:239710",
+        "exposure-sleeve:239716",
+        "exposure-sleeve:US8740391003",
+        "exposure-sleeve:GB0009895292",
+        "exposure-sleeve:IE000UL6CLP7",
+        "exposure-sleeve:IE0003R87OG3",
+        "exposure-sleeve:IE00BM8R0J59",
+        "exposure-sleeve:avantis-AVDV",
+        "exposure-sleeve:avantis-AVUV",
+        "exposure-sleeve:morningstar-SILV"
+      ],
+      "runId": "43605419666",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "1e027595-d5d2-41cb-9e21-804f19d14d21"
+    },
+    "outcomes": [
+      {
+        "id": "exposure-sleeve:IE00B4L5Y983",
+        "instrument": "IE00B4L5Y983",
+        "fields": [
+          "economic country/sector classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic country/sector classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:IE00BKM4GZ66",
+        "instrument": "IE00BKM4GZ66",
+        "fields": [
+          "economic country/sector classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic country/sector classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:IE00BF4RFH31",
+        "instrument": "IE00BF4RFH31",
+        "fields": [
+          "economic country/sector classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic country/sector classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:IE00B441G979",
+        "instrument": "IE00B441G979",
+        "fields": [
+          "economic country/sector classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic country/sector classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:IE00BQT3WG13",
+        "instrument": "IE00BQT3WG13",
+        "fields": [
+          "economic country/sector classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic country/sector classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:239656",
+        "instrument": "239656",
+        "fields": [
+          "US holdings classification source"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : US holdings classification source",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:239710",
+        "instrument": "239710",
+        "fields": [
+          "US holdings classification source"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : US holdings classification source",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:239716",
+        "instrument": "239716",
+        "fields": [
+          "US holdings classification source"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : US holdings classification source",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:US8740391003",
+        "instrument": "US8740391003",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:GB0009895292",
+        "instrument": "GB0009895292",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:IE000UL6CLP7",
+        "instrument": "IE000UL6CLP7",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:IE0003R87OG3",
+        "instrument": "IE0003R87OG3",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:IE00BM8R0J59",
+        "instrument": "IE00BM8R0J59",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:avantis-AVDV",
+        "instrument": "avantis-AVDV",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:avantis-AVUV",
+        "instrument": "avantis-AVUV",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "exposure-sleeve:morningstar-SILV",
+        "instrument": "morningstar-SILV",
+        "fields": [
+          "economic sleeve classification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : economic sleeve classification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

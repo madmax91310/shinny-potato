@@ -1,0 +1,61 @@
+{
+  "as_of": "2026-11-14T21:13:12.868593+00:00",
+  "data": {
+    "identity": {
+      "slug": "pabrai",
+      "archetype": "hedge_fund",
+      "displayName": "Mohnish Pabrai",
+      "entityName": "Dalal Street LLC",
+      "dataProvider": "FolioFact"
+    },
+    "snapshot": {
+      "periodEnd": "2026-09-30",
+      "holdings": [
+        {
+          "issuerName": "Warrior Met Coal Inc.",
+          "ticker": "HCC",
+          "putCall": null,
+          "weight": 0.45420857833913725,
+          "isNew": false,
+          "sharesChangePct": 7.1
+        },
+        {
+          "issuerName": "Transocean Ltd.",
+          "ticker": "RIG",
+          "putCall": null,
+          "weight": 0.4121108716483694,
+          "isNew": false,
+          "sharesChangePct": 39.6
+        },
+        {
+          "issuerName": "Alpha Metallurgical Resour I",
+          "ticker": "AMR",
+          "putCall": null,
+          "weight": 0.07933000569523287,
+          "isNew": false,
+          "sharesChangePct": -67.0
+        },
+        {
+          "issuerName": "Kaspi KZ JSC",
+          "ticker": "KSPI",
+          "putCall": null,
+          "weight": 0.054350544317260496,
+          "isNew": false,
+          "sharesChangePct": 12192.1
+        }
+      ],
+      "quarterChanges": {
+        "priorPeriodLabel": "Q2 2026",
+        "exits": []
+      }
+    },
+    "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds",
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds",
+        "snapshotUrl": "data/investors/archive/pabrai/2026-06-30.json"
+      }
+    ]
+  }
+}

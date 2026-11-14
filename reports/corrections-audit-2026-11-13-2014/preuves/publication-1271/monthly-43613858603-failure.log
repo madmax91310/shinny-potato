@@ -1,0 +1,120 @@
+refresh	Commit validated observations	﻿2026-11-14T17:00:09.2615121Z ##[group]Run git config user.name 'github-actions[bot]'
+refresh	Commit validated observations	2026-11-14T17:00:09.2615477Z [36;1mgit config user.name 'github-actions[bot]'[0m
+refresh	Commit validated observations	2026-11-14T17:00:09.2615843Z [36;1mgit config user.email '41898282+github-actions[bot]@users.noreply.github.com'[0m
+refresh	Commit validated observations	2026-11-14T17:00:09.2616370Z [36;1mif [[ '' == 'true' ]]; then[0m
+refresh	Commit validated observations	2026-11-14T17:00:09.2616868Z [36;1m  bash scripts/commit-validated-data.sh 'Refresh verified common listing identities' src/data/shared-listing-identities.json[0m
+refresh	Commit validated observations	2026-11-14T17:00:09.2617347Z [36;1melse[0m
+refresh	Commit validated observations	2026-11-14T17:00:09.2620639Z [36;1mbash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/shared-listing-identities.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json[0m
+refresh	Commit validated observations	2026-11-14T17:00:09.2624106Z [36;1mfi[0m
+refresh	Commit validated observations	2026-11-14T17:00:09.2667931Z shell: /usr/bin/bash -e {0}
+refresh	Commit validated observations	2026-11-14T17:00:09.2668147Z env:
+refresh	Commit validated observations	2026-11-14T17:00:09.2668371Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Commit validated observations	2026-11-14T17:00:09.2668735Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+refresh	Commit validated observations	2026-11-14T17:00:09.2669082Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Commit validated observations	2026-11-14T17:00:09.2669388Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Commit validated observations	2026-11-14T17:00:09.2669694Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Commit validated observations	2026-11-14T17:00:09.2670003Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+refresh	Commit validated observations	2026-11-14T17:00:09.2670346Z   VALIDATED_DATA_CHECK: bash scripts/validate-market-publication.sh
+refresh	Commit validated observations	2026-11-14T17:00:09.2670706Z   VALIDATED_DATA_PREPARE: bash scripts/prepare-market-projections.sh
+refresh	Commit validated observations	2026-11-14T17:00:09.2671943Z   VALIDATED_DATA_DERIVED_PATHS: ["src/data/equity-history-links.json","docs/equity-identity-gaps.json","src/data/monthly-duel-returns.json","src/data/equity-duel-returns.json","src/data/ranking-annual.json","src/data/ranking-index-annual.json","src/data/ranking-ftse.json","src/data/performance-links.json","src/data/simulation-links.json"]
+refresh	Commit validated observations	2026-11-14T17:00:09.2672929Z ##[endgroup]
+refresh	Commit validated observations	2026-11-14T17:00:09.4242293Z Preparing worktree (detached HEAD b4e1baf)
+refresh	Commit validated observations	2026-11-14T17:00:10.4589096Z Updating files:  30% (2573/8362)
+refresh	Commit validated observations	2026-11-14T17:00:10.5031252Z Updating files:  31% (2593/8362)
+refresh	Commit validated observations	2026-11-14T17:00:10.5628121Z Updating files:  32% (2676/8362)
+refresh	Commit validated observations	2026-11-14T17:00:10.5775997Z Updating files:  33% (2760/8362)
+refresh	Commit validated observations	2026-11-14T17:00:10.6679440Z Updating files:  34% (2844/8362)
+refresh	Commit validated observations	2026-11-14T17:00:10.7915683Z Updating files:  35% (2927/8362)
+refresh	Commit validated observations	2026-11-14T17:00:10.8067223Z Updating files:  36% (3011/8362)
+refresh	Commit validated observations	2026-11-14T17:00:10.8385319Z Updating files:  37% (3094/8362)
+refresh	Commit validated observations	2026-11-14T17:00:11.3067345Z Updating files:  38% (3178/8362)
+refresh	Commit validated observations	2026-11-14T17:00:11.4030116Z Updating files:  39% (3262/8362)
+refresh	Commit validated observations	2026-11-14T17:00:11.4433356Z Updating files:  40% (3345/8362)
+refresh	Commit validated observations	2026-11-14T17:00:11.4618839Z Updating files:  40% (3423/8362)
+refresh	Commit validated observations	2026-11-14T17:00:11.4994057Z Updating files:  41% (3429/8362)
+refresh	Commit validated observations	2026-11-14T17:00:11.6267444Z Updating files:  42% (3513/8362)
+refresh	Commit validated observations	2026-11-14T17:00:12.0105385Z Updating files:  43% (3596/8362)
+refresh	Commit validated observations	2026-11-14T17:00:12.0447140Z Updating files:  44% (3680/8362)
+refresh	Commit validated observations	2026-11-14T17:00:12.4504553Z Updating files:  45% (3763/8362)
+refresh	Commit validated observations	2026-11-14T17:00:12.5769538Z Updating files:  45% (3819/8362)
+refresh	Commit validated observations	2026-11-14T17:00:12.9093454Z Updating files:  46% (3847/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.0033564Z Updating files:  47% (3931/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.0364907Z Updating files:  48% (4014/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.2072514Z Updating files:  49% (4098/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.2362892Z Updating files:  50% (4181/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.2931001Z Updating files:  51% (4265/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.3329136Z Updating files:  52% (4349/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.5167895Z Updating files:  53% (4432/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.6131181Z Updating files:  53% (4454/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.6867501Z Updating files:  54% (4516/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.7719412Z Updating files:  55% (4600/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.9031248Z Updating files:  56% (4683/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.9203283Z Updating files:  57% (4767/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.9452910Z Updating files:  58% (4850/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.9568817Z Updating files:  59% (4934/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.9641276Z Updating files:  60% (5018/8362)
+refresh	Commit validated observations	2026-11-14T17:00:13.9867193Z Updating files:  61% (5101/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0030724Z Updating files:  62% (5185/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0164285Z Updating files:  63% (5269/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0222890Z Updating files:  64% (5352/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0279399Z Updating files:  65% (5436/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0331073Z Updating files:  66% (5519/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0392638Z Updating files:  67% (5603/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0500375Z Updating files:  68% (5687/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0671780Z Updating files:  69% (5770/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.0985003Z Updating files:  70% (5854/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.1085358Z Updating files:  71% (5938/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.1314550Z Updating files:  72% (6021/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.1465657Z Updating files:  73% (6105/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.1581014Z Updating files:  74% (6188/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.1726116Z Updating files:  75% (6272/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.1796982Z Updating files:  76% (6356/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.1931200Z Updating files:  77% (6439/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2073942Z Updating files:  78% (6523/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2152694Z Updating files:  79% (6606/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2210441Z Updating files:  80% (6690/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2258304Z Updating files:  81% (6774/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2314195Z Updating files:  82% (6857/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2868840Z Updating files:  83% (6941/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2950077Z Updating files:  84% (7025/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.2992528Z Updating files:  85% (7108/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.3033817Z Updating files:  86% (7192/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.3077859Z Updating files:  87% (7275/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.3126142Z Updating files:  88% (7359/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.3172203Z Updating files:  89% (7443/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.3218651Z Updating files:  90% (7526/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.4349083Z Updating files:  91% (7610/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.4381094Z Updating files:  91% (7676/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.4513410Z Updating files:  92% (7694/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5066412Z Updating files:  93% (7777/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5097737Z Updating files:  94% (7861/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5165789Z Updating files:  95% (7944/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5487606Z Updating files:  96% (8028/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5533189Z Updating files:  97% (8112/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5592846Z Updating files:  98% (8195/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5637483Z Updating files:  99% (8279/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5637926Z Updating files: 100% (8362/8362)
+refresh	Commit validated observations	2026-11-14T17:00:14.5638368Z Updating files: 100% (8362/8362), done.
+refresh	Commit validated observations	2026-11-14T17:00:14.5703062Z HEAD is now at b4e1baf Refresh validated monthly market histories
+refresh	Commit validated observations	2026-11-14T17:00:14.9080629Z From https://github.com/madmax91310/shinny-potato
+refresh	Commit validated observations	2026-11-14T17:00:14.9081161Z  * branch            master     -> FETCH_HEAD
+refresh	Commit validated observations	2026-11-14T17:00:14.9081469Z    4712c56..2fbd406  master     -> origin/master
+refresh	Commit validated observations	2026-11-14T17:00:15.7795317Z Rebasing (1/1)
+refresh	Commit validated observations	2026-11-14T17:00:15.7795967Z Successfully rebased and updated detached HEAD.
+refresh	Commit validated observations	2026-11-14T17:00:17.7876142Z Traceback (most recent call last):
+refresh	Commit validated observations	2026-11-14T17:00:17.7877007Z   File "/tmp/tmp.MgwRPxur0K/checkout/scripts/market_reader_revalidation.py", line 214, in <module>
+refresh	Commit validated observations	2026-11-14T17:00:17.7877636Z     print(json.dumps(operation(args.base, args.upstream), sort_keys=True))
+refresh	Commit validated observations	2026-11-14T17:00:17.7878080Z                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+refresh	Commit validated observations	2026-11-14T17:00:17.7878583Z   File "/tmp/tmp.MgwRPxur0K/checkout/scripts/market_reader_revalidation.py", line 191, in check
+refresh	Commit validated observations	2026-11-14T17:00:17.7879291Z     permitted |= subscriber_readers(base, upstream, paths, MARKET_ACQUISITION_ENTRIES)
+refresh	Commit validated observations	2026-11-14T17:00:17.7879704Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+refresh	Commit validated observations	2026-11-14T17:00:17.7880216Z   File "/tmp/tmp.MgwRPxur0K/checkout/scripts/market_reader_revalidation.py", line 164, in subscriber_readers
+refresh	Commit validated observations	2026-11-14T17:00:17.7880841Z     raise ValueError('Protected acquisition/validation configuration changed: ' + path)
+refresh	Commit validated observations	2026-11-14T17:00:17.7881459Z ValueError: Protected acquisition/validation configuration changed: scripts/ci-browser-checks.json
+refresh	Commit validated observations	2026-11-14T17:00:18.4510410Z ##[error]Process completed with exit code 1.
+report-failures	Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"	﻿2026-11-14T17:00:23.6554977Z ##[group]Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"
+report-failures	Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:00:23.6556448Z [36;1mecho 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"[0m
+report-failures	Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:00:23.6557390Z [36;1mexit 1[0m
+report-failures	Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:00:23.7390269Z shell: /usr/bin/bash -e {0}
+report-failures	Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:00:23.7391018Z ##[endgroup]
+report-failures	Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:00:23.7568835Z ##[error]Process completed with exit code 1.

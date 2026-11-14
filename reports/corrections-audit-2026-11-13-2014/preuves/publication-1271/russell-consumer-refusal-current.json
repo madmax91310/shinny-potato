@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-14T11:53:39.785Z",
+  "dataSource": "production-1271-recorded-books.json; source receipt5abc8f57, public manifest verified",
+  "qualifiedCurrentSource": true,
+  "actualConsumerQualification": [
+    {
+      "asset": "LU1681038672",
+      "isin": "LU1681038672",
+      "asOf": "2026-11-12",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+      "valid": true,
+      "complete": false,
+      "reasons": [
+        "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+      ],
+      "sourceCoverage": 100.00139999999998,
+      "identifiedCoverage": 100.00139999999998,
+      "unidentifiedCoverage": 0,
+      "residualWeight": -0.001399999999975421
+    }
+  ],
+  "pairFull": false,
+  "pairOverlap": null,
+  "distinction": "Source complete-file flag does not certify full-overlap admission. Existing sum control retained."
+}

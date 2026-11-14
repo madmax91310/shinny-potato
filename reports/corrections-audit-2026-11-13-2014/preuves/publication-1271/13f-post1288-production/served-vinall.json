@@ -1,0 +1,126 @@
+{
+  "as_of": "2026-10-16T07:08:27.209574+00:00",
+  "data": {
+    "identity": {
+      "slug": "vinall",
+      "archetype": "hedge_fund",
+      "displayName": "Robert Vinall",
+      "entityName": "RV Capital GmbH",
+      "dataProvider": "FolioFact"
+    },
+    "snapshot": {
+      "periodEnd": "2026-06-30",
+      "holdings": [
+        {
+          "issuerName": "Carvana Co.",
+          "ticker": "CVNA",
+          "putCall": null,
+          "weight": 0.3031184126232204,
+          "isNew": false,
+          "sharesChangePct": 367.3
+        },
+        {
+          "issuerName": "Meta Platforms Inc.",
+          "ticker": "META",
+          "putCall": null,
+          "weight": 0.20448746172707083,
+          "isNew": false,
+          "sharesChangePct": -4.5
+        },
+        {
+          "issuerName": "Credit Accep Corp. Mich",
+          "ticker": "CACC",
+          "putCall": null,
+          "weight": 0.18005596233875107,
+          "isNew": false,
+          "sharesChangePct": -12.8
+        },
+        {
+          "issuerName": "Interactive Brokers Group In",
+          "ticker": "IBKR",
+          "putCall": null,
+          "weight": 0.12754913789309452,
+          "isNew": false,
+          "sharesChangePct": -26.0
+        },
+        {
+          "issuerName": "H World Group Ltd.",
+          "ticker": "HTHT",
+          "putCall": null,
+          "weight": 0.0559423067386726,
+          "isNew": false,
+          "sharesChangePct": -8.1
+        },
+        {
+          "issuerName": "Yum China Holdings Inc.",
+          "ticker": "YUMC",
+          "putCall": null,
+          "weight": 0.042485411948136376,
+          "isNew": false,
+          "sharesChangePct": -5.6
+        },
+        {
+          "issuerName": "Microsoft Corp.",
+          "ticker": "MSFT",
+          "putCall": null,
+          "weight": 0.03224700078268233,
+          "isNew": false,
+          "sharesChangePct": 31.2
+        },
+        {
+          "issuerName": "Alphabet Inc.",
+          "ticker": "GOOG(L)",
+          "putCall": null,
+          "weight": 0.030352735035555894,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Deere & Co.",
+          "ticker": "DE",
+          "putCall": null,
+          "weight": 0.008285167203955971,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Paycom Software Inc.",
+          "ticker": "PAYC",
+          "putCall": null,
+          "weight": 0.007022758661812784,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Salesforce Inc.",
+          "ticker": "CRM",
+          "putCall": null,
+          "weight": 0.006346394869675736,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Morningstar Inc.",
+          "ticker": "MORN",
+          "putCall": null,
+          "weight": 0.0015076870836584868,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Spotify Technology S.A.",
+          "ticker": "SPOT",
+          "putCall": null,
+          "weight": 0.0005995630937129691,
+          "isNew": false,
+          "sharesChangePct": null
+        }
+      ],
+      "quarterChanges": {
+        "priorPeriodLabel": "Q1 2026",
+        "exits": []
+      }
+    },
+    "sourceUrl": "https://foliofact.com/funds/rv-capital"
+  }
+}

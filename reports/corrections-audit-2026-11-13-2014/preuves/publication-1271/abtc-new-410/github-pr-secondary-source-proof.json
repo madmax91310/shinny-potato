@@ -1,0 +1,41 @@
+{
+  "run": 43608641148,
+  "event": "pull_request",
+  "publication": "not applicable for a PR; source acquisition and validation only",
+  "fullReportSha256": "d38575fc5c24ca9bb242bf6d7f15535a64169bd17e6f544fb8eced0c4ed584b2",
+  "checkedAt": "2026-11-14T15:12:40.646679+00:00",
+  "exactExpectedItem": {
+    "id": "etf-additional-observation-CH0454664001",
+    "instrument": "CH0454664001",
+    "fields": [
+      "issuer share observation",
+      "individual collectionErrors",
+      "unavailable/retained fields"
+    ],
+    "selected": true
+  },
+  "outcome": {
+    "id": "etf-additional-observation-CH0454664001",
+    "instrument": "CH0454664001",
+    "fields": [
+      "issuer share observation",
+      "individual collectionErrors",
+      "unavailable/retained fields"
+    ],
+    "selected": true,
+    "status": "succeeded",
+    "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+    "operationAttempted": true,
+    "sourceAttempted": true
+  },
+  "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+  "sourceAttempts": [
+    {
+      "url": "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "status": "validated",
+      "sha256": "f2ac4219cfb1cf85303a6dc8c25599453406aae496b81248806b35ae0c72d022"
+    }
+  ],
+  "performance": null,
+  "scope": "One ABTC item extracted for evidence; complete unmodified report and its whole input plan preserved separately, not reissued as a complete producer report."
+}

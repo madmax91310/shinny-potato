@@ -9,15 +9,183 @@
   "sourceRun": 43517469275,
   "sourceEvent": "workflow_dispatch",
   "published": {
-    "sha": "642e702aead994fabf539e901cf886e98379a41a",
-    "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+    "sha": "85de119c1fad5a024d814e961fb240129875aafe",
+    "dataSha": "799d4d12c77297f3ac926d30bc3be50ca66b9487",
     "lane": "validated-data",
-    "builtAt": "2026-11-14T03:46:56.588Z"
+    "builtAt": "2026-11-14T15:53:38.629Z"
   },
   "codePromotionPublicBuild": {
     "sha": "642e702aead994fabf539e901cf886e98379a41a",
     "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
     "lane": "validated-code-data",
     "builtAt": "2026-11-14T03:45:04.686Z"
+  },
+  "latestRecontrolAt": "2026-11-14T16:35:37.637668+00:00",
+  "latestRecontrolRows": 50,
+  "latestRecontrolScope": "Same35259usageIDs/10526dataIDs/1218initialincidentIDs; five newly admissible full fund books, not five restored autonomous source collectors.",
+  "reportUpdatedAt": "2026-11-14T16:35:55.342558+00:00",
+  "finalScopedEvidenceRows": 108,
+  "all35259OriginalIDsPreserved": true,
+  "initialIncidentIDsPreserved": 1218,
+  "checkedAt": "2026-11-14T17:15:25.771264+00:00",
+  "dataUsageRows": 35259,
+  "dataIdentities": 10526,
+  "toolLabelsIncludingArchivesAndReferences": 28,
+  "initialIncidentIdentities": 1218,
+  "allOriginalDataUsageAndIncidentIdentitiesPreserved": true,
+  "scopedQualifiedBookProofRows": 637,
+  "scopedAbtcMonthlyProofRows": 5,
+  "notFinancialCertificationOfAllFields": true,
+  "finalIdentityInvariants": {
+    "checkedAt": "2026-11-14T21:47:57.809074+00:00",
+    "dataUsageRows": 35259,
+    "dataIdentities": 10526,
+    "toolLabelsIncludingArchivesAndReferences": 28,
+    "initialIncidentIdentities": 1218,
+    "allOriginalDataUsageAndIncidentIdentitiesPreserved": true,
+    "scopedQualifiedBookProofRows": 637,
+    "scopedAbtcMonthlyProofRows": 5,
+    "notFinancialCertificationOfAllFields": true,
+    "finalScopedRows": {
+      "ABTC": 13,
+      "WDEF": 9,
+      "DWS": 12,
+      "13F": 168
+    },
+    "currentPublicDiagnostics": {
+      "diagnostics": 10951,
+      "kinds": {
+        "failure": 45,
+        "connection": 254,
+        "monitoring": 366,
+        "qualification": 2627,
+        "due": 30,
+        "editorial": 28,
+        "archive": 3939,
+        "waiting": 809,
+        "not-applicable": 1637,
+        "history": 1216
+      },
+      "13FActiveFailureDiagnostics": [],
+      "scope": "Export intégral issu du parcours public, sans limite des 40 lignes de l’issue."
+    }
+  },
+  "finalPublicProof": {
+    "checkedAt": "2026-11-14T21:46:02.242694+00:00",
+    "build": {
+      "sha": "332ce044c94085ed30eee75445c5f52bf0134d15",
+      "dataSha": "a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae",
+      "lane": "validated-data",
+      "builtAt": "2026-11-14T21:19:03.000Z"
+    },
+    "codeContains1271": true,
+    "matchedSourceBlobs": {
+      "src/data/dca-complete-holdings.json": "d9892a8940b7f8534f9b3e321226f083e433d967",
+      "src/data/native-fund-details.json": "3417590f5789fb4b1e437ba78b8b6490a0d9b39e",
+      "src/data/native-index-composition-contracts.json": "db25fcb32e2c4ba52d2c5228a5b9325e413e7167"
+    },
+    "nativeBooksMatchPublishedSnapshot": true,
+    "russellObservationMatchesPublishedSnapshot": true,
+    "russellObservationOrigin": {
+      "run": 43605419666,
+      "event": "schedule",
+      "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+      "asOf": "2026-11-12",
+      "originalFinancialRowsPreserved": true,
+      "sourceClockFromActualQualifiedCron": true
+    },
+    "13FReceiptFilesMatched": 25,
+    "13FQualifiedOriginalPathsCovered": 31,
+    "13FLatestQualifiedSuccessor": {
+      "run": 43640873655,
+      "event": "workflow_dispatch",
+      "publicationVerified": true,
+      "changedManagers": [
+        "ackman",
+        "cathie-wood",
+        "klarman",
+        "pabrai",
+        "icahn"
+      ],
+      "financialSnapshotDiffs": [
+        {
+          "slug": "ackman",
+          "previousPeriod": "2026-06-30",
+          "currentPeriod": "2026-06-30",
+          "previousSecurities": 14,
+          "currentSecurities": 14,
+          "holdingsChanged": true,
+          "reportedPositionsChanged": false,
+          "unusedLiveQuoteFieldsOnly": true,
+          "snapshotChanged": true,
+          "quarterAdvanced": false
+        },
+        {
+          "slug": "cathie-wood",
+          "previousPeriod": "2026-06-30",
+          "currentPeriod": "2026-09-30",
+          "previousSecurities": 190,
+          "currentSecurities": 181,
+          "holdingsChanged": true,
+          "reportedPositionsChanged": true,
+          "unusedLiveQuoteFieldsOnly": false,
+          "snapshotChanged": true,
+          "quarterAdvanced": true
+        },
+        {
+          "slug": "klarman",
+          "previousPeriod": "2026-06-30",
+          "currentPeriod": "2026-09-30",
+          "previousSecurities": 23,
+          "currentSecurities": 21,
+          "holdingsChanged": true,
+          "reportedPositionsChanged": true,
+          "unusedLiveQuoteFieldsOnly": false,
+          "snapshotChanged": true,
+          "quarterAdvanced": true
+        },
+        {
+          "slug": "pabrai",
+          "previousPeriod": "2026-06-30",
+          "currentPeriod": "2026-09-30",
+          "previousSecurities": 4,
+          "currentSecurities": 4,
+          "holdingsChanged": true,
+          "reportedPositionsChanged": true,
+          "unusedLiveQuoteFieldsOnly": false,
+          "snapshotChanged": true,
+          "quarterAdvanced": true
+        },
+        {
+          "slug": "icahn",
+          "previousPeriod": "2026-06-30",
+          "currentPeriod": "2026-09-30",
+          "previousSecurities": 12,
+          "currentSecurities": 10,
+          "holdingsChanged": true,
+          "reportedPositionsChanged": true,
+          "unusedLiveQuoteFieldsOnly": false,
+          "snapshotChanged": true,
+          "quarterAdvanced": true
+        }
+      ],
+      "receiptPath": "13f-post1288-production/data-publication-receipt.json",
+      "sourceReportPath": "13f-post1288-production/investor-observations.json",
+      "publicReviewsPath": "13f-post1288-production/public-reviews.json",
+      "publicationProofPath": "13f-post1288-production/public-proof-current.json",
+      "sourceReportAt": "2026-11-14T21:17:10.215614+00:00",
+      "receiptFiles": 35,
+      "summary": "PR #1288 fusionnée ; acquisition ordinaire manuelle 43640873655 :28 gérants validés, 5 objets source modifiés, dont 4 passages à septembre2026 (CathieWood, Klarman, Pabrai, Icahn). Ackman reste à juin : poids et positions déclarées identiques, seuls des cours/rendements courants non utilisés par cet outil changent. Enregistrement a4cf5116. Les 35 fichiers du reçu correspondent au manifeste ET aux octets HTTP réellement servis ; les nouvelles positions et revues sont publiées. Le cron43625726669 prouve l’acquisition/validation planifiée avant correctif, mais son enregistrement a échoué ; la reprise actuelle n’est pas une preuve de cron post1288."
+    },
+    "monthlyCasesQualified": 73,
+    "monthlyCasesTotal": 79,
+    "newFullFundBooks": [
+      "IE0002Y8CX98",
+      "IE000W8WMSL2",
+      "IE00BZ56SW52",
+      "IE00BDVPNG13",
+      "IE00BKLF1R75"
+    ],
+    "scope": "Manifest proves exact registry bytes; real public browser tests separately prove consumption. No native GitHub source success inferred."
   }
 }

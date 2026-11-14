@@ -1,0 +1,18 @@
+{
+  "unchangedFinancialFunctions": [
+    "collect_amundi",
+    "collect",
+    "qualify_refresh",
+    "fund_siblings"
+  ],
+  "exactCollectorSha256": "164a37ea32c94b2ea7a239cc61f2a4e932ebe8e1744a6d86ad4a1e2b84291a34",
+  "changedFunctions": [
+    "main: validate requested existing selection before fetching",
+    "qualify: add actual composition failure context only"
+  ],
+  "newHelper": "selected_instruments: no IO, rejects invalid scopes",
+  "noNewInputExemptions": [
+    "anniversary-levels and purchasing-power only, unchanged reviewed two paths"
+  ],
+  "validationGuardUnknownCodeRefusalPreserved": true
+}

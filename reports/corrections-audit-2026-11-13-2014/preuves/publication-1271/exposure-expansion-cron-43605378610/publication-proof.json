@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-14T15:43:12.650944+00:00",
+  "run": 43605378610,
+  "event": "schedule",
+  "build": {
+    "sha": "85de119c1fad5a024d814e961fb240129875aafe",
+    "dataSha": "5414be7381db77f2e7bd175ead9c64f17114a4c0",
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T15:36:48.427Z"
+  },
+  "receiptCommit": "f876bf22cb53665a3d56e1efe5b1363629cbf094",
+  "files": [
+    {
+      "path": "src/data/exposure-etf-expansion-records.json",
+      "expected": "7a281750d88871cbc18c64f565cdebc34e0e0395",
+      "actual": "7a281750d88871cbc18c64f565cdebc34e0e0395",
+      "matches": true
+    }
+  ],
+  "allMatch": true
+}

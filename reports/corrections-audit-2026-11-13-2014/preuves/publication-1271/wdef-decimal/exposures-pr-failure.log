@@ -1,0 +1,54 @@
+refresh	Collect exact-share observations	﻿2026-11-14T17:03:04.1053011Z ##[group]Run python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1053921Z [36;1mpython scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"[0m
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1068065Z shell: /usr/bin/bash -e {0}
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1068381Z env:
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1068793Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1069293Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1069821Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1070275Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1070716Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1071228Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+refresh	Collect exact-share observations	2026-11-14T17:03:04.1071619Z ##[endgroup]
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1039689Z LU1681038672 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1081972Z FR0011869304 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1144797Z FR0013346681 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1189709Z LU3180074463 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1232524Z LU1829219390 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1274215Z FR0007054358 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1316177Z LU1681040223 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1359449Z IE0003XJA0J9 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1404153Z IE0009HF1MK9 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1451546Z LU0380865021 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1453559Z LU0328475792 failed Missing dated exposure: countries
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1495631Z LU0274209237 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1538856Z IE00BJ0KDQ92 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1582190Z IE00BK1PV551 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1623819Z LU2903252349 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1666991Z IE0008471009 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1709590Z IE0008470928 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1752658Z DE0002635307 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1796111Z IE00B1YZSC51 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1837611Z IE00BK5BQX27 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1879493Z IE00B945VV12 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1922656Z IE00B3RBWM25 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.1965277Z IE00BK5BQV03 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2006254Z IE00BFMXXD54 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2047123Z IE00B3XXRP09 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2088933Z IE00BKWQ0Q14 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2130685Z IE00BFY0GT14 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2172844Z IE000716YHJ7 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2357002Z IE0000QLH0G6 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2397443Z IE00BMC38736 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2439110Z IE00BDVPNG13 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2481168Z IE00BKLF1R75 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2523398Z IE00BLCHJB90 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2565511Z IE000NDWFGA5 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2607497Z IE00BMH5Y871 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.2649011Z FR0013412269 validated 
+refresh	Collect exact-share observations	2026-11-14T17:03:28.3229093Z ##[error]Process completed with exit code 1.
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	﻿2026-11-14T17:03:35.3856596Z ##[group]Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:03:35.3858209Z [36;1mecho 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"[0m
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:03:35.3859193Z [36;1mexit 1[0m
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:03:35.4263644Z shell: /usr/bin/bash -e {0}
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:03:35.4264714Z ##[endgroup]
+report-failures	Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"	2026-11-14T17:03:35.4783078Z ##[error]Process completed with exit code 1.

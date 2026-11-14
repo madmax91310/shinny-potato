@@ -1,0 +1,470 @@
+{
+  "run": 43613864303,
+  "event": "push",
+  "monthlyScopeReport": {
+    "checkedAt": "2026-11-14T17:08:56.412129+00:00",
+    "scope": {
+      "requestedIds": [
+        "etfDE000A27Z304"
+      ],
+      "expectedIds": [
+        "etfDE000A27Z304"
+      ],
+      "selection": "failed-or-missing"
+    },
+    "series": [
+      {
+        "id": "etfDE000A27Z304",
+        "status": "failed",
+        "reason": "HTTP Error 400: Bad Request"
+      }
+    ]
+  },
+  "listingOutcomes": [
+    {
+      "id": "listing:SE0021921269",
+      "instrument": "SE0021921269",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://api.nasdaq.com/api/nordic/screener/shares?category=MAIN_MARKET&tableonly=true&page=1&size=1000&segment=LARGE_CAP&segment=MID_CAP&segment=SPAC&segment=SMALL_CAP&lang=en",
+      "asOf": "2026-11-14",
+      "checkedAt": "2026-11-14T17:08:49.952984+00:00",
+      "status": "succeeded",
+      "field": "listing-identity",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US18915M1071",
+      "instrument": "US18915M1071",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US98980G1022",
+      "instrument": "US98980G1022",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US19260Q1076",
+      "instrument": "US19260Q1076",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US75734B1008",
+      "instrument": "US75734B1008",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:NL0009805522",
+      "instrument": "NL0009805522",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:KYG6683N1034",
+      "instrument": "KYG6683N1034",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US36828A1016",
+      "instrument": "US36828A1016",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US7731211089",
+      "instrument": "US7731211089",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US8334451098",
+      "instrument": "US8334451098",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US23804L1035",
+      "instrument": "US23804L1035",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US83406F1021",
+      "instrument": "US83406F1021",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US21037T1097",
+      "instrument": "US21037T1097",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US00217D1000",
+      "instrument": "US00217D1000",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:LU1778762911",
+      "instrument": "LU1778762911",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US5949724083",
+      "instrument": "US5949724083",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US26603R1068",
+      "instrument": "US26603R1068",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US92537N1081",
+      "instrument": "US92537N1081",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:CA13321L1085",
+      "instrument": "CA13321L1085",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US58733R1023",
+      "instrument": "US58733R1023",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:US7707001027",
+      "instrument": "US7707001027",
+      "fields": [
+        "listing-identity"
+      ],
+      "selected": true,
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-14T17:08:51.124035+00:00",
+      "status": "unchanged-verified",
+      "field": "listing-identity",
+      "reason": "Source réellement recontrôlée ; réponse inchangée",
+      "operationAttempted": true,
+      "sourceAttempted": true
+    },
+    {
+      "id": "listing:directory:us-other",
+      "instrument": "directory:us-other",
+      "fields": [
+        "primary-directory"
+      ],
+      "selected": true,
+      "field": "primary-directory",
+      "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+      "attemptedAt": "2026-11-14T17:08:46.388516+00:00",
+      "sourceAttempted": true,
+      "status": "succeeded",
+      "checkedAt": "2026-11-14T17:08:50.445652+00:00",
+      "asOf": "2026-11-13",
+      "operationAttempted": true
+    },
+    {
+      "id": "listing:FR0010524777",
+      "instrument": "FR0010524777",
+      "fields": [
+        "issuer listing table"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "field": "issuer listing table",
+      "sourceAttempted": true,
+      "checkedAt": "2026-11-14",
+      "operationAttempted": true
+    },
+    {
+      "id": "listing:JE00B1VS3770",
+      "instrument": "JE00B1VS3770",
+      "fields": [
+        "issuer listing table"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "field": "issuer listing table",
+      "sourceAttempted": true,
+      "checkedAt": "2026-11-14",
+      "operationAttempted": true
+    },
+    {
+      "id": "listing:GB00BJYDH287",
+      "instrument": "GB00BJYDH287",
+      "fields": [
+        "issuer listing table"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "field": "issuer listing table",
+      "sourceAttempted": true,
+      "checkedAt": "2026-11-14",
+      "operationAttempted": true
+    },
+    {
+      "id": "listing:GB00BLD4ZM24",
+      "instrument": "GB00BLD4ZM24",
+      "fields": [
+        "issuer listing table"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "field": "issuer listing table",
+      "sourceAttempted": true,
+      "checkedAt": "2026-11-14",
+      "operationAttempted": true
+    },
+    {
+      "id": "listing:FR0013416716",
+      "instrument": "FR0013416716",
+      "fields": [
+        "issuer listing table"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "field": "issuer listing table",
+      "sourceAttempted": true,
+      "checkedAt": "2026-11-14",
+      "operationAttempted": true
+    },
+    {
+      "id": "listing:DE000A27Z304",
+      "instrument": "DE000A27Z304",
+      "fields": [
+        "issuer listing table"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "field": "issuer listing table",
+      "sourceAttempted": true,
+      "checkedAt": "2026-11-14",
+      "operationAttempted": true
+    },
+    {
+      "id": "listing:IE00B4556L06",
+      "instrument": "IE00B4556L06",
+      "fields": [
+        "issuer listing table"
+      ],
+      "selected": true,
+      "status": "succeeded",
+      "field": "issuer listing table",
+      "sourceAttempted": true,
+      "checkedAt": "2026-11-14",
+      "operationAttempted": true
+    }
+  ],
+  "recordedCommit": "e6f3f4134afffb81401b03f5859677ca9631d351",
+  "expectedPublishedFiles": 9,
+  "publicationNotYetVerified": true
+}

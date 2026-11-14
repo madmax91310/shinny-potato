@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-11-14T21:02:06.980812+00:00",
+  "verificationKind": "Real local official HTTP requests plus issuer document/client inspection; not GitHub production or a schedule proof",
+  "exactShares": [
+    "FR0010755611",
+    "FR0013411998",
+    "FR0013412004"
+  ],
+  "affectedWindows": [
+    "FR0010755611/2021",
+    "FR0010755611/2024",
+    "FR0013411998/2025",
+    "FR0013412004/2025"
+  ],
+  "newEvidence": [
+    "Three exact-share official PRIIPs documents retain capitalisation and/or distribution.",
+    "Official client identifies adjusted NAV as the performance-chart input; applicable French translations do not explicitly establish income reinvestment.",
+    "dividendAmount is null for all three shares. CL2 has a standalone EUR currency record on10October2023 with no associated amount; this does not prove a payout or zero payouts.",
+    "Annual reports end30June2025; omitted or blank distribution cells do not establish zero distributions over the requested calendar windows.",
+    "HK/RMB-specific reinvestment statements are not applicable to the three French shares."
+  ],
+  "decision": "No income-policy override, no data change and no new monthly admission. Six refusals remain. Old market/NAV divergences remain individually unexplained.",
+  "missingPiece": "Exact-share cash ledger (amount, currency, ex-date, units and full requested period), or an applicable explicit official reinvested-income definition tying the adjusted historical series to the exact share and period. Daily NAV availability alone does not provide that definition.",
+  "cashFieldsActuallyObserved": [
+    {
+      "id": "FR0010755611",
+      "identity": {
+        "ISIN": "FR0010755611",
+        "CURRENCY": "EUR",
+        "LAUNCH_DATE": "2009-06-16",
+        "DISTRIBUTION_POLICY": "Capitalisation and/or distribution"
+      },
+      "histories": [
+        {
+          "indicator": "dividendAmount",
+          "historicalData": null
+        },
+        {
+          "indicator": "dividendCurrency",
+          "historicalData": [
+            {
+              "date": 1696896000000,
+              "data": "EUR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FR0013411998",
+      "identity": {
+        "ISIN": "FR0013411998",
+        "CURRENCY": "EUR",
+        "LAUNCH_DATE": "2019-04-25",
+        "DISTRIBUTION_POLICY": "Capitalisation and/or distribution"
+      },
+      "histories": [
+        {
+          "indicator": "dividendAmount",
+          "historicalData": null
+        },
+        {
+          "indicator": "dividendCurrency",
+          "historicalData": null
+        }
+      ]
+    },
+    {
+      "id": "FR0013412004",
+      "identity": {
+        "ISIN": "FR0013412004",
+        "CURRENCY": "EUR",
+        "LAUNCH_DATE": "2019-04-25",
+        "DISTRIBUTION_POLICY": "Capitalisation and/or distribution"
+      },
+      "histories": [
+        {
+          "indicator": "dividendAmount",
+          "historicalData": null
+        },
+        {
+          "indicator": "dividendCurrency",
+          "historicalData": null
+        }
+      ]
+    }
+  ],
+  "cashResponseSha256": "29fbd8f9d22c2049343c442ea8a012bc10b3af3b1be54c7272696fccb4e86413",
+  "officialClientSha256": "4d87c25b18139b9a78769e412d5346026cee42f12c1070aa67b03391b99733e8",
+  "rawEvidenceKeptLocally": true
+}

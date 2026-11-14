@@ -1,0 +1,27 @@
+{
+  "run": 43625151258,
+  "event": "push on diagnostic branch; read-only, no production data write",
+  "scope": {
+    "instruments": [
+      "LU0328475792"
+    ],
+    "locales": [
+      "en-gb",
+      "en-lu"
+    ],
+    "purpose": "Read-only diagnosis, not production acquisition or publication"
+  },
+  "primaryEnGbCollectOneQualified": true,
+  "samePrimaryCollectorAsProduction": true,
+  "unqualifiedAlternative": {
+    "locale": "en-lu",
+    "reason": "Invalid DWS share launch date"
+  },
+  "notAProductionRecovery": true,
+  "productionFailuresRetained": [
+    43618832808,
+    43623803307
+  ],
+  "causeOfFailedResponseNotProvenBecauseOriginalUnavailableWasNotRetainedInReport": true,
+  "nextUsefulAction": "Inspect full unavailable cause on the next ordinary result; do not switch to an unqualified locale or infer permanent source downtime from two failed batch results."
+}

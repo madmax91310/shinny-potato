@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-14T15:43:12.651178+00:00",
+  "run": 43604901220,
+  "event": "schedule",
+  "build": {
+    "sha": "85de119c1fad5a024d814e961fb240129875aafe",
+    "dataSha": "5414be7381db77f2e7bd175ead9c64f17114a4c0",
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T15:36:48.427Z"
+  },
+  "receiptCommit": "0a7c05b946d4ffa3459394f0e2095761699adc16",
+  "files": [
+    {
+      "path": "src/data/anniversary-index-history.json",
+      "expected": "e1fe716aaca82126881a06e71a049dd6681a9247",
+      "actual": "e1fe716aaca82126881a06e71a049dd6681a9247",
+      "matches": true
+    },
+    {
+      "path": "src/data/anniversary-levels.json",
+      "expected": "53590c1ffd1e209007a292a905f3d4d3dcf2a27c",
+      "actual": "53590c1ffd1e209007a292a905f3d4d3dcf2a27c",
+      "matches": true
+    },
+    {
+      "path": "src/data/purchasing-power-observations.json",
+      "expected": "44cfb4c93bdb243e12ce8fb276d9badbaa541583",
+      "actual": "44cfb4c93bdb243e12ce8fb276d9badbaa541583",
+      "matches": true
+    }
+  ],
+  "allMatch": true
+}

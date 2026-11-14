@@ -1,0 +1,251 @@
+{
+  "run": 43618832868,
+  "event": "pull_request",
+  "checkedAt": "2026-11-14T17:06:07.352812+00:00",
+  "fullReportSha256": "11c6c65cf05c9133c4d03a1d511d6113176205ebf3661630b5192e7d28a2f887",
+  "inputPlanSha256": "cb947cc995246d50d782e843a1330c10388901c9c7473e4d3031c696c7d832cc",
+  "rows": [
+    {
+      "isin": "CH0454664001",
+      "status": "validated",
+      "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "reason": null,
+      "collectionErrors": [],
+      "fields": {
+        "performance": {
+          "currency": "USD",
+          "basis": "fund",
+          "years": {
+            "2020": 277.89,
+            "2021": 65.02,
+            "2022": -65.41,
+            "2023": 151.83,
+            "2024": 114.17,
+            "2025": -4.71
+          },
+          "asOf": "2026-11-13",
+          "sourceUrl": "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+          "sha256": "acffaa4b90795a37ca8dc7842c82f4e61b4115e18ceab0c224f15e58173248fa",
+          "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
+          "validationSources": [
+            "https://api.secondary.21shares.com/api/product_details/ABTC",
+            "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC"
+          ],
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        },
+        "characteristics": {
+          "terPct": 1.49,
+          "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+          "sha256": "a05351743afc2c73c6347ad1e1a09b6bf4c31e603c193d80b11cc7f313d7e098",
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        }
+      },
+      "individualOutcomes": [
+        {
+          "id": "etf-additional-observation-CH0454664001",
+          "instrument": "CH0454664001",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        }
+      ]
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "status": "validated",
+      "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "reason": null,
+      "collectionErrors": [
+        {
+          "field": "aum-primary-http",
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "phase": "acquisition",
+          "reason": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+          "qualifiedFallbackAvailable": true
+        }
+      ],
+      "fields": {
+        "countries": {
+          "rows": [
+            {
+              "name": "France",
+              "weightPct": 34.2248
+            },
+            {
+              "name": "United Kingdom",
+              "weightPct": 25.2669
+            },
+            {
+              "name": "Germany",
+              "weightPct": 14.5088
+            },
+            {
+              "name": "Sweden",
+              "weightPct": 7.9081
+            },
+            {
+              "name": "Italy",
+              "weightPct": 7.677
+            },
+            {
+              "name": "Norway",
+              "weightPct": 7.1626
+            },
+            {
+              "name": "Spain",
+              "weightPct": 1.6625
+            },
+            {
+              "name": "Cyprus",
+              "weightPct": 0.4926
+            },
+            {
+              "name": "Czech Republic",
+              "weightPct": 0.4618
+            },
+            {
+              "name": "Finland",
+              "weightPct": 0.261
+            },
+            {
+              "name": "Denmark",
+              "weightPct": 0.196
+            },
+            {
+              "name": "Luxembourg",
+              "weightPct": 0.1089
+            },
+            {
+              "name": "Switzerland",
+              "weightPct": 0.0558
+            },
+            {
+              "name": "Poland",
+              "weightPct": 0.0131
+            }
+          ],
+          "asOf": "2026-11-12",
+          "basis": "fund",
+          "rankClassificationID": 6,
+          "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+          "dateProof": "Exact rendered table reconciled to its publisher country rows; overview/NAV clock excluded",
+          "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "sha256": "8aeefdca51157aa23f38d7959b1d668d67f60b0e3fa17ff03a9efa323c35bec4",
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        },
+        "sectors": {
+          "rows": [
+            {
+              "name": "Industrials",
+              "weightPct": 97.48,
+              "label": "Industrials"
+            },
+            {
+              "name": "Information Technology",
+              "weightPct": 2.16,
+              "label": "Information Technology"
+            },
+            {
+              "name": "Communication Services",
+              "weightPct": 0.36,
+              "label": "Communication"
+            }
+          ],
+          "asOf": "2026-11-12",
+          "basis": "fund",
+          "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "sha256": "8aeefdca51157aa23f38d7959b1d668d67f60b0e3fa17ff03a9efa323c35bec4",
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        },
+        "holdings": {
+          "rows": [
+            {
+              "name": "BAE Systems PLC",
+              "weightPct": 12.81
+            },
+            {
+              "name": "Thales SA",
+              "weightPct": 12.77
+            },
+            {
+              "name": "Rheinmetall AG",
+              "weightPct": 9.61
+            },
+            {
+              "name": "Airbus SE",
+              "weightPct": 8.07
+            },
+            {
+              "name": "SAAB AB-B SEK NPV",
+              "weightPct": 7.58
+            },
+            {
+              "name": "Rolls-Royce Holdings PLC",
+              "weightPct": 7.47
+            },
+            {
+              "name": "Safran SA",
+              "weightPct": 7.36
+            },
+            {
+              "name": "Leonardo Spa",
+              "weightPct": 6.9
+            },
+            {
+              "name": "Kongsberg Gruppen Asa",
+              "weightPct": 6.66
+            },
+            {
+              "name": "DASSAULT AVIATION EUR 0.8",
+              "weightPct": 4.74
+            }
+          ],
+          "asOf": "2026-11-12",
+          "basis": "fund",
+          "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "sha256": "8aeefdca51157aa23f38d7959b1d668d67f60b0e3fa17ff03a9efa323c35bec4",
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        },
+        "characteristics": {
+          "asOf": "2026-11-12",
+          "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "sha256": "8aeefdca51157aa23f38d7959b1d668d67f60b0e3fa17ff03a9efa323c35bec4",
+          "terPct": 0.4,
+          "checkedAt": "2026-11-14",
+          "modifiedAt": "2026-11-14"
+        }
+      },
+      "individualOutcomes": [
+        {
+          "id": "etf-additional-observation-IE0002Y8CX98",
+          "instrument": "IE0002Y8CX98",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true,
+          "name": "ETF IE0002Y8CX98",
+          "field": "aum-primary-http",
+          "error": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+          "status": "failed",
+          "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "operationAttempted": true,
+          "sourceAttempted": null
+        }
+      ]
+    }
+  ]
+}

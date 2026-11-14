@@ -4,25 +4,52 @@
     1265,
     1267,
     1268,
-    1269
+    1269,
+    1271,
+    1273,
+    1276,
+    1280,
+    1282,
+    1283,
+    1287,
+    1288,
+    1290
   ],
   "sourceCommits": [
     "acf48464a1a6ceb5c59134f1f0c42bc0bc95731c",
     "fef5409490c0d27d01421569b8f693598d0c2fa9",
     "1f6693f4522da4ee103343de98a91fa20263303e",
-    "6bba8f865347719876e9c5e19bbd213606db47f8"
+    "6bba8f865347719876e9c5e19bbd213606db47f8",
+    "64b63b50eac33dc3eab2c1fdde9915cfdce17346",
+    "78656f4f519e3303ff335c48a5da229de041747d",
+    "a91e15ef43f375a92d11ce56c6adf4a6a328e01e",
+    "b71c01aa022b0ad69958e893edcd65d37d329e96",
+    "20ba8e4d1f47f4e79662731b400efa24c4b8d4d9",
+    "3fc82fc1e6aa970e83de0d7a667ba2dda440652b",
+    "d91d778a2c491a15aff085d137e8c994a8b9becc",
+    "400e67a2a473bc4a5c56ef52ba27862f1858cdd5",
+    "b37108e244eb70428ee7018ef3a1c7672280c10d"
   ],
   "mergeCommits": [
     "1c45b9b4d5af600e36730248cc0a5b1147f3ba85",
     "bb8f8e53506250cf84d95213b95c8832f7869d54",
     "e0c165bf55da99bb84fa0fd0022c2e5f17fb095c",
-    "642e702aead994fabf539e901cf886e98379a41a"
+    "642e702aead994fabf539e901cf886e98379a41a",
+    "0966f3c551da5e45d28d6b5fbaa4f05ef52f6749",
+    "0408b69f7adf30a994a40b4ca5e5fb8f39ad2670",
+    "c12909d85d4d4747bfb3c7517ed61d12f550ce2a",
+    "d26a9faad0a9eeef2d91bbc290ab003992a4d31e",
+    "00bc1f933ca3a095f98b12efecabef63af1c4b25",
+    "7bbe8000b769ec1683ba6c4825eb6a5b21a32c96",
+    "c41aabe283bf87be26b410f301841c60453813b9",
+    "3c5b386734c628bbe1b01bb24bb172663fd36d79",
+    "f058e18f0efd792ce502a71295c66fd1ad0f0407"
   ],
   "publicBuild": {
-    "sha": "642e702aead994fabf539e901cf886e98379a41a",
-    "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+    "sha": "332ce044c94085ed30eee75445c5f52bf0134d15",
+    "dataSha": "a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae",
     "lane": "validated-data",
-    "builtAt": "2026-11-14T03:46:56.588Z"
+    "builtAt": "2026-11-14T21:19:03.000Z"
   },
   "productionRuns": {
     "13F": 43517469275,
@@ -31,7 +58,7 @@
   },
   "events": "13F et contrôle or : workflow_dispatch ; promotion finale : push de master. Aucun cron postcorrectif mensuel/13F anticipé.",
   "financialConventionsChanged": false,
-  "newFullFundBooksAdmitted": 0,
+  "newFullFundBooksAdmitted": 5,
   "concurrentCollection": {
     "run": 43552458543,
     "event": "workflow_dispatch",
@@ -41,12 +68,165 @@
     "proof": "collecte-etf-concurrente-run-final.json; publication-collecte-concurrente-verifiee.json",
     "wholeWorkflowNotEquivalentToEveryFieldSuccess": true
   },
-  "effectiveDataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+  "effectiveDataSha": "a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae",
   "dataSnapshotInterpretation": "Explicit dataSha when composite; otherwise the ordinary complete build snapshot at sha, with no newer-data overlay, verified by publication-branches-proof.json and the exact public manifest. Raw build-info is preserved.",
   "codePromotionPublicBuild": {
     "sha": "642e702aead994fabf539e901cf886e98379a41a",
     "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
     "lane": "validated-code-data",
     "builtAt": "2026-11-14T03:45:04.686Z"
-  }
+  },
+  "latestRecontrolAt": "2026-11-14T21:46:02.242694+00:00",
+  "negativeCandidatesNotMerged": [
+    {
+      "branch": "probe/sp-public-browser-20261114",
+      "run": 43573804271,
+      "sourceStatus": "403 on ordinary public pages, bothOS"
+    },
+    {
+      "branch": "probe/wisdomtree-session-20261114",
+      "run": 43576924647,
+      "sourceStatus": "Native NAV book403 bothOS; exact fund ranking accessible but not NAV-qualified"
+    }
+  ],
+  "reportUpdatedAt": "2026-11-14T21:47:23.490270+00:00",
+  "newFullFundBooksAcquisition": "one-time local ordinary producer; native GitHub403 remains",
+  "production1271Run": 43585016401,
+  "production1271Event": "push",
+  "monthlyCasesQualified": 73,
+  "monthlyCasesTotal": 79,
+  "monthlyScheduledRun": 43601518941,
+  "monthlyScheduledScope": [
+    "etfDE000A27Z304"
+  ],
+  "monthlyScheduledSourceStatus": "failed400; no new close",
+  "monthlyScheduledListingContract": {
+    "items": 29,
+    "succeeded": 9,
+    "unchangedVerified": 20
+  },
+  "lifestrategyScheduledRun": 43594847235,
+  "lifestrategyPublicReceiptFiles": 5,
+  "monthlyAutomaticRecoveryRun": 43596221440,
+  "monthlyAutomaticRecoveryEvent": "workflow_dispatch by github-actions[bot], not supplier cron",
+  "backend1276Merge": "c12909d85d4d4747bfb3c7517ed61d12f550ce2a",
+  "backend1276CI": {
+    "run": 43599789028,
+    "successfulJobs": 14,
+    "conditionalPublicationSkipped": 4,
+    "isolatedTests": 160
+  },
+  "sourceProofGranularity": "Exact individual input plans/results; no whole-field catalogue certification from a workflow status.",
+  "scheduledQualifiedBooks": {
+    "run": 43605419666,
+    "observationsAccepted": 198,
+    "expected": 205,
+    "failed": 7,
+    "publicationFiles": 11,
+    "scope": "Individual book validation; not 198 complete-overlap admissions or distinct source requests."
+  },
+  "backend1280And1282Published": true,
+  "abtcOrdinaryProductionAcquisitionComplete": true,
+  "abtcOrdinaryProductionCronAfterMigrationObserved": false,
+  "finalPublicBuild": {
+    "sha": "332ce044c94085ed30eee75445c5f52bf0134d15",
+    "dataSha": "a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae",
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T21:19:03.000Z"
+  },
+  "final13F": {
+    "run": 43640873655,
+    "event": "workflow_dispatch",
+    "publicationVerified": true,
+    "changedManagers": [
+      "ackman",
+      "cathie-wood",
+      "klarman",
+      "pabrai",
+      "icahn"
+    ],
+    "financialSnapshotDiffs": [
+      {
+        "slug": "ackman",
+        "previousPeriod": "2026-06-30",
+        "currentPeriod": "2026-06-30",
+        "previousSecurities": 14,
+        "currentSecurities": 14,
+        "holdingsChanged": true,
+        "reportedPositionsChanged": false,
+        "unusedLiveQuoteFieldsOnly": true,
+        "snapshotChanged": true,
+        "quarterAdvanced": false
+      },
+      {
+        "slug": "cathie-wood",
+        "previousPeriod": "2026-06-30",
+        "currentPeriod": "2026-09-30",
+        "previousSecurities": 190,
+        "currentSecurities": 181,
+        "holdingsChanged": true,
+        "reportedPositionsChanged": true,
+        "unusedLiveQuoteFieldsOnly": false,
+        "snapshotChanged": true,
+        "quarterAdvanced": true
+      },
+      {
+        "slug": "klarman",
+        "previousPeriod": "2026-06-30",
+        "currentPeriod": "2026-09-30",
+        "previousSecurities": 23,
+        "currentSecurities": 21,
+        "holdingsChanged": true,
+        "reportedPositionsChanged": true,
+        "unusedLiveQuoteFieldsOnly": false,
+        "snapshotChanged": true,
+        "quarterAdvanced": true
+      },
+      {
+        "slug": "pabrai",
+        "previousPeriod": "2026-06-30",
+        "currentPeriod": "2026-09-30",
+        "previousSecurities": 4,
+        "currentSecurities": 4,
+        "holdingsChanged": true,
+        "reportedPositionsChanged": true,
+        "unusedLiveQuoteFieldsOnly": false,
+        "snapshotChanged": true,
+        "quarterAdvanced": true
+      },
+      {
+        "slug": "icahn",
+        "previousPeriod": "2026-06-30",
+        "currentPeriod": "2026-09-30",
+        "previousSecurities": 12,
+        "currentSecurities": 10,
+        "holdingsChanged": true,
+        "reportedPositionsChanged": true,
+        "unusedLiveQuoteFieldsOnly": false,
+        "snapshotChanged": true,
+        "quarterAdvanced": true
+      }
+    ],
+    "receiptPath": "13f-post1288-production/data-publication-receipt.json",
+    "sourceReportPath": "13f-post1288-production/investor-observations.json",
+    "publicReviewsPath": "13f-post1288-production/public-reviews.json",
+    "publicationProofPath": "13f-post1288-production/public-proof-current.json",
+    "sourceReportAt": "2026-11-14T21:17:10.215614+00:00",
+    "receiptFiles": 35,
+    "summary": "PR #1288 fusionnée ; acquisition ordinaire manuelle 43640873655 :28 gérants validés, 5 objets source modifiés, dont 4 passages à septembre2026 (CathieWood, Klarman, Pabrai, Icahn). Ackman reste à juin : poids et positions déclarées identiques, seuls des cours/rendements courants non utilisés par cet outil changent. Enregistrement a4cf5116. Les 35 fichiers du reçu correspondent au manifeste ET aux octets HTTP réellement servis ; les nouvelles positions et revues sont publiées. Le cron43625726669 prouve l’acquisition/validation planifiée avant correctif, mais son enregistrement a échoué ; la reprise actuelle n’est pas une preuve de cron post1288."
+  },
+  "finalExposure": {
+    "run": 43632672600,
+    "event": "push",
+    "publicationVerified": true,
+    "sourceReportPath": "dws-exposure-lu0328475792/production-43632672600/exposure-expansion.json",
+    "receiptPath": "dws-exposure-lu0328475792/production-43632672600/data-publication-receipt.json",
+    "publicationProofPath": "dws-exposure-lu0328475792/production-43632672600/source-record-publication-scope.json",
+    "summary": "Le passage ordinaire sur push43632672600 contrôle36instruments :36observations financières qualifiées,34résultats source réussis et deux échecs primairesAUM avec secours exact distinct. Les pays/secteurs LU0328475792 etIE00BK1PV551 sont individuellement réussis et identiques au registre servi. Enregistrement332ce044 puis reçu publié1/1. Les valeurs étaient déjà disponibles : pas de nouvel usage financier ni de réparation attribuée à la sourceDWS. Le précédent refus de publication était une collision Budget1284, distincte de l’intermittence antérieure. Reprise ciblée testée isolément, sans relance supplémentaire inutile ; cron après1287 non encore observé."
+  },
+  "runtimeCompatibilityProof": "preuves/publication-1271/runtime-code-data-compatibility.json",
+  "coordination1290": "Documentation only, preserves both concurrent operational notes; no financial repair counted.",
+  "post1288CronObserved": false,
+  "post1288ManualSourceRecordingPublicationVerified": true,
+  "first1288CiTimeoutRetained": "Unchanged DCA browser recipe first timed out; only failed job rerun passed; no thresholds or assertions weakened."
 }

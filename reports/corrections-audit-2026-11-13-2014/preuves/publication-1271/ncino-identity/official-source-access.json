@@ -1,0 +1,60 @@
+[
+  {
+    "name": "new-sec",
+    "url": "https://data.sec.gov/submissions/CIK0001902733.json",
+    "checkedAt": "2026-11-14T10:37:04.164592+00:00",
+    "status": 200,
+    "bytes": 119003,
+    "sha256": "579c803ef6ac005d5613b124e6dad63e6be1dcc21699457bcea25e648501e2fd",
+    "responseUrl": "https://data.sec.gov/submissions/CIK0001902733.json",
+    "identity": {
+      "cik": "0001902733",
+      "name": "nCino, Inc.",
+      "tickers": [
+        "NCNO"
+      ],
+      "exchanges": [
+        "Nasdaq"
+      ],
+      "formerNames": []
+    },
+    "archives": []
+  },
+  {
+    "name": "old-sec",
+    "url": "https://data.sec.gov/submissions/CIK0001566895.json",
+    "checkedAt": "2026-11-14T10:37:04.165530+00:00",
+    "status": 200,
+    "bytes": 35555,
+    "sha256": "f846a46b509948da172d1b3a83f98c874c6ea7a1cb45dedde0e50c8545c9232d",
+    "responseUrl": "https://data.sec.gov/submissions/CIK0001566895.json",
+    "identity": {
+      "cik": "0001566895",
+      "name": "nCino OpCo, Inc.",
+      "tickers": [],
+      "exchanges": [],
+      "formerNames": [
+        {
+          "name": "NCINO, INC.",
+          "from": "2014-02-12T00:00:00.000Z",
+          "to": "2021-12-20T00:00:00.000Z"
+        },
+        {
+          "name": "NCINO, LLC",
+          "from": "2013-01-29T00:00:00.000Z",
+          "to": "2013-06-24T00:00:00.000Z"
+        }
+      ]
+    },
+    "archives": []
+  },
+  {
+    "name": "issuer-completion",
+    "url": "https://investor.ncino.com/news-releases/news-release-details/ncino-completes-acquisition-simplenexus",
+    "checkedAt": "2026-11-14T10:37:04.389830+00:00",
+    "status": 200,
+    "bytes": 67336,
+    "sha256": "4a19094ea39183f948f7eadda910221eeb082f91b8cc4fd7f33d564f0744fa65",
+    "responseUrl": "https://investor.ncino.com/news-releases/news-release-details/ncino-completes-acquisition-simplenexus"
+  }
+]

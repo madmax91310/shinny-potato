@@ -1,0 +1,100 @@
+{
+  "sha": "1652cf6e5985d7e90c9c6518b850a76c5a201813",
+  "node_id": "C_kwDODBcmZNoAKDE2NTJjZjZlNTk4NWQ3ZTkwYzljNjUxOGI4NTBhNzZjNWEyMDE4MTM",
+  "commit": {
+    "author": {
+      "name": "madmax91310",
+      "email": "54199744+madmax91310@users.noreply.github.com",
+      "date": "2026-11-14T07:23:03Z"
+    },
+    "committer": {
+      "name": "madmax91310",
+      "email": "54199744+madmax91310@users.noreply.github.com",
+      "date": "2026-11-14T07:23:03Z"
+    },
+    "message": "Refresh validated official S&P public feed",
+    "tree": {
+      "sha": "fa3b357b038137c726fb556aca57ddd1c2493714",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/git/trees/fa3b357b038137c726fb556aca57ddd1c2493714"
+    },
+    "url": "https://api.github.com/repos/madmax91310/shinny-potato/git/commits/1652cf6e5985d7e90c9c6518b850a76c5a201813",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/madmax91310/shinny-potato/commits/1652cf6e5985d7e90c9c6518b850a76c5a201813",
+  "html_url": "https://github.com/madmax91310/shinny-potato/commit/1652cf6e5985d7e90c9c6518b850a76c5a201813",
+  "comments_url": "https://api.github.com/repos/madmax91310/shinny-potato/commits/1652cf6e5985d7e90c9c6518b850a76c5a201813/comments",
+  "author": {
+    "login": "madmax91310",
+    "id": 54199744,
+    "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+    "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/madmax91310",
+    "html_url": "https://github.com/madmax91310",
+    "followers_url": "https://api.github.com/users/madmax91310/followers",
+    "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+    "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+    "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+    "repos_url": "https://api.github.com/users/madmax91310/repos",
+    "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "madmax91310",
+    "id": 54199744,
+    "node_id": "MDQ6VXNlcjU0MTk5NzQ0",
+    "avatar_url": "https://avatars.githubusercontent.com/u/54199744?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/madmax91310",
+    "html_url": "https://github.com/madmax91310",
+    "followers_url": "https://api.github.com/users/madmax91310/followers",
+    "following_url": "https://api.github.com/users/madmax91310/following{/other_user}",
+    "gists_url": "https://api.github.com/users/madmax91310/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/madmax91310/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/madmax91310/subscriptions",
+    "organizations_url": "https://api.github.com/users/madmax91310/orgs",
+    "repos_url": "https://api.github.com/users/madmax91310/repos",
+    "events_url": "https://api.github.com/users/madmax91310/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/madmax91310/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/commits/c9281f74e447dbb7448eac65cc8a25f8eb600496",
+      "html_url": "https://github.com/madmax91310/shinny-potato/commit/c9281f74e447dbb7448eac65cc8a25f8eb600496"
+    }
+  ],
+  "stats": {
+    "total": 12,
+    "additions": 6,
+    "deletions": 6
+  },
+  "files": [
+    {
+      "sha": "7b6310f9c1ae5ff13db24a409b7e3e6e2f529ad6",
+      "filename": "scripts/observations/sp-public-feed.json",
+      "status": "modified",
+      "additions": 6,
+      "deletions": 6,
+      "changes": 12,
+      "blob_url": "https://github.com/madmax91310/shinny-potato/blob/1652cf6e5985d7e90c9c6518b850a76c5a201813/scripts%2Fobservations%2Fsp-public-feed.json",
+      "raw_url": "https://github.com/madmax91310/shinny-potato/raw/1652cf6e5985d7e90c9c6518b850a76c5a201813/scripts%2Fobservations%2Fsp-public-feed.json",
+      "contents_url": "https://api.github.com/repos/madmax91310/shinny-potato/contents/scripts%2Fobservations%2Fsp-public-feed.json?ref=1652cf6e5985d7e90c9c6518b850a76c5a201813"
+    }
+  ]
+}

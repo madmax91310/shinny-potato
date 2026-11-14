@@ -1,0 +1,45 @@
+up]
+2026-11-14T19:45:29.7324764Z ##[group]node scripts/playwright-editorial-proof-clock.mjs
+2026-11-14T19:45:47.3005362Z Editorial review and product evidence clocks bound copy/publication; prose unchanged.
+2026-11-14T19:45:47.3008323Z Completed in 17.6s
+2026-11-14T19:45:47.3008957Z ##[endgroup]
+2026-11-14T19:45:47.3009356Z ##[group]node scripts/test-data-review-calendar.mjs
+2026-11-14T19:46:04.5867561Z Calendrier : dates, filtre outil, rechargement, réserves, rappels par temporalité, filtres persistants et mobile validés.
+2026-11-14T19:46:04.5869575Z Completed in 17.3s
+2026-11-14T19:46:04.5870187Z ##[endgroup]
+2026-11-14T19:46:04.5870697Z ##[group]node scripts/playwright-dca-image-series.mjs
+2026-11-14T19:47:22.0888125Z node:internal/modules/run_main:123
+2026-11-14T19:47:22.0888576Z Opening browser
+2026-11-14T19:47:22.0888831Z Rendering series
+2026-11-14T19:47:22.0889076Z Rendered series
+2026-11-14T19:47:22.0889314Z Reloading draft
+2026-11-14T19:47:22.0892072Z     triggerUncaughtException(
+2026-11-14T19:47:22.0892824Z     ^
+2026-11-14T19:47:22.0893075Z 
+2026-11-14T19:47:22.0893319Z locator.waitFor: Timeout 60000ms exceeded.
+2026-11-14T19:47:22.0893695Z Call log:
+2026-11-14T19:47:22.0894514Z   - waiting for getByRole('navigation', { name: 'Images à exporter' }) to be visible
+2026-11-14T19:47:22.0894953Z 
+2026-11-14T19:47:22.0895443Z     at /home/runner/work/shinny-potato/shinny-potato/scripts/playwright-dca-image-series.mjs:46:64 {
+2026-11-14T19:47:22.0896122Z   log: [
+2026-11-14T19:47:22.0896792Z     "  - waiting for getByRole('navigation', { name: 'Images à exporter' }) to be visible"
+2026-11-14T19:47:22.0897330Z   ],
+2026-11-14T19:47:22.0897605Z   name: 'TimeoutError'
+2026-11-14T19:47:22.0897906Z }
+2026-11-14T19:47:22.0898040Z 
+2026-11-14T19:47:22.0898167Z Node.js v20.20.2
+2026-11-14T19:47:22.0898524Z Completed in 77.5s
+2026-11-14T19:47:22.0899239Z ##[endgroup]
+2026-11-14T19:47:22.0914813Z ##[error]name: 'TimeoutError'
+2026-11-14T19:47:22.0964790Z ##[error]Process completed with exit code 1.
+2026-11-14T19:47:22.1022267Z ##[group]Run actions/upload-artifact@v7.0.1
+2026-11-14T19:47:22.1022570Z with:
+2026-11-14T19:47:22.1022765Z   name: browser-durations-2
+2026-11-14T19:47:22.1023027Z   path: test-artifacts/browser-durations-*.json
+2026-11-14T19:47:22.1023330Z   if-no-files-found: ignore
+2026-11-14T19:47:22.1023548Z   retention-days: 35
+2026-11-14T19:47:22.1023752Z   compression-level: 6
+2026-11-14T19:47:22.1023958Z   overwrite: false
+2026-11-14T19:47:22.1024165Z   include-hidden-files: false
+2026-11-14T19:47:22.1024387Z   archive: true
+2026-11-14T19:47:

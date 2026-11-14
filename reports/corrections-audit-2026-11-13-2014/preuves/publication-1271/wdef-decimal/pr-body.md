@@ -1,0 +1,9 @@
+Le résultat WDEF abandonnait ses compositions sur le TER néerlandais `0,40%`. Le même format empêchait ensuite la qualification primaire des pays (`34,22%`), même si un secours pays fonctionnait. Le collecteur accepte désormais la virgule décimale dans les seules cellules de frais et les pourcentages pays affichés ; ceux-ci doivent toujours correspondre aux lignes officielles exactes et datées, avec la même politique et précision publiées. Les fractions API, poids, seuils, définitions de pays et dates ne changent pas.
+
+Une capture officielle NL réelle reproduit le refus pays avant correction et valide après correction top10 83,97 % des poids publiés, pays 99,9999 %, secteurs 100 %, photo du 12 novembre. Poids originaux, aucune renormalisation. Fixture hachée et tests des identités, formats ambigus, date/stream manquants, ordre et précision. Les tests émetteurs et WisdomTree ciblés passent ; la CI du dernier commit et la recette GitHub sont vérifiées séparément.
+
+Premier producteur ordinaire GitHub de PR 43617819119 : WDEF validé, top10 et secteurs acquis, mais pays primaire NL encore refusé et secours exact utilisé. La deuxième révision traite précisément cette branche primaire ; elle ne se contente pas de revendiquer le succès composite. Les six livres natifs NAV403 restent un autre incident ouvert. Aucune nouvelle composition exacte d’indice ni admission au recouvrement intégral déduite de ce top10.
+
+Même suivi #881, responsabilités dans docs/data-operations-coordination.md ; aucun changement de donnée réelle, maquette ou convention financière. Radar reste arrêté et Portefeuilles IA supprimé.
+
+Le pourcentage cumulé du top10 HTML désigne les poids de ce classement émetteur ; aucun dénominateur NAV intégral n’est déduit de ce tableau. Les livres NAV natifs qualifiés restent une voie distincte.

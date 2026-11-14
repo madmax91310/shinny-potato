@@ -1,0 +1,400 @@
+{
+  "checkedAt": "2026-11-14T14:22:20.191979+00:00",
+  "shares": [
+    {
+      "isin": "FR001400U5Q4",
+      "status": "validated",
+      "share": {
+        "isin": "FR001400U5Q4",
+        "currency": "EUR",
+        "provider": "Amundi",
+        "parser": "amundi",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
+        "method": "calendar-year share total return, income reinvested, fund fees included",
+        "productId": "FR001400U5Q4",
+        "exposureOnly": true,
+        "performance": {
+          "currency": "EUR",
+          "basis": "fund",
+          "method": "calendar-year share total return, income reinvested, fund fees included",
+          "years": {},
+          "observationMethod": "published exact-share NAV returns; income reinvested; periods <=1 year cumulative",
+          "observations": [
+            {
+              "label": "Depuis janvier",
+              "value": 16.53,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "1 mois",
+              "value": 0.94,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "3 mois",
+              "value": 3.61,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "1 an",
+              "value": 15.73,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "Depuis le lancement",
+              "value": 25.63,
+              "asOf": "2026-10-31"
+            }
+          ],
+          "asOf": "2026-10-31",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
+          "sha256": "7ebb6ff603e3f8a6ea327f5752b24dae374e629a667afe02e6a88e22f57b05d0"
+        }
+      }
+    },
+    {
+      "isin": "LU2970735911",
+      "status": "validated",
+      "share": {
+        "isin": "LU2970735911",
+        "currency": "EUR",
+        "provider": "Amundi",
+        "parser": "amundi",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF",
+        "method": "calendar-year share total return, income reinvested, fund fees included",
+        "productId": "LU2970735911",
+        "exposureOnly": true,
+        "performance": {
+          "currency": "EUR",
+          "basis": "fund",
+          "method": "calendar-year share total return, income reinvested, fund fees included",
+          "years": {},
+          "observationMethod": "published exact-share NAV returns; income reinvested; periods <=1 year cumulative",
+          "observations": [
+            {
+              "label": "Depuis janvier",
+              "value": -0.51,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "1 mois",
+              "value": -0.89,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "3 mois",
+              "value": -1.89,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "1 an",
+              "value": 0.04,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "Depuis le lancement",
+              "value": 1.41,
+              "asOf": "2026-10-31"
+            }
+          ],
+          "asOf": "2026-10-31",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF",
+          "sha256": "6a0ef027f6d44ea68f6f579101cdd019e4e075e1c2b02bff4a0b921265f58613"
+        }
+      }
+    },
+    {
+      "isin": "IE000DQLYVB9",
+      "status": "validated",
+      "share": {
+        "isin": "IE000DQLYVB9",
+        "currency": "EUR",
+        "provider": "iShares",
+        "parser": "ishares",
+        "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+        "method": "calendar-year exact share NAV total return, net of fees",
+        "productId": 342916,
+        "exposureOnly": true,
+        "performance": {
+          "currency": "EUR",
+          "basis": "fund",
+          "method": "calendar-year exact share NAV total return, net of fees",
+          "years": {},
+          "observationMethod": "published exact-share NAV returns; income reinvested; periods <=1 year cumulative",
+          "observations": [
+            {
+              "label": "1 mois",
+              "value": 0.83,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "3 mois",
+              "value": 4.49,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "Depuis janvier",
+              "value": 17.22,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "1 an",
+              "value": 15.49,
+              "asOf": "2026-10-31"
+            }
+          ],
+          "asOf": "2026-10-31",
+          "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+          "sha256": "f50439f775a36e969a8dd2c3469552f69c436703b69a7dd647291ec49f5338cc"
+        }
+      }
+    },
+    {
+      "isin": "IE0007Y8Y157",
+      "status": "validated",
+      "share": {
+        "isin": "IE0007Y8Y157",
+        "currency": "USD",
+        "provider": "VanEck",
+        "parser": "vaneck",
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf",
+        "fallbackUrls": [
+          "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
+          "https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf",
+          "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf"
+        ],
+        "method": "calendar-year NAV total return, net income reinvested, net of fees",
+        "productId": "IE0007Y8Y157",
+        "exposureOnly": true,
+        "performance": {
+          "currency": "USD",
+          "basis": "fund",
+          "method": "calendar-year NAV total return, net income reinvested, net of fees",
+          "years": {},
+          "observationMethod": "published exact-share NAV returns; income reinvested; periods <=1 year cumulative",
+          "observations": [
+            {
+              "label": "1 mois",
+              "value": -15.53,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "3 mois",
+              "value": -11.86,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "Depuis janvier",
+              "value": -0.77,
+              "asOf": "2026-10-31"
+            },
+            {
+              "label": "1 an",
+              "value": -12.07,
+              "asOf": "2026-10-31"
+            }
+          ],
+          "asOf": "2026-10-31",
+          "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf",
+          "sha256": "3ba959532ef89f087434826e25936a29da18fff0812cbe1824f0ec7afd1e2aea"
+        }
+      }
+    }
+  ],
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "etf-presentation-performance-FR001400U5Q4",
+          "instrument": "FR001400U5Q4",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-LU2970735911",
+          "instrument": "LU2970735911",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE000DQLYVB9",
+          "instrument": "IE000DQLYVB9",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE0007Y8Y157",
+          "instrument": "IE0007Y8Y157",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_presentation_performance",
+      "reportStem": "presentation-performance",
+      "declaredAt": "2026-11-14T14:22:20.152337+00:00",
+      "nonce": "cdb4040b-cd29-4eeb-afb8-76ab27ff2120",
+      "codeSha": "13d421271cd22e882e28027c5af44842d9d764c5",
+      "durablePlan": true,
+      "runId": "43603436898",
+      "attempt": "1",
+      "sha256": "9694f290b0327d5daa0368def4484e5ef999c08806c7aa533d4e6490e49ef5b8"
+    },
+    "scope": {
+      "kind": "collect_presentation_performance",
+      "mode": "full",
+      "expectedIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "requestedIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "items": [
+        {
+          "id": "etf-presentation-performance-FR001400U5Q4",
+          "instrument": "FR001400U5Q4",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-LU2970735911",
+          "instrument": "LU2970735911",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE000DQLYVB9",
+          "instrument": "IE000DQLYVB9",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE0007Y8Y157",
+          "instrument": "IE0007Y8Y157",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-14T14:22:20.152337+00:00",
+      "planSha256": "9694f290b0327d5daa0368def4484e5ef999c08806c7aa533d4e6490e49ef5b8",
+      "attemptedIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "networkAttemptUnknownIds": [],
+      "runId": "43603436898",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "cdb4040b-cd29-4eeb-afb8-76ab27ff2120"
+    },
+    "outcomes": [
+      {
+        "id": "etf-presentation-performance-FR001400U5Q4",
+        "instrument": "FR001400U5Q4",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "etf-presentation-performance-LU2970735911",
+        "instrument": "LU2970735911",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "etf-presentation-performance-IE000DQLYVB9",
+        "instrument": "IE000DQLYVB9",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "etf-presentation-performance-IE0007Y8Y157",
+        "instrument": "IE0007Y8Y157",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

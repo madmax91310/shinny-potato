@@ -1,0 +1,330 @@
+{
+  "checkedAt": "2026-11-14T17:07:39.835896+00:00",
+  "calls": [
+    {
+      "url": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+      "sha256": "c1469b327791f2ac2ef30279d6f5173d67893aae1df78fa548336cbce625fdb3"
+    },
+    {
+      "url": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+      "sha256": "ebbad0945f5bf806466691e099c46117e52b8a97e81abfefc3d4ade1b9c2bdf5"
+    }
+  ],
+  "result": {
+    "isin": "LU0328475792",
+    "name": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
+    "provider": "DWS",
+    "parser": "dws",
+    "currency": "EUR",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+    "productId": "LU0328475792",
+    "terPct": 0.2,
+    "index": "STOXX® Europe 600 INDEX",
+    "distribution": "Capitalizing",
+    "replication": "Direct Replication (physically)",
+    "unavailable": [],
+    "characteristics": {
+      "terPct": 0.2,
+      "index": "STOXX® Europe 600 INDEX",
+      "distribution": "Capitalizing",
+      "domicile": "Luxembourg",
+      "replicationMethod": "Direct Replication (physically)",
+      "inceptionDate": "2009-01-20"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "EUR",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2016": 1.4,
+        "2017": 10.85,
+        "2018": -11.06,
+        "2019": 27.58,
+        "2020": -1.92,
+        "2021": 25.12,
+        "2022": -10.5,
+        "2023": 16.0,
+        "2024": 8.97,
+        "2025": 20.02
+      }
+    },
+    "aum": {
+      "amount": 5010000000.0,
+      "currency": "GBP",
+      "scope": "fund",
+      "asOf": "2026-11-12",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+      "sha256": "c1469b327791f2ac2ef30279d6f5173d67893aae1df78fa548336cbce625fdb3",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "5.01 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained"
+    },
+    "sectors": {
+      "asOf": "2026-11-12",
+      "basis": "fund",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+      "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
+      "complete": true,
+      "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
+      "rows": [
+        {
+          "name": "Financials",
+          "weightPct": 24.765682
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 16.853914
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 10.645776
+        },
+        {
+          "name": "Technology",
+          "weightPct": 8.119668
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 7.583899
+        },
+        {
+          "name": "Unassigned",
+          "weightPct": 7.122715
+        },
+        {
+          "name": "Energy",
+          "weightPct": 6.588715
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 6.503434
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 4.560619
+        },
+        {
+          "name": "Basic Materials",
+          "weightPct": 3.585292
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 2.511654
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.042977
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.115653
+        }
+      ]
+    },
+    "countries": {
+      "asOf": "2026-11-12",
+      "basis": "fund",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+      "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
+      "complete": true,
+      "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
+      "rows": [
+        {
+          "name": "United Kingdom",
+          "weightPct": 21.227297
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 14.787096
+        },
+        {
+          "name": "France",
+          "weightPct": 14.355947
+        },
+        {
+          "name": "Germany",
+          "weightPct": 13.055444
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 7.765144
+        },
+        {
+          "name": "Spain",
+          "weightPct": 5.681042
+        },
+        {
+          "name": "Italy",
+          "weightPct": 5.204473
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 4.779798
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 2.70382
+        },
+        {
+          "name": "Finland",
+          "weightPct": 1.827549
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 1.552241
+        },
+        {
+          "name": "Norway",
+          "weightPct": 1.103383
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.009733
+        },
+        {
+          "name": "Poland",
+          "weightPct": 0.968661
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.927961
+        },
+        {
+          "name": "Austria",
+          "weightPct": 0.60881
+        },
+        {
+          "name": "Greece",
+          "weightPct": 0.467259
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.34895
+        },
+        {
+          "name": "China",
+          "weightPct": 0.334066
+        },
+        {
+          "name": "Portugal",
+          "weightPct": 0.274944
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 0.206529
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.202284
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.115653
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.107711
+        },
+        {
+          "name": "Bermuda",
+          "weightPct": 0.099601
+        },
+        {
+          "name": "Jersey",
+          "weightPct": 0.086986
+        },
+        {
+          "name": "Korea, Republic of",
+          "weightPct": 0.047456
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.044773
+        },
+        {
+          "name": "United States",
+          "weightPct": 0.028358
+        },
+        {
+          "name": "Jordan",
+          "weightPct": 0.023228
+        },
+        {
+          "name": "Georgia",
+          "weightPct": 0.022899
+        },
+        {
+          "name": "Israel",
+          "weightPct": 0.019672
+        },
+        {
+          "name": "Ukraine",
+          "weightPct": 0.01123
+        },
+        {
+          "name": "United Arab Emirates",
+          "weightPct": 0.0
+        }
+      ]
+    },
+    "holdings": {
+      "asOf": "2026-11-12",
+      "basis": "fund",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
+      "sha256": "def6619aa2c8b768db29e3bf63086ac826bb87fe18ed6c2e7d682c73b1b8d3c2",
+      "rows": [
+        {
+          "name": "ASML HOLDING",
+          "isin": "NL0010273215",
+          "weightPct": 3.86191482
+        },
+        {
+          "name": "ROCHE PS PAR AG",
+          "isin": "CH1499059983",
+          "weightPct": 2.23416331
+        },
+        {
+          "name": "HSBC HOLDINGS PLC",
+          "isin": "GB0005405286",
+          "weightPct": 2.01028784
+        },
+        {
+          "name": "NOVARTIS AG",
+          "isin": "CH0012005267",
+          "weightPct": 1.99062404
+        },
+        {
+          "name": "ASTRAZENECA PLC",
+          "isin": "GB0009895292",
+          "weightPct": 1.86828324
+        },
+        {
+          "name": "SHELL",
+          "isin": "GB00BP6MXD84",
+          "weightPct": 1.76594559
+        },
+        {
+          "name": "NESTLE SA",
+          "isin": "CH0038863350",
+          "weightPct": 1.74489885
+        },
+        {
+          "name": "SAP",
+          "isin": "DE0007164600",
+          "weightPct": 1.54584172
+        },
+        {
+          "name": "SIEMENS N AG",
+          "isin": "DE0007236101",
+          "weightPct": 1.49420479
+        },
+        {
+          "name": "TOTALENERGIES",
+          "isin": "FR0000120271",
+          "weightPct": 1.32991023
+        }
+      ]
+    }
+  }
+}

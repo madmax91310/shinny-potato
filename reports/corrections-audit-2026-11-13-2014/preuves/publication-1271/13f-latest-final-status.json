@@ -1,0 +1,81 @@
+{
+  "run": 43640873655,
+  "event": "workflow_dispatch",
+  "publicationVerified": true,
+  "changedManagers": [
+    "ackman",
+    "cathie-wood",
+    "klarman",
+    "pabrai",
+    "icahn"
+  ],
+  "financialSnapshotDiffs": [
+    {
+      "slug": "ackman",
+      "previousPeriod": "2026-06-30",
+      "currentPeriod": "2026-06-30",
+      "previousSecurities": 14,
+      "currentSecurities": 14,
+      "holdingsChanged": true,
+      "reportedPositionsChanged": false,
+      "unusedLiveQuoteFieldsOnly": true,
+      "snapshotChanged": true,
+      "quarterAdvanced": false
+    },
+    {
+      "slug": "cathie-wood",
+      "previousPeriod": "2026-06-30",
+      "currentPeriod": "2026-09-30",
+      "previousSecurities": 190,
+      "currentSecurities": 181,
+      "holdingsChanged": true,
+      "reportedPositionsChanged": true,
+      "unusedLiveQuoteFieldsOnly": false,
+      "snapshotChanged": true,
+      "quarterAdvanced": true
+    },
+    {
+      "slug": "klarman",
+      "previousPeriod": "2026-06-30",
+      "currentPeriod": "2026-09-30",
+      "previousSecurities": 23,
+      "currentSecurities": 21,
+      "holdingsChanged": true,
+      "reportedPositionsChanged": true,
+      "unusedLiveQuoteFieldsOnly": false,
+      "snapshotChanged": true,
+      "quarterAdvanced": true
+    },
+    {
+      "slug": "pabrai",
+      "previousPeriod": "2026-06-30",
+      "currentPeriod": "2026-09-30",
+      "previousSecurities": 4,
+      "currentSecurities": 4,
+      "holdingsChanged": true,
+      "reportedPositionsChanged": true,
+      "unusedLiveQuoteFieldsOnly": false,
+      "snapshotChanged": true,
+      "quarterAdvanced": true
+    },
+    {
+      "slug": "icahn",
+      "previousPeriod": "2026-06-30",
+      "currentPeriod": "2026-09-30",
+      "previousSecurities": 12,
+      "currentSecurities": 10,
+      "holdingsChanged": true,
+      "reportedPositionsChanged": true,
+      "unusedLiveQuoteFieldsOnly": false,
+      "snapshotChanged": true,
+      "quarterAdvanced": true
+    }
+  ],
+  "receiptPath": "13f-post1288-production/data-publication-receipt.json",
+  "sourceReportPath": "13f-post1288-production/investor-observations.json",
+  "publicReviewsPath": "13f-post1288-production/public-reviews.json",
+  "publicationProofPath": "13f-post1288-production/public-proof-current.json",
+  "sourceReportAt": "2026-11-14T21:17:10.215614+00:00",
+  "receiptFiles": 35,
+  "summary": "PR #1288 fusionnée ; acquisition ordinaire manuelle 43640873655 :28 gérants validés, 5 objets source modifiés, dont 4 passages à septembre2026 (CathieWood, Klarman, Pabrai, Icahn). Ackman reste à juin : poids et positions déclarées identiques, seuls des cours/rendements courants non utilisés par cet outil changent. Enregistrement a4cf5116. Les 35 fichiers du reçu correspondent au manifeste ET aux octets HTTP réellement servis ; les nouvelles positions et revues sont publiées. Le cron43625726669 prouve l’acquisition/validation planifiée avant correctif, mais son enregistrement a échoué ; la reprise actuelle n’est pas une preuve de cron post1288."
+}

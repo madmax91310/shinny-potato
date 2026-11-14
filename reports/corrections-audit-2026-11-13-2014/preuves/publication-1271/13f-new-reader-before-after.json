@@ -1,0 +1,37 @@
+{
+  "exactRaces": [
+    {
+      "base": "bfa517dc7ccfaf4b858eed9965397e373df28f5e",
+      "upstream": "5109bc15ae12bffa4002854cdf5505b28f4b0ebb",
+      "beforeRefusal": "Collection inputs may have changed; recollect from master: src/data/anniversary-levels.json",
+      "afterQualifiedForMandatoryFull13FValidation": [
+        "src/data/anniversary-levels.json"
+      ],
+      "notAnUnconditionalPublication": true
+    },
+    {
+      "base": "5109bc15ae12bffa4002854cdf5505b28f4b0ebb",
+      "upstream": "76619717",
+      "beforeRefusal": "Collection inputs may have changed; recollect from master: scripts/playwright-dca-eight.mjs, src/pages/dca-profiles/DcaApp.jsx, src/pages/dca-profiles/README.md",
+      "afterQualifiedForMandatoryFull13FValidation": [
+        "scripts/playwright-dca-eight.mjs",
+        "src/pages/dca-profiles/DcaApp.jsx",
+        "src/pages/dca-profiles/README.md"
+      ],
+      "notAnUnconditionalPublication": true
+    }
+  ],
+  "pinnedAcquisitionAndPlan": {
+    "scripts/update-investor-13f.py": "84fe43e831b8c73a44a38546614ebec46f063c740579a992b238c4abfb70e792",
+    "scripts/producer_report_contract.py": "54ee3ffe6e80be3d6ba2529172928063c3c1706f85c9973fe485db266778b463",
+    "scripts/producer_report_plans.py": "50b52581836c7e6eb08e45e84fe4ae956fcc774c90aa5f2b8e340b2125cb7fa3"
+  },
+  "exactNewPaths": [
+    "scripts/playwright-dca-eight.mjs",
+    "src/data/anniversary-levels.json",
+    "src/pages/dca-profiles/DcaApp.jsx",
+    "src/pages/dca-profiles/README.md"
+  ],
+  "combinedConsumerAuditStillMandatory": true,
+  "localIsolatedRegressionTests": 38
+}

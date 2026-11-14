@@ -1,68 +1,64 @@
-# Compositions, expositions et publication 13F — bilan du lot
+# Compositions, expositions et publication 13F
 
-Correctifs fusionnés : [PR #1265](https://github.com/madmax91310/shinny-potato/pull/1265), enregistrement 13F ; [PR #1267](https://github.com/madmax91310/shinny-potato/pull/1267), manifeste de publication. Pages effectivement observé : **code `642e702a`, données `c9281f74`**, construction **2026-11-14T03:46:56.588Z**. Les versions de code et de données sont distinguées.
-Complément [PR #1268](https://github.com/madmax91310/shinny-potato/pull/1268) : contrôle de promotion et quatre portées de publication après expiration des revues. Les maquettes, tweets et PNG restent inchangés.
-Complément [PR #1269](https://github.com/madmax91310/shinny-potato/pull/1269) : ordre des lectures archivées et scellement des trois voies composites. Radar reste arrêté ; les quatre scénarios sont isolés et ne collectent aucune nouvelle publication.
+Code public : `332ce044c94085ed30eee75445c5f52bf0134d15`. Données : `a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae`. Contrôle : 2026-11-14T21:46:02.242694+00:00.
 
-## Panne corrigée et données effectivement publiées
+## Publication 13F
 
-Les runs 43496138701 et 43504937474 validaient les sources 13F, puis échouaient sur des publications ETF concurrentes. Le correctif qualifie **six chemins exacts supplémentaires**, indépendants du collecteur et du plan des 28 gérants. Les trois empreintes d’acquisition, les propres snapshots, les fichiers voisins inconnus, la validation du nouvel arbre et le délai de 30 minutes restent protégés.
+PR #1288 fusionnée ; acquisition ordinaire manuelle 43640873655 :28 gérants validés, 5 objets source modifiés, dont 4 passages à septembre2026 (CathieWood, Klarman, Pabrai, Icahn). Ackman reste à juin : poids et positions déclarées identiques, seuls des cours/rendements courants non utilisés par cet outil changent. Enregistrement a4cf5116. Les 35 fichiers du reçu correspondent au manifeste ET aux octets HTTP réellement servis ; les nouvelles positions et revues sont publiées. Le cron43625726669 prouve l’acquisition/validation planifiée avant correctif, mais son enregistrement a échoué ; la reprise actuelle n’est pas une preuve de cron post1288.
 
-**Run ordinaire de production [43517469275](https://github.com/madmax91310/shinny-potato/actions/runs/43517469275) : workflow_dispatch.** Les **28 gérants** sont validés ; le rapport est daté **2026-11-13T22:21:22.946218+00:00**. Enregistrement **`50b7d557b1b633713065f5ecc024a86ee7eae9ce`**, publication réussie, **31 fichiers du reçu comparés exactement aux fichiers publics**. Cela représente des contrôles et fichiers, pas autant de nouvelles déclarations ni une certification indépendante de toutes leurs valeurs.
+La publication manuelle précédente 43517469275 avait rétabli 28 gérants, enregistrement 50b7d557 et 31 fichiers publics. Renaissance : septembre 2026, 3 011 positions ; archive de juin conservée. Calculs, texte, aperçu et PNG publics vérifiés à 1440/390 px. Les dates de positions, collecte et contrôle réussi sont distinctes ; un contrôle sans nouvelle déclaration ne change pas les dates des positions.
 
-Renaissance passe effectivement du **30 juin au 30 septembre 2026** sur le site. Sélecteur, texte comparé au calcul du consommateur, aperçu et téléchargement PNG vérifiés à **1 440 px et 390 px**, sans erreur JavaScript. Les deux PNG sont identiques et affichent la nouvelle date. Les anciennes positions restent dans le mécanisme d’archive existant.
+## Livres et capacités
 
-Le journal indique `Qualified 13F upstream changes: []` : **ce run n’a pas rencontré une nouvelle collision**. Le recalage sur les chemins qualifiés est démontré par les tests de vraies courses Git et la CI ; aucune collision n’a été provoquée en production. Prochain cron nominal : **14 novembre à 12:25 UTC**, non observé. Une reprise manuelle réussie ne le prouve pas.
+| Fonds exact | Couverture disponible | Usage autorisé | Renouvellement |
+|---|---|---|---|
+| WDEF `IE0002Y8CX98` | 42/42 titres identifiés ; 99.86060586 % NAV | Recouvrement complet avec une contrepartie qualifiée ; top 10 du fonds dans le texte ETF. | Photo du 12 novembre acquise localement ; natif GitHub encore 403. |
+| WQTM `IE000W8WMSL2` | 47/47 titres identifiés ; 99.84045835 % NAV | Recouvrement complet avec une contrepartie qualifiée ; top 10 du fonds dans le texte ETF. | Photo du 12 novembre acquise localement ; natif GitHub encore 403. |
+| GGRA `IE00BZ56SW52` | 439/439 titres identifiés ; 99.93988028 % NAV | Recouvrement complet avec une contrepartie qualifiée ; top 10 du fonds dans le texte ETF. | Photo du 12 novembre acquise localement ; natif GitHub encore 403. |
+| WCLD `IE00BJGWQN72` | 63/64 titres identifiés ; 98.28912461 % NAV | Recouvrement partiel ; nCino 1,6580923883190035 % NAV inconnu. | Photo du 12 novembre acquise localement ; natif GitHub encore 403. |
+| WTAI `IE00BDVPNG13` | 58/58 titres identifiés ; 99.49638257 % NAV | Recouvrement complet avec une contrepartie qualifiée ; top 10 du fonds dans le texte ETF. | Photo du 12 novembre acquise localement ; natif GitHub encore 403. |
+| VOLT `IE00BKLF1R75` | 111/111 titres identifiés ; 99.97510051 % NAV | Recouvrement complet avec une contrepartie qualifiée ; top 10 du fonds dans le texte ETF. | Photo du 12 novembre acquise localement ; natif GitHub encore 403. |
 
-## Compositions : usages et limites conservés
+#1271 corrige le compte natif VOLT `CHINESE RENMINBI`, conserve le CNY négatif et refuse les comptes inconnus porteurs d’identifiants titres. Les preuves OpenFIGI déjà hachées de 315 lignes GGRA et une VOLT sont réutilisées avec leurs dates d’origine ; les poids proviennent de la nouvelle acquisition financière. Les cinq livres complets totalisent **697 lignes de titres**, pas 697 entreprises distinctes. Les projections communes alimentent DCA, recouvrement compatible et textes ETF. Un livre de fonds n’est jamais annoncé comme la composition exacte de son indice ; une contrepartie partielle reste partielle.
 
-| Périmètre | Usages disponibles / actualisation | Limite et prochaine action |
+## WDEF : extraction réellement réparée et publiée
+
+#1283 corrige la virgule décimale du TER/MER et swap qui interrompait tout le collecteur HTML, puis les pourcentages affichés dans la branche primaire pays NL. Les fractions structurées doivent toujours correspondre aux mêmes lignes officielles, dates, classe et politique, à la précision existante. Aucun changement de poids ni de seuil.
+
+La capture officielle NL du 14 novembre reproduit le refus puis valide les pays sans secours : somme 99,9999 %, secteurs 100 %, photo du 12 novembre. Le top 10 publié totalise 83,97 % de son propre classement : **ce classement HTML ne prouve pas un livre complet ou une couverture NAV**. Le producteur ordinaire sur push **43623803268** valide WDEF sans erreur de collecte, enregistre **bfa517dc**, et ses quatre fichiers sont vérifiés publics. Sa provenance conservée est IE ; le contrôle direct NL est prouvé séparément, pas présenté comme enregistré à sa place. Ce succès n’est ni un cron postcorrectif ni la réparation des six accès natifs 403. Régressions : 65 tests émetteurs et 157 WisdomTree, plus CI complète.
+
+## Reprises DWS
+
+Le passage ordinaire sur push43632672600 contrôle36instruments :36observations financières qualifiées,34résultats source réussis et deux échecs primairesAUM avec secours exact distinct. Les pays/secteurs LU0328475792 etIE00BK1PV551 sont individuellement réussis et identiques au registre servi. Enregistrement332ce044 puis reçu publié1/1. Les valeurs étaient déjà disponibles : pas de nouvel usage financier ni de réparation attribuée à la sourceDWS. Le précédent refus de publication était une collision Budget1284, distincte de l’intermittence antérieure. Reprise ciblée testée isolément, sans relance supplémentaire inutile ; cron après1287 non encore observé.
+
+Les valeurs, conventions et règles de qualification ne changent pas. Un compte rendu ciblé déclare les instruments avant lecture des résultats ; les autres restent non tentés. Aucun résultat absent ou poids FX manquant n’est transformé en réussite.
+
+## Passages planifiés réellement observés
+
+| Chaîne | Acquisition, enregistrement et publication | Usage / limite |
 |---|---|---|
-| Métadonnées et expositions enregistrées pendant l’audit | Empreintes désormais concordantes avec le manifeste public ; réserve de publication levée. | Preuve de publication complétée, pas réparation nouvelle de tous les champs ni admission automatique des candidats. Champs conservés et inconnus restent tels quels. |
-| Uranium | Présentation ETF : dix positions collectées au 12 novembre, dont trois reprises dans le texte ; pays du 31 octobre. Texte et PNG récapitulatif vérifiés publiquement à 1 440/390 px. DCA/expositions conservent le livre partiel valide du 11 novembre. Le PNG récapitulatif ne présente pas la composition. | Recouvrement intégral refusé. CSV du 12 novembre : deux FX ZAR sans valeurs/poids et deux Verdera non identifiées. Source officielle relue, aucune valeur fabriquée. |
-| WisdomTree | Voies de classements déjà collectées préservées, champs indépendants conservés. | Livre NAV/cash insuffisamment qualifié. Nouvelle piste WCLD : rendu officiel accessible, mais `fundHoldingDetails` absent et seul classement disponible. Aucun classement présenté comme livre NAV complet. |
-| Russell 1000 | Secteurs, nombre de titres et photographie trimestrielle conservés. | Lien titres/classes/sociétés et couverture consolidée manquants ; photos de juin/octobre non mélangées. |
-| Deux indices S&P Dividend Aristocrats | Relais qualifié du 13 novembre, photographie du 30 octobre, utilisable dans sa limite. | Accès GitHub natif 403 conservé, PR #1253 en draft. Relais manuel non automatisé ; échéance nominale du contrôle le 15 novembre à 07:42:53 UTC. |
-| LifeStrategy et autres livres partiels | Transparisation des poches actions et capacités déjà admises préservées. | Aucun portefeuille intégral annoncé ; autres réserves Mining/QYLD/L&G/BCOM conservées dans le reliquat. |
+| Livres qualifiés 43605419666, schedule 14 novembre 14:32 | **198 observations acceptées sur 205**, sept refus ; onze fichiers du reçu 43431751 publiés | Preuves mutualisées seulement pour les livres, identités, poids et dates contrôlés ; ni 198 requêtes ni 198 recouvrements intégraux. Six natifs WisdomTree et Uranium encore refusés |
+| Russell 2000 LU1681038672 | Méthodologie officielle v7.4 qualifiée ; source réelle 14:51:25, photo du 12 novembre, 1 959 ISIN ; registre publié | Somme brute **100,0014 % conservée**, portée fonds/indice distincte : pas de recouvrement intégral, aucune renormalisation, rendement brut non substitué au net |
+| LifeStrategy 43594847235, schedule 12:26 | Quatre parents collectés à 12:34, cinq fichiers publiés ; sous-jacents/transparisation régénérés à 14:51 par 43605419666 | Photos parent/enfants du 30 septembre compatibles ; poches actions seulement. Obligations et cash signés exclus conservés, pas quatre fonds entièrement transparisés |
+| Feuilles indices 43601401302, schedule 13:46 | CAC 40, Dow, DAX, Corée : cinq actions source, trois fichiers publiés ; vingt résultats sélectionnés réussis, 89 non tentés, quatre non applicables | Corée : substitut qualifié explicitement identifié |
+| Expositions 43605378610, schedule 14:32 | Un fichier du reçu publié | Les refus DWS ultérieurs restent des observations distinctes ; ce succès ne certifie pas tous les champs du catalogue |
 
-**Aucun nouveau livre complet n’est admis par ce lot.** Les tests de recouvrement confirment conservation des poids inconnus, couvertures partielles et invariance à l’ordre des actifs. Les contrôles WisdomTree refusent concentration, comparaison et images lorsque le dénominateur n’est pas qualifié.
+## Blocages et prochaine pièce utile
 
-## Preuves et suite
+| Cause | Usages empêchés | Pièce ou voie nécessaire |
+|---|---|---|
+| Six livres natifs WisdomTree : GitHub Ubuntu/macOS/session publique 403 | Renouvellement autonome des six livres ; cinq restent actuellement utilisables sur photo conservée | Route officielle NAV autorisée et réellement accessible depuis GitHub ; les classements DataSpan ne sont pas des livres NAV |
+| WCLD / nCino | Recouvrement intégral | Identité et classe applicables à la ligne FIGI actuelle. Ancien US63947U1079 et nouveau US63947X1019 ont des classes différentes ; la continuité générale de 2022 ne prouve pas la ligne actuelle |
+| Uranium IE000NDWFGA5 | Nouveau livre du 12 novembre refusé ; dernier livre valide partiel du 11 novembre conservé | Valeurs des deux lignes FX ZAR et identités des deux Verdera à 0,002 % chacune ; absents ≠ zéro, aucune ligne supprimée |
+| Russell 1000 | Recouvrement intégral | Livre identifiable complet à même date ; 1 023 titres de juin contre 1 022 d’octobre ne prouve ni continuité ni nombre d’entreprises consolidées |
+| Deux indices natifs S&P Dividend Aristocrats | Renouvellement automatique de la composition exacte | Primaire et nouvelle piste PDF statique officiels 403 sur Ubuntu/macOS. Relais exact manuel contrôlé le 14 novembre à 07:22, photo du 30 octobre ; échéance existante le 16 novembre à 07:22. Licence non vérifiée, non déduite d’un statut HTTP |
+| LifeStrategy 20/40/60/80 et MSCI EM IMI | Couverture complète des fonds LS ; composition exacte d’indice EM IMI | Obligations et autres poches LS non transparisées ; EM IMI garde son substitut ETF explicitement nommé |
+| QYLD, BCOM et deux PEA | Capacités conditionnées aux qualifications contestées | Photographies et preuves officielles compatibles ; poste Autres BCOM −0,11 % conservé ; deux PEA conflit/inconnu, jamais convertis par défaut |
 
-35 tests 13F/Git, 23 tests de positions physiques, tests DCA/expositions/consolidation et CI complète réussis. Les 28 présentations sont exercées en navigateur local ; la recette publique détaillée porte sur Renaissance et le reçu de 31 fichiers sur tous les fichiers attendus.
+## Recettes et traçabilité
 
-## Correction complémentaire du manifeste de publication
+Recettes publiques Chromium 1440/390 px : six DCA (12 PNG), six allocations (12 PNG), cinq présentations ETF (10 PNG), quatre LifeStrategy (huit PNG), 13F et consommateurs ABTC. Couverture, concentration, consolidation/invariance à l’ordre, texte/presse-papiers, aperçu et téléchargement vérifiés selon l’outil. Le PNG ETF conserve son gabarit ; le top 10 est consommé dans le texte, pas annoncé comme dessiné. Aucun appareil physique ni Safari testé.
 
-La PR #1267 répare une seconde cause : le code conservé par le compositeur ne suivait pas encore le nouveau chemin de l’archive Renaissance de juin. Le fichier était bien servi, mais absent du manifeste : le moniteur refusait correctement de confirmer 31 fichiers lorsqu’il n’en retrouvait que 30. Aucun réducteur, contrôle ou incident n’a été forcé.
+La matrice conserve **35 259 couples donnée/usage et 10 526 identités de données** de l’audit ; le rapprochement conserve **1 218 identités d’incidents**. Ce ne sont pas autant de champs financièrement certifiés. Leurs états natifs, preuves source, qualification, publication et recette restent distincts. Deux anciens périmètres inconnus restent des limites historiques, pas un préalable aux corrections. Radar reste arrêté, Portefeuilles IA supprimé, aucune publication X.
 
-Le producteur fige désormais son outil de scellement avant le changement de version du compositeur, et énumère les chemins autorisés du code **et** du commit de données explicitement qualifié. Les empreintes restent calculées sur les fichiers réellement assemblés. Huit tests de publication, les contrôles du publieur et la CI complète de #1267 passent. Le cas exact ancien code/nouvelle archive a été reproduit dans un dépôt Git isolé.
-
-L’archive Renaissance de juin et la photo courante de septembre sont effectivement consultables dans le composant d’historique public, sur ordinateur et mobile, sans erreur JavaScript. Aucun nouveau livre complet d’ETF n’est admis.
-
-[Pièces manquantes et alternatives](RELIQUAT.md). La matrice conserve les 35 259 couples de suivi et les 1 218 identités initiales ; ces lignes ne sont pas des champs tous financièrement certifiés. Le moniteur et l’export public sont rapprochés séparément après leur mise à jour ordinaire.
-
-## Publication finale et preuves distinctes
-
-Le producteur ordinaire [43527632485](https://github.com/madmax91310/shinny-potato/actions/runs/43527632485) (`workflow_dispatch`) a réellement acquis le classeur Banque mondiale, validé et enregistré son contrôle au 13 novembre. Les **142 moyennes mensuelles jusqu’à octobre 2026 sont inchangées**, classeur publié le 3 novembre. Le commit `a6ffeaf7` ne change que `checkedAt`, jamais la période des valeurs. Ce n’est pas une réparation nouvelle de la source or ni une preuve cron.
-
-Lors du passage fournisseur du 13 novembre à 23:41 UTC, la voie de publication corrigée a figé son outil avant de composer le code `1c45b9b4` et les données `a6ffeaf7` : le manifeste public contient **387 empreintes**, dont les **31 du reçu 13F**. Cela prouve la publication des fichiers, pas l’exactitude indépendante de chaque champ financier. Après la promotion finale, le moniteur confirme nativement `matching-public-source-fingerprints`, 31 fichiers, contrôle à 2026-11-14T03:49:03.639572+00:00. Aucun incident n’a été clôturé par édition du moniteur.
-
-Le parcours public Données à revoir est exercé à 1 440/390 px, export complet acquis sans erreur JavaScript. La lecture figée du moniteur utilise le commit `7cea78c060accd620d929fb927546e4feafcd630` et son empreinte exacte ; la lecture de branche via cache peut être plus ancienne et n’est pas confondue avec cet instantané. Le contrôle final de promotion et ses états publiés sont conservés séparément dans moniteur-promotion-code-final.json.
-
-## Promotion du code : régression d’expiration corrigée
-
-La [PR #1268](https://github.com/madmax91310/shinny-potato/pull/1268), fusion `e0c165bf55da99bb84fa0fd0022c2e5f17fb095c`, corrige le test qui exigeait encore une revue garde TR corroborée après sa date d’expiration. Le produit avait correctement conservé le statut partiel. Quatre portées manquaient aussi au contrôle obligatoire : garde PEA TR inconnue et gratuité CTO non transposable ; cash Bourso/Fortuneo/BD avec PEA documenté et CTO inconnu. Ces quatre portées exactes complètent les six existantes ; aucun mécanisme générique n’admet les futurs champs inconnus. L’adaptateur courant, les bornes inclusives, le lendemain et les périmètres PEA/CTO sont vérifiés sans modifier données, échéances ou règles. Build local et CI vérifiés ; cette correction de contrôle ne répare ni ne certifie la donnée du courtier.
-
-## Dernière dépendance de publication
-
-Le premier passage master 43536546079 a échoué sur la recette du lecteur de signaux archivés. Reproduction isolée : une ancienne réussite vide effaçait une panne plus récente et les derniers signaux. La PR #1269 protège l’ordre des réponses et le cache ; le test original reste inchangé et quatre cas supplémentaires couvrent les deux ordres succès/échec à 1440/390 px. Aucun collecteur ou notification Radar n’est réactivé.
-
-Le même secours a reproduit l’omission du manifeste (386 empreintes, archive absente), tout en conservant les 31 fichiers réellement accessibles. Le correctif #1267 couvrait la voie partagée ; #1269 étend le scellement aux deux autres constructeurs, promotion avec données plus récentes et secours. Les neuf tests et le contrôle de couverture des trois chemins passent sans assouplir le contrôle financier ou l’ordre des publications. Les branches conditionnelles non rencontrées sont signalées séparément dans publication-branches-proof.json, sans panne provoquée en production.
-
-## Données concurrentes préservées
-
-La publication finale a réellement intégré le commit `c9281f74` produit par le collecteur ETF 43552458543, lancé par `workflow_dispatch`. Le scellement du composite code/données plus récent a donc été exercé en production ; le secours reste démontré par les tests/CI, sans panne provoquée. Le workflow concurrent reste en échec partiel ; ses données valides sont publiées, sans transformer les champs retenus en succès. Cette collecte parallèle ne compte pas comme une réparation propre à ce lot, ni comme un cron. Son contrat indices comporte 113 résultats : 107 `succeeded`, deux accès S&P `failed`, quatre `not-applicable`. Ce sont des résultats de contrat, pas 107 indices ni 107 champs financièrement certifiés. Le détail exact des instruments et périmètres est conservé dans collecte-concurrente-indices-113-resultats.csv ; les livres intégraux et historiques mensuels ne sont pas requalifiés par les résultats de composition ou de calendrier annuel.
-
-La promotion finale ordinaire sur push de master **43548986618** est réussie et sa version de code exacte est effectivement servie : `642e702aead994fabf539e901cf886e98379a41a`. Recette publique du panneau de preuves à 1 440/390 px sans erreur JavaScript ; les 31 fichiers 13F restent identiques au reçu après ce déploiement. Ce push valide une publication de code, pas un cron fournisseur.
-
-Précision WCLD issue du réexamen de la réponse conservée : classe UCITS IE00BJGWQN72 / 3104137 ; NAV et encours du 22 octobre, classement du 12 novembre, aucune valeur/quantité de position permettant le rapprochement. Les photographies ne sont pas mélangées ; aucune nouvelle date de source enregistrée.
+Contrôle final : moniteur du 14 novembre à 21:24 UTC, 13F collecte/validation/enregistrement/publication réussis, zéro diagnostic 13F en échec dans l’export public complet. Dix PNG 13F et quatre PNG DCA/DWS vérifiés sur ordinateur et mobile. Backend corrigé `3c5b3867`, code public `332ce044`, données `a4cf5116` : compatibilité de la voie de publication des données vérifiée ; aucune modification du code applicatif entre ces versions. L’ancienne alerte d’enregistrement des expositions encore affichée est rapprochée de son successeur publié dans le CSV, sans effacer les tentatives historiques.

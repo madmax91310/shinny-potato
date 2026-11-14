@@ -1,0 +1,40 @@
+{
+  "summary": "Voie secondaire officielle acquise dans GitHub : calendrier sur push, NAV, cotation et quotidien en reprises ciblées ordinaires. Reçus 4/4,9/9,2/2 et3/3 publiés ; aucune nouvelle période financière. Cron postmigration non observé.",
+  "proofs": {
+    "nav": {
+      "run": 43614083063,
+      "event": "workflow_dispatch",
+      "sourceAt": "2026-11-14T17:26:40.528892+00:00",
+      "state": "unchanged-verified",
+      "receipt": "bd4cfe2223d082ae623100309e68d0aa7e1dc49a",
+      "filesPublished": 9
+    },
+    "daily": {
+      "run": 43625973351,
+      "event": "workflow_dispatch",
+      "sourceAt": "2026-11-14T18:21:25.598676+00:00",
+      "state": "unchanged-verified",
+      "receipt": "5109bc15ae12bffa4002854cdf5505b28f4b0ebb",
+      "filesPublished": 3
+    },
+    "listings": {
+      "run": 43614086081,
+      "event": "workflow_dispatch",
+      "evidenceId": "CH0454664001-XPAR-ABTC-EUR",
+      "receipt": "ede4ac08679a01ac7ddee04d2f5202a8e980dc8a",
+      "filesPublished": 2
+    },
+    "calendar": {
+      "run": 43613858608,
+      "event": "push",
+      "receipt": "c4d7fea079dfb60b944c412ee770c1ac193717bc",
+      "filesPublished": 4
+    }
+  },
+  "build": {
+    "sha": "332ce044c94085ed30eee75445c5f52bf0134d15",
+    "dataSha": "a4cf51167c2ac3c19b9bc604ff66c70a8fdff8ae",
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T21:19:03.000Z"
+  }
+}

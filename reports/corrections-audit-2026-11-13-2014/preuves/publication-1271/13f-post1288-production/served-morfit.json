@@ -1,0 +1,164 @@
+{
+  "as_of": "2026-10-16T07:08:01.426754+00:00",
+  "data": {
+    "identity": {
+      "slug": "morfit",
+      "archetype": "hedge_fund",
+      "displayName": "Mason Morfit",
+      "entityName": "ValueAct Capital Management LP",
+      "dataProvider": "FolioFact"
+    },
+    "snapshot": {
+      "periodEnd": "2026-06-30",
+      "holdings": [
+        {
+          "issuerName": "Visa Inc.",
+          "ticker": "V",
+          "putCall": null,
+          "weight": 0.1410278423174379,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Amazon.com Inc.",
+          "ticker": "AMZN",
+          "putCall": null,
+          "weight": 0.12442472351728937,
+          "isNew": false,
+          "sharesChangePct": 2.0
+        },
+        {
+          "issuerName": "Rocket Cos. Inc.",
+          "ticker": "RKT",
+          "putCall": null,
+          "weight": 0.11646693591710348,
+          "isNew": false,
+          "sharesChangePct": 47.7
+        },
+        {
+          "issuerName": "Blackrock Inc.",
+          "ticker": "BLK",
+          "putCall": null,
+          "weight": 0.09926286853809087,
+          "isNew": false,
+          "sharesChangePct": 6.5
+        },
+        {
+          "issuerName": "Meta Platforms Inc.",
+          "ticker": "META",
+          "putCall": null,
+          "weight": 0.09153439020800909,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Salesforce Inc.",
+          "ticker": "CRM",
+          "putCall": null,
+          "weight": 0.0832520840149107,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Toast Inc.",
+          "ticker": "TOST",
+          "putCall": null,
+          "weight": 0.0697806079686892,
+          "isNew": false,
+          "sharesChangePct": 9.6
+        },
+        {
+          "issuerName": "KKR & Co. Inc.",
+          "ticker": "KKR",
+          "putCall": null,
+          "weight": 0.05795484885987002,
+          "isNew": false,
+          "sharesChangePct": 8.5
+        },
+        {
+          "issuerName": "Liberty Live Group",
+          "ticker": "LLYV.{A,K}",
+          "putCall": null,
+          "weight": 0.054835134201524395,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Spotify Technology S.A.",
+          "ticker": "SPOT",
+          "putCall": null,
+          "weight": 0.042923270583533915,
+          "isNew": false,
+          "sharesChangePct": 46.9
+        },
+        {
+          "issuerName": "Simpson MFG Inc.",
+          "ticker": "SSD",
+          "putCall": null,
+          "weight": 0.03086016341992816,
+          "isNew": false,
+          "sharesChangePct": -40.6
+        },
+        {
+          "issuerName": "Roblox Corp.",
+          "ticker": "RBLX",
+          "putCall": null,
+          "weight": 0.030374239312031145,
+          "isNew": false,
+          "sharesChangePct": -46.2
+        },
+        {
+          "issuerName": "CBRE Group Inc.",
+          "ticker": "CBRE",
+          "putCall": null,
+          "weight": 0.023720811341941574,
+          "isNew": false,
+          "sharesChangePct": 323.0
+        },
+        {
+          "issuerName": "Mongodb Inc.",
+          "ticker": "MDB",
+          "putCall": null,
+          "weight": 0.009877428193104177,
+          "isNew": false,
+          "sharesChangePct": -84.0
+        },
+        {
+          "issuerName": "Live Nation Entertainment In",
+          "ticker": "LYV",
+          "putCall": null,
+          "weight": 0.009815790352805737,
+          "isNew": false,
+          "sharesChangePct": -51.6
+        },
+        {
+          "issuerName": "WIX Com Ltd.",
+          "ticker": "WIX",
+          "putCall": null,
+          "weight": 0.008409063548751237,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Paypay Corp.",
+          "ticker": "PAYP",
+          "putCall": null,
+          "weight": 0.005479797704979041,
+          "isNew": true,
+          "sharesChangePct": null
+        }
+      ],
+      "quarterChanges": {
+        "priorPeriodLabel": "Q1 2026",
+        "exits": [
+          {
+            "issuerName": "Walt Disney Co.",
+            "ticker": "DIS",
+            "putCall": null
+          }
+        ]
+      }
+    },
+    "sourceUrl": "https://foliofact.com/funds/valueact-capital"
+  }
+}

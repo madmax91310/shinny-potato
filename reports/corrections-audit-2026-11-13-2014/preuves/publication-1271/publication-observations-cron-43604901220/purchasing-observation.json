@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-11-14T14:28:31.367779+00:00",
+  "scope": {
+    "requestedIds": [
+      "purchasing-general",
+      "purchasing-alimentation",
+      "purchasing-energie",
+      "purchasing-irl",
+      "purchasing-smic"
+    ],
+    "expectedIds": [
+      "purchasing-general",
+      "purchasing-alimentation",
+      "purchasing-energie",
+      "purchasing-irl",
+      "purchasing-smic"
+    ]
+  },
+  "successes": [
+    {
+      "id": "purchasing-general"
+    },
+    {
+      "id": "purchasing-alimentation"
+    },
+    {
+      "id": "purchasing-energie"
+    },
+    {
+      "id": "purchasing-irl"
+    },
+    {
+      "id": "purchasing-smic"
+    }
+  ],
+  "errors": [],
+  "outcomes": [
+    {
+      "id": "purchasing-general",
+      "status": "unchanged-verified",
+      "attemptedAt": "2026-11-14T14:28:31.367779+00:00",
+      "checkedAt": "2026-11-14T14:28:31.367779+00:00",
+      "lastSuccessAt": "2026-11-14T14:28:31.367779+00:00",
+      "asOf": "2026-10",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
+      "responseSha256": "4c89006bf49a354d113afe57de6cc6f9c7f034e5bdc9bf3b1248ac1dd5095f93",
+      "frequency": "M",
+      "unit": "index-points"
+    },
+    {
+      "id": "purchasing-alimentation",
+      "status": "unchanged-verified",
+      "attemptedAt": "2026-11-14T14:28:31.367779+00:00",
+      "checkedAt": "2026-11-14T14:28:31.367779+00:00",
+      "lastSuccessAt": "2026-11-14T14:28:31.367779+00:00",
+      "asOf": "2026-10",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
+      "responseSha256": "00c899756a2dc93c08b39a4b7aa69801dd4d6fbf0c9fdb93b3988353a9846a47",
+      "frequency": "M",
+      "unit": "index-points"
+    },
+    {
+      "id": "purchasing-energie",
+      "status": "unchanged-verified",
+      "attemptedAt": "2026-11-14T14:28:31.367779+00:00",
+      "checkedAt": "2026-11-14T14:28:31.367779+00:00",
+      "lastSuccessAt": "2026-11-14T14:28:31.367779+00:00",
+      "asOf": "2026-10",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
+      "responseSha256": "add57cc3b69c971b31fcc849beda6555b5e743bc6436e2dc5806df4a9b740842",
+      "frequency": "M",
+      "unit": "index-points"
+    },
+    {
+      "id": "purchasing-irl",
+      "status": "unchanged-verified",
+      "attemptedAt": "2026-11-14T14:28:31.367779+00:00",
+      "checkedAt": "2026-11-14T14:28:31.367779+00:00",
+      "lastSuccessAt": "2026-11-14T14:28:31.367779+00:00",
+      "asOf": "2026-Q3",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333?startPeriod=2010",
+      "responseSha256": "061e5d70f75f1a537ef665a724c0d41d913937a0198e76d05fdcecd9ba908d8a",
+      "frequency": "T",
+      "unit": "index-points"
+    },
+    {
+      "id": "purchasing-smic",
+      "status": "unchanged-verified",
+      "attemptedAt": "2026-11-14T14:28:31.367779+00:00",
+      "checkedAt": "2026-11-14T14:28:31.367779+00:00",
+      "lastSuccessAt": "2026-11-14T14:28:31.367779+00:00",
+      "asOf": "2026-11",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/000879877?startPeriod=2010",
+      "responseSha256": "33bcda40ec9ac919b5ce2005fe81db0d9b7e75a89eea90486de12ca9d02b738f",
+      "frequency": "M",
+      "unit": "EUR/month"
+    }
+  ]
+}

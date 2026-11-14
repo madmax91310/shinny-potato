@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-14T15:22:55.869332+00:00",
+  "run": 43594847235,
+  "receiptCommit": "828c936cea7b2ceea009b708d3086927c54467b6",
+  "build": {
+    "sha": "9173751d07ad6fae0f0254a3c1787fcecc373699",
+    "dataSha": "049558ceca7461abd1430d53aaccbdcbf86566cc",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-14T14:45:47.825Z"
+  },
+  "files": [
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "expected": "0bc0bfbc427918d53e8b963cbf50927a2fc4c881",
+      "actual": "0bc0bfbc427918d53e8b963cbf50927a2fc4c881",
+      "matches": true
+    },
+    {
+      "path": "src/data/dca-holdings-status.json",
+      "expected": "6b34d1615a0129879364eb068764b626660f84f5",
+      "actual": "6b34d1615a0129879364eb068764b626660f84f5",
+      "matches": true
+    },
+    {
+      "path": "src/data/dca-security-classifications.json",
+      "expected": "75e7fb2769a3a1735637d81dd65af4621cb68856",
+      "actual": "75e7fb2769a3a1735637d81dd65af4621cb68856",
+      "matches": true
+    },
+    {
+      "path": "src/data/lifestrategy.json",
+      "expected": "eb6586d9aca8b1f625bf016b0bc9710a7622de51",
+      "actual": "eb6586d9aca8b1f625bf016b0bc9710a7622de51",
+      "matches": true
+    },
+    {
+      "path": "src/data/vanguard-equity-underliers.json",
+      "expected": "338ab50620e728cc5248d1e1d0f3fe22af2cfa12",
+      "actual": "338ab50620e728cc5248d1e1d0f3fe22af2cfa12",
+      "matches": true
+    }
+  ],
+  "allMatch": true,
+  "scope": "Direct public manifest comparison, not inferred from workflow status. Earlier successful proofs retained independently of legitimate later updates."
+}

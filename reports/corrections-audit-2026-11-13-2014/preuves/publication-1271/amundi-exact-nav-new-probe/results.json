@@ -1,0 +1,68 @@
+[
+  {
+    "source": {
+      "isin": "FR0010755611",
+      "navCurrency": "EUR",
+      "periodStart": "2015-01"
+    },
+    "checkedAt": "2026-11-14T10:57:08.150554+00:00",
+    "sha256": "d26df7910cfad59b717214315db994f7dbb5b752b010a42929d3f583c8e2ca72",
+    "products": [
+      {
+        "id": "FR0010755611",
+        "facts": {
+          "ISIN": "FR0010755611",
+          "CURRENCY": "EUR",
+          "LAUNCH_DATE": "2009-06-16",
+          "DISTRIBUTION_POLICY": "Capitalisation and/or distribution"
+        }
+      }
+    ],
+    "status": "refused",
+    "error": "Amundi NAV requires explicitly accumulating share"
+  },
+  {
+    "source": {
+      "isin": "FR0013411998",
+      "navCurrency": "EUR",
+      "periodStart": "2019-06"
+    },
+    "checkedAt": "2026-11-14T10:57:08.150860+00:00",
+    "sha256": "d530c6801e5bf9c8b6e975440e6347a0e10fe84232bdf5fd35875cfc399b2ce3",
+    "products": [
+      {
+        "id": "FR0013411998",
+        "facts": {
+          "ISIN": "FR0013411998",
+          "CURRENCY": "EUR",
+          "LAUNCH_DATE": "2019-04-25",
+          "DISTRIBUTION_POLICY": "Capitalisation and/or distribution"
+        }
+      }
+    ],
+    "status": "refused",
+    "error": "Amundi NAV requires explicitly accumulating share"
+  },
+  {
+    "source": {
+      "isin": "FR0013412004",
+      "navCurrency": "EUR",
+      "periodStart": "2019-06"
+    },
+    "checkedAt": "2026-11-14T10:57:09.324888+00:00",
+    "sha256": "4c778617c61fb30025cf2018411db7dae48a025d93554614893861642f97b4b5",
+    "products": [
+      {
+        "id": "FR0013412004",
+        "facts": {
+          "ISIN": "FR0013412004",
+          "CURRENCY": "EUR",
+          "LAUNCH_DATE": "2019-04-25",
+          "DISTRIBUTION_POLICY": "Capitalisation and/or distribution"
+        }
+      }
+    ],
+    "status": "refused",
+    "error": "Amundi NAV requires explicitly accumulating share"
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-11-14T15:43:12.650297+00:00",
+  "run": 43605419666,
+  "event": "schedule",
+  "build": {
+    "sha": "85de119c1fad5a024d814e961fb240129875aafe",
+    "dataSha": "5414be7381db77f2e7bd175ead9c64f17114a4c0",
+    "lane": "validated-data",
+    "builtAt": "2026-11-14T15:36:48.427Z"
+  },
+  "receiptCommit": "434317519178c73d54dab120480e22e4b3f2d0e3",
+  "files": [
+    {
+      "path": "public/data/holdings-discovery.json",
+      "expected": "15f68bc1487bc897283bb61bdf1d04a199e47590",
+      "actual": "15f68bc1487bc897283bb61bdf1d04a199e47590",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "expected": "e22064896d0b32ddd9e2b94f3e514dc949bc3bca",
+      "actual": "e22064896d0b32ddd9e2b94f3e514dc949bc3bca",
+      "matches": true
+    },
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "expected": "d9892a8940b7f8534f9b3e321226f083e433d967",
+      "actual": "d9892a8940b7f8534f9b3e321226f083e433d967",
+      "matches": true
+    },
+    {
+      "path": "src/data/dca-equity-exposures.json",
+      "expected": "7ba402682dc713de0365c57b74abb33b6a105b3f",
+      "actual": "7ba402682dc713de0365c57b74abb33b6a105b3f",
+      "matches": true
+    },
+    {
+      "path": "src/data/dca-holdings-status.json",
+      "expected": "874c943c9e6f8edfe70c0a02e688866067e6f582",
+      "actual": "874c943c9e6f8edfe70c0a02e688866067e6f582",
+      "matches": true
+    },
+    {
+      "path": "src/data/dca-security-classifications.json",
+      "expected": "61a321ff5c4f08ddef2f4690bdfc790dc4fe8499",
+      "actual": "61a321ff5c4f08ddef2f4690bdfc790dc4fe8499",
+      "matches": true
+    },
+    {
+      "path": "src/data/exposure-sleeves.json",
+      "expected": "12aca70891528675ce01ac9f006e2050e00d260f",
+      "actual": "12aca70891528675ce01ac9f006e2050e00d260f",
+      "matches": true
+    },
+    {
+      "path": "src/data/qualified-exposure-etfs.json",
+      "expected": "91d0dab52c5ac5f7b8db15a558a37e303471a95f",
+      "actual": "91d0dab52c5ac5f7b8db15a558a37e303471a95f",
+      "matches": true
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "expected": "0cefd43c61c9cbc6c56f7258de270a065d5a25e2",
+      "actual": "0cefd43c61c9cbc6c56f7258de270a065d5a25e2",
+      "matches": true
+    },
+    {
+      "path": "src/data/security-identifier-observations.json",
+      "expected": "276b068871e16beb26708f389d6bd9d6d3477979",
+      "actual": "276b068871e16beb26708f389d6bd9d6d3477979",
+      "matches": true
+    },
+    {
+      "path": "src/data/vanguard-equity-underliers.json",
+      "expected": "338ab50620e728cc5248d1e1d0f3fe22af2cfa12",
+      "actual": "338ab50620e728cc5248d1e1d0f3fe22af2cfa12",
+      "matches": true
+    }
+  ],
+  "allMatch": true
+}

@@ -1,0 +1,31 @@
+{
+  "build": {
+    "sha": "f744fc311bdc4dbdf44bd79f457aafe0a31a27f8",
+    "dataSha": "5109bc15ae12bffa4002854cdf5505b28f4b0ebb",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-14T18:43:19.994Z"
+  },
+  "record": {
+    "value": 20.380926529135,
+    "asOf": "2026-11-13",
+    "currency": "EUR",
+    "isin": "CH0454664001",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 22.525,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-11-13",
+    "fxFactor": 0.9048136083966704,
+    "sourceUrl": "https://api.secondary.21shares.com/api/product_details/ABTC",
+    "sourceUrls": [
+      "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+      "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-11-14T18:21:25.598676+00:00",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "095943bba53f8ca9f3e7c03ec7e529dbe896e66393c0d7c4799b8e2f4f1fb2be"
+  }
+}

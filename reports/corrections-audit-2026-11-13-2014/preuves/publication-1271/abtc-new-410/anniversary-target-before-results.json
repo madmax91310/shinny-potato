@@ -1,0 +1,16 @@
+{
+  "declaredAt": "2026-11-14T18:19:41.525487+00:00",
+  "workflow": "update-publication-observations.yml",
+  "event": "workflow_dispatch",
+  "anniversary_series": [
+    "etfCH0454664001Nav"
+  ],
+  "expectedResultIds": [
+    "anniversary-etfCH0454664001Nav"
+  ],
+  "instruments": [
+    "CH0454664001"
+  ],
+  "inseeAndIndexMonths": "Not attempted by existing conditional workflow, preserving their independent incidents",
+  "reason": "Ordinary single-series recovery of the last410dailyNAV result after successful source migration inmonthly/calendar. No whole-catalogue run, no cron claim."
+}
