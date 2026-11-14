@@ -35,8 +35,12 @@ export function budgetPublicContext(value) {
   return value.replace(/(^| · )budget personnel(?: avec |\.?(?: · |$))/gi, '$1').replace(/ · $/, '')
 }
 export function budgetPublicBasis(profile, basis) {
-  const result = basis.replace(/Moyennes\s+20\d{2}/g, 'Moyennes').replace(/(net moyen)\s+20\d{2}\b/gi, '$1')
+  const result = budgetSalaryLabel(basis.replace(/Moyennes\s+20\d{2}/g, 'Moyennes').replace(/(net moyen)\s+20\d{2}\b/gi, '$1').replace(/^Net (?:après impôts?(?: et cotisations)?|de cotisations, avant impôts?)\s*(?:·\s*)?/i, ''))
   return result
+}
+export function budgetSalaryLabel(label) {
+  if (!/\bsalaires?\b/i.test(label)) return label
+  return label.replace(/\s+nets?\b/gi, '').replace(/\s+(?:(?:après|avant)\s+(?:impôts?|prélèvement à la source)(?: et cotisations)?|d[’']impôts?)/gi, '').replace(/\s+déclarés?\b/gi, '')
 }
 export function budgetIntroduction(profile, p) {
   const qualification = budgetQualification(profile)

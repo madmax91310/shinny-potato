@@ -4,7 +4,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
+import { analyzeBudget, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
 import { budgetFinancialReference, staleBudgetText } from './completion.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, WORKSPACE_KEY } from './storage.js'
 import PublicationStatus from './PublicationStatus.jsx'
@@ -129,7 +129,7 @@ export default function App() {
           <p>{[budgetPublicPresentation(profile).job, budgetPublicPresentation(profile).household, profile.location].filter(Boolean).join(' · ')}</p>
           <p>{budgetKind(profile)} · {profile.period}{profile.approximate && ' · montants approximatifs'}</p>
 
-          <dl className="budget-breakdown"><div><dt>Revenus mensuels</dt><dd>{money(a.income)}</dd></div>{profile.expenses.map((row, i) => <div key={i}><dt>{row.label}</dt><dd>{money(row.amount)}</dd></div>)}</dl>
+          <dl className="budget-breakdown"><div><dt>Revenus mensuels</dt><dd>{money(a.income)}</dd></div>{budgetPublicExpenseRows(profile).map((row, i) => <div key={i}><dt>{row.label}</dt><dd>{money(row.amount)}</dd></div>)}</dl>
 
           <Button variant="secondary" onClick={adapt}>Adapter ce budget</Button>
         </>}

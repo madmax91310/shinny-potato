@@ -6,7 +6,7 @@ import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicExpenseRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 async function previewPng(page, url) {
@@ -109,7 +109,7 @@ try {
       const normalize = text => text.replace(/\s+/g, ' ').trim()
       const imageText = normalize(drawn.map(t => t.text).join(' '))
       assert(imageText.includes(budgetDisplayName(profile)))
-      for (const row of [...budgetPublicIncomeRows(profile), ...profile.expenses, ...profile.savings]) {
+      for (const row of [...budgetPublicIncomeRows(profile), ...budgetPublicExpenseRows(profile), ...profile.savings]) {
         assert(imageText.includes(normalize(row.label)), `${profile.id}: missing complete label ${row.label}`)
         assert(imageText.includes(normalize(euro(row.amount, profile.currency))), `${profile.id}: missing amount ${row.amount}`)
       }
@@ -237,7 +237,7 @@ try {
     for (const t of drawn) assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `Editor limit: ${JSON.stringify(t)}`)
     const compact = text => text.replace(/\s/g, '')
     const imageText = compact(drawn.map(t => t.text).join(''))
-    for (const row of [...fixture.income, ...fixture.expenses, ...fixture.savings]) {
+    for (const row of [...budgetPublicIncomeRows(fixture), ...budgetPublicExpenseRows(fixture), ...fixture.savings]) {
       assert(imageText.includes(compact(row.label)), `Editor limit: complete long label ${row.label}`)
       assert(imageText.includes(compact(euro(row.amount, fixture.currency))))
     }

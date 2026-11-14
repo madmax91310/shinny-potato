@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { blankBudget, buildBudgetText, budgetImageExpenses, euro, MAX_BUDGET_LINES } from '../src/pages/budget-profiles/lib.js'
+import { blankBudget, buildBudgetText, budgetPublicIncomeRows, budgetImageExpenses, euro, MAX_BUDGET_LINES } from '../src/pages/budget-profiles/lib.js'
 import { WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 const base = process.env.BUDGET_PUBLIC_BASE ?? 'http://127.0.0.1:4485/shinny-potato'
@@ -52,7 +52,7 @@ async function capture(page, id) {
     }
     const rendered = normalize(drawn.map(t => t.text).join(' '))
     assert(rendered.includes(normalize(euro(Math.abs(balance) / 100, p.currency))))
-    for (const row of [...p.income, ...budgetImageExpenses(p, mode), ...p.savings]) {
+    for (const row of [...budgetPublicIncomeRows(p), ...budgetImageExpenses(p, mode), ...p.savings]) {
       assert(rendered.replace(/\s/g, '').includes(row.label.replace(/\s/g, '')), `${id}: ${row.label}`)
       assert(rendered.includes(normalize(euro(row.amount, p.currency))))
     }

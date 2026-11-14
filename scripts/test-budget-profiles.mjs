@@ -5,7 +5,7 @@ import assert from 'node:assert/strict'
 import './test-budget-editorial-context.mjs'
 import { createHash } from 'node:crypto'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_COMPLETENESS } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicPresentation, buildBudgetText, compareBudgetRecency, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicPresentation, buildBudgetText, compareBudgetRecency, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 
 assert(BUDGET_PROFILES.length > 0)
@@ -30,9 +30,9 @@ for (const p of BUDGET_PROFILES) {
   assert.equal(Math.round(a.balance * 100), sumCents('income') - sumCents('expenses') - sumCents('savings'))
   assert(Math.abs(a.expenseShare - 100 * sumCents('expenses') / sumCents('income')) < 1e-10)
 
-  for (const row of p.expenses) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), row.label)
+  for (const row of budgetPublicExpenseRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), row.label)
   const sections = budgetExpenseSections(p)
-  assert.deepEqual(sections.flatMap(s => s.rows).map(r => r.label).sort(), p.expenses.map(r => r.label).sort(), 'Every expense appears once')
+  assert.deepEqual(sections.flatMap(s => s.rows).map(r => r.label).sort(), budgetPublicExpenseRows(p).map(r => r.label).sort(), 'Every expense appears once')
   if (p.kind === 'planned') assert.match(text, /budget prévu/i)
   if (p.age === null) assert(!/\d+ ans/.test(text.split('\n')[0]))
   assert(sourceReply(p).includes(p.source.url))
@@ -49,7 +49,7 @@ assert.equal(budgetExpenseSections(detailed).length, 2)
 assert.equal(budgetExpenseSections({ ...detailed, expenses: [...detailed.expenses, { label: 'Poste non ventilé', amount: 10 }] }).length, 1)
 assert(buildBudgetText(detailed).includes(`Reste avant épargne et investissements : ${euro(analyzeBudget(detailed).available)}`))
 assert(buildBudgetText(detailed).includes(`Reste après épargne et investissements : ${euro(analyzeBudget(detailed).balance)}`))
-assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /net avant impôt/i)
+assert(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30').expenses.some(row => row.label === 'Impôts' && row.amount === 260), 'Simplifying the wage keeps the tax expense')
 assert(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21').expenses.some(r=>/vacances/i.test(r.label)), 'Previously unfinanced holidays now have an explicit provision')
 const techText = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'reddit-tech-26-2026-02-06'))
 assert(techText.includes(`Reste avant épargne : ${euro(830)}`))
@@ -114,7 +114,7 @@ assert.match(futureApprentice.period, /septembre 2025/i)
 assert.match(buildBudgetText(futureApprentice), /budget prévu/i)
 assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')).expenses,1775, 'Detailed editorial expenses preserve the combined envelopes')
 
-assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /deux années suivant ce budget/)
+assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /pendant deux ans/)
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /50\/30\/20/)
 
 const apprentice = BUDGET_PROFILES.find(p => p.id === 'reddit-alternant-20-2025-09-03')
@@ -243,7 +243,7 @@ const belgianReference = bankProfile('reference-indexo-belgique-2026-11')
 assert.equal(belgianReference.publishedAt, null, 'An update date is not an established original publication date')
 assert.equal(belgianReference.provenance.sourceUpdatedAt, '2026-10-31')
 const lille = bankProfile('reference-couple-lille-budget-2026-01')
-assert.match(buildBudgetText(lille), /Salaire net d’Hugo/)
+assert.match(buildBudgetText(lille), /Salaire d’Hugo/)
 assert.match(buildBudgetText(lille), /32 ans et infirmière de 30 ans/)
 assert.equal(BUDGET_PROFILES.filter(p => p.source.url === lille.source.url).length, 2, 'Two distinct reference cases share an article, not an identity or ledger')
 const familyReference = bankProfile('reference-famille-lyon-2026')
@@ -265,3 +265,5 @@ await import('./test-budget-narrative.mjs')
 await import('./test-budget-final-copy.mjs')
 
 await import('./test-budget-subscribers.mjs')
+
+await import("./test-budget-scope-salary.mjs")

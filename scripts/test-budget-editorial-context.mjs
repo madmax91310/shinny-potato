@@ -66,7 +66,8 @@ for (const profile of BUDGET_PROFILES) {
 }
 const participant = { ...BUDGET_PROFILES[0], kind: 'participant', context: 'Mon propre récit', question: 'Ma propre question ?' }
 assert.equal(publicationContextFor(participant), null, 'Even an inherited bank identity cannot apply the bank narrative to a personal contribution')
-assert.deepEqual(budgetPublicIncomeRows(participant), participant.income, 'Personal resource labels are untouched')
+assert.deepEqual(budgetPublicIncomeRows(participant).map(({label:_label,...row})=>row), participant.income.map(({label:_label,...row})=>row), 'Personal resource amounts stay untouched when their public salary label is simplified')
+assert.equal(budgetPublicIncomeRows(participant)[0].label, 'Salaire')
 const customLabel = { ...participant, income: [{ label: 'constructor', amount: 1000 }] }
 assert.deepEqual(budgetPublicIncomeRows(customLabel), customLabel.income)
 assert(buildBudgetText(participant).includes('Mon propre récit'))

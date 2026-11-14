@@ -1,4 +1,4 @@
-import { budgetRowSymbol, budgetPublicBasis, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext, budgetQualification } from './presentation.js'
+import { budgetRowSymbol, budgetPublicBasis, budgetSalaryLabel, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext, budgetQualification } from './presentation.js'
 import { budgetFinancialReference } from './completion.js'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_CATEGORIES } from './data.js'
 
@@ -58,13 +58,14 @@ const rowTotal = rows => rows.reduce((sum, row) => sum + cents(row.amount), 0) /
 // for example, both use "food". Mixed or edited rows keep the unsplit version.
 export function budgetExpenseSections(profile) {
   const e = editorialFor(profile)
+  const rows = budgetPublicExpenseRows(profile)
   if (!e?.essential?.length || !e?.discretionary?.length ||
       !profile.expenses.every(row => Number(e.essential.includes(row.label)) + Number(e.discretionary.includes(row.label)) === 1)) {
-    return [{ title: 'Dépenses', emoji: '🧾', rows: profile.expenses }]
+    return [{ title: 'Dépenses', emoji: '🧾', rows }]
   }
   return [
-    { title: 'Dépenses contraintes', emoji: '🏠', rows: profile.expenses.filter(row => e.essential.includes(row.label)) },
-    { title: 'Dépenses non contraintes', emoji: '🎉', rows: profile.expenses.filter(row => e.discretionary.includes(row.label)) },
+    { title: 'Dépenses contraintes', emoji: '🏠', rows: rows.filter((_, i) => e.essential.includes(profile.expenses[i].label)) },
+    { title: 'Dépenses non contraintes', emoji: '🎉', rows: rows.filter((_, i) => e.discretionary.includes(profile.expenses[i].label)) },
   ]
 }
 
@@ -86,7 +87,11 @@ export function budgetPublicPresentation(profile) {
 
 export function budgetPublicIncomeRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.incomeLabels || {}
-  return profile.income.map(row => ({ ...row, label: (Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, '') }))
+  return profile.income.map(row => ({ ...row, label: budgetSalaryLabel((Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, '')) }))
+}
+export function budgetPublicExpenseRows(profile) {
+  const labels = publicationContextFor(profile)?.budget?.expenseLabels || {}
+  return profile.expenses.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
 }
 
 // A reported capacity is useful when it differs from the calculated remainder.
@@ -145,16 +150,17 @@ export function buildBudgetText(profile) {
 // Group only expense categories, once each, keeping mixed or unclassified rows
 // visible verbatim. Financial transfers are deliberately never merged together.
 export function budgetImageExpenses(profile, mode = 'detailed') {
-  if (mode !== 'summary') return profile.expenses
+  const rows = budgetPublicExpenseRows(profile)
+  if (mode !== 'summary') return rows
   const groups = new Map(), result = []
-  for (const row of profile.expenses) {
-    if (!row.category || row.category === 'other' || /^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label)) { result.push(row); continue }
+  for (const [i, row] of profile.expenses.entries()) {
+    if (!row.category || row.category === 'other' || /^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label)) { result.push(rows[i]); continue }
     let group = groups.get(row.category)
     if (!group) {
       group = { label: EXPENSE_CATEGORIES.find(c => c.id === row.category)?.label || row.category, amount: 0, category: row.category, members: [] }
       groups.set(row.category, group); result.push(group)
     }
-    group.amount += cents(row.amount); group.members.push(row)
+    group.amount += cents(row.amount); group.members.push(rows[i])
   }
   return result.map(group => group.members ? (group.members.length === 1 ? group.members[0] : { label: group.label, amount: group.amount / 100, category: group.category }) : group)
 }

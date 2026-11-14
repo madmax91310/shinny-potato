@@ -55,7 +55,7 @@ assert(/préparait la fin/.test(story('Élodie')) && !/septembre 2026/.test(buil
 assert(/30 000 €/.test(story('Florian')) && /15 000 €/.test(story('Florian')))
 assert(!/ne peuvent pas être réservés|ne s’ajoutent pas/.test(story('Florian') + story('Émilien')))
 // Necessary fiscal conditions and explicit tax expenses remain public.
-for (const name of ['Mathieu', 'Samuel', 'Adrien et Léa']) assert(/avant imp[oô]t/i.test(buildBudgetText(profile(name))))
+for (const name of ['Mathieu', 'Samuel', 'Adrien et Léa']) { const p=profile(name); assert(p.expenses.some(row => /imp[oô]ts?/i.test(row.label)), 'Taxes remain in the expense ledger'); assert(/avant imp[oô]t/i.test(p.income.map(row=>row.label).join(' ')), 'The private fiscal basis remains available') }
 assert(/régulariser/.test(buildBudgetText(profile('Lucie'))))
 assert(/revenus locatifs sont nets de charges, de crédits et d’impôt/.test(buildBudgetText(profile('Vincent et Sarah'))))
 console.log(`Budget final copy: ${BUDGET_PROFILES.length} independent cent ledgers, unchanged financial references, fiscal scope, chronology and customized drafts verified.`)

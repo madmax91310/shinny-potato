@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
-import { buildBudgetText, budgetHeading, budgetPublicPresentation, budgetPublicIncomeRows, publicationContextFor, analyzeBudget, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
+import { buildBudgetText, budgetHeading, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicExpenseRows, publicationContextFor, analyzeBudget, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetQualification, budgetRowSymbol, budgetPublicBasis, budgetTransfers } from '../src/pages/budget-profiles/presentation.js'
 const baseline = JSON.parse(readFileSync(new URL('./fixtures/budget-editorial/presentation-2026-11-02.json', import.meta.url)))
 const hash = v => createHash('sha256').update(JSON.stringify(v)).digest('hex')
@@ -20,7 +20,7 @@ for (const p of BUDGET_PROFILES) {
   const presentation = budgetPublicPresentation(p)
   assert(!/budget personnel/i.test([presentation.job, presentation.household, presentation.location, presentation.basis].join(' ')), `${p.id}: both images use cleaned presentation data`)
   for (const part of [...c.paragraphs, ...c.questions]) assert(text.includes(part.text), 'Enriched facts and targeted questions remain verbatim')
-  for (const row of p.expenses) assert(text.includes(`• ${budgetRowSymbol(row).emoji} ${row.label}`))
+  for (const row of budgetPublicExpenseRows(p)) assert(text.includes(`• ${budgetRowSymbol(row).emoji} ${row.label}`))
   for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`• ${budgetRowSymbol(row, 'income').emoji} ${row.label}`))
   assert(!/20\d{2}/.test(budgetPublicBasis(p, budgetPublicPresentation(p).basis)), 'Calendar references leave the image basis, not the private metadata')
   assert.equal(refreshBudgetDraft({profile:p,text:'Mon texte choisi',edited:true}).text,'Mon texte choisi')
@@ -36,7 +36,7 @@ assert(!buildBudgetText(business).includes('Reste avant épargne'))
 assert(buildBudgetText(business).includes('Mariée, deux enfants'))
 const lucie = BUDGET_PROFILES.find(p => p.name === 'Lucie')
 assert(buildBudgetText(lucie).includes('Participation du conjoint : 600'))
-assert(buildBudgetText(lucie).includes('participation du conjoint'))
+assert(/participation (?:du|de son) conjoint/i.test(buildBudgetText(lucie)))
 assert.equal(analyzeBudget(lucie).income, lucie.income.reduce((sum,row)=>sum+row.amount,0))
 const hadrien = BUDGET_PROFILES.find(p => p.name === 'Hadrien')
 assert.equal(budgetQualification(hadrien), 'Budget prévu', 'A salary compared with earlier average expenses is a plan, not a newly observed month')
