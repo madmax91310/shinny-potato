@@ -40,6 +40,27 @@ class IssuerSources(unittest.TestCase):
         for a,b in [('IE00BZ56SW52','IE00OTHER001'),('05/10/2026','05/01/2026'),('US$1,645,809,873','1,645,809,873')]:
             with self.assertRaises(ValueError):wisdomtree(text.replace(a,b),s,NOW)
 
+    def test_wisdomtree_decimal_comma_fee_does_not_discard_independent_composition(self):
+        text=(FIX/'wisdomtree.html').read_text();s=share('IE00BZ56SW52')
+        original=wisdomtree(text,s,NOW)
+        for fee in ['0,38%', '0,38']:
+            with self.subTest(fee=fee):
+                parsed=wisdomtree(text.replace('0.38%',fee),s,NOW)
+                self.assertEqual(parsed['characteristics']['terPct'],.38)
+                self.assertEqual(parsed['aum']['amount'],original['aum']['amount'])
+                for field in ['holdings','sectors']:
+                    self.assertEqual(parsed[field]['rows'],original[field]['rows'])
+                    self.assertEqual(parsed[field]['asOf'],original[field]['asOf'])
+        for invalid in ['0,3.8%', '0.3,8%', '1,000,000%', '1,000%', 'NaN%', 'Inf%', '-0,38%', '5,01%']:
+            with self.subTest(invalid=invalid),self.assertRaises(ValueError):
+                wisdomtree(text.replace('0.38%',invalid),s,NOW)
+
+    def test_wisdomtree_decimal_comma_ter_and_swap_keep_their_meanings(self):
+        text=(FIX/'copper.html').read_text().replace('0.49%','0,49%').replace('0.45%','0,45%')
+        result=wisdomtree(text,share('GB00B15KXQ89'),NOW)
+        self.assertEqual(result['characteristics']['terPct'],.49)
+        self.assertEqual(result['characteristics']['annualSwapRatePct'],.45)
+
     def test_copper_fee_components_stay_separate(self):
         text=(FIX/'copper.html').read_text()
         result=wisdomtree(text,share('GB00B15KXQ89'),NOW)
