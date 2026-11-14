@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-11-14T14:34:28.225488+00:00",
+  "sources": [
+    {
+      "url": "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "sha256": "f2ac4219cfb1cf85303a6dc8c25599453406aae496b81248806b35ae0c72d022",
+      "bytes": 1554,
+      "parsedByOrdinaryIssuerJson": true,
+      "fixture": "product_details.wire.gz"
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+      "sha256": "f5b500f87a748041f209761fc756994e71e9b3fc617337d083066a39861f0f16",
+      "bytes": 93405,
+      "parsedByOrdinaryIssuerJson": true,
+      "fixture": "product_valuation_history.wire.gz"
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC",
+      "sha256": "8b2b623c60658a9c1a34c7c82547bdd14f6aaa2ccef1e25a471d9d81ed708d7e",
+      "bytes": 3883,
+      "parsedByOrdinaryIssuerJson": true,
+      "fixture": "product_performance_metrics.wire.gz"
+    }
+  ],
+  "performance": {
+    "currency": "USD",
+    "basis": "fund",
+    "years": {
+      "2020": 277.89,
+      "2021": 65.02,
+      "2022": -65.41,
+      "2023": 151.83,
+      "2024": 114.17,
+      "2025": -4.71
+    },
+    "asOf": "2026-11-13",
+    "sourceUrl": "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+    "sha256": "f653f720e6203e34a02ef5cd9e6c3c23a6e35cfe0a7206775932de67fcc8feb3",
+    "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels"
+  },
+  "historicalAdapterSha256": "f744f1f72fe722274c4603ebc5d60b7c4d6b71c26c4fcdbffbb55b5a24815a84",
+  "scope": "Exact official secondary origin, same ABTC share, USD NAV and existing 14:1 split/monthly-return oracle. Original primary captures and old evidence remain unchanged.",
+  "existingMonthlyFx": {
+    "fixture": "validated-monthly-fx.json.gz",
+    "sha256": "2209f241f589c1ef72111ff44142e47e522ef7e4e934429b7c995bf61b0d4213",
+    "source": "src/data/monthly-fx.json at current master; existing validated ECB monthly observations, no new historical source check inferred"
+  },
+  "latestDailyFx": {
+    "fixture": "current-ecb-90d.xml.gz",
+    "sha256": "9811ba2a93131661323bac357cf1a839d6b8111bc2a98d6339073dc5e7fba94a",
+    "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+    "scope": "Actual BCE consultation for the latest daily NAV conversion; historical monthly FX reused unchanged"
+  },
+  "priorQualifiedPrimaryMonthly": {
+    "fixture": "prior-qualified-primary-monthly.json.gz",
+    "sha256": "d5aaa009eca3dff57bccf1b4d2adf65d99899954cb74ff6c07f6130c2346c599",
+    "source": "src/data/automated-etf-monthly.json at branch parent from master",
+    "financialPointsUnchangedOnSameDates": true
+  }
+}

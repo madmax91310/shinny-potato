@@ -31,9 +31,13 @@ def head():
 
 class EvidenceScope(unittest.TestCase):
     def setUp(self):
-        self.helper=(Path(__file__).parent/'twentyone_shares_listing.py').read_text()
+        self.helper=(Path(__file__).parent/'fixtures/abtc-secondary-20261114/historical-primary-listing-adapter.py').read_text()
         self.config={'instruments':[{'isin':ISIN,'urls':[URL]}]}
         self.paths=['scripts/collect_instrument_metadata.py','scripts/twentyone_shares_listing.py']
+
+    def test_secondary_route_migration_keeps_full_evidence_scope(self):
+        current=(Path(__file__).parent/'twentyone_shares_listing.py').read_text()
+        self.assertIsNone(select(self.config,self.config,self.paths,BASE,head(),current))
 
     def test_only_exact_adapter_hooks_are_removed(self):
         self.assertTrue(isolated_adapter(BASE,head(),self.helper))

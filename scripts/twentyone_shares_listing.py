@@ -6,12 +6,14 @@ import json
 import zlib
 
 URL = 'https://api.primary.21shares.com/api/product_details/ABTC'
+SECONDARY_URL = 'https://api.secondary.21shares.com/api/product_details/ABTC'
+URLS = (URL, SECONDARY_URL)
 ISIN = 'CH0454664001'
 MAX_BYTES = 8_000_000
 
 
 def decode_document(body, source_url, final_url):
-    if source_url != URL or final_url != URL:
+    if source_url not in URLS or final_url != source_url:
         raise ValueError('Unqualified 21Shares product route or redirect')
     if not isinstance(body, bytes) or len(body) > MAX_BYTES:
         raise ValueError('21Shares document exceeds transport limit')
@@ -27,7 +29,7 @@ def decode_document(body, source_url, final_url):
 
 
 def listing_rows(body, source, url, checked):
-    if url != URL or source.get('isin') != ISIN:
+    if url not in URLS or source.get('isin') != ISIN:
         raise ValueError('Unqualified exact 21Shares instrument')
 
     def unique(pairs):
