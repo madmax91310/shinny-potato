@@ -15,7 +15,7 @@ export default function ImageExport({ image, reason, filename, alt, children }) 
   return <section className="dca-simple-card dca-simple-preview" aria-label="Image des expositions" aria-busy={image.busy}>
     <h2>Mon aperçu</h2>
     {pages.length>1&&<nav aria-label="Images à exporter"><p>Image {index+1} / {pages.length} · {pages[index]?.label}</p>{pages.map((page,i)=><Button key={page.id} variant="secondary" aria-pressed={i===index} onClick={()=>setSelection({key:image.url,index:i})}>{page.label}</Button>)}</nav>}
-    {url ? <img src={url} alt={`${alt}${pages.length>1?` · ${pages[index].label}`:''}`} /> : <p>L’aperçu apparaîtra ici.</p>}
+    {url ? <img src={url} alt={`${alt}${pages.length>1&&!['complete','both'].includes(pages[index].id)?` · ${pages[index].label}`:''}`} /> : <p>L’aperçu apparaîtra ici.</p>}
     <div className="dca-export-actions">
       <Button onClick={download} disabled={!image.url} aria-describedby={statusId}>Télécharger le PNG</Button>
       {image.url && <a href={url} target="_blank" rel="noreferrer">Ouvrir l’image</a>}
