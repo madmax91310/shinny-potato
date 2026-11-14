@@ -25,6 +25,8 @@ class ReaderRevalidation(unittest.TestCase):
         self.git('config', 'user.name', 'Isolated fixture')
         self.base = self.commit({
             reader.BASELINE: "import { ASSETS } from '../src/data/market-history.js';\n",
+            'scripts/export-equity-candidates.mjs': 'export const candidates = [];\n',
+            'scripts/export-monthly-candidates.mjs': 'export const candidates = [];\n',
             reader.ETF_BASELINE: "import { ASSETS } from '../src/data/market-history.js';\n",
             'scripts/build-automation-targets.mjs': 'export const targets = [];\n',
             'src/data/market-history.js': 'export const ASSETS = {};\n',
@@ -52,6 +54,42 @@ class ReaderRevalidation(unittest.TestCase):
         self.git('add', '.')
         self.git('commit', '-qm', 'isolated upstream change')
         return self.git('rev-parse', 'HEAD')
+
+    def test_actual_budget_scope_readers_require_checked_adapter_for_both_producers(self):
+        fixture=json.loads((ROOT/'scripts/fixtures/budget-scope-recording-race-20261114.json').read_text())
+        paths=set(fixture['newlyBlockedReaders'])
+        end=self.commit({p:'independent Budget reader; no market acquisition\n'for p in paths})
+        for kind,operation in [('market',reader.check),('etf',reader.check_etf)]:
+            original=set(shared.ALLOWED[kind])
+            with self.subTest(kind=kind):
+                with self.assertRaises(ValueError):shared.check(kind,self.base,end)
+                proof=operation(self.base,end)
+                self.assertEqual(set(proof['qualifiedPublicationReaders']),paths)
+                self.assertTrue(proof['financialRevalidationRequired'])
+                self.assertFalse(proof['sourceControlsRenewedByThisAdapter'])
+                self.assertEqual(shared.ALLOWED[kind],original)
+
+    def test_budget_reader_imported_by_any_acquisition_entry_is_never_exempt(self):
+        path='src/pages/budget-profiles/presentation.js'
+        for kind,entries,operation in [('market',reader.MARKET_ACQUISITION_ENTRIES,reader.check),('etf',reader.ETF_ACQUISITION_ENTRIES,reader.check_etf)]:
+            for entry in entries:
+                for when in ['before','after']:
+                    with self.subTest(kind=kind,entry=entry,when=when):
+                        clean={p:'export const data = [];\n'for p in set(reader.MARKET_ACQUISITION_ENTRIES)|set(reader.ETF_ACQUISITION_ENTRIES)}
+                        clean[path]='export const value = 1;\n'
+                        dependency="import '../"+path+"';\n"
+                        if when=='before':clean[entry]=dependency
+                        self.base=self.commit(clean)
+                        updates={path:'export const value = 2;\n'}
+                        if when=='after':updates[entry]=dependency
+                        end=self.commit(updates)
+                        with self.assertRaisesRegex(ValueError,'acquisition dependency'):operation(self.base,end)
+
+    def test_budget_scope_neighbours_do_not_inherit_an_exemption(self):
+        for path in ['docs/budget-scope-2026-11-15/rapport.md','scripts/fixtures/budget-scope/2026-11-15.json','src/pages/budget-profiles/unreviewed-financial-input.js']:
+            end=self.commit({path:'not reviewed\n'})
+            for operation in [reader.check,reader.check_etf]:
+                with self.subTest(path=path,operation=operation.__name__),self.assertRaises(ValueError):operation(self.base,end)
 
     def test_actual_concurrency_migration_and_audit_reader_are_independent(self):
         before = (self.repo/reader.WORKFLOW).read_text()
