@@ -60,7 +60,7 @@ try{
  await preview.waitFor()
  const download=page.waitForEvent('download')
  await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
- assert.equal((await download).suggestedFilename(),'dca-debate-jeanbaptiste.png')
+ assert.equal((await download).suggestedFilename(),'dca-debate-jeanbaptiste-complete.png')
  await open('.dca-saved:visible')
  await page.getByLabel('Nom de la sauvegarde',{exact:true}).filter({visible:true}).fill('Nouveau profil édité')
  await page.getByRole('button',{name:'Enregistrer ce portefeuille',exact:true}).click()

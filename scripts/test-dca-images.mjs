@@ -110,7 +110,7 @@ try {
   const download=page.waitForEvent('download');await downloadButton.click()
   const participantId=await page.evaluate(()=>JSON.parse(localStorage.getItem('el-dca-draft-v1')).profile.id)
   assert.match(participantId,/^subscriber:[0-9a-f-]{36}$/,'Participants have their own stable identity')
-  assert.equal((await download).suggestedFilename(),`dca-${participantId.replaceAll(':','_')}.png`)
+  assert.equal((await download).suggestedFilename(),`dca-${participantId.replaceAll(':','_')}-complete.png`)
   await page.getByRole('link',{name:'Ouvrir l’image',exact:true}).waitFor()
   await page.getByLabel('Poids position 1',{exact:true}).fill('90')
   assert(await downloadButton.isDisabled())

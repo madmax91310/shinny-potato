@@ -105,8 +105,6 @@ function densePortfolio(ctx,p,a,plan){
  panel(ctx,35,125,1530,plan.height)
  text(ctx,'Répartition des actifs',70,190,1460,40,C.ivory,700,'DcaEditorial')
  ring(ctx,plan.rows,270,425,170,114)
- centered(ctx,'100 %',270,433,280,56)
- centered(ctx,'du portefeuille',270,475,265,26,C.muted,400)
  const percentages=integerPercentages(plan.rows);let top=255
  plan.rows.forEach((row,i)=>{
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(510,top-10,8,0,Math.PI*2);ctx.fill()
@@ -130,8 +128,6 @@ function fullPortfolio(ctx,p,a){
  const lift=p.imageOnly?0:90
  const cy=crowded?345:(p.imageOnly?469:490)-lift,r=crowded?120:p.imageOnly?230:185
  ring(ctx,holdings,368,cy,r,r*.67)
- centered(ctx,'100 %',368,cy+12,r*1.7,crowded?42:64)
- centered(ctx,'du portefeuille',368,cy+48,r*1.55,crowded?18:26,C.muted,400)
  const percentages=integerPercentages(holdings),top=crowded?500:(holdings.length===4?725:775)-lift
  const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?26:holdings.length===4?23:28
  holdings.forEach((row,i)=>{
@@ -213,8 +209,8 @@ async function companiesPanel(ctx,p,y){
  if(!p.imageOnly)centered(ctx,'Épargnant Libre',800,y+284,1480,32)
 }
 let fontReady
-async function loadDcaFont(){
- if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(()=>{fontReady=undefined;return false})
+export async function loadDcaFont(){
+ if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${(import.meta.env?.BASE_URL||'/')}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(()=>{fontReady=undefined;return false})
  return fontReady
 }
 export async function renderDcaImage(input,field='countries',maxPositions=profilePositionLimit(input)){

@@ -65,6 +65,6 @@ for(const imageOnly of [true,false]){
 const fifty=Array.from({length:50},(_,i)=>newManualLine({label:`Épargne ${i}`,category:'Liquidités',weight:2}))
 const legacy={...profile,lines:fifty}
 assert.deepEqual(validateProfile(legacy,MAX_EXPOSURE_POSITIONS),[])
-assert(validateProfile(legacy).some(e=>e.includes('conservées')))
+assert.deepEqual(validateProfile(legacy),[])
 assert.deepEqual(importPortfolio(exportPortfolio({id:'50',title:'50',profile:legacy,field:'all',draft:''})).profile.lines,fifty)
 console.log('Placements : recherche sans ISIN, identités stables, portefeuille mixte, inconnus/hors périmètre, flux indépendants, textes, transports et 50 lignes sans perte validés.')

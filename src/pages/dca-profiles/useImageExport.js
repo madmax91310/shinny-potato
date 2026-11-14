@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { profilePositionLimit } from './engine.js'
-import { renderDcaImage } from './image.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 
 // Text edits and editorial approval do not change the image. Key every render to
@@ -20,7 +19,7 @@ export function useImageExport(profile, field, enabled, maxPositions=profilePosi
       try {
         const [input, selectedField, maximum] = JSON.parse(key)
         const pages = await Promise.race([
-          (input.multiImage ? import('./image-series.js').then(module=>module.renderImageSeries(input,selectedField,maximum)) : renderDcaImage(input,selectedField,maximum).then(canvas=>[{id:'single',label:'Image',canvas}]))
+          import('./image-series.js').then(module=>module.renderImageSeries(input,selectedField,maximum))
             .then(pages=>Promise.all(pages.map(async ({canvas,...page})=>({...page,blob:await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(new Error('PNG indisponible')),'image/png'))})))), timeout,
         ])
         if (!active) return

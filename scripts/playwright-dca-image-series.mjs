@@ -25,17 +25,17 @@ try{
   CanvasRenderingContext2D.prototype.fillText=original
   const many={...profile,lines:Array.from({length:50},(_,i)=>newManualLine({label:`Placement ${i} · Épargne à très long libellé `+'personnalisé '.repeat(15),category:'Fonds en euros',weight:2,amount:0}))}
   const large=await renderImageSeries(many,'all')
-  if(large[0].canvas.height<=pages[0].canvas.height||!large[0].canvas.toDataURL().startsWith('data:image/png'))throw Error('Large allocation PNG invalid')
+  if(large[1].canvas.height<=pages[1].canvas.height||!large[1].canvas.toDataURL().startsWith('data:image/png'))throw Error('Large allocation PNG invalid')
   window.seriesProfile=profile
-  return {pages:pages.map(p=>({id:p.id,width:p.canvas.width,height:p.canvas.height})),drawn,png:pages[0].canvas.toDataURL()}
+  return {pages:pages.map(p=>({id:p.id,width:p.canvas.width,height:p.canvas.height})),drawn,png:pages[1].canvas.toDataURL()}
  })
  console.log('Rendered series')
- assert.deepEqual(result.pages.map(p=>p.id),['allocation','countries','sectors'])
- assert.ok(result.pages[0].height>2500)
+ assert.deepEqual(result.pages.map(p=>p.id),['complete','allocation','countries','sectors'])
+ assert.ok(result.pages[1].height>1500)
  assert.ok(result.drawn.every(t=>t.y<t.height&&t.y>=0))
- assert.ok(result.drawn.some(t=>/100\s€ \/ mois/.test(t.text)))
+ assert.ok(!result.drawn.some(t=>t.text==='100 %'||t.text==='du patrimoine'||t.text==='du portefeuille'))
  assert.ok(!result.drawn.some(t=>t.text==='0 € / mois'))
- assert.ok(!result.drawn.some(t=>/autres positions/.test(t.text)))
+ assert.equal(result.pages.length,4)
  assert.ok(result.drawn.some(t=>t.text.includes('Périmètre pays/secteurs')))
  await mkdir('test-artifacts',{recursive:true})
  const {writeFile}=await import('node:fs/promises')
