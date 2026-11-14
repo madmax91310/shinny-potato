@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT, BUDGET_EDITORIAL_CREATIONS } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, blankBudget, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetImageExpenses, budgetExpenseSections, budgetPublicPresentation, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, blankBudget, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicSavingsRows, budgetImageExpenses, budgetExpenseSections, budgetPublicPresentation, buildBudgetText, publicationContextFor, refreshBudgetDraft, hasSeparateBudgetCapacity } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { budgetSalaryLabel, budgetPublicBasis } from '../src/pages/budget-profiles/presentation.js'
 
@@ -44,6 +44,19 @@ for (const p of BUDGET_PROFILES) {
 }
 for(const [input,output] of [['Salaire net après impôt','Salaire'],['Salaire net après prélèvement à la source','Salaire'],['Salaire net de Julie','Salaire de Julie'],['Salaire de Nathan après impôt','Salaire de Nathan'],['Salaire net moyen avec astreintes','Salaire moyen avec astreintes'],['Salaire net d’alternance prévu','Salaire d’alternance prévu'],['Salaire net hors primes','Salaire hors primes'],["Salaire net d’impôt",'Salaire'],['Salaire brut','Salaire brut'],['Pension nette après impôt','Pension nette après impôt'],['Indemnités chômage','Indemnités chômage']])assert.equal(budgetSalaryLabel(input),output)
 const personal={...blankBudget(),id:'participation-scope-test',name:'Éva',income:[{label:'Salaire net après impôt',amount:2000}],expenses:[{label:'constructor',amount:1000}],question:'Ma propre question ?'}
+for (const [label, expected] of [['Salaire déclaré','Salaire'],['Salaire déclaré de Julie','Salaire de Julie'],['Salaires déclarés','Salaires'],['Salaire déclaréprévu','Salaire déclaréprévu']]) assert.equal(budgetSalaryLabel(label),expected, 'Accented words use a Unicode boundary, without erasing a longer label')
+for (const p of BUDGET_PROFILES) {
+  assert(!/salaire[^\n]*déclaré|Versement PEA au budget|Les aides évoquées|Un crédit à la consommation plus court est aussi évoqué/i.test(buildBudgetText(p)), p.id)
+  assert.deepEqual(budgetPublicSavingsRows(p).map(({label:_label,...row})=>row), p.savings.map(({label:_label,...row})=>row))
+}
+const romain=BUDGET_PROFILES.find(p=>p.name==='Romain')
+assert.equal(romain.capacity,3750);assert.equal(analyzeBudget(romain).available,3749)
+assert.equal(hasSeparateBudgetCapacity(romain),false,'The source rounded capacity stays internal, without a second public total')
+assert.equal(hasSeparateBudgetCapacity({...personal,capacity:150}),true,'A genuinely different capacity remains visible for manual profiles')
+assert.equal(hasSeparateBudgetCapacity({...romain,kind:'participant'}),true,'An adapted profile never inherits a bank-only visibility choice')
+const mathieu=BUDGET_PROFILES.find(p=>p.name==='Mathieu')
+assert.equal(budgetPublicSavingsRows(mathieu)[0].label,'Versement sur le PEA')
+assert.equal(mathieu.savings[0].label,'Versement PEA au budget','The source and financial references retain their original wording')
 assert.equal(budgetPublicExpenseRows(personal)[0].label,'constructor','Public maps never access inherited object properties')
 assert.equal(personal.income[0].label,'Salaire net après impôt');assert.equal(budgetPublicIncomeRows(personal)[0].label,'Salaire')
 assert(buildBudgetText(personal).includes('Ma propre question ?'))

@@ -6,7 +6,7 @@ import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicExpenseRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetPublicExpenseRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 async function previewPng(page, url) {
@@ -41,6 +41,8 @@ function assertPublicBudgetHeader(drawn, profile) {
   assert.equal(drawn[0].text, 'LE BUDGET DE')
   assert(!drawn.some(item => /Période :|Période du budget/i.test(item.text)), 'No systematic period added to the image')
   assert(!/\bexemples?\b|ficti[fv]|reconstitu|version éditoriale|personnage éditorial|solde à confirmer/i.test(drawn.map(item=>item.text).join(' ')), 'Both image modes use neutral public copy')
+  assert(!/Salaire[^\n]*déclaré|Versement PEA au budget/i.test(drawn.map(item=>item.text).join('\n')), 'Public row labels use natural copy')
+  if (profile.id === 'mustachian-ingenieur-28-2025-08-16') assert(!drawn.some(item => /CAPACITÉ ANNONCÉE/.test(item.text)), 'The rounded source capacity is not a second image total')
   const index = drawn.findIndex(item => item.text === 'RESSOURCES')
   assert(index > 0)
   const header = drawn.slice(0, index)
@@ -109,7 +111,7 @@ try {
       const normalize = text => text.replace(/\s+/g, ' ').trim()
       const imageText = normalize(drawn.map(t => t.text).join(' '))
       assert(imageText.includes(budgetDisplayName(profile)))
-      for (const row of [...budgetPublicIncomeRows(profile), ...budgetPublicExpenseRows(profile), ...profile.savings]) {
+      for (const row of [...budgetPublicIncomeRows(profile), ...budgetPublicExpenseRows(profile), ...budgetPublicSavingsRows(profile)]) {
         assert(imageText.includes(normalize(row.label)), `${profile.id}: missing complete label ${row.label}`)
         assert(imageText.includes(normalize(euro(row.amount, profile.currency))), `${profile.id}: missing amount ${row.amount}`)
       }
@@ -133,7 +135,7 @@ try {
       assertPublicBudgetHeader(summaryDrawn, profile)
       assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
       const summaryText = normalize(summaryDrawn.map(t => t.text).join(' '))
-      for (const row of [...budgetPublicIncomeRows(profile), ...budgetImageExpenses(profile, 'summary'), ...profile.savings]) {
+      for (const row of [...budgetPublicIncomeRows(profile), ...budgetImageExpenses(profile, 'summary'), ...budgetPublicSavingsRows(profile)]) {
         assert(summaryText.includes(normalize(row.label)), `${profile.id}: missing summary label ${row.label}`)
         assert(summaryText.includes(normalize(euro(row.amount, profile.currency))))
       }
@@ -237,7 +239,7 @@ try {
     for (const t of drawn) assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `Editor limit: ${JSON.stringify(t)}`)
     const compact = text => text.replace(/\s/g, '')
     const imageText = compact(drawn.map(t => t.text).join(''))
-    for (const row of [...budgetPublicIncomeRows(fixture), ...budgetPublicExpenseRows(fixture), ...fixture.savings]) {
+    for (const row of [...budgetPublicIncomeRows(fixture), ...budgetPublicExpenseRows(fixture), ...budgetPublicSavingsRows(fixture)]) {
       assert(imageText.includes(compact(row.label)), `Editor limit: complete long label ${row.label}`)
       assert(imageText.includes(compact(euro(row.amount, fixture.currency))))
     }

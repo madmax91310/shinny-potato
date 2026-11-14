@@ -1,5 +1,5 @@
 import { budgetRowSymbol, budgetQualification, budgetPublicBasis } from './presentation.js'
-import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
+import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
 
 // Model 3: fixed readable type, measured wrapping, cards and canvas grow together.
 // No ellipsis or fixed line count: a participant may use all 24 rows per section.
@@ -131,7 +131,7 @@ export async function renderBudgetImage(profile, mode = 'detailed') {
     planCard(ctx, money, 'RESSOURCES', a.income, budgetPublicIncomeRows(profile), C.income, 'income', budgetPublicBasis(profile, presentation.basis) || 'PAR MOIS', compact, profile.approximate),
     planCard(ctx, money, 'DÉPENSES', a.expenses, budgetImageExpenses(profile, mode), C.expenses, 'expenses', 'PAR MOIS', compact, profile.approximate),
   ]
-  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS', a.savings, profile.savings, C.savings, profile.savings.every(row => budgetRowSymbol(row, 'savings').kind === 'business') ? 'business' : 'savings', 'PAR MOIS', compact, profile.approximate))
+  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS', a.savings, budgetPublicSavingsRows(profile), C.savings, profile.savings.every(row => budgetRowSymbol(row, 'savings').kind === 'business') ? 'business' : 'savings', 'PAR MOIS', compact, profile.approximate))
   if (hasSeparateBudgetCapacity(profile, a)) cards.push(planCard(ctx, money, profile.kind === 'planned' ? 'CAPACITÉ ENVISAGÉE' : 'CAPACITÉ ANNONCÉE', profile.capacity, [], C.savings, 'savings', 'PAR MOIS', compact, profile.approximate))
   cards.push(planCard(ctx, money, a.balance < 0 ? (profile.savings.length ? 'MANQUE APRÈS VERSEMENTS' : 'DÉFICIT AVANT VERSEMENTS') : (presentation.balanceLabel === 'Reste disponible après versements' ? 'RESTE DISPONIBLE' : presentation.balanceLabel.toLocaleUpperCase('fr')), Math.abs(a.balance), [], a.balance < 0 ? C.deficit : C.balance, 'balance', 'PAR MOIS', compact, profile.approximate))
   canvas.height = headerHeight + cards.reduce((h, p) => h + p.height + GAP, 0) + 82

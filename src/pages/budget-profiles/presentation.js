@@ -40,7 +40,7 @@ export function budgetPublicBasis(profile, basis) {
 }
 export function budgetSalaryLabel(label) {
   if (!/\bsalaires?\b/i.test(label)) return label
-  return label.replace(/\s+nets?\b/gi, '').replace(/\s+(?:(?:après|avant)\s+(?:impôts?|prélèvement à la source)(?: et cotisations)?|d[’']impôts?)/gi, '').replace(/\s+déclarés?\b/gi, '')
+  return label.replace(/\s+nets?\b/gi, '').replace(/\s+(?:(?:après|avant)\s+(?:impôts?|prélèvement à la source)(?: et cotisations)?|d[’']impôts?)/gi, '').replace(/\s+déclarés?(?![\p{L}\p{N}_])/giu, '')
 }
 export function budgetIntroduction(profile, p) {
   const qualification = budgetQualification(profile)
