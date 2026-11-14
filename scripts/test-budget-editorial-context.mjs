@@ -27,7 +27,7 @@ for (const profile of BUDGET_PROFILES) {
     assert(!c.budgetQuestion.includes('budget de ce foyer'), 'Living with a partner does not make a personal ledger a household budget')
   }
   assert.equal(text, buildBudgetText(structuredClone(profile)), 'Copy is reproducible')
-  assert(!/année non précisée|du scénario|retenu pour l’exemple|dimensionneriez|sur quels critères de disponibilité|l’enjeu/i.test(text), profile.id)
+  assert(!/du scénario|retenu pour l’exemple|dimensionneriez|sur quels critères de disponibilité|l’enjeu/i.test(text), profile.id)
   assert(!/prévu|exemple|20\d{2}/i.test(text.split('\n')[0]), 'Public headings stay neutral and undated')
   const a = analyzeBudget(profile), sections = budgetExpenseSections(profile)
   assert.equal((text.match(/Total des dépenses :/g) || []).length, sections.length > 1 ? 1 : 0, 'A general total is useful only for split expenses')

@@ -41,7 +41,7 @@ assert.equal(analyzeBudget(lucie).income, lucie.income.reduce((sum,row)=>sum+row
 const hadrien = BUDGET_PROFILES.find(p => p.name === 'Hadrien')
 assert.equal(budgetQualification(hadrien), 'Budget prévu', 'A salary compared with earlier average expenses is a plan, not a newly observed month')
 assert(!/20\d{2}/.test(buildBudgetText(hadrien).split('\n')[0]), 'No period in the title')
-assert(/dépenses.*moyenne de l’année précédente/.test(buildBudgetText(hadrien)), 'The earlier expense base remains explicit without a production note')
+assert(/dépenses.*moyenne de 2025/.test(buildBudgetText(hadrien)), 'The earlier expense base remains explicit without a production note')
 assert.equal(hadrien.period, 'Salaire 2026 · dépenses moyennes 2025', 'The evidence retains both exact periods')
 for (const [label,kind] of [['Énergie et eau','energy'],['École et cours particuliers','education'],['Assurances et santé','health'],['Vêtements et hygiène','clothing'],['Crédit automobile','transport'],['Assurance automobile','transport'],['Téléphone, santé et assurances personnelles','other']]) assert.equal(budgetRowSymbol({label,category:'other'}).kind,kind)
 assert.equal(budgetTransfers({...aicha,savings:[{label:'PEA',amount:100}]},'Investissements').single,false,'A single named instrument supplies useful detail')

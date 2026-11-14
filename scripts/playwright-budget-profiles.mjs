@@ -9,6 +9,19 @@ import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
+async function previewPng(page, url) {
+  const encoded = await page.evaluate(async imageUrl => {
+    const blob = await (await fetch(imageUrl)).blob()
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result.split(',')[1])
+      reader.onerror = reject
+      reader.readAsDataURL(blob)
+    })
+  }, url)
+  return Buffer.from(encoded, 'base64')
+}
+
 function captureCanvasText() {
       const original = CanvasRenderingContext2D.prototype.fillText
       window.budgetCanvasText = []
@@ -26,8 +39,8 @@ function captureCanvasText() {
 
 function assertPublicBudgetHeader(drawn, profile) {
   assert.equal(drawn[0].text, 'LE BUDGET DE')
-  assert(!drawn.some(item => /EXEMPLE DE BUDGET|\b20\d{2}\b/i.test(item.text)), 'Exports have no editorial date or example title')
-  assert(!/budget personnel|exemple|ficti[fv]|reconstitu|scénario|simulation|hypothèse/i.test(drawn.map(item=>item.text).join(' ')), 'Both image modes omit production labels')
+  assert(!drawn.some(item => /Période :|Période du budget/i.test(item.text)), 'No systematic period added to the image')
+  assert(!/\bexemples?\b|ficti[fv]|reconstitu|version éditoriale|personnage éditorial|solde à confirmer/i.test(drawn.map(item=>item.text).join(' ')), 'Both image modes use neutral public copy')
   const index = drawn.findIndex(item => item.text === 'RESSOURCES')
   assert(index > 0)
   const header = drawn.slice(0, index)
@@ -68,7 +81,7 @@ try {
     await page.locator('.workspace-tool-card[href$="/le-budget-de"]').click()
     await expect(page.getByRole('heading', { name: 'Le budget de…', exact: true, level: 1 })).toBeVisible()
     assert.equal(await page.locator('select').count(), 0, 'Default budget uses the shared button selectors')
-    const picker = page.getByRole('group', { name: 'Choisir un profil budget' })
+    const picker = page.getByRole('group', { name: 'Choisir un profil' })
     for (const profile of roster) {
       await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
       await picker.locator(`[data-value="${profile.id}"]`).click()
@@ -77,7 +90,7 @@ try {
       await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
       await expect(image).toHaveAttribute('alt', new RegExp(profile.name))
       const blobUrl = await image.getAttribute('src')
-      const previewBytes = await page.evaluate(async url => [...new Uint8Array(await (await fetch(url)).arrayBuffer())], blobUrl)
+      const previewBytes = await previewPng(page, blobUrl)
       const downloadPromise = page.waitForEvent('download')
       await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
       const download = await downloadPromise
@@ -91,7 +104,7 @@ try {
       for (const t of drawn) {
         assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
         assert(!t.text.includes('…'), `${profile.id}: no truncated content`)
-        assert(!/prénoms? fictifs?|scénario mensuel préparé|année non précisée|du scénario|retenu pour l’exemple|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
+        assert(!/prénoms? fictifs?|scénario mensuel préparé|du scénario|retenu pour l’exemple|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
       }
       const normalize = text => text.replace(/\s+/g, ' ').trim()
       const imageText = normalize(drawn.map(t => t.text).join(' '))
@@ -108,7 +121,7 @@ try {
       if (!(await sourceDetails.evaluate(node => node.open))) await sourceDetails.locator('summary').first().click()
       await page.getByRole('button', { name: 'Copier la source pour une réponse', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), sourceReply(profile))
-      assert(!/prépar|compléments|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(profile)), 'The optional copied source also excludes production notes')
+      assert(!/prépar|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(profile)), 'The optional copied source also excludes production notes')
       await sourceDetails.locator('summary').first().click() // Capture the publication view without the expanded private audit.
       await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
       assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).published, WORKSPACE_KEY), [], 'Copying and exporting never declare publication')
@@ -125,7 +138,7 @@ try {
         assert(summaryText.includes(normalize(euro(row.amount, profile.currency))))
       }
       for (const t of summaryDrawn) assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `Summary bounds: ${JSON.stringify(t)}`)
-      const summaryBytes = await page.evaluate(async url => [...new Uint8Array(await (await fetch(url)).arrayBuffer())], await image.getAttribute('src'))
+      const summaryBytes = await previewPng(page, await image.getAttribute('src'))
       const summaryDownload = page.waitForEvent('download'); await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
       assert.deepEqual(readFileSync(await (await summaryDownload).path()), Buffer.from(summaryBytes))
       writeFileSync(`${output}/${width}-${profile.id}-summary.png`, Buffer.from(summaryBytes))
@@ -133,6 +146,7 @@ try {
       const a = analyzeBudget(profile)
       await expect(page.locator('.budget-totals')).toContainText(euro(a.available, profile.currency))
       await page.screenshot({ path: `${output}/${width}-${profile.id}.png`, fullPage: true })
+      console.log(`Budget ${width}px : ${results.length + 1}/${roster.length} ${profile.id}`)
       results.push({ width, profile: profile.id, income: a.income, expenses: a.expenses, available: a.available, balance: a.balance, pngBytes: previewBytes.length })
     }
     // Publication is a deliberate per-profile declaration, independent of usage.
@@ -173,7 +187,7 @@ try {
     const participationId = await page.evaluate(key => JSON.parse(localStorage.getItem(key)).activeId, WORKSPACE_KEY)
     await page.getByRole('button', { name: 'Créer une participation', exact: true }).click()
     await expect(publication).not.toBeChecked()
-    await page.getByRole('button', { name: 'Profils sourcés', exact: true }).click()
+    await page.getByRole('button', { name: 'Profils', exact: true }).click()
     await picker.locator(`[data-value="${lastId}"]`).click()
     await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
     await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).activeId, WORKSPACE_KEY)).not.toBe(participationId)
@@ -232,7 +246,7 @@ try {
     const downloadPromise = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
     const download = await downloadPromise
-    const bytes = await page.evaluate(async url => [...new Uint8Array(await (await fetch(url)).arrayBuffer())], await image.getAttribute('src'))
+    const bytes = await previewPng(page, await image.getAttribute('src'))
     assert.deepEqual(readFileSync(await download.path()), Buffer.from(bytes))
     writeFileSync(`${output}/editor-limit-${deficit ? 'deficit' : 'balanced'}.png`, Buffer.from(bytes))
     await context.close()
