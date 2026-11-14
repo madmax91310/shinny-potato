@@ -154,3 +154,7 @@
 
 .dca-simple .dca-flow-line{grid-template-columns:minmax(0,1fr) minmax(125px,160px)}
 .dca-simple .dca-flow-line label span{font-size:.75rem;white-space:nowrap}
+
+.dca-manual-form{margin:16px 0;padding:16px;border:1px solid var(--border,#64748b);border-radius:12px}
+.dca-manual-fields{display:grid;gap:12px;margin:12px 0;min-width:0}
+.dca-manual-fields label{display:grid;gap:6px;min-width:0}

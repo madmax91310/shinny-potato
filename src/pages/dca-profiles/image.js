@@ -62,8 +62,8 @@ function exposurePanel(ctx,a,field,x,y,width,limit,showScope=true){
   text(ctx,row.name,left+24,top,width/2-35,rows.length>6?18:22,C.ivory,400)
   text(ctx,exposurePercentage(row.weight,percentages[i]),left+24,top+(rows.length>6?23:28),width/2-35,rows.length>6?20:25)
  })
- if(showScope){ctx.save();ctx.textAlign='center';text(ctx,scope,x+width/2,y+32,width,18,C.muted,400);ctx.restore()}
- else if(lead<0)centered(ctx,'Non ventilé',cx,cy+5,270,32,C.muted,400)
+ ctx.save();ctx.textAlign='center';text(ctx,scope,x+width/2,y+32,width,18,C.muted,400);ctx.restore()
+ if(lead<0)centered(ctx,rows[0]?.name==='Sans objet'?'Sans objet':'Non ventilé',cx,cy+5,270,32,C.muted,400)
 }
 function ring(ctx,rows,cx,cy,r,inner){
  let angle=-Math.PI/2
@@ -74,10 +74,9 @@ function centered(ctx,value,x,y,width,size,color=C.ivory,weight=700){ctx.save();
 function wrappedLabel(ctx,value,x,y,width,size,family='Arial',weight=400){
  ctx.font=`${weight} ${size}px ${family}`
  if(ctx.measureText(value).width<=width){text(ctx,value,x,y,width,size,C.ivory,weight,family);return}
- const words=value.split(' ');let first=''
- while(words.length&&ctx.measureText((first+' '+words[0]).trim()).width<=width)first=(first+' '+words.shift()).trim()
- text(ctx,first||words.shift(),x,y-8,width,size,C.ivory,weight,family)
- text(ctx,words.join(' '),x,y+size*1.25-8,width,size,C.ivory,weight,family)
+ let labels=allocationLabelLines(ctx,value,width,size)
+ while(labels.length>2&&size>10)labels=allocationLabelLines(ctx,value,width,--size)
+ labels.forEach((label,i)=>text(ctx,label,x,y-8+i*size*1.25,width,size,C.ivory,weight,family))
 }
 function allocationLabelLines(ctx,value,width,size){
  ctx.font=`400 ${size}px Arial`
@@ -96,7 +95,7 @@ function allocationLabelLines(ctx,value,width,size){
 function denseAllocationPlan(ctx,p){
  const holdings=allocationRows(p.lines)
  ctx.font='400 26px Arial'
- if(holdings.length<=4||holdings.every(row=>ctx.measureText(row.name).width<=445))return null
+ if(holdings.every(row=>ctx.measureText(row.name).width<=445))return null
  const rows=holdings.map(row=>({...row,labels:allocationLabelLines(ctx,row.name,810,36)}))
  const height=Math.max(600,130+rows.reduce((sum,row)=>sum+Math.max(80,row.labels.length*45+22),0))
  return {rows,height,exposureTop:125+height+25,totalHeight:125+height+25+815+60}
@@ -144,6 +143,7 @@ function fullPortfolio(ctx,p,a){
  for(const [field,y] of [['countries',125],['sectors',545]]){
   const {rows}=donutData(a,field,p.exposureLimit)
   text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',755,y+59,780,37,C.ivory,700,'DcaEditorial')
+  text(ctx,donutData(a,field,p.exposureLimit).scope,755,y+87,780,19,C.muted,400)
   ring(ctx,rows,899,y+235,140,94)
   const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
   if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,rounded[lead]),899,y+231,173,41);centered(ctx,rows[lead].name,899,y+273,168,17,C.muted,400)}

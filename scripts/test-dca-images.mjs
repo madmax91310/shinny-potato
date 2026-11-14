@@ -34,6 +34,7 @@ try {
     const {ALL_PROFILES: PROFILES, ASSETS}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
     const {prepareProfile, references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
     const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
+    const {newManualLine,SAVINGS}=await import('/shinny-potato/src/pages/dca-profiles/placements.js')
     const original=CanvasRenderingContext2D.prototype.fillText
     let labels=[],boxes=[]
     CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...args){
@@ -45,6 +46,14 @@ try {
     }
     const output=[]
     const cases=[...PROFILES,
+      {...prepareProfile(PROFILES[0]),id:'mixed-savings',lines:[
+        {asset:'world',label:'ETF Monde',isin:references.world.isin,weight:50,amount:200},
+        {asset:'livret-a',label:'Livret A',isin:'',weight:24.99,amount:0},
+        newManualLine({label:'Fonds euros Mutavie',category:'Fonds en euros',weight:25,amount:100}),
+        newManualLine({label:'Épargne complémentaire — fonds en euros à long terme de la famille Élodie',category:'Fonds en euros',weight:.01}),
+        newManualLine({label:'Actions privées — Élodie',category:'Actions',weight:0,amount:50}),
+      ]},
+      {...prepareProfile(PROFILES[0]),id:'all-savings',lines:Object.entries(SAVINGS).map(([asset,r],i)=>({asset,label:r.name,isin:'',weight:i?15:10,amount:i?100:0}))},
       ...[1,2,4,8].map(n=>({...prepareProfile(PROFILES[0]),id:`long-${n}`,lines:Object.keys(ASSETS).slice(0,n).map((asset,i)=>({asset,label:`${ASSETS[asset][1]} — allocation diversifiée de long terme`,weight:n===8?[40,20,15,10,7,5,2.99,.01][i]:100/n,amount:i===1&&n!==8?0:i<4?1000000:234567.89,isin:''}))})),
       {...prepareProfile(PROFILES[0]),id:'fifty-lines',name:'Portefeuille complet',lines:Object.entries(references).slice(0,50).map(([asset,r])=>({asset,label:r.name,emoji:'📊',weight:2,amount:10,isin:r.isin}))},
       {...prepareProfile(PROFILES[0]),id:'eight-lines',name:'Pseudonyme long pour vérifier le rendu mobile',lines:Object.keys(ASSETS).slice(0,8).map((asset,i)=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight:12.5,amount:i?1000000:0,isin:''}))},
@@ -65,7 +74,7 @@ try {
       const expectedLines=field==='all'?profile.lines.filter(line=>line.weight>0):field==='both'?[]:profile.lines.filter(line=>line.amount>0)
       for(const line of expectedLines)if(expectedLines.length<=8&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id+' / '+field+' / '+line.label)
       if(profile.id==='eight-lines'&&['countries','sectors'].includes(field)&&labels.includes(profile.lines[0].label))throw Error('Zero contribution shown as a monthly investment')
-      output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','long-1','long-2','long-4','long-8','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
+      output.push({id:profile.id+'-'+field,labels:[...labels],png:['mixed-savings','all-savings','julien','alexandre','patrick','arthur','laurent','helene','long-1','long-2','long-4','long-8','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
     }
     for(const field of ['countries','sectors','both','all']){
       labels=[];boxes=[]
@@ -79,7 +88,7 @@ try {
     CanvasRenderingContext2D.prototype.fillText=original
     return output
   })
-  assert.equal(records.length,636)
+  assert.equal(records.length,644)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
   const preview=page.locator('.dca-publication-column .dca-simple-preview img')
@@ -146,6 +155,6 @@ try {
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Mobile has no horizontal overflow')
   await page.screenshot({path:'test-artifacts/dca/mobile.png',fullPage:true})
   assert.equal(await page.getByRole('group',{name:/Support position/}).count(),0,'No second ISIN confirmation')
-  console.log('636 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified.')
+  console.log('644 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified.')
 } finally {await browser?.close();server.kill('SIGTERM')}
 

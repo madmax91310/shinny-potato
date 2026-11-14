@@ -1,3 +1,4 @@
+import { isManualLine, validManualIdentity } from './placements.js'
 import { references, exposureRecords } from './records.js'
 import { ASSETS } from './data.js'
 import { publishedExposure } from './exposure.js'
@@ -22,9 +23,10 @@ export function validateProfile(profile, maxPositions=MAX_POSITIONS) {
   if ((!profile.imageOnly && !profile.name?.trim()) || (profile.name||'').length>45) errors.push('Indique un pseudonyme de 1 à 45 caractères.')
   if (!PROFILE_SCOPES.includes(profile.scope)) errors.push('Choisis un périmètre dans la liste.')
   if (!Array.isArray(profile.lines) || profile.lines.length<1 || profile.lines.length>maxPositions) return [...errors,`Le portefeuille doit contenir entre 1 et ${maxPositions} positions. ${profile.lines?.length>maxPositions?'Toutes les lignes sont conservées : retire des positions pour débloquer la publication.':''}`.trim()]
-  if(profile.lines.some(l=>!ASSETS[l.asset] || !Number.isFinite(l.weight)||l.weight<0||l.weight>100||(!profile.imageOnly&&(!Number.isFinite(l.amount)||l.amount<0||l.amount>1000000)))) errors.push('Vérifie les actifs, les poids et les versements : uniquement des nombres positifs ou nuls.')
+  if(profile.lines.some(l=>!(isManualLine(l)?validManualIdentity(l):Object.hasOwn(ASSETS,l.asset)) || !Number.isFinite(l.weight)||l.weight<0||l.weight>100||(!profile.imageOnly&&(!Number.isFinite(l.amount)||l.amount<0||l.amount>1000000)))) errors.push('Vérifie les actifs, les poids et les versements : uniquement des nombres positifs ou nuls.')
+  if(profile.lines.some(l=>isManualLine(l)&&(typeof l.label!=='string'||!l.label.trim()||l.label.length>250))) errors.push('Indique un nom de placement de 1 à 250 caractères.')
   if(profile.lines.some(l=>l.weight===0 && (profile.imageOnly||l.amount===0))) errors.push('Supprime les positions sans poids ni versement.')
-  if(profile.lines.some(l=>l.isin && l.isin!==references[l.asset]?.isin)) errors.push('Le support confirmé doit correspondre à l’actif sélectionné.')
+  if(profile.lines.some(l=>!isManualLine(l) && l.isin && l.isin!==references[l.asset]?.isin)) errors.push('Le support confirmé doit correspondre à l’actif sélectionné.')
   if(new Set(profile.lines.map(l=>l.isin||l.asset)).size!==profile.lines.length) errors.push('Regroupe les positions portant sur le même actif.')
   if(Math.abs(profile.lines.reduce((s,l)=>s+l.weight,0)-100)>.001) errors.push('Les poids du portefeuille doivent totaliser 100 %.')
   return errors

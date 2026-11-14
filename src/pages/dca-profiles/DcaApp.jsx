@@ -1,3 +1,4 @@
+import { validManualIdentity } from './placements.js'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelectedRecords } from '../../lib/use-selected-records.js'
 import { exposureRecords } from './records.js'
@@ -24,7 +25,7 @@ function initialDraft(){
   raw=localStorage.getItem(draftKey)
   if(!raw)return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all'}
   const saved=JSON.parse(raw),p=migrateProfile(saved?.profile)
-  if(!p||typeof p.id!=='string'||typeof p.name!=='string'||p.name.length>45||!PROFILE_SCOPES.includes(p.scope)||!Array.isArray(p.lines)||p.lines.length>MAX_EXPOSURE_POSITIONS||!p.lines.every(l=>l&&ASSETS[l.asset]&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight))&&(p.imageOnly&&l.amount===undefined||l.amount===null||Number.isFinite(l.amount)))||typeof saved.draft!=='string'||saved.draft.length>20000)throw Error()
+  if(!p||typeof p.id!=='string'||typeof p.name!=='string'||p.name.length>45||!PROFILE_SCOPES.includes(p.scope)||!Array.isArray(p.lines)||p.lines.length>MAX_EXPOSURE_POSITIONS||!p.lines.every(l=>l&&(Object.hasOwn(ASSETS,l.asset)||validManualIdentity(l))&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight))&&(p.imageOnly&&l.amount===undefined||l.amount===null||Number.isFinite(l.amount)))||typeof saved.draft!=='string'||saved.draft.length>20000)throw Error()
   return {...saved,profile:{...p,approved:false,lines:confirmLines(p.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight,amount:p.imageOnly&&!Number.isFinite(l.amount)?0:l.amount===null?NaN:l.amount})))},field:['all','both','countries','sectors','overlap'].includes(saved.field)?saved.field:'all'}
  }catch{return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all',damagedDraft:raw,error:'L’ancien brouillon est illisible. Il est conservé sur cet appareil.'}}
 }
