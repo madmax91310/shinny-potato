@@ -80,7 +80,7 @@ export function planSocialBudget(ctx, profile) {
   let columns,best=Infinity
   for(let i=1;i<=entries.length;i++){const candidate=[partition(entries.slice(0,i)),partition(entries.slice(i))],height=Math.max(...candidate.map(c=>c.height));if(height<best){best=height;columns=candidate}}
   // Never silently truncate or squeeze an exceptional user-created 72-row budget.
-  if(header+best>1166) throw new Error('Ce budget contient trop de détails pour le format 4:5. Choisis la version détaillée pour conserver tous les postes.')
+  if(header+best>1166) throw Object.assign(new Error('Ce budget contient trop de détails pour le format 4:5. Choisis la version détaillée pour conserver tous les postes.'), { code: 'BUDGET_SOCIAL_OVERFLOW' })
   return {a,p,money,title,details,notes,header,columns,used:header+best}
 }
 export async function renderSocialBudgetImage(profile) {

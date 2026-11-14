@@ -38,3 +38,20 @@ const dense=structuredClone(emilie)
 for(const key of ['income','expenses','savings']) dense[key]=Array.from({length:24},()=>({label:'Un poste très détaillé qui nécessite plusieurs lignes de présentation dans le budget',amount:1}))
 assert.throws(()=>planSocialBudget(ctx,dense),/version détaillée/)
 console.log('Social budget: fixed 4:5, 11 Emilie expenses, exact row amounts, project and reserve, immutable data, overflow guard verified.')
+// Regression: default export remains downloadable for dense restored drafts.
+const previousDocument=globalThis.document, previousPath=globalThis.Path2D
+try {
+  const drawContext={...ctx,fillText(){},fillRect(){},beginPath(){},roundRect(){},fill(){},save(){},translate(){},scale(){},stroke(){},restore(){}}
+  globalThis.Path2D=class {}
+  globalThis.document={createElement(){return {width:0,height:0,getContext:()=>drawContext}}}
+  const {renderBudgetImage}=await import('../src/pages/budget-profiles/image.js')
+  const compact=await renderBudgetImage(emilie)
+  assert.deepEqual([compact.width,compact.height],[1080,1350])
+  const full=await renderBudgetImage(dense)
+  assert.equal(full.width,1200)
+  assert(full.height>1350)
+  assert.equal(full.budgetFormat,'detailed')
+  assert.match(full.budgetNotice,/tous les postes/)
+  await assert.rejects(()=>renderBudgetImage({...emilie,expenses:[{label:'Invalid',amount:-1}]}),/invalides/)
+} finally { globalThis.document=previousDocument;globalThis.Path2D=previousPath }
+console.log('Dense draft regression: automatic complete-image fallback, explicit notice, real data errors preserved.')

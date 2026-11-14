@@ -145,11 +145,11 @@ export default function App() {
         <section className="dca-simple-card dca-simple-preview" aria-label="Image du budget" aria-busy={image.busy}>
           <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="social">Une image pour X · 4:5</option><option value="detailed">Détaillée · tous les libellés</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">Le format 4:5 rassemble le budget en une image avec des libellés courts. La version détaillée conserve les libellés complets ; la synthèse regroupe les catégories. Les montants restent identiques.</p>
           {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} : revenus, dépenses et reste avant épargne`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : 'Préparation de l’image…'}</p>}
-          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${imageMode}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
+          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${image.format}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
             {image.url && <a href={image.url} target="_blank" rel="noreferrer">Ouvrir l’image</a>}
             {image.error && imageMode === 'social' && <Button variant="secondary" onClick={() => setImageMode('detailed')}>Afficher tous les détails</Button>}
             {image.error && <Button variant="secondary" onClick={image.retry}>Réessayer l’image</Button>}
-          </div><p role="status">{image.error || (image.busy ? 'Préparation de l’image…' : '')}</p>
+          </div><p role="status">{image.error || image.notice || (image.busy ? 'Préparation de l’image…' : '')}</p>
         </section>
         <section className="dca-simple-card dca-text-card">
           <label htmlFor="budget-draft">Texte prêt à publier</label><textarea id="budget-draft" maxLength={20000} value={text} onChange={e => { setApproved(false); setRecord({ ...record, text: e.target.value, edited: true }) }}/>

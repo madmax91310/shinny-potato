@@ -13,13 +13,13 @@ export function useBudgetImage(profile, enabled, mode = 'social') {
         const canvas = await renderBudgetImage(JSON.parse(key).profile, JSON.parse(key).mode)
         const blob = await new Promise((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error()), 'image/png'))
         if (!active) return
-        url = URL.createObjectURL(blob); setResult({ key, attempt, url })
+        url = URL.createObjectURL(blob); setResult({ key, attempt, url, notice: canvas.budgetNotice || '', format: canvas.budgetFormat || JSON.parse(key).mode })
       } catch (error) { if (active) setResult({ key, attempt, error: error.message || 'L’image n’a pas pu être préparée. Réessaie.' }) }
     }, 200)
     return () => { active = false; clearTimeout(timer); if (url) URL.revokeObjectURL(url) }
   }, [key, attempt, enabled])
   const current = enabled && result?.key === key && result.attempt === attempt ? result : null
-  return { url: current?.url || '', error: current?.error || '', busy: enabled && !current,
+  return { url: current?.url || '', notice: current?.notice || '', format: current?.format || mode, error: current?.error || '', busy: enabled && !current,
     retry: () => setAttempt(n => n + 1),
     download(filename) {
       if (!current?.url) throw new Error('L’image est en cours de préparation.')
