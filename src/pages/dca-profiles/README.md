@@ -146,3 +146,22 @@ Validation : `node scripts/test-subscriber-profiles.mjs` (inclus dans `test:dca`
 `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-subscriber-profiles.mjs`
 après build. La recette couvre 1440, 390 et 320 px et figure dans les contrôles CI
 navigateur. Les captures sont dans `test-artifacts/subscriber-profiles/`.
+
+### Export de plusieurs images
+
+Dans « Personnaliser l’image », « Plusieurs images : un donut par image » autorise
+jusqu’à 50 positions dans le parcours DCA et les profils d’abonnés. Avec le choix
+« Répartition + géographie + secteurs », trois PNG sont préparés et téléchargeables
+individuellement depuis les boutons d’aperçu. La répartition garde toutes les lignes
+sur une seule image de hauteur variable, sans regrouper les petites positions.
+Les versements nuls sont masqués ; les positions détenues restent affichées.
+Les donuts géographiques et sectoriels conservent leur périmètre explicite. Le top
+10 optionnel est une image supplémentaire. Le recouvrement conserve son image.
+Le choix est conservé dans les brouillons, sauvegardes et fichiers de portefeuille.
+Désactiver ce mode sur un DCA de plus de huit lignes bloque la publication sans
+supprimer de positions. Aucun changement aux anciens exports par défaut.
+
+Validation : `node scripts/test-dca-image-series.mjs` et
+`CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-image-series.mjs`.
+Le budget de code de la route passe de 806 à 809 ko (mesuré : 807,9 ko) ; le moteur
+d’images multiples est chargé à la demande.

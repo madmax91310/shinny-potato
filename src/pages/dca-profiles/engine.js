@@ -6,6 +6,7 @@ export { references }
 export const MAX_POSITIONS=8
 // Actifs & expositions and lossless recovery retain their existing capacity.
 export const MAX_EXPOSURE_POSITIONS=50
+export const profilePositionLimit = profile => profile?.multiImage === true ? MAX_EXPOSURE_POSITIONS : MAX_POSITIONS
 export const PROFILE_SCOPES = ['Portefeuille investi','PEA + CTO','PEA','CTO','Ensemble des placements']
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`
 export const euro = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} €`
@@ -18,7 +19,7 @@ export function prepareProfile(profile) {
   return {...profile, selection:profile.selection === 'controversial' ? 'controversial' : 'classic', mode:'prepared',scope:'Portefeuille investi', approved:false,
     lines:profile.lines.map((line,i)=>({...line,weight:weights[i],isin:references[line.asset]?.isin ?? ''}))}
 }
-export function validateProfile(profile, maxPositions=MAX_POSITIONS) {
+export function validateProfile(profile, maxPositions=profilePositionLimit(profile)) {
   const errors=[]
   if ((!profile.imageOnly && !profile.name?.trim()) || (profile.name||'').length>45) errors.push('Indique un pseudonyme de 1 à 45 caractères.')
   if (!PROFILE_SCOPES.includes(profile.scope)) errors.push('Choisis un périmètre dans la liste.')
@@ -31,7 +32,7 @@ export function validateProfile(profile, maxPositions=MAX_POSITIONS) {
   if(Math.abs(profile.lines.reduce((s,l)=>s+l.weight,0)-100)>.001) errors.push('Les poids du portefeuille doivent totaliser 100 %.')
   return errors
 }
-export function analyzeProfile(profile, maxPositions=MAX_POSITIONS) {
+export function analyzeProfile(profile, maxPositions=profilePositionLimit(profile)) {
   const errors=validateProfile(profile,maxPositions)
   if(errors.length) return {errors}
   if(!profile.lines.every(line=>exposureRecords.isReady(line.asset))) return {errors:['Chargement des expositions…']}
