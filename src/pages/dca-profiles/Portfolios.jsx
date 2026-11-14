@@ -3,7 +3,7 @@ import Button from '../../design-system/Button'
 import { readSaved, readSavedState, writeSaved } from './management.js'
 import { validateProfile, MAX_EXPOSURE_POSITIONS, MAX_POSITIONS } from './engine.js'
 import { exportPortfolio, importPortfolio, MAX_PORTFOLIO_FILE_BYTES } from './portable-portfolios.js'
-export default function Portfolios({profile, draft = '', field, onLoad, resetSignal = 0}) {
+export default function Portfolios({profile, draft = '', field, onLoad, resetSignal = 0, activeRecordId, onSaved, onRemoved}) {
   const [items, setItems] = useState([]), [title, setTitle] = useState(''), [selected, setSelected] = useState(''), [feedback, setFeedback] = useState('')
   const [imported, setImported] = useState(null)
   function download() {
@@ -29,8 +29,8 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
   useEffect(() => {setSelected('');setTitle('');setImported(null)}, [resetSignal])
   useEffect(() => {
     const record = items.find(item => item.id === selected)
-    if (record && record.profile.id !== profile.id) {setSelected('');setTitle('')}
-  }, [profile.id, items, selected])
+    if (record && record.profile.id !== profile.id && record.id !== activeRecordId) {setSelected('');setTitle('')}
+  }, [profile.id, items, selected, activeRecordId])
   function refresh() { try { const state=readSavedState(localStorage); setItems(state.items); setFeedback(state.rejected.length ? 'Certaines sauvegardes sont illisibles. Les autres restent disponibles ; les données d’origine sont conservées.' : '') } catch { setItems([]); setFeedback('Sauvegardes illisibles. Les données existantes sont conservées.') } }
   function save(asCopy = false) {
     try {
@@ -40,11 +40,11 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
       const id = !asCopy && previous.some(x => x.id === selected) ? selected : crypto.randomUUID()
       const item = {id, title:title.trim(), profile:structuredClone(profile), draft, field}
       const next = previous.some(x => x.id === id) ? previous.map(x => x.id === id ? item : x) : [...previous, item]
-      writeSaved(localStorage, next); setItems(next); setSelected(id); setFeedback('Portefeuille enregistré sur cet appareil.')
+      writeSaved(localStorage, next); setItems(next); setSelected(id); onSaved?.(item); setFeedback('Portefeuille enregistré sur cet appareil.')
     } catch(error) { setFeedback(error.message || 'Enregistrement impossible sur cet appareil.') }
   }
   function remove(id) {
-    try { const next = readSaved(localStorage).filter(x => x.id !== id); writeSaved(localStorage, next); setItems(next); if(selected === id) setSelected(''); setFeedback('Sauvegarde supprimée. Le portefeuille affiché reste ouvert.') }
+    try { const next = readSaved(localStorage).filter(x => x.id !== id); writeSaved(localStorage, next); setItems(next); if(selected === id) setSelected(''); onRemoved?.(id); setFeedback('Sauvegarde supprimée. Le portefeuille affiché reste ouvert.') }
     catch { setFeedback('Suppression impossible. Les données existantes sont conservées.') }
   }
   return <details className="dca-saved" onToggle={e => {if(e.currentTarget.open) refresh()}}><summary>Mes portefeuilles</summary>
