@@ -467,6 +467,40 @@ class PublicationTests(unittest.TestCase):
         self.assertIn('recollect', result.stdout + result.stderr)
         self.assertIn(path, result.stdout + result.stderr)
 
+    def test_reviewed_anniversary_and_dca_paths_preserve_both_writers(self):
+        paths = ('src/data/anniversary-levels.json',
+                 'scripts/playwright-dca-eight.mjs',
+                 'src/pages/dca-profiles/DcaApp.jsx',
+                 'src/pages/dca-profiles/README.md')
+        for path in paths:
+            self.advance(path)
+        result = self.record()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.git('fetch', '-q', 'origin', 'master')
+        for path in paths:
+            self.assertIn('independent', self.git('show', 'origin/master:' + path))
+        reviews = json.loads(self.git('show',
+            'origin/master:public/data/investors/review-metadata.json'))
+        self.assertTrue(all(r['lastSuccessfulPollAt'] == self.fresh_clock
+                            and r['positionsCollectedAt'] == self.old_clock
+                            for r in reviews))
+
+    def test_anniversary_race_still_requires_combined_financial_audit(self):
+        self.advance('src/data/anniversary-levels.json')
+        result = self.record(fail_auditor=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.git('fetch', '-q', 'origin', 'master')
+        reviews = json.loads(self.git('show',
+            'origin/master:public/data/investors/review-metadata.json'))
+        self.assertTrue(all(r['lastSuccessfulPollAt'] == self.old_clock for r in reviews))
+
+    def test_neighbouring_dca_and_price_inputs_remain_unqualified(self):
+        for path in ('src/pages/dca-profiles/calculations.js',
+                     'src/data/anniversary-index-history.json',
+                     'scripts/collect_publication_observations.py'):
+            with self.subTest(path=path):
+                self.assert_remote_input_refused(path)
+
     def test_neighbouring_exposure_and_metadata_inputs_stay_protected(self):
         for path in ['scripts/exposure-etf-expansion.json',
                      'scripts/collect_instrument_metadata.py',
