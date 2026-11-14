@@ -1,0 +1,1017 @@
+{
+  "revisionCode": "574320ad08e2fd9facbdea49cd3e1561eb44e1ec",
+  "masterIntegre": "1ae12e25ed5a1bacb8fda006f2891e3b8a04cafe",
+  "date": "2026-11-14",
+  "buildGlobal": "npm run build — réussi",
+  "testsUnitaires": [
+    "node scripts/test-budget-profiles.mjs — réussi",
+    "node scripts/test-budget-portability.mjs — réussi"
+  ],
+  "testsNavigateur": {
+    "320": {
+      "profils": 70,
+      "exports": 140,
+      "statut": "réussi"
+    },
+    "390": {
+      "profils": 70,
+      "exports": 140,
+      "statut": "réussi"
+    },
+    "1440": {
+      "profils": 70,
+      "exports": 140,
+      "statut": "réussi"
+    }
+  },
+  "portabilite": "Publié, dates manuelles, brouillons, personnalisations, sauvegardes, conflits, archives, stockage bloqué/corrompu — réussi aux trois largeurs",
+  "nombreTextes": 70,
+  "nombreImagesUniques": 140,
+  "nombreExportsVerifies": 420,
+  "apercusTelechargements": "identiques octet par octet pour chaque export",
+  "geometrie": "aucun dépassement ni chevauchement",
+  "lectureVisuelle": "140 images examinées dans 28 planches à 390 px",
+  "publicationSurX": false,
+  "images": [
+    {
+      "profil": "reddit-actif-2026-09-27",
+      "mode": "export",
+      "sha256": "cb14f108907303bcbbcce716db2e1c607658d58c1341221c6770c940b9f3747a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-actif-2026-09-27",
+      "mode": "summary",
+      "sha256": "a16fad67c9d56dcc8d386c878d5ee691905947f5af4ab206b9f2e205a79974e8",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-couple-nord-2026-07-09",
+      "mode": "export",
+      "sha256": "a81126a663e452a82e0b4a337208488b464c30d55b49545f4b6f7545014d8e0e",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-couple-nord-2026-07-09",
+      "mode": "summary",
+      "sha256": "a81126a663e452a82e0b4a337208488b464c30d55b49545f4b6f7545014d8e0e",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-salarie-26-2026-01-04",
+      "mode": "export",
+      "sha256": "ac5e63a7ffd8e1767170f00627e390d1475bcbc267dfa41cb19b835466b87583",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-salarie-26-2026-01-04",
+      "mode": "summary",
+      "sha256": "b71806da67b1d0f58122317a5c6918d400236848d59b96f8383e4acd20b9b7dc",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-ingenieur-aero-2025-11-30",
+      "mode": "export",
+      "sha256": "ac4bd7921c33bdd2c2df08b913f4e128e54c11f88df7ba0843094c0ea2896731",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-ingenieur-aero-2025-11-30",
+      "mode": "summary",
+      "sha256": "754c3017413a2d4cdc2aa8118d72d3c60291757c1633ed2d4f6d03f9ccc5cabf",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternant-22-2025-05-15",
+      "mode": "export",
+      "sha256": "f9a432a3ddd1849c947cc85b92db62eb767420a333a23dd88ee8824df29627a6",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternant-22-2025-05-15",
+      "mode": "summary",
+      "sha256": "f9a432a3ddd1849c947cc85b92db62eb767420a333a23dd88ee8824df29627a6",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-fonctionnaire-30-2025-05-21",
+      "mode": "export",
+      "sha256": "971bbd9813d0eaf4e8926772e7630fe22a4c6850f8df2b234b68d450badd64cb",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-fonctionnaire-30-2025-05-21",
+      "mode": "summary",
+      "sha256": "35e27ec7687366a30003bd8b5a0040be583f15302698e486615914f1b9eb2fa8",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternant-19-2025-09-27",
+      "mode": "export",
+      "sha256": "b744c9ed05751bbb8938485597d6c8eac5bfe4f571a92ca3e81617e475db8d04",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternant-19-2025-09-27",
+      "mode": "summary",
+      "sha256": "19c66bcbe24b3f6063958662ba209de2dee8604bc9805542d52dbf8f05629ec3",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-couple-35-2025-10-15",
+      "mode": "export",
+      "sha256": "ced78cb082cec525d63c317c000bacb4b9e8dc6b77377ecf81686d5cc060b5bb",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-couple-35-2025-10-15",
+      "mode": "summary",
+      "sha256": "035b0236591ad48362e9653adccaba2b6982a0d0a9594dbe2f6b555303a81eab",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-tech-26-2026-02-06",
+      "mode": "export",
+      "sha256": "ed9384da3fb77e6213cb3a0da49d6720fe5ba3aabd991dd2538ad991ceabe303",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-tech-26-2026-02-06",
+      "mode": "summary",
+      "sha256": "ed9384da3fb77e6213cb3a0da49d6720fe5ba3aabd991dd2538ad991ceabe303",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-alternant-20-2025-09-03",
+      "mode": "export",
+      "sha256": "4d8ecaeb424af61bd76c849ccfa3ba7121271cc447a642ff430c6547857f5bf4",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-alternant-20-2025-09-03",
+      "mode": "summary",
+      "sha256": "4d8ecaeb424af61bd76c849ccfa3ba7121271cc447a642ff430c6547857f5bf4",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-cyber-24-2026-08-27",
+      "mode": "export",
+      "sha256": "1da4ec5a38735a4e2ed96ad313b9f2c25abbb4f033b2e05056a7316ed8753c76",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-cyber-24-2026-08-27",
+      "mode": "summary",
+      "sha256": "5abefb1d4bbd1a2a12d1abf5b96123d88185aa0f42d19b0025e6563f7a2e1e70",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-ingenieur-21-2025-03-08",
+      "mode": "export",
+      "sha256": "d8f38a6f045b26228bc506810a667e2282972ffb90c12da3ebc838bd9129be7e",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-ingenieur-21-2025-03-08",
+      "mode": "summary",
+      "sha256": "274b3f960500748032890583ff42f8579d24f3fc18b3cfb8c2c678dea63c3189",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternant-21-2025-05-08",
+      "mode": "export",
+      "sha256": "7365e01af2a3998ae01122fb8e4270ed3f460872d0941aaf61daab03ea15fbd5",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternant-21-2025-05-08",
+      "mode": "summary",
+      "sha256": "7365e01af2a3998ae01122fb8e4270ed3f460872d0941aaf61daab03ea15fbd5",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-locataire-25-2025-11-08",
+      "mode": "export",
+      "sha256": "902bdf336738631f34e341e5523a4f4ceb4698f153b4cb949138d9747da25246",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-locataire-25-2025-11-08",
+      "mode": "summary",
+      "sha256": "902bdf336738631f34e341e5523a4f4ceb4698f153b4cb949138d9747da25246",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-batiment-21-2025-09-30",
+      "mode": "export",
+      "sha256": "e6f4ffed0397a193cd01333b2d289921618f243e996c97483949306fc045fb56",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-batiment-21-2025-09-30",
+      "mode": "summary",
+      "sha256": "e6f4ffed0397a193cd01333b2d289921618f243e996c97483949306fc045fb56",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-etudiant-20-2025-03-19",
+      "mode": "export",
+      "sha256": "0adab4e0c71c25af9ad3433ecdb9b5518d885f337ef22fee31dcc0462e866948",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-etudiant-20-2025-03-19",
+      "mode": "summary",
+      "sha256": "0adab4e0c71c25af9ad3433ecdb9b5518d885f337ef22fee31dcc0462e866948",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-celibataire-31-2026-02-03",
+      "mode": "export",
+      "sha256": "9ee3be3d101868e3490e3992ffcb64d6b16ff1e19740dd39f499ec1de8977a17",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-celibataire-31-2026-02-03",
+      "mode": "summary",
+      "sha256": "1a0437253a81a4c807597034df1d1a2f09b11b4b2fc30d7520faebab9c6fedc2",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-frontalier-37-2025-06-30",
+      "mode": "export",
+      "sha256": "805345604130d51af0cfb056f244b2425e0ffad927ecad7656eeb4eb518ec1d0",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-frontalier-37-2025-06-30",
+      "mode": "summary",
+      "sha256": "814d90c887fa39cc542312ea38e1c45b4e91d04d9e4bbb375d8200b622591e35",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-bois-18-2025-10-16",
+      "mode": "export",
+      "sha256": "c2891f740f966ba8a9491ecdc692ad11619de99a57ed1bc847a2b058cdd5206c",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-bois-18-2025-10-16",
+      "mode": "summary",
+      "sha256": "c2891f740f966ba8a9491ecdc692ad11619de99a57ed1bc847a2b058cdd5206c",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "mustachian-ingenieur-28-2025-08-16",
+      "mode": "export",
+      "sha256": "25d3f532c4200797fd2bc0eb047593b2bcc153cc74f0455eac3c59fb527cd662",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "mustachian-ingenieur-28-2025-08-16",
+      "mode": "summary",
+      "sha256": "0df1716c6f8dbeb7089e63cc66de9d222e85171aa41f9db5dc7b7148d0c8f3af",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-nicolas1499-2026-10-30",
+      "mode": "export",
+      "sha256": "52709a78a253b297e755bff93d643f2f9ef7aa7672ec7820dbac6879a92aff13",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-nicolas1499-2026-10-30",
+      "mode": "summary",
+      "sha256": "1f6d7fa98f8a01863f97b2bf59d7983b43f284ae9a8a2637fac625236391e034",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-carl78-2026-10-30",
+      "mode": "export",
+      "sha256": "b6dc5bd0b92c2657bedf45de40bd8d131e4d50cd80320830594e202807ff26f2",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-carl78-2026-10-30",
+      "mode": "summary",
+      "sha256": "ac5e75d16ed0431bd5055dfceec5240a90b3fd3ad9b7d0aa7e42b561da7747de",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-theoo-2026-10-30",
+      "mode": "export",
+      "sha256": "cbb80c188e3530d51c2ce5a9346c92f82ccb6945074e658ac48383781917ea21",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-theoo-2026-10-30",
+      "mode": "summary",
+      "sha256": "f9d58221d2229e2af635d874e7285a35527b534b56a3b1ee1b6574f22183c5ae",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-gritz-2026-10-30",
+      "mode": "export",
+      "sha256": "24fb0c37e75e72cb7a29f503d696ca1d5a50dad4f35c1f253c8de43e26610f1d",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-gritz-2026-10-30",
+      "mode": "summary",
+      "sha256": "be65b231b7b8948c3a21873169ad383f8fdec91359f2a3a3919bf31ee10a376b",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-tom281-2026-10-30",
+      "mode": "export",
+      "sha256": "106787f2b914a2559fc8508acf9fb9faed5032b331d3134820284ab23616f36a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-tom281-2026-10-30",
+      "mode": "summary",
+      "sha256": "69e5b71c3d8a0f614d4c86d7fdc5b056db82733ba9132c639aae94c000ade4d8",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-alessgiu-2026-10-30",
+      "mode": "export",
+      "sha256": "594032295e8b22d203f5aa2e73427bd80528de292cbc2dbf7b54fbbb873f7767",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-alessgiu-2026-10-30",
+      "mode": "summary",
+      "sha256": "9ccde2ed56dd3bee394ce892bbe20140ae416153c27dc68d72640a2572d0d394",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-xiaolongbao641-2026-10-30",
+      "mode": "export",
+      "sha256": "69b199ca6176d934f495f422beee938ec19e2bdd26f30860dac35119136cc15d",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-xiaolongbao641-2026-10-30",
+      "mode": "summary",
+      "sha256": "ad6166c87910b9b6c73241b878b5183b650cd509c072b27020d889c6ebdaae30",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-abar4-2026-10-30",
+      "mode": "export",
+      "sha256": "7be854870be3d4a5322a8c9447b6634799b650c1feb80d22e9bf6366d5ef5fa1",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-abar4-2026-10-30",
+      "mode": "summary",
+      "sha256": "6d5b70db30e3a41602d1faaebd56182f3905db00a27f7e6eeeed6d02b48d0609",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-justbob-2026-10-30",
+      "mode": "export",
+      "sha256": "38cc1996a4ea0bf8a2152ced59418506a2a910a5393e597f21c8391621e07cbe",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-justbob-2026-10-30",
+      "mode": "summary",
+      "sha256": "8169d6ad26675f47ba0b18fa0a7be9e8365adf81e603621e70e928ad44455110",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-markus654-2026-10-30",
+      "mode": "export",
+      "sha256": "df78fc8697fb408add512f21d69c184e42dee3027f6592fa0d01b0d2f07049e8",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-markus654-2026-10-30",
+      "mode": "summary",
+      "sha256": "f4413b451d8a3d3b56df2cd38ef6940ed86ed6ea2a8f9d557183dca22c2040b7",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-01-2026-10-30",
+      "mode": "export",
+      "sha256": "6d6fe6a5c5f341fafcab142126973236e23fdca1ac1eebc888448a253ffd617a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-01-2026-10-30",
+      "mode": "summary",
+      "sha256": "47a0ff1563f1fe19ca624f3a6f27784927a1298dc8d9e864ca7837fcf798549a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-02-2026-10-30",
+      "mode": "export",
+      "sha256": "b9065dd976155bf5fc402beea2ef608ba9a9cead403aea2e809ac9c8c11158bf",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-02-2026-10-30",
+      "mode": "summary",
+      "sha256": "0423065b4c4912f22cb289b61e7ecf314f6bfc6131ecbc23ee2c13b39b50e2c9",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-03-2026-10-30",
+      "mode": "export",
+      "sha256": "f6e0aae8ffac42d7775ad65f14e19be725cc291b63711a608d334d7cc1ceb498",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-03-2026-10-30",
+      "mode": "summary",
+      "sha256": "5dee26677a493ea7760f1d9b65dd3ef2c2bc0f58a30cd0f548c125b2a0a66e7a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-04-2026-10-30",
+      "mode": "export",
+      "sha256": "906d4736cb75ce428353040273b262365d583467ebc1986f18b9b6be8568772c",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-04-2026-10-30",
+      "mode": "summary",
+      "sha256": "f882151c25de2ed2fe7e65430aaeed60ac9b608fb550bd3b7eac7ba024f68840",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-05-2026-10-30",
+      "mode": "export",
+      "sha256": "e48b363e9f88a9573e50a6f4fd6de789de5f8f298fb2bf9ea61809016b32734b",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-05-2026-10-30",
+      "mode": "summary",
+      "sha256": "3b41827ad324de1a50afe3485bd71bc1cf56cdb3493efc47a27981fac864d59e",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-06-2026-10-30",
+      "mode": "export",
+      "sha256": "f68b8d5451bd882328dd6ded2ff76d0a994e05575eae9e667d563a341d770d24",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-06-2026-10-30",
+      "mode": "summary",
+      "sha256": "89345586b18775131cd09961afc6f866da63cf6ed785080218ece576dbdec245",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-07-2026-10-30",
+      "mode": "export",
+      "sha256": "848acdc559f9439289b23b5ec7661b9cffca161448f483b6e85c9d9714f0723f",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-07-2026-10-30",
+      "mode": "summary",
+      "sha256": "bde0844afa6a830ae9c055dfa4f2fccbbc697d6349c4a7d07e98e4e1892f9ad9",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-08-2026-10-30",
+      "mode": "export",
+      "sha256": "f075c0ccc031e5c32ebbcd09130ca381cbe22683f52f545ecde80aaf4af90409",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-08-2026-10-30",
+      "mode": "summary",
+      "sha256": "bd02a895dbbba6954f73bd7772f903bf8d0ffff0b47627a8abf04e712dbb93b3",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-09-2026-10-30",
+      "mode": "export",
+      "sha256": "08867d120388086d08e9f331f16782fc70dfd355683023f5cf67d10afa67062f",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-09-2026-10-30",
+      "mode": "summary",
+      "sha256": "3cc84a4bdea33bd4024ca1c173bce0e9515d6137706c1368c7da76d3ae9af3d9",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-10-2026-10-30",
+      "mode": "export",
+      "sha256": "6f541029466b8bad1b12643df0f873f24f660d4d7dd04c8479e4c53fccbc493d",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-10-2026-10-30",
+      "mode": "summary",
+      "sha256": "0250a9fadb078e2b7d0c6b8772753f062f68542b899b09719545e9e0cf9261a2",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-11-2026-10-30",
+      "mode": "export",
+      "sha256": "11012842069d6a2f32b24d9fb15bd5212e3435f5c262ea8c62ce797e093dbd9e",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-11-2026-10-30",
+      "mode": "summary",
+      "sha256": "1c9f2edb70cd7cfc79fe8ac462ac5710dd8d2456fada8ece8913613a95672d54",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-12-2026-10-30",
+      "mode": "export",
+      "sha256": "8a36f4b07fde5e4a19c0aa19ebd66815f9032c46159980ec32d1acfdf11516e9",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-12-2026-10-30",
+      "mode": "summary",
+      "sha256": "e8da4de210657ef4babd8f6e5edf8d3180285e7315b385b40eb2ded59eb3ad70",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-13-2026-10-30",
+      "mode": "export",
+      "sha256": "5d5734d9392886b95d90bf403600f322a14a4efdade4bbfebf3fd5a4de32d35f",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-13-2026-10-30",
+      "mode": "summary",
+      "sha256": "be62b42333d070533dddd0320c9756254a485eb13682f8e1c3fcf1358e844056",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-14-2026-10-30",
+      "mode": "export",
+      "sha256": "982d8f25a67452a822447e2e713b2dad2d59386e2e814b728ff3314ba199c426",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-14-2026-10-30",
+      "mode": "summary",
+      "sha256": "8a8f5b4c73f62a34bdfe08ef0d18f553fb93380e3c44748c0f50924f97a7506a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-15-2026-10-30",
+      "mode": "export",
+      "sha256": "0cca06263f156ebbba427489701f3ac2a1174ff0b31b30e046dc6281f311bec3",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-15-2026-10-30",
+      "mode": "summary",
+      "sha256": "a046d10add384e4870df64fd5c7bbb0e8e94e1fc127797aaef50e07e0be3aed9",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-16-2026-10-30",
+      "mode": "export",
+      "sha256": "25bd8a26de744a9ade1717ecf6827bb7d305eb39ca61e34568f664100af0e3e3",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-16-2026-10-30",
+      "mode": "summary",
+      "sha256": "9146f94faa9c5b1d1cbe2ada432b59574e93f14e5cf04164e515a00c9be4cb23",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-17-2026-10-30",
+      "mode": "export",
+      "sha256": "4058ac1f24e4b6b2f7f5fc24d900632c08811b54de03aed5c0d2baec2da0ca6d",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-17-2026-10-30",
+      "mode": "summary",
+      "sha256": "38e164563f26f9fd5a25fe9864d1aab06049681cc227c5e9f9d70855cc72480a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-18-2026-10-30",
+      "mode": "export",
+      "sha256": "ec259788d6250ab7a1a57e9c1d39a33b1e5a83ad1e2b949dba265b7aa7633863",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-18-2026-10-30",
+      "mode": "summary",
+      "sha256": "ec734e9d57c96595e07c45f1ab51cec26c3458f21039c760e876d7638891308a",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-19-2026-10-30",
+      "mode": "export",
+      "sha256": "d01ffe02f5241a4921be2b205871a54c782d346e0e2750867b804c3b5da26c5d",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-19-2026-10-30",
+      "mode": "summary",
+      "sha256": "ed4e96dc6a342a93c01e499644247ad6cd5c961189e0b0f9593223f873048542",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-20-2026-10-30",
+      "mode": "export",
+      "sha256": "3e9b31ef1a7f73bcc6cad6d5e0aca1f5314ff6dcacac8ac142e8ec562ea01475",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "prepared-lot2-20-2026-10-30",
+      "mode": "summary",
+      "sha256": "10198ae24c1a5fe4ee9f54a45e1f89c577e8705dda11054998c45ab5dc2cebff",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-famille-bourges-2026-07-12",
+      "mode": "export",
+      "sha256": "6c0e8d3337c85b02e967ed7c2eee22858045b95e66e994ef96562bee95005604",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reddit-famille-bourges-2026-07-12",
+      "mode": "summary",
+      "sha256": "a6434f025c17fa187c35cc1bb1e862dd92e4dc5d7c421cb82166799c75cfb1bf",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-personne_seule-2025-2026",
+      "mode": "export",
+      "sha256": "3000689912635bea1f2c72a8581ab451482da2ad3c89320e4f70ec6b23c2e310",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-personne_seule-2025-2026",
+      "mode": "summary",
+      "sha256": "fc95a7e61453d23f51cd68c8bf83c7a48d26bd2d0c9ebcd4af5df5fcb2370e95",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-monoparent_1enfant-2025-2026",
+      "mode": "export",
+      "sha256": "d2e858813642ada736ef52f67510bebf0d04a7ed31b05126feca7595fab79419",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-monoparent_1enfant-2025-2026",
+      "mode": "summary",
+      "sha256": "0835baea9602fa79fe1a7955a471b8f5f6dadb59b8abf718254c2e61c59d45f8",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-monoparent_2enfants-2025-2026",
+      "mode": "export",
+      "sha256": "518103b3da53fd151666e13781a81c6df76d4646e456b74d850c6b79d19af860",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-monoparent_2enfants-2025-2026",
+      "mode": "summary",
+      "sha256": "157bc83c2e42a09c4047a3a599a8152cc4413dc16021e38b4b5d931df595b0fd",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple-2025-2026",
+      "mode": "export",
+      "sha256": "18f3ee956368eb4424ccb519b045ddc0a4a08988138df9aba38fd659b0c2028b",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple-2025-2026",
+      "mode": "summary",
+      "sha256": "51306fad935e60c4a8b5d93c82020b72cc7566a72ce4f731afa7890476be80fc",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple_1enfant-2025-2026",
+      "mode": "export",
+      "sha256": "6b3f042e62f26c31b45deb91996252f0ebfd5d6fd56408e9a63595c35b229efd",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple_1enfant-2025-2026",
+      "mode": "summary",
+      "sha256": "21caa3b7a5d6e3b644aa9d07f6c60dc78aafa3456b33f2739d67911f750250c0",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple_2enfants-2025-2026",
+      "mode": "export",
+      "sha256": "0f9eb8b2ce6a0e46dba85d38810b8a0ef353270e015f1a21a459f72ebf6100c4",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple_2enfants-2025-2026",
+      "mode": "summary",
+      "sha256": "ea3ad75dfde24235a7eb03de0694ba7c435cb61d9e435a004165db4b08cf1143",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple_3enfants-2025-2026",
+      "mode": "export",
+      "sha256": "a3c1e5badfbd1409762dba2f989538628fcbe8bb8bdb61fab13e4fbd670886af",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-couple_3enfants-2025-2026",
+      "mode": "summary",
+      "sha256": "0d846577cef597f9d8f1aa1ff366f9f93fca74a38fc0deb7f53b8c5e1a131f20",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-monoparent_3enfants-2025-2026",
+      "mode": "export",
+      "sha256": "71f58ffc4a3c5bb9aa18044d809c122597f0dc654bd22d147ca0aef5e175c406",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-monoparent_3enfants-2025-2026",
+      "mode": "summary",
+      "sha256": "fd466495f59b86495d2f7d2a9d29ee0c14b774ccf486ff74a2c7b183e889b537",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-apprenties_majeures-2025-2026",
+      "mode": "export",
+      "sha256": "60b5fc6515f575862172a1f23436ffb7e560c033498cf1f8db97fb076158a7b2",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "budget-conseil-apprenties_majeures-2025-2026",
+      "mode": "summary",
+      "sha256": "e715dad1b022b85152738873c4676202ffc81b1634e209fcdae20e4bc4a6e1b4",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "websourd-retraite-normandie-2026-10-02",
+      "mode": "export",
+      "sha256": "98bd9aa2d5d10c3db60bf32f1b18a909d95a9bd3a0c3d272c91ff2c72b4f1a52",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "websourd-retraite-normandie-2026-10-02",
+      "mode": "summary",
+      "sha256": "1eff7f810c9465e78aba78d267b04b72108a51147a4d5db089655586a459833c",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-freelance-lille-2025-03-02",
+      "mode": "export",
+      "sha256": "23ec0c385083f3a8e2b56c72461fbab3a3f8254c77c4aff88f6af0634b4a32e5",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-freelance-lille-2025-03-02",
+      "mode": "summary",
+      "sha256": "8192fd453dfdfdc9aedde377133a5fa888ac1dc5a2ee05ad0a2dd5ab76ab2d07",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-installation-projet-2026-02-21",
+      "mode": "export",
+      "sha256": "962567ee129a6568ced95a0e9292ba7b22c683791c328de80e3b1ee4d2d54683",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-installation-projet-2026-02-21",
+      "mode": "summary",
+      "sha256": "5d6bffe18323844fd832f3594c8ecfb654543f3cbf56c553859a4b4a4710c787",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternante-projet-2026-10-06",
+      "mode": "export",
+      "sha256": "b8a16100725b263da774badbbf32e3df0c2f2e36049c8769995d8673a4856140",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-alternante-projet-2026-10-06",
+      "mode": "summary",
+      "sha256": "b8a16100725b263da774badbbf32e3df0c2f2e36049c8769995d8673a4856140",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-ingenieur-colocation-projet-2026-08-18",
+      "mode": "export",
+      "sha256": "947e004cc30268914cc1427a3eda26928572ccf178650bc09cddb4f5769eeee2",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "finary-ingenieur-colocation-projet-2026-08-18",
+      "mode": "summary",
+      "sha256": "5db007abef42396c624886ee0abdd43462f3fb8995bbf4577f1101063d7ec610",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-bordeaux-budget-2026-03",
+      "mode": "export",
+      "sha256": "d6c452859f51fd0d1f65c4b4226233daafe92aa954cc2c4749c1e45dd55a7332",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-bordeaux-budget-2026-03",
+      "mode": "summary",
+      "sha256": "39cac5274cc0d29e6945d2046ecad4138683e19623f2ee1f4c7beffbc6eb2094",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-couple-lille-budget-2026-01",
+      "mode": "export",
+      "sha256": "19b765cd64429cf50095c0e10468dd64dbf0c488a21dfbdff27bbd52889de509",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-couple-lille-budget-2026-01",
+      "mode": "summary",
+      "sha256": "ccab12e7051dc2f01c73249ac3644d8fd55b5d7d15ccdea1499a1e7bec045f87",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-indexo-belgique-2026-11",
+      "mode": "export",
+      "sha256": "c38017b961c68666ae01a0b51bb28e6a1d482133784cc120a0a5f5639a97f555",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-indexo-belgique-2026-11",
+      "mode": "summary",
+      "sha256": "c38017b961c68666ae01a0b51bb28e6a1d482133784cc120a0a5f5639a97f555",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-vendeuse-rennes-2026",
+      "mode": "export",
+      "sha256": "73ad182bc2f8b7a944d8240230dd6475c93664039b10993f764ec7b15b2a3026",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-vendeuse-rennes-2026",
+      "mode": "summary",
+      "sha256": "06b315eefce4b7123e2654cb7775a7fa9283348c010d4b8701188da544f2d0dd",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-famille-lyon-2026",
+      "mode": "export",
+      "sha256": "4df35da78bb9719a6ebac5c42381e542f51be61b4b7de72cacb62291b24cc4bf",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    },
+    {
+      "profil": "reference-famille-lyon-2026",
+      "mode": "summary",
+      "sha256": "d603ae43cb97769c782026c68e568fa1e5a051f116abbfa094ad8ba945f49eee",
+      "identiqueAuxTroisLargeurs": true,
+      "examineVisuellementA390px": true
+    }
+  ]
+}
