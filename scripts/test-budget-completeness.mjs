@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { BUDGET_PROFILES, BUDGET_RELIABLE_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_COMPLETENESS, BUDGET_PREVIOUS_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, budgetImageExpenses, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, budgetImageExpenses, budgetPublicExpenseRows, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 const expected = JSON.parse(readFileSync(new URL('./fixtures/budget-completeness-2026-11-03.json', import.meta.url)))
 const currentExpected = JSON.parse(readFileSync(new URL('./fixtures/budget-reliability-2026-11-06.json', import.meta.url))).profiles
@@ -40,7 +40,7 @@ for (const [i,p] of BUDGET_RELIABLE_PROFILES.entries()) {
     for(const row of original.expenses){if(review.expenseReplacements?.some(x=>x.label===row.label))continue;const next=p.expenses.find(x=>x.label===row.label);assert(next);assert.equal(next.amount,review.expenseCorrections?.find(x=>x.label===row.label)?.amount??row.amount)}
   }else assert(review.scopeChange && review.replacementExpensesReason)
   for(const mode of ['detailed','summary'])assert.equal(budgetImageExpenses(p,mode).reduce((s,r)=>s+Math.round(r.amount*100),0),currentExpected[p.id].after.expenses)
-  for(const row of p.expenses.filter(r=>/^Provision\b|mensualis|^Enveloppe.*vacances/i.test(r.label)))assert(budgetImageExpenses(p,'summary').some(x=>x.label===row.label && x.amount===row.amount),'A summary cannot disguise an annual provision as ordinary monthly spending')
+  for(const [i,row] of p.expenses.entries())if(/^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label))assert(budgetImageExpenses(p,'summary').some(x=>x.label===budgetPublicExpenseRows(p)[i].label && x.amount===row.amount),'A summary cannot disguise an annual provision as ordinary monthly spending')
   const c=publicationContextFor(p), old=BUDGET_ORIGINAL_PUBLICATION_CONTEXT[p.id]
   assert.deepEqual(c.review,old.review,'An editorial review is not a new source consultation')
   for(const q of c.questions)if(!old.questions.some(x=>x.text===q.text)){
