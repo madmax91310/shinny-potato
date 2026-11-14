@@ -1,0 +1,2672 @@
+{
+  "checkedAt": "2026-11-14T03:46:08.011979+00:00",
+  "build": {
+    "sha": "642e702aead994fabf539e901cf886e98379a41a",
+    "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-14T03:45:04.686Z"
+  },
+  "manifestBlob": "e32a7ef88e6af09ad10f1a433d99811584fad119",
+  "summary": {
+    "total": 90,
+    "open": 77,
+    "corrected": 10,
+    "correctedWithResidual": 2,
+    "nonComparable": 1,
+    "checked": 90
+  },
+  "qualified": 73,
+  "total": 79,
+  "refused": [
+    "DE000A0H08P6/2019",
+    "DE000A27Z304/2021",
+    "FR0010755611/2021",
+    "FR0010755611/2024",
+    "FR0013411998/2025",
+    "FR0013412004/2025"
+  ],
+  "rows": [
+    {
+      "id": "IE00BLNMYC90/2021",
+      "isin": "IE00BLNMYC90",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfEqualWeight",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-06",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+            "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-11-08&includeTax=false",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B4556L06/2025",
+      "isin": "IE00B4556L06",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etcPalladium",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2011-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        },
+        {
+          "id": "etcPalladiumMarket",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2011-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1440460800&period2=1441065600&interval=1d&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "IPDM.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BJ5JP436/2024",
+      "isin": "IE00BJ5JP436",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etf_world_communication",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2022-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B1XNHC34/2020",
+      "isin": "IE00B1XNHC34",
+      "year": 2020,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etf_clean_energy",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2008-02",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BJ5JP097/2023",
+      "isin": "IE00BJ5JP097",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etf_financials",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2021-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BQQP9F84/2018",
+      "isin": "IE00BQQP9F84",
+      "year": 2018,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etf_gold_miners",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2017-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BQQP9F84/2019",
+      "isin": "IE00BQQP9F84",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etf_gold_miners",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2017-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BQQP9F84/2025",
+      "isin": "IE00BQQP9F84",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etf_gold_miners",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2017-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BJGWQN72/2020",
+      "isin": "IE00BJGWQN72",
+      "year": 2020,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfCloudWisdomtree",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2019-10",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12)."
+          }
+        },
+        {
+          "id": "etfCloudWisdomtreeNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-09",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BJGWQN72/2023",
+      "isin": "IE00BJGWQN72",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfCloudWisdomtree",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2019-10",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfCloudWisdomtreeNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-09",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BK5BCD43/2023",
+      "isin": "IE00BK5BCD43",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfLgArtificialIntelligence",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/AIAI.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/AIAI.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfIE00BK5BCD43Nav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-07",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+            "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Artificial-Intelligence/IE00BK5BCD43/",
+            "https://fundcentres.landg.com/srp/api/price-history/4516?pricetype_id=84&pricetype_id=87"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BSPLC413/2023",
+      "isin": "IE00BSPLC413",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfUsaSmallValue",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2016-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+            "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BSPLC413/2024",
+      "isin": "IE00BSPLC413",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfUsaSmallValue",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2016-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+            "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BSPLC413/2025",
+      "isin": "IE00BSPLC413",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfUsaSmallValue",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2016-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+            "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0013411998/2025",
+      "isin": "FR0013411998",
+      "year": 2025,
+      "monthlyQualified": false,
+      "windows": [
+        {
+          "id": "etfFR0013411998",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2019-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/PTPXH.PA?period1=1556668800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/PTPXH.PA?period1=1556668800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B42NKQ00/2019",
+      "isin": "IE00B42NKQ00",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2015-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CH0454664001/2024",
+      "isin": "CH0454664001",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfCH0454664001",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2021-07",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfCH0454664001Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2019-03",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://api.primary.21shares.com/api/product_details/ABTC",
+            "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+            "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CH0454664001/2025",
+      "isin": "CH0454664001",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfCH0454664001",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2021-07",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        },
+        {
+          "id": "etfCH0454664001Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2019-03",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://api.primary.21shares.com/api/product_details/ABTC",
+            "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+            "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B4JNQZ49/2021",
+      "isin": "IE00B4JNQZ49",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B4JNQZ49",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2016-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0013412004/2025",
+      "isin": "FR0013412004",
+      "year": 2025,
+      "monthlyQualified": false,
+      "windows": [
+        {
+          "id": "etfFR0013412004",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2019-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/PALAT.PA?period1=1556668800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/PALAT.PA?period1=1556668800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BK5BCH80/2025",
+      "isin": "IE00BK5BCH80",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BK5BCH80",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2020-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/RENW.MI?period1=1606780800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/RENW.MI?period1=1606780800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        },
+        {
+          "id": "etfIE00BK5BCH80Nav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2020-11",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+            "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Clean-Energy/IE00BK5BCH80/",
+            "https://fundcentres.landg.com/srp/api/price-history/5185?pricetype_id=84&pricetype_id=87"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "LU1737652823/2024",
+      "isin": "LU1737652823",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfLU1737652823",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2018-02",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/10AJ.DE?period1=1517443200&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/10AJ.DE?period1=1517443200&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfLU1737652823Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2019-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE000M7V94E1/2025",
+      "isin": "IE000M7V94E1",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE000M7V94E1",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2023-03",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0010342592/2021",
+      "isin": "FR0010342592",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0010342592",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0010342592/2023",
+      "isin": "FR0010342592",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0010342592",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0010342592/2024",
+      "isin": "FR0010342592",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0010342592",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE000RDRMSD1/2023",
+      "isin": "IE000RDRMSD1",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2022-10",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE000RDRMSD1/2025",
+      "isin": "IE000RDRMSD1",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2022-10",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B43HR379/2018",
+      "isin": "IE00B43HR379",
+      "year": 2018,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B43HR379",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2016-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B43HR379/2019",
+      "isin": "IE00B43HR379",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B43HR379",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2016-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BYWQWR46/2020",
+      "isin": "IE00BYWQWR46",
+      "year": 2020,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BYWQWR46",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2019-07",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/uk/en/investments/esports-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B5W4TY14/2016",
+      "isin": "IE00B5W4TY14",
+      "year": 2016,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2015-12",
+            "end": "2016-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B5W4TY14/2017",
+      "isin": "IE00B5W4TY14",
+      "year": 2017,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2016-12",
+            "end": "2017-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BYXG2H39/2018",
+      "isin": "IE00BYXG2H39",
+      "year": 2018,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2017-11",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BYXG2H39/2023",
+      "isin": "IE00BYXG2H39",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2017-11",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BDFBTQ78/2019",
+      "isin": "IE00BDFBTQ78",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-06",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/DK/en/investments/mining-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BDFBTQ78/2021",
+      "isin": "IE00BDFBTQ78",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-06",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/DK/en/investments/mining-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BDFBTQ78/2025",
+      "isin": "IE00BDFBTQ78",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-06",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/DK/en/investments/mining-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE000YU9K6K2/2025",
+      "isin": "IE000YU9K6K2",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE000YU9K6K2",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2022-10",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.vaneck.com/uk/en/investments/space-etf/",
+            "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI",
+            "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI",
+            "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI",
+            "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI",
+            "https://www.vaneck.com/static/eu/js/dist/main.js",
+            "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0010755611/2021",
+      "isin": "FR0010755611",
+      "year": 2021,
+      "monthlyQualified": false,
+      "windows": [
+        {
+          "id": "etfFR0010755611",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0010755611/2024",
+      "isin": "FR0010755611",
+      "year": 2024,
+      "monthlyQualified": false,
+      "windows": [
+        {
+          "id": "etfFR0010755611",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0011871110/2021",
+      "isin": "FR0011871110",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0011871110",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0011871128/2021",
+      "isin": "FR0011871128",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0011871128",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DE000A27Z304/2021",
+      "isin": "DE000A27Z304",
+      "year": 2021,
+      "monthlyQualified": false,
+      "windows": [
+        {
+          "id": "etfDE000A27Z304",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2020-07",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        },
+        {
+          "id": "etfDE000A27Z304Paris",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2021-06",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "reason": "Bornes ou niveaux historiques absents."
+          }
+        }
+      ]
+    },
+    {
+      "id": "DE000A27Z304/2023",
+      "isin": "DE000A27Z304",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfDE000A27Z304",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2020-07",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfDE000A27Z304Paris",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2021-06",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "adjusted",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DE000A27Z304/2024",
+      "isin": "DE000A27Z304",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfDE000A27Z304",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2020-07",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfDE000A27Z304Paris",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2021-06",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "adjusted",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0013416716/2025",
+      "isin": "FR0013416716",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0013416716",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2019-08",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B2QWCY14/2023",
+      "isin": "IE00B2QWCY14",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B2QWCY14/2024",
+      "isin": "IE00B2QWCY14",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B2QWCY14/2025",
+      "isin": "IE00B2QWCY14",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BD1F4L37/2017",
+      "isin": "IE00BD1F4L37",
+      "year": 2017,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BD1F4L37",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2016-11",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2016-12",
+            "end": "2017-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BQN1K562/2016",
+      "isin": "IE00BQN1K562",
+      "year": 2016,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BQN1K562",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2015-03",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2015-12",
+            "end": "2016-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BQT3WG13/2017",
+      "isin": "IE00BQT3WG13",
+      "year": 2017,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BQT3WG13",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2015-05",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2016-12",
+            "end": "2017-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0007054358/2020",
+      "isin": "FR0007054358",
+      "year": 2020,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0007054358",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+          }
+        },
+        {
+          "id": "etfFR0007054358Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-10",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2019-12",
+            "end": "2020-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "GB00B15KXQ89/2018",
+      "isin": "GB00B15KXQ89",
+      "year": 2018,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12)."
+          }
+        },
+        {
+          "id": "etfGB00B15KXQ89Nav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2017-12",
+            "end": "2018-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "GB00B15KXQ89/2019",
+      "isin": "GB00B15KXQ89",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        },
+        {
+          "id": "etfGB00B15KXQ89Nav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BDVPNG13/2019",
+      "isin": "IE00BDVPNG13",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2018-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        },
+        {
+          "id": "etfIE00BDVPNG13Nav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2018-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BDVPNG13/2023",
+      "isin": "IE00BDVPNG13",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2018-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        },
+        {
+          "id": "etfIE00BDVPNG13Nav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2018-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "LU2089238385/2025",
+      "isin": "LU2089238385",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfLU2089238385",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2020-02",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "LU1875395870/2019",
+      "isin": "LU1875395870",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfLU1875395870",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2018-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        },
+        {
+          "id": "etfLU1875395870Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2018-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/pdpMetaTagsTealium",
+            "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/historicaldata/download?startDate=2018-11-06&endDate=2026-11-08&includeTax=false",
+            "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/performancechart"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "LU2196470426/2025",
+      "isin": "LU2196470426",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfLU2196470426",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2020-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/XNKY.DE?period1=1606780800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/XNKY.DE?period1=1606780800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        },
+        {
+          "id": "etfLU2196470426Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2020-10",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+            "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-11-08&includeTax=false",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FR0011550185/2021",
+      "isin": "FR0011550185",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfFR0011550185",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/ESE.PA?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/ESE.PA?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        },
+        {
+          "id": "etfFR0011550185Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2019-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://api.bnpparibas-am.com/push/fundsheet/IP_FR-IND/FRE/FRA/FR0011550185",
+            "https://api.bnpparibas-am.com/push-raw/navs/fast?currency=EUR&product_gids=FR0011550185&granularity=day",
+            "https://api.bnpparibas-am.com/push-raw/navs/fast?currency=EUR&product_gids=FR0011550185&granularity=month"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00B4K6B022/2024",
+      "isin": "IE00B4K6B022",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfIE00B4K6B022",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        },
+        {
+          "id": "etfIE00B4K6B022Nav",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2023-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/presentation",
+            "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/fund-history",
+            "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/dividend-table",
+            "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/documents-table",
+            "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+            "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+            "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+            "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
+            "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/annual%20report",
+            "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/semi%20annual%20report"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IE00BSPLC298/2019",
+      "isin": "IE00BSPLC298",
+      "year": 2019,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etfSmallValueEurope",
+          "currency": "EUR",
+          "convention": "fund-nav-total-return",
+          "start": "2016-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy",
+            "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprx-gy.xlsx"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2018-12",
+            "end": "2019-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00B78CGV99/2021",
+      "isin": "JE00B78CGV99",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_brent_crude_oilNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        },
+        {
+          "id": "etc_brent_crude_oil",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00B78CGV99/2022",
+      "isin": "JE00B78CGV99",
+      "year": 2022,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_brent_crude_oilNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_brent_crude_oil",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00B78CGV99/2023",
+      "isin": "JE00B78CGV99",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_brent_crude_oilNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_brent_crude_oil",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "GB00B15KXV33/2021",
+      "isin": "GB00B15KXV33",
+      "year": 2021,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_wti_crude_oilNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2020-12",
+            "end": "2021-12"
+          }
+        },
+        {
+          "id": "etc_wti_crude_oil",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "GB00B15KXV33/2022",
+      "isin": "GB00B15KXV33",
+      "year": 2022,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_wti_crude_oilNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_wti_crude_oil",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "GB00B15KXV33/2023",
+      "isin": "GB00B15KXV33",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_wti_crude_oilNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2019-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_wti_crude_oil",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00BN7KB334/2022",
+      "isin": "JE00BN7KB334",
+      "year": 2022,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_natural_gasNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2021-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_natural_gas",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/NGAS.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/NGAS.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00BN7KB557/2022",
+      "isin": "JE00BN7KB557",
+      "year": 2022,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_coffeeNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2021-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_coffee",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00BN7KB557/2024",
+      "isin": "JE00BN7KB557",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_coffeeNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2021-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        },
+        {
+          "id": "etc_coffee",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00BN7KB557/2025",
+      "isin": "JE00BN7KB557",
+      "year": 2025,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_coffeeNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2021-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2024-12",
+            "end": "2025-12"
+          }
+        },
+        {
+          "id": "etc_coffee",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00B2QXZK10/2023",
+      "isin": "JE00B2QXZK10",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_cocoaNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_cocoa",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00B2QXZK10/2024",
+      "isin": "JE00B2QXZK10",
+      "year": 2024,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_cocoaNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2024-12"
+          }
+        },
+        {
+          "id": "etc_cocoa",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00BN7KB664/2022",
+      "isin": "JE00BN7KB664",
+      "year": 2022,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_wheatNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2021-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2021-12",
+            "end": "2022-12"
+          }
+        },
+        {
+          "id": "etc_wheat",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "JE00BN7KB664/2023",
+      "isin": "JE00BN7KB664",
+      "year": 2023,
+      "monthlyQualified": true,
+      "windows": [
+        {
+          "id": "etc_wheatNav",
+          "currency": "USD",
+          "convention": "fund-nav-total-return",
+          "start": "2021-12",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular"
+          ],
+          "qualification": {
+            "qualified": true,
+            "convention": "fund-nav-total-return",
+            "start": "2022-12",
+            "end": "2023-12"
+          }
+        },
+        {
+          "id": "etc_wheat",
+          "currency": "USD",
+          "convention": "adjusted",
+          "start": "2020-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "DE000A0H08P6/2019",
+      "isin": "DE000A0H08P6",
+      "year": 2019,
+      "monthlyQualified": false,
+      "windows": [
+        {
+          "id": "etfEuropeRetail",
+          "currency": "EUR",
+          "convention": "adjusted",
+          "start": "2015-01",
+          "end": "2026-10",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "qualification": {
+            "qualified": false,
+            "code": "financial-window-unconfirmed",
+            "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+          }
+        }
+      ]
+    }
+  ]
+}

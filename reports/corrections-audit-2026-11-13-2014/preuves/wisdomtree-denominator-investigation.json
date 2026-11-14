@@ -1,0 +1,127 @@
+{
+  "url": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+  "checkedAt": "2026-11-13T21:46:05.198887+00:00",
+  "purpose": "Search source-rendered financial denominator/cash evidence distinct from prior API retries; no data applied",
+  "sha256": "41df7a2349a676daa32b15decba1191e635399c777a80dc9de565aebdd53210a",
+  "candidateFields": [
+    {
+      "path": "root[].children[].children[].children[][].children[][].fundHoldingDetails",
+      "type": "str",
+      "preview": "$undefined"
+    },
+    {
+      "path": "root[].children[][].holdings",
+      "type": "dict",
+      "preview": "{'Information Technology': [{'dt': '2026-11-12T00:00:00.000Z', 'classTicker': 'WCLD LN', 'wtClassID': 3104137, 'entityName': 'WisdomTree Cloud Computing UCITS ETF - USD Acc', 'rankClassificationID': 1, 'rankClassification': 'Fund', 'constituentName': 'Netskope Inc-Cl A', 'constituentRanking': 1, 'pctWeight': 0.023504, 'descriptorA': 'Information Technology', 'descriptorB': 'BQT3J26', 'wgtSumCheck': 0.999999, 'constituentName_frFR': None, 'descriptorA_frFR': 'Technologies de l’information', '_type': 'rankingsCache'}, {'dt': '2026-11-12T00:00:00.000Z', 'classTicker': 'WCLD LN', 'wtClassID': 3104"
+    }
+  ],
+  "sameResponseAdditionalInspection": {
+    "sourceClockRenewed": false,
+    "fields": [
+      {
+        "path": "root[].primaryNavItems",
+        "type": "str",
+        "preview": "$4e:props:children:0:props:children:1:props:items"
+      },
+      {
+        "path": "root[].secondaryNavItems",
+        "type": "str",
+        "preview": "$30:props:children:0:props:items"
+      },
+      {
+        "path": "root[].primaryNavItems",
+        "type": "str",
+        "preview": "$50:props:children:0:props:children:1:props:items"
+      },
+      {
+        "path": "root[].secondaryNavItems",
+        "type": "str",
+        "preview": "$3c:props:children:0:props:items"
+      },
+      {
+        "path": "root[].primaryNavItems",
+        "type": "str",
+        "preview": "$51:props:children:0:props:children:1:props:items"
+      },
+      {
+        "path": "root[].secondaryNavItems",
+        "type": "str",
+        "preview": "$44:props:children:0:props:items"
+      },
+      {
+        "path": "root[].primaryNavItems",
+        "type": "str",
+        "preview": "$5c:props:children:0:props:children:1:props:items"
+      },
+      {
+        "path": "root[].secondaryNavItems",
+        "type": "str",
+        "preview": "$11:props:header:props:children:0:props:items"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.AUM",
+        "type": "int",
+        "preview": "423175616"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.AUM_DateTime",
+        "type": "str",
+        "preview": "2026-10-22T00:00:00.000Z"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.AUMusd",
+        "type": "float",
+        "preview": "423175623.38"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.NAV",
+        "type": "float",
+        "preview": "44.540000915527344"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.NAV_Date",
+        "type": "str",
+        "preview": "2026-10-22T00:00:00.000Z"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.NAV_YTD",
+        "type": "float",
+        "preview": "0.29288825392723083"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.NAVusd",
+        "type": "float",
+        "preview": "44.54"
+      },
+      {
+        "path": "root[][].children[][].children[][].euListingLibraryEntry.SharesOutstanding",
+        "type": "int",
+        "preview": "9501963"
+      }
+    ],
+    "note": "Only previously acquired official response; ranking rows do not thereby become NAV positions.",
+    "listingIdentity": [
+      {
+        "AUM": 423175616,
+        "AUM_DateTime": "2026-10-22T00:00:00.000Z",
+        "AUMusd": 423175623.38,
+        "ISIN": "IE00BJGWQN72",
+        "NAV": 44.540000915527344,
+        "NAV_Date": "2026-10-22T00:00:00.000Z",
+        "NAV_YTD": 0.29288825392723083,
+        "NAVusd": 44.54,
+        "ProductNameXPX": "WisdomTree Cloud Computing UCITS ETF",
+        "RelatedTickers": "KLWD LN|WCLD FP|WCLD IM|WCLD LN|WCLD SW|WCLD1N MM|WTEJ GY",
+        "SharesOutstanding": 9501963,
+        "bloombergTicker": "WCLD LN",
+        "bloombergTickerPrimary": "WCLD LN",
+        "displayName": "WisdomTree Cloud Computing UCITS ETF - USD Acc",
+        "exchangeTicker": "WCLD",
+        "name": "WisdomTree Cloud Computing UCITS ETF",
+        "wtClassID": 3104137
+      }
+    ],
+    "examinedAt": "2026-11-14T00:21:16.885445+00:00",
+    "conclusion": "Exact UCITS class IE00BJGWQN72 / 3104137: listing AUM/NAV are dated 2026-10-22, while rankings are 2026-11-12. No market values/quantities or same-date NAV denominator/cash book supplied. Mixing those observations would not qualify complete holdings."
+  }
+}

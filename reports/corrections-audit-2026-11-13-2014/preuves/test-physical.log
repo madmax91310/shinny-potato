@@ -1,0 +1,8 @@
+.......................
+----------------------------------------------------------------------
+Ran 23 tests in 0.048s
+
+OK
+Complete holdings: 0/1; identified securities: 0; errors: {'IE000NDWFGA5': "Missing Global X NET_ASSETS at CSV record 2 (name='CAMECO CORP', isin='CA13321L1085', asOf='2026-10-28')"}
+Validated holdings observation: {"asOf": "2026-10-28", "basis": "fund", "checkedAt": "2026-11-13T21:34:41.970822+00:00", "identifiedEquityWeightPct": 99.811, "isin": "IE000NDWFGA5", "publishedEquityWeightPct": 99.815, "rows": 59, "sha256": "9afbd6b80e5548b69680f54ed67c0b7c3f562786da0ad3cf594e503d397214cf", "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv"}
+Complete holdings: 1/1; identified securities: 0; errors: {}

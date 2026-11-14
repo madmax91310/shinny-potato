@@ -1,0 +1,27 @@
+2026-11-13T23:39:44.5318324Z   ref: a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:39:44.6058034Z   ref: a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:39:46.2148327Z [command]/usr/bin/git rev-parse --verify --quiet a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4^{object}
+2026-11-13T23:39:46.2148673Z a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:39:46.2180944Z [command]/usr/bin/git checkout --progress --force a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:40:16.9686691Z Note: switching to 'a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4'.
+2026-11-13T23:40:16.9690065Z HEAD is now at a6ffeaf7 Update World Bank monthly gold history
+2026-11-13T23:40:16.9972691Z a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:40:18.4901365Z Validated producer: 1 exact files from a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4, published code 1c45b9b4d5af600e36730248cc0a5b1147f3ba85.
+2026-11-13T23:40:18.6100150Z [36;1mcp scripts/data_publication.py "$RUNNER_TEMP/seal-data-publication.py"[0m
+2026-11-13T23:40:18.6100588Z [36;1mnode scripts/compose-fallback-snapshot.mjs --published "1c45b9b4d5af600e36730248cc0a5b1147f3ba85" --data "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4"[0m
+2026-11-13T23:40:29.9668977Z Fallback snapshot: code 1c45b9b4 (published) + 147 automation data file(s) from a6ffeaf7.
+2026-11-13T23:40:36.9376636Z Editorial lives: 70 reviewed, neutral public copy, separate creations, independent ledgers and customized drafts verified.
+2026-11-13T23:40:37.4497122Z Curation: texts, IDs, personal copies, publication dates and favorites preserved; explicit families and category corrections verified.
+2026-11-13T23:41:00.4880383Z ##[group]Run python3 "$RUNNER_TEMP/seal-data-publication.py" manifest --data-commit "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4" --output dist/data/publication-manifest.json
+2026-11-13T23:41:00.4881683Z [36;1mpython3 "$RUNNER_TEMP/seal-data-publication.py" manifest --data-commit "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4" --output dist/data/publication-manifest.json[0m
+2026-11-13T23:41:00.7197429Z   DATA_SHA: a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:41:48.7401471Z ##[group]Run git reset --hard "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4"
+2026-11-13T23:41:48.7401781Z [36;1mgit reset --hard "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4"[0m
+2026-11-13T23:41:48.9121783Z HEAD is now at a6ffeaf7 Update World Bank monthly gold history
+2026-11-13T23:41:50.2822672Z Publishable Pages snapshot: a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4; 0 newer file change(s) remain eligible for later validated publication
+2026-11-13T23:41:50.2996076Z   PAGES_DATA_SHA: a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:41:52.1854384Z Pages artifact 14086113472: recorded build a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4; caller bb8f8e53506250cf84d95213b95c8832f7869d54; deployment a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4
+2026-11-13T23:41:57.6352613Z ##[group]Run node scripts/verify-pages-publication.mjs "https://madmax91310.github.io/shinny-potato/" "1c45b9b4d5af600e36730248cc0a5b1147f3ba85" "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4"
+2026-11-13T23:41:57.6353877Z [36;1mnode scripts/verify-pages-publication.mjs "https://madmax91310.github.io/shinny-potato/" "1c45b9b4d5af600e36730248cc0a5b1147f3ba85" "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4"[0m
+2026-11-13T23:41:59.2884240Z Verified public code 1c45b9b4d5af600e36730248cc0a5b1147f3ba85, data a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4, 387 data files.
+2026-11-13T23:42:00.5835256Z   path: test-artifacts/publication-verified.json

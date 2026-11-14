@@ -1,0 +1,8 @@
+
+> patrimoine-et-compagnie@0.0.0 test:radar:browser
+> node scripts/playwright-radar.mjs && node scripts/playwright-radar-audit.mjs && node scripts/playwright-radar-reliability.mjs && node scripts/playwright-radar-read-order.mjs
+
+Radar browser: real publication replay, desktop/mobile home, live badge, cross-tab reads, same selection, exclusions, source proofs, copy/editor, Grok contract, outage/zero and housing conventions passed. No notification sent.
+Radar audit browser: desktop/mobile selection, original/reprise dossier, history/read persistence, six Xetra rows, unknowns, separate listing stage and forecasts verified. No notification sent.
+Radar reliability browser: desktop/mobile home, pending observations, discard/use/undo, separate reading, filters, saved drafts, cross-tab badge and explicit save failure passed. No notification sent.
+Stored Radar reads: late success/failure ordering, last valid feed and stopped collection preserved on desktop/mobile.

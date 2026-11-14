@@ -1,0 +1,16 @@
+{
+ "method": "Candidats curatés : identité ISIN, cotation attendue et devise. Une ligne n’entre dans src/data/global-equities.json qu’après classification officielle (positions complètes BlackRock) et qualification réelle de l’historique Yahoo par scripts/qualify_monthly_candidates.py ; scripts/sync-global-equities.mjs effectue ce transfert. Un symbole null signifie que la cotation détenue par l’émetteur est acceptée telle quelle.",
+ "candidates": [],
+ "excluded": [
+  {
+   "id": "cnooc",
+   "reason": "Non détenu par les fonds iShares World, S&P 500, EM IMI et World Small Cap : BlackRock exclut cette société visée par les sanctions américaines (liste NS-CMIC) ; aucune classification officielle possible.",
+   "checkedAt": "2026-10-18"
+  },
+  {
+   "id": "china-mobile",
+   "reason": "Non détenu par les fonds iShares World, S&P 500, EM IMI et World Small Cap : BlackRock exclut cette société visée par les sanctions américaines (liste NS-CMIC) ; aucune classification officielle possible.",
+   "checkedAt": "2026-10-18"
+  }
+ ]
+}

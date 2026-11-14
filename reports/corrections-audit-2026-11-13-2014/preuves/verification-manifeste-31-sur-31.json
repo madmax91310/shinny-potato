@@ -1,0 +1,28 @@
+{
+  "observedAt": 1794613458.052589,
+  "build": {
+    "sha": "1c45b9b4d5af600e36730248cc0a5b1147f3ba85",
+    "dataSha": "a6ffeaf7ce4f5f9158d147ca93c40c746230a4c4",
+    "lane": "validated-data",
+    "builtAt": "2026-11-13T23:41:00.746Z"
+  },
+  "13FReceiptFiles": 31,
+  "matchingFiles": 31,
+  "addedArchive": "public/data/investors/archive/renaissance/2026-06-30.json",
+  "before": {
+    "checkedAt": "2026-11-13T23:10:54Z",
+    "build": {
+      "sha": "1c45b9b4d5af600e36730248cc0a5b1147f3ba85",
+      "dataSha": "50b7d557b1b633713065f5ecc024a86ee7eae9ce",
+      "lane": "validated-code-data",
+      "builtAt": "2026-11-13T22:56:32.804Z"
+    },
+    "archiveInManifest": false,
+    "archiveBlob": null,
+    "manifestFileCount": 386
+  },
+  "goldSourceReport": "gold-observation.json",
+  "goldOnlyCheckedAtChanged": true,
+  "sourceRun": 43527632485,
+  "event": "workflow_dispatch"
+}

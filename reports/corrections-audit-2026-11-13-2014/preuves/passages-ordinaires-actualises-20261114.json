@@ -1,0 +1,193 @@
+{
+  "update-market-monthly.yml": {
+    "latestAny": [
+      {
+        "id": 43467518507,
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T16:55:05Z",
+        "head_sha": "d715820a698c92bde94480e5c47056863f21d6b0"
+      },
+      {
+        "id": 43467032715,
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T16:52:09Z",
+        "head_sha": "bc5a36322bfce88658abec652e715cab5153d5ea"
+      },
+      {
+        "id": 43455840791,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-13T15:45:44Z",
+        "head_sha": "a1a124f860f698fef4fb179a39396b99fa05936f"
+      }
+    ],
+    "latestSchedule": [
+      {
+        "id": 43447157146,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T14:54:03Z",
+        "head_sha": "1bcf28156ec7214c7732a12e590ee28af16e9a6e"
+      }
+    ]
+  },
+  "collect-etf-pilot.yml": {
+    "latestAny": [
+      {
+        "id": 43504056939,
+        "event": "workflow_dispatch",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T20:42:41Z",
+        "head_sha": "05289656476edfa50717ea816960233ea7b4e93b"
+      },
+      {
+        "id": 43486281641,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T18:49:08Z",
+        "head_sha": "4a0c7a73c040b4fdad3434143fa4a7a22b015e16"
+      },
+      {
+        "id": 43485432983,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T18:43:46Z",
+        "head_sha": "151aa80e9f8ad33c15048013c7510c4a1bbb41c1"
+      }
+    ],
+    "latestSchedule": [
+      {
+        "id": 43451234453,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T15:18:12Z",
+        "head_sha": "a8e3696df1380060fea7cda9685ec53094e11cd1"
+      }
+    ]
+  },
+  "update-qualified-exposures.yml": {
+    "latestAny": [
+      {
+        "id": 43479483363,
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T18:07:14Z",
+        "head_sha": "a16375f26855db1ab0e6f0924b937c5f614dc880"
+      },
+      {
+        "id": 43471624354,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T17:19:18Z",
+        "head_sha": "19f9f49e1097199912e4cbb60d9ebfdf0397d39e"
+      },
+      {
+        "id": 43468130988,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T16:58:48Z",
+        "head_sha": "0727ebb4cd2a593b8e4818788e746f1ee0c7a1c9"
+      }
+    ],
+    "latestSchedule": [
+      {
+        "id": 43455295963,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T15:42:27Z",
+        "head_sha": "95606e98a8f9c3c0c179a4dc01688fd806c4d226"
+      }
+    ]
+  },
+  "update-non-bond-expansion.yml": [
+    {
+      "id": 43451446953,
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-13T15:19:27Z",
+      "head_sha": "a8e3696df1380060fea7cda9685ec53094e11cd1"
+    },
+    {
+      "id": 43255755220,
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-12T16:10:29Z",
+      "head_sha": "783e8a70aff99a5949cbf42566f2c60600d5414c"
+    },
+    {
+      "id": 43253179179,
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-12T15:56:19Z",
+      "head_sha": "7fc47aa031e6c5d379e28dba44f62ebbc35f70d4"
+    }
+  ],
+  "update-publication-observations.yml": {
+    "latestAny": [
+      {
+        "id": 43545042298,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-14T02:13:06Z",
+        "head_sha": "6bba8f865347719876e9c5e19bbd213606db47f8"
+      },
+      {
+        "id": 43521495067,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-13T22:42:44Z",
+        "head_sha": "fef5409490c0d27d01421569b8f693598d0c2fa9"
+      },
+      {
+        "id": 43511305224,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-13T21:30:33Z",
+        "head_sha": "acf48464a1a6ceb5c59134f1f0c42bc0bc95731c"
+      }
+    ],
+    "latestSchedule": [
+      {
+        "id": 43454784772,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-13T15:39:24Z",
+        "head_sha": "f5ef257551b17e610d1233fdf30216ccef5d7cb8"
+      }
+    ]
+  },
+  "update-investor-13f.yml": {
+    "latestAny": null,
+    "latestSchedule": [
+      {
+        "id": 43496138701,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T19:51:39Z",
+        "head_sha": "5c90e1fd558ebceaff6b7a774e21adcc1089985a"
+      }
+    ]
+  }
+}

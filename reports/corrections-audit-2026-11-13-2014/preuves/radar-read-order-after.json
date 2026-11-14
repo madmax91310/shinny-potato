@@ -1,0 +1,48 @@
+{
+  "checkedSource": "6bba8f865347719876e9c5e19bbd213606db47f8",
+  "baseMergedTree": "e0c165bf55da99bb84fa0fd0022c2e5f17fb095c",
+  "scenarios": [
+    {
+      "width": 1440,
+      "scenario": "older-success-after-failure",
+      "calls": 3,
+      "initialCards": 1,
+      "latestStatus": 503,
+      "errors": [],
+      "collectionEnabled": false,
+      "notificationsSent": 0
+    },
+    {
+      "width": 1440,
+      "scenario": "older-failure-after-success",
+      "calls": 3,
+      "initialCards": 1,
+      "latestStatus": 200,
+      "errors": [],
+      "collectionEnabled": false,
+      "notificationsSent": 0
+    },
+    {
+      "width": 390,
+      "scenario": "older-success-after-failure",
+      "calls": 3,
+      "initialCards": 1,
+      "latestStatus": 503,
+      "errors": [],
+      "collectionEnabled": false,
+      "notificationsSent": 0
+    },
+    {
+      "width": 390,
+      "scenario": "older-failure-after-success",
+      "calls": 3,
+      "initialCards": 1,
+      "latestStatus": 200,
+      "errors": [],
+      "collectionEnabled": false,
+      "notificationsSent": 0
+    }
+  ],
+  "originalRadarTestsUnmodified": true,
+  "sourceCollectorsOrNotificationsEnabled": false
+}

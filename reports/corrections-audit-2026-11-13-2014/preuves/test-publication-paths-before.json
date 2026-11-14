@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "e0c165bf55da99bb84fa0fd0022c2e5f17fb095c",
+  "expectedRegressionDemonstrated": true,
+  "failures": 3,
+  "errors": 0,
+  "details": [
+    "Traceback (most recent call last):\n  File \"/dev/shm/corrections-ordre-lectures-20261114/scripts/test_data_publication.py\", line 144, in test_every_composite_pages_builder_seals_the_actual_data_commit\n    self.assertIsNotNone(capture, 'Freeze the current sealer before a checkout can restore older code')\nAssertionError: unexpectedly None : Freeze the current sealer before a checkout can restore older code\n",
+    "Traceback (most recent call last):\n  File \"/dev/shm/corrections-ordre-lectures-20261114/scripts/test_data_publication.py\", line 144, in test_every_composite_pages_builder_seals_the_actual_data_commit\n    self.assertIsNotNone(capture, 'Freeze the current sealer before a checkout can restore older code')\nAssertionError: unexpectedly None : Freeze the current sealer before a checkout can restore older code\n",
+    "Traceback (most recent call last):\n  File \"/dev/shm/corrections-ordre-lectures-20261114/scripts/test_data_publication.py\", line 156, in test_every_composite_pages_builder_seals_the_actual_data_commit\n    self.assertEqual(checked, {('publish-validated-data.yml', 'publish'), ('deploy-pages.yml', 'deploy'), ('deploy-pages.yml', 'fallback-build')})\nAssertionError: Items in the second set but not the first:\n('deploy-pages.yml', 'deploy')\n('deploy-pages.yml', 'fallback-build')\n"
+  ]
+}

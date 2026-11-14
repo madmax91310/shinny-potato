@@ -1,0 +1,15 @@
+{
+  "monitorAt": "2026-11-13T22:28:41.065134+00:00",
+  "run": 43517469275,
+  "recording": "success",
+  "publicationInMonitor": "not-run",
+  "matchedFiles": 30,
+  "expectedFiles": 31,
+  "unconfirmedFiles": [
+    "public/data/investors/archive/renaissance/2026-06-30.json"
+  ],
+  "publicHttpAllFilesVerified": true,
+  "publicArchiveActuallyServed": true,
+  "classification": "Incomplete publication manifest/proof, not loss of the archived snapshot",
+  "rootCause": "Manifest enumerates only published-code HEAD; the copied new data file exists but is absent from that tree."
+}

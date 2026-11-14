@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-03T12:57:23.470474+00:00",
+  "successes": [],
+  "errors": [],
+  "contractSkipped": [],
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [],
+      "mode": "targeted",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": "No configured applicable instruments",
+      "cacheRequested": false,
+      "producer": "qualify_monthly_candidates",
+      "reportStem": "etf-qualification",
+      "declaredAt": "2026-11-03T12:57:23.453091+00:00",
+      "nonce": "0cc106e4-6821-4ebc-8ee5-7974596f7ce3",
+      "codeSha": "1872b7d8ba125751e923fe7ba233f5b46620a4c9",
+      "durablePlan": true,
+      "runId": "41639923023",
+      "attempt": "1",
+      "sha256": "d985b105b1488075e40dd3d885857905e543afae4019b3bb73d1ff2d03d4f61f"
+    },
+    "scope": {
+      "kind": "qualify_monthly_candidates",
+      "mode": "targeted",
+      "expectedIds": [],
+      "requestedIds": [],
+      "items": [],
+      "emptyReason": "No configured applicable instruments",
+      "declaredAt": "2026-11-03T12:57:23.453091+00:00",
+      "planSha256": "d985b105b1488075e40dd3d885857905e543afae4019b3bb73d1ff2d03d4f61f",
+      "attemptedIds": [],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [],
+      "runId": "41639923023",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "0cc106e4-6821-4ebc-8ee5-7974596f7ce3"
+    },
+    "outcomes": [],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "code": "5c90e1fd558ebceaff6b7a774e21adcc1089985a",
+  "data": "2e19c198f1a64deb488dd98649274ac03ffe808f",
+  "scope": "Exact bytes published; not new source checks for retained metadata",
+  "files": [
+    {
+      "path": "src/data/automated-instrument-metadata.json",
+      "masterBlob": "19a54ef1b3aa3b87ae1c46302cd170fc517c9547",
+      "publicManifestBlob": "19a54ef1b3aa3b87ae1c46302cd170fc517c9547",
+      "verified": true
+    },
+    {
+      "path": "src/data/exposure-etf-expansion-records.json",
+      "masterBlob": "95efc5c04e8cdde0e8ace4432af50ed67e3a6852",
+      "publicManifestBlob": "95efc5c04e8cdde0e8ace4432af50ed67e3a6852",
+      "verified": true
+    }
+  ],
+  "finalReconfirmation": {
+    "checkedAt": "2026-11-14T03:46:07.827223+00:00",
+    "build": {
+      "sha": "642e702aead994fabf539e901cf886e98379a41a",
+      "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+      "lane": "validated-code-data",
+      "builtAt": "2026-11-14T03:45:04.686Z"
+    },
+    "fileCount": 2,
+    "sameSourceBytesConfirmed": true
+  }
+}

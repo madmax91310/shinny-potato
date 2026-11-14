@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-14T03:56:22.451331+00:00",
+  "run": 43552458543,
+  "event": "workflow_dispatch",
+  "commit": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+  "publicBuild": {
+    "sha": "642e702aead994fabf539e901cf886e98379a41a",
+    "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-14T03:45:04.686Z"
+  },
+  "files": [
+    {
+      "path": "src/data/automated-etf.json",
+      "gitBlob": "32d3e77c4c37f0654fe49b573e3f12a023adbe31",
+      "publicManifestBlob": "32d3e77c4c37f0654fe49b573e3f12a023adbe31",
+      "matched": true
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "gitBlob": "a713e31022d90197f64db8517ef6fbc885691781",
+      "publicManifestBlob": "a713e31022d90197f64db8517ef6fbc885691781",
+      "matched": true
+    }
+  ],
+  "consumerLimit": "Publication of the two common registries; refresh branch audit/build/smoke and primary producer file checks succeeded. Not individual public UI or independent financial certification of every field."
+}

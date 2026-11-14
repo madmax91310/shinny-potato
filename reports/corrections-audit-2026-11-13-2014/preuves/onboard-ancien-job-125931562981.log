@@ -1,0 +1,18 @@
+2026-11-03T12:58:40.1106897Z Uses: madmax91310/shinny-potato/.github/workflows/publish-validated-data.yml@refs/heads/master (1872b7d8ba125751e923fe7ba233f5b46620a4c9)
+2026-11-03T12:58:40.1111175Z Complete job name: deploy / publish
+2026-11-03T13:04:09.0739214Z HEAD is now at 270cc03ff Onboard validated observations for newly configured assets
+2026-11-03T13:04:14.5915832Z ##[group]Run node scripts/test-validated-data-publisher.mjs
+2026-11-03T13:04:14.5916353Z [36;1mnode scripts/test-validated-data-publisher.mjs[0m
+2026-11-03T13:04:14.7476330Z Validated data publication: all application code changes block overlay; data refreshes remain independent.
+2026-11-03T13:04:14.7477500Z Producer receipts cover multiple outputs and every recorded directory member; unknown and unowned files fail closed.
+2026-11-03T13:04:15.1089953Z A newer data snapshot is already public.
+2026-11-03T13:04:15.1474749Z Expected producer receipts are frozen before public lookup and survive newer-data/code-gate exits and network failure; no publication is inferred.
+2026-11-03T13:04:15.1479438Z Nested code validation preserves the immutable producer receipt; direct code publication keeps its default all-snapshot receipt.
+2026-11-03T13:04:15.1595924Z ##[group]Run node scripts/prepare-validated-data.mjs
+2026-11-03T13:04:15.1596262Z [36;1mnode scripts/prepare-validated-data.mjs[0m
+2026-11-03T13:04:15.1618911Z   EXPECTED_DATA_RECEIPT: /home/runner/work/_temp/data-publication-receipt.json
+2026-11-03T13:04:16.1218383Z   name: data-publication-receipt
+2026-11-03T13:04:16.1218678Z   path: /home/runner/work/_temp/data-publication-receipt.json
+2026-11-03T13:04:16.9263354Z Uploading artifact: data-publication-receipt.zip
+2026-11-03T13:04:18.0954239Z Artifact data-publication-receipt successfully finalized. Artifact ID 13232852348
+2026-11-03T13:04:18.0955234Z Artifact data-publication-receipt has been successfully uploaded! Final size is 540 bytes. Artifact ID is 13232852348

@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-11-14T02:46:34.499680+00:00",
+  "master": "e0c165bf55da99bb84fa0fd0022c2e5f17fb095c",
+  "openPRs": [
+    {
+      "number": 1269,
+      "draft": false,
+      "head": "6bba8f865347719876e9c5e19bbd213606db47f8",
+      "files": [
+        ".github/workflows/deploy-pages.yml",
+        "docs/data-operations-coordination.md",
+        "package.json",
+        "scripts/playwright-radar-read-order.mjs",
+        "scripts/test_data_publication.py",
+        "src/pages/editorial-radar/App.jsx"
+      ]
+    },
+    {
+      "number": 1266,
+      "draft": true,
+      "head": "dec06d33d854b06d55a588a7203fe984c33d4895",
+      "files": [
+        "docs/audit-budget-2026-11-13/calculs-verifies.json",
+        "docs/audit-budget-2026-11-13/calculs.csv",
+        "docs/audit-budget-2026-11-13/mentions-provenance.csv",
+        "docs/audit-budget-2026-11-13/profils.json",
+        "docs/audit-budget-2026-11-13/rapport.md",
+        "scripts/playwright-budget-profiles.mjs",
+        "scripts/test-budget-audit-20261113.mjs",
+        "scripts/test-budget-editorial-context.mjs",
+        "scripts/test-budget-editorial-lives.mjs",
+        "scripts/test-budget-final-copy.mjs",
+        "scripts/test-budget-presentation.mjs",
+        "scripts/test-budget-profiles.mjs",
+        "src/pages/budget-profiles/App.jsx",
+        "src/pages/budget-profiles/editorial-lives-2026-11-06.json",
+        "src/pages/budget-profiles/editorial-lives.js",
+        "src/pages/budget-profiles/image.js",
+        "src/pages/budget-profiles/lib.js",
+        "src/pages/budget-profiles/presentation.js"
+      ]
+    },
+    {
+      "number": 1253,
+      "draft": true,
+      "head": "d22e851fb5486acf8efcc83098d09865c5e2e499",
+      "files": [
+        "docs/data-operations-coordination.md",
+        "scripts/collect_sp_composition.py",
+        "scripts/fixtures/sp-localized-native-20261113/5475610.json.gz",
+        "scripts/fixtures/sp-localized-native-20261113/92388578.json.gz",
+        "scripts/fixtures/sp-localized-native-20261113/proof.json",
+        "scripts/index-automation.json",
+        "scripts/test_sp_composition.py",
+        "scripts/test_sp_localized_composition.py"
+      ]
+    },
+    {
+      "number": 1061,
+      "draft": true,
+      "head": "042f665560f152454644b2e29db88ac4ebd81b09",
+      "files": [
+        "docs/ishares-pea-live-aum-2026-10-29.md",
+        "scripts/additional-etf-sources.json",
+        "scripts/fixtures/ishares-pea-live-20261029/IE0002XZSHO1.html.gz",
+        "scripts/fixtures/ishares-pea-live-20261029/IE000DQLYVB9.html.gz",
+        "scripts/fixtures/ishares-pea-live-20261029/receipts.json",
+        "scripts/test_document_etf.py"
+      ]
+    }
+  ]
+}

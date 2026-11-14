@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-14T04:16:12.349853+00:00",
+  "identity": "collection:update-market-monthly.yml:history:etfDE000A27Z304",
+  "active": {
+    "runId": 43467518507,
+    "completedAt": "2026-11-13T17:45:32Z",
+    "cause": "HTTP Error 400: Bad Request",
+    "lastSeenAt": "2026-11-14T03:49:54.241538+00:00",
+    "attemptedAt": null
+  },
+  "historicalResolution": {
+    "runId": 42486930861,
+    "completedAt": "2026-11-08T15:06:50Z",
+    "resolvedAt": "2026-11-09T17:01:28.216426+00:00",
+    "cause": "HTTP Error 400: Bad Request"
+  },
+  "finalReportStatus": "actif",
+  "historicalResolutionDoesNotCloseReopenedIncident": true,
+  "parisRoutePreservedSeparately": true,
+  "scope": "Reporting reconciliation only. Native monitor retains both current active incident and historical resolution correctly; no application incident edited."
+}

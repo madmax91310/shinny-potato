@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-11-14T03:57:50.030323+00:00",
+  "actions": [
+    {
+      "path": "/dev/shm/corrections-ordre-lectures-20261114/dist",
+      "action": "Removed own generated build cache after complete CI and public deployment; source/tests/build logs preserved"
+    },
+    {
+      "path": "/dev/shm/corrections-preuves-20261113/export-public-final.json",
+      "action": "Superseded derived export removed before final reacquisition",
+      "losslessArchive": "/dev/shm/corrections-preuves-20261113/livraison/preuves/avant-correction-test-export-public-final.json.gz",
+      "sha256": "b40ae16b9167640f7b92ebc3158a127d8e938fe2c6e120e6f6709c0176489c99",
+      "bytes": 371870800
+    }
+  ],
+  "applicationDataModified": false
+}

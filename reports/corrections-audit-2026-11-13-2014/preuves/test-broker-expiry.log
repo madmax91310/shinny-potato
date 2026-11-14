@@ -1,0 +1,9 @@
+Broker automation: all field consumers, separate scopes, source deadlines and expiry OK
+
+> patrimoine-et-compagnie@0.0.0 audit:broker-evidence
+> node scripts/audit-broker-evidence.mjs
+
+Registre : 8 courtiers, 11 champs chacun, 168 sources officielles et 20 externes.
+État des 88 cellules : {"partiel":10,"sans objet":7,"confirmé":69,"non établi":2} ; réserves encore ouvertes : 6.
+Six partial fields: publication scopes explicit; unsupported PEA/CTO prices excluded.
+Broker tweet data: 88 cells, 28 pairs, independent freshness, PEA cash scope and campaign expiry verified.

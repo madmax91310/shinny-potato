@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "scope": {
+    "requestedIds": [
+      "gold:monthly"
+    ],
+    "expectedIds": [
+      "gold:monthly"
+    ]
+  },
+  "successes": [
+    {
+      "id": "gold:monthly"
+    }
+  ],
+  "errors": [],
+  "outcomes": [
+    {
+      "id": "gold:monthly",
+      "status": "unchanged-verified",
+      "checkedAt": "2026-11-13",
+      "asOf": "2026-10",
+      "publicationDate": "2026-11-03",
+      "sourceUrl": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+      "responseSha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+      "unit": "USD per troy ounce"
+    }
+  ]
+}

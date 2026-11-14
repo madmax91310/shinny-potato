@@ -1,0 +1,70 @@
+2026-11-13T23:54:05.2059694Z ##[group]Run npm run audit:broker-evidence
+2026-11-13T23:54:05.2060255Z [36;1mnpm run audit:broker-evidence[0m
+2026-11-13T23:54:05.2124655Z shell: /usr/bin/bash -e {0}
+2026-11-13T23:54:05.2124953Z env:
+2026-11-13T23:54:05.2125257Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T23:54:05.2125780Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T23:54:05.2126292Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T23:54:05.2126721Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T23:54:05.2127155Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T23:54:05.2127604Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T23:54:05.2127970Z ##[endgroup]
+2026-11-13T23:54:05.3371253Z 
+2026-11-13T23:54:05.3374500Z > patrimoine-et-compagnie@0.0.0 audit:broker-evidence
+2026-11-13T23:54:05.3375357Z > node scripts/audit-broker-evidence.mjs
+2026-11-13T23:54:05.3375846Z 
+2026-11-13T23:54:05.5011345Z Registre : 8 courtiers, 11 champs chacun, 168 sources officielles et 20 externes.
+2026-11-13T23:54:05.5018878Z État des 88 cellules : {"partiel":10,"sans objet":7,"confirmé":69,"non établi":2} ; réserves encore ouvertes : 6.
+2026-11-13T23:54:05.5042416Z node:internal/modules/run_main:123
+2026-11-13T23:54:05.5042859Z     triggerUncaughtException(
+2026-11-13T23:54:05.5043385Z     ^
+2026-11-13T23:54:05.5043607Z 
+2026-11-13T23:54:05.5044074Z AssertionError [ERR_ASSERTION]: tr.garde: missing publication scope
+2026-11-13T23:54:05.5044987Z     at file:///home/runner/work/shinny-potato/shinny-potato/scripts/audit-broker-evidence.mjs:161:38
+2026-11-13T23:54:05.5045725Z     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2026-11-13T23:54:05.5046313Z     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2026-11-13T23:54:05.5046961Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+2026-11-13T23:54:05.5047476Z   generatedMessage: false,
+2026-11-13T23:54:05.5047750Z   code: 'ERR_ASSERTION',
+2026-11-13T23:54:05.5048007Z   actual: undefined,
+2026-11-13T23:54:05.5048252Z   expected: true,
+2026-11-13T23:54:05.5048497Z   operator: '=='
+2026-11-13T23:54:05.5048727Z }
+2026-11-13T23:54:05.5048842Z 
+2026-11-13T23:54:05.5048934Z Node.js v20.20.2
+2026-11-13T23:54:05.5160569Z ##[error]Process completed with exit code 1.
+2026-11-13T23:54:05.5540082Z Post job cleanup.
+2026-11-13T23:54:05.6429991Z [command]/usr/bin/git version
+2026-11-13T23:54:05.6477992Z git version 2.56.1
+2026-11-13T23:54:05.6513315Z Temporarily overriding HOME='/home/runner/work/_temp/d65306cf-3a60-43dd-a445-b8f1d73e327c' before making global git config changes
+2026-11-13T23:54:05.6514964Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T23:54:05.6518946Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/shinny-potato/shinny-potato
+2026-11-13T23:54:05.6557993Z Removing SSH command configuration
+2026-11-13T23:54:05.6564974Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T23:54:05.6605944Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T23:54:05.6950171Z Removing HTTP extra header
+2026-11-13T23:54:05.6956326Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T23:54:05.7005574Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T23:54:05.7355899Z Removing includeIf entries pointing to credentials config files
+2026-11-13T23:54:05.7366601Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T23:54:05.7397544Z includeif.gitdir:/home/runner/work/shinny-potato/shinny-potato/.git.path
+2026-11-13T23:54:05.7398955Z includeif.gitdir:/home/runner/work/shinny-potato/shinny-potato/.git/worktrees/*.path
+2026-11-13T23:54:05.7400165Z includeif.gitdir:/github/workspace/.git.path
+2026-11-13T23:54:05.7401293Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-13T23:54:05.7408187Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/shinny-potato/shinny-potato/.git.path
+2026-11-13T23:54:05.7435235Z /home/runner/work/_temp/git-credentials-d3fc3471-b8f9-4bda-8891-a15f3050d296.config
+2026-11-13T23:54:05.7445946Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/shinny-potato/shinny-potato/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-d3fc3471\-b8f9\-4bda\-8891\-a15f3050d296\.config
+2026-11-13T23:54:05.7531418Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/shinny-potato/shinny-potato/.git/worktrees/*.path
+2026-11-13T23:54:05.7560573Z /home/runner/work/_temp/git-credentials-d3fc3471-b8f9-4bda-8891-a15f3050d296.config
+2026-11-13T23:54:05.7570573Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/shinny-potato/shinny-potato/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-d3fc3471\-b8f9\-4bda\-8891\-a15f3050d296\.config
+2026-11-13T23:54:05.7607247Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-13T23:54:05.7635218Z /github/runner_temp/git-credentials-d3fc3471-b8f9-4bda-8891-a15f3050d296.config
+2026-11-13T23:54:05.7642397Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-d3fc3471\-b8f9\-4bda\-8891\-a15f3050d296\.config
+2026-11-13T23:54:05.7679504Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-13T23:54:05.7707118Z /github/runner_temp/git-credentials-d3fc3471-b8f9-4bda-8891-a15f3050d296.config
+2026-11-13T23:54:05.7713545Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-d3fc3471\-b8f9\-4bda\-8891\-a15f3050d296\.config
+2026-11-13T23:54:05.7750925Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T23:54:05.8070557Z Removing credentials config '/home/runner/work/_temp/git-credentials-d3fc3471-b8f9-4bda-8891-a15f3050d296.config'
+2026-11-13T23:54:05.8231799Z Evaluate and set job outputs
+2026-11-13T23:54:05.8236813Z Set output 'commit_sha'
+2026-11-13T23:54:05.8238563Z Cleaning up orphan processes

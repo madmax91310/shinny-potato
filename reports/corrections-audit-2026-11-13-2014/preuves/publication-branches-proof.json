@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-11-14T03:46:08.957011+00:00",
+  "ordinaryMasterPush": {
+    "run": 43548986618,
+    "event": "push",
+    "publicBuild": {
+      "sha": "642e702aead994fabf539e901cf886e98379a41a",
+      "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+      "lane": "validated-code-data",
+      "builtAt": "2026-11-14T03:45:04.686Z"
+    },
+    "deployment": "success",
+    "compositeSealerFrozen": {
+      "name": "Freeze the validated composite publication sealer",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-14T03:43:11Z",
+      "completed_at": "2026-11-14T03:43:11Z"
+    },
+    "conditionalNewerDataSeal": {
+      "name": "Seal the rebuilt code and data identities",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-14T03:45:04Z",
+      "completed_at": "2026-11-14T03:45:04Z"
+    },
+    "publicDataVerification": {
+      "name": "Verify the actual public data artifact",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21,
+      "started_at": "2026-11-14T03:45:15Z",
+      "completed_at": "2026-11-14T03:45:15Z"
+    },
+    "primaryProducerFilesRevalidated": {
+      "name": "Require every primary producer file after rebuilding newer data",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-14T03:43:56Z",
+      "completed_at": "2026-11-14T03:43:56Z"
+    }
+  },
+  "sharedProducer": {
+    "run": 43527632485,
+    "event": "workflow_dispatch",
+    "observedProductionSeal": true,
+    "proof": "journal-publication-manifeste-selection.log",
+    "sourceAcquisition": "World Bank gold: unchanged-verified; real source control, not cron"
+  },
+  "fallback": {
+    "jobStatus": "completed",
+    "jobConclusion": "skipped",
+    "postFixProductionBranchObserved": false,
+    "isolatedProof": "test-all-publication-paths.log; test-publication-paths-before.json; reproduction-manifeste-source-reelle.json",
+    "previousRealFailure": "reproduction-manifeste-fallback-43536546079.json"
+  },
+  "limitations": [
+    "A non-entered conditional branch remains demonstrated by isolated tests and CI, not relabelled as observed in production.",
+    "No intentional production outage, artificial data mutation or additional supplier dispatch to exercise a branch."
+  ]
+}

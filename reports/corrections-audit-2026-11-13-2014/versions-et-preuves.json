@@ -1,0 +1,46 @@
+{
+  "observedAt": "2026-11-14T04:16:12.460022+00:00",
+  "pullRequests": [
+    1265,
+    1267,
+    1268,
+    1269
+  ],
+  "sourceCommits": [
+    "acf48464a1a6ceb5c59134f1f0c42bc0bc95731c",
+    "fef5409490c0d27d01421569b8f693598d0c2fa9",
+    "1f6693f4522da4ee103343de98a91fa20263303e",
+    "6bba8f865347719876e9c5e19bbd213606db47f8"
+  ],
+  "mergeCommits": [
+    "1c45b9b4d5af600e36730248cc0a5b1147f3ba85",
+    "bb8f8e53506250cf84d95213b95c8832f7869d54",
+    "e0c165bf55da99bb84fa0fd0022c2e5f17fb095c",
+    "642e702aead994fabf539e901cf886e98379a41a"
+  ],
+  "publicBuild": {
+    "sha": "642e702aead994fabf539e901cf886e98379a41a",
+    "dataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-14T03:45:04.686Z"
+  },
+  "productionRuns": {
+    "13F": 43517469275,
+    "commonPublication": 43527632485,
+    "codePromotion": 43548986618
+  },
+  "events": "13F et contrôle or : workflow_dispatch ; promotion finale : push de master. Aucun cron postcorrectif mensuel/13F anticipé.",
+  "financialConventionsChanged": false,
+  "newFullFundBooksAdmitted": 0,
+  "concurrentCollection": {
+    "run": 43552458543,
+    "event": "workflow_dispatch",
+    "dataCommit": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+    "status": "completed",
+    "conclusion": "failure",
+    "proof": "collecte-etf-concurrente-run-final.json; publication-collecte-concurrente-verifiee.json",
+    "wholeWorkflowNotEquivalentToEveryFieldSuccess": true
+  },
+  "effectiveDataSha": "c9281f74e447dbb7448eac65cc8a25f8eb600496",
+  "dataSnapshotInterpretation": "Explicit dataSha when composite; otherwise the ordinary complete build snapshot at sha, with no newer-data overlay, verified by publication-branches-proof.json and the exact public manifest. Raw build-info is preserved."
+}
