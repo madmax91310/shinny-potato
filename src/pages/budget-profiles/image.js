@@ -1,3 +1,4 @@
+import { renderSocialBudgetImage } from './socialImage.js'
 import { budgetRowSymbol, budgetQualification, budgetPublicBasis } from './presentation.js'
 import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
 
@@ -110,7 +111,8 @@ function card(ctx, p, y) {
     top += row.height
   }
 }
-export async function renderBudgetImage(profile, mode = 'detailed') {
+export async function renderBudgetImage(profile, mode = 'social') {
+  if (mode === 'social') return renderSocialBudgetImage(profile)
   const a = analyzeBudget(profile)
   const money = value => euro(value, profile.currency)
   if (a.errors.length) throw new Error(a.errors.join(' '))

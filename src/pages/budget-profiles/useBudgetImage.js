@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { renderBudgetImage } from './image.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 
-export function useBudgetImage(profile, enabled, mode = 'detailed') {
+export function useBudgetImage(profile, enabled, mode = 'social') {
   const key = JSON.stringify({ profile, mode })
   const [result, setResult] = useState(null), [attempt, setAttempt] = useState(0)
   useEffect(() => {
@@ -14,7 +14,7 @@ export function useBudgetImage(profile, enabled, mode = 'detailed') {
         const blob = await new Promise((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error()), 'image/png'))
         if (!active) return
         url = URL.createObjectURL(blob); setResult({ key, attempt, url })
-      } catch { if (active) setResult({ key, attempt, error: 'L’image n’a pas pu être préparée. Réessaie.' }) }
+      } catch (error) { if (active) setResult({ key, attempt, error: error.message || 'L’image n’a pas pu être préparée. Réessaie.' }) }
     }, 200)
     return () => { active = false; clearTimeout(timer); if (url) URL.revokeObjectURL(url) }
   }, [key, attempt, enabled])

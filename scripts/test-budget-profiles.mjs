@@ -1,3 +1,4 @@
+import './test-budget-social-image.mjs'
 import './test-budget-audit-20261113.mjs'
 import './test-budget-presentation.mjs'
 import './test-budget-completeness.mjs'
