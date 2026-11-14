@@ -1,4 +1,4 @@
-import { unqualifiedFundRankingWeights } from './holding-weight-basis.js';
+import { unqualifiedFundRankingWeights,chooseNativeFundTopTen } from './holding-weight-basis.js';
 import {newerCompatibleAum} from './aum-observations.js';
 import {withInstrumentMetadata} from './instrument-metadata.js';
 import expansionRecords from './exposure-etf-expansion-records.json' with { type:'json' };
@@ -7,8 +7,16 @@ import { LIFESTRATEGY_RECORDS } from './lifestrategy.js';
 import { latestCommonYears } from './annual-window.js';
 import { withCurrentStrategyYears } from './benchmark-changes.js';
 import baseRecords from './automated-etf.json' with { type: 'json' };
+import nativeFundDetails from './native-fund-details.json' with { type: 'json' };
 import { QUALIFIED_AUTOMATED_RECORDS } from './qualified-exposure-sheets.js';
 const records = Object.fromEntries(Object.entries({ ...expansionRecords, ...baseRecords, ...nonBondRecords, ...QUALIFIED_AUTOMATED_RECORDS, ...LIFESTRATEGY_RECORDS }).map(([isin,record])=>[isin,withInstrumentMetadata(isin,record.performance ? { ...record, performance: withCurrentStrategyYears(isin, record.performance) } : record)]));
+// A complete, qualified native book can supply a fund presentation's top ten.
+// A newer unqualified ranking cannot change its NAV denominator or source date.
+// This lightweight projection never admits an index or full overlap.
+for (const [isin, native] of Object.entries(nativeFundDetails)) {
+ const record=records[isin], previous=record?.holdings;
+ if(record) records[isin]={...record,holdings:chooseNativeFundTopTen(isin,previous,native)};
+}
 // Registries describe different capabilities. An older specialized record must
 // not hide a later observation of the same exact-share AUM from the main reader.
 for (const [isin, record] of Object.entries(records)) {
@@ -38,7 +46,7 @@ export function refreshFundDetails(isin, previous = {}) {
   if (!r) return previous;
   return { ...previous,
     ...(previous.holdings?.length ? { holdingsAsOf: previous.holdingsAsOf ?? previous.asOf } : {}),
-    ...(r.holdings && !unqualifiedFundRankingWeights(r.holdings) ? { holdings: r.holdings.rows.map(p => [p.name, p.weightPct]), holdingsAsOf: r.holdings.asOf, holdingsSource: r.holdings.sourceUrl ?? r.sourceUrl, holdingsCheckedAt: r.holdings.checkedAt, holdingsBasis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund'), basis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund') } : {}),
+    ...(r.holdings && !unqualifiedFundRankingWeights(r.holdings) ? { holdings: r.holdings.rows.map(p => [p.name, p.weightPct]), holdingsAsOf: r.holdings.asOf, holdingsWeightBasis: r.holdings.weightBasis, holdingsSource: r.holdings.sourceUrl ?? r.sourceUrl, holdingsCheckedAt: r.holdings.checkedAt, holdingsBasis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund'), basis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund') } : {}),
     ...(unqualifiedFundRankingWeights(r.holdings) ? {holdings: [], holdingsAsOf: r.holdings.asOf, holdingsSource: r.holdings.sourceUrl ?? r.sourceUrl, holdingsWeightBasis: 'issuer-fund-ranking-unqualified-nav-denominator'} : {}),
     ...(r.sectors ? { sectors: r.sectors.rows.map(p => [p.label, p.weightPct]), sectorsAsOf: r.sectors.asOf,
       sectorsSource: r.sectors.sourceUrl ?? r.sourceUrl, sectorsCheckedAt: r.sectors.checkedAt, sectorsBasis: r.sectors.basis === 'index' ? 'tracked-index' : (r.sectors.basis ?? 'fund'), basis: r.sectors.basis === 'index' ? 'tracked-index' : (r.sectors.basis ?? 'fund') } : {}),
