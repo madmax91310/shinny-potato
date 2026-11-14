@@ -4,7 +4,8 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { blankBudget, buildBudgetText, budgetPublicIncomeRows, budgetImageExpenses, euro, MAX_BUDGET_LINES } from '../src/pages/budget-profiles/lib.js'
+import { blankBudget, buildBudgetText, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetImageExpenses, euro, MAX_BUDGET_LINES } from '../src/pages/budget-profiles/lib.js'
+import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 const base = process.env.BUDGET_PUBLIC_BASE ?? 'http://127.0.0.1:4485/shinny-potato'
@@ -168,6 +169,20 @@ try {
     await page.getByRole('button', { name: 'Appliquer cet import', exact: true }).click(); await expect(questions).toHaveValue(incomingDraft.profile.question)
     await expect(page.getByText('Publié le 01/11/2026', { exact: true })).toBeVisible()
     await text.scrollIntoViewIfNeeded(); await page.screenshot({ path: `${output}/${width}-editor.png` })
+    const bankProfile = BUDGET_PROFILES.find(p => p.id === 'prepared-lot2-08-2026-10-30')
+    await page.getByRole('button', { name: 'Profils', exact: true }).click()
+    await page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator(`[data-value="${bankProfile.id}"]`).click()
+    await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
+    await expect(page.getByLabel('Revenus · poste 1', { exact: true })).toHaveValue('Salaire')
+    for (const [i, row] of budgetPublicExpenseRows(bankProfile).entries()) {
+      await expect(page.getByLabel(`Dépenses · poste ${i + 1}`, { exact: true })).toHaveValue(row.label)
+      await expect(page.getByLabel(`Dépenses · montant ${i + 1}`, { exact: true })).toHaveValue(String(row.amount))
+    }
+    await expect(questions).toHaveValue('')
+    assert.notEqual((await active(page)).profile.id, bankProfile.id)
+    assert.equal((await active(page)).profile.source, null)
+    assert.equal(bankProfile.expenses.find(r => r.label === 'Autres charges communes').amount, 70, 'The bank photograph is not edited by adaptation')
+    await capture(page, `${width}-adapted-emilie`)
     assert.deepEqual(errors, []); await c.close()
 
     const long = { ...blankBudget(), id: 'participation-long-test', currency: 'CHF', name: 'Anaëlle-Charlotte et Jean-Baptiste de la longue famille Martin', question: 'Quelle priorité choisiriez-vous pour réduire les versements ?',

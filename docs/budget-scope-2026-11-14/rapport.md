@@ -8,7 +8,7 @@ Les libellés publics des ressources salariales utilisent « Salaire » et conse
 
 Les définitions d’enveloppes ajoutées sont des choix pour les personnages éditoriaux, pas des informations nouvellement confirmées par les sources. Elles ne créent aucune recette et ne changent aucun total. Les prises en charge déjà présentes peuvent être précisées, notamment les charges parentales ; ces précisions créées sont enregistrées dans `scopeReview` et `created`, avec les limites et les formulations antérieures. Les inconnues des photographies originales restent des inconnues.
 
-Les titres, le modèle graphique n° 3, les deux regroupements financiers, les sauvegardes v4, les statuts datés et les identifiants sont conservés. Les libellés publics sont communs au tableau, au texte et aux deux images ; les données sources restent distinctes. Les textes personnalisés sont conservés ; seule une régénération volontaire reprend la rédaction actualisée.
+Les titres, le modèle graphique n° 3, les deux regroupements financiers, les sauvegardes v4, les statuts datés et les identifiants sont conservés. Les libellés publics sont communs au tableau, au texte et aux deux images ; les données sources restent distinctes. Les textes personnalisés sont conservés ; seule une régénération volontaire reprend la rédaction actualisée. « Adapter ce budget » copie les lignes publiques visibles dans le nouveau profil d’abonné, sans réintroduire les anciens libellés bruts ; les questions de cette nouvelle participation restent manuelles.
 
 ## Exemples
 

@@ -4,7 +4,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
+import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
 import { budgetFinancialReference, staleBudgetText } from './completion.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, WORKSPACE_KEY } from './storage.js'
 import PublicationStatus from './PublicationStatus.jsx'
@@ -66,6 +66,7 @@ export default function App() {
   }
   function adapt() {
     const p = { ...structuredClone(profile), id: `participation-${crypto.randomUUID()}`, name: budgetDisplayName(profile), kind: 'participant', source: null, publishedAt: null, checkedAt: null,
+      income: budgetPublicIncomeRows(profile), expenses: budgetPublicExpenseRows(profile),
       incomeNote: '', context: '', caveat: '', hook: '', question: '' }
     setSubscriberOpen(true); choose(p)
   }
