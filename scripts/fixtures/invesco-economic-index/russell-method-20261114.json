@@ -1,0 +1,47 @@
+{
+  "kind": "new source acquisition plus scoped financial review, not a scheduled run",
+  "reviewedAt": "2026-11-14",
+  "scope": "Equity-member weights use the same closing float-adjusted market values across the standard Russell2000 price/gross/net return series. Withholding tax changes the dividend return calculation, not these market values. Only equity weights are referenced; RU20INTR returns never replace RU20N30U returns. Hedged, capped, style and leveraged variants are excluded.",
+  "reviewBoundary": "Requalifies only current closing equity-member weights across standard unhedged Russell2000 price/gross/net series. Not an exhaustive comparison of all v7.3/v7.4 changes. No return series, dividend treatment, index membership or supplier weights replaced.",
+  "documents": [
+    {
+      "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
+      "priorSha256": "abeba3b9c101da5527cec30429bc6523d42e78a8e2ed51f868a3d2785bba005e",
+      "checkedAt": "2026-11-14T09:28:50.466606+00:00",
+      "sha256": "74a8332a2d29cc2792511843b4eee26e759f5798371df8f567eebf3ef49a6c4f",
+      "bytes": 474114,
+      "status": "acquired",
+      "reviewedSections": [
+        "1.1.1",
+        "1.3",
+        "1.3.2"
+      ],
+      "reviewedClauses": [
+        "v7.4",
+        "November 2026",
+        "float-adjusted, market capitalization-weighted indexes",
+        "Net total return indexes based on specified withholding tax rates"
+      ]
+    },
+    {
+      "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
+      "priorSha256": "d9e4c50186666664257890de5a5c8cf9f7f52cc135a1eda85f8469e94733e266",
+      "checkedAt": "2026-11-14T09:28:51.134199+00:00",
+      "sha256": "d9e4c50186666664257890de5a5c8cf9f7f52cc135a1eda85f8469e94733e266",
+      "bytes": 247032,
+      "status": "acquired",
+      "reviewedSections": [
+        "2",
+        "4.1.1"
+      ],
+      "reviewedClauses": [
+        "v1.2",
+        "September 2026",
+        "price, total and net returns",
+        "AEMV equals the index float-adjusted market value based on the primary exchange closing prices"
+      ]
+    }
+  ],
+  "financialReason": "The construction document still specifies closing float-adjusted market-capitalisation weights and separate price/total/net series. The unchanged calculation v1.2 §4.1.1 separates AEMV (closing equity market value) from the tax-adjusted cash-dividend term. Only the common closing equity weights are consumed; index return levels are not reused across tax variants. Hedged/capped/style/leveraged variants remain excluded.",
+  "notIncluded": "Full documents; retrieve from the official URLs. Original v7.3 review remains separately preserved."
+}

@@ -254,14 +254,14 @@ class UbsMonthlyPublication(unittest.TestCase):
 class CurrentRussellMethod(unittest.TestCase):
     def test_reviewed_official_documents_keep_exact_hashes_and_financial_rules(self):
         from invesco_economic_index import CONTRACTS, return_weight_method
-        review=json.loads((Path(__file__).with_name('fixtures')/'invesco-economic-index/russell-method-20261110.json').read_text())
+        review=json.loads((Path(__file__).with_name('fixtures')/'invesco-economic-index/russell-method-20261114.json').read_text())
         documents=CONTRACTS['indices']['russell2000-equity-members']['returnWeightContract']['documents']
         self.assertEqual([(d['sourceUrl'],d['sha256']) for d in documents],[(d['url'],d['sha256']) for d in review['documents']])
         # Isolated PDF decoding, not a claim of a supplier request in this test.
         bodies={d['sourceUrl']:('isolated-pdf-'+str(i)).encode() for i,d in enumerate(documents)}
         hashes={bodies[d['sourceUrl']]:d['sha256'] for d in documents}
         texts={bodies[d['sourceUrl']]:' '.join(review['documents'][i]['reviewedClauses']) for i,d in enumerate(documents)}
-        now=dt.datetime(2026,11,10,tzinfo=dt.timezone.utc)
+        now=dt.datetime(2026,11,14,tzinfo=dt.timezone.utc)
         with patch('invesco_economic_index.digest',side_effect=hashes.__getitem__),patch('invesco_economic_index.pdf_text',side_effect=texts.__getitem__):
             _,proof=return_weight_method('russell2000-equity-members',now,bodies.__getitem__)
             self.assertTrue(proof['originalWeightsUnchanged'])
@@ -270,5 +270,14 @@ class CurrentRussellMethod(unittest.TestCase):
                 changed=dict(texts);key=bodies[documents[index]['sourceUrl']];changed[key]=changed[key].replace(term,'unqualified replacement')
                 with patch('invesco_economic_index.pdf_text',side_effect=changed.__getitem__),self.assertRaisesRegex(ValueError,'Missing official common'):
                     return_weight_method('russell2000-equity-members',now,lambda url:bodies[url])
-        self.assertEqual(documents[0]['version'],'v7.3, November2026')
+        self.assertEqual(documents[0]['version'],'v7.4, November2026')
         self.assertEqual(review['documents'][1]['sha256'],review['documents'][1]['priorSha256'])
+
+    def test_original_v73_review_remains_a_bounded_historical_contract(self):
+        from invesco_economic_index import CONTRACTS
+        review=json.loads((Path(__file__).with_name('fixtures')/'invesco-economic-index/russell-method-20261110.json').read_text())
+        rule=CONTRACTS['indices']['russell2000-equity-members']['returnWeightContract']
+        matching=[s for s in rule['historicalDocumentSets']if s['documents']==[{'sourceUrl':d['url'],'sha256':d['sha256'],'version':v}for d,v in zip(review['documents'],['v7.3, November2026','v1.2, September2026'])]]
+        self.assertEqual(len(matching),1)
+        self.assertEqual(matching[0]['lastSourceControlAtMost'],'2026-11-14T09:28:50.466606+00:00')
+        self.assertNotEqual(rule['documents'][0]['sha256'],review['documents'][0]['sha256'])

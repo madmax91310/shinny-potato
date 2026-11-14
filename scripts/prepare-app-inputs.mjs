@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 // Keep the existing order; each process reads the preceding producer's outputs.
 const node = (script, ...args) => [process.execPath, `scripts/${script}`, ...args]
 const projections = [
+  node('build-native-fund-details.mjs'),
   node('build-index-company-compositions.mjs'),
   node('build-equity-history-links.mjs'),
   node('build-ranking-annual.mjs'),
