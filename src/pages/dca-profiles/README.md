@@ -165,3 +165,6 @@ Validation : `node scripts/test-dca-image-series.mjs` et
 `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-image-series.mjs`.
 Le budget de code de la route passe de 806 à 809 ko (mesuré : 807,9 ko) ; le moteur
 d’images multiples est chargé à la demande.
+
+Le sélecteur DCA permet directement 50 positions : l’ajout ou la modification
+d’une allocation de plus de huit lignes active automatiquement les images séparées.
