@@ -92,16 +92,15 @@ export default function App() {
   }
   async function copy(value) { try { await copyPublicationText(value); setFeedback('Texte copié.') } catch { setFeedback('Copie impossible. Sélectionne le texte.') } }
   return <div className="dca-profiles-scope dca-simple budget-profiles-scope">
-    <PageHeader title="Le budget de…" subtitle="Choisis un exemple fictif inspiré de données publiques ou prépare une participation, puis récupère le texte et l’image."/>
+    <PageHeader title="Le budget de…" subtitle="Choisis un profil ou prépare une participation, puis récupère le texte et l’image."/>
     {(!initial.readable || !usageInitial.readable || !publishedInitial.readable || !queuedInitial.readable) && <p role="alert">Un ancien enregistrement local est illisible. Il est conservé sans modification.</p>}
-    {profile.editorialCreation && <p role="note">Ce personnage et ses compléments sont fictifs, inspirés de données publiques. Ce n’est pas le témoignage d’un abonné. Conserve cette indication dans le texte et l’image, y compris après adaptation.</p>}
     <details className="dca-simple-card" onToggle={e => { if (e.currentTarget.open) setBackupOpen(true) }}><summary>Brouillons et transfert entre appareils</summary>
       {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''}</option>)}</ChoicePicker></label>}
       {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
     </details>
     <div className="dca-simple-grid">
       <section className="dca-simple-card" aria-label="Composer le budget">
-        <div className="dca-mode"><button aria-pressed={prepared} onClick={() => choose(profiles[0])}>Exemples fictifs</button><button aria-pressed={!prepared} onClick={() => choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` })}>Créer une participation</button></div>
+        <div className="dca-mode"><button aria-pressed={prepared} onClick={() => choose(profiles[0])}>Profils</button><button aria-pressed={!prepared} onClick={() => choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` })}>Créer une participation</button></div>
         {prepared && <>
           <label>Rechercher un profil<input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Profil, revenu, mois…"/></label>
           <details><summary>Filtrer les profils</summary><div className="budget-filters">
@@ -114,7 +113,7 @@ export default function App() {
           <label className="budget-check"><input type="checkbox" checked={unused} onChange={e => setUnused(e.target.checked)}/>Masquer les profils déjà utilisés</label>
           <label className="budget-check"><input type="checkbox" checked={hidePublished} onChange={e => setHidePublished(e.target.checked)}/>Masquer les profils publiés</label>
           <p className="dca-note">{filtered.length} profil{filtered.length > 1 ? 's' : ''} · {profiles.filter(p => published.includes(p.id)).length} publié(s) · triés par période du budget</p>
-          {filtered.length ? <ChoicePicker aria-label="Choisir un profil budget" value={profile.id} onChange={e => choose(filtered.find(p => p.id === e.target.value))}>
+          {filtered.length ? <ChoicePicker aria-label="Choisir un profil" value={profile.id} onChange={e => choose(filtered.find(p => p.id === e.target.value))}>
             {filtered.map(p => <option key={p.id} value={p.id}>{budgetDisplayName(p)} · {euro(analyzeBudget(p).income, p.currency)} · {p.period}{published.includes(p.id) ? ' · publié' : ''}{used.includes(p.id) ? ' · utilisé' : ''}{queued.includes(p.id) ? ' · à publier prochainement' : ''}</option>)}
           </ChoicePicker> : <p role="status">Aucun profil ne correspond. Le budget ouvert reste affiché.</p>}
           <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p => p.id !== profile.id)} onClick={random}>Autre profil aléatoire</Button><Button variant="secondary" onClick={toggleUsed}>{used.includes(profile.id) ? 'Marquer non utilisé' : 'Marquer utilisé'}</Button></div>

@@ -687,6 +687,8 @@ jobs:
           path: ${{ runner.temp }}/gate-definition
       - name: Verify the definition and code actually validated
         run: node scripts/pages-gate-definition.mjs "$RUNNER_TEMP/gate-definition/pages-gate-definition.json" "${{ needs.build.outputs.commit_sha }}"
+      - name: Freeze the validated composite publication sealer
+        run: cp scripts/data_publication.py "$RUNNER_TEMP/seal-code-data-publication.py"
       - id: data
         env:
           VALIDATED_CODE_SHA: ${{ needs.build.outputs.commit_sha }}
@@ -719,7 +721,7 @@ jobs:
           CODE_SHA: ${{ steps.data.outputs.code_sha }}
           DATA_SHA: ${{ steps.data.outputs.data_sha }}
         run: |
-          python3 scripts/data_publication.py manifest --output dist/data/publication-manifest.json
+          python3 "$RUNNER_TEMP/seal-code-data-publication.py" manifest --data-commit "${{ steps.data.outputs.data_sha }}" --output dist/data/publication-manifest.json
           node --input-type=module - <<'JS'
           import {writeFileSync} from 'node:fs'
           writeFileSync('dist/build-info.json',JSON.stringify({sha:process.env.CODE_SHA,dataSha:process.env.DATA_SHA,lane:'validated-code-data',builtAt:new Date().toISOString()})+'\n')
@@ -792,12 +794,14 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      - name: Freeze the fallback publication sealer before switching code
+        run: cp scripts/data_publication.py "$RUNNER_TEMP/seal-fallback-publication.py"
       - id: compose
         run: node scripts/compose-fallback-snapshot.mjs --published "${{ needs.scope.outputs.published }}"
       - run: npm ci
       - run: npm run build
       - name: Seal final fallback data after all generators
-        run: python3 scripts/data_publication.py manifest --output dist/data/publication-manifest.json
+        run: python3 "$RUNNER_TEMP/seal-fallback-publication.py" manifest --data-commit "${{ steps.compose.outputs.data_sha }}" --output dist/data/publication-manifest.json
       - name: Record the published code and the data snapshot
         run: printf '{"sha":"%s","dataSha":"%s","lane":"fallback","builtAt":"%s"}\n' "${{ steps.compose.outputs.code_sha }}" "${{ steps.compose.outputs.data_sha }}" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
       - uses: actions/cache@v4

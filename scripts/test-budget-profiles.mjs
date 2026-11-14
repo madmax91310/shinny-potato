@@ -1,3 +1,4 @@
+import './test-budget-audit-20261113.mjs'
 import './test-budget-presentation.mjs'
 import './test-budget-completeness.mjs'
 import assert from 'node:assert/strict'
@@ -150,7 +151,7 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
   const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id)
   if (source.kind==='prepared') assert.equal(analyzeBudget(source).balance, source.provenance?.expectedBalance ?? 0, p.id)
-  assert.match(sourceReply(p), /^Source d’inspiration du personnage fictif/)
+  assert.match(sourceReply(p), /^Source : /)
   assert.match(buildBudgetText(p), /^Budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method || p.completion && BUDGET_COMPLETENESS[p.id].conclusion)

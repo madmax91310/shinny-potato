@@ -28,7 +28,7 @@ try{
   await expect(text).toHaveValue(custom);await expect(warning).toBeVisible();await statuses()
   await page.getByRole('button',{name:'Copier le texte',exact:true}).click();assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),custom);await statuses()
   await page.reload();await expect(text).toHaveValue(custom);await expect(warning).toBeVisible()
-  const picker=page.getByRole('group',{name:'Choisir un profil budget',exact:true})
+  const picker=page.getByRole('group',{name:'Choisir un profil',exact:true})
   await picker.locator(`[data-value="${other.id}"]`).click();await expect(text).toHaveValue(buildBudgetText(BUDGET_PROFILES.find(p=>p.id===other.id)));await expect(warning).toHaveCount(0)
   await picker.locator(`[data-value="${source.id}"]`).click();await expect(text).toHaveValue(custom);await expect(warning).toBeVisible()
   await page.screenshot({path:`${dir}/stale-custom-${width}.png`,fullPage:true})

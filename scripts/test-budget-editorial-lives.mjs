@@ -5,7 +5,7 @@ import { analyzeBudget, buildBudgetText, budgetPublicPresentation, budgetImageEx
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
 const expected=JSON.parse(readFileSync(new URL('./fixtures/budget-editorial-lives-2026-11-06.json',import.meta.url))).profiles
-const forbidden=/reconstitu|scénario|simulation|hypothèse|modèle|préparé le|vérifié le/i
+const forbidden=/exemple|ficti[fv]|version éditoriale|reconstitu|scénario|simulation|hypothèse|modèle|préparé le|vérifié le/i
 for(const [i,p]of BUDGET_PROFILES.entries()){
  const old=BUDGET_RELIABLE_PROFILES[i],r=BUDGET_EDITORIAL_CREATIONS[p.id],c=publicationContextFor(p),text=buildBudgetText(p)
  assert.deepEqual(p.expenses,[...old.expenses.flatMap(row=>(r.expenseExpansions||[]).find(e=>e.label===row.label)?.rows||[row]),...(r.expenseAdditions||[])],p.id+' projection agrees with expense provenance');
@@ -39,12 +39,12 @@ for(const [i,p]of BUDGET_PROFILES.entries()){
  assert.equal(fresh.text,custom.text)
  assert.equal(staleBudgetText(fresh),budgetFinancialReference(old)!==budgetFinancialReference(p))
  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,text)
- const personal={...p,kind:'participant'};assert.equal(publicationContextFor(personal),null);assert.match(budgetQualification(personal),/Exemple fictif/);assert(!forbidden.test(buildBudgetText(personal)),`${p.id}: adapted participation`)
+ const personal={...p,kind:'participant'};assert.equal(publicationContextFor(personal),null);assert.equal(budgetQualification(personal),'');assert(!forbidden.test(buildBudgetText(personal)),`${p.id}: adapted participation`)
  assert.equal(BUDGET_ORIGINAL_PROFILES[i].id,p.id)
 }
 const adrien=BUDGET_PROFILES.find(p=>p.id==='finary-cyber-24-2026-08-27')
 assert.equal(analyzeBudget(adrien).expenses,1190);assert.equal(analyzeBudget(adrien).savings,1450);assert.equal(analyzeBudget(adrien).balance,160)
-console.log(`Editorial lives: ${BUDGET_PROFILES.length} reviewed, explicit fictional provenance, separate creations, independent ledgers and customized drafts verified.`)
+console.log(`Editorial lives: ${BUDGET_PROFILES.length} reviewed, neutral public copy and internal provenance, separate creations, independent ledgers and customized drafts verified.`)
 
 const michel=BUDGET_EDITORIAL_CREATIONS['websourd-retraite-normandie-2026-10-02'].created.find(e=>e.type==='calculated')
 assert(michel.reserve<michel.newAppliance,'Replacing the appliance is not immediately affordable from the reserve')
