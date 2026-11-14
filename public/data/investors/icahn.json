@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-04T18:12:32.041073+00:00",
+  "as_of": "2026-11-14T21:13:31.472149+00:00",
   "data": {
     "identity": {
       "slug": "icahn",
@@ -9,21 +9,21 @@
       "dataProvider": "FolioFact"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
         {
           "issuerName": "Icahn Enterprises LP",
           "ticker": "IEP",
           "putCall": null,
-          "weight": 0.5395168396948314,
+          "weight": 0.4717545588970936,
           "isNew": false,
-          "sharesChangePct": 12.6
+          "sharesChangePct": 6.6
         },
         {
           "issuerName": "Cvr Energy Inc - US",
           "ticker": "CVI",
           "putCall": null,
-          "weight": 0.2372795446840776,
+          "weight": 0.3850818902467964,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -31,7 +31,7 @@
           "issuerName": "CVR Partners, LP",
           "ticker": "UAN",
           "putCall": null,
-          "weight": 0.0561747556607265,
+          "weight": 0.0546721847071113,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -39,7 +39,7 @@
           "issuerName": "Centuri Holdings Inc - US",
           "ticker": "CTRI",
           "putCall": null,
-          "weight": 0.0524585215624801,
+          "weight": 0.030472191961121248,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -47,39 +47,23 @@
           "issuerName": "International Flavors&Fragra",
           "ticker": "IFF",
           "putCall": null,
-          "weight": 0.04098037152128122,
+          "weight": 0.02650766244928035,
           "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "EchoStar Corporation",
-          "ticker": "ECHO",
-          "putCall": null,
-          "weight": 0.017250659654408855,
-          "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Jetblue Awys Corp.",
-          "ticker": "JBLU",
-          "putCall": null,
-          "weight": 0.014323580512811481,
-          "isNew": false,
-          "sharesChangePct": -38.6
-        },
-        {
-          "issuerName": "Monro Inc.",
-          "ticker": "MNRO",
-          "putCall": null,
-          "weight": 0.010514694113905534,
-          "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": -30.0
         },
         {
           "issuerName": "Caesars Entertainment Inc. Ne",
           "ticker": "CZR",
           "putCall": null,
-          "weight": 0.008911142705567109,
+          "weight": 0.007673801801567439,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Monro Inc.",
+          "ticker": "MNRO",
+          "putCall": null,
+          "weight": 0.0075359162792051505,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -87,32 +71,50 @@
           "issuerName": "Sandridge Energy Inc.",
           "ticker": "SD",
           "putCall": null,
-          "weight": 0.008379896104780387,
+          "weight": 0.007272099097524207,
           "isNew": false,
-          "sharesChangePct": 2.2
+          "sharesChangePct": 0.5
         },
         {
-          "issuerName": "American Elec PWR Co. Inc.",
-          "ticker": "AEP",
+          "issuerName": "EchoStar Corporation",
+          "ticker": "ECHO",
           "putCall": null,
-          "weight": 0.0071965178527615414,
+          "weight": 0.004741685572268029,
           "isNew": false,
-          "sharesChangePct": -63.9
+          "sharesChangePct": -64.4
         },
         {
           "issuerName": "Bausch Lomb Corp.",
           "ticker": "BLCO",
           "putCall": null,
-          "weight": 0.00701347593236825,
+          "weight": 0.004288008988032215,
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": -32.1
         }
       ],
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
-        "exits": []
+        "priorPeriodLabel": "Q2 2026",
+        "exits": [
+          {
+            "issuerName": "Jetblue Awys Corp.",
+            "ticker": "JBLU",
+            "putCall": null
+          },
+          {
+            "issuerName": "American Elec PWR Co. Inc.",
+            "ticker": "AEP",
+            "putCall": null
+          }
+        ]
       }
     },
-    "sourceUrl": "https://foliofact.com/funds/icahn-capital"
+    "sourceUrl": "https://foliofact.com/funds/icahn-capital",
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://foliofact.com/funds/icahn-capital",
+        "snapshotUrl": "data/investors/archive/icahn/2026-06-30.json"
+      }
+    ]
   }
 }

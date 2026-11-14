@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-04T17:30:14.450190+00:00",
+  "as_of": "2026-11-14T21:13:12.868593+00:00",
   "data": {
     "identity": {
       "slug": "pabrai",
@@ -9,46 +9,53 @@
       "dataProvider": "FolioFact"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
         {
           "issuerName": "Warrior Met Coal Inc.",
           "ticker": "HCC",
           "putCall": null,
-          "weight": 0.43319695995084684,
+          "weight": 0.45420857833913725,
           "isNew": false,
-          "sharesChangePct": -3.7
+          "sharesChangePct": 7.1
         },
         {
           "issuerName": "Transocean Ltd.",
           "ticker": "RIG",
           "putCall": null,
-          "weight": 0.3052775795120171,
+          "weight": 0.4121108716483694,
           "isNew": false,
-          "sharesChangePct": 0.0
+          "sharesChangePct": 39.6
         },
         {
           "issuerName": "Alpha Metallurgical Resour I",
           "ticker": "AMR",
           "putCall": null,
-          "weight": 0.26107416441157855,
+          "weight": 0.07933000569523287,
           "isNew": false,
-          "sharesChangePct": -10.8
+          "sharesChangePct": -67.0
         },
         {
           "issuerName": "Kaspi KZ JSC",
           "ticker": "KSPI",
           "putCall": null,
-          "weight": 0.00045129612555752874,
-          "isNew": true,
-          "sharesChangePct": null
+          "weight": 0.054350544317260496,
+          "isNew": false,
+          "sharesChangePct": 12192.1
         }
       ],
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
+        "priorPeriodLabel": "Q2 2026",
         "exits": []
       }
     },
-    "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds"
+    "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds",
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds",
+        "snapshotUrl": "data/investors/archive/pabrai/2026-06-30.json"
+      }
+    ]
   }
 }
