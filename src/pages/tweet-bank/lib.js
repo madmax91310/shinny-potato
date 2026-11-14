@@ -4,23 +4,23 @@ import { contentValidity, bankToday } from './validity.js'
 // (localStorage) vit dans App.jsx, pas ici : lire/écrire le navigateur n'est pas une fonction pure.
 import { COOLDOWN_DAYS } from "./data.js"
 
-export function daysSince(dateStr) {
-  return Math.round((Date.parse(bankToday()) - Date.parse(dateStr)) / 86400000)
+export function daysSince(dateStr, today = bankToday()) {
+  return Math.round((Date.parse(today) - Date.parse(dateStr)) / 86400000)
 }
 
 export function todayStr() {
   return bankToday()
 }
 
-export function isInCooldown(lastPublished) {
-  return !!lastPublished && daysSince(lastPublished) < COOLDOWN_DAYS
+export function isInCooldown(lastPublished, today = bankToday()) {
+  return !!lastPublished && daysSince(lastPublished, today) < COOLDOWN_DAYS
 }
 
 // Retourne null si jamais publié (pas de badge à afficher), sinon le statut + le texte du badge —
 // même seuil que isInCooldown, jamais recalculé séparément.
-export function publicationBadge(lastPublished) {
+export function publicationBadge(lastPublished, today = bankToday()) {
   if (!lastPublished) return null
-  const days = daysSince(lastPublished)
+  const days = daysSince(lastPublished, today)
   if (days < COOLDOWN_DAYS) {
     return { status: "cooldown", label: `Publié il y a ${days} j · encore ${COOLDOWN_DAYS - days} j de repos` }
   }
@@ -61,8 +61,8 @@ export function countAvailable(tweets, lastPub, drafts = {}) {
   return tweets.filter((t) => !isInCooldown(lastPub[t.id]) && contentValidity(t, drafts[t.id]).ready).length
 }
 
-// Draw only from the visible, never-published questions; cooldown expiry does not reset publication.
-export function randomUnpublishedQuestion(questions, lastPub, random = Math.random) {
-  const candidates = questions.filter(t => t.category === 'Question dimanche' && !lastPub[t.id])
+// Reuse a published question only after its 45-day rest; keep its publication history.
+export function randomAvailableQuestion(questions, lastPub, random = Math.random, today = bankToday()) {
+  const candidates = questions.filter(t => t.category === 'Question dimanche' && !isInCooldown(lastPub[t.id], today))
   return candidates.length ? candidates[Math.floor(random() * candidates.length)] : null
 }
