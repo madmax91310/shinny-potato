@@ -666878,7 +666878,7 @@
       "originalPublishedWeights": true,
       "normalizationApplied": false,
       "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-russell-2000-ucits-etf-acc.html",
-      "publisherPageSha256": "734905a3be7276bb086c66aab532e1e17774553638a04c53eb49e57d310930d7",
+      "publisherPageSha256": "ccc87293f974b95beffdf53d3e3cf7e4d25a55f450ffdbd5088f56f9f8a333f7",
       "tableTextSha256": "e9ec7dc3509fe61a3d2e642d6f46cb53de7053d159f584e7da7ca1c36e743ab4",
       "economicExposurePublished": true,
       "separateSubstituteBasketPublished": true,
@@ -666886,8 +666886,8 @@
         "documents": [
           {
             "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
-            "sha256": "abeba3b9c101da5527cec30429bc6523d42e78a8e2ed51f868a3d2785bba005e",
-            "version": "v7.3, November2026"
+            "sha256": "74a8332a2d29cc2792511843b4eee26e759f5798371df8f567eebf3ef49a6c4f",
+            "version": "v7.4, November2026"
           },
           {
             "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
@@ -666895,7 +666895,7 @@
             "version": "v1.2, September2026"
           }
         ],
-        "checkedAt": "2026-11-13T18:10:01.674251+00:00",
+        "checkedAt": "2026-11-14T09:34:06.319053+00:00",
         "rule": "Equity-member weights use the same closing float-adjusted market values across the standard Russell2000 price/gross/net return series. Withholding tax changes the dividend return calculation, not these market values. Only equity weights are referenced; RU20INTR returns never replace RU20N30U returns. Hedged, capped, style and leveraged variants are excluded.",
         "originalWeightsUnchanged": true,
         "targetReturnSeriesUnchanged": true
@@ -666915,7 +666915,7 @@
       "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
       "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf"
     ],
-    "checkedAt": "2026-11-13T18:10:01.674251+00:00"
+    "checkedAt": "2026-11-14T09:34:06.319053+00:00"
   },
   "IE00B52SF786": {
     "asOf": "2026-11-12",
