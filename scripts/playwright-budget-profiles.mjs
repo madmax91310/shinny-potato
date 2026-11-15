@@ -9,6 +9,15 @@ import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetPublicExpenseRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
+// PNG encoding is asynchronous and can exceed Playwright's default 5 s
+// on CI (observed ready after 7.1 s). Wait for the declared render lifecycle;
+// a completed render must still expose an enabled download and valid PNG bytes.
+async function waitBudgetImage(page) {
+  await expect(page.getByRole('region', { name: 'Image du budget' }))
+    .toHaveAttribute('aria-busy', 'false', { timeout: 30_000 })
+  await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
+}
+
 async function previewPng(page, url) {
   const encoded = await page.evaluate(async imageUrl => {
     const blob = await (await fetch(imageUrl)).blob()
@@ -89,7 +98,7 @@ try {
       await picker.locator(`[data-value="${profile.id}"]`).click()
       const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
       await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(profile))
-      await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
+      await waitBudgetImage(page)
       await expect(image).toHaveAttribute('alt', new RegExp(profile.name))
       const blobUrl = await image.getAttribute('src')
       const previewBytes = await previewPng(page, blobUrl)
@@ -130,15 +139,7 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
       // Verify the optional summary from the actual render, then its selected download.
       await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="summary"]').click()
-      try {
-        await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
-      } catch (error) {
-        console.log('Summary failure diagnostics', profile.id, errors,
-          await page.getByRole('region', { name: 'Image du budget' }).innerText())
-        console.log('Selected image mode', await page.getByRole('group', { name: 'Version de l’image', exact: true }).getAttribute('data-value'))
-        await page.screenshot({path: `${output}/summary-failure.png`, fullPage: true})
-        throw error
-      }
+      await waitBudgetImage(page)
       const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
       assertPublicBudgetHeader(summaryDrawn, profile)
       assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
@@ -215,7 +216,7 @@ try {
     await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeDisabled()
     await expect(page.getByRole('region', { name: 'Image du budget' }).locator('img')).toHaveCount(0)
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('100')
-    await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
+    await waitBudgetImage(page)
     await context.close()
   }
   // Exercise the full editor contract independently of the source roster.
@@ -240,7 +241,7 @@ try {
     const page = await context.newPage(); await page.goto(base + '/le-budget-de')
     await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
     const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
-    await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
+    await waitBudgetImage(page)
     const dimensions = await image.evaluate(img => [img.naturalWidth, img.naturalHeight])
     assert(dimensions[1] < 16384, 'The maximum valid editor budget fits a supported canvas')
     const drawn = await page.evaluate(() => window.budgetCanvasText)
