@@ -177,5 +177,89 @@ process.stdout.write(JSON.stringify(await decodeMonitorStorage(JSON.parse(body))
         self.assertEqual(calls, [])
 
 
+
+class ScopeTransport(unittest.TestCase):
+    def setUp(self):
+        from automation_status_storage import scope_key
+        scope = {'kind':'source','mode':'targeted','expectedIds':['part:country','part:sector'],
+                 'requestedIds':['part:country'],'networkRequestedIds':[], 'reason':'cache sans contrôle source'}
+        self.key=scope_key(scope)
+        self.state={'schemaVersion':1,'reportScopeSchemaVersion':1,'reportScopes':{self.key:scope},
+                    'workflows':{'source':{'proofChecks':{'field':{'file':'observation.json','sha256':'a'*64,'scopeRef':self.key}}}},
+                    'monitoring':{'active':{'missing':{'status':'failed','lastSuccessAt':None}},'resolved':[]},
+                    'recovery':{'source':{'status':'reserved'}}}
+
+    def test_scope_roundtrip_and_idempotence_preserve_all_identities_dates_and_incidents(self):
+        from automation_status_storage import pack_scope_archives,expand_scope_archives
+        before=copy.deepcopy(self.state);packed=pack_scope_archives(self.state)
+        self.assertEqual(self.state,before)
+        self.assertNotIn('reportScopes',packed)
+        self.assertEqual(set(packed['reportScopeArchives']),{self.key})
+        self.assertEqual(expand_scope_archives(packed),before)
+        self.assertEqual(decode_status(json.loads(base64.b64decode(encode_status(packed,True)))),before)
+        self.assertEqual(pack_scope_archives(packed),packed)
+        self.assertEqual(decode_status(packed),before)  # additive legacy JSON form
+
+    def test_actual_budget_failure_is_repaired_without_increasing_limit(self):
+        from automation_status_storage import pack_scope_archives,scope_key
+        scope={'expectedIds':['asset:'+str(i)for i in range(5000)],'requestedIds':[]}
+        state={**self.state,'reportScopes':{scope_key(scope):scope},'unchangedMetadata':'x'*70000}
+        with patch('automation_status_storage.MAX_STATUS_BYTES',100000):
+            with self.assertRaises(ValueError):encode_status(state,True)
+            packed=pack_scope_archives(state)
+            self.assertEqual(decode_status(json.loads(base64.b64decode(encode_status(packed,True)))),state)
+        self.assertEqual(MAX_STATUS_BYTES,256*1024*1024)
+
+    def test_scope_corruption_unknown_version_trailing_bytes_and_size_are_refused(self):
+        from automation_status_storage import pack_scope_archives,MAX_ARCHIVE_BYTES
+        original=pack_scope_archives(self.state)
+        for kind in ['missing-registry','unknown','mixed','digest','size','oversized','extra','base64','trailing','second-member','list']:
+            bad=copy.deepcopy(original);a=bad['reportScopeArchives'][self.key]
+            if kind=='missing-registry':bad.pop('reportScopeArchives')
+            elif kind=='unknown':bad['reportScopeStorage']='unknown'
+            elif kind=='mixed':bad['reportScopes']={}
+            elif kind=='digest':bad['reportScopeArchives']['0'*64]=bad['reportScopeArchives'].pop(self.key)
+            elif kind=='size':a['decodedBytes']+=1
+            elif kind=='oversized':a['decodedBytes']=MAX_ARCHIVE_BYTES+1
+            elif kind=='extra':a['extra']=True
+            elif kind=='base64':a['data']+='\n'
+            elif kind in ['trailing','second-member']:
+                a['data']=base64.b64encode(base64.b64decode(a['data'])+(b'trailing'if kind=='trailing'else gzip.compress(b'{}'))).decode()
+            else:bad['reportScopeArchives']=[]
+            with self.subTest(kind=kind),self.assertRaises(ValueError):decode_status(bad)
+        with patch('automation_status_storage.MAX_STATUS_BYTES',1),self.assertRaises(ValueError):decode_status(original)
+
+    def test_new_writer_requires_separate_capability_of_deployed_reader(self):
+        from automation_status_storage import scope_reader_ready,SCOPE_STORAGE
+        capability={'schemaVersion':1,'reportScopeStorage':SCOPE_STORAGE}
+        urls=[]
+        self.assertTrue(scope_reader_ready('owner/repo',lambda u:(urls.append(u)or capability)))
+        self.assertEqual(urls,['https://owner.github.io/repo/monitor-scope-storage-capabilities.json'])
+        for value in [{},{'schemaVersion':1,'monitorStorage':'gzip+base64-v1'},{**capability,'extra':True},{**capability,'reportScopeStorage':'unknown'}]:
+            self.assertFalse(scope_reader_ready('owner/repo',lambda _:value))
+        def failure(_):raise OSError('not deployed')
+        self.assertFalse(scope_reader_ready('owner/repo',failure))
+
+    def test_python_writer_and_actual_javascript_reader_agree(self):
+        from automation_status_storage import pack_scope_archives
+        wire=json.loads(base64.b64decode(encode_status(pack_scope_archives(self.state),True)))
+        module=(Path(__file__).resolve().parents[1]/'src/lib/monitor-storage.js').as_uri()
+        code="import fs from 'node:fs';import {decodeMonitorStorage} from '"+module+"';console.log(JSON.stringify(await decodeMonitorStorage(JSON.parse(fs.readFileSync(0,'utf8')))))"
+        result=subprocess.run(['node','--input-type=module','-e',code],input=json.dumps(wire),text=True,capture_output=True,check=True)
+        self.assertEqual(json.loads(result.stdout),self.state)
+
+    def test_recovery_second_write_keeps_packed_scopes_and_success_clocks(self):
+        from automation_status_storage import pack_scope_archives
+        state=pack_scope_archives(self.state);state['recovery']['source']={'status':'reserved','attempts':[{}]}
+        payload={'sha':'original','branch':'automation-status','content':encode_status(state,True)}
+        saved=[]
+        def write(api,path,body):
+            restored=decode_status(json.loads(base64.b64decode(body['content'])))
+            self.assertEqual(restored['reportScopes'],self.state['reportScopes']);self.assertEqual(restored['monitoring'],self.state['monitoring'])
+            saved.append(restored);return {'content':{'sha':'saved'}}
+        with patch('automation_recovery.write_status',side_effect=write):
+            persist_and_dispatch(lambda *args:None,'automation-status.json',payload,state,['source'],compressed=True)
+        self.assertEqual(len(saved),2)
+
 if __name__ == '__main__':
     unittest.main()
