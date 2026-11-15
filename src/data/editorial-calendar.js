@@ -9,7 +9,7 @@ export const EDITORIAL_WEEK = [
   { day: 'Jeudi', ...recap(), midday: [slot('/classements-performances'), slot('/comparateur-indices')], evening: [{ ...slot('/banque-tweets', 'Dans la Banque de tweets', 'Guide'), href: '/banque-tweets?category=Guide%20ETF' }] },
   { day: 'Vendredi', ...recap(), midday: alternating('/fiches-etf', '/comparatif-etf'), evening: [slot('/le-budget-de', 'À la place de ton tweet personnel · selon tes publications')], eveningNote: 'Ton tweet personnel ou Le budget de… si tu ne l’as pas publié mardi.' },
   { day: 'Samedi', ...recap(), midday: [], middayNote: 'Ton bilan de la semaine', evening: [], eveningNote: 'Quote de ton bilan' },
-  { day: 'Dimanche', morning: [{ ...slot('/banque-tweets', 'Dans la Banque de tweets', 'Question du dimanche'), href: '/banque-tweets?category=Question%20dimanche' }], midday: [slot('/portefeuilles-investisseurs'), slot('/il-y-a-x-ans')], evening: ['/fiches-pratiques', '/faits-marquants-marches', '/il-y-a-x-ans'].map(path => slot(path, 'En rotation · une fois sur trois')) },
+  { day: 'Dimanche', ...recap(), midday: [slot('/portefeuilles-investisseurs'), slot('/il-y-a-x-ans')], evening: [{ ...slot('/banque-tweets', 'Dans la Banque de tweets', 'Question du dimanche'), href: '/banque-tweets?category=Question%20dimanche' }, ...['/fiches-pratiques', '/faits-marquants-marches', '/il-y-a-x-ans'].map(path => slot(path, 'En rotation · une fois sur trois'))] },
 ].map(day => ({ ...day, midday: [...day.midday, slot('/idees-classements')] }))
 
 export function publicationLabel(path) {
