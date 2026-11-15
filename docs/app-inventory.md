@@ -43,13 +43,13 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | broker | 8 |
 | household | 29 |
 | index | 56 |
-| instrument | 693 |
+| instrument | 694 |
 | insurance | 7 |
 | lexicon | 44 |
 | portfolio | 8 |
 | reference | 11 |
 | scpi | 8 |
-| series | 781 |
+| series | 782 |
 
 ## Champs des instruments
 
