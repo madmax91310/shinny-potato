@@ -1,4 +1,4 @@
-import { shortDonutName } from './donut-layout.js'
+import { shortDonutName, holdingColor, holdingPercentage } from './donut-layout.js'
 import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
 import { profilePositionLimit, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
@@ -7,9 +7,7 @@ import { portfolioAnalytics, analyzedLines, analysisView, selectConcentrationGro
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
 const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99cd','#aec8df']
 export function allocationRows(lines){
- const ordered=sortHoldings(lines).map(l=>({name:shortDonutName(l.label),weight:l.weight}))
- if(ordered.length<=8)return ordered.map((r,i)=>({...r,color:colors[i]}))
- return [...ordered.slice(0,7),{name:`${ordered.length-7} autres positions`,weight:ordered.slice(7).reduce((s,l)=>s+l.weight,0)}].sort((a,b)=>b.weight-a.weight).map((r,i)=>({...r,color:colors[i]}))
+ return sortHoldings(lines).map((l,i)=>({name:shortDonutName(l.label),weight:l.weight,color:holdingColor(i)}))
 }
 function text(ctx,value,x,y,width,size,color=C.ivory,weight=700,family='Arial'){
  value=String(value);ctx.font=`${weight} ${size}px ${family}`
@@ -96,7 +94,7 @@ function allocationLabelLines(ctx,value,width,size){
 function denseAllocationPlan(ctx,p){
  const holdings=allocationRows(p.lines)
  ctx.font='400 26px Arial'
- if(holdings.every(row=>ctx.measureText(row.name).width<=445))return null
+ if(holdings.length<=8&&holdings.every(row=>ctx.measureText(row.name).width<=445))return null
  const rows=holdings.map(row=>({...row,labels:allocationLabelLines(ctx,row.name,810,36)}))
  const height=Math.max(600,130+rows.reduce((sum,row)=>sum+Math.max(80,row.labels.length*45+22),0))
  return {rows,height,exposureTop:125+height+25,totalHeight:125+height+25+815+60}
@@ -106,11 +104,11 @@ function densePortfolio(ctx,p,a,plan){
  panel(ctx,35,125,1530,plan.height)
  text(ctx,'Répartition des actifs',70,190,1460,40,C.ivory,700,'DcaEditorial')
  ring(ctx,plan.rows,270,425,170,114)
- const percentages=integerPercentages(plan.rows);let top=255
- plan.rows.forEach((row,i)=>{
+ let top=255
+ plan.rows.forEach(row=>{
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(510,top-10,8,0,Math.PI*2);ctx.fill()
   row.labels.forEach((label,j)=>text(ctx,label,535,top+j*45,810,36,C.ivory,400))
-  text(ctx,exposurePercentage(row.weight,percentages[i]),1400,top,130,38)
+  text(ctx,holdingPercentage(row.weight),1400,top,130,38)
   top+=Math.max(80,row.labels.length*45+22)
  })
  for(const [field,x] of [['countries',35],['sectors',825]]){
@@ -129,13 +127,13 @@ function fullPortfolio(ctx,p,a){
  const lift=p.imageOnly?0:90
  const cy=crowded?345:(p.imageOnly?469:490)-lift,r=crowded?120:p.imageOnly?230:185
  ring(ctx,holdings,368,cy,r,r*.67)
- const percentages=integerPercentages(holdings),top=crowded?500:(holdings.length===4?725:775)-lift
+ const top=crowded?500:(holdings.length===4?725:775)-lift
  const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?26:holdings.length===4?23:28
  holdings.forEach((row,i)=>{
   const y=top+i*gap
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(83,y-9,7,0,Math.PI*2);ctx.fill()
   wrappedLabel(ctx,row.name,103,y,445,size)
-  text(ctx,exposurePercentage(row.weight,percentages[i]),574,y,90,size+2)
+  text(ctx,holdingPercentage(row.weight),574,y,90,size+2)
  })
  for(const [field,y] of [['countries',125],['sectors',545]]){
   const {rows}=donutData(a,field,p.exposureLimit)
@@ -221,7 +219,9 @@ export async function renderDcaImage(input,field='countries',maxPositions=profil
  const a=analyzeProfile(p,maxPositions)
  if(a.errors.length)throw Error(a.errors.join(' '))
  const dense=field==='all'?denseAllocationPlan(document.createElement('canvas').getContext('2d'),p):null
- const baseHeight=dense?.totalHeight??(['all','overlap'].includes(field)?1000:p.imageOnly?960:1067)
+ const flowCount=sortContributions(p.lines).length
+ const flowHeight=!p.imageOnly&&['countries','sectors'].includes(field)&&flowCount>8?560+flowCount*112:1067
+ const baseHeight=dense?.totalHeight??(['all','overlap'].includes(field)?1000:p.imageOnly?960:flowHeight)
  const includeCompanies=p.showCompanies===true&&field!=='overlap'
  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=baseHeight+(includeCompanies?300:0);const ctx=canvas.getContext('2d')
  const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,canvas.height)
@@ -237,7 +237,7 @@ export async function renderDcaImage(input,field='countries',maxPositions=profil
    exposurePanel(ctx,a,'countries',66,218,700,p.exposureLimit)
    exposurePanel(ctx,a,'sectors',834,218,700,p.exposureLimit)
   }else exposurePanel(ctx,a,field,450,218,700,p.exposureLimit)
-  if(!includeCompanies&&!p.imageOnly)centered(ctx,'Épargnant Libre',800,1035,1472,36)
+  if(!includeCompanies&&!p.imageOnly)centered(ctx,'Épargnant Libre',800,baseHeight-32,1472,36)
   return finish()
  }
  text(ctx,'LE DCA DE',64,62,710,26,C.muted,700)
@@ -248,8 +248,8 @@ export async function renderDcaImage(input,field='countries',maxPositions=profil
  text(ctx,'CHAQUE MOIS',66,crowded?311:341,710,26,C.muted)
  text(ctx,euro(a.monthly),56,crowded?415:495,720,crowded?110:160,C.yellow,700,'DcaEditorial')
  text(ctx,'investis par mois',66,crowded?465:552,710,40,C.ivory,700,'DcaEditorial')
- const displayLines=contributions.length>8?sortContributions([...contributions.slice(0,7),{label:`${contributions.length-7} autres positions`,amount:contributions.slice(7).reduce((s,l)=>s+l.amount,0),weight:contributions.slice(7).reduce((s,l)=>s+l.weight,0)}]):contributions
- const top=crowded?505:597,rowHeight=Math.min(112,(963-top)/displayLines.length)
+ const displayLines=contributions
+ const top=crowded?505:597,rowHeight=contributions.length>8?112:Math.min(112,(963-top)/Math.max(displayLines.length,1))
  displayLines.forEach((l,i)=>{
   const y=top+i*rowHeight
   rule(ctx,66,y,710)
@@ -271,6 +271,6 @@ export async function renderDcaImage(input,field='countries',maxPositions=profil
  text(ctx,scope,880,195,650,18,C.muted,400)
 
 
- if(!includeCompanies)centered(ctx,'Épargnant Libre',800,1035,1472,36)
+ if(!includeCompanies)centered(ctx,'Épargnant Libre',800,baseHeight-32,1472,36)
  return finish()
 }
