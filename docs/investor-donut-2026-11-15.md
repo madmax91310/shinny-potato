@@ -39,6 +39,7 @@ Les erreurs de chargement et de génération restent visibles sur mobile. Le PNG
 - 41 tests Python de collecte/publication ; 20 contrats de workflows ; cas financiers purs 1/2/4/300/1 501 lignes, noms longs, classes, unités et poids < 0,1 %.
 - 29 PNG contrôlés dans Chromium : 25 réels et 4 cas synthétiques ; dimensions, bornes, collisions de textes et cohérence du post. Les trois sources incomplètes refusent le PNG.
 - Téléchargements réels à 1440/390, PNG identique à l’aperçu, presse-papiers, JSON et ZIP, fichier ZIP vérifié avec `zipfile`/Pillow ; panne réseau, dernier relevé conservé, génération en échec puis réessai, portrait et logo bloqués puis logo rechargé.
+- Export intégral réel de Renaissance depuis l’interface à 390 px : **3 151 positions JSON/CSV et 485 PNG**, archive CRC et dimensions vérifiés en environ 15–17 secondes. Chaque canevas est libéré avant la page suivante ; l’archive volumineuse reste un export facultatif, les JSON/CSV restent disponibles séparément.
 - Détourage de Tepper régénéré à partir de la photo source avec les contraintes Python communes ; alpha RGBA contrôlé. Deuxième passage du cache sans nouveau fichier.
 
 Exemples réels : [Tepper](../reports/investor-donut-2026-11-15/tepper.png), [Berkshire](../reports/investor-donut-2026-11-15/berkshire.png), [Renaissance](../reports/investor-donut-2026-11-15/renaissance.png), [Ackman](../reports/investor-donut-2026-11-15/ackman.png).

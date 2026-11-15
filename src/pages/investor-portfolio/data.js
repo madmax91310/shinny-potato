@@ -89,7 +89,7 @@ export function buildTweet(portfolio, intro = '') {
   const plan = publicationPlan(portfolio)
   return [
     `Portefeuille de ${identity.displayName} :`,
-    `Positions au ${dateFR(snapshot.periodEnd)} · 13F hors options`,
+    `Positions déclarées au ${dateFR(snapshot.periodEnd)} · hors options`,
     [...plan.entries].sort((a,b) => b.weight-a.weight).map(row => `${row.other ? '📦' : emojiFor(row.ticker || logoIdentity(row)?.id)} ${row.label} : ${percentage(row.weight)} · ${cash(row.value, plan.currency)}`).join('\n'),
     'Quelle ligne aimerais-tu avoir dans ton portefeuille ? 👇',
   ].join('\n\n')

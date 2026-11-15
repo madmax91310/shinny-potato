@@ -41,6 +41,10 @@ export async function renderDetailedPages(portfolio) {
     lines.slice(start,start+perPage).forEach((line,i)=>text(line,40,contentTop+i*38))
     text(`Épargnant libre · page ${pages.length+1}`,40,1290)
     pages.push(canvas.toDataURL('image/png'))
+    // Release the backing surface before the next page and let mobile paint
+    // its busy state. Thousands of holdings must not retain hundreds of canvases.
+    canvas.width=1;canvas.height=1
+    await new Promise(resolve=>requestAnimationFrame(resolve))
   }
   return pages
 }

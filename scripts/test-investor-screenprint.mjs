@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
-import { spawn } from 'node:child_process'
-import { mkdir, writeFile, readFile } from 'node:fs/promises'
+import { spawn, execFileSync } from 'node:child_process'
+import { mkdir, writeFile, readFile, unlink } from 'node:fs/promises'
+import { choose } from './card-selection.mjs'
 import { sample } from './test-investor-publication.mjs'
 const port=4329,base=`http://127.0.0.1:${port}/shinny-potato/`,out='test-artifacts/investor-screenprint'
 const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
@@ -99,6 +100,33 @@ try {
     return pages[0]
   },incomplete)
   await writeFile(`${out}/incomplete-detail.png`,Buffer.from(incompleteDetail.split(',')[1],'base64'))
+  // Exercise the full real broad portfolio, not only the grouped main image.
+  await page.getByRole('button',{name:'Réglages',exact:true}).click()
+  await choose(page.getByLabel('Choisir un investisseur'),'renaissance')
+  await page.waitForFunction(()=>document.querySelector('#ip-draft')?.value.startsWith('Portefeuille de Renaissance Technologies'))
+  await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+  const started=Date.now(),allPending=page.waitForEvent('download',{timeout:240000})
+  await page.getByRole('button',{name:'Télécharger les PNG détaillés (ZIP)',exact:true}).click()
+  const all=await allPending,archive=`${out}/full-renaissance.zip`;await all.saveAs(archive)
+  const summary=JSON.parse(execFileSync('python3',['-c',`
+import csv,io,json,struct,sys,zipfile
+with zipfile.ZipFile(sys.argv[1]) as z:
+ assert z.testzip() is None
+ data=json.loads(z.read('positions.json'))
+ rows=list(csv.reader(io.StringIO(z.read('positions.csv').decode('utf-8-sig')),delimiter=';'))
+ assert len(rows)-1==len(data['snapshot']['holdings'])
+ images=[name for name in z.namelist() if name.endswith('.png')]
+ assert images
+ for name in images:
+  png=z.read(name)
+  assert png[:8]==b'\\x89PNG\\r\\n\\x1a\\n'
+  assert struct.unpack('>II',png[16:24])==(1080,1350)
+ print(json.dumps({'sourceRows':len(data['snapshot']['holdings']),'csvRows':len(rows)-1,'pngPages':len(images),'crc':True,'dimensions':'1080x1350'}))
+`,archive],{encoding:'utf8'}))
+  const source=JSON.parse(await readFile('public/data/investors/renaissance.json','utf8'))
+  assert.equal(summary.sourceRows,source.data.snapshot.holdings.length)
+  await writeFile(`${out}/large-export.json`,JSON.stringify({...summary,elapsedMs:Date.now()-started},null,2))
+  await unlink(archive) // keep compact proof instead of a 100+ MiB CI artifact
   await writeFile(`${out}/results.json`,JSON.stringify(results,null,2))
   console.log(`${results.filter(r=>r.status==='ready').length} PNG contrôlés ; mobile/ordinateur, téléchargement identique, copie, JSON/ZIP, pannes et réessai validés.`)
 }catch(error){console.error(error);throw error}finally{await browser?.close();server.kill('SIGTERM')}
