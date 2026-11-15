@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-11-15T12:21:34.974277+00:00",
+  "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
+  "execution": "local read-only; no source success or date written to production",
+  "sha256": "85a1514f216eaa2550a2af38a0027f0980f0dbd65aab5dbf3ca799903b55179b",
+  "rowCount": 72,
+  "missingValueRows": [
+    {
+      "AS_OF_DATE": "2026-11-12",
+      "NET_ASSETS": null,
+      "MARKET_VALUE": null,
+      "NAME": "CURRENCY CONTRACT - ZAR",
+      "TICKER": "",
+      "SEDOL": "",
+      "MARKET_PRICE": null,
+      "SHARES_HELD": -59694.77,
+      "ISIN": "",
+      "COUNTRY": ""
+    },
+    {
+      "AS_OF_DATE": "2026-11-12",
+      "NET_ASSETS": null,
+      "MARKET_VALUE": null,
+      "NAME": "CURRENCY CONTRACT - ZAR",
+      "TICKER": "",
+      "SEDOL": "",
+      "MARKET_PRICE": null,
+      "SHARES_HELD": -10853.93,
+      "ISIN": "",
+      "COUNTRY": ""
+    }
+  ],
+  "result": "Alternative official page embeds the same two null FX valuations; distinct FX rows with explicit rounded zero do not qualify these null rows. No substitution or omission permitted."
+}

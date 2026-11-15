@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-15T12:16:47.364254+00:00",
+  "codeSha": "ccef443ee52015d21884a9f2a31e76c5c5649062",
+  "dataSha": "bdb2b7223b4b15648a531980287989bb761c9ccc",
+  "file": "src/data/automated-etf.json",
+  "manifestBlob": "6dabe3cc71925d7c581d1dd1001664ec6c38b2b6",
+  "dataCommitBlob": "c1c3593981ec653d08c0777d3c0463504f898555",
+  "cause": "Fallback retains old entire ETF registry because new metadata keys are unknown to published code",
+  "unknownKeys": [
+    "extractionMethod",
+    "identityNavAsOf"
+  ],
+  "status": "new observations recorded but publication not yet demonstrated",
+  "action": "Promote validated current code; preserve fallback compatibility guard",
+  "distinctSuccess": "automated-indices.json matches current data commit and TOPIX/STOXX browser outputs"
+}
