@@ -62,7 +62,9 @@ permissions:
 jobs:
   refresh:
     concurrency:
-      group: publication-observations-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      # Both producers write anniversary-levels.json; lock before checkout
+      # through financial validation and recording, preserving both reports.
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
       queue: max
     # Match the ordinary market producer: FRED XNDX succeeded there in40752601140.
