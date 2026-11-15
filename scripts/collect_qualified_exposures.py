@@ -31,7 +31,7 @@ def collect_one(config,now):
 def _collect_one(config,now,audit):
  share={**config,'currency':config.get('currency','USD'),'collectHoldings':True,'requireFullHistory':False}
  url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings%2CfundamentalsAndRisk')
- body,raw,attempts=read_blackrock_response(url,share,get_text)
+ body,raw,attempts,url=read_blackrock_response(url,share,get_text)
  if attempts:audit['sourceAttempts']=attempts
  components=body['componentsByNameMap']
  facts=components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']

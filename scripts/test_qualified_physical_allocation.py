@@ -36,7 +36,11 @@ class QualifiedPhysicalAllocation(unittest.TestCase):
         with patch.object(collector,'get_text',side_effect=responses) as source:
             record=collector.collect_one(CONFIG,NOW)
         self.assertEqual(source.call_count,2)
-        self.assertEqual(source.call_args_list[0],source.call_args_list[1])
+        from urllib.parse import urlsplit,parse_qs
+        first=source.call_args_list[0].args[0];second=source.call_args_list[1].args[0]
+        self.assertEqual(first,URL)
+        self.assertEqual(parse_qs(urlsplit(second).query)['asOfDate'],[str(BODY['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']['value'])])
+        self.assertEqual({k:v for k,v in parse_qs(urlsplit(second).query).items()if k!='asOfDate'},parse_qs(urlsplit(first).query))
         self.assertEqual(record['pageSha256'],hashlib.sha256(RAW.encode()).hexdigest())
         self.assertEqual([x['status']for x in record['sourceAttempts']],['empty-holdings-snapshot','validated'])
         self.assertTrue(all(x['status']=='failed'for x in record['primaryAllocationChecks']))

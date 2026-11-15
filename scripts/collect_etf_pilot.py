@@ -42,30 +42,77 @@ def partial_holdings_response(body, isin, product_id, currency=None):
     return reason
 
 
+def published_holdings_retry_url(body, url):
+    """Select only a date explicitly published for this exact holdings book.
+
+    Never change an already requested date, borrow an AUM date, or guess today.
+    Existing storage/consumer guards still reject regressing photographs.
+    """
+    route = urlsplit(url)
+    query = list(parse_qsl(route.query))
+    requested = [value for key, value in query if key == 'asOfDate']
+    if requested:
+        if len(requested) != 1 or len(requested[0]) != 8 or not requested[0].isdigit():
+            reject('Ambiguous requested holdings date')
+        dt.datetime.strptime(requested[0], '%Y%m%d')
+        return url, requested[0]
+    dates = body.get('componentsByNameMap', {}).get('holdings', {}).get('containersByNameMap', {}).get('all', {}).get('dataPointsByNameMap', {}).get('dateList', {}).get('value')
+    if dates is None:
+        return url, None
+    if not isinstance(dates, list) or not dates:
+        reject('Invalid published holdings date list')
+    normalized = []
+    for value in dates:
+        if isinstance(value, bool) or not isinstance(value, (int, str)):
+            reject('Invalid published holdings date')
+        date = str(value)
+        if len(date) != 8 or not date.isdigit():
+            reject('Invalid published holdings date')
+        dt.datetime.strptime(date, '%Y%m%d')
+        normalized.append(date)
+    if len(set(normalized)) != len(normalized):
+        reject('Duplicate published holdings date')
+    selected = max(normalized)
+    return route._replace(query=urlencode([*query, ('asOfDate', selected)])).geturl(), selected
+
+
 def read_blackrock_response(url, share, fetch, sleep=time.sleep, limit=20_000_000):
     """Acquire a coherent response, with one bounded empty-component retry."""
     attempts = []
+    requested = [value for key, value in parse_qsl(urlsplit(url).query) if key == 'asOfDate']
+    if len(requested) > 1:
+        reject('Ambiguous requested holdings date')
+    requested_date = requested[0] if requested else None
     for attempt in range(2):
         try:
             raw = fetch(url, ('application/json',), limit)
         except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
             error.sourceAttempts = attempts
+            error.sourceUrl = url
             raise
         body = json.loads(raw, parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
-        partial = (partial_holdings_response(body, share['isin'], share['productId'], share['currency'])
+        partial = (partial_holdings_response(body, share['isin'], share['productId'], share.get('currency'))
                    if share.get('collectHoldings') else None)
         if partial:
             attempts.append({'url': url, 'attempt': attempt + 1, 'status': partial,
                              'sha256': hashlib.sha256(raw.encode()).hexdigest()})
             if attempt == 0:
+                url, requested_date = published_holdings_retry_url(body, url)
+                if requested_date:
+                    attempts[-1].update(nextUrl=url, requestedAsOfDate=requested_date)
                 sleep(2)
                 continue
-        elif attempts:
-            attempts.append({'url': url, 'attempt': attempt + 1, 'status': 'validated',
-                             'sha256': hashlib.sha256(raw.encode()).hexdigest()})
+        else:
+            if requested_date:
+                actual = body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']['value']
+                if str(actual) != requested_date:
+                    reject('Issuer did not return the requested published holdings snapshot')
+            if attempts:
+                attempts.append({'url': url, 'attempt': attempt + 1, 'status': 'validated',
+                                 'sha256': hashlib.sha256(raw.encode()).hexdigest()})
         # Each caller still validates every requested field. Never splice
         # holdings from this response into another photograph's facts.
-        return body, raw, attempts
+        return body, raw, attempts, url
 
 
 def fetch_product(share, fetch, sleep=time.sleep):
@@ -73,13 +120,13 @@ def fetch_product(share, fetch, sleep=time.sleep):
     url = product_data_url(share)
     limit = 20_000_000 if share.get('holdingsAssetClass') == 'Fixed Income' else 6_000_000
     try:
-        body, _, attempts = read_blackrock_response(url, share, fetch, sleep, limit)
+        body, _, attempts, url = read_blackrock_response(url, share, fetch, sleep, limit)
         return body, url, attempts
     except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
         from issuer_documents import public_page
         page_url = f'https://www.ishares.com/uk/individual/en/products/{share["productId"]}/?siteEntryPassthrough=true&switchLocale=y'
         text = public_page(page_url, ('text/html',), 6_000_000)
-        return text, page_url, [*getattr(error, 'sourceAttempts', []), {'url': url, 'reason': str(error)},
+        return text, page_url, [*getattr(error, 'sourceAttempts', []), {'url': getattr(error, 'sourceUrl', url), 'reason': str(error)},
                                 {'url': page_url, 'status': 'validated'}]
 
 

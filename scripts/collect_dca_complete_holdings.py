@@ -6,7 +6,7 @@ from urllib.parse import urlsplit, parse_qs
 from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
-from collect_etf_pilot import partial_holdings_response
+from collect_etf_pilot import partial_holdings_response, read_blackrock_response
 from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
 from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
 from qualified_corporate_identities import qualified_corporate_identity
@@ -38,30 +38,23 @@ def ranking_nav_downgrade(isin, previous, candidate, now):
 
 def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
     """Retry only an absent/entirely-null book on an exact product response."""
-    attempts=[]
-    for attempt in range(2):
-        raw=fetch(config['url'],('application/json',),25_000_000)
-        body=json.loads(raw)
-        digest=hashlib.sha256(raw.encode()).hexdigest()
-        product=parse_qs(urlsplit(config['url']).query).get('portfolioId',[])
-        if len(product)!=1:raise ValueError('Missing exact BlackRock product identifier')
-        partial=partial_holdings_response(body,config['isin'],product[0],config.get('currency'))
-        if partial:
-            attempts.append({'attempt':attempt+1,'sha256':digest,'status':partial})
-            if attempt==0:
-                sleep(2)
-                continue
-            state='absent' if partial=='missing-holdings-component' else 'empty'
-            raise ValueError('BlackRock exact-share holdings component '+state+' after two bounded attempts: '+json.dumps(attempts))
-        try:
-            record,securities=parse_complete(body,config['isin'],config['url'],now,config.get('fundAssetClass','Equity'))
-        except HoldingsPerimeterError as error:
-            error.diagnostic.update(sourceUrl=config['url'],sha256=digest,checkedAt=now.isoformat())
-            raise
-        record['sha256']=digest
-        if attempts:
-            record['sourceAttempts']=[*attempts,{'attempt':attempt+1,'sha256':digest,'status':'validated'}]
-        return record,securities
+    product=parse_qs(urlsplit(config['url']).query).get('portfolioId',[])
+    if len(product)!=1:raise ValueError('Missing exact BlackRock product identifier')
+    share={'isin':config['isin'],'productId':product[0],'currency':config.get('currency'),'collectHoldings':True}
+    body,raw,attempts,url=read_blackrock_response(config['url'],share,fetch,sleep,25_000_000)
+    digest=hashlib.sha256(raw.encode()).hexdigest()
+    partial=partial_holdings_response(body,config['isin'],product[0],config.get('currency'))
+    if partial:
+        state='absent' if partial=='missing-holdings-component' else 'empty'
+        raise ValueError('BlackRock exact-share holdings component '+state+' after two bounded attempts: '+json.dumps(attempts))
+    try:
+        record,securities=parse_complete(body,config['isin'],url,now,config.get('fundAssetClass','Equity'))
+    except HoldingsPerimeterError as error:
+        error.diagnostic.update(sourceUrl=url,sha256=digest,checkedAt=now.isoformat())
+        raise
+    record['sha256']=digest
+    if attempts:record['sourceAttempts']=attempts
+    return record,securities
 
 def physical_ssga_page(page):
     from bs4 import BeautifulSoup
@@ -215,7 +208,7 @@ def main():
                     'asOf':h['asOf'],'checkedAt':now.isoformat(),
                     'retainedAsOf':previous[isin]['asOf'],
                     'sourceUrl':h['sourceUrl'],'sha256':h.get('sha256'),
-                    'accessAttempts':h.get('accessAttempts',[]),
+                    'accessAttempts':h.get('accessAttempts',[]),'sourceAttempts':h.get('sourceAttempts',[]),
                     'financialDataQualified':False,'normalizationApplied':False}
                 continue
             fresh[isin]={**h,'checkedAt':now.isoformat()}
@@ -252,7 +245,7 @@ def main():
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
-    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions','qualifiedIdentityPositions'] if key in h},
+    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','sourceAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions','qualifiedIdentityPositions'] if key in h},
         'completeFile':h.get('complete') is True,'rows':len(h['rows']),
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}
@@ -261,7 +254,7 @@ def main():
     # Audit each success even if an unrelated support fails later in this run.
     # Only bounded public-source metadata; never the thousands of holding rows.
     for isin,entry in observations.items():
-        fields=['asOf','checkedAt','basis','scope','sourceUrl','sha256','rows','publishedEquityWeightPct','identifiedEquityWeightPct']
+        fields=['sourceAttempts','asOf','checkedAt','basis','scope','sourceUrl','sha256','rows','publishedEquityWeightPct','identifiedEquityWeightPct']
         print('Validated holdings observation: '+json.dumps({'isin':isin,**{key:entry[key]for key in fields if key in entry}},sort_keys=True))
     print(f'Complete holdings: {len(fresh)}/{len(config)}; identified securities: {len(evidence)}; errors: {errors}')
     if errors:raise SystemExit(1)

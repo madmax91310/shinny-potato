@@ -657,8 +657,12 @@ Les observations ordinaires 43731952399 et 43736125412 montrent des composants
 holdings présents dont date et colonnes sont entièrement nulles. La reprise
 existante du livre complet ne reconnaissait que l'absence du composant. La même
 qualification précise est partagée avec le pilote et les expositions qualifiées : identité ISIN/produit/devise
-vérifiée, une seconde acquisition de la même URL après deux secondes, réponse
-entièrement remplacée puis contrôles financiers ordinaires. Les deux tentatives
+vérifiée, une seconde acquisition bornée après deux secondes, réponse entièrement
+remplacée puis contrôles financiers ordinaires. Si le livre nul publie une liste
+de dates, seule la dernière date explicitement proposée est demandée via
+`asOfDate`, sans modifier une période déjà demandée. La date retournée doit
+correspondre exactement. Aucune date NAV/encours ni date du jour empruntée ;
+les protections existantes refusent le remplacement d’un livre plus récent. Les deux tentatives
 conservent leurs empreintes. Deux réponses vides restent un échec explicite du
 livre ; les autres champs valides et les anciens livres datés sont préservés.
 Une identité erronée, une structure modifiée, un livre périmé ou des pondérations
