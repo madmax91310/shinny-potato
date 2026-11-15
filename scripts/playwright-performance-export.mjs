@@ -3,6 +3,7 @@ import { mkdir, readFile } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { chromium, devices } from 'playwright'
 import { expect } from 'playwright/test'
+import { choose } from './card-selection.mjs'
 import { waitPreview } from './wait-preview.mjs'
 
 // Exercise the built route, not Vite's development module cache. No image code
@@ -51,6 +52,32 @@ try {
       await png.saveAs(`${output}/${mobile?'mobile':'desktop'}-${asset}.png`)
       await page.screenshot({path:`${output}/${mobile?'mobile':'desktop'}-${asset}-page.png`,fullPage:true})
       console.log(`Offline simple preview + both downloads: ${mobile?'mobile':'desktop'} ${asset}`)
+    }
+    // Exact long share names need more than two lines in the narrow comparison panels.
+    for (const currency of ['Devise d’origine', 'Euros (EUR)', 'Dollars (USD)']) {
+      await context.setOffline(false)
+      await page.goto(`${base}/performance-depuis?asset=annual-FR0013412004`, {waitUntil:'networkidle'})
+      await page.getByRole('button',{name:'Comparatif (2 actifs)',exact:true}).click()
+      await choose(page.locator('#subject-select-a'),'annual-FR0013412004')
+      await choose(page.locator('#subject-select-b'),'annual-LU2196470426')
+      await choose(page.locator('#secondary-select'),'2025')
+      await page.getByRole('button',{name:currency,exact:true}).click()
+      await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+      if (mobile) await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+      await expect(page.locator('.tool-preview pre')).toContainText('Amundi PEA Amérique Latine')
+      await expect(page.locator('.tool-preview pre')).toContainText('Xtrackers Nikkei 225')
+      await context.setOffline(true)
+      const pending=page.waitForEvent('download')
+      await page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}).click()
+      const file=await pending, bytes=await readFile(await file.path())
+      assert.equal(await file.failure(),null)
+      assert.equal(bytes.subarray(1,4).toString(),'PNG')
+      await page.getByRole('tab',{name:'Image',exact:true}).click()
+      const preview=page.getByAltText('Visuel Performance depuis',{exact:true})
+      await expect(preview).toBeVisible()
+      assert.deepEqual(bytes,Buffer.from((await preview.getAttribute('src')).split(',')[1],'base64'))
+      await file.saveAs(`${output}/${mobile?'mobile':'desktop'}-long-comparison-${currency.slice(0,3)}.png`)
+      console.log(`Offline long comparison preview/download: ${mobile?'mobile':'desktop'} ${currency}`)
     }
     assert.deepEqual(errors, [])
     await context.close()
