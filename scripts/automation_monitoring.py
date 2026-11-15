@@ -334,12 +334,19 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             published_source=timestamp(workflow.get('sourcePhaseCompletedAt'))
             if not proof or failed and(not checked or checked<failed):return None
             if source_bound and(not published_source or published_source<source_bound):return None
-            if row.get('attemptedDataIds')and not set(row['attemptedDataIds'])<=set(workflow.get('validatedDataIds',[])):return None
+            recorded = set(workflow.get('validatedDataIds', []))
+            if workflow.get('recordingStatus') == 'success' and workflow.get('validationStatus') == 'success':
+                recorded.update(workflow.get('recordedObservationIds', []))
+            if row.get('attemptedDataIds')and not set(row['attemptedDataIds'])<=recorded:return None
             return proof
         if key.startswith(('workflow:', 'checks:')):
             failed_steps = row.get('failedSteps', [])
             if not failed_steps or any(workflow.get('stepResults', {}).get(f['job'] + '\n' + f['step']) != 'success' for f in failed_steps):return None
-            if row.get('attemptedDataIds') and not set(row['attemptedDataIds'])<=set(workflow.get('validatedDataIds',[])):return None
+            recorded = set(workflow.get('validatedDataIds', []))
+            if (all(f['step'] == 'Commit validated observations' for f in failed_steps)
+                    and workflow.get('recordingStatus') == 'success' and workflow.get('validationStatus') == 'success'):
+                recorded.update(workflow.get('recordedObservationIds', []))
+            if row.get('attemptedDataIds') and not set(row['attemptedDataIds'])<=recorded:return None
             bound=timestamp(row.get('completedAt'))
             checked=timestamp(workflow.get('completedAt'))
             if bound and (not checked or checked<bound):return None
