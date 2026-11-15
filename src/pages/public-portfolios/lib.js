@@ -212,10 +212,12 @@ export function buildText(p, s, n) {
     );
   return `${s.month.na ? `Un portefeuille à découvrir en ${month}.` : `${Number(s.month.value) < 0 ? "📉" : "📈"} ${pct(s.month.value)} en ${month} : voici sa répartition 👀`}\n\n🔎 LE PORTEFEUILLE DE LA SEMAINE #${n}\n\n${nameOf(p)} — portefeuille présenté comme réel par son auteur.${p.strategy ? ` ${p.strategy}` : ""}${p.objective ? ` Objectif communiqué : ${p.objective}` : ""}\n\n📊 SES PERFORMANCES DÉCLARÉES\n• ${month} : ${s.month.na ? `Non applicable (${s.month.na})` : pct(s.month.value)}\n• Depuis janvier : ${s.ytd.na ? `Non applicable (${s.ytd.na})` : pct(s.ytd.value)}${benchmarkIssue(s) ? "" : `\n• ${s.benchmark.name} : ${pct(s.benchmark.value)} sur les mêmes dates (${s.currency}, dividendes réinvestis)`}\n\n🍩 SES PRINCIPAUX PLACEMENTS\n${positions
     .slice(0, 6)
-    .map((x) => `• ${x.name} : ${pct(x.weight)}`)
+    .map(
+      (x) => `• ${x.name} : ${`${Number(x.weight).toLocaleString("fr-FR")} %`}`,
+    )
     .join(
       "\n",
-    )}${positions.length > 6 ? "\nDétail complet dans les images." : ""}\n\n🧐 La première ligne représente ${pct(positions[0].weight)} du portefeuille.\n\n💬 Et toi, quel résultat pour ton portefeuille en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
+    )}${positions.length > 6 ? "\nDétail complet dans les images." : ""}\n\n🧐 La première ligne représente ${`${Number(positions[0].weight).toLocaleString("fr-FR")} %`} du portefeuille.\n\n💬 Et toi, quel résultat pour ton portefeuille en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
 }
 export function publication(p, s, d, date, url) {
   if (
@@ -223,7 +225,8 @@ export function publication(p, s, d, date, url) {
     !d.text.trim() ||
     /undefined|\{[^}]+\}/.test(d.text) ||
     !Number.isInteger(Number(d.episode)) ||
-    Number(d.episode) < 1
+    Number(d.episode) < 1 ||
+    Number(d.episode) > 999999
   )
     throw new Error("Texte ou numéro d’épisode invalide");
   return structuredClone({

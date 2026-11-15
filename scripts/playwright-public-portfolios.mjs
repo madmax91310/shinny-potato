@@ -4,13 +4,21 @@ import {
   blankProfile,
   blankSnapshot,
 } from "../src/pages/public-portfolios/lib.js";
-import { staticBrowser, staticBase } from './static-browser.mjs';
+import { staticBrowser, staticBase } from "./static-browser.mjs";
 const remote = !!process.env.BASE_URL;
 const harness = remote ? null : await staticBrowser(1440);
-const browser = harness?.browser || await chromium.launch({headless:true, ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']} : {})});
-const context = harness?.context || await browser.newContext({acceptDownloads:true});
-await context.grantPermissions(['clipboard-read','clipboard-write']);
-const page = harness?.page || await context.newPage();
+const browser =
+  harness?.browser ||
+  (await chromium.launch({
+    headless: true,
+    ...(process.env.CHROMIUM_PATH
+      ? { executablePath: process.env.CHROMIUM_PATH, args: ["--no-sandbox"] }
+      : {}),
+  }));
+const context =
+  harness?.context || (await browser.newContext({ acceptDownloads: true }));
+await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+const page = harness?.page || (await context.newPage());
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const base = process.env.BASE_URL || staticBase;

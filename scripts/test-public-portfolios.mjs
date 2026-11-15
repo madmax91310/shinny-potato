@@ -87,3 +87,30 @@ assert(benchmarkIssue(s));
 console.log(
   "Portefeuilles publics : stockage, conflits, périodes ambiguës, zéros, pertes, allocation et historique vérifiés.",
 );
+const validBenchmark = structuredClone(s);
+validBenchmark.method = "TWR";
+validBenchmark.dividends = "Réinvestis";
+validBenchmark.fees = "Inclus";
+Object.assign(validBenchmark.benchmark, {
+  verified: true,
+  source: "https://example.com/index-method",
+  method: "Total return",
+  reinvested: true,
+  value: 1,
+  currency: "EUR",
+  start: s.month.start,
+  end: s.month.end,
+});
+assert.equal(benchmarkIssue(validBenchmark), "");
+validBenchmark.benchmark.currency = "USD";
+assert(benchmarkIssue(validBenchmark));
+bytes.set(
+  "el-public-portfolios-v1",
+  JSON.stringify({ version: 1, profiles: [{}] }),
+);
+assert(load().error);
+assert.equal(save(db), false);
+assert.equal(
+  JSON.parse(bytes.get("el-public-portfolios-v1")).profiles.length,
+  1,
+);

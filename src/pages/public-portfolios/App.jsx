@@ -9,6 +9,7 @@ import {
   canonicalUrl,
   nameOf,
   issues,
+  performanceIssues,
   pct,
   benchmarkIssue,
   buildText,
@@ -277,13 +278,13 @@ export default function App() {
                 <p>
                   {last?.month.start || "Période non renseignée"} →{" "}
                   {last?.month.end || "—"} · Mois :{" "}
-                  {last?.month.verified
+                  {last && !performanceIssues(last, "month").length
                     ? last.month.na
                       ? "Non applicable"
                       : pct(last.month.value)
                     : "À vérifier"}{" "}
                   · Depuis janvier :{" "}
-                  {last?.ytd.verified
+                  {last && !performanceIssues(last, "ytd").length
                     ? last.ytd.na
                       ? "Non applicable"
                       : pct(last.ytd.value)
