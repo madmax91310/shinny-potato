@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
@@ -76,13 +77,17 @@ try {
           const dimensions=await img.evaluate(e=>[e.naturalWidth,e.naturalHeight])
           assert.deepEqual(dimensions,[1080,1350],`${p.name}: every X page is 4:5, no long fallback`)
           if(mode==='overview')assert.equal(count,1,'Complete main image must be a single PNG')
-          const bytes=await img.evaluate(async e=>Array.from(new Uint8Array(await (await fetch(e.src)).arrayBuffer())))
+          const previewDigest=await img.evaluate(async e=>{
+            const bytes=await (await fetch(e.src)).arrayBuffer()
+            return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('')
+          })
           const downloadPromise=page.waitForEvent('download')
           await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
           const download=await downloadPromise
-          assert.deepEqual(readFileSync(await download.path()),Buffer.from(bytes))
+          const bytes=readFileSync(await download.path())
+          assert.equal(createHash('sha256').update(bytes).digest('hex'),previewDigest,'Downloaded bytes match the selected preview')
           const filename=`${width}-${p.id}-${mode}-${part+1}.png`
-          writeFileSync(`${output}/${filename}`,Buffer.from(bytes))
+          writeFileSync(`${output}/${filename}`,bytes)
           results.push({width,id:p.id,mode,page:part+1,count,dimensions,bytes:bytes.length,filename})
         }
         const frames=await page.evaluate(()=>{const canvases=window.budgetCanvases,last=canvases.at(-1);return canvases.slice(-(last.budgetPageCount||1)).map(c=>c.budgetDraw)})

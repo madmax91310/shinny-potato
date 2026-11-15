@@ -33,7 +33,9 @@ Il s'agit de Chromium et de largeurs mobiles émulées, pas d'essais sur tous le
 
 ## Répartition de la recette GitHub
 
-La première exécution intégrée de la dernière recette a dépassé le plafond de 300 secondes par commande à 390 px : le passage aux pages 4:5 détaillées porte le lot complet à 242 téléchargements par largeur. La recette CI est donc répartie en trois lots disjoints (les sept profils précédents et deux moitiés des quatorze nouveaux), à chacune des trois largeurs. Chaque profil demeure couvert exactement une fois par largeur. Aucun contrôle de contenu, téléchargement ou persistance n’est retiré ; le délai de 300 secondes reste inchangé et les preuves de chaque lot sont séparées.
+La première exécution intégrée de la dernière recette a dépassé le plafond de 300 secondes par commande à 390 px : le passage aux pages 4:5 détaillées porte le lot complet à 242 téléchargements par largeur. La recette CI est donc répartie en quatre lots disjoints (deux moitiés des sept profils précédents et deux moitiés des quatorze nouveaux), à chacune des trois largeurs. Chaque profil demeure couvert exactement une fois par largeur. Aucun contrôle de contenu, téléchargement ou persistance n’est retiré ; le délai de 300 secondes reste inchangé et les preuves de chaque lot sont séparées.
+
+Le premier découpage à trois lots a encore atteint 300 secondes sur le lot des sept profils précédents à 1440 px dans GitHub. Ce lot est donc lui aussi partagé. La comparaison aperçu/téléchargement utilise SHA-256 calculé de chaque côté : le navigateur transmet 64 caractères d'empreinte au lieu d'un grand tableau JSON d'octets PNG, puis le fichier téléchargé est conservé et rouvert. Les vérifications de dimensions, de contenu, de chevauchement et de persistance restent identiques.
 
 ## Livraison
 
