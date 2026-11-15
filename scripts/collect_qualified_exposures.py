@@ -3,7 +3,7 @@ import copy
 import argparse, datetime as dt, hashlib, json, re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from collect_etf_pilot import product_data_url, parse_share_with_dated_holdings, source_date, replication_characteristics
+from collect_etf_pilot import product_data_url, parse_share_with_dated_holdings, source_date, replication_characteristics, read_blackrock_response
 from collect_etf_holdings import parse_holdings, collect_holdings
 from data_automation import get_text, UTC, write_json_atomic
 from apply_etf_collection import merge_collection
@@ -25,12 +25,14 @@ def collect_one(config,now):
  try:return _collect_one(config,now,audit)
  except Exception as error:
   if audit.get('primaryAllocationChecks'):error.primaryAllocationChecks=audit['primaryAllocationChecks']
+  if audit.get('sourceAttempts'):error.sourceAttempts=audit['sourceAttempts']
   raise
 
 def _collect_one(config,now,audit):
  share={**config,'currency':config.get('currency','USD'),'collectHoldings':True,'requireFullHistory':False}
  url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings%2CfundamentalsAndRisk')
- raw=get_text(url,('application/json',),20000000);body=json.loads(raw)
+ body,raw,attempts=read_blackrock_response(url,share,get_text)
+ if attempts:audit['sourceAttempts']=attempts
  components=body['componentsByNameMap']
  facts=components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
  v=lambda key:facts[key]['value']
@@ -88,6 +90,7 @@ def _collect_one(config,now,audit):
   result['metrics'][field]={'value':value,'label':label,'unit':unit,'asOf':source_date(point['asOfDate'],now),'checkedAt':now.date().isoformat(),'sourceUrl':url,'method':point.get('infoBubble',''),'scope':'Fund portfolio' if field!='twelveMonTrlYld' else 'Exact share, trailing 12 months'}
  if config.get('currencyHedge') is True and 'Hedged' not in result['index']:raise ValueError('Hedge benchmark changed')
  result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
+ if attempts:result['sourceAttempts']=attempts
  return result
 
 def retain_listing_evidence(archive, records, required_ids=None):
@@ -143,7 +146,7 @@ def main():
  if args.only:configs=[c for c in configs if c['id']in args.only]
  def one(c):
   try:return {'record':collect_one(c,now)}
-  except Exception as e:return {'id':c['id'],'isin':c['isin'],'error':str(e),**({'primaryAllocationChecks':e.primaryAllocationChecks}if hasattr(e,'primaryAllocationChecks')else{})}
+  except Exception as e:return {'id':c['id'],'isin':c['isin'],'error':str(e),**({'primaryAllocationChecks':e.primaryAllocationChecks}if hasattr(e,'primaryAllocationChecks')else{}),**({'sourceAttempts':e.sourceAttempts}if hasattr(e,'sourceAttempts')else{})}
  with ThreadPoolExecutor(max_workers=4)as pool:rows=list(pool.map(one,configs))
  report={'checkedAt':now.isoformat(),'records':[x['record']for x in rows if 'record'in x],'excluded':[x for x in rows if 'record'not in x]}
  if args.apply:

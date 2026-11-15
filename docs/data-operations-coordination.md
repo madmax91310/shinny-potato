@@ -649,14 +649,14 @@ Même correctif : le producteur Bitcoin dédié n'avait aucune tentative après 
 ### 15 novembre 2026 — reprise bornée des livres iShares vides
 
 Automatisation des données possède cette correction, dans le suivi unique #881 :
-`collect_etf_pilot.py`, `collect_dca_complete_holdings.py`, leurs deux recettes de
-régression et le déclenchement commun de `update-qualified-exposures.yml`.
+`collect_etf_pilot.py`, `collect_dca_complete_holdings.py`,
+`collect_qualified_exposures.py`, leurs trois recettes de régression et le déclenchement commun de `update-qualified-exposures.yml`.
 Aucun lecteur/réducteur de supervision ni fichier des PR #1061/#1253 n'est modifié.
 
 Les observations ordinaires 43731952399 et 43736125412 montrent des composants
 holdings présents dont date et colonnes sont entièrement nulles. La reprise
 existante du livre complet ne reconnaissait que l'absence du composant. La même
-qualification précise est partagée avec le pilote : identité ISIN/produit/devise
+qualification précise est partagée avec le pilote et les expositions qualifiées : identité ISIN/produit/devise
 vérifiée, une seconde acquisition de la même URL après deux secondes, réponse
 entièrement remplacée puis contrôles financiers ordinaires. Les deux tentatives
 conservent leurs empreintes. Deux réponses vides restent un échec explicite du

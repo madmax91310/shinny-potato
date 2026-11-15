@@ -42,35 +42,44 @@ def partial_holdings_response(body, isin, product_id, currency=None):
     return reason
 
 
+def read_blackrock_response(url, share, fetch, sleep=time.sleep, limit=20_000_000):
+    """Acquire a coherent response, with one bounded empty-component retry."""
+    attempts = []
+    for attempt in range(2):
+        try:
+            raw = fetch(url, ('application/json',), limit)
+        except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
+            error.sourceAttempts = attempts
+            raise
+        body = json.loads(raw, parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
+        partial = (partial_holdings_response(body, share['isin'], share['productId'], share['currency'])
+                   if share.get('collectHoldings') else None)
+        if partial:
+            attempts.append({'url': url, 'attempt': attempt + 1, 'status': partial,
+                             'sha256': hashlib.sha256(raw.encode()).hexdigest()})
+            if attempt == 0:
+                sleep(2)
+                continue
+        elif attempts:
+            attempts.append({'url': url, 'attempt': attempt + 1, 'status': 'validated',
+                             'sha256': hashlib.sha256(raw.encode()).hexdigest()})
+        # Each caller still validates every requested field. Never splice
+        # holdings from this response into another photograph's facts.
+        return body, raw, attempts
+
+
 def fetch_product(share, fetch, sleep=time.sleep):
     """The current official HTML is a transport fallback to the embedded API."""
     url = product_data_url(share)
     limit = 20_000_000 if share.get('holdingsAssetClass') == 'Fixed Income' else 6_000_000
-    attempts = []
     try:
-        for attempt in range(2):
-            raw = fetch(url, ('application/json',), limit)
-            body = json.loads(raw, parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
-            partial = (partial_holdings_response(body, share['isin'], share['productId'], share['currency'])
-                       if share.get('collectHoldings') else None)
-            if partial:
-                attempts.append({'url': url, 'attempt': attempt + 1, 'status': partial,
-                                 'sha256': hashlib.sha256(raw.encode()).hexdigest()})
-                if attempt == 0:
-                    sleep(2)
-                    continue
-            elif attempts:
-                attempts.append({'url': url, 'attempt': attempt + 1, 'status': 'validated',
-                                 'sha256': hashlib.sha256(raw.encode()).hexdigest()})
-            # The caller validates every field. A persistent partial response
-            # preserves independently valid fields and reports the missing book.
-            # Never splice new holdings into the previous response's facts.
-            return body, url, attempts
+        body, _, attempts = read_blackrock_response(url, share, fetch, sleep, limit)
+        return body, url, attempts
     except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
         from issuer_documents import public_page
         page_url = f'https://www.ishares.com/uk/individual/en/products/{share["productId"]}/?siteEntryPassthrough=true&switchLocale=y'
         text = public_page(page_url, ('text/html',), 6_000_000)
-        return text, page_url, [*attempts, {'url': url, 'reason': str(error)},
+        return text, page_url, [*getattr(error, 'sourceAttempts', []), {'url': url, 'reason': str(error)},
                                 {'url': page_url, 'status': 'validated'}]
 
 
