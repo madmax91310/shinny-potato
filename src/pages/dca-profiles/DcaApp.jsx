@@ -11,7 +11,9 @@ import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { profilePositionLimit, MAX_EXPOSURE_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
 import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord, readSavedState, restoreSavedProfile, validDraftProfile } from './management.js'
-import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
+import { readUsageHistory, saveUsageHistory, usageDate, USED_KEY } from './usage-history.js'
+import ProfilePublication from '../../design-system/ProfilePublication.jsx'
+import { publicationLabel } from '../../lib/publication-date.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
 import ImageOptions from './ImageOptions.jsx'
@@ -42,7 +44,8 @@ export default function DcaApp({subscriberMode=false,onShowSaved}){
  const [filters,setFilters]=useState({selection:profileSelection(initial.profile),budget:'',lines:'',kind:'',unused:false})
  const [usage,setUsage]=useState(()=>readUsageHistory())
  const used=usage.ids
- const publishedAt=usage.entries.find(entry=>entry.id===profile.id)?.publishedAt
+ const publishedDate=usageDate(usage.entries.find(entry=>entry.id===profile.id))
+ useEffect(()=>{const changed=e=>{if(e.key===USED_KEY||e.key===null)setUsage(readUsageHistory())};window.addEventListener('storage',changed);return()=>window.removeEventListener('storage',changed)},[])
  const seen=useRef(new Set([profile.id])),preparedPicker=useRef(null)
  useEffect(()=>{
   try{
@@ -75,10 +78,9 @@ export default function DcaApp({subscriberMode=false,onShowSaved}){
   if(next)select(next)
  }
  function participate(){if(profile.mode!=='participant')setSubscriberSession(null);edit({id:profile.mode==='participant'?profile.id:newSubscriberProfile().id,mode:'participant',imageOnly:false})}
- function toggleUsed(){
-  // Commit in the event, never in a React updater that may be deferred/replayed.
-  const next=toggleUsageHistory(usage,profile.id)
-  setUsage(next)
+ function markPublished(id,published,date){
+  const next=saveUsageHistory(usage,id,published,date)
+  setUsage(next);return !next.error
  }
  function loadPortfolio(item){
   setLibraryProfileOpen(true)
@@ -90,7 +92,7 @@ export default function DcaApp({subscriberMode=false,onShowSaved}){
   setProfile(next);setDraft(item.draft);setField(item.field)
   let stored=null
   try{stored=readSavedState(localStorage).items.find(record=>record.id===item.id)}catch{/* Keep an imported draft usable when local saves cannot be read. */}
-  setSubscriberSession(next.mode==='participant'&&!next.imageOnly&&stored?{id:item.id,source:JSON.stringify(stored),baseline:subscriberSignature({profile:next,draft:item.draft,field:item.field})}:null)
+  setSubscriberSession(!next.imageOnly&&stored?{id:item.id,source:JSON.stringify(stored),baseline:subscriberSignature({profile:next,draft:item.draft,field:item.field})}:null)
  }
  function createSubscriber(){
   setProfile(newSubscriberProfile());setDraft('');setField('all');setSubscriberSession(null);setBaseline(null);setPortfolioReset(n=>n+1);draftEdited.current=false
@@ -112,7 +114,7 @@ export default function DcaApp({subscriberMode=false,onShowSaved}){
  <PageHeader title={subscriberMode?"Profils sauvegardés":"Le DCA d’un abonné"} subtitle={subscriberMode?"Enregistre les profils reçus et retrouve-les pour préparer leur publication.":"Choisis un profil ou saisis une participation, puis récupère le texte et l’image."}/>
  {draftError&&<p role="alert">{draftError}</p>}
  {usage.error&&<p role="alert">{usage.error}</p>}
- {subscriberMode&&<Suspense fallback={<p role="status">Chargement des profils enregistrés…</p>}><SubscriberProfiles profile={profile} draft={draft} field={field} session={subscriberSession} dirty={subscriberDirty} onNew={createSubscriber} onOpen={loadPortfolio} onSaved={subscriberSaved} onRemoved={id=>{if(subscriberSession?.id===id)setSubscriberSession(null)}} usage={usage} onToggleUsed={id=>setUsage(toggleUsageHistory(usage,id))}/></Suspense>}
+ {subscriberMode&&<Suspense fallback={<p role="status">Chargement des profils enregistrés…</p>}><SubscriberProfiles profile={profile} draft={draft} field={field} session={subscriberSession} dirty={subscriberDirty} onNew={createSubscriber} onOpen={loadPortfolio} onSaved={subscriberSaved} onRemoved={id=>{if(subscriberSession?.id===id)setSubscriberSession(null)}} usage={usage} onPublish={markPublished}/></Suspense>}
  {showComposer&&<><div className="dca-simple-grid">
   <section className="dca-simple-card" id="dca-compose" aria-label="Composer le DCA">
    {!subscriberMode&&profile.mode==='participant'&&!profile.imageOnly&&<div className="dca-profile-save" role="group" aria-label="Sauvegarder le profil DCA">
@@ -130,11 +132,11 @@ export default function DcaApp({subscriberMode=false,onShowSaved}){
  <label>Contient au moins<ChoicePicker aria-label="Contient au moins" value={filters.kind} onChange={e=>setFilter('kind',e.target.value)}><option value="">Tous les types</option><option value="thematic">Un ETF sectoriel ou thématique</option><option value="equity">Une action en direct</option><option value="crypto">Une crypto</option><option value="metal">Un métal précieux</option></ChoicePicker></label></div>
  <label><input type="checkbox" checked={filters.unused} onChange={e=>setFilter('unused',e.target.checked)}/>Afficher les profils non publiés</label>
  <button className="dca-remove" onClick={()=>setFilters({selection:filters.selection,budget:'',lines:'',kind:'',unused:false})}>Effacer les filtres</button></details>
- {filtered.length?<ChoicePicker key={filters.selection} aria-label="Choisir un profil DCA" value={profile.id} onChange={e=>select(filtered.find(p=>p.id===e.target.value))}>{filtered.map(p=><option key={p.id} value={p.id}>{p.name} · {p.monthly} €/mois{used.includes(p.id)?' · déjà publié':''}</option>)}</ChoicePicker>:<p role="status">Aucun profil ne correspond à ces filtres dans cette sélection. Modifie les filtres ou change de sélection.</p>}
- <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p=>p.id!==profile.id)} onClick={()=>select(pickUnseenProfile(filtered,profile.id,seen.current))}>Autre profil aléatoire</Button><Button variant="secondary" onClick={toggleUsed}>{used.includes(profile.id)?'Annuler le marquage publié':'Marquer publié'}</Button></div>
+ {filtered.length?<ChoicePicker key={filters.selection} aria-label="Choisir un profil DCA" value={profile.id} onChange={e=>select(filtered.find(p=>p.id===e.target.value))}>{filtered.map(p=><option key={p.id} value={p.id}>{p.name} · {p.monthly} €/mois{used.includes(p.id)?` · ${publicationLabel(usageDate(usage.entries.find(entry=>entry.id===p.id)))}`:' · Non publié'}</option>)}</ChoicePicker>:<p role="status">Aucun profil ne correspond à ces filtres dans cette sélection. Modifie les filtres ou change de sélection.</p>}
+ <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p=>p.id!==profile.id)} onClick={()=>select(pickUnseenProfile(filtered,profile.id,seen.current))}>Autre profil aléatoire</Button></div>
  {!filtered.some(p=>p.id===profile.id)&&<p className="dca-note">Le profil affiché reste ouvert, mais ne fait pas partie des résultats filtrés.</p>}
    </details>}
-   <p className="dca-note">{used.includes(profile.id)?`Déjà publié · ${publishedAt?new Date(publishedAt).toLocaleString('fr-FR'):'date inconnue (ancien marquage)'}`:'Non publié'} · Historique local à cet appareil.</p>
+   <ProfilePublication key={profile.id} lockName={USED_KEY} disabled={!usage.readable} published={used.includes(profile.id)} date={publishedDate} onSave={(published,date)=>markPublished(profile.id,published,date)}/>
    <label>Pseudonyme<input maxLength={45} value={profile.name} onChange={e=>edit({name:e.target.value})}/></label>
    <details><summary>Présentation facultative</summary><div className="dca-fields">
     <label>Âge<input type="number" min="18" max="100" value={profile.age||''} onChange={e=>edit({age:Math.min(100,Math.max(0,Number(e.target.value)))})}/></label>

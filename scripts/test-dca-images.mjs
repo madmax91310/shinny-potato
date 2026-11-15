@@ -147,6 +147,8 @@ try {
   await page.getByRole('button',{name:'Profils préparés',exact:true}).click()
   await page.locator('.dca-prepared > summary').click()
   await page.getByRole('button',{name:'Marquer publié',exact:true}).click()
+ await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click()
+ await page.getByRole('button',{name:'Retirer le statut publié',exact:true}).waitFor()
   await page.locator('.dca-filters summary').click()
   await page.getByRole('group',{name:'Budget mensuel',exact:true}).locator('[data-option][data-value="small"]').click()
   await page.getByRole('group',{name:'Contient au moins',exact:true}).locator('[data-option][data-value="equity"]').click()
