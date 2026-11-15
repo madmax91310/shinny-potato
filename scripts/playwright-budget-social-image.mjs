@@ -8,7 +8,10 @@ import{spawn}from'node:child_process'
 import{waitPreview}from'./wait-preview.mjs'
 import{DRAFT_KEY}from'../src/pages/budget-profiles/storage.js'
 import{buildBudgetText}from'../src/pages/budget-profiles/lib.js'
-const base=process.env.BUDGET_SOCIAL_BASE||'http://127.0.0.1:4399/shinny-potato',output=process.env.BUDGET_ARTIFACTS||'test-artifacts/budget-social'
+const shard=Number(process.argv[2]||0),shards=Number(process.argv[3]||1)
+assert(Number.isInteger(shard)&&Number.isInteger(shards)&&shards>0&&shard>=0&&shard<shards,'Invalid budget X partition')
+const uiProfiles=BUDGET_PROFILES.filter((_,index)=>index%shards===shard)
+const base=process.env.BUDGET_SOCIAL_BASE||'http://127.0.0.1:4399/shinny-potato',output=process.env.BUDGET_ARTIFACTS||`test-artifacts/budget-social-${shard}`
 mkdirSync(output,{recursive:true})
 const server=process.env.BUDGET_SOCIAL_BASE?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4399','--strictPort'],{stdio:'ignore'})
 const uiBase=process.env.BUDGET_PUBLIC_BASE||'http://127.0.0.1:4486/shinny-potato'
@@ -57,7 +60,7 @@ try{
  // Exercise UI, selected download and the legacy modes on a real phone and desktop.
  for(const width of [1440,390,320]){
   const context=await browser.newContext({viewport:{width,height:950},permissions:['clipboard-read','clipboard-write'],acceptDownloads:true}),ui=await context.newPage();await ui.goto(uiBase+'/le-budget-de');
-  for(const p of (width===390?BUDGET_PROFILES:[BUDGET_PROFILES.find(p=>p.name==='Émilie'),BUDGET_PROFILES.find(p=>p.name==='Lucie'),BUDGET_PROFILES.find(p=>results.find(r=>r.id===p.id).count>1),BUDGET_PROFILES.find(p=>p.name==='Amandine et Nicolas')])){
+  for(const p of (width===390?uiProfiles:[BUDGET_PROFILES.find(p=>p.name==='Émilie'),BUDGET_PROFILES.find(p=>p.name==='Lucie'),BUDGET_PROFILES.find(p=>results.find(r=>r.id===p.id).count>1),BUDGET_PROFILES.find(p=>p.name==='Amandine et Nicolas')])){
    await ui.getByRole('group',{name:'Version de l’image',exact:true}).locator('[data-value="social"]').click();await ui.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value="${p.id}"]`).click();await expect(ui.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(p));const count=results.find(r=>r.id===p.id).count;await expect(ui.locator('.budget-image-count')).toContainText(`${count} image`);
    for(let i=0;i<count;i++){
     if(count>1)await ui.getByRole('button',{name:`Image ${i+1} sur ${count}`,exact:true}).click();const img=ui.getByRole('region',{name:'Image du budget'}).locator('img');await expect(ui.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled();await expect.poll(()=>img.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350]);const bytes=await img.evaluate(async i=>{const b=await(await fetch(i.src)).blob();return [...new Uint8Array(await b.arrayBuffer())]});const event=ui.waitForEvent('download');await ui.getByRole('button',{name:'Télécharger le PNG',exact:true}).click();const d=await event;assert.deepEqual(readFileSync(await d.path()),Buffer.from(bytes));if(count>1)assert(d.suggestedFilename().includes(`-${String(i+1).padStart(2,'0')}-sur-`));
@@ -67,5 +70,5 @@ try{
   }
   assert(await ui.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await context.close()
  }
- console.log('Budget X: all real-canvas pages, 390px phone captures, immutable inputs/texts, source row conservation, bounds, overlaps; desktop/mobile page navigation, selected PNG bytes, copy and both legacy formats passed.')
+ console.log(`Budget X: all real-canvas pages, 390px phone captures, immutable inputs/texts, source row conservation, bounds, overlaps; desktop/mobile page navigation, selected PNG bytes, copy and both legacy formats passed. UI partition ${shard+1}/${shards}: ${uiProfiles.length} profiles at 390px.`)
 }finally{await browser?.close();server?.kill();preview?.kill()}
