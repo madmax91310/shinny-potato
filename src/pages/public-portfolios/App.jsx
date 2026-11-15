@@ -1,3 +1,4 @@
+import ChoicePicker from "../../design-system/ChoicePicker.jsx";
 import { pngArchive } from "./archive.js";
 import { downloadPublicationBlob } from "../../design-system/downloadBlob.js";
 import { useState, useEffect, useRef } from "react";
@@ -31,7 +32,11 @@ function Field({ label, value, onChange, type = "text", options }) {
     <label>
       {label}
       {options ? (
-        <select value={value} onChange={(e) => onChange(e.target.value)}>
+        <ChoicePicker
+          aria-label={label}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        >
           {options.map((v) => (
             <option key={v} value={v}>
               {v === "checked"
@@ -41,7 +46,7 @@ function Field({ label, value, onChange, type = "text", options }) {
                   : v || "Tous"}
             </option>
           ))}
-        </select>
+        </ChoicePicker>
       ) : (
         <input
           step={type === "number" ? "any" : undefined}
@@ -207,6 +212,7 @@ export default function App() {
     });
   }
   function edit(key, value) {
+    setMessage("");
     setP({ ...p, [key]: value, draft: null });
     setHistory(null);
   }
@@ -455,23 +461,25 @@ export default function App() {
             nouvelle version ; les publications conservent leur photographie
             d’origine.
           </p>
-          <select
+          <ChoicePicker
             aria-label="Relevé à préparer"
             value={selected}
             onChange={(e) => {
+              setMessage("");
               setSelected(e.target.value);
               setP({ ...p, draft: null });
               setHistory(null);
             }}
           >
             <option value="">Choisir un relevé</option>
-            {p.snapshots.map((r) => (
+            {p.snapshots.map((r, index) => (
               <option key={r.id} value={r.id}>
-                {r.consulted} — données du {r.effective || "jour non précisé"} —{" "}
+                Relevé {index + 1} · {r.consulted} — données du{" "}
+                {r.effective || "jour non précisé"} —{" "}
                 {r.month.end || "période inconnue"}
               </option>
             ))}
-          </select>
+          </ChoicePicker>
           <button
             onClick={() =>
               setS({ ...blankSnapshot(), currency: p.currency || "" })

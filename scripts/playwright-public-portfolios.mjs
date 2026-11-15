@@ -1,3 +1,4 @@
+import { choose } from "./card-selection.mjs";
 import { expect } from "playwright/test";
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
@@ -32,8 +33,8 @@ await expect(
 await page.getByLabel("URL du portefeuille", { exact: true }).fill("https://");
 assert.equal(
   await page
-    .getByLabel("Statut éditorial", { exact: true })
-    .locator('option[value="Publié"]')
+    .getByRole("group", { name: "Statut éditorial", exact: true })
+    .locator('[data-option][data-value="Publié"]')
     .count(),
   0,
 );
@@ -91,14 +92,22 @@ await page.evaluate(
 );
 await page.reload();
 await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
-await page.getByLabel("Relevé à préparer").selectOption(s.id);
+await choose(
+  page.getByRole("group", { name: "Relevé à préparer", exact: true }),
+  s.id,
+);
 await page
   .getByRole("button", { name: "Préparer / régénérer le tweet" })
   .click();
 await page.getByRole("button", { name: "Sauvegarder le brouillon" }).click();
 await page.reload();
 await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
-assert.equal(await page.getByLabel("Relevé à préparer").inputValue(), s.id);
+assert.equal(
+  await page
+    .getByRole("group", { name: "Relevé à préparer", exact: true })
+    .getAttribute("data-value"),
+  s.id,
+);
 await page.getByLabel("Numéro d’épisode", { exact: true }).fill("");
 assert(
   await page.getByRole("button", { name: "Copier le texte" }).isDisabled(),
