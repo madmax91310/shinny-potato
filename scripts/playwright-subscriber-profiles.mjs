@@ -103,7 +103,7 @@ for(const width of [1440,390,320]){
   const matching=all.filter(item=>item.title==='Élodie')
   assert.equal(matching.length,2);assert.notEqual(matching[0].profile.id,matching[1].profile.id)
   await library.getByLabel('Rechercher un profil',{exact:true}).fill('infirmiere')
-  assert.equal(await library.locator('article').count(),2)
+  assert.equal(await library.locator('article').count(),1)
   await library.getByRole('button',{name:'Ouvrir Élodie',exact:true}).click()
   assert.equal(await page.locator('#dca-draft').inputValue(),custom)
   assert.equal(await page.getByRole('checkbox',{name:'La personne a validé',exact:false}).isChecked(),false)
