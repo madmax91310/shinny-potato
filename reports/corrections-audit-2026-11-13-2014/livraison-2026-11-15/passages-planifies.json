@@ -1,27 +1,54 @@
 [
   {
     "producer": "monthly",
-    "run": 43601518941,
+    "run": 43723585814,
     "event": "schedule",
-    "createdAt": "2026-11-14T13:47:24Z",
-    "acquisition": "partial",
-    "recording": "succeeded",
-    "publication": "succeeded",
-    "remainingFailure": "etfDE000A27Z304: HTTP 400 on old listing; Bitwise Paris is a distinct operational route",
+    "createdAt": "2026-11-15T14:18:00Z",
+    "acquisition": "partial: sole requested monthly source etfDE000A27Z304 failed HTTP400; listing controls and derived indices separate",
+    "recording": "refused: scripts/ci-browser-checks.json changed concurrently with #1314; mandatory new current recipe, not a source success",
+    "publication": "not attempted for this run",
+    "remainingFailure": "Old Xetra monthly route HTTP400 persists; independent Paris scope preserved; recording succeeded on later ordinary push.",
     "postCurrentCorrectionCron": false,
-    "nextNominalUTC": "2026-11-16T06:15:00Z; targeted retry 06:45"
+    "nextNominalUTC": "2026-11-16T06:15:00Z; targeted retry 06:45",
+    "previousObservedSchedule": {
+      "producer": "monthly",
+      "run": 43601518941,
+      "event": "schedule",
+      "createdAt": "2026-11-14T13:47:24Z",
+      "acquisition": "partial",
+      "recording": "succeeded",
+      "publication": "succeeded",
+      "remainingFailure": "etfDE000A27Z304: HTTP 400 on old listing; Bitwise Paris is a distinct operational route",
+      "postCurrentCorrectionCron": false,
+      "nextNominalUTC": "2026-11-16T06:15:00Z; targeted retry 06:45"
+    },
+    "proof": "monthly-cron-43723585814/recording-refusal-excerpt.log",
+    "scopeNote": "Nov15 schedule preceded the shared writer lock. Later ordinary push recorded dde6d66a and public data; post-lock scheduled production remains to observe."
   },
   {
     "producer": "ETF",
-    "run": 43602910189,
+    "run": 43725658991,
     "event": "schedule",
-    "createdAt": "2026-11-14T14:04:07Z",
-    "acquisition": "partial",
-    "recording": "refused: acquisition/validation guards changed concurrently",
-    "publication": "not attempted",
-    "remainingFailure": "Required recollection from the new master; refusal retained, not an exception to remove",
+    "createdAt": "2026-11-15T14:40:44Z",
+    "acquisition": "partial: explicit individual source results",
+    "recording": "succeeded",
+    "publication": "succeeded; acquisition refresh and deploy both green, intentional report-failures records source partial failures",
+    "remainingFailure": "Individual source failures retained; later ordinary push 43762995148 gives pilot42/42 success, post#1339 scheduled passage still to observe",
     "postCurrentCorrectionCron": false,
-    "nextNominalUTC": "2026-11-16T07:10:00Z"
+    "nextNominalUTC": "2026-11-16T07:10:00Z",
+    "previousObservedSchedule": {
+      "producer": "ETF",
+      "run": 43602910189,
+      "event": "schedule",
+      "createdAt": "2026-11-14T14:04:07Z",
+      "acquisition": "partial",
+      "recording": "refused: acquisition/validation guards changed concurrently",
+      "publication": "not attempted",
+      "remainingFailure": "Required recollection from the new master; refusal retained, not an exception to remove",
+      "postCurrentCorrectionCron": false,
+      "nextNominalUTC": "2026-11-16T07:10:00Z"
+    },
+    "proof": "GitHub run43725658991 jobs and receipt14166452208"
   },
   {
     "producer": "exposure-expansion",
@@ -36,22 +63,44 @@
   },
   {
     "producer": "13F",
-    "run": 43640873655,
-    "event": "workflow_dispatch",
-    "createdAt": "2026-11-14T21:04:49Z",
-    "acquisition": "28 validated manager results",
-    "recording": "succeeded",
-    "publication": "28/28 served files equal recorded dataSha; four updated portfolios tested in browser",
-    "postCurrentCorrectionCron": false,
-    "nextNominalUTC": "2026-11-16T12:25:00Z; delayed 15 November schedule may still appear",
-    "lastObservedSchedule": {
-      "run": 43625726669,
-      "createdAt": "2026-11-14T18:17:02Z",
-      "result": "failed recording",
-      "exactCause": "Concurrent src/data/anniversary-levels.json changed; current guard already explicitly qualifies this exact independent path, preserving combined 13F audit",
-      "successAfterwards": "Manual recovery 43640873655, 28 public snapshots and four browser PNG proofs; not a scheduled success"
+    "run": 43749652575,
+    "event": "schedule",
+    "createdAt": "2026-11-15T18:57:27Z",
+    "acquisition": "28/28 expected, attempted and networkRequested identities; 28 unchanged-verified, zero issues",
+    "recording": "succeeded:cddbe48741b5f8f5110b7cd5f9c3e7e6d87ef744",
+    "publication": "review metadata and 28 unchanged manager snapshots verified publicly; see current-public-bytes-verified and public-13f-current/proof",
+    "qualification": "22 periods 2026-06-30; 6 periods 2026-09-30; no new filing or position date fabricated",
+    "postCurrentCorrectionCron": true,
+    "proof": "current-ordinary/13f/scheduled-results.json",
+    "nextNominalUTC": "2026-11-16T12:25:00Z",
+    "previousObservedState": {
+      "producer": "13F",
+      "run": 43640873655,
+      "event": "workflow_dispatch",
+      "createdAt": "2026-11-14T21:04:49Z",
+      "acquisition": "28 validated manager results",
+      "recording": "succeeded",
+      "publication": "28/28 served files equal recorded dataSha; four updated portfolios tested in browser",
+      "postCurrentCorrectionCron": false,
+      "nextNominalUTC": "2026-11-16T12:25:00Z; delayed 15 November schedule may still appear",
+      "lastObservedSchedule": {
+        "run": 43625726669,
+        "createdAt": "2026-11-14T18:17:02Z",
+        "result": "failed recording",
+        "exactCause": "Concurrent src/data/anniversary-levels.json changed; current guard already explicitly qualifies this exact independent path, preserving combined 13F audit",
+        "successAfterwards": "Manual recovery 43640873655, 28 public snapshots and four browser PNG proofs; not a scheduled success"
+      },
+      "nominalDueNotObserved": "2026-11-15T12:25:00Z"
     },
-    "nominalDueNotObserved": "2026-11-15T12:25:00Z"
+    "postRecordingCorrectionCron": true,
+    "postSECEnrichmentCron": false,
+    "scopeNote": "Scheduled success ran code 2f2fc40a before #1330. Later manual run 43761337182 on the SEC-enriched collector:25 verified,3 valuation conflicts. Prior scheduled success remains dated; it is not certification of the newer collector.",
+    "latestAttemptRun": 43761337182,
+    "latestAttemptEvent": "workflow_dispatch",
+    "latestAttemptResults": {
+      "unchanged-verified": 25,
+      "failed": 3
+    }
   },
   {
     "producer": "LifeStrategy",
@@ -66,5 +115,56 @@
     "postCurrentCorrectionCron": true,
     "proof": "lifestrategy-cron/recorded-scope.json",
     "overallWorkflowResult": "failure: two derived look-through dates incompatible; successful parent/underlier observations recorded and published"
+  },
+  {
+    "producer": "index-sheets",
+    "run": 43723416254,
+    "event": "schedule",
+    "createdAt": "2026-11-15T14:16:06Z",
+    "acquisition": "14 exact scoped index factsheets source controlled; additional consolidation qualifications are not new acquisitions",
+    "recording": "a596304e41b641c94e55b078ecd58314b64147e4",
+    "publication": "3/3 receipt hashes match public manifest, 14 consumer PNGs and desktop/mobile layouts verified",
+    "postCurrentCorrectionCron": true,
+    "proof": "index-cron-43723416254/publication-proof.json",
+    "scopeLimit": "Not an automatic certification of complete index books or every required exposure field"
+  },
+  {
+    "producer": "publication",
+    "run": 43727084478,
+    "event": "schedule",
+    "createdAt": "2026-11-15T14:56:35Z",
+    "recording": "failed at Commit validated observations",
+    "publication": "not proved for this failed run",
+    "postCurrentCorrectionCron": false,
+    "laterOrdinaryPush": "43738533282 / da10dcbd",
+    "laterPublicData": "66 receipt paths verified by current-public-bytes-verified.json",
+    "nextNominalUTC": "2026-11-16T07:40:00Z",
+    "scopeNote": "Failure of the old run is retained; later push recording/publication is separately proven."
+  },
+  {
+    "producer": "SCPI",
+    "run": 43726539441,
+    "event": "schedule",
+    "createdAt": "2026-11-15T14:50:28Z",
+    "recording": "failed at Commit validated observations",
+    "publication": "not proved for this failed run",
+    "postCurrentCorrectionCron": false,
+    "laterOrdinaryPush": "43736125319 / bcad3af1",
+    "laterPublicData": "66 receipt paths verified by current-public-bytes-verified.json",
+    "nextNominalUTC": "2026-11-16T07:20:00Z",
+    "scopeNote": "Failure of the old run is retained; later push recording/publication is separately proven."
+  },
+  {
+    "producer": "qualified-exposures",
+    "run": 43727308310,
+    "event": "schedule",
+    "createdAt": "2026-11-15T14:59:12Z",
+    "acquisition": "partial; source individual outcomes preserved",
+    "recording": "succeeded:14d3621b",
+    "publication": "succeeded; later compatible observations now supersede this snapshot",
+    "postCurrentCorrectionCron": false,
+    "laterOrdinaryPush": "43762995213:50 active qualified;194/205 books; record d4c6df5c",
+    "nextNominalUTC": "2026-11-16T07:50:00Z",
+    "scopeNote": "Scheduled run preceded #1336/#1339. Later push success is not a postcorrective cron."
   }
 ]

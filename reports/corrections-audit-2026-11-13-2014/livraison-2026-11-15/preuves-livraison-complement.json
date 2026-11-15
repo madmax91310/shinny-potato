@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-11-15T23:44:48.417698+00:00",
+  "build": {
+    "sha": "fdf1b581402f909f04d1e4f6bfe98126742b0c20",
+    "dataSha": "eb865db0b760ed5b47fdfd003bf51df60e92a14c",
+    "lane": "validated-data",
+    "builtAt": "2026-11-15T23:32:31.013Z"
+  },
+  "codeValidationRun": 43769258996,
+  "pullRequests": [
+    1299,
+    1303,
+    1307,
+    1312,
+    1313,
+    1315,
+    1317,
+    1319,
+    1320,
+    1325,
+    1328,
+    1329,
+    1331,
+    1332,
+    1333,
+    1334,
+    1335,
+    1336,
+    1338,
+    1339,
+    1340
+  ],
+  "publicExport": {
+    "generatedAt": "2026-11-15T23:42:00.592Z",
+    "monitorCheckedAt": "2026-11-15T23:34:56.109281+00:00",
+    "source": "Actual complete public browser export, new clean browser context; includes editorial calendar and normal waiting states",
+    "counts": {
+      "failure": 61,
+      "connection": 254,
+      "monitoring": 455,
+      "qualification": 2662,
+      "due": 30,
+      "editorial": 28,
+      "archive": 3980,
+      "waiting": 809,
+      "not-applicable": 1637,
+      "history": 1301
+    },
+    "points": 11217,
+    "signals": 15205,
+    "denominators": {
+      "fields": 4598,
+      "workflows": 25,
+      "requiredConsumerContracts": 30319
+    },
+    "preliminaryReadOnlyLimitation": "Initial reducer-only snapshot omitted review calendar, explicitly noted in its audit-summary. Initial identities and matrix rows are retained; added review points are not new financial failures."
+  },
+  "denominators": {
+    "generatedAt": "2026-11-15T23:43:25.408617+00:00",
+    "monitorAt": "2026-11-15T23:34:56.109281+00:00",
+    "initialIdentities": 1218,
+    "identityStates": {
+      "résolution enregistrée dans le moniteur ; preuve jointe": 19,
+      "qualification documentaire": 69,
+      "incident actif dans la boîte publique": 3,
+      "preuve de supervision": 25,
+      "trace publique historique, attente ou non applicable ; aucune panne active déduite": 1102
+    },
+    "currentDiagnostics": 11217,
+    "currentKinds": {
+      "failure": 61,
+      "connection": 254,
+      "monitoring": 455,
+      "qualification": 2662,
+      "due": 30,
+      "editorial": 28,
+      "archive": 3980,
+      "waiting": 809,
+      "not-applicable": 1637,
+      "history": 1301
+    },
+    "initialDataUsageRowsPreserved": 35259,
+    "newDataUsageRows": 12,
+    "currentInventoryConsumerRows": 34048,
+    "initialPairsOutsideCurrentConsumerProjection": 1223,
+    "currentRequiredConsumerContracts": 30319,
+    "dataUsageRows": 35271,
+    "uniqueDataIds": 10530,
+    "newProofGroups": 15,
+    "limitation": "Aucune assimilation des couples donnée/usage à des champs financièrement certifiés. Absence du moniteur ≠ réparation. Preuves de source, stockage, publication et cron distinctes."
+  },
+  "publicReceiptVerification": "preuves/current-public-bytes-verified.json"
+}

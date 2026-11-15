@@ -1,0 +1,46 @@
+{
+  "comparison": {
+    "investisseur": "druckenmiller",
+    "periode": "2026-06-30",
+    "SEC_somme_brute": 5210856,
+    "SEC_total_couverture": "5210860",
+    "SEC_nombre_lignes": 95,
+    "unite_explicitement_affichee": "to the nearest dollar",
+    "fournisseur_total_USD": 5210856000,
+    "ecart_USD": 5205645144,
+    "ratio_fournisseur_SEC": 1000.0,
+    "source_SEC": "https://www.sec.gov/Archives/edgar/data/1536411/000153641126000006/xslForm13F_X02/form13f_20260630.xml",
+    "source_fournisseur": "https://foliofact.com/api/v1/funds/duquesne-family-office",
+    "preuve_SEC_sha256": "e6cfed6dd6fe269e65c1608510701488737ff4285c87ae32a60c7089113571bf",
+    "statut": "Conflit financier : dernières positions conservées ; PNG financier non autorisé par la qualification actuelle",
+    "piece_manquante": "Confirmation/correction officielle des montants ou de leur unité ; facteur 1000 non appliqué malgré la coïncidence numérique",
+    "controle_effectue": "2026-11-15T21:36:28.586339+00:00"
+  },
+  "documents": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1536411/000153641126000006/index.json",
+      "file": "eded57f4a14274c2999b0b1565d09005a65199d8f1bbbdd0e5d01db32e7120ac.json",
+      "sha256": "538a6e06c7ff0a1504b8eaccd344b8c634f8df6c5fdc7eb4d73241073de6e279"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1536411/000153641126000006/form13f_20260630.xml",
+      "file": "69a3b14b364e9cd30dec847533d82407d65d86f877f00aa7f7bc63336c529558.xml",
+      "sha256": "35901ddfac3b14fec984d3bd0fc8d307d3216b005b03dfad0536dcfc55b7c592"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1536411/000153641126000006/primary_doc.xml",
+      "file": "cbef09d0f11a9048357c8ad5c992f0ae7c59d597b432f08bb1ae0f87d2ae5e13.xml",
+      "sha256": "8b36208d25571f1ae61e22999c11c2242557410c9b8b6a7046c676c211b62d0c"
+    }
+  ],
+  "officialRenderedUnit": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1536411/000153641126000006/xslForm13F_X02/form13f_20260630.xml",
+    "sha256": "e6cfed6dd6fe269e65c1608510701488737ff4285c87ae32a60c7089113571bf",
+    "unitText": [
+      "VALUE",
+      "(to the nearest dollar)"
+    ],
+    "checkedAt": "2026-11-15T21:26:24.152825+00:00"
+  },
+  "limitation": "No scalar conversion, no source substitution, no production update. Earlier probe sentinel totals were not financial observations and are not used in this comparison."
+}

@@ -1,6 +1,6 @@
 # Limites conservées — chantier consolidé #881
 
-Ces limites ne sont pas des données réparées. Les sources, conventions et dates conservées restent visibles. Aucun ajustement ni seuil n’a été modifié pour les masquer.
+Relevé 2026-11-15T23:44:48.417698+00:00. Code public `fdf1b581402f909f04d1e4f6bfe98126742b0c20`, données `eb865db0b760ed5b47fdfd003bf51df60e92a14c`, voie `validated-data`. Suivi unique [#881](https://github.com/madmax91310/shinny-potato/issues/881). Les preuves antérieures restent datées ; ce complément ne les réécrit pas.
 
 ## Historiques
 
@@ -34,3 +34,13 @@ Linxea Vie : conditions et historique officiel des rendements exacts encore inco
 ## Observations futures
 
 Une exécution sur push ou une reprise manuelle ne prouve pas un cron. Les passages planifiés postcorrectifs non observés restent à vérifier. L’acquisition des dernières bornes de décembre 2026 et la publication des performances annuelles 2026 nécessitent janvier 2027 ; les tests isolés de changement d’année ne constituent pas cette preuve.
+
+## Limites opérationnelles du complément
+
+Les anciennes erreurs iShares restent tracées individuellement ; les nouvelles acquisitions GitHub qualifiées remplacent leur statut courant seulement pour les champs contrôlés. Le cron 13F du 15 novembre est désormais prouvé, avec 28 contrôles sans nouvelle déclaration. Les crons mensuel et ETF postcorrectifs restent à observer aux échéances jointes. Les livres complets comportent encore 11 refus individuels, qui ne sont pas effacés par les 194 réussites. Les anciennes divergences financières ne sont pas clôturées par une autre voie utilisable. Les futurs relevés de janvier 2027 restent nécessaires.
+
+## Conflits 13F apparus après l’enrichissement SEC
+
+Druckenmiller : table SEC 5 210 856, fournisseur 5 210 856 000 USD. Klarman : table SEC 5 045 853, fournisseur 5 045 853 000 USD. Les deux tables SEC transformées indiquent explicitement « VALUE (to the nearest dollar) » : aucune multiplication automatique par 1 000 justifiée. Fundsmith : SEC 13 648 923 682 USD/41 lignes, fournisseur 18 167 841 425 USD/42 lignes positives sans CUSIP ; périmètre et rapprochement exact à confirmer. Pièces requises : correction ou explication officielle des unités des deux premières déclarations ; positions identifiables et périmètre comparable pour Fundsmith. Voir `conflits-13f-actuels.csv` et preuves par document. Les dernières positions datées restent conservées ; trois exports monétaires refusés.
+
+La reprise indépendante iShares #1339 est testée avec une réponse officielle et des scénarios isolés ; les derniers passages ordinaires ont réussi sur leur réponse primaire. Ils ne prouvent donc pas le déclenchement conditionnel de cette nouvelle branche en production. Les crons post#1336/#1339 et le cron du collecteur SEC enrichi restent distinctement attendus.

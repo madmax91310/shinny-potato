@@ -1,0 +1,46 @@
+{
+  "comparison": {
+    "investisseur": "klarman",
+    "periode": "2026-09-30",
+    "SEC_somme_brute": 5045853,
+    "SEC_total_couverture": "5045853",
+    "SEC_nombre_lignes": 21,
+    "unite_explicitement_affichee": "to the nearest dollar",
+    "fournisseur_total_USD": 5045853000,
+    "ecart_USD": 5040807147,
+    "ratio_fournisseur_SEC": 1000.0,
+    "source_SEC": "https://www.sec.gov/Archives/edgar/data/1061768/000106176826000015/xslForm13F_X02/baupost13fq32026.xml",
+    "source_fournisseur": "https://foliofact.com/api/v1/funds/baupost-group",
+    "preuve_SEC_sha256": "62df149a2cd0cbbfd25e901c1cbe24c29de057ce0528b1f5e5f7ee1ec12b2bd4",
+    "statut": "Conflit financier : dernières positions conservées ; PNG financier non autorisé par la qualification actuelle",
+    "piece_manquante": "Confirmation/correction officielle des montants ou de leur unité ; facteur 1000 non appliqué malgré la coïncidence numérique",
+    "controle_effectue": "2026-11-15T21:36:28.586730+00:00"
+  },
+  "documents": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1061768/000106176826000015/index.json",
+      "file": "324d600598342d51801d7e76902a49bc62c4358cd3408c0d6d1142dc19fb4ed4.json",
+      "sha256": "dc19512417ec1edd147e33c99a0510bd67659680f4ad3bad4d30d59f9b6293ce"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1061768/000106176826000015/baupost13fq32026.xml",
+      "file": "6a18595b8d8f637fa4f96a36c8036e2759a77c93bae627456b82b16732d5201f.xml",
+      "sha256": "1c06cb3a1bef6c9083d09284e3a3931ca653e43ff00f936025d83e05a25a1c9b"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1061768/000106176826000015/primary_doc.xml",
+      "file": "94d05d5924e3020dfc1ab6dcea67c4ac6184936704619352d24fb37339e24b8d.xml",
+      "sha256": "3a151899bd963ebc1e71580bfac106bc74d51ae852d20507335626fad4906c2d"
+    }
+  ],
+  "officialRenderedUnit": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1061768/000106176826000015/xslForm13F_X02/baupost13fq32026.xml",
+    "sha256": "62df149a2cd0cbbfd25e901c1cbe24c29de057ce0528b1f5e5f7ee1ec12b2bd4",
+    "unitText": [
+      "VALUE",
+      "(to the nearest dollar)"
+    ],
+    "checkedAt": "2026-11-15T21:26:25.650097+00:00"
+  },
+  "limitation": "No scalar conversion, no source substitution, no production update. Earlier probe sentinel totals were not financial observations and are not used in this comparison."
+}

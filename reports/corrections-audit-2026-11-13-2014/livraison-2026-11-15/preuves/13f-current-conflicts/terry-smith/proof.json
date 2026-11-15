@@ -1,0 +1,46 @@
+{
+  "comparison": {
+    "investisseur": "terry-smith",
+    "periode": "2026-06-30",
+    "SEC_somme_brute": 13648923682,
+    "SEC_total_couverture": "13648923682",
+    "SEC_nombre_lignes": 41,
+    "unite_explicitement_affichee": "to the nearest dollar",
+    "fournisseur_total_USD": 18167841425,
+    "ecart_USD": 4518917743,
+    "ratio_fournisseur_SEC": 1.3310823511277656,
+    "source_SEC": "https://www.sec.gov/Archives/edgar/data/1569205/000156920526000012/xslForm13F_X02/FLLPq22026.xml",
+    "source_fournisseur": "https://foliofact.com/api/v1/funds/fundsmith",
+    "preuve_SEC_sha256": "691c203ea5f49231125eeae81aa8067a7b25d6f658f06a16c2641892261a2dda",
+    "statut": "Conflit financier : dernières positions conservées ; PNG financier non autorisé par la qualification actuelle",
+    "piece_manquante": "Périmètre et identités du fournisseur permettant le rapprochement avec les 41 lignes SEC ; 42 lignes positives sans CUSIP fournis",
+    "controle_effectue": "2026-11-15T21:36:28.586895+00:00"
+  },
+  "documents": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1569205/000156920526000012/index.json",
+      "file": "0fcdc377a270bde10bd094b6a99431fbd24b89096805927b8b24ee4125ceb6e2.json",
+      "sha256": "73df58ef79559700a4b6e87627547ddac97420ca1a2118494b997c77d6e55b3e"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1569205/000156920526000012/FLLPq22026.xml",
+      "file": "3a49e7af4b3648e995cbbc6176025c4dd2c914ba9be3e33be9e5e89f5d100123.xml",
+      "sha256": "c5c2faf4fccf1d7806e8e96c28ab858a4d826ed9d7a2bb85184dcefb7f2213b8"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1569205/000156920526000012/primary_doc.xml",
+      "file": "907698006f629a2867fbeb7423cadda6b30acab352cca4e4a1381b926b80c216.xml",
+      "sha256": "cae1a196503281d5373aa83448ea6c9f9bf312491cad6d05e15844c80da166c3"
+    }
+  ],
+  "officialRenderedUnit": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1569205/000156920526000012/xslForm13F_X02/FLLPq22026.xml",
+    "sha256": "691c203ea5f49231125eeae81aa8067a7b25d6f658f06a16c2641892261a2dda",
+    "unitText": [
+      "VALUE",
+      "(to the nearest dollar)"
+    ],
+    "checkedAt": "2026-11-15T21:26:28.174189+00:00"
+  },
+  "limitation": "No scalar conversion, no source substitution, no production update. Earlier probe sentinel totals were not financial observations and are not used in this comparison."
+}

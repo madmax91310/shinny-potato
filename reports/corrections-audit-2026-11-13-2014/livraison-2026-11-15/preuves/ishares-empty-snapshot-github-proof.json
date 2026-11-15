@@ -1,0 +1,147 @@
+{
+  "run": 43736125412,
+  "artifact": 14173133367,
+  "artifactSha256": "2acc7af5ea48b01abf4dc099e838ab1a67858863b89f8d30792e0087dd50cb76",
+  "rows": [
+    {
+      "isin": "IE000I8KRLL9",
+      "productId": 319084,
+      "currency": "USD",
+      "sourceError": [
+        {
+          "field": "holdings",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "reason": "time data 'None' does not match format '%Y%m%d'"
+        }
+      ],
+      "sourceSnapshotDate": {
+        "name": "asOfDate",
+        "visible": false,
+        "active": false,
+        "asOf": false,
+        "hideNullData": false,
+        "mobileEnabled": false,
+        "sortOrder": null,
+        "asOfDate": null,
+        "formattedAsOfDate": null,
+        "formattedValue": "-",
+        "label": "",
+        "asOfLabel": "",
+        "infoBubble": "",
+        "prefix": null,
+        "value": null,
+        "returnType": false,
+        "associatedReturnType": false,
+        "fullName": "holdings.asOfDate"
+      },
+      "hasData": true,
+      "positionsValueType": "NoneType",
+      "scope": "Original GitHub observation, no date substituted"
+    },
+    {
+      "isin": "IE00B8FHGS14",
+      "productId": 251382,
+      "currency": "USD",
+      "sourceError": [
+        {
+          "field": "holdings",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "reason": "time data 'None' does not match format '%Y%m%d'"
+        }
+      ],
+      "sourceSnapshotDate": {
+        "name": "asOfDate",
+        "visible": false,
+        "active": false,
+        "asOf": false,
+        "hideNullData": false,
+        "mobileEnabled": false,
+        "sortOrder": null,
+        "asOfDate": null,
+        "formattedAsOfDate": null,
+        "formattedValue": "-",
+        "label": "",
+        "asOfLabel": "",
+        "infoBubble": "",
+        "prefix": null,
+        "value": null,
+        "returnType": false,
+        "associatedReturnType": false,
+        "fullName": "holdings.asOfDate"
+      },
+      "hasData": true,
+      "positionsValueType": "NoneType",
+      "scope": "Original GitHub observation, no date substituted"
+    },
+    {
+      "isin": "IE00BJ5JNY98",
+      "productId": 308858,
+      "currency": "USD",
+      "sourceError": [
+        {
+          "field": "holdings",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "reason": "time data 'None' does not match format '%Y%m%d'"
+        }
+      ],
+      "sourceSnapshotDate": {
+        "name": "asOfDate",
+        "visible": false,
+        "active": false,
+        "asOf": false,
+        "hideNullData": false,
+        "mobileEnabled": false,
+        "sortOrder": null,
+        "asOfDate": null,
+        "formattedAsOfDate": null,
+        "formattedValue": "-",
+        "label": "",
+        "asOfLabel": "",
+        "infoBubble": "",
+        "prefix": null,
+        "value": null,
+        "returnType": false,
+        "associatedReturnType": false,
+        "fullName": "holdings.asOfDate"
+      },
+      "hasData": true,
+      "positionsValueType": "NoneType",
+      "scope": "Original GitHub observation, no date substituted"
+    },
+    {
+      "isin": "IE00BYZK4776",
+      "productId": 284216,
+      "currency": "USD",
+      "sourceError": [
+        {
+          "field": "holdings",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "reason": "time data 'None' does not match format '%Y%m%d'"
+        }
+      ],
+      "sourceSnapshotDate": {
+        "name": "asOfDate",
+        "visible": false,
+        "active": false,
+        "asOf": false,
+        "hideNullData": false,
+        "mobileEnabled": false,
+        "sortOrder": null,
+        "asOfDate": null,
+        "formattedAsOfDate": null,
+        "formattedValue": "-",
+        "label": "",
+        "asOfLabel": "",
+        "infoBubble": "",
+        "prefix": null,
+        "value": null,
+        "returnType": false,
+        "associatedReturnType": false,
+        "fullName": "holdings.asOfDate"
+      },
+      "hasData": true,
+      "positionsValueType": "NoneType",
+      "scope": "Original GitHub observation, no date substituted"
+    }
+  ]
+}

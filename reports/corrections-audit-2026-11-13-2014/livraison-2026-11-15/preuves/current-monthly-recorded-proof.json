@@ -1,0 +1,450 @@
+{
+  "checkedAt": "2026-11-15T18:49:06.471600+00:00",
+  "run": 43736125354,
+  "event": "push",
+  "commit": "dde6d66a0ea7ed2458bd6a057a584aacd88b2e65",
+  "recording": "success after recollecting from current master; no upstream inputs changed during this attempt",
+  "requestedMonthlyScope": {
+    "requestedIds": [
+      "etfDE000A27Z304"
+    ],
+    "expectedIds": [
+      "etfDE000A27Z304"
+    ],
+    "selection": "failed-or-missing"
+  },
+  "monthlyResults": [
+    {
+      "id": "etfDE000A27Z304",
+      "status": "failed",
+      "reason": "HTTP Error 400: Bad Request"
+    }
+  ],
+  "exactListingProofs": [
+    {
+      "isin": "FR0010524777",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "NRJ",
+          "mic": "XPAR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF"
+        },
+        {
+          "ticker": "NRJU",
+          "mic": "XLON",
+          "currency": "USD",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF"
+        }
+      ]
+    },
+    {
+      "isin": "JE00B1VS3770",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "PHAU",
+          "mic": "XLON",
+          "currency": "USD",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770"
+        },
+        {
+          "ticker": "VZLD",
+          "mic": "XETR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770"
+        }
+      ]
+    },
+    {
+      "isin": "GB00BJYDH287",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "BTCW",
+          "mic": "XLON",
+          "currency": "USD",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287"
+        },
+        {
+          "ticker": "WBTC",
+          "mic": "XPAR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287"
+        }
+      ]
+    },
+    {
+      "isin": "GB00BLD4ZM24",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "ETHE",
+          "mic": "XLON",
+          "currency": "USD",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/"
+        },
+        {
+          "ticker": "CETH",
+          "mic": "XETR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/"
+        }
+      ]
+    },
+    {
+      "isin": "FR0013416716",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "GOLD",
+          "mic": "XPAR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        },
+        {
+          "ticker": "GLDA",
+          "mic": "XETR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        },
+        {
+          "ticker": "GLDD",
+          "mic": "XLON",
+          "currency": "USD",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        }
+      ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "BTCE",
+          "mic": "XETR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
+        },
+        {
+          "ticker": "BTCE",
+          "mic": "XPAR",
+          "currency": "EUR",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B4556L06",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "IPDM",
+          "mic": "XLON",
+          "currency": "USD",
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y"
+        }
+      ]
+    },
+    {
+      "isin": "SE0021921269",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "SAAB B",
+          "mic": "XSTO",
+          "currency": "SEK",
+          "checkedAt": "2026-11-15T17:56:34.298863+00:00",
+          "sourceUrl": "https://api.nasdaq.com/api/nordic/screener/shares?category=MAIN_MARKET&tableonly=true&page=1&size=1000&segment=LARGE_CAP&segment=MID_CAP&segment=SPAC&segment=SMALL_CAP&lang=en"
+        }
+      ]
+    },
+    {
+      "isin": "US18915M1071",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "NET",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US98980G1022",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "ZS",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US19260Q1076",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "COIN",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US75734B1008",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "RDDT",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "NL0009805522",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "NBIS",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "KYG6683N1034",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "NU",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US36828A1016",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "GEV",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US7731211089",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "RKLB",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US8334451098",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "SNOW",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US23804L1035",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "DDOG",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US83406F1021",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "SOFI",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US21037T1097",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "CEG",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US00217D1000",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "ASTS",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "LU1778762911",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "SPOT",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US5949724083",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "MSTR",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US26603R1068",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "DUOL",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US92537N1081",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "VRT",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "CA13321L1085",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "CCJ",
+          "mic": "XNYS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:34.725356+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US58733R1023",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "MELI",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    },
+    {
+      "isin": "US7707001027",
+      "atLeastOneRecontrolledExactListingRecorded": true,
+      "matchingRecords": [
+        {
+          "ticker": "HOOD",
+          "mic": "XNAS",
+          "currency": "USD",
+          "checkedAt": "2026-11-15T17:56:35.054632+00:00",
+          "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+        }
+      ]
+    }
+  ],
+  "derivedIndexIds": [
+    "sp500-pea",
+    "bitcoin",
+    "ethereum"
+  ],
+  "rankingSourceAttempts": [],
+  "limitations": [
+    "28 listing identities are not 28 new monthly histories",
+    "The one selected old Xetra history still fails HTTP 400; retained qualified histories remain unchanged",
+    "Ranking FX cache is not a new source control",
+    "No scheduled-run proof inferred from ordinary push-triggered recovery; publication checked separately"
+  ]
+}
