@@ -1,6 +1,7 @@
+// This dated audit protects the original source-backed collection. The live bank, including new editorial characters, is checked by test-budget-profiles and test-budget-new-profiles.
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_REFERENCE_PROFILES as BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, budgetPublicPresentation, blankBudget, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
 import { budgetBeforePelCorrection } from './budget-audit-history.mjs'

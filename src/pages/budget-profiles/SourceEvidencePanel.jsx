@@ -8,6 +8,21 @@ export default function SourceEvidencePanel({ profile, onCopy }) {
   const creation = BUDGET_EDITORIAL_CREATIONS[profile.id]
   const before = analyzeBudget(original), after = analyzeBudget(profile)
   const amounts = value => euro(value, profile.currency)
+  if (profile.provenance?.nature === 'editorial-character') return <>
+    <details open><summary>Créations éditoriales et provenance</summary>
+      <p>Personnage éditorial, pas un témoignage reçu. Les compléments ne viennent pas de la personne source.</p>
+      <p>Revue du {dateLabel(profile.editorialReviewedAt)}.</p>
+      <pre className="budget-provenance">{JSON.stringify(profile.provenance, null, 2)}</pre>
+    </details>
+    <a href={profile.source.url} target="_blank" rel="noreferrer">Source d’inspiration : {profile.source.publisher} · {profile.source.title}</a>
+    <details><summary>Faits conservés de la source</summary>
+      <ul>{profile.provenance.sourceFacts.map((fact, i) => <li key={i}>{fact}</li>)}</ul>
+    </details>
+    <details><summary>Provenance du récit et des questions</summary>
+      <pre className="budget-provenance">{JSON.stringify(publicationContextFor(profile), null, 2)}</pre>
+    </details>
+    <Button variant="secondary" onClick={() => onCopy(sourceReply(profile))}>Copier la source pour une réponse</Button>
+  </>
   return <>
     {creation && <details open><summary>Créations éditoriales et provenance</summary>
       <p>Personnage éditorial, pas un témoignage reçu. Les créations ne viennent pas de la personne source.</p>
