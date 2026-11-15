@@ -636,3 +636,5 @@ Même lot : le producteur GitHub43617819119 rétablit WDEF mais révèle le mêm
 
 
 15 novembre — suite #881, branche `fix/annual-readiness-20261115`, master67f33ca7. PR concurrentes1294/1289 Budget et1253 S&P préservées. Ce premier correctif possède uniquement le calendrier du producteur or et sa régression : reprises espacées les14/18/22/26/30 après la fenêtre3–10 existante. Une publication de décembre retardée au-delà du10janvier ne doit pas attendre février. Aucun changement de source, de validation, de date, de valeur ou de publication ; succès ordinaire futur à observer, jamais déduit du test isolé.
+
+Même correctif : le producteur Bitcoin dédié n'avait aucune tentative après le8. Ajout des mêmes reprises espacées14/18/22/26/30, à son horaire06:40 et sous son verrou existant. Aucun remplacement de convention ni modification de l'observation ; la reprise manuelle/planifiée reste distinguée.

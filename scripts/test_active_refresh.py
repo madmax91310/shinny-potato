@@ -17,6 +17,20 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 class ActiveRefreshTests(unittest.TestCase):
+    def test_monthly_bitcoin_retries_provider_recovery_after_the_eighth(self):
+        import re
+        text = (ROOT / '.github/workflows/update-bitcoin-monthly.yml').read_text()
+        schedules = re.findall(r"cron: '([^']+)'", text)
+        days = set()
+        for schedule in schedules:
+            _, _, day, month, weekday = schedule.split()
+            self.assertEqual((month, weekday), ('*', '*'))
+            days.update(map(int, day.split(',')))
+        self.assertTrue({2, 4, 8}.issubset(days))
+        for first, last in [(11, 17), (18, 24), (25, 31)]:
+            self.assertTrue(any(first <= day <= last for day in days))
+        self.assertLessEqual(len(days), 8)
+
     def run_extension_report(self, report, merged):
         """Exercise the real CLI writes, summary and final failure gate offline."""
         with tempfile.TemporaryDirectory() as directory:
