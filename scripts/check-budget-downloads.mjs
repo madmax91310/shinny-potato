@@ -12,7 +12,7 @@ try {
  for(const width of [1440,390]){
   const context=await browser.newContext({viewport:{width,height:950},acceptDownloads:true})
   const page=await context.newPage();await page.goto(base+'/le-budget-de')
-  for(const profile of BUDGET_PROFILES)for(const mode of ['social','detailed','summary']){
+  for(const profile of BUDGET_PROFILES)for(const mode of ['overview','social','detailed','summary']){
    await page.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value="${profile.id}"]`).click()
    await page.getByRole('group',{name:'Version de l’image',exact:true}).locator(`[data-value="${mode}"]`).click()
    const region=page.getByRole('region',{name:'Image du budget',exact:true})
@@ -23,11 +23,11 @@ try {
     await expect(region).toHaveAttribute('aria-busy','false',{timeout:30000})
     const img=region.locator('img');await expect(img).toHaveAttribute('alt',new RegExp(`image ${index+1} sur ${count}`))
     await expect.poll(()=>img.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350])
-    const expected=await img.evaluate(async i=>[...new Uint8Array(await(await fetch(i.src)).arrayBuffer())])
+    const expected=await img.evaluate(async i=>{const blob=await(await fetch(i.src)).blob();return new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.readAsDataURL(blob)})})
     const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
     const download=await pending,bytes=await readFile(await download.path())
     const filename=`budget-${profile.id}-${mode}${count>1?`-${String(index+1).padStart(2,'0')}-sur-${String(count).padStart(2,'0')}`:''}.png`
-    assert.equal(download.suggestedFilename(),filename);assert.deepEqual(bytes,Buffer.from(expected));assert.deepEqual([bytes.readUInt32BE(16),bytes.readUInt32BE(20)],[1080,1350])
+    assert.equal(download.suggestedFilename(),filename);assert.deepEqual(bytes,Buffer.from(expected,'base64'));assert.deepEqual([bytes.readUInt32BE(16),bytes.readUInt32BE(20)],[1080,1350])
     results.push({width,id:profile.id,mode,page:index+1,count,filename,bytes:bytes.length})
    }
   }

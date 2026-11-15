@@ -1,6 +1,6 @@
 # Chantier 3 — images « Le budget de… »
 
-Audit du 15 novembre 2026, depuis master `fe0d2bd`, après intégration de la sauvegarde DCA #1316. Les PR #1289 et #1306 sont fusionnées. #1318 reste ouverte lors de cette recette ; sa synthèse autonome n’est pas nécessaire à la conservation intégrale demandée ici. Sa correction du message d’erreur est reprise.
+Audit du 15 novembre 2026, depuis master `fe0d2bd`, après intégration de la sauvegarde DCA #1316. Les PR #1289 et #1306 sont fusionnées. #1318 a été fusionnée pendant la recette : son image principale et sa gestion d’erreur sont conservées. Le détail X et les deux autres versions détaillées restent intégralement paginés. #1317 est également reprise depuis master pour la correction du cache BCE dans la projection navigateur.
 
 ## Défauts reproduits et correction
 
@@ -14,14 +14,16 @@ Les encadrés structurés omettaient des informations présentes dans le context
 
 - Tests Budget : tous les profils actifs, calculs indépendants, immutabilité, sauvegardes et statuts ; réussis.
 - Compilation complète, budgets des routes et manifeste des 47 fichiers publics : réussis. Lint : aucune erreur, avertissements existants.
-- Rendu Chromium avec polices réelles : **914 PNG**, soit **310 X + 312 détaillés + 292 synthétiques**, pour les **77 profils** dans les trois modes. Chaque PNG vérifié à **1080 × 1350**, chaque glyphe dans les bornes, aucun chevauchement ; chaque poste et montant conservé et chaque caractère du contexte conservé sur sa série.
-- `png-inventory.json` : dimensions et SHA-256 des 914 fichiers réellement encodés, contrôlés par Pillow après génération.
-- Inspection visuelle réelle : les 310 pages X à 390 px, puis les 121 compositions différentes des autres modes ; les autres pages reprennent les mêmes dispositions de texte, vérifiées automatiquement. Émilie : 11 dépenses, 500 € de versements, 65 € de reste, réserve de 5 000 € et apport de 2 000 € vers 20 000 € conservés.
+- Rendu Chromium avec polices réelles : **991 PNG**, soit **77 images principales + 310 X + 312 détaillés + 292 synthétiques**, pour les **77 profils** dans les trois modes. Chaque PNG vérifié à **1080 × 1350**, chaque glyphe dans les bornes, aucun chevauchement ; chaque poste et montant conservé et chaque caractère du contexte conservé sur sa série.
+- `png-inventory.json` : dimensions et SHA-256 des 991 fichiers réellement encodés, contrôlés par Pillow après génération.
+- Inspection visuelle réelle : les 310 pages X et les 77 images principales à 390 px, puis les 121 compositions différentes des autres modes ; les autres pages reprennent les mêmes dispositions de texte, vérifiées automatiquement. Émilie : 11 dépenses, 500 € de versements, 65 € de reste, réserve de 5 000 € et apport de 2 000 € vers 20 000 € conservés.
 - Cas restauré CHF de 72 lignes : 11 pages, chaque montant une fois, dernière page disponible sans encodage des pages intermédiaires, modification et texte personnalisé conservé.
 - Parcours abonnés : création, modification, sauvegarde, reprise, statuts, export et restauration, à 1440/390/320 px ; réussi.
-- Parcours fonctionnel à 390 px : filtres, copie, brouillons, invalidation des exports et montants maximaux ; réussi.
+- Parcours fonctionnel des 77 profils à 390 px : filtres, copie, brouillons, invalidation des exports et montants maximaux ; réussi.
 
-Reproduction : `npm run test:budget`, `npm run build`, `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-budget-social-image.mjs`. Ce dernier conserve PNG natifs, captures à 390 px, mesures et rapport dans `test-artifacts/budget-social-0/`. `scripts/check-budget-downloads.mjs`, avec `BUDGET_PUBLIC_BASE`, contrôle chaque page téléchargée des trois modes pour tous les profils à 1440 et 390 px : dimensions IHDR, octets identiques à l’aperçu, noms numérotés et ordre.
+Reproduction : `npm run test:budget`, `npm run build`, `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-budget-social-image.mjs`. Ce dernier conserve PNG natifs, captures à 390 px, mesures et rapport dans `test-artifacts/budget-social-0/`. `scripts/check-budget-downloads.mjs`, avec `BUDGET_PUBLIC_BASE`, contrôle chaque page téléchargée des quatre modes pour tous les profils à 1440 et 390 px : dimensions IHDR, octets identiques à l’aperçu, noms numérotés et ordre.
+
+Téléchargements locaux : les **1 828 téléchargements** des 914 pages détaillées à 1440/390 px ont réussi, dimensions IHDR et octets strictement identiques aux aperçus, noms et ordre vérifiés. Les images principales sont contrôlées séparément par `check-budget-overview.mjs`, y compris panne d’encodage et réessai.
 
 ## Limites et suivi
 
