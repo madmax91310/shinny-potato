@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { parisToday, validPublicationDate, publicationLabel } from '../src/pages/budget-profiles/publication.js'
+import { localToday, validPublicationDate, publicationLabel } from '../src/pages/budget-profiles/publication.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, budgetImageExpenses, matchesBudgetFilters, compareBudgetRecency, refreshBudgetDraft, buildBudgetText, budgetHeading } from '../src/pages/budget-profiles/lib.js'
@@ -8,9 +8,12 @@ const memory = new Map(), previous = globalThis.localStorage
 const storage = { get length() { return memory.size }, key: i => [...memory.keys()][i], getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value) }
 globalThis.localStorage = storage
 try {
-  assert.equal(parisToday(new Date('2026-07-01T22:30:00Z')), '2026-07-02')
-  assert.equal(parisToday(new Date('2026-01-01T22:30:00Z')), '2026-01-01')
-  assert.equal(parisToday(new Date('2026-01-01T23:30:00Z')), '2026-01-02')
+  const originalTZ=process.env.TZ
+  try {
+    for(const [tz,expected] of [['Pacific/Honolulu','2026-07-01'],['Pacific/Kiritimati','2026-07-02'],['Europe/Paris','2026-07-02']]) {
+      process.env.TZ=tz;assert.equal(localToday(new Date('2026-07-01T22:30:00Z')),expected)
+    }
+  } finally { if(originalTZ===undefined)delete process.env.TZ;else process.env.TZ=originalTZ }
   assert(validPublicationDate('2024-02-29')); assert(!validPublicationDate('2026-02-29')); assert(!validPublicationDate('2026-13-01'))
   assert.equal(publicationLabel(null), 'Publié — date non renseignée')
   const p = BUDGET_PROFILES[0], q = BUDGET_PROFILES[1], custom = { profile: p, text: 'Mes paragraphes\n\nà conserver € CHF', edited: true }

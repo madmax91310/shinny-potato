@@ -4,8 +4,18 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { ASSET_ORDER } from '../src/data/market-history.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
-import { performanceLayout } from '../src/pages/tweet-midi/performanceImage.js'
+import { performanceLayout, cumulativePerformance } from '../src/pages/tweet-midi/performanceImage.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
+import performanceEngine from '../src/pages/tweet-midi/engines/performance.js'
+import { formatPerformancePct } from '../src/pages/tweet-midi/performanceFormat.js'
+for (const pct of [35.75,-35.75,0.05,-0.05,0.005,-0.005,0]) assert.equal(cumulativePerformance([{pct}]),pct)
+const oneYearAsset='annual-FR0013412004'
+const oneYear=performanceEngine.getSecondaryOptionsForFormat('performance-depuis','simple',oneYearAsset).at(-1)
+const oneYearItem={assetId:oneYearAsset,year:oneYear}
+const oneYearRows=performanceEngine.getPerformanceEntries(oneYearItem)[0].returns
+assert.equal(oneYearRows.length,1)
+assert(performanceEngine.buildPerformanceDepuisText(oneYearItem).endsWith('Sur toute la période : '+formatPerformancePct(oneYearRows[0].pct)))
+assert.equal(formatPerformancePct(cumulativePerformance([{pct:10},{pct:-10}])),'−1,0 %')
 // The cobalt export is drawn with canvas primitives; it requires no background image.
 for (let count = 1; count <= 40; count++) {
   const layout = performanceLayout(count)
@@ -118,6 +128,7 @@ try {
         if (!rejected) throw new Error('Mixed net/gross comparison must be rejected')
       }
       for (const item of [
+        ...MARKET_ASSETS.filter(a=>commonYear(a.id,'bitcoin')).sort((a,b)=>b.label.length-a.label.length).slice(0,12).map(a=>({mode:'comparatif',assetIdA:a.id,assetIdB:'bitcoin',year:commonYear(a.id,'bitcoin')})),
         ...[1,2,3,4,5,6,7,8,9,10].filter(count => count <= worldYears.length).map(count => ({mode:'simple',assetId:'msciWorld',year:worldYears.at(-count)})),
         ...(longId ? [{mode:'simple',assetId:longId,year:getAnnualReturnStartYears(longId)[0]}] : []),
         ...['EUR','USD'].map(currency => ({mode:'simple',assetId:'msciWorld',year:sampleYear,currency})),
