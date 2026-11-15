@@ -657,6 +657,19 @@ else:
             with self.subTest(path=path):
                 self.assert_refused(path, 'scpi')
 
+    def test_scpi_economic_registry_race_preserves_newer_values(self):
+        path = 'src/data/automated-economic.json'
+        self.f.advance_remote(path)
+        result = self.publish('scpi')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:'+path), 'concurrent update')
+
+    def test_scpi_economic_race_still_requires_validation(self):
+        self.assert_refused('src/data/automated-economic.json', 'scpi', validation='false')
+
+    def test_scpi_economic_acquisition_is_independent(self):
+        self.python_graph(['collect_scpi.py'], ['src/data/automated-economic.json'])
+
     def test_publication_active_inflation_and_inputs_remain_protected(self):
         self.assert_refused('src/data/inflation-monthly.js','publication')
 
