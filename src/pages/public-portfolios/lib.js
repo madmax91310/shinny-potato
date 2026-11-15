@@ -230,13 +230,14 @@ export function publication(p, s, d, date, url) {
     !validDate(date) ||
     date > today() ||
     issues(p, s).length ||
+    d.snapshotId !== s.id ||
     !d.text.trim() ||
     /undefined|\{[^}]+\}/.test(d.text) ||
     !Number.isInteger(Number(d.episode)) ||
     Number(d.episode) < 1 ||
     Number(d.episode) > 999999
   )
-    throw new Error("Texte ou numéro d’épisode invalide");
+    throw new Error("Relevé, texte ou numéro d’épisode invalide");
   return structuredClone({
     id: id(),
     date,

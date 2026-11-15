@@ -67,7 +67,7 @@ assert(issues(virtual, s).length);
 const published = publication(
   p,
   s,
-  { episode: 2, text: buildText(p, s, 2) },
+  { episode: 2, text: buildText(p, s, 2), snapshotId:s.id },
   "2026-11-15",
   "",
 );
@@ -123,3 +123,5 @@ assert.notEqual(
   canonicalUrl("https://example.com/?portfolio=a"),
   canonicalUrl("https://example.com/?portfolio=b"),
 );
+
+assert.throws(()=>publication(p,s,{episode:2,text:"Texte final",snapshotId:"another-snapshot"},"2026-11-15",""),/Relevé/);

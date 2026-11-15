@@ -211,12 +211,12 @@ export default function App() {
   function open(next) {
     setP(structuredClone(next));
     setS(null);
-    setSelected(next.snapshots.at(-1)?.id || "");
+    setSelected(next.draft?.snapshotId || next.snapshots.at(-1)?.id || "");
     setHistory(null);
   }
   const snap = p?.snapshots.find((x) => x.id === selected),
     errors = p ? issues(p, snap) : [],
-    draft = p?.draft;
+    draft = p?.draft?.snapshotId === snap?.id ? p?.draft : null;
   function prepare() {
     try {
       const episode = draft?.episode || 1;

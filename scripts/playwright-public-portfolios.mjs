@@ -61,7 +61,10 @@ s.positions = Array.from({ length: 10 }, (_, i) => ({
   name: `Placement fictif ${i + 1} avec un nom suffisamment long pour tester sa lisibilité et le passage sur plusieurs lignes`,
   weight: 10,
 }));
-p.snapshots = [s];
+const newer = structuredClone(s);
+newer.id = crypto.randomUUID();
+newer.month.value = 9;
+p.snapshots = [s, newer];
 await page.evaluate(
   (p) =>
     localStorage.setItem(
@@ -72,9 +75,14 @@ await page.evaluate(
 );
 await page.reload();
 await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
+await page.getByLabel("Relevé à préparer").selectOption(s.id);
 await page
   .getByRole("button", { name: "Préparer / régénérer le tweet" })
   .click();
+await page.getByRole("button", { name: "Sauvegarder le brouillon" }).click();
+await page.reload();
+await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
+assert.equal(await page.getByLabel("Relevé à préparer").inputValue(), s.id);
 await page.getByRole("button", { name: "Copier le texte" }).click();
 assert.match(
   await page.evaluate(() => navigator.clipboard.readText()),
@@ -118,7 +126,7 @@ await page
 const stored = await page.evaluate(
   () => JSON.parse(localStorage.getItem("el-public-portfolios-v1")).profiles[0],
 );
-assert.equal(stored.snapshots.length, 2);
+assert.equal(stored.snapshots.length, 3);
 assert.equal(stored.publications[0].snapshot.month.value, -2.45);
 assert(stored.lastFailure);
 await page.getByRole("button", { name: /Épisode #1/ }).click();
