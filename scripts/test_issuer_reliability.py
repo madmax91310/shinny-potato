@@ -39,6 +39,56 @@ def payload(c=None):
 
 
 class Reliability(unittest.TestCase):
+    def null_holdings(self):
+        body=payload()
+        body['componentsByNameMap']['holdings']={'hasData':True,'containersByNameMap':{'all':{'dataPointsByNameMap':{
+            key:{'value':None}for key in ('asOfDate','issueName','holdingPercent','isin','countryOfRisk','assetClass')}}}}
+        return body
+
+    def test_empty_holdings_retries_whole_response_without_splicing_facts(self):
+        partial=self.null_holdings();valid=copy.deepcopy(partial)
+        points=valid['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        for key,value in {'asOfDate':20261006,'issueName':['EXACT SECURITY'],'holdingPercent':[100],
+                          'isin':['US0378331005'],'countryOfRisk':['US'],'assetClass':['Equity']}.items():
+            points[key]['value']=value
+        valid['responseMarker']='second-whole-response'
+        calls=[];pauses=[];responses=iter([partial,valid])
+        def fetch(*args):calls.append(args[0]);return json.dumps(next(responses))
+        body,url,attempts=fetch_product({**SHARE,'collectHoldings':True},fetch,pauses.append)
+        self.assertEqual(body,valid);self.assertEqual(calls,[url,url]);self.assertEqual(pauses,[2])
+        self.assertEqual([r['status']for r in attempts],['empty-holdings-snapshot','validated'])
+        self.assertNotEqual(attempts[0]['sha256'],attempts[1]['sha256'])
+
+    def test_persistent_empty_holdings_preserves_partial_failure_instead_of_false_success(self):
+        partial=self.null_holdings();calls=[]
+        def fetch(*args):calls.append(1);return json.dumps(partial)
+        body,_,attempts=fetch_product({**SHARE,'collectHoldings':True},fetch,lambda _:None)
+        self.assertEqual(body,partial);self.assertEqual(len(calls),2)
+        self.assertEqual([r['status']for r in attempts],['empty-holdings-snapshot']*2)
+        self.assertIsNone(body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']['value'])
+
+    def test_wrong_empty_holdings_identity_does_not_retry_or_use_html(self):
+        for key,value in [('productId',999),('currencyCode','EUR')]:
+            body=self.null_holdings();body[key]=value;calls=[]
+            def fetch(*args):calls.append(1);return json.dumps(body)
+            with patch('issuer_documents.public_page') as fallback,self.assertRaises(ValueError):
+                fetch_product({**SHARE,'collectHoldings':True},fetch,lambda _:None)
+            self.assertEqual(len(calls),1);fallback.assert_not_called()
+
+    def test_persistent_empty_book_keeps_its_original_date_and_other_valid_fields(self):
+        s={**SHARE,'collectHoldings':True}
+        report=collect({'instruments':[s]},{s['isin']:{}},NOW,lambda *a:json.dumps(self.null_holdings()))
+        self.assertFalse(report['failures']);r=report['shares'][0]
+        self.assertNotIn('holdings',r)
+        self.assertTrue(any(e['field']=='holdings'for e in r['collectionErrors']))
+        self.assertEqual([a['status']for a in r['sourceAttempts']],['empty-holdings-snapshot']*2)
+        old={'asOf':'2026-10-01','checkedAt':'2026-10-01','basis':'fund',
+             'rows':[{'name':'PREVIOUS QUALIFIED SECURITY','isin':'US0378331005','weightPct':8}]}
+        previous={s['isin']:{'currency':'USD','productId':s['productId'],'holdings':old}}
+        merged=merge_collection(report,previous,{})
+        self.assertEqual(merged[s['isin']]['holdings'],old)
+        self.assertIn('performance',merged[s['isin']]);self.assertIn('aum',merged[s['isin']])
+
     def test_truncated_download_retries_whole_document_and_never_returns_partial_bytes(self):
         from unittest.mock import MagicMock
         response=MagicMock();response.__enter__.return_value=response

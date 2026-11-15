@@ -9,25 +9,123 @@ import hashlib
 import math
 import os
 import pathlib
+import time
 import urllib.error
 from urllib.parse import urlencode, urlsplit, parse_qsl
 
 from data_automation import UTC, get_text, number, reject, write_json_atomic, ResponseFormatError
 
 
-def fetch_product(share, fetch):
+def partial_holdings_response(body, isin, product_id, currency=None):
+    """Recognise only the observed absent/entirely-null issuer component.
+
+    Validate the exact response identity before retrying. Populated, stale,
+    contradictory or structurally changed books still undergo normal validation.
+    """
+    components = body.get('componentsByNameMap', {})
+    reason = None
+    if 'holdings' not in components:
+        reason = 'missing-holdings-component'
+    else:
+        points = components['holdings'].get('containersByNameMap', {}).get('all', {}).get('dataPointsByNameMap', {})
+        keys = ('asOfDate', 'issueName', 'holdingPercent', 'isin', 'countryOfRisk', 'assetClass')
+        if all(isinstance(points.get(key), dict) and 'value' in points[key]
+               and points[key]['value'] is None for key in keys):
+            reason = 'empty-holdings-snapshot'
+    if reason:
+        facts = components.get('keyFundFacts', {}).get('containersByNameMap', {}).get('default', {}).get('dataPointsByNameMap', {})
+        if (str(body.get('productId')) != str(product_id)
+                or facts.get('isin', {}).get('value') != isin
+                or not isinstance(body.get('currencyCode'), str) or not body['currencyCode']
+                or (currency is not None and body['currencyCode'] != currency)):
+            reject('Wrong BlackRock identity in partial holdings response')
+    return reason
+
+
+def published_holdings_retry_url(body, url):
+    """Select only a date explicitly published for this exact holdings book.
+
+    Never change an already requested date, borrow an AUM date, or guess today.
+    Existing storage/consumer guards still reject regressing photographs.
+    """
+    route = urlsplit(url)
+    query = list(parse_qsl(route.query))
+    requested = [value for key, value in query if key == 'asOfDate']
+    if requested:
+        if len(requested) != 1 or len(requested[0]) != 8 or not requested[0].isdigit():
+            reject('Ambiguous requested holdings date')
+        dt.datetime.strptime(requested[0], '%Y%m%d')
+        return url, requested[0]
+    dates = body.get('componentsByNameMap', {}).get('holdings', {}).get('containersByNameMap', {}).get('all', {}).get('dataPointsByNameMap', {}).get('dateList', {}).get('value')
+    if dates is None:
+        return url, None
+    if not isinstance(dates, list) or not dates:
+        reject('Invalid published holdings date list')
+    normalized = []
+    for value in dates:
+        if isinstance(value, bool) or not isinstance(value, (int, str)):
+            reject('Invalid published holdings date')
+        date = str(value)
+        if len(date) != 8 or not date.isdigit():
+            reject('Invalid published holdings date')
+        dt.datetime.strptime(date, '%Y%m%d')
+        normalized.append(date)
+    if len(set(normalized)) != len(normalized):
+        reject('Duplicate published holdings date')
+    selected = max(normalized)
+    # Historical dates are supported by holdings, not listings/exposure tables.
+    query = [(key, value) for key, value in query if key != 'component']
+    return route._replace(query=urlencode([*query, ('component', 'holdings.all'), ('asOfDate', selected)])).geturl(), selected
+
+
+def read_blackrock_response(url, share, fetch, sleep=time.sleep, limit=20_000_000):
+    """Acquire a coherent response, with one bounded empty-component retry."""
+    attempts = []
+    requested = [value for key, value in parse_qsl(urlsplit(url).query) if key == 'asOfDate']
+    if len(requested) > 1:
+        reject('Ambiguous requested holdings date')
+    requested_date = requested[0] if requested else None
+    for attempt in range(2):
+        try:
+            raw = fetch(url, ('application/json',), limit)
+        except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
+            error.sourceAttempts = attempts
+            error.sourceUrl = url
+            raise
+        body = json.loads(raw, parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
+        partial = (partial_holdings_response(body, share['isin'], share['productId'], share.get('currency'))
+                   if share.get('collectHoldings') else None)
+        if partial:
+            attempts.append({'url': url, 'attempt': attempt + 1, 'status': partial,
+                             'sha256': hashlib.sha256(raw.encode()).hexdigest()})
+            if attempt == 0:
+                sleep(2)
+                continue
+        else:
+            if requested_date:
+                actual = body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']['value']
+                if str(actual) != requested_date:
+                    reject('Issuer did not return the requested published holdings snapshot')
+            if attempts:
+                attempts.append({'url': url, 'attempt': attempt + 1, 'status': 'validated',
+                                 'sha256': hashlib.sha256(raw.encode()).hexdigest()})
+        # Each caller still validates every requested field. Never splice
+        # holdings from this response into another photograph's facts.
+        return body, raw, attempts, url
+
+
+def fetch_product(share, fetch, sleep=time.sleep):
     """The current official HTML is a transport fallback to the embedded API."""
     url = product_data_url(share)
     limit = 20_000_000 if share.get('holdingsAssetClass') == 'Fixed Income' else 6_000_000
     try:
-        body = json.loads(fetch(url, ('application/json',), limit),
-                          parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
-        return body, url, []
+        body, _, attempts, url = read_blackrock_response(url, share, fetch, sleep, limit)
+        return body, url, attempts
     except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
         from issuer_documents import public_page
         page_url = f'https://www.ishares.com/uk/individual/en/products/{share["productId"]}/?siteEntryPassthrough=true&switchLocale=y'
         text = public_page(page_url, ('text/html',), 6_000_000)
-        return text, page_url, [{'url': url, 'reason': str(error)},
+        return text, page_url, [*getattr(error, 'sourceAttempts', []), {'url': getattr(error, 'sourceUrl', url), 'reason': str(error)},
                                 {'url': page_url, 'status': 'validated'}]
 
 

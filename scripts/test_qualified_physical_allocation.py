@@ -24,6 +24,36 @@ URL = PROVENANCE['sourceUrl']
 
 
 class QualifiedPhysicalAllocation(unittest.TestCase):
+    def null_book(self):
+        body=copy.deepcopy(BODY)
+        points=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        for key in ('asOfDate','issueName','holdingPercent','isin','countryOfRisk','assetClass'):
+            points[key]['value']=None
+        return body
+
+    def test_shared_acquisition_recovers_whole_qualified_response_and_keeps_primary_incidents(self):
+        responses=[json.dumps(self.null_book()),RAW]
+        with patch.object(collector,'get_text',side_effect=responses) as source:
+            record=collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,2)
+        self.assertEqual(source.call_args_list[0],source.call_args_list[1])
+        self.assertEqual(record['pageSha256'],hashlib.sha256(RAW.encode()).hexdigest())
+        self.assertEqual([x['status']for x in record['sourceAttempts']],['empty-holdings-snapshot','validated'])
+        self.assertTrue(all(x['status']=='failed'for x in record['primaryAllocationChecks']))
+        self.assertFalse(record['compositionQualification']['normalizationApplied'])
+
+    def test_persistent_null_book_keeps_both_failed_attempts(self):
+        with patch.object(collector,'get_text',return_value=json.dumps(self.null_book())) as source:
+            with self.assertRaises(ValueError) as caught:collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,2)
+        self.assertEqual([x['status']for x in caught.exception.sourceAttempts],['empty-holdings-snapshot']*2)
+
+    def test_wrong_partial_share_identity_never_retries(self):
+        body=self.null_book();body['productId']=999
+        with patch.object(collector,'get_text',return_value=json.dumps(body)) as source:
+            with self.assertRaises(ValueError):collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,1)
+
     def prepare(self, body=BODY, config=SHARE):
         return fallback.prepare(body, config, NOW, URL, RAW if body is BODY else json.dumps(body), {})
 

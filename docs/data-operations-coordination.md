@@ -645,3 +645,39 @@ Même lot : le producteur GitHub43617819119 rétablit WDEF mais révèle le mêm
 Même correctif : le producteur Bitcoin dédié n'avait aucune tentative après le8. Ajout des mêmes reprises espacées14/18/22/26/30, à son horaire06:40 et sous son verrou existant. Aucun remplacement de convention ni modification de l'observation ; la reprise manuelle/planifiée reste distinguée.
 
 15 novembre — dépendance de publication du même suivi #881, branche `fix/budget-png-readiness-20261115` : propriété limitée à `scripts/playwright-budget-profiles.mjs` et cette note, après #1312 fusionnée. Le run production #1306 43711791374 échoue en mobile sur l’attente implicite de 5 s du bouton PNG ; reproduction locale sur master dd9ce9ce. Diagnostic sans changement applicatif : le rendu reste explicitement en préparation à 5 s puis devient disponible après 7 112 ms, et les 38 profils passent ensuite leurs contrôles de PNG exact, libellés, montants, clipboard et stockage. Attendre explicitement `aria-busy=false` (borne 30 s pour la tâche asynchrone), puis conserver l’assertion bouton activé et tous les contrôles financiers/visuels. Aucun changement du moteur, des maquettes, des valeurs ou des seuils financiers ; le test doit toujours échouer si le rendu ne termine pas ou termine en erreur. Les travaux Budget et la validation protégée ne sont ni annulés ni réécrits.
+
+### 15 novembre 2026 — reprise bornée des livres iShares vides
+
+Automatisation des données possède cette correction dans le suivi unique #881 :
+`collect_etf_pilot.py`, `collect_dca_complete_holdings.py`,
+`collect_qualified_exposures.py`, leurs trois recettes de régression et le
+raccord de déclenchement `update-qualified-exposures.yml`. Aucun lecteur/réducteur
+ni fichier des PR #1061/#1253 n'est modifié.
+
+Les observations ordinaires 43731952399 et 43736125412 montrent des composants
+présents dont la date et les colonnes sont entièrement nulles. La reprise
+existante du livre complet ne reconnaissait que le composant absent. Les trois
+producteurs partagent désormais une seconde acquisition de la même réponse
+entière, après deux secondes et contrôle de l'identité ISIN/produit/devise.
+Les tentatives et leurs empreintes sont conservées ; les contrôles financiers
+restent obligatoires. Deux réponses nulles ne deviennent pas un succès.
+
+Pour les livres complets seulement, une troisième requête bornée peut demander
+la dernière date explicitement publiée dans `holdings.dateList`, au seul endpoint
+`component=holdings.all`. L'API refuse les dates sur les requêtes combinées
+avec listings/exposureBreakdowns : aucune répétition de cette voie refusée.
+Le produit, la devise et la date retournés doivent correspondre. Seuls l'ISIN,
+la structure physique et la classe du fonds sont repris du document d'identité,
+avec URL/empreinte distinctes. Toutes les positions, valeurs, devises, pondérations
+et ventilations dérivées proviennent d'un seul livre daté ; aucune NAV ni table
+d'exposition d'une autre photographie n'est empruntée. Une période déjà demandée
+n'est jamais remplacée. Les protections de stockage refusent les livres plus
+anciens que les dernières valeurs qualifiées ; les dates ne sont pas renouvelées
+artificiellement. Identité erronée, incohérence financière ou structure modifiée
+restent des refus. Aucun poids absent à zéro ni renormalisation.
+
+Preuve locale réelle : produit 308873/USD, livre du 30 octobre, 128 lignes,
+poids bruts 100 %. Cela ne prouve ni l'accès GitHub ni la publication. Les prochains
+producteurs ordinaires doivent encore établir les résultats individuels,
+l'enregistrement et la consommation. Les incidents primaires restent distincts
+des voies alternatives qualifiées. Aucun cache ni cron anticipé.
