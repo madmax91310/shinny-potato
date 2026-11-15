@@ -22,8 +22,8 @@ export function removeSubscriberProfile(storage,record) {
  if(!current||JSON.stringify(current)!==JSON.stringify(record))throw Error('Ce profil a changé dans un autre onglet. Actualise la liste avant de le supprimer.')
  writeSaved(storage,state.items.filter(item=>item.id!==record.id))
 }
-export function filterSubscriberProfiles(items,query='') {
+export function filterSubscriberProfiles(items,query='',includePrepared=false) {
  const clean=value=>String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
  const terms=clean(query.trim()).split(/\s+/).filter(Boolean)
- return items.filter(isSubscriberRecord).filter(item=>terms.every(term=>clean(`${item.title} ${item.profile.name} ${item.profile.job||''}`).includes(term)))
+ return items.filter(item=>includePrepared?!item.profile.imageOnly:isSubscriberRecord(item)).filter(item=>terms.every(term=>clean(`${item.title} ${item.profile.name} ${item.profile.job||''}`).includes(term)))
 }

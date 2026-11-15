@@ -26,7 +26,7 @@ try {
       const download = page.getByRole('button', {name:'Télécharger l’image PNG',exact:true})
       await expect(download).toBeEnabled()
       if (mobile) await page.getByRole('button',{name:'Aperçu',exact:true}).click()
-      await expect(page.getByText('APERÇU DU TWEET',{exact:true})).toBeVisible()
+      await expect(page.getByRole('heading',{name:'Aperçu du tweet',exact:true})).toBeVisible()
       await context.setOffline(true)
       // Download directly first: it must work even if Image was never opened.
       const pngEvent = page.waitForEvent('download')
