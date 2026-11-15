@@ -1,7 +1,7 @@
 name: Prioritize requested DCA release (15 November)
 
 # One-time operational action requested by the repository owner.
-# Only these three older validation runs may be retired; the requested release
+# Only these two older validation runs may be retired; the requested release
 # keeps its ordinary, complete Pages gate and every financial observation.
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
-      - name: Retire exactly three superseded validations
+      - name: Retire exactly two superseded validations
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -28,12 +28,11 @@ jobs:
 
           repo = os.environ['GH_REPO']
           assert repo == 'madmax91310/shinny-potato'
-          release = '3a73cba202667f20dc2b6ebbe6ce6b451aba513b'
-          protected_run = 43704892739
+          release = '272a3e4aa7124d3c337a6ea5ebb3cf6701af377e'
+          protected_run = 43711791374
           older = {
-              43702414518: '0f015eb5673f8c6ac96e331a381ff894b81a884c',
-              43703196293: '9a21403cfb2e375be9043e9a362387d5563c52ce',
-              43704018404: '28cead8cb19b8096fd318c8c72f9bd3544418378',
+              43708365204: '39a484a3b64867d506d775e446aecd8e3c5b0c60',
+              43708536797: 'bdb2b7223b4b15648a531980287989bb761c9ccc',
           }
           active = {'queued', 'pending', 'in_progress', 'waiting', 'requested'}
 
