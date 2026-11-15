@@ -9,7 +9,7 @@ permissions:
 jobs:
   diagnose:
     runs-on: ubuntu-26.04
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.0.0
@@ -61,3 +61,11 @@ jobs:
             }
           }finally{await browser.close()}
           JS
+      - name: Replay the exact failing Budget partition
+        run: node scripts/playwright-budget-profiles.mjs 390 1 2
+      - uses: actions/upload-artifact@v7.0.1
+        if: failure()
+        with:
+          name: budget-summary-failure
+          path: test-artifacts/budget-profiles
+          retention-days: 7
