@@ -24,7 +24,8 @@ let page = harness?.page || (await context.newPage());
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const base = process.env.BASE_URL || staticBase;
-await page.goto(base + "portefeuilles-publics");
+await page.goto(base);
+await page.locator('.workspace-tool-card[href$="/portefeuilles-publics"]').click();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
 await expect(

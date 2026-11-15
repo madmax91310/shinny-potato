@@ -1,3 +1,4 @@
+import {HOME_TOOLS,TOOL_GROUPS} from "../src/tools.js";
 import assert from "node:assert/strict";
 import {
   blankProfile,
@@ -231,3 +232,5 @@ assert.deepEqual(issues(p, whitespaceNa), []);
 assert(!buildText(p, whitespaceNa, 1).includes("Non applicable"));
 assert.equal(blankProfile().currency, "");
 assert.equal(blankSnapshot().currency, "");
+
+assert.equal(HOME_TOOLS.filter(tool=>tool.to==="/portefeuilles-publics").length,1);assert.equal(TOOL_GROUPS.flatMap(group=>group.tools).filter(tool=>tool.to==="/portefeuilles-publics").length,1);
