@@ -4,6 +4,8 @@ on:
   schedule:
     # Retry after the second business day, accounting for weekends/publication lag.
     - cron: '15 7 3-10 * *'
+    # Keep bounded retries for a delayed December release (and other late months).
+    - cron: '15 7 14,18,22,26,30 * *'
   workflow_dispatch:
   pull_request:
     paths:
