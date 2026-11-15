@@ -1,7 +1,7 @@
 import { pct } from './engine.js'
-import { radialDonutLayout, wrapDonutLabel } from './donut-layout.js'
+import { radialDonutLayout, wrapDonutLabel, shortDonutName } from './donut-layout.js'
 const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99cd','#aec8df','#50c9bc','#f2b85e','#7ba4dc','#d4a4bc','#9cd6b7','#c4bcf0','#dfd18b']
-export function holdingImageRows(lines){return lines.filter(l=>l.weight>0).sort((a,b)=>b.weight-a.weight).map((l,i)=>({...l,name:l.label,color:colors[i]||`hsl(${(45+i*137.508)%360} 65% 65%)`}))}
+export function holdingImageRows(lines){return lines.filter(l=>l.weight>0).sort((a,b)=>b.weight-a.weight).map((l,i)=>({...l,name:shortDonutName(l.label),color:colors[i]||`hsl(${(45+i*137.508)%360} 65% 65%)`}))}
 function text(ctx,value,x,y,size=34,align='left',serif=false,color='#fff4df'){
  ctx.font=`400 ${size}px ${serif?'DcaEditorial, Georgia':'Arial'}`;ctx.textAlign=align;ctx.fillStyle=color;ctx.fillText(value,x,y)
 }

@@ -102,11 +102,12 @@ for(const scope of [undefined,'undefined','','Inconnu'])assert(validateProfile({
 
 // Publication ordering is independent for holdings and flows, including manual edits.
 const {sortHoldings,sortContributions}=await import('../src/pages/dca-profiles/lib.js')
+const {shortDonutName}=await import('../src/pages/dca-profiles/donut-layout.js')
 const {allocationRows}=await import('../src/pages/dca-profiles/image.js')
 function checkOrder(profile){
  const held=sortHoldings(profile.lines),flows=sortContributions(profile.lines)
  const tweet=buildTweetText(profile)
- assert.deepEqual(allocationRows(profile.lines).map(r=>r.name),held.map(l=>l.label))
+ assert.deepEqual(allocationRows(profile.lines).map(r=>r.name),held.map(l=>shortDonutName(l.label)))
  for(const [rows,entry] of [[held,l=>`${l.emoji || '•'} ${l.weight.toLocaleString('fr-FR',{maximumFractionDigits:2})} % ${l.label}`],[flows,l=>`→ ${l.amount.toLocaleString('fr-FR',{maximumFractionDigits:2})} € sur ${l.label}`]]){
   const positions=rows.map(l=>tweet.indexOf(entry(l)))
   assert(positions.every(n=>n>=0))
