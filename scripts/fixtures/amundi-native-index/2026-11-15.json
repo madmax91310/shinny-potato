@@ -1,0 +1,566 @@
+{
+  "products": [
+    {
+      "productId": "LU0908500753",
+      "characteristics": {
+        "ISIN": "LU0908500753",
+        "BENCHMARK_NAME": "STOXX Europe 600 (Net Return) EUR",
+        "FUND_REPLICATION_METHODOLOGY": "Direct(Physical)",
+        "INDEX_BREAKDOWNS_AS_OF_DATE": "2026-11-11",
+        "BENCHMARK_NUMBER_OF_COMPONENTS": 600
+      },
+      "productType": "PRODUCT",
+      "currencies": {
+        "CURRENCY": "EUR",
+        "BASE_CURRENCY": "EUR",
+        "INDEX_CURRENCY": "EUR"
+      },
+      "metrics": [],
+      "historics": [],
+      "passportingCountries": null,
+      "composition": null,
+      "breakDowns": [
+        {
+          "aggregationField": "INDEX_TOP10",
+          "breakDownData": [
+            {
+              "aggregationName": "ASML HOLDING NV",
+              "weight": 0.0,
+              "adjustedWeight": 0.03956552591733,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "ASML NA",
+                "currency": "EUR",
+                "sector": "Information Technology",
+                "isin": "NL0010273215",
+                "countryOfRisk": "Netherlands"
+              }
+            },
+            {
+              "aggregationName": "ROCHE HOLDING AG - GENUSSS CHF",
+              "weight": 0.0,
+              "adjustedWeight": 0.02219902535986,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "ROP SE",
+                "currency": "CHF",
+                "sector": "Health Care",
+                "isin": "CH1499059983",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "HSBC HOLDINGS PLC",
+              "weight": 0.0,
+              "adjustedWeight": 0.02022994494309,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "HSBA LN",
+                "currency": "GBP",
+                "sector": "Financials",
+                "isin": "GB0005405286",
+                "countryOfRisk": "United Kingdom"
+              }
+            },
+            {
+              "aggregationName": "NOVARTIS AG-REG",
+              "weight": 0.0,
+              "adjustedWeight": 0.01978493294026,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "NOVN SE",
+                "currency": "CHF",
+                "sector": "Health Care",
+                "isin": "CH0012005267",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "ASTRAZENECA GBP",
+              "weight": 0.0,
+              "adjustedWeight": 0.01873290723553,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "AZN LN",
+                "currency": "GBP",
+                "sector": "Health Care",
+                "isin": "GB0009895292",
+                "countryOfRisk": "United Kingdom"
+              }
+            },
+            {
+              "aggregationName": "SHELL PLC EUR",
+              "weight": 0.0,
+              "adjustedWeight": 0.01774819566379,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "SHELL NA",
+                "currency": "EUR",
+                "sector": "Energy",
+                "isin": "GB00BP6MXD84",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "NESTLE SA-REG",
+              "weight": 0.0,
+              "adjustedWeight": 0.01740235647656,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "NESN SE",
+                "currency": "CHF",
+                "sector": "Consumer Staples",
+                "isin": "CH0038863350",
+                "countryOfRisk": "Switzerland"
+              }
+            },
+            {
+              "aggregationName": "SAP SE / XETRA",
+              "weight": 0.0,
+              "adjustedWeight": 0.0154156144585,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "SAP GY",
+                "currency": "EUR",
+                "sector": "Information Technology",
+                "isin": "DE0007164600",
+                "countryOfRisk": "Germany"
+              }
+            },
+            {
+              "aggregationName": "SIEMENS AG-REG",
+              "weight": 0.0,
+              "adjustedWeight": 0.01476324441592,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "SIE GY",
+                "currency": "EUR",
+                "sector": "Industrials",
+                "isin": "DE0007236101",
+                "countryOfRisk": "Germany"
+              }
+            },
+            {
+              "aggregationName": "TOTALENERGIES SE PARIS",
+              "weight": 0.0,
+              "adjustedWeight": 0.01314986775508,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "TTE FP",
+                "currency": "EUR",
+                "sector": "Energy",
+                "isin": "FR0000120271",
+                "countryOfRisk": "France"
+              }
+            }
+          ]
+        },
+        {
+          "aggregationField": "INDEX_SECTORS",
+          "breakDownData": [
+            {
+              "aggregationName": "Financials",
+              "weight": 0.25470105739065,
+              "adjustedWeight": 0.25470105739065,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Industrials",
+              "weight": 0.18249836553823,
+              "adjustedWeight": 0.18249836553823,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Health Care",
+              "weight": 0.13335174005865,
+              "adjustedWeight": 0.13335174005865,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Consumer Staples",
+              "weight": 0.08380706374578,
+              "adjustedWeight": 0.08380706374578,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Information Technology",
+              "weight": 0.08283829776983,
+              "adjustedWeight": 0.08283829776983,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Consumer Discretionary",
+              "weight": 0.06486631095224,
+              "adjustedWeight": 0.06486631095224,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Energy",
+              "weight": 0.05609686506672,
+              "adjustedWeight": 0.05609686506672,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Materials",
+              "weight": 0.05532503421938,
+              "adjustedWeight": 0.05532503421938,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Utilities",
+              "weight": 0.04924735900264,
+              "adjustedWeight": 0.04924735900264,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Others",
+              "weight": 0.03726790625588,
+              "adjustedWeight": 0.03726790625588,
+              "additionalProperties": null
+            }
+          ]
+        },
+        {
+          "aggregationField": "INDEX_COUNTRIES",
+          "breakDownData": [
+            {
+              "aggregationName": "United Kingdom",
+              "weight": 0.2299846578877,
+              "adjustedWeight": 0.2299846578877,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "France",
+              "weight": 0.14725988336287,
+              "adjustedWeight": 0.14725988336287,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Switzerland",
+              "weight": 0.14377213503893,
+              "adjustedWeight": 0.14377213503893,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Germany",
+              "weight": 0.13171643561153,
+              "adjustedWeight": 0.13171643561153,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Netherlands",
+              "weight": 0.07602492665783,
+              "adjustedWeight": 0.07602492665783,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Spain",
+              "weight": 0.05889188078816,
+              "adjustedWeight": 0.05889188078816,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Italy",
+              "weight": 0.05502121969728,
+              "adjustedWeight": 0.05502121969728,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Sweden",
+              "weight": 0.04858283496764,
+              "adjustedWeight": 0.04858283496764,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Denmark",
+              "weight": 0.02704584532348,
+              "adjustedWeight": 0.02704584532348,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Belgium",
+              "weight": 0.01955070912554,
+              "adjustedWeight": 0.01955070912554,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Finland",
+              "weight": 0.01836292153152,
+              "adjustedWeight": 0.01836292153152,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Norway",
+              "weight": 0.01246637087482,
+              "adjustedWeight": 0.01246637087482,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Poland",
+              "weight": 0.00980446561095,
+              "adjustedWeight": 0.00980446561095,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Ireland",
+              "weight": 0.0071954876709,
+              "adjustedWeight": 0.0071954876709,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Austria",
+              "weight": 0.00618799600721,
+              "adjustedWeight": 0.00618799600721,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Greece",
+              "weight": 0.00505503805066,
+              "adjustedWeight": 0.00505503805066,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Portugal",
+              "weight": 0.00307719179299,
+              "adjustedWeight": 0.00307719179299,
+              "additionalProperties": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productId": "FR0013411980",
+      "characteristics": {
+        "ISIN": "FR0013411980",
+        "BENCHMARK_NAME": "Topix Total Return Index JPY",
+        "FUND_REPLICATION_METHODOLOGY": "Indirect(Swap Based)",
+        "INDEX_BREAKDOWNS_AS_OF_DATE": "2026-11-11",
+        "BENCHMARK_NUMBER_OF_COMPONENTS": 1668
+      },
+      "productType": "PRODUCT",
+      "currencies": {
+        "CURRENCY": "EUR",
+        "BASE_CURRENCY": "EUR",
+        "INDEX_CURRENCY": "JPY"
+      },
+      "metrics": [],
+      "historics": [],
+      "passportingCountries": null,
+      "composition": null,
+      "breakDowns": [
+        {
+          "aggregationField": "INDEX_TOP10",
+          "breakDownData": [
+            {
+              "aggregationName": "MITSUBISHI UFJ FINANCIAL GROUP",
+              "weight": 0.0,
+              "adjustedWeight": 0.03860967973234,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "8306 JT",
+                "currency": "JPY",
+                "sector": "Financials",
+                "isin": "JP3902900004",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "TOYOTA MOTOR CORP",
+              "weight": 0.0,
+              "adjustedWeight": 0.02994043003149,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "7203 JT",
+                "currency": "JPY",
+                "sector": "Consumer Discretionary",
+                "isin": "JP3633400001",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "SONY GROUP CORP (JT)",
+              "weight": 0.0,
+              "adjustedWeight": 0.02493785318095,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "6758 JT",
+                "currency": "JPY",
+                "sector": "Consumer Discretionary",
+                "isin": "JP3435000009",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "SUMITOMO MITSUI FINANCIAL GROUP",
+              "weight": 0.0,
+              "adjustedWeight": 0.02491025995575,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "8316 JT",
+                "currency": "JPY",
+                "sector": "Financials",
+                "isin": "JP3890350006",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "RECRUIT HOLDINGS CO LTD",
+              "weight": 0.0,
+              "adjustedWeight": 0.0242195203549,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "6098 JT",
+                "currency": "JPY",
+                "sector": "Industrials",
+                "isin": "JP3970300004",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "HITACHI LTD",
+              "weight": 0.0,
+              "adjustedWeight": 0.02234665487445,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "6501 JT",
+                "currency": "JPY",
+                "sector": "Industrials",
+                "isin": "JP3788600009",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "MIZUHO FINANCIAL GROUP INC",
+              "weight": 0.0,
+              "adjustedWeight": 0.0198286827366,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "8411 JT",
+                "currency": "JPY",
+                "sector": "Financials",
+                "isin": "JP3885780001",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "ADVANTEST CORP  Y50",
+              "weight": 0.0,
+              "adjustedWeight": 0.01832567152703,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "6857 JT",
+                "currency": "JPY",
+                "sector": "Information Technology",
+                "isin": "JP3122400009",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "TOKYO ELECTRON  JPY50",
+              "weight": 0.0,
+              "adjustedWeight": 0.01727770080146,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "8035 JT",
+                "currency": "JPY",
+                "sector": "Information Technology",
+                "isin": "JP3571400005",
+                "countryOfRisk": "Japan"
+              }
+            },
+            {
+              "aggregationName": "MITSUBISHI CORPORATION",
+              "weight": 0.0,
+              "adjustedWeight": 0.01684602906346,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "8058 JT",
+                "currency": "JPY",
+                "sector": "Industrials",
+                "isin": "JP3898400001",
+                "countryOfRisk": "Japan"
+              }
+            }
+          ]
+        },
+        {
+          "aggregationField": "INDEX_SECTORS",
+          "breakDownData": [
+            {
+              "aggregationName": "Industrials",
+              "weight": 0.25860038504811,
+              "adjustedWeight": 0.25860038504811,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Financials",
+              "weight": 0.18915208042406,
+              "adjustedWeight": 0.18915208042406,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Consumer Discretionary",
+              "weight": 0.1558681357792,
+              "adjustedWeight": 0.1558681357792,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Information Technology",
+              "weight": 0.14303556079025,
+              "adjustedWeight": 0.14303556079025,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Communication Services",
+              "weight": 0.06005920719344,
+              "adjustedWeight": 0.06005920719344,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Health Care",
+              "weight": 0.05536385974591,
+              "adjustedWeight": 0.05536385974591,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Materials",
+              "weight": 0.05081195947191,
+              "adjustedWeight": 0.05081195947191,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Consumer Staples",
+              "weight": 0.04765790718646,
+              "adjustedWeight": 0.04765790718646,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Others",
+              "weight": 0.02177791140413,
+              "adjustedWeight": 0.02177791140413,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Real Estate",
+              "weight": 0.01767299295653,
+              "adjustedWeight": 0.01767299295653,
+              "additionalProperties": null
+            }
+          ]
+        },
+        {
+          "aggregationField": "INDEX_COUNTRIES",
+          "breakDownData": [
+            {
+              "aggregationName": "Japan",
+              "weight": 1.0,
+              "adjustedWeight": 1.0,
+              "additionalProperties": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

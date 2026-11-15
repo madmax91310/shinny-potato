@@ -597,7 +597,8 @@
       "compositionParser": "amundi-index-document",
       "compositionIsin": "LU0908500753",
       "compositionIdentityPattern": "Indice de référence\\s+100% STOXX EUROPE 600",
-      "compositionReplication": "Physique"
+      "compositionReplication": "Physique",
+      "compositionApiIndex": "STOXX Europe 600 (Net Return) EUR"
     },
     {
       "id": "eurostoxx50",
@@ -690,7 +691,8 @@
       "compositionParser": "amundi-index-document",
       "compositionIsin": "FR0013411980",
       "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF",
-      "compositionIdentityPattern": "TOPIx \\(RI\\)"
+      "compositionIdentityPattern": "TOPIx \\(RI\\)",
+      "compositionApiIndex": "Topix Total Return Index JPY"
     },
     {
       "id": "msci-em-latin-america-selection",
