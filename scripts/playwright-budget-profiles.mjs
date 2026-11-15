@@ -230,6 +230,7 @@ try {
     await context.addInitScript(captureCanvasText)
     await context.addInitScript(({ key, fixture }) => localStorage.setItem(key, JSON.stringify({ profile: fixture, text: '', edited: false })), { key: DRAFT_KEY, fixture })
     const page = await context.newPage(); await page.goto(base + '/le-budget-de')
+    await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
     const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
     await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
     const dimensions = await image.evaluate(img => [img.naturalWidth, img.naturalHeight])

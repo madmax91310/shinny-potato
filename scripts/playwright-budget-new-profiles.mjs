@@ -9,6 +9,8 @@ import { buildBudgetText, budgetPublicIncomeRows, budgetPublicExpenseRows, budge
 import { socialBudgetLabel } from '../src/pages/budget-profiles/socialImage.js'
 const root=process.env.BUDGET_PUBLIC_BASE || 'http://127.0.0.1:4493/shinny-potato'
 const output=process.env.BUDGET_ARTIFACTS || 'test-artifacts/budget-new-profiles'
+const widths=process.argv.length>2?process.argv.slice(2).map(Number):[1440,390,320]
+assert(widths.length&&widths.every(width=>[1440,390,320].includes(width)),'Invalid budget viewport')
 mkdirSync(output,{recursive:true})
 const server=process.env.BUDGET_PUBLIC_BASE ? null : spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4493','--strictPort'],{stdio:'ignore'})
 let browser
@@ -17,16 +19,16 @@ const normalize=s=>s.replace(/\s+/g,' ').trim()
 try {
   if(server) await waitPreview(server,root)
   browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})})
-  for(const width of [1440,390,320]) {
+  for(const width of widths) {
     const context=await browser.newContext({viewport:{width,height:950},permissions:['clipboard-read','clipboard-write'],reducedMotion:'reduce'})
     await context.addInitScript(()=>{
       const fill=CanvasRenderingContext2D.prototype.fillText
-      window.budgetDraw=[]
+      window.budgetCanvases=[]
       CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...args){
-        if(value==='LE BUDGET DE')window.budgetDraw=[]
+        if(value==='LE BUDGET DE'){this.canvas.budgetDraw=[];window.budgetCanvases=[...window.budgetCanvases.slice(-15),this.canvas]}
         const size=Number(this.font.match(/([\d.]+)px/)?.[1]||0),w=this.measureText(value).width
         const left=x-(this.textAlign==='right'?w:this.textAlign==='center'?w/2:0)
-        window.budgetDraw.push({text:String(value),left,right:left+w,y,size,height:this.canvas.height,width:this.canvas.width})
+        this.canvas.budgetDraw?.push({text:String(value),left,right:left+w,y,size,height:this.canvas.height,width:this.canvas.width})
         return fill.call(this,value,x,y,...args)
       }
     })
@@ -50,14 +52,24 @@ try {
         if(!wasSelected) await expect(img).not.toHaveAttribute('src',previousUrl)
         await expect(page.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled()
         await expect(img).toHaveAttribute('alt',new RegExp(p.name))
-        const dimensions=await img.evaluate(e=>[e.naturalWidth,e.naturalHeight])
-        if(mode==='social') assert.deepEqual(dimensions,[1080,1350],`${p.name}: one complete image, no long fallback`)
-        const bytes=await img.evaluate(async e=>Array.from(new Uint8Array(await (await fetch(e.src)).arrayBuffer())))
-        const downloadPromise=page.waitForEvent('download')
-        await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
-        const download=await downloadPromise
-        assert.deepEqual(readFileSync(await download.path()),Buffer.from(bytes))
-        const drawn=await page.evaluate(()=>window.budgetDraw)
+        const count=mode==='social'?Number((await page.locator('.budget-image-count').textContent()).match(/^\d+/)[0]):1
+        for(let part=0;part<count;part++) {
+          if(count>1)await page.getByRole('button',{name:`Image ${part+1} sur ${count}`,exact:true}).click()
+          await expect(page.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled()
+          await img.evaluate(e=>e.decode())
+          const dimensions=await img.evaluate(e=>[e.naturalWidth,e.naturalHeight])
+          if(mode==='social')assert.deepEqual(dimensions,[1080,1350],`${p.name}: every X page is 4:5, no long fallback`)
+          const bytes=await img.evaluate(async e=>Array.from(new Uint8Array(await (await fetch(e.src)).arrayBuffer())))
+          const downloadPromise=page.waitForEvent('download')
+          await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
+          const download=await downloadPromise
+          assert.deepEqual(readFileSync(await download.path()),Buffer.from(bytes))
+          const filename=`${width}-${p.id}-${mode}-${part+1}.png`
+          writeFileSync(`${output}/${filename}`,Buffer.from(bytes))
+          results.push({width,id:p.id,mode,page:part+1,count,dimensions,bytes:bytes.length,filename})
+        }
+        const frames=await page.evaluate(()=>{const canvases=window.budgetCanvases,last=canvases.at(-1);return canvases.slice(-(last.budgetPageCount||1)).map(c=>c.budgetDraw)})
+        const drawn=frames.flat()
         assert(drawn.length)
         const visible=normalize(drawn.map(t=>t.text).join(' '))
         assert(!/exemple|ficti[fv]|reconstitu|version éditoriale|personnage éditorial|20\d\d|\.json|PR #/i.test(visible))
@@ -69,14 +81,11 @@ try {
         const a=analyzeBudget(p)
         for(const k of ['income','expenses','savings','balance']) if(k!=='savings'||a.savings)assert(visible.includes(normalize(euro(Math.abs(a[k]),p.currency))))
         for(const t of drawn)assert(t.left>=20&&t.right<=t.width-20&&t.y>=0&&t.y+t.size<=t.height,JSON.stringify(t))
-        for(let i=0;i<drawn.length;i++)for(const b of drawn.slice(i+1)){
-          const a=drawn[i]
+        for(const frame of frames)for(let i=0;i<frame.length;i++)for(const b of frame.slice(i+1)){
+          const a=frame[i]
           assert(!(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.y+a.size,b.y+b.size)-Math.max(a.y,b.y)>2),`${p.name}/${mode}: overlapping text ${JSON.stringify([a,b])}`)
         }
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
-        const filename=`${width}-${p.id}-${mode}.png`
-        writeFileSync(`${output}/${filename}`,Buffer.from(bytes))
-        results.push({width,id:p.id,mode,dimensions,bytes:bytes.length,rows:drawn.length,filename})
       }
       const details=page.getByText('Source et vérification du profil',{exact:true}).locator('..')
       await details.locator('summary').first().click()
@@ -96,6 +105,6 @@ try {
     await page.screenshot({path:`${output}/${width}-workspace.png`,fullPage:true})
     await context.close()
   }
-  writeFileSync(`${output}/results.json`,JSON.stringify(results,null,2)+'\n')
-  console.log(`Seven profiles, ${results.length} exact PNGs, one 4:5 per new profile, full labels/amounts, no overlaps, copies, source provenance and personal drafts verified at 1440/390/320.`)
+  writeFileSync(`${output}/results${process.argv.length>2?'-'+widths.join('-'):''}.json`,JSON.stringify(results,null,2)+'\n')
+  console.log(`Seven profiles, ${results.length} exact PNGs, numbered 4:5 X pages, full labels/amounts, no overlaps, copies, source provenance and personal drafts verified at ${widths.join('/')}.`)
 } finally {await browser?.close();server?.kill()}

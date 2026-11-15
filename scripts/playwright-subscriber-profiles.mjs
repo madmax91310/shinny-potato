@@ -153,7 +153,11 @@ for(const width of [1440,390,320]){
   for(const line of current.profile.lines)await page.getByRole('button',{name:`Retirer ${line.label}`,exact:true}).click()
   await page.locator('#dca-draft').fill('Texte du profil incomplet')
   await page.getByText('Mes portefeuilles',{exact:true}).filter({visible:true}).click()
-  await page.getByLabel('Nom de la sauvegarde',{exact:true}).fill('Profil à reprendre')
+  // The exposure workspace remains mounted but hidden while editing a DCA.
+  // Labels include hidden controls; bind this save to the visible workspace.
+  const saveName=page.getByLabel('Nom de la sauvegarde',{exact:true}).filter({visible:true})
+  assert.equal(await saveName.count(),1,'Exactly one visible portfolio save name')
+  await saveName.fill('Profil à reprendre')
   await page.getByRole('button',{name:'Enregistrer ce portefeuille',exact:true}).click()
   await page.getByText('Portefeuille enregistré sur cet appareil.',{exact:true}).waitFor()
   await page.getByRole('button',{name:'Profils préparés',exact:true}).click()

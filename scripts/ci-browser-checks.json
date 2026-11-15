@@ -21,6 +21,10 @@
   "node scripts/playwright-budget-portability.mjs",
   "node scripts/playwright-budget-completeness.mjs",
   "node scripts/playwright-budget-subscribers.mjs",
+  "node scripts/playwright-budget-social-image.mjs 0 4",
+  "node scripts/playwright-budget-social-image.mjs 1 4",
+  "node scripts/playwright-budget-social-image.mjs 2 4",
+  "node scripts/playwright-budget-social-image.mjs 3 4",
   "node scripts/test-practical-images.mjs",
   "node scripts/playwright-performance-links.mjs",
   "node scripts/test-route-loading.mjs",
@@ -108,5 +112,7 @@
   "node scripts/playwright-radar-retirement.mjs",
   "node scripts/playwright-etf-flows.mjs",
   "node scripts/playwright-subscriber-profiles.mjs",
-  "node scripts/playwright-budget-new-profiles.mjs"
+  "node scripts/playwright-budget-new-profiles.mjs 1440",
+  "node scripts/playwright-budget-new-profiles.mjs 390",
+  "node scripts/playwright-budget-new-profiles.mjs 320"
 ]
