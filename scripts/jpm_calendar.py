@@ -43,11 +43,12 @@ def parse(body, identity_body, share, now):
     if not points or len({p['date'] for p in points}) != len(points):
         raise ValueError('Missing or duplicate JPM identity NAV history')
     latest = max(points, key=lambda p: p['date'])
-    if latest.get('date') != stamp or latest.get('navPrice') != price or latest.get('rebasedPriceIndicator') != 'N':
+    if (latest.get('date') != stamp or type(latest.get('navPrice')) not in (int, float)
+            or latest.get('navPrice') != price or latest.get('rebasedPriceIndicator') != 'N'):
         raise ValueError('JPM history and exact-share identity NAV disagree')
     table = history['historicalCalendarYearPerformanceReturn']
     labels = table['labels']
-    if (len(labels) != len(SLOTS) or any(not isinstance(y, str) or not re.fullmatch(r'20\d{2}', y) for y in labels)
+    if (not isinstance(labels, list) or len(labels) != len(SLOTS) or any(not isinstance(y, str) or not re.fullmatch(r'20\d{2}', y) for y in labels)
             or list(map(int, labels)) != list(range(now.year - len(SLOTS), now.year))):
         raise ValueError('JPM latest complete calendar labels missing or changed; YTD is not a complete year')
     candidates = [r for r in table['performanceData'] if r.get('performanceFactor') == 'JPM - USD (dist)']
@@ -57,6 +58,8 @@ def parse(body, identity_body, share, now):
     if row.get('benchmarkIdentifier') is not None or row.get('translationKey') is not None:
         raise ValueError('Unexpected JPM calendar benchmark row')
     date = document_date(row['effectiveDate'], now)
+    if date < f'{now.year - 1}-12-31':
+        raise ValueError('JPM latest calendar observation predates the complete year end')
     if date > stamp:
         raise ValueError('JPM calendar observation is newer than its identity NAV')
     launch = dt.date.fromisoformat(fund['shareClass']['shareClassInceptionDate'])

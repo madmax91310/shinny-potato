@@ -394,6 +394,8 @@ class JpmLiveCalendar(unittest.TestCase):
         r=self.parse(h,i,now)
         self.assertEqual(r['years'],{'2024':8.08,'2025':12.35,'2026':10})
         self.assertNotIn('2027',r['years'])
+        row['effectiveDate']='2026-11-30'
+        with self.assertRaisesRegex(ValueError,'predates the complete year end'):self.parse(h,i,now)
 
     def test_ordinary_partial_merge_and_failure_preserve_calendar_clock(self):
         from jpm_live_presentation import collect
