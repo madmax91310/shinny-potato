@@ -667,9 +667,6 @@ else:
     def test_scpi_economic_race_still_requires_validation(self):
         self.assert_refused('src/data/automated-economic.json', 'scpi', validation='false')
 
-    def test_scpi_economic_acquisition_is_independent(self):
-        self.python_graph(['collect_scpi.py'], ['src/data/automated-economic.json'])
-
     def test_publication_active_inflation_and_inputs_remain_protected(self):
         self.assert_refused('src/data/inflation-monthly.js','publication')
 
@@ -1058,6 +1055,9 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
     def test_publication_acquisition_does_not_read_the_qualified_dca_views(self):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
                            'refresh_anniversary_indices.py'], ['src/pages/dca-profiles/'], match_names=False)
+
+    def test_scpi_economic_acquisition_is_independent(self):
+        self.python_graph(['collect_scpi.py'], ['src/data/automated-economic.json'])
 
     def test_scpi_acquisition_does_not_read_nonbond_outputs(self):
         self.python_graph(['collect_scpi.py'], [
