@@ -16,7 +16,7 @@ export default function SubscriberProfiles({profile,draft,field,session,dirty,on
   window.addEventListener('storage',reload)
   return()=>window.removeEventListener('storage',reload)
  },[])
- const rows=filterSubscriberProfiles(items,query)
+ const rows=filterSubscriberProfiles(items,query,true)
  const editable=isSubscriberRecord({profile})
  const invalid=!editable||!validDraftProfile(profile)
  function perform(action){setPending(null);setFeedback('');if(action==='new')onNew();else onOpen(action)}
@@ -33,7 +33,7 @@ export default function SubscriberProfiles({profile,draft,field,session,dirty,on
   catch(e){setError(e.message)}
  }
  return <section className="dca-simple-card dca-subscriber-library" aria-label="Profils d’abonnés enregistrés">
-  <h2>Mes profils d’abonnés</h2>
+  <h2>Profils sauvegardés</h2>
   <p>Garde les profils reçus, puis rouvre-les pour préparer leur DCA. Les données sont enregistrées dans ce navigateur, sur cet appareil.</p>
   <div className="dca-buttons"><Button onClick={()=>request('new')}>Ajouter un profil d’abonné</Button>{editable&&<Button variant="secondary" disabled={invalid} onClick={()=>save()}>{session?'Mettre à jour ce profil':'Enregistrer ce profil'}</Button>}</div>
   {editable&&invalid&&<p className="dca-note">Certaines données sont illisibles. Le brouillon ouvert reste conservé.</p>}
@@ -46,7 +46,7 @@ export default function SubscriberProfiles({profile,draft,field,session,dirty,on
   <label>Rechercher un profil<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Pseudonyme ou activité"/></label>
   {!rows.length&&<p>{query?'Aucun profil ne correspond à cette recherche.':'Aucun profil enregistré. Ajoute ton premier profil d’abonné.'}</p>}
   <div className="dca-subscriber-list">{rows.map(record=>{
-   const id=subscriberId(record),published=usage.entries.find(entry=>entry.id===id)
+   const id=isSubscriberRecord(record)?subscriberId(record):record.profile.id,published=usage.entries.find(entry=>entry.id===id)
    const monthly=record.profile.lines.reduce((sum,line)=>sum+(Number.isFinite(line.amount)?line.amount:0),0)
    return <article className="dca-subscriber-row" key={record.id} aria-label={`Profil enregistré : ${record.title}`}>
     <div><h3>{record.title}</h3>{record.status==='draft'&&<p>Brouillon à compléter</p>}<p>{record.profile.job||'Activité non renseignée'} · {euro(monthly)}/mois · {record.profile.lines.length} placement{record.profile.lines.length>1?'s':''}</p><p>{published?`Déjà publié · ${published.publishedAt?new Date(published.publishedAt).toLocaleDateString('fr-FR'):'date inconnue'}`:'Non publié'}{session?.id===record.id?' · Profil ouvert':''}</p></div>

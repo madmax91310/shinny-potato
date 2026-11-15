@@ -1,4 +1,4 @@
-import { newSubscriberProfile, subscriberId, subscriberSignature } from './subscriber-profiles.js'
+import { newSubscriberProfile, subscriberId, subscriberSignature, saveSubscriberProfile } from './subscriber-profiles.js'
 import { validManualIdentity } from './placements.js'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelectedRecords } from '../../lib/use-selected-records.js'
@@ -10,7 +10,7 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { profilePositionLimit, MAX_EXPOSURE_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
-import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord, readSavedState, restoreSavedProfile } from './management.js'
+import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord, readSavedState, restoreSavedProfile, validDraftProfile } from './management.js'
 import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
@@ -31,10 +31,11 @@ function initialDraft(){
   return {...saved,profile:{...p,approved:false,lines:confirmLines(p.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight,amount:p.imageOnly&&!Number.isFinite(l.amount)?0:l.amount===null?NaN:l.amount})))},field:['all','both','countries','sectors','overlap'].includes(saved.field)?saved.field:'all'}
  }catch{return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all',damagedDraft:raw,error:'L’ancien brouillon est illisible. Il est conservé sur cet appareil.'}}
 }
-export default function DcaApp({subscriberMode=false}){
+export default function DcaApp({subscriberMode=false,onShowSaved}){
  const [initial]=useState(initialDraft)
  const [subscriberSession,setSubscriberSession]=useState(()=>initial.subscriberSession&&typeof initial.subscriberSession.id==='string'&&typeof initial.subscriberSession.source==='string'&&typeof initial.subscriberSession.baseline==='string'?initial.subscriberSession:null)
  const [profile,setProfile]=useState(initial.profile),[draft,setDraft]=useState(initial.draft),[field,setField]=useState(initial.field)
+ const [libraryProfileOpen,setLibraryProfileOpen]=useState(false),[saveFeedback,setSaveFeedback]=useState('')
  const [feedback,setFeedback]=useState(''),[showAnalysis,setShowAnalysis]=useState(false),[portfolioReset,setPortfolioReset]=useState(0)
  const [baseline,setBaseline]=useState(null),[draftError,setDraftError]=useState(initial.error)
  const draftEdited=useRef(initial.draftEdited ?? initial.draft!==buildTweetText(initial.profile)),archivedDraft=useRef(false)
@@ -62,7 +63,7 @@ export default function DcaApp({subscriberMode=false}){
  const refreshImage=useCallback(()=>{setProfile(current=>({...current,approved:false}));image.retry()},[image.retry])
  const filtered=filterProfiles(profiles,filters,used)
  const setFilter=(key,value)=>setFilters({...filters,[key]:value})
- function update(next){setProfile({...next,approved:false});if(!draftEdited.current){const text=buildTweetText(next);if(text)setDraft(text)}setFeedback('')}
+ function update(next){setSaveFeedback('');setProfile({...next,approved:false});if(!draftEdited.current){const text=buildTweetText(next);if(text)setDraft(text)}setFeedback('')}
  function edit(patch){update({...profile,...patch})}
  function editImage(patch){setProfile(current=>({...current,...patch,approved:false}))}
  function changeImageField(next){setField(next);editImage({})}
@@ -80,6 +81,7 @@ export default function DcaApp({subscriberMode=false}){
   setUsage(next)
  }
  function loadPortfolio(item){
+  setLibraryProfileOpen(true)
   draftEdited.current=item.draft!==buildTweetText(item.profile)
   setFilters(current=>({...current,selection:profileSelection(item.profile)}))
   const restored=restoreSavedProfile(item.profile)
@@ -98,15 +100,26 @@ export default function DcaApp({subscriberMode=false}){
   setSubscriberSession({id:item.id,source:JSON.stringify(item),baseline:subscriberSignature(item)})
  }
  const subscriberDirty=profile.mode==='participant'&&!profile.imageOnly&&!!(profile.name.trim()||profile.lines.length||draft.trim())&&(!subscriberSession||subscriberSession.baseline!==subscriberSignature({profile,draft,field}))
- const showComposer=!subscriberMode||profile.mode==='participant'
+ const showComposer=!subscriberMode||profile.mode==='participant'||libraryProfileOpen
+ function saveProfile(){
+  try{
+   const record=saveSubscriberProfile(localStorage,{profile,draft,field},subscriberSession)
+   subscriberSaved(record);setSaveFeedback('Profil sauvegardé. Retrouve-le dans « Profils sauvegardés ».')
+  }catch(error){setSaveFeedback(error.message||'Sauvegarde impossible. Ton profil reste ouvert.')}
+ }
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
  return <div className="dca-profiles-scope dca-simple">
- <PageHeader title={subscriberMode?"Profils d’abonnés":"Le DCA d’un abonné"} subtitle={subscriberMode?"Enregistre les profils reçus et retrouve-les pour préparer leur publication.":"Choisis un profil ou saisis une participation, puis récupère le texte et l’image."}/>
+ <PageHeader title={subscriberMode?"Profils sauvegardés":"Le DCA d’un abonné"} subtitle={subscriberMode?"Enregistre les profils reçus et retrouve-les pour préparer leur publication.":"Choisis un profil ou saisis une participation, puis récupère le texte et l’image."}/>
  {draftError&&<p role="alert">{draftError}</p>}
  {usage.error&&<p role="alert">{usage.error}</p>}
  {subscriberMode&&<Suspense fallback={<p role="status">Chargement des profils enregistrés…</p>}><SubscriberProfiles profile={profile} draft={draft} field={field} session={subscriberSession} dirty={subscriberDirty} onNew={createSubscriber} onOpen={loadPortfolio} onSaved={subscriberSaved} onRemoved={id=>{if(subscriberSession?.id===id)setSubscriberSession(null)}} usage={usage} onToggleUsed={id=>setUsage(toggleUsageHistory(usage,id))}/></Suspense>}
  {showComposer&&<><div className="dca-simple-grid">
   <section className="dca-simple-card" id="dca-compose" aria-label="Composer le DCA">
+   {!subscriberMode&&profile.mode==='participant'&&!profile.imageOnly&&<div className="dca-profile-save" role="group" aria-label="Sauvegarder le profil DCA">
+    <div className="dca-buttons"><Button disabled={!validDraftProfile(profile)} onClick={saveProfile}>{subscriberSession?'Mettre à jour le profil':'Sauvegarder le profil'}</Button><Button variant="secondary" onClick={onShowSaved}>Voir mes profils sauvegardés</Button></div>
+    <p className="dca-note">Même incomplet, ton profil peut être sauvegardé dans ce navigateur, sur cet appareil.</p>
+    {saveFeedback&&<p role="status" aria-live="polite">{saveFeedback}</p>}
+   </div>}
    {!subscriberMode&&<div className="dca-mode"><button aria-pressed={profile.mode==='prepared'} onClick={()=>{const next=filterProfiles(profiles,filters,used)[0];if(next)select(next);else setFeedback('Aucun profil ne correspond dans cette sélection. Modifie les filtres.')}}>Profils préparés</button><button aria-pressed={profile.mode==='participant'} onClick={participate}>Créer une participation</button></div>}
    {profile.mode==='prepared'&&<label>Sélection de profils<ChoicePicker aria-label="Sélection de profils" value={filters.selection} onChange={e=>changeSelection(e.target.value)}><option value="classic">Profils classiques</option><option value="controversial">Profils polémiques</option></ChoicePicker></label>}
    {profile.mode==='prepared'&&!filtered.length&&<p role="status">Aucun résultat dans cette sélection avec les filtres actuels. Le profil de {profile.name} reste ouvert ; modifie les filtres pour choisir un autre profil.</p>}

@@ -15,6 +15,32 @@ def fred(rows, header='observation_date,DEXTAUS'):
 
 
 class RankingSourcesTest(unittest.TestCase):
+    def test_january_requires_exact_december_session_and_preserves_previous_fx(self):
+        from collect_annual_fx import year_end_reference_date
+        from collect_ranking_sources import refresh_fx
+        from unittest.mock import patch
+        rows = []
+        for year in range(1999, 2027):
+            for month in range(1, 13):
+                end = dt.date(year + (month == 12), month % 12 + 1, 1) - dt.timedelta(days=1)
+                rows.append((year_end_reference_date(year) if month == 12 else end.isoformat(), 1.2))
+        now = dt.datetime(2027, 1, 1, 12, tzinfo=UTC)
+        complete = document(rows)
+        partial = document(rows[:-1] + [('2026-12-30', 1.2)])
+        with self.assertRaisesRegex(ValueError, 'expected 2026-12-31, observed 2026-12-30'):
+            parse_fx(partial, now)
+        previous = {'months': {'2025-12': {'asOf': '2025-12-31', 'rates': {'USD': 1.175}}}}
+        frozen = copy.deepcopy(previous)
+        with patch('collect_ranking_sources.download', return_value=partial):
+            retained, statuses = refresh_fx(previous, {}, now)
+        self.assertEqual(retained, frozen)
+        self.assertEqual(previous, frozen)
+        self.assertEqual(statuses['ECB']['status'], 'failed')
+        result = parse_fx(complete, now)
+        self.assertEqual(result['months']['2026-12']['asOf'], '2026-12-31')
+        self.assertNotIn('2027-01', result['months'])
+        self.assertEqual(result, parse_fx(complete, now))
+
     def test_cross_rate_uses_decimal_half_up_at_exact_ties(self):
         from collect_ranking_sources import cross_value
         self.assertEqual(cross_value(33.06, 1.3275), 43.8872)
@@ -76,7 +102,7 @@ class RankingSourcesTest(unittest.TestCase):
 
     def test_weekly_release_wait_also_preserves_the_year_boundary(self):
         last_days = [(dt.date(1999, m+1, 1)-dt.timedelta(days=1)).isoformat() for m in range(1, 12)]
-        ecb = document([(d, 1.2) for d in last_days]+[('1999-12-23', 1.25), ('1999-12-31', 1.3)])
+        ecb = document([(d, 1.2) for d in last_days]+[('1999-12-23', 1.25), ('1999-12-30', 1.3)])
         rows = [(d, 32) for d in last_days]+[('1999-12-23', 33)]
         result = parse_cross_fx(fred(rows), ecb, dt.datetime(2000, 1, 2, tzinfo=UTC))
         self.assertEqual(len(result['observations']), 11)

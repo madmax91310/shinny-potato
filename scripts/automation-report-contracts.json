@@ -262,6 +262,19 @@
           "versions": [
             null
           ]
+        },
+        {
+          "name": "currency-collection-outcomes.json",
+          "steps": [
+            "Record currency collection outcomes"
+          ],
+          "contract": "step-outcomes-v1",
+          "schemas": [
+            "step-outcomes"
+          ],
+          "versions": [
+            1
+          ]
         }
       ]
     },

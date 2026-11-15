@@ -27,6 +27,7 @@ const exposure={...prepared,id:'anonymous',title:'Allocation sans identité',pro
 const legacy={...prepared,id:'legacy',title:'Participation historique',profile:{...prepared.profile,mode:'participant'}}
 writeSaved(storage,[...readSavedState(storage).items,prepared,exposure,legacy])
 assert.equal(filterSubscriberProfiles(readSavedState(storage).items).length,3)
+assert.equal(filterSubscriberProfiles(readSavedState(storage).items,'',true).length,4,'Saved DCA tab also includes named prepared profiles, excluding exposure-only saves')
 assert.equal(subscriberId(legacy),'subscriber:legacy');assert.notEqual(subscriberId(legacy),legacy.profile.id)
 const migrated=saveSubscriberProfile(storage,{...legacy,profile:{...legacy.profile,id:subscriberId(legacy)}},{id:legacy.id,source:JSON.stringify(legacy)})
 assert.equal(migrated.profile.id,'subscriber:legacy');assert.equal(migrated.id,legacy.id);assert.equal(migrated.title,legacy.title,'Keep an existing custom save title')
