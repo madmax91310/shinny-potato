@@ -10,6 +10,7 @@ import {
   blankSnapshot,
   canonicalUrl,
   nameOf,
+  weightPct,
   validEpisode,
   latestPublicationDate,
   latestVerificationDate,
@@ -124,7 +125,7 @@ function SnapshotEvidence({ s }) {
       <p>
         Méthode : {s.method} · Dividendes : {s.dividends} · Frais : {s.fees}
       </p>
-      {s.total !== "" && (
+      {s.total !== "" && s.total != null && (
         <p>
           Montant public : {s.total} {s.currency}
         </p>
@@ -152,7 +153,7 @@ function SnapshotEvidence({ s }) {
       {s.positions.map((r, i) => (
         <p key={i}>
           {r.name} {r.identifier ? `(${r.identifier})` : ""} :{" "}
-          {r.weight === "" ? "Poids absent" : `${r.weight} %`}
+          {weightPct(r.weight)}
         </p>
       ))}
       {canonicalUrl(s.source) && (
@@ -417,7 +418,9 @@ export default function App() {
             <Field
               label="Statut éditorial"
               value={p.status}
-              options={STATUSES.filter(value=>value!=='Publié'||p.status==='Publié')}
+              options={STATUSES.filter(
+                (value) => value !== "Publié" || p.status === "Publié",
+              )}
               onChange={(v) => edit("status", v)}
             />
           </div>

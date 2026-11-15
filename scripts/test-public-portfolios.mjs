@@ -108,8 +108,8 @@ Object.assign(validBenchmark.benchmark, {
   end: s.month.end,
 });
 assert.equal(benchmarkIssue(validBenchmark), "");
-assert.match(buildText(p,validBenchmark,1),/MSCI World en octobre 2026/);
-assert.match(buildText(p,validBenchmark,1),/du 2026-10-01 au 2026-10-31/);
+assert.match(buildText(p, validBenchmark, 1), /MSCI World en octobre 2026/);
+assert.match(buildText(p, validBenchmark, 1), /du 2026-10-01 au 2026-10-31/);
 validBenchmark.benchmark.currency = "USD";
 assert(benchmarkIssue(validBenchmark));
 bytes.set(
@@ -198,3 +198,17 @@ assert(
     "Objectif communiqué",
   ),
 );
+
+for (const value of [null, undefined, " ", false, NaN]) {
+  const missing = structuredClone(s);
+  missing.month.value = value;
+  assert(issues(p, missing).some((x) => x.includes("rendement manquant")));
+  assert.equal(pct(value), "Non renseignée");
+  const allocation = structuredClone(s);
+  allocation.positions[0].weight = value;
+  assert(issues(p, allocation).some((x) => x.includes("Noms et poids")));
+  const benchmark = structuredClone(validBenchmark);
+  benchmark.benchmark.currency = "EUR";
+  benchmark.benchmark.value = value;
+  assert(benchmarkIssue(benchmark));
+}

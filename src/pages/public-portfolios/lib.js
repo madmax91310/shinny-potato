@@ -89,12 +89,18 @@ export function canonicalUrl(value) {
 }
 export const nameOf = (p) =>
   p.name.trim() || p.pseudo.trim() || "Fiche sans nom";
+const hasNumericValue = (value) =>
+  (typeof value === "number" ||
+    (typeof value === "string" && value.trim() !== "")) &&
+  Number.isFinite(Number(value));
 export const validEpisode = (value) =>
   /^\d{1,6}$/.test(String(value)) && Number(value) >= 1;
 export const weightPct = (value) =>
-  `${Number(value).toLocaleString("fr-FR", { maximumSignificantDigits: 10 })} %`;
+  hasNumericValue(value)
+    ? `${Number(value).toLocaleString("fr-FR", { maximumSignificantDigits: 10 })} %`
+    : "Non renseigné";
 export const pct = (value) =>
-  value === "" || value == null || !Number.isFinite(Number(value))
+  !hasNumericValue(value)
     ? "Non renseignée"
     : `${Number(value) > 0 ? "+" : ""}${weightPct(value)}`;
 export const latestPublicationDate = (p) =>
@@ -132,8 +138,7 @@ export function performanceIssues(s, key) {
       out.push("Mois non applicable : préciser le dernier mois civil terminé");
     return out;
   }
-  if (p.value === "" || !Number.isFinite(Number(p.value)))
-    out.push(`${label} : rendement manquant`);
+  if (!hasNumericValue(p.value)) out.push(`${label} : rendement manquant`);
   if (!p.verified) out.push(`${label} : contrôle de la source requis`);
   if (
     p.kind !== "Cumulée" ||
@@ -201,8 +206,7 @@ export function issues(p, s) {
     s.positions.some(
       (x) =>
         !x.name.trim() ||
-        x.weight === "" ||
-        !Number.isFinite(Number(x.weight)) ||
+        !hasNumericValue(x.weight) ||
         Number(x.weight) < 0 ||
         Number(x.weight) > 100,
     )
@@ -222,8 +226,7 @@ export function benchmarkIssue(s) {
     !b.source ||
     !b.method ||
     !b.reinvested ||
-    b.value === "" ||
-    !Number.isFinite(Number(b.value))
+    !hasNumericValue(b.value)
   )
     return "Benchmark non vérifié ou incomplet : aucune comparaison générée.";
   if (
