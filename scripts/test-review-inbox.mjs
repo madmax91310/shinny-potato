@@ -7,7 +7,7 @@ import fs from 'node:fs'
 import {reviewInboxProjection} from './build-data-review-inbox.mjs'
 import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
 import {buildAssetFieldReport} from './report-asset-fields.mjs'
-import {buildInbox,monitorHealth,projectionHealth,monitorExecutionHealth,inboxDiagnostic}from '../src/pages/data-review/review-inbox.js'
+import {buildInbox,fetchMonitorExecutionHealth,MONITOR_RUNS_URL,monitorHealth,projectionHealth,monitorExecutionHealth,inboxDiagnostic}from '../src/pages/data-review/review-inbox.js'
 const read=p=>JSON.parse(fs.readFileSync(p))
 // CI executes this before prebuild. Committed projections may belong to older
 // generators; exercise the current generators without writing shared fixtures.
@@ -69,3 +69,19 @@ const archived=r=>buildInbox({...args,status:{...status,monitoring:{...status.mo
 for(const proof of [null,{},[], 'green',{unknown:true},{kind:'unknown',checkedAt:'2026-10-23'}])assert.equal(archived({resolutionEvidence:proof}).kind,'archive','An archived episode without a usable proof stays counted in historical qualification')
 assert.equal(archived({resolutionEvidence:{kind:'matching-public-source-fingerprints',checkedAt:'2026-10-23T12:00:00Z',receiptCommit:'a'.repeat(40),codeSha:'b'.repeat(40),dataSha:'c'.repeat(40),fileCount:1}}).kind,'history')
 assert.equal(archived({workflow:'update-ai-portfolios.yml'}).kind,'not-applicable','Removal of a retired tool is not a repair or a reactivated data requirement')
+
+// A burst of ignored PR validations must not hide the latest actual monitor run.
+assert.equal(new URL(MONITOR_RUNS_URL).searchParams.get('per_page'),'100')
+const ignored=Array.from({length:100},(_,i)=>({id:1000-i,head_branch:'master',event:'workflow_run',status:'completed',conclusion:'skipped'}))
+for(const conclusion of ['success','failure']){
+ const requests=[]
+ const result=await fetchMonitorExecutionHealth({fetchImpl:async url=>{requests.push(url);return{ok:true,json:async()=>({workflow_runs:requests.length===1?ignored:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion,html_url:'proof'}]})}}})
+ assert.equal(requests.length,2);assert.match(requests[1],/page=2$/)
+ if(conclusion==='success')assert.equal(result,null);else assert.match(result,/échec.*proof/)
+}
+let boundedRequests=0
+assert.match(await fetchMonitorExecutionHealth({fetchImpl:async()=>{boundedRequests++;return{ok:true,json:async()=>({workflow_runs:ignored})}}}),/300.*vérifier/)
+assert.equal(boundedRequests,3)
+assert.match(await fetchMonitorExecutionHealth({fetchImpl:async()=>({ok:true,json:async()=>({})})}),/invalide/)
+await assert.rejects(fetchMonitorExecutionHealth({fetchImpl:async()=>({ok:false,status:503})}),/503/)
+console.log('Monitor history: skipped bursts, paginated success/failure, invalid payload, HTTP failure and bounded requests passed.')

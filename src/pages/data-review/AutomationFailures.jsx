@@ -1,5 +1,5 @@
 import ReviewBoundary from './ReviewBoundary.jsx'
-import {MONITOR_RUNS_URL,monitorExecutionHealth,monitorHealth} from './review-inbox.js'
+import {fetchMonitorExecutionHealth,monitorHealth} from './review-inbox.js'
 import ReviewInbox from './ReviewInbox.jsx'
 import AssetFieldCoverage from './AssetFieldCoverage.jsx'
 import { lazy, Suspense, useEffect, useState } from 'react'
@@ -38,7 +38,7 @@ export default function AutomationFailures({review}) {
       } catch { if (active) setUnavailable(true) }
       finally { clearTimeout(timeout) }
     }
-    async function checkMonitor(){try{const r=await fetch(MONITOR_RUNS_URL,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error('HTTP '+r.status);const error=monitorExecutionHealth(await r.json());if(active)setMonitorExecutionError(error)}catch{if(active)setMonitorExecutionError('Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer.')}}
+    async function checkMonitor(){try{const error=await fetchMonitorExecutionHealth({signal:AbortSignal.timeout(12000)});if(active)setMonitorExecutionError(error)}catch{if(active)setMonitorExecutionError('Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer.')}}
     checkMonitor()
     refresh()
     const timer = setInterval(()=>{refresh();checkMonitor()}, 300000)
