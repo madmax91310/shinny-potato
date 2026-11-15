@@ -150,7 +150,7 @@ try {
     await page.getByRole('button', { name: 'Rétablir le texte', exact: true }).click()
     await expect.poll(() => text.inputValue()).toContain('Quelle priorité choisiriez-vous maintenant ?')
     await page.getByLabel('À publier prochainement', { exact: true }).check()
-    await page.getByLabel('Profil publié', { exact: true }).click(); await page.getByLabel('Date de publication sur X', { exact: true }).fill('2026-11-01')
+    await page.getByLabel('Profil publié', { exact: true }).click(); await page.getByLabel('Date de publication', { exact: true }).fill('2026-11-01')
     await page.getByRole('button', { name: 'Confirmer la publication', exact: true }).click()
     await expect(page.getByLabel('La personne a validé les informations à publier.', { exact: true })).not.toBeChecked()
     await page.getByText('Brouillons et transfert entre appareils', { exact: true }).click()
@@ -173,7 +173,7 @@ try {
     await page.getByRole('button', { name: 'Profils', exact: true }).click()
     await page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator(`[data-value="${bankProfile.id}"]`).click()
     await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
-    await expect(page.getByLabel('Revenus · poste 1', { exact: true })).toHaveValue('Salaire')
+    await expect(page.getByLabel('Revenus · poste 1', { exact: true })).toHaveValue('Salaire net après impôt')
     for (const [i, row] of budgetPublicExpenseRows(bankProfile).entries()) {
       await expect(page.getByLabel(`Dépenses · poste ${i + 1}`, { exact: true })).toHaveValue(row.label)
       await expect(page.getByLabel(`Dépenses · montant ${i + 1}`, { exact: true })).toHaveValue(String(row.amount))
