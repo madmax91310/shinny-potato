@@ -2,6 +2,14 @@
 # Same financial checks initially and after the two qualified independent writes.
 set -euo pipefail
 mode=${1:?Missing mode}
+selection=()
+if [[ -n "${EXPOSURE_ISINS:-}" ]]; then
+  if [[ ! "$EXPOSURE_ISINS" =~ ^[A-Z]{2}[A-Z0-9]{9}[0-9](,[A-Z]{2}[A-Z0-9]{9}[0-9])*$ ]]; then
+    echo 'Invalid explicit ISIN selection' >&2; exit 2
+  fi
+  IFS=',' read -ra selected <<< "$EXPOSURE_ISINS"
+  selection=(--only "${selected[@]}")
+fi
 case "$mode" in
   validate) base=$(git rev-parse HEAD) ;;
   prepare|check) base=${VALIDATED_DATA_ORIGINAL_BASE:?Missing collection base} ;;
@@ -17,7 +25,7 @@ if [[ "$mode" == prepare ]]; then
 fi
 python3 scripts/validate_exposure_publication.py validate --base "$base" \
   --report "$RUNNER_TEMP/exposure-expansion.json" \
-  --plan "$RUNNER_TEMP/exposure-expansion.contract-plan.json"
+  --plan "$RUNNER_TEMP/exposure-expansion.contract-plan.json" "${selection[@]}"
 if [[ "$mode" == check && "$(git rev-parse HEAD^)" == "$base" ]]; then
   echo 'Original financial checks apply: no upstream input changed.'
   exit 0

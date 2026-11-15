@@ -163,6 +163,20 @@ class ExposureFallbackPublication(unittest.TestCase):
 
 
 class ExposurePublicationGit(unittest.TestCase):
+ def test_shell_passes_explicit_scope_to_initial_and_rebased_validation(self):
+  with tempfile.TemporaryDirectory()as folder:
+   root=Path(folder);bin=root/'bin';bin.mkdir();log=root/'args'
+   for name,body in {'git':'echo abc', 'npm':'exit 0', 'python3':'printf "%s\\n" "$*" >> "$CAPTURE"'}.items():
+    f=bin/name;f.write_text('#!/bin/sh\n'+body+'\n');f.chmod(0o755)
+   env={**os.environ,'PATH':str(bin)+os.pathsep+os.environ['PATH'],'CAPTURE':str(log),'RUNNER_TEMP':folder,'VALIDATED_DATA_ORIGINAL_BASE':'base','EXPOSURE_ISINS':'DE0002635307,LU0328475792'}
+   for mode in ['validate','check']:
+    log.unlink(missing_ok=True)
+    subprocess.run(['bash',str(ROOT/'scripts/validate-exposure-publication.sh'),mode],env=env,check=True,capture_output=True)
+    self.assertIn('--only DE0002635307 LU0328475792',log.read_text())
+   env['EXPOSURE_ISINS']='INVALID';log.unlink()
+   r=subprocess.run(['bash',str(ROOT/'scripts/validate-exposure-publication.sh'),'validate'],env=env,capture_output=True)
+   self.assertEqual(r.returncode,2);self.assertFalse(log.exists())
+
  def git(self,root,*args):return subprocess.check_output(['git','-C',str(root),*args],stderr=subprocess.DEVNULL).decode().strip()
  def setup_repository(self):
   temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);root=Path(temp.name)/'checkout';root.mkdir();remote=Path(temp.name)/'remote.git'
