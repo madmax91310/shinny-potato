@@ -3,10 +3,10 @@ import argparse, datetime as dt, json, re, hashlib, copy, time
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlsplit, parse_qs
-from data_automation import get_json, get_text, UTC, write_json_atomic
+from data_automation import get_json, get_text, UTC, write_json_atomic, reject
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
-from collect_etf_pilot import partial_holdings_response, read_blackrock_response
+from collect_etf_pilot import partial_holdings_response, read_blackrock_response, published_holdings_retry_url
 from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
 from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
 from qualified_corporate_identities import qualified_corporate_identity
@@ -44,6 +44,37 @@ def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
     body,raw,attempts,url=read_blackrock_response(config['url'],share,fetch,sleep,25_000_000)
     digest=hashlib.sha256(raw.encode()).hexdigest()
     partial=partial_holdings_response(body,config['isin'],product[0],config.get('currency'))
+    identity_proof={}
+    if partial:
+        dated_url,requested=published_holdings_retry_url(body,url)
+        if requested and dated_url!=url:
+            # Only identity/classification references are reused. Every position,
+            # weight, price, currency and exposure comes from ONE dated book.
+            facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+            identity_proof={'identitySourceUrl':url,'identitySha256':digest,
+                'identityMethod':'Exact share ISIN, physical structure and asset class from separate issuer product facts; dated holdings product and currency independently matched; no NAV or exposure table borrowed'}
+            try:
+                dated_raw=fetch(dated_url,('application/json',),25_000_000)
+                dated=json.loads(dated_raw,parse_constant=lambda value:reject('Invalid JSON number: '+value))
+                if str(dated.get('productId'))!=product[0] or dated.get('currencyCode')!=body['currencyCode']:
+                    raise ValueError('Wrong exact product or currency in published dated holdings')
+                stated_isin=dated.get('componentsByNameMap',{}).get('keyFundFacts',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{}).get('isin',{}).get('value')
+                if stated_isin is not None and stated_isin!=config['isin']:
+                    raise ValueError('Wrong exact share in published dated holdings')
+                positions=dated['componentsByNameMap']['holdings']
+                stamp=positions['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']['value']
+                if str(stamp)!=requested:
+                    raise ValueError('Issuer did not return the requested published holdings snapshot')
+                body={'productId':dated['productId'],'currencyCode':dated['currencyCode'],
+                      'componentsByNameMap':{'holdings':positions,'keyFundFacts':{'containersByNameMap':{
+                          'default':{'dataPointsByNameMap':{key:copy.deepcopy(facts[key])for key in ('isin','productStructure','assetClass')}}}}}}
+                raw=dated_raw;url=dated_url;digest=hashlib.sha256(raw.encode()).hexdigest()
+                attempts.append({'url':url,'attempt':3,'status':'received-dated-holdings',
+                                 'requestedAsOfDate':requested,'sha256':digest})
+                partial=None
+            except Exception as error:
+                error.sourceAttempts=attempts
+                raise
     if partial:
         state='absent' if partial=='missing-holdings-component' else 'empty'
         raise ValueError('BlackRock exact-share holdings component '+state+' after two bounded attempts: '+json.dumps(attempts))
@@ -53,6 +84,9 @@ def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
         error.diagnostic.update(sourceUrl=url,sha256=digest,checkedAt=now.isoformat())
         raise
     record['sha256']=digest
+    if identity_proof:
+        record.update(identity_proof)
+        attempts[-1]['status']='validated'
     if attempts:record['sourceAttempts']=attempts
     return record,securities
 

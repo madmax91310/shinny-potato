@@ -50,22 +50,39 @@ class Recovery(unittest.TestCase):
         from urllib.parse import parse_qs,urlsplit
         partial=self.empty()
         partial['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['dateList']={'value':[20260930,20261015]}
-        responses=iter([partial,self.body]);calls=[]
+        responses=iter([partial,partial,self.body]);calls=[]
         def fetch(*args):calls.append(args[0]);return json.dumps(next(responses))
         record,_=collect_blackrock_complete(self.config,self.now,fetch,lambda _:None)
-        self.assertEqual(len(calls),2)
-        self.assertEqual(parse_qs(urlsplit(calls[1]).query)['asOfDate'],['20261015'])
+        self.assertEqual(len(calls),3)
+        self.assertEqual(calls[:2],[self.config['url']]*2)
+        self.assertEqual(parse_qs(urlsplit(calls[2]).query)['asOfDate'],['20261015'])
+        self.assertEqual(parse_qs(urlsplit(calls[2]).query)['component'],['holdings.all'])
         self.assertEqual(record['asOf'],'2026-10-15')
-        self.assertEqual(record['sourceUrl'],calls[1])
-        self.assertEqual(record['sourceAttempts'][0]['requestedAsOfDate'],'20261015')
+        self.assertEqual(record['sourceUrl'],calls[2])
+        self.assertEqual(record['sourceAttempts'][-1]['requestedAsOfDate'],'20261015')
+        self.assertEqual(record['identitySourceUrl'],self.config['url'])
+        self.assertNotEqual(record['identitySha256'],record['sha256'])
     def test_wrong_returned_date_or_invalid_date_list_is_not_admitted(self):
         for dates in [[20261016],['not-a-date'],[20261015,20261015]]:
             partial=self.empty()
             partial['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['dateList']={'value':dates}
-            responses=iter([partial,self.body]);calls=[]
+            responses=iter([partial,partial,self.body]);calls=[]
             def fetch(*args):calls.append(args[0]);return json.dumps(next(responses))
             with self.assertRaises(ValueError):collect_blackrock_complete(self.config,self.now,fetch,lambda _:None)
-            self.assertEqual(len(calls),2 if dates==[20261016] else 1)
+            self.assertEqual(len(calls),3 if dates==[20261016] else 2)
+    def test_dated_book_identity_and_weights_still_require_independent_validation(self):
+        for kind in ['product','currency','share','weights']:
+            partial=self.empty()
+            partial['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['dateList']={'value':[20261015]}
+            dated=copy.deepcopy(self.body)
+            if kind=='product':dated['productId']=999
+            if kind=='currency':dated['currencyCode']='USD' if self.body['currencyCode']!='USD' else 'EUR'
+            if kind=='share':dated['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']['isin']['value']='WRONG'
+            if kind=='weights':dated['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['holdingPercent']['value']=[30,20]
+            responses=iter([partial,partial,dated]);calls=[]
+            def fetch(*args):calls.append(args[0]);return json.dumps(next(responses))
+            with self.assertRaises(ValueError):collect_blackrock_complete(self.config,self.now,fetch,lambda _:None)
+            self.assertEqual(len(calls),3)
     def test_existing_requested_period_is_never_replaced_by_another_date(self):
         from urllib.parse import parse_qs,urlsplit
         partial=self.empty()

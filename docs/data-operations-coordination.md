@@ -648,27 +648,36 @@ Même correctif : le producteur Bitcoin dédié n'avait aucune tentative après 
 
 ### 15 novembre 2026 — reprise bornée des livres iShares vides
 
-Automatisation des données possède cette correction, dans le suivi unique #881 :
+Automatisation des données possède cette correction dans le suivi unique #881 :
 `collect_etf_pilot.py`, `collect_dca_complete_holdings.py`,
-`collect_qualified_exposures.py`, leurs trois recettes de régression et le déclenchement commun de `update-qualified-exposures.yml`.
-Aucun lecteur/réducteur de supervision ni fichier des PR #1061/#1253 n'est modifié.
+`collect_qualified_exposures.py`, leurs trois recettes de régression et le
+raccord de déclenchement `update-qualified-exposures.yml`. Aucun lecteur/réducteur
+ni fichier des PR #1061/#1253 n'est modifié.
 
 Les observations ordinaires 43731952399 et 43736125412 montrent des composants
-holdings présents dont date et colonnes sont entièrement nulles. La reprise
-existante du livre complet ne reconnaissait que l'absence du composant. La même
-qualification précise est partagée avec le pilote et les expositions qualifiées : identité ISIN/produit/devise
-vérifiée, une seconde acquisition bornée après deux secondes, réponse entièrement
-remplacée puis contrôles financiers ordinaires. Si le livre nul publie une liste
-de dates, seule la dernière date explicitement proposée est demandée via
-`asOfDate`, sans modifier une période déjà demandée. La date retournée doit
-correspondre exactement. Aucune date NAV/encours ni date du jour empruntée ;
-les protections existantes refusent le remplacement d’un livre plus récent. Les deux tentatives
-conservent leurs empreintes. Deux réponses vides restent un échec explicite du
-livre ; les autres champs valides et les anciens livres datés sont préservés.
-Une identité erronée, une structure modifiée, un livre périmé ou des pondérations
-incohérentes ne sont pas admis par cette reprise. Aucun seuil n'est abaissé.
+présents dont la date et les colonnes sont entièrement nulles. La reprise
+existante du livre complet ne reconnaissait que le composant absent. Les trois
+producteurs partagent désormais une seconde acquisition de la même réponse
+entière, après deux secondes et contrôle de l'identité ISIN/produit/devise.
+Les tentatives et leurs empreintes sont conservées ; les contrôles financiers
+restent obligatoires. Deux réponses nulles ne deviennent pas un succès.
 
-Les tests isolés ne prouvent pas un succès fournisseur : les prochains producteurs
-ordinaires doivent encore établir acquisition, qualification, enregistrement et
-publication. Les incidents primaires restent ouverts tant que leur résultat
-individuel ne le démontre pas. Aucun succès de cache ou cron anticipé.
+Pour les livres complets seulement, une troisième requête bornée peut demander
+la dernière date explicitement publiée dans `holdings.dateList`, au seul endpoint
+`component=holdings.all`. L'API refuse les dates sur les requêtes combinées
+avec listings/exposureBreakdowns : aucune répétition de cette voie refusée.
+Le produit, la devise et la date retournés doivent correspondre. Seuls l'ISIN,
+la structure physique et la classe du fonds sont repris du document d'identité,
+avec URL/empreinte distinctes. Toutes les positions, valeurs, devises, pondérations
+et ventilations dérivées proviennent d'un seul livre daté ; aucune NAV ni table
+d'exposition d'une autre photographie n'est empruntée. Une période déjà demandée
+n'est jamais remplacée. Les protections de stockage refusent les livres plus
+anciens que les dernières valeurs qualifiées ; les dates ne sont pas renouvelées
+artificiellement. Identité erronée, incohérence financière ou structure modifiée
+restent des refus. Aucun poids absent à zéro ni renormalisation.
+
+Preuve locale réelle : produit 308873/USD, livre du 30 octobre, 128 lignes,
+poids bruts 100 %. Cela ne prouve ni l'accès GitHub ni la publication. Les prochains
+producteurs ordinaires doivent encore établir les résultats individuels,
+l'enregistrement et la consommation. Les incidents primaires restent distincts
+des voies alternatives qualifiées. Aucun cache ni cron anticipé.

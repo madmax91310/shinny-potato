@@ -73,7 +73,9 @@ def published_holdings_retry_url(body, url):
     if len(set(normalized)) != len(normalized):
         reject('Duplicate published holdings date')
     selected = max(normalized)
-    return route._replace(query=urlencode([*query, ('asOfDate', selected)])).geturl(), selected
+    # Historical dates are supported by holdings, not listings/exposure tables.
+    query = [(key, value) for key, value in query if key != 'component']
+    return route._replace(query=urlencode([*query, ('component', 'holdings.all'), ('asOfDate', selected)])).geturl(), selected
 
 
 def read_blackrock_response(url, share, fetch, sleep=time.sleep, limit=20_000_000):
@@ -97,9 +99,6 @@ def read_blackrock_response(url, share, fetch, sleep=time.sleep, limit=20_000_00
             attempts.append({'url': url, 'attempt': attempt + 1, 'status': partial,
                              'sha256': hashlib.sha256(raw.encode()).hexdigest()})
             if attempt == 0:
-                url, requested_date = published_holdings_retry_url(body, url)
-                if requested_date:
-                    attempts[-1].update(nextUrl=url, requestedAsOfDate=requested_date)
                 sleep(2)
                 continue
         else:
