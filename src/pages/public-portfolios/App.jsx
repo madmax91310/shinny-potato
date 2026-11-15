@@ -417,7 +417,7 @@ export default function App() {
             <Field
               label="Statut éditorial"
               value={p.status}
-              options={STATUSES}
+              options={STATUSES.filter(value=>value!=='Publié'||p.status==='Publié')}
               onChange={(v) => edit("status", v)}
             />
           </div>

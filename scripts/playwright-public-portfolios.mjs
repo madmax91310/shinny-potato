@@ -26,6 +26,7 @@ await page.goto(base + "portefeuilles-publics");
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
 await page.getByLabel("URL du portefeuille", { exact: true }).fill("https://");
+assert.equal(await page.getByLabel('Statut éditorial',{exact:true}).locator('option[value="Publié"]').count(),0);
 await page.getByRole("button", { name: "Sauvegarder", exact: true }).click();
 await page.close();
 page = await context.newPage();

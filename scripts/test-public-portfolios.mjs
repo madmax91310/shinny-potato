@@ -108,6 +108,8 @@ Object.assign(validBenchmark.benchmark, {
   end: s.month.end,
 });
 assert.equal(benchmarkIssue(validBenchmark), "");
+assert.match(buildText(p,validBenchmark,1),/MSCI World en octobre 2026/);
+assert.match(buildText(p,validBenchmark,1),/du 2026-10-01 au 2026-10-31/);
 validBenchmark.benchmark.currency = "USD";
 assert(benchmarkIssue(validBenchmark));
 bytes.set(

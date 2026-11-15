@@ -76,7 +76,7 @@ export function renderImages(p, s, episode) {
   y += 300;
   if (!benchmarkIssue(s))
     y =
-      wrapped(`${s.benchmark.name} : ${pct(s.benchmark.value)}`, y, 900, 32) +
+      wrapped(`${s.benchmark.name} · mois : ${pct(s.benchmark.value)}`, y, 900, 32) +
       20;
   line("RÉPARTITION", y, 32, "#71dfb2");
   y += 60;
