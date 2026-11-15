@@ -59,7 +59,7 @@ try{
   const fifty={...saved.profile,lines:Array.from({length:50},(_,i)=>newManualLine({label:`Placement ${i+1}`,category:'Fonds en euros',weight:2,amount:10}))}
   const fiftyPages=await renderImageSeries(fifty,'all')
   const texts=[],allocationCanvases=[];const original=CanvasRenderingContext2D.prototype.fillText
-  CanvasRenderingContext2D.prototype.fillText=function(value,...args){texts.push({text:String(value),canvas:this.canvas});return original.call(this,value,...args)}
+  CanvasRenderingContext2D.prototype.fillText=function(value,...args){texts.push({text:String(value),canvas:this.canvas,x:this.getTransform().e,y:this.getTransform().f});return original.call(this,value,...args)}
   try{
    allocationCanvases.push((await renderImageSeries(saved.profile,'all')).find(p=>p.id==='allocation').canvas)
    const longEight={...saved.profile,lines:Array.from({length:8},(_,i)=>newManualLine({label:`Placement ${i} — `+'Libellé long '.repeat(15),category:'Fonds en euros',weight:12.5,amount:10}))}
@@ -67,6 +67,9 @@ try{
    allocationCanvases.push(pages[1].canvas)
    if(pages[1].canvas.height<=1000)throw Error('Long labels must expand the individual image')
   }finally{CanvasRenderingContext2D.prototype.fillText=original}
+  const inRing=texts.filter(d=>d.canvas===allocationCanvases[0]&&d.text.includes('%'))
+  if(inRing.length!==saved.profile.lines.filter(l=>l.weight>0).length)throw Error('Every positive holding needs an in-ring percentage')
+  for(const d of inRing){if(Math.abs(Math.hypot(d.x-plan.cx,d.y-plan.cy)-(plan.inner+plan.outer)/2)>1)throw Error('Percentage is outside its segment ring')}
   return {height:plan.height,width:plan.width,count:plan.labels.length,collisions,centerText:texts.filter(d=>allocationCanvases.includes(d.canvas)&&['100 %','du patrimoine','du portefeuille'].includes(d.text)).map(d=>d.text),names:plan.labels.map(l=>l.name),fiftyPages:fiftyPages.map(p=>p.id)}
  })
  assert.equal(audit.count,15);assert.deepEqual(audit.collisions,[]);assert.deepEqual(audit.centerText,[])
@@ -80,3 +83,4 @@ try{
  await writeFile(`${out}/audit.json`,JSON.stringify({filenames,...audit},null,2))
  console.log(JSON.stringify({filenames,...audit}))
 }finally{await browser?.close();server.kill()}
+
