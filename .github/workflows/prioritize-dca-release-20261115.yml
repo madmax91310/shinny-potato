@@ -1,0 +1,83 @@
+name: Prioritize requested DCA release (15 November)
+
+# One-time operational action requested by the repository owner.
+# Only these three older validation runs may be retired; the requested release
+# keeps its ordinary, complete Pages gate and every financial observation.
+on:
+  push:
+    branches: [master]
+    paths: [.github/workflows/prioritize-dca-release-20261115.yml]
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  prioritize:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      - name: Retire exactly three superseded validations
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          DRY_RUN: 'false'
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+
+          repo = os.environ['GH_REPO']
+          assert repo == 'madmax91310/shinny-potato'
+          release = '3a73cba202667f20dc2b6ebbe6ce6b451aba513b'
+          protected_run = 43704892739
+          older = {
+              43702414518: '0f015eb5673f8c6ac96e331a381ff894b81a884c',
+              43703196293: '9a21403cfb2e375be9043e9a362387d5563c52ce',
+              43704018404: '28cead8cb19b8096fd318c8c72f9bd3544418378',
+          }
+          active = {'queued', 'pending', 'in_progress', 'waiting', 'requested'}
+
+          def api(path, method='GET'):
+              if method == 'POST' and os.environ.get('DRY_RUN', 'true') != 'false':
+                  print('Dry run, would retire:', path)
+                  return None
+              headers = {'Accept': 'application/vnd.github+json'}
+              if os.environ.get('GH_TOKEN'):
+                  headers['Authorization'] = 'Bearer ' + os.environ['GH_TOKEN']
+              request = urllib.request.Request(
+                  'https://api.github.com/repos/' + repo + path,
+                  method=method, headers=headers)
+              try:
+                  with urllib.request.urlopen(request, timeout=25) as response:
+                      body = response.read()
+                      return json.loads(body) if body else None
+              except urllib.error.HTTPError as error:
+                  if method == 'POST' and error.code in (409, 422):
+                      print('Run already finished or retiring:', path)
+                      return None
+                  raise
+
+          target = api('/actions/runs/' + str(protected_run))
+          assert target['head_sha'] == release and target['head_branch'] == 'master'
+          assert target['path'] == '.github/workflows/deploy-pages.yml'
+          assert target['status'] in active, 'Requested release no longer needs priority'
+          master = api('/branches/master')['commit']['sha']
+          assert api('/compare/' + release + '...' + master)['status'] in {'ahead', 'identical'}
+          for run_id, expected in older.items():
+              assert run_id != protected_run
+              run = api('/actions/runs/' + str(run_id))
+              assert run['head_sha'] == expected and run['head_branch'] == 'master'
+              assert run['path'] == '.github/workflows/deploy-pages.yml' and run['event'] == 'push'
+              assert api('/compare/' + expected + '...' + release)['status'] == 'ahead'
+              if run['status'] not in active:
+                  print('Already complete, preserved:', run_id)
+                  continue
+              jobs = api('/actions/runs/' + str(run_id) + '/jobs?per_page=100')
+              assert jobs['total_count'] <= 100
+              if any(job['name'] in {'deploy', 'deploy-fallback'} and
+                     job['status'] == 'in_progress' for job in jobs['jobs']):
+                  raise RuntimeError('Active publisher preserved: ' + str(run_id))
+              api('/actions/runs/' + str(run_id) + '/cancel', 'POST')
+              print('Retired superseded validation:', run_id, expected)
+          print('Requested release preserved:', protected_run, release)
+          PY
