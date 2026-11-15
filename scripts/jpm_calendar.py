@@ -78,4 +78,5 @@ def parse(body, identity_body, share, now):
             'identitySourceUrl': URL, 'identitySha256': proof(identity_body),
             'identityNavAsOf': stamp,
             'sourceComponent': 'historicalCalendarYearPerformanceReturn.labels/performanceData; oneYear..tenYears; YTD excluded',
-            'method': 'calendar-year exact-share NAV total return, gross income reinvested, net of ongoing charges; issuer decimal returns converted to percent, no extra distribution adjustment'}
+            'method': 'calendar-year exact-share NAV total return, gross income reinvested, net of ongoing charges',
+            'extractionMethod': 'issuer decimal returns converted to percent, no extra distribution adjustment'}
