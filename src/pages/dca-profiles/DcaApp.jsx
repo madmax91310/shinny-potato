@@ -10,7 +10,7 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { profilePositionLimit, MAX_EXPOSURE_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
-import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord, readSavedState } from './management.js'
+import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord, readSavedState, restoreSavedProfile } from './management.js'
 import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
@@ -82,7 +82,8 @@ export default function DcaApp({subscriberMode=false}){
  function loadPortfolio(item){
   draftEdited.current=item.draft!==buildTweetText(item.profile)
   setFilters(current=>({...current,selection:profileSelection(item.profile)}))
-  const next={...item.profile,lines:confirmLines(item.profile.lines),approved:false}
+  const restored=restoreSavedProfile(item.profile)
+  const next={...restored,lines:confirmLines(restored.lines)}
   if(next.mode==='participant'&&!next.imageOnly)next.id=subscriberId(item)
   setProfile(next);setDraft(item.draft);setField(item.field)
   let stored=null

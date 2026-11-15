@@ -1219,5 +1219,38 @@
         }
       ]
     }
+  },
+  "medpace": {
+    "isin": "US58506Q1094",
+    "name": "MEDPACE HOLDINGS",
+    "kind": "equity",
+    "countries": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13",
+      "basis": "equity",
+      "method": "Country of risk",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "compatibility": "country-risk",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 100
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-11-12",
+      "checkedAt": "2026-11-13",
+      "basis": "equity",
+      "method": "GICS sector according to BlackRock",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "compatibility": "gics",
+      "rows": [
+        {
+          "name": "Health Care",
+          "weightPct": 100
+        }
+      ]
+    }
   }
 }
