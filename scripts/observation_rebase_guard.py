@@ -166,7 +166,16 @@ ALLOWED = {
     'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     # Run41115036012: actor/publication observations do not feed SCPI acquisition.
     # Exact outputs only; combined-tree build, audits and non-mutation still required.
-    'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {'src/data/exposure-etf-expansion-records.json', 'src/data/automated-presentation-actors.json', 'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
+    'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {
+                         # Scheduled43726539441: independent non-bond outputs,
+                         # never read by SCPI acquisition or its source helpers.
+                         # Preserve them and rerun the combined financial build.
+                         'scripts/source-snapshots/non-bond-monthly-active.json',
+                         'src/data/non-bond-etf-records.json',
+                         'src/data/non-bond-levels.json',
+                         'src/data/non-bond-monthly-records.json',
+                         'src/data/non-bond-qualified-records.json',
+                         'src/data/exposure-etf-expansion-records.json', 'src/data/automated-presentation-actors.json', 'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
                          'src/data/anniversary-index-history.json',
                          'src/data/purchasing-power-observations.json',
                          'scripts/source-snapshots/anniversary-indices.json'},
