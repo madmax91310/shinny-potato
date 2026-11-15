@@ -8,6 +8,49 @@ class DcaEquities(unittest.TestCase):
         records,missing=parse(self.body(),{'apple':'US0378331005','other':'XX0000000000'},dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
         self.assertEqual(missing,['other']);self.assertEqual(records['apple']['countries']['rows'][0]['weightPct'],100)
         self.assertEqual(records['apple']['sectors']['compatibility'],'gics')
+    def test_supplementary_exact_share(self):
+        from collect_dca_equities import collect, SOURCE, SECONDARY_SOURCE
+        primary=self.body()
+        secondary=self.body()
+        secondary['productId']='296576'
+        secondary['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']['isin']['value']='IE00BF4RFH31'
+        fields=secondary['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        fields['isin']['value'][0]='US58506Q1094'
+        fields['issueName']['value'][0]='MEDPACE HOLDINGS'
+        fields['sectorName']['value'][0]='Health Care'
+        calls=[]
+        def fetch(url):
+            calls.append(url)
+            return primary if url==SOURCE else secondary
+        now=dt.datetime(2026,10,15,tzinfo=dt.timezone.utc)
+        records,missing=collect({'apple':'US0378331005','medpace':'US58506Q1094'},now,fetch)
+        self.assertFalse(missing)
+        self.assertEqual(calls,[SOURCE,SECONDARY_SOURCE])
+        self.assertEqual(records['medpace']['sectors']['rows'],[{'name':'Health Care','weightPct':100}])
+        self.assertEqual(records['medpace']['countries']['sourceUrl'],SECONDARY_SOURCE)
+        self.assertEqual(records['medpace']['countries']['asOf'],'2026-10-13')
+        calls.clear()
+        collect({'apple':'US0378331005'},now,fetch)
+        self.assertEqual(calls,[SOURCE])
+        secondary['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']['isin']['value']='WRONG'
+        with self.assertRaises(ValueError):
+            collect({'medpace':'US58506Q1094'},now,fetch)
+    def test_medpace_real_captured_source(self):
+        import gzip
+        import json
+        from pathlib import Path
+        from collect_dca_equities import SECONDARY_SOURCE
+        root=Path(__file__).resolve().parents[1]
+        body=json.loads(gzip.decompress((root/'scripts/fixtures/qualified-cash-rights/IE00BF4RFH31.json.gz').read_bytes()))
+        actual,missing=parse(body,{'medpace':'US58506Q1094'},dt.datetime(2026,11,13,tzinfo=dt.timezone.utc),
+                             source=SECONDARY_SOURCE,source_isin='IE00BF4RFH31',product_id='296576')
+        self.assertFalse(missing)
+        stored=json.loads((root/'src/data/dca-equity-exposures.json').read_text())['medpace']
+        # A real dated issuer response proves the classification, rather than an inferred country.
+        self.assertEqual(actual['medpace']['countries']['rows'],stored['countries']['rows'])
+        self.assertEqual(actual['medpace']['sectors']['rows'],stored['sectors']['rows'])
+        self.assertEqual(actual['medpace']['countries']['asOf'],'2026-11-12')
+        self.assertEqual(actual['medpace']['countries']['sourceUrl'],SECONDARY_SOURCE)
     def test_wrong_share(self):
         b=self.body();b['productId']='bad'
         with self.assertRaises(ValueError):parse(b,{'apple':'US0378331005'},dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
