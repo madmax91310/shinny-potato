@@ -40,7 +40,8 @@ export function useImageExport(profile, field, enabled, maxPositions=profilePosi
       const link = document.createElement('a')
       const page=current.images[index]
       if(!page)throw new Error('Image indisponible.')
-      link.href = page.url; link.download = current.images.length>1?filename.replace(/\.png$/i,`-${page.id}.png`):filename
+      const name=String(profile.name||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')
+      link.href = page.url; link.download = filename.replace(/\.png$/i,`${name?'-'+name:''}-${page.id}.png`)
       document.body.append(link)
       try { startPublicationDownload(link) } finally { link.remove() }
     },

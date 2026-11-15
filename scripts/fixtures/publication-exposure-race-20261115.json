@@ -1,0 +1,422 @@
+{
+  "runId": 43727084478,
+  "base": "2b3176d",
+  "upstream": "8401b7d",
+  "registry": "src/data/exposure-etf-expansion-records.json",
+  "controlledIsin": "IE00BDVPNG13",
+  "before": {
+    "IE00BDVPNG13": {
+      "currency": "USD",
+      "productId": "IE00BDVPNG13",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+      "provider": "WisdomTree",
+      "aum": {
+        "amount": 1270075648.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-11-12",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2120247"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "5efb31c2d35d363bc6199a63c56f13b1f6d045158336e05ad70b327826ee0503",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-15"
+      },
+      "sectors": {
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 76.94330000000001,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 7.570399999999999,
+            "label": "Communication"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 6.6635,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 4.7413,
+            "label": "Health Care"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 4.0812,
+            "label": "Industrials"
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "rankClassificationID": 2,
+        "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+        "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-13"
+      },
+      "countries": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 77.1358
+          },
+          {
+            "name": "South Korea",
+            "weightPct": 6.4582
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 6.1434
+          },
+          {
+            "name": "China",
+            "weightPct": 3.6613
+          },
+          {
+            "name": "Israel",
+            "weightPct": 2.3427
+          },
+          {
+            "name": "Japan",
+            "weightPct": 2.1428
+          },
+          {
+            "name": "Taiwan",
+            "weightPct": 2.1156
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+        "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-13"
+      },
+      "holdings": {
+        "rows": [
+          {
+            "name": "Advanced Micro Devices",
+            "weightPct": 3.5124000000000004
+          },
+          {
+            "name": "Amazon.com Inc",
+            "weightPct": 2.9063
+          },
+          {
+            "name": "Synopsys Inc",
+            "weightPct": 2.8602
+          },
+          {
+            "name": "Tempus Ai Inc",
+            "weightPct": 2.6153
+          },
+          {
+            "name": "Palantir Technologies Inc-A",
+            "weightPct": 2.5041
+          },
+          {
+            "name": "Alphabet Inc-Cl A",
+            "weightPct": 2.4855
+          },
+          {
+            "name": "Meta Platforms, Inc. Cl A",
+            "weightPct": 2.3675
+          },
+          {
+            "name": "Qualcomm Inc",
+            "weightPct": 2.3494
+          },
+          {
+            "name": "Nice Ltd - Spon ADR",
+            "weightPct": 2.3427
+          },
+          {
+            "name": "Microsoft Corp",
+            "weightPct": 2.3283
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "rankClassificationID": 1,
+        "scope": "top-10",
+        "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+        "method": "Top ten of the exact issuer Fund ranking; original published pct weights, NAV denominator and excluded cash not qualified; not renormalised",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+        "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-13"
+      },
+      "characteristics": {
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "terPct": 0.4,
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-10-26"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "years": {
+          "2019": 47.74,
+          "2020": 74.9,
+          "2021": 15.29,
+          "2022": -41.59,
+          "2023": 55.14,
+          "2024": 11.38,
+          "2025": 23.56
+        },
+        "method": "calendar-year exact-share NAV return, net of fees",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-10-26"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "asOf": "2026-09-30"
+        }
+      }
+    }
+  },
+  "after": {
+    "IE00BDVPNG13": {
+      "currency": "USD",
+      "productId": "IE00BDVPNG13",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+      "provider": "WisdomTree",
+      "aum": {
+        "amount": 1270075648.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-11-12",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2120247"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "eae67878cd0ea84e9b6d11ce70921b85a6fbbd6e73a00f4997c7b3f2f141f739",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-15"
+      },
+      "sectors": {
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 76.94330000000001,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 7.570399999999999,
+            "label": "Communication"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 6.6635,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 4.7413,
+            "label": "Health Care"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 4.0812,
+            "label": "Industrials"
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "rankClassificationID": 2,
+        "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+        "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-13"
+      },
+      "countries": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 77.1358
+          },
+          {
+            "name": "South Korea",
+            "weightPct": 6.4582
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 6.1434
+          },
+          {
+            "name": "China",
+            "weightPct": 3.6613
+          },
+          {
+            "name": "Israel",
+            "weightPct": 2.3427
+          },
+          {
+            "name": "Japan",
+            "weightPct": 2.1428
+          },
+          {
+            "name": "Taiwan",
+            "weightPct": 2.1156
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+        "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-13"
+      },
+      "holdings": {
+        "rows": [
+          {
+            "name": "Advanced Micro Devices",
+            "weightPct": 3.5124000000000004
+          },
+          {
+            "name": "Amazon.com Inc",
+            "weightPct": 2.9063
+          },
+          {
+            "name": "Synopsys Inc",
+            "weightPct": 2.8602
+          },
+          {
+            "name": "Tempus Ai Inc",
+            "weightPct": 2.6153
+          },
+          {
+            "name": "Palantir Technologies Inc-A",
+            "weightPct": 2.5041
+          },
+          {
+            "name": "Alphabet Inc-Cl A",
+            "weightPct": 2.4855
+          },
+          {
+            "name": "Meta Platforms, Inc. Cl A",
+            "weightPct": 2.3675
+          },
+          {
+            "name": "Qualcomm Inc",
+            "weightPct": 2.3494
+          },
+          {
+            "name": "Nice Ltd - Spon ADR",
+            "weightPct": 2.3427
+          },
+          {
+            "name": "Microsoft Corp",
+            "weightPct": 2.3283
+          }
+        ],
+        "asOf": "2026-11-12",
+        "basis": "fund",
+        "rankClassificationID": 1,
+        "scope": "top-10",
+        "weightBasis": "issuer-fund-ranking-unqualified-nav-denominator",
+        "method": "Top ten of the exact issuer Fund ranking; original published pct weights, NAV denominator and excluded cash not qualified; not renormalised",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+        "sha256": "df4ceef3095bfc2bdbe8c017ad630b285176bc1de52116a8be51fb1737789f57",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-11-13"
+      },
+      "characteristics": {
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "terPct": 0.4,
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-10-26"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "years": {
+          "2019": 47.74,
+          "2020": 74.9,
+          "2021": 15.29,
+          "2022": -41.59,
+          "2023": 55.14,
+          "2024": 11.38,
+          "2025": 23.56
+        },
+        "method": "calendar-year exact-share NAV return, net of fees",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "checkedAt": "2026-11-15",
+        "modifiedAt": "2026-10-26"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-15",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "asOf": "2026-09-30"
+        }
+      }
+    }
+  },
+  "changedPaths": [
+    "src/data/exposure-etf-expansion-records.json",
+    "src/pages/dca-profiles/catalog.json",
+    "src/pages/dca-profiles/exposures-extra-1.json",
+    "src/pages/dca-profiles/exposures-extra-2.json",
+    "src/pages/dca-profiles/exposures.json",
+    "src/pages/dca-profiles/holdings-0.json",
+    "src/pages/dca-profiles/holdings-11.json",
+    "src/pages/dca-profiles/holdings-13.json",
+    "src/pages/dca-profiles/holdings-16.json",
+    "src/pages/dca-profiles/holdings-18.json",
+    "src/pages/dca-profiles/holdings-2.json",
+    "src/pages/dca-profiles/holdings-9.json",
+    "src/pages/dca-profiles/holdings.json"
+  ]
+}

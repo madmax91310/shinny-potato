@@ -31,10 +31,10 @@ const lines=Object.entries(references).slice(0,50).map(([asset,r])=>({asset,isin
 assert.deepEqual(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines},MAX_EXPOSURE_POSITIONS),[])
 assert(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines:[...lines,lines[0]]}).length)
 const visible=allocationRows(lines)
-assert.equal(visible.length,8)
+assert.equal(visible.length,50)
 assert.equal(visible.reduce((s,r)=>s+r.weight,0),100)
-// Publication rows, including the grouped remainder, follow descending weight.
-assert.equal(visible.find(row=>row.name===`${lines.length-7} autres positions`)?.weight,86)
+// Every holding remains individually identifiable.
+assert(visible.every(row=>row.weight===2))
 assert(visible.slice(1).every((row,index)=>visible[index].weight>=row.weight))
 const now=new Date('2026-10-16'),a='US0378331005',b='US5949181045'
 const o={asOf:'2026-10-14',sourceUrl:'https://example.com/full',basis:'fund',complete:true,rows:[{name:'Apple',isin:a,weightPct:50},{name:'Microsoft',isin:b,weightPct:50}]}
