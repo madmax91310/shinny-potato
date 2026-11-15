@@ -83,6 +83,7 @@ try {
     .replace("'../lib/fx-rate.js'",JSON.stringify(new URL('../src/lib/fx-rate.js',import.meta.url).href))
   const lightCalendar=await import('data:text/javascript;base64,'+Buffer.from(calendarCode).toString('base64'))
   const fullCalendar=await import('../src/data/calendar-fx.js')
+  for(const year of Object.keys(fullCalendar.CALENDAR_FX_YEARS))for(let repeat=0;repeat<2;repeat++)assert.equal(lightCalendar.yearEndReferenceDate(year),fullCalendar.yearEndReferenceDate(year),'Projected BCE cache and historical exceptions: '+year)
   const fxFixture=JSON.parse(readFileSync(new URL('../src/data/monthly-fx.json',import.meta.url)))
   for(const year of [2021,2022,2023,2024,2025])for(const currency of ['EUR','USD','JPY']){
     assert.equal(lightCalendar.calendarRate(year,currency),fullCalendar.calendarRate(year,currency))

@@ -3,7 +3,7 @@ import { instrumentSearchText } from '../../data/asset-selection.js'
 import { anniversaryReferenceDate } from '../../lib/anniversary-reference.js'
 import { compatibleIndexReturns } from '../../lib/return-convention.js'
 import { convertPerformanceEntries, performanceCurrencies, performanceDisplayBasis } from './performanceCurrency.js'
-import { formatPerformancePct, performancePeriod } from './performanceFormat.js'
+import { cumulativePerformance as cumulatePct, formatPerformancePct, performancePeriod } from './performanceFormat.js'
 import { FORMATS, MODES, TODAY, SUBJECT_ALEATOIRE } from './constants.js'
 const unavailable = () => { throw new Error('Format dependency unavailable') }
 export function createFormatEngine({
@@ -469,9 +469,6 @@ function fmtEcart(pctA, pctB) {
 // mathématiquement au ratio clôture finale / clôture de départ, sans recalculer de prix) — ajoutée
 // le 29/08/2026 en plus du détail annuel, jamais à sa place : donne le chiffre choc final sans
 // obliger le lecteur à recomposer les lignes lui-même.
-function cumulatePct(returns) {
-  return (returns.reduce((acc, { pct: yearPct }) => acc * (1 + yearPct / 100), 1) - 1) * 100;
-}
 
 // Même bloc pour tous les actifs, sans conclusion ni comparaison annexe.
 function buildPerformanceBlock(asset, returns) {

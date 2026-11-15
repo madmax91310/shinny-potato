@@ -35,7 +35,7 @@ export function exportedFunctionDeclarations(source, filename) {
 export function projectLightRegistries() {
   const definitions = [
     ['history-visual-identities',historyVisuals,''],
-    ['calendar-fx', calendarFx, "import { fxRate } from '../lib/fx-rate.js';"],
+    ['calendar-fx', calendarFx, "import { fxRate } from '../lib/fx-rate.js'; const yearEndDates = new Map();"],
     ['commodity-publication-data', commodities, ''], ['portfolio-exposure-data', exposures, ''], ['etf-cards', cards, ''], ['etf-publication-data', publication, ''],
     ['qualified-exposure-sheets', qualified, ''],
     ['qualified-exposure-metrics', metrics, ''],
