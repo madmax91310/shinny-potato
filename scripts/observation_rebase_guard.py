@@ -128,6 +128,21 @@ DCA_EXPOSURE_VIEWS = {
 # This saved INSEE source receipt is not read by actor, anniversary or monthly
 # acquisition. The active inflation-monthly.js remains a protected input.
 INFLATION_RECEIPT = 'scripts/source-snapshots/inflation-automated.json'
+# Scheduled run43727084478 acquired and validated its observations, then a
+# concurrent exposure publication changed these exact downstream DCA views.
+# Anniversary/INSEE acquisition does not read them. The shared issuer registry
+# is different: its consumed calendars/identities still pass the strict
+# calendar_inputs_unchanged check below. Rebuild and financial validation of
+# the combined tree remain mandatory; no directory or neighbouring file is
+# admitted, and newer exposure outputs are preserved rather than replayed.
+PUBLICATION_EXPOSURE_VIEWS = {
+    'src/pages/dca-profiles/catalog.json',
+    'src/pages/dca-profiles/exposures-extra-1.json',
+    'src/pages/dca-profiles/exposures-extra-2.json',
+    'src/pages/dca-profiles/exposures.json',
+    'src/pages/dca-profiles/holdings.json',
+    *(f'src/pages/dca-profiles/holdings-{i}.json' for i in (0, 2, 9, 11, 13, 16, 18)),
+}
 ALLOWED = {
     # Actual recording refusal41370892678: these ten exposure outputs are
     # not read by collect_presentation_actors or its source helpers. They are
@@ -158,7 +173,8 @@ ALLOWED = {
     # Actual refusal40893319635: actor presentations are not an acquisition
     # input for INSEE observations or exact anniversary levels. Their latest
     # version must still survive the mandatory combined-tree build/audits.
-    'publication': {INFLATION_RECEIPT} | INDEPENDENT | {'src/data/automated-scpi.json',
+    'publication': {INFLATION_RECEIPT} | INDEPENDENT | PUBLICATION_EXPOSURE_VIEWS | {'src/data/automated-scpi.json',
+                                  'src/data/exposure-etf-expansion-records.json',
                                   'src/data/automated-presentation-actors.json',
                                   # Race41410676250: acquisition reads neither
                                   # these exact derived reports nor the other

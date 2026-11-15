@@ -233,8 +233,10 @@ else:
     def test_scpi_dca_allowance_does_not_qualify_monthly_acquisition(self):
         self.assert_refused('src/pages/dca-profiles/catalog.json','market')
 
-    def test_dca_view_allowance_does_not_extend_to_other_producers(self):
-        self.assert_refused('src/pages/dca-profiles/holdings-16.json','publication')
+    def test_dca_view_allowance_does_not_extend_to_unexamined_publication_views(self):
+        # holdings-16 was independently qualified by the actual scheduled
+        # race43727084478; the remaining SCPI allowance is not inherited.
+        self.assert_refused('src/pages/dca-profiles/holdings-31.json','publication')
 
     def economic_late_race(self, after, fail_validation=False, kind='market'):
         before=economic_fixture('before')
