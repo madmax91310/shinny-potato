@@ -12,9 +12,15 @@ export function useBudgetImage(profile, enabled, mode = 'social') {
       try {
         const { renderBudgetImages } = await import('./image.js')
         const request = JSON.parse(key), canvases = await renderBudgetImages(request.profile, request.mode)
-        for (const canvas of canvases) {
+        // Start every encoder immediately: selecting page 11 must not wait for
+        // ten sequential PNG encodes. Publish in order and retain cancellation.
+        const blobs = canvases.map(canvas => new Promise(resolve => {
+          try { canvas.toBlob(resolve, 'image/png') } catch { resolve(null) }
+        }))
+        for (const pending of blobs) {
           if (!active) return
-          const blob = await new Promise((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error()), 'image/png'))
+          const blob = await pending
+          if (!blob) throw new Error('L’image n’a pas pu être préparée. Réessaie.')
           if (!active) return
           urls.push(URL.createObjectURL(blob))
           setResult({ key, attempt, urls: [...urls], count: canvases.length })
