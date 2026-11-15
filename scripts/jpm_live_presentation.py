@@ -82,7 +82,7 @@ def parse_top_ten(fund, body, now):
             'method': 'Published top ten direct equity/REIT positions; native portfolio market-value weights, no renormalisation or complete-overlap inference'}
 
 
-def collect(share, now, document, fetch=download):
+def collect(share, now, document, fetch=download, calendar_fetch=None):
     """Keep the two sources independent, including partial failure receipts."""
     result = None
     document_error = None
@@ -95,7 +95,8 @@ def collect(share, now, document, fetch=download):
         document_error = str(error)
         attempts.append({'url': share['sourceUrl'], 'status': 'failed', 'reason': document_error})
     try:
-        fields = parse_live(fetch(URL, max_bytes=6_000_000), share, now)
+        identity_body = fetch(URL, max_bytes=6_000_000)
+        fields = parse_live(identity_body, share, now)
         field_errors = fields.pop('collectionErrors', [])
     except Exception as error:
         if result is None:
@@ -118,5 +119,13 @@ def collect(share, now, document, fetch=download):
             error = next((e for e in field_errors if e['field'] == field + '-current-source'), None)
             attempts.append({'url': URL, 'status': 'failed' if error else 'validated', 'fields': [field],
                              **({'reason': error['reason']} if error else {})})
+        if calendar_fetch is not None and not result.get('performance'):
+            from jpm_calendar import HISTORY_URL, parse as parse_calendar
+            try:
+                result['performance'] = parse_calendar(calendar_fetch(HISTORY_URL, max_bytes=6_000_000), identity_body, share, now)
+                attempts.append({'url': HISTORY_URL, 'status': 'validated', 'fields': ['performance']})
+            except Exception as error:
+                result.setdefault('collectionErrors', []).append({'field': 'performance-current-source', 'url': HISTORY_URL, 'reason': str(error)})
+                attempts.append({'url': HISTORY_URL, 'status': 'failed', 'fields': ['performance'], 'reason': str(error)})
     result.setdefault('sourceAttempts', []).extend(attempts)
     return result

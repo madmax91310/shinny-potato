@@ -336,4 +336,83 @@ class JpmPublishedExposures(unittest.TestCase):
         after=merge_collection({'checkedAt':'2026-11-09','shares':[failed]},before,{})
         for field in ['countries','sectors']:self.assertEqual(before[s['isin']][field],after[s['isin']][field])
 
+class JpmLiveCalendar(unittest.TestCase):
+    now=dt.datetime(2026,11,15,tzinfo=UTC)
+    fixture=Path(__file__).parent/'fixtures/jpm-calendar'
+
+    def inputs(self):
+        return (json.loads((self.fixture/'history-2026-11-15.json').read_text()),
+                json.loads((self.fixture/'product-2026-11-15.json').read_text()))
+
+    def parse(self, history=None, identity=None, now=None):
+        from jpm_calendar import parse
+        h,i=self.inputs()
+        return parse(json.dumps(h if history is None else history).encode(),
+                     json.dumps(i if identity is None else identity).encode(),
+                     share('IE0003UVYC20'),now or self.now)
+
+    def test_calendar_matches_qualified_pdf_without_ytd_or_partial_launch_year(self):
+        r=self.parse()
+        self.assertEqual(r['years'],{'2024':8.08,'2025':12.35})
+        self.assertEqual(r['asOf'],'2026-10-31')
+        self.assertEqual(r['identityNavAsOf'],'2026-11-13')
+        self.assertNotIn('2026',r['years']);self.assertNotIn('2023',r['years'])
+
+    def test_reject_wrong_identity_convention_currency_and_nav_join(self):
+        for mutate in [lambda f:f['shareClass'].update(cusip='WRONG'),
+                       lambda f:f['shareClass'].update(currencyCode='EUR'),
+                       lambda f:f['aemDisclosures'].update(pdpBottomAll=['net income reinvested']),
+                       lambda f:f['shareClass']['nav'].update(price=1),
+                       lambda f:f['shareClass']['nav'].update(currencyCode='EUR')]:
+            h,i=self.inputs();mutate(i['fundData'])
+            with self.assertRaises(ValueError):self.parse(h,i)
+
+    def test_missing_duplicate_or_wrong_calendar_is_not_zero_or_benchmark(self):
+        for change in ['missing','duplicate','future','benchmark','country','null','nan']:
+            h,i=self.inputs();t=h['historicalCalendarYearPerformanceReturn'];r=t['performanceData'][0]
+            if change=='missing':t['labels'].pop()
+            elif change=='duplicate':t['labels'][-1]=t['labels'][-2]
+            elif change=='future':t['labels'][-1]='2026'
+            elif change=='benchmark':r['performanceFactor']='Benchmark'
+            elif change=='country':h['cachedForCountry']='sg'
+            elif change=='null':r['tenYears']=None
+            elif change=='nan':r['tenYears']=float('nan')
+            with self.subTest(change=change),self.assertRaises(ValueError):self.parse(h,i)
+
+    def test_year_rollover_accepts_only_new_complete_calendar_when_published(self):
+        from jpm_calendar import SLOTS
+        h,i=self.inputs();now=dt.datetime(2027,1,4,tzinfo=UTC)
+        with self.assertRaises(ValueError):self.parse(h,i,now)
+        # Isolated future-provider scenario, never a production observation.
+        t=h['historicalCalendarYearPerformanceReturn'];t['labels']=[str(y)for y in range(2017,2027)]
+        row=t['performanceData'][0]
+        row.update({slot:None for slot in SLOTS});row.update(effectiveDate='2026-12-31',ytd=.9)
+        for year,value in [('2024',.080845),('2025',.123492),('2026',.1)]:
+            row[SLOTS[t['labels'].index(year)]]=value
+        i['fundData']['shareClass']['nav']['date']='2027-01-04'
+        h['historicalNAVList'][-1]['date']='2027-01-04'
+        r=self.parse(h,i,now)
+        self.assertEqual(r['years'],{'2024':8.08,'2025':12.35,'2026':10})
+        self.assertNotIn('2027',r['years'])
+
+    def test_ordinary_partial_merge_and_failure_preserve_calendar_clock(self):
+        from jpm_live_presentation import collect
+        from jpm_calendar import HISTORY_URL
+        h,i=self.inputs();calls=[]
+        def document():raise ValueError('PDF stale')
+        def history(url,**kwargs):calls.append(url);return json.dumps(h).encode()
+        r=collect(share('IE0003UVYC20'),self.now,document=document,
+                  fetch=lambda *a,**k:json.dumps(i).encode(),calendar_fetch=history)
+        self.assertEqual(calls,[HISTORY_URL])
+        self.assertTrue(any(a.get('status')=='failed' for a in r['sourceAttempts']))
+        self.assertTrue(any(a.get('status')=='validated' and a.get('fields')==['performance'] for a in r['sourceAttempts']))
+        before=merge_collection({'checkedAt':self.now.isoformat(),'shares':[r]}, {}, {})
+        self.assertEqual(before['IE0003UVYC20']['performance']['years'],{'2024':8.08,'2025':12.35})
+        def offline(*a,**k):raise OSError('isolated history outage')
+        failed=collect(share('IE0003UVYC20'),self.now,document=document,
+                       fetch=lambda *a,**k:json.dumps(i).encode(),calendar_fetch=offline)
+        after=merge_collection({'checkedAt':'2026-11-16','shares':[failed]},before,{})
+        self.assertEqual(after['IE0003UVYC20']['performance'],before['IE0003UVYC20']['performance'])
+        self.assertTrue(any(e['field']=='performance-current-source' for e in failed['collectionErrors']))
+
 if __name__ == '__main__': unittest.main()
