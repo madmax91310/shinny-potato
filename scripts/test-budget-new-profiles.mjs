@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import entries from '../src/pages/budget-profiles/editorial-profiles-2026-11-15.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_REFERENCE_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_REFERENCE_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, budgetPublicPresentation, validBudget, sourceReply, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 import { validDraft, validWorkspace, parseBudgetBackup } from '../src/pages/budget-profiles/storage.js'
@@ -15,8 +15,8 @@ const expected = [
   ['Cédric',280000,100000,100000,80000],
 ]
 assert.equal(entries.length,7)
-assert.deepEqual(BUDGET_PROFILES.map(p=>p.id), [...BUDGET_REFERENCE_PROFILES,...BUDGET_NEW_EDITORIAL_PROFILES].map(p=>p.id))
-assert.equal(BUDGET_PROFILES.length,BUDGET_REFERENCE_PROFILES.length+7)
+assert.deepEqual(BUDGET_PROFILES.map(p=>p.id), [...BUDGET_REFERENCE_PROFILES,...BUDGET_NEW_EDITORIAL_PROFILES,...BUDGET_QUALIFIED_EDITORIAL_PROFILES].map(p=>p.id))
+assert.equal(BUDGET_PROFILES.length,BUDGET_REFERENCE_PROFILES.length+entries.length+BUDGET_QUALIFIED_EDITORIAL_PROFILES.length)
 assert(!BUDGET_NEW_EDITORIAL_PROFILES.some(p=>p.name==='Hélène'||p.age===76))
 assert.equal(new Set(BUDGET_PROFILES.map(p=>p.id)).size,BUDGET_PROFILES.length)
 assert.deepEqual(Object.keys(BUDGET_PUBLICATION_CONTEXT).sort(),BUDGET_PROFILES.map(p=>p.id).sort())
