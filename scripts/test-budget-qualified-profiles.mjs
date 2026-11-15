@@ -40,6 +40,8 @@ for(const entry of entries) {
   assert(p.provenance.sourceSnapshot.posts.every(post=>post.postId&&post.contentSha256.length===64))
   assert(p.expenses.every(row=>['source','source-calculated','source-envelope-allocation','editorial-created'].includes(row.origin)))
   assert(p.income.every(row=>['source','source-calculated'].includes(row.origin)))
+  for(const row of p.income.filter(row=>row.sourceAmounts))assert.equal(row.sourceAmounts.reduce((sum,value)=>sum+Math.round(value*100),0),Math.round(row.amount*100))
+  for(const row of p.expenses.filter(row=>row.sourceAnnualAmount))assert.equal(Math.round(row.sourceAnnualAmount*100/12),Math.round(row.amount*100))
   const text=buildBudgetText(p),c=BUDGET_PUBLICATION_CONTEXT[p.id]
   assert(!/exemple|ficti[fv]|reconstitu|version éditoriale|scénario|simulation|hypothèse|préparé le|vérifié le|abonné|m’a confié|nous a envoyé|\.json|PR #/i.test(text),p.name)
   assert(!/20\d\d/.test(text.split('\n')[0]))

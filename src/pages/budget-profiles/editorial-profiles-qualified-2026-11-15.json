@@ -51,6 +51,7 @@
           "Versement préparé de 500 €/mois prévu pour le projet, pas un versement source attesté. Aucun coût ou date du restaurant inventé. Les 8 000 € du LEP restent une réserve, pas un apport déjà promis."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -386,6 +387,7 @@
           "Le montant actuel des cryptomonnaies est écarté du récit : la formulation source mélange montant investi et plus-value. Les 600 € versés restent distincts de la marge restante."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -738,6 +740,7 @@
           "Tous les postes de dépenses et les deux versements sont des créations. Aucun patrimoine de départ ni revenu de marchand de biens ajouté."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -1024,7 +1027,7 @@
       "incomeBasis": "Montants mensuels",
       "incomeNote": "",
       "capacity": null,
-      "context": "Manon dispose de 22 950 € sur son Livret A, de 1 600 € sur son Livret Jeune et de 5 000 € sur son PEL. Son PEA vaut 2 800 €. Elle a aussi 4 000 € dont elle veut décider l’utilisation.\n\nElle envisage un achat immobilier dans cinq à huit ans. Elle a porté ses achats sur le PEA à 300 € par mois et voudrait réserver 200 € supplémentaires à un support de moyen terme.",
+      "context": "Une rentrée d’argent a permis à Manon de remplir son Livret A : 22 950 €. Elle a aussi 1 600 € sur son Livret Jeune et 5 000 € sur son PEL. Son PEA vaut 2 800 €. Elle a aussi 4 000 € dont elle veut décider l’utilisation.\n\nElle envisage un achat immobilier dans cinq à huit ans. Elle a porté ses achats sur le PEA à 300 € par mois et voudrait réserver 200 € supplémentaires à un support de moyen terme.",
       "caveat": "",
       "hook": "",
       "question": "Que feriez-vous des 4 000 € encore disponibles avec un achat prévu dans cinq à huit ans ?\nPour ses 200 € mensuels, vous choisiriez un livret ou une assurance-vie ?",
@@ -1038,14 +1041,15 @@
           "sourceDate": "2026-06-05"
         },
         "sourceFacts": [
-          "21 ans, 1 300 €/mois hors aides ; sans loyer chez les parents. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
+          "21 ans, 1 300 €/mois hors aides ; ne paie pas de loyer et reste rattachée au foyer fiscal de ses parents, sans lieu de résidence explicitement donné. Une rentrée exceptionnelle lui a permis de remplir son Livret A. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
           "PEA passé à 300 €/mois, PEL 45 €/mois et projet de 200 € sur un support de moyen terme. Achat immobilier envisagé dans cinq à huit ans."
         ],
         "createdFields": [
-          "Participation de 220 € et toutes les dépenses de vie ajoutées sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
+          "Logement chez ses parents retenu pour le personnage, non établi par la seule absence de loyer ni le rattachement fiscal. Participation de 220 € et dépenses de vie créées, sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
           "Les 4 000 € libres ne sont pas additionnés à un total patrimonial approximatif de 35 000 €. Les trois versements totalisent 545 €, dont les 200 € restent prévus."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -1076,7 +1080,7 @@
             }
           ],
           "facts": [
-            "21 ans, 1 300 €/mois hors aides ; sans loyer chez les parents. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
+            "21 ans, 1 300 €/mois hors aides ; ne paie pas de loyer et reste rattachée au foyer fiscal de ses parents, sans lieu de résidence explicitement donné. Une rentrée exceptionnelle lui a permis de remplir son Livret A. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
             "PEA passé à 300 €/mois, PEL 45 €/mois et projet de 200 € sur un support de moyen terme. Achat immobilier envisagé dans cinq à huit ans."
           ],
           "contentSha256": "7e9a36d22f774ac0f139db802d0601be6230e5604a0a898718762f44cd5f205f"
@@ -1099,11 +1103,11 @@
         "reviewedAt": "2026-11-15",
         "baseline": "qualified-bank-2026-11-15",
         "sourceFacts": [
-          "21 ans, 1 300 €/mois hors aides ; sans loyer chez les parents. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
+          "21 ans, 1 300 €/mois hors aides ; ne paie pas de loyer et reste rattachée au foyer fiscal de ses parents, sans lieu de résidence explicitement donné. Une rentrée exceptionnelle lui a permis de remplir son Livret A. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
           "PEA passé à 300 €/mois, PEL 45 €/mois et projet de 200 € sur un support de moyen terme. Achat immobilier envisagé dans cinq à huit ans."
         ],
         "created": [
-          "Participation de 220 € et toutes les dépenses de vie ajoutées sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
+          "Logement chez ses parents retenu pour le personnage, non établi par la seule absence de loyer ni le rattachement fiscal. Participation de 220 € et dépenses de vie créées, sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
           "Les 4 000 € libres ne sont pas additionnés à un total patrimonial approximatif de 35 000 €. Les trois versements totalisent 545 €, dont les 200 € restent prévus."
         ],
         "sourceConsultationClaim": true,
@@ -1227,7 +1231,7 @@
       },
       "paragraphs": [
         {
-          "text": "Manon dispose de 22 950 € sur son Livret A, de 1 600 € sur son Livret Jeune et de 5 000 € sur son PEL. Son PEA vaut 2 800 €. Elle a aussi 4 000 € dont elle veut décider l’utilisation.",
+          "text": "Une rentrée d’argent a permis à Manon de remplir son Livret A : 22 950 €. Elle a aussi 1 600 € sur son Livret Jeune et 5 000 € sur son PEL. Son PEA vaut 2 800 €. Elle a aussi 4 000 € dont elle veut décider l’utilisation.",
           "evidence": [
             0,
             1
@@ -1267,7 +1271,7 @@
           "publishedAt": "2026-06-05",
           "checkedAt": "2026-11-15",
           "facts": [
-            "21 ans, 1 300 €/mois hors aides ; sans loyer chez les parents. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
+            "21 ans, 1 300 €/mois hors aides ; ne paie pas de loyer et reste rattachée au foyer fiscal de ses parents, sans lieu de résidence explicitement donné. Une rentrée exceptionnelle lui a permis de remplir son Livret A. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
             "PEA passé à 300 €/mois, PEL 45 €/mois et projet de 200 € sur un support de moyen terme. Achat immobilier envisagé dans cinq à huit ans."
           ],
           "posts": [
@@ -1279,7 +1283,7 @@
           "basis": "editorial-preparation",
           "reviewedAt": "2026-11-15",
           "created": [
-            "Participation de 220 € et toutes les dépenses de vie ajoutées sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
+            "Logement chez ses parents retenu pour le personnage, non établi par la seule absence de loyer ni le rattachement fiscal. Participation de 220 € et dépenses de vie créées, sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
             "Les 4 000 € libres ne sont pas additionnés à un total patrimonial approximatif de 35 000 €. Les trois versements totalisent 545 €, dont les 200 € restent prévus."
           ]
         }
@@ -1295,11 +1299,11 @@
       "reviewedAt": "2026-11-15",
       "baseline": "qualified-bank-2026-11-15",
       "sourceFacts": [
-        "21 ans, 1 300 €/mois hors aides ; sans loyer chez les parents. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
+        "21 ans, 1 300 €/mois hors aides ; ne paie pas de loyer et reste rattachée au foyer fiscal de ses parents, sans lieu de résidence explicitement donné. Une rentrée exceptionnelle lui a permis de remplir son Livret A. Livret A 22 950 €, Livret Jeune 1 600 €, PEL 5 000 €, PEA 2 800 €, 4 000 € encore à placer.",
         "PEA passé à 300 €/mois, PEL 45 €/mois et projet de 200 € sur un support de moyen terme. Achat immobilier envisagé dans cinq à huit ans."
       ],
       "created": [
-        "Participation de 220 € et toutes les dépenses de vie ajoutées sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
+        "Logement chez ses parents retenu pour le personnage, non établi par la seule absence de loyer ni le rattachement fiscal. Participation de 220 € et dépenses de vie créées, sans prétendre à une déclaration de la source. Les aides non chiffrées sont exclues des revenus.",
         "Les 4 000 € libres ne sont pas additionnés à un total patrimonial approximatif de 35 000 €. Les trois versements totalisent 545 €, dont les 200 € restent prévus."
       ],
       "sourceConsultationClaim": true,
@@ -1400,6 +1404,7 @@
           "Aucune hausse future de salaire intégrée. Les 830 € versés sur PEA ne sont pas une valorisation de 830 € confirmée. Les projets ne reçoivent pas simultanément les mêmes livrets."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -1757,6 +1762,7 @@
           "Charges de 200 € supposées couvrir énergie et eau, sans seconde ligne. Aucun deuxième enfant déjà compté, aucune aide ou futur revenu ajouté. Les 200 € SCPI sont qualifiés nets par la source, fiscalité non indépendamment vérifiée."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -2090,6 +2096,7 @@
           "Pas d’âge unique pour le couple, configuration avec/sans enfant non documentée. Les 1 500 €/mois préparent achat et frais ; aucun apport cible de 160 000 € supposé."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -2443,6 +2450,7 @@
           "Âge et famille inconnus conservés. Les 5 000 € sont un capital disponible pour un projet, pas un revenu mensuel ; réserve de sécurité non chiffrée."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -2778,6 +2786,7 @@
           "Le logement est payé au vendeur mais son financement étudiant continue : logement classé propriétaire avec dette, pas absence totale de crédit. Pas de patrimoine ou revenu locatif futur inventé."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -3106,6 +3115,7 @@
           "Provision fiscale ronde de 80 € retenue dans la préparation, pas calcul d’un impôt réel ni application du TMI de la source au salaire. Aucun avantage fiscal ou rendement promis ; contenu fiscal d’autres internautes non repris."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -3455,6 +3465,7 @@
           "Candidat antérieurement écarté pour absence de dépenses : qualification réouverte par l’autorisation actuelle de les compléter, pas par la découverte de nouvelles déclarations. Aucun lien avec le profil de 76 ans supprimé."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -3775,6 +3786,7 @@
           "Sur 270 000 € : 230 000 € pour l’apport, 20 000 € de sécurité et 20 000 € pour installation/travaux/imprévus du projet. Répartition des derniers 20 000 € créée, sans les investir simultanément."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -4161,6 +4173,7 @@
           "Loyer, dépenses et versement de 500 € créés. Voiture et carburant ne sont pas facturés une seconde fois. Aucun net dérivé de l’offre brute de 60 000 € ; comparaison sans gain fiscal inventé."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
@@ -4464,6 +4477,7 @@
           "Répartition créée de 650 € pour le logement et 350 € sur le PEA, La source annonce environ 16 000 € épargnés par an ; la préparation retient 12 000 € de versements réguliers après les dépenses ajoutées. Écart de version explicite, sans inventer une prime ou une recette pour le combler. Les 36 000 € sur livrets ne sont pas engagés entièrement dans l’apport."
         ],
         "originalSourcePreserved": true,
+        "defaultOrigin": "editorial-created unless explicitly retained in sourceFacts; self-reports are not independent verification",
         "questionsOrigin": "editorial, inspired by source facts; not a quotation or received testimony",
         "limitations": "Public self-declaration, not independently verified. Missing expense amounts are editorial choices. Unknown ages and family configurations are not inferred.",
         "coverage": {
