@@ -12,6 +12,21 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SOURCE = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
 
 
+def year_end_reference_date(year):
+    """Last December TARGET working day, not merely a recent December rate.
+
+    ECB reference rates exclude TARGET closing days. December 31 was also
+    exceptionally closed in 1999 and 2001 (see the archived ECB decisions in
+    fixtures/ecb-year-end/README.md). Easter/May/January cannot affect this
+    backwards December-only search; no generic market calendar is inferred.
+    """
+    day = dt.date(year, 12, 31)
+    while (day.weekday() >= 5 or day.day in (25, 26)
+           or (year in (1999, 2001) and day.day == 31)):
+        day -= dt.timedelta(days=1)
+    return day.isoformat()
+
+
 def parse(body, now):
     root = ET.fromstring(body)
     if root.tag != '{http://www.gesmes.org/xml/2002-08-01}Envelope':
@@ -39,9 +54,10 @@ def parse(body, now):
     expected = {str(y) for y in range(1999, now.year)}
     if set(observed) != expected:
         reject('Incomplete completed-year ECB coverage')
-    if any((dt.date(int(y) + 1, 1, 1) - dt.date.fromisoformat(row['asOf'])).days > 7
-           for y, row in observed.items()):
-        reject('ECB year-end session is stale')
+    for year, row in observed.items():
+        expected_date = year_end_reference_date(int(year))
+        if row['asOf'] != expected_date:
+            reject(f'ECB final year-end reference missing for {year}: expected {expected_date}, observed {row["asOf"]}')
     return {'currency': 'USD per EUR', 'sourceUrl': SOURCE, 'years': observed,
             'sha256': proof(body)}
 

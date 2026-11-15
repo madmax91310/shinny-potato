@@ -181,7 +181,12 @@
       "Collect observations: additional",
       "Collect observations: presentation_performance",
       "Collect observations: fx",
+      "Collect observations: performance_currency",
       "Collect observations: indices"
+    ],
+    "jobOnlyCollectionSteps": [
+      "Collect observations: fx",
+      "Collect observations: performance_currency"
     ],
     "validationSteps": [
       "Validate ETF observations and consumers",
