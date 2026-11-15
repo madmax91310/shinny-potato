@@ -481,7 +481,16 @@ export default function App() {
                     label={l}
                     type={t}
                     value={s[k]}
-                    onChange={(v) => setS({ ...s, [k]: v })}
+                    onChange={(v) =>
+                      setS({
+                        ...s,
+                        [k]: v,
+                        month: { ...s.month, verified: false },
+                        ytd: { ...s.ytd, verified: false },
+                        year: { ...s.year, verified: false },
+                        benchmark: { ...s.benchmark, verified: false },
+                      })
+                    }
                   />
                 ))}
                 <Field

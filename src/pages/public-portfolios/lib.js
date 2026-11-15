@@ -193,7 +193,7 @@ export function benchmarkIssue(s) {
   )
     return "Benchmark non vérifié ou incomplet : aucune comparaison générée.";
   if (
-    s.method === "Non précisée" ||
+    s.method !== "TWR" ||
     s.dividends !== "Réinvestis" ||
     s.fees === "Non précisé" ||
     b.currency !== s.currency ||
