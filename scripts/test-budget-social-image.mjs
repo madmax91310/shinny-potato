@@ -13,7 +13,7 @@ for(const p of BUDGET_PROFILES){
  const expected=plan.sections.flatMap(s=>s.rows)
  for(const r of expected){const parts=rows.filter(x=>x.id===r.id||x.id.startsWith(r.id+':part:'));assert(parts.length,p.id+' '+r.id);assert.equal(parts.map(r=>r.label).join(' ').replace(/\s/g,''),r.label.replace(/\s/g,''));if(r.amount!==undefined)assert.deepEqual(parts.filter(r=>r.amount!==undefined).map(r=>r.amount),[r.amount])}
  for(const page of plan.pages)assert(plan.header+page.height<=(page.kind==='primary'?1050:1186),p.id)
- if(plan.pages.length>1)assert.equal(plan.pages[0].kind,'primary')
+ if(!plan.single)assert.equal(plan.pages[0].kind,'primary')
 }
 const emilie=BUDGET_PROFILES.find(p=>p.name==='Émilie'),p=planSocialBudget(ctx,emilie)
 assert.deepEqual([p.a.income,p.a.expenses,p.a.savings,p.a.balance],[2300,1735,500,65])
@@ -37,7 +37,7 @@ try{
  const pages=await renderBudgetImages(dense,'social');assert.equal(pages.length,plan.pages.length)
  for(const [i,c]of pages.entries()){assert.deepEqual([c.width,c.height],[1080,1350]);assert.equal(c.budgetFormat,'social');assert.equal(c.budgetPage,i+1);assert.equal(c.budgetPageCount,pages.length)}
  const first=await renderBudgetImage(dense);assert.equal(first.width,1080);assert(first.budgetPages.length>1)
- for(const mode of ['detailed','summary']){const c=await renderBudgetImage(emilie,mode);assert.equal(c.width,1200);assert(c.height>1350)}
+ for(const mode of ['detailed','summary']){const c=await renderBudgetImage(emilie,mode);assert.equal(c.width,1080);assert.equal(c.height,1350);assert(c.budgetPages.length>1)}
  await assert.rejects(()=>renderBudgetImages({...emilie,expenses:[{label:'Invalid',amount:-1}]}),/invalides/)
 }finally{globalThis.document=originalDocument;globalThis.Path2D=originalPath}
 console.log('Budget X: bounded 1080×1350 pages, stable readable type, every source row once, exact ledgers, planned projects/reserves, 72-row drafts, explicit legacy formats; no long-image fallback.')

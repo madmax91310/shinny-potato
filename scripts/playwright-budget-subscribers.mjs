@@ -46,9 +46,10 @@ async function capture(page, id) {
     writeFileSync(`${output}/${id}-${mode}.png`, bytes)
     const drawn = await page.evaluate(() => window.subscriberCanvasText)
     assert.equal(drawn[0].text, 'LE BUDGET DE')
-    for (const t of drawn) assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height && !t.text.includes('…'), JSON.stringify(t))
+    for (const t of drawn) assert(t.left >= 30 && t.right <= 1050 && t.y >= 0 && t.y + t.size <= t.height && !t.text.includes('…'), JSON.stringify(t))
     for (let i = 0; i < drawn.length; i++) for (const b of drawn.slice(i + 1)) {
       const a = drawn[i]
+    if(a.page!==b.page)continue
       assert(!(Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1 && Math.min(a.y + a.size, b.y + b.size) - Math.max(a.y, b.y) > 2), JSON.stringify([a, b]))
     }
     const rendered = normalize(drawn.map(t => t.text).join(' '))
@@ -72,8 +73,10 @@ async function context(width, workspace) {
   await c.addInitScript(() => {
     const original = CanvasRenderingContext2D.prototype.fillText; window.subscriberCanvasText = []
     CanvasRenderingContext2D.prototype.fillText = function(text, x, y, ...args) {
-      if (text === 'LE BUDGET DE') window.subscriberCanvasText = []
-      if (this.canvas.width === 1200) { const width = this.measureText(text).width, left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0); window.subscriberCanvasText.push({ text: String(text), left, right: left + width, y, size: parseFloat(this.font.match(/[\d.]+px/)?.[0]), height: this.canvas.height }) }
+      if(text==='LE BUDGET DE') {
+        if(!window.budgetCaptureActive){window.subscriberCanvasText=[];window.budgetCaptureActive=true;window.budgetCapturePage=0;queueMicrotask(()=>{window.budgetCaptureActive=false})}window.budgetCapturePage++
+      }
+      if (this.canvas.width === 1080) { const width = this.measureText(text).width, left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0); window.subscriberCanvasText.push({ page: window.budgetCapturePage, text: String(text), left, right: left + width, y, size: parseFloat(this.font.match(/[\d.]+px/)?.[0]), height: this.canvas.height }) }
       return original.call(this, text, x, y, ...args)
     }
   })

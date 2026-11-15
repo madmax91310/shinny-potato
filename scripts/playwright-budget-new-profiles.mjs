@@ -52,13 +52,13 @@ try {
         if(!wasSelected) await expect(img).not.toHaveAttribute('src',previousUrl)
         await expect(page.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled()
         await expect(img).toHaveAttribute('alt',new RegExp(p.name))
-        const count=mode==='social'?Number((await page.locator('.budget-image-count').textContent()).match(/^\d+/)[0]):1
+        const count=Number((await page.locator('.budget-image-count').textContent()).match(/^\d+/)[0])
         for(let part=0;part<count;part++) {
           if(count>1)await page.getByRole('button',{name:`Image ${part+1} sur ${count}`,exact:true}).click()
           await expect(page.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled()
           await img.evaluate(e=>e.decode())
           const dimensions=await img.evaluate(e=>[e.naturalWidth,e.naturalHeight])
-          if(mode==='social')assert.deepEqual(dimensions,[1080,1350],`${p.name}: every X page is 4:5, no long fallback`)
+          assert.deepEqual(dimensions,[1080,1350],`${p.name}: every X page is 4:5, no long fallback`)
           const bytes=await img.evaluate(async e=>Array.from(new Uint8Array(await (await fetch(e.src)).arrayBuffer())))
           const downloadPromise=page.waitForEvent('download')
           await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
