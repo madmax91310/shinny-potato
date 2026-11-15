@@ -1,0 +1,63 @@
+name: Diagnose Budget summary release blocker
+on:
+  push:
+    branches: [fix/budget-summary-release-blocker]
+    paths: [.github/workflows/diagnose-budget-summary.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-site
+          path: dist
+          run-id: 43711791374
+          github-token: ${{ github.token }}
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - name: Observe detailed to summary transition without changing the product
+        run: |
+          node --input-type=module - <<'JS'
+          import {staticBrowser,staticBase} from './scripts/static-browser.mjs'
+          const {browser,page}=await staticBrowser(390)
+          const errors=[]
+          page.on('pageerror',e=>errors.push(e.message))
+          try {
+            await page.goto(staticBase+'le-budget-de')
+            const modes=page.getByRole('group',{name:'Version de l’image',exact:true})
+            const picker=page.getByRole('group',{name:'Choisir un profil'})
+            const download=page.getByRole('button',{name:'Télécharger le PNG',exact:true})
+            for(let cycle=0;cycle<3;cycle++)for(const id of ['reddit-couple-nord-2026-07-09','finary-ingenieur-aero-2025-11-30']){
+              await modes.locator('[data-value="detailed"]').click()
+              await picker.locator('[data-value="'+id+'"]').click()
+              for(const mode of ['detailed','summary','social','summary']){
+                const start=Date.now()
+                await modes.locator('[data-value="'+mode+'"]').click()
+                for(let tries=0;tries<120;tries++){
+                  if(await download.isEnabled())break
+                  if(tries===20)console.log('Still preparing after 5s',id,mode,await page.getByRole('region',{name:'Image du budget'}).innerText())
+                  await page.waitForTimeout(250)
+                }
+                const ready=await download.isEnabled()
+                console.log(JSON.stringify({cycle,id,mode,ready,ms:Date.now()-start,errors}))
+                if(!ready){
+                  console.log(await page.getByRole('region',{name:'Image du budget'}).innerText())
+                  throw Error('Budget image never became ready')
+                }
+              }
+            }
+          }finally{await browser.close()}
+          JS
