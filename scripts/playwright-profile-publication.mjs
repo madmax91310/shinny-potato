@@ -16,7 +16,7 @@ if(server)await waitPreview(server,base)
 for(const width of [1440,390]){
  const userDataDir=await mkdtemp(join(tmpdir(),'profile-publication-'))
  let context,page
- const launch=async()=>{context=await chromium.launchPersistentContext(userDataDir,{headless:true,permissions:['clipboard-read','clipboard-write'],viewport:{width,height:950},timezoneId:'Pacific/Honolulu',...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})});page=context.pages()[0]||await context.newPage()}
+ const launch=async()=>{context=await chromium.launchPersistentContext(userDataDir,{headless:true,permissions:['clipboard-read','clipboard-write'],isMobile:width<600,hasTouch:width<600,viewport:{width,height:950},timezoneId:'Pacific/Honolulu',...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})});page=context.pages()[0]||await context.newPage()}
  await launch()
  const errors=[]
  const goto=async path=>{await page.goto(base+path);page.on('pageerror',e=>errors.push(e.message))}
@@ -92,7 +92,12 @@ for(const width of [1440,390]){
   await page.screenshot({path:join(output,`dca-${width}-reopened.png`),fullPage:true})
   // Actual second tab receives the state; attempts from a stale Budget editor fail closed.
   const tab=await context.newPage();await tab.goto(base+'le-dca-de?mode=dca')
-  await remove();await expect(tab.getByRole('region',{name:'Suivi de publication'}).getByText('Non publié',{exact:true})).toBeVisible()
+  const tabPanel=tab.getByRole('region',{name:'Suivi de publication'})
+  await expect(tabPanel.getByText('Publié le 04/01/2026',{exact:true})).toBeVisible()
+  await tabPanel.getByRole('button',{name:'Modifier la date de publication',exact:true}).click()
+  await remove();await expect(tabPanel.getByText('Non publié',{exact:true})).toBeVisible()
+  await tabPanel.getByRole('button',{name:'Confirmer la publication',exact:true}).click()
+  await expect(tabPanel.getByRole('alert')).toContainText('changé dans un autre onglet')
   snapshot=await dcaSnapshot();assert(snapshot.usage.entries.some(e=>e.id===preparedDca));assert(!snapshot.usage.entries.some(e=>e.id===dcaId));assert.equal(snapshot.saves.items[0].id,saveId);assert(snapshot.usage.history.some(e=>e.id===dcaId&&e.action==='unpublished'))
   await tab.close();await page.reload();await expect(panel().getByText('Non publié',{exact:true})).toBeVisible()
   // Named copy is a distinct profile, with no inherited publication marker.

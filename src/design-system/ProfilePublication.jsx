@@ -3,10 +3,11 @@ import Button from './Button'
 import { localToday, publicationLabel, validPublicationDate } from '../lib/publication-date.js'
 
 export default function ProfilePublication({ published, date, onSave, disabled=false, lockName, checkbox=false }) {
-  const [editing,setEditing]=useState(false), [selectedDate,setSelectedDate]=useState(''), [error,setError]=useState(''), [pending,setPending]=useState(false)
+  const [editing,setEditing]=useState(false), [selectedDate,setSelectedDate]=useState(''), [error,setError]=useState(''), [pending,setPending]=useState(false), [opened,setOpened]=useState(null)
   const today=localToday()
-  function open(){setSelectedDate(date||today);setError('');setEditing(true)}
+  function open(){setOpened({published,date});setSelectedDate(date||today);setError('');setEditing(true)}
   async function commit(checked){
+    if(checked&&opened&&(opened.published!==published||opened.date!==date)){setError('Le statut a changé dans un autre onglet. Annule puis rouvre la date pour reprendre la version actuelle.');return}
     if(checked&&(!validPublicationDate(selectedDate)||selectedDate>today)){setError('Choisis une date valide, aujourd’hui ou dans le passé.');return}
     setPending(true);setError('')
     try{
