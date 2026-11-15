@@ -1,0 +1,941 @@
+{
+  "run": 43703196420,
+  "artifact": 14158825222,
+  "groups": [
+    {
+      "file": "additional-observation.json",
+      "checkedAt": "2026-11-15T10:49:54.976591+00:00",
+      "rows": [
+        {
+          "isin": "GB00BLD4ZL17",
+          "provider": "CoinShares",
+          "status": "validated",
+          "record": {
+            "currency": "USD",
+            "productId": "GB00BLD4ZL17",
+            "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZL17",
+            "provider": "CoinShares",
+            "characteristics": {
+              "terPct": 0.15,
+              "asOf": "2026-11-13",
+              "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZL17",
+              "sha256": "17cf7896ceefec31d4aeeec038f68a3316a387d9e8b6288116c9d7d329007d9d",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "aum": {
+              "amount": 1475533619.0,
+              "currency": "USD",
+              "scope": "share-class",
+              "asOf": "2026-11-13",
+              "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZL17,ISIN_STATMETADATA_GB00BLD4ZL17",
+              "sha256": "c5525850588016938d2b12f04285cbc82e4e56bc18543fa227ea8cf3dc3ccd06",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "performance": {
+              "currency": "USD",
+              "basis": "fund",
+              "years": {
+                "2022": -66.03,
+                "2023": 156.18,
+                "2024": 122.51,
+                "2025": -7.99
+              },
+              "asOf": "2026-11-13",
+              "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
+              "sha256": "701aa55e52652b89a5047953709eccf082a911f28e46140aff5ab8aabc3f9fd6",
+              "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "characteristicChecks": {
+              "terPct": {
+                "checkedAt": "2026-11-15",
+                "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZL17",
+                "asOf": "2026-11-13"
+              }
+            }
+          },
+          "unavailable": [
+            "exposures: single crypto asset, no equity countries/sectors"
+          ],
+          "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZL17",
+          "collectionErrors": [],
+          "sourceAttempts": [
+            {
+              "url": "https://coinshares.com/en/d/etp/factsheet/physical-btc/",
+              "reason": "Exact-share CoinShares factsheet is stale: 2026-08-31"
+            },
+            {
+              "url": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZL17",
+              "status": "validated"
+            }
+          ]
+        },
+        {
+          "isin": "GB00BLD4ZM24",
+          "provider": "CoinShares",
+          "status": "validated",
+          "record": {
+            "currency": "USD",
+            "productId": "GB00BLD4ZM24",
+            "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZM24",
+            "provider": "CoinShares",
+            "characteristics": {
+              "terPct": 0.0,
+              "asOf": "2026-11-13",
+              "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZM24",
+              "sha256": "60ee8f354855f39acbb489ebe361e80f5c8e6a901cbebf2b506aa205c13846c8",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "aum": {
+              "amount": 313464563.0,
+              "currency": "USD",
+              "scope": "share-class",
+              "asOf": "2026-11-13",
+              "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZM24,ISIN_STATMETADATA_GB00BLD4ZM24",
+              "sha256": "f890e2b3a39da78356df4dae8d8a7aa5f77e3f84fff1eb7c1e2c31b133537e4e",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "performance": {
+              "currency": "USD",
+              "basis": "fund",
+              "years": {
+                "2022": -68.7,
+                "2023": 97.03,
+                "2024": 46.75,
+                "2025": -11.7
+              },
+              "asOf": "2026-11-13",
+              "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
+              "sha256": "37e8d05867a5b7152554fe717e11c44cec000258265ff895414899a2154ab600",
+              "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "characteristicChecks": {
+              "terPct": {
+                "checkedAt": "2026-11-15",
+                "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZM24",
+                "asOf": "2026-11-13"
+              }
+            }
+          },
+          "unavailable": [
+            "exposures: single crypto asset, no equity countries/sectors"
+          ],
+          "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZM24",
+          "collectionErrors": [],
+          "sourceAttempts": [
+            {
+              "url": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+              "reason": "Exact-share CoinShares factsheet is stale: 2026-08-31"
+            },
+            {
+              "url": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_KEYSTATS_GB00BLD4ZM24",
+              "status": "validated"
+            }
+          ]
+        },
+        {
+          "isin": "IE0003UVYC20",
+          "provider": "J.P. Morgan",
+          "status": "validated",
+          "record": {
+            "currency": "USD",
+            "productId": "IE0003UVYC20",
+            "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+            "provider": "J.P. Morgan",
+            "aum": {
+              "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "sha256": "707aaf5cd584ad3de8fc419d84df47b98cbee9b722ab5b9fe68ffffb51f855bf",
+              "amount": 1724519375.25,
+              "currency": "USD",
+              "scope": "fund",
+              "asOf": "2026-11-13",
+              "sourceComponent": "fundData.aum.value",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "sectors": {
+              "rows": [
+                {
+                  "name": "Pharm/Medtech",
+                  "weightPct": 10.8,
+                  "label": "Pharmacie et technologies médicales"
+                },
+                {
+                  "name": "Technology - Semi & Hardware",
+                  "weightPct": 10.2,
+                  "label": "Semi-conducteurs et matériel"
+                },
+                {
+                  "name": "Industrial Cyclicals",
+                  "weightPct": 9.9,
+                  "label": "Industries cycliques"
+                },
+                {
+                  "name": "Consumer Staples",
+                  "weightPct": 8.8,
+                  "label": "Consommation de base"
+                },
+                {
+                  "name": "Technology - Software",
+                  "weightPct": 8.4,
+                  "label": "Logiciels"
+                },
+                {
+                  "name": "Telecommunications",
+                  "weightPct": 7.7,
+                  "label": "Télécommunications"
+                },
+                {
+                  "name": "Utilities",
+                  "weightPct": 7.5,
+                  "label": "Services publics"
+                },
+                {
+                  "name": "Retail",
+                  "weightPct": 5.5,
+                  "label": "Distribution"
+                },
+                {
+                  "name": "Insurance",
+                  "weightPct": 4.8,
+                  "label": "Assurance"
+                },
+                {
+                  "name": "Banks",
+                  "weightPct": 3.9,
+                  "label": "Banques"
+                },
+                {
+                  "name": "Health Services & Systems",
+                  "weightPct": 3.9,
+                  "label": "Services et systèmes de santé"
+                },
+                {
+                  "name": "Financial Services",
+                  "weightPct": 3.3,
+                  "label": "Services financiers"
+                },
+                {
+                  "name": "Basic Industries",
+                  "weightPct": 3.3,
+                  "label": "Industries de base"
+                },
+                {
+                  "name": "Energy",
+                  "weightPct": 2.5,
+                  "label": "Énergie"
+                },
+                {
+                  "name": "Media",
+                  "weightPct": 2.4,
+                  "label": "Médias"
+                },
+                {
+                  "name": "Property",
+                  "weightPct": 2.4,
+                  "label": "Immobilier"
+                },
+                {
+                  "name": "Transportation",
+                  "weightPct": 1.5,
+                  "label": "Transports"
+                },
+                {
+                  "name": "Automobiles & Auto Parts",
+                  "weightPct": 1.4,
+                  "label": "Automobiles et équipementiers"
+                },
+                {
+                  "name": "Consumer Cyclical & Services",
+                  "weightPct": 1.0,
+                  "label": "Consommation cyclique et services"
+                },
+                {
+                  "name": "Cash",
+                  "weightPct": 0.8,
+                  "label": "Liquidités"
+                }
+              ],
+              "asOf": "2026-10-31",
+              "basis": "fund",
+              "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "sha256": "707aaf5cd584ad3de8fc419d84df47b98cbee9b722ab5b9fe68ffffb51f855bf",
+              "sourceComponent": "fundData.emeaSectorBreakdown",
+              "classification": "jpm-proprietary-sectors-v1",
+              "method": "Published JPMorgan proprietary sector allocation of the fund; no GICS/ICB equivalence or regrouping",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "countries": {
+              "rows": [
+                {
+                  "name": "United States",
+                  "weightPct": 67.6
+                },
+                {
+                  "name": "Japan",
+                  "weightPct": 10.8
+                },
+                {
+                  "name": "France",
+                  "weightPct": 4.5
+                },
+                {
+                  "name": "Germany",
+                  "weightPct": 3.8
+                },
+                {
+                  "name": "Netherlands",
+                  "weightPct": 1.7
+                },
+                {
+                  "name": "Spain",
+                  "weightPct": 1.7
+                },
+                {
+                  "name": "Switzerland",
+                  "weightPct": 1.5
+                },
+                {
+                  "name": "Italy",
+                  "weightPct": 1.2
+                },
+                {
+                  "name": "Singapore",
+                  "weightPct": 1.1
+                },
+                {
+                  "name": "United Kingdom",
+                  "weightPct": 0.9
+                },
+                {
+                  "name": "Hong Kong",
+                  "weightPct": 0.9
+                },
+                {
+                  "name": "Belgium",
+                  "weightPct": 0.7
+                },
+                {
+                  "name": "Denmark",
+                  "weightPct": 0.6
+                },
+                {
+                  "name": "Canada",
+                  "weightPct": 0.5
+                },
+                {
+                  "name": "Australia",
+                  "weightPct": 0.5
+                },
+                {
+                  "name": "Ireland",
+                  "weightPct": 0.5
+                },
+                {
+                  "name": "Sweden",
+                  "weightPct": 0.4
+                },
+                {
+                  "name": "Israel",
+                  "weightPct": 0.2
+                },
+                {
+                  "name": "Finland",
+                  "weightPct": 0.1
+                },
+                {
+                  "name": "Norway",
+                  "weightPct": 0.0
+                },
+                {
+                  "name": "Austria",
+                  "weightPct": 0.0
+                },
+                {
+                  "name": "Portugal",
+                  "weightPct": 0.0
+                },
+                {
+                  "name": "Cash",
+                  "weightPct": 0.8
+                }
+              ],
+              "asOf": "2026-10-31",
+              "basis": "fund",
+              "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "sha256": "707aaf5cd584ad3de8fc419d84df47b98cbee9b722ab5b9fe68ffffb51f855bf",
+              "sourceComponent": "fundData.emeaRegionalBreakdown",
+              "classification": "jpm-published-regional-v1",
+              "method": "Published JPMorgan regional allocation of the fund; issuer labels and cash retained, no country-of-risk equivalence inferred",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "holdings": {
+              "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "sha256": "707aaf5cd584ad3de8fc419d84df47b98cbee9b722ab5b9fe68ffffb51f855bf",
+              "rows": [
+                {
+                  "isin": "US4781601046",
+                  "name": "JOHNSON & JOHNSON",
+                  "weightPct": 1.980981584468218
+                },
+                {
+                  "isin": "US8425871071",
+                  "name": "SOUTHERN CO/THE",
+                  "weightPct": 1.638083587649436
+                },
+                {
+                  "isin": "JP3463000004",
+                  "name": "TAKEDA PHARMACEUTICAL CO /JPY/",
+                  "weightPct": 1.636345911719914
+                },
+                {
+                  "isin": "US5949181045",
+                  "name": "MICROSOFT CORP",
+                  "weightPct": 1.550803618240593
+                },
+                {
+                  "isin": "US0846707026",
+                  "name": "BERKSHIRE HATHAWAY INC-CL B",
+                  "weightPct": 1.490556946124081
+                },
+                {
+                  "isin": "US6200763075",
+                  "name": "MOTOROLA SOLUTIONS INC",
+                  "weightPct": 1.423456225056245
+                },
+                {
+                  "isin": "US1912161007",
+                  "name": "COCA-COLA CO/THE",
+                  "weightPct": 1.357293710348209
+                },
+                {
+                  "isin": "US03073E1055",
+                  "name": "CENCORA INC",
+                  "weightPct": 1.247773811170502
+                },
+                {
+                  "isin": "US00287Y1091",
+                  "name": "ABBVIE INC",
+                  "weightPct": 1.166511746532973
+                },
+                {
+                  "isin": "US00206R1023",
+                  "name": "AT&T INC",
+                  "weightPct": 1.128067960558928
+                }
+              ],
+              "asOf": "2026-11-13",
+              "basis": "fund",
+              "complete": false,
+              "sourceComponent": "fundData.dailyHoldings",
+              "method": "Published top ten direct equity/REIT positions; native portfolio market-value weights, no renormalisation or complete-overlap inference",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "characteristics": {
+              "asOf": "2026-08-31",
+              "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+              "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7",
+              "terPct": 0.35,
+              "checkedAt": "2026-11-14",
+              "modifiedAt": "2026-10-11"
+            },
+            "performance": {
+              "currency": "USD",
+              "basis": "fund",
+              "years": {
+                "2024": 8.08,
+                "2025": 12.35
+              },
+              "asOf": "2026-10-31",
+              "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/historicalData?cusip=IE0003UVYC20&country=gb&role=per&userLoggedIn=false&language=en",
+              "sha256": "c50bee0aa9a0c0a66fe7b7ee959de8d0364dcc71eaa620b271d48c36f8616e2e",
+              "identitySourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "identitySha256": "707aaf5cd584ad3de8fc419d84df47b98cbee9b722ab5b9fe68ffffb51f855bf",
+              "identityNavAsOf": "2026-11-13",
+              "sourceComponent": "historicalCalendarYearPerformanceReturn.labels/performanceData; oneYear..tenYears; YTD excluded",
+              "method": "calendar-year exact-share NAV total return, gross income reinvested, net of ongoing charges",
+              "extractionMethod": "issuer decimal returns converted to percent, no extra distribution adjustment",
+              "checkedAt": "2026-11-15",
+              "modifiedAt": "2026-11-15"
+            },
+            "characteristicChecks": {
+              "terPct": {
+                "checkedAt": "2026-11-14",
+                "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+                "asOf": "2026-08-31"
+              }
+            }
+          },
+          "unavailable": [],
+          "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+          "collectionErrors": [
+            {
+              "field": "characteristics.terPct",
+              "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+              "reason": "Official document date is missing, future or stale"
+            },
+            {
+              "field": "performance",
+              "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+              "reason": "Official document date is missing, future or stale"
+            },
+            {
+              "field": "countries",
+              "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+              "reason": "Official document date is missing, future or stale"
+            },
+            {
+              "field": "sectors",
+              "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+              "reason": "Official document date is missing, future or stale"
+            }
+          ],
+          "sourceAttempts": [
+            {
+              "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+              "status": "failed",
+              "reason": "Official document date is missing, future or stale"
+            },
+            {
+              "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "status": "validated",
+              "fields": [
+                "aum"
+              ]
+            },
+            {
+              "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "status": "validated",
+              "fields": [
+                "holdings"
+              ]
+            },
+            {
+              "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "status": "validated",
+              "fields": [
+                "countries"
+              ]
+            },
+            {
+              "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+              "status": "validated",
+              "fields": [
+                "sectors"
+              ]
+            },
+            {
+              "url": "https://am.jpmorgan.com/FundsMarketingHandler/historicalData?cusip=IE0003UVYC20&country=gb&role=per&userLoggedIn=false&language=en",
+              "status": "validated",
+              "fields": [
+                "performance"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "index-observation.json",
+      "checkedAt": "2026-11-15T10:51:30.176839+00:00",
+      "rows": [
+        {
+          "id": "stoxx600",
+          "name": "STOXX Europe 600",
+          "errors": [],
+          "unavailable": [],
+          "facts": {
+            "index": "STOXX Europe 600",
+            "asOf": "2026-11-11",
+            "constituents": 600,
+            "countries": [
+              [
+                "United Kingdom",
+                22.998466
+              ],
+              [
+                "France",
+                14.725988
+              ],
+              [
+                "Switzerland",
+                14.377214
+              ],
+              [
+                "Germany",
+                13.171644
+              ],
+              [
+                "Netherlands",
+                7.602493
+              ],
+              [
+                "Spain",
+                5.889188
+              ],
+              [
+                "Italy",
+                5.502122
+              ],
+              [
+                "Sweden",
+                4.858283
+              ],
+              [
+                "Denmark",
+                2.704585
+              ],
+              [
+                "Belgium",
+                1.955071
+              ],
+              [
+                "Finland",
+                1.836292
+              ],
+              [
+                "Norway",
+                1.246637
+              ],
+              [
+                "Poland",
+                0.980447
+              ],
+              [
+                "Ireland",
+                0.719549
+              ],
+              [
+                "Austria",
+                0.6188
+              ],
+              [
+                "Greece",
+                0.505504
+              ],
+              [
+                "Portugal",
+                0.307719
+              ]
+            ],
+            "sectors": [
+              [
+                "Financials",
+                25.470106
+              ],
+              [
+                "Industrials",
+                18.249837
+              ],
+              [
+                "Health Care",
+                13.335174
+              ],
+              [
+                "Consumer Staples",
+                8.380706
+              ],
+              [
+                "Information Technology",
+                8.28383
+              ],
+              [
+                "Consumer Discretionary",
+                6.486631
+              ],
+              [
+                "Energy",
+                5.609687
+              ],
+              [
+                "Materials",
+                5.532503
+              ],
+              [
+                "Utilities",
+                4.924736
+              ],
+              [
+                "Others",
+                3.726791
+              ]
+            ],
+            "holdings": [
+              [
+                "ASML HOLDING NV",
+                3.956553
+              ],
+              [
+                "ROCHE HOLDING AG - GENUSSS CHF",
+                2.219903
+              ],
+              [
+                "HSBC HOLDINGS PLC",
+                2.022994
+              ],
+              [
+                "NOVARTIS AG-REG",
+                1.978493
+              ],
+              [
+                "ASTRAZENECA GBP",
+                1.873291
+              ],
+              [
+                "SHELL PLC EUR",
+                1.77482
+              ],
+              [
+                "NESTLE SA-REG",
+                1.740236
+              ],
+              [
+                "SAP SE / XETRA",
+                1.541561
+              ],
+              [
+                "SIEMENS AG-REG",
+                1.476324
+              ],
+              [
+                "TOTALENERGIES SE PARIS",
+                1.314987
+              ]
+            ],
+            "source": {
+              "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+              "checkedAt": "2026-11-15",
+              "sha256": "9306e568b07c64a55da7132c2812046d087d2f3dfdb62322ff8b2d99a1d2b184",
+              "label": "Composition de l’indice publiée par Amundi",
+              "productId": "LU0908500753",
+              "controlledFields": [
+                "ISIN",
+                "BENCHMARK_NAME",
+                "FUND_REPLICATION_METHODOLOGY",
+                "INDEX_BREAKDOWNS_AS_OF_DATE",
+                "BENCHMARK_NUMBER_OF_COMPONENTS",
+                "INDEX_TOP10",
+                "INDEX_COUNTRIES",
+                "INDEX_SECTORS"
+              ]
+            },
+            "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
+          },
+          "returns": {
+            "asOf": "2026-11-13",
+            "currency": "EUR",
+            "variant": "NET",
+            "values": [
+              [
+                2025,
+                19.8
+              ],
+              [
+                2024,
+                8.79
+              ],
+              [
+                2023,
+                15.8
+              ],
+              [
+                2022,
+                -10.64
+              ],
+              [
+                2021,
+                24.91
+              ],
+              [
+                2020,
+                -1.99
+              ]
+            ],
+            "periodStart": "2020-01-01",
+            "periodEnd": "2025-12-31",
+            "source": {
+              "url": "https://stoxx.com/index/sxxr/",
+              "checkedAt": "2026-11-15",
+              "sha256": "f85df86dc86a45c758d41b671cbdb71071f10f01376f557e99e2d6b066f58016",
+              "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+            },
+            "performance": {
+              "kind": "indice",
+              "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+              "date": "2026-11-13"
+            }
+          }
+        },
+        {
+          "id": "topix",
+          "name": "TOPIX",
+          "errors": [],
+          "unavailable": [],
+          "facts": {
+            "index": "TOPIX",
+            "asOf": "2026-11-11",
+            "constituents": 1668,
+            "countries": [
+              [
+                "Japan",
+                100.0
+              ]
+            ],
+            "sectors": [
+              [
+                "Industrials",
+                25.860039
+              ],
+              [
+                "Financials",
+                18.915208
+              ],
+              [
+                "Consumer Discretionary",
+                15.586814
+              ],
+              [
+                "Information Technology",
+                14.303556
+              ],
+              [
+                "Communication Services",
+                6.005921
+              ],
+              [
+                "Health Care",
+                5.536386
+              ],
+              [
+                "Materials",
+                5.081196
+              ],
+              [
+                "Consumer Staples",
+                4.765791
+              ],
+              [
+                "Others",
+                2.177791
+              ],
+              [
+                "Real Estate",
+                1.767299
+              ]
+            ],
+            "holdings": [
+              [
+                "MITSUBISHI UFJ FINANCIAL GROUP",
+                3.860968
+              ],
+              [
+                "TOYOTA MOTOR CORP",
+                2.994043
+              ],
+              [
+                "SONY GROUP CORP (JT)",
+                2.493785
+              ],
+              [
+                "SUMITOMO MITSUI FINANCIAL GROUP",
+                2.491026
+              ],
+              [
+                "RECRUIT HOLDINGS CO LTD",
+                2.421952
+              ],
+              [
+                "HITACHI LTD",
+                2.234665
+              ],
+              [
+                "MIZUHO FINANCIAL GROUP INC",
+                1.982868
+              ],
+              [
+                "ADVANTEST CORP  Y50",
+                1.832567
+              ],
+              [
+                "TOKYO ELECTRON  JPY50",
+                1.72777
+              ],
+              [
+                "MITSUBISHI CORPORATION",
+                1.684603
+              ]
+            ],
+            "source": {
+              "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+              "checkedAt": "2026-11-15",
+              "sha256": "53e57cd5ed1c07fd8f848f81d8e838065a688ca9b73a6a3a9a92c4ce60d4a4db",
+              "label": "Composition de l’indice publiée par Amundi",
+              "productId": "FR0013411980",
+              "controlledFields": [
+                "ISIN",
+                "BENCHMARK_NAME",
+                "FUND_REPLICATION_METHODOLOGY",
+                "INDEX_BREAKDOWNS_AS_OF_DATE",
+                "BENCHMARK_NUMBER_OF_COMPONENTS",
+                "INDEX_TOP10",
+                "INDEX_COUNTRIES",
+                "INDEX_SECTORS"
+              ]
+            },
+            "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
+          },
+          "returns": {
+            "asOf": "2026-09-30",
+            "currency": "JPY",
+            "variant": "TOTAL",
+            "values": [
+              [
+                2025,
+                25.46
+              ],
+              [
+                2024,
+                20.45
+              ],
+              [
+                2023,
+                28.26
+              ],
+              [
+                2022,
+                -2.45
+              ],
+              [
+                2021,
+                12.74
+              ]
+            ],
+            "periodStart": "2021-01-01",
+            "periodEnd": "2025-12-31",
+            "source": {
+              "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
+              "checkedAt": "2026-11-15",
+              "sha256": "fc0ae8ff0e7fb715d9a6e47796ea8a1bcf8c0ed03219f624f51a96274396169b",
+              "label": "Rendements calendaires officiels automatisés · TOPIX"
+            },
+            "performance": {
+              "kind": "indice",
+              "detail": "TOPIX · JPY · dividendes réinvestis",
+              "date": "2026-09-30"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

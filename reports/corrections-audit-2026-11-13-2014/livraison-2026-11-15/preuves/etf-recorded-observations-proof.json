@@ -1,0 +1,57 @@
+{
+  "run": 43703196420,
+  "artifact": 14158825222,
+  "commit": "7dfb5c2f",
+  "results": [
+    {
+      "id": "GB00BLD4ZL17",
+      "fields": [
+        "performance",
+        "aum",
+        "characteristics"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "GB00BLD4ZM24",
+      "fields": [
+        "performance",
+        "aum",
+        "characteristics"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "IE0003UVYC20",
+      "fields": [
+        "performance"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "stoxx600",
+      "fields": [
+        "facts.constituents",
+        "facts.countries",
+        "facts.sectors",
+        "facts.holdings",
+        "facts.asOf",
+        "facts.source"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "topix",
+      "fields": [
+        "facts.constituents",
+        "facts.countries",
+        "facts.sectors",
+        "facts.holdings",
+        "facts.asOf",
+        "facts.source"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    }
+  ],
+  "limitation": "Exact storage check; publication and browser consumption verified separately"
+}

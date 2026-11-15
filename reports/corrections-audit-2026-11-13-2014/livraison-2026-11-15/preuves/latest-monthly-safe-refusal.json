@@ -1,0 +1,11 @@
+{
+  "run": 43706268548,
+  "job": 132787923010,
+  "event": "workflow_dispatch",
+  "base": "7dfb5c2f",
+  "cause": "Concurrent new deployment-operation workflow not in acquisition dependency qualification; safe refusal retained",
+  "proof": [
+    "2026-11-15T11:21:54.6146243Z ValueError: Collection inputs may have changed; recollect from master: .github/workflows/prioritize-dca-release-20261115.yml"
+  ],
+  "nextAction": "Fresh ordinary collection after final master, not replay of stale outputs or blanket exception"
+}

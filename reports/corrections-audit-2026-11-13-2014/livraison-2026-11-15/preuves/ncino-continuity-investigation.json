@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-11-15T11:25:40.860815+00:00",
+  "sourceUrl": "https://www.nasdaqtrader.com/TraderNews.aspx?id=ECA2022-1",
+  "sha256": "ffb31bf4a2126fa07d33a686d4a5bfdc08a5616bf7fc0d80dd42b9e3249569ac",
+  "action": "Holding-company formation announced 2022-01-07; marketplace effective 2022-01-10; CUSIP 63947U107 → 63947X101",
+  "independentQueries": [
+    {
+      "request": {
+        "idType": "ID_ISIN",
+        "idValue": "US63947U1079",
+        "includeUnlistedEquities": true
+      },
+      "shareClassFIGIs": [
+        "BBG00B5C2HS3"
+      ],
+      "exactIssuerFigiPresent": true
+    },
+    {
+      "request": {
+        "idType": "ID_ISIN",
+        "idValue": "US63947X1019",
+        "includeUnlistedEquities": true
+      },
+      "shareClassFIGIs": [
+        "BBG014GJ8XJ0"
+      ],
+      "exactIssuerFigiPresent": false
+    },
+    {
+      "request": {
+        "idType": "ID_BB_GLOBAL",
+        "idValue": "BBG00XTV91S5"
+      },
+      "shareClassFIGIs": [
+        "BBG00B5C2HS3"
+      ],
+      "exactIssuerFigiPresent": true
+    }
+  ],
+  "conclusion": "Issuer book FIGI BBG00XTV91S5 resolves to predecessor ISIN US63947U1079. Corporate succession explains the identifier conflict but is not a fresh fund position confirmation. Native 2026 book still references retired share class; no silent replacement by successor US63947X1019.",
+  "missing": "Issuer confirmation/corrected native book tying this exact dated fund position to successor share class; retain weight and unresolved identity.",
+  "scope": "Read-only new documentary evidence; no data, source clock, admission or financial series changed."
+}
