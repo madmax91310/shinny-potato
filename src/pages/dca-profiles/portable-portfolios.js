@@ -20,7 +20,7 @@ function checked(record) {
         !Number.isInteger(Number(item.profile.analysisView.months)) || Number(item.profile.analysisView.months)<1 || Number(item.profile.analysisView.months)>120)))))
     throw Error('Fichier de portefeuille invalide ou incompatible.')
   // Import never carries publication consent, even from a previously approved file.
-  return {id: item.id, title: item.title, draft: item.draft, field: item.field,
+  return {id: item.id, title: item.title, draft: item.draft, field: item.field, ...(item.status==='draft'?{status:'draft'}:{}),
     profile: {...structuredClone(item.profile), approved: false}}
 }
 export function exportPortfolio(record) {

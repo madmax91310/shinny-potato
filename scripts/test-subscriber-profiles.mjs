@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import {newSubscriberProfile,subscriberId,subscriberSignature,saveSubscriberProfile,removeSubscriberProfile,filterSubscriberProfiles} from '../src/pages/dca-profiles/subscriber-profiles.js'
-import {SAVED_KEY,readSavedState,writeSaved} from '../src/pages/dca-profiles/management.js'
+import {SAVED_KEY,readSavedState,writeSaved,savedRecord,restoreSavedProfile,searchAssets,validSaved} from '../src/pages/dca-profiles/management.js'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
-import {prepareProfile} from '../src/pages/dca-profiles/engine.js'
+import {prepareProfile,validateProfile,publicationReady,references} from '../src/pages/dca-profiles/engine.js'
 import {newManualLine} from '../src/pages/dca-profiles/placements.js'
 import {exportPortfolio,importPortfolio} from '../src/pages/dca-profiles/portable-portfolios.js'
 const memory=()=>{const map=new Map();return{map,getItem:key=>map.get(key)??null,setItem:(key,value)=>map.set(key,value)}}
@@ -44,6 +44,30 @@ assert.throws(()=>saveSubscriberProfile(quota,input,null),/quota/);assert.equal(
 const full=memory()
 writeSaved(full,Array.from({length:50},(_,i)=>({...prepared,id:`existing-${i}`})))
 assert.throws(()=>saveSubscriberProfile(full,input,null),/50/);assert.equal(readSavedState(full).items.length,50)
-assert.throws(()=>saveSubscriberProfile(storage,{...input,profile:{...profile,name:''}},null),/pseudonyme/)
-assert.throws(()=>saveSubscriberProfile(storage,{...input,profile:{...profile,lines:[]}},null),/Corrige/)
+const drafts=memory()
+const unnamed=saveSubscriberProfile(drafts,{profile:newSubscriberProfile(),draft:'À finir',field:'all'},null)
+assert.equal(unnamed.title,'Brouillon sans pseudonyme');assert.equal(unnamed.status,'draft')
+assert.equal(readSavedState(drafts).items.length,1)
+const unfinished={...profile,name:'Profil en cours',lines:[{asset:'medpace',label:'Medpace Holdings',isin:references.medpace.isin,weight:40,amount:NaN}]}
+const partial=saveSubscriberProfile(drafts,{profile:unfinished,draft:'Texte encore en préparation',field:'sectors'},null)
+assert.equal(partial.status,'draft');assert.equal(partial.profile.lines[0].amount,null)
+const reread=readSavedState(drafts).items.find(row=>row.id===partial.id)
+assert.equal(reread.profile.lines[0].weight,40);assert.equal(reread.draft,'Texte encore en préparation')
+const restored=restoreSavedProfile(reread.profile)
+assert(Number.isNaN(restored.lines[0].amount))
+assert(validateProfile(restored).length);assert.equal(publicationReady(restored),false)
+const portable=importPortfolio(exportPortfolio(partial))
+assert.equal(portable.status,'draft');assert(Number.isNaN(restoreSavedProfile(portable.profile).lines[0].amount))
+const completed=saveSubscriberProfile(drafts,{...partial,profile:{...restored,lines:restored.lines.map(line=>({...line,weight:100,amount:150}))}},{id:partial.id,source:JSON.stringify(reread)})
+assert.equal(completed.id,partial.id);assert.equal(completed.status,undefined)
+assert.deepEqual(validateProfile(completed.profile),[])
+assert.equal(readSavedState(drafts).items.length,2)
+const generic=savedRecord({...partial,id:'named-work',title:'À reprendre',profile:{...unfinished,name:''}})
+writeSaved(drafts,[...readSavedState(drafts).items,generic])
+assert.equal(readSavedState(drafts).rejected.length,0)
+for(const patch of [{lines:[null]},{lines:[{...unfinished.lines[0],asset:'unknown'}]},{name:'x'.repeat(46)},{lines:Array(51).fill(unfinished.lines[0])},{lines:[{...unfinished.lines[0],amount:'150'}]}]){
+ assert.equal(!!validSaved({...partial,profile:{...partial.profile,...patch}}),false)
+}
+for(const query of ['Medpace','MEDP','US58506Q1094'])assert(searchAssets(query,'equity').includes('medpace'))
+assert.equal(references.medpace.kind,'equity');assert.equal(references.medpace.isin,'US58506Q1094')
 console.log('Profils abonnés : identité propre, création sans scénario, mises à jour, recherche, héritage, fichiers, protection des conflits/corruptions/quotas et limite commune validés.')

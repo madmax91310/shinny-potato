@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Button from '../../design-system/Button'
-import { readSaved, readSavedState, writeSaved } from './management.js'
-import { validateProfile, MAX_EXPOSURE_POSITIONS, profilePositionLimit } from './engine.js'
+import { readSaved, readSavedState, writeSaved, validDraftProfile, savedRecord } from './management.js'
+import { profilePositionLimit } from './engine.js'
 import { exportPortfolio, importPortfolio, MAX_PORTFOLIO_FILE_BYTES } from './portable-portfolios.js'
 export default function Portfolios({profile, draft = '', field, onLoad, resetSignal = 0, activeRecordId, onSaved, onRemoved}) {
   const [items, setItems] = useState([]), [title, setTitle] = useState(''), [selected, setSelected] = useState(''), [feedback, setFeedback] = useState('')
@@ -9,7 +9,7 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
   function download() {
     let url
     try {
-      const text = exportPortfolio({id:profile.id, title:title || 'Portefeuille', profile, draft, field})
+      const text = exportPortfolio(savedRecord({id:profile.id, title:title || 'Portefeuille', profile, draft, field}))
       url = URL.createObjectURL(new Blob([text],{type:'application/json'}))
       const a = document.createElement('a'); a.href=url; a.download='epargnant-libre-portefeuille.json'; a.click()
       setFeedback('Portefeuille exporté avec son texte et ses options.')
@@ -38,7 +38,7 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
       // Read immediately before writing: the other workspace may have saved meanwhile.
       const previous = readSaved(localStorage,{recoverInvalidRoot:true})
       const id = !asCopy && previous.some(x => x.id === selected) ? selected : crypto.randomUUID()
-      const item = {id, title:title.trim(), profile:structuredClone(profile), draft, field}
+      const item = savedRecord({id, title:title.trim(), profile:structuredClone(profile), draft, field})
       const next = previous.some(x => x.id === id) ? previous.map(x => x.id === id ? item : x) : [...previous, item]
       writeSaved(localStorage, next); setItems(next); setSelected(id); onSaved?.(item); setFeedback('Portefeuille enregistré sur cet appareil.')
     } catch(error) { setFeedback(error.message || 'Enregistrement impossible sur cet appareil.') }
@@ -49,10 +49,10 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
   }
   return <details className="dca-saved" onToggle={e => {if(e.currentTarget.open) refresh()}}><summary>Mes portefeuilles</summary>
     <label>Nom de la sauvegarde<input maxLength={80} value={title} onChange={e => setTitle(e.target.value)}/></label>
-    <div className="dca-buttons"><Button variant="secondary" disabled={!!validateProfile(profile,MAX_EXPOSURE_POSITIONS).length} onClick={() => save()}>{selected ? 'Mettre à jour la sauvegarde' : 'Enregistrer ce portefeuille'}</Button>{selected && <Button variant="secondary" disabled={!!validateProfile(profile,MAX_EXPOSURE_POSITIONS).length} onClick={() => save(true)}>Enregistrer une copie</Button>}</div>
-    <div className="dca-buttons"><Button variant="secondary" disabled={!!validateProfile(profile,MAX_EXPOSURE_POSITIONS).length} onClick={download}>Exporter ce portefeuille</Button><label>Importer un portefeuille JSON<input aria-label="Importer un portefeuille JSON" type="file" accept="application/json,.json" onChange={upload}/></label></div>
+    <div className="dca-buttons"><Button variant="secondary" disabled={!validDraftProfile(profile)} onClick={() => save()}>{selected ? 'Mettre à jour la sauvegarde' : 'Enregistrer ce portefeuille'}</Button>{selected && <Button variant="secondary" disabled={!validDraftProfile(profile)} onClick={() => save(true)}>Enregistrer une copie</Button>}</div>
+    <div className="dca-buttons"><Button variant="secondary" disabled={!validDraftProfile(profile)} onClick={download}>Exporter ce portefeuille</Button><label>Importer un portefeuille JSON<input aria-label="Importer un portefeuille JSON" type="file" accept="application/json,.json" onChange={upload}/></label></div>
     {imported && <div><p>{imported.title} · {imported.profile.lines.length} positions</p><button type="button" onClick={()=>{onLoad({...imported,id:crypto.randomUUID()});setImported(null);setSelected('');setTitle(imported.title);setFeedback('Portefeuille importé ouvert. Une nouvelle validation est nécessaire avant publication.')}}>Ouvrir le fichier importé</button><button type="button" onClick={()=>setImported(null)}>Annuler l’import</button></div>}
-    {items.filter(item => !!item.profile.imageOnly === !!profile.imageOnly).map(item => <div className="dca-saved-row" key={item.id}><span>{item.title}{!profile.imageOnly&&item.profile.lines.length>profilePositionLimit(item.profile)?` · ${item.profile.lines.length} positions · publication bloquée`:""}</span><button aria-label={`Ouvrir ${item.title}`} onClick={() => {onLoad(structuredClone(item)); setSelected(item.id); setTitle(item.title); setFeedback('Portefeuille ouvert.')}}>Ouvrir</button><button aria-label={`Supprimer ${item.title}`} onClick={() => remove(item.id)}>Supprimer</button></div>)}
-    <p role="status">{feedback}</p><p className="dca-note">Brouillon enregistré automatiquement sur cet appareil. Tes sauvegardes nommées restent distinctes. Les allocations sont dans « Analyser une allocation », les profils dans « Le DCA de… ».</p>
+    {items.filter(item => !!item.profile.imageOnly === !!profile.imageOnly).map(item => <div className="dca-saved-row" key={item.id}><span>{item.title}{item.status==='draft'?' · Brouillon à compléter':''}{!profile.imageOnly&&item.profile.lines.length>profilePositionLimit(item.profile)?` · ${item.profile.lines.length} positions · publication bloquée`:""}</span><button aria-label={`Ouvrir ${item.title}`} onClick={() => {onLoad(structuredClone(item)); setSelected(item.id); setTitle(item.title); setFeedback('Portefeuille ouvert.')}}>Ouvrir</button><button aria-label={`Supprimer ${item.title}`} onClick={() => remove(item.id)}>Supprimer</button></div>)}
+    <p role="status">{feedback}</p><p className="dca-note">Tu peux enregistrer un profil incomplet et le reprendre ici plus tard. Le brouillon ouvert est aussi enregistré automatiquement sur cet appareil. Tes sauvegardes nommées restent distinctes. Les allocations sont dans « Analyser une allocation », les profils dans « Le DCA de… ».</p>
   </details>
 }

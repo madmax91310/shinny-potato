@@ -17,6 +17,11 @@ export function equityUniverse({includeUnqualified=false}={}){
  const classified=JSON.parse(readFileSync(new URL('../src/data/dca-security-classifications.json',import.meta.url)))
  const unclassifiedCandidates=new Set(candidates.filter(c=>!classified[c.isin]).map(c=>c.isin))
  for(const [id,isin]of Object.entries(ids))if(!unclassifiedCandidates.has(isin))put(id,{isin})
+ // Requested DCA identity, checked 2026-11-15: Fidelity's security reference and SEC N-PORT.
+ // https://digital.fidelity.com/prgw/digital/research/quote/dashboard/summary?symbol=MEDP
+ // https://www.sec.gov/Archives/edgar/data/1936157/000193615726000484/primary_doc.xml
+ // Identity only: no country/sector or historical performance is inferred here.
+ put('medpace',{name:'Medpace Holdings',tickers:['MEDP'],currency:'USD',sourceUrl:'https://digital.fidelity.com/prgw/digital/research/quote/dashboard/summary?symbol=MEDP'})
  // Curated international identities keep their published label and expected listing before and after qualification.
  for(const r of [...JSON.parse(readFileSync(new URL('../src/data/global-equities.json',import.meta.url))),...candidates.filter(c=>!unclassifiedCandidates.has(c.isin))])put(r.id,{name:r.label,isin:r.isin,currency:r.currency,...(r.symbol?{tickers:[...new Set([...(rows[r.id]?.tickers||[]),r.symbol])]}:{})})
  // Issuer harmonised the NYSE ordinary-share listing on 2 February 2026; the ADR programme closed.
