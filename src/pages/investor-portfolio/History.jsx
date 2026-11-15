@@ -20,7 +20,7 @@ export default function History({portfolio}) {
   return <details className="portfolio-exposure" onToggle={event => { if (event.currentTarget.open) setOpened(true) }}><summary>Évolution des photographies 13F archivées</summary>
     <p>La collecte conserve automatiquement les anciens trimestres. Les poids restent rapportés au total déclaré, options incluses dans le dénominateur ; les cinq premières entreprises ci-dessous excluent les options.</p>
     {error&&<p role="alert">{error} La photographie actuelle reste disponible.</p>}
-    {rows.map(p=><p key={p.snapshot.periodEnd}>{p.snapshot.periodEnd} : {portfolioCompanies(p.holdings).length} entreprises ou fonds hors options ; cinq premières positions regroupées : {percentage(portfolioCompanies(p.holdings).slice(0,5).reduce((s,r)=>s+r.weight,0))}. <a href={p.sourceUrl} target="_blank" rel="noreferrer">Source ↗</a></p>)}
+    {rows.map(p=><p key={p.snapshot.periodEnd}>{p.snapshot.periodEnd} : {portfolioCompanies(p.holdings).length} titres hors options ; cinq premières positions : {percentage(portfolioCompanies(p.holdings).slice(0,5).reduce((s,r)=>s+r.weight,0))}. <a href={p.sourceUrl} target="_blank" rel="noreferrer">Source ↗</a></p>)}
     {rows.length<2&&<p>Une seule photographie archivée exploitable pour le moment ; aucune trajectoire antérieure n’est inventée.</p>}
     <p>Une variation de poids ne mesure pas les achats : elle dépend aussi des cours et des autres positions. Les nombres d’actions ne sont comparés que lorsqu’ils sont fournis dans les mouvements déclarés.</p>
   </details>
