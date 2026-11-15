@@ -216,7 +216,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.presentation_performance.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' }}
+      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.presentation_performance.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' || steps.performance_currency.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -315,9 +315,11 @@ jobs:
       - name: "Collect observations: fx"
         id: fx
         continue-on-error: true
-        run: |
-          python scripts/collect_annual_fx.py --apply
-          python scripts/collect_performance_currency.py --apply
+        run: python scripts/collect_annual_fx.py --apply
+      - name: "Collect observations: performance_currency"
+        id: performance_currency
+        continue-on-error: true
+        run: python scripts/collect_performance_currency.py --apply
       - name: "Collect observations: indices"
         id: indices
         continue-on-error: true

@@ -46,6 +46,40 @@ class RemainingAumTests(unittest.TestCase):
         for modified in [body.replace(b'2025-12-31', b'2025-12-01'), body.replace(b'currency="USD"', b'currency="EUR"'), body.replace(b'1.175', b'NaN')]:
             with self.assertRaises(ValueError): fx(modified, NOW)
 
+    def test_ecb_final_session_cannot_be_replaced_by_a_recent_rate(self):
+        from collect_annual_fx import year_end_reference_date
+        body = (FIXTURES / 'ecb-eurusd.xml').read_bytes()
+        for date in (b'2025-12-30', b'2025-12-29'):
+            with self.subTest(date=date), self.assertRaisesRegex(ValueError, 'final year-end reference missing'):
+                fx(body.replace(b'2025-12-31', date), NOW)
+        for year, expected in [(1999,'1999-12-30'), (2001,'2001-12-28'),
+                               (2022,'2022-12-30'), (2023,'2023-12-29'),
+                               (2026,'2026-12-31'), (2027,'2027-12-31')]:
+            self.assertEqual(year_end_reference_date(year), expected)
+
+    def test_ecb_january_waits_for_final_rate_and_repeated_acquisition_is_stable(self):
+        import xml.etree.ElementTree as ET
+        ns = '{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}'
+        root = ET.fromstring((FIXTURES / 'ecb-eurusd.xml').read_bytes())
+        container = root.find(ns+'Cube')
+        # Synthetic future-provider scenario only; no production file is modified.
+        for node in list(container):
+            if node.get('time','').startswith('2026-'):
+                container.remove(node)
+        last = ET.SubElement(container, ns+'Cube', {'time':'2026-12-30'})
+        ET.SubElement(last, ns+'Cube', {'currency':'USD','rate':'1.2'})
+        january = dt.datetime(2027,1,1,12,tzinfo=UTC)
+        with self.assertRaisesRegex(ValueError, 'expected 2026-12-31, observed 2026-12-30'):
+            fx(ET.tostring(root), january)
+        last.set('time','2026-12-31')
+        body = ET.tostring(root)
+        result = fx(body,january)
+        self.assertEqual(result['years']['2026'], {'value':1.2,'asOf':'2026-12-31'})
+        self.assertNotIn('2027',result['years'])
+        self.assertEqual(result,fx(body,january))
+        self.assertEqual({k:v for k,v in result['years'].items() if k!='2026'},
+                         fx((FIXTURES/'ecb-eurusd.xml').read_bytes(),NOW)['years'])
+
     def test_wisdomtree_real_html_and_wrong_share(self):
         text = (FIXTURES / 'wisdomtree-overview.html').read_text()
         config = {'isin': 'IE00BZ56SW52', 'currency': 'USD', 'sourceUrl': 'https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc'}

@@ -13,6 +13,17 @@ import subprocess
 import observation_rebase_guard as guard
 
 BUDGET_READERS = {
+    # Actual monthly recording refusal43703196362 after Budget#1308.
+    # Exact downstream files only; both acquisition graphs are checked below.
+    'docs/budget-new-profiles-2026-11-15.md',
+    'scripts/playwright-budget-new-profiles.mjs',
+    'scripts/test-budget-new-profiles.mjs',
+    'scripts/test-budget-editorial-copy.mjs',
+    'scripts/test-budget-editorial-lives.mjs',
+    'scripts/test-budget-narrative.mjs',
+    'scripts/test-budget-audit-20261113.mjs',
+    'src/pages/budget-profiles/SourceEvidencePanel.jsx',
+    'src/pages/budget-profiles/editorial-profiles-2026-11-15.json',
     # Actual monthly refusal43603436956 after Budget1279; exact paths only.
     'scripts/test-budget-editorial-context.mjs',  # Existing monthly reader; same ETF acquisition proof.
     'docs/budget-scope-2026-11-14/rapport.md',
@@ -104,6 +115,45 @@ SUBSCRIBER_TEST_INPUTS = {'package.json', 'scripts/ci-browser-checks.json'}
 MARKET_ACQUISITION_ENTRIES = (BASELINE, 'scripts/export-equity-candidates.mjs',
                               'scripts/export-monthly-candidates.mjs')
 
+BROWSER_LIST = 'scripts/ci-browser-checks.json'
+BUDGET_BROWSER = 'node scripts/playwright-budget-new-profiles.mjs'
+DEPLOY_WORKFLOW = '.github/workflows/deploy-pages.yml'
+BROWSER_ANCHOR = '      - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4\n'
+BUDGET_ARTIFACT = '''      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: budget-new-profiles-${{ matrix.shard }}
+          path: test-artifacts/budget-new-profiles
+          if-no-files-found: ignore
+          retention-days: 14
+'''
+
+
+def budget_browser_addition_only(base, upstream, path):
+    if path != BROWSER_LIST:
+        return False
+    before, after = guard.git_json(base, path), guard.git_json(upstream, path)
+    return (isinstance(before, list) and isinstance(after, list) and bool(before)
+            and all(isinstance(item, str) for item in before + after)
+            and len(set(before)) == len(before) and BUDGET_BROWSER not in before
+            and after == before + [BUDGET_BROWSER])
+
+
+def budget_artifact_reader(base, upstream, paths, entries):
+    if DEPLOY_WORKFLOW not in paths:
+        return set()
+    before, after = at(base, DEPLOY_WORKFLOW), at(upstream, DEPLOY_WORKFLOW)
+    # Only an archival step is appended. Changes to any command, permission,
+    # condition, test or publisher still require recollection/qualification.
+    if (before is None or before.count(BROWSER_ANCHOR) != 1 or BUDGET_ARTIFACT in before
+            or after != before.replace(BROWSER_ANCHOR, BROWSER_ANCHOR + BUDGET_ARTIFACT, 1)):
+        raise ValueError('Protected publication workflow changed beyond the exact Budget artifact addition')
+    for ref in (base, upstream):
+        for entry in entries:
+            if DEPLOY_WORKFLOW in baseline_dependencies(ref, entry):
+                raise ValueError('Publication workflow is an acquisition dependency: ' + entry)
+    return {DEPLOY_WORKFLOW}
+
 
 def at(ref, path):
     proc = subprocess.run(['git', 'show', f'{ref}:{path}'], capture_output=True)
@@ -148,6 +198,7 @@ def check_etf(base, upstream='HEAD^'):
                 if baseline_dependencies(ref, entry) & readers:
                     raise ValueError('An ETF qualification reader is an acquisition dependency: ' + entry)
     permitted |= subscriber_readers(base, upstream, paths, ETF_ACQUISITION_ENTRIES)
+    permitted |= budget_artifact_reader(base, upstream, paths, ETF_ACQUISITION_ENTRIES)
     return checked_readers('etf', base, upstream, permitted)
 
 
@@ -157,10 +208,10 @@ def subscriber_readers(base, upstream, paths, entries):
         return set()
     for ref in (base, upstream):
         for entry in entries:
-            if baseline_dependencies(ref, entry) & (SUBSCRIBER_READERS | SUBSCRIBER_TEST_INPUTS):
+            if baseline_dependencies(ref, entry) & (SUBSCRIBER_READERS | SUBSCRIBER_TEST_INPUTS | BUDGET_READERS):
                 raise ValueError('A subscriber reader/test configuration is an acquisition dependency: ' + entry)
     for path in paths & SUBSCRIBER_TEST_INPUTS:
-        if not guard.subscriber_test_addition_only(base, upstream, path):
+        if not (guard.subscriber_test_addition_only(base, upstream, path) or budget_browser_addition_only(base, upstream, path)):
             raise ValueError('Protected acquisition/validation configuration changed: ' + path)
     return requested
 
@@ -189,6 +240,7 @@ def check(base, upstream='HEAD^'):
                 if baseline_dependencies(ref, entry) & readers:
                     raise ValueError('A supposed publication reader is an acquisition dependency: ' + entry)
     permitted |= subscriber_readers(base, upstream, paths, MARKET_ACQUISITION_ENTRIES)
+    permitted |= budget_artifact_reader(base, upstream, paths, MARKET_ACQUISITION_ENTRIES)
     if WORKFLOW in paths:
         before, after = at(base, WORKFLOW), at(upstream, WORKFLOW)
         if before is not None and before.count(OLD_GROUP) == 1 and before.replace(OLD_GROUP, NEW_GROUP, 1) == after:
