@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { parisToday } from '../src/pages/budget-profiles/publication.js'
+import { localToday } from '../src/pages/budget-profiles/publication.js'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
@@ -37,7 +37,7 @@ try {
   await page.reload();await expect(page.getByLabel('À publier prochainement',{exact:true})).toBeChecked();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom)
   const publication=page.getByLabel('Profil publié',{exact:true})
   await publication.click(); await expect(publication).not.toBeChecked()
-  await expect(page.getByLabel('Date de publication sur X',{exact:true})).toHaveValue(parisToday())
+  await expect(page.getByLabel('Date de publication sur X',{exact:true})).toHaveValue(localToday())
   await page.getByRole('button',{name:'Annuler',exact:true}).click(); await expect(publication).not.toBeChecked()
   await publication.click(); await page.getByLabel('Date de publication sur X',{exact:true}).fill('2099-01-01')
   await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect(page.getByRole('alert')).toContainText('dans le passé');await expect(publication).not.toBeChecked()
@@ -90,7 +90,7 @@ try {
   const legacyBackup=structuredClone(incoming);legacyBackup.version=2;legacyBackup.workspace.version=2;delete legacyBackup.workspace.publicationDates
   await page.evaluate(({key,workspace})=>localStorage.setItem(key,JSON.stringify(workspace)),{key:WORKSPACE_KEY,workspace:legacyBackup.workspace});await page.reload()
   await expect(publication).toBeChecked();await expect(page.getByText('Publié — date non renseignée',{exact:true})).toBeVisible()
-  await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await expect(page.getByLabel('Date de publication sur X',{exact:true})).toHaveValue(parisToday());await page.getByRole('button',{name:'Annuler',exact:true}).click()
+  await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await expect(page.getByLabel('Date de publication sur X',{exact:true})).toHaveValue(localToday());await page.getByRole('button',{name:'Annuler',exact:true}).click()
   await page.getByText('Brouillons et transfert entre appareils',{exact:true}).click();await upload(page,legacyBackup);await page.getByRole('region',{name:'Aperçu de l’import'}).locator('details').first().locator('summary').click();await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('Publié — date non renseignée')
   await page.getByRole('button',{name:'Annuler l’import',exact:true}).click();await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await page.getByLabel('Date de publication sur X',{exact:true}).fill('2026-10-14');await page.getByRole('button',{name:'Enregistrer la date',exact:true}).click();await expect(page.getByText('Publié le 14/10/2026',{exact:true})).toBeVisible()
   const datedExportPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click();const datedExport=JSON.parse(readFileSync(await(await datedExportPromise).path(),'utf8'));assert.equal(datedExport.workspace.publicationDates[p.id],'2026-10-14')
