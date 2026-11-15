@@ -11,7 +11,7 @@ for(const isin of['LU0514695187','IE00BZ3FDG37','IE00BZ3FDF20'])assert(!h.rows.s
 assert.equal(h.rows.reduce((s,r)=>s+r.weightPct,0),raw.rows.reduce((s,r)=>s+r.weightPct,0))
 const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json')),books=Object.assign({},...[...new Set(Object.values(manifest))].map(n=>JSON.parse(readFileSync(`src/pages/dca-profiles/holdings-${n}.json`))));books[asset]=h
 const apple=Object.keys(references).find(id=>references[id].isin==='US0378331005');assert(apple)
-const lines=[{asset,isin:'IE000L6ZMMC4',weight:50},{asset:apple,isin:'US0378331005',weight:50}],now=new Date('2026-11-12T16:00:00Z'),a=portfolioAnalytics(lines,references,books,now),b=portfolioAnalytics([...lines].reverse(),references,books,now)
+const lines=[{asset,isin:'IE000L6ZMMC4',weight:50},{asset:apple,isin:'US0378331005',weight:50}],now=new Date(Math.max(Date.parse(raw.asOf),...Object.values(references).flatMap(r=>[r.countries?.asOf,r.sectors?.asOf]).filter(Boolean).map(Date.parse))),a=portfolioAnalytics(lines,references,books,now),b=portfolioAnalytics([...lines].reverse(),references,books,now)
 assert(!a.pairs[0].full);assert.equal(a.pairs[0].overlap,null);assert.equal(b.pairs[0].overlap,null)
 assert.deepEqual(a.pairs[0].common.map(r=>[r.isin,r.portfolioWeight]),b.pairs[0].common.map(r=>[r.isin,r.portfolioWeight]))
 assert(a.pairs[0].companyCommon.some(r=>r.id==='US0378331005'))
