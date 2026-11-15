@@ -1,20 +1,20 @@
 {
-  "checkedAt": "2026-11-14T17:43:11.533Z",
+  "checkedAt": "2026-11-15T13:35:59.490Z",
   "summary": {
-    "instruments": 695,
+    "instruments": 696,
     "sheets": 279,
     "comparisons": 277,
     "practical": 39,
     "duels": 660,
     "generatorAutomatic": 138,
-    "dca": 694,
-    "fullExposure": 612,
+    "dca": 695,
+    "fullExposure": 613,
     "outsideExposure": 53,
     "automaticHistories": 306,
     "historyCandidates": 0,
     "unused": 0,
     "blockers": {
-      "no-listing": 1,
+      "no-listing": 2,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
       "qualification-pending": 0,
@@ -7101,7 +7101,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-14T16:30:51.428429+00:00"
+        "checkedAt": "2026-11-14T17:45:03.656641+00:00"
       },
       "dca": true,
       "countries": {
@@ -7615,7 +7615,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-14T16:30:51.428429+00:00"
+        "checkedAt": "2026-11-14T17:45:03.656641+00:00"
       },
       "dca": true,
       "countries": {
@@ -7902,7 +7902,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-14T16:30:51.428429+00:00"
+        "checkedAt": "2026-11-14T17:45:03.656641+00:00"
       },
       "dca": true,
       "countries": {
@@ -8288,7 +8288,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-14T16:30:51.428429+00:00"
+        "checkedAt": "2026-11-14T17:45:03.656641+00:00"
       },
       "dca": true,
       "countries": {
@@ -17163,7 +17163,7 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-09-30",
+        "asOf": "2026-10-31",
         "complete": false,
         "identifiedCoverage": 0,
         "automatic": false
@@ -28070,6 +28070,50 @@
           "anniversary": true
         }
       ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US58506Q1094",
+      "name": "Medpace Holdings",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "annualPerformance": false,
+      "compositionOnly": false,
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": null
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-11-12"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-11-12"
+      },
+      "holdings": null,
+      "monthly": [],
       "historyCandidate": false,
       "decision": "keep-used"
     },

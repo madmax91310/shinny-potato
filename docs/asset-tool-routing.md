@@ -1,10 +1,10 @@
 # Raccordements par actif et par outil
 
-Généré le 2026-11-14 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
+Généré le 2026-11-15 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 1 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 2 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -607,6 +607,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Masco | US5745991068 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mastercard | US57636Q1040 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | McDonald’s | US5801351017 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Medpace Holdings | US58506Q1094 | — | — | missing | Oui / Oui | — | — / — / — | Sans cotation — Aucune cotation documentée ni candidate |
 | MercadoLibre | US58733R1023 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Merck & Co. | US58933Y1055 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mettler-Toledo | US5926881054 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
