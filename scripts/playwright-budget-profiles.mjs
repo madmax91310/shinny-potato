@@ -1,3 +1,4 @@
+import { checkBudgetOverview, captureOverviewText } from './check-budget-overview.mjs'
 import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
 import assert from 'node:assert/strict'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -90,6 +91,7 @@ try {
   for (const width of widths) {
     const context = await browser.newContext({ viewport: { width, height: 950 }, permissions: ['clipboard-read', 'clipboard-write'], reducedMotion: 'reduce' })
     await context.addInitScript(captureCanvasText)
+    await context.addInitScript(captureOverviewText)
     const page = await context.newPage()
     page.on('pageerror', e => errors.push(e.message))
     await page.goto(base + '/'); await expect(page.locator('.workspace-tool-card[href$="/le-budget-de"]')).toBeVisible()
@@ -97,6 +99,7 @@ try {
     await expect(page.getByRole('heading', { name: 'Le budget de…', exact: true, level: 1 })).toBeVisible()
     assert.equal(await page.locator('select').count(), 0, 'Default budget uses the shared button selectors')
     const picker = page.getByRole('group', { name: 'Choisir un profil' })
+    await checkBudgetOverview(page, roster, output, width)
     for (const profile of roster) {
       await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
       await picker.locator(`[data-value="${profile.id}"]`).click()
@@ -242,6 +245,7 @@ try {
     if (deficit) fixture.income.forEach(row => { row.amount = 1 })
     const context = await browser.newContext({ viewport: { width: 390, height: 950 } })
     await context.addInitScript(captureCanvasText)
+    await context.addInitScript(captureOverviewText)
     await context.addInitScript(({ key, fixture }) => localStorage.setItem(key, JSON.stringify({ profile: fixture, text: '', edited: false })), { key: DRAFT_KEY, fixture })
     const page = await context.newPage(); await page.goto(base + '/le-budget-de')
     await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()

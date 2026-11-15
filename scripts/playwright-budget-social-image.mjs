@@ -55,6 +55,7 @@ try{
  await restored.addInitScript(()=>{const original=HTMLCanvasElement.prototype.toBlob;window.budgetPngRequests=[];HTMLCanvasElement.prototype.toBlob=function(callback,...args){if(this.budgetPageCount>3){window.budgetPngRequests.push(this.budgetPage);if(this.budgetPage!==1&&this.budgetPage!==this.budgetPageCount){setTimeout(()=>original.call(this,callback,...args),10000);return}}return original.call(this,callback,...args)}})
  await restored.addInitScript(({key,profile,text})=>localStorage.setItem(key,JSON.stringify({profile,text,edited:true})),{key:DRAFT_KEY,profile:dense,text:custom})
  const restoredPage=await restored.newPage();await restoredPage.goto(uiBase+'/le-budget-de');await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(custom)
+ await restoredPage.getByRole('group',{name:'Version de l’image',exact:true}).locator('[data-value="social"]').click()
  await expect(restoredPage.locator('.budget-image-count')).toContainText(`${densePages.length} images`)
  await restoredPage.getByRole('button',{name:`Image ${densePages.length} sur ${densePages.length}`,exact:true}).click()
  const restoredImage=restoredPage.getByRole('region',{name:'Image du budget'}).locator('img');await expect.poll(()=>restoredImage.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350])
