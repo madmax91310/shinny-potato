@@ -78,11 +78,11 @@ export function canonicalUrl(value) {
   try {
     const u = new URL(value);
     if (!["https:", "http:"].includes(u.protocol)) return "";
-    u.hash = "";
-    u.search = "";
-    return (
-      u.origin.toLowerCase() + u.pathname.replace(/\/+$/, "").toLowerCase()
-    );
+    if (!u.hash.startsWith("#/") && !u.hash.startsWith("#!")) u.hash = "";
+    for (const key of [...u.searchParams.keys()])
+      if (/^utm_|^(fbclid|gclid)$/i.test(key)) u.searchParams.delete(key);
+    u.searchParams.sort();
+    return u.origin + u.pathname.replace(/\/+$/, "") + u.search + u.hash;
   } catch {
     return "";
   }

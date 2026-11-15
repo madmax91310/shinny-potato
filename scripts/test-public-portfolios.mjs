@@ -114,3 +114,12 @@ assert.equal(
   JSON.parse(bytes.get("el-public-portfolios-v1")).profiles.length,
   1,
 );
+
+assert.equal(
+  canonicalUrl("https://example.com/profile/?utm_source=x"),
+  canonicalUrl("https://example.com/profile"),
+);
+assert.notEqual(
+  canonicalUrl("https://example.com/?portfolio=a"),
+  canonicalUrl("https://example.com/?portfolio=b"),
+);
