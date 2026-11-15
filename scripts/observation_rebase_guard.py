@@ -167,6 +167,9 @@ ALLOWED = {
     # Run41115036012: actor/publication observations do not feed SCPI acquisition.
     # Exact outputs only; combined-tree build, audits and non-mutation still required.
     'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {
+                         # Run43734835160: economic observations do not feed SCPI acquisition.
+                         # Keep the newer registry and require combined-tree financial validation.
+                         'src/data/automated-economic.json',
                          # Scheduled43726539441: independent non-bond outputs,
                          # never read by SCPI acquisition or its source helpers.
                          # Preserve them and rerun the combined financial build.
