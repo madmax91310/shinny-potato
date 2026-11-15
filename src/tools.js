@@ -6,6 +6,7 @@ import { INVESTORS } from './data/investor-roster.js'
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  { to: '/portefeuilles-publics', title: 'Portefeuilles publics', icon: '🔎', accent: '#65d5b0', description: 'Réserve de portefeuilles publics, relevés vérifiés, tweets et images du portefeuille de la semaine.', status: 'disponible' },
   ETF_FLOW_TOOL,
   { to: '/comparateur-indices', title: 'Comparateur d’indices',
     icon: '📐', accent: '#38bdf8',
