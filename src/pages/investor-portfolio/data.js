@@ -64,9 +64,9 @@ export function normalizePortfolio(payload) {
   for (const row of holdings) { const name=holdingName(row); names.set(name,(names.get(name)||0)+1) }
   const distinct = holdings.map(row => ({ ...row,
     weight: total ? row.value / total : row.weight,
-    displayLabel: holdingName(row) + (names.get(holdingName(row)) > 1 ? ` (${row.shareClass || row.ticker || row.cusip || row.securityId})` : ''),
+    displayLabel: names.get(holdingName(row)) > 1 ? `${[...holdingName(row)].slice(0,20).join('')} (${row.cusip || row.ticker || row.securityId || row.shareClass})` : holdingName(row),
   }))
-  return { identity, snapshot, problem, total, holdings: distinct, filingHistory: payload.data.filingHistory || [], sourceUrl: payload.data.sourceUrl || `https://tracefour.com/trackers/${identity.slug}`, fetchedAt: payload.as_of }
+  return { identity, snapshot, problem, total, discoverySourceUrl: payload.data.discoverySourceUrl || null, holdings: distinct, filingHistory: payload.data.filingHistory || [], sourceUrl: payload.data.sourceUrl || `https://tracefour.com/trackers/${identity.slug}`, fetchedAt: payload.as_of }
 }
 
 export function percentage(weight) {

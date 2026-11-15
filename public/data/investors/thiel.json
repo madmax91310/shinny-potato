@@ -1,152 +1,241 @@
 {
-  "as_of": "2026-11-15T16:26:16.342751+00:00",
+  "as_of": "2026-11-15T16:42:11.171668+00:00",
   "data": {
     "identity": {
       "slug": "thiel",
       "archetype": "hedge_fund",
       "displayName": "Peter Thiel",
       "entityName": "Thiel Macro LLC",
-      "dataProvider": "FolioFact"
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/thiel-macro-llc",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001562087",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "Amazon.com Inc.",
-          "ticker": "AMZN",
+          "issuerName": "AMAZON COM INC",
+          "shareClass": "COM",
+          "cusip": "023135106",
+          "securityId": "023135106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.28179541068900316,
           "value": 117978300,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 117978300,
+              "issuerName": "AMAZON COM INC",
+              "shares": "495000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.28179541068900316
         },
         {
-          "issuerName": "Vista Energy Sab De CV",
-          "ticker": "VIST",
+          "issuerName": "VISTA ENERGY S.A.B. DE C.V.",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "92837L109",
+          "securityId": "92837L109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.18131073040746182,
           "value": 75908730,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 75908730,
+              "issuerName": "VISTA ENERGY S.A.B. DE C.V.",
+              "shares": "1189792",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.18131073040746182
         },
         {
-          "issuerName": "Vistra Corp.",
-          "ticker": "VST",
+          "issuerName": "VISTRA CORP",
+          "shareClass": "COM",
+          "cusip": "92840M102",
+          "securityId": "92840M102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.14123443158837262,
           "value": 59130126,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 59130126,
+              "issuerName": "VISTRA CORP",
+              "shares": "372755",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.14123443158837262
         },
         {
-          "issuerName": "American Elec PWR Co. Inc.",
-          "ticker": "AEP",
+          "issuerName": "AMERICAN ELEC PWR CO INC",
+          "shareClass": "COM",
+          "cusip": "025537101",
+          "securityId": "025537101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.10084850685428368,
           "value": 42221892,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 42221892,
+              "issuerName": "AMERICAN ELEC PWR CO INC",
+              "shares": "308617",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.10084850685428368
         },
         {
-          "issuerName": "DTE Energy Co.",
-          "ticker": "DTE",
+          "issuerName": "DTE ENERGY CO",
+          "shareClass": "COM",
+          "cusip": "233331107",
+          "securityId": "233331107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.09624425747590136,
           "value": 40294247,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 40294247,
+              "issuerName": "DTE ENERGY CO",
+              "shares": "264450",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.09624425747590136
         },
         {
-          "issuerName": "Firstenergy Corp.",
-          "ticker": "FE",
+          "issuerName": "FIRSTENERGY CORP",
+          "shareClass": "COM",
+          "cusip": "337932107",
+          "securityId": "337932107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.09530551030036304,
           "value": 39901225,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 39901225,
+              "issuerName": "FIRSTENERGY CORP",
+              "shares": "839319",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.09530551030036304
         },
         {
-          "issuerName": "CMS Energy Corp.",
-          "ticker": "CMS",
+          "issuerName": "CMS ENERGY CORP",
+          "shareClass": "COM",
+          "cusip": "125896100",
+          "securityId": "125896100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.09449044868184416,
           "value": 39559986,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 39559986,
+              "issuerName": "CMS ENERGY CORP",
+              "shares": "517124",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.09449044868184416
         },
         {
-          "issuerName": "X-Energy Inc.",
-          "ticker": "XE",
+          "issuerName": "X-ENERGY INC",
+          "shareClass": "COM CL A",
+          "cusip": "98386P102",
+          "securityId": "98386P102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.008770704002770167,
           "value": 3672000,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
-          "isNew": true,
-          "sharesChangePct": null
+          "sourceRows": [
+            {
+              "value": 3672000,
+              "issuerName": "X-ENERGY INC",
+              "shares": "200000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.008770704002770167
         }
       ],
       "filedAt": "2026-08-14",
-      "declaredTotal": 418666506.0,
+      "declaredTotal": 418666506,
       "currency": "USD",
       "valueUnit": 1,
-      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
-      "valueScope": "Déclaration 13F · positions longues et options déclarées",
-      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": []
       },
       "publicationSource": "https://foliofact.com/funds/thiel-macro-llc",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/"
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/",
+      "reportedCoverTotal": 418666506,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 418666506.0,
+      "providerHoldingsCount": 8,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/primary_doc.xml",
+        "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/thiel2q2026.inftbl.xml"
+      ],
+      "originalRowCount": 8,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/thiel-macro-llc",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/",
+    "discoverySourceUrl": "https://foliofact.com/funds/thiel-macro-llc",
     "filingHistory": []
   }
 }

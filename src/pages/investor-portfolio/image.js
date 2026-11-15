@@ -2,7 +2,7 @@ import { modelNatureLabel } from '../../data/investor-models.js'
 import { ATTRIBUTION, dateFR, holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 import { publicationPlan, cash, labelLines } from './publication.js'
-import { portfolioPortrait, positionLogo } from './media.js'
+import { companyInitials, portfolioPortrait, positionLogo } from './media.js'
 
 const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'
 function text(ctx, value, x, y, width, size, color = INK, serif = false) {
@@ -56,10 +56,10 @@ export async function renderPortfolioImage(portfolio) {
     label(initials,cx,cy+22,62,green,'center')
   }
   ctx.restore()
-  function mark(image,row,x,y,size,support='light') {
-    ctx.fillStyle=image&&support==='dark'?'#183b2d':'#fff';ctx.beginPath();ctx.roundRect(x,y,size,size,8);ctx.fill()
-    if(image) { const k=Math.min((size-10)/image.width,(size-10)/image.height);ctx.drawImage(image,x+(size-image.width*k)/2,y+(size-image.height*k)/2,image.width*k,image.height*k) }
-    else label(row.other?'…':(row.ticker||row.label).slice(0,3),x+size/2,y+size/2+6,18,green,'center')
+  function mark(image,row,x,y,width,height=width,support='light') {
+    ctx.fillStyle=image&&support==='dark'?'#183b2d':'#fff';ctx.beginPath();ctx.roundRect(x,y,width,height,8);ctx.fill()
+    if(image) { const k=Math.min((width-10)/image.width,(height-10)/image.height);ctx.drawImage(image,x+(width-image.width*k)/2,y+(height-image.height*k)/2,image.width*k,image.height*k) }
+    else label(row.other?'…':row.ticker || companyInitials(row.label),x+width/2,y+height/2+8,28,green,'center')
   }
   plan.entries.forEach((entry,i)=>{
     const {x,y,height}=entry, image=logos[i].image
@@ -68,15 +68,13 @@ export async function renderPortfolioImage(portfolio) {
     ctx.strokeStyle=entry.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(anchorX,anchorY);ctx.lineTo(elbow,anchorY);ctx.lineTo(edge,y+height/2);ctx.stroke()
     ctx.fillStyle='#fff';ctx.beginPath();ctx.roundRect(x,y,268,height,14);ctx.fill()
     ctx.fillStyle=entry.color;ctx.fillRect(x,y+12,5,height-24)
-    mark(image,entry,x+12,y+14,42,logos[i].identity?.support)
-    entry.lines.forEach((line,j)=>label(line,x+63,y+33+j*29,28))
+    mark(image,entry,x+12,y+10,244,60,logos[i].identity?.support)
+    entry.lines.forEach((line,j)=>label(line,x+15,y+99+j*29,28))
     label(cash(entry.value,plan.currency),x+15,y+height-49,28)
     label(percentage(entry.weight),x+15,y+height-16,29,green)
-    if(entry.inside) {
+    if(entry.inside && !entry.other && (!image || image.width/image.height<=2)) {
       const r=190,px=cx+Math.cos(entry.mid)*r,py=cy+Math.sin(entry.mid)*r
-      mark(image,entry,px-23,py-40,46,logos[i].identity?.support)
-      ctx.fillStyle='#fff';ctx.beginPath();ctx.roundRect(px-53,py+10,106,32,6);ctx.fill()
-      label(percentage(entry.weight),px,py+34,21,ink,'center')
+      mark(image,entry,px-30,py-30,60,60,logos[i].identity?.support)
     }
   })
   label('Valeur des positions déclarées',540,1065,30,ink,'center')

@@ -18,7 +18,7 @@ export default function History({portfolio}) {
     return ()=>controller.abort()
   },[portfolio,opened])
   return <details className="portfolio-exposure" onToggle={event => { if (event.currentTarget.open) setOpened(true) }}><summary>Évolution des photographies 13F archivées</summary>
-    <p>La collecte conserve automatiquement les anciens trimestres. Les poids restent rapportés au total déclaré, options incluses dans le dénominateur ; les cinq premières entreprises ci-dessous excluent les options.</p>
+    <p>La collecte conserve automatiquement les anciens trimestres. Les poids vérifiés sont calculés sur la somme des positions hors options. Les anciens relevés sans montants conservent le dénominateur du fournisseur ; ils ne permettent pas le nouveau PNG monétaire.</p>
     {error&&<p role="alert">{error} La photographie actuelle reste disponible.</p>}
     {rows.map(p=><p key={p.snapshot.periodEnd}>{p.snapshot.periodEnd} : {portfolioCompanies(p.holdings).length} titres hors options ; cinq premières positions : {percentage(portfolioCompanies(p.holdings).slice(0,5).reduce((s,r)=>s+r.weight,0))}. <a href={p.sourceUrl} target="_blank" rel="noreferrer">Source ↗</a></p>)}
     {rows.length<2&&<p>Une seule photographie archivée exploitable pour le moment ; aucune trajectoire antérieure n’est inventée.</p>}

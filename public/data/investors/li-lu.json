@@ -1,129 +1,221 @@
 {
-  "as_of": "2026-11-15T16:27:09.846872+00:00",
+  "as_of": "2026-11-15T16:43:00.590312+00:00",
   "data": {
     "identity": {
       "slug": "li-lu",
       "archetype": "hedge_fund",
       "displayName": "Li Lu",
       "entityName": "Himalaya Capital Management LLC",
-      "dataProvider": "FolioFact"
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/himalaya-capital-management",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001709323",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "Alphabet Inc.",
-          "ticker": "GOOG(L)",
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL A",
+          "cusip": "02079K305",
+          "securityId": "02079K305",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.47935586596197144,
-          "value": 1775016950,
+          "value": 908899121,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": true,
+          "sourceRows": [
+            {
+              "value": 908899121,
+              "issuerName": "ALPHABET INC",
+              "shares": "2543300",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.24545462803554055
         },
         {
-          "issuerName": "PDD Holdings Inc.",
-          "ticker": "PDD",
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL C",
+          "cusip": "02079K107",
+          "securityId": "02079K107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.22167854379119192,
+          "value": 866117829,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 866117829,
+              "issuerName": "ALPHABET INC",
+              "shares": "2451300",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.23390123792643092
+        },
+        {
+          "issuerName": "PDD HOLDINGS INC",
+          "shareClass": "SPON ADS",
+          "cusip": "722304102",
+          "securityId": "722304102",
+          "ticker": "",
+          "putCall": null,
           "value": 820858157,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 820858157,
+              "issuerName": "PDD HOLDINGS INC",
+              "shares": "10761119",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 133.5
+          "sharesChangePct": null,
+          "weight": 0.22167854379119192
         },
         {
-          "issuerName": "Berkshire Hathaway Inc.",
-          "ticker": "BRK.{A,B}",
+          "issuerName": "BERKSHIRE HATHAWAY INC DEL",
+          "shareClass": "CL B NEW",
+          "cusip": "084670702",
+          "securityId": "084670702",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.14977128304185883,
           "value": 554591244,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": true,
+          "sourceRows": [
+            {
+              "value": 554591244,
+              "issuerName": "BERKSHIRE HATHAWAY INC DEL",
+              "shares": "1108318",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.14977128304185883
         },
         {
-          "issuerName": "East West Bancorp Inc.",
-          "ticker": "EWBC",
+          "issuerName": "EAST WEST BANCORP INC",
+          "shareClass": "COM",
+          "cusip": "27579R104",
+          "securityId": "27579R104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.09678822243789861,
           "value": 358399151,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 358399151,
+              "issuerName": "EAST WEST BANCORP INC",
+              "shares": "2776351",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.09678822243789861
         },
         {
-          "issuerName": "Crocs Inc.",
-          "ticker": "CROX",
+          "issuerName": "CROCS INC",
+          "shareClass": "COM",
+          "cusip": "227046109",
+          "securityId": "227046109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.028901209920163085,
           "value": 107018900,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 107018900,
+              "issuerName": "CROCS INC",
+              "shares": "887093",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.028901209920163085
         },
         {
-          "issuerName": "Tencent Music Entmt Group",
-          "ticker": "TME",
+          "issuerName": "TENCENT MUSIC ENTERTAINM",
+          "shareClass": "SPON ADS",
+          "cusip": "88034P109",
+          "securityId": "88034P109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.014862180297296149,
           "value": 55033481,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 55033481,
+              "issuerName": "TENCENT MUSIC ENTERTAINM",
+              "shares": "6590836",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.014862180297296149
         },
         {
-          "issuerName": "Apple Inc.",
-          "ticker": "AAPL",
+          "issuerName": "APPLE INC",
+          "shareClass": "COM",
+          "cusip": "037833100",
+          "securityId": "037833100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.008642694549619946,
           "value": 32003216,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 32003216,
+              "issuerName": "APPLE INC",
+              "shares": "110600",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.008642694549619946
         }
       ],
       "filedAt": "2026-08-14",
-      "declaredTotal": 3702921099.0,
+      "declaredTotal": 3702921099,
       "currency": "USD",
       "valueUnit": 1,
-      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
-      "valueScope": "Déclaration 13F · positions longues et options déclarées",
-      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -160,9 +252,21 @@
         ]
       },
       "publicationSource": "https://foliofact.com/funds/himalaya-capital-management",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/"
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/",
+      "reportedCoverTotal": 3702921098,
+      "reconciliationDifference": 1,
+      "providerDeclaredTotal": 3702921099.0,
+      "providerHoldingsCount": 7,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/13fhciq226.xml",
+        "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/primary_doc.xml"
+      ],
+      "originalRowCount": 8,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/himalaya-capital-management",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/",
+    "discoverySourceUrl": "https://foliofact.com/funds/himalaya-capital-management",
     "filingHistory": []
   }
 }

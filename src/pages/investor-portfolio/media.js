@@ -1,3 +1,4 @@
+export { companyInitials } from '../factsheet-tweets/companyLogos.js'
 import registry from '../factsheet-tweets/companyLogoRegistry.json' with { type: 'json' }
 import aliases from '../factsheet-tweets/companyLogoAliases.json' with { type: 'json' }
 import official from '../../../public/asset-art/official-logos/sources.json' with { type: 'json' }

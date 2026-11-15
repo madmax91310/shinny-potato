@@ -93,7 +93,7 @@ export default function InvestorPortfolio() {
 
   return <div className="ip-scope">
     <PageHeader title="Portefeuille d’investisseur" subtitle="Déclarations 13F et allocations modèles publiées, avec texte modifiable et visuel assorti." />
-    {error && <p role="alert" className="ip-error">{error} <Button type="button" onClick={() => setRetry(value => value+1)}>Réessayer la collecte</Button>{ready && <Button type="button" onClick={download} disabled={exporting}>Réessayer le PNG</Button>}</p>}
+    {error && <p role="alert" className="ip-error">{error} <Button type="button" onClick={() => setRetry(value => value+1)}>Réessayer le chargement</Button>{ready && <Button type="button" onClick={download} disabled={exporting}>Réessayer le PNG</Button>}</p>}
     <ToolWorkspace renderImage={renderImage} imageFilename={`portefeuille-${slug}-${portfolio?.snapshot.periodEnd || "modele"}.png`} imageDisabled={!ready} imageAlt={`Portefeuille ${portfolio?.identity.displayName ?? "investisseur"}`}>
     <section className="ip-panel tool-settings">
       <label htmlFor="ip-investor">Choisir un investisseur</label>
@@ -116,6 +116,7 @@ export default function InvestorPortfolio() {
           <span>Dernière vérification : {portfolio.lastSuccessfulPollAt || portfolio.fetchedAt || 'inconnue'}</span>
           {!portfolio.snapshot.filedAt && <span>Date de publication non transmise par la source.</span>}
           {portfolio.snapshot.reconciliationDifference !== undefined && portfolio.snapshot.reconciliationDifference !== 0 && <span>Écart d’arrondi de la déclaration : {portfolio.snapshot.reconciliationDifference} USD. Les poids utilisent la somme des lignes.</span>}
+          {portfolio.identity.declaringCik && <span>Déclarant SEC : CIK {portfolio.identity.declaringCik}</span>}
           {portfolio.snapshot.securityIdentityNote && <span>{portfolio.snapshot.securityIdentityNote}</span>}
           {portfolio.total && <span>Valeur des positions déclarées hors options : {cash(portfolio.total, portfolio.snapshot.currency)}</span>}
           <Button type="button" variant="secondary" onClick={() => setRetry(value=>value+1)} disabled={loading}>Actualiser les données disponibles</Button></>}
@@ -148,6 +149,7 @@ export default function InvestorPortfolio() {
           <Button type="button" variant="secondary" onClick={downloadDetails} disabled={exporting}>Télécharger les PNG détaillés (ZIP)</Button>
         </WorkspaceActions>
         <details><summary>Détail intégral · {portfolio.holdings.length} positions</summary>{portfolio.holdings.map((row,i)=><p key={i}>{row.issuerName} · {row.ticker} · {row.shareClass || 'classe non transmise'} · {row.cusip || row.securityId || 'identifiant non transmis'} · {Number.isFinite(row.value)?cash(row.value,portfolio.snapshot.currency):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>
+        {portfolio.snapshot.holdings.some(row=>row.putCall) && <details><summary>Options déclarées · hors image et total</summary><p>Poids sur le total déclaré, options incluses. Les valeurs déclarées ne mesurent pas les primes ni l’exposition nette.</p>{portfolio.snapshot.holdings.filter(row=>row.putCall).map((row,i)=><p key={i}>{row.issuerName} · {row.putCall} · {row.shareClass} · {row.cusip || 'identifiant non transmis'} · {Number.isFinite(row.value)?cash(row.value,row.currency):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>}
         <p className="ip-note">Les lignes et classes transmises restent distinctes. Certains fournisseurs regroupent déjà des classes en amont ; ce manque de détail est conservé dans les exports. Les poids du visuel portent sur la somme des positions hors options, calculée sans arrondi.</p>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
         <p className="ip-note">Portrait de référence : {investorPortrait(portfolio.identity.slug).person} : <a href={investorPortrait(portfolio.identity.slug).source} target="_blank" rel="noreferrer">{investorPortrait(portfolio.identity.slug).author} ↗</a> · {investorPortrait(portfolio.identity.slug).license} · Affichage par initiales si la réutilisation, l’identité ou le détourage ne sont pas établis.</p>

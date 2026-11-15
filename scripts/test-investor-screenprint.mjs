@@ -44,7 +44,7 @@ try {
     results.push(result)
   }
   // Real app download, preview bytes, copy, full exports, errors and retry.
-  const fixture=sample([900000,99999,1]);fixture.data.identity.personVerified=true;fixture.data.identity.personSource='https://foliofact.com/api/v1/funds/appaloosa';fixture.data.identity.personPeriod='2026-06-30'
+  const fixture=sample([900000,99999,1]);Object.assign(fixture.data.snapshot.holdings[0],{issuerName:'Apple Inc.',ticker:'AAPL',cusip:'037833100'});fixture.data.identity.personVerified=true;fixture.data.identity.personSource='https://foliofact.com/api/v1/funds/appaloosa';fixture.data.identity.personPeriod='2026-06-30'
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))
   for(const width of [1440,390]){
     await page.setViewportSize({width,height:1000});await page.goto(`${base}portefeuilles-investisseurs`)
@@ -71,16 +71,20 @@ try {
   assert.equal(await page.locator('#ip-draft').inputValue(),await page.evaluate(async p=>(await import('/shinny-potato/src/pages/investor-portfolio/data.js')).buildTweet((await import('/shinny-potato/src/pages/investor-portfolio/data.js')).normalizePortfolio(p)),fixture))
   await page.unroute('**/data/investors/tepper.json')
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))
-  await page.getByRole('button',{name:'Réessayer la collecte'}).click();await page.getByRole('alert').filter({hasText:'503'}).waitFor({state:'hidden'})
+  await page.getByRole('button',{name:'Réessayer le chargement'}).click();await page.getByRole('alert').filter({hasText:'503'}).waitFor({state:'hidden'})
   // One real Canvas export failure exposes a retry action and then succeeds.
-  await page.evaluate(()=>{const original=HTMLCanvasElement.prototype.toDataURL;HTMLCanvasElement.prototype.toDataURL=function(...args){HTMLCanvasElement.prototype.toDataURL=original;throw new Error('Erreur de génération simulée')}})
+  await page.evaluate(()=>{const original=HTMLCanvasElement.prototype.toDataURL;HTMLCanvasElement.prototype.toDataURL=function(){HTMLCanvasElement.prototype.toDataURL=original;throw new Error('Erreur de génération simulée')}})
   await page.getByRole('button',{name:'⬇️ Télécharger le PNG',exact:true}).click()
   await page.getByRole('alert').filter({hasText:'Erreur de génération simulée'}).waitFor()
   const [retried]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Réessayer le PNG',exact:true}).click()]);await retried.saveAs(`${out}/retry.png`)
   // Portrait/logos unavailable => initials, no unusable or invented portrait.
   await page.route('**/data/investors/media/*.png',route=>route.abort())
   await page.route(/asset-art\/(?:official|index)-logos\/.*\.(?:svg|png|webp|jpg)(?:\?|$)/,route=>route.abort())
+  await page.reload();await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   const [fallback]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'⬇️ Télécharger le PNG',exact:true}).click()]);await fallback.saveAs(`${out}/fallback.png`)
+  assert(await page.evaluate(async()=>!(await (await import('/shinny-potato/src/pages/investor-portfolio/media.js')).positionLogo({issuerName:'Apple Inc.',cusip:'037833100'})).image))
+  await page.unroute(/asset-art\/(?:official|index)-logos\/.*\.(?:svg|png|webp|jpg)(?:\?|$)/)
+  assert(await page.evaluate(async()=>Boolean((await (await import('/shinny-potato/src/pages/investor-portfolio/media.js')).positionLogo({issuerName:'Apple Inc.',cusip:'037833100'})).image)))
   const incomplete=sample([3,2]);delete incomplete.data.snapshot.holdings[0].value
   await page.unroute('**/data/investors/tepper.json');await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:incomplete}));await page.reload()
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()

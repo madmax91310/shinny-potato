@@ -1,227 +1,361 @@
 {
-  "as_of": "2026-11-15T16:23:41.384133+00:00",
+  "as_of": "2026-11-15T16:39:40.408770+00:00",
   "data": {
     "identity": {
       "slug": "vinall",
       "archetype": "hedge_fund",
       "displayName": "Robert Vinall",
-      "entityName": "RV Capital GmbH",
-      "dataProvider": "FolioFact"
+      "entityName": "RV Capital AG",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/rv-capital",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001766596",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "Carvana Co.",
-          "ticker": "CVNA",
+          "issuerName": "CARVANA CO",
+          "shareClass": "CL A",
+          "cusip": "146869102",
+          "securityId": "146869102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.3031184126232204,
           "value": 116060143,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 116060143,
+              "issuerName": "CARVANA CO",
+              "shares": "1763296",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 367.3
+          "sharesChangePct": null,
+          "weight": 0.3031184126232204
         },
         {
-          "issuerName": "Meta Platforms Inc.",
-          "ticker": "META",
+          "issuerName": "META PLATFORMS INC",
+          "shareClass": "CL A",
+          "cusip": "30303M102",
+          "securityId": "30303M102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.20448746172707083,
           "value": 78295620,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 78295620,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "138997",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -4.5
+          "sharesChangePct": null,
+          "weight": 0.20448746172707083
         },
         {
-          "issuerName": "Credit Accep Corp. Mich",
-          "ticker": "CACC",
+          "issuerName": "CREDIT ACCEP CORP MICH",
+          "shareClass": "COM",
+          "cusip": "225310101",
+          "securityId": "225310101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.18005596233875107,
           "value": 68941113,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 68941113,
+              "issuerName": "CREDIT ACCEP CORP MICH",
+              "shares": "108272",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -12.8
+          "sharesChangePct": null,
+          "weight": 0.18005596233875107
         },
         {
-          "issuerName": "Interactive Brokers Group In",
-          "ticker": "IBKR",
+          "issuerName": "INTERACTIVE BROKERS GROUP IN",
+          "shareClass": "COM CL A",
+          "cusip": "45841N107",
+          "securityId": "45841N107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.12754913789309452,
           "value": 48836925,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 48836925,
+              "issuerName": "INTERACTIVE BROKERS GROUP IN",
+              "shares": "561086",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -26.0
+          "sharesChangePct": null,
+          "weight": 0.12754913789309452
         },
         {
-          "issuerName": "H World Group Ltd.",
-          "ticker": "HTHT",
+          "issuerName": "H WORLD GROUP LTD",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "44332N106",
+          "securityId": "44332N106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0559423067386726,
           "value": 21419590,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 21419590,
+              "issuerName": "H WORLD GROUP LTD",
+              "shares": "513413",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -8.1
+          "sharesChangePct": null,
+          "weight": 0.0559423067386726
         },
         {
-          "issuerName": "Yum China Holdings Inc.",
-          "ticker": "YUMC",
+          "issuerName": "YUM CHINA HLDGS INC",
+          "shareClass": "COM",
+          "cusip": "98850P109",
+          "securityId": "98850P109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.042485411948136376,
           "value": 16267118,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 16267118,
+              "issuerName": "YUM CHINA HLDGS INC",
+              "shares": "398021",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -5.6
+          "sharesChangePct": null,
+          "weight": 0.042485411948136376
         },
         {
-          "issuerName": "Microsoft Corp.",
-          "ticker": "MSFT",
+          "issuerName": "MICROSOFT CORP",
+          "shareClass": "COM",
+          "cusip": "594918104",
+          "securityId": "594918104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.03224700078268233,
           "value": 12346962,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 12346962,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "33100",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 31.2
+          "sharesChangePct": null,
+          "weight": 0.03224700078268233
         },
         {
-          "issuerName": "Alphabet Inc.",
-          "ticker": "GOOG(L)",
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL A",
+          "cusip": "02079K305",
+          "securityId": "02079K305",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.030352735035555894,
           "value": 11621672,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": true,
+          "sourceRows": [
+            {
+              "value": 11621672,
+              "issuerName": "ALPHABET INC",
+              "shares": "32520",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.030352735035555894
         },
         {
-          "issuerName": "Deere & Co.",
-          "ticker": "DE",
+          "issuerName": "DEERE & CO",
+          "shareClass": "COM",
+          "cusip": "244199105",
+          "securityId": "244199105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.008285167203955971,
           "value": 3172284,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 3172284,
+              "issuerName": "DEERE & CO",
+              "shares": "5001",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.008285167203955971
         },
         {
-          "issuerName": "Paycom Software Inc.",
-          "ticker": "PAYC",
+          "issuerName": "PAYCOM SOFTWARE INC",
+          "shareClass": "COM",
+          "cusip": "70432V102",
+          "securityId": "70432V102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.007022758661812784,
           "value": 2688924,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 2688924,
+              "issuerName": "PAYCOM SOFTWARE INC",
+              "shares": "21395",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.007022758661812784
         },
         {
-          "issuerName": "Salesforce Inc.",
-          "ticker": "CRM",
+          "issuerName": "SALESFORCE INC",
+          "shareClass": "COM",
+          "cusip": "79466L302",
+          "securityId": "79466L302",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.006346394869675736,
           "value": 2429953,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 2429953,
+              "issuerName": "SALESFORCE INC",
+              "shares": "15511",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.006346394869675736
         },
         {
-          "issuerName": "Morningstar Inc.",
-          "ticker": "MORN",
+          "issuerName": "MORNINGSTAR INC",
+          "shareClass": "COM",
+          "cusip": "617700109",
+          "securityId": "617700109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0015076870836584868,
           "value": 577274,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 577274,
+              "issuerName": "MORNINGSTAR INC",
+              "shares": "3700",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0015076870836584868
         },
         {
-          "issuerName": "Spotify Technology S.A.",
-          "ticker": "SPOT",
+          "issuerName": "SPOTIFY TECHNOLOGY S A",
+          "shareClass": "SHS",
+          "cusip": "L8681T102",
+          "securityId": "L8681T102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0005995630937129691,
           "value": 229565,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 229565,
+              "issuerName": "SPOTIFY TECHNOLOGY S A",
+              "shares": "500",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0005995630937129691
         }
       ],
       "filedAt": "2026-08-14",
-      "declaredTotal": 382887143.0,
+      "declaredTotal": 382887143,
       "currency": "USD",
       "valueUnit": 1,
-      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
-      "valueScope": "Déclaration 13F · positions longues et options déclarées",
-      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": []
       },
       "publicationSource": "https://foliofact.com/funds/rv-capital",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/"
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/",
+      "reportedCoverTotal": 382887143,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 382887143.0,
+      "providerHoldingsCount": 13,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/information_table.xml",
+        "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/primary_doc.xml"
+      ],
+      "originalRowCount": 13,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/rv-capital",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/",
+    "discoverySourceUrl": "https://foliofact.com/funds/rv-capital",
     "filingHistory": []
   }
 }

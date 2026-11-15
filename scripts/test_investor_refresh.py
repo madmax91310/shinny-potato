@@ -111,15 +111,17 @@ class RefreshTests(unittest.TestCase):
         directory = {'directory': {'item': [{'name': 'primary.xml'}, {'name': 'table.xml'}]}}
         original = portfolio('2026-06-30')
         original['data']['snapshot'].update(filingUrl='https://www.sec.gov/Archives/edgar/data/1/2/', declaredTotal=100)
-        for kind in ['good', 'total', 'count', 'date', 'additional']:
+        for kind in ['good', 'rounding', 'provider-conflict', 'total', 'count', 'date', 'additional']:
             data = copy.deepcopy(original)
             cover = primary
+            if kind == 'rounding': cover = cover.replace('Total>100', 'Total>101')
+            if kind == 'provider-conflict': data['data']['snapshot']['declaredTotal'] = 100000
             if kind == 'total': cover = cover.replace('Total>100', 'Total>110')
             if kind == 'count': cover = cover.replace('Total>3', 'Total>4')
             if kind == 'date': cover = cover.replace('06-30-2026', '03-31-2026')
             if kind == 'additional': cover = cover.replace('<isAmendment>false', '<amendmentType>NEW HOLDINGS</amendmentType><isAmendment>true')
             with patch.object(module, 'get_json', side_effect=[directory, cover, table]):
-                if kind != 'good':
+                if kind not in ('good', 'rounding'):
                     with self.assertRaises(ValueError): module.enrich_sec_positions(data)
                 else:
                     module.enrich_sec_positions(data)
@@ -129,6 +131,8 @@ class RefreshTests(unittest.TestCase):
                     self.assertEqual([(r['shareClass'], r['value']) for r in rows], [('A', 80), ('B', 20)])
                     self.assertEqual(len(rows[0]['sourceRows']), 2)
                     self.assertTrue(data['data']['snapshot']['primaryVerified'])
+                    self.assertEqual(data['data']['snapshot']['declaredTotal'], 100)
+                    self.assertEqual(data['data']['snapshot']['reconciliationDifference'], -1 if kind == 'rounding' else 0)
 
     def test_monetary_units_and_reconciliation(self):
         data = portfolio('2026-06-30', .6)

@@ -1,211 +1,302 @@
 [
   {
-    "as_of": "2026-11-15T16:23:22.776338+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:23:22.776338+00:00",
-    "positionsCollectedAt": "2026-11-15T16:23:22.776338+00:00",
+    "as_of": "2026-11-15T16:39:20.165115+00:00",
+    "lastAttemptAt": "2026-11-15T16:39:20.165115+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:39:20.165115+00:00",
+    "positionsCollectedAt": "2026-11-15T16:39:20.165115+00:00",
     "data": {
       "identity": {
         "slug": "morfit",
         "archetype": "hedge_fund",
         "displayName": "Mason Morfit",
-        "entityName": "ValueAct Capital Management LP",
-        "dataProvider": "FolioFact"
+        "entityName": "ValueAct Holdings, L.P.",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/valueact-capital",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001418814",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1418814/000141881426000003/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/valueact-capital"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1418814/000141881426000003/"
     }
   },
   {
-    "as_of": "2026-11-15T16:23:32.075695+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:23:32.075695+00:00",
-    "positionsCollectedAt": "2026-11-15T16:23:32.075695+00:00",
+    "as_of": "2026-11-15T16:39:30.286657+00:00",
+    "lastAttemptAt": "2026-11-15T16:39:30.286657+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:39:30.286657+00:00",
+    "positionsCollectedAt": "2026-11-15T16:39:30.286657+00:00",
     "data": {
       "identity": {
         "slug": "dorsey",
         "archetype": "hedge_fund",
         "displayName": "Pat Dorsey",
-        "entityName": "Dorsey Asset Management LLC",
-        "dataProvider": "FolioFact"
+        "entityName": "Dorsey Asset Management, LLC",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/dorsey-asset-management",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001671657",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/dorsey-asset-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/"
     }
   },
   {
-    "as_of": "2026-11-15T16:23:41.384133+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:23:41.384133+00:00",
-    "positionsCollectedAt": "2026-11-15T16:23:41.384133+00:00",
+    "as_of": "2026-11-15T16:39:40.408770+00:00",
+    "lastAttemptAt": "2026-11-15T16:39:40.408770+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:39:40.408770+00:00",
+    "positionsCollectedAt": "2026-11-15T16:39:40.408770+00:00",
     "data": {
       "identity": {
         "slug": "vinall",
         "archetype": "hedge_fund",
         "displayName": "Robert Vinall",
-        "entityName": "RV Capital GmbH",
-        "dataProvider": "FolioFact"
+        "entityName": "RV Capital AG",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/rv-capital",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001766596",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/rv-capital"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/"
     }
   },
   {
-    "as_of": "2026-11-15T16:24:04.641791+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:24:04.641791+00:00",
-    "positionsCollectedAt": "2026-11-15T16:24:04.641791+00:00",
+    "as_of": "2026-11-15T16:39:53.671866+00:00",
+    "lastAttemptAt": "2026-11-15T16:39:53.671866+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:39:53.671866+00:00",
+    "positionsCollectedAt": "2026-11-15T16:39:53.671866+00:00",
     "data": {
       "identity": {
         "slug": "marks",
         "archetype": "hedge_fund",
         "displayName": "Howard Marks",
-        "entityName": "Oaktree Capital Management LP",
-        "dataProvider": "FolioFact"
+        "entityName": "OAKTREE CAPITAL MANAGEMENT LP",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/oaktree-capital-management",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0000949509",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/949509/000094950926000005/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/oaktree-capital-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/949509/000094950926000005/"
     }
   },
   {
-    "as_of": "2026-11-15T16:24:13.667654+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:24:13.667654+00:00",
-    "positionsCollectedAt": "2026-11-15T16:24:13.667654+00:00",
+    "as_of": "2026-11-15T16:40:04.343001+00:00",
+    "lastAttemptAt": "2026-11-15T16:40:04.343001+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:40:04.343001+00:00",
+    "positionsCollectedAt": "2026-11-15T16:40:04.343001+00:00",
     "data": {
       "identity": {
         "slug": "watsa",
         "archetype": "hedge_fund",
         "displayName": "Prem Watsa",
-        "entityName": "Fairfax Financial Holdings Ltd",
-        "dataProvider": "FolioFact"
+        "entityName": "FAIRFAX FINANCIAL HOLDINGS LTD/ CAN",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/fairfax-financial-holdings",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0000915191",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/915191/000110465926096276/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/fairfax-financial-holdings"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915191/000110465926096276/"
     }
   },
   {
-    "as_of": "2026-11-15T16:24:23.105686+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:24:23.105686+00:00",
-    "positionsCollectedAt": "2026-11-15T16:24:23.105686+00:00",
+    "as_of": "2026-11-15T16:40:14.551744+00:00",
+    "lastAttemptAt": "2026-11-15T16:40:14.551744+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:40:14.551744+00:00",
+    "positionsCollectedAt": "2026-11-15T16:40:14.551744+00:00",
     "data": {
       "identity": {
         "slug": "gavin-baker",
         "archetype": "hedge_fund",
         "displayName": "Gavin Baker",
-        "entityName": "Atreides Management LP",
-        "dataProvider": "FolioFact"
+        "entityName": "Atreides Management, LP",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/atreides-management",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001777813",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1777813/000177781326000009/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/atreides-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1777813/000177781326000009/"
     }
   },
   {
-    "as_of": "2026-11-15T16:24:32.286185+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:24:32.286185+00:00",
-    "positionsCollectedAt": "2026-11-15T16:24:32.286185+00:00",
+    "as_of": "2026-11-15T16:40:24.900440+00:00",
+    "lastAttemptAt": "2026-11-15T16:40:24.900440+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:40:24.900440+00:00",
+    "positionsCollectedAt": "2026-11-15T16:40:24.900440+00:00",
     "data": {
       "identity": {
         "slug": "einhorn",
         "archetype": "hedge_fund",
         "displayName": "David Einhorn",
-        "entityName": "Greenlight Capital Inc.",
-        "dataProvider": "FolioFact"
+        "entityName": "DME Capital Management, LP",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/greenlight-capital",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001489933",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1489933/000117266126003786/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/greenlight-capital"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1489933/000117266126003786/"
     }
   },
   {
-    "as_of": "2026-11-15T16:24:44.682147+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:24:44.682147+00:00",
-    "positionsCollectedAt": "2026-11-15T16:24:44.682147+00:00",
+    "as_of": "2026-11-15T16:40:38.389038+00:00",
+    "lastAttemptAt": "2026-11-15T16:40:38.389038+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:40:38.389038+00:00",
+    "positionsCollectedAt": "2026-11-15T16:40:38.389038+00:00",
     "data": {
       "identity": {
         "slug": "halvorsen",
         "archetype": "hedge_fund",
         "displayName": "Andreas Halvorsen",
-        "entityName": "Viking Global Investors LP",
-        "dataProvider": "FolioFact"
+        "entityName": "VIKING GLOBAL INVESTORS LP",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/viking-global-investors",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001103804",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1103804/000110380426000006/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/viking-global-investors"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103804/000110380426000006/"
     }
   },
   {
-    "as_of": "2026-11-15T16:25:04.166670+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:25:04.166670+00:00",
-    "positionsCollectedAt": "2026-11-15T16:25:04.166670+00:00",
+    "as_of": "2026-11-15T16:40:48.751984+00:00",
+    "lastAttemptAt": "2026-11-15T16:40:48.751984+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:40:48.751984+00:00",
+    "positionsCollectedAt": "2026-11-15T16:40:48.751984+00:00",
     "data": {
       "identity": {
         "slug": "gerstner",
         "archetype": "hedge_fund",
         "displayName": "Brad Gerstner",
-        "entityName": "Altimeter Capital Management LP",
-        "dataProvider": "FolioFact"
+        "entityName": "Altimeter Capital Management, LP",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/altimeter-capital-management",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001541617",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1541617/000154161726000008/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/altimeter-capital-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1541617/000154161726000008/"
     }
   },
   {
-    "as_of": "2026-11-15T16:25:16.619806+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:25:16.619806+00:00",
-    "positionsCollectedAt": "2026-11-15T16:25:16.619806+00:00",
+    "as_of": "2026-11-15T16:41:05.281549+00:00",
+    "lastAttemptAt": "2026-11-15T16:41:05.281549+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:41:05.281549+00:00",
+    "positionsCollectedAt": "2026-11-15T16:41:05.281549+00:00",
     "data": {
       "identity": {
         "slug": "gayner",
         "archetype": "hedge_fund",
         "displayName": "Tom Gayner",
         "entityName": "Markel Group Inc.",
-        "dataProvider": "FolioFact"
+        "dataProvider": "SEC",
+        "personVerified": false,
+        "personSource": "https://foliofact.com/api/v1/funds/markel-group",
+        "personPeriod": "2026-09-30",
+        "declaringCik": "0001096343",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1096343/000109634326000085/"
       },
       "snapshot": {
         "periodEnd": "2026-09-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/markel-group"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1096343/000109634326000085/"
     }
   },
   {
-    "as_of": "2026-11-15T16:25:25.869366+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:25:25.869366+00:00",
-    "positionsCollectedAt": "2026-11-15T16:25:25.869366+00:00",
+    "as_of": "2026-11-15T16:41:16.199265+00:00",
+    "lastAttemptAt": "2026-11-15T16:41:16.199265+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:41:16.199265+00:00",
+    "positionsCollectedAt": "2026-11-15T16:41:16.199265+00:00",
     "data": {
       "identity": {
         "slug": "tepper",
         "archetype": "hedge_fund",
         "displayName": "David Tepper",
-        "entityName": "Appaloosa LP",
-        "dataProvider": "FolioFact"
+        "entityName": "APPALOOSA LP",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/appaloosa",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001656456",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1656456/000165645626000003/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/appaloosa"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1656456/000165645626000003/"
     }
   },
   {
-    "as_of": "2026-11-14T21:11:13.017185+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:25:35.566611+00:00",
-    "positionsCollectedAt": "2026-11-14T21:11:13.017185+00:00",
+    "as_of": "2026-11-15T16:41:26.765479+00:00",
+    "lastAttemptAt": "2026-11-15T16:41:26.765479+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:41:26.765479+00:00",
+    "positionsCollectedAt": "2026-11-15T16:41:26.765479+00:00",
     "data": {
       "identity": {
         "slug": "ackman",
         "displayName": "Bill Ackman",
-        "entityName": "Pershing Square Capital Management",
+        "entityName": "PERSHING SQUARE INC.",
         "role": "Founder & CEO · concentrated activist investor",
         "archetype": "hedge_fund",
         "sourceId": "0002026053",
@@ -215,66 +306,95 @@
         "photoUrl": "/avatars/ackman.jpg",
         "photoCredit": "Senate Democrats · CC BY 2.0 (Wikimedia)",
         "infoText": "Founder and CEO of Pershing Square Capital Management (founded 2004). Runs one of the most concentrated activist books on Wall Street — typically 10–15 positions. Known for the Herbalife short (eventually closed at a loss), the FNMA/FMCC preferreds bet, and ahead-of-the-news public letters. Since Q2 2026 the 13F is filed by the public parent, Pershing Square Inc. (NYSE: PS), which consolidates the fund’s book with the parent’s own direct holdings.",
-        "dataProvider": "Tracefour"
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://tracefour.com/trackers/ackman",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0002026053",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://tracefour.com/trackers/ackman"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm"
     }
   },
   {
-    "as_of": "2026-11-15T16:25:41.474918+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:25:41.474918+00:00",
-    "positionsCollectedAt": "2026-11-15T16:25:41.474918+00:00",
+    "as_of": "2026-11-15T16:41:33.458652+00:00",
+    "lastAttemptAt": "2026-11-15T16:41:33.458652+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:41:33.458652+00:00",
+    "positionsCollectedAt": "2026-11-15T16:41:33.458652+00:00",
     "data": {
       "identity": {
         "slug": "berkshire",
         "archetype": "hedge_fund",
         "displayName": "Berkshire Hathaway",
-        "entityName": "Berkshire Hathaway Inc.",
-        "dataProvider": "FolioFact"
+        "entityName": "Berkshire Hathaway Inc",
+        "dataProvider": "SEC",
+        "personVerified": false,
+        "personSource": "https://foliofact.com/api/v1/funds/berkshire-hathaway",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001067983",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/berkshire-hathaway"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/"
     }
   },
   {
-    "as_of": "2026-11-15T16:26:07.213310+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:26:07.213310+00:00",
-    "positionsCollectedAt": "2026-11-15T16:26:07.213310+00:00",
+    "as_of": "2026-11-15T16:42:00.562520+00:00",
+    "lastAttemptAt": "2026-11-15T16:42:00.562520+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:42:00.562520+00:00",
+    "positionsCollectedAt": "2026-11-15T16:42:00.562520+00:00",
     "data": {
       "identity": {
         "slug": "cathie-wood",
         "archetype": "hedge_fund",
         "displayName": "Cathie Wood",
         "entityName": "ARK Investment Management LLC",
-        "dataProvider": "FolioFact"
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/ark-investment-management",
+        "personPeriod": "2026-09-30",
+        "declaringCik": "0001697748",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1697748/000110465926126785/"
       },
       "snapshot": {
         "periodEnd": "2026-09-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/ark-investment-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1697748/000110465926126785/"
     }
   },
   {
-    "as_of": "2026-11-15T16:26:16.342751+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:26:16.342751+00:00",
-    "positionsCollectedAt": "2026-11-15T16:26:16.342751+00:00",
+    "as_of": "2026-11-15T16:42:11.171668+00:00",
+    "lastAttemptAt": "2026-11-15T16:42:11.171668+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:42:11.171668+00:00",
+    "positionsCollectedAt": "2026-11-15T16:42:11.171668+00:00",
     "data": {
       "identity": {
         "slug": "thiel",
         "archetype": "hedge_fund",
         "displayName": "Peter Thiel",
         "entityName": "Thiel Macro LLC",
-        "dataProvider": "FolioFact"
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/thiel-macro-llc",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001562087",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/thiel-macro-llc"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1562087/000131586326000593/"
     }
   },
   {
@@ -293,78 +413,113 @@
         "periodEnd": "2026-06-30"
       },
       "sourceUrl": "https://foliofact.com/funds/duquesne-family-office"
-    }
+    },
+    "lastAttemptAt": "2026-11-15T16:42:28.545334+00:00",
+    "lastAttemptStatus": "failed",
+    "lastError": "SEC/provider valuation conflict: SEC rows 5210856 USD, provider 5210856000.0 USD"
   },
   {
-    "as_of": "2026-11-15T16:26:38.071543+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:26:38.071543+00:00",
-    "positionsCollectedAt": "2026-11-15T16:26:38.071543+00:00",
+    "as_of": "2026-11-15T16:42:34.842912+00:00",
+    "lastAttemptAt": "2026-11-15T16:42:34.842912+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:42:34.842912+00:00",
+    "positionsCollectedAt": "2026-11-15T16:42:34.842912+00:00",
     "data": {
       "identity": {
         "slug": "loeb",
         "archetype": "hedge_fund",
         "displayName": "Daniel Loeb",
         "entityName": "Third Point LLC",
-        "dataProvider": "FolioFact"
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/third-point",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001040273",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/third-point"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/"
     }
   },
   {
-    "as_of": "2026-11-15T16:27:00.549638+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:27:00.549638+00:00",
-    "positionsCollectedAt": "2026-11-15T16:27:00.549638+00:00",
+    "as_of": "2026-11-15T16:42:45.088359+00:00",
+    "lastAttemptAt": "2026-11-15T16:42:45.088359+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:42:45.088359+00:00",
+    "positionsCollectedAt": "2026-11-15T16:42:45.088359+00:00",
     "data": {
       "identity": {
         "slug": "aschenbrenner",
         "archetype": "hedge_fund",
         "displayName": "Leopold Aschenbrenner",
         "entityName": "Situational Awareness LP",
-        "dataProvider": "FolioFact"
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/situational-awareness",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0002045724",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/situational-awareness"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/"
     }
   },
   {
-    "as_of": "2026-11-15T16:27:09.846872+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:27:09.846872+00:00",
-    "positionsCollectedAt": "2026-11-15T16:27:09.846872+00:00",
+    "as_of": "2026-11-15T16:43:00.590312+00:00",
+    "lastAttemptAt": "2026-11-15T16:43:00.590312+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:43:00.590312+00:00",
+    "positionsCollectedAt": "2026-11-15T16:43:00.590312+00:00",
     "data": {
       "identity": {
         "slug": "li-lu",
         "archetype": "hedge_fund",
         "displayName": "Li Lu",
         "entityName": "Himalaya Capital Management LLC",
-        "dataProvider": "FolioFact"
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/himalaya-capital-management",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001709323",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/himalaya-capital-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/"
     }
   },
   {
-    "as_of": "2026-11-15T16:27:19.157967+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:27:19.157967+00:00",
-    "positionsCollectedAt": "2026-11-15T16:27:19.157967+00:00",
+    "as_of": "2026-11-15T16:43:10.680788+00:00",
+    "lastAttemptAt": "2026-11-15T16:43:10.680788+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:43:10.680788+00:00",
+    "positionsCollectedAt": "2026-11-15T16:43:10.680788+00:00",
     "data": {
       "identity": {
         "slug": "gates-trust",
         "archetype": "hedge_fund",
         "displayName": "Gates Foundation Trust",
-        "entityName": "Gates Foundation Trust",
-        "dataProvider": "FolioFact"
+        "entityName": "GATES FOUNDATION TRUST",
+        "dataProvider": "SEC",
+        "personVerified": false,
+        "personSource": "https://foliofact.com/api/v1/funds/gates-foundation-trust",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001166559",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/gates-foundation-trust"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/"
     }
   },
   {
@@ -383,7 +538,10 @@
         "periodEnd": "2026-09-30"
       },
       "sourceUrl": "https://foliofact.com/funds/baupost-group"
-    }
+    },
+    "lastAttemptAt": "2026-11-15T16:43:24.893631+00:00",
+    "lastAttemptStatus": "failed",
+    "lastError": "SEC/provider valuation conflict: SEC rows 5045853 USD, provider 5045853000.0 USD"
   },
   {
     "as_of": "2026-11-15T16:27:37.748829+00:00",
@@ -401,114 +559,165 @@
         "periodEnd": "2026-06-30"
       },
       "sourceUrl": "https://foliofact.com/funds/fundsmith"
-    }
+    },
+    "lastAttemptAt": "2026-11-15T16:43:35.263846+00:00",
+    "lastAttemptStatus": "failed",
+    "lastError": "SEC/provider valuation conflict: SEC rows 13648923682 USD, provider 18167841425.0 USD"
   },
   {
-    "as_of": "2026-11-15T16:27:47.060752+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:27:47.060752+00:00",
-    "positionsCollectedAt": "2026-11-15T16:27:47.060752+00:00",
+    "as_of": "2026-11-15T16:43:41.577761+00:00",
+    "lastAttemptAt": "2026-11-15T16:43:41.577761+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:43:41.577761+00:00",
+    "positionsCollectedAt": "2026-11-15T16:43:41.577761+00:00",
     "data": {
       "identity": {
         "slug": "pabrai",
         "archetype": "hedge_fund",
         "displayName": "Mohnish Pabrai",
-        "entityName": "Dalal Street LLC",
-        "dataProvider": "FolioFact"
+        "entityName": "Dalal Street, LLC",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/pabrai-investment-funds",
+        "personPeriod": "2026-09-30",
+        "declaringCik": "0001549575",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/"
       },
       "snapshot": {
         "periodEnd": "2026-09-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/"
     }
   },
   {
-    "as_of": "2026-11-15T16:28:03.550170+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:28:03.550170+00:00",
-    "positionsCollectedAt": "2026-11-15T16:28:03.550170+00:00",
+    "as_of": "2026-11-15T16:44:00.947005+00:00",
+    "lastAttemptAt": "2026-11-15T16:44:00.947005+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:44:00.947005+00:00",
+    "positionsCollectedAt": "2026-11-15T16:44:00.947005+00:00",
     "data": {
       "identity": {
         "slug": "hohn",
         "archetype": "hedge_fund",
         "displayName": "Christopher Hohn",
-        "entityName": "TCI Fund Management Ltd",
-        "dataProvider": "FolioFact"
+        "entityName": "TCI FUND MANAGEMENT LTD",
+        "dataProvider": "SEC",
+        "personVerified": false,
+        "personSource": "https://foliofact.com/api/v1/funds/tci-fund-management",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001647251",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/tci-fund-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/"
     }
   },
   {
-    "as_of": "2026-11-15T16:28:13.031215+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:28:13.031215+00:00",
-    "positionsCollectedAt": "2026-11-15T16:28:13.031215+00:00",
+    "as_of": "2026-11-15T16:44:11.178435+00:00",
+    "lastAttemptAt": "2026-11-15T16:44:11.178435+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:44:11.178435+00:00",
+    "positionsCollectedAt": "2026-11-15T16:44:11.178435+00:00",
     "data": {
       "identity": {
         "slug": "baker-bros",
         "archetype": "hedge_fund",
         "displayName": "Baker Bros. Advisors",
-        "entityName": "Baker Bros. Advisors LP",
-        "dataProvider": "FolioFact"
+        "entityName": "BAKER BROS. ADVISORS LP",
+        "dataProvider": "SEC",
+        "personVerified": false,
+        "personSource": "https://foliofact.com/api/v1/funds/baker-bros-advisors",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001263508",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/baker-bros-advisors"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/"
     }
   },
   {
-    "as_of": "2026-11-15T16:28:22.176531+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:28:22.176531+00:00",
-    "positionsCollectedAt": "2026-11-15T16:28:22.176531+00:00",
+    "as_of": "2026-11-15T16:44:21.403793+00:00",
+    "lastAttemptAt": "2026-11-15T16:44:21.403793+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:44:21.403793+00:00",
+    "positionsCollectedAt": "2026-11-15T16:44:21.403793+00:00",
     "data": {
       "identity": {
         "slug": "icahn",
         "archetype": "hedge_fund",
         "displayName": "Carl Icahn",
-        "entityName": "Carl C. Icahn (déclarant 13F)",
-        "dataProvider": "FolioFact"
+        "entityName": "ICAHN CARL C",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/icahn-capital",
+        "personPeriod": "2026-09-30",
+        "declaringCik": "0000921669",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/"
       },
       "snapshot": {
         "periodEnd": "2026-09-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/icahn-capital"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/"
     }
   },
   {
-    "as_of": "2026-11-15T16:28:31.638892+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:28:31.638892+00:00",
-    "positionsCollectedAt": "2026-11-15T16:28:31.638892+00:00",
+    "as_of": "2026-11-15T16:44:31.613910+00:00",
+    "lastAttemptAt": "2026-11-15T16:44:31.613910+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:44:31.613910+00:00",
+    "positionsCollectedAt": "2026-11-15T16:44:31.613910+00:00",
     "data": {
       "identity": {
         "slug": "laffont",
         "archetype": "hedge_fund",
         "displayName": "Philippe Laffont",
-        "entityName": "Coatue Management LLC",
-        "dataProvider": "FolioFact"
+        "entityName": "COATUE MANAGEMENT LLC",
+        "dataProvider": "SEC",
+        "personVerified": true,
+        "personSource": "https://foliofact.com/api/v1/funds/coatue-management",
+        "personPeriod": "2026-06-30",
+        "declaringCik": "0001135730",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1135730/000091957426005478/"
       },
       "snapshot": {
         "periodEnd": "2026-06-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/coatue-management"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1135730/000091957426005478/"
     }
   },
   {
-    "as_of": "2026-11-15T16:31:32.329307+00:00",
-    "lastSuccessfulPollAt": "2026-11-15T16:31:32.329307+00:00",
-    "positionsCollectedAt": "2026-11-15T16:31:32.329307+00:00",
+    "as_of": "2026-11-15T16:47:29.336457+00:00",
+    "lastAttemptAt": "2026-11-15T16:47:29.336457+00:00",
+    "lastAttemptStatus": "validated",
+    "lastError": null,
+    "lastSuccessfulPollAt": "2026-11-15T16:47:29.336457+00:00",
+    "positionsCollectedAt": "2026-11-15T16:47:29.336457+00:00",
     "data": {
       "identity": {
         "slug": "renaissance",
         "archetype": "hedge_fund",
         "displayName": "Renaissance Technologies",
-        "entityName": "Renaissance Technologies LLC",
-        "dataProvider": "FolioFact"
+        "entityName": "RENAISSANCE TECHNOLOGIES LLC",
+        "dataProvider": "SEC",
+        "personVerified": false,
+        "personSource": "https://foliofact.com/api/v1/funds/renaissance-technologies",
+        "personPeriod": "2026-09-30",
+        "declaringCik": "0001037389",
+        "entitySource": "https://www.sec.gov/Archives/edgar/data/1037389/000103738926000062/"
       },
       "snapshot": {
         "periodEnd": "2026-09-30"
       },
-      "sourceUrl": "https://foliofact.com/funds/renaissance-technologies"
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1037389/000103738926000062/"
     }
   }
 ]

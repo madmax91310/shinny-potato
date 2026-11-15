@@ -1,174 +1,317 @@
 {
-  "as_of": "2026-11-15T16:28:22.176531+00:00",
+  "as_of": "2026-11-15T16:44:21.403793+00:00",
   "data": {
     "identity": {
       "slug": "icahn",
       "archetype": "hedge_fund",
       "displayName": "Carl Icahn",
-      "entityName": "Carl C. Icahn (déclarant 13F)",
-      "dataProvider": "FolioFact"
+      "entityName": "ICAHN CARL C",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/icahn-capital",
+      "personPeriod": "2026-09-30",
+      "declaringCik": "0000921669",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/"
     },
     "snapshot": {
       "periodEnd": "2026-09-30",
       "holdings": [
         {
           "issuerName": "Icahn Enterprises LP",
-          "ticker": "IEP",
+          "shareClass": "DEPOSITARY UNIT",
+          "cusip": "451100101",
+          "securityId": "451100101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.4717545588970936,
           "value": 4447740626,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 2228736263,
+              "issuerName": "Icahn Enterprises LP",
+              "shares": "330183150",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 491299061,
+              "issuerName": "Icahn Enterprises LP",
+              "shares": "72785046",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 950290238,
+              "issuerName": "Icahn Enterprises LP",
+              "shares": "140783739",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 611385827,
+              "issuerName": "Icahn Enterprises LP",
+              "shares": "90575678",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 166029237,
+              "issuerName": "Icahn Enterprises LP",
+              "shares": "24596924",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 6.6
+          "sharesChangePct": null,
+          "weight": 0.4717545588970936
         },
         {
-          "issuerName": "Cvr Energy Inc - US",
-          "ticker": "CVI",
+          "issuerName": "CVR Energy Inc",
+          "shareClass": "COM",
+          "cusip": "12662P108",
+          "securityId": "12662P108",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.3850818902467964,
           "value": 3630583606,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 3445424537,
+              "issuerName": "CVR Energy Inc",
+              "shares": "67570593",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 185159069,
+              "issuerName": "CVR Energy Inc",
+              "shares": "3631282",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "9"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.3850818902467964
         },
         {
           "issuerName": "CVR Partners, LP",
-          "ticker": "UAN",
+          "shareClass": "COM",
+          "cusip": "126633205",
+          "securityId": "126633205",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0546721847071113,
           "value": 515453836,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 481751760,
+              "issuerName": "CVR Partners, LP",
+              "shares": "3892000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            },
+            {
+              "value": 33702076,
+              "issuerName": "CVR Partners, LP",
+              "shares": "272274",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "9"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0546721847071113
         },
         {
-          "issuerName": "Centuri Holdings Inc - US",
-          "ticker": "CTRI",
+          "issuerName": "Centuri Holdings, Inc.",
+          "shareClass": "COM SHS",
+          "cusip": "155923105",
+          "securityId": "155923105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.030472191961121248,
           "value": 287294322,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 287294322,
+              "issuerName": "Centuri Holdings, Inc.",
+              "shares": "14336044",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.030472191961121248
         },
         {
-          "issuerName": "International Flavors&Fragra",
-          "ticker": "IFF",
+          "issuerName": "International Flavors and Fragrances Inc.",
+          "shareClass": "COM",
+          "cusip": "459506101",
+          "securityId": "459506101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.02650766244928035,
           "value": 249916413,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 249916413,
+              "issuerName": "International Flavors and Fragrances Inc.",
+              "shares": "2993728",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -30.0
+          "sharesChangePct": null,
+          "weight": 0.02650766244928035
         },
         {
-          "issuerName": "Caesars Entertainment Inc. Ne",
-          "ticker": "CZR",
+          "issuerName": "Caesars Entertainment, Inc.",
+          "shareClass": "COM",
+          "cusip": "12769G100",
+          "securityId": "12769G100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.007673801801567439,
           "value": 72349232,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 72349232,
+              "issuerName": "Caesars Entertainment, Inc.",
+              "shares": "2440109",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.007673801801567439
         },
         {
-          "issuerName": "Monro Inc.",
-          "ticker": "MNRO",
+          "issuerName": "Monro, Inc.",
+          "shareClass": "COM",
+          "cusip": "610236101",
+          "securityId": "610236101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0075359162792051505,
           "value": 71049236,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 71049236,
+              "issuerName": "Monro, Inc.",
+              "shares": "5078573",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0075359162792051505
         },
         {
-          "issuerName": "Sandridge Energy Inc.",
-          "ticker": "SD",
+          "issuerName": "SandRidge Energy, Inc.",
+          "shareClass": "COM NEW",
+          "cusip": "80007P869",
+          "securityId": "80007P869",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.007272099097524207,
           "value": 68561946,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 68561946,
+              "issuerName": "SandRidge Energy, Inc.",
+              "shares": "5082427",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 0.5
+          "sharesChangePct": null,
+          "weight": 0.007272099097524207
         },
         {
           "issuerName": "EchoStar Corporation",
-          "ticker": "ECHO",
+          "shareClass": "CL A",
+          "cusip": "278768106",
+          "securityId": "278768106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.004741685572268029,
           "value": 44705000,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 44705000,
+              "issuerName": "EchoStar Corporation",
+              "shares": "500000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -64.4
+          "sharesChangePct": null,
+          "weight": 0.004741685572268029
         },
         {
-          "issuerName": "Bausch Lomb Corp.",
-          "ticker": "BLCO",
+          "issuerName": "Bausch Plus Lomb Corp.",
+          "shareClass": "COMMON SHARES",
+          "cusip": "071705107",
+          "securityId": "071705107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.004288008988032215,
           "value": 40427700,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 40427700,
+              "issuerName": "Bausch Plus Lomb Corp.",
+              "shares": "2378100",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -32.1
+          "sharesChangePct": null,
+          "weight": 0.004288008988032215
         }
       ],
       "filedAt": "2026-11-13",
-      "declaredTotal": 9428081917.0,
+      "declaredTotal": 9428081917,
       "currency": "USD",
       "valueUnit": 1,
-      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
-      "valueScope": "Déclaration 13F · positions longues et options déclarées",
-      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q2 2026",
         "exits": [
@@ -185,9 +328,21 @@
         ]
       },
       "publicationSource": "https://foliofact.com/funds/icahn-capital",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/"
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/",
+      "reportedCoverTotal": 9428081917,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 9428081917.0,
+      "providerHoldingsCount": 10,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/primary_doc.xml"
+      ],
+      "originalRowCount": 16,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/icahn-capital",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/",
+    "discoverySourceUrl": "https://foliofact.com/funds/icahn-capital",
     "filingHistory": [
       {
         "periodEnd": "2026-06-30",

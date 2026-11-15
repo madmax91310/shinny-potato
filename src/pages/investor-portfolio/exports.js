@@ -3,15 +3,15 @@ import { dateFR, percentage } from './data.js'
 import { cash, labelLines } from './publication.js'
 export function detailedExport(portfolio) {
   return { schemaVersion: 1, identity: portfolio.identity, snapshot: portfolio.snapshot,
-    sourceUrl: portfolio.sourceUrl, positionsCollectedAt: portfolio.fetchedAt, lastSuccessfulPollAt: portfolio.lastSuccessfulPollAt || null,
+    sourceUrl: portfolio.sourceUrl, discoverySourceUrl: portfolio.discoverySourceUrl, positionsCollectedAt: portfolio.fetchedAt, lastSuccessfulPollAt: portfolio.lastSuccessfulPollAt || null,
     scope: 'Positions longues déclarées hors options ; les options et leur dénominateur original sont conservés dans snapshot.',
     currency: portfolio.snapshot.currency || null, total: portfolio.total,
     status: portfolio.problem ? 'incomplete' : 'ready', problem: portfolio.problem,
     holdings: portfolio.holdings, credits: mediaCredits(portfolio) }
 }
 export function detailedCSV(portfolio) {
-  const rows = [['Titre','Ticker','Classe','CUSIP','Identifiant fournisseur','Date positions','Date publication','Valeur','Devise','Unité','Poids hors options','Source'],
-    ...portfolio.holdings.map(r => [r.issuerName,r.ticker,r.shareClass,r.cusip,r.securityId,portfolio.snapshot.periodEnd,portfolio.snapshot.filedAt,r.value,r.currency,r.unit,r.weight,portfolio.sourceUrl])]
+  const rows = [['Titre','Ticker','Classe','CUSIP','Identifiant fournisseur','Type','Date positions','Date publication','Valeur déclarée','Devise','Unité','Poids du total déclaré','Poids hors options','Source'],
+    ...portfolio.snapshot.holdings.map(r => [r.issuerName,r.ticker,r.shareClass,r.cusip,r.securityId,r.putCall || 'DIRECT',portfolio.snapshot.periodEnd,portfolio.snapshot.filedAt,r.value,r.currency,r.unit,r.weight,!r.putCall && portfolio.total ? r.value/portfolio.total : '',portfolio.sourceUrl])]
   return '\uFEFF' + rows.map(row => row.map(v => '"' + String(v ?? '').replaceAll('"','""') + '"').join(';')).join('\r\n')
 }
 export async function renderDetailedPages(portfolio) {
@@ -21,6 +21,11 @@ export async function renderDetailedPages(portfolio) {
     `${Number.isFinite(r.value)?cash(r.value,r.currency):'Montant indisponible'} · ${percentage(r.weight)}`,
     '',
   ])
+  const options=portfolio.snapshot.holdings.filter(r=>r.putCall)
+  if(options.length) {
+    lines.push('Options déclarées · hors image et total', 'Poids sur le total déclaré, options incluses.', '')
+    for(const r of options) lines.push(...labelLines(`${r.issuerName} · ${r.putCall}`,56),...labelLines([r.shareClass,r.cusip].filter(Boolean).join(' · '),56),`${Number.isFinite(r.value)?cash(r.value,r.currency):'Montant indisponible'} · ${percentage(r.weight)}`,'')
+  }
   const pages=[]
   for(let start=0;start<lines.length;start+=28) {
     const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350

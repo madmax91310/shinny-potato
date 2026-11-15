@@ -1,197 +1,313 @@
 {
-  "as_of": "2026-11-15T16:23:32.075695+00:00",
+  "as_of": "2026-11-15T16:39:30.286657+00:00",
   "data": {
     "identity": {
       "slug": "dorsey",
       "archetype": "hedge_fund",
       "displayName": "Pat Dorsey",
-      "entityName": "Dorsey Asset Management LLC",
-      "dataProvider": "FolioFact"
+      "entityName": "Dorsey Asset Management, LLC",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/dorsey-asset-management",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001671657",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "ASML Holding NV",
-          "ticker": "ASML",
+          "issuerName": "ASML HLDG NV",
+          "shareClass": "N Y REGISTRY SHS",
+          "cusip": "N07059210",
+          "securityId": "N07059210",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.16610090290108623,
           "value": 259351356,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 259351356,
+              "issuerName": "ASML HLDG NV",
+              "shares": "130364",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -7.1
+          "sharesChangePct": null,
+          "weight": 0.16610090290108623
         },
         {
-          "issuerName": "Applovin Corp.",
-          "ticker": "APP",
+          "issuerName": "APPLOVIN CORP",
+          "shareClass": "COM CL A",
+          "cusip": "03831W108",
+          "securityId": "03831W108",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.14496350053734114,
           "value": 226347237,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 226347237,
+              "issuerName": "APPLOVIN CORP",
+              "shares": "439313",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 38.6
+          "sharesChangePct": null,
+          "weight": 0.14496350053734114
         },
         {
-          "issuerName": "Royalty Pharma PLC",
-          "ticker": "RPRX",
+          "issuerName": "ROYALTY PHARMA PLC",
+          "shareClass": "SHS CLASS A",
+          "cusip": "G7709Q104",
+          "securityId": "G7709Q104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.08821364044019472,
           "value": 137737525,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 137737525,
+              "issuerName": "ROYALTY PHARMA PLC",
+              "shares": "2456528",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 7.9
+          "sharesChangePct": null,
+          "weight": 0.08821364044019472
         },
         {
-          "issuerName": "Booking Holdings Inc.",
-          "ticker": "BKNG",
+          "issuerName": "BOOKING HOLDINGS INC",
+          "shareClass": "COM",
+          "cusip": "09857L108",
+          "securityId": "09857L108",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.08464470564744588,
           "value": 132164960,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 132164960,
+              "issuerName": "BOOKING HOLDINGS INC",
+              "shares": "741500",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 4409.2
+          "sharesChangePct": null,
+          "weight": 0.08464470564744588
         },
         {
-          "issuerName": "S&P Global Inc.",
-          "ticker": "SPGI",
+          "issuerName": "S&P GLOBAL INC",
+          "shareClass": "COM",
+          "cusip": "78409V104",
+          "securityId": "78409V104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.08252956276720995,
           "value": 128862358,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 128862358,
+              "issuerName": "S&P GLOBAL INC",
+              "shares": "316413",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 42.1
+          "sharesChangePct": null,
+          "weight": 0.08252956276720995
         },
         {
-          "issuerName": "Uber Technologies Inc.",
-          "ticker": "UBER",
+          "issuerName": "UBER TECHNOLOGIES INC",
+          "shareClass": "COM",
+          "cusip": "90353T100",
+          "securityId": "90353T100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.08142754811987807,
           "value": 127141663,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 127141663,
+              "issuerName": "UBER TECHNOLOGIES INC",
+              "shares": "1761941",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 61.6
+          "sharesChangePct": null,
+          "weight": 0.08142754811987807
         },
         {
-          "issuerName": "Live Nation Entertainment In",
-          "ticker": "LYV",
+          "issuerName": "LIVE NATION ENTERTAINMENT IN",
+          "shareClass": "COM",
+          "cusip": "538034109",
+          "securityId": "538034109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.07689053736692113,
           "value": 120057536,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 120057536,
+              "issuerName": "LIVE NATION ENTERTAINMENT IN",
+              "shares": "655658",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 7.9
+          "sharesChangePct": null,
+          "weight": 0.07689053736692113
         },
         {
-          "issuerName": "Danaher Corporation",
-          "ticker": "DHR",
+          "issuerName": "DANAHER CORP DEL",
+          "shareClass": "COM",
+          "cusip": "235851102",
+          "securityId": "235851102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.07639299619373269,
           "value": 119280671,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 119280671,
+              "issuerName": "DANAHER CORP DEL",
+              "shares": "626211",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 7.9
+          "sharesChangePct": null,
+          "weight": 0.07639299619373269
         },
         {
-          "issuerName": "Meta Platforms Inc.",
-          "ticker": "META",
+          "issuerName": "META PLATFORMS INC",
+          "shareClass": "CL A",
+          "cusip": "30303M102",
+          "securityId": "30303M102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0721158085484596,
           "value": 112602234,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 112602234,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "199901",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 23.6
+          "sharesChangePct": null,
+          "weight": 0.0721158085484596
         },
         {
-          "issuerName": "Aercap Holdings NV",
-          "ticker": "AER",
+          "issuerName": "AERCAP HOLDINGS NV",
+          "shareClass": "SHS",
+          "cusip": "N00985106",
+          "securityId": "N00985106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.07159445361941569,
           "value": 111788186,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 111788186,
+              "issuerName": "AERCAP HOLDINGS NV",
+              "shares": "766828",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -31.7
+          "sharesChangePct": null,
+          "weight": 0.07159445361941569
         },
         {
-          "issuerName": "Sunbelt Rentals Holdings Inc.",
-          "ticker": "SUNB",
+          "issuerName": "SUNBELT RENTALS HOLDINGS INC",
+          "shareClass": "SHS",
+          "cusip": "866966104",
+          "securityId": "866966104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.055126343858314907,
           "value": 86074740,
           "currency": "USD",
           "unit": 1,
-          "cusip": null,
-          "securityId": null,
-          "shareClass": null,
-          "providerGroupedClasses": false,
+          "sourceRows": [
+            {
+              "value": 86074740,
+              "issuerName": "SUNBELT RENTALS HOLDINGS INC",
+              "shares": "1150578",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -47.8
+          "sharesChangePct": null,
+          "weight": 0.055126343858314907
         }
       ],
       "filedAt": "2026-08-14",
-      "declaredTotal": 1561408466.0,
+      "declaredTotal": 1561408466,
       "currency": "USD",
       "valueUnit": 1,
-      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
-      "valueScope": "Déclaration 13F · positions longues et options déclarées",
-      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": []
       },
       "publicationSource": "https://foliofact.com/funds/dorsey-asset-management",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/"
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/",
+      "reportedCoverTotal": 1561408466,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 1561408466.0,
+      "providerHoldingsCount": 11,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/fp0099854-1_13fhr-table.xml",
+        "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/primary_doc.xml"
+      ],
+      "originalRowCount": 11,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/dorsey-asset-management",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1671657/000139834426014470/",
+    "discoverySourceUrl": "https://foliofact.com/funds/dorsey-asset-management",
     "filingHistory": []
   }
 }
