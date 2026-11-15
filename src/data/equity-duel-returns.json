@@ -8440,6 +8440,43 @@
     }
   },
   {
+    "id": "equity-stockUS58506Q1094",
+    "historyId": "stockUS58506Q1094",
+    "label": "Medpace Holdings",
+    "isin": "US58506Q1094",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 65.59600322617187,
+      "2021": 56.350577363877385,
+      "2022": -2.4030486234288273,
+      "2023": 44.3105283308596,
+      "2024": 8.38417514887344,
+      "2025": 69.05457225536438
+    },
+    "euroCalendarReturns": {
+      "2020": 51.601784715411526,
+      "2021": 69.39589747767431,
+      "2022": 3.636140192297499,
+      "2023": 39.29557422415824,
+      "2024": 15.280116988646796,
+      "2025": 49.473017120083426
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      65.59600322617187,
+      56.350577363877385,
+      -2.4030486234288273,
+      44.3105283308596,
+      8.38417514887344,
+      69.05457225536438
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MEDP?period1=1472688000&period2=1793491200&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-11-15",
+    "art": {
+      "scene": "etf-night/health.webp"
+    }
+  },
+  {
     "id": "equity-medtronic",
     "historyId": "medtronic",
     "label": "Medtronic",
