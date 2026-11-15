@@ -1,13 +1,14 @@
 // Shared by the image, copy and exports. No monetary value is inferred from a weight.
 export const MAIN_IMAGE = { width: 1080, height: 1350 }
-export const cash = (value, currency = 'USD') => new Intl.NumberFormat('fr-FR', { style: 'currency', currency, notation: 'compact', maximumFractionDigits: 2 }).format(value)
+export const cash = (value, currency) => !currency ? `${value.toLocaleString('fr-FR')} (devise inconnue)` : new Intl.NumberFormat('fr-FR', { style: 'currency', currency, notation: 'compact', maximumFractionDigits: 2 }).format(value)
+export const reportedAmount = row => !Number.isFinite(row.value) ? 'Montant indisponible' : row.unit === 1 && row.currency === 'USD' ? cash(row.value,row.currency) : `${row.value.toLocaleString('fr-FR')} (unité ${row.unit ?? '?'}, ${row.currency || 'devise inconnue'})`
 export const weightLabel = weight => weight > 0 && weight < .001 ? '< 0,1 %' : `${(weight * 100).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 export function monetaryStatus(snapshot) {
   const rows = snapshot.holdings
   if (snapshot.primaryVerified !== true) return 'Déclaration SEC originale non vérifiée pour ce relevé. Actualisation nécessaire.'
   if (!/^\d{4}-\d{2}-\d{2}$/.test(snapshot.filedAt || '') || snapshot.filedAt < snapshot.periodEnd || snapshot.filedAt > new Date().toISOString().slice(0,10) || !Array.isArray(snapshot.sourceDocuments) || snapshot.sourceDocuments.length < 2 || snapshot.sourceDocuments.some(url => !String(url).startsWith('https://www.sec.gov/Archives/edgar/'))) return 'Date de publication ou documents SEC incomplets.'
   if (rows?.some(row => !/^[A-Z0-9*@#]{9}$/.test(row.cusip || '') || !row.shareClass)) return 'Identifiants ou classes de titres incomplets.'
-  if (!Number.isSafeInteger(snapshot.declaredTotal) || snapshot.declaredTotal <= 0 || !snapshot.valueUnitSource || snapshot.valueUnit !== 1 || !snapshot.currency || !rows?.length) return 'Montants et unités non documentés dans ce relevé. Actualisation nécessaire.'
+  if (!Number.isSafeInteger(snapshot.declaredTotal) || snapshot.declaredTotal <= 0 || !snapshot.valueUnitSource || snapshot.valueUnit !== 1 || snapshot.currency !== 'USD' || !rows?.length) return 'Montants et unités non documentés dans ce relevé. Actualisation nécessaire.'
   if (rows.some(r => !Number.isSafeInteger(r.value) || r.value <= 0 || r.currency !== snapshot.currency || r.unit !== 1 || Math.abs(r.weight - r.value / snapshot.declaredTotal) > 1e-9)) return 'Montants, devises ou poids incohérents.'
   if (Math.abs(rows.reduce((sum, r) => sum + r.value, 0) - snapshot.declaredTotal) > rows.length * .5) return 'La somme des positions ne correspond pas au total déclaré.'
   return null

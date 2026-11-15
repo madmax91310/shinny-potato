@@ -1,6 +1,6 @@
 import { mediaCredits } from './media.js'
 import { dateFR, percentage } from './data.js'
-import { cash, labelLines } from './publication.js'
+import { reportedAmount, labelLines } from './publication.js'
 export function detailedExport(portfolio) {
   return { schemaVersion: 1, identity: portfolio.identity, snapshot: portfolio.snapshot,
     sourceUrl: portfolio.sourceUrl, discoverySourceUrl: portfolio.discoverySourceUrl, positionsCollectedAt: portfolio.fetchedAt, lastSuccessfulPollAt: portfolio.lastSuccessfulPollAt || null,
@@ -18,13 +18,13 @@ export async function renderDetailedPages(portfolio) {
   const lines = portfolio.holdings.flatMap(r => [
     ...labelLines(r.issuerName, 56),
     ...labelLines([r.ticker,r.shareClass,r.cusip,r.securityId].filter(Boolean).join(' · ') || 'Identifiant et classe non transmis',56),
-    `${Number.isFinite(r.value)?cash(r.value,r.currency):'Montant indisponible'} · ${percentage(r.weight)}`,
+    ...labelLines(`${reportedAmount(r)} · ${percentage(r.weight)}`,56),
     '',
   ])
   const options=portfolio.snapshot.holdings.filter(r=>r.putCall)
   if(options.length) {
     lines.push('Options déclarées · hors image et total', 'Poids sur le total déclaré, options incluses.', '')
-    for(const r of options) lines.push(...labelLines(`${r.issuerName} · ${r.putCall}`,56),...labelLines([r.shareClass,r.cusip].filter(Boolean).join(' · '),56),`${Number.isFinite(r.value)?cash(r.value,r.currency):'Montant indisponible'} · ${percentage(r.weight)}`,'')
+    for(const r of options) lines.push(...labelLines(`${r.issuerName} · ${r.putCall}`,56),...labelLines([r.shareClass,r.cusip].filter(Boolean).join(' · '),56),...labelLines(`${reportedAmount(r)} · ${percentage(r.weight)}`,56),'')
   }
   const note=labelLines(portfolio.lastError || portfolio.problem || 'Positions hors options ; options séparées en fin de détail.',60).slice(0,3)
   const contentTop=220+note.length*30

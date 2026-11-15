@@ -11,7 +11,7 @@ import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio,
 import { investorPortrait } from './portrait.js'
 import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
 import { zipStore, dataURLBytes } from '../../lib/zip-store.js'
-import { publicationPlan, cash } from './publication.js'
+import { publicationPlan, cash, reportedAmount } from './publication.js'
 import { detailedExport, detailedCSV, renderDetailedPages } from './exports.js'
 import './style.css'
 
@@ -127,7 +127,7 @@ export default function InvestorPortfolio() {
           <div className="ip-preview" aria-label={model ? "Répartition cible complète" : "Positions du visuel"}>
             {shown.map((row, i) => <div className="ip-row" key={`${row.ticker}-${i}`}>
               <span className="ip-dot" style={{ background: ['#dcba75', '#54d5b0', '#6da9e7', '#d9928b', '#a89bd9'][i % 5] }} />
-              <span>{row.label || row.displayLabel || holdingName(row)} <small>{row.ticker}{Number.isFinite(row.value) && ` · ${cash(row.value,portfolio.snapshot.currency)}`}</small></span><strong>{percentage(row.weight)}</strong>
+              <span>{row.label || row.displayLabel || holdingName(row)} <small>{row.ticker}{Number.isFinite(row.value) && ` · ${reportedAmount(row)}`}</small></span><strong>{percentage(row.weight)}</strong>
             </div>)}
           </div>
           <div className="ip-editor">
@@ -149,8 +149,8 @@ export default function InvestorPortfolio() {
           <Button type="button" variant="secondary" onClick={() => save(detailedCSV(portfolio),'text/csv;charset=utf-8','csv')}>Télécharger toutes les positions CSV</Button>
           <Button type="button" variant="secondary" onClick={downloadDetails} disabled={exporting}>Télécharger les PNG détaillés (ZIP)</Button>
         </WorkspaceActions>
-        <details><summary>Détail intégral · {portfolio.holdings.length} positions</summary>{portfolio.holdings.map((row,i)=><p key={i}>{row.issuerName} · {row.ticker} · {row.shareClass || 'classe non transmise'} · {row.cusip || row.securityId || 'identifiant non transmis'} · {Number.isFinite(row.value)?cash(row.value,portfolio.snapshot.currency):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>
-        {portfolio.snapshot.holdings.some(row=>row.putCall) && <details><summary>Options déclarées · hors image et total</summary><p>Poids sur le total déclaré, options incluses. Les valeurs déclarées ne mesurent pas les primes ni l’exposition nette.</p>{portfolio.snapshot.holdings.filter(row=>row.putCall).map((row,i)=><p key={i}>{row.issuerName} · {row.putCall} · {row.shareClass} · {row.cusip || 'identifiant non transmis'} · {Number.isFinite(row.value)?cash(row.value,row.currency):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>}
+        <details><summary>Détail intégral · {portfolio.holdings.length} positions</summary>{portfolio.holdings.map((row,i)=><p key={i}>{row.issuerName} · {row.ticker} · {row.shareClass || 'classe non transmise'} · {row.cusip || row.securityId || 'identifiant non transmis'} · {Number.isFinite(row.value)?reportedAmount(row):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>
+        {portfolio.snapshot.holdings.some(row=>row.putCall) && <details><summary>Options déclarées · hors image et total</summary><p>Poids sur le total déclaré, options incluses. Les valeurs déclarées ne mesurent pas les primes ni l’exposition nette.</p>{portfolio.snapshot.holdings.filter(row=>row.putCall).map((row,i)=><p key={i}>{row.issuerName} · {row.putCall} · {row.shareClass} · {row.cusip || 'identifiant non transmis'} · {Number.isFinite(row.value)?reportedAmount(row):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>}
         <p className="ip-note">Les lignes et classes transmises restent distinctes. Certains fournisseurs regroupent déjà des classes en amont ; ce manque de détail est conservé dans les exports. Les poids du visuel portent sur la somme des positions hors options, calculée sans arrondi.</p>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
         <p className="ip-note">Portrait de référence : {investorPortrait(portfolio.identity.slug).person} : <a href={investorPortrait(portfolio.identity.slug).source} target="_blank" rel="noreferrer">{investorPortrait(portfolio.identity.slug).author} ↗</a> · {investorPortrait(portfolio.identity.slug).license} · Affichage par initiales si la réutilisation, l’identité ou le détourage ne sont pas établis.</p>
