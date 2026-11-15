@@ -12,28 +12,35 @@ export function useBudgetImage(profile, enabled, mode = 'social') {
       try {
         const { renderBudgetImages } = await import('./image.js')
         const request = JSON.parse(key), canvases = await renderBudgetImages(request.profile, request.mode)
-        // Start every encoder immediately: selecting page 11 must not wait for
-        // ten sequential PNG encodes. Publish in order and retain cancellation.
-        const blobs = canvases.map(canvas => new Promise(resolve => {
-          try { canvas.toBlob(resolve, 'image/png') } catch { resolve(null) }
-        }))
-        for (const pending of blobs) {
-          if (!active) return
-          const blob = await pending
-          if (!blob) throw new Error('L’image n’a pas pu être préparée. Réessaie.')
-          if (!active) return
-          urls.push(URL.createObjectURL(blob))
-          setResult({ key, attempt, urls: [...urls], count: canvases.length })
+        if (!active) return
+        const pending = new Set(), count = canvases.length
+        let failed = false
+        const fail = () => { failed = true; if (active) setResult({ key, attempt, error: 'L’image n’a pas pu être préparée. Réessaie.' }) }
+        const prepare = index => {
+          if (!active || failed || urls[index] || pending.has(index)) return
+          pending.add(index)
+          try {
+            canvases[index].toBlob(blob => {
+              if (!active || failed) return
+              if (!blob) { fail(); return }
+              urls[index] = URL.createObjectURL(blob)
+              setResult({ key, attempt, urls: [...urls], count, prepare })
+            }, 'image/png')
+          } catch { fail() }
         }
+        // Announce the complete series immediately, then encode only requested
+        // pages. A slow intermediate PNG must never block the selected page.
+        setResult({ key, attempt, urls: [], count, prepare })
       } catch (error) { if (active) setResult({ key, attempt, error: error.message || 'L’image n’a pas pu être préparée. Réessaie.' }) }
     }, 200)
     return () => { active = false; clearTimeout(timer); urls.forEach(url => URL.revokeObjectURL(url)) }
   }, [key, attempt, enabled])
   const current = enabled && result?.key === key && result.attempt === attempt ? result : null
   const index = selection?.key === key ? Math.min(selection.index, (current?.count || 1) - 1) : 0
+  useEffect(() => { current?.prepare?.(index) }, [current, index])
   return { url: current?.urls?.[index] || '', count: current?.count || 0, index, format: mode,
     error: current?.error || '', busy: enabled && (!current || !current.urls?.[index] && !current.error),
-    select(index) { if (Number.isInteger(index) && index >= 0 && index < (current?.count || 0)) setSelection({ key, index }) },
+    select(index) { if (Number.isInteger(index) && index >= 0 && index < (current?.count || 0)) { setSelection({ key, index }); current.prepare?.(index) } },
     retry: () => setAttempt(n => n + 1),
     download(filename) {
       if (!current?.urls?.[index]) throw new Error('L’image est en cours de préparation.')

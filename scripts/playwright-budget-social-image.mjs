@@ -48,12 +48,16 @@ try{
  for(const part of densePages){assert.deepEqual([part.width,part.height],[1080,1350]);for(const t of part.drawn)assert(t.left>=30&&t.right<=1050&&t.top>=0&&t.bottom<=1350);assert(!part.drawn.some(t=>t.text.includes('7 000')),'An adapted personal profile never inherits the bank character’s wealth')}
  const custom='Mon texte personnalisé : il reste conservé quand je change les images.'
  const restored=await browser.newContext({viewport:{width:390,height:950},acceptDownloads:true})
+ // Deliberately slow unselected middle pages: they must neither be encoded
+ // eagerly nor hold the last selected page behind a PNG preparation queue.
+ await restored.addInitScript(()=>{const original=HTMLCanvasElement.prototype.toBlob;window.budgetPngRequests=[];HTMLCanvasElement.prototype.toBlob=function(callback,...args){if(this.budgetPageCount>3){window.budgetPngRequests.push(this.budgetPage);if(this.budgetPage!==1&&this.budgetPage!==this.budgetPageCount){setTimeout(()=>original.call(this,callback,...args),10000);return}}return original.call(this,callback,...args)}})
  await restored.addInitScript(({key,profile,text})=>localStorage.setItem(key,JSON.stringify({profile,text,edited:true})),{key:DRAFT_KEY,profile:dense,text:custom})
  const restoredPage=await restored.newPage();await restoredPage.goto(uiBase+'/le-budget-de');await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(custom)
  await expect(restoredPage.locator('.budget-image-count')).toContainText(`${densePages.length} images`)
  await restoredPage.getByRole('button',{name:`Image ${densePages.length} sur ${densePages.length}`,exact:true}).click()
  const restoredImage=restoredPage.getByRole('region',{name:'Image du budget'}).locator('img');await expect.poll(()=>restoredImage.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350])
  const event=restoredPage.waitForEvent('download');await restoredPage.getByRole('button',{name:'Télécharger le PNG',exact:true}).click();assert((await event).suggestedFilename().includes(`-sur-${String(densePages.length).padStart(2,'0')}`))
+ assert((await restoredPage.evaluate(()=>window.budgetPngRequests)).every(index=>index===1||index===densePages.length),'Only requested PNG pages are encoded')
  await restoredPage.getByLabel('Dépenses · montant 1',{exact:true}).fill('120');await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(custom)
  await expect(restoredPage.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled();await restoredPage.getByRole('button',{name:'Rétablir le texte',exact:true}).click();const changed={...dense,expenses:dense.expenses.map((r,i)=>i? r:{...r,amount:120})};await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(changed));await expect(restoredPage.getByRole('checkbox',{name:'Profil publié',exact:true})).not.toBeChecked();assert(await restoredPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await restored.close()
  console.log(`Restored 72-row CHF fixture: ${densePages.length} fixed 4:5 pages, every amount once, long names, deficit, manual question, selected download and protected custom text passed.`)

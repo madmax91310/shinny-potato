@@ -12,6 +12,8 @@ Le format X ne bascule plus vers le format long. Chaque PNG mesure exactement 1 
 
 23 profils tiennent intégralement sur une image. 39 utilisent deux images et 8 en utilisent trois : 125 PNG au total. La première page de chaque série présente les totaux de revenus, dépenses, versements et solde. Les lignes d'origine ne sont pas comptées deux fois : les valeurs répétées sont explicitement des totaux. Les pages suivantes conservent les autres postes, réserves et projets. Le sélecteur affiche le nombre de pages et le téléchargement porte sur la page affichée, avec un nom numéroté.
 
+Les PNG sont encodés à la demande : une page sélectionnée n'attend pas l'encodage des pages intermédiaires. Un contrôle navigateur ralentit volontairement les pages non demandées pour vérifier cette indépendance, avec les délais habituels des tests.
+
 Émilie tient sur une page : ses 11 dépenses, ses 2 300 € de revenus, 1 735 € de dépenses, 500 € de versements et 65 € après versements sont préservés. Son livret de 7 000 € comprend les 5 000 € de sécurité ; l'apport actuel de 2 000 € est distingué de l'objectif de 20 000 € à trois ans. Lucie utilise trois pages. Les modes détaillé et synthétique restent des choix explicites, avec leurs dimensions historiques.
 
 Aucun montant, calcul, profil, texte de publication, stockage ou statut n'a été modifié. Les participations personnalisées utilisent leur propre contexte et n'héritent pas du patrimoine du personnage bancaire dont elles dérivent.
