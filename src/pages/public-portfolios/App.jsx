@@ -1,3 +1,5 @@
+import { pngArchive } from "./archive.js";
+import { downloadPublicationBlob } from "../../design-system/downloadBlob.js";
 import { useState, useEffect, useRef } from "react";
 import PageHeader from "../../design-system/PageHeader";
 import { copyPublicationText } from "../../design-system/publicationActions.js";
@@ -88,12 +90,22 @@ function Images({ profile, snapshot, episode }) {
       ))}
       <button
         onClick={() =>
-          canvases.forEach((c, i) =>
-            downloadImage(c, `portefeuille-${episode}-${i + 1}.png`),
+          downloadPublicationBlob(
+            pngArchive(
+              canvases.map((c, i) => ({
+                name: `portefeuille-${episode}-${i + 1}.png`,
+                data: Uint8Array.from(
+                  atob(c.toDataURL("image/png").split(",")[1]),
+                  (ch) => ch.charCodeAt(0),
+                ),
+              })),
+            ),
+            `portefeuille-${episode}.zip`,
+            60000,
           )
         }
       >
-        Télécharger toutes les images
+        Télécharger toutes les images (ZIP)
       </button>
     </section>
   );

@@ -86,6 +86,14 @@ await page
   .click();
 const d = await download;
 await d.saveAs("/tmp/public-portfolio-export.png");
+const archiveDownload = page.waitForEvent("download");
+await page
+  .getByRole("button", {
+    name: "Télécharger toutes les images (ZIP)",
+    exact: true,
+  })
+  .click();
+await (await archiveDownload).saveAs("/tmp/public-portfolio-images.zip");
 assert.deepEqual(
   await page
     .locator("canvas")
