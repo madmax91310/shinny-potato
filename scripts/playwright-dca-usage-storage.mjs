@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { expect } from 'playwright/test'
 import { staticBrowser, staticBase as base } from './static-browser.mjs'
 
 const key = 'el-dca-used-v1'
@@ -41,14 +42,15 @@ for (const width of [1440, 390]) {
     // Inject faults before React reads storage, on every navigation/reload.
     await context.addInitScript(() => { window.usageFault = sessionStorage.getItem('usage-test-fault') })
     const mark = () => page.getByRole('button', { name: 'Marquer publié', exact: true })
-    const unmark = () => page.getByRole('button', { name: 'Annuler le marquage publié', exact: true })
+    const unmark = () => page.getByRole('button', { name: 'Retirer le statut publié', exact: true })
+    async function publish(){await mark().click();await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect.poll(async()=>await unmark().isVisible()||await page.getByRole('region',{name:'Suivi de publication'}).getByRole('alert').count()>0).toBe(true);}
     const raw = () => page.evaluate(() => window.rawUsage())
     const picker = page.getByRole('group', { name: 'Choisir un profil DCA', exact: true })
 
     // Regression: an ordinary click must never replace unreadable historical bytes.
     for (const initial of ['{broken', '["older-profile",42]', 'null', '{}', '']) {
       await seed(initial)
-      await mark().click()
+      assert(await mark().isDisabled())
       assert.equal(await raw(), initial, 'unreadable history survives the ordinary mark-used click')
       assert(await mark().isVisible(), 'a rejected write is not presented as saved')
       await page.getByRole('alert').filter({ hasText: 'historique' }).waitFor()
@@ -57,21 +59,21 @@ for (const width of [1440, 390]) {
     }
     await seed(null)
     const id = await picker.getAttribute('data-value')
-    await mark().click()
-    // No wait for localStorage before reload: the event must commit synchronously.
+    await publish()
+    await unmark().waitFor()
     await page.reload(); await open()
     assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), [id])
     assert(await unmark().isVisible())
     assert(JSON.parse(await raw()).entries[0].publishedAt)
-    assert(await page.getByText(/Déjà publié ·/).isVisible())
-    await unmark().click(); await page.reload(); await open()
+    assert(await page.getByRole('region',{name:'Suivi de publication'}).getByText(/Publié le/).isVisible())
+    await unmark().click(); await mark().waitFor(); await page.reload(); await open()
     assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), [])
     assert(await mark().isVisible())
 
     const valid = '[ "older-profile", "older-profile" ]'
     await seed(valid)
     assert.equal(await raw(), valid, 'valid legacy bytes unchanged on mount')
-    await mark().click(); await page.reload(); await open()
+    await publish(); await unmark().waitFor(); await page.reload(); await open()
     assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), ['older-profile', 'older-profile', id])
     assert(await unmark().isVisible())
     await page.locator('.dca-filters > summary').click()
@@ -81,40 +83,39 @@ for (const width of [1440, 390]) {
     const partial = JSON.stringify([id, 42])
     await seed(partial)
     assert(await unmark().isVisible(), 'recognized entries remain usable for display')
-    await unmark().click()
+    assert(await unmark().isDisabled())
     assert.equal(await raw(), partial, 'displaying recognized entries never authorizes dropping invalid entries')
     // A transient read failure stays locked for this mount, even if the API recovers.
     await seed(valid, 'read')
     await page.evaluate(() => { window.usageFault = '' })
-    await mark().click()
+    assert(await mark().isDisabled())
     assert.equal(await raw(), valid)
     await page.getByRole('alert').filter({ hasText: 'historique' }).waitFor()
 
     await seed(valid, 'write')
-    await mark().click()
+    await publish()
     assert.equal(await raw(), valid)
     assert(await mark().isVisible())
     await page.getByRole('alert').filter({ hasText: 'historique' }).waitFor()
     await page.evaluate(() => { window.usageFault = '' })
-    await mark().click()
+    await publish(); await unmark().waitFor()
     assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), ['older-profile', 'older-profile', id])
 
     await seed(valid)
     const other = await context.newPage(); await other.goto(base)
     const newer = JSON.stringify(['another-tab', id])
     await other.evaluate(({ key, newer }) => localStorage.setItem(key, newer), { key, newer })
-    await mark().click()
-    assert.equal(await raw(), newer, 'observed cross-tab change is never overwritten')
-    await page.getByRole('alert').filter({ hasText: 'onglet' }).waitFor()
+    await unmark().waitFor()
+    assert.equal(await raw(), newer, 'observed cross-tab change refreshes current status without writing')
     await page.reload(); await open()
     assert(await unmark().isVisible())
-    await unmark().click()
+    await unmark().click(); await mark().waitFor()
     assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), ['another-tab'])
     await other.close()
 
     await seed(valid)
     await page.evaluate(key => localStorage.setItem(key, '{late corruption'), key)
-    await mark().click()
+    await publish()
     assert.equal(await raw(), '{late corruption', 'record is revalidated at the write boundary')
     assert.deepEqual(errors, [])
     console.log(`DCA usage ${width}px: legacy/absent/invalid/corrupt, denied read, quota/retry, immediate reload, filters and cross-tab conflict OK.`)

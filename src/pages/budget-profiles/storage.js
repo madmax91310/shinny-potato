@@ -42,6 +42,8 @@ function read() {
     return { value, readable: true, raw }
   } catch { return { value: empty(), readable: false, raw } }
 }
+// Observe status updates without authorizing a stale editor to overwrite other tabs.
+export const peekWorkspace = () => read()
 export function loadWorkspace() {
   const result = read(); expectedRaw = result.raw; return result
 }
