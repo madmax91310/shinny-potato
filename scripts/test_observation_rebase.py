@@ -233,8 +233,10 @@ else:
     def test_scpi_dca_allowance_does_not_qualify_monthly_acquisition(self):
         self.assert_refused('src/pages/dca-profiles/catalog.json','market')
 
-    def test_dca_view_allowance_does_not_extend_to_other_producers(self):
-        self.assert_refused('src/pages/dca-profiles/holdings-16.json','publication')
+    def test_dca_view_allowance_does_not_extend_to_unexamined_publication_views(self):
+        # holdings-16 was independently qualified by the actual scheduled
+        # race43727084478; the remaining SCPI allowance is not inherited.
+        self.assert_refused('src/pages/dca-profiles/holdings-31.json','publication')
 
     def economic_late_race(self, after, fail_validation=False, kind='market'):
         before=economic_fixture('before')
@@ -634,6 +636,27 @@ else:
         for path in ('scripts/collect_presentation_actors.py','src/data/automated-scpi.json','scripts/collect_scpi.py'):
             with self.subTest(path=path):self.assert_refused(path,'scpi')
 
+    def test_scpi_scheduled_nonbond_race_preserves_every_newer_output(self):
+        # Exact rejected paths in scheduled run43726539441, not a glob.
+        paths = ['scripts/source-snapshots/non-bond-monthly-active.json',
+                 'src/data/non-bond-etf-records.json', 'src/data/non-bond-levels.json',
+                 'src/data/non-bond-monthly-records.json', 'src/data/non-bond-qualified-records.json']
+        for path in paths:
+            self.f.advance_remote(path)
+        result = self.publish('scpi')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for path in paths:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:'+path), 'concurrent update')
+
+    def test_scpi_nonbond_allowance_still_requires_financial_validation(self):
+        self.assert_refused('src/data/non-bond-etf-records.json', 'scpi', validation='false')
+
+    def test_scpi_nonbond_source_configuration_and_neighbours_stay_protected(self):
+        for path in ('scripts/non-bond-monthly-sources.json',
+                     'src/data/non-bond-levels-other.json', 'scripts/collect_non_bond.py'):
+            with self.subTest(path=path):
+                self.assert_refused(path, 'scpi')
+
     def test_publication_active_inflation_and_inputs_remain_protected(self):
         self.assert_refused('src/data/inflation-monthly.js','publication')
 
@@ -1018,6 +1041,16 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
     def test_publication_collectors_do_not_read_actor_presentations(self):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
                            'refresh_anniversary_indices.py'], [ACTOR_OUTPUT])
+
+    def test_publication_acquisition_does_not_read_the_qualified_dca_views(self):
+        self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
+                           'refresh_anniversary_indices.py'], ['src/pages/dca-profiles/'], match_names=False)
+
+    def test_scpi_acquisition_does_not_read_nonbond_outputs(self):
+        self.python_graph(['collect_scpi.py'], [
+            'scripts/source-snapshots/non-bond-monthly-active.json',
+            'src/data/non-bond-etf-records.json', 'src/data/non-bond-levels.json',
+            'src/data/non-bond-monthly-records.json', 'src/data/non-bond-qualified-records.json'])
 
 if __name__ == '__main__':
     unittest.main()
