@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { EDITORIAL_WEEK, publicationLabel } from '../src/data/editorial-calendar.js'
 import { TWEETS } from '../src/pages/tweet-bank/data.js'
 import { SUNDAY_QUESTIONS, SUNDAY_THEMES } from '../src/pages/tweet-bank/sunday-questions.js'
 import { filterAndSortTweets, randomAvailableQuestion, isInCooldown, publicationBadge } from '../src/pages/tweet-bank/lib.js'
@@ -6,6 +7,11 @@ import { contentValidity, renderBankCopy } from '../src/pages/tweet-bank/validit
 import { normalizeText, groupTweetVariants } from '../src/lib/tweet-discovery.js'
 import { readBankRecord, saveBankRecord, DRAFTS_KEY } from '../src/pages/tweet-bank/storage.js'
 assert.equal(SUNDAY_QUESTIONS.length,36)
+const sunday=EDITORIAL_WEEK.find(day=>day.day==='Dimanche')
+assert(!sunday.morning.some(entry=>entry.path==='/banque-tweets'))
+assert(sunday.evening.some(entry=>entry.href==='/banque-tweets?category=Question%20dimanche'))
+assert(publicationLabel('/banque-tweets').includes('Dimanche soir'))
+assert(!publicationLabel('/banque-tweets').includes('Dimanche matin'))
 assert.equal(new Set(TWEETS.map(t=>String(t.id))).size,TWEETS.length)
 assert.equal(new Set(SUNDAY_QUESTIONS.map(t=>normalizeText(t.text))).size,36)
 for (const question of SUNDAY_QUESTIONS) {
