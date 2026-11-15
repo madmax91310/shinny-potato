@@ -16,6 +16,31 @@ def evaluate(state, context=CONTEXT, now=NOW, radar=None):
     return evaluate_monitoring(state, context, REGISTRY, now, {'errors': []} if radar is None else radar)
 
 class MonitoringTests(unittest.TestCase):
+    def test_recorded_composite_scope_closes_only_recording_and_verified_publication(self):
+        state=copy.deepcopy(STATE);workflow=state['workflows']['x.yml']
+        step={'job':'refresh','step':'Commit validated observations'}
+        workflow.update(runId=2,validationStatus='success',recordingStatus='success',publicationStatus='success',
+            publicationEvidence={'checkedAt':NOW,'kind':'explicit-public-artifact-check'},
+            stepResults={'refresh\nCommit validated observations':'success'},
+            validatedDataIds=['A'],recordedObservationIds=['A','B'],
+            dataFailures={'B':{'cause':'Primary HTTP 403','unverifiedRecovery':True}})
+        old={'workflow':'x.yml','runId':1,'completedAt':'2026-10-13T08:00:00Z','attemptedDataIds':['A','B']}
+        state['monitoring']={'active':{
+            'workflow:x.yml':{**old,'id':'workflow:x.yml','kind':'collection','failedSteps':[step]},
+            'publication:x.yml':{**old,'id':'publication:x.yml','kind':'publication'}}}
+        result=evaluate(state)
+        self.assertEqual({r['id']for r in result['resolved']},{'workflow:x.yml','publication:x.yml'})
+        self.assertIn('collection:x.yml:B',result['active'])
+        for key,value in [('recordedObservationIds',['A']),('recordingStatus','failure'),('validationStatus','failure')]:
+            bad=copy.deepcopy(state);bad['workflows']['x.yml'][key]=value
+            self.assertIn('workflow:x.yml',evaluate(bad)['active'])
+            self.assertIn('publication:x.yml',evaluate(bad)['active'])
+        bad=copy.deepcopy(state);bad['workflows']['x.yml']['publicationEvidence']=None
+        self.assertIn('publication:x.yml',evaluate(bad)['active'])
+        bad=copy.deepcopy(state);bad['monitoring']['active']['workflow:x.yml']['failedSteps']=[{'job':'refresh','step':'Collect observations'}]
+        bad['workflows']['x.yml']['stepResults']['refresh\nCollect observations']='success'
+        self.assertIn('workflow:x.yml',evaluate(bad)['active'],'Recorded data cannot prove supplier recovery')
+
     def test_manual_producer_has_no_deadline_but_keeps_source_failures(self):
         config = {'x.yml': {**REGISTRY['x.yml'], 'automatic': False}}
         state = copy.deepcopy(STATE)

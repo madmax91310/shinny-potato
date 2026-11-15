@@ -68,6 +68,39 @@ class EventCatchupTests(unittest.TestCase):
   self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':[retry]}),[])
 
 class StatusTests(unittest.TestCase):
+ def test_composite_recording_scope_does_not_certify_failed_supplier_branch(self):
+  from publish_automation_status import REGISTRY
+  workflow='update-exposure-expansion.yml';config=REGISTRY[workflow]
+  identifier='etf-exposure-expansion-TEST'
+  old={'workflows':{workflow:{'runId':1,'monitorVersion':3,'dataFailures':{identifier:{'cause':'Primary source HTTP 403','completedAt':'2026-10-01T10:00:00Z'}}}}}
+  evidence={'schema':'shares','file':'exposure-expansion.json','scopePlanVerified':True,'artifactId':123,'sha256':'a'*64,
+            'sourcePhaseCompletedAt':'2026-10-02T09:00:00Z',
+            'scope':{'requestedIds':[identifier],'runId':2,'attempt':1}}
+  report={'successes':[{'id':identifier,'sourceAttempted':True,'checkedAt':'2026-10-02T08:00:00Z'}], 'errors':[], '_reportEvidence':evidence}
+  jobs=[{'name':config['collectionJob'],'conclusion':'success','steps':[
+   *[{'name':n,'conclusion':'success'} for n in config['collectionSteps']],
+   *[{'name':n,'conclusion':'success'} for n in config['validationSteps']],
+   {'name':'Validate collected observations','conclusion':'success'},
+   {'name':'Commit validated observations','conclusion':'success'}]}]
+  def check(value=report,steps=jobs):return update_status(old,run(2,'success',workflow=workflow),steps,[value])['workflows'][workflow]
+  row=check()
+  self.assertEqual(row['recordedObservationIds'],[identifier])
+  self.assertEqual(row['validatedDataIds'],[])
+  self.assertNotIn(identifier,row['sourceChecks'])
+  self.assertTrue(row['dataFailures'][identifier]['unverifiedRecovery'])
+  for key in ('scopePlanVerified','artifactId','sha256','sourcePhaseCompletedAt'):
+   bad=copy.deepcopy(report);bad['_reportEvidence'].pop(key)
+   self.assertEqual(check(bad)['recordedObservationIds'],[],key)
+  for change in ('unselected','cache','scope-warning','wrong-attempt'):
+   bad=copy.deepcopy(report)
+   if change=='unselected':bad['_reportEvidence']['scope']['requestedIds']=[]
+   if change=='cache':bad['successes'][0]['sourceAttempted']=False
+   if change=='scope-warning':bad['_scopeWarning']='Missing plan'
+   if change=='wrong-attempt':bad['_reportEvidence']['scope']['attempt']=2
+   self.assertEqual(check(bad)['recordedObservationIds'],[],change)
+  failed=copy.deepcopy(jobs);failed[0]['steps'][-1]['conclusion']='failure'
+  self.assertEqual(check(steps=failed)['recordedObservationIds'],[])
+
  def test_compact_real_radar_artifact_keeps_all_results_and_envelope(self):
   root=pathlib.Path(__file__).resolve().parents[1]
   raw=gzip.decompress((root/'scripts/fixtures/radar-feed-envelope-41364143338.json.gz').read_bytes())

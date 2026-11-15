@@ -837,7 +837,12 @@ def update_status(state, run, jobs, reports=None):
     # confuse this repair of job evidence with a new supplier consultation.
     first_job_evidence = (not previous.get('stepResults') and
                           any(job.get('steps') for job in jobs))
-    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence:
+    # Re-read immutable receipts once when introducing recording-specific
+    # coverage. The original run/check dates remain unchanged.
+    first_recording_scope = ('recordedObservationIds' not in previous and any(
+        r.get('_reportEvidence', {}).get('schema') == 'shares'
+        and r.get('_reportEvidence', {}).get('scopePlanVerified') for r in reports))
+    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence and not first_recording_scope:
         return merge_proof_retry(result,run,reports)
     if stamp < old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
@@ -1030,6 +1035,19 @@ def update_status(state, run, jobs, reports=None):
         'validatedDataIds':sorted({r['id']for p in reports for r in p.get('successes',[])if not technical_proof(r['id'])
             and source_checks.get(r['id'],{}).get('runId')==run['id']and source_checks.get(r['id'],{}).get('attempt')==run.get('run_attempt',1)
             and(timestamp(source_checks[r['id']].get('checkedAt'))or source_checks[r['id']].get('verifiedInAttempt'))})if validation_status=='success'and recording_status=='success'else[],
+        # A composite observation can be validated and recorded while an older
+        # failure of one supplier branch still lacks its own recovery proof.
+        # This scope proves recording only; it must never renew sourceChecks or
+        # close dataFailures. Require the independent input plan and artifact.
+        'recordedObservationIds': sorted({item['id'] for report in reports
+            if not report.get('_scopeWarning')
+            and (evidence := report.get('_reportEvidence', {})).get('schema') == 'shares'
+            and evidence.get('scopePlanVerified') and evidence.get('artifactId') and evidence.get('sha256')
+            and timestamp(evidence.get('sourcePhaseCompletedAt'))
+            for item in report.get('successes', [])
+            if not technical_proof(item['id']) and item.get('sourceAttempted') is True
+            and item['id'] in (evidence.get('scope') or {}).get('requestedIds', [])
+            }) if validation_status == 'success' and recording_status == 'success' else [],
         'legacyReportCoverage':[r['_legacyReportCoverage']for r in reports if r.get('_legacyReportCoverage')],
         'reportQualifications': qualifications, 'reportQualificationHistory':qualification_history, 'validationChecks':validation_checks, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
     entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks, reportResultHistory=result_history)
