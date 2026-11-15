@@ -4,7 +4,7 @@ import { contentValidity, renderBankCopy, bankToday, reviewPolicy } from './vali
 import { forwardRef, lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { TWEETS as ARCHIVED_TWEETS, MONTHS, CATEGORIES, FORMATS, GOLD_CATEGORIES, COOLDOWN_DAYS } from './data'
-import { filterAndSortTweets, countAvailable, publicationBadge, todayStr } from './lib'
+import { filterAndSortTweets, countAvailable, publicationBadge, todayStr, isInCooldown } from './lib'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -103,11 +103,13 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
   const [copyLabel, setCopyLabel] = useState('📋 Copier')
   const badge = publicationBadge(lastPublished, today)
   const isQuestion = tweet.category === 'Question dimanche'
+  const questionResting = isQuestion && isInCooldown(lastPublished, today)
   const validity = contentValidity(tweet, draft, today)
   const text = draft?.text ?? tweet.text
   const updateDraft = patch => onDraftChange(tweet.id, { ...draft, text, ...patch, checkedAt: null, verifiedText: null, verifiedAsOf: null })
 
   async function handleCopy(override) {
+    if (isQuestion && isInCooldown(lastPublished)) return
     if (!contentValidity(tweet, draft).ready) return
     const copyText = override ?? renderBankCopy(tweet, draft)
     let copied = false
@@ -194,9 +196,10 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
         </li>)}</ul>
       </details>}
 
-      {manualCopy && <label>Texte complet à copier <textarea aria-label="Copie manuelle avec date de référence" value={manualCopy} readOnly rows={6} onFocus={event => event.target.select()} /></label>}
+      {questionResting && <p role="status">Cette question est encore au repos. La copie sera disponible après {COOLDOWN_DAYS} jours depuis sa dernière publication.</p>}
+      {manualCopy && !questionResting && <label>Texte complet à copier <textarea aria-label="Copie manuelle avec date de référence" value={manualCopy} readOnly rows={6} onFocus={event => event.target.select()} /></label>}
       <div className="tb-tweet-actions">
-        <Button type="button" onClick={() => handleCopy()} disabled={!validity.ready}>
+        <Button type="button" onClick={() => handleCopy()} disabled={!validity.ready || questionResting}>
           {copyLabel}
         </Button>
         {isQuestion ? <label className="tb-published"><input type="checkbox" checked={Boolean(lastPublished)} onChange={event => event.target.checked ? onMarkToday(tweet.id) : onClearDate(tweet.id)} /> Publié</label> : <Button type="button" variant="secondary" disabled={!validity.ready} onClick={() => onMarkToday(tweet.id)}>
