@@ -1,17 +1,22 @@
 import FX from './monthly-fx.json' with { type: 'json' }
 import { fxRate } from '../lib/fx-rate.js'
 export const CALENDAR_FX_YEARS = Object.fromEntries(Object.entries(FX.months).filter(([month]) => month.endsWith('-12')).map(([month,row]) => [month.slice(0,4),row]))
+const yearEndDates = new Map()
 
 // ECB references exclude TARGET closing days, including the two exceptional
 // December closures documented by collect_annual_fx.py. Use UTC in every locale.
 export function yearEndReferenceDate(year) {
   if (!Number.isInteger(Number(year)) || Number(year) < 1999) return null
-  const date = new Date(Date.UTC(Number(year), 11, 31))
+  year = Number(year)
+  if (yearEndDates.has(year)) return yearEndDates.get(year)
+  const date = new Date(Date.UTC(year, 11, 31))
   while ([0, 6].includes(date.getUTCDay()) || [25, 26].includes(date.getUTCDate())
     || ([1999, 2001].includes(Number(year)) && date.getUTCDate() === 31)) {
     date.setUTCDate(date.getUTCDate() - 1)
   }
-  return date.toISOString().slice(0, 10)
+  const result = date.toISOString().slice(0, 10)
+  yearEndDates.set(year, result)
+  return result
 }
 
 export function calendarRate(year, currency, fx = null) {
