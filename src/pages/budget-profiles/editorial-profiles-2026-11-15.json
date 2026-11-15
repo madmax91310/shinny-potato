@@ -1549,7 +1549,8 @@
           "24 ans, emploi au Luxembourg, résidence principale achetée en couple en Belgique ; salaire 4 400 €, titres-restaurant 200 €, bonus annuel variable ; stocks 10 000 €, 3 000 €, 6 500 € ; versements 450/267/200/300/100 ; crédit auto à 4 %."
         ],
         "createdFields": [
-          "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge."
+          "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge.",
+          "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte."
         ],
         "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
         "originalSourcePreserved": true,
@@ -1559,7 +1560,7 @@
         "coverage": {
           "housing": "personal-share",
           "food": "cash-after-meal-vouchers",
-          "transport": "listed",
+          "transport": "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte.",
           "health": "listed",
           "insurance": "grouped",
           "tax": "source-net-no-new-tax-claim",
@@ -1570,9 +1571,9 @@
         },
         "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
         "expectedIncome": 4400.0,
-        "expectedExpenses": 2500.0,
+        "expectedExpenses": 2600.0,
         "expectedTransfers": 1317.0,
-        "expectedBalance": 583.0
+        "expectedBalance": 483.0
       },
       "editorialCreation": {
         "reviewedAt": "2026-11-15",
@@ -1619,8 +1620,8 @@
           "category": "food"
         },
         {
-          "label": "Voiture : assurance et entretien",
-          "amount": 160,
+          "label": "Carburant et frais auto",
+          "amount": 260,
           "category": "transport"
         },
         {
@@ -1747,7 +1748,8 @@
           "basis": "editorial-preparation",
           "reviewedAt": "2026-11-15",
           "created": [
-            "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge."
+            "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge.",
+            "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte."
           ],
           "note": "Personnage créé : les compléments ne sont pas attribués à la source."
         }
@@ -1766,7 +1768,8 @@
         "24 ans, emploi au Luxembourg, résidence principale achetée en couple en Belgique ; salaire 4 400 €, titres-restaurant 200 €, bonus annuel variable ; stocks 10 000 €, 3 000 €, 6 500 € ; versements 450/267/200/300/100 ; crédit auto à 4 %."
       ],
       "created": [
-        "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge."
+        "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge.",
+        "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte."
       ],
       "sourceConsultationClaim": false,
       "sourceCheckedAt": "2026-11-15",
@@ -1780,7 +1783,7 @@
       "coherence": {
         "housing": "personal-share",
         "food": "cash-after-meal-vouchers",
-        "transport": "listed",
+        "transport": "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte.",
         "health": "listed",
         "insurance": "grouped",
         "tax": "source-net-no-new-tax-claim",
@@ -1793,10 +1796,10 @@
     },
     "expectedCents": {
       "income": 440000,
-      "expenses": 250000,
+      "expenses": 260000,
       "savings": 131700,
-      "available": 190000,
-      "balance": 58300
+      "available": 180000,
+      "balance": 48300
     }
   },
   {
