@@ -950,7 +950,11 @@ def update_status(state, run, jobs, reports=None):
             retired_failures[identifier]={**data_failures.pop(identifier),'retiredAt':run['updated_at'],'retirementReason':RETIREMENT_REASON}
     failures = []
     for job in jobs:
-        if job.get('conclusion') not in ('failure', 'timed_out'):
+        job_only_steps = REGISTRY[workflow].get('jobOnlyCollectionSteps', [])
+        continued_source_failure = (job.get('name') == REGISTRY[workflow]['collectionJob'] and any(
+            step.get('name') in job_only_steps and step.get('conclusion') in ('failure','timed_out','cancelled')
+            for step in job.get('steps', [])))
+        if job.get('conclusion') not in ('failure', 'timed_out') and not continued_source_failure:
             continue
         named = [a.get('title', '')[len('Échec '):] + ' — ' + str(a.get('message', ''))[:200]
                  for a in job.get('annotations', []) if str(a.get('title', '')).startswith('Échec ')]

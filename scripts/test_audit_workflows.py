@@ -22,6 +22,7 @@ class WorkflowContracts(unittest.TestCase):
             command = step.split('        run: ',1)[1].strip()
             self.assertEqual(command, 'python scripts/'+script+' --apply')
             self.assertIn("steps."+step_id+".outcome == 'failure'",workflow.split('    steps:',1)[0])
+            self.assertIn('Collect observations: '+step_id,REGISTRY['collect-etf-pilot.yml']['collectionSteps'])
             commands.append(command)
         # Each real command has a separate job step. A failed ECB attempt must
         # remain failed while the independent native-EUR source is still tried.
@@ -33,6 +34,24 @@ class WorkflowContracts(unittest.TestCase):
             statuses.append(run.returncode)
         self.assertEqual(statuses,[1,0])
         self.assertEqual(run.stdout,'scripts/collect_performance_currency.py')
+
+    def test_both_currency_steps_report_their_failure_independently(self):
+        from publish_automation_status import update_status
+        config=REGISTRY['collect-etf-pilot.yml']
+        for failed_step in ['Collect observations: fx','Collect observations: performance_currency']:
+            run={'id':1,'path':'.github/workflows/collect-etf-pilot.yml','head_branch':'master','event':'schedule','status':'completed','conclusion':'failure','updated_at':'2026-11-15T09:00:00Z','html_url':'https://github.com/test/repo/actions/runs/1'}
+            jobs=[{'name':config['collectionJob'],'conclusion':'success','steps':[
+                {'name':name,'conclusion':'failure' if name==failed_step else 'success'} for name in config['collectionSteps']]}]
+            row=update_status({},run,jobs,[])['workflows']['collect-etf-pilot.yml']
+            self.assertEqual(row['collectionStatus'],'failure')
+            self.assertIn(failed_step,[x['step']for x in row['failures']])
+            from automation_monitoring import evaluate_monitoring
+            row['dataFailures']['etf-additional-observation-OTHER']={'cause':'Other source still blocked'}
+            state={'workflows':{'collect-etf-pilot.yml':row}}
+            context={'schemaVersion':1,'alerts':[],'entities':[]}
+            incidents=evaluate_monitoring(state,context,{'collect-etf-pilot.yml':config},run['updated_at'],{'errors':[]})['active']
+            self.assertIn(failed_step,incidents['workflow:collect-etf-pilot.yml']['cause'])
+
 
     def test_python_installations_use_pinned_installer_and_shared_constraints(self):
         for path in (ROOT/'.github/workflows').glob('*.yml'):

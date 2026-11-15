@@ -158,7 +158,8 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             add(f'checks:{workflow}', {**base, 'kind': 'checks', 'field': 'Validation des données',
                 'failedSteps': validation_failures, 'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in validation_failures) or 'Validation en échec ; consulter le journal.'})
         other_failures = [f for f in row.get('failures', []) if f['step'] not in validation_steps
-                          and f['step'] not in config.get('collectionSteps', [])
+                          and (f['step'] not in config.get('collectionSteps', [])
+                               or f['step'] in config.get('jobOnlyCollectionSteps', []))
                           and f['job'] not in ('report-failures', 'report-validation-failures')
                           and not f['job'].startswith('deploy /')]
         if config.get('controlOnly')and validation_failed:other_failures=[]
