@@ -12,14 +12,19 @@ const workflows=Object.fromEntries(Object.entries(registry).map(([id,c])=>[id,{n
 const incidents=Object.fromEntries(Array.from({length:181},(_,i)=>{const id='fixture:'+i;return[id,{id,workflow:'fixture.yml',runId:1,attempt:1,failedSteps:[{job:'collect',step:'Read shared response'}],name:'Source-'+String(i).padStart(3,'0'),kind:'collection',dataId:'test-'+i,field:'Champ de recette',cause:'Échec de recette isolée',tools:['Outil de recette'],asOf:'2026-09',lastSuccessAt:'2026-10-22T10:00:00Z',attemptedAt:'2026-10-24T08:00:00Z',runUrl:'https://github.com/test/repo/actions/runs/1',sourceUrls:['https://example.com/source'],observations:[{cause:'Panne précédente',asOf:'2026-09'}]}]}))
 const proofScope='a'.repeat(64);incidents['fixture:180'].evidence={file:'fixture.json',sha256:'b'.repeat(64),scopeRef:proofScope,scopeSummary:{expectedIdsCount:1}}
 let snapshot={schemaVersion:1,reportScopeSchemaVersion:1,reportScopes:{[proofScope]:{kind:'targeted',expectedIds:['test-180'],requestedIds:['test-180']}},workflows,monitoring:{schemaVersion:1,checkedAt:fresh(),active:incidents,resolved:[{id:'archive-fixture',name:'Archive sans preuve isolée',field:'Ancienne donnée',cause:'Ancien échec sans preuve de réparation',resolvedAt:'2026-10-24T07:00:00Z'}]}},unavailable=false,badCoverage=false,badProjection=false
-let browser
+let browser,monitorConclusion='success'
+const monitorPages=[]
 try{
  for(let n=0;n<100;n++){try{if((await fetch(base+'/',{signal:AbortSignal.timeout(1000)})).ok)break}catch{}if(n===99)throw Error('Preview unavailable');await new Promise(r=>setTimeout(r,200))}
  browser=await chromium.launch({headless:true})
  const context=await browser.newContext({acceptDownloads:true}),page=await context.newPage(),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
  await page.route('**/automation-status/automation-status.json',r=>unavailable?r.fulfill({status:503,body:'unavailable'}):r.fulfill({json:snapshot}))
- await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>r.fulfill({json:{workflow_runs:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:'success'}]}}))
+ await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>{
+  const url=new URL(r.request().url());monitorPages.push(url.searchParams.get('page')??'1')
+  assert.equal(url.searchParams.get('per_page'),'100')
+  return r.fulfill({json:{workflow_runs:url.searchParams.get('page')==='2'?[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:monitorConclusion,html_url:'https://github.com/test/repo/actions/runs/1'}]:Array.from({length:100},(_,i)=>({id:200-i,head_branch:'master',event:'workflow_run',status:'completed',conclusion:'skipped'}))}})
+ })
  await page.route('**/data/data-review-inbox.json',r=>badProjection?r.fulfill({json:{...JSON.parse(fs.readFileSync('dist/data/data-review-inbox.json')),inventoryBlobSha:'b'.repeat(40)}}):r.continue())
  await page.route('**/data/asset-field-coverage.json',r=>badCoverage?r.fulfill({json:{schemaVersion:99}}):r.continue())
  for(const width of [1440,390]){
@@ -53,6 +58,11 @@ try{
  unavailable=false;badCoverage=false;snapshot={schemaVersion:1,workflows,monitoring:{schemaVersion:1,checkedAt:fresh(),active:{},resolved:[]}};await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'});await page.getByRole('region',{name:'Écarts financiers à expliquer'}).waitFor();assert.equal(await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('alert').count(),0)
  badProjection=true;await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'});await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('alert').filter({hasText:'Projection des incidents différente'}).waitFor();await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('searchbox',{name:'Recherche globale des problèmes'}).fill('Projection des incidents différente');await page.getByRole('region',{name:'Tous les problèmes de données'}).locator('article').first().waitFor()
  badProjection=false;await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'});await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('searchbox',{name:'Recherche globale des problèmes'}).fill('Projection des incidents différente');assert.equal(await page.getByRole('region',{name:'Tous les problèmes de données'}).locator('article').count(),0)
+ monitorConclusion='failure';await page.reload({waitUntil:'networkidle'})
+ await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('alert').filter({hasText:'Dernière exécution de la surveillance en échec'}).waitFor()
+ monitorConclusion='success';await page.reload({waitUntil:'networkidle'})
+ assert.equal(await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('alert').count(),0)
+ assert(monitorPages.includes('2'),'Read past a full page of skipped workflow events')
  assert.deepEqual(errors,[])
  fs.writeFileSync(folder+'/results.json',JSON.stringify({desktop:true,mobile:true,all181Accessible:true,diagnosticFallback:true,allFilteredExported:true,sharedProofScopesExported:true,monitorFaults:['absent','invalid','stale','network'],invalidCoverage:true,staleConsumerProjection:true,recovery:true,pageErrors:errors},null,2)+'\n')
  console.log('Review product: desktop/mobile, exhaustive pagination/search/export/copy, monitor faults, isolated report failure and recovery verified.')

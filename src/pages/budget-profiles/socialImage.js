@@ -214,3 +214,40 @@ export async function renderSocialBudgetImages(profile) {
   })
 }
 export async function renderSocialBudgetImage(profile){const pages=await renderSocialBudgetImages(profile);pages[0].budgetPages=pages;return pages[0]}
+
+// A standalone overview is not page one of a truncated ledger. All four totals
+// use the same analysis as the detailed export; the complete rows remain there.
+export async function renderBudgetOverview(profile) {
+  if(document.fonts?.ready)await document.fonts.ready
+  const a=analyzeBudget(profile)
+  if(a.errors.length)throw new Error(a.errors.join(' '))
+  const p=budgetPublicPresentation(profile),canvas=document.createElement('canvas')
+  Object.assign(canvas,SOCIAL_SIZE)
+  const ctx=canvas.getContext('2d'),money=n=>euro(n,profile.currency)
+  ctx.fillStyle=C.background;ctx.fillRect(0,0,1080,1350)
+  draw(ctx,'LE BUDGET DE',M,26,30,C.cream,800)
+  const name=p.name+(profile.age&&!p.name.includes(' et ')&&!p.name.includes(String(profile.age))?`, ${profile.age} ans`:'')
+  const title=wrap(ctx,name,INNER,62,800)
+  let y=78
+  for(const line of title){draw(ctx,line,M,y,62,C.cream,800);y+=74}
+  const basis=budgetPublicBasis(profile,p.basis)||'Montants mensuels'
+  const context=[p.job,p.household,p.location,budgetQualification(profile),basis].filter(Boolean).join(' · ')
+  for(const line of wrap(ctx,context,INNER,32,500)){draw(ctx,line,M,y,32,C.muted,500);y+=40}
+  const rows=[['REVENUS',a.income,C.income],['DÉPENSES',a.expenses,C.expense],['VERSEMENTS',a.savings,C.savings],
+    [a.balance<0?'DÉFICIT APRÈS VERSEMENTS':'RESTE APRÈS VERSEMENTS',Math.abs(a.balance),a.balance<0?C.deficit:C.balance]]
+  const top=Math.max(350,y+20),height=165
+  if(top+rows.length*height>1200)throw new Error('Le titre est trop long pour l’image principale. Utilise l’export détaillé ou raccourcis le nom.')
+  for(const [i,[label,value,color]]of rows.entries()){
+    const yy=top+i*height
+    box(ctx,M,yy,INNER,height-18,color)
+    draw(ctx,label,M+24,yy+20,34,C.ink,800)
+    const amount=(profile.approximate?'≈ ':'')+money(value)
+    type(ctx,64,800)
+    if(measure(ctx,amount).width>INNER-48)throw new Error('Le montant est trop long pour l’image principale. Utilise l’export détaillé.')
+    draw(ctx,amount,M+24,yy+72,64,C.ink,800)
+  }
+  draw(ctx,'Vue d’ensemble · postes et projets dans l’export complet',540,1240,30,C.cream,500,'center')
+  draw(ctx,'Épargnant Libre',540,1300,26,C.cream,500,'center')
+  canvas.budgetFormat='overview';canvas.budgetTotals={...a}
+  return canvas
+}

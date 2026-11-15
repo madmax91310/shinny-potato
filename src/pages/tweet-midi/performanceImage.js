@@ -1,9 +1,9 @@
-import { formatPerformancePct } from './performanceFormat.js'
+import { formatPerformancePct, cumulativePerformance } from './performanceFormat.js'
 import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { getPerformanceEntries, MODES } from './engines/performance.js'
 
 const W = 1600, INK = '#062354', BLUE = '#0846cf', PAPER = '#ffffff', RED = '#a7203d'
-export const cumulativePerformance = rows => (rows.reduce((acc, row) => acc * (1 + row.pct / 100), 1) - 1) * 100
+export { cumulativePerformance }
 const font = (size, weight = 700) => `${weight} ${size}px Arial, sans-serif`
 function text(ctx, value, x, y, size, { width = 1400, color = INK, align = 'center', weight = 700 } = {}) {
   while (size > 22) {
@@ -27,7 +27,7 @@ function wrap(ctx, value, size, width) {
 }
 function titleLayout(ctx, value, width, compact) {
   // Keep ordinary names on one line; wrap long exact share names without ellipses.
-  for (const maxLines of [1, 2]) {
+  for (const maxLines of (compact ? [1, 2, 3, 4] : [1, 2])) {
     for (let size = compact ? 70 : 160; size >= (maxLines === 1 ? (compact ? 44 : 85) : 30); size -= 2) {
       const lines = wrap(ctx, value, size, width)
       if (lines.length <= maxLines && lines.every(line => ctx.measureText(line).width <= width)) return { lines, size }

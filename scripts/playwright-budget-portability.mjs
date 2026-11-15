@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { localToday } from '../src/lib/publication-date.js'
+import { localToday } from '../src/pages/budget-profiles/publication.js'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
@@ -44,9 +44,9 @@ try {
   await page.getByLabel('Date de publication',{exact:true}).fill('2026-10-12')
   await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect(publication).toBeChecked();await expect(page.getByText('Publié le 12/10/2026',{exact:true})).toBeVisible()
   await expect(page.getByLabel('À publier prochainement',{exact:true})).toBeChecked()
-  await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await page.getByLabel('Date de publication',{exact:true}).fill('2026-10-13');await page.getByRole('button',{name:'Enregistrer la date',exact:true}).click()
-  await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible();await page.reload();await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom)
-  await publication.click();await expect(publication).not.toBeChecked();await expect(publication).not.toBeChecked();await publication.click();await page.getByLabel('Date de publication',{exact:true}).fill('2026-10-13');await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible()
+  await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await page.getByLabel('Date de publication',{exact:true}).fill('2026-10-13');await page.getByRole('button',{name:'Enregistrer la date',exact:true}).click();await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible()
+  await page.reload();await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom)
+  await publication.click();await expect(publication).not.toBeChecked();await page.getByRole('button',{name:'Marquer publié',exact:true}).click();await page.getByLabel('Date de publication',{exact:true}).fill('2026-10-13');await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible()
   await publication.click();await expect(publication).not.toBeChecked();await page.reload();await expect(publication).not.toBeChecked()
   await page.getByText('Brouillons et transfert entre appareils',{exact:true}).click()
   const promise=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click()
@@ -115,5 +115,5 @@ try {
  const blockedBackup=JSON.parse(readFileSync(await(await blockedExport).path(),'utf8'))
  assert.equal(blockedBackup.workspace.drafts.find(d=>d.profile.id===p.id).text,'Texte conservé même sans stockage')
  await blocked.close()
- console.log('Budget browser portability: 1440/390/320 px, combined filters, restored personal drafts, independent queued/publication/contributor statuses, local date confirmation/edit/removal and explicit remarking, v2 unknown dates, v3 dated export, manual transfer, read-only preview, both conflict choices, stale import rejection, invalid version and archived corrupt bytes passed.')
+ console.log('Budget browser portability: 1440/390/320 px, combined filters, restored personal drafts, independent queued/publication/contributor statuses, local date confirmation/edit/removal/restoration, v2 unknown dates, v3 dated export, manual transfer, read-only preview, both conflict choices, stale import rejection, invalid version and archived corrupt bytes passed.')
 }finally{await browser.close();server?.kill()}

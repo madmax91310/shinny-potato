@@ -1,4 +1,4 @@
-import { renderSocialBudgetImage, renderSocialBudgetImages } from './socialImage.js'
+import { renderSocialBudgetImage, renderSocialBudgetImages, renderBudgetOverview } from './socialImage.js'
 import { budgetRowSymbol, budgetQualification, budgetPublicBasis } from './presentation.js'
 import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
 
@@ -112,6 +112,7 @@ function card(ctx, p, y) {
   }
 }
 export async function renderBudgetImage(profile, mode = 'social') {
+  if (mode === 'overview') return renderBudgetOverview(profile)
   if (mode === 'social') {
     return renderSocialBudgetImage(profile)
   }

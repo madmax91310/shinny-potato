@@ -6,8 +6,10 @@ import hashlib
 import json
 from pathlib import Path
 import unittest
+from urllib.error import HTTPError
+from unittest.mock import patch
 from collect_official_share_history import collect_one, configurations
-from collect_product_calendars import abtc_calendar, issuer_json
+from collect_product_calendars import abtc_calendar, issuer_json, acquire_abtc_calendar, collect_abtc_product_fields
 from twentyone_shares_listing import URL, SECONDARY_URL, decode_document, listing_rows
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -54,6 +56,75 @@ class SecondaryOrigin(unittest.TestCase):
             if defect=='double-split':next(r for r in h['data']if r['valuation_date']=='2021-04-09')['nav_per_share']/=14
             with self.subTest(defect=defect),self.assertRaises(ValueError):abtc_calendar(p,h,m,{'isin':'CH0454664001','currency':'USD'},NOW,'secondary')
 
+    def test_bounded_transport_fallback_reacquires_coherent_bundle(self):
+        secondary='https://api.secondary.21shares.com'
+        primary='https://api.primary.21shares.com'
+        share={'isin':'CH0454664001','currency':'USD','calendarApiBase':secondary}
+        calls=[]
+        def fetch(url):
+            calls.append(url)
+            if url == secondary+'/api/product_valuation_history/ABTC':
+                raise HTTPError(url,410,'Gone',None,None)
+            return self.bodies[url.replace(primary,secondary)]
+        result,payloads,urls=acquire_abtc_calendar(share,NOW,fetch)
+        self.assertEqual(len(calls),5)
+        self.assertEqual(urls,[primary+'/api/'+name+'/ABTC' for name in
+            ('product_details','product_valuation_history','product_performance_metrics')])
+        self.assertEqual(calls[-3:],urls)
+        self.assertEqual(result['years']['2025'],-4.71)
+        self.assertEqual(result['sourceAttempts'][0]['status'],'failed')
+        self.assertEqual(result['sourceAttempts'][0]['url'],calls[1])
+        self.assertEqual([a['status']for a in result['sourceAttempts'][1:]],['validated']*3)
+        with patch('collect_product_calendars.download',side_effect=lambda url,**_:fetch(url)):
+            record=collect_abtc_product_fields(share,NOW)
+        self.assertEqual(record['performance']['years'],result['years'])
+        self.assertEqual(record['collectionErrors'][0]['field'],'performance-origin')
+        self.assertIn('aum',record)
+
+    def test_fallback_preserves_monthly_values_and_failed_route_proof(self):
+        primary='https://api.primary.21shares.com'
+        secondary='https://api.secondary.21shares.com'
+        def fetch(url):
+            if url.startswith(secondary):raise HTTPError(url,410,'Gone',None,None)
+            return self.bodies[url.replace(primary,secondary)]
+        fx=json.loads(gzip.decompress((FIX/'validated-monthly-fx.json.gz').read_bytes()))
+        kwargs=dict(document_fetch=fetch,fx_data=fx,text_fetch=lambda *_:
+            gzip.decompress((FIX/'current-ecb-90d.xml.gz').read_bytes()).decode())
+        first=collect_one(self.source,NOW,**kwargs)
+        second=collect_one(self.source,NOW,**kwargs)
+        self.assertEqual(first['points'],self.record()['points'])
+        self.assertEqual(first['points'],second['points'])
+        self.assertEqual(first['calendarProof']['sourceAttempts'][0]['status'],'failed')
+        self.assertTrue(all(url.startswith(primary)for url in first['calendarProof']['validationSources']))
+
+    def test_schema_identity_and_financial_failures_never_switch_origin(self):
+        secondary='https://api.secondary.21shares.com'
+        for defect in ('json','isin','double-split'):
+            calls=[]
+            def fetch(url):
+                calls.append(url)
+                self.assertTrue(url.startswith(secondary))
+                raw=self.bodies[url]
+                if defect=='json':return b'not JSON'
+                body=issuer_json(raw)
+                if defect=='isin' and '/product_details/'in url:body['data']['details']['isin']='wrong'
+                if defect=='double-split' and '/product_valuation_history/'in url:
+                    next(r for r in body['data']if r['valuation_date']=='2021-04-09')['nav_per_share']/=14
+                return json.dumps(body).encode()
+            with self.subTest(defect=defect),self.assertRaises(ValueError):
+                acquire_abtc_calendar({'isin':'CH0454664001','currency':'USD','calendarApiBase':secondary},NOW,fetch)
+            self.assertLessEqual(len(calls),3)
+
+    def test_both_routes_failed_are_bounded_and_not_successful(self):
+        calls=[]
+        def fetch(url):
+            calls.append(url);raise HTTPError(url,403,'Forbidden',None,None)
+        with self.assertRaises(OSError)as failure:
+            acquire_abtc_calendar({'isin':'CH0454664001','currency':'USD',
+                'calendarApiBase':'https://api.primary.21shares.com'},NOW,fetch)
+        self.assertEqual(len(calls),2)
+        for url in calls:self.assertIn(url,str(failure.exception))
+
     def test_secondary_listing_is_exact_paris_eur_not_usd_nav(self):
         raw=self.bodies[SECONDARY_URL];body=decode_document(raw,SECONDARY_URL,SECONDARY_URL)
         source={'isin':'CH0454664001','listings':[{'ticker':'ABTC','mic':'XPAR','exchange':'Euronext Paris','currency':'EUR'}]}
@@ -80,6 +151,10 @@ class SecondaryOrigin(unittest.TestCase):
         self.assertIn(SECONDARY_URL,metadata['urls']);self.assertNotIn(URL,metadata['urls'])
         hosts=json.loads((ROOT/'scripts/listing-source-hosts.json').read_text())['hosts']
         self.assertIn('api.primary.21shares.com',hosts);self.assertIn('api.secondary.21shares.com',hosts)
-        self.assertEqual(metadata['listings'][0]['sourceUrl'],URL) # Original dated evidence, not a fictional new consultation.
+        evidence=metadata['listings'][0]
+        self.assertIn(evidence['sourceUrl'],(URL,SECONDARY_URL))
+        self.assertEqual(evidence['evidenceId'],'CH0454664001-XPAR-ABTC-EUR')
+        self.assertEqual(len(evidence['sha256']),64)
+        dt.date.fromisoformat(evidence['checkedAt']) # Actual dated evidence may advance after a real directory collection.
 
 if __name__=='__main__':unittest.main()

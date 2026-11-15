@@ -1,3 +1,7 @@
+## 15 novembre — reprise bornée des origines officielles ABTC
+
+Branche `fix/abtc-qualified-origin-failover-20261115`, même suivi #881 : helper calendrier partagé, consommateur NAV mensuel, régressions ABTC et leurs trois commandes CI. Les PR #1298, #1253 et #1061 ne sont pas modifiées. Incident réel du producteur ETF43715089091 : historique secondaire HTTP410 ; page officielle déclare primaire et secondaire, bundle primaire qualifié localement. Le secondaire fonctionne à nouveau au contrôle suivant : panne intermittente, pas indisponibilité générale. Après erreur de transport uniquement, une tentative sur l'autre origine reprend les trois documents ensemble et applique les contrôles financiers existants. Aucune bascule sur erreur financière, aucun mélange de documents/cache, aucun double ajustement. Échec primaire conservé séparément ; collecte réelle GitHub et publication restent à vérifier. Les preuves du lot précédent bc4b7a73/données84597a39 sont conservées.
+
 ## Suite du même lot #881 — manifeste des nouveaux fichiers de données
 
 ## 14 novembre — enregistrement pendant les évolutions Budget

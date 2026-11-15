@@ -29,6 +29,11 @@ try{
  const drawContext={...ctx,fillText(){},fillRect(){},beginPath(){},roundRect(){},fill(){},save(){},translate(){},scale(){},stroke(){},restore(){}}
  globalThis.Path2D=class{};globalThis.document={createElement(){return{width:0,height:0,getContext:()=>drawContext}}}
  const {renderBudgetImages,renderBudgetImage}=await import('../src/pages/budget-profiles/image.js')
+ for(const profile of [...BUDGET_PROFILES,dense]) {
+  const before=JSON.stringify(profile),overview=await renderBudgetImages(profile,'overview')
+  assert.equal(overview.length,1);assert.deepEqual([overview[0].width,overview[0].height],[1080,1350])
+  assert.deepEqual(overview[0].budgetTotals,analyzeBudget(profile));assert.equal(JSON.stringify(profile),before)
+ }
  const pages=await renderBudgetImages(dense,'social');assert.equal(pages.length,plan.pages.length)
  for(const [i,c]of pages.entries()){assert.deepEqual([c.width,c.height],[1080,1350]);assert.equal(c.budgetFormat,'social');assert.equal(c.budgetPage,i+1);assert.equal(c.budgetPageCount,pages.length)}
  const first=await renderBudgetImage(dense);assert.equal(first.width,1080);assert(first.budgetPages.length>1)
