@@ -166,6 +166,7 @@ function SnapshotEvidence({ s }) {
 }
 
 export default function App() {
+  const editorRef = useRef(null);
   const [db, setDb] = useState(load),
     [p, setP] = useState(null),
     [s, setS] = useState(null),
@@ -209,10 +210,14 @@ export default function App() {
     setHistory(null);
   }
   function open(next) {
+    setMessage("");
     setP(structuredClone(next));
     setS(null);
     setSelected(next.draft?.snapshotId || next.snapshots.at(-1)?.id || "");
     setHistory(null);
+    requestAnimationFrame(() =>
+      editorRef.current?.scrollIntoView({ block: "start" }),
+    );
   }
   const snap = p?.snapshots.find((x) => x.id === selected),
     errors = p ? issues(p, snap) : [],
@@ -361,9 +366,14 @@ export default function App() {
           })}
       </div>
       {p && (
-        <section>
+        <section
+          ref={editorRef}
+          style={{ scrollMarginTop: 120 }}
+          onChange={() => setMessage("")}
+        >
           <h2>{nameOf(p)}</h2>
           <button onClick={() => store()}>Sauvegarder</button>
+          {(message || db.error) && <p>{db.error || message}</p>}
           <button
             onClick={() => {
               if (

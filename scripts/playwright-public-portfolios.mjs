@@ -1,3 +1,4 @@
+import { expect } from "playwright/test";
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import {
@@ -25,6 +26,9 @@ const base = process.env.BASE_URL || staticBase;
 await page.goto(base + "portefeuilles-publics");
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
+await expect(
+  page.getByRole("button", { name: "Sauvegarder", exact: true }),
+).toBeInViewport();
 await page.getByLabel("URL du portefeuille", { exact: true }).fill("https://");
 assert.equal(
   await page
@@ -156,6 +160,10 @@ await page.screenshot({
 assert(
   await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
 );
+await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
+await expect(
+  page.getByRole("button", { name: "Sauvegarder", exact: true }),
+).toBeInViewport();
 for (const route of ["le-dca-de", "le-budget-de", "banque-tweets"]) {
   await page.goto(base + "" + route);
   await page.locator("h1").first().waitFor({ timeout: 60000 });
