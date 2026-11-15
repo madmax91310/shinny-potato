@@ -108,6 +108,9 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   // (tous formats)" sans que l'utilisateur l'ait choisi explicitement.
   const [niveauActuel, setNiveauActuel] = useState("");
   const [niveauActuelB, setNiveauActuelB] = useState("");
+  const renderPublicationImage = useCallback(() => runtime.images
+    ? runtime.images.render(publicationItem)
+    : renderFormatImage(publicationItem, niveauActuel, niveauActuelB), [runtime, publicationItem, niveauActuel, niveauActuelB]);
   // Pouvoir d'achat : les 4 paramètres de sélection manuelle, propres à ce format (pas de sujet/
   // secondaire ici, cf. lib.js) — persistent d'une génération à l'autre comme le reste des contrôles
   // de l'app, y compris à travers un changement de format puis un retour à celui-ci.
@@ -260,7 +263,9 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   async function handleImageDownload() {
     setImageState('loading');
     try {
-      await downloadFormatImage(publicationItem, niveauActuel, niveauActuelB);
+      await (runtime.images
+        ? runtime.images.download(publicationItem)
+        : downloadFormatImage(publicationItem, niveauActuel, niveauActuelB));
       setImageState('idle');
     } catch {
       setImageState('error'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error');
@@ -290,7 +295,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
         subtitle={description ?? "Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."}
       />
 
-      <ToolWorkspace renderImage={current.format === FORMATS.DILEMME ? undefined : () => renderFormatImage(publicationItem, niveauActuel, niveauActuelB)} imageDisabled={copyDisabled} imageAlt={`Visuel ${title ?? "Tweet Midi"}`}>
+      <ToolWorkspace renderImage={current.format === FORMATS.DILEMME ? undefined : renderPublicationImage} imageDisabled={copyDisabled} imageAlt={`Visuel ${title ?? "Tweet Midi"}`}>
         <div className="tool-settings">
           <Card className="flex flex-col gap-4 p-5">
             {initialFormat === FORMATS.ALEATOIRE && <div>
