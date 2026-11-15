@@ -645,3 +645,26 @@ Même lot : le producteur GitHub43617819119 rétablit WDEF mais révèle le mêm
 Même correctif : le producteur Bitcoin dédié n'avait aucune tentative après le8. Ajout des mêmes reprises espacées14/18/22/26/30, à son horaire06:40 et sous son verrou existant. Aucun remplacement de convention ni modification de l'observation ; la reprise manuelle/planifiée reste distinguée.
 
 15 novembre — dépendance de publication du même suivi #881, branche `fix/budget-png-readiness-20261115` : propriété limitée à `scripts/playwright-budget-profiles.mjs` et cette note, après #1312 fusionnée. Le run production #1306 43711791374 échoue en mobile sur l’attente implicite de 5 s du bouton PNG ; reproduction locale sur master dd9ce9ce. Diagnostic sans changement applicatif : le rendu reste explicitement en préparation à 5 s puis devient disponible après 7 112 ms, et les 38 profils passent ensuite leurs contrôles de PNG exact, libellés, montants, clipboard et stockage. Attendre explicitement `aria-busy=false` (borne 30 s pour la tâche asynchrone), puis conserver l’assertion bouton activé et tous les contrôles financiers/visuels. Aucun changement du moteur, des maquettes, des valeurs ou des seuils financiers ; le test doit toujours échouer si le rendu ne termine pas ou termine en erreur. Les travaux Budget et la validation protégée ne sont ni annulés ni réécrits.
+
+### 15 novembre 2026 — reprise bornée des livres iShares vides
+
+Automatisation des données possède cette correction, dans le suivi unique #881 :
+`collect_etf_pilot.py`, `collect_dca_complete_holdings.py`, leurs deux recettes de
+régression et le déclenchement commun de `update-qualified-exposures.yml`.
+Aucun lecteur/réducteur de supervision ni fichier des PR #1061/#1253 n'est modifié.
+
+Les observations ordinaires 43731952399 et 43736125412 montrent des composants
+holdings présents dont date et colonnes sont entièrement nulles. La reprise
+existante du livre complet ne reconnaissait que l'absence du composant. La même
+qualification précise est partagée avec le pilote : identité ISIN/produit/devise
+vérifiée, une seconde acquisition de la même URL après deux secondes, réponse
+entièrement remplacée puis contrôles financiers ordinaires. Les deux tentatives
+conservent leurs empreintes. Deux réponses vides restent un échec explicite du
+livre ; les autres champs valides et les anciens livres datés sont préservés.
+Une identité erronée, une structure modifiée, un livre périmé ou des pondérations
+incohérentes ne sont pas admis par cette reprise. Aucun seuil n'est abaissé.
+
+Les tests isolés ne prouvent pas un succès fournisseur : les prochains producteurs
+ordinaires doivent encore établir acquisition, qualification, enregistrement et
+publication. Les incidents primaires restent ouverts tant que leur résultat
+individuel ne le démontre pas. Aucun succès de cache ou cron anticipé.

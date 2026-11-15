@@ -22,6 +22,41 @@ class Recovery(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'absent after two bounded attempts'):
             collect_blackrock_complete(self.config,self.now,fetch,lambda _:None)
         self.assertEqual(len(calls),2)
+    def empty(self):
+        body=copy.deepcopy(self.body)
+        points=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        for key in ('asOfDate','issueName','holdingPercent','isin','countryOfRisk','assetClass'):
+            points[key]['value']=None
+        # The observed API response advertises hasData even with null columns.
+        body['componentsByNameMap']['holdings']['hasData']=True
+        return body
+    def test_entirely_null_snapshot_retries_exact_url_and_retains_both_hashes(self):
+        partial=self.empty();responses=iter([partial,self.body]);calls=[];pauses=[]
+        def fetch(*args):calls.append(args[0]);return json.dumps(next(responses))
+        record,_=collect_blackrock_complete(self.config,self.now,fetch,pauses.append)
+        self.assertEqual(calls,[self.config['url']]*2);self.assertEqual(pauses,[2])
+        self.assertEqual(record['asOf'],'2026-10-15')
+        self.assertEqual([r['status']for r in record['sourceAttempts']],['empty-holdings-snapshot','validated'])
+        self.assertNotEqual(record['sourceAttempts'][0]['sha256'],record['sha256'])
+        self.assertEqual(record['sourceAttempts'][-1]['sha256'],record['sha256'])
+        self.assertEqual(sum(r['weightPct']for r in record['rows']),100)
+    def test_persistent_empty_snapshot_is_not_source_success(self):
+        calls=[]
+        def fetch(*args):calls.append(1);return json.dumps(self.empty())
+        with self.assertRaisesRegex(ValueError,'empty after two bounded attempts'):
+            collect_blackrock_complete(self.config,self.now,fetch,lambda _:None)
+        self.assertEqual(len(calls),2)
+    def test_empty_wrong_identity_currency_or_changed_schema_never_retries(self):
+        for kind in ['isin','product','currency','schema']:
+            body=self.empty();calls=[]
+            if kind=='isin':body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']['isin']['value']='WRONG'
+            if kind=='product':body['productId']=999
+            if kind=='currency':body['currencyCode']='USD' if self.body['currencyCode']!='USD' else 'EUR'
+            if kind=='schema':del body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']
+            def fetch(*args):calls.append(1);return json.dumps(body)
+            with self.assertRaises((ValueError,KeyError,TypeError)):
+                collect_blackrock_complete({**self.config,'currency':self.body['currencyCode']},self.now,fetch,lambda _:None)
+            self.assertEqual(len(calls),1)
     def test_wrong_identity_and_bad_financial_content_are_not_retried(self):
         for missing in [True,False]:
             body=copy.deepcopy(self.body)

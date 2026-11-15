@@ -6,6 +6,7 @@ from urllib.parse import urlsplit, parse_qs
 from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
+from collect_etf_pilot import partial_holdings_response
 from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
 from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
 from qualified_corporate_identities import qualified_corporate_identity
@@ -36,23 +37,22 @@ def ranking_nav_downgrade(isin, previous, candidate, now):
 
 
 def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
-    """Retry only a missing component on an otherwise exact product response."""
+    """Retry only an absent/entirely-null book on an exact product response."""
     attempts=[]
     for attempt in range(2):
         raw=fetch(config['url'],('application/json',),25_000_000)
         body=json.loads(raw)
         digest=hashlib.sha256(raw.encode()).hexdigest()
-        components=body.get('componentsByNameMap',{})
-        if 'holdings' not in components:
-            facts=components.get('keyFundFacts',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
-            product=parse_qs(urlsplit(config['url']).query).get('portfolioId',[])
-            if facts.get('isin',{}).get('value')!=config['isin'] or product!=[str(body.get('productId'))]:
-                raise ValueError('Wrong BlackRock identity in response without complete holdings')
-            attempts.append({'attempt':attempt+1,'sha256':digest,'status':'missing-holdings-component'})
+        product=parse_qs(urlsplit(config['url']).query).get('portfolioId',[])
+        if len(product)!=1:raise ValueError('Missing exact BlackRock product identifier')
+        partial=partial_holdings_response(body,config['isin'],product[0],config.get('currency'))
+        if partial:
+            attempts.append({'attempt':attempt+1,'sha256':digest,'status':partial})
             if attempt==0:
                 sleep(2)
                 continue
-            raise ValueError('BlackRock exact-share holdings component absent after two bounded attempts: '+json.dumps(attempts))
+            state='absent' if partial=='missing-holdings-component' else 'empty'
+            raise ValueError('BlackRock exact-share holdings component '+state+' after two bounded attempts: '+json.dumps(attempts))
         try:
             record,securities=parse_complete(body,config['isin'],config['url'],now,config.get('fundAssetClass','Equity'))
         except HoldingsPerimeterError as error:

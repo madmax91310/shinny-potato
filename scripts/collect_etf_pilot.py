@@ -9,25 +9,68 @@ import hashlib
 import math
 import os
 import pathlib
+import time
 import urllib.error
 from urllib.parse import urlencode, urlsplit, parse_qsl
 
 from data_automation import UTC, get_text, number, reject, write_json_atomic, ResponseFormatError
 
 
-def fetch_product(share, fetch):
+def partial_holdings_response(body, isin, product_id, currency=None):
+    """Recognise only the observed absent/entirely-null issuer component.
+
+    Validate the exact response identity before retrying. Populated, stale,
+    contradictory or structurally changed books still undergo normal validation.
+    """
+    components = body.get('componentsByNameMap', {})
+    reason = None
+    if 'holdings' not in components:
+        reason = 'missing-holdings-component'
+    else:
+        points = components['holdings'].get('containersByNameMap', {}).get('all', {}).get('dataPointsByNameMap', {})
+        keys = ('asOfDate', 'issueName', 'holdingPercent', 'isin', 'countryOfRisk', 'assetClass')
+        if all(isinstance(points.get(key), dict) and 'value' in points[key]
+               and points[key]['value'] is None for key in keys):
+            reason = 'empty-holdings-snapshot'
+    if reason:
+        facts = components.get('keyFundFacts', {}).get('containersByNameMap', {}).get('default', {}).get('dataPointsByNameMap', {})
+        if (str(body.get('productId')) != str(product_id)
+                or facts.get('isin', {}).get('value') != isin
+                or not isinstance(body.get('currencyCode'), str) or not body['currencyCode']
+                or (currency is not None and body['currencyCode'] != currency)):
+            reject('Wrong BlackRock identity in partial holdings response')
+    return reason
+
+
+def fetch_product(share, fetch, sleep=time.sleep):
     """The current official HTML is a transport fallback to the embedded API."""
     url = product_data_url(share)
     limit = 20_000_000 if share.get('holdingsAssetClass') == 'Fixed Income' else 6_000_000
+    attempts = []
     try:
-        body = json.loads(fetch(url, ('application/json',), limit),
-                          parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
-        return body, url, []
+        for attempt in range(2):
+            raw = fetch(url, ('application/json',), limit)
+            body = json.loads(raw, parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
+            partial = (partial_holdings_response(body, share['isin'], share['productId'], share['currency'])
+                       if share.get('collectHoldings') else None)
+            if partial:
+                attempts.append({'url': url, 'attempt': attempt + 1, 'status': partial,
+                                 'sha256': hashlib.sha256(raw.encode()).hexdigest()})
+                if attempt == 0:
+                    sleep(2)
+                    continue
+            elif attempts:
+                attempts.append({'url': url, 'attempt': attempt + 1, 'status': 'validated',
+                                 'sha256': hashlib.sha256(raw.encode()).hexdigest()})
+            # The caller validates every field. A persistent partial response
+            # preserves independently valid fields and reports the missing book.
+            # Never splice new holdings into the previous response's facts.
+            return body, url, attempts
     except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
         from issuer_documents import public_page
         page_url = f'https://www.ishares.com/uk/individual/en/products/{share["productId"]}/?siteEntryPassthrough=true&switchLocale=y'
         text = public_page(page_url, ('text/html',), 6_000_000)
-        return text, page_url, [{'url': url, 'reason': str(error)},
+        return text, page_url, [*attempts, {'url': url, 'reason': str(error)},
                                 {'url': page_url, 'status': 'validated'}]
 
 
