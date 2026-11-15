@@ -2,7 +2,10 @@ import {Link,useLocation} from 'react-router-dom'
 import Workspace from '../../Workspace.jsx'
 import engine from '../../engines/performance.js'
 import {getPerformanceAssetId} from '../../../../data/performance-links.js'
-const runtime = { engine, ui: {} }
+import {renderPerformanceImage, downloadPerformanceImage} from '../../performanceImage.js'
+// The renderer belongs to this route: opening Image or downloading must not
+// depend on a second code request after the selected history has loaded.
+const runtime = { engine, ui: {}, images: { render: renderPerformanceImage, download: downloadPerformanceImage } }
 export default function App(props) {
  const params=new URLSearchParams(useLocation().search)
  const requested=params.has('isin')?getPerformanceAssetId(params.get('isin')):params.get('asset')

@@ -112,5 +112,5 @@ export async function downloadPerformanceImage(item) {
   const canvas = await renderPerformanceImage(item)
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('Export PNG impossible')
-  downloadPublicationBlob(blob, `performance-depuis-${item.currency || 'native'}-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`)
+  downloadPublicationBlob(blob, `performance-depuis-${item.currency || 'native'}-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`, 60000)
 }
