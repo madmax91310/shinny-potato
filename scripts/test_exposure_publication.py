@@ -215,7 +215,7 @@ class ExposurePublicationGit(unittest.TestCase):
   self.assertNotEqual(self.git(root,'diff','--','src/data/unowned.json'),'')
 
  def test_unknown_input_or_custom_acquisition_change_requires_new_collection(self):
-  for path in ['scripts/exposure-etf-expansion.json',publication.REGISTRY,publication.CUSTOM_COLLECTOR,'src/data/monthly-fx.json']:
+  for path in ['scripts/exposure-etf-expansion.json',publication.REGISTRY,publication.CUSTOM_COLLECTOR,'src/data/monthly-fx.json','scripts/update-investor-13f.py','scripts/collect_public_issuer.py','docs/other.md']:
    with self.subTest(path=path):
     root,writer,base=self.setup_repository();target=writer/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_text('{}\n');self.git(writer,'add','.');self.git(writer,'commit','-m','Changed acquisition input');upstream=self.git(writer,'rev-parse','HEAD');self.git(writer,'push','origin','master');self.git(root,'fetch','origin','master')
     with self.assertRaises(ValueError):publication.inputs(root,base,upstream)
