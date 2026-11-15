@@ -344,13 +344,12 @@
     "countries": {
       "asOf": "2026-11-12",
       "holdingsAsOf": "2026-11-13",
-      "checkedAt": "2026-11-14",
+      "checkedAt": "2026-11-15",
       "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
       "sourceUrls": [
         "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/119/?type=etf",
         "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/120/?type=etf",
         "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
-        "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
         "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
         "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -365,7 +364,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 67.62000000000018
+          "weightPct": 68.1900000000002
         },
         {
           "name": "Japan",
@@ -470,10 +469,6 @@
       ],
       "unclassified": [
         {
-          "isin": "US94708K1034",
-          "weightPct": 0.57
-        },
-        {
           "isin": "SG1R43925234",
           "weightPct": 0.02
         },
@@ -556,7 +551,7 @@
     "underlierEvidence": {
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
       "checkedAt": "2026-11-15",
-      "sha256": "b1e56cee284d69568274bc86a50732e399b5d3b30f1db7e95598b42c6e96bc81",
+      "sha256": "968b0ff52941a83e99baf8e99792807230e152c6a96813f594f2db791859e7d2",
       "underlier": "Nasdaq-100"
     }
   },
