@@ -3,6 +3,32 @@ from collect_dca_complete_holdings import collect_blackrock_complete
 import test_dca_complete_realestate as fixtures
 
 class Recovery(unittest.TestCase):
+    def test_actual_dated_book_preserves_cash_and_exact_security_weights(self):
+        import gzip,hashlib
+        from pathlib import Path
+        root=Path(__file__).parent/'fixtures/ishares-dated-holdings-20261115'
+        proof=json.loads((root/'provenance.json').read_text())
+        raw=gzip.decompress((root/'holdings.json.gz').read_bytes())
+        identity_raw=gzip.decompress((root/'identity.json.gz').read_bytes())
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),proof['holdingsSha256'])
+        self.assertEqual(hashlib.sha256(identity_raw).hexdigest(),proof['identitySha256'])
+        identity=json.loads(identity_raw);dated=json.loads(raw)
+        facts=identity['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        self.assertEqual(facts['isin']['value'],proof['isin'])
+        partial=copy.deepcopy(identity)
+        partial['componentsByNameMap']['holdings']={'containersByNameMap':{'all':{'dataPointsByNameMap':{
+            **{key:{'value':None}for key in ('asOfDate','issueName','holdingPercent','isin','countryOfRisk','assetClass')},
+            'dateList':{'value':[20261030]}}}}}
+        replies=iter([json.dumps(partial),json.dumps(partial),raw.decode()])
+        record,_=collect_blackrock_complete({'isin':proof['isin'],'url':proof['identitySourceUrl'],'currency':'USD'},
+            dt.datetime(2026,11,15,tzinfo=dt.timezone.utc),lambda *a:next(replies),lambda _:None)
+        self.assertEqual(record['asOf'],'2026-10-30')
+        self.assertTrue(record['complete']);self.assertEqual(len(record['rows']),114)
+        self.assertAlmostEqual(sum(r['weightPct']for r in record['rows']),99.55081)
+        self.assertEqual(record['sha256'],proof['holdingsSha256'])
+        self.assertFalse(record['navReconciliation']['normalizationApplied'])
+        self.assertEqual([x['status']for x in record['sourceAttempts']],['empty-holdings-snapshot','empty-holdings-snapshot','validated'])
+
     def setUp(self):
         self.body=fixtures.CompleteRealEstate().body()
         self.config={'isin':'IE00B0M63284','url':'https://www.blackrock.com/?portfolioId=251808','fundAssetClass':'Real Estate'}

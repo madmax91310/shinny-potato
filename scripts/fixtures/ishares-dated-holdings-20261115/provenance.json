@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-11-15T19:38:05.955458+00:00",
+  "execution": "local real official sources; independent financial parsing, no production write or GitHub claim",
+  "isin": "IE00BJ5JP212",
+  "identitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+  "identitySha256": "5ad87163cd92237c8c8501463418819c6a8149892a40b5889f4f1ab7a68caef3",
+  "holdingsSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=holdings.all&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true&asOfDate=20261030",
+  "holdingsSha256": "97bb06927a8acccb0fc9763ff9d012d8e352b16fadf87b7909f5d24ed145ab8b",
+  "asOf": "2026-10-30",
+  "complete": true,
+  "securityIdentityRows": 114,
+  "publishedEquityWeightPct": 99.55081,
+  "reconciliation": {
+    "schemaVersion": 1,
+    "asOf": "2026-10-30",
+    "sourceRowCount": 128,
+    "selectedRowCount": 114,
+    "excludedRowCount": 14,
+    "publishedNetWeightPct": 100.00000000000009,
+    "selectedWeightPct": 99.55081,
+    "sourceWeightPctByType": {
+      "Equity": 99.55081000000008,
+      "Cash": 0.41896000000000005,
+      "Cash Collateral and Margins": 0.03023,
+      "Futures": 0.0
+    },
+    "excludedWeightPctByType": {
+      "Cash": 0.41896000000000005,
+      "Cash Collateral and Margins": 0.03023,
+      "Futures": 0.0
+    },
+    "unidentifiedPositions": [],
+    "normalizationApplied": false,
+    "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+  },
+  "noOtherFinancialFieldsBorrowed": true,
+  "equitySecurityRows": 114
+}
