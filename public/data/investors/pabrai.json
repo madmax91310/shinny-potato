@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-14T21:13:12.868593+00:00",
+  "as_of": "2026-11-15T16:27:47.060752+00:00",
   "data": {
     "identity": {
       "slug": "pabrai",
@@ -16,6 +16,13 @@
           "ticker": "HCC",
           "putCall": null,
           "weight": 0.45420857833913725,
+          "value": 164452671,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 7.1
         },
@@ -24,6 +31,13 @@
           "ticker": "RIG",
           "putCall": null,
           "weight": 0.4121108716483694,
+          "value": 149210598,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 39.6
         },
@@ -32,6 +46,13 @@
           "ticker": "AMR",
           "putCall": null,
           "weight": 0.07933000569523287,
+          "value": 28722556,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": -67.0
         },
@@ -40,14 +61,30 @@
           "ticker": "KSPI",
           "putCall": null,
           "weight": 0.054350544317260496,
+          "value": 19678387,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 12192.1
         }
       ],
+      "filedAt": "2026-11-13",
+      "declaredTotal": 362064212.0,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
+      "valueScope": "Déclaration 13F · positions longues et options déclarées",
+      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
       "quarterChanges": {
         "priorPeriodLabel": "Q2 2026",
         "exits": []
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/pabrai-investment-funds",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/"
     },
     "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds",
     "filingHistory": [

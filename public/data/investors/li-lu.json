@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-02T17:50:26.593203+00:00",
+  "as_of": "2026-11-15T16:27:09.846872+00:00",
   "data": {
     "identity": {
       "slug": "li-lu",
@@ -16,6 +16,13 @@
           "ticker": "GOOG(L)",
           "putCall": null,
           "weight": 0.47935586596197144,
+          "value": 1775016950,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": true,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -24,6 +31,13 @@
           "ticker": "PDD",
           "putCall": null,
           "weight": 0.22167854379119192,
+          "value": 820858157,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 133.5
         },
@@ -32,6 +46,13 @@
           "ticker": "BRK.{A,B}",
           "putCall": null,
           "weight": 0.14977128304185883,
+          "value": 554591244,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": true,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -40,6 +61,13 @@
           "ticker": "EWBC",
           "putCall": null,
           "weight": 0.09678822243789861,
+          "value": 358399151,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -48,6 +76,13 @@
           "ticker": "CROX",
           "putCall": null,
           "weight": 0.028901209920163085,
+          "value": 107018900,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -56,6 +91,13 @@
           "ticker": "TME",
           "putCall": null,
           "weight": 0.014862180297296149,
+          "value": 55033481,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -64,10 +106,24 @@
           "ticker": "AAPL",
           "putCall": null,
           "weight": 0.008642694549619946,
+          "value": 32003216,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         }
       ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 3702921099.0,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
+      "valueScope": "Déclaration 13F · positions longues et options déclarées",
+      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -102,8 +158,11 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/himalaya-capital-management",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/"
     },
-    "sourceUrl": "https://foliofact.com/funds/himalaya-capital-management"
+    "sourceUrl": "https://foliofact.com/funds/himalaya-capital-management",
+    "filingHistory": []
   }
 }

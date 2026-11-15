@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-04T17:30:26.202759+00:00",
+  "as_of": "2026-11-15T16:28:03.550170+00:00",
   "data": {
     "identity": {
       "slug": "hohn",
@@ -16,6 +16,13 @@
           "ticker": "GE",
           "putCall": null,
           "weight": 0.33589904011585453,
+          "value": 17725353519,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": -0.2
         },
@@ -24,6 +31,13 @@
           "ticker": "V",
           "putCall": null,
           "weight": 0.19826141763938432,
+          "value": 10462232091,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 0.1
         },
@@ -32,6 +46,13 @@
           "ticker": "MCO",
           "putCall": null,
           "weight": 0.12302788952597805,
+          "value": 6492167509,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -40,6 +61,13 @@
           "ticker": "SPGI",
           "putCall": null,
           "weight": 0.10867974930314461,
+          "value": 5735017808,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 0.3
         },
@@ -48,6 +76,13 @@
           "ticker": "GOOG(L)",
           "putCall": null,
           "weight": 0.08318648138825335,
+          "value": 4389741007,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": true,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -56,6 +91,13 @@
           "ticker": "CP",
           "putCall": null,
           "weight": 0.07439682031127624,
+          "value": 3925911608,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": -2.6
         },
@@ -64,6 +106,13 @@
           "ticker": "FER",
           "putCall": null,
           "weight": 0.027186186878152094,
+          "value": 1434611939,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 1.0
         },
@@ -72,6 +121,13 @@
           "ticker": "CNI",
           "putCall": null,
           "weight": 0.021310164455697368,
+          "value": 1124534915,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": -4.2
         },
@@ -80,6 +136,13 @@
           "ticker": "MLM",
           "putCall": null,
           "weight": 0.014372276318910533,
+          "value": 758423360,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": true,
           "sharesChangePct": null
         },
@@ -88,10 +151,24 @@
           "ticker": "VMC",
           "putCall": null,
           "weight": 0.013679974063348909,
+          "value": 721890650,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": true,
           "sharesChangePct": null
         }
       ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 52769884406.0,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
+      "valueScope": "Déclaration 13F · positions longues et options déclarées",
+      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -101,8 +178,11 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/tci-fund-management",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/"
     },
-    "sourceUrl": "https://foliofact.com/funds/tci-fund-management"
+    "sourceUrl": "https://foliofact.com/funds/tci-fund-management",
+    "filingHistory": []
   }
 }

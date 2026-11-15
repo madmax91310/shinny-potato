@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-14T21:13:31.472149+00:00",
+  "as_of": "2026-11-15T16:28:22.176531+00:00",
   "data": {
     "identity": {
       "slug": "icahn",
@@ -16,6 +16,13 @@
           "ticker": "IEP",
           "putCall": null,
           "weight": 0.4717545588970936,
+          "value": 4447740626,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 6.6
         },
@@ -24,6 +31,13 @@
           "ticker": "CVI",
           "putCall": null,
           "weight": 0.3850818902467964,
+          "value": 3630583606,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -32,6 +46,13 @@
           "ticker": "UAN",
           "putCall": null,
           "weight": 0.0546721847071113,
+          "value": 515453836,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -40,6 +61,13 @@
           "ticker": "CTRI",
           "putCall": null,
           "weight": 0.030472191961121248,
+          "value": 287294322,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -48,6 +76,13 @@
           "ticker": "IFF",
           "putCall": null,
           "weight": 0.02650766244928035,
+          "value": 249916413,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": -30.0
         },
@@ -56,6 +91,13 @@
           "ticker": "CZR",
           "putCall": null,
           "weight": 0.007673801801567439,
+          "value": 72349232,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -64,6 +106,13 @@
           "ticker": "MNRO",
           "putCall": null,
           "weight": 0.0075359162792051505,
+          "value": 71049236,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": null
         },
@@ -72,6 +121,13 @@
           "ticker": "SD",
           "putCall": null,
           "weight": 0.007272099097524207,
+          "value": 68561946,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": 0.5
         },
@@ -80,6 +136,13 @@
           "ticker": "ECHO",
           "putCall": null,
           "weight": 0.004741685572268029,
+          "value": 44705000,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": -64.4
         },
@@ -88,10 +151,24 @@
           "ticker": "BLCO",
           "putCall": null,
           "weight": 0.004288008988032215,
+          "value": 40427700,
+          "currency": "USD",
+          "unit": 1,
+          "cusip": null,
+          "securityId": null,
+          "shareClass": null,
+          "providerGroupedClasses": false,
           "isNew": false,
           "sharesChangePct": -32.1
         }
       ],
+      "filedAt": "2026-11-13",
+      "declaredTotal": 9428081917.0,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow",
+      "valueScope": "Déclaration 13F · positions longues et options déclarées",
+      "securityIdentityNote": "Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.",
       "quarterChanges": {
         "priorPeriodLabel": "Q2 2026",
         "exits": [
@@ -106,7 +183,9 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/icahn-capital",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/921669/000153949726002964/"
     },
     "sourceUrl": "https://foliofact.com/funds/icahn-capital",
     "filingHistory": [
