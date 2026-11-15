@@ -4,19 +4,16 @@ import {
   blankProfile,
   blankSnapshot,
 } from "../src/pages/public-portfolios/lib.js";
-const browser = await chromium.launch({
-  executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
-  headless: true,
-  args: ["--no-sandbox"],
-});
-const context = await browser.newContext({
-  acceptDownloads: true,
-  permissions: ["clipboard-read", "clipboard-write"],
-});
-const page = await context.newPage();
+import { staticBrowser, staticBase } from './static-browser.mjs';
+const remote = !!process.env.BASE_URL;
+const harness = remote ? null : await staticBrowser(1440);
+const browser = harness?.browser || await chromium.launch({headless:true, ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']} : {})});
+const context = harness?.context || await browser.newContext({acceptDownloads:true});
+await context.grantPermissions(['clipboard-read','clipboard-write']);
+const page = harness?.page || await context.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
-const base = process.env.BASE_URL || "http://localhost:5173/shinny-potato/";
+const base = process.env.BASE_URL || staticBase;
 await page.goto(base + "portefeuilles-publics");
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
