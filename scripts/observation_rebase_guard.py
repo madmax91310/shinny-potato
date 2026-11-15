@@ -150,6 +150,8 @@ ALLOWED = {
     # Exact paths only: actor data, source code, freshness policy and any
     # other projection remain protected and require fresh acquisition.
     'actors': {INFLATION_RECEIPT,
+               # Run43735485058: SCPI producer output is not actor acquisition input.
+               'src/data/automated-scpi.json',
                'src/data/exposure-etf-expansion-records.json',
                'src/pages/dca-profiles/catalog.json',
                'src/pages/dca-profiles/exposures-extra-0.json',
@@ -185,7 +187,9 @@ ALLOWED = {
     # Actual refusal40893319635: actor presentations are not an acquisition
     # input for INSEE observations or exact anniversary levels. Their latest
     # version must still survive the mandatory combined-tree build/audits.
-    'publication': {INFLATION_RECEIPT} | INDEPENDENT | PUBLICATION_EXPOSURE_VIEWS | {'src/data/automated-scpi.json',
+    'publication': {INFLATION_RECEIPT} | INDEPENDENT | PUBLICATION_EXPOSURE_VIEWS | {
+                                  # Independent macro registry; source collectors read INSEE directly.
+                                  'src/data/automated-economic.json','src/data/automated-scpi.json',
                                   'src/data/exposure-etf-expansion-records.json',
                                   'src/data/automated-presentation-actors.json',
                                   # Race41410676250: acquisition reads neither
