@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import entries from '../src/pages/budget-profiles/editorial-profiles-qualified-2026-11-15.json' with { type: 'json' }
 import candidates from '../docs/budget-qualified-bank-2026-11-15/candidates.json' with { type: 'json' }
 import authors from '../docs/budget-qualified-bank-2026-11-15/source-author-check.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import browserCommands from './ci-browser-checks.json' with { type: 'json' }
+import { BUDGET_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, validBudget, matchesBudgetFilters, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 
@@ -66,3 +67,17 @@ const aude=BUDGET_QUALIFIED_EDITORIAL_PROFILES.find(p=>p.provenance.sourceSnapsh
 assert.equal(5100-400-analyzeBudget(aude).expenses-analyzeBudget(aude).savings,200)
 assert(!BUDGET_QUALIFIED_EDITORIAL_PROFILES.some(p=>[36553,34052].includes(p.provenance.sourceSnapshot.topicId)),'Cross-topic authors are already represented; aliases do not create new people')
 console.log('Qualified profiles: independent cent ledgers, source/creation separation, duplicate exclusions, currency filters, questions and custom drafts verified.')
+
+// The CI split must keep every old/new admission exactly once at each viewport.
+for(const width of [1440,390,320]) {
+  const covered=[]
+  for(const command of browserCommands.filter(c=>c.endsWith(`playwright-budget-new-profiles.mjs ${width}`))) {
+    const batch=command.match(/BUDGET_BATCH=(\w+)/)?.[1]
+    const partition=command.match(/BUDGET_PART=(\d+)\/(\d+)/)
+    const part=Number(partition?.[1]||0),count=Number(partition?.[2]||1)
+    const profiles={previous:BUDGET_NEW_EDITORIAL_PROFILES,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES}[batch]
+    assert(profiles&&count>0&&part<count,'Known complete budget CI batch')
+    covered.push(...profiles.filter((_,index)=>index%count===part).map(p=>p.id))
+  }
+  assert.deepEqual(covered.sort(),[...BUDGET_NEW_EDITORIAL_PROFILES,...BUDGET_QUALIFIED_EDITORIAL_PROFILES].map(p=>p.id).sort())
+}

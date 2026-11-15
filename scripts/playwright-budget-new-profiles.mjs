@@ -8,11 +8,16 @@ import { BUDGET_NEW_EDITORIAL_PROFILES as initialEditorialProfiles, BUDGET_QUALI
 import { buildBudgetText, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicSavingsRows, budgetImageExpenses, euro, analyzeBudget, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { socialBudgetLabel } from '../src/pages/budget-profiles/socialImage.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
-const availableProfiles = process.env.BUDGET_BATCH==='qualified' ? BUDGET_QUALIFIED_EDITORIAL_PROFILES : [...initialEditorialProfiles, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES]
-const BUDGET_NEW_EDITORIAL_PROFILES = process.env.BUDGET_PROFILE_ID ? availableProfiles.filter(p=>p.id===process.env.BUDGET_PROFILE_ID) : availableProfiles
+const batch=process.env.BUDGET_BATCH || 'all'
+assert(['all','previous','qualified'].includes(batch),'Invalid budget batch')
+const availableProfiles = {previous:initialEditorialProfiles,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES,all:[...initialEditorialProfiles,...BUDGET_QUALIFIED_EDITORIAL_PROFILES]}[batch]
+const [part,parts]=(process.env.BUDGET_PART || '0/1').split('/').map(Number)
+assert(Number.isInteger(part)&&Number.isInteger(parts)&&parts>0&&part>=0&&part<parts,'Invalid budget partition')
+const partitionedProfiles=availableProfiles.filter((_,index)=>index%parts===part)
+const BUDGET_NEW_EDITORIAL_PROFILES = process.env.BUDGET_PROFILE_ID ? partitionedProfiles.filter(p=>p.id===process.env.BUDGET_PROFILE_ID) : partitionedProfiles
 assert(BUDGET_NEW_EDITORIAL_PROFILES.length,'Requested budget profile was not found')
 const root=process.env.BUDGET_PUBLIC_BASE || 'http://127.0.0.1:4493/shinny-potato'
-const output=process.env.BUDGET_ARTIFACTS || 'test-artifacts/budget-new-profiles'
+const output=process.env.BUDGET_ARTIFACTS || `test-artifacts/budget-new-profiles-${batch}-${part}-of-${parts}`
 const widths=process.argv.length>2?process.argv.slice(2).map(Number):[1440,390,320]
 assert(widths.length&&widths.every(width=>[1440,390,320].includes(width)),'Invalid budget viewport')
 mkdirSync(output,{recursive:true})

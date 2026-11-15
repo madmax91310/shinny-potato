@@ -31,6 +31,10 @@ Tous les 14 PNG principaux et les 43 pages détaillées des nouveaux profils ont
 
 Il s'agit de Chromium et de largeurs mobiles émulées, pas d'essais sur tous les appareils physiques. Aucune publication sur X.
 
+## Répartition de la recette GitHub
+
+La première exécution intégrée de la dernière recette a dépassé le plafond de 300 secondes par commande à 390 px : le passage aux pages 4:5 détaillées porte le lot complet à 242 téléchargements par largeur. La recette CI est donc répartie en trois lots disjoints (les sept profils précédents et deux moitiés des quatorze nouveaux), à chacune des trois largeurs. Chaque profil demeure couvert exactement une fois par largeur. Aucun contrôle de contenu, téléchargement ou persistance n’est retiré ; le délai de 300 secondes reste inchangé et les preuves de chaque lot sont séparées.
+
 ## Livraison
 
 Les contrôles GitHub, la fusion et la version réellement publiée seront rapportés dans la PR #1337 et le compte rendu de livraison après leur exécution. Un build local ne prouve pas la publication. `sha` identifie le code applicatif (qui embarque les profils), `dataSha` l'overlay de données automatisées : ils peuvent légitimement différer.
