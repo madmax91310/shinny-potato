@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { normalizePortfolio, buildTweet, percentage } from '../src/pages/investor-portfolio/data.js'
 import { logoIdentity } from '../src/pages/investor-portfolio/media.js'
-import { publicationPlan, reportedAmount, portfolioOwner } from '../src/pages/investor-portfolio/publication.js'
+import { cash, publicationPlan, reportedAmount, portfolioOwner } from '../src/pages/investor-portfolio/publication.js'
 export function sample(values, long=false) {
   const declaredTotal=values.reduce((s,v)=>s+v,0)
   return { as_of:'2026-11-15T12:00:00Z', data: { identity:{slug:'tepper',archetype:'hedge_fund',displayName:'David Tepper',entityName:'Appaloosa LP',personVerified:true,personPeriod:'2026-06-30',personSource:'https://foliofact.com/api/v1/funds/appaloosa',dataProvider:'FolioFact'},sourceUrl:'https://foliofact.com/funds/appaloosa',snapshot:{primaryVerified:true,sourceDocuments:['https://www.sec.gov/Archives/edgar/test/primary.xml','https://www.sec.gov/Archives/edgar/test/table.xml'],periodEnd:'2026-06-30',filedAt:'2026-08-14',currency:'USD',valueUnit:1,valueUnitSource:'https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow',declaredTotal,holdings:values.map((value,i)=>({issuerName:long?'Entreprise au nom particulièrement long et détaillé '.repeat(5)+i:'Entreprise '+i,ticker:'T'+i,cusip:String(i).padStart(9,'0'),shareClass:'COM',weight:value/declaredTotal,value,currency:'USD',unit:1,putCall:null}))} } }
@@ -55,3 +55,5 @@ assert(reportedAmount({value:1000,currency:'USD',unit:1}).includes('$US'))
 
 const unverified=normalizePortfolio(sample([60,40]));unverified.identity.personVerified=false;assert.equal(portfolioOwner(unverified),'Appaloosa LP');assert(buildTweet(unverified).startsWith('Portefeuille de Appaloosa LP :'))
 unverified.identity.personVerified=true;unverified.identity.personPeriod='2026-03-31';assert.equal(portfolioOwner(unverified),'Appaloosa LP')
+
+assert.equal(cash(78300000,'USD'),'78,3\u00a0M\u00a0$US') // Same explicit precision in Node 20 and Chromium.
