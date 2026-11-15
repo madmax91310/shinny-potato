@@ -64,7 +64,7 @@ for(const width of [1440,390]){
   await page.getByRole('button',{name:`Retirer ${ninthLabel}`,exact:true}).click()
   await page.getByText('Personnaliser l’image',{exact:true}).filter({visible:true}).click()
   assert.equal(await holdings.locator('input[type=number]').count(),8)
-  assert(await page.getByText(/Déjà publié · date inconnue/).isVisible())
+  assert(await page.getByText('Publié — date non renseignée',{exact:true}).isVisible())
   await page.getByRole('button',{name:`Retirer ${profile.lines[7].label}`,exact:true}).click()
   await page.getByRole('group',{name:'Ajouter un actif',exact:true}).locator('[data-option][data-value=nasdaq]').click()
   await page.getByRole('spinbutton',{name:'DCA position 8',exact:true}).fill('50')
