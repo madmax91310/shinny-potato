@@ -2,6 +2,8 @@
 
 Audit du 15 novembre 2026, depuis master `fe0d2bd`, après intégration de la sauvegarde DCA #1316. Les PR #1289 et #1306 sont fusionnées. #1318 a été fusionnée pendant la recette : son image principale et sa gestion d’erreur sont conservées. Le détail X et les deux autres versions détaillées restent intégralement paginés. #1317 est également reprise depuis master pour la correction du cache BCE dans la projection navigateur.
 
+Actualisation : master `893d843` est intégré, avec le chantier DCA #1324 et les corrections éditoriales #1323. Ces dernières sont conservées telles quelles. Les 997 fichiers de l’inventaire ont été régénérés et contrôlés après cette intégration ; 238 diffèrent de la première recette de 991 PNG. Les résultats finaux des téléchargements et du déploiement seront rapprochés dans le bilan de la PR.
+
 ## Défauts reproduits et correction
 
 Le site public servait le code `bc4b7a7`, avec les données `d2195bc`, en voie fallback. Inventaire réel par le sélecteur : **77 profils**, **291 aperçus PNG**, dont **154 hors format** (modes détaillé et synthétique en largeur 1200, hauteur variable). Les 137 PNG X étaient déjà en 1080 × 1350 grâce à #1306.
@@ -14,8 +16,8 @@ Les encadrés structurés omettaient des informations présentes dans le context
 
 - Tests Budget : tous les profils actifs, calculs indépendants, immutabilité, sauvegardes et statuts ; réussis.
 - Compilation complète, budgets des routes et manifeste des 47 fichiers publics : réussis. Lint : aucune erreur, avertissements existants.
-- Rendu Chromium avec polices réelles : **991 PNG**, soit **77 images principales + 310 X + 312 détaillés + 292 synthétiques**, pour les **77 profils** dans les trois modes. Chaque PNG vérifié à **1080 × 1350**, chaque glyphe dans les bornes, aucun chevauchement ; chaque poste et montant conservé et chaque caractère du contexte conservé sur sa série.
-- `png-inventory.json` : dimensions et SHA-256 des 991 fichiers réellement encodés, contrôlés par Pillow après génération.
+- Rendu Chromium avec polices réelles : **997 PNG**, soit **77 images principales + 313 X + 314 détaillés + 293 synthétiques**, pour les **77 profils** dans les quatre modes. Chaque PNG vérifié à **1080 × 1350**, chaque glyphe dans les bornes, aucun chevauchement ; chaque poste et montant conservé et chaque caractère du contexte conservé sur sa série.
+- `png-inventory.json` : dimensions et SHA-256 des 997 fichiers réellement encodés, contrôlés par Pillow après génération.
 - Inspection visuelle réelle : les 310 pages X et les 77 images principales à 390 px, puis les 121 compositions différentes des autres modes ; les autres pages reprennent les mêmes dispositions de texte, vérifiées automatiquement. Émilie : 11 dépenses, 500 € de versements, 65 € de reste, réserve de 5 000 € et apport de 2 000 € vers 20 000 € conservés.
 - Cas restauré CHF de 72 lignes : 11 pages, chaque montant une fois, dernière page disponible sans encodage des pages intermédiaires, modification et texte personnalisé conservé.
 - Parcours abonnés : création, modification, sauvegarde, reprise, statuts, export et restauration, à 1440/390/320 px ; réussi.
