@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { INVESTOR_PROFILES, investorIntroduction } from '../src/data/investor-profiles.js'
 import { INVESTORS, buildTweet, normalizePortfolio, percentage } from '../src/pages/investor-portfolio/data.js'
-import { publicationPlan } from '../src/pages/investor-portfolio/publication.js'
+import { publicationPlan, portfolioOwner } from '../src/pages/investor-portfolio/publication.js'
 assert.deepEqual(Object.keys(INVESTOR_PROFILES).sort(), INVESTORS.map(([id])=>id).sort())
 const read = path => JSON.parse(readFileSync(path,'utf8'))
 for (const [slug] of INVESTORS) {
@@ -10,7 +10,7 @@ for (const [slug] of INVESTORS) {
   assert(investorIntroduction(slug) && profile.checkedAt && profile.sourceUrls.every(url=>new URL(url).protocol==='https:'))
   const payload=read(`public/data/investors/${slug}.json`), portfolio=normalizePortfolio(payload), before=JSON.stringify(portfolio)
   const tweet=buildTweet(portfolio)
-  assert(tweet.startsWith(`Portefeuille de ${portfolio.identity.displayName} :`))
+  assert(tweet.startsWith(`Portefeuille de ${portfolioOwner(portfolio)} :`))
   assert(!/NaN|undefined|#|performance|rendement/.test(tweet))
   if(portfolio.problem) { assert(tweet.includes('Données incomplètes')); assert.throws(()=>publicationPlan(portfolio)) }
   else {

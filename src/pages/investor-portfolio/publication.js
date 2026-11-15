@@ -1,5 +1,11 @@
 // Shared by the image, copy and exports. No monetary value is inferred from a weight.
 export const MAIN_IMAGE = { width: 1080, height: 1350 }
+export const entityPortfolio = slug => ['berkshire','gates-trust','renaissance','baker-bros'].includes(slug)
+export function portfolioOwner({identity,snapshot,kind}) {
+  if(kind === 'model' || entityPortfolio(identity.slug)) return identity.displayName
+  return identity.personVerified === true && identity.personPeriod === snapshot.periodEnd && identity.personSource
+    ? identity.displayName : identity.entityName || 'l’entité déclarante'
+}
 export const cash = (value, currency) => !currency ? `${value.toLocaleString('fr-FR')} (devise inconnue)` : new Intl.NumberFormat('fr-FR', { style: 'currency', currency, notation: 'compact', maximumFractionDigits: 2 }).format(value)
 export const reportedAmount = row => !Number.isFinite(row.value) ? 'Montant indisponible' : row.unit === 1 && row.currency === 'USD' ? cash(row.value,row.currency) : `${row.value.toLocaleString('fr-FR')} (unité ${row.unit ?? '?'}, ${row.currency || 'devise inconnue'})`
 export const weightLabel = weight => weight > 0 && weight < .001 ? '< 0,1 %' : `${(weight * 100).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`

@@ -1,8 +1,8 @@
 import { mediaCredits } from './media.js'
 import { dateFR, percentage } from './data.js'
-import { reportedAmount, labelLines } from './publication.js'
+import { reportedAmount, portfolioOwner, labelLines } from './publication.js'
 export function detailedExport(portfolio) {
-  return { schemaVersion: 1, identity: portfolio.identity, snapshot: portfolio.snapshot,
+  return { schemaVersion: 1, identity: portfolio.identity, publicationName: portfolioOwner(portfolio), snapshot: portfolio.snapshot,
     sourceUrl: portfolio.sourceUrl, discoverySourceUrl: portfolio.discoverySourceUrl, positionsCollectedAt: portfolio.fetchedAt, lastSuccessfulPollAt: portfolio.lastSuccessfulPollAt || null,
     scope: 'Positions longues déclarées hors options ; les options et leur dénominateur original sont conservés dans snapshot.',
     currency: portfolio.snapshot.currency || null, total: portfolio.total,
@@ -35,7 +35,7 @@ export async function renderDetailedPages(portfolio) {
     const ctx=canvas.getContext('2d');ctx.fillStyle='#f7f8f2';ctx.fillRect(0,0,1080,1350)
     const text=(v,x,y,size=28)=>{ctx.font=`600 ${size}px monospace`;ctx.fillStyle='#183b2d';ctx.fillText(v,x,y)}
     text(`Détail · ${dateFR(portfolio.snapshot.periodEnd)}`,40,65)
-    text(portfolio.identity.displayName,40,110)
+    text([...portfolioOwner(portfolio)].length>56?[...portfolioOwner(portfolio)].slice(0,55).join('')+'…':portfolioOwner(portfolio),40,110)
     text(portfolio.problem?'DONNÉES INCOMPLÈTES':'DÉCLARATION SEC VÉRIFIÉE',40,155)
     note.forEach((line,i)=>text(line,40,190+i*30,25))
     lines.slice(start,start+perPage).forEach((line,i)=>text(line,40,contentTop+i*38))

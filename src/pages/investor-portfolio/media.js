@@ -1,3 +1,4 @@
+import { entityPortfolio } from './publication.js'
 export { companyInitials } from '../factsheet-tweets/companyLogos.js'
 import registry from '../factsheet-tweets/companyLogoRegistry.json' with { type: 'json' }
 import aliases from '../factsheet-tweets/companyLogoAliases.json' with { type: 'json' }
@@ -22,7 +23,7 @@ const mediaCache = new Map()
 export async function portfolioPortrait(identity) {
   const fallback = { image: null, reason: 'Photo vérifiée et réutilisable indisponible.', person: identity.displayName }
   // Corporate ownership is never silently attributed to a former or unverified manager.
-  if (['berkshire','gates-trust','renaissance','baker-bros'].includes(identity.slug)) return { ...fallback, reason: 'Présentation de l’entité déclarante.' }
+  if (entityPortfolio(identity.slug)) return { ...fallback, reason: 'Présentation de l’entité déclarante.' }
   if (identity.personVerified !== true || !identity.personSource || !identity.personPeriod) return { ...fallback, reason: 'Lien personne/déclarant non confirmé dans cette collecte.' }
   try {
     const source = investorPortrait(identity.slug)

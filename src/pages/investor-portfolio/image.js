@@ -1,7 +1,7 @@
 import { modelNatureLabel } from '../../data/investor-models.js'
 import { ATTRIBUTION, dateFR, holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
-import { publicationPlan, cash, labelLines } from './publication.js'
+import { publicationPlan, portfolioOwner, cash, labelLines } from './publication.js'
 import { companyInitials, portfolioPortrait, positionLogo } from './media.js'
 
 const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'
@@ -24,8 +24,8 @@ function glass(ctx, x, y, w, h, radius = 24) {
 export async function renderPortfolioImage(portfolio) {
   if (portfolio?.kind === 'model') return renderModelImage(portfolio)
   if (!portfolio) throw new Error('Charge un portefeuille avant de créer le visuel.')
-  const plan = publicationPlan(portfolio)
-  const [portrait, logos] = await Promise.all([portfolioPortrait(portfolio.identity), Promise.all(plan.entries.map(positionLogo))])
+  const plan = publicationPlan(portfolio), owner = portfolioOwner(portfolio)
+  const [portrait, logos] = await Promise.all([portfolioPortrait({...portfolio.identity,displayName:owner}), Promise.all(plan.entries.map(positionLogo))])
   const canvas = document.createElement('canvas'); canvas.width=1080; canvas.height=1350
   const ctx = canvas.getContext('2d'); if(!ctx) throw new Error('Impossible de créer le visuel.')
   ctx.fillStyle='#f7f8f2'; ctx.fillRect(0,0,1080,1350)
@@ -35,7 +35,8 @@ export async function renderPortfolioImage(portfolio) {
   }
   label('Le portefeuille de',540,65,36,ink,'center')
   // Long names wrap at a fixed readable size, never shrink to microscopic text.
-  const title = labelLines(portfolio.identity.displayName, 29)
+  const fullTitle = labelLines(owner,29), title=fullTitle.slice(0,2)
+  if(fullTitle.length>2)title[1]=title[1].slice(0,28)+'…'
   title.forEach((line,i)=>label(line,540,126+i*44,40,ink,'center'))
   label(`Positions au ${dateFR(portfolio.snapshot.periodEnd)}`,540,278,29,green,'center')
   const entity = labelLines(portfolio.identity.entityName || portfolio.identity.displayName, 50)
@@ -52,7 +53,7 @@ export async function renderPortfolioImage(portfolio) {
     const photo=portrait.image, scale=Math.min(282/photo.width,282/photo.height)
     ctx.drawImage(photo,cx-photo.width*scale/2,cy+inner-8-photo.height*scale,photo.width*scale,photo.height*scale)
   } else {
-    const initials=portfolio.identity.displayName.split(/\s+/).slice(0,2).map(w=>w[0]).join('')
+    const initials=owner.split(/\s+/).slice(0,2).map(w=>w[0]).join('')
     label(initials,cx,cy+22,62,green,'center')
   }
   ctx.restore()

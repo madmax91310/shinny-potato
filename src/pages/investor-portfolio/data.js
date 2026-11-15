@@ -1,5 +1,5 @@
 import { logoIdentity } from './media.js'
-import { monetaryStatus, publicationPlan, cash, weightLabel, emojiFor } from './publication.js'
+import { monetaryStatus, publicationPlan, portfolioOwner, cash, weightLabel, emojiFor } from './publication.js'
 import { investorModel } from '../../data/investor-models.js'
 import { modelPortfolio, buildModelTweet } from './models.js'
 import { INVESTORS } from '../../data/investor-roster.js'
@@ -85,10 +85,10 @@ export function portfolioCompanies(holdings) {
 export function buildTweet(portfolio, intro = '') {
   if (portfolio.kind === 'model') return buildModelTweet(portfolio, intro, percentage)
   const { identity, snapshot } = portfolio
-  if (portfolio.problem) return `Portefeuille de ${identity.displayName} :\n\nPositions au ${dateFR(snapshot.periodEnd)}\n\nDonnées incomplètes : ${portfolio.problem}`
+  if (portfolio.problem) return `Portefeuille de ${portfolioOwner(portfolio)} :\n\nPositions au ${dateFR(snapshot.periodEnd)}\n\nDonnées incomplètes : ${portfolio.problem}`
   const plan = publicationPlan(portfolio)
   return [
-    `Portefeuille de ${identity.displayName} :`,
+    `Portefeuille de ${portfolioOwner(portfolio)} :`,
     `Positions déclarées au ${dateFR(snapshot.periodEnd)} · hors options`,
     [...plan.entries].sort((a,b) => b.weight-a.weight).map(row => `${row.other ? '📦' : emojiFor(row.ticker || logoIdentity(row)?.id)} ${row.label} : ${percentage(row.weight)} · ${cash(row.value, plan.currency)}`).join('\n'),
     'Quelle ligne aimerais-tu avoir dans ton portefeuille ? 👇',

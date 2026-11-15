@@ -11,7 +11,7 @@ import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio,
 import { investorPortrait } from './portrait.js'
 import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
 import { zipStore, dataURLBytes } from '../../lib/zip-store.js'
-import { publicationPlan, cash, reportedAmount } from './publication.js'
+import { publicationPlan, portfolioOwner, cash, reportedAmount } from './publication.js'
 import { detailedExport, detailedCSV, renderDetailedPages } from './exports.js'
 import './style.css'
 
@@ -48,7 +48,7 @@ export default function InvestorPortfolio() {
   }, [slug, retry])
 
   const model = investorModel(slug)
-  const ready = portfolio && !portfolio.problem
+  const ready = portfolio && portfolio.identity.slug === slug && !portfolio.problem
   const shown = portfolio && !model && ready ? publicationPlan(portfolio).entries : portfolio?.holdings || []
   const renderImage = useCallback(() => renderPortfolioImage(portfolio), [portfolio])
   const sources = INVESTOR_PROFILES[slug]?.sourceUrls ?? model?.sourceUrls ?? []
@@ -95,7 +95,7 @@ export default function InvestorPortfolio() {
   return <div className="ip-scope">
     <PageHeader title="Portefeuille d’investisseur" subtitle="Déclarations 13F et allocations modèles publiées, avec texte modifiable et visuel assorti." />
     {error && <p role="alert" className="ip-error">{error} <Button type="button" onClick={() => setRetry(value => value+1)}>Réessayer le chargement</Button>{ready && <Button type="button" onClick={download} disabled={exporting}>Réessayer le PNG</Button>}</p>}
-    <ToolWorkspace renderImage={renderImage} imageFilename={`portefeuille-${slug}-${portfolio?.snapshot.periodEnd || "modele"}.png`} imageDisabled={!ready} imageAlt={`Portefeuille ${portfolio?.identity.displayName ?? "investisseur"}`}>
+    <ToolWorkspace renderImage={renderImage} imageFilename={`portefeuille-${slug}-${portfolio?.snapshot.periodEnd || "modele"}.png`} imageDisabled={!ready} imageAlt={`Portefeuille ${portfolio ? portfolioOwner(portfolio) : "investisseur"}`}>
     <section className="ip-panel tool-settings">
       <label htmlFor="ip-investor">Choisir un investisseur</label>
       <ChoicePicker id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
@@ -117,6 +117,7 @@ export default function InvestorPortfolio() {
           <span>Dernière vérification : {portfolio.lastSuccessfulPollAt || portfolio.fetchedAt || 'inconnue'}</span>
           {!portfolio.snapshot.filedAt && <span>Date de publication non transmise par la source.</span>}
           {portfolio.snapshot.reconciliationDifference !== undefined && portfolio.snapshot.reconciliationDifference !== 0 && <span>Écart d’arrondi de la déclaration : {portfolio.snapshot.reconciliationDifference} USD. Les poids utilisent la somme des lignes.</span>}
+          {portfolioOwner(portfolio)!==portfolio.identity.displayName && <span>Lien de gestion non confirmé pour cette période : publication au nom de l’entité déclarante.</span>}
           {portfolio.identity.declaringCik && <span>Déclarant SEC : CIK {portfolio.identity.declaringCik}</span>}
           {portfolio.snapshot.securityIdentityNote && <span>{portfolio.snapshot.securityIdentityNote}</span>}
           {portfolio.total && <span>Valeur des positions déclarées hors options : {cash(portfolio.total, portfolio.snapshot.currency)}</span>}
