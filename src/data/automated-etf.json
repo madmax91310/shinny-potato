@@ -40911,7 +40911,7 @@
   "IE00BF4RFH31": {
     "currency": "USD",
     "productId": 296576,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 9063031523.91,
@@ -41219,7 +41219,6 @@
           "isin": "US9022521051"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -41229,9 +41228,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -41274,7 +41273,7 @@
       "index": "MSCI World Small Cap Index (Net)",
       "domicile": "Ireland",
       "inceptionDate": "20180327",
-      "replicationMethod": "Optimised",
+      "replicationMethod": "Physical (Optimised)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Optimised"
@@ -41287,42 +41286,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -41346,7 +41345,7 @@
   "IE00B1FZS467": {
     "currency": "USD",
     "productId": 251809,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 2624079763.51,
@@ -41690,7 +41689,6 @@
           "isin": "CA13646K1084"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -41700,9 +41698,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -41756,7 +41754,7 @@
       "index": "FTSE Global Core Infrastructure Index (USD)",
       "domicile": "Ireland",
       "inceptionDate": "20061020",
-      "replicationMethod": "Replicated",
+      "replicationMethod": "Physical (Replicated)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Replicated"
@@ -41769,42 +41767,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -41831,7 +41829,7 @@
   "IE00BJ5JP097": {
     "currency": "USD",
     "productId": 308836,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 236034561.46,
@@ -42092,7 +42090,6 @@
           "isin": "CA8911605092"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -42102,9 +42099,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -42158,7 +42155,7 @@
       "index": "MSCI World Financials Advanced Select 20 35 Capped Index",
       "domicile": "Ireland",
       "inceptionDate": "20210518",
-      "replicationMethod": "Replicated",
+      "replicationMethod": "Physical (Replicated)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Replicated"
@@ -42171,42 +42168,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -42227,7 +42224,7 @@
   "IE00BP3QZ601": {
     "currency": "USD",
     "productId": 270054,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 6831374195.41,
@@ -42518,7 +42515,6 @@
           "isin": "US02079K3059"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -42528,9 +42524,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -42573,7 +42569,7 @@
       "index": "MSCI World Sector Neutral Quality Index (Net)",
       "domicile": "Ireland",
       "inceptionDate": "20141003",
-      "replicationMethod": "Optimised",
+      "replicationMethod": "Physical (Optimised)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Optimised"
@@ -42586,42 +42582,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -42648,7 +42644,7 @@
   "IE00BP3QZ825": {
     "currency": "USD",
     "productId": 270051,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 5581585635.26,
@@ -42955,7 +42951,6 @@
           "isin": "US0382221051"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -42965,9 +42960,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -43010,7 +43005,7 @@
       "index": "MSCI World Momentum index (Net)",
       "domicile": "Ireland",
       "inceptionDate": "20141003",
-      "replicationMethod": "Optimised",
+      "replicationMethod": "Physical (Optimised)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Optimised"
@@ -43023,42 +43018,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -43085,7 +43080,7 @@
   "IE00BP3QZB59": {
     "currency": "USD",
     "productId": 270048,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 6960625392.81,
@@ -43384,7 +43379,6 @@
           "isin": "US7170811035"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -43394,9 +43388,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -43439,7 +43433,7 @@
       "index": "MSCI World Enhanced Value index (Net)",
       "domicile": "Ireland",
       "inceptionDate": "20141003",
-      "replicationMethod": "Replicated",
+      "replicationMethod": "Physical (Replicated)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Replicated"
@@ -43452,42 +43446,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -43514,7 +43508,7 @@
   "IE00BYZK4552": {
     "currency": "USD",
     "productId": 284219,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 5052189231.28,
@@ -43815,7 +43809,6 @@
           "isin": "CA21037X1006"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -43825,9 +43818,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -43870,7 +43863,7 @@
       "index": "Stoxx Global Automation & Robotics Net USD Index",
       "domicile": "Ireland",
       "inceptionDate": "20160908",
-      "replicationMethod": "Optimised",
+      "replicationMethod": "Physical (Optimised)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Optimised"
@@ -43883,42 +43876,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -43944,7 +43937,7 @@
   "IE00BYZK4776": {
     "currency": "USD",
     "productId": 284216,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 1626934544.77,
@@ -44212,7 +44205,6 @@
           "isin": "US3755581036"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -44222,9 +44214,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -44267,7 +44259,7 @@
       "index": "STOXX GLOBAL BREAKTHROUGH HEALTHCARE (Net)",
       "domicile": "Ireland",
       "inceptionDate": "20160908",
-      "replicationMethod": "Optimised",
+      "replicationMethod": "Physical (Optimised)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Optimised"
@@ -44280,42 +44272,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -44341,7 +44333,7 @@
   "IE00B1XNHC34": {
     "currency": "USD",
     "productId": 251911,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 2717208780.85,
@@ -44630,7 +44622,6 @@
           "isin": "US29355A1079"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -44640,9 +44631,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -44696,7 +44687,7 @@
       "index": "S&P Global Clean Energy Transition Index in USD (Net)",
       "domicile": "Ireland",
       "inceptionDate": "20070706",
-      "replicationMethod": "Replicated",
+      "replicationMethod": "Physical (Replicated)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Replicated"
@@ -44709,42 +44700,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -44771,7 +44762,7 @@
   "IE00BJ5JP329": {
     "currency": "USD",
     "productId": 308902,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 120113185.88,
@@ -45005,7 +44996,6 @@
           "isin": "GB0002374006"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -45015,9 +45005,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -45071,7 +45061,7 @@
       "index": "MSCI World Consumer Staples Advanced Select 20 35 Capped Index",
       "domicile": "Ireland",
       "inceptionDate": "20191017",
-      "replicationMethod": "Replicated",
+      "replicationMethod": "Physical (Replicated)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Replicated"
@@ -45084,42 +45074,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -45142,7 +45132,7 @@
   "IE00BJ5JNZ06": {
     "currency": "USD",
     "productId": 308909,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 934800832.07,
@@ -45363,7 +45353,6 @@
           "isin": "US0311621009"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -45373,9 +45362,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -45429,7 +45418,7 @@
       "index": "MSCI World Health Care Advanced Select 20 35 Capped Index",
       "domicile": "Ireland",
       "inceptionDate": "20191017",
-      "replicationMethod": "Replicated",
+      "replicationMethod": "Physical (Replicated)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Replicated"
@@ -45442,42 +45431,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -45500,7 +45489,7 @@
   "IE00B3F81G20": {
     "currency": "USD",
     "productId": 251859,
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
       "amount": 307528885.8,
@@ -45848,7 +45837,6 @@
           "isin": "TW0002409000"
         }
       ],
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-11-15",
       "modifiedAt": "2026-11-15"
     },
@@ -45858,9 +45846,9 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-11-13",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "scope": "Fund portfolio",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
         "modifiedAt": "2026-11-15"
       },
@@ -45914,7 +45902,7 @@
       "index": "MSCI Emerging Markets Small Cap Net TR Index",
       "domicile": "Ireland",
       "inceptionDate": "20090306",
-      "replicationMethod": "Optimised",
+      "replicationMethod": "Physical (Optimised)",
       "replicationMethodRaw": {
         "productStructure": "Physical",
         "fundMethodologyTypeCode": "Optimised"
@@ -45927,42 +45915,42 @@
     "characteristicChecks": {
       "distribution": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "terPct": {
         "checkedAt": "2026-11-15",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
     },
@@ -46303,12 +46291,12 @@
         "value": 721.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 20.57228,
@@ -46604,12 +46592,12 @@
         "value": 73.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 19.84029,
@@ -47192,12 +47180,12 @@
         "value": 25.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 10.54216,
@@ -47462,12 +47450,12 @@
         "value": 91.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 12.92408,
@@ -47734,12 +47722,12 @@
         "value": 223.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 27.21658,
@@ -47997,12 +47985,12 @@
         "value": 114.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 30.46574,
@@ -48264,12 +48252,12 @@
         "value": 50.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 21.48788,
@@ -48528,12 +48516,12 @@
         "value": 58.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 18.38905,
@@ -48804,12 +48792,12 @@
         "value": 87.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 24.84996,
@@ -49130,12 +49118,12 @@
         "value": 325.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=277246&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 20.85471,
@@ -49542,12 +49530,12 @@
         "value": 397.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=332876&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "volatilitySourced3YrAnnualized": {
         "value": 2.678294,
@@ -49814,12 +49802,12 @@
         "value": 31.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251940&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 21.04844,
@@ -50102,12 +50090,12 @@
         "value": 28.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251737&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "volatilitySourced3YrAnnualized": {
         "value": 4.403517,
@@ -50376,12 +50364,12 @@
         "value": 59.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251808&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceBook": {
         "value": 0.7636,
@@ -50776,12 +50764,12 @@
         "value": 396.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       }
     }
   },
@@ -51027,12 +51015,12 @@
         "value": 29.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251967&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 20.89364,
@@ -51397,12 +51385,12 @@
         "value": 1248.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 25.39568,
@@ -51682,12 +51670,12 @@
         "value": 20.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251963&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 19.8854,
@@ -51928,12 +51916,12 @@
         "value": 8.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251952&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 21.73342,
@@ -52199,12 +52187,12 @@
         "value": 24.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251944&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 23.6625,
@@ -52477,12 +52465,12 @@
         "value": 12.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 22.11189,
@@ -52920,15 +52908,15 @@
         "modifiedAt": "2026-11-13"
       },
       "numHoldings": {
-        "value": 694.0,
+        "value": 699.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "volatilitySourced3YrAnnualized": {
         "value": 0.2877,
@@ -53412,12 +53400,12 @@
         "value": 151.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 11.24755,
@@ -53731,12 +53719,12 @@
         "value": 214.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253729&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 19.07089,
@@ -54049,12 +54037,12 @@
         "value": 379.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253496&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 14.83682,
@@ -54360,12 +54348,12 @@
         "value": 31.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 13.26663,
@@ -54682,12 +54670,12 @@
         "value": 145.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272058&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 13.70315,
@@ -55008,12 +54996,12 @@
         "value": 122.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272019&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 19.3177,
@@ -55326,12 +55314,12 @@
         "value": 121.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 20.25777,
@@ -56499,12 +56487,12 @@
         "value": 631.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 19.29849,
@@ -56811,12 +56799,12 @@
         "value": 355.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=290846&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 25.62095,
@@ -57078,12 +57066,12 @@
         "value": 112.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=307130&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 23.86421,
@@ -57333,12 +57321,12 @@
         "value": 96.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 30.90299,
@@ -57768,12 +57756,12 @@
         "value": 345.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-11-12",
+        "asOf": "2026-11-13",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284218&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
         "checkedAt": "2026-11-15",
-        "modifiedAt": "2026-11-13"
+        "modifiedAt": "2026-11-15"
       },
       "priceEarnings": {
         "value": 18.28258,
