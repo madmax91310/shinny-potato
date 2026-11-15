@@ -681,3 +681,26 @@ poids bruts 100 %. Cela ne prouve ni l'accès GitHub ni la publication. Les proc
 producteurs ordinaires doivent encore établir les résultats individuels,
 l'enregistrement et la consommation. Les incidents primaires restent distincts
 des voies alternatives qualifiées. Aucun cache ni cron anticipé.
+
+### 15 novembre — positions indépendantes du lot cotations/métriques
+
+Complément du même chantier #881, après #1336/#1338. Propriété : collecteurs
+`collect_etf_holdings.py`, `collect_etf_pilot.py`, `collect_qualified_exposures.py`
+et leurs recettes issuer/qualification. Aucun lecteur de supervision ni maquette.
+
+Après deux réponses de positions entièrement nulles, une seule requête physique
+ciblée `keyFundFacts,holdings.all` peut fournir le champ positions, sa date et
+ses propres URL/empreinte. Part, produit, devise, structure physique, classe,
+poids, totalité du livre et fraîcheur sont contrôlés. Une contradiction financière
+sur un livre rempli ne déclenche pas cette voie. Les cotations, métriques,
+performances et tables primaires gardent leur réponse et leur preuve d'origine.
+Une table primaire invalide n'est pas clôturée par cette récupération de positions.
+Les observations partielles/grosses ou dates régressives restent refusées.
+
+Le top 10 reste un top 10 de titres du fonds, jamais un livre complet ni un indice
+exact. Aucun poids à zéro ou renormalisation ; aucun catalogue ajouté. Les succès
+source de ce complément doivent encore être exercés via les producteurs ordinaires
+et rapprochés des observations réellement enregistrées/publiées, sans confondre
+lecture locale, push/manuelle et cron. Preuve locale : même part IE00BJ5JP212,
+USD, 128 lignes au 13 novembre dans l'endpoint ciblé, contrairement au lot contenant
+les listings. La fixture réelle et son empreinte sont conservées.

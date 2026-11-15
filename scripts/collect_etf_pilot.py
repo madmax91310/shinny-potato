@@ -407,17 +407,24 @@ def collect(config, baseline, now=None, fetch=get_text):
             result.setdefault('collectionErrors', []).append({'field': 'metrics', 'url': url, 'reason': str(error)})
         if attempts: result.setdefault('sourceAttempts', []).extend(attempts)
         if share.get('collectHoldings'):
-            from collect_etf_holdings import parse_holdings, collect_holdings
+            from collect_etf_holdings import parse_holdings, collect_holdings, independent_holdings
             try:
                 if share.get('sectorFallback')=='physical-portfolio-allocation':
                     if not isinstance(body,dict):raise ValueError('Structured classified-position response required')
                     from ishares_sector_fallback import classified_position_allocation
                     result['holdings'],holdings_countries,_=classified_position_allocation(body,share,now)
                 elif isinstance(body, dict):
-                    result['holdings'], holdings_countries = parse_holdings(body, share, now)
+                    try:
+                        result['holdings'], holdings_countries = parse_holdings(body, share, now)
+                    except (ValueError, KeyError, TypeError):
+                        if not partial_holdings_response(body, share['isin'], share['productId'], share['currency']):
+                            raise  # Never seek a different answer after a financial contradiction.
+                        result['holdings'], holdings_countries, field_attempts = independent_holdings(share, now, fetch)
+                        result.setdefault('sourceAttempts', []).extend(field_attempts)
                 else:
                     result['holdings'], holdings_countries = collect_holdings(result['rawComponents']['holdings'], share, now)
-                if isinstance(body,dict):result['holdings']['sourceUrl']=holdings_countries['sourceUrl']=url
+                if isinstance(body,dict):
+                    for observation in (result['holdings'], holdings_countries):observation.setdefault('sourceUrl', url)
                 # Keep a common holdings-based geography alongside the issuer table.
                 # DCA can combine this exact method across funds without conflating taxonomies.
                 result['countriesRisk'] = {**holdings_countries, 'basis': 'fund'}
@@ -426,7 +433,8 @@ def collect(config, baseline, now=None, fetch=get_text):
                     for issue in result.get('collectionErrors',[]):
                         if issue.get('field')=='countries-primary':issue['fallbackQualified']=True
             except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
-                result.setdefault('collectionErrors', []).append({'field': 'holdings', 'url': url, 'reason': str(error)})
+                result.setdefault('sourceAttempts', []).extend(getattr(error,'sourceAttempts',[]))
+                result.setdefault('collectionErrors', []).append({'field': 'holdings', 'url': getattr(error,'sourceUrl',url), 'reason': str(error)})
         for field in share.get('requiredFields', []):
             observation = result.get(field, {})
             if not observation or (field in ('countries', 'sectors', 'holdings') and not observation.get('rows')):
@@ -443,7 +451,8 @@ def collect(config, baseline, now=None, fetch=get_text):
             digest = hashlib.sha256(json.dumps(body, ensure_ascii=False).encode()).hexdigest()
             for field in ('characteristics', 'aum', 'countries', 'sectors', 'countriesRisk', 'holdings', 'performance'):
                 if field in result:
-                    result[field].update(sourceUrl=url, sha256=digest)
+                    if not (result[field].get('sourceUrl') and result[field].get('sha256')):
+                        result[field].update(sourceUrl=url, sha256=digest)
             performance = result.get('performance')
             if performance and performance.get('years'):
                 performance['asOf'] = max(performance['years']) + '-12-31'

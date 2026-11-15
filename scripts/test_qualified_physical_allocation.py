@@ -24,6 +24,32 @@ URL = PROVENANCE['sourceUrl']
 
 
 class QualifiedPhysicalAllocation(unittest.TestCase):
+    def test_hypothetical_valid_primary_keeps_its_proof_and_independent_holdings_date(self):
+        from urllib.parse import parse_qs,urlsplit
+        body=self.null_book()
+        exposure=body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']
+        for node in [exposure['geography']['subContainersByNameMap']['countries'],exposure['sector']]:
+            # Isolated hypothetical primary recovery, not a provider claim.
+            node['dataPointsByNameMap']['fund']['value'][0]+=1.26
+        primary=json.dumps(body)
+        def fetch(url,*args):
+            return RAW if parse_qs(urlsplit(url).query)['component']==['keyFundFacts,holdings.all'] else primary
+        with patch.object(collector,'get_text',side_effect=fetch) as source:
+            record=collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,3)
+        self.assertEqual(record['pageSha256'],hashlib.sha256(primary.encode()).hexdigest())
+        self.assertEqual(record['holdings']['sha256'],hashlib.sha256(RAW.encode()).hexdigest())
+        self.assertNotEqual(record['holdings']['sourceUrl'],URL)
+        self.assertEqual(record['holdings']['asOf'],'2026-11-11')
+        self.assertTrue(all(x['status']=='succeeded'for x in record['primaryAllocationChecks']))
+        self.assertEqual(record['sourceAttempts'][-1]['field'],'holdings')
+
+    def test_bad_primary_is_not_closed_by_an_unrelated_holdings_recovery(self):
+        with patch.object(collector,'get_text',return_value=json.dumps(self.null_book())):
+            with patch.object(collector,'independent_holdings') as alternative:
+                with self.assertRaises(ValueError):collector.collect_one(CONFIG,NOW)
+        alternative.assert_not_called()
+
     def null_book(self):
         body=copy.deepcopy(BODY)
         points=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']

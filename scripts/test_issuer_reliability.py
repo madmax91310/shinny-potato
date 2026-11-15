@@ -39,6 +39,82 @@ def payload(c=None):
 
 
 class Reliability(unittest.TestCase):
+    def test_actual_independent_share_book_keeps_original_weights_and_partial_top_ten_scope(self):
+        import gzip,hashlib
+        from collect_etf_holdings import independent_holdings
+        folder=FIX/'ishares-independent-holdings-20261115'
+        proof=json.loads((folder/'provenance.json').read_text());raw=gzip.decompress((folder/'body.json.gz').read_bytes())
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),proof['sha256'])
+        calls=[]
+        def fetch(url,*args):calls.append(url);return raw.decode()
+        h,c,attempts=independent_holdings({'isin':proof['isin'],'productId':proof['productId'],'currency':'USD'},
+            dt.datetime(2026,11,15,tzinfo=UTC),fetch)
+        self.assertEqual(calls,[proof['sourceUrl']])
+        self.assertEqual(h['asOf'],'2026-11-13');self.assertEqual(len(h['rows']),10)
+        self.assertLess(sum(r['weightPct']for r in h['rows']),100)
+        self.assertAlmostEqual(sum(r['weightPct']for r in c['rows']),100.00002)  # Preserve the issuer's rounded weights.
+        self.assertIsNot(h.get('complete'),True)
+        self.assertEqual(h['basis'],'fund');self.assertEqual(c['basis'],'fund')
+        self.assertEqual(h['sha256'],proof['sha256']);self.assertEqual(attempts[0]['status'],'validated')
+
+    def independent_book(self):
+        # Isolated transport fixture; not an observation of the real fund.
+        body=payload();facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        facts.update(productStructure={'value':'Physical'},assetClass={'value':'Equity'})
+        values={'asOfDate':20261006,'issueName':['APPLE INC','MICROSOFT CORP','USD CASH'],
+                'holdingPercent':[60,39,1],'isin':['US0378331005','US5949181045','-'],
+                'countryOfRisk':['United States','United States','-'],'assetClass':['Equity','Equity','Cash']}
+        body['componentsByNameMap']['holdings']={'containersByNameMap':{'all':{'dataPointsByNameMap':{
+            key:{'value':value}for key,value in values.items()}}}}
+        return body
+
+    def test_independent_book_keeps_only_its_own_field_provenance(self):
+        import hashlib
+        from urllib.parse import parse_qs,urlsplit
+        s={**SHARE,'collectHoldings':True,'sourceProof':True}
+        primary=self.null_holdings();secondary=self.independent_book();calls=[]
+        def fetch(url,*args):
+            calls.append(url)
+            return json.dumps(secondary if parse_qs(urlsplit(url).query)['component']==['keyFundFacts,holdings.all'] else primary)
+        report=collect({'instruments':[s]},{s['isin']:{}},NOW,fetch)
+        self.assertFalse(report['failures']);r=report['shares'][0]
+        self.assertFalse(any(e['field']=='holdings'for e in r.get('collectionErrors',[])))
+        self.assertEqual(len(calls),3);self.assertEqual(calls[:2],[calls[0]]*2)
+        self.assertEqual(r['holdings']['asOf'],'2026-10-06')
+        self.assertEqual(sum(x['weightPct']for x in r['holdings']['rows']),99)
+        self.assertEqual(r['holdings']['sourceUrl'],calls[2])
+        self.assertEqual(r['holdings']['sha256'],hashlib.sha256(json.dumps(secondary).encode()).hexdigest())
+        self.assertEqual(r['performance']['sha256'],hashlib.sha256(json.dumps(primary).encode()).hexdigest())
+        self.assertEqual(r['performance']['years']['2025'],21.16)
+        self.assertEqual(r['countriesRisk']['sourceUrl'],calls[2])
+        merged=merge_collection(report,{}, {})[s['isin']]
+        self.assertEqual(merged['holdings']['sha256'],r['holdings']['sha256'])
+        self.assertEqual(merged['holdings']['sourceUrl'],calls[2])
+        self.assertEqual(merged['performance']['sha256'],r['performance']['sha256'])
+
+    def test_populated_financial_error_never_uses_an_independent_book(self):
+        body=self.independent_book()
+        body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['holdingPercent']['value']=[90,39,1]
+        calls=[]
+        def fetch(url,*args):calls.append(url);return json.dumps(body)
+        report=collect({'instruments':[{**SHARE,'collectHoldings':True}]},{SHARE['isin']:{}},NOW,fetch)
+        self.assertEqual(len(calls),1)
+        self.assertTrue(any(e['field']=='holdings'for e in report['shares'][0]['collectionErrors']))
+        self.assertNotIn('holdings',report['shares'][0])
+
+    def test_independent_book_refuses_identity_currency_structure_and_weight_errors(self):
+        from collect_etf_holdings import independent_holdings
+        for key in ['product','currency','share','structure','class','weights']:
+            body=self.independent_book();facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+            if key=='product':body['productId']=999
+            if key=='currency':body['currencyCode']='EUR'
+            if key=='share':facts['isin']['value']='WRONG'
+            if key=='structure':facts['productStructure']['value']='Synthetic'
+            if key=='class':facts['assetClass']['value']='Commodity'
+            if key=='weights':body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['holdingPercent']['value']=[60,59,1]
+            with self.subTest(key=key),self.assertRaises(ValueError):
+                independent_holdings(SHARE,NOW,lambda *a:json.dumps(body))
+
     def null_holdings(self):
         body=payload()
         body['componentsByNameMap']['holdings']={'hasData':True,'containersByNameMap':{'all':{'dataPointsByNameMap':{
@@ -81,7 +157,8 @@ class Reliability(unittest.TestCase):
         self.assertFalse(report['failures']);r=report['shares'][0]
         self.assertNotIn('holdings',r)
         self.assertTrue(any(e['field']=='holdings'for e in r['collectionErrors']))
-        self.assertEqual([a['status']for a in r['sourceAttempts']],['empty-holdings-snapshot']*2)
+        self.assertEqual([a['status']for a in r['sourceAttempts'][:2]],['empty-holdings-snapshot']*2)
+        self.assertEqual(r['sourceAttempts'][-1]['status'],'failed')
         old={'asOf':'2026-10-01','checkedAt':'2026-10-01','basis':'fund',
              'rows':[{'name':'PREVIOUS QUALIFIED SECURITY','isin':'US0378331005','weightPct':8}]}
         previous={s['isin']:{'currency':'USD','productId':s['productId'],'holdings':old}}
