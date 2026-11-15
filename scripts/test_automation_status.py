@@ -67,6 +67,92 @@ class EventCatchupTests(unittest.TestCase):
   state['workflows']['update-bitcoin-monthly.yml']['attempt']=2
   self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':[retry]}),[])
 
+class CurrencyOutcomeTests(unittest.TestCase):
+ def evidence(self, fx='failure', msci='success', attempt=1):
+  payload={'schemaVersion':1,'workflow':'collect-etf-pilot.yml','runId':2,'attempt':attempt,
+           'headSha':'a'*40,'checkedAt':'2026-10-02T09:00:00Z',
+           'steps':{'fx':fx,'performance_currency':msci}}
+  with tempfile.TemporaryDirectory() as directory:
+   path=pathlib.Path(directory)/'currency-collection-outcomes.json'
+   path.write_text(json.dumps(payload))
+   report=read_report(path,'collect-etf-pilot.yml')
+  report['_reportEvidence']['artifactId']=123
+  return report
+
+ def scenario(self, report, previous=None, attempt=1):
+  from publish_automation_status import REGISTRY
+  workflow='collect-etf-pilot.yml';config=REGISTRY[workflow]
+  conclusion='success' if all(v=='success'for v in report['_jobOutcomes']['steps'].values())else'failure'
+  current=run(2,conclusion,workflow=workflow,run_attempt=attempt,head_sha='a'*40,run_started_at='2026-10-02T08:00:00Z')
+  # Real REST shape: even a failed continue-on-error step concludes success.
+  jobs=[{'name':config['collectionJob'],'conclusion':'success','steps':[
+    *[{'name':name,'conclusion':'success'}for name in config['collectionSteps']],
+    {'name':'Validate collected observations','conclusion':'success'},
+    {'name':'Commit validated observations','conclusion':'success'}]}]
+  return update_status(previous or {},current,jobs,[report]),current
+
+ def test_real_rest_success_conclusion_keeps_each_actual_currency_failure_visible(self):
+  from automation_monitoring import evaluate_monitoring
+  from publish_automation_status import REGISTRY
+  workflow='collect-etf-pilot.yml'
+  for fx,msci in [('failure','success'),('success','failure'),('failure','failure')]:
+   state,current=self.scenario(self.evidence(fx,msci))
+   row=state['workflows'][workflow]
+   row['dataFailures']['etf-additional-observation-OTHER']={'cause':'Other source still blocked'}
+   active=evaluate_monitoring(state,{'schemaVersion':1,'alerts':[],'entities':[]},{workflow:REGISTRY[workflow]},current['updated_at'],{'errors':[]})['active']
+   self.assertEqual(row['collectionStatus'],'failure')
+   for key,outcome in [('fx',fx),('performance_currency',msci)]:
+    self.assertEqual(row['stepResults']['refresh\nCollect observations: '+key],outcome)
+    if outcome=='failure':self.assertIn('Collect observations: '+key,active['workflow:'+workflow]['cause'])
+   self.assertEqual(row['sourceChecks'],{})
+   self.assertEqual(row['validatedDataIds'],[])
+   self.assertEqual(row['recordedObservationIds'],[])
+
+ def test_only_matching_attempt_commit_and_immutable_artifact_can_restore_outcomes(self):
+  for defect in ('run','attempt','commit','artifact','hash','before-start','after-end'):
+   report=self.evidence()
+   if defect=='run':report['_jobOutcomes']['runId']=3
+   if defect=='attempt':report['_jobOutcomes']['attempt']=2
+   if defect=='commit':report['_jobOutcomes']['headSha']='b'*40
+   if defect=='artifact':report['_reportEvidence'].pop('artifactId')
+   if defect=='hash':report['_reportEvidence']['sha256']='bad'
+   if defect=='before-start':report['_jobOutcomes']['checkedAt']='2026-10-02T07:59:59Z'
+   if defect=='after-end':report['_jobOutcomes']['checkedAt']='2026-10-02T10:00:01Z'
+   state,_=self.scenario(report)
+   row=state['workflows']['collect-etf-pilot.yml']
+   self.assertIsNone(row['currencyStepOutcomes'],defect)
+   self.assertTrue(row['proofFailures'],defect)
+
+ def test_fresh_successful_attempt_closes_execution_failure_without_renewing_source_clocks(self):
+  from publish_automation_status import REGISTRY
+  from automation_monitoring import evaluate_monitoring
+  workflow='collect-etf-pilot.yml';registry={workflow:REGISTRY[workflow]}
+  state,current=self.scenario(self.evidence())
+  context={'schemaVersion':1,'alerts':[],'entities':[]}
+  state['monitoring']=evaluate_monitoring(state,context,registry,current['updated_at'],{'errors':[]})
+  prior={'recordedAt':'2026-10-01T08:00:00Z','checkedAt':'2026-10-01'}
+  state['workflows'][workflow]['sourceChecks']['unrelated']=prior
+  next_state,current=self.scenario(self.evidence('success','success',2),state,2)
+  row=next_state['workflows'][workflow]
+  self.assertEqual(row['sourceChecks'],{'unrelated':prior})
+  result=evaluate_monitoring(next_state,context,registry,current['updated_at'],{'errors':[]})
+  self.assertIn('workflow:'+workflow,{r['id']for r in result['resolved']})
+  self.assertNotIn('workflow:'+workflow,result['active'])
+  missing=copy.deepcopy(next_state)
+  missing['monitoring']=state['monitoring']
+  missing['workflows'][workflow]['currencyStepOutcomes']=None
+  pending=evaluate_monitoring(missing,context,registry,current['updated_at'],{'errors':[]})
+  self.assertIn('workflow:'+workflow,pending['active'],'A REST success without a durable receipt cannot repair the source step')
+
+ def test_missing_unknown_or_skipped_outcome_never_certifies_a_source(self):
+  from publish_automation_status import validate_currency_outcomes
+  for value in ({'fx':'success'}, {'fx':'success','performance_currency':'cached'}, {'fx':'success','performance_currency':'success','unreviewed':'failure'}):
+   payload=self.evidence()['_jobOutcomes'];payload['steps']=value
+   with self.assertRaises(ValueError):validate_currency_outcomes(payload)
+  state,_=self.scenario(self.evidence('skipped','cancelled'))
+  self.assertEqual(state['workflows']['collect-etf-pilot.yml']['sourceChecks'],{})
+
+
 class StatusTests(unittest.TestCase):
  def test_composite_recording_scope_does_not_certify_failed_supplier_branch(self):
   from publish_automation_status import REGISTRY

@@ -342,6 +342,17 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         if key.startswith(('workflow:', 'checks:')):
             failed_steps = row.get('failedSteps', [])
             if not failed_steps or any(workflow.get('stepResults', {}).get(f['job'] + '\n' + f['step']) != 'success' for f in failed_steps):return None
+            # A later REST conclusion cannot repair a continued source failure:
+            # require the durable outcome from that exact later attempt as well.
+            currency_steps = registry.get(row.get('workflow'), {}).get('jobOnlyCollectionSteps', [])
+            receipt = workflow.get('currencyStepOutcomes') or {}
+            for failed_step in failed_steps:
+                if failed_step['step'] in currency_steps:
+                    identifier = failed_step['step'].removeprefix('Collect observations: ')
+                    if (receipt.get('runId') != workflow.get('runId')
+                            or receipt.get('attempt') != workflow.get('attempt', 1)
+                            or receipt.get('steps', {}).get(identifier) != 'success'):
+                        return None
             recorded = set(workflow.get('validatedDataIds', []))
             if (all(f['step'] == 'Commit validated observations' for f in failed_steps)
                     and workflow.get('recordingStatus') == 'success' and workflow.get('validationStatus') == 'success'):

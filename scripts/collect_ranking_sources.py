@@ -13,6 +13,7 @@ from urllib.parse import quote
 import urllib.error
 from data_automation import UTC, get_json, month_shift, reject, write_json_atomic
 from issuer_documents import download
+from collect_annual_fx import year_end_reference_date
 from refresh_monthly_history import collect_one, months
 from market_transport import chart_response
 
@@ -57,6 +58,8 @@ def parse_fx(body, now):
     if sorted(observed) != expected:
         reject('Incomplete ECB month-end coverage')
     for key, row in observed.items():
+        if key.endswith('-12') and row['asOf'] != year_end_reference_date(int(key[:4])):
+            reject(f'ECB final year-end reference missing for {key[:4]}: expected {year_end_reference_date(int(key[:4]))}, observed {row["asOf"]}')
         next_month = month_shift(dt.datetime.strptime(key, '%Y-%m'), 1).date()
         if (next_month - dt.date.fromisoformat(row['asOf'])).days > 7:
             reject('Stale ECB month-end observation')
