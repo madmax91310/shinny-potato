@@ -44,7 +44,7 @@ INDEPENDENT = {
 # 13 Nov: targeted anniversary/gold selection leaves all 28 13F plans intact;
 # proof: fixtures/publication/xndx-official-20261113/13f-plan-before-after.json.
 ACQUISITION_SHA256 = {
-    'scripts/update-investor-13f.py': '84fe43e831b8c73a44a38546614ebec46f063c740579a992b238c4abfb70e792',
+    'scripts/update-investor-13f.py': '0821ff6bdee38a2d801a161cf5ada2a83632e8b2a4cfea6e6bea32cfd575c237',
     'scripts/producer_report_contract.py': '54ee3ffe6e80be3d6ba2529172928063c3c1706f85c9973fe485db266778b463',
     'scripts/producer_report_plans.py': '50b52581836c7e6eb08e45e84fe4ae956fcc774c90aa5f2b8e340b2125cb7fa3',
 }

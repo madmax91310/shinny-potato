@@ -105,6 +105,64 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(set(module.MANAGERS), {'morfit', 'dorsey', 'vinall', 'marks', 'watsa', 'gavin-baker', 'einhorn', 'halvorsen', 'gerstner', 'gayner', 'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
                          'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'})
 
+    def test_original_sec_classes_exact_totals_and_amendments(self):
+        primary = '<edgarSubmission><periodOfReport>06-30-2026</periodOfReport><filingManager><name>EXACT FILER INC</name></filingManager><credentials><cik>0000000001</cik></credentials><tableValueTotal>100</tableValueTotal><tableEntryTotal>3</tableEntryTotal><isAmendment>false</isAmendment></edgarSubmission>'
+        table = '<informationTable>' + ''.join('<infoTable><nameOfIssuer>Same issuer</nameOfIssuer><titleOfClass>' + cls + '</titleOfClass><cusip>000000001</cusip><value>' + str(value) + '</value></infoTable>' for cls, value in [('A', 60), ('A', 20), ('B', 20)]) + '</informationTable>'
+        directory = {'directory': {'item': [{'name': 'primary.xml'}, {'name': 'table.xml'}]}}
+        original = portfolio('2026-06-30')
+        original['data']['snapshot'].update(filingUrl='https://www.sec.gov/Archives/edgar/data/1/2/', declaredTotal=100)
+        for kind in ['good', 'rounding', 'provider-conflict', 'total', 'count', 'date', 'additional']:
+            data = copy.deepcopy(original)
+            cover = primary
+            if kind == 'rounding': cover = cover.replace('Total>100', 'Total>101')
+            if kind == 'provider-conflict': data['data']['snapshot']['declaredTotal'] = 100000
+            if kind == 'total': cover = cover.replace('Total>100', 'Total>110')
+            if kind == 'count': cover = cover.replace('Total>3', 'Total>4')
+            if kind == 'date': cover = cover.replace('06-30-2026', '03-31-2026')
+            if kind == 'additional': cover = cover.replace('<isAmendment>false', '<amendmentType>NEW HOLDINGS</amendmentType><isAmendment>true')
+            with patch.object(module, 'get_json', side_effect=[directory, cover, table]):
+                if kind not in ('good', 'rounding'):
+                    with self.assertRaises(ValueError): module.enrich_sec_positions(data)
+                else:
+                    module.enrich_sec_positions(data)
+                    module.validate_portfolio(data, 'li-lu')
+                    self.assertEqual(data['data']['identity']['entityName'], 'EXACT FILER INC')
+                    rows = data['data']['snapshot']['holdings']
+                    self.assertEqual([(r['shareClass'], r['value']) for r in rows], [('A', 80), ('B', 20)])
+                    self.assertEqual(len(rows[0]['sourceRows']), 2)
+                    self.assertTrue(data['data']['snapshot']['primaryVerified'])
+                    self.assertEqual(data['data']['snapshot']['declaredTotal'], 100)
+                    self.assertEqual(data['data']['snapshot']['reconciliationDifference'], -1 if kind == 'rounding' else 0)
+
+    def test_monetary_units_and_reconciliation(self):
+        data = portfolio('2026-06-30', .6)
+        snap = data['data']['snapshot']
+        snap.update(declaredTotal=100, currency='USD', valueUnit=1, valueUnitSource='https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow')
+        for row in snap['holdings']:
+            row.update(value=row['weight'] * 100, currency='USD', unit=1, shareClass='COM')
+        module.validate_portfolio(data, 'li-lu')
+        for field, value in [('declaredTotal', 100000), ('valueUnit', 1000), ('currency', 'EUR')]:
+            bad = copy.deepcopy(data)
+            bad['data']['snapshot'][field] = value
+            with self.assertRaises(ValueError):
+                module.validate_portfolio(bad, 'li-lu')
+        bad = copy.deepcopy(data)
+        bad['data']['snapshot']['holdings'][0]['value'] = 61
+        with self.assertRaises(ValueError):
+            module.validate_portfolio(bad, 'li-lu')
+
+    def test_publication_metadata_has_matching_quarter_and_sec_source(self):
+        data = portfolio('2026-06-30')
+        data['data']['snapshot']['declaredTotal'] = 100
+        page = '<a href="/funds/example/quarters/2026-06-30">Q2</a><dt>Filed</dt><dd class="date">2026-08-14</dd><a href="https://www.sec.gov/Archives/edgar/data/1/2/">13F</a>'
+        with patch.object(module, 'get_json', return_value=page):
+            module.enrich_filing_metadata(data)
+        self.assertEqual(data['data']['snapshot']['filedAt'], '2026-08-14')
+        self.assertEqual(data['data']['snapshot']['filingUrl'], 'https://www.sec.gov/Archives/edgar/data/1/2/')
+        with patch.object(module, 'get_json', return_value=page.replace('2026-06-30', '2026-03-31')):
+            with self.assertRaises(ValueError):
+                module.enrich_filing_metadata(data)
+
     def test_options_keep_declared_weight_denominator(self):
         rows = [{'security': {'name': str(i), 'ticker': str(i)}, 'position_type': kind,
                  'value': value, 'change': 'hold'} for i, (kind, value) in enumerate([
@@ -199,7 +257,12 @@ class RefreshTests(unittest.TestCase):
             self.assertTrue(all(row['positionsCollectedAt'] == 'checked-now' for row in reviews))
             with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
                 module.refresh(directory, lambda *args: (_ for _ in ()).throw(RuntimeError('offline')))
-            self.assertEqual(reviews, json.loads((directory / 'review-metadata.json').read_text()))
+            failed_reviews = json.loads((directory / 'review-metadata.json').read_text())
+            for old, new in zip(reviews, failed_reviews):
+                self.assertEqual(new['lastAttemptStatus'], 'failed')
+                self.assertEqual(new['lastError'], 'offline')
+                for key in ('as_of', 'lastSuccessfulPollAt', 'positionsCollectedAt', 'data'):
+                    self.assertEqual(old[key], new[key])
 
     def test_older_report_cannot_overwrite(self):
         with tempfile.TemporaryDirectory() as folder:

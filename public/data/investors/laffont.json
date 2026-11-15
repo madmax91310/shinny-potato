@@ -1,537 +1,2773 @@
 {
-  "as_of": "2026-10-04T18:12:48.879804+00:00",
+  "as_of": "2026-11-15T16:44:31.613910+00:00",
   "data": {
     "identity": {
       "slug": "laffont",
       "archetype": "hedge_fund",
       "displayName": "Philippe Laffont",
-      "entityName": "Coatue Management LLC",
-      "dataProvider": "FolioFact"
+      "entityName": "COATUE MANAGEMENT LLC",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/coatue-management",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001135730",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1135730/000091957426005478/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "Taiwan Semiconductor Manufacturing",
-          "ticker": "TSM",
+          "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "874039100",
+          "securityId": "874039100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.08755124431867553,
+          "value": 4257534162,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 289374468,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "605931",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 1649077387,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "3453059",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 99368467,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "208071",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 1237588748,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "2591429",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 35498733,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "74332",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 308480611,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "645938",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 99491203,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "208328",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 415559923,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "870155",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 28571580,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "59827",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            },
+            {
+              "value": 94523042,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "197925",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "9"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -4.0
+          "sharesChangePct": null,
+          "weight": 0.08755124431867553
         },
         {
-          "issuerName": "Lam Research Corp.",
-          "ticker": "LRCX",
+          "issuerName": "LAM RESEARCH CORP",
+          "shareClass": "COM NEW",
+          "cusip": "512807306",
+          "securityId": "512807306",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.08413344523903823,
+          "value": 4091329827,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2080299031,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "4800727",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 73411735,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "169413",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 1079113032,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "2490280",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 25930034,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "59839",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 598209465,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "1380494",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 18377525,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "42410",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            },
+            {
+              "value": 215989005,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "498440",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -6.0
+          "sharesChangePct": null,
+          "weight": 0.08413344523903823
         },
         {
-          "issuerName": "Micron Technology Inc.",
-          "ticker": "MU",
+          "issuerName": "MICRON TECHNOLOGY INC",
+          "shareClass": "COM",
+          "cusip": "595112103",
+          "securityId": "595112103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0745868859988217,
+          "value": 3627089685,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 422044207,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "365631",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 1491474269,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "1292114",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 83682562,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "72497",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 1118553182,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "969040",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 15884185,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "13761",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 484831812,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "420026",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 10619468,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "9200",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 1793.7
+          "sharesChangePct": null,
+          "weight": 0.0745868859988217
         },
         {
-          "issuerName": "Space Exploration Technologies Corp.",
-          "ticker": "SPCX",
+          "issuerName": "SPACE EXPLORATION TECHN CORP",
+          "shareClass": "CLASS A COM STK",
+          "cusip": "84615Q103",
+          "securityId": "84615Q103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.06521750865591479,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Applied Matls Inc.",
-          "ticker": "AMAT",
-          "putCall": null,
-          "weight": 0.06264461215752862,
+          "value": 3171465731,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1958896231,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "11464920",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "12"
+            },
+            {
+              "value": 259412808,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "1518277",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15"
+            },
+            {
+              "value": 86792950,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "507977",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 167425714,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "979900",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "20"
+            },
+            {
+              "value": 43773307,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "256194",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 632805639,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "3703650",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 2396312,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "14025",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 19962770,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "116837",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -19.7
+          "sharesChangePct": null,
+          "weight": 0.06521750865591479
         },
         {
-          "issuerName": "Ge Vernova Inc.",
-          "ticker": "GEV",
+          "issuerName": "APPLIED MATLS INC",
+          "shareClass": "COM",
+          "cusip": "038222105",
+          "securityId": "038222105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.061804298623009686,
+          "value": 3046348209,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 203249760,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "281120",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 1055791839,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "1460293",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 69345822,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "95914",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 1133060295,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "1567165",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 26777028,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "37036",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 541147425,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "748475",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 16976040,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "23480",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -0.6
+          "sharesChangePct": null,
+          "weight": 0.06264461215752862
         },
         {
-          "issuerName": "Amazon.com Inc.",
-          "ticker": "AMZN",
+          "issuerName": "GE VERNOVA INC",
+          "shareClass": "COM",
+          "cusip": "36828A101",
+          "securityId": "36828A101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.05800454214168623,
+          "value": 3005484557,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 81905365,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "69715",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 1476593419,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "1256825",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 27887652,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "23737",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 677158758,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "576374",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 12256140,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "10432",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 396966396,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "337884",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 91135065,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "77571",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 234073232,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "199235",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 7508530,
+              "issuerName": "GE VERNOVA INC",
+              "shares": "6391",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 49.2
+          "sharesChangePct": null,
+          "weight": 0.061804298623009686
         },
         {
-          "issuerName": "Broadcom Inc.",
-          "ticker": "AVGO",
+          "issuerName": "AMAZON COM INC",
+          "shareClass": "COM",
+          "cusip": "023135106",
+          "securityId": "023135106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.04541812438615254,
+          "value": 2820705995,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1546348490,
+              "issuerName": "AMAZON COM INC",
+              "shares": "6487994",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 105602019,
+              "issuerName": "AMAZON COM INC",
+              "shares": "443073",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 743079292,
+              "issuerName": "AMAZON COM INC",
+              "shares": "3117728",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 33050608,
+              "issuerName": "AMAZON COM INC",
+              "shares": "138670",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 56199619,
+              "issuerName": "AMAZON COM INC",
+              "shares": "235796",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 30662918,
+              "issuerName": "AMAZON COM INC",
+              "shares": "128652",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            },
+            {
+              "value": 305763049,
+              "issuerName": "AMAZON COM INC",
+              "shares": "1282886",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 6.2
+          "sharesChangePct": null,
+          "weight": 0.05800454214168623
         },
         {
-          "issuerName": "Eaton Corp. PLC",
-          "ticker": "ETN",
+          "issuerName": "BROADCOM INC",
+          "shareClass": "COM",
+          "cusip": "11135F101",
+          "securityId": "11135F101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.04353654528833204,
+          "value": 2208640410,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 165088838,
+              "issuerName": "BROADCOM INC",
+              "shares": "437032",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 1107711078,
+              "issuerName": "BROADCOM INC",
+              "shares": "2932392",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 56555219,
+              "issuerName": "BROADCOM INC",
+              "shares": "149716",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 455508704,
+              "issuerName": "BROADCOM INC",
+              "shares": "1205847",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 18604565,
+              "issuerName": "BROADCOM INC",
+              "shares": "49251",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 159619396,
+              "issuerName": "BROADCOM INC",
+              "shares": "422553",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 57265389,
+              "issuerName": "BROADCOM INC",
+              "shares": "151596",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 172355237,
+              "issuerName": "BROADCOM INC",
+              "shares": "456268",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 15931984,
+              "issuerName": "BROADCOM INC",
+              "shares": "42176",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 4.6
+          "sharesChangePct": null,
+          "weight": 0.04541812438615254
         },
         {
-          "issuerName": "Alphabet Inc.",
-          "ticker": "GOOG(L)",
+          "issuerName": "EATON CORP PLC",
+          "shareClass": "SHS",
+          "cusip": "G29183103",
+          "securityId": "G29183103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.042288333193419105,
+          "value": 2117140999,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 196656937,
+              "issuerName": "EATON CORP PLC",
+              "shares": "461506",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 829570842,
+              "issuerName": "EATON CORP PLC",
+              "shares": "1946801",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 66529263,
+              "issuerName": "EATON CORP PLC",
+              "shares": "156128",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 427726472,
+              "issuerName": "EATON CORP PLC",
+              "shares": "1003770",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 20962121,
+              "issuerName": "EATON CORP PLC",
+              "shares": "49193",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 258475017,
+              "issuerName": "EATON CORP PLC",
+              "shares": "606578",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 82997097,
+              "issuerName": "EATON CORP PLC",
+              "shares": "194774",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 213840652,
+              "issuerName": "EATON CORP PLC",
+              "shares": "501832",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 20382598,
+              "issuerName": "EATON CORP PLC",
+              "shares": "47833",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.04353654528833204
         },
         {
-          "issuerName": "Intel Corp.",
-          "ticker": "INTC",
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL A",
+          "cusip": "02079K305",
+          "securityId": "02079K305",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.034697214122260754,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Cerebras Systems Inc.",
-          "ticker": "CBRS",
-          "putCall": null,
-          "weight": 0.03186237588268812,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Meta Platforms Inc.",
-          "ticker": "META",
-          "putCall": null,
-          "weight": 0.02926023577597272,
+          "value": 1735478421,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 170880754,
+              "issuerName": "ALPHABET INC",
+              "shares": "478162",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 734548662,
+              "issuerName": "ALPHABET INC",
+              "shares": "2055429",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 59008220,
+              "issuerName": "ALPHABET INC",
+              "shares": "165118",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 657538286,
+              "issuerName": "ALPHABET INC",
+              "shares": "1839937",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 18113656,
+              "issuerName": "ALPHABET INC",
+              "shares": "50686",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 79528048,
+              "issuerName": "ALPHABET INC",
+              "shares": "222537",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 15860795,
+              "issuerName": "ALPHABET INC",
+              "shares": "44382",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -10.2
+          "sharesChangePct": null,
+          "weight": 0.035688097726357185
         },
         {
-          "issuerName": "Equinix Inc.",
-          "ticker": "EQIX",
+          "issuerName": "INTEL CORP",
+          "shareClass": "COM",
+          "cusip": "458140100",
+          "securityId": "458140100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.027298523944672377,
+          "value": 1687292689,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 258432370,
+              "issuerName": "INTEL CORP",
+              "shares": "1850837",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 565520071,
+              "issuerName": "INTEL CORP",
+              "shares": "4050133",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 88122727,
+              "issuerName": "INTEL CORP",
+              "shares": "631116",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 568746501,
+              "issuerName": "INTEL CORP",
+              "shares": "4073240",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 24291012,
+              "issuerName": "INTEL CORP",
+              "shares": "173967",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 158396272,
+              "issuerName": "INTEL CORP",
+              "shares": "1134400",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 23783736,
+              "issuerName": "INTEL CORP",
+              "shares": "170334",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 16.7
+          "sharesChangePct": null,
+          "weight": 0.034697214122260754
         },
         {
-          "issuerName": "Nvidia Corporation",
-          "ticker": "NVDA",
+          "issuerName": "CEREBRAS SYSTEMS INC",
+          "shareClass": "COM CL A",
+          "cusip": "15675D103",
+          "securityId": "15675D103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.02491482508224319,
+          "value": 1549437188,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 12077208,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "54648",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 95923724,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "434044",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 60300292,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "272852",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 1354562482,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "6129242",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 2581280,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "11680",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 16656107,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "75367",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 3347045,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "15145",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 3989050,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "18050",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -4.4
+          "sharesChangePct": null,
+          "weight": 0.03186237588268812
         },
         {
-          "issuerName": "Constellation Energy Corp.",
-          "ticker": "CEG",
+          "issuerName": "META PLATFORMS INC",
+          "shareClass": "CL A",
+          "cusip": "30303M102",
+          "securityId": "30303M102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.023660090590206972,
+          "value": 1422897577,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 396671634,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "704205",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 1026225943,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "1821843",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.02926023577597272
         },
         {
-          "issuerName": "Forgent Power Solutions Inc.",
-          "ticker": "FPS",
+          "issuerName": "EQUINIX INC",
+          "shareClass": "COM",
+          "cusip": "29444U700",
+          "securityId": "29444U700",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.023549861445457263,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "HUT 8 Corp.",
-          "ticker": "HUT",
-          "putCall": null,
-          "weight": 0.023064465407469224,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Microsoft Corp.",
-          "ticker": "MSFT",
-          "putCall": null,
-          "weight": 0.022524380005874013,
+          "value": 1327501387,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 200426580,
+              "issuerName": "EQUINIX INC",
+              "shares": "192276",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 483160274,
+              "issuerName": "EQUINIX INC",
+              "shares": "463512",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 68756044,
+              "issuerName": "EQUINIX INC",
+              "shares": "65960",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 441806578,
+              "issuerName": "EQUINIX INC",
+              "shares": "423840",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 20708120,
+              "issuerName": "EQUINIX INC",
+              "shares": "19866",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 92972849,
+              "issuerName": "EQUINIX INC",
+              "shares": "89192",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 19670942,
+              "issuerName": "EQUINIX INC",
+              "shares": "18871",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 18.4
+          "sharesChangePct": null,
+          "weight": 0.027298523944672377
         },
         {
-          "issuerName": "Natera Inc.",
-          "ticker": "NTRA",
+          "issuerName": "NVIDIA CORPORATION",
+          "shareClass": "COM",
+          "cusip": "67066G104",
+          "securityId": "67066G104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.013983547471665045,
+          "value": 1211584367,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 383361035,
+              "issuerName": "NVIDIA CORPORATION",
+              "shares": "1915943",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 17150914,
+              "issuerName": "NVIDIA CORPORATION",
+              "shares": "85716",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 811072418,
+              "issuerName": "NVIDIA CORPORATION",
+              "shares": "4053538",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -1.4
+          "sharesChangePct": null,
+          "weight": 0.02491482508224319
         },
         {
-          "issuerName": "Applovin Corp.",
-          "ticker": "APP",
+          "issuerName": "CONSTELLATION ENERGY CORP",
+          "shareClass": "COM",
+          "cusip": "21037T109",
+          "securityId": "21037T109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.012408872104487339,
+          "value": 1150567816,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 652150822,
+              "issuerName": "CONSTELLATION ENERGY CORP",
+              "shares": "2625723",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 275372786,
+              "issuerName": "CONSTELLATION ENERGY CORP",
+              "shares": "1108720",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 87818913,
+              "issuerName": "CONSTELLATION ENERGY CORP",
+              "shares": "353581",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 33567454,
+              "issuerName": "CONSTELLATION ENERGY CORP",
+              "shares": "135151",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 101657841,
+              "issuerName": "CONSTELLATION ENERGY CORP",
+              "shares": "409300",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -9.2
+          "sharesChangePct": null,
+          "weight": 0.023660090590206972
         },
         {
-          "issuerName": "Spotify Technology S.A.",
-          "ticker": "SPOT",
+          "issuerName": "FORGENT POWER SOLUTIONS INC",
+          "shareClass": "COM SHS CL A",
+          "cusip": "34631F102",
+          "securityId": "34631F102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.012374299398010992,
+          "value": 1145207477,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 116642271,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "2088118",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 335411035,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "6004494",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 39342086,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "704298",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 253914926,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "4545559",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 14375962,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "257357",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 115167344,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "2061714",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 36345365,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "650651",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 219967407,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "3937834",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 14041081,
+              "issuerName": "FORGENT POWER SOLUTIONS INC",
+              "shares": "251362",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -0.8
+          "sharesChangePct": null,
+          "weight": 0.023549861445457263
         },
         {
-          "issuerName": "ASML Holding NV",
-          "ticker": "ASML",
+          "issuerName": "HUT 8 CORP",
+          "shareClass": "COM",
+          "cusip": "44812J104",
+          "securityId": "44812J104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.012085213842594035,
+          "value": 1121603127,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1121603127,
+              "issuerName": "HUT 8 CORP",
+              "shares": "9715476",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "16"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -40.5
+          "sharesChangePct": null,
+          "weight": 0.023064465407469224
         },
         {
-          "issuerName": "Reddit Inc.",
-          "ticker": "RDDT",
+          "issuerName": "MICROSOFT CORP",
+          "shareClass": "COM",
+          "cusip": "594918104",
+          "securityId": "594918104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.009958435196534565,
+          "value": 1095339285,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 925095941,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "2480017",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 119435782,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "320186",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 50807562,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "136206",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.022524380005874013
         },
         {
-          "issuerName": "NU Holdings Ltd/Cayman Islands",
-          "ticker": "NU",
+          "issuerName": "NATERA INC",
+          "shareClass": "COM",
+          "cusip": "632307104",
+          "securityId": "632307104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.008058897822057487,
+          "value": 680006681,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 80563646,
+              "issuerName": "NATERA INC",
+              "shares": "296790",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 220214627,
+              "issuerName": "NATERA INC",
+              "shares": "811253",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 28501164,
+              "issuerName": "NATERA INC",
+              "shares": "104996",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 183153287,
+              "issuerName": "NATERA INC",
+              "shares": "674722",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 9438317,
+              "issuerName": "NATERA INC",
+              "shares": "34770",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 149285013,
+              "issuerName": "NATERA INC",
+              "shares": "549954",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 8850627,
+              "issuerName": "NATERA INC",
+              "shares": "32605",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.013983547471665045
         },
         {
-          "issuerName": "Netflix Inc.",
-          "ticker": "NFLX",
+          "issuerName": "APPLOVIN CORP",
+          "shareClass": "COM CL A",
+          "cusip": "03831W108",
+          "securityId": "03831W108",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.006916112125753813,
+          "value": 603431708,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 224181210,
+              "issuerName": "APPLOVIN CORP",
+              "shares": "435109",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 379250498,
+              "issuerName": "APPLOVIN CORP",
+              "shares": "736080",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -31.7
+          "sharesChangePct": null,
+          "weight": 0.012408872104487339
         },
         {
-          "issuerName": "Intuitive Surgical Inc.",
-          "ticker": "ISRG",
+          "issuerName": "SPOTIFY TECHNOLOGY S A",
+          "shareClass": "SHS",
+          "cusip": "L8681T102",
+          "securityId": "L8681T102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.006490774176036565,
+          "value": 601750470,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 534406659,
+              "issuerName": "SPOTIFY TECHNOLOGY S A",
+              "shares": "1163955",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 52769647,
+              "issuerName": "SPOTIFY TECHNOLOGY S A",
+              "shares": "114934",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 14574164,
+              "issuerName": "SPOTIFY TECHNOLOGY S A",
+              "shares": "31743",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -7.2
+          "sharesChangePct": null,
+          "weight": 0.012374299398010992
         },
         {
-          "issuerName": "First Ctzns Bancshares Inc. D",
-          "ticker": "FCNCA",
+          "issuerName": "ASML HLDG NV",
+          "shareClass": "N Y REGISTRY SHS",
+          "cusip": "N07059210",
+          "securityId": "N07059210",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0059689839895894605,
+          "value": 587692513,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 43928825,
+              "issuerName": "ASML HLDG NV",
+              "shares": "22081",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 108579656,
+              "issuerName": "ASML HLDG NV",
+              "shares": "54578",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 36675326,
+              "issuerName": "ASML HLDG NV",
+              "shares": "18435",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 228236515,
+              "issuerName": "ASML HLDG NV",
+              "shares": "114724",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 4657279,
+              "issuerName": "ASML HLDG NV",
+              "shares": "2341",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 161021295,
+              "issuerName": "ASML HLDG NV",
+              "shares": "80938",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 4593617,
+              "issuerName": "ASML HLDG NV",
+              "shares": "2309",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.012085213842594035
         },
         {
-          "issuerName": "Vertiv Holdings Co.",
-          "ticker": "VRT",
+          "issuerName": "REDDIT INC",
+          "shareClass": "CL A",
+          "cusip": "75734B100",
+          "securityId": "75734B100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.005553548391723664,
+          "value": 484269280,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 484269280,
+              "issuerName": "REDDIT INC",
+              "shares": "2789891",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -17.8
+          "sharesChangePct": null,
+          "weight": 0.009958435196534565
         },
         {
-          "issuerName": "Qualcomm Inc.",
-          "ticker": "QCOM",
+          "issuerName": "NU HLDGS LTD",
+          "shareClass": "ORD SHS CL A",
+          "cusip": "G6683N103",
+          "securityId": "G6683N103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.005271774062269473,
+          "value": 391896575,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 391896575,
+              "issuerName": "NU HLDGS LTD",
+              "shares": "29333576",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.008058897822057487
         },
         {
-          "issuerName": "Carvana Co.",
-          "ticker": "CVNA",
+          "issuerName": "NETFLIX INC.",
+          "shareClass": "COM",
+          "cusip": "64110L106",
+          "securityId": "64110L106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.004437982616416245,
+          "value": 336323988,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 336323988,
+              "issuerName": "NETFLIX INC.",
+              "shares": "4710420",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 381.5
+          "sharesChangePct": null,
+          "weight": 0.006916112125753813
         },
         {
-          "issuerName": "Mastec Inc.",
-          "ticker": "MTZ",
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL C",
+          "cusip": "02079K107",
+          "securityId": "02079K107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.004425482702194699,
+          "value": 320963205,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 44352102,
+              "issuerName": "ALPHABET INC",
+              "shares": "125526",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 128925524,
+              "issuerName": "ALPHABET INC",
+              "shares": "364887",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 14818660,
+              "issuerName": "ALPHABET INC",
+              "shares": "41940",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 95639011,
+              "issuerName": "ALPHABET INC",
+              "shares": "270679",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 5354716,
+              "issuerName": "ALPHABET INC",
+              "shares": "15155",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 26625535,
+              "issuerName": "ALPHABET INC",
+              "shares": "75356",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 5247657,
+              "issuerName": "ALPHABET INC",
+              "shares": "14852",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -11.4
+          "sharesChangePct": null,
+          "weight": 0.006600235467061918
         },
         {
-          "issuerName": "Caris Life Sciences Inc.",
-          "ticker": "CAI",
+          "issuerName": "INTUITIVE SURGICAL INC",
+          "shareClass": "COM NEW",
+          "cusip": "46120E602",
+          "securityId": "46120E602",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.003598512507727637,
+          "value": 315640206,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 46252968,
+              "issuerName": "INTUITIVE SURGICAL INC",
+              "shares": "116307",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15,24"
+            },
+            {
+              "value": 137091033,
+              "issuerName": "INTUITIVE SURGICAL INC",
+              "shares": "344727",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 16381632,
+              "issuerName": "INTUITIVE SURGICAL INC",
+              "shares": "41193",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2"
+            },
+            {
+              "value": 105734363,
+              "issuerName": "INTUITIVE SURGICAL INC",
+              "shares": "265878",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 5258125,
+              "issuerName": "INTUITIVE SURGICAL INC",
+              "shares": "13222",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 4922085,
+              "issuerName": "INTUITIVE SURGICAL INC",
+              "shares": "12377",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "8"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.006490774176036565
         },
         {
-          "issuerName": "Synopsys Inc.",
-          "ticker": "SNPS",
+          "issuerName": "FIRST CTZNS BANCSHARES INC D",
+          "shareClass": "CL A",
+          "cusip": "31946M103",
+          "securityId": "31946M103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0029120782990380814,
+          "value": 290266043,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 290266043,
+              "issuerName": "FIRST CTZNS BANCSHARES INC D",
+              "shares": "139498",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -58.3
+          "sharesChangePct": null,
+          "weight": 0.0059689839895894605
         },
         {
-          "issuerName": "Generac Holdings Inc.",
-          "ticker": "GNRC",
+          "issuerName": "VERTIV HOLDINGS CO",
+          "shareClass": "COM CL A",
+          "cusip": "92537N108",
+          "securityId": "92537N108",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0023513949642390763,
+          "value": 270063803,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 137374302,
+              "issuerName": "VERTIV HOLDINGS CO",
+              "shares": "410293",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 21766983,
+              "issuerName": "VERTIV HOLDINGS CO",
+              "shares": "65011",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 110922518,
+              "issuerName": "VERTIV HOLDINGS CO",
+              "shares": "331290",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.005553548391723664
         },
         {
-          "issuerName": "Sprouts FMRS MKT Inc.",
-          "ticker": "SFM",
+          "issuerName": "QUALCOMM INC",
+          "shareClass": "COM",
+          "cusip": "747525103",
+          "securityId": "747525103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0020937096702631857,
+          "value": 256361384,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 256361384,
+              "issuerName": "QUALCOMM INC",
+              "shares": "1387312",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.005271774062269473
         },
         {
-          "issuerName": "Doordash Inc.",
-          "ticker": "DASH",
+          "issuerName": "CARVANA CO",
+          "shareClass": "CL A",
+          "cusip": "146869102",
+          "securityId": "146869102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.001991399392335936,
+          "value": 215814895,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 48204923,
+              "issuerName": "CARVANA CO",
+              "shares": "732375",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 153112130,
+              "issuerName": "CARVANA CO",
+              "shares": "2326225",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 14497842,
+              "issuerName": "CARVANA CO",
+              "shares": "220265",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -4.9
+          "sharesChangePct": null,
+          "weight": 0.004437982616416245
         },
         {
-          "issuerName": "Enphase Energy Inc.",
-          "ticker": "ENPH",
+          "issuerName": "MASTEC INC",
+          "shareClass": "COM",
+          "cusip": "576323109",
+          "securityId": "576323109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0015765014771517338,
+          "value": 215207036,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 31445815,
+              "issuerName": "MASTEC INC",
+              "shares": "75580",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 88201392,
+              "issuerName": "MASTEC INC",
+              "shares": "211992",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 95559829,
+              "issuerName": "MASTEC INC",
+              "shares": "229678",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -5.5
+          "sharesChangePct": null,
+          "weight": 0.004425482702194699
         },
         {
-          "issuerName": "Booz Allen Hamilton Holding Corp - US",
-          "ticker": "BAH",
+          "issuerName": "CARIS LIFE SCIENCES INC",
+          "shareClass": "COM",
+          "cusip": "142152107",
+          "securityId": "142152107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.001351671068850965,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Advanced Micro Devices Inc.",
-          "ticker": "AMD",
-          "putCall": null,
-          "weight": 0.001146635678685234,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Paypal Holdings Inc.",
-          "ticker": "PYPL",
-          "putCall": null,
-          "weight": 0.0011042414340333864,
+          "value": 174992258,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 80706531,
+              "issuerName": "CARIS LIFE SCIENCES INC",
+              "shares": "4528986",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "12"
+            },
+            {
+              "value": 94285727,
+              "issuerName": "CARIS LIFE SCIENCES INC",
+              "shares": "5291006",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "11"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.003598512507727637
         },
         {
-          "issuerName": "Novavax Inc.",
-          "ticker": "NVAX",
+          "issuerName": "SYNOPSYS INC",
+          "shareClass": "COM",
+          "cusip": "871607107",
+          "securityId": "871607107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0007432677637225006,
+          "value": 141611612,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 66231581,
+              "issuerName": "SYNOPSYS INC",
+              "shares": "148478",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            },
+            {
+              "value": 75380031,
+              "issuerName": "SYNOPSYS INC",
+              "shares": "168987",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0029120782990380814
         },
         {
-          "issuerName": "Comfort Sys USA Inc.",
-          "ticker": "FIX",
+          "issuerName": "GENERAC HLDGS INC",
+          "shareClass": "COM",
+          "cusip": "368736104",
+          "securityId": "368736104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0007251803872886985,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Quantumscape Corp.",
-          "ticker": "QS",
-          "putCall": null,
-          "weight": 0.0006677111628843753,
+          "value": 114346112,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 114346112,
+              "issuerName": "GENERAC HLDGS INC",
+              "shares": "390513",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0023513949642390763
         },
         {
-          "issuerName": "Upstart Holdings Inc.",
-          "ticker": "UPST",
+          "issuerName": "SPROUTS FMRS MKT INC",
+          "shareClass": "COM",
+          "cusip": "85208M102",
+          "securityId": "85208M102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0006345517678908214,
+          "value": 101815120,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 101815120,
+              "issuerName": "SPROUTS FMRS MKT INC",
+              "shares": "1203773",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0020937096702631857
         },
         {
-          "issuerName": "Argan Inc.",
-          "ticker": "AGX",
+          "issuerName": "DOORDASH INC",
+          "shareClass": "CL A",
+          "cusip": "25809K105",
+          "securityId": "25809K105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0005928236682188011,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Tesla Inc.",
-          "ticker": "TSLA",
-          "putCall": null,
-          "weight": 0.0005186289898314067,
+          "value": 96839868,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 43292399,
+              "issuerName": "DOORDASH INC",
+              "shares": "234609",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            },
+            {
+              "value": 37593374,
+              "issuerName": "DOORDASH INC",
+              "shares": "203725",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3"
+            },
+            {
+              "value": 15954095,
+              "issuerName": "DOORDASH INC",
+              "shares": "86458",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "15"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 1.9
+          "sharesChangePct": null,
+          "weight": 0.001991399392335936
         },
         {
-          "issuerName": "Pinterest Inc.",
-          "ticker": "PINS",
+          "issuerName": "ENPHASE ENERGY INC",
+          "shareClass": "COM",
+          "cusip": "29355A107",
+          "securityId": "29355A107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0005179889609262964,
+          "value": 76663775,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 76663775,
+              "issuerName": "ENPHASE ENERGY INC",
+              "shares": "1556941",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -28.7
+          "sharesChangePct": null,
+          "weight": 0.0015765014771517338
         },
         {
-          "issuerName": "The Trade Desk Inc.",
-          "ticker": "TTD",
+          "issuerName": "BOOZ ALLEN HAMILTON HLDG COR",
+          "shareClass": "CL A",
+          "cusip": "099502106",
+          "securityId": "099502106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0005157116392109791,
+          "value": 65730485,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 65730485,
+              "issuerName": "BOOZ ALLEN HAMILTON HLDG COR",
+              "shares": "1083410",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.001351671068850965
         },
         {
-          "issuerName": "Zillow Group Inc.",
-          "ticker": "Z",
+          "issuerName": "ADVANCED MICRO DEVICES INC",
+          "shareClass": "COM",
+          "cusip": "007903107",
+          "securityId": "007903107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.00047945296531902865,
+          "value": 55759808,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 55759808,
+              "issuerName": "ADVANCED MICRO DEVICES INC",
+              "shares": "95987",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "7"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.001146635678685234
         },
         {
-          "issuerName": "Arbor Realty Trust Inc.",
-          "ticker": "ABR",
+          "issuerName": "PAYPAL HLDGS INC",
+          "shareClass": "COM",
+          "cusip": "70450Y103",
+          "securityId": "70450Y103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0004677680371393571,
+          "value": 53698216,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 53698216,
+              "issuerName": "PAYPAL HLDGS INC",
+              "shares": "1243590",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0011042414340333864
         },
         {
-          "issuerName": "Uipath Inc.",
-          "ticker": "PATH",
+          "issuerName": "NOVAVAX INC",
+          "shareClass": "COM NEW",
+          "cusip": "670002401",
+          "securityId": "670002401",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.00043842181525669845,
+          "value": 36144408,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 36144408,
+              "issuerName": "NOVAVAX INC",
+              "shares": "3836986",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -13.6
+          "sharesChangePct": null,
+          "weight": 0.0007432677637225006
         },
         {
-          "issuerName": "Medical Properties Trust Inc.",
-          "ticker": "MPT",
+          "issuerName": "COMFORT SYS USA INC",
+          "shareClass": "COM",
+          "cusip": "199908104",
+          "securityId": "199908104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0004299351397294492,
+          "value": 35264836,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 8437161,
+              "issuerName": "COMFORT SYS USA INC",
+              "shares": "4257",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 26827675,
+              "issuerName": "COMFORT SYS USA INC",
+              "shares": "13536",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0007251803872886985
         },
         {
-          "issuerName": "Ringcentral Inc.",
-          "ticker": "RNG",
+          "issuerName": "QUANTUMSCAPE CORP",
+          "shareClass": "COM CL A",
+          "cusip": "74767V109",
+          "securityId": "74767V109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0003297300847542838,
+          "value": 32470162,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 32470162,
+              "issuerName": "QUANTUMSCAPE CORP",
+              "shares": "4294995",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0006677111628843753
         },
         {
-          "issuerName": "Peloton Interactive Inc.",
-          "ticker": "PTON",
+          "issuerName": "UPSTART HLDGS INC",
+          "shareClass": "COM",
+          "cusip": "91680M107",
+          "securityId": "91680M107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.000303830711765979,
+          "value": 30857652,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 30857652,
+              "issuerName": "UPSTART HLDGS INC",
+              "shares": "870947",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0006345517678908214
         },
         {
-          "issuerName": "Zillow Group",
-          "ticker": "ZG",
+          "issuerName": "ARGAN INC",
+          "shareClass": "COM",
+          "cusip": "04010E109",
+          "securityId": "04010E109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.000211710658863381,
+          "value": 28828454,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 21731740,
+              "issuerName": "ARGAN INC",
+              "shares": "27214",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            },
+            {
+              "value": 7096714,
+              "issuerName": "ARGAN INC",
+              "shares": "8887",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0005928236682188011
         },
         {
-          "issuerName": "PLUG PWR Inc.",
-          "ticker": "PLUG",
+          "issuerName": "TESLA INC",
+          "shareClass": "COM",
+          "cusip": "88160R101",
+          "securityId": "88160R101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.00014184131654507092,
+          "value": 25220437,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6192914,
+              "issuerName": "TESLA INC",
+              "shares": "14724",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "6"
+            },
+            {
+              "value": 19027523,
+              "issuerName": "TESLA INC",
+              "shares": "45239",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "5"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0005186289898314067
         },
         {
-          "issuerName": "Stitch Fix Inc.",
-          "ticker": "SFIX",
+          "issuerName": "PINTEREST INC",
+          "shareClass": "CL A",
+          "cusip": "72352L106",
+          "securityId": "72352L106",
+          "ticker": "",
           "putCall": null,
-          "weight": 6.215179547339391e-05,
+          "value": 25189313,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 25189313,
+              "issuerName": "PINTEREST INC",
+              "shares": "1197780",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0005179889609262964
         },
         {
-          "issuerName": "Olaplex Holdings Inc.",
-          "ticker": "OLPX",
+          "issuerName": "THE TRADE DESK INC",
+          "shareClass": "COM CL A",
+          "cusip": "88339J105",
+          "securityId": "88339J105",
+          "ticker": "",
           "putCall": null,
-          "weight": 5.3325816613208026e-05,
+          "value": 25078569,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 25078569,
+              "issuerName": "THE TRADE DESK INC",
+              "shares": "1387089",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0005157116392109791
         },
         {
-          "issuerName": "Lucid Group Inc.",
-          "ticker": "LCID",
+          "issuerName": "ZILLOW GROUP INC",
+          "shareClass": "CL C CAP STK",
+          "cusip": "98954M200",
+          "securityId": "98954M200",
+          "ticker": "",
           "putCall": null,
-          "weight": 4.063782552602238e-05,
+          "value": 23315344,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 23315344,
+              "issuerName": "ZILLOW GROUP INC",
+              "shares": "739700",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.00047945296531902865
         },
         {
-          "issuerName": "Chargepoint Holdings Inc.",
-          "ticker": "CHPT",
+          "issuerName": "ARBOR REALTY TRUST INC",
+          "shareClass": "COM",
+          "cusip": "038923108",
+          "securityId": "038923108",
+          "ticker": "",
           "putCall": null,
-          "weight": 1.8726418274671084e-05,
+          "value": 22747117,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 22747117,
+              "issuerName": "ARBOR REALTY TRUST INC",
+              "shares": "4196885",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0004677680371393571
         },
         {
-          "issuerName": "Hertz Global Holdings Inc.",
-          "ticker": "HTZWW",
+          "issuerName": "UIPATH INC",
+          "shareClass": "CL A",
+          "cusip": "90364P105",
+          "securityId": "90364P105",
+          "ticker": "",
           "putCall": null,
-          "weight": 1.0508265348724037e-05,
+          "value": 21320038,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 21320038,
+              "issuerName": "UIPATH INC",
+              "shares": "1961365",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.00043842181525669845
         },
         {
-          "issuerName": "AMC Entmt Holdings Inc.",
-          "ticker": "AMC",
+          "issuerName": "MEDICAL PROPERTIES TRUST INC",
+          "shareClass": "COM",
+          "cusip": "58463J304",
+          "securityId": "58463J304",
+          "ticker": "",
           "putCall": null,
-          "weight": 8.913560247760254e-06,
+          "value": 20907339,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 20907339,
+              "issuerName": "MEDICAL PROPERTIES TRUST INC",
+              "shares": "4525398",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0004299351397294492
         },
         {
-          "issuerName": "Hertz Global Holdings Inc.",
-          "ticker": "HTZ",
+          "issuerName": "RINGCENTRAL INC",
+          "shareClass": "CL A",
+          "cusip": "76680R206",
+          "securityId": "76680R206",
+          "ticker": "",
           "putCall": null,
-          "weight": 4.975502946505969e-06,
+          "value": 16034462,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 16034462,
+              "issuerName": "RINGCENTRAL INC",
+              "shares": "411351",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0003297300847542838
         },
         {
-          "issuerName": "Beyond Meat Inc.",
-          "ticker": "BYND",
+          "issuerName": "PELOTON INTERACTIVE INC",
+          "shareClass": "CL A COM",
+          "cusip": "70614W100",
+          "securityId": "70614W100",
+          "ticker": "",
           "putCall": null,
-          "weight": 4.625095140855053e-06,
+          "value": 14775000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 14775000,
+              "issuerName": "PELOTON INTERACTIVE INC",
+              "shares": "2500000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -12.7
+          "sharesChangePct": null,
+          "weight": 0.000303830711765979
+        },
+        {
+          "issuerName": "ZILLOW GROUP INC",
+          "shareClass": "CL A",
+          "cusip": "98954M101",
+          "securityId": "98954M101",
+          "ticker": "",
+          "putCall": null,
+          "value": 10295289,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10295289,
+              "issuerName": "ZILLOW GROUP INC",
+              "shares": "328189",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.000211710658863381
+        },
+        {
+          "issuerName": "PLUG PWR INC",
+          "shareClass": "COM NEW",
+          "cusip": "72919P202",
+          "securityId": "72919P202",
+          "ticker": "",
+          "putCall": null,
+          "value": 6897609,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6897609,
+              "issuerName": "PLUG PWR INC",
+              "shares": "2545243",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00014184131654507092
+        },
+        {
+          "issuerName": "STITCH FIX INC",
+          "shareClass": "COM CL A",
+          "cusip": "860897107",
+          "securityId": "860897107",
+          "ticker": "",
+          "putCall": null,
+          "value": 3022383,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3022383,
+              "issuerName": "STITCH FIX INC",
+              "shares": "735373",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 6.215179547339391e-05
+        },
+        {
+          "issuerName": "OLAPLEX HLDGS INC",
+          "shareClass": "COM",
+          "cusip": "679369108",
+          "securityId": "679369108",
+          "ticker": "",
+          "putCall": null,
+          "value": 2593184,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2593184,
+              "issuerName": "OLAPLEX HLDGS INC",
+              "shares": "1264968",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 5.3325816613208026e-05
+        },
+        {
+          "issuerName": "LUCID GROUP INC",
+          "shareClass": "COM NEW",
+          "cusip": "549498202",
+          "securityId": "549498202",
+          "ticker": "",
+          "putCall": null,
+          "value": 1976179,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1976179,
+              "issuerName": "LUCID GROUP INC",
+              "shares": "295393",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 4.063782552602238e-05
+        },
+        {
+          "issuerName": "CHARGEPOINT HOLDINGS INC",
+          "shareClass": "COM SHS",
+          "cusip": "15961R303",
+          "securityId": "15961R303",
+          "ticker": "",
+          "putCall": null,
+          "value": 910648,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 910648,
+              "issuerName": "CHARGEPOINT HOLDINGS INC",
+              "shares": "154086",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 1.8726418274671084e-05
+        },
+        {
+          "issuerName": "HERTZ GLOBAL HLDGS INC",
+          "shareClass": "*W EXP 06/30/205",
+          "cusip": "42806J148",
+          "securityId": "42806J148",
+          "ticker": "",
+          "putCall": null,
+          "value": 511007,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 511007,
+              "issuerName": "HERTZ GLOBAL HLDGS INC",
+              "shares": "468814",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 1.0508265348724037e-05
+        },
+        {
+          "issuerName": "AMC ENTMT HLDGS INC",
+          "shareClass": "CL A NEW",
+          "cusip": "00165C302",
+          "securityId": "00165C302",
+          "ticker": "",
+          "putCall": null,
+          "value": 433458,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 433458,
+              "issuerName": "AMC ENTMT HLDGS INC",
+              "shares": "228136",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 8.913560247760254e-06
+        },
+        {
+          "issuerName": "HERTZ GLOBAL HLDGS INC",
+          "shareClass": "COM NEW",
+          "cusip": "42806J700",
+          "securityId": "42806J700",
+          "ticker": "",
+          "putCall": null,
+          "value": 241954,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 241954,
+              "issuerName": "HERTZ GLOBAL HLDGS INC",
+              "shares": "106823",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 4.975502946505969e-06
+        },
+        {
+          "issuerName": "BEYOND MEAT INC",
+          "shareClass": "COM",
+          "cusip": "08862E109",
+          "securityId": "08862E109",
+          "ticker": "",
+          "putCall": null,
+          "value": 224914,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 224914,
+              "issuerName": "BEYOND MEAT INC",
+              "shares": "299885",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 4.625095140855053e-06
         }
       ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 48629053706,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -561,8 +2797,23 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/coatue-management",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1135730/000091957426005478/",
+      "reportedCoverTotal": 48629053706,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 48629053706.0,
+      "providerHoldingsCount": 65,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1135730/000091957426005478/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/1135730/000091957426005478/primary_doc.xml"
+      ],
+      "originalRowCount": 211,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/coatue-management"
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1135730/000091957426005478/",
+    "discoverySourceUrl": "https://foliofact.com/funds/coatue-management",
+    "filingHistory": []
   }
 }

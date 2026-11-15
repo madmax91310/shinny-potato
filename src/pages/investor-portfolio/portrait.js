@@ -1,4 +1,4 @@
-import sources from '../../../public/asset-art/investors/sources.json'
+import sources from '../../../public/asset-art/investors/sources.json' with { type: 'json' }
 
 // Explicit person → portrait mapping. Entities remain labelled as entities.
 const people = {

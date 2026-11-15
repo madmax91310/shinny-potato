@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/update-investor-13f.py'
       - 'scripts/test_investor_refresh.py'
+      - 'scripts/refresh-investor-media.py'
       - 'scripts/validate-investor-publication.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/producer_report_contract.py'
@@ -20,7 +21,8 @@ permissions:
   deployments: read
   id-token: write
 concurrency:
-  group: investor-13f-refresh
+  # Read-only PR validations must not occupy the scheduled writer queue.
+  group: ${{ github.event_name == 'pull_request' && format('investor-13f-validation-{0}', github.event.pull_request.number) || 'investor-13f-refresh' }}
   cancel-in-progress: false
   queue: max
 jobs:
@@ -41,7 +43,12 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
       # Fetch and validate all registered live portfolios in the disposable PR workspace.
       # No commit or deployment is possible from this read-only job.
+      # Source failures remain explicit; the independent validator must certify
+      # each successful acquisition and byte-for-byte retention of failed ones.
       - name: "Collect observations: python -u scripts update-investor-13f.py --output RUNNER_TEMP investor-observations.json"
+        continue-on-error: true
+        env:
+          INVESTOR_HTTP_CACHE: .cache/investor-http
         run: python -u scripts/update-investor-13f.py --output "$RUNNER_TEMP/investor-observations.json"
       - name: Validate collected 13F observations and consumers
         run: python -u scripts/validate-investor-publication.py validate --report "$RUNNER_TEMP/investor-observations.json"
@@ -72,10 +79,17 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      - uses: actions/cache@v4
+        with:
+          path: .cache/investor-http
+          key: investor-http-${{ github.run_id }}
+          restore-keys: investor-http-
       # A failed manager keeps its last validated filing; the others are recorded and published.
       - name: "Collect observations: python -u scripts update-investor-13f.py --output  RUNNER_TEMP investor-observations.json"
         id: collect
         continue-on-error: true
+        env:
+          INVESTOR_HTTP_CACHE: .cache/investor-http
         run: python -u scripts/update-investor-13f.py --output "$RUNNER_TEMP/investor-observations.json"
       - uses: actions/upload-artifact@v7.0.1
         if: always()
@@ -85,6 +99,16 @@ jobs:
             ${{ runner.temp }}/investor-observations.json
             ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
+      - uses: actions/cache@v4
+        with:
+          path: ~/.u2net
+          key: investor-cutout-u2netp-v1
+      - name: Prepare licensed portrait cutouts (fallback initials on failure)
+        continue-on-error: true
+        run: |
+          python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+          python -m pip install -c scripts/python-constraints.txt 'rembg[cpu]==2.0.69' pillow
+          python scripts/refresh-investor-media.py
       - name: Validate collected observations
         run: python -u scripts/validate-investor-publication.py validate --report "$RUNNER_TEMP/investor-observations.json"
       - name: Commit validated observations

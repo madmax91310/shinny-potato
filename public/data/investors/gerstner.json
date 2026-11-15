@@ -1,177 +1,509 @@
 {
-  "as_of": "2026-10-15T04:41:02.508857+00:00",
+  "as_of": "2026-11-15T16:40:48.751984+00:00",
   "data": {
     "identity": {
       "slug": "gerstner",
       "archetype": "hedge_fund",
       "displayName": "Brad Gerstner",
-      "entityName": "Altimeter Capital Management LP",
-      "dataProvider": "FolioFact"
+      "entityName": "Altimeter Capital Management, LP",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/altimeter-capital-management",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001541617",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1541617/000154161726000008/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "Nvidia Corporation",
-          "ticker": "NVDA",
+          "issuerName": "NVIDIA CORPORATION",
+          "shareClass": "COM",
+          "cusip": "67066G104",
+          "securityId": "67066G104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.19162024766731325,
+          "value": 1883565023,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1883565023,
+              "issuerName": "NVIDIA CORPORATION",
+              "shares": "9413589",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 0.8
+          "sharesChangePct": null,
+          "weight": 0.19162024766731325
         },
         {
-          "issuerName": "Cerebras Systems Inc.",
-          "ticker": "CBRS",
+          "issuerName": "CEREBRAS SYSTEMS INC",
+          "shareClass": "COM CL A",
+          "cusip": "15675D103",
+          "securityId": "15675D103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.16244005547949483,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Meta Platforms Inc.",
-          "ticker": "META",
-          "putCall": null,
-          "weight": 0.0776477564734493,
+          "value": 1596733177,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1596733177,
+              "issuerName": "CEREBRAS SYSTEMS INC",
+              "shares": "7225037",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -30.6
+          "sharesChangePct": null,
+          "weight": 0.16244005547949483
         },
         {
-          "issuerName": "Taiwan Semiconductor Manufacturing",
-          "ticker": "TSM",
+          "issuerName": "META PLATFORMS INC",
+          "shareClass": "CL A",
+          "cusip": "30303M102",
+          "securityId": "30303M102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.06944451082647611,
+          "value": 763252318,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 763252318,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "1354990",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 4.7
+          "sharesChangePct": null,
+          "weight": 0.0776477564734493
         },
         {
-          "issuerName": "Coreweave Inc.",
-          "ticker": "CRWV",
+          "issuerName": "TAIWAN SEMICONDUCTOR MFG LTD",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "874039100",
+          "securityId": "874039100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.06150513785434354,
+          "value": 682617068,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 682617068,
+              "issuerName": "TAIWAN SEMICONDUCTOR MFG LTD",
+              "shares": "1429355",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 35.0
+          "sharesChangePct": null,
+          "weight": 0.06944451082647611
         },
         {
-          "issuerName": "ARM Holdings PLC",
-          "ticker": "ARM",
+          "issuerName": "COREWEAVE INC",
+          "shareClass": "COM CL A",
+          "cusip": "21873S108",
+          "securityId": "21873S108",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.059228197278893065,
+          "value": 604575601,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 604575601,
+              "issuerName": "COREWEAVE INC",
+              "shares": "6073695",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -4.3
+          "sharesChangePct": null,
+          "weight": 0.06150513785434354
         },
         {
-          "issuerName": "Amazon.com Inc.",
-          "ticker": "AMZN",
+          "issuerName": "ARM HOLDINGS PLC",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "042068205",
+          "securityId": "042068205",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.05880744548210423,
+          "value": 582194012,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 582194012,
+              "issuerName": "ARM HOLDINGS PLC",
+              "shares": "1641972",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 16.1
+          "sharesChangePct": null,
+          "weight": 0.059228197278893065
         },
         {
-          "issuerName": "Uber Technologies Inc.",
-          "ticker": "UBER",
+          "issuerName": "AMAZON COM INC",
+          "shareClass": "COM",
+          "cusip": "023135106",
+          "securityId": "023135106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.05412134136176271,
+          "value": 578058158,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 578058158,
+              "issuerName": "AMAZON COM INC",
+              "shares": "2425351",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -7.5
+          "sharesChangePct": null,
+          "weight": 0.05880744548210423
         },
         {
-          "issuerName": "Snowflake Inc.",
-          "ticker": "SNOW",
+          "issuerName": "UBER TECHNOLOGIES INC",
+          "shareClass": "COM",
+          "cusip": "90353T100",
+          "securityId": "90353T100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.04987250911411821,
+          "value": 531995271,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 531995271,
+              "issuerName": "UBER TECHNOLOGIES INC",
+              "shares": "7372440",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.05412134136176271
         },
         {
-          "issuerName": "Microsoft Corp.",
-          "ticker": "MSFT",
+          "issuerName": "SNOWFLAKE INC",
+          "shareClass": "COM SHS",
+          "cusip": "833445109",
+          "securityId": "833445109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.04812161963114753,
+          "value": 490230625,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 490230625,
+              "issuerName": "SNOWFLAKE INC",
+              "shares": "1926250",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 7.1
+          "sharesChangePct": null,
+          "weight": 0.04987250911411821
         },
         {
-          "issuerName": "Qualcomm Inc.",
-          "ticker": "QCOM",
+          "issuerName": "MICROSOFT CORP",
+          "shareClass": "COM",
+          "cusip": "594918104",
+          "securityId": "594918104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.03538929598960328,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Space Exploration Technologies Corp.",
-          "ticker": "SPCX",
-          "putCall": null,
-          "weight": 0.030878964390419036,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Micron Technology Inc.",
-          "ticker": "MU",
-          "putCall": null,
-          "weight": 0.024603743966410088,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Applied Matls Inc.",
-          "ticker": "AMAT",
-          "putCall": null,
-          "weight": 0.019267150068901714,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "KLA Corp",
-          "ticker": "KLAC",
-          "putCall": null,
-          "weight": 0.017748068827750745,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Lam Research Corp.",
-          "ticker": "LRCX",
-          "putCall": null,
-          "weight": 0.017372564400526307,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Robinhood Markets, Inc.",
-          "ticker": "HOOD",
-          "putCall": null,
-          "weight": 0.00917843166800825,
+          "value": 473019948,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 473019948,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "1268082",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.04812161963114753
         },
         {
-          "issuerName": "Alphabet Inc.",
-          "ticker": "GOOG(L)",
+          "issuerName": "QUALCOMM INC",
+          "shareClass": "COM",
+          "cusip": "747525103",
+          "securityId": "747525103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.006368884748664874,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 347865327,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 347865327,
+              "issuerName": "QUALCOMM INC",
+              "shares": "1882490",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.03538929598960328
         },
         {
-          "issuerName": "Synopsys Inc.",
-          "ticker": "SNPS",
+          "issuerName": "SPACE EXPLORATION TECHN CORP",
+          "shareClass": "CLASS A COM STK",
+          "cusip": "84615Q103",
+          "securityId": "84615Q103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.006368755242875426,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 303530227,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 303530227,
+              "issuerName": "SPACE EXPLORATION TECHN CORP",
+              "shares": "1776485",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.030878964390419036
         },
         {
-          "issuerName": "Grab Holdings Limited",
-          "ticker": "GRABW",
+          "issuerName": "MICRON TECHNOLOGY INC",
+          "shareClass": "COM",
+          "cusip": "595112103",
+          "securityId": "595112103",
+          "ticker": "",
           "putCall": null,
-          "weight": 1.5319527737498253e-05,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 241846841,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 241846841,
+              "issuerName": "MICRON TECHNOLOGY INC",
+              "shares": "209520",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.024603743966410088
+        },
+        {
+          "issuerName": "APPLIED MATLS INC",
+          "shareClass": "COM",
+          "cusip": "038222105",
+          "securityId": "038222105",
+          "ticker": "",
+          "putCall": null,
+          "value": 189389850,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 189389850,
+              "issuerName": "APPLIED MATLS INC",
+              "shares": "261950",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.019267150068901714
+        },
+        {
+          "issuerName": "KLA CORP",
+          "shareClass": "COM NEW",
+          "cusip": "482480100",
+          "securityId": "482480100",
+          "ticker": "",
+          "putCall": null,
+          "value": 174457773,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 174457773,
+              "issuerName": "KLA CORP",
+              "shares": "578230",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.017748068827750745
+        },
+        {
+          "issuerName": "LAM RESEARCH CORP",
+          "shareClass": "COM NEW",
+          "cusip": "512807306",
+          "securityId": "512807306",
+          "ticker": "",
+          "putCall": null,
+          "value": 170766686,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 170766686,
+              "issuerName": "LAM RESEARCH CORP",
+              "shares": "394080",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.017372564400526307
+        },
+        {
+          "issuerName": "ROBINHOOD MKTS INC",
+          "shareClass": "COM CL A",
+          "cusip": "770700102",
+          "securityId": "770700102",
+          "ticker": "",
+          "putCall": null,
+          "value": 90221013,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 90221013,
+              "issuerName": "ROBINHOOD MKTS INC",
+              "shares": "899691",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00917843166800825
+        },
+        {
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL A",
+          "cusip": "02079K305",
+          "securityId": "02079K305",
+          "ticker": "",
+          "putCall": null,
+          "value": 62604076,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 62604076,
+              "issuerName": "ALPHABET INC",
+              "shares": "175180",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.006368884748664874
+        },
+        {
+          "issuerName": "SYNOPSYS INC",
+          "shareClass": "COM",
+          "cusip": "871607107",
+          "securityId": "871607107",
+          "ticker": "",
+          "putCall": null,
+          "value": 62602803,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 62602803,
+              "issuerName": "SYNOPSYS INC",
+              "shares": "140343",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.006368755242875426
+        },
+        {
+          "issuerName": "GRAB HOLDINGS LIMITED",
+          "shareClass": "W EXP 12/1/202",
+          "cusip": "G4124C117",
+          "securityId": "G4124C117",
+          "ticker": "",
+          "putCall": null,
+          "value": 150586,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 150586,
+              "issuerName": "GRAB HOLDINGS LIMITED",
+              "shares": "3502000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 1.5319527737498253e-05
         }
       ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 9829676383,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -191,8 +523,23 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/altimeter-capital-management",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1541617/000154161726000008/",
+      "reportedCoverTotal": 9829676383,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 9829676383.0,
+      "providerHoldingsCount": 20,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1541617/000154161726000008/2026altimeterq2.xml",
+        "https://www.sec.gov/Archives/edgar/data/1541617/000154161726000008/primary_doc.xml"
+      ],
+      "originalRowCount": 20,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/altimeter-capital-management"
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1541617/000154161726000008/",
+    "discoverySourceUrl": "https://foliofact.com/funds/altimeter-capital-management",
+    "filingHistory": []
   }
 }

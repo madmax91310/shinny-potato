@@ -1,273 +1,797 @@
 {
-  "as_of": "2026-10-16T07:08:57.073261+00:00",
+  "as_of": "2026-11-15T16:40:04.343001+00:00",
   "data": {
     "identity": {
       "slug": "watsa",
       "archetype": "hedge_fund",
       "displayName": "Prem Watsa",
-      "entityName": "Fairfax Financial Holdings Ltd",
-      "dataProvider": "FolioFact"
+      "entityName": "FAIRFAX FINANCIAL HOLDINGS LTD/ CAN",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/fairfax-financial-holdings",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0000915191",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/915191/000110465926096276/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "ORLA Mining Ltd.",
-          "ticker": "ORLA",
+          "issuerName": "ORLA MINING LTD",
+          "shareClass": "COM",
+          "cusip": "68634K106",
+          "securityId": "68634K106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.21545062865545903,
+          "value": 568456141,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 568456141,
+              "issuerName": "ORLA MINING LTD",
+              "shares": "58399504",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 83.5
+          "sharesChangePct": null,
+          "weight": 0.21545062865545903
         },
         {
-          "issuerName": "Eldorado Gold Corp - US",
-          "ticker": "EGO",
+          "issuerName": "ELDORADO GOLD CORP",
+          "shareClass": "COM",
+          "cusip": "284902509",
+          "securityId": "284902509",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.1618379264846166,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Kraft Heinz Co.",
-          "ticker": "KHC",
-          "putCall": null,
-          "weight": 0.12796647452363447,
+          "value": 427001600,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 427001600,
+              "issuerName": "ELDORADO GOLD CORP",
+              "shares": "13746506",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 171.6
+          "sharesChangePct": null,
+          "weight": 0.1618379264846166
         },
         {
-          "issuerName": "Under Armour Inc.",
-          "ticker": "UAA",
+          "issuerName": "KRAFT HEINZ CO",
+          "shareClass": "COM",
+          "cusip": "500754106",
+          "securityId": "500754106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.10984888356856384,
+          "value": 337633400,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 337633400,
+              "issuerName": "KRAFT HEINZ CO",
+              "shares": "14306500",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 5.5
+          "sharesChangePct": null,
+          "weight": 0.12796647452363447
         },
         {
-          "issuerName": "CVS Health Corp.",
-          "ticker": "CVS",
+          "issuerName": "UNDER ARMOUR INC",
+          "shareClass": "CL A",
+          "cusip": "904311107",
+          "securityId": "904311107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.10631315655223812,
+          "value": 289831006,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 289831006,
+              "issuerName": "UNDER ARMOUR INC",
+              "shares": "45356965",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.10984888356856384
         },
         {
-          "issuerName": "Cleveland Cliffs Inc.",
-          "ticker": "CLF",
+          "issuerName": "CVS HEALTH CORP",
+          "shareClass": "COM",
+          "cusip": "126650100",
+          "securityId": "126650100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.05302509701337204,
+          "value": 280502160,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 280502160,
+              "issuerName": "CVS HEALTH CORP",
+              "shares": "2712000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.10631315655223812
         },
         {
-          "issuerName": "Under Armour Inc.",
-          "ticker": "UA",
+          "issuerName": "CLEVELAND-CLIFFS INC",
+          "shareClass": "COM",
+          "cusip": "185899101",
+          "securityId": "185899101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.051778309879767205,
+          "value": 139904173,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 139904173,
+              "issuerName": "CLEVELAND-CLIFFS INC",
+              "shares": "14899273",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.05302509701337204
         },
         {
-          "issuerName": "Molson Coors Brewing Co.",
-          "ticker": "TAP",
+          "issuerName": "UNDER ARMOUR INC",
+          "shareClass": "CL C",
+          "cusip": "904311206",
+          "securityId": "904311206",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.02943613533510584,
+          "value": 136614585,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 136614585,
+              "issuerName": "UNDER ARMOUR INC",
+              "shares": "21999128",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 38.7
+          "sharesChangePct": null,
+          "weight": 0.051778309879767205
         },
         {
-          "issuerName": "ATS Corp.",
-          "ticker": "ATS",
+          "issuerName": "MOLSON COORS BEVERAGE CO",
+          "shareClass": "CL B",
+          "cusip": "60871R209",
+          "securityId": "60871R209",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.026715292957225096,
+          "value": 77665830,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 77665830,
+              "issuerName": "MOLSON COORS BEVERAGE CO",
+              "shares": "1994500",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.02943613533510584
         },
         {
-          "issuerName": "Wendys Co.",
-          "ticker": "WEN",
+          "issuerName": "ATS CORP",
+          "shareClass": "COM",
+          "cusip": "00217Y104",
+          "securityId": "00217Y104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.025123289006438794,
+          "value": 70487018,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 70487018,
+              "issuerName": "ATS CORP",
+              "shares": "2486400",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 144.9
+          "sharesChangePct": null,
+          "weight": 0.026715292957225096
         },
         {
-          "issuerName": "Taiwan Semiconductor Manufacturing",
-          "ticker": "TSM",
+          "issuerName": "WENDYS CO",
+          "shareClass": "COM",
+          "cusip": "95058W100",
+          "securityId": "95058W100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.01693591283247888,
+          "value": 66286592,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 66286592,
+              "issuerName": "WENDYS CO",
+              "shares": "8005627",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.025123289006438794
         },
         {
-          "issuerName": "Helmerich & Payne Inc.",
-          "ticker": "HP",
+          "issuerName": "TAIWAN SEMICONDUCTOR MFG LTD",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "874039100",
+          "securityId": "874039100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.014573673909121095,
+          "value": 44684593,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 44684593,
+              "issuerName": "TAIWAN SEMICONDUCTOR MFG LTD",
+              "shares": "93700",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.01693591283247888
         },
         {
-          "issuerName": "Bank Nova Scotia",
-          "ticker": "BNS",
+          "issuerName": "HELMERICH & PAYNE INC",
+          "shareClass": "COM",
+          "cusip": "423452101",
+          "securityId": "423452101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.011812155028426053,
+          "value": 38451939,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 38451939,
+              "issuerName": "HELMERICH & PAYNE INC",
+              "shares": "1174105",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.014573673909121095
         },
         {
-          "issuerName": "General Motors Co.",
-          "ticker": "GM",
+          "issuerName": "BANK NOVA SCOTIA",
+          "shareClass": "COM",
+          "cusip": "064149107",
+          "securityId": "064149107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.010980629192762706,
+          "value": 31165804,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 31165804,
+              "issuerName": "BANK NOVA SCOTIA",
+              "shares": "359100",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.011812155028426053
         },
         {
-          "issuerName": "Pfizer Inc.",
-          "ticker": "PFE",
+          "issuerName": "GENERAL MOTORS CO",
+          "shareClass": "COM",
+          "cusip": "37045V100",
+          "securityId": "37045V100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.009519306793376016,
+          "value": 28971863,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 28971863,
+              "issuerName": "GENERAL MOTORS CO",
+              "shares": "375965",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 5.3
+          "sharesChangePct": null,
+          "weight": 0.010980629192762706
         },
         {
-          "issuerName": "Merck & Co. Inc.",
-          "ticker": "MRK",
+          "issuerName": "PFIZER INC",
+          "shareClass": "COM",
+          "cusip": "717081103",
+          "securityId": "717081103",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.008413505738238758,
+          "value": 25116234,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 25116234,
+              "issuerName": "PFIZER INC",
+              "shares": "1043900",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.009519306793376016
         },
         {
-          "issuerName": "Johnson & Johnson",
-          "ticker": "JNJ",
+          "issuerName": "MERCK & CO INC",
+          "shareClass": "COM",
+          "cusip": "58933Y105",
+          "securityId": "58933Y105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.007065000248374805,
+          "value": 22198631,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 22198631,
+              "issuerName": "MERCK & CO INC",
+              "shares": "172900",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.008413505738238758
         },
         {
-          "issuerName": "Kaspi KZ JSC",
-          "ticker": "KSPI",
+          "issuerName": "JOHNSON & JOHNSON",
+          "shareClass": "COM",
+          "cusip": "478160104",
+          "securityId": "478160104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.003477554269468526,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Rogers Communications Inc.",
-          "ticker": "RCI",
-          "putCall": null,
-          "weight": 0.0018461503219428482,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Garrett Motion Inc.",
-          "ticker": "GTX",
-          "putCall": null,
-          "weight": 0.0014109788645216568,
+          "value": 18640664,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 18640664,
+              "issuerName": "JOHNSON & JOHNSON",
+              "shares": "73400",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -44.3
+          "sharesChangePct": null,
+          "weight": 0.007065000248374805
         },
         {
-          "issuerName": "Canadian Natl Ry Co.",
-          "ticker": "CNI",
+          "issuerName": "KASPI KZ JSC",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "48581R205",
+          "securityId": "48581R205",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.001118990228207658,
+          "value": 9175360,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 9175360,
+              "issuerName": "KASPI KZ JSC",
+              "shares": "106000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.003477554269468526
         },
         {
-          "issuerName": "Colliers Intl Group Inc.",
-          "ticker": "CIGI",
+          "issuerName": "ROGERS COMMUNICATIONS INC",
+          "shareClass": "CL B",
+          "cusip": "775109200",
+          "securityId": "775109200",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0008815741216470379,
+          "value": 4870979,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4870979,
+              "issuerName": "ROGERS COMMUNICATIONS INC",
+              "shares": "150200",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0018461503219428482
         },
         {
-          "issuerName": "Warner Bros Discovery Inc.",
-          "ticker": "WBD",
+          "issuerName": "GARRETT MOTION INC",
+          "shareClass": "COM",
+          "cusip": "366505105",
+          "securityId": "366505105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.000825999110133516,
+          "value": 3722800,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3722800,
+              "issuerName": "GARRETT MOTION INC",
+              "shares": "102783",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 41.5
+          "sharesChangePct": null,
+          "weight": 0.0014109788645216568
         },
         {
-          "issuerName": "Dominos Pizza Inc.",
-          "ticker": "DPZ",
+          "issuerName": "CANADIAN NATIONAL RAILWAY CO",
+          "shareClass": "COM",
+          "cusip": "136375102",
+          "securityId": "136375102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0008108929038900327,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Capri Holdings Limited",
-          "ticker": "CPRI",
-          "putCall": null,
-          "weight": 0.0005496848162287675,
+          "value": 2952402,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2952402,
+              "issuerName": "CANADIAN NATIONAL RAILWAY CO",
+              "shares": "24800",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.001118990228207658
         },
         {
-          "issuerName": "Lululemon Athletica Inc.",
-          "ticker": "LULU",
+          "issuerName": "COLLIERS INTL GROUP INC",
+          "shareClass": "SUB VTG SHS",
+          "cusip": "194693107",
+          "securityId": "194693107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0005407526847953889,
+          "value": 2325991,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2325991,
+              "issuerName": "COLLIERS INTL GROUP INC",
+              "shares": "25000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0008815741216470379
         },
         {
-          "issuerName": "PENN Entertainment Inc.",
-          "ticker": "PENN",
+          "issuerName": "WARNER BROS DISCOVERY INC",
+          "shareClass": "COM SER A",
+          "cusip": "934423104",
+          "securityId": "934423104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.00044486767325095867,
+          "value": 2179359,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2179359,
+              "issuerName": "WARNER BROS DISCOVERY INC",
+              "shares": "81900",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.000825999110133516
         },
         {
-          "issuerName": "Electronic Arts Inc.",
-          "ticker": "EA",
+          "issuerName": "DOMINO'S PIZZA INC",
+          "shareClass": "COM",
+          "cusip": "25754A201",
+          "securityId": "25754A201",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0003962357480754544,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Berkshire Hathaway Inc.",
-          "ticker": "BRK.{A,B}",
-          "putCall": null,
-          "weight": 0.00028381642016571916,
+          "value": 2139502,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2139502,
+              "issuerName": "DOMINO'S PIZZA INC",
+              "shares": "7230",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0008108929038900327
         },
         {
-          "issuerName": "Brightstar Lottery PLC",
-          "ticker": "BRSL",
+          "issuerName": "CAPRI HOLDINGS LTD",
+          "shareClass": "SHS",
+          "cusip": "G1890L107",
+          "securityId": "G1890L107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0002795218565270883,
+          "value": 1450317,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1450317,
+              "issuerName": "CAPRI HOLDINGS LTD",
+              "shares": "78100",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0005496848162287675
         },
         {
-          "issuerName": "Cementos Pacasmayo Saa",
-          "ticker": "CPAC",
+          "issuerName": "LULULEMON ATHLETICA INC",
+          "shareClass": "COM",
+          "cusip": "550021109",
+          "securityId": "550021109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0002253215147088549,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Magnachip Semiconductor Corp.",
-          "ticker": "MX",
-          "putCall": null,
-          "weight": 0.00011228174723717116,
+          "value": 1426750,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1426750,
+              "issuerName": "LULULEMON ATHLETICA INC",
+              "shares": "12500",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -50.0
+          "sharesChangePct": null,
+          "weight": 0.0005407526847953889
+        },
+        {
+          "issuerName": "PENN ENTERTAINMENT INC",
+          "shareClass": "COM",
+          "cusip": "707569109",
+          "securityId": "707569109",
+          "ticker": "",
+          "putCall": null,
+          "value": 1173762,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1173762,
+              "issuerName": "PENN ENTERTAINMENT INC",
+              "shares": "54900",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00044486767325095867
+        },
+        {
+          "issuerName": "ELECTRONIC ARTS INC",
+          "shareClass": "COM",
+          "cusip": "285512109",
+          "securityId": "285512109",
+          "ticker": "",
+          "putCall": null,
+          "value": 1045449,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1045449,
+              "issuerName": "ELECTRONIC ARTS INC",
+              "shares": "5100",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0003962357480754544
+        },
+        {
+          "issuerName": "BERKSHIRE HATHAWAY INC",
+          "shareClass": "CL A",
+          "cusip": "084670108",
+          "securityId": "084670108",
+          "ticker": "",
+          "putCall": null,
+          "value": 748836,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 748836,
+              "issuerName": "BERKSHIRE HATHAWAY INC",
+              "shares": "1",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00028381642016571916
+        },
+        {
+          "issuerName": "BRIGHTSTAR LOTTERY PLC",
+          "shareClass": "SHS USD",
+          "cusip": "G4863A108",
+          "securityId": "G4863A108",
+          "ticker": "",
+          "putCall": null,
+          "value": 737505,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 737505,
+              "issuerName": "BRIGHTSTAR LOTTERY PLC",
+              "shares": "68733",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0002795218565270883
+        },
+        {
+          "issuerName": "CEMENTOS PACASMAYO SAA",
+          "shareClass": "SPONSORED ADR",
+          "cusip": "15126Q208",
+          "securityId": "15126Q208",
+          "ticker": "",
+          "putCall": null,
+          "value": 594500,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 594500,
+              "issuerName": "CEMENTOS PACASMAYO SAA",
+              "shares": "50000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0002253215147088549
+        },
+        {
+          "issuerName": "MAGNACHIP SEMICONDUCTOR CORP",
+          "shareClass": "COM",
+          "cusip": "55933J203",
+          "securityId": "55933J203",
+          "ticker": "",
+          "putCall": null,
+          "value": 296250,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 296250,
+              "issuerName": "MAGNACHIP SEMICONDUCTOR CORP",
+              "shares": "62500",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "01,02"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00011228174723717116
         }
       ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 2638451995,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -287,8 +811,23 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/fairfax-financial-holdings",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/915191/000110465926096276/",
+      "reportedCoverTotal": 2638451995,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 2638451995.0,
+      "providerHoldingsCount": 32,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/915191/000110465926096276/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/915191/000110465926096276/primary_doc.xml"
+      ],
+      "originalRowCount": 32,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/fairfax-financial-holdings"
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915191/000110465926096276/",
+    "discoverySourceUrl": "https://foliofact.com/funds/fairfax-financial-holdings",
+    "filingHistory": []
   }
 }

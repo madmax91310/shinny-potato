@@ -4,6 +4,10 @@ import argparse
 from email.utils import parsedate_to_datetime
 import json
 import math
+import re
+import html
+import hashlib
+import xml.etree.ElementTree as ET
 import os
 import pathlib
 import sys
@@ -84,14 +88,24 @@ def validate_portfolio(portfolio, slug, now=None):
         if row.get('putCall') not in (None, 'PUT', 'CALL') or isinstance(weight, bool) or not isinstance(weight, (int, float)) or not math.isfinite(weight) or not 0 < weight <= 1:
             raise ValueError('Invalid security weight/type: ' + slug)
         ticker = row.get('ticker')
-        key = (name if not ticker or ticker == 'Unmapped CUSIP' else ticker, row.get('putCall'))
+        key = (row.get('cusip') or row.get('securityId') or (name if not ticker or ticker == 'Unmapped CUSIP' else ticker), row.get('shareClass'), row.get('putCall'))
         if key in keys:
             raise ValueError('Duplicate security across holdings pages: ' + slug)
         keys.add(key)
     if not any(row.get('putCall') is None for row in rows) or not .95 <= sum(row['weight'] for row in rows) <= 1.02:
         raise ValueError('Incomplete declared 13F portfolio: ' + slug)
+    if 'declaredTotal' in snapshot:
+        total = snapshot['declaredTotal']
+        if isinstance(total, bool) or not isinstance(total, (int, float)) or not math.isfinite(total) or total <= 0 or snapshot.get('currency') != 'USD' or snapshot.get('valueUnit') != 1 or not snapshot.get('valueUnitSource'):
+            raise ValueError('Invalid monetary units: ' + slug)
+        for row in rows:
+            value = row.get('value')
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0 or row.get('currency') != 'USD' or row.get('unit') != 1 or not math.isclose(row['weight'], value / total, rel_tol=1e-10):
+                raise ValueError('Invalid position value or weight: ' + slug)
+        if not math.isclose(sum(row['value'] for row in rows), total, rel_tol=0, abs_tol=.5 * len(rows)):
+            raise ValueError('Declared values do not reconcile with filing total: ' + slug)
     source = urllib.parse.urlparse(data.get('sourceUrl', ''))
-    if source.scheme != 'https' or source.hostname not in ('foliofact.com', 'tracefour.com'):
+    if source.scheme != 'https' or source.hostname not in ('foliofact.com', 'tracefour.com', 'www.sec.gov'):
         raise ValueError('Missing investor source: ' + slug)
 
 
@@ -111,18 +125,42 @@ def retry_after_seconds(value):
         return None
 
 
-def get_json(url):
+def get_json(url, raw_text=False):
     global _last_request_at
-    request = urllib.request.Request(url, headers={'Accept': 'application/json', 'User-Agent': 'EpargnantLibre/1.0'})
+    cache = None
+    cached = None
+    if os.environ.get('INVESTOR_HTTP_CACHE'):
+        directory = pathlib.Path(os.environ['INVESTOR_HTTP_CACHE'])
+        directory.mkdir(parents=True, exist_ok=True)
+        cache = directory / (hashlib.sha256(url.encode()).hexdigest() + '.json')
+        try:
+            cached = json.loads(cache.read_text())
+        except (OSError, ValueError):
+            pass
+    request = urllib.request.Request(url, headers={'Accept': 'text/html' if raw_text else 'application/json', 'User-Agent': 'EpargnantLibre/1.0'})
+    if cached and cached.get('etag'):
+        request.add_header('If-None-Match', cached['etag'])
     for attempt in range(MAX_RATE_LIMIT_RETRIES + 1):
         # Apply FolioFact's 20 requests/minute pacing to retries as well.
+        if urllib.parse.urlparse(url).hostname == 'www.sec.gov':
+            time.sleep(max(0, .15 - (time.monotonic() - _last_request_at)))
+            _last_request_at = time.monotonic()
         if urllib.parse.urlparse(url).hostname == 'foliofact.com':
             time.sleep(max(0, 3.1 - (time.monotonic() - _last_request_at)))
             _last_request_at = time.monotonic()
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
-                return json.load(response)
+                body = response.read().decode('utf-8')
+                result = body if raw_text else json.loads(body)
+                if cache is not None and response.headers.get('ETag'):
+                    temp = cache.with_suffix('.tmp')
+                    temp.write_text(json.dumps({'etag': response.headers['ETag'], 'body': body}))
+                    os.replace(temp, cache)
+                return result
         except urllib.error.HTTPError as error:
+            if error.code == 304 and cached:
+                error.close()
+                return cached['body'] if raw_text else json.loads(cached['body'])
             if error.code != 429 or attempt == MAX_RATE_LIMIT_RETRIES:
                 error.close()
                 raise
@@ -180,11 +218,14 @@ def make_portfolio(slug, source_slug, display, entity):
             ) or not .95 <= sum(weights) <= 1.02:
                 raise ValueError('Invalid alternate Ackman filing')
             identity['dataProvider'] = 'Tracefour'
+            identity['personVerified'] = identity.get('displayName') == display
+            identity['personSource'] = 'https://tracefour.com/trackers/ackman'
+            identity['personPeriod'] = alternate_period
             alternate_data['sourceUrl'] = 'https://tracefour.com/trackers/ackman'
             # Provider valuation histories/benchmarks are not manager returns.
             # Persist only the sourced filing consumed by this tool.
             result = {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
-                'identity': identity, 'snapshot': alternate_snapshot,
+                'identity': identity, 'snapshot': alternate_snapshot, '_providerFilingHistory': alternate_data.get('filingHistory', []),
                 'sourceUrl': alternate_data['sourceUrl']}}
             validate_portfolio(result, slug)
             return result
@@ -218,6 +259,11 @@ def make_portfolio(slug, source_slug, display, entity):
     holdings = [
         {'issuerName': row['security']['name'], 'ticker': '' if row['security']['ticker'] == 'Unmapped CUSIP' else row['security']['ticker'] or '',
          'putCall': {'call': 'CALL', 'put': 'PUT'}.get(row.get('position_type')), 'weight': float(row['value']) / total,
+         # FolioFact OpenAPI Holding.value: whole US dollars, NOT SEC legacy thousands.
+         'value': row['value'], 'currency': 'USD', 'unit': 1,
+         'cusip': row['security'].get('cusip'), 'securityId': row['security'].get('id'),
+         'shareClass': row['security'].get('share_class'),
+         'providerGroupedClasses': row['security'].get('ticker') in ('GOOG(L)', 'BRK.{A,B}'),
          'isNew': row.get('change') == 'new',
          'sharesChangePct': shares_change(row)}
         for row in rows if row.get('position_type') in ('direct', 'call', 'put') and float(row.get('value') or 0) > 0
@@ -225,6 +271,8 @@ def make_portfolio(slug, source_slug, display, entity):
     weight_sum = sum(row['weight'] for row in holdings)
     if not holdings or not any(row['putCall'] is None for row in holdings) or any(not math.isfinite(row['weight']) or row['weight'] > 1 for row in holdings) or not .95 <= weight_sum <= 1.02:
         raise ValueError(f'Incomplete portfolio for {slug}: {len(holdings)} rows, {weight_sum:.3f} total weight')
+    if not math.isclose(sum(row['value'] for row in holdings), total, rel_tol=0, abs_tol=.5 * len(holdings)):
+        raise ValueError('Declared values do not reconcile with filing total: ' + slug)
     quarter = (dt.date.fromisoformat(period).month - 1) // 3 + 1
     year = dt.date.fromisoformat(period).year
     prior_label = f'Q{quarter - 1 if quarter > 1 else 4} {year if quarter > 1 else year - 1}'
@@ -233,13 +281,141 @@ def make_portfolio(slug, source_slug, display, entity):
              and float(row.get('value') or 0) == 0 and float(row.get('shares') or 0) == 0]
     result = {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
         'identity': {'slug': slug, 'archetype': 'hedge_fund', 'displayName': display,
-                     'entityName': entity, 'dataProvider': 'FolioFact'},
+                     'entityName': entity, 'dataProvider': 'FolioFact',
+                     'personVerified': fund.get('fund', {}).get('manager') == display or any(p.get('name') == display for p in fund.get('investors', [])),
+                     'personSource': base, 'personPeriod': period},
         'snapshot': {'periodEnd': period, 'holdings': holdings,
+                     'filedAt': fund['filing'].get('filed_on'),
+                     'declaredTotal': total, 'currency': 'USD', 'valueUnit': 1,
+                     'valueUnitSource': 'https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow',
+                     'valueScope': 'Déclaration 13F · positions longues et options déclarées',
+                     'securityIdentityNote': 'Identifiants et classes conservés quand transmis ; certaines classes sont regroupées par FolioFact.',
                      'quarterChanges': {'priorPeriodLabel': prior_label, 'exits': exits}},
         'sourceUrl': f'https://foliofact.com/funds/{source_slug}',
     }}
     validate_portfolio(result, slug)
     return result
+
+
+def enrich_filing_metadata(portfolio):
+    snapshot = portfolio['data']['snapshot']
+    if 'declaredTotal' not in snapshot:
+        # Tracefour already carries an explicit publication date and SEC archive URL.
+        matches = [item for item in portfolio['data'].get('_providerFilingHistory', []) if item.get('periodLabel') == snapshot.get('periodLabel') and item.get('filedAt') == snapshot.get('filedAt') and str(item.get('sourceUrl', '')).startswith('https://www.sec.gov/Archives/edgar/')]
+        if len(matches) != 1:
+            raise ValueError('Original SEC source missing from alternate provider')
+        snapshot['filingUrl'] = matches[0]['sourceUrl']
+        snapshot['publicationSource'] = portfolio['data']['sourceUrl']
+        return
+    page_url = portfolio['data']['sourceUrl']
+    page = get_json(page_url, raw_text=True)
+    period = snapshot['periodEnd']
+    if f'/quarters/{period}' not in page:
+        raise ValueError('Filing metadata disagrees with API quarter')
+    filed = re.search(r'>Filed</dt>\s*<dd[^>]*>\s*(\d{4}-\d{2}-\d{2})', page)
+    source = re.search(r'href="(https://www\.sec\.gov/Archives/edgar/[^"<>]+)"', page)
+    if not filed or not source or not period <= filed[1] <= current_date().isoformat():
+        raise ValueError('Publication date or original SEC source unavailable')
+    snapshot['filedAt'] = filed[1]
+    snapshot['publicationSource'] = page_url
+    snapshot['filingUrl'] = html.unescape(source[1])
+
+
+def enrich_sec_positions(portfolio):
+    """Complete the existing provider acquisition with its original SEC filing.
+
+    Provider discovery, schedule, validation, storage and archives stay shared.
+    Only exact CUSIP/class/option identities may be combined, never fuzzy names.
+    """
+    data = portfolio['data']
+    snapshot = data['snapshot']
+    original = snapshot.get('filingUrl')
+    if not original or urllib.parse.urlparse(original).hostname != 'www.sec.gov':
+        raise ValueError('Original SEC filing not identified')
+    folder = original if original.endswith('/') else original.rsplit('/', 1)[0] + '/'
+    directory = get_json(folder + 'index.json')
+    names = [r['name'] for r in directory.get('directory', {}).get('item', [])
+             if re.fullmatch(r'[\w.-]+\.xml', r.get('name', ''), re.I)]
+    if not names or len(names) > 20:
+        raise ValueError('SEC filing XML documents unavailable or ambiguous')
+    primary, tables = None, []
+    documents = []
+    for name in names:
+        document = get_json(folder + name, raw_text=True)
+        root = ET.fromstring(document)
+        # Namespace prefixes vary by filer; strip names without altering values.
+        for element in root.iter():
+            element.tag = element.tag.rsplit('}', 1)[-1]
+        if root.tag == 'edgarSubmission':
+            if primary is not None:
+                raise ValueError('Multiple SEC cover documents')
+            primary = root
+            documents.append(folder + name)
+        elif root.tag == 'informationTable':
+            tables.extend(root.findall('infoTable'))
+            documents.append(folder + name)
+    if primary is None or not tables:
+        raise ValueError('SEC cover or information table missing')
+    period = dt.datetime.strptime(primary.findtext('.//periodOfReport', ''), '%m-%d-%Y').date().isoformat()
+    if period != snapshot['periodEnd'] or period < '2023-01-03':
+        # SEC changed from thousands to whole dollars in 2023. Do not guess units.
+        raise ValueError('SEC report date or dollar-unit convention disagrees')
+    entity = primary.findtext('.//filingManager/name')
+    cik = primary.findtext('.//credentials/cik')
+    total = int(primary.findtext('.//tableValueTotal', '0'))
+    count = int(primary.findtext('.//tableEntryTotal', '0'))
+    if not entity or not cik or total <= 0 or count != len(tables):
+        raise ValueError('SEC manager, declared total or row count missing/inconsistent')
+    if primary.findtext('.//isAmendment', '').lower() == 'true' and primary.findtext('.//amendmentType', '').upper() != 'RESTATEMENT':
+        raise ValueError('Additional-holdings amendment requires a consolidated filing')
+    groups = {}
+    for row in tables:
+        issuer = row.findtext('nameOfIssuer', '').strip()
+        share_class = row.findtext('titleOfClass', '').strip()
+        cusip = row.findtext('cusip', '').strip().upper()
+        option = (row.findtext('putCall') or '').strip().upper() or None
+        value = int(row.findtext('value', '-1'))
+        if not issuer or not share_class or not re.fullmatch(r'[A-Z0-9*@#]{9}', cusip) or option not in (None, 'PUT', 'CALL') or value < 0:
+            raise ValueError('Invalid SEC information-table security')
+        if value == 0:
+            continue
+        key = (cusip, share_class, option)
+        if key not in groups:
+            groups[key] = {'issuerName': issuer, 'shareClass': share_class, 'cusip': cusip, 'securityId': cusip,
+                           'ticker': '', 'putCall': option, 'value': 0, 'currency': 'USD', 'unit': 1,
+                           'sourceRows': [], 'isNew': False, 'sharesChangePct': None}
+        position = groups[key]
+        position['value'] += value
+        position['sourceRows'].append({'value': value, 'issuerName': issuer, 'shares': row.findtext('.//sshPrnamt'),
+                                       'amountType': row.findtext('.//sshPrnamtType'),
+                                       'investmentDiscretion': row.findtext('investmentDiscretion'),
+                                       'otherManager': row.findtext('otherManager')})
+    row_total = sum(row['value'] for row in groups.values())
+    if abs(row_total - total) > .5 * count:
+        raise ValueError('SEC information table does not reconcile with declared total')
+    provider_total = snapshot.get('declaredTotal', snapshot.get('totalValueUsd'))
+    if provider_total is not None and abs(row_total - provider_total) > .5 * count:
+        # A factor of 1,000 is a unit conflict, not permission to silently multiply.
+        raise ValueError(f'SEC/provider valuation conflict: SEC rows {row_total} USD, provider {provider_total} USD')
+    snapshot['reportedCoverTotal'] = total
+    snapshot['reconciliationDifference'] = row_total - total
+    total = row_total
+    for row in groups.values():
+        row['weight'] = row['value'] / total
+    # Retain the provider observation separately; no source disagreement is hidden.
+    snapshot['providerDeclaredTotal'] = snapshot.get('declaredTotal', snapshot.get('totalValueUsd'))
+    snapshot['providerHoldingsCount'] = len(snapshot['holdings'])
+    snapshot['providerTotalDifference'] = total - snapshot['providerDeclaredTotal'] if snapshot['providerDeclaredTotal'] is not None else None
+    snapshot.update(holdings=sorted(groups.values(), key=lambda r: -r['value']), declaredTotal=total,
+                    currency='USD', valueUnit=1, valueUnitSource='https://www.sec.gov/files/form13f.pdf',
+                    valueScope='Déclaration SEC 13F ; positions longues et options déclarées',
+                    sourceDocuments=documents, originalRowCount=count, primaryVerified=True,
+                    securityIdentityNote='Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.')
+    data['identity'].update(entityName=entity, declaringCik=cik, entitySource=original)
+    data['identity']['dataProvider'] = 'SEC'
+    data.pop('_providerFilingHistory', None)
+    data['discoverySourceUrl'] = data['sourceUrl']
+    data['sourceUrl'] = original
 
 
 def prepare_update(destination, portfolio):
@@ -278,6 +454,10 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
         try:
             portfolio = fetch_portfolio(slug, source_slug, display, entity)
             validate_portfolio(portfolio, slug)
+            if fetch_portfolio is make_portfolio:
+                enrich_filing_metadata(portfolio)
+                enrich_sec_positions(portfolio)
+                validate_portfolio(portfolio, slug)
             content = prepare_update(destination, portfolio)
         except Exception as error:
             failures.append(f'{slug}: {error}')
@@ -285,7 +465,7 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
             print(f'{slug}: failed — {error}', flush=True)
             if destination.exists():
                 stored = json.loads(destination.read_text())
-                reviews.append({**prior_reviews.get(slug, {}), 'as_of': stored.get('as_of'), 'data': {
+                reviews.append({**prior_reviews.get(slug, {}), 'as_of': stored.get('as_of'), 'lastAttemptAt': dt.datetime.now(dt.timezone.utc).isoformat(), 'lastAttemptStatus': 'failed', 'lastError': str(error), 'data': {
                     'identity': stored['data'].get('identity', {'slug': slug, 'displayName': display}),
                     'snapshot': {'periodEnd': stored['data']['snapshot']['periodEnd']},
                     'sourceUrl': stored['data'].get('sourceUrl', f'https://foliofact.com/funds/{source_slug}'),
@@ -307,7 +487,7 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
         # Preserve the stored check date on unchanged data so this index does
         # not create a new commit on every successful poll.
         current = json.loads(content) if content else json.loads(destination.read_text())
-        reviews.append({'as_of': current.get('as_of'), 'lastSuccessfulPollAt': portfolio['as_of'], 'positionsCollectedAt': current.get('as_of'), 'data': {
+        reviews.append({'as_of': current.get('as_of'), 'lastAttemptAt': portfolio['as_of'], 'lastAttemptStatus': 'validated', 'lastError': None, 'lastSuccessfulPollAt': portfolio['as_of'], 'positionsCollectedAt': current.get('as_of'), 'data': {
             'identity': current['data'].get('identity', {'slug': slug, 'displayName': display}),
             'snapshot': {'periodEnd': current['data']['snapshot']['periodEnd']},
             'sourceUrl': current['data'].get('sourceUrl', f'https://foliofact.com/funds/{source_slug}'),

@@ -1,97 +1,293 @@
 {
-  "as_of": "2026-10-04T17:30:26.202759+00:00",
+  "as_of": "2026-11-15T16:44:00.947005+00:00",
   "data": {
     "identity": {
       "slug": "hohn",
       "archetype": "hedge_fund",
       "displayName": "Christopher Hohn",
-      "entityName": "TCI Fund Management Ltd",
-      "dataProvider": "FolioFact"
+      "entityName": "TCI FUND MANAGEMENT LTD",
+      "dataProvider": "SEC",
+      "personVerified": false,
+      "personSource": "https://foliofact.com/api/v1/funds/tci-fund-management",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001647251",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "General Electric Co.",
-          "ticker": "GE",
+          "issuerName": "GE AEROSPACE",
+          "shareClass": "COM NEW",
+          "cusip": "369604301",
+          "securityId": "369604301",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.33589904011585453,
+          "value": 17725353519,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 17725353519,
+              "issuerName": "GE AEROSPACE",
+              "shares": "47428233",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -0.2
+          "sharesChangePct": null,
+          "weight": 0.33589904011585453
         },
         {
-          "issuerName": "Visa Inc.",
-          "ticker": "V",
+          "issuerName": "VISA INC",
+          "shareClass": "COM CL A",
+          "cusip": "92826C839",
+          "securityId": "92826C839",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.19826141763938432,
+          "value": 10462232091,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10462232091,
+              "issuerName": "VISA INC",
+              "shares": "30494133",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 0.1
+          "sharesChangePct": null,
+          "weight": 0.19826141763938432
         },
         {
-          "issuerName": "Moody's Corp.",
-          "ticker": "MCO",
+          "issuerName": "MOODYS CORP",
+          "shareClass": "COM",
+          "cusip": "615369105",
+          "securityId": "615369105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.12302788952597805,
+          "value": 6492167509,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6492167509,
+              "issuerName": "MOODYS CORP",
+              "shares": "14334027",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.12302788952597805
         },
         {
-          "issuerName": "S&P Global Inc.",
-          "ticker": "SPGI",
+          "issuerName": "S&P GLOBAL INC",
+          "shareClass": "COM",
+          "cusip": "78409V104",
+          "securityId": "78409V104",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.10867974930314461,
+          "value": 5735017808,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 5735017808,
+              "issuerName": "S&P GLOBAL INC",
+              "shares": "14081957",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 0.3
+          "sharesChangePct": null,
+          "weight": 0.10867974930314461
         },
         {
-          "issuerName": "Alphabet Inc.",
-          "ticker": "GOOG(L)",
+          "issuerName": "CANADIAN PACIFIC KANSAS CITY",
+          "shareClass": "COM",
+          "cusip": "13646K108",
+          "securityId": "13646K108",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.08318648138825335,
+          "value": 3925911608,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3925911608,
+              "issuerName": "CANADIAN PACIFIC KANSAS CITY",
+              "shares": "45325726",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.07439682031127624
         },
         {
-          "issuerName": "Canadian Pacific Kansas City",
-          "ticker": "CP",
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL C",
+          "cusip": "02079K107",
+          "securityId": "02079K107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.07439682031127624,
+          "value": 3511682917,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3511682917,
+              "issuerName": "ALPHABET INC",
+              "shares": "9938819",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -2.6
+          "sharesChangePct": null,
+          "weight": 0.06654710269937066
         },
         {
-          "issuerName": "Ferrovial SE",
-          "ticker": "FER",
+          "issuerName": "FERROVIAL NV",
+          "shareClass": "ORD SHS",
+          "cusip": "N3168P101",
+          "securityId": "N3168P101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.027186186878152094,
+          "value": 1434611939,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1434611939,
+              "issuerName": "FERROVIAL NV",
+              "shares": "20940441",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 1.0
+          "sharesChangePct": null,
+          "weight": 0.027186186878152094
         },
         {
-          "issuerName": "Canadian Natl Ry Co.",
-          "ticker": "CNI",
+          "issuerName": "CANADIAN NATL RY CO",
+          "shareClass": "COM",
+          "cusip": "136375102",
+          "securityId": "136375102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.021310164455697368,
+          "value": 1124534915,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1124534915,
+              "issuerName": "CANADIAN NATL RY CO",
+              "shares": "9433422",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -4.2
+          "sharesChangePct": null,
+          "weight": 0.021310164455697368
         },
         {
-          "issuerName": "Martin Marietta Matls Inc.",
-          "ticker": "MLM",
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL A",
+          "cusip": "02079K305",
+          "securityId": "02079K305",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.014372276318910533,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 878058090,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 878058090,
+              "issuerName": "ALPHABET INC",
+              "shares": "2457000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0166393786888827
         },
         {
-          "issuerName": "Vulcan Matls Co.",
-          "ticker": "VMC",
+          "issuerName": "MARTIN MARIETTA MATLS INC",
+          "shareClass": "COM",
+          "cusip": "573284106",
+          "securityId": "573284106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.013679974063348909,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 758423360,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 758423360,
+              "issuerName": "MARTIN MARIETTA MATLS INC",
+              "shares": "1315109",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.014372276318910533
+        },
+        {
+          "issuerName": "VULCAN MATLS CO",
+          "shareClass": "COM",
+          "cusip": "929160109",
+          "securityId": "929160109",
+          "ticker": "",
+          "putCall": null,
+          "value": 721890650,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 721890650,
+              "issuerName": "VULCAN MATLS CO",
+              "shares": "2447004",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.013679974063348909
         }
       ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 52769884406,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -101,8 +297,23 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/tci-fund-management",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/",
+      "reportedCoverTotal": 52769884406,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 52769884406.0,
+      "providerHoldingsCount": 10,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/Form13fInfoTable.xml",
+        "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/primary_doc.xml"
+      ],
+      "originalRowCount": 11,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/tci-fund-management"
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1647251/000164725126000007/",
+    "discoverySourceUrl": "https://foliofact.com/funds/tci-fund-management",
+    "filingHistory": []
   }
 }

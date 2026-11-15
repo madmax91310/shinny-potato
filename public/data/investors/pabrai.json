@@ -1,55 +1,145 @@
 {
-  "as_of": "2026-11-14T21:13:12.868593+00:00",
+  "as_of": "2026-11-15T16:43:41.577761+00:00",
   "data": {
     "identity": {
       "slug": "pabrai",
       "archetype": "hedge_fund",
       "displayName": "Mohnish Pabrai",
-      "entityName": "Dalal Street LLC",
-      "dataProvider": "FolioFact"
+      "entityName": "Dalal Street, LLC",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/pabrai-investment-funds",
+      "personPeriod": "2026-09-30",
+      "declaringCik": "0001549575",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/"
     },
     "snapshot": {
       "periodEnd": "2026-09-30",
       "holdings": [
         {
-          "issuerName": "Warrior Met Coal Inc.",
-          "ticker": "HCC",
+          "issuerName": "WARRIOR MET COAL INC",
+          "shareClass": "COM",
+          "cusip": "93627C101",
+          "securityId": "93627C101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.45420857833913725,
+          "value": 164452671,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 164452671,
+              "issuerName": "WARRIOR MET COAL INC",
+              "shares": "1867295",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 7.1
+          "sharesChangePct": null,
+          "weight": 0.45420857833913725
         },
         {
-          "issuerName": "Transocean Ltd.",
-          "ticker": "RIG",
+          "issuerName": "TRANSOCEAN LTD",
+          "shareClass": "REGISTERED SHS",
+          "cusip": "H8817H100",
+          "securityId": "H8817H100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.4121108716483694,
+          "value": 149210598,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 149210598,
+              "issuerName": "TRANSOCEAN LTD",
+              "shares": "28475305",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 39.6
+          "sharesChangePct": null,
+          "weight": 0.4121108716483694
         },
         {
-          "issuerName": "Alpha Metallurgical Resour I",
-          "ticker": "AMR",
+          "issuerName": "ALPHA METALLURGICAL RESOUR I",
+          "shareClass": "COM",
+          "cusip": "020764106",
+          "securityId": "020764106",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.07933000569523287,
+          "value": 28722556,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 28722556,
+              "issuerName": "ALPHA METALLURGICAL RESOUR I",
+              "shares": "170744",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -67.0
+          "sharesChangePct": null,
+          "weight": 0.07933000569523287
         },
         {
-          "issuerName": "Kaspi KZ JSC",
-          "ticker": "KSPI",
+          "issuerName": "KASPI KZ JSC",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "48581R205",
+          "securityId": "48581R205",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.054350544317260496,
+          "value": 19678387,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 19678387,
+              "issuerName": "KASPI KZ JSC",
+              "shares": "209211",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 12192.1
+          "sharesChangePct": null,
+          "weight": 0.054350544317260496
         }
       ],
+      "filedAt": "2026-11-13",
+      "declaredTotal": 362064212,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q2 2026",
         "exits": []
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/pabrai-investment-funds",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/",
+      "reportedCoverTotal": 362064212,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 362064212.0,
+      "providerHoldingsCount": 4,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/primary_doc.xml"
+      ],
+      "originalRowCount": 4,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/pabrai-investment-funds",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1549575/000154957526000023/",
+    "discoverySourceUrl": "https://foliofact.com/funds/pabrai-investment-funds",
     "filingHistory": [
       {
         "periodEnd": "2026-06-30",

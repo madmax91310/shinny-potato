@@ -1,1177 +1,3509 @@
 {
-  "as_of": "2026-10-16T07:08:44.568953+00:00",
+  "as_of": "2026-11-15T16:39:53.671866+00:00",
   "data": {
     "identity": {
       "slug": "marks",
       "archetype": "hedge_fund",
       "displayName": "Howard Marks",
-      "entityName": "Oaktree Capital Management LP",
-      "dataProvider": "FolioFact"
+      "entityName": "OAKTREE CAPITAL MANAGEMENT LP",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/oaktree-capital-management",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0000949509",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/949509/000094950926000005/"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
       "holdings": [
         {
-          "issuerName": "SPDR S&P 500 ETF TR",
-          "ticker": "SPY",
+          "issuerName": "STATE STREET CORP",
+          "shareClass": "ETF",
+          "cusip": "78462F103",
+          "securityId": "78462F103",
+          "ticker": "",
           "putCall": "PUT",
-          "weight": 0.14041957363470264,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 1011873350,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1011873350,
+              "issuerName": "STATE STREET CORP",
+              "shares": "1355000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.14041957363470264
         },
         {
-          "issuerName": "Invesco QQQ TR",
-          "ticker": "QQQ",
+          "issuerName": "INVESCO QQQ TRUST SERIES 1",
+          "shareClass": "ETF",
+          "cusip": "46090E103",
+          "securityId": "46090E103",
+          "ticker": "",
           "putCall": "PUT",
-          "weight": 0.09043958121020441,
+          "value": 651714000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 651714000,
+              "issuerName": "INVESCO QQQ TRUST SERIES 1",
+              "shares": "885000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 55.3
+          "sharesChangePct": null,
+          "weight": 0.09043958121020441
         },
         {
-          "issuerName": "TORM plc",
-          "ticker": "TRMD",
+          "issuerName": "TORM PLC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G89479102",
+          "securityId": "G89479102",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0727526525788149,
+          "value": 524260745,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 524260745,
+              "issuerName": "TORM PLC",
+              "shares": "20329874",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -14.7
+          "sharesChangePct": null,
+          "weight": 0.0727526525788149
         },
         {
-          "issuerName": "Expand Energy Corp.",
-          "ticker": "EXE",
+          "issuerName": "EXPAND ENERGY CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "165167735",
+          "securityId": "165167735",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.06627821996390898,
+          "value": 477605527,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 477605527,
+              "issuerName": "EXPAND ENERGY CORP",
+              "shares": "5237477",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.06627821996390898
         },
         {
-          "issuerName": "Garrett Motion Inc.",
-          "ticker": "GTX",
+          "issuerName": "GARRETT MOTION INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "366505105",
+          "securityId": "366505105",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.03818449767266502,
+          "value": 275160183,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 275160183,
+              "issuerName": "GARRETT MOTION INC",
+              "shares": "7594816",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -48.0
+          "sharesChangePct": null,
+          "weight": 0.03818449767266502
         },
         {
-          "issuerName": "Anglogold Ashanti PLC",
-          "ticker": "AU",
+          "issuerName": "ANGLOGOLD ASHANTI PLC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G0378L100",
+          "securityId": "G0378L100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.03568612745133113,
+          "value": 257156751,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 257156751,
+              "issuerName": "ANGLOGOLD ASHANTI PLC",
+              "shares": "3179092",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -1.4
+          "sharesChangePct": null,
+          "weight": 0.03568612745133113
         },
         {
-          "issuerName": "Indivior Pharmaceuticals Inc.",
-          "ticker": "INDV",
+          "issuerName": "INDIVIOR PHARMACEUTICALS INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "45579U109",
+          "securityId": "45579U109",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.03488718397943183,
+          "value": 251399508,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 251399508,
+              "issuerName": "INDIVIOR PHARMACEUTICALS INC",
+              "shares": "6127212",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -12.3
+          "sharesChangePct": null,
+          "weight": 0.03488718397943183
         },
         {
-          "issuerName": "Telephone And Data Systems Inc.",
-          "ticker": "TDS",
+          "issuerName": "TELEPHONE AND DATA SYSTEMS INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "879433829",
+          "securityId": "879433829",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.02713272281437512,
+          "value": 195520314,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 195520314,
+              "issuerName": "TELEPHONE AND DATA SYSTEMS INC",
+              "shares": "5282905",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 23.1
+          "sharesChangePct": null,
+          "weight": 0.02713272281437512
         },
         {
-          "issuerName": "Viper Energy Inc.",
-          "ticker": "VNOM",
+          "issuerName": "VIPER ENERGY INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "64361Q101",
+          "securityId": "64361Q101",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.022308512739894752,
+          "value": 160756716,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 160756716,
+              "issuerName": "VIPER ENERGY INC",
+              "shares": "3791432",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.022308512739894752
         },
         {
-          "issuerName": "Core Scientific Inc.",
-          "ticker": "CORZ",
+          "issuerName": "CORE SCIENTIFIC INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "21874A106",
+          "securityId": "21874A106",
+          "ticker": "",
           "putCall": "CALL",
-          "weight": 0.01775586287212743,
+          "value": 127950000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 127950000,
+              "issuerName": "CORE SCIENTIFIC INC",
+              "shares": "5000000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 42.9
+          "sharesChangePct": null,
+          "weight": 0.01775586287212743
         },
         {
-          "issuerName": "Core Scientific Inc.",
-          "ticker": "CORZ",
-          "putCall": null,
-          "weight": 0.017733518794373387,
-          "isNew": false,
-          "sharesChangePct": -46.6
-        },
-        {
-          "issuerName": "Talen Energy Corp.",
-          "ticker": "TLN",
-          "putCall": null,
-          "weight": 0.017656643471204887,
-          "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Barrick Mining Corp.",
-          "ticker": "B",
-          "putCall": null,
-          "weight": 0.016341718371082496,
-          "isNew": false,
-          "sharesChangePct": 22.1
-        },
-        {
-          "issuerName": "Itau Unibanco Holding SA",
-          "ticker": "ITUB",
-          "putCall": null,
-          "weight": 0.01357987418085939,
-          "isNew": false,
-          "sharesChangePct": -1.7
-        },
-        {
-          "issuerName": "Liberty Global Ltd.",
-          "ticker": "LBTYA",
-          "putCall": null,
-          "weight": 0.013492379894167341,
-          "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Oaktree Specialty Lending Corp.",
-          "ticker": "OCSL",
-          "putCall": null,
-          "weight": 0.013043732466831312,
-          "isNew": false,
-          "sharesChangePct": 325.0
-        },
-        {
-          "issuerName": "Freeport-Mcmoran Inc.",
-          "ticker": "FCX",
-          "putCall": null,
-          "weight": 0.010482628748962063,
-          "isNew": false,
-          "sharesChangePct": -1.6
-        },
-        {
-          "issuerName": "Grupo Aeromexico Sab De CV",
-          "ticker": "AERO",
-          "putCall": null,
-          "weight": 0.009913356773533213,
-          "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Kilroy Realty Corp.",
-          "ticker": "KRC",
-          "putCall": null,
-          "weight": 0.009619654957248461,
-          "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Pebblebrook Hotel Trust - CUSIP 70509VAA8 needs mapping",
+          "issuerName": "CORE SCIENTIFIC INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "21874A106",
+          "securityId": "21874A106",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00875589752069204,
+          "value": 127788987,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 127788987,
+              "issuerName": "CORE SCIENTIFIC INC",
+              "shares": "4993708",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 10.0
+          "sharesChangePct": null,
+          "weight": 0.017733518794373387
         },
         {
-          "issuerName": "Biomarin Pharmaceutical Inc. - CUSIP 09061GAK7 needs mapping",
+          "issuerName": "TALEN ENERGY CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "87422Q109",
+          "securityId": "87422Q109",
           "ticker": "",
           "putCall": null,
-          "weight": 0.008655640383602574,
+          "value": 127235018,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 127235018,
+              "issuerName": "TALEN ENERGY CORP",
+              "shares": "331117",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 14.4
+          "sharesChangePct": null,
+          "weight": 0.017656643471204887
         },
         {
-          "issuerName": "Sea Ltd. - CUSIP 81141RAG5 needs mapping",
+          "issuerName": "BARRICK MINING CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "06849F108",
+          "securityId": "06849F108",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00861221199927974,
+          "value": 117759575,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 117759575,
+              "issuerName": "BARRICK MINING CORP",
+              "shares": "3206087",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 30.7
+          "sharesChangePct": null,
+          "weight": 0.016341718371082496
         },
         {
-          "issuerName": "Etsy Inc. - CUSIP 29786AAN6 needs mapping",
+          "issuerName": "ITAU UNIBANCO HOLDING SA",
+          "shareClass": "COMMON STOCK",
+          "cusip": "465562106",
+          "securityId": "465562106",
           "ticker": "",
           "putCall": null,
-          "weight": 0.008487513802459984,
+          "value": 97857531,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 97857531,
+              "issuerName": "ITAU UNIBANCO HOLDING SA",
+              "shares": "11977665",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 9.2
+          "sharesChangePct": null,
+          "weight": 0.01357987418085939
         },
         {
-          "issuerName": "Sea Ltd.",
-          "ticker": "SE",
-          "putCall": null,
-          "weight": 0.0084504449173778,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Liberty Latin America Ltd.",
-          "ticker": "LILAK",
-          "putCall": null,
-          "weight": 0.008171618059602337,
-          "isNew": false,
-          "sharesChangePct": 31.5
-        },
-        {
-          "issuerName": "Enphase Energy Inc. - CUSIP 29355AAK3 needs mapping",
+          "issuerName": "LIBERTY GLOBAL LTD",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G61188101",
+          "securityId": "G61188101",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007994615906145754,
+          "value": 97227041,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 97227041,
+              "issuerName": "LIBERTY GLOBAL LTD",
+              "shares": "8551191",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 9.2
+          "sharesChangePct": null,
+          "weight": 0.013492379894167341
         },
         {
-          "issuerName": "Dexcom Inc. - CUSIP 252131AM9 needs mapping",
+          "issuerName": "OAKTREE SPECIALTY LENDING CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "67401P405",
+          "securityId": "67401P405",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007923450768561172,
+          "value": 93994056,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 93994056,
+              "issuerName": "OAKTREE SPECIALTY LENDING CORP",
+              "shares": "7872199",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 51.3
+          "sharesChangePct": null,
+          "weight": 0.013043732466831312
         },
         {
-          "issuerName": "Bausch Lomb Corp.",
-          "ticker": "BLCO",
-          "putCall": null,
-          "weight": 0.007907729301544498,
-          "isNew": false,
-          "sharesChangePct": 1.7
-        },
-        {
-          "issuerName": "Viasat Inc.",
-          "ticker": "VSAT",
-          "putCall": null,
-          "weight": 0.007855244525139618,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Echostar Corp. - CUSIP 278768AB2 needs mapping",
+          "issuerName": "FREEPORT-MCMORAN INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "35671D857",
+          "securityId": "35671D857",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0078059190295018096,
+          "value": 75538562,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 75538562,
+              "issuerName": "FREEPORT-MCMORAN INC",
+              "shares": "1201122",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.010482628748962063
         },
         {
-          "issuerName": "Marriott Vacations Worldwide Corp. - CUSIP 57164YAF4 needs mapping",
+          "issuerName": "GRUPO AEROMEXICO SAB DE CV",
+          "shareClass": "COMMON STOCK",
+          "cusip": "40054J109",
+          "securityId": "40054J109",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007764878909344895,
+          "value": 71436348,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 71436348,
+              "issuerName": "GRUPO AEROMEXICO SAB DE CV",
+              "shares": "3968686",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 9.2
+          "sharesChangePct": null,
+          "weight": 0.009913356773533213
         },
         {
-          "issuerName": "Draftkings Inc. - CUSIP 26142RAB0 needs mapping",
+          "issuerName": "KILROY REALTY CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "49427F108",
+          "securityId": "49427F108",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007560610439321652,
+          "value": 69319912,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 69319912,
+              "issuerName": "KILROY REALTY CORP",
+              "shares": "1850011",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 31.9
+          "sharesChangePct": null,
+          "weight": 0.009619654957248461
         },
         {
-          "issuerName": "Conmed Corp. - CUSIP 207410AH4 needs mapping",
+          "issuerName": "PEBBLEBROOK HOTEL TRUST",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "70509VAA8",
+          "securityId": "70509VAA8",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007280640656289331,
+          "value": 63095615,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 63095615,
+              "issuerName": "PEBBLEBROOK HOTEL TRUST",
+              "shares": "63534000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 48.2
+          "sharesChangePct": null,
+          "weight": 0.00875589752069204
         },
         {
-          "issuerName": "Makemytrip Limited Mauritius",
-          "ticker": "MMYT",
-          "putCall": null,
-          "weight": 0.007269938984721454,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Riot Platforms Inc. - CUSIP 767292AB1 needs mapping",
+          "issuerName": "BIOMARIN PHARMACEUTICAL INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "09061GAK7",
+          "securityId": "09061GAK7",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007254816873482387,
+          "value": 62373155,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 62373155,
+              "issuerName": "BIOMARIN PHARMACEUTICAL INC",
+              "shares": "64025000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -67.4
+          "sharesChangePct": null,
+          "weight": 0.008655640383602574
         },
         {
-          "issuerName": "Teladoc Health Inc. - CUSIP 87918AAF2 needs mapping",
+          "issuerName": "SEA LTD",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "81141RAG5",
+          "securityId": "81141RAG5",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007251745296547556,
+          "value": 62060207,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 62060207,
+              "issuerName": "SEA LTD",
+              "shares": "62567000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 62.2
+          "sharesChangePct": null,
+          "weight": 0.00861221199927974
         },
         {
-          "issuerName": "Bentley Systems Inc. - CUSIP 08265TAD1 needs mapping",
+          "issuerName": "ETSY INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "29786AAN6",
+          "securityId": "29786AAN6",
           "ticker": "",
           "putCall": null,
-          "weight": 0.007238894326002238,
+          "value": 61161623,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 61161623,
+              "issuerName": "ETSY INC",
+              "shares": "66836000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 15.5
+          "sharesChangePct": null,
+          "weight": 0.008487513802459984
         },
         {
-          "issuerName": "Matthews International Corp.",
-          "ticker": "MATW",
-          "putCall": null,
-          "weight": 0.007195003692525618,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "XP Inc.",
-          "ticker": "XP",
-          "putCall": null,
-          "weight": 0.007032864008108541,
-          "isNew": false,
-          "sharesChangePct": -1.7
-        },
-        {
-          "issuerName": "Unity Software Inc. - CUSIP 91332UAB7 needs mapping",
+          "issuerName": "SEA LTD",
+          "shareClass": "COMMON STOCK",
+          "cusip": "81141R100",
+          "securityId": "81141R100",
           "ticker": "",
           "putCall": null,
-          "weight": 0.006749196231845924,
+          "value": 60894502,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 60894502,
+              "issuerName": "SEA LTD",
+              "shares": "635443",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 37.5
+          "sharesChangePct": null,
+          "weight": 0.0084504449173778
         },
         {
-          "issuerName": "Five9 Inc. - CUSIP 338307AF8 needs mapping",
+          "issuerName": "LIBERTY LATIN AMERICA LTD",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G9001E128",
+          "securityId": "G9001E128",
           "ticker": "",
           "putCall": null,
-          "weight": 0.006581073813859929,
+          "value": 58885256,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 58885256,
+              "issuerName": "LIBERTY LATIN AMERICA LTD",
+              "shares": "7559083",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 145.2
+          "sharesChangePct": null,
+          "weight": 0.008171618059602337
         },
         {
-          "issuerName": "Lyondellbasell Industries N",
-          "ticker": "LYB",
+          "issuerName": "ENPHASE ENERGY INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "29355AAK3",
+          "securityId": "29355AAK3",
+          "ticker": "",
+          "putCall": null,
+          "value": 57609766,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 57609766,
+              "issuerName": "ENPHASE ENERGY INC",
+              "shares": "61820000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007994615906145754
+        },
+        {
+          "issuerName": "DEXCOM INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "252131AM9",
+          "securityId": "252131AM9",
+          "ticker": "",
+          "putCall": null,
+          "value": 57096945,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 57096945,
+              "issuerName": "DEXCOM INC",
+              "shares": "61148000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007923450768561172
+        },
+        {
+          "issuerName": "BAUSCH LOMB CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "071705107",
+          "securityId": "071705107",
+          "ticker": "",
+          "putCall": null,
+          "value": 56983655,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 56983655,
+              "issuerName": "BAUSCH LOMB CORP",
+              "shares": "3441042",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007907729301544498
+        },
+        {
+          "issuerName": "VIASAT INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "92552V100",
+          "securityId": "92552V100",
+          "ticker": "",
+          "putCall": null,
+          "value": 56605446,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 56605446,
+              "issuerName": "VIASAT INC",
+              "shares": "630280",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007855244525139618
+        },
+        {
+          "issuerName": "ECHOSTAR CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "278768AB2",
+          "securityId": "278768AB2",
+          "ticker": "",
+          "putCall": null,
+          "value": 56250003,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 56250003,
+              "issuerName": "ECHOSTAR CORP",
+              "shares": "18000001",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0078059190295018096
+        },
+        {
+          "issuerName": "MARRIOTT VACATIONS WORLDWIDE CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "57164YAF4",
+          "securityId": "57164YAF4",
+          "ticker": "",
+          "putCall": null,
+          "value": 55954265,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 55954265,
+              "issuerName": "MARRIOTT VACATIONS WORLDWIDE CORP",
+              "shares": "56893000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007764878909344895
+        },
+        {
+          "issuerName": "DRAFTKINGS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "26142RAB0",
+          "securityId": "26142RAB0",
+          "ticker": "",
+          "putCall": null,
+          "value": 54482292,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 54482292,
+              "issuerName": "DRAFTKINGS INC",
+              "shares": "58501000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007560610439321652
+        },
+        {
+          "issuerName": "CONMED CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "207410AH4",
+          "securityId": "207410AH4",
+          "ticker": "",
+          "putCall": null,
+          "value": 52464810,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 52464810,
+              "issuerName": "CONMED CORP",
+              "shares": "53645000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007280640656289331
+        },
+        {
+          "issuerName": "MAKEMYTRIP LTD",
+          "shareClass": "COMMON STOCK",
+          "cusip": "V5633W109",
+          "securityId": "V5633W109",
+          "ticker": "",
+          "putCall": null,
+          "value": 52387693,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 52387693,
+              "issuerName": "MAKEMYTRIP LTD",
+              "shares": "983068",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007269938984721454
+        },
+        {
+          "issuerName": "RIOT PLATFORMS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "767292AB1",
+          "securityId": "767292AB1",
+          "ticker": "",
+          "putCall": null,
+          "value": 52278722,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 52278722,
+              "issuerName": "RIOT PLATFORMS INC",
+              "shares": "26000000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007254816873482387
+        },
+        {
+          "issuerName": "TELADOC HEALTH INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "87918AAF2",
+          "securityId": "87918AAF2",
+          "ticker": "",
+          "putCall": null,
+          "value": 52256588,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 52256588,
+              "issuerName": "TELADOC HEALTH INC",
+              "shares": "53624000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007251745296547556
+        },
+        {
+          "issuerName": "BENTLEY SYSTEMS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "08265TAD1",
+          "securityId": "08265TAD1",
+          "ticker": "",
+          "putCall": null,
+          "value": 52163983,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 52163983,
+              "issuerName": "BENTLEY SYSTEMS INC",
+              "shares": "54264000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007238894326002238
+        },
+        {
+          "issuerName": "MATTHEWS INTERNATIONAL CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "577128101",
+          "securityId": "577128101",
+          "ticker": "",
+          "putCall": null,
+          "value": 51847704,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 51847704,
+              "issuerName": "MATTHEWS INTERNATIONAL CORP",
+              "shares": "1925992",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007195003692525618
+        },
+        {
+          "issuerName": "XP INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G98239109",
+          "securityId": "G98239109",
+          "ticker": "",
+          "putCall": null,
+          "value": 50679314,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 50679314,
+              "issuerName": "XP INC",
+              "shares": "3116809",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.007032864008108541
+        },
+        {
+          "issuerName": "UNITY SOFTWARE INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "91332UAB7",
+          "securityId": "91332UAB7",
+          "ticker": "",
+          "putCall": null,
+          "value": 48635184,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 48635184,
+              "issuerName": "UNITY SOFTWARE INC",
+              "shares": "49426000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.006749196231845924
+        },
+        {
+          "issuerName": "FIVE9 INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "338307AF8",
+          "securityId": "338307AF8",
+          "ticker": "",
+          "putCall": null,
+          "value": 47423682,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 47423682,
+              "issuerName": "FIVE9 INC",
+              "shares": "53306000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.006581073813859929
+        },
+        {
+          "issuerName": "LYONDELLBASELL INDUSTRIES NV",
+          "shareClass": "COMMON STOCK",
+          "cusip": "N53745100",
+          "securityId": "N53745100",
+          "ticker": "",
           "putCall": "PUT",
-          "weight": 0.006575705839748013,
+          "value": 47385000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 47385000,
+              "issuerName": "LYONDELLBASELL INDUSTRIES NV",
+              "shares": "900000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 80.0
+          "sharesChangePct": null,
+          "weight": 0.006575705839748013
         },
         {
-          "issuerName": "Shift4 Payments Inc. - CUSIP 82452JAD1 needs mapping",
+          "issuerName": "SHIFT4 PAYMENTS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "82452JAD1",
+          "securityId": "82452JAD1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.006420145330467845,
+          "value": 46264020,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 46264020,
+              "issuerName": "SHIFT4 PAYMENTS INC",
+              "shares": "48444000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 77.6
+          "sharesChangePct": null,
+          "weight": 0.006420145330467845
         },
         {
           "issuerName": "YPF SA",
-          "ticker": "YPF",
+          "shareClass": "COMMON STOCK",
+          "cusip": "984245100",
+          "securityId": "984245100",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.006255351217406626,
+          "value": 45076502,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 45076502,
+              "issuerName": "YPF SA",
+              "shares": "991346",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 11.8
+          "sharesChangePct": null,
+          "weight": 0.006255351217406626
         },
         {
-          "issuerName": "Transalta Corp.",
-          "ticker": "TAC",
+          "issuerName": "TRANSALTA CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "89346D107",
+          "securityId": "89346D107",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0057572603383293005,
+          "value": 41487224,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 41487224,
+              "issuerName": "TRANSALTA CORP",
+              "shares": "3000000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -53.2
+          "sharesChangePct": null,
+          "weight": 0.0057572603383293005
         },
         {
-          "issuerName": "Visteon Corp.",
-          "ticker": "VC",
+          "issuerName": "VISTEON CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "92839U206",
+          "securityId": "92839U206",
+          "ticker": "",
           "putCall": "PUT",
-          "weight": 0.005507023542145407,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Runway Growth Finance Corp.",
-          "ticker": "RWAY",
-          "putCall": null,
-          "weight": 0.0054726691739342016,
+          "value": 39684000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 39684000,
+              "issuerName": "VISTEON CORP",
+              "shares": "400000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.005507023542145407
         },
         {
-          "issuerName": "Enovis Corp. - CUSIP 194014AB2 needs mapping",
+          "issuerName": "RUNWAY GROWTH FINANCE CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "78163D100",
+          "securityId": "78163D100",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0052446873639532465,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 39436440,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 39436440,
+              "issuerName": "RUNWAY GROWTH FINANCE CORP",
+              "shares": "7029667",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0054726691739342016
         },
         {
-          "issuerName": "Amphastar Pharmaceuticals Inc. - CUSIP 03209RAB9 needs mapping",
+          "issuerName": "ENOVIS CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "194014AB2",
+          "securityId": "194014AB2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0051624251936962726,
+          "value": 37793587,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 37793587,
+              "issuerName": "ENOVIS CORP",
+              "shares": "39207000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 7.5
+          "sharesChangePct": null,
+          "weight": 0.0052446873639532465
         },
         {
-          "issuerName": "Affirm Holdings Inc. - CUSIP 00827BAB2 needs mapping",
+          "issuerName": "AMPHASTAR PHARMACEUTICALS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "03209RAB9",
+          "securityId": "03209RAB9",
           "ticker": "",
           "putCall": null,
-          "weight": 0.004758873078583194,
+          "value": 37200800,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 37200800,
+              "issuerName": "AMPHASTAR PHARMACEUTICALS INC",
+              "shares": "40880000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 201.8
+          "sharesChangePct": null,
+          "weight": 0.0051624251936962726
         },
         {
-          "issuerName": "Array Technologies Inc. - CUSIP 04271TAB6 needs mapping",
+          "issuerName": "AFFIRM HOLDINGS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "00827BAB2",
+          "securityId": "00827BAB2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.004388625244816505,
+          "value": 34292775,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 34292775,
+              "issuerName": "AFFIRM HOLDINGS INC",
+              "shares": "34815000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 9.5
+          "sharesChangePct": null,
+          "weight": 0.004758873078583194
         },
         {
-          "issuerName": "Embraer SA",
-          "ticker": "EMBJ",
-          "putCall": null,
-          "weight": 0.0038930013135647194,
-          "isNew": false,
-          "sharesChangePct": -1.8
-        },
-        {
-          "issuerName": "Snap Inc. - CUSIP 83304AAF3 needs mapping",
+          "issuerName": "ARRAY TECHNOLOGIES INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "04271TAB6",
+          "securityId": "04271TAB6",
           "ticker": "",
           "putCall": null,
-          "weight": 0.003703425455791959,
+          "value": 31624743,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 31624743,
+              "issuerName": "ARRAY TECHNOLOGIES INC",
+              "shares": "33985000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 41.9
+          "sharesChangePct": null,
+          "weight": 0.004388625244816505
         },
         {
-          "issuerName": "Array Digital Infrastructure Inc.",
-          "ticker": "AD",
-          "putCall": null,
-          "weight": 0.0035064978797903854,
-          "isNew": false,
-          "sharesChangePct": -3.8
-        },
-        {
-          "issuerName": "Rice Acquisition Corp. 3",
-          "ticker": "KRSP",
-          "putCall": null,
-          "weight": 0.0034970515387073953,
-          "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Sharonai Holdings Inc.",
-          "ticker": "SHAZ",
-          "putCall": null,
-          "weight": 0.0034006528151489697,
-          "isNew": false,
-          "sharesChangePct": -71.1
-        },
-        {
-          "issuerName": "Spectrum Brands Holdings Inc. - CUSIP 84762LAZ8 needs mapping",
+          "issuerName": "EMBRAER SA",
+          "shareClass": "COMMON STOCK",
+          "cusip": "29082A107",
+          "securityId": "29082A107",
           "ticker": "",
           "putCall": null,
-          "weight": 0.003399953404841228,
+          "value": 28053242,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 28053242,
+              "issuerName": "EMBRAER SA",
+              "shares": "439706",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -10.2
+          "sharesChangePct": null,
+          "weight": 0.0038930013135647194
         },
         {
-          "issuerName": "Ternium SA",
-          "ticker": "TX",
-          "putCall": null,
-          "weight": 0.0033913398338488642,
-          "isNew": false,
-          "sharesChangePct": -1.8
-        },
-        {
-          "issuerName": "Quantum Corp.",
-          "ticker": "QMCO",
-          "putCall": null,
-          "weight": 0.0030708078610365863,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Winnebago Industries Inc. - CUSIP 974637AF7 needs mapping",
+          "issuerName": "SNAP INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "83304AAF3",
+          "securityId": "83304AAF3",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0025976716364413265,
+          "value": 26687145,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 26687145,
+              "issuerName": "SNAP INC",
+              "shares": "28018000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 114.1
+          "sharesChangePct": null,
+          "weight": 0.003703425455791959
         },
         {
-          "issuerName": "Block Inc. - CUSIP 852234AK9 needs mapping",
+          "issuerName": "ARRAY DIGITAL INFRASTRUCTURE INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "911684108",
+          "securityId": "911684108",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0023688863372377878,
+          "value": 25268071,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 25268071,
+              "issuerName": "ARRAY DIGITAL INFRASTRUCTURE INC",
+              "shares": "696858",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 63.7
+          "sharesChangePct": null,
+          "weight": 0.0035064978797903854
         },
         {
-          "issuerName": "Snap Inc. - CUSIP 83304AAH9 needs mapping",
+          "issuerName": "RICE ACQUISITION CORP 3",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G7553X106",
+          "securityId": "G7553X106",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0022340602906006533,
+          "value": 25200000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 25200000,
+              "issuerName": "RICE ACQUISITION CORP 3",
+              "shares": "2400000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 191.2
+          "sharesChangePct": null,
+          "weight": 0.0034970515387073953
         },
         {
-          "issuerName": "Simply Good Foods Co/The",
-          "ticker": "SMPL",
+          "issuerName": "SHARONAI HOLDINGS INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "778920306",
+          "securityId": "778920306",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.002218635656649111,
+          "value": 24505344,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 24505344,
+              "issuerName": "SHARONAI HOLDINGS INC",
+              "shares": "289456",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 6.6
+          "sharesChangePct": null,
+          "weight": 0.0034006528151489697
         },
         {
-          "issuerName": "Cogent Biosciences Inc. - CUSIP 19240QAA0 needs mapping",
+          "issuerName": "SPECTRUM BRANDS HOLDINGS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "84762LAZ8",
+          "securityId": "84762LAZ8",
           "ticker": "",
           "putCall": null,
-          "weight": 0.002048058225219811,
+          "value": 24500304,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 24500304,
+              "issuerName": "SPECTRUM BRANDS HOLDINGS INC",
+              "shares": "23452000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 16.3
+          "sharesChangePct": null,
+          "weight": 0.003399953404841228
         },
         {
-          "issuerName": "Surgery Partners Inc - US",
-          "ticker": "SGRY",
-          "putCall": null,
-          "weight": 0.0020110097396049353,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Blackstone Mortgage Trust Inc. - CUSIP 09257WAE0 needs mapping",
+          "issuerName": "TERNIUM SA",
+          "shareClass": "COMMON STOCK",
+          "cusip": "880890108",
+          "securityId": "880890108",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0019516878111262225,
+          "value": 24438234,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 24438234,
+              "issuerName": "TERNIUM SA",
+              "shares": "572324",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 8.5
+          "sharesChangePct": null,
+          "weight": 0.0033913398338488642
         },
         {
-          "issuerName": "Upwork Inc. - CUSIP 91688FAB0 needs mapping",
+          "issuerName": "QUANTUM CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "747906600",
+          "securityId": "747906600",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0019494453962129697,
+          "value": 22128458,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 22128458,
+              "issuerName": "QUANTUM CORP",
+              "shares": "2011678",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 13.2
+          "sharesChangePct": null,
+          "weight": 0.0030708078610365863
         },
         {
-          "issuerName": "Workiva Inc. - CUSIP 98139AAD7 needs mapping",
+          "issuerName": "WINNEBAGO INDUSTRIES INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "974637AF7",
+          "securityId": "974637AF7",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0019470572708189372,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Etsy Inc. - CUSIP 29786AAQ9 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0019303440011297587,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Redfin Corp. - CUSIP 75737FAE8 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0018802986957168995,
+          "value": 18719005,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 18719005,
+              "issuerName": "WINNEBAGO INDUSTRIES INC",
+              "shares": "20074000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 52.7
+          "sharesChangePct": null,
+          "weight": 0.0025976716364413265
         },
         {
-          "issuerName": "Starwood Property Trust Inc. - CUSIP 85571BBA2 needs mapping",
+          "issuerName": "BLOCK INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "852234AK9",
+          "securityId": "852234AK9",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00167502981916419,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 17070362,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 17070362,
+              "issuerName": "BLOCK INC",
+              "shares": "17983000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0023688863372377878
         },
         {
-          "issuerName": "Bitdeer Technologies Group",
-          "ticker": "BTDR",
+          "issuerName": "SNAP INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "83304AAH9",
+          "securityId": "83304AAH9",
+          "ticker": "",
+          "putCall": null,
+          "value": 16098796,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 16098796,
+              "issuerName": "SNAP INC",
+              "shares": "17474000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0022340602906006533
+        },
+        {
+          "issuerName": "SIMPLY GOOD FOODS CO/THE",
+          "shareClass": "COMMON STOCK",
+          "cusip": "82900L102",
+          "securityId": "82900L102",
+          "ticker": "",
+          "putCall": null,
+          "value": 15987645,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 15987645,
+              "issuerName": "SIMPLY GOOD FOODS CO/THE",
+              "shares": "1203889",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.002218635656649111
+        },
+        {
+          "issuerName": "COGENT BIOSCIENCES INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "19240QAA0",
+          "securityId": "19240QAA0",
+          "ticker": "",
+          "putCall": null,
+          "value": 14758452,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 14758452,
+              "issuerName": "COGENT BIOSCIENCES INC",
+              "shares": "11890000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.002048058225219811
+        },
+        {
+          "issuerName": "SURGERY PARTNERS INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "86881A100",
+          "securityId": "86881A100",
+          "ticker": "",
+          "putCall": null,
+          "value": 14491478,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 14491478,
+              "issuerName": "SURGERY PARTNERS INC",
+              "shares": "862588",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0020110097396049353
+        },
+        {
+          "issuerName": "BLACKSTONE MORTGAGE TRUST INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "09257WAE0",
+          "securityId": "09257WAE0",
+          "ticker": "",
+          "putCall": null,
+          "value": 14064000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 14064000,
+              "issuerName": "BLACKSTONE MORTGAGE TRUST INC",
+              "shares": "14064000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0019516878111262225
+        },
+        {
+          "issuerName": "UPWORK INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "91688FAB0",
+          "securityId": "91688FAB0",
+          "ticker": "",
+          "putCall": null,
+          "value": 14047841,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 14047841,
+              "issuerName": "UPWORK INC",
+              "shares": "14154000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0019494453962129697
+        },
+        {
+          "issuerName": "WORKIVA INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "98139AAD7",
+          "securityId": "98139AAD7",
+          "ticker": "",
+          "putCall": null,
+          "value": 14030632,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 14030632,
+              "issuerName": "WORKIVA INC",
+              "shares": "14970000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0019470572708189372
+        },
+        {
+          "issuerName": "ETSY INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "29786AAQ9",
+          "securityId": "29786AAQ9",
+          "ticker": "",
+          "putCall": null,
+          "value": 13910195,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 13910195,
+              "issuerName": "ETSY INC",
+              "shares": "11974000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0019303440011297587
+        },
+        {
+          "issuerName": "REDFIN CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "75737FAE8",
+          "securityId": "75737FAE8",
+          "ticker": "",
+          "putCall": null,
+          "value": 13549565,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 13549565,
+              "issuerName": "REDFIN CORP",
+              "shares": "14041000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0018802986957168995
+        },
+        {
+          "issuerName": "STARWOOD PROPERTY TRUST INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "85571BBA2",
+          "securityId": "85571BBA2",
+          "ticker": "",
+          "putCall": null,
+          "value": 12070383,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 12070383,
+              "issuerName": "STARWOOD PROPERTY TRUST INC",
+              "shares": "11894933",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00167502981916419
+        },
+        {
+          "issuerName": "BITDEER TECHNOLOGIES GROUP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G11448100",
+          "securityId": "G11448100",
+          "ticker": "",
           "putCall": "CALL",
-          "weight": 0.0016517323785501894,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Snowflake Inc. - CUSIP 833445AB5 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0016508067700675235,
+          "value": 11902500,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11902500,
+              "issuerName": "BITDEER TECHNOLOGIES GROUP",
+              "shares": "750000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 346.7
+          "sharesChangePct": null,
+          "weight": 0.0016517323785501894
         },
         {
-          "issuerName": "Nabors Industries Ltd. - CUSIP 62957HAL9 needs mapping",
+          "issuerName": "SNOWFLAKE INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "833445AB5",
+          "securityId": "833445AB5",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0015670038155552216,
+          "value": 11895830,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11895830,
+              "issuerName": "SNOWFLAKE INC",
+              "shares": "7147000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -26.4
+          "sharesChangePct": null,
+          "weight": 0.0016508067700675235
         },
         {
-          "issuerName": "Aerovironment Inc. - CUSIP 008073AA6 needs mapping",
+          "issuerName": "NABORS INDUSTRIES LTD",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "62957HAL9",
+          "securityId": "62957HAL9",
           "ticker": "",
           "putCall": null,
-          "weight": 0.001565120403512232,
+          "value": 11291940,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11291940,
+              "issuerName": "NABORS INDUSTRIES LTD",
+              "shares": "11880000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 14.4
+          "sharesChangePct": null,
+          "weight": 0.0015670038155552216
         },
         {
-          "issuerName": "Itron Inc. - CUSIP 465741AQ9 needs mapping",
+          "issuerName": "AEROVIRONMENT INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "008073AA6",
+          "securityId": "008073AA6",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0015540357215377348,
+          "value": 11278368,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11278368,
+              "issuerName": "AEROVIRONMENT INC",
+              "shares": "11799000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 8.4
+          "sharesChangePct": null,
+          "weight": 0.001565120403512232
         },
         {
-          "issuerName": "Ziff Davis Inc. - CUSIP 48123VAE2 needs mapping",
+          "issuerName": "ITRON INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "465741AQ9",
+          "securityId": "465741AQ9",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0015448384759909344,
+          "value": 11198491,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11198491,
+              "issuerName": "ITRON INC",
+              "shares": "11216000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 11.3
+          "sharesChangePct": null,
+          "weight": 0.0015540357215377348
         },
         {
-          "issuerName": "Mayfair Gold Corp.",
-          "ticker": "MINE",
+          "issuerName": "ZIFF DAVIS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "48123VAE2",
+          "securityId": "48123VAE2",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0015361496906361111,
+          "value": 11132215,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11132215,
+              "issuerName": "ZIFF DAVIS INC",
+              "shares": "11230000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0015448384759909344
         },
         {
-          "issuerName": "Arrowhead Pharmaceuticals Inc. - CUSIP 04280AAC4 needs mapping",
+          "issuerName": "MAYFAIR GOLD CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "57808L305",
+          "securityId": "57808L305",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0015198047215335883,
+          "value": 11069603,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11069603,
+              "issuerName": "MAYFAIR GOLD CORP",
+              "shares": "4500000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -17.3
+          "sharesChangePct": null,
+          "weight": 0.0015361496906361111
         },
         {
-          "issuerName": "Blue Moon Metals Inc.",
-          "ticker": "BMM",
+          "issuerName": "ARROWHEAD PHARMACEUTICALS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "04280AAC4",
+          "securityId": "04280AAC4",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.001483330751528643,
+          "value": 10951820,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10951820,
+              "issuerName": "ARROWHEAD PHARMACEUTICALS INC",
+              "shares": "9146000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0015198047215335883
         },
         {
-          "issuerName": "Envista Holdings Corp. - CUSIP 29415FAD6 needs mapping",
+          "issuerName": "BLUE MOON METALS INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "09570Q509",
+          "securityId": "09570Q509",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0014224652633568731,
+          "value": 10688986,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10688986,
+              "issuerName": "BLUE MOON METALS INC",
+              "shares": "1685000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -36.1
+          "sharesChangePct": null,
+          "weight": 0.001483330751528643
         },
         {
-          "issuerName": "Cloudflare Inc. - CUSIP 18915MAF4 needs mapping",
+          "issuerName": "ENVISTA HOLDINGS CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "29415FAD6",
+          "securityId": "29415FAD6",
           "ticker": "",
           "putCall": null,
-          "weight": 0.001415382901359672,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Rapid7 Inc. - CUSIP 753422AF1 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0013473170950872126,
+          "value": 10250385,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10250385,
+              "issuerName": "ENVISTA HOLDINGS CORP",
+              "shares": "10206000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 503.2
+          "sharesChangePct": null,
+          "weight": 0.0014224652633568731
         },
         {
-          "issuerName": "Freshpet Inc. - CUSIP 358039AB1 needs mapping",
+          "issuerName": "CLOUDFLARE INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "18915MAF4",
+          "securityId": "18915MAF4",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0012765434329943248,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Alphatec Holdings Inc. - CUSIP 02081GAB8 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0012690522490196223,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Smartrent Inc.",
-          "ticker": "SMRT",
-          "putCall": null,
-          "weight": 0.0012394134882820992,
+          "value": 10199349,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10199349,
+              "issuerName": "CLOUDFLARE INC",
+              "shares": "8050000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.001415382901359672
         },
         {
-          "issuerName": "Upstart Holdings Inc. - CUSIP 91680MAB3 needs mapping",
+          "issuerName": "RAPID7 INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "753422AF1",
+          "securityId": "753422AF1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.001148396616024235,
+          "value": 9708862,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 9708862,
+              "issuerName": "RAPID7 INC",
+              "shares": "10061000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 70.7
+          "sharesChangePct": null,
+          "weight": 0.0013473170950872126
         },
         {
-          "issuerName": "Sitime Corp. - CUSIP 82982TAA4 needs mapping",
+          "issuerName": "FRESHPET INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "358039AB1",
+          "securityId": "358039AB1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.001123972486464093,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Redwood Trust Inc. - CUSIP 758075AF2 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0011100661557222728,
+          "value": 9198862,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 9198862,
+              "issuerName": "FRESHPET INC",
+              "shares": "7913000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -4.4
+          "sharesChangePct": null,
+          "weight": 0.0012765434329943248
         },
         {
-          "issuerName": "Doordash Inc. - CUSIP 25809KAB1 needs mapping",
+          "issuerName": "ALPHATEC HOLDINGS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "02081GAB8",
+          "securityId": "02081GAB8",
           "ticker": "",
           "putCall": null,
-          "weight": 0.001107091025248529,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Jd.Com Inc. - CUSIP 47215PAJ5 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0011007284730263783,
+          "value": 9144880,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 9144880,
+              "issuerName": "ALPHATEC HOLDINGS INC",
+              "shares": "9177000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -27.0
+          "sharesChangePct": null,
+          "weight": 0.0012690522490196223
         },
         {
-          "issuerName": "Alarm.Com Holdings Inc. - CUSIP 011642AD7 needs mapping",
+          "issuerName": "SMARTRENT INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "83193G107",
+          "securityId": "83193G107",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0010786838650033083,
+          "value": 8931301,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 8931301,
+              "issuerName": "SMARTRENT INC",
+              "shares": "7505294",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 710.6
+          "sharesChangePct": null,
+          "weight": 0.0012394134882820992
         },
         {
-          "issuerName": "Pennymac Mortgage Investment Trust - CUSIP 70932AAH6 needs mapping",
+          "issuerName": "UPSTART HOLDINGS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "91680MAB3",
+          "securityId": "91680MAB3",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0010083793906585305,
+          "value": 8275427,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 8275427,
+              "issuerName": "UPSTART HOLDINGS INC",
+              "shares": "8312000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 78.8
+          "sharesChangePct": null,
+          "weight": 0.001148396616024235
         },
         {
-          "issuerName": "Cerence Inc. - CUSIP 156727AD1 needs mapping",
+          "issuerName": "SITIME CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "82982TAA4",
+          "securityId": "82982TAA4",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0010043568099858118,
+          "value": 8099425,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 8099425,
+              "issuerName": "SITIME CORP",
+              "shares": "7300000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 32.7
+          "sharesChangePct": null,
+          "weight": 0.001123972486464093
         },
         {
-          "issuerName": "Celcuity Inc. - CUSIP 15102KAB6 needs mapping",
+          "issuerName": "REDWOOD TRUST INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "758075AF2",
+          "securityId": "758075AF2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0009899639450100747,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Magnachip Semiconductor Corp.",
-          "ticker": "MX",
-          "putCall": null,
-          "weight": 0.0009845865344098798,
+          "value": 7999215,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7999215,
+              "issuerName": "REDWOOD TRUST INC",
+              "shares": "7881000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -47.4
+          "sharesChangePct": null,
+          "weight": 0.0011100661557222728
         },
         {
-          "issuerName": "Workiva Inc. - CUSIP 98139AAB1 needs mapping",
+          "issuerName": "DOORDASH INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "25809KAB1",
+          "securityId": "25809KAB1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0009804032558926442,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Cracker Barrel Old Country Store Inc. - CUSIP 22410JAD8 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0009538745119025008,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Etsy Inc. - CUSIP 29786AAL0 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0009517433920421862,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Pagerduty Inc. - CUSIP 69553PAD2 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0009288314597287621,
+          "value": 7977776,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7977776,
+              "issuerName": "DOORDASH INC",
+              "shares": "8089000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 20.1
+          "sharesChangePct": null,
+          "weight": 0.001107091025248529
         },
         {
-          "issuerName": "Liberty Latin America Ltd.",
-          "ticker": "LILA",
+          "issuerName": "JD.COM INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "47215PAJ5",
+          "securityId": "47215PAJ5",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0009128298122733331,
+          "value": 7931927,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7931927,
+              "issuerName": "JD.COM INC",
+              "shares": "8065000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0011007284730263783
         },
         {
-          "issuerName": "Sarepta Therapeutics Inc. - CUSIP 803607AD2 needs mapping",
+          "issuerName": "ALARM.COM HOLDINGS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "011642AD7",
+          "securityId": "011642AD7",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0008804641839669368,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Lci Industries - CUSIP 501812AD3 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0008791285045597916,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Uber Technologies Inc. - CUSIP 90353TAS9 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0008667941817477523,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Bill Holdings Inc. - CUSIP 090043AD2 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0008504042505540177,
+          "value": 7773072,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7773072,
+              "issuerName": "ALARM.COM HOLDINGS INC",
+              "shares": "8171000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 91.5
+          "sharesChangePct": null,
+          "weight": 0.0010786838650033083
         },
         {
-          "issuerName": "Green Plains Inc. - CUSIP 393222AK0 needs mapping",
+          "issuerName": "PENNYMAC MORTGAGE INVESTMENT TRUST",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "70932AAH6",
+          "securityId": "70932AAH6",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0006866460696251971,
+          "value": 7266453,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7266453,
+              "issuerName": "PENNYMAC MORTGAGE INVESTMENT TRUST",
+              "shares": "7101000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0010083793906585305
         },
         {
-          "issuerName": "Gladstone Capital Corp. - CUSIP 376535AG5 needs mapping",
+          "issuerName": "CERENCE INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "156727AD1",
+          "securityId": "156727AD1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0006695252269054952,
+          "value": 7237466,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7237466,
+              "issuerName": "CERENCE INC",
+              "shares": "7887000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 163.4
+          "sharesChangePct": null,
+          "weight": 0.0010043568099858118
         },
         {
-          "issuerName": "Magnachip Semiconductor Corp.",
-          "ticker": "MX",
+          "issuerName": "CELCUITY INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "15102KAB6",
+          "securityId": "15102KAB6",
+          "ticker": "",
+          "putCall": null,
+          "value": 7133750,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7133750,
+              "issuerName": "CELCUITY INC",
+              "shares": "6250000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009899639450100747
+        },
+        {
+          "issuerName": "MAGNACHIP SEMICONDUCTOR CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "55933J203",
+          "securityId": "55933J203",
+          "ticker": "",
+          "putCall": null,
+          "value": 7095000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7095000,
+              "issuerName": "MAGNACHIP SEMICONDUCTOR CORP",
+              "shares": "1500000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009845865344098798
+        },
+        {
+          "issuerName": "WORKIVA INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "98139AAB1",
+          "securityId": "98139AAB1",
+          "ticker": "",
+          "putCall": null,
+          "value": 7064855,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 7064855,
+              "issuerName": "WORKIVA INC",
+              "shares": "7100000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009804032558926442
+        },
+        {
+          "issuerName": "CRACKER BARREL OLD COUNTRY STORE INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "22410JAD8",
+          "securityId": "22410JAD8",
+          "ticker": "",
+          "putCall": null,
+          "value": 6873687,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6873687,
+              "issuerName": "CRACKER BARREL OLD COUNTRY STORE INC",
+              "shares": "6708000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009538745119025008
+        },
+        {
+          "issuerName": "ETSY INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "29786AAL0",
+          "securityId": "29786AAL0",
+          "ticker": "",
+          "putCall": null,
+          "value": 6858330,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6858330,
+              "issuerName": "ETSY INC",
+              "shares": "7233000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009517433920421862
+        },
+        {
+          "issuerName": "PAGERDUTY INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "69553PAD2",
+          "securityId": "69553PAD2",
+          "ticker": "",
+          "putCall": null,
+          "value": 6693225,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6693225,
+              "issuerName": "PAGERDUTY INC",
+              "shares": "7125000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009288314597287621
+        },
+        {
+          "issuerName": "LIBERTY LATIN AMERICA LTD",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G9001E102",
+          "securityId": "G9001E102",
+          "ticker": "",
+          "putCall": null,
+          "value": 6577916,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6577916,
+              "issuerName": "LIBERTY LATIN AMERICA LTD",
+              "shares": "839020",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009128298122733331
+        },
+        {
+          "issuerName": "SAREPTA THERAPEUTICS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "803607AD2",
+          "securityId": "803607AD2",
+          "ticker": "",
+          "putCall": null,
+          "value": 6344687,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6344687,
+              "issuerName": "SAREPTA THERAPEUTICS INC",
+              "shares": "6709000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0008804641839669368
+        },
+        {
+          "issuerName": "LCI INDUSTRIES",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "501812AD3",
+          "securityId": "501812AD3",
+          "ticker": "",
+          "putCall": null,
+          "value": 6335062,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6335062,
+              "issuerName": "LCI INDUSTRIES",
+              "shares": "5650000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0008791285045597916
+        },
+        {
+          "issuerName": "UBER TECHNOLOGIES INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "90353TAS9",
+          "securityId": "90353TAS9",
+          "ticker": "",
+          "putCall": null,
+          "value": 6246180,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6246180,
+              "issuerName": "UBER TECHNOLOGIES INC",
+              "shares": "5400000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0008667941817477523
+        },
+        {
+          "issuerName": "BILL HOLDINGS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "090043AD2",
+          "securityId": "090043AD2",
+          "ticker": "",
+          "putCall": null,
+          "value": 6128073,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 6128073,
+              "issuerName": "BILL HOLDINGS INC",
+              "shares": "6330000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0008504042505540177
+        },
+        {
+          "issuerName": "GREEN PLAINS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "393222AK0",
+          "securityId": "393222AK0",
+          "ticker": "",
+          "putCall": null,
+          "value": 4948020,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4948020,
+              "issuerName": "GREEN PLAINS INC",
+              "shares": "4998000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006866460696251971
+        },
+        {
+          "issuerName": "GLADSTONE CAPITAL CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "376535AG5",
+          "securityId": "376535AG5",
+          "ticker": "",
+          "putCall": null,
+          "value": 4824646,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4824646,
+              "issuerName": "GLADSTONE CAPITAL CORP",
+              "shares": "4999000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006695252269054952
+        },
+        {
+          "issuerName": "MAGNACHIP SEMICONDUCTOR CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "55933J203",
+          "securityId": "55933J203",
+          "ticker": "",
           "putCall": "CALL",
-          "weight": 0.0006563910229399198,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Strategy Inc. - CUSIP 594972AS0 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0006537958498912942,
+          "value": 4730000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4730000,
+              "issuerName": "MAGNACHIP SEMICONDUCTOR CORP",
+              "shares": "1000000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -54.9
+          "sharesChangePct": null,
+          "weight": 0.0006563910229399198
         },
         {
-          "issuerName": "Firstenergy Corp. - CUSIP 337932AT4 needs mapping",
+          "issuerName": "STRATEGY INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "594972AS0",
+          "securityId": "594972AS0",
           "ticker": "",
           "putCall": null,
-          "weight": 0.000649031949801124,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Rubrik Inc. - CUSIP 781154AD1 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0006397167481508355,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Northern Oil & Gas Inc. - CUSIP 665531AJ8 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0006150658653282233,
+          "value": 4711299,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4711299,
+              "issuerName": "STRATEGY INC",
+              "shares": "5451000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 130.7
+          "sharesChangePct": null,
+          "weight": 0.0006537958498912942
         },
         {
-          "issuerName": "Battalion Oil Corp.",
-          "ticker": "BATL",
+          "issuerName": "FIRSTENERGY CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "337932AT4",
+          "securityId": "337932AT4",
+          "ticker": "",
           "putCall": null,
-          "weight": 0.0005471753279483587,
+          "value": 4676970,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4676970,
+              "issuerName": "FIRSTENERGY CORP",
+              "shares": "4280000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.000649031949801124
         },
         {
-          "issuerName": "DPC Holdings Ltd.",
-          "ticker": "DPC",
-          "putCall": null,
-          "weight": 0.0005106111562172167,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Rivian Automotive Inc. - CUSIP 76954AAD5 needs mapping",
+          "issuerName": "RUBRIK INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "781154AD1",
+          "securityId": "781154AD1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.000503778444843751,
+          "value": 4609844,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4609844,
+              "issuerName": "RUBRIK INC",
+              "shares": "4504000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 161.5
+          "sharesChangePct": null,
+          "weight": 0.0006397167481508355
         },
         {
-          "issuerName": "Ziff Davis Inc. - CUSIP 48123VAH5 needs mapping",
+          "issuerName": "NORTHERN OIL & GAS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "665531AJ8",
+          "securityId": "665531AJ8",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0004852587815085662,
+          "value": 4432208,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4432208,
+              "issuerName": "NORTHERN OIL & GAS INC",
+              "shares": "4614000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0006150658653282233
         },
         {
-          "issuerName": "Transmedics Group Inc. - CUSIP 89377MAB5 needs mapping",
+          "issuerName": "BATTALION OIL CORP",
+          "shareClass": "COMMON STOCK",
+          "cusip": "07134L107",
+          "securityId": "07134L107",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0004714050453117131,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Service Properties Trust - US REIT - CUSIP 81761L102 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.00046632419023287606,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Wec Energy Group Inc. - CUSIP 92939UAT3 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.0004635187777762686,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Akamai Technologies Inc. - CUSIP 00971TAN1 needs mapping",
-          "ticker": "",
-          "putCall": null,
-          "weight": 0.00043514991857171003,
+          "value": 3942984,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3942984,
+              "issuerName": "BATTALION OIL CORP",
+              "shares": "3009912",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -51.3
+          "sharesChangePct": null,
+          "weight": 0.0005471753279483587
         },
         {
-          "issuerName": "Norwegian Cruise Line Holdings Ltd. - CUSIP 62886HBD2 needs mapping",
+          "issuerName": "DPC HOLDINGS LTD",
+          "shareClass": "COMMON STOCK",
+          "cusip": "G2R11M108",
+          "securityId": "G2R11M108",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0003954403432621417,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 3679500,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3679500,
+              "issuerName": "DPC HOLDINGS LTD",
+              "shares": "75000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0005106111562172167
         },
         {
-          "issuerName": "Nutanix Inc. - CUSIP 67059NAH1 needs mapping",
+          "issuerName": "RIVIAN AUTOMOTIVE INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "76954AAD5",
+          "securityId": "76954AAD5",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00034483426065611136,
+          "value": 3630263,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3630263,
+              "issuerName": "RIVIAN AUTOMOTIVE INC",
+              "shares": "3400000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -71.1
+          "sharesChangePct": null,
+          "weight": 0.000503778444843751
         },
         {
-          "issuerName": "MGP Ingredients Inc. - CUSIP 55303JAB2 needs mapping",
+          "issuerName": "ZIFF DAVIS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "48123VAH5",
+          "securityId": "48123VAH5",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0003400686953033038,
+          "value": 3496809,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3496809,
+              "issuerName": "ZIFF DAVIS INC",
+              "shares": "3496000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -59.8
+          "sharesChangePct": null,
+          "weight": 0.0004852587815085662
         },
         {
-          "issuerName": "Uber Technologies Inc. - CUSIP 90353TAM2 needs mapping",
+          "issuerName": "TRANSMEDICS GROUP INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "89377MAB5",
+          "securityId": "89377MAB5",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00033249743995011585,
+          "value": 3396978,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3396978,
+              "issuerName": "TRANSMEDICS GROUP INC",
+              "shares": "3131000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0004714050453117131
         },
         {
-          "issuerName": "Live Nation Entertainment Inc. - CUSIP 538034BC2 needs mapping",
+          "issuerName": "SERVICE PROPERTIES TRUST",
+          "shareClass": "COMMON STOCK",
+          "cusip": "81761L102",
+          "securityId": "81761L102",
           "ticker": "",
           "putCall": null,
-          "weight": 0.0003009057424544882,
+          "value": 3360365,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3360365,
+              "issuerName": "SERVICE PROPERTIES TRUST",
+              "shares": "1988382",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.00046632419023287606
         },
         {
-          "issuerName": "Haemonetics Corp. - CUSIP 405024AD2 needs mapping",
+          "issuerName": "WEC ENERGY GROUP INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "92939UAT3",
+          "securityId": "92939UAT3",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00029461576792895445,
+          "value": 3340149,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3340149,
+              "issuerName": "WEC ENERGY GROUP INC",
+              "shares": "3214000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": 149.7
+          "sharesChangePct": null,
+          "weight": 0.0004635187777762686
         },
         {
-          "issuerName": "Datadog Inc. - CUSIP 23804LAD5 needs mapping",
+          "issuerName": "AKAMAI TECHNOLOGIES INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "00971TAN1",
+          "securityId": "00971TAN1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00027665563283996283,
+          "value": 3135721,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 3135721,
+              "issuerName": "AKAMAI TECHNOLOGIES INC",
+              "shares": "2631000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -81.8
+          "sharesChangePct": null,
+          "weight": 0.00043514991857171003
         },
         {
-          "issuerName": "Bioxcel Therapeutics Inc.",
-          "ticker": "BTAI",
-          "putCall": null,
-          "weight": 0.00027007090682759513,
-          "isNew": false,
-          "sharesChangePct": 472.3
-        },
-        {
-          "issuerName": "NN Inc.",
-          "ticker": "NNBR",
-          "putCall": null,
-          "weight": 0.0002545471897491228,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Fluor Corp. - CUSIP 343412AJ1 needs mapping",
+          "issuerName": "NORWEGIAN CRUISE LINE HOLDINGS LTD",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "62886HBD2",
+          "securityId": "62886HBD2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00023401089335995008,
+          "value": 2849571,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2849571,
+              "issuerName": "NORWEGIAN CRUISE LINE HOLDINGS LTD",
+              "shares": "2874000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -7.3
+          "sharesChangePct": null,
+          "weight": 0.0003954403432621417
         },
         {
-          "issuerName": "Groupon Inc. - CUSIP 399473AK3 needs mapping",
+          "issuerName": "NUTANIX INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "67059NAH1",
+          "securityId": "67059NAH1",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00023006741266251167,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 2484900,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2484900,
+              "issuerName": "NUTANIX INC",
+              "shares": "2200000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00034483426065611136
         },
         {
-          "issuerName": "On Semiconductor Corp - US - CUSIP 682189AU9 needs mapping",
+          "issuerName": "MGP INGREDIENTS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "55303JAB2",
+          "securityId": "55303JAB2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00020945881612049504,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Telecom Argentina SA",
-          "ticker": "TEO",
-          "putCall": null,
-          "weight": 0.00020945742840163046,
+          "value": 2450559,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2450559,
+              "issuerName": "MGP INGREDIENTS INC",
+              "shares": "2515000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -92.8
+          "sharesChangePct": null,
+          "weight": 0.0003400686953033038
         },
         {
-          "issuerName": "Revolution Medicines Inc. - CUSIP 76155XAA8 needs mapping",
+          "issuerName": "UBER TECHNOLOGIES INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "90353TAM2",
+          "securityId": "90353TAM2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00020021633093870973,
-          "isNew": true,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Cemex Sab De CV",
-          "ticker": "CX",
-          "putCall": null,
-          "weight": 0.0001665262637479712,
+          "value": 2396000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2396000,
+              "issuerName": "UBER TECHNOLOGIES INC",
+              "shares": "2000000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -96.4
+          "sharesChangePct": null,
+          "weight": 0.00033249743995011585
         },
         {
-          "issuerName": "Alvotech SA",
-          "ticker": "ALVOW",
-          "putCall": null,
-          "weight": 0.00014894844520616765,
-          "isNew": false,
-          "sharesChangePct": null
-        },
-        {
-          "issuerName": "Neogenomics Inc. - CUSIP 64049MAB6 needs mapping",
+          "issuerName": "LIVE NATION ENTERTAINMENT INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "538034BC2",
+          "securityId": "538034BC2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00013595245803950306,
+          "value": 2168348,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2168348,
+              "issuerName": "LIVE NATION ENTERTAINMENT INC",
+              "shares": "1813000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -81.3
+          "sharesChangePct": null,
+          "weight": 0.0003009057424544882
         },
         {
-          "issuerName": "Alibaba Group Holding Ltd. - CUSIP 01609WBG6 needs mapping",
+          "issuerName": "HAEMONETICS CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "405024AD2",
+          "securityId": "405024AD2",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00012291719842897125,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 2123022,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2123022,
+              "issuerName": "HAEMONETICS CORP",
+              "shares": "2090000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00029461576792895445
         },
         {
-          "issuerName": "Snap Inc. - CUSIP 83304AAB2 needs mapping",
+          "issuerName": "DATADOG INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "23804LAD5",
+          "securityId": "23804LAD5",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00012117352967564353,
+          "value": 1993600,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1993600,
+              "issuerName": "DATADOG INC",
+              "shares": "1400000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": -76.7
+          "sharesChangePct": null,
+          "weight": 0.00027665563283996283
         },
         {
-          "issuerName": "Immunocore Holdings PLC - CUSIP 45258DAB1 needs mapping",
+          "issuerName": "BIOXCEL THERAPEUTICS INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "09075P204",
+          "securityId": "09075P204",
           "ticker": "",
           "putCall": null,
-          "weight": 0.00010634922290491268,
+          "value": 1946150,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1946150,
+              "issuerName": "BIOXCEL THERAPEUTICS INC",
+              "shares": "1380248",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.00027007090682759513
         },
         {
-          "issuerName": "Sunopta Inc.",
-          "ticker": "STKL",
-          "putCall": null,
-          "weight": 5.6410494300852335e-05,
-          "isNew": false,
-          "sharesChangePct": -99.6
-        },
-        {
-          "issuerName": "Rice Acquisition Corp. 3 - CUSIP G7553X114 needs mapping",
+          "issuerName": "NN INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "629337106",
+          "securityId": "629337106",
           "ticker": "",
           "putCall": null,
-          "weight": 5.4953528264944044e-05,
+          "value": 1834285,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1834285,
+              "issuerName": "NN INC",
+              "shares": "510943",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
           "isNew": false,
-          "sharesChangePct": null
+          "sharesChangePct": null,
+          "weight": 0.0002545471897491228
         },
         {
-          "issuerName": "Alvotech SA",
-          "ticker": "ALVO",
-          "putCall": null,
-          "weight": 5.0173391864058525e-05,
-          "isNew": false,
-          "sharesChangePct": -59.2
-        },
-        {
-          "issuerName": "Shake Shack Inc. - CUSIP 819047AB7 needs mapping",
+          "issuerName": "FLUOR CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "343412AJ1",
+          "securityId": "343412AJ1",
           "ticker": "",
           "putCall": null,
-          "weight": 3.4986057838357096e-05,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 1686299,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1686299,
+              "issuerName": "FLUOR CORP",
+              "shares": "1271000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00023401089335995008
         },
         {
-          "issuerName": "Office Properties Income Trust/Md",
-          "ticker": "OPI",
+          "issuerName": "GROUPON INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "399473AK3",
+          "securityId": "399473AK3",
+          "ticker": "",
           "putCall": null,
-          "weight": 2.5598833578997502e-05,
-          "isNew": true,
-          "sharesChangePct": null
+          "value": 1657882,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1657882,
+              "issuerName": "GROUPON INC",
+              "shares": "1677000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00023006741266251167
+        },
+        {
+          "issuerName": "ON SEMICONDUCTOR CORP",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "682189AU9",
+          "securityId": "682189AU9",
+          "ticker": "",
+          "putCall": null,
+          "value": 1509375,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1509375,
+              "issuerName": "ON SEMICONDUCTOR CORP",
+              "shares": "1250000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00020945881612049504
+        },
+        {
+          "issuerName": "TELECOM ARGENTINA SA",
+          "shareClass": "COMMON STOCK",
+          "cusip": "879273209",
+          "securityId": "879273209",
+          "ticker": "",
+          "putCall": null,
+          "value": 1509365,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1509365,
+              "issuerName": "TELECOM ARGENTINA SA",
+              "shares": "116105",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00020945742840163046
+        },
+        {
+          "issuerName": "REVOLUTION MEDICINES INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "76155XAA8",
+          "securityId": "76155XAA8",
+          "ticker": "",
+          "putCall": null,
+          "value": 1442773,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1442773,
+              "issuerName": "REVOLUTION MEDICINES INC",
+              "shares": "1150000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00020021633093870973
+        },
+        {
+          "issuerName": "CEMEX SAB DE CV",
+          "shareClass": "COMMON STOCK",
+          "cusip": "151290889",
+          "securityId": "151290889",
+          "ticker": "",
+          "putCall": null,
+          "value": 1200000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1200000,
+              "issuerName": "CEMEX SAB DE CV",
+              "shares": "100000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0001665262637479712
+        },
+        {
+          "issuerName": "ALVOTECH SA",
+          "shareClass": "WARRANT",
+          "cusip": "L01800116",
+          "securityId": "L01800116",
+          "ticker": "",
+          "putCall": null,
+          "value": 1073333,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1073333,
+              "issuerName": "ALVOTECH SA",
+              "shares": "4666667",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00014894844520616765
+        },
+        {
+          "issuerName": "NEOGENOMICS INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "64049MAB6",
+          "securityId": "64049MAB6",
+          "ticker": "",
+          "putCall": null,
+          "value": 979683,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 979683,
+              "issuerName": "NEOGENOMICS INC",
+              "shares": "1045000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00013595245803950306
+        },
+        {
+          "issuerName": "ALIBABA GROUP HOLDING LTD",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "01609WBG6",
+          "securityId": "01609WBG6",
+          "ticker": "",
+          "putCall": null,
+          "value": 885750,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 885750,
+              "issuerName": "ALIBABA GROUP HOLDING LTD",
+              "shares": "750000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00012291719842897125
+        },
+        {
+          "issuerName": "SNAP INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "83304AAB2",
+          "securityId": "83304AAB2",
+          "ticker": "",
+          "putCall": null,
+          "value": 873185,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 873185,
+              "issuerName": "SNAP INC",
+              "shares": "877000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00012117352967564353
+        },
+        {
+          "issuerName": "IMMUNOCORE HOLDINGS PLC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "45258DAB1",
+          "securityId": "45258DAB1",
+          "ticker": "",
+          "putCall": null,
+          "value": 766360,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 766360,
+              "issuerName": "IMMUNOCORE HOLDINGS PLC",
+              "shares": "833000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00010634922290491268
+        },
+        {
+          "issuerName": "SUNOPTA INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "8676EP108",
+          "securityId": "8676EP108",
+          "ticker": "",
+          "putCall": null,
+          "value": 406498,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 406498,
+              "issuerName": "SUNOPTA INC",
+              "shares": "74314",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 5.6410494300852335e-05
+        },
+        {
+          "issuerName": "RICE ACQUISITION CORP 3",
+          "shareClass": "WARRANT",
+          "cusip": "G7553X114",
+          "securityId": "G7553X114",
+          "ticker": "",
+          "putCall": null,
+          "value": 395999,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 395999,
+              "issuerName": "RICE ACQUISITION CORP 3",
+              "shares": "399999",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 5.4953528264944044e-05
+        },
+        {
+          "issuerName": "ALVOTECH SA",
+          "shareClass": "COMMON STOCK",
+          "cusip": "L01800108",
+          "securityId": "L01800108",
+          "ticker": "",
+          "putCall": null,
+          "value": 361553,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 361553,
+              "issuerName": "ALVOTECH SA",
+              "shares": "97982",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 5.0173391864058525e-05
+        },
+        {
+          "issuerName": "SHAKE SHACK INC",
+          "shareClass": "CONVERTIBLE BOND",
+          "cusip": "819047AB7",
+          "securityId": "819047AB7",
+          "ticker": "",
+          "putCall": null,
+          "value": 252112,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 252112,
+              "issuerName": "SHAKE SHACK INC",
+              "shares": "270000",
+              "amountType": "PRN",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 3.4986057838357096e-05
+        },
+        {
+          "issuerName": "OFFICE PROPERTIES INCOME TRUST/MD",
+          "shareClass": "COMMON STOCK",
+          "cusip": "67623C307",
+          "securityId": "67623C307",
+          "ticker": "",
+          "putCall": null,
+          "value": 184467,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 184467,
+              "issuerName": "OFFICE PROPERTIES INCOME TRUST/MD",
+              "shares": "10851",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 2.5598833578997502e-05
         }
       ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 7206070520,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
         "priorPeriodLabel": "Q1 2026",
         "exits": [
@@ -1376,8 +3708,23 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "publicationSource": "https://foliofact.com/funds/oaktree-capital-management",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/949509/000094950926000005/",
+      "reportedCoverTotal": 7206070520,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 7206070520.0,
+      "providerHoldingsCount": 145,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/949509/000094950926000005/13F_OCMLP_2Q2026.xml",
+        "https://www.sec.gov/Archives/edgar/data/949509/000094950926000005/primary_doc.xml"
+      ],
+      "originalRowCount": 145,
+      "primaryVerified": true
     },
-    "sourceUrl": "https://foliofact.com/funds/oaktree-capital-management"
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/949509/000094950926000005/",
+    "discoverySourceUrl": "https://foliofact.com/funds/oaktree-capital-management",
+    "filingHistory": []
   }
 }
