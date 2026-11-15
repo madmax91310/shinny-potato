@@ -88,7 +88,9 @@ class CurrencyOutcomeTests(unittest.TestCase):
   jobs=[{'name':config['collectionJob'],'conclusion':'success','steps':[
     *[{'name':name,'conclusion':'success'}for name in config['collectionSteps']],
     {'name':'Validate collected observations','conclusion':'success'},
-    {'name':'Commit validated observations','conclusion':'success'}]}]
+    {'name':'Commit validated observations','conclusion':'success'}]},
+    {'name':'report-failures','conclusion':'failure'if conclusion=='failure'else'skipped',
+     'steps':[{'name':'Report source failures','conclusion':'failure'}]if conclusion=='failure'else[]}]
   return update_status(previous or {},current,jobs,[report]),current
 
  def test_real_rest_success_conclusion_keeps_each_actual_currency_failure_visible(self):

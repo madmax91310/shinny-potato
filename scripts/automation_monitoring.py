@@ -170,9 +170,12 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             checks_only = (not publishing and row.get('publicationStatus') == 'success' and row.get('failures')
                            and all(f['job'].startswith('deploy /') for f in row['failures']))
             kind = 'publication' if publishing else 'checks' if checks_only else 'collection'
+            # The aggregate report-failures job is skipped after recovery. It
+            # cannot be the recovery gate for an independently evidenced source.
+            incident_failures = other_failures if kind == 'collection' and other_failures else row.get('failures', [])
             add(f"{'workflow' if kind == 'collection' else kind}:{workflow}", {**base, 'kind': kind,
                 'field': {'publication': 'Publication', 'checks': 'Contrôle après publication'}.get(kind, 'Exécution du collecteur'),
-                'failedSteps': row.get('failures', []), 'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
+                'failedSteps': incident_failures, 'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in incident_failures) or 'Exécution en échec ; consulter le journal.'})
     for pending in state.get('inFlightRuns',{}).values():
         workflow=pending['workflow'];run=pending['run'];config=registry.get(workflow)
         if not config:continue
