@@ -47,6 +47,10 @@ for(const engine of ['chromium','firefox','webkit']){
   await expect(page.getByRole('status').filter({hasText:'Copie impossible. Sélectionne le texte.'})).toBeVisible()
   await expect(editor).toHaveValue(edited)
   const imageButton=page.getByRole('button',{name:'Télécharger le PNG',exact:true})
+  // PNG encoding may exceed the generic 5 s assertion on a busy CI runner.
+  // Observe the actual selected-page lifecycle; still require an enabled export.
+  await expect(page.getByRole('region',{name:'Image du budget',exact:true}))
+    .toHaveAttribute('aria-busy','false',{timeout:30_000})
   await expect(imageButton).toBeEnabled()
   const initialUrls=await page.evaluate(()=>[...window.__activeExports])
   for(let n=0;n<3;n++)await png(page,()=>imageButton.click(),`${engine}-budget-${n}`)

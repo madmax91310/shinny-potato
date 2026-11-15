@@ -8,6 +8,9 @@ import tempfile
 import math
 import gzip
 import io
+import urllib.error
+import http.client
+import logging
 import xml.etree.ElementTree as ET
 from issuer_documents import bounded_return, document_date, download, pdf_text, proof
 from data_automation import reject
@@ -239,18 +242,47 @@ def abtc_calendar(product, history, metrics, share, now, url):
         'calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels')
 
 
-def collect_abtc_calendar(share, now, product=None):
+def acquire_abtc_calendar(share, now, fetch, product=None):
+    """Qualify one coherent official-origin bundle, with a bounded transport retry.
+
+    The issuer's public ABTC page declares both origins. Never combine an
+    alternate history with a product or monthly oracle from the first origin.
+    Identity, schema, dates and financial failures are not transport failures.
+    """
     base=share['calendarApiBase']
-    if base not in ('https://api.primary.21shares.com','https://api.secondary.21shares.com'):
+    origins=('https://api.primary.21shares.com','https://api.secondary.21shares.com')
+    if base not in origins:
         reject('Unexpected 21Shares calendar API source')
-    from concurrent.futures import ThreadPoolExecutor
-    urls=[base+'/api/'+endpoint+'/ABTC' for endpoint in
-          ('product_details','product_valuation_history','product_performance_metrics')]
-    with ThreadPoolExecutor(max_workers=3) as pool:
-        payloads=([product] if product is not None else []) + list(pool.map(
-            lambda url:issuer_json(download(url,max_bytes=6_000_000)),urls[1:] if product is not None else urls))
-    result=abtc_calendar(*payloads,share,now,urls[1])
-    result['validationSources']=urls[::2]
+    failures=[]
+    for index, origin in enumerate((base, next(value for value in origins if value != base))):
+        urls=[origin+'/api/'+endpoint+'/ABTC' for endpoint in
+              ('product_details','product_valuation_history','product_performance_metrics')]
+        payloads=[product] if index == 0 and product is not None else []
+        for url in urls[len(payloads):]:
+            try:
+                body=fetch(url)
+            except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead) as error:
+                if isinstance(error,urllib.error.HTTPError) and error.code not in (403,404,410,429,500,502,503,504):
+                    raise
+                failures.append({'url':url,'status':'failed','reason':str(error)})
+                logging.getLogger(__name__).warning('ABTC official origin unavailable: %s: %s',url,error)
+                if index:
+                    raise OSError('Both official ABTC origins failed: '+json.dumps(failures)) from error
+                break
+            # A malformed successful response must not trigger an origin switch.
+            payloads.append(issuer_json(body))
+        else:
+            result=abtc_calendar(*payloads,share,now,urls[1])
+            result['validationSources']=urls[::2]
+            if failures:
+                result['sourceAttempts']=[*failures,*({'url':url,'status':'validated'}for url in urls)]
+            return result,payloads,urls
+    raise AssertionError('Unreachable ABTC acquisition state')
+
+
+def collect_abtc_calendar(share, now, product=None):
+    result,_,_=acquire_abtc_calendar(share,now,
+        lambda url:download(url,max_bytes=6_000_000),product=product)
     return result
 
 
@@ -290,6 +322,12 @@ def collect_abtc_product_fields(share, now):
     try:
         # Reuse this execution's actual product response, not a persisted cache.
         result['performance']=collect_abtc_calendar(share,now,product=product)
+        attempts=result['performance'].get('sourceAttempts',[])
+        result['sourceAttempts'].extend(attempts)
+        for attempt in attempts:
+            if attempt['status']=='failed':
+                result['collectionErrors'].append({'field':'performance-origin','url':attempt['url'],
+                    'reason':attempt['reason']+'; alternate official origin independently qualified'})
     except (OSError,ValueError,KeyError,TypeError) as error:
         result['collectionErrors'].append({'field':'performance','url':getattr(error,'url',base),'reason':str(error)})
     return result

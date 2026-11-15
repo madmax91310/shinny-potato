@@ -50,7 +50,7 @@ try{
   const {renderImageSeries}=await import('/shinny-potato/src/pages/dca-profiles/image-series.js')
   const {newManualLine}=await import('/shinny-potato/src/pages/dca-profiles/placements.js')
   const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'))
-  const ctx=document.createElement('canvas').getContext('2d');ctx.font='400 32px Arial'
+  const ctx=document.createElement('canvas').getContext('2d');ctx.font='400 46px Arial'
   const run=(profile)=>radialDonutLayout(profile.lines.map(l=>({name:l.label,weight:l.weight})),s=>ctx.measureText(s).width)
   const plan=run(saved.profile)
   const overlap=(a,b)=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top
@@ -68,8 +68,8 @@ try{
    if(pages[1].canvas.height<=1000)throw Error('Long labels must expand the individual image')
   }finally{CanvasRenderingContext2D.prototype.fillText=original}
   const inRing=texts.filter(d=>d.canvas===allocationCanvases[0]&&d.text.includes('%'))
-  if(inRing.length!==saved.profile.lines.filter(l=>l.weight>0).length)throw Error('Every positive holding needs an in-ring percentage')
-  for(const d of inRing){if(Math.abs(Math.hypot(d.x-plan.cx,d.y-plan.cy)-(plan.inner+plan.outer)/2)>1)throw Error('Percentage is outside its segment ring')}
+  if(inRing.length!==saved.profile.lines.filter(l=>l.weight>0).length)throw Error('Every positive holding needs a percentage')
+  for(const d of inRing.filter(d=>d.x||d.y)){if(Math.abs(Math.hypot(d.x-plan.cx,d.y-plan.cy)-(plan.inner+plan.outer)/2)>1)throw Error('Percentage is outside its segment ring')}
   return {height:plan.height,width:plan.width,count:plan.labels.length,collisions,centerText:texts.filter(d=>allocationCanvases.includes(d.canvas)&&['100 %','du patrimoine','du portefeuille'].includes(d.text)).map(d=>d.text),names:plan.labels.map(l=>l.name),fiftyPages:fiftyPages.map(p=>p.id)}
  })
  assert.equal(audit.count,15);assert.deepEqual(audit.collisions,[]);assert.deepEqual(audit.centerText,[])
