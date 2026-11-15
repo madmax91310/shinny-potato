@@ -76,7 +76,7 @@ try {
   await page.goto(base+'/', {waitUntil:'networkidle'})
   await page.getByRole('button', {name:'Calendrier',exact:true}).click()
   await page.getByRole('tab', {name:/^Dimanche/}).click()
-  await page.locator('.workspace-tool-card[href*="category=Question%20dimanche"]').click()
+  await page.locator('[data-day="6"] [data-period="evening"] .workspace-tool-card[href*="category=Question%20dimanche"]').click()
   assert.equal(new URL(page.url()).searchParams.get('category'), 'Question dimanche')
   for (const reload of [false, true]) {
     if (reload) await page.reload({waitUntil:'networkidle'})
