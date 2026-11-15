@@ -4,8 +4,18 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { ASSET_ORDER } from '../src/data/market-history.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
-import { performanceLayout } from '../src/pages/tweet-midi/performanceImage.js'
+import { performanceLayout, cumulativePerformance } from '../src/pages/tweet-midi/performanceImage.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
+import performanceEngine from '../src/pages/tweet-midi/engines/performance.js'
+import { formatPerformancePct } from '../src/pages/tweet-midi/performanceFormat.js'
+for (const pct of [35.75,-35.75,0.05,-0.05,0.005,-0.005,0]) assert.equal(cumulativePerformance([{pct}]),pct)
+const oneYearAsset='annual-FR0013412004'
+const oneYear=performanceEngine.getSecondaryOptionsForFormat('performance-depuis','simple',oneYearAsset).at(-1)
+const oneYearItem={assetId:oneYearAsset,year:oneYear}
+const oneYearRows=performanceEngine.getPerformanceEntries(oneYearItem)[0].returns
+assert.equal(oneYearRows.length,1)
+assert(performanceEngine.buildPerformanceDepuisText(oneYearItem).endsWith('Sur toute la période : '+formatPerformancePct(oneYearRows[0].pct)))
+assert.equal(formatPerformancePct(cumulativePerformance([{pct:10},{pct:-10}])),'−1,0 %')
 // The cobalt export is drawn with canvas primitives; it requires no background image.
 for (let count = 1; count <= 40; count++) {
   const layout = performanceLayout(count)
