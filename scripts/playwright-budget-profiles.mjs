@@ -130,7 +130,15 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
       // Verify the optional summary from the actual render, then its selected download.
       await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="summary"]').click()
-      await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
+      try {
+        await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
+      } catch (error) {
+        console.log('Summary failure diagnostics', profile.id, errors,
+          await page.getByRole('region', { name: 'Image du budget' }).innerText())
+        console.log('Selected image mode', await page.getByRole('group', { name: 'Version de l’image', exact: true }).getAttribute('data-value'))
+        await page.screenshot({path: `${output}/summary-failure.png`, fullPage: true})
+        throw error
+      }
       const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
       assertPublicBudgetHeader(summaryDrawn, profile)
       assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
