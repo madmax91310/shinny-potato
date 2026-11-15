@@ -42,6 +42,8 @@ try{
  await choice('Choisir un profil DCA','debate-lucas')
  await open('.dca-prepared')
  await page.getByRole('button',{name:'Marquer publié',exact:true}).click()
+ await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click()
+ await page.getByRole('button',{name:'Retirer le statut publié',exact:true}).waitFor()
  await open('.dca-filters')
  await page.getByRole('checkbox',{name:'Afficher les profils non publiés',exact:true}).check()
  assert.equal(await picker.locator('[data-option]').count(),49)
