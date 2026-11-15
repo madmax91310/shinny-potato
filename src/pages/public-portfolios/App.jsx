@@ -98,6 +98,57 @@ function Images({ profile, snapshot, episode }) {
     </section>
   );
 }
+function SnapshotEvidence({ s }) {
+  return (
+    <details>
+      <summary>Vérifier le relevé sélectionné</summary>
+      <p>
+        Consulté le {s.consulted} · Données effectives :{" "}
+        {s.effective || "date non précisée"} · {s.currency}
+      </p>
+      <p>
+        Méthode : {s.method} · Dividendes : {s.dividends} · Frais : {s.fees}
+      </p>
+      {s.total !== "" && (
+        <p>
+          Montant public : {s.total} {s.currency}
+        </p>
+      )}
+      {["month", "ytd", "year"].map((k) => (
+        <div key={k}>
+          <h4>
+            {k === "month"
+              ? "Mois civil"
+              : k === "ytd"
+                ? "Depuis janvier"
+                : "Un an (facultatif)"}
+          </h4>
+          <p>
+            {s[k].start || "Début inconnu"} → {s[k].end || "Fin inconnue"} :{" "}
+            {s[k].na ? `Non applicable : ${s[k].na}` : pct(s[k].value)}
+          </p>
+          <p>
+            Libellé source : {s[k].original || "non renseigné"} · {s[k].kind} ·{" "}
+            {s[k].verified ? "Contrôlé manuellement" : "À vérifier"}
+          </p>
+        </div>
+      ))}
+      <h4>Allocation déclarée</h4>
+      {s.positions.map((r, i) => (
+        <p key={i}>
+          {r.name} {r.identifier ? `(${r.identifier})` : ""} :{" "}
+          {r.weight === "" ? "Poids absent" : `${r.weight} %`}
+        </p>
+      ))}
+      {canonicalUrl(s.source) && (
+        <a href={s.source} target="_blank" rel="noreferrer">
+          Source justificative du relevé
+        </a>
+      )}
+    </details>
+  );
+}
+
 export default function App() {
   const [db, setDb] = useState(load),
     [p, setP] = useState(null),
@@ -609,6 +660,7 @@ export default function App() {
             </section>
           )}
           <h3>Préparation</h3>
+          {snap && <SnapshotEvidence s={snap} />}
           {errors.map((e) => (
             <p className="pp-warning" key={e}>
               {e}

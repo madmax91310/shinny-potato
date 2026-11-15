@@ -1,5 +1,9 @@
+import {
+  localToday,
+  validPublicationDate as validDate,
+} from "../../lib/publication-date.js";
 export const id = () => crypto.randomUUID();
-export const today = () => new Date().toISOString().slice(0, 10);
+export const today = localToday;
 export const blankProfile = () => ({
   id: id(),
   url: "",
@@ -109,11 +113,7 @@ export function performanceIssues(s, key) {
       `${label} : libellé annualisé ou période ambiguë, ne pas reprendre ce chiffre`,
     );
   if (!p.original.trim()) out.push(`${label} : libellé original requis`);
-  if (
-    !/^\d{4}-\d{2}-\d{2}$/.test(p.start) ||
-    !/^\d{4}-\d{2}-\d{2}$/.test(p.end) ||
-    p.start > p.end
-  )
+  if (!validDate(p.start) || !validDate(p.end) || p.start > p.end)
     out.push(`${label} : dates exactes requises`);
   else {
     const end = new Date(p.end + "T12:00:00Z"),
@@ -144,12 +144,18 @@ export function issues(p, s) {
     out.push("Nom public ou pseudo requis");
   if (!canonicalUrl(p.url)) out.push("URL publique valide requise");
   if (!s) return [...out, "Enregistrer un relevé daté"];
-  if (!s.consulted || !canonicalUrl(s.source))
+  if (
+    !validDate(s.consulted) ||
+    s.consulted > today() ||
+    !canonicalUrl(s.source)
+  )
     out.push("Date de consultation et lien justificatif du relevé requis");
   if (nameOf(p).length > 160 || s.positions.some((x) => x.name.length > 200))
     out.push(
       "Nom trop long pour une image lisible (profil : 160, placement : 200 caractères maximum)",
     );
+  if (s.effective && (!validDate(s.effective) || s.effective > s.consulted))
+    out.push("Date effective invalide ou postérieure à la consultation");
   if (!s.currency) out.push("Devise du relevé requise");
   out.push(...performanceIssues(s, "month"), ...performanceIssues(s, "ytd"));
   if (!s.month.na && !s.ytd.na && s.month.end !== s.ytd.end)
@@ -221,6 +227,8 @@ export function buildText(p, s, n) {
 }
 export function publication(p, s, d, date, url) {
   if (
+    !validDate(date) ||
+    date > today() ||
     issues(p, s).length ||
     !d.text.trim() ||
     /undefined|\{[^}]+\}/.test(d.text) ||

@@ -18,7 +18,7 @@ const browser =
 const context =
   harness?.context || (await browser.newContext({ acceptDownloads: true }));
 await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-const page = harness?.page || (await context.newPage());
+let page = harness?.page || (await context.newPage());
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const base = process.env.BASE_URL || staticBase;
@@ -26,7 +26,10 @@ await page.goto(base + "portefeuilles-publics");
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
 await page.getByRole("button", { name: "Sauvegarder", exact: true }).click();
-await page.reload();
+await page.close();
+page = await context.newPage();
+page.on("pageerror", (e) => errors.push(e.message));
+await page.goto(base + "portefeuilles-publics");
 await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
 await page.getByLabel("Pseudo", { exact: true }).fill("TEST FICTIF navigateur");
 await page.getByRole("button", { name: "Sauvegarder", exact: true }).click();
