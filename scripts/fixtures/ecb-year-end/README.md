@@ -14,3 +14,5 @@ Le calcul porte seulement sur la fin de décembre : samedi/dimanche, Noël et 26
 La fixture XML existante `../official-documents/remaining-aum/ecb-eurusd.xml` reste la régression financière. Les mutations du test restent en mémoire : décembre incomplet, week-end, fermetures exceptionnelles, 1er janvier 2027, réponse définitive et répétition. Aucune performance ou donnée 2026 n’est créée dans les registres.
 
 Le producteur ETF ordinaire consulte la BCE chaque jour à 07:10 UTC. Une borne absente provoque toujours un échec explicite et conserve le fichier précédent ; le passage suivant réessaie. Le contrôle local ne prouve ni le passage GitHub ni le cron de janvier 2027. La preuve réelle de décembre 2026 reste à acquérir.
+
+Les deux acquisitions auparavant réunies dans l’étape `fx` sont séparées : un retard de la borne BCE ne doit pas empêcher la consultation indépendante des rendements MSCI natifs EUR. Chacune conserve son résultat, et chacune peut faire échouer le bilan de collecte. Le garde de publication et les validations financières communes restent inchangés. La recette isolée du workflow conserve le code d’échec BCE tout en exerçant la seconde commande.

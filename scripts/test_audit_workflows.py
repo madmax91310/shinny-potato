@@ -10,6 +10,30 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUAL_WRITERS = set()
 
 class WorkflowContracts(unittest.TestCase):
+    def test_ecb_delay_does_not_skip_independent_msci_eur_returns(self):
+        import subprocess
+        workflow = (ROOT/'.github/workflows/collect-etf-pilot.yml').read_text()
+        steps = workflow.split('      - ')
+        commands = []
+        for step_id, script in [('fx','collect_annual_fx.py'),
+                                ('performance_currency','collect_performance_currency.py')]:
+            step = next(s for s in steps if '\n        id: '+step_id+'\n' in s)
+            self.assertIn('continue-on-error: true',step)
+            command = step.split('        run: ',1)[1].strip()
+            self.assertEqual(command, 'python scripts/'+script+' --apply')
+            self.assertIn("steps."+step_id+".outcome == 'failure'",workflow.split('    steps:',1)[0])
+            commands.append(command)
+        # Each real command has a separate job step. A failed ECB attempt must
+        # remain failed while the independent native-EUR source is still tried.
+        statuses = []
+        for command in commands:
+            run = subprocess.run(['bash','-euc',
+                'python(){ case "$1" in *collect_annual_fx.py) return 1;; *) printf "%s" "$1";; esac; }; '+command],
+                capture_output=True,text=True)
+            statuses.append(run.returncode)
+        self.assertEqual(statuses,[1,0])
+        self.assertEqual(run.stdout,'scripts/collect_performance_currency.py')
+
     def test_python_installations_use_pinned_installer_and_shared_constraints(self):
         for path in (ROOT/'.github/workflows').glob('*.yml'):
             text = path.read_text()
