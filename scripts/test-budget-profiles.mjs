@@ -1,3 +1,4 @@
+import './test-budget-chantier4.mjs'
 import './test-budget-social-image.mjs'
 import './test-budget-new-profiles.mjs'
 import './test-budget-audit-20261113.mjs'
@@ -248,7 +249,7 @@ const belgianReference = bankProfile('reference-indexo-belgique-2026-11')
 assert.equal(belgianReference.publishedAt, null, 'An update date is not an established original publication date')
 assert.equal(belgianReference.provenance.sourceUpdatedAt, '2026-10-31')
 const lille = bankProfile('reference-couple-lille-budget-2026-01')
-assert.match(buildBudgetText(lille), /Salaire d’Hugo/)
+assert.match(buildBudgetText(lille), /Salaire net d’Hugo/)
 assert.match(buildBudgetText(lille), /32 ans et infirmière de 30 ans/)
 assert.equal(BUDGET_PROFILES.filter(p => p.source.url === lille.source.url).length, 2, 'Two distinct reference cases share an article, not an identity or ledger')
 const familyReference = bankProfile('reference-famille-lyon-2026')

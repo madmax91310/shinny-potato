@@ -1,9 +1,10 @@
 name: Publish consolidated automation recovery (15 November)
 
-# One-time full validation of the merged automation corrections.
+# Full recovery validation after merged automation corrections.
 # Use the existing isolated ETF recovery queue; every ordinary gate and the
 # pages-production publication lock remain enforced by deploy-pages.yml.
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths: [.github/workflows/publish-automation-recovery-20261115.yml]

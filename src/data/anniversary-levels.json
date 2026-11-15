@@ -11912,5 +11912,21 @@
     "mic": "XPAR",
     "listingEvidenceId": "DE000A27Z304-XPAR-BTCE-EUR",
     "checkedAt": "2026-11-15T16:38:55.870868+00:00"
+  },
+  "stockUS58506Q1094": {
+    "value": 653.9400024414062,
+    "asOf": "2026-11-13",
+    "currency": "USD",
+    "parser": "yahoo",
+    "symbol": "MEDP",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MEDP?period1=1793404800&period2=1794700800&interval=1d&events=splits",
+    "sha256": "d58b908a71174961efbfcb747cbb4b6ebde10ad999c76f471af57a8a5900aaea",
+    "method": "Dernière séance terminée ; cours brut",
+    "maxAgeDays": 7,
+    "isin": "US58506Q1094",
+    "ticker": "MEDP",
+    "listingEvidenceId": "US58506Q1094:NASDAQ:MEDP:USD"
   }
 }

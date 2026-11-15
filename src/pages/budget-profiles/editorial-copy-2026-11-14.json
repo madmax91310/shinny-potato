@@ -4687,7 +4687,9 @@
     },
     "publicProfile": {
       "context": "Marc voudrait pouvoir s’accorder une année sans salaire. Il a 120 000 CHF disponibles et 900 000 CHF en ETF, après dix ans d’investissement.\n\nÀ ce rythme de dépenses, ses liquidités couvriraient une année sans vendre les ETF. Avant de partir, il veut revoir ce qui lui restera à payer : l’opération des yeux est un achat ponctuel, réparti sur l’année dans ce budget.\n\nIl hésite à partir maintenant ou à travailler encore deux ans pour garder davantage de latitude à long terme. Il souhaite aussi limiter les achats d’électronique, tout en conservant les voyages et sa vie sociale.",
-      "question": "Avec 120 000 CHF disponibles et 900 000 CHF en ETF, vous prendriez l’année de pause maintenant ou vous travailleriez encore deux ans ?\nQuels frais faudrait-il chiffrer avant le départ, au-delà des dépenses courantes ?"
+      "question": "Avec 120 000 CHF disponibles et 900 000 CHF en ETF, vous prendriez l’année de pause maintenant ou vous travailleriez encore deux ans ?\nQuels frais faudrait-il chiffrer avant le départ, au-delà des dépenses courantes ?",
+      "savings": [],
+      "incomeNote": "La rémunération variable et les dépenses ponctuelles sont réparties sur l’année."
     },
     "contextEntries": {
       "paragraphs": [
@@ -4891,8 +4893,25 @@
           "status": "À préciser",
           "notes": "Profil marquant sans accroche ajoutée. Clarifier le traitement de l’impôt et la part récurrente du revenu ; l’absence de ligne fiscale ne prouve pas un oubli. Raccourcir le calcul de couverture de l’année sabbatique.",
           "openDetails": "Données manquantes conservées en interne ; les questions restent dans la portée des informations disponibles."
+        },
+        "chantier4Review": {
+          "date": "2026-11-15",
+          "sourceConsultedAgain": false,
+          "reason": "Le solde calculé ne prouve aucun versement : retrait de la ligne déduite à tort. Revenus, dépenses et patrimoine inchangés."
         }
       }
+    },
+    "budget": {
+      "balanceLabel": "Reste disponible",
+      "incomeNote": "La rémunération variable et les dépenses ponctuelles sont réparties sur l’année.",
+      "incomeLabels": {
+        "Rémunération moyenne après impôt": "Rémunération moyenne après impôt, part variable comprise"
+      }
+    },
+    "chantier4Review": {
+      "date": "2026-11-15",
+      "sourceConsultedAgain": false,
+      "reason": "Le solde calculé ne prouve aucun versement : retrait de la ligne déduite à tort. Revenus, dépenses et patrimoine inchangés."
     }
   },
   "prepared-markus654-2026-10-30": {
@@ -7489,8 +7508,7 @@
   },
   "prepared-lot2-15-2026-10-30": {
     "questions": [
-      "Pour préparer les quatre jours par semaine, vous maintiendriez les 2 200 € en ETF ou vous construiriez une réserve dédiée ?",
-      "Vous réduiriez les versements dès maintenant pour préparer les premiers mois à quatre jours ?"
+      "Pour préparer les quatre jours par semaine, vous maintiendriez les 2 200 € en ETF ou vous construiriez une réserve dédiée ?"
     ],
     "editorialReview": {
       "reviewedAt": "2026-11-14",
@@ -7508,7 +7526,7 @@
     },
     "publicProfile": {
       "context": "Hadrien a 7 500 € de réserve et 60 000 € en ETF. Il investit depuis quatre ans, avec un horizon d’au moins quinze ans.\n\nIl voudrait pouvoir passer à quatre jours par semaine dans cinq ans. Il hésite à conserver 2 200 € de versements en ETF ou à garder davantage d’argent disponible pour les premiers mois à temps partiel. Son futur salaire à quatre jours reste à chiffrer.",
-      "question": "Pour préparer les quatre jours par semaine, vous maintiendriez les 2 200 € en ETF ou vous construiriez une réserve dédiée ?\nVous réduiriez les versements dès maintenant pour préparer les premiers mois à quatre jours ?"
+      "question": "Pour préparer les quatre jours par semaine, vous maintiendriez les 2 200 € en ETF ou vous construiriez une réserve dédiée ?"
     },
     "contextEntries": {
       "paragraphs": [
@@ -7566,7 +7584,30 @@
             }
           ],
           "editorialReview": true
+        }
+      ],
+      "evidenceAddition": {
+        "editorialReview": {
+          "reviewedAt": "2026-11-14",
+          "baseline": "332ce044c94085ed30eee75445c5f52bf0134d15",
+          "monthlyAmountsChanged": false,
+          "sourceConsultedAgain": false,
+          "status": "À préciser",
+          "notes": "Préciser ce qui est déjà chiffré du salaire à quatre jours ; ne pas inventer la baisse. Garder la distinction entre salaire 2026 et dépenses 2025 et éviter d’afficher un revenu futur certain.",
+          "openDetails": "Données manquantes conservées en interne ; les questions restent dans la portée des informations disponibles."
         },
+        "chantier4Review": {
+          "date": "2026-11-15",
+          "sourceConsultedAgain": false,
+          "reason": "Retirer la seconde question qui répète le même arbitrage."
+        }
+      }
+    },
+    "chantier4Review": {
+      "date": "2026-11-15",
+      "sourceConsultedAgain": false,
+      "reason": "Retirer la seconde question qui répète le même arbitrage.",
+      "removedQuestions": [
         {
           "text": "Vous réduiriez les versements dès maintenant pour préparer les premiers mois à quatre jours ?",
           "evidence": [
@@ -7594,18 +7635,7 @@
           ],
           "editorialReview": true
         }
-      ],
-      "evidenceAddition": {
-        "editorialReview": {
-          "reviewedAt": "2026-11-14",
-          "baseline": "332ce044c94085ed30eee75445c5f52bf0134d15",
-          "monthlyAmountsChanged": false,
-          "sourceConsultedAgain": false,
-          "status": "À préciser",
-          "notes": "Préciser ce qui est déjà chiffré du salaire à quatre jours ; ne pas inventer la baisse. Garder la distinction entre salaire 2026 et dépenses 2025 et éviter d’afficher un revenu futur certain.",
-          "openDetails": "Données manquantes conservées en interne ; les questions restent dans la portée des informations disponibles."
-        }
-      }
+      ]
     }
   },
   "prepared-lot2-16-2026-10-30": {

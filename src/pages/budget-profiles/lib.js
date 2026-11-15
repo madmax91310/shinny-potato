@@ -87,7 +87,7 @@ export function budgetPublicPresentation(profile) {
 
 export function budgetPublicIncomeRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.incomeLabels || {}
-  return profile.income.map(row => ({ ...row, label: budgetSalaryLabel((Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, '')) }))
+  return profile.income.map(row => ({ ...row, label: budgetSalaryLabel((Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, ''), row.label) }))
 }
 export function budgetPublicExpenseRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.expenseLabels || {}
@@ -131,6 +131,8 @@ export function buildBudgetText(profile) {
   const transfers = budgetTransfers(profile, transfersHeading)
   return [
     budgetHeading(profile),
+    // Start with the already reviewed situation, once, before the ledger.
+    context?.paragraphs[0]?.text,
     presentation,
     [`💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, textBasis, incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     expenses,
@@ -140,7 +142,7 @@ export function buildBudgetText(profile) {
     `💳 ${a.balance < 0 ? (a.savings > 0 ? 'Manque après versements' : 'Déficit mensuel') : (p.balanceLabel === 'Reste disponible après versements' ? (a.savings === 0 ? 'Reste disponible' : transfers.after) : p.balanceLabel)} : ${money(Math.abs(a.balance))} / mois`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     ...(context ? [
-      ...context.paragraphs.map(paragraph => paragraph.text),
+      ...context.paragraphs.slice(1).map(paragraph => paragraph.text),
       context.questions.map(question => `💬 ${question.text}`).join('\n'),
       budgetGeneralQuestion({ ...profile, name: p.name }, context.budgetQuestion),
     ] : [
