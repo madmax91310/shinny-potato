@@ -36,7 +36,7 @@ try {
     [3,'morning',[]], [3,'midday',['/classements-performances','/comparateur-indices','/idees-classements']], [3,'evening',['/banque-tweets']],
     [4,'morning',[]], [4,'midday',['/fiches-etf','/comparatif-etf','/idees-classements']], [4,'evening',['/le-budget-de']],
     [5,'morning',[]], [5,'midday',['/idees-classements']], [5,'evening',[]],
-    [6,'morning',['/banque-tweets']], [6,'midday',['/portefeuilles-investisseurs','/il-y-a-x-ans','/idees-classements']], [6,'evening',['/fiches-pratiques','/faits-marquants-marches','/il-y-a-x-ans']],
+    [6,'morning',[]], [6,'midday',['/portefeuilles-investisseurs','/il-y-a-x-ans','/idees-classements']], [6,'evening',['/banque-tweets','/fiches-pratiques','/faits-marquants-marches','/il-y-a-x-ans']],
   ])
   assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
