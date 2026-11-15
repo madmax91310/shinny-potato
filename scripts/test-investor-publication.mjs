@@ -39,3 +39,12 @@ console.log('Calculs indépendants : concentration, 300/1501 petites lignes, nom
 assert.equal(logoIdentity({issuerName:'Nom de déclaration différent',cusip:'037833100'}).id,'apple')
 assert.equal(logoIdentity({issuerName:'Homonyme non résolu',ticker:'AAPL'}),null)
 const missingPrimary=sample([3,2]);delete missingPrimary.data.snapshot.primaryVerified;assert(normalizePortfolio(missingPrimary).problem)
+
+const { detailedCSV, detailedExport } = await import('../src/pages/investor-portfolio/exports.js')
+const optionPayload=sample([40,30,20,10]);optionPayload.data.snapshot.holdings[2].putCall='CALL';optionPayload.data.snapshot.holdings[3].putCall='PUT'
+const optionPortfolio=normalizePortfolio(optionPayload)
+assert.equal(publicationPlan(optionPortfolio).total,70)
+assert.equal(detailedExport(optionPortfolio).snapshot.holdings.length,4)
+const csv=detailedCSV(optionPortfolio)
+assert(csv.includes('Poids du total déclaré') && csv.includes('Poids hors options') && csv.includes('CALL') && csv.includes('PUT'))
+assert.equal(csv.split('\r\n').length,5)

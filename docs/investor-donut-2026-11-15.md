@@ -28,7 +28,7 @@ Une substitution facultative passe par le registre de sources existant `public/a
 
 Le contrôle quotidien et la photographie trimestrielle restent distincts. Le collecteur conserve la dernière version et les dates réussies sur échec ; la tentative et son erreur sont exposées dans les métadonnées. Les ETag permettent les revalidations conditionnelles. La file d’écriture programmée est conservée ; les validations de PR en lecture seule disposent de leur propre file. Aucun workflow existant n’a été arrêté. Le bouton d’actualisation de l’application recharge les données publiées ; il ne prétend pas déclencher une collecte SEC depuis le navigateur.
 
-Les erreurs de chargement et de génération restent visibles sur mobile. Le PNG peut être réessayé. Le JSON contient les positions et preuves, le CSV les valeurs et dénominateurs, le ZIP les PNG détaillés et ces deux fichiers. Les noms longs continuent sur les pages détaillées, à taille fixe.
+Les erreurs de chargement et de génération restent visibles sur mobile. Le PNG peut être réessayé. Le JSON contient les positions et preuves, le CSV les valeurs et dénominateurs, le ZIP les PNG détaillés et ces deux fichiers. Les noms longs continuent sur les pages détaillées, à taille fixe. Les exports détaillés d’un relevé non qualifié portent explicitement « DONNÉES INCOMPLÈTES » dans chaque PNG et une qualification dans le CSV ; le JSON conserve aussi le problème et la dernière erreur.
 
 ## Preuves locales du 15 novembre
 
@@ -45,4 +45,4 @@ Exemples réels : [Tepper](../reports/investor-donut-2026-11-15/tepper.png), [Be
 
 Cas synthétiques de recette uniquement : [petite position](../reports/investor-donut-2026-11-15/petite.png), [noms longs](../reports/investor-donut-2026-11-15/longs.png), [300 lignes](../reports/investor-donut-2026-11-15/dense.png), [parcours mobile](../reports/investor-donut-2026-11-15/mobile-image-390.png). Ces valeurs ne sont pas ajoutées au catalogue des investisseurs.
 
-La compilation, l’intégration de master, les contrôles GitHub, le déploiement et le parcours public final sont consignés à la clôture ; les résultats locaux ne prouvent pas seuls cette dernière étape.
+Compilation intégrée à master `2ecf1e9` réussie : budget de la route respecté avec chargement du moteur Canvas à la demande ; manifeste de 54 fichiers publics vérifié. Le parcours construit des 28 investisseurs passe aussi. Le workflow GitHub 43736936326 a indépendamment acquis et qualifié 25 déclarations, avec conservation des 3 refus (rapport contrôlé à 17:03:27 UTC). Les contrôles de publication, le déploiement et le parcours public final seront consignés à la clôture ; cette collecte ne prouve pas seule la livraison publique.

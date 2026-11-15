@@ -89,6 +89,16 @@ try {
   await page.unroute('**/data/investors/tepper.json');await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:incomplete}));await page.reload()
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByText(/Données incomplètes : Montants/).first().waitFor();assert(await page.getByRole('button',{name:'⬇️ Télécharger le PNG',exact:true}).isDisabled())
+  const incompleteDetail=await page.evaluate(async payload=>{
+    const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
+    const {renderDetailedPages,detailedCSV,detailedExport}=await import('/shinny-potato/src/pages/investor-portfolio/exports.js')
+    const portfolio=normalizePortfolio(payload),labels=[],original=CanvasRenderingContext2D.prototype.fillText
+    CanvasRenderingContext2D.prototype.fillText=function(value,...args){labels.push(value);return original.call(this,value,...args)}
+    let pages;try{pages=await renderDetailedPages(portfolio)}finally{CanvasRenderingContext2D.prototype.fillText=original}
+    if(!labels.includes('DONNÉES INCOMPLÈTES')||!detailedCSV(portfolio).includes('INCOMPLET')||detailedExport(portfolio).status!=='incomplete')throw Error('Unqualified detailed export')
+    return pages[0]
+  },incomplete)
+  await writeFile(`${out}/incomplete-detail.png`,Buffer.from(incompleteDetail.split(',')[1],'base64'))
   await writeFile(`${out}/results.json`,JSON.stringify(results,null,2))
   console.log(`${results.filter(r=>r.status==='ready').length} PNG contrôlés ; mobile/ordinateur, téléchargement identique, copie, JSON/ZIP, pannes et réessai validés.`)
 }catch(error){console.error(error);throw error}finally{await browser?.close();server.kill('SIGTERM')}
