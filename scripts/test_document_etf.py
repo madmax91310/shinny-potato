@@ -117,4 +117,46 @@ class Documents(unittest.TestCase):
         merged=merge_collection({'checkedAt':'2026-10-06','shares':[result]},current,{})
         self.assertEqual(merged['IE00TEST0001']['characteristics'],current['IE00TEST0001']['characteristics'])
 
+class OfficialPeaRegionalPages(unittest.TestCase):
+    def sources(self):
+        import json,pathlib
+        root=pathlib.Path(__file__).resolve().parent
+        sources=json.loads((root/'additional-etf-sources.json').read_text())['instruments']
+        return root,[x for x in sources if x['isin'] in ('IE0002XZSHO1','IE000DQLYVB9')]
+    def test_exact_regional_pages_and_raw_receipts(self):
+        import gzip,json,hashlib
+        root,sources=self.sources();receipts=json.loads((root/'fixtures/ishares-pea-live-20261029/receipts.json').read_text())
+        self.assertEqual(len(sources),2)
+        for share in sources:
+            receipt=next(r for r in receipts if r['isin']==share['isin'])
+            body=gzip.decompress((root/f"fixtures/ishares-pea-live-20261029/{share['isin']}.html.gz").read_bytes())
+            self.assertEqual(hashlib.sha256(body).hexdigest(),receipt['sha256'])
+            self.assertEqual(parse_legacy(body.decode(),share,dt.datetime(2026,10,29,tzinfo=UTC))['aum'],receipt['qualifiedAum'])
+            self.assertIn(receipt['url'],share['fallbackUrls'])
+    def test_transport_fallback_is_exact_and_retains_both_failures(self):
+        import gzip
+        root,sources=self.sources()
+        for share in sources:
+            calls=[];target=share['fallbackUrls'][-1]
+            body=gzip.decompress((root/f"fixtures/ishares-pea-live-20261029/{share['isin']}.html.gz").read_bytes()).decode()
+            def fetch(url,*args):
+                calls.append(url)
+                if url!=target:raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
+                return body
+            with patch('collect_document_etf.collect_legacy_document',side_effect=ValueError('isolated document outage')):
+                result=collect_legacy(share,dt.datetime(2026,10,29,tzinfo=UTC),fetch=fetch)
+            self.assertEqual(calls,[share['sourceUrl'],*share['fallbackUrls']])
+            self.assertEqual(result['aum']['sourceUrl'],target)
+            self.assertEqual(result['aum']['asOf'],'2026-10-28')
+            self.assertEqual(len(result['sourceAttempts']),3)
+            self.assertIn('collectionErrors',result)
+    def test_successful_http_wrong_identity_does_not_fall_through(self):
+        import gzip
+        root,sources=self.sources();share=sources[0]
+        body=gzip.decompress((root/f"fixtures/ishares-pea-live-20261029/{share['isin']}.html.gz").read_bytes()).decode().replace(share['isin'],'IE000DQLYVB9')
+        calls=[]
+        def fetch(url,*args):calls.append(url);return body
+        with self.assertRaises(ValueError):collect_legacy(share,dt.datetime(2026,10,29,tzinfo=UTC),fetch=fetch)
+        self.assertEqual(calls,[share['sourceUrl']])
+
 if __name__=='__main__':unittest.main()

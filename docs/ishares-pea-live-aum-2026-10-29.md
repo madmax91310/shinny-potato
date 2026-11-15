@@ -1,0 +1,9 @@
+# Encours des deux parts iShares PEA — 29 octobre 2026
+
+Les anciennes pages suisses/françaises échouent et le secours PDF mensuel ne doit pas remplacer une observation plus récente. Deux pages officielles françaises pour intermédiaires publient les mêmes parts exactes, leur devise EUR et leur actif net de catégorie d’actions au 28 octobre : IE0002XZSHO1 / produit335178 et IE000DQLYVB9 / produit342916. Les réponses HTML réelles, leurs empreintes et les bornes sont conservées en fixtures compressées sans perte.
+
+Le registre ajoute ces deux pages comme secours de transport. Le parseur existant vérifie toujours produit, ISIN, devise, libellé du champ, période et valeur ; une réponse HTTP réussie d’une autre part ne déclenche pas un secours. Les échecs des premières routes restent dans les tentatives. Un échec du document complémentaire reste une erreur individuelle et ne remplace pas l’encours valide. Aucun frais, rendement, poids, PEA, seuil, image ou texte n’est modifié pour passer un contrôle.
+
+Neuf tests documentaires, dont trois nouvelles régressions sur les réponses réelles, vérifient les deux identités, les empreintes, la portée part, les dates, le secours après deux403 et le refus d’une identité incorrecte. La réussite locale n’est pas une preuve d’accès depuis GitHub ni une publication. Contrôler le rapport individuel du producteur ETF ordinaire, son enregistrement et les valeurs publiques avant de déclarer les usages rétablis. Le contrôle de la nouvelle route ne renouvelle aucune preuve des anciennes routes. Les conditions de réutilisation demeurent non vérifiées pour cet usage précis.
+
+Coordination : #1031 conserve le lecteur Global X/positions ; #1042 est éditorial. Ce lot modifie seulement les deux configurations de source et leurs tests/proofs ; les collecteurs et contrats communs #968/#1060 restent inchangés.
