@@ -33,7 +33,7 @@ export default function App() {
   const [saved, setSaved] = useState(loadSavedDrafts)
   const [subscriberOpen, setSubscriberOpen] = useState(initial.value.profile.kind === 'participant')
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
-  const [imageMode, setImageMode] = useState('social'), [backupOpen, setBackupOpen] = useState(false)
+  const [imageMode, setImageMode] = useState('overview'), [backupOpen, setBackupOpen] = useState(false)
   const [evidenceOpen, setEvidenceOpen] = useState(false)
   const [hidePublished, setHidePublished] = useState(false)
   const [unused, setUnused] = useState(false), [query, setQuery] = useState(''), [feedback, setFeedback] = useState('')
@@ -143,13 +143,13 @@ export default function App() {
       </section>
       <div className="dca-publication-column">
         <section className="dca-simple-card dca-simple-preview" aria-label="Image du budget" aria-busy={image.busy}>
-          <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="social">X · 1 080 × 1 350</option><option value="detailed">Détaillée · tous les libellés</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">Le format X conserve le ratio 4:5. Si le budget nécessite plusieurs images, la première affiche les totaux du budget et les postes continuent sur les suivantes. Les formats détaillé et synthétique restent disponibles en longueur.</p>
-          {image.count > 0 && <p className="budget-image-count" role="status">{imageMode === 'social' ? `${image.count} image${image.count > 1 ? 's' : ''} · 1 080 × 1 350 px` : '1 image en longueur'}{image.count > 1 && ` · Image ${image.index + 1} sur ${image.count}`}</p>}
+          <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="overview">Image principale X · 1 080 × 1 350</option><option value="social">Détail X · toutes les pages</option><option value="detailed">Détaillée · tous les libellés</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">L’image principale résume le budget en une seule image 4:5. Les postes, réserves et projets restent disponibles dans le détail X, en plusieurs pages si nécessaire, et dans l’export détaillé complet.</p>
+          {image.count > 0 && <p className="budget-image-count" role="status">{['social', 'overview'].includes(imageMode) ? `${image.count} image${image.count > 1 ? 's' : ''} · 1 080 × 1 350 px` : '1 image en longueur'}{image.count > 1 && ` · Image ${image.index + 1} sur ${image.count}`}</p>}
           {image.count > 1 && <nav className="budget-image-pages" aria-label="Images du budget">{Array.from({ length: image.count }, (_, i) => <Button key={i} variant="secondary" aria-pressed={image.index === i} onClick={() => image.select(i)}>Image {i + 1} sur {image.count}</Button>)}</nav>}
           {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} · image ${image.index + 1} sur ${image.count} : revenus, dépenses et reste disponible`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : 'Préparation de l’image…'}</p>}
           <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${image.format}${image.count > 1 ? `-${String(image.index + 1).padStart(2, '0')}-sur-${String(image.count).padStart(2, '0')}` : ''}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
             {image.url && <a href={image.url} target="_blank" rel="noreferrer">Ouvrir l’image</a>}
-            {image.error && imageMode === 'social' && <Button variant="secondary" onClick={() => setImageMode('detailed')}>Afficher tous les détails</Button>}
+            {image.error && ['social', 'overview'].includes(imageMode) && <Button variant="secondary" onClick={() => setImageMode('detailed')}>Afficher tous les détails</Button>}
             {image.error && <Button variant="secondary" onClick={image.retry}>Réessayer l’image</Button>}
           </div><p role="status">{image.error || (image.busy ? 'Préparation de l’image…' : '')}</p>
         </section>
