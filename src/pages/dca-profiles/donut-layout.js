@@ -18,26 +18,30 @@ export function wrapDonutLabel(measure,value,width) {
 // Remove legal share-class boilerplate, retaining the index and strategy.
 export function shortDonutName(value) {
  const original=String(value),isEtf=/\bETF\b/i.test(original)
- const name=original.replace(/\b(?:iShares|Xtrackers|WisdomTree|State Street|SPDR|BNP Paribas Easy|Amundi|Vanguard|Invesco|Core)\b/gi,'').replace(/\bUCITS ETF\b/gi,'').replace(/\bETF\b/gi,'').replace(/\b(?:USD|EUR|Acc|Dist|1C|Advanced)\b/gi,'').replace(/[()]/g,'').replace(/Consumer Staples Sector/gi,'consommation de base').replace(/Consumer Discretionary Sector/gi,'consommation discrétionnaire').replace(/Energy Sector/gi,'énergie').replace(/Artificial Intelligence and Big Data/gi,'IA et Big Data').replace(/Automation & Robotics/gi,'robotique').replace(/Cloud Computing/gi,'cloud').replace(/Emerging Markets/gi,'émergents').replace(/Small Cap\b/gi,'Small Caps').replace(/Minimum Volatility/gi,'Min Volatility').replace(/Weighted/gi,'').replace(/\s+/g,' ').trim()
+ if(!isEtf)return original
+ const name=original.replace(/\b(?:iShares|Xtrackers|WisdomTree|State Street|SPDR|BNP Paribas Easy|Amundi|Vanguard|Invesco|Core)\b/gi,'').replace(/\bUCITS ETF\b/gi,'').replace(/\bETF\b/gi,'').replace(/\b(?:USD|EUR|Acc|Dist|1C|Advanced)\b/gi,'').replace(/[()]/g,'').replace(/Consumer Staples Sector/gi,'consommation de base').replace(/Consumer Discretionary Sector/gi,'consommation discrétionnaire').replace(/Energy Sector/gi,'énergie').replace(/Artificial Intelligence and Big Data/gi,'IA et Big Data').replace(/Automation & Robotics/gi,'robotique').replace(/Cloud Computing/gi,'cloud').replace(/Emerging Markets/gi,'émergents').replace(/Small Cap\b/gi,'Small Caps').replace(/Minimum Volatility/gi,'Min Volatility').replace(/Weighted/gi,'').replace(/Min Volatility/gi,'Min Vol.').replace(/consommation de base/gi,'conso. de base').replace(/Equal Weight/gi,'équipondéré').replace(/\s+/g,' ').trim()
  return name ? `${isEtf?'ETF ':''}${name}` : original
 }
 export function radialDonutLayout(rows,measure) {
- const ordered=balancedDonutRows(rows),cx=800,outer=330,font=32,gap=38
+ const ordered=balancedDonutRows(rows),cx=950,outer=520,inner=240,font=34,gap=41
  let angle=-Math.PI/2
  const labels=ordered.map(row=>{
   const mid=angle+row.weight/100*Math.PI;angle+=row.weight/100*Math.PI*2
-  const anchor=Math.cos(mid)>=0?'left':'right',x=anchor==='left'?1200:400
-  const lines=wrapDonutLabel(measure,shortDonutName(row.name),350)
-  const width=Math.max(...lines.map(measure),measure(`${Number(row.weight.toFixed(2))} %`)),height=(lines.length+1)*gap
-  return {...row,angle:mid,lines,x,anchor,left:anchor==='left'?x:x-width,right:anchor==='left'?x+width:x,height,font,gap}
+  const anchor=Math.cos(mid)>=0?'left':'right',lines=wrapDonutLabel(measure,shortDonutName(row.name),310)
+  return {...row,angle:mid,lines,anchor,height:lines.length*gap,width:Math.max(...lines.map(measure)),font,gap}
  })
  const sides=['left','right'].map(anchor=>labels.filter(l=>l.anchor===anchor).sort((a,b)=>Math.sin(a.angle)-Math.sin(b.angle)))
- const contentHeight=Math.max(800,...sides.map(side=>side.reduce((sum,l)=>sum+l.height+28,0)-28))
- const cy=260+contentHeight/2
+ const span=Math.max(1245,...sides.map(side=>side.reduce((sum,l)=>sum+l.height+14,0)-14)),height=Math.ceil(315+span),cy=(245+height-70)/2,vertical=Math.max(575,(span-80)/2)
  for(const side of sides){
-  const occupied=side.reduce((sum,l)=>sum+l.height+28,0)-28
-  let y=260+(contentHeight-occupied)/2
-  for(const label of side){label.top=y;label.bottom=y+label.height;label.y=y+label.height/2;y=label.bottom+28}
+  let bottom=245
+  for(const l of side){l.y=Math.max(cy+vertical*Math.sin(l.angle),bottom+l.height/2);bottom=l.y+l.height/2+14}
+  let top=height-70
+  for(const l of [...side].reverse()){l.y=Math.min(l.y,top-l.height/2);top=l.y-l.height/2-14}
+  for(const l of side){
+   const dy=Math.max(-555,Math.min(555,(l.y-cy)*575/vertical)),sign=l.anchor==='left'?1:-1
+   l.x=cx+sign*(Math.sqrt(Math.max(0,575**2-dy**2))+18)
+   l.left=sign>0?l.x:l.x-l.width;l.right=l.left+l.width;l.top=l.y-l.height/2;l.bottom=l.top+l.height
+  }
  }
- return {width:1600,height:Math.ceil(330+contentHeight),cx,cy,outer,labels,rows:ordered}
+ return {width:1900,height,cx,cy,outer,inner,labels,rows:ordered}
 }

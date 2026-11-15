@@ -32,12 +32,13 @@ console.log('Complete + individual choices, unchanged weights, all labels and co
 const longNames=['iShares MSCI World Consumer Staples Sector Advanced UCITS ETF','State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF','Xtrackers Artificial Intelligence and Big Data UCITS ETF']
 const dense=radialDonutLayout(Array.from({length:18},(_,i)=>({name:longNames[i%3],weight:100/18})),v=>v.length*16)
 for(const label of dense.labels){
- assert(label.anchor==='left'?label.left>dense.cx+dense.outer:label.right<dense.cx-dense.outer)
+ assert(Math.hypot((label.anchor==='left'?label.left:label.right)-dense.cx,label.y-dense.cy)>dense.outer)
  assert(label.lines.length<=4)
  for(const other of dense.labels)if(label!==other)assert(!(label.left<other.right&&label.right>other.left&&label.top<other.bottom&&label.bottom>other.top))
 }
 
 assert.equal(shortDonutName('iShares Core S&P 500 UCITS ETF USD (Acc)'), 'ETF S&P 500')
-assert.equal(shortDonutName('Xtrackers S&P 500 Equal Weight UCITS ETF 1C'),'ETF S&P 500 Equal Weight')
+assert.equal(shortDonutName('Xtrackers S&P 500 Equal Weight UCITS ETF 1C'),'ETF S&P 500 équipondéré')
 assert.equal(shortDonutName('Coca-Cola'),'Coca-Cola')
 assert.equal(shortDonutName('ETF émergents hors Chine'),'ETF émergents hors Chine')
+

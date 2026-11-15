@@ -1,5 +1,6 @@
 import './test-budget-social-image.mjs'
 import './test-budget-audit-20261113.mjs'
+import './test-budget-editorial-copy.mjs'
 import './test-budget-presentation.mjs'
 import './test-budget-completeness.mjs'
 import assert from 'node:assert/strict'
@@ -116,7 +117,9 @@ assert.match(buildBudgetText(futureApprentice), /budget prévu/i)
 assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')).expenses,1775, 'Detailed editorial expenses preserve the combined envelopes')
 
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /pendant deux ans/)
-assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /50\/30\/20/)
+const mathieuCopy = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30'))
+assert.match(mathieuCopy, /deux crédits/)
+assert.match(mathieuCopy, /cuisine/)
 
 const apprentice = BUDGET_PROFILES.find(p => p.id === 'reddit-alternant-20-2025-09-03')
 assert(apprentice.completion.forecast)
