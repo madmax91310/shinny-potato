@@ -286,8 +286,8 @@ else:
         self.assertEqual((self.f.root/'economic-validation-count').read_text(),'1')
         self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
 
-    def test_economic_qualification_does_not_extend_to_other_producers(self):
-        result=self.economic_late_race(economic_fixture('after'),kind='publication')
+    def test_economic_qualification_does_not_extend_to_unexamined_producers(self):
+        result=self.economic_late_race(economic_fixture('after'),kind='indices')
         self.assertNotEqual(result.returncode,0)
         self.assertIn(ECONOMIC_PATH,result.stdout+result.stderr)
 
@@ -666,6 +666,24 @@ else:
 
     def test_scpi_economic_race_still_requires_validation(self):
         self.assert_refused('src/data/automated-economic.json', 'scpi', validation='false')
+
+    def test_actor_scpi_output_is_independent_but_requires_validation(self):
+        self.f.advance_remote('src/data/automated-scpi.json')
+        result = self.publish('actors')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:src/data/automated-scpi.json'), 'concurrent update')
+
+    def test_actor_scpi_race_cannot_bypass_validation(self):
+        self.assert_refused('src/data/automated-scpi.json', 'actors', validation='false')
+
+    def test_publication_economic_output_is_independent(self):
+        self.f.advance_remote('src/data/automated-economic.json')
+        result = self.publish('publication')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:src/data/automated-economic.json'), 'concurrent update')
+
+    def test_publication_economic_race_cannot_bypass_validation(self):
+        self.assert_refused('src/data/automated-economic.json', 'publication', validation='false')
 
     def test_publication_active_inflation_and_inputs_remain_protected(self):
         self.assert_refused('src/data/inflation-monthly.js','publication')
@@ -1058,6 +1076,24 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
 
     def test_scpi_economic_acquisition_is_independent(self):
         self.python_graph(['collect_scpi.py'], ['src/data/automated-economic.json'])
+
+    def test_actor_acquisition_does_not_read_scpi_output(self):
+        # Actor imports four transport/text helpers, not SCPI refresh().
+        # A module-level graph overapproximates this import as a registry read.
+        actor = ast.parse((ROOT/'scripts/collect_presentation_actors.py').read_text())
+        imports = [n for n in ast.walk(actor) if isinstance(n, ast.ImportFrom) and n.module == 'collect_scpi']
+        self.assertEqual([[a.name for a in n.names] for n in imports], [['fetch', 'pdf_text', 'number', 'required']])
+        self.assertNotIn('automated-scpi.json', (ROOT/'scripts/collect_presentation_actors.py').read_text())
+        source = ast.parse((ROOT/'scripts/collect_scpi.py').read_text())
+        helpers = [n for n in source.body if isinstance(n, ast.FunctionDef) and n.name in {'fetch','pdf_text','number','required'}]
+        self.assertEqual(len(helpers), 4)
+        for function in helpers:
+            self.assertFalse(any(isinstance(n, ast.Name) and n.id in {'OUTPUT','refresh','main'} for n in ast.walk(function)), function.name)
+            self.assertFalse(any(isinstance(n, ast.Attribute) and n.attr in {'read_text','read_bytes'} for n in ast.walk(function)), function.name)
+
+    def test_publication_acquisition_does_not_read_macro_output(self):
+        self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
+                           'refresh_anniversary_indices.py'], ['src/data/automated-economic.json'])
 
     def test_scpi_acquisition_does_not_read_nonbond_outputs(self):
         self.python_graph(['collect_scpi.py'], [
