@@ -375,6 +375,15 @@ def read_report(path, workflow, planned=None):
     report = json.loads(path.read_text())
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
+    if path.name == 'currency-collection-outcomes.json':
+        validate_currency_outcomes(report)
+        if workflow != report['workflow']:
+            raise ValueError('Currency outcomes belong to another workflow')
+        return {'successes': [], 'errors': [], '_jobOutcomes': report,
+                '_reportEvidence': {'file': path.name, 'schema': 'step-outcomes',
+                    'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                    'reportedAt': report['checkedAt'],
+                    'scope': {'runId': report['runId'], 'attempt': report['attempt']}}}
     plan_verified=False
     if planned is not None:
         from producer_report_contract import validate_contract,finish
@@ -467,7 +476,33 @@ def normalize_attempt_report(raw,run):
     if (scope.get('runId') is not None and str(scope['runId'])!=str(run['id'])
             or scope.get('attempt') is not None and str(scope['attempt'])!=str(run.get('run_attempt',1))):
         return report_error('report-contract:attempt','Le manifeste amont ne correspond pas à cette exécution/tentative ; aucun contrôle source individuel déduit.')
+    if '_jobOutcomes' in report:
+        receipt = report['_jobOutcomes']
+        validate_currency_outcomes(receipt)
+        evidence = report.get('_reportEvidence') or {}
+        checked = timestamp(receipt['checkedAt'])
+        if (receipt['runId'] != run['id'] or receipt['attempt'] != run.get('run_attempt', 1)
+                or receipt['workflow'] != run['path'].split('/')[-1]
+                or receipt['headSha'] != run.get('head_sha')
+                or not evidence.get('artifactId') or not re.fullmatch(r'[a-f0-9]{64}', evidence.get('sha256', ''))
+                or not timestamp(run.get('run_started_at')) or checked < timestamp(run['run_started_at'])
+                or not timestamp(run.get('updated_at')) or checked > timestamp(run['updated_at'])):
+            return report_error('report-contract:currency-outcomes', 'Reçu BCE/MSCI hors de cette tentative ; aucun résultat déduit.')
     return report
+
+
+def validate_currency_outcomes(receipt):
+    """Job outcomes are execution evidence, never field/source qualification."""
+    if (receipt.get('schemaVersion') != 1 or receipt.get('workflow') != 'collect-etf-pilot.yml'
+            or type(receipt.get('runId')) is not int or receipt['runId'] <= 0
+            or type(receipt.get('attempt')) is not int or receipt['attempt'] <= 0
+            or not re.fullmatch(r'[a-f0-9]{40}', receipt.get('headSha', ''))
+            or not timestamp(receipt.get('checkedAt'))
+            or timestamp(receipt['checkedAt']) > dt.datetime.now(dt.timezone.utc)
+            or not isinstance(receipt.get('steps'), dict)
+            or set(receipt['steps']) != {'fx', 'performance_currency'}
+            or any(v not in ('success', 'failure', 'cancelled', 'skipped') for v in receipt['steps'].values())):
+        raise ValueError('Invalid BCE/MSCI step outcome receipt')
 
 
 def technical_proof(identifier):
@@ -830,6 +865,21 @@ def update_status(state, run, jobs, reports=None):
         for kind in ('successes', 'errors'):
             report[kind] = [{**r, 'id': bind_attempt(r['id'], run)} for r in report.get(kind, [])]
     reports = normalized
+    # REST exposes conclusion=success after continue-on-error. Restore only
+    # the independently archived outcome from the exact run/attempt/commit.
+    currency_outcomes = [r['_jobOutcomes'] for r in reports if '_jobOutcomes' in r]
+    if len(currency_outcomes) > 1:
+        reports.append(report_error('report-contract:currency-outcomes', 'Plusieurs reçus BCE/MSCI ; résultats non qualifiés.'))
+        currency_outcomes = []
+    jobs = copy.deepcopy(jobs)
+    if currency_outcomes:
+        for job in jobs:
+            if job.get('name') != REGISTRY[workflow]['collectionJob']:
+                continue
+            for step in job.get('steps', []):
+                for identifier, outcome in currency_outcomes[0]['steps'].items():
+                    if step.get('name') == 'Collect observations: ' + identifier and step.get('conclusion') == 'success':
+                        step['conclusion'] = outcome
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
     # A completed-run API response can temporarily omit every job. Re-read the
@@ -842,7 +892,8 @@ def update_status(state, run, jobs, reports=None):
     first_recording_scope = ('recordedObservationIds' not in previous and any(
         r.get('_reportEvidence', {}).get('schema') == 'shares'
         and r.get('_reportEvidence', {}).get('scopePlanVerified') for r in reports))
-    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence and not first_recording_scope:
+    first_currency_outcomes = bool(currency_outcomes) and not previous.get('currencyStepOutcomes')
+    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence and not first_recording_scope and not first_currency_outcomes:
         return merge_proof_retry(result,run,reports)
     if stamp < old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
@@ -1034,6 +1085,7 @@ def update_status(state, run, jobs, reports=None):
         'lastPublicationSuccessAt': published_at if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures,'retiredDataFailures':retired_failures,
         'stepResults': {j['name']+'\n'+step['name']:step.get('conclusion') for j in jobs for step in (j.get('steps')or[])},
+        'currencyStepOutcomes': currency_outcomes[0] if currency_outcomes else None,
         'publicationEvidence': {'runUrl':run['html_url'],'checkedAt':published_at,'kind':'explicit-public-artifact-check'} if publication_status=='success' else None,
         'attemptedDataIds':sorted({r['id']for p in reports for r in p.get('successes',[])if not technical_proof(r['id'])}),
         'validatedDataIds':sorted({r['id']for p in reports for r in p.get('successes',[])if not technical_proof(r['id'])

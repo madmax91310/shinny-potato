@@ -52,6 +52,30 @@ class WorkflowContracts(unittest.TestCase):
             incidents=evaluate_monitoring(state,context,{'collect-etf-pilot.yml':config},run['updated_at'],{'errors':[]})['active']
             self.assertIn(failed_step,incidents['workflow:collect-etf-pilot.yml']['cause'])
 
+    def test_currency_outcome_receipt_is_archived_with_exact_github_outcomes(self):
+        import os
+        import subprocess
+        import tempfile
+        workflow=(ROOT/'.github/workflows/collect-etf-pilot.yml').read_text()
+        step=next(s for s in workflow.split('      - ')if s.startswith('name: Record currency collection outcomes\n'))
+        self.assertIn('if: always()',step)
+        self.assertIn('ECB_OUTCOME: ${{ steps.fx.outcome }}',step)
+        self.assertIn('MSCI_OUTCOME: ${{ steps.performance_currency.outcome }}',step)
+        self.assertIn('${{ runner.temp }}/currency-collection-outcomes.json',workflow)
+        code=step.split("python - <<'PY'\n",1)[1].rsplit('          PY',1)[0]
+        import textwrap
+        from publish_automation_status import read_report,REPORT_CONTRACTS
+        self.assertTrue(any(r['name']=='currency-collection-outcomes.json' and r['steps']==['Record currency collection outcomes']
+                            for r in REPORT_CONTRACTS['collect-etf-pilot.yml']['reports']))
+        with tempfile.TemporaryDirectory()as directory:
+            env={**os.environ,'RUNNER_TEMP':directory,'GITHUB_RUN_ID':'123','GITHUB_RUN_ATTEMPT':'2','GITHUB_SHA':'a'*40,
+                 'ECB_OUTCOME':'failure','MSCI_OUTCOME':'success'}
+            subprocess.run(['python','-c',textwrap.dedent(code)],env=env,check=True)
+            report=read_report(Path(directory)/'currency-collection-outcomes.json','collect-etf-pilot.yml')
+            self.assertEqual(report['_jobOutcomes']['steps'],{'fx':'failure','performance_currency':'success'})
+            self.assertEqual(report['_jobOutcomes']['attempt'],2)
+            self.assertEqual(report['successes'],[],'Execution receipt cannot qualify financial observations')
+
 
     def test_python_installations_use_pinned_installer_and_shared_constraints(self):
         for path in (ROOT/'.github/workflows').glob('*.yml'):
