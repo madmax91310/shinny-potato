@@ -78,7 +78,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+          ref: ${{ (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && github.ref || 'master' }}
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'

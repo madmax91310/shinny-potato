@@ -333,7 +333,7 @@ def refresh(current, now, collect=collect_one, selected=None, date_fetch=xndx_fr
             # Total Return USD. Every other convention change still fails closed.
             if xndx_source_upgrade(id_,old,record):convention_changed=False
             if old and (record['asOf'] < old['asOf'] or convention_changed):
-                errors.append({'id':'anniversary-'+id_,'error':'Régression de date ou changement de convention'});continue
+                errors.append({'id':'anniversary-'+id_,'error':'Régression de date ou changement de convention', 'rejectedObservation':record, 'retainedObservation':old});continue
             merged[id_]={**record,'checkedAt':now.isoformat()}
             successes.append({'id':'anniversary-'+id_,'checkedAt':now.isoformat(),'asOf':record['asOf'],'sourceUrl':record.get('sourceUrl'),'responseSha256':record.get('sha256'),
                 **({'qualificationPath':record['observationPath'],'dateEvidence':record['previousCloseDateEvidence']}if record.get('observationPath')=='supported-ranges-previous-close-with-independent-date'else{})})
