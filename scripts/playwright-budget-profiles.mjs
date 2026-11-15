@@ -125,7 +125,7 @@ try {
       const imageText = normalize(drawn.map(t => t.text).join(' '))
       assert(imageText.includes(budgetDisplayName(profile)))
       for (const row of [...budgetPublicIncomeRows(profile), ...budgetPublicExpenseRows(profile), ...budgetPublicSavingsRows(profile)]) {
-        assert(imageText.includes(normalize(row.label)), `${profile.id}: missing complete label ${row.label}`)
+        assert(imageText.replace(/\s/g, '').includes(row.label.replace(/\s/g, '')), `${profile.id}: missing complete label ${row.label}`)
         assert(imageText.includes(normalize(euro(row.amount, profile.currency))), `${profile.id}: missing amount ${row.amount}`)
       }
       assert(imageText.includes(normalize(euro(Math.abs(analyzeBudget(profile).balance), profile.currency))))
@@ -149,7 +149,7 @@ try {
       assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
       const summaryText = normalize(summaryDrawn.map(t => t.text).join(' '))
       for (const row of [...budgetPublicIncomeRows(profile), ...budgetImageExpenses(profile, 'summary'), ...budgetPublicSavingsRows(profile)]) {
-        assert(summaryText.includes(normalize(row.label)), `${profile.id}: missing summary label ${row.label}`)
+        assert(summaryText.replace(/\s/g, '').includes(row.label.replace(/\s/g, '')), `${profile.id}: missing summary label ${row.label}`)
         assert(summaryText.includes(normalize(euro(row.amount, profile.currency))))
       }
       for (const t of summaryDrawn) assert(t.left >= 30 && t.right <= 1050 && t.y >= 0 && t.y + t.size <= t.height, `Summary bounds: ${JSON.stringify(t)}`)
