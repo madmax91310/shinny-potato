@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs'
 import {references} from '../src/pages/dca-profiles/engine.js'
 import {portfolioAnalytics} from '../src/pages/dca-profiles/analytics.js'
 import {projectDcaHoldings} from './lib/dca-holdings-projection.mjs'
-const ids=['IE00B3F81G20','IE00BKM4GZ66'],now=new Date('2026-11-12T15:00:00Z')
+const ids=['IE00B3F81G20','IE00BKM4GZ66'],now=new Date(Math.max(Date.parse('2026-11-12'),...Object.values(references).flatMap(r=>[r.countries?.asOf,r.sectors?.asOf]).filter(Boolean).map(Date.parse)))
 const records=JSON.parse(execFileSync(process.env.PYTHON||'python',['-c',"import sys,json;sys.path.insert(0,'scripts');from test_dca_qualified_heg_identity import parsed,SHARES;print(json.dumps({i:parsed(i)for i in SHARES}))"],{encoding:'utf8'}))
 const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))
 const books=Object.assign({},...[...new Set(Object.values(manifest))].map(n=>JSON.parse(readFileSync(`src/pages/dca-profiles/holdings-${n}.json`))))
