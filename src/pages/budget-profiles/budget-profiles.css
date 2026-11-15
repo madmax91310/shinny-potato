@@ -28,3 +28,8 @@
 .budget-audit-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
 .budget-audit-table th, .budget-audit-table td { padding: .35rem .2rem; text-align: left; overflow-wrap: anywhere; }
 .budget-audit-table td { text-align: right; font-variant-numeric: tabular-nums; }
+
+.budget-profiles-scope .budget-image-pages{display:flex;flex-wrap:wrap;gap:8px;margin-block:12px}
+.budget-profiles-scope .budget-image-pages button{min-height:44px}
+.budget-profiles-scope .budget-image-pages [aria-pressed=true]{outline:2px solid #267863;outline-offset:2px}
+.budget-profiles-scope .budget-image-count{font-weight:600}
