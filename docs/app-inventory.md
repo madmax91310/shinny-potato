@@ -6,6 +6,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Outil | Route |
 |---|---|
+| Portefeuilles publics | /portefeuilles-publics |
 | Où va l’argent des ETF ? | /flux-etf |
 | Comparateur d’indices | /comparateur-indices |
 | Idées de publications | /idees-classements |
