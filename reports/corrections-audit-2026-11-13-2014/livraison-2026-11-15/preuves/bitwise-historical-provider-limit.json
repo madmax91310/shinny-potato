@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-11-15T13:13:27.160517+00:00",
+  "isin": "DE000A27Z304",
+  "symbol": "BTCE.DE",
+  "mic": "XETR",
+  "currency": "EUR",
+  "source": "Yahoo chart, exact configured listing; local read-only diagnosis",
+  "requestedHistoricalRange": [
+    "2020-07-01",
+    "2026-11-01"
+  ],
+  "dailyAndMonthlyResponse": "HTTP 400: Data does not exist for requested dates",
+  "recentResponse": {
+    "firstTradeDate": "2026-11-05T08:00:00+00:00",
+    "observationCount": 7,
+    "bounds": [
+      "2026-11-05T08:00:00+00:00",
+      "2026-11-13T08:00:00+00:00"
+    ]
+  },
+  "maxRangeLimitation": "Provider changes requested 1d granularity to 1h and still only returns November 2026; not admitted as monthly history",
+  "result": "Provider historical coverage missing, not an absence of usable Bitwise Paris or recent Xetra quotations",
+  "remainingPiece": "Qualified exact historical Xetra series or official continuity/corporate-action evidence allowing a distinct qualified continuation; December 2020 EUR bound remains unavailable for the refused 2021 window",
+  "noFinancialDataChanged": true,
+  "sha256": {
+    "max-request.json": "f511016123c649696f0db484a539f5350157fad2639bdb91982695b3f36e0625",
+    "max-range.json": "118e9130e556c2c97a99b1820574922caedd52975a5be615178d755dafb10c2f",
+    "1mo-range.json": "ea617a05580d09ae3368e09d82214d80999e46c3a0213a18b7790fadca3f65e1",
+    "1mo-request.json": "b72be79415cfcaf08ad0ca816e75e02cb875788e6a379e5d4fe75f87e3b19ae7",
+    "1mo.json": "8bf6b13958dd7da421798e27cb3505ff32b7f4e37fde1b9e1ce5bd9bae441025",
+    "1d-request.json": "b2c41df3b58bf74ea6a039e9ea993ad79de574c0dee34185526526c897e27f88",
+    "1d.json": "8bf6b13958dd7da421798e27cb3505ff32b7f4e37fde1b9e1ce5bd9bae441025"
+  }
+}

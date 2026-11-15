@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-11-15T13:28:02.485039+00:00",
+  "run": 43715089091,
+  "event": "push",
+  "artifact": 14163665351,
+  "commit": "a349ae530cd39cc3ae674c324d83804094c17dfb",
+  "results": [
+    {
+      "id": "GB00BLD4ZL17",
+      "fields": [
+        "performance",
+        "aum",
+        "characteristics"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "GB00BLD4ZM24",
+      "fields": [
+        "performance",
+        "aum",
+        "characteristics"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "IE0003UVYC20",
+      "fields": [
+        "performance"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "stoxx600",
+      "fields": [
+        "facts.constituents",
+        "facts.countries",
+        "facts.sectors",
+        "facts.holdings",
+        "facts.asOf",
+        "facts.source"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    },
+    {
+      "id": "topix",
+      "fields": [
+        "facts.constituents",
+        "facts.countries",
+        "facts.sectors",
+        "facts.holdings",
+        "facts.asOf",
+        "facts.source"
+      ],
+      "recordedValuesEqualValidatedObservations": true
+    }
+  ],
+  "limitation": "Exact storage proof; not publication or cron proof. Primary errors remain recorded."
+}

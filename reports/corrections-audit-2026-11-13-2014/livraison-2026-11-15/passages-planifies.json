@@ -1,0 +1,70 @@
+[
+  {
+    "producer": "monthly",
+    "run": 43601518941,
+    "event": "schedule",
+    "createdAt": "2026-11-14T13:47:24Z",
+    "acquisition": "partial",
+    "recording": "succeeded",
+    "publication": "succeeded",
+    "remainingFailure": "etfDE000A27Z304: HTTP 400 on old listing; Bitwise Paris is a distinct operational route",
+    "postCurrentCorrectionCron": false,
+    "nextNominalUTC": "2026-11-16T06:15:00Z; targeted retry 06:45"
+  },
+  {
+    "producer": "ETF",
+    "run": 43602910189,
+    "event": "schedule",
+    "createdAt": "2026-11-14T14:04:07Z",
+    "acquisition": "partial",
+    "recording": "refused: acquisition/validation guards changed concurrently",
+    "publication": "not attempted",
+    "remainingFailure": "Required recollection from the new master; refusal retained, not an exception to remove",
+    "postCurrentCorrectionCron": false,
+    "nextNominalUTC": "2026-11-16T07:10:00Z"
+  },
+  {
+    "producer": "exposure-expansion",
+    "run": 43605378610,
+    "event": "schedule",
+    "createdAt": "2026-11-14T14:32:20Z",
+    "acquisition": "succeeded",
+    "recording": "succeeded",
+    "publication": "succeeded",
+    "postCurrentCorrectionCron": false,
+    "nextNominalUTC": "2026-11-16T07:45:00Z"
+  },
+  {
+    "producer": "13F",
+    "run": 43640873655,
+    "event": "workflow_dispatch",
+    "createdAt": "2026-11-14T21:04:49Z",
+    "acquisition": "28 validated manager results",
+    "recording": "succeeded",
+    "publication": "28/28 served files equal recorded dataSha; four updated portfolios tested in browser",
+    "postCurrentCorrectionCron": false,
+    "nextNominalUTC": "2026-11-16T12:25:00Z; delayed 15 November schedule may still appear",
+    "lastObservedSchedule": {
+      "run": 43625726669,
+      "createdAt": "2026-11-14T18:17:02Z",
+      "result": "failed recording",
+      "exactCause": "Concurrent src/data/anniversary-levels.json changed; current guard already explicitly qualifies this exact independent path, preserving combined 13F audit",
+      "successAfterwards": "Manual recovery 43640873655, 28 public snapshots and four browser PNG proofs; not a scheduled success"
+    },
+    "nominalDueNotObserved": "2026-11-15T12:25:00Z"
+  },
+  {
+    "producer": "LifeStrategy",
+    "run": 43716281467,
+    "event": "schedule",
+    "createdAt": "2026-11-15T12:55:14Z",
+    "acquisition": "4 parent records; one selected underlier IE00BK5BQW10, dated 2026-10-31",
+    "qualification": "20/40 derived successfully; 60/80 rejected because parent 2026-09-30 and underlier 2026-10-31 differ",
+    "recording": "succeeded:69f7e978",
+    "publication": "Observed canonical holdings and LifeStrategy registry hashes match public manifest at data 84597a3943d8516152ceb140120b4de44b16e4c5",
+    "consumption": "Four LifeStrategy shares: partial company overlap and PNG verified on desktop/mobile; preserved 60/80 September books, no whole-fund overlap",
+    "postCurrentCorrectionCron": true,
+    "proof": "lifestrategy-cron/recorded-scope.json",
+    "overallWorkflowResult": "failure: two derived look-through dates incompatible; successful parent/underlier observations recorded and published"
+  }
+]

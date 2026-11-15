@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-11-15T13:37:20.189976+00:00",
+  "producers": [
+    {
+      "workflow": "update-market-monthly.yml",
+      "runs": [
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-11-14T13:47:24Z",
+          "databaseId": 43601518941,
+          "event": "schedule",
+          "headSha": "3694014fa6480bb969f272c38bd5570014289346",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-11-13T14:54:03Z",
+          "databaseId": 43447157146,
+          "event": "schedule",
+          "headSha": "1bcf28156ec7214c7732a12e590ee28af16e9a6e",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "runs": [
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-11-14T14:04:07Z",
+          "databaseId": 43602910189,
+          "event": "schedule",
+          "headSha": "9173751d07ad6fae0f0254a3c1787fcecc373699",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-11-13T15:18:12Z",
+          "databaseId": 43451234453,
+          "event": "schedule",
+          "headSha": "a8e3696df1380060fea7cda9685ec53094e11cd1",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "runs": [
+        {
+          "conclusion": "success",
+          "createdAt": "2026-11-14T14:32:20Z",
+          "databaseId": 43605378610,
+          "event": "schedule",
+          "headSha": "0a7c05b946d4ffa3459394f0e2095761699adc16",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-11-13T15:41:52Z",
+          "databaseId": 43455198250,
+          "event": "schedule",
+          "headSha": "95606e98a8f9c3c0c179a4dc01688fd806c4d226",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "runs": [
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-11-14T18:17:02Z",
+          "databaseId": 43625726669,
+          "event": "schedule",
+          "headSha": "bfa517dc7ccfaf4b858eed9965397e373df28f5e",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-11-13T19:51:39Z",
+          "databaseId": 43496138701,
+          "event": "schedule",
+          "headSha": "5c90e1fd558ebceaff6b7a774e21adcc1089985a",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "workflow": "update-lifestrategy.yml",
+      "runs": [
+        {
+          "conclusion": "",
+          "createdAt": "2026-11-15T12:55:14Z",
+          "databaseId": 43716281467,
+          "event": "schedule",
+          "headSha": "dd9ce9cef86af7aabae70d0eba0c694b3a69ff06",
+          "status": "pending"
+        },
+        {
+          "conclusion": "success",
+          "createdAt": "2026-11-14T12:26:40Z",
+          "databaseId": 43594847235,
+          "event": "schedule",
+          "headSha": "edbeb02790175c5f3961f095951c50f29d779f98",
+          "status": "completed"
+        }
+      ]
+    }
+  ]
+}

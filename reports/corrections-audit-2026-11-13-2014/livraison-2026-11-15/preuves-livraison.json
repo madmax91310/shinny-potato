@@ -1,0 +1,109 @@
+{
+  "finalPrMerged": true,
+  "publicConsumersVerified": true,
+  "publicManifestVerified": true,
+  "finalPr": 1313,
+  "finalHead": "1925dcf6",
+  "coreValidationRun": 43716632289,
+  "targetedPythonTests": {
+    "count": 265,
+    "result": "passed",
+    "proof": "integrated-final-tests.log"
+  },
+  "finalLocalBuild": {
+    "commit": "69f7e978",
+    "result": "passed",
+    "proof": "final-master-69f7e978-build.log"
+  },
+  "browserTestRepair": {
+    "cause": "Hidden exposure and visible DCA save-name fields share accessible label; test must select visible field and require exactly one",
+    "reproducedBefore": true,
+    "afterPassedWidths": [
+      1440,
+      390,
+      320
+    ],
+    "commit": "32bbb32a",
+    "alsoIntegratedByConcurrentPr": 1306,
+    "proof": "subscriber-hidden-label-after.log"
+  },
+  "sourceRuns": {
+    "ETF": 43715089091,
+    "exposure": 43699097548,
+    "monthlyBoundedRecovery": 43717873447,
+    "LifeStrategySchedule": 43716281467,
+    "bitwiseTargetedManual": 43703905979,
+    "annualFXPR": 43711119994
+  },
+  "publicationHoldback": {
+    "registry": "src/data/automated-etf.json",
+    "reason": "Fallback old code does not know extractionMethod and identityNavAsOf",
+    "proof": "fallback-etf-holdback-proof.json",
+    "resolved": true,
+    "resolution": "Validated current code now publishes the exact canonical ETF registry; no fallback compatibility guard weakened"
+  },
+  "historicalWindowGroup": {
+    "denominator": 79,
+    "qualifiedPreserved": 73,
+    "refusedPreserved": 6,
+    "oldDivergences": 77,
+    "residuals": 2
+  },
+  "scopeLimits": "No complete automation claim; source refusals and future cron observations remain distinct.",
+  "mergedCorrectionPRs": [
+    1299,
+    1303,
+    1307,
+    1312,
+    1313
+  ],
+  "sourceStorageProofs": [
+    "etf-postmerge-recorded-observations-proof.json",
+    "monthly-recovery-recorded-proof.json",
+    "lifestrategy-cron/recorded-scope.json"
+  ],
+  "productionValidation": {
+    "run": 43716632289,
+    "requestedCode": "1925dcf6",
+    "result": "success including deployment",
+    "PR1313Run": 43716102647,
+    "PR1313Result": "cancelled after concurrent merge, not counted as passed",
+    "servedCode": "bc4b7a73959b4b2b449c2d76329e81431ba8d81e",
+    "proof": "final-production-ci-result.json"
+  },
+  "budgetPngRecipe": {
+    "before": "5 second implicit enabled check expired while rendering; isolated run measured ready PNG at 7112 ms",
+    "after": "explicit aria-busy=false rendering readiness, bounded 30 seconds, original enabled/PNG/text assertions retained",
+    "localProfilesPassed": 38,
+    "proof": "budget-readiness-after.log.txt"
+  },
+  "verifiedBuild": {
+    "sha": "bc4b7a73959b4b2b449c2d76329e81431ba8d81e",
+    "dataSha": "84597a3943d8516152ceb140120b4de44b16e4c5",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-15T13:47:33.657Z"
+  },
+  "publicHashChecks": {
+    "publicFiles": 47,
+    "canonicalRegistries": 7,
+    "monthlyProducerReceiptFiles": 9,
+    "proof": "final-public-bytes-verified.json"
+  },
+  "publicBrowserChecks": {
+    "fiveSheetsDesktopMobile": true,
+    "fourLifeStrategySharesTwoPairsDesktopMobile": true,
+    "partialOverlapPreserved": true,
+    "realPngDownloads": true,
+    "proofs": [
+      "public-repairs-final.log",
+      "public-lifestrategy/proof.json"
+    ]
+  },
+  "sourceRunAggregateResults": {
+    "ETF": "failure: remaining source branches reported; scoped repaired fields validated, recorded and published",
+    "LifeStrategy": "failure: 60/80 incompatible dates; four parents, one underlier, 20/40 derivations recorded and published",
+    "monthlyRecovery": "failure: one selected old Xetra source HTTP 400; 28 exact listing identities recorded and published"
+  },
+  "publicCode": "bc4b7a73959b4b2b449c2d76329e81431ba8d81e",
+  "publicData": "84597a3943d8516152ceb140120b4de44b16e4c5"
+}

@@ -1,0 +1,343 @@
+{
+  "commit": "69f7e978",
+  "records": [
+    {
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceUrls": [
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+        "https://www.vanguard.co.uk/gpx/graphql"
+      ],
+      "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+      "validatedAt": "2026-11-15T13:15:48.802455+00:00",
+      "basis": "fund",
+      "complete": true,
+      "scope": "equity-lookthrough",
+      "equitySleeveWeightPct": 20.36421,
+      "excludedWeightPctByType": {
+        "Bonds": 79.61568,
+        "Cash and settlement positions": 0.02011,
+        "Underlying non-equity positions": 0.09788559006700126
+      },
+      "parentPortfolioEvidence": {
+        "subjectIsin": "IE00BMVB5K07",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-15T13:15:46.377385+00:00",
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "0088874038d818dbc548b6bf9d9c49f8e6500d2f9d68af4af59163bde3b339cb",
+        "sourceRowCount": 13,
+        "publishedNetWeightPct": 100.0,
+        "weightBasis": "original-fund-nav-percentage",
+        "normalizationApplied": false
+      },
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.43583,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 0.80717,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 0.12121,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        }
+      ],
+      "sha256": "9881ef9bf0aea997244194c89612e558936754d86a815dc57247b3daf011d728",
+      "method": "Equity look-through through exact held Vanguard share ISINs at the same reporting date, using original precise parent fund-NAV positions; bonds, signed cash/settlement and underlying non-equity positions retained outside company shares; no renormalisation, not whole-fund company coverage",
+      "sumWeights": 20.266324409933,
+      "rowsCount": 4235,
+      "isin": "IE00BMVB5K07"
+    },
+    {
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceUrls": [
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+        "https://www.vanguard.co.uk/gpx/graphql"
+      ],
+      "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+      "validatedAt": "2026-11-15T13:15:48.802455+00:00",
+      "basis": "fund",
+      "complete": true,
+      "scope": "equity-lookthrough",
+      "equitySleeveWeightPct": 40.22632,
+      "excludedWeightPctByType": {
+        "Bonds": 59.715419999999995,
+        "Cash and settlement positions": 0.05826,
+        "Underlying non-equity positions": 0.3165604896019971
+      },
+      "parentPortfolioEvidence": {
+        "subjectIsin": "IE00BMVB5M21",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-15T13:15:46.377385+00:00",
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "379d64209e7dff81a07353c633393076c34f8899a9fe86b93527a256f9b12f93",
+        "sourceRowCount": 13,
+        "publishedNetWeightPct": 100.0,
+        "weightBasis": "original-fund-nav-percentage",
+        "normalizationApplied": false
+      },
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.45166,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 18.70258,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 2.07208,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        }
+      ],
+      "sha256": "515466723350dfeda36c5a2a43617243305b7df984ff2b6b95820c1b0fe97311",
+      "method": "Equity look-through through exact held Vanguard share ISINs at the same reporting date, using original precise parent fund-NAV positions; bonds, signed cash/settlement and underlying non-equity positions retained outside company shares; no renormalisation, not whole-fund company coverage",
+      "sumWeights": 39.909759510398004,
+      "rowsCount": 4235,
+      "isin": "IE00BMVB5M21"
+    },
+    {
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceUrls": [
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+        "https://www.vanguard.co.uk/gpx/graphql"
+      ],
+      "checkedAt": "2026-11-14",
+      "validatedAt": "2026-11-14T14:51:25.690636+00:00",
+      "basis": "fund",
+      "complete": true,
+      "scope": "equity-lookthrough",
+      "equitySleeveWeightPct": 60.294520000000006,
+      "excludedWeightPctByType": {
+        "Bonds": 39.41996999999999,
+        "Cash and settlement positions": 0.28551,
+        "Underlying non-equity positions": 0.5207316344670048
+      },
+      "parentPortfolioEvidence": {
+        "subjectIsin": "IE00BMVB5P51",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-14T12:34:13.242785+00:00",
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "b5cb96187e7789b3b9112cb2ee489588ecdb21ca279e081a99369574a0b9ade3",
+        "sourceRowCount": 21,
+        "publishedNetWeightPct": 100.0,
+        "weightBasis": "original-fund-nav-percentage",
+        "normalizationApplied": false
+      },
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.22193,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 19.21787,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BQW10",
+          "weightPct": 12.70134,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "eb81e8357ce271981f7cc699b82d1ab256160ed6242f588846552b066e004d35"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 4.18338,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        },
+        {
+          "isin": "IE00BK5BQX27",
+          "weightPct": 2.70728,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "6873df8a84b9798c22c68d940fe62705faaf44e67f80a05242090a024791c6ab"
+        },
+        {
+          "isin": "IE00BFMXYX26",
+          "weightPct": 1.24035,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "5eee2fcd6cbb2f2935ce72dc55ed45fdda764f0d85f2cef3e1053e2cae01cebf"
+        },
+        {
+          "isin": "IE00BK5BQZ41",
+          "weightPct": 1.02237,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "f1d2edfb3fda077274ad6770edb1728084d0a144b2d405b5d2c56274d9eb86dc"
+        }
+      ],
+      "sha256": "ea74d665131b450f6bcfe0d56e2b300ea6f25b051114aafe422a12a5c62df22f",
+      "method": "Equity look-through through exact held Vanguard share ISINs at the same reporting date, using original precise parent fund-NAV positions; bonds, signed cash/settlement and underlying non-equity positions retained outside company shares; no renormalisation, not whole-fund company coverage",
+      "sumWeights": 59.773788365533,
+      "rowsCount": 4237,
+      "isin": "IE00BMVB5P51"
+    },
+    {
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sourceUrls": [
+        "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+        "https://www.vanguard.co.uk/gpx/graphql"
+      ],
+      "checkedAt": "2026-11-14",
+      "validatedAt": "2026-11-14T14:51:25.690636+00:00",
+      "basis": "fund",
+      "complete": true,
+      "scope": "equity-lookthrough",
+      "equitySleeveWeightPct": 80.38038,
+      "excludedWeightPctByType": {
+        "Bonds": 19.56412,
+        "Cash and settlement positions": 0.05552,
+        "Underlying non-equity positions": 0.6811881009780052
+      },
+      "parentPortfolioEvidence": {
+        "subjectIsin": "IE00BMVB5R75",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-14T12:34:13.242785+00:00",
+        "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+        "sha256": "0e61fbe9b1d1503614ad8f9d49f1484573ebd496a6d0f2013c236725721c8211",
+        "sourceRowCount": 18,
+        "publishedNetWeightPct": 100.00002,
+        "weightBasis": "original-fund-nav-percentage",
+        "normalizationApplied": false
+      },
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQW10",
+          "weightPct": 19.37793,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "eb81e8357ce271981f7cc699b82d1ab256160ed6242f588846552b066e004d35"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 19.31337,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.30127,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BFMXXD54",
+          "weightPct": 6.40855,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "ecef499e33a380aeb6a4785163e428f717d2e49d1e6ae3522ac56bf34bec8079"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 6.11657,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        },
+        {
+          "isin": "IE00BK5BQX27",
+          "weightPct": 5.4291,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "6873df8a84b9798c22c68d940fe62705faaf44e67f80a05242090a024791c6ab"
+        },
+        {
+          "isin": "IE00BFMXYX26",
+          "weightPct": 2.43046,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "5eee2fcd6cbb2f2935ce72dc55ed45fdda764f0d85f2cef3e1053e2cae01cebf"
+        },
+        {
+          "isin": "IE00BK5BQZ41",
+          "weightPct": 2.00313,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "f1d2edfb3fda077274ad6770edb1728084d0a144b2d405b5d2c56274d9eb86dc"
+        }
+      ],
+      "sha256": "7097073455e65a3d7b56b80b8a0876dee3407fb1b6d17e08092479d24a23d34c",
+      "method": "Equity look-through through exact held Vanguard share ISINs at the same reporting date, using original precise parent fund-NAV positions; bonds, signed cash/settlement and underlying non-equity positions retained outside company shares; no renormalisation, not whole-fund company coverage",
+      "sumWeights": 79.699191899022,
+      "rowsCount": 4310,
+      "isin": "IE00BMVB5R75"
+    },
+    {
+      "asOf": "2026-10-31",
+      "basis": "fund",
+      "complete": true,
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "2c4abbfc66c42a1e8b33a745aab05a76d7f6a5e3272664bb8ab1f86590ceb018",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "unidentifiedSecurityCount": 0,
+      "unidentifiedWeightPct": 0,
+      "excludedWeightPctByType": {
+        "CRNY": 0.08020000000000001,
+        "DE.IND": 0.06088,
+        "CT.PORTSWAP": 0.0467,
+        "EQ.WRT": 0,
+        "EQ.RIGHT": 0
+      },
+      "pageCount": 1,
+      "checkedAt": "2026-11-15T13:15:42.634785+00:00",
+      "sumWeights": 99.81225,
+      "rowsCount": 570,
+      "isin": "IE00BK5BQW10"
+    }
+  ]
+}

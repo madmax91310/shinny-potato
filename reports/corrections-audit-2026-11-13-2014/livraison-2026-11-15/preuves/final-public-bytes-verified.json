@@ -1,0 +1,130 @@
+{
+  "checkedAt": "2026-11-15T13:48:25.647760+00:00",
+  "build": {
+    "sha": "bc4b7a73959b4b2b449c2d76329e81431ba8d81e",
+    "dataSha": "84597a3943d8516152ceb140120b4de44b16e4c5",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-15T13:47:33.657Z"
+  },
+  "verifiedPublicFiles": 47,
+  "publicPaths": [
+    "public/data/asset-automation.csv",
+    "public/data/asset-field-coverage.json",
+    "public/data/data-automation-inventory.json",
+    "public/data/data-automation-inventory.md",
+    "public/data/data-automation-summary.json",
+    "public/data/data-connections-backlog.csv",
+    "public/data/financial-reconciliation.json",
+    "public/data/holdings-discovery.json",
+    "public/data/investors/ackman.json",
+    "public/data/investors/archive/cathie-wood/2026-06-30.json",
+    "public/data/investors/archive/gayner/2026-06-30.json",
+    "public/data/investors/archive/icahn/2026-06-30.json",
+    "public/data/investors/archive/klarman/2026-06-30.json",
+    "public/data/investors/archive/pabrai/2026-06-30.json",
+    "public/data/investors/archive/renaissance/2026-06-30.json",
+    "public/data/investors/aschenbrenner.json",
+    "public/data/investors/baker-bros.json",
+    "public/data/investors/berkshire.json",
+    "public/data/investors/cathie-wood.json",
+    "public/data/investors/dorsey.json",
+    "public/data/investors/druckenmiller.json",
+    "public/data/investors/einhorn.json",
+    "public/data/investors/gates-trust.json",
+    "public/data/investors/gavin-baker.json",
+    "public/data/investors/gayner.json",
+    "public/data/investors/gerstner.json",
+    "public/data/investors/halvorsen.json",
+    "public/data/investors/hohn.json",
+    "public/data/investors/icahn.json",
+    "public/data/investors/klarman.json",
+    "public/data/investors/laffont.json",
+    "public/data/investors/li-lu.json",
+    "public/data/investors/loeb.json",
+    "public/data/investors/marks.json",
+    "public/data/investors/morfit.json",
+    "public/data/investors/pabrai.json",
+    "public/data/investors/renaissance.json",
+    "public/data/investors/review-metadata.json",
+    "public/data/investors/tepper.json",
+    "public/data/investors/terry-smith.json",
+    "public/data/investors/thiel.json",
+    "public/data/investors/vinall.json",
+    "public/data/investors/watsa.json",
+    "public/data/pea-automation.csv",
+    "public/data/pending-source-checks.json",
+    "public/data/shared-market-coverage.json",
+    "public/data/tweet-bank-catalog.json"
+  ],
+  "canonicalSourceHashes": {
+    "src/data/automated-etf.json": {
+      "expected": "8097228efe5a9cd435c1bf466771c2378ad81ecc",
+      "publishedManifest": "8097228efe5a9cd435c1bf466771c2378ad81ecc"
+    },
+    "src/data/automated-indices.json": {
+      "expected": "0184ec8764372c61fe32b15b1cdecf952e204b38",
+      "publishedManifest": "0184ec8764372c61fe32b15b1cdecf952e204b38"
+    },
+    "src/data/dca-complete-holdings.json": {
+      "expected": "310408e625815e10d5f2d301393d0c6739cf7d8d",
+      "publishedManifest": "310408e625815e10d5f2d301393d0c6739cf7d8d"
+    },
+    "src/data/lifestrategy.json": {
+      "expected": "f3a8575d39f7f6250c66fc397f3007b6d6ca52a5",
+      "publishedManifest": "f3a8575d39f7f6250c66fc397f3007b6d6ca52a5"
+    },
+    "src/data/qualified-listing-records.json": {
+      "expected": "d0b62a027f3744698db279de5a72a9dc4dee16ce",
+      "publishedManifest": "d0b62a027f3744698db279de5a72a9dc4dee16ce"
+    },
+    "src/data/shared-listing-identities.json": {
+      "expected": "f22c389c22da621eca076a4c37cc0a8a803da063",
+      "publishedManifest": "f22c389c22da621eca076a4c37cc0a8a803da063"
+    },
+    "src/data/exposure-etf-expansion-records.json": {
+      "expected": "560296935cb977a2a76b13fbadbe35c8562f4480",
+      "publishedManifest": "560296935cb977a2a76b13fbadbe35c8562f4480"
+    }
+  },
+  "limitation": "Checks published bytes against manifest and canonical source blobs; browser tests separately prove embedded numerical consumption.",
+  "canonicalMismatches": [],
+  "monthlyReceipt": {
+    "src/data/anniversary-levels.json": {
+      "recorded": "c622bfdc83b3f49cc4f4fa6f74b53e956677f725",
+      "manifest": "c622bfdc83b3f49cc4f4fa6f74b53e956677f725"
+    },
+    "src/data/auto-history-identities.json": {
+      "recorded": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "manifest": "2b72eec67c38ae74c34ac92956df4b517435f739"
+    },
+    "src/data/automated-etf-monthly.json": {
+      "recorded": "543cfdb41d2de876f61100817c0eab981635dde5",
+      "manifest": "543cfdb41d2de876f61100817c0eab981635dde5"
+    },
+    "src/data/automated-indices.json": {
+      "recorded": "0184ec8764372c61fe32b15b1cdecf952e204b38",
+      "manifest": "0184ec8764372c61fe32b15b1cdecf952e204b38"
+    },
+    "src/data/automated-monthly.json": {
+      "recorded": "474142b727712860179ae8a73b6b9ab6946b70a8",
+      "manifest": "474142b727712860179ae8a73b6b9ab6946b70a8"
+    },
+    "src/data/monthly-fx.json": {
+      "recorded": "3dc52f31d847a8905a93bd012358e14eac75131d",
+      "manifest": "3dc52f31d847a8905a93bd012358e14eac75131d"
+    },
+    "src/data/qualified-listing-records.json": {
+      "recorded": "d0b62a027f3744698db279de5a72a9dc4dee16ce",
+      "manifest": "d0b62a027f3744698db279de5a72a9dc4dee16ce"
+    },
+    "src/data/ranking-histories.json": {
+      "recorded": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "manifest": "9f27c08a760365c538c61e03caf0fe76def48837"
+    },
+    "src/data/shared-listing-identities.json": {
+      "recorded": "f22c389c22da621eca076a4c37cc0a8a803da063",
+      "manifest": "f22c389c22da621eca076a4c37cc0a8a803da063"
+    }
+  },
+  "monthlyReceiptCommit": "84597a3943d8516152ceb140120b4de44b16e4c5"
+}
