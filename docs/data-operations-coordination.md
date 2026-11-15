@@ -725,3 +725,5 @@ incident, identifiant, run ou tentative n’est retiré. Le producteur ne doit
 émettre ce format qu’après constat de la capacité du lecteur réellement publié.
 L’ancien fichier de capacités reste inchangé pour les anciens producteurs.
 Le prochain enregistrement ordinaire et son ingestion publique restent à prouver.
+
+Le décodeur du nouveau format est différé jusqu’à la présence de son marqueur ; les vérifications bornées UTF-8/gzip/SHA-256 sont communes avec le format historique. Les budgets de route et de chunk restent inchangés. Rejeu navigateur et écriture GitHub restent des preuves distinctes des égalités Python/Node.

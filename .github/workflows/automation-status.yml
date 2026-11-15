@@ -42,6 +42,8 @@ on:
       - "scripts/test_automation_status_storage.py"
       - "scripts/test-monitor-storage.mjs"
       - "src/lib/monitor-storage.js"
+      - "src/lib/monitor-scope-storage.js"
+      - "src/lib/checked-json.js"
       - "public/monitor-storage-capabilities.json"
       - "public/monitor-scope-storage-capabilities.json"
       - "scripts/fixtures/automation-reports/**"
@@ -68,6 +70,8 @@ on:
       - 'scripts/automation_status_storage.py'
       - 'scripts/automation_status_git.py'
       - 'src/lib/monitor-storage.js'
+      - 'src/lib/monitor-scope-storage.js'
+      - 'src/lib/checked-json.js'
       - 'public/monitor-storage-capabilities.json'
       - 'public/monitor-scope-storage-capabilities.json'
       - 'scripts/automation-report-contracts.json'
