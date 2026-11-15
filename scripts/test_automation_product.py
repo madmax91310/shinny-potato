@@ -215,6 +215,14 @@ class ProductContracts(unittest.TestCase):
                 self.assertEqual(artifact_reports('test/repo',workflow,[{'name':'setup','conclusion':'failure','steps':[]}],[],directory),[])
                 def download(*args):
                     for r in contract['reports']:
+                        if r['contract']=='step-outcomes-v1':
+                            # Synthetic execution receipt for the new contract;
+                            # no financial observation or supplier check is invented.
+                            payload={'schemaVersion':1,'workflow':workflow,'runId':100,'attempt':1,
+                                     'headSha':'a'*40,'checkedAt':NOW,
+                                     'steps':{'fx':'failure','performance_currency':'success'}}
+                            (Path(directory)/r['name']).write_text(json.dumps(payload))
+                            continue
                         fixtures=json.loads(Path('scripts/fixtures/automation-reports/real-producer-contracts.json').read_text())
                         fixture=next(f for f in fixtures if f['workflow']==workflow and f['file']==r['name'])
                         (Path(directory)/r['name']).write_text(json.dumps(fixture['input']))

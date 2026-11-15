@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
-import { CALENDAR_FX_YEARS as calendarYears, calendarRate } from '../src/data/calendar-fx.js'
+import { CALENDAR_FX_YEARS as calendarYears, calendarRate, yearEndReferenceDate, convertCalendarReturn } from '../src/data/calendar-fx.js'
+import annualFx from '../src/data/annual-fx.json' with { type: 'json' }
 import official from '../src/data/official-performance-currencies.json' with { type: 'json' }
 import engine from '../src/pages/tweet-midi/engines/performance.js'
 import { convertPerformanceEntries } from '../src/pages/tweet-midi/performanceCurrency.js'
@@ -10,6 +11,16 @@ const [eur] = engine.getPerformanceEntries({ ...item, currency: 'EUR' })
 const compound = rows => rows.reduce((n, row) => n * (1 + row.pct / 100), 1)
 // Year-end ECB rates as the engine reads them (December rows of the monthly series).
 const usdPerEur = year => calendarRate(year, 'USD')
+for (const [year, row] of Object.entries(annualFx.years)) {
+  assert.equal(yearEndReferenceDate(year), row.asOf, `Python/JS BCE boundary agrees for ${year}`)
+}
+for (const [year, expected] of [[1999,'1999-12-30'],[2001,'2001-12-28'],[2022,'2022-12-30'],[2023,'2023-12-29'],[2026,'2026-12-31']]) {
+  assert.equal(yearEndReferenceDate(year), expected)
+}
+const partialFx = {months:{'2025-12':{asOf:'2025-12-31',rates:{EUR:1,USD:1.1}},'2026-12':{asOf:'2026-12-30',rates:{EUR:1,USD:1.2}}}}
+assert.equal(convertCalendarReturn(10,2026,'USD','EUR',partialFx),null)
+partialFx.months['2026-12'].asOf='2026-12-31'
+assert(Number.isFinite(convertCalendarReturn(10,2026,'USD','EUR',partialFx)))
 // Expectations follow the collected data: the last complete year moves every January and
 // the official EUR series is used only once it covers the whole displayed period.
 const years = native.returns.map(row => row.year)
@@ -42,6 +53,12 @@ const fallbackLast = fallbackNative.returns.at(-1).year
 assert.ok(Math.abs(compound(fallback.returns) - compound(fallbackNative.returns) * usdPerEur(2015) / usdPerEur(fallbackLast)) < 1e-12)
 const roundtrip = convertPerformanceEntries([fallback], 'USD')[0]
 assert.ok(Math.abs(compound(roundtrip.returns) - compound(fallbackNative.returns)) < 1e-12)
+const finalFixing = calendarYears[fallbackLast].asOf
+try {
+  calendarYears[fallbackLast].asOf = `${fallbackLast}-12-01`
+  assert.throws(() => engine.getPerformanceEntries({ assetId: 'sp500', year: 2016, currency: 'EUR' }), /change incomplet/)
+  assert.deepEqual(engine.getPerformanceEntries({assetId:'sp500',year:2016})[0],fallbackNative)
+} finally { calendarYears[fallbackLast].asOf=finalFixing }
 const tweet = engine.buildPerformanceDepuisText({ ...item, currency: 'EUR' })
 assert.ok(tweet.includes(`de début 2016 à fin ${LAST}`), tweet)
 assert.match(tweet, /Gross Return · EUR · dividendes bruts réinvestis/)

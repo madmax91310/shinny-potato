@@ -320,6 +320,24 @@ jobs:
         id: performance_currency
         continue-on-error: true
         run: python scripts/collect_performance_currency.py --apply
+      - name: Record currency collection outcomes
+        if: always()
+        env:
+          ECB_OUTCOME: ${{ steps.fx.outcome }}
+          MSCI_OUTCOME: ${{ steps.performance_currency.outcome }}
+        run: |
+          python - <<'PY'
+          import datetime, json, os, pathlib
+          report = {
+              'schemaVersion': 1, 'workflow': 'collect-etf-pilot.yml',
+              'runId': int(os.environ['GITHUB_RUN_ID']),
+              'attempt': int(os.environ['GITHUB_RUN_ATTEMPT']),
+              'headSha': os.environ['GITHUB_SHA'],
+              'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'steps': {'fx': os.environ['ECB_OUTCOME'], 'performance_currency': os.environ['MSCI_OUTCOME']},
+          }
+          pathlib.Path(os.environ['RUNNER_TEMP'], 'currency-collection-outcomes.json').write_text(json.dumps(report))
+          PY
       - name: "Collect observations: indices"
         id: indices
         continue-on-error: true
@@ -339,6 +357,7 @@ jobs:
             ${{ runner.temp }}/additional-observation.json
             ${{ runner.temp }}/presentation-performance.json
             ${{ runner.temp }}/index-observation.json
+            ${{ runner.temp }}/currency-collection-outcomes.json
             ${{ runner.temp }}/**/*.contract-plan.json
           if-no-files-found: ignore
           retention-days: 35

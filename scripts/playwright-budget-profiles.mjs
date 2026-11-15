@@ -170,7 +170,7 @@ try {
     await publication.click()
     await page.getByRole('button', { name: 'Confirmer la publication', exact: true }).click()
     await expect(page.getByText('Publication déclarée enregistrée.', { exact: true })).toBeVisible()
-    await expect(picker.locator(`[data-value="${lastId}"]`)).toContainText('publié')
+    await expect(picker.locator(`[data-value="${lastId}"]`)).toContainText('Publié le')
     assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).used, WORKSPACE_KEY), [])
     await page.reload(); await expect(publication).toBeChecked()
     await picker.locator(`[data-value="${BUDGET_PROFILES[0].id}"]`).click()
@@ -180,7 +180,8 @@ try {
     await page.getByLabel('Masquer les profils publiés', { exact: true }).check()
     await expect(picker.locator(`[data-value="${lastId}"]`)).toHaveCount(0)
     await expect(publication).toBeChecked() // The opened profile stays available to unmark.
-    await publication.uncheck()
+    await publication.click()
+    await expect(publication).not.toBeChecked()
     await expect(picker.locator(`[data-value="${lastId}"]`)).toHaveCount(1)
     await page.reload(); await expect(publication).not.toBeChecked()
     await page.getByRole('button', { name: 'Marquer utilisé', exact: true }).click()
