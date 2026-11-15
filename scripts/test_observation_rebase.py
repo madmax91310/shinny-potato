@@ -1042,5 +1042,15 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
                            'refresh_anniversary_indices.py'], [ACTOR_OUTPUT])
 
+    def test_publication_acquisition_does_not_read_the_qualified_dca_views(self):
+        self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
+                           'refresh_anniversary_indices.py'], ['src/pages/dca-profiles/'], match_names=False)
+
+    def test_scpi_acquisition_does_not_read_nonbond_outputs(self):
+        self.python_graph(['collect_scpi.py'], [
+            'scripts/source-snapshots/non-bond-monthly-active.json',
+            'src/data/non-bond-etf-records.json', 'src/data/non-bond-levels.json',
+            'src/data/non-bond-monthly-records.json', 'src/data/non-bond-qualified-records.json'])
+
 if __name__ == '__main__':
     unittest.main()
