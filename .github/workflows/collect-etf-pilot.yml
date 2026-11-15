@@ -262,6 +262,7 @@ jobs:
       - run: node scripts/test-presentation-etf.mjs
       - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
       - run: python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+      - run: python -m unittest discover -s scripts -p 'test_abtc_secondary_origin.py'
       - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
       - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
