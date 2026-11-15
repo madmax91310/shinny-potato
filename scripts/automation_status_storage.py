@@ -232,7 +232,7 @@ def pack_proof_checks(state):
 def decode_status(state):
     """Restore the bounded wire envelope; legacy reports remain unchanged."""
     if not isinstance(state, dict) or 'monitorStorage' not in state:
-        return expand_proof_checks(state)
+        return expand_proof_checks(expand_scope_archives(state))
     try:
         if (set(state) != {'schemaVersion', 'monitorStorage', 'decodedBytes', 'sha256', 'data'}
                 or state['schemaVersion'] != 2 or state['monitorStorage'] != STATUS_TRANSPORT
@@ -249,7 +249,7 @@ def decode_status(state):
         restored = json.loads(raw.decode('utf-8'))
         if not isinstance(restored, dict) or restored.get('schemaVersion') != 1 or 'monitorStorage' in restored:
             raise ValueError('Invalid or nested monitor state')
-        return expand_proof_checks(restored)
+        return expand_proof_checks(expand_scope_archives(restored))
     except (KeyError, TypeError, UnicodeError, zlib.error, ValueError) as error:
         raise ValueError('Transport du moniteur invalide ; aucune preuve réinitialisée') from error
 
@@ -283,3 +283,80 @@ def encode_status(state, compressed=False):
                     'data': base64.b64encode(gzip.compress(body, compresslevel=6, mtime=0)).decode()}
         body = (json.dumps(envelope, separators=(',', ':')) + '\n').encode()
     return base64.b64encode(body).decode()
+
+
+SCOPE_STORAGE = 'gzip-sha256-scopes-v1'
+
+
+def expand_scope_archives(state):
+    """Restore exact source scopes before any reducer or recovery reads them."""
+    if not isinstance(state, dict) or not ({'reportScopeStorage', 'reportScopeArchives'} & state.keys()):
+        return state
+    if (state.get('reportScopeStorage') != SCOPE_STORAGE or 'reportScopes' in state
+            or state.get('reportScopeSchemaVersion') != 1
+            or not isinstance(state.get('reportScopeArchives'), dict)):
+        raise ValueError('Registre des périmètres compressés invalide')
+    scopes = {}; total = 0
+    for key, archive in state['reportScopeArchives'].items():
+        if (not isinstance(key, str) or len(key) != 64 or any(c not in '0123456789abcdef' for c in key)
+                or not isinstance(archive, dict) or set(archive) != {'decodedBytes', 'data'}
+                or type(archive['decodedBytes']) is not int or not 0 < archive['decodedBytes'] <= MAX_ARCHIVE_BYTES
+                or not isinstance(archive['data'], str) or len(archive['data']) > 2 * MAX_ARCHIVE_BYTES):
+            raise ValueError('Périmètre compressé hors contrat')
+        total += archive['decodedBytes']
+        if total > MAX_STATUS_BYTES:
+            raise ValueError('Périmètres compressés au-delà du contrat de lecture')
+        try:
+            packed = base64.b64decode(archive['data'], validate=True)
+            if base64.b64encode(packed).decode() != archive['data']:
+                raise ValueError('Base64 du périmètre non canonique')
+            decoder = zlib.decompressobj(16 + zlib.MAX_WBITS)
+            raw = decoder.decompress(packed, archive['decodedBytes'] + 1)
+            if (not decoder.eof or decoder.unused_data or len(raw) != archive['decodedBytes']
+                    or hashlib.sha256(raw).hexdigest() != key):
+                raise ValueError('Empreinte ou taille du périmètre incorrecte')
+            scope = json.loads(raw)
+            if not isinstance(scope, dict) or scope_key(scope) != key:
+                raise ValueError('Schéma du périmètre incorrect')
+        except (ValueError, TypeError, zlib.error) as error:
+            raise ValueError('Périmètre compressé illisible ; preuve conservée') from error
+        scopes[key] = scope
+    return {**{k:v for k,v in state.items() if k not in ('reportScopeStorage','reportScopeArchives')},
+            'reportScopes': scopes}
+
+
+def pack_scope_archives(state):
+    """Lossless per-scope compression; no incident, scope or identity is retired."""
+    state = expand_scope_archives(state)
+    scopes = state.get('reportScopes')
+    if not scopes:
+        return state
+    if not isinstance(scopes, dict) or state.get('reportScopeSchemaVersion') != 1:
+        raise ValueError('Registre des périmètres incorrect')
+    records = {}; total = 0
+    for key, scope in scopes.items():
+        if not isinstance(scope, dict) or scope_key(scope) != key:
+            raise ValueError('Empreinte du périmètre incorrecte')
+        raw = json.dumps(scope, ensure_ascii=False, sort_keys=True, separators=(',',':'), allow_nan=False).encode()
+        total += len(raw)
+        if len(raw) > MAX_ARCHIVE_BYTES or total > MAX_STATUS_BYTES:
+            raise ValueError('Périmètres au-delà du contrat de lecture')
+        records[key] = {'decodedBytes':len(raw), 'data':base64.b64encode(gzip.compress(raw,compresslevel=6,mtime=0)).decode()}
+    return {**{k:v for k,v in state.items() if k != 'reportScopes'},
+            'reportScopeStorage':SCOPE_STORAGE, 'reportScopeArchives':records}
+
+
+def scope_reader_ready(repo, fetch=None):
+    # Separate capability keeps the existing exact receipt handshake compatible.
+    import urllib.request
+    owner, project = repo.split('/')
+    url = f'https://{owner}.github.io/{project}/monitor-scope-storage-capabilities.json'
+    if fetch is None:
+        def fetch(url):
+            request = urllib.request.Request(url, headers={'Cache-Control':'no-cache'})
+            with urllib.request.urlopen(request, timeout=20) as response:
+                return json.loads(response.read(4097))
+    try:
+        return fetch(url) == {'schemaVersion':1, 'reportScopeStorage':SCOPE_STORAGE}
+    except (OSError, ValueError, TypeError):
+        return False

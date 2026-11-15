@@ -704,3 +704,24 @@ et rapprochés des observations réellement enregistrées/publiées, sans confon
 lecture locale, push/manuelle et cron. Preuve locale : même part IE00BJ5JP212,
 USD, 128 lignes au 13 novembre dans l'endpoint ciblé, contrairement au lot contenant
 les listings. La fixture réelle et son empreinte sont conservées.
+
+### 15 novembre — panne effective du transport des périmètres du moniteur
+
+Même suivi #881. Le contrôle public après publication ec04332e/d4c6df5c révèle
+l’incident 43758760061 : acquisition/réduction effectuées, puis refus de l’état
+(293 991 982 octets affichés, 3 008 périmètres) à l’encodage borné. Le dernier
+moniteur public du 15 novembre à 20:33:15 reste conservé. Les nouveaux producteurs
+ETF/expositions sont publiés ; leur succès ne signifie pas que le moniteur les
+a ingérés.
+
+Aucune PR concurrente ouverte ne possède les fichiers concernés au relevé.
+Cette intervention prend en charge uniquement le codec de ces périmètres,
+son appel final par le producteur, le lecteur commun, une capacité publique
+séparée et leurs régressions. Pas de réducteur, d’interface, de calendrier,
+de contrat de résultat, de mécanisme de reprise ou de seuil financier modifié.
+La limite de transport de 256 MiB est conservée. Les périmètres sont compressés
+individuellement sans perte, bornés et vérifiés par leur SHA-256 existant ; aucun
+incident, identifiant, run ou tentative n’est retiré. Le producteur ne doit
+émettre ce format qu’après constat de la capacité du lecteur réellement publié.
+L’ancien fichier de capacités reste inchangé pour les anciens producteurs.
+Le prochain enregistrement ordinaire et son ingestion publique restent à prouver.

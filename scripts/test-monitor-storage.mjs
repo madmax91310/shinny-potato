@@ -29,3 +29,18 @@ for (const body of ['null','[]','{}','not json']) {
 const noRegistry=structuredClone(shared); delete noRegistry.proofCheckRecords; delete noRegistry.proofCheckStorage
 await assert.rejects(decodeMonitorStorage(envelope(noRegistry)))
 console.log('Monitor transport: exact legacy/compressed values, failures, clocks and scopes; corrupt/oversized/nested/trailing payloads rejected.')
+
+const scope={expectedIds:['part:country','part:sector'],requestedIds:['part:country'],networkRequestedIds:[],reason:'cache sans contrôle source'}
+const scopeRaw=Buffer.from(JSON.stringify(scope)),scopeKey=createHash('sha256').update(scopeRaw).digest('hex')
+const scopeEntry={decodedBytes:scopeRaw.length,data:gzipSync(scopeRaw).toString('base64')}
+const archivedScopes={...shared,reportScopeSchemaVersion:1,reportScopeStorage:'gzip-sha256-scopes-v1',reportScopeArchives:{[scopeKey]:scopeEntry}}
+const expectedScopes={...expected,reportScopeSchemaVersion:1,reportScopes:{[scopeKey]:scope}}
+assert.deepEqual(await decodeMonitorStorage(envelope(archivedScopes)),expectedScopes)
+assert.deepEqual(await decodeMonitorStorage(archivedScopes),expectedScopes)
+for(const mutate of [x=>delete x.reportScopeArchives,x=>x.reportScopeStorage='unknown',x=>x.reportScopes={},x=>x.reportScopeArchives[scopeKey].decodedBytes++,x=>x.reportScopeArchives[scopeKey].decodedBytes=8*1024*1024+1,x=>x.reportScopeArchives[scopeKey].data+='\n',x=>x.reportScopeArchives[scopeKey].extra=true,x=>x.reportScopeArchives={['0'.repeat(64)]:scopeEntry}]) {
+ const bad=structuredClone(archivedScopes);mutate(bad);await assert.rejects(decodeMonitorStorage(envelope(bad)))
+}
+for(const suffix of [Buffer.from('trailing'),gzipSync(Buffer.from('{}'))]) {
+ const bad=structuredClone(archivedScopes);bad.reportScopeArchives[scopeKey].data=Buffer.concat([Buffer.from(scopeEntry.data,'base64'),suffix]).toString('base64');await assert.rejects(decodeMonitorStorage(envelope(bad)))
+}
+console.log('Scope archives: exact Python-compatible scopes, partial/cache status, incidents and clocks; corrupt, unknown, mixed, oversized and trailing records rejected.')

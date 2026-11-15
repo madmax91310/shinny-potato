@@ -2,6 +2,41 @@
 // restored before the existing readers/reducers see this document.
 const MAX_BYTES = 256 * 1024 * 1024
 const MAX_RECEIPT_BYTES = 8 * 1024 * 1024
+async function expandScopeArchives(state) {
+  if (!state || typeof state !== 'object' || (!Object.hasOwn(state,'reportScopeStorage') && !Object.hasOwn(state,'reportScopeArchives'))) return state
+  const registry = state.reportScopeArchives
+  if (state.reportScopeStorage !== 'gzip-sha256-scopes-v1' || state.reportScopeSchemaVersion !== 1 || Object.hasOwn(state,'reportScopes') || !registry || typeof registry !== 'object' || Array.isArray(registry)) throw Error('Invalid compressed scopes')
+  const scopes = []; let total = 0
+  for (const [key, archive] of Object.entries(registry)) {
+    if (!/^[a-f0-9]{64}$/.test(key) || !archive || typeof archive !== 'object' || Array.isArray(archive) || Object.keys(archive).length !== 2 || !Object.hasOwn(archive,'decodedBytes') || !Object.hasOwn(archive,'data') || !Number.isSafeInteger(archive.decodedBytes) || archive.decodedBytes <= 0 || archive.decodedBytes > MAX_RECEIPT_BYTES || typeof archive.data !== 'string' || !archive.data || archive.data.length > 2 * MAX_RECEIPT_BYTES) throw Error('Invalid compressed scope record')
+    total += archive.decodedBytes
+    if (total > MAX_BYTES) throw Error('Scope registry decoded size limit')
+    const binary = atob(archive.data)
+    if (btoa(binary) !== archive.data) throw Error('Non-canonical scope base64')
+    const compressed = Uint8Array.from(binary, c => c.charCodeAt(0))
+    const reader = new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip')).getReader()
+    const chunks = []; let size = 0
+    try {
+      while (true) {
+        const {done,value} = await reader.read()
+        if (done) break
+        size += value.byteLength
+        if (size > archive.decodedBytes) throw Error('Scope decoded size limit')
+        chunks.push(value)
+      }
+    } catch(error) { await reader.cancel().catch(()=>{}); throw error }
+    if (size !== archive.decodedBytes) throw Error('Scope size mismatch')
+    const raw = new Uint8Array(size); let offset = 0
+    for (const chunk of chunks) { raw.set(chunk,offset); offset += chunk.byteLength }
+    const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',raw)), b=>b.toString(16).padStart(2,'0')).join('')
+    if (hash !== key) throw Error('Scope checksum mismatch')
+    const scope = JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(raw))
+    if (!scope || typeof scope !== 'object' || Array.isArray(scope)) throw Error('Invalid scope schema')
+    scopes.push([key,scope])
+  }
+  const {reportScopeStorage,reportScopeArchives,...rest} = state
+  return {...rest,reportScopes:Object.fromEntries(scopes)}
+}
 async function expandProofChecks(state) {
   if (!state || typeof state !== 'object') return state
   if (!Object.hasOwn(state, 'proofCheckStorage') && !Object.hasOwn(state, 'proofCheckRecords')) {
@@ -40,7 +75,7 @@ async function expandProofChecks(state) {
 }
 export async function decodeMonitorStorage(input) {
   try {
-    if (!input || typeof input !== 'object' || !Object.hasOwn(input, 'monitorStorage')) return await expandProofChecks(input)
+    if (!input || typeof input !== 'object' || !Object.hasOwn(input, 'monitorStorage')) return await expandProofChecks(await expandScopeArchives(input))
     const keys = ['schemaVersion', 'monitorStorage', 'decodedBytes', 'sha256', 'data']
     if (Object.keys(input).length !== keys.length || keys.some(key => !Object.hasOwn(input, key)) || input.schemaVersion !== 2 || input.monitorStorage !== 'gzip+base64-v1' || !Number.isSafeInteger(input.decodedBytes) || input.decodedBytes <= 0 || input.decodedBytes > MAX_BYTES || !/^[a-f0-9]{64}$/.test(input.sha256) || typeof input.data !== 'string' || !input.data || input.data.length > MAX_BYTES * 2) throw Error('Unknown envelope')
     const binary = atob(input.data)
@@ -64,6 +99,6 @@ export async function decodeMonitorStorage(input) {
     if (hash !== input.sha256) throw Error('Checksum mismatch')
     const state = JSON.parse(new TextDecoder('utf-8', {fatal: true}).decode(raw))
     if (!state || typeof state !== 'object' || Array.isArray(state) || state.schemaVersion !== 1 || Object.hasOwn(state, 'monitorStorage')) throw Error('Invalid or nested state')
-    return await expandProofChecks(state)
+    return await expandProofChecks(await expandScopeArchives(state))
   } catch { throw Error('Transport du moniteur invalide ; dernières preuves conservées.') }
 }
