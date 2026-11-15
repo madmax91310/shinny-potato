@@ -17,7 +17,8 @@ export function useImageExport(profile, field, enabled, maxPositions=profilePosi
     const timeout = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Délai dépassé')), 60000) })
     const debounce = setTimeout(async () => {
       try {
-        const [input, selectedField, maximum] = JSON.parse(key)
+        const [input, selectedField, storedMaximum] = JSON.parse(key)
+        const maximum=storedMaximum??Infinity
         const pages = await Promise.race([
           import('./image-series.js').then(module=>module.renderImageSeries(input,selectedField,maximum))
             .then(pages=>Promise.all(pages.map(async ({canvas,...page})=>({...page,blob:await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(new Error('PNG indisponible')),'image/png'))})))), timeout,

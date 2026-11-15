@@ -3,10 +3,10 @@ import {validateProfile,profilePositionLimit} from '../src/pages/dca-profiles/en
 import {newManualLine} from '../src/pages/dca-profiles/placements.js'
 import {exportPortfolio,importPortfolio} from '../src/pages/dca-profiles/portable-portfolios.js'
 const profile={id:'subscriber:series',name:'Élodie',mode:'participant',scope:'Portefeuille investi',multiImage:true,lines:Array.from({length:50},(_,i)=>newManualLine({label:`Fonds euros épargne ${i}`,category:'Fonds en euros',weight:2,amount:i?0:100}))}
-assert.equal(profilePositionLimit(profile),50)
+assert.equal(profilePositionLimit(profile),Infinity)
 assert.deepEqual(validateProfile(profile),[])
 assert.deepEqual(validateProfile({...profile,multiImage:false}),[])
-assert.ok(validateProfile({...profile,lines:[...profile.lines,newManualLine()]}).some(e=>e.includes('50 positions')))
+assert.deepEqual(validateProfile({...profile,lines:[...profile.lines,newManualLine({label:'Placement supplémentaire',amount:1})]}),[])
 const record={id:'series',title:'Élodie',profile,draft:'Mon texte',field:'all'}
 const restored=importPortfolio(exportPortfolio(record))
 assert.equal(restored.profile.multiImage,true)
@@ -41,3 +41,22 @@ assert.equal(shortDonutName('iShares Core S&P 500 UCITS ETF USD (Acc)'), 'ETF S&
 assert.equal(shortDonutName('Xtrackers S&P 500 Equal Weight UCITS ETF 1C'),'ETF S&P 500 Equal Weight')
 assert.equal(shortDonutName('Coca-Cola'),'Coca-Cola')
 assert.equal(shortDonutName('ETF émergents hors Chine'),'ETF émergents hors Chine')
+
+const {equalWeights}=await import('../src/pages/dca-profiles/allocation-actions.js')
+const {writeSaved,readSaved}=await import('../src/pages/dca-profiles/management.js')
+const {fitDonutCanvas}=await import('../src/pages/dca-profiles/image-individual.js')
+for(const count of [51,200,1000,20001]){
+ const lines=equalWeights(Array.from({length:count},(_,i)=>newManualLine({label:`Épargne ${i}`,category:'Fonds en euros',amount:i===0?100:0})))
+ assert(lines.every(line=>line.weight>0))
+ assert(Math.abs(lines.reduce((sum,line)=>sum+line.weight,0)-100)<1e-8)
+ assert.deepEqual(validateProfile({...profile,lines}),[])
+ if(count<=1000){
+  const large={...record,profile:{...profile,lines},draft:'Texte personnalisé conservé. '.repeat(1000)}
+  assert.deepEqual(importPortfolio(exportPortfolio(large)).profile.lines,lines)
+  let raw=null;const storage={getItem:()=>raw,setItem:(_,value)=>{raw=value}}
+  writeSaved(storage,[large]);assert.deepEqual(readSaved(storage)[0].profile.lines,lines);assert.equal(readSaved(storage)[0].draft,large.draft)
+ }
+}
+const fitted=fitDonutCanvas(1600,500000)
+assert(fitted.height<=16000&&fitted.width*fitted.height<=32_000_000)
+console.log('Uncapped positions: 51/200/1000/20001 allocations, positive tiny weights, long saved text, transport and scaled canvas passed.')

@@ -9,12 +9,17 @@ function ring(ctx,rows,x,y,r,width){
  let angle=-Math.PI/2
  for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(x,y,r,angle,end);ctx.arc(x,y,r-width,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
 }
-function base(canvas,title){
- const ctx=canvas.getContext('2d'),bg=ctx.createLinearGradient(0,0,canvas.width,canvas.height)
- bg.addColorStop(0,'#071b36');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,canvas.width,canvas.height)
- text(ctx,'Épargnant Libre',canvas.width/2,76,44,'center',true)
- ctx.fillStyle='#0d263e';ctx.strokeStyle='#23425e';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(24,116,canvas.width-48,canvas.height-140,24);ctx.fill();ctx.stroke()
- text(ctx,title,canvas.width/2,183,40,'center',true)
+export function fitDonutCanvas(width,height){
+ const scale=Math.min(1,16000/height,Math.sqrt(32_000_000/(width*height)))
+ return {width:Math.max(1,Math.floor(width*scale)),height:Math.max(1,Math.floor(height*scale)),scale}
+}
+function base(canvas,title,width=canvas.width,height=canvas.height,scale=1){
+ const ctx=canvas.getContext('2d');ctx.scale(scale,scale)
+ const bg=ctx.createLinearGradient(0,0,width,height)
+ bg.addColorStop(0,'#071b36');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,width,height)
+ text(ctx,'Épargnant Libre',width/2,76,44,'center',true)
+ ctx.fillStyle='#0d263e';ctx.strokeStyle='#23425e';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(24,116,width-48,height-140,24);ctx.fill();ctx.stroke()
+ text(ctx,title,width/2,183,40,'center',true)
  return ctx
 }
 export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={}){
@@ -22,8 +27,9 @@ export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={})
  if(allocation&&rows.length>8){
   const probe=canvas.getContext('2d');probe.font='400 32px Arial'
   const plan=radialDonutLayout(rows,value=>probe.measureText(value).width)
-  canvas.width=plan.width;canvas.height=plan.height
-  const ctx=base(canvas,title)
+  const fitted=fitDonutCanvas(plan.width,plan.height)
+  canvas.width=fitted.width;canvas.height=fitted.height
+  const ctx=base(canvas,title,plan.width,plan.height,fitted.scale)
   ring(ctx,plan.rows,plan.cx,plan.cy,plan.outer,80)
   for(const label of plan.labels){
    const cos=Math.cos(label.angle),sin=Math.sin(label.angle)

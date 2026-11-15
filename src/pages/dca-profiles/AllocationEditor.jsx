@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { exposureGroup } from '../../data/asset-labels.js'
 import { ASSETS } from './data.js'
 import catalog from './catalog.json' with { type: 'json' }
-import { MAX_POSITIONS, references, pct } from './engine.js'
+import { MAX_EXPOSURE_POSITIONS, references, pct } from './engine.js'
 import { searchAssets } from './management.js'
 import { equalWeights, assignRemainder } from './allocation-actions.js'
 export function confirmLines(lines) {
@@ -14,7 +14,7 @@ export function confirmLines(lines) {
 export function newLine(asset, weight = 0) {
   return {asset, label: catalog[asset]?.name || ASSETS[asset][1], emoji: ASSETS[asset][0], isin: references[asset]?.isin || '', weight, amount: 0}
 }
-export default function AllocationEditor({lines, onChange, dca = false, ordered = false, maxPositions = MAX_POSITIONS}) {
+export default function AllocationEditor({lines, onChange, dca = false, ordered = false, maxPositions = MAX_EXPOSURE_POSITIONS}) {
   const [manualDraft, setManualDraft] = useState(null)
   const [manualTarget, setManualTarget] = useState(null)
   const [changing, setChanging] = useState(null)
@@ -64,7 +64,7 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
   return <>
     <h2>Mon allocation</h2>
     <p className="dca-note">Personnalise chaque ligne avec « Changer l’actif », ou ajoute un support. {Object.keys(ASSETS).length} actifs disponibles par nom, ticker ou ISIN.</p>
-    <p className="dca-note" role="status">{lines.length} / {maxPositions} positions{lines.length===maxPositions?" · Limite atteinte : retire une position pour ajouter un actif.":""}</p>
+    <p className="dca-note" role="status">{lines.length}{Number.isFinite(maxPositions)?` / ${maxPositions}`:''} positions{lines.length===maxPositions?" · Limite atteinte : retire une position pour ajouter un actif.":""}</p>
     {lines.length>maxPositions&&<p role="alert">Publication bloquée : ce portefeuille dépasse {maxPositions} positions. Toutes ses données sont conservées. Retire des lignes pour poursuivre.</p>}
     <AssetPicker label="Ajouter un actif" items={options} value="" onChange={asset => {if(lines.length>=maxPositions){setFeedback(`Ajout refusé : ${maxPositions} positions maximum.`);return}onChange([...lines, newLine(asset, Math.max(0, 100 - total))])}} clearSearchOnSelect searchPlaceholder="Nom, ticker ou ISIN" optionsClassName="dca-simple-results" disabled={lines.length >= maxPositions} />
     <button type="button" disabled={lines.length>=maxPositions} onClick={()=>startManual()}>Ajouter un placement manuellement</button>
