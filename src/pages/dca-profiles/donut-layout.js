@@ -15,36 +15,29 @@ export function wrapDonutLabel(measure,value,width) {
  if(line)lines.push(line)
  return lines
 }
-const intersects=(a,b)=>a.left<b.right+8&&a.right+8>b.left&&a.top<b.bottom+12&&a.bottom+12>b.top
+// Remove legal share-class boilerplate, retaining the index and strategy.
+export function shortDonutName(value) {
+ const original=String(value),isEtf=/\bETF\b/i.test(original)
+ const name=original.replace(/\b(?:iShares|Xtrackers|WisdomTree|State Street|SPDR|BNP Paribas Easy|Amundi|Vanguard|Invesco|Core)\b/gi,'').replace(/\bUCITS ETF\b/gi,'').replace(/\bETF\b/gi,'').replace(/\b(?:USD|EUR|Acc|Dist|1C|Advanced)\b/gi,'').replace(/[()]/g,'').replace(/Consumer Staples Sector/gi,'consommation de base').replace(/Consumer Discretionary Sector/gi,'consommation discrétionnaire').replace(/Energy Sector/gi,'énergie').replace(/Artificial Intelligence and Big Data/gi,'IA et Big Data').replace(/Automation & Robotics/gi,'robotique').replace(/Cloud Computing/gi,'cloud').replace(/Emerging Markets/gi,'émergents').replace(/Small Cap\b/gi,'Small Caps').replace(/Minimum Volatility/gi,'Min Volatility').replace(/Weighted/gi,'').replace(/\s+/g,' ').trim()
+ return name ? `${isEtf?'ETF ':''}${name}` : original
+}
 export function radialDonutLayout(rows,measure) {
- const ordered=balancedDonutRows(rows),cx=600,outer=292,font=32,gap=38
+ const ordered=balancedDonutRows(rows),cx=800,outer=330,font=32,gap=38
  let angle=-Math.PI/2
- const items=ordered.map(row=>{const mid=angle+row.weight/100*Math.PI;angle+=row.weight/100*Math.PI*2;return {...row,angle:mid,lines:wrapDonutLabel(measure,row.name,230)}})
- const top=items.reduce((best,row)=>Math.sin(row.angle)<Math.sin(best.angle)?row:best,items[0])
- const bottom=items.reduce((best,row)=>Math.sin(row.angle)>Math.sin(best.angle)?row:best,items[0])
- const cy=670
- const labels=items.map(row=>{
-  const cos=Math.cos(row.angle),sin=Math.sin(row.angle),anchor=row===top||row===bottom?'center':cos>0?'left':'right'
-  const position=items.indexOf(row),previous=items[(position+items.length-1)%items.length],next=items[(position+1)%items.length]
-  const x=anchor==='center'?cx+(outer+30)*(Math.cos(previous.angle)+Math.cos(next.angle))/2:cx+(outer+52)*cos,y=cy+390*sin
-  const width=Math.max(...row.lines.map(measure),measure(`${Number(row.weight.toFixed(2))} %`)),height=(row.lines.length+1)*gap
-  const left=anchor==='center'?x-width/2:anchor==='right'?x-width:x
-  return {...row,x,y,anchor,left,right:left+width,top:y-height/2,bottom:y+height/2,height,font,gap}
+ const labels=ordered.map(row=>{
+  const mid=angle+row.weight/100*Math.PI;angle+=row.weight/100*Math.PI*2
+  const anchor=Math.cos(mid)>=0?'left':'right',x=anchor==='left'?1200:400
+  const lines=wrapDonutLabel(measure,shortDonutName(row.name),350)
+  const width=Math.max(...lines.map(measure),measure(`${Number(row.weight.toFixed(2))} %`)),height=(lines.length+1)*gap
+  return {...row,angle:mid,lines,x,anchor,left:anchor==='left'?x:x-width,right:anchor==='left'?x+width:x,height,font,gap}
  })
- // Spread nearby labels along their side, without changing slice geometry.
- for(let pass=0;pass<200;pass++){
-  let moved=false
-  for(let i=0;i<labels.length;i++)for(let j=i+1;j<labels.length;j++){
-   const a=labels[i],b=labels[j]
-   if(!intersects(a,b))continue
-   const upper=a.y<b.y?a:b,lower=upper===a?b:a
-   const delta=(upper.bottom-lower.top+14)/2
-   upper.y-=delta;upper.top-=delta;upper.bottom-=delta
-   lower.y+=delta;lower.top+=delta;lower.bottom+=delta;moved=true
-  }
-  if(!moved)break
+ const sides=['left','right'].map(anchor=>labels.filter(l=>l.anchor===anchor).sort((a,b)=>Math.sin(a.angle)-Math.sin(b.angle)))
+ const contentHeight=Math.max(800,...sides.map(side=>side.reduce((sum,l)=>sum+l.height+28,0)-28))
+ const cy=260+contentHeight/2
+ for(const side of sides){
+  const occupied=side.reduce((sum,l)=>sum+l.height+28,0)-28
+  let y=260+(contentHeight-occupied)/2
+  for(const label of side){label.top=y;label.bottom=y+label.height;label.y=y+label.height/2;y=label.bottom+28}
  }
- const shift=Math.max(0,245-Math.min(...labels.map(l=>l.top)))
- labels.forEach(label=>{label.y+=shift;label.top+=shift;label.bottom+=shift})
- return {width:1200,height:Math.ceil(Math.max(cy+shift+outer+100,...labels.map(l=>l.bottom+70))),cx,cy:cy+shift,outer,labels,rows:ordered}
+ return {width:1600,height:Math.ceil(330+contentHeight),cx,cy,outer,labels,rows:ordered}
 }
