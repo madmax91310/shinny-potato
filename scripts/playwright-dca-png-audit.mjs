@@ -19,7 +19,7 @@ const targeted=[
  {id:'concentrated',name:'Petites parts',lines:manual(9).map((l,i)=>({...l,weight:i?0.01:99.92,amount:i?12.34:0}))},
  {id:'mixed',name:'Élodie mixte',lines:[{...seed.lines[0],weight:60,amount:0},{asset:'livret-a',label:'Livret A',isin:'',weight:30,amount:100},newManualLine({label:'Fonds euros Mutavie — réserve familiale',category:'Fonds en euros',weight:10,amount:200}),newManualLine({label:'Projet sans détention actuelle',category:'Actions',weight:0,amount:50})]},
 ].map(p=>({...seed,...p,mode:'participant',multiImage:true,showCompanies:false}))
-const profiles=process.env.DCA_PNG_SAMPLE_ONLY?[seed,...targeted]:[...ALL_PROFILES.map(prepareProfile),...targeted]
+const profiles=(process.env.DCA_PNG_SAMPLE_ONLY?[seed,...targeted]:[...ALL_PROFILES.map(prepareProfile),...targeted]).filter((_,i)=>i%Number(process.env.DCA_PNG_SHARDS||1)===Number(process.env.DCA_PNG_SHARD||0))
 const choices=[['Vue complète','complete'],['Répartition des actifs','allocation'],['Exposition géographique','countries'],['Exposition sectorielle','sectors']]
 const squash=s=>s.replace(/\s/g,'')
 await mkdir(out,{recursive:true})
@@ -97,6 +97,7 @@ for(const width of [1440,390]){
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
    console.log(`${width}: ${profile.id}: 4 PNG saved, reopened and checked`)
   }
+  if(profiles.at(-1)?.id==='mixed'){
   // Rapid real edits: the old image disappears, then each new export contains the new identity and data.
   await page.getByLabel('Pseudonyme',{exact:true}).fill('Profil modifié')
   const preview=page.getByRole('region',{name:'Image des expositions',exact:true}).filter({visible:true})
@@ -121,6 +122,7 @@ for(const width of [1440,390]){
    const path=`${out}/${width}-monthly-${amount}.png`;await d.saveAs(path);const bytes=await readFile(path),hash=createHash('sha256').update(bytes).digest('hex')
    assert.notEqual(hash,previous);previous=hash
    await viewer.goto('about:blank');await viewer.setContent(`<img src="data:image/png;base64,${bytes.toString('base64')}">`);await viewer.locator('img').evaluate(img=>img.decode())
+  }
   }
   assert.deepEqual(errors,[])
  }finally{await browser.close();await writeFile(`${out}/audit.json`,JSON.stringify(results,null,2))}
