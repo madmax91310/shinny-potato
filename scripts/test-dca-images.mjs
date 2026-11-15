@@ -34,6 +34,7 @@ try {
     const {ALL_PROFILES: PROFILES, ASSETS}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
     const {prepareProfile, references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
     const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
+    const {shortDonutName}=await import('/shinny-potato/src/pages/dca-profiles/donut-layout.js')
     const {newManualLine,SAVINGS}=await import('/shinny-potato/src/pages/dca-profiles/placements.js')
     const original=CanvasRenderingContext2D.prototype.fillText
     let labels=[],boxes=[]
@@ -72,8 +73,9 @@ try {
       if(labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Brand: '+profile.id)
       // Allocation images show held assets; monthly cards show actual contributions.
       const expectedLines=field==='all'?profile.lines.filter(line=>line.weight>0):field==='both'?[]:profile.lines.filter(line=>line.amount>0)
-      for(const line of expectedLines)if(expectedLines.length<=8&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id+' / '+field+' / '+line.label)
-      if(profile.id==='eight-lines'&&['countries','sectors'].includes(field)&&labels.includes(profile.lines[0].label))throw Error('Zero contribution shown as a monthly investment')
+      // Images use concise names; full names remain in the editor and publication text.
+      for(const line of expectedLines)if(expectedLines.length<=8&&!labels.join(' ').includes(shortDonutName(line.label)))throw Error('Allocation missing: '+profile.id+' / '+field+' / '+line.label)
+      if(profile.id==='eight-lines'&&['countries','sectors'].includes(field)&&labels.includes(shortDonutName(profile.lines[0].label)))throw Error('Zero contribution shown as a monthly investment')
       output.push({id:profile.id+'-'+field,labels:[...labels],png:['mixed-savings','all-savings','julien','alexandre','patrick','arthur','laurent','helene','long-1','long-2','long-4','long-8','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
     }
     for(const field of ['countries','sectors','both','all']){
