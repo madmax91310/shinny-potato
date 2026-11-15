@@ -1,4 +1,6 @@
-import editorialLives from './editorial-lives-2026-11-06.json' with { type: 'json' }
+import previousEditorialLives from './editorial-lives-2026-11-06.json' with { type: 'json' }
+import editorialCopy from './editorial-copy-2026-11-14.json' with { type: 'json' }
+import { reviseEditorialCopy } from './editorial-copy.js'
 import { createEditorialProfile, createEditorialContext } from './editorial-lives.js'
 import bankProfiles from './qualified-profiles-bank-2026-11-02.json' with { type: 'json' }
 import completeness from './completeness-2026-11-03.json' with { type: 'json' }
@@ -15,6 +17,8 @@ import profileEditorial from './profile-editorial.json' with { type: 'json' }
 import preparedLotTwo from './prepared-profiles-lot-2-2026-10-30.json' with { type: 'json' }
 import preparedProfiles from './prepared-profiles-2026-10-30.json' with { type: 'json' }
 import additionalProfiles from './additional-profiles-2026-10-30.json' with { type: 'json' }
+
+const editorialLives = Object.fromEntries(Object.entries(previousEditorialLives).map(([id, review]) => [id, reviseEditorialCopy(review, editorialCopy[id])]))
 
 // Témoignages publics, contrôlés le 30/10/2026. Les dates décrivent les
 // publications, pas une actualisation des budgets des personnes.
