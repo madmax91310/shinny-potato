@@ -1,3 +1,4 @@
+import { renderSocialBudgetImage } from './socialImage.js'
 import { budgetRowSymbol, budgetQualification, budgetPublicBasis } from './presentation.js'
 import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
 
@@ -110,7 +111,16 @@ function card(ctx, p, y) {
     top += row.height
   }
 }
-export async function renderBudgetImage(profile, mode = 'detailed') {
+export async function renderBudgetImage(profile, mode = 'social') {
+  if (mode === 'social') {
+    try { return await renderSocialBudgetImage(profile) } catch (error) {
+      if (error.code !== 'BUDGET_SOCIAL_OVERFLOW') throw error
+      const canvas = await renderBudgetImage(profile, 'detailed')
+      canvas.budgetNotice = 'Ce budget est trop dense pour le format 4:5 : une image détaillée en longueur est prête, avec tous les postes.'
+      canvas.budgetFormat = 'detailed'
+      return canvas
+    }
+  }
   const a = analyzeBudget(profile)
   const money = value => euro(value, profile.currency)
   if (a.errors.length) throw new Error(a.errors.join(' '))

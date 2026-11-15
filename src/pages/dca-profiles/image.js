@@ -1,3 +1,4 @@
+import { shortDonutName } from './donut-layout.js'
 import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
 import { profilePositionLimit, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
@@ -6,7 +7,7 @@ import { portfolioAnalytics, analyzedLines, analysisView, selectConcentrationGro
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
 const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99cd','#aec8df']
 export function allocationRows(lines){
- const ordered=sortHoldings(lines).map(l=>({name:l.label,weight:l.weight}))
+ const ordered=sortHoldings(lines).map(l=>({name:shortDonutName(l.label),weight:l.weight}))
  if(ordered.length<=8)return ordered.map((r,i)=>({...r,color:colors[i]}))
  return [...ordered.slice(0,7),{name:`${ordered.length-7} autres positions`,weight:ordered.slice(7).reduce((s,l)=>s+l.weight,0)}].sort((a,b)=>b.weight-a.weight).map((r,i)=>({...r,color:colors[i]}))
 }
@@ -253,7 +254,7 @@ export async function renderDcaImage(input,field='countries',maxPositions=profil
   const y=top+i*rowHeight
   rule(ctx,66,y,710)
   text(ctx,euro(l.amount),66,y+rowHeight*.66,235,Math.min(49,rowHeight*.65),C.yellow,700,'DcaEditorial')
-  wrappedLabel(ctx,l.label,324,y+rowHeight*.42,450,Math.min(31,rowHeight*.40),'DcaEditorial',700)
+  wrappedLabel(ctx,shortDonutName(l.label),324,y+rowHeight*.42,450,Math.min(31,rowHeight*.40),'DcaEditorial',700)
  })
  text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
  text(ctx,field==='sectors'?'Exposition sectorielle':'Exposition géographique',880,163,650,32,C.muted,400)

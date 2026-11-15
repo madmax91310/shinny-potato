@@ -15,7 +15,7 @@ assert.equal(new Set(restored.profile.lines.map(l=>l.asset)).size,50)
 console.log('Image series: 50 lines, single mode capacity, stable manual identities and lossless transport passed.')
 
 const {imageFields}=await import('../src/pages/dca-profiles/image-series.js')
-const {radialDonutLayout}=await import('../src/pages/dca-profiles/donut-layout.js')
+const {radialDonutLayout,shortDonutName}=await import('../src/pages/dca-profiles/donut-layout.js')
 assert.deepEqual(imageFields('all'),['complete','allocation','countries','sectors'])
 for(const count of [9,15,50]){
  const rows=Array.from({length:count},(_,i)=>({name:`Placement ${i}`,weight:100/count}))
@@ -28,9 +28,17 @@ for(const count of [9,15,50]){
  }
 }
 console.log('Complete + individual choices, unchanged weights, all labels and collision-free 9/15/50 position layouts passed.')
-// A small holding near the top must not cover its neighbour's leader line.
-const names=['ETF World','Livret A','Fonds en euros','ETF S&P 500','ETF Europe','ETF émergents','LDDS','Air Liquide','Vinci','TotalEnergies','ETF Nasdaq-100','ETF small caps','SCPI','Or physique','Bitcoin']
-const weights=[25,15,12,10,8,6,5,4,3,3,2,2,2,2,1]
-const around=radialDonutLayout(names.map((name,i)=>({name,weight:weights[i]})),value=>value.length*16)
-const topLabel=around.labels.find(row=>row.name==='Air Liquide'),neighbour=around.labels.find(row=>row.name==='Vinci')
-assert(topLabel.left>around.cx+(around.outer+30)*Math.cos(neighbour.angle))
+// Real provider names must stay outside the ring, including long ETF names.
+const longNames=['iShares MSCI World Consumer Staples Sector Advanced UCITS ETF','State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF','Xtrackers Artificial Intelligence and Big Data UCITS ETF']
+const dense=radialDonutLayout(Array.from({length:18},(_,i)=>({name:longNames[i%3],weight:100/18})),v=>v.length*16)
+for(const label of dense.labels){
+ assert(Math.hypot((label.anchor==='left'?label.left:label.right)-dense.cx,label.y-dense.cy)>dense.outer)
+ assert(label.lines.length<=4)
+ for(const other of dense.labels)if(label!==other)assert(!(label.left<other.right&&label.right>other.left&&label.top<other.bottom&&label.bottom>other.top))
+}
+
+assert.equal(shortDonutName('iShares Core S&P 500 UCITS ETF USD (Acc)'), 'ETF S&P 500')
+assert.equal(shortDonutName('Xtrackers S&P 500 Equal Weight UCITS ETF 1C'),'ETF S&P 500 équipondéré')
+assert.equal(shortDonutName('Coca-Cola'),'Coca-Cola')
+assert.equal(shortDonutName('ETF émergents hors Chine'),'ETF émergents hors Chine')
+
