@@ -30,6 +30,7 @@ p.url = "https://example.com/test";
 p.nature = "Réel déclaré par son auteur";
 const s = blankSnapshot();
 s.consulted = "2026-11-15";
+s.currency = "EUR";
 s.source = p.url;
 s.positions = [{ name: "Placement fictif", weight: 100 }];
 Object.assign(s.month, {
@@ -212,3 +213,21 @@ for (const value of [null, undefined, " ", false, NaN]) {
   benchmark.benchmark.value = value;
   assert(benchmarkIssue(benchmark));
 }
+
+for (const field of ["name", "source", "method"]) {
+  const incomplete = structuredClone(validBenchmark);
+  incomplete.benchmark.currency = "EUR";
+  incomplete.benchmark[field] = " ";
+  assert(benchmarkIssue(incomplete));
+}
+const unknownCurrency = structuredClone(validBenchmark);
+unknownCurrency.currency = "Non précisée";
+unknownCurrency.benchmark.currency = "Non précisée";
+assert(benchmarkIssue(unknownCurrency));
+const whitespaceNa = structuredClone(s);
+whitespaceNa.month.na = " ";
+whitespaceNa.ytd.na = " ";
+assert.deepEqual(issues(p, whitespaceNa), []);
+assert(!buildText(p, whitespaceNa, 1).includes("Non applicable"));
+assert.equal(blankProfile().currency, "");
+assert.equal(blankSnapshot().currency, "");

@@ -58,7 +58,7 @@ Object.assign(p, {
   nature: "Réel déclaré par son auteur",
 });
 const s = blankSnapshot();
-Object.assign(s, { consulted: "2026-11-15", source: p.url });
+Object.assign(s, { consulted: "2026-11-15", source: p.url, currency: "EUR" });
 Object.assign(s.month, {
   value: -2.45,
   start: "2026-10-01",

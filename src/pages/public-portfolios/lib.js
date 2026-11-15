@@ -12,7 +12,7 @@ export const blankProfile = () => ({
   name: "",
   strategy: "",
   objective: "",
-  currency: "EUR",
+  currency: "",
   started: "",
   amount: "",
   notes: "",
@@ -28,7 +28,7 @@ export const blankSnapshot = () => ({
   id: id(),
   consulted: today(),
   effective: "",
-  currency: "EUR",
+  currency: "",
   total: "",
   source: "",
   method: "Non précisée",
@@ -87,6 +87,8 @@ export function canonicalUrl(value) {
     return "";
   }
 }
+export const hasText = (value) =>
+  typeof value === "string" && value.trim() !== "";
 export const nameOf = (p) =>
   p.name.trim() || p.pseudo.trim() || "Fiche sans nom";
 const hasNumericValue = (value) =>
@@ -126,7 +128,7 @@ export function performanceIssues(s, key) {
   const p = s[key],
     label = key === "month" ? "Mois" : "Depuis janvier",
     out = [];
-  if (p.na.trim()) {
+  if (hasText(p.na)) {
     if (!p.verified)
       out.push(`${label} : motif de non-applicabilité à vérifier`);
     const expected = lastCompletedMonthEnd(s.consulted);
@@ -195,9 +197,9 @@ export function issues(p, s) {
     );
   if (s.effective && (!validDate(s.effective) || s.effective > s.consulted))
     out.push("Date effective invalide ou postérieure à la consultation");
-  if (!s.currency) out.push("Devise du relevé requise");
+  if (!hasText(s.currency)) out.push("Devise du relevé requise");
   out.push(...performanceIssues(s, "month"), ...performanceIssues(s, "ytd"));
-  if (!s.month.na && !s.ytd.na && s.month.end !== s.ytd.end)
+  if (!hasText(s.month.na) && !hasText(s.ytd.na) && s.month.end !== s.ytd.end)
     out.push(
       "Les performances du mois et depuis janvier doivent avoir la même date de fin",
     );
@@ -221,10 +223,15 @@ export function issues(p, s) {
 }
 export function benchmarkIssue(s) {
   const b = s.benchmark;
+  const currency = hasText(s.currency) ? s.currency.trim().toUpperCase() : "";
+  const benchmarkCurrency = hasText(b.currency)
+    ? b.currency.trim().toUpperCase()
+    : "";
   if (
     !b.verified ||
-    !b.source ||
-    !b.method ||
+    !hasText(b.name) ||
+    !hasText(b.source) ||
+    !hasText(b.method) ||
     !b.reinvested ||
     !hasNumericValue(b.value)
   )
@@ -233,10 +240,12 @@ export function benchmarkIssue(s) {
     s.method !== "TWR" ||
     s.dividends !== "Réinvestis" ||
     s.fees === "Non précisé" ||
-    b.currency !== s.currency ||
+    !/^[A-Z]{3}$/.test(currency) ||
+    currency === "XXX" ||
+    benchmarkCurrency !== currency ||
     b.start !== s.month.start ||
     b.end !== s.month.end ||
-    s.month.na
+    hasText(s.month.na)
   )
     return "Méthode, devise, dividendes ou dates incompatibles : aucune comparaison générée.";
   return "";
@@ -255,7 +264,7 @@ export function buildText(p, s, n) {
     positions = [...s.positions].sort(
       (a, b) => Number(b.weight) - Number(a.weight),
     );
-  return `${s.month.na ? `Un portefeuille à découvrir en ${month}.` : `${Number(s.month.value) < 0 ? "📉" : Number(s.month.value) > 0 ? "📈" : "↔️"} ${pct(s.month.value)} en ${month} : voici sa répartition 👀`}\n\n🔎 LE PORTEFEUILLE DE LA SEMAINE #${n}\n\n${nameOf(p)} — portefeuille présenté comme réel par son auteur.${p.strategy.trim() ? ` ${p.strategy.trim()}` : ""}${p.objective.trim() ? ` Objectif communiqué : ${p.objective.trim()}` : ""}\n\n📊 SES PERFORMANCES DÉCLARÉES\n• ${month} : ${s.month.na ? `Non applicable (${s.month.na})` : pct(s.month.value)}\n• Depuis janvier : ${s.ytd.na ? `Non applicable (${s.ytd.na})` : pct(s.ytd.value)}${benchmarkIssue(s) ? "" : `\n• ${s.benchmark.name} en ${month} : ${pct(s.benchmark.value)} (du ${s.benchmark.start} au ${s.benchmark.end}, ${s.currency}, dividendes réinvestis)`}\n\n🍩 SES PRINCIPAUX PLACEMENTS\n${positions
+  return `${hasText(s.month.na) ? `Un portefeuille à découvrir en ${month}.` : `${Number(s.month.value) < 0 ? "📉" : Number(s.month.value) > 0 ? "📈" : "↔️"} ${pct(s.month.value)} en ${month} : voici sa répartition 👀`}\n\n🔎 LE PORTEFEUILLE DE LA SEMAINE #${n}\n\n${nameOf(p)} — portefeuille présenté comme réel par son auteur.${p.strategy.trim() ? ` ${p.strategy.trim()}` : ""}${p.objective.trim() ? ` Objectif communiqué : ${p.objective.trim()}` : ""}\n\n📊 SES PERFORMANCES DÉCLARÉES (${s.currency.trim()})\n• ${month} : ${hasText(s.month.na) ? `Non applicable (${s.month.na})` : pct(s.month.value)}\n• Depuis janvier : ${hasText(s.ytd.na) ? `Non applicable (${s.ytd.na})` : pct(s.ytd.value)}${benchmarkIssue(s) ? "" : `\n• ${s.benchmark.name} en ${month} : ${pct(s.benchmark.value)} (du ${s.benchmark.start} au ${s.benchmark.end}, ${s.currency}, dividendes réinvestis)`}\n\n🍩 SES PRINCIPAUX PLACEMENTS\n${positions
     .slice(0, 6)
     .map((x) => `• ${x.name} : ${weightPct(x.weight)}`)
     .join(

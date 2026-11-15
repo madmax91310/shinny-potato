@@ -1,5 +1,6 @@
 import {
   nameOf,
+  hasText,
   pct,
   benchmarkIssue,
   weightPct,
@@ -54,10 +55,11 @@ export function renderImages(p, s, episode) {
     line(`LE PORTEFEUILLE DE LA SEMAINE #${episode}`, 78, 30, "#71dfb2");
     let y = wrapped(nameOf(p), 155, 900, 44);
     line(
-      `${s.month.start || (s.month.na ? lastCompletedMonthEnd(s.consulted).slice(0, 7) + "-01" : s.consulted)} → ${s.month.end || (s.month.na ? lastCompletedMonthEnd(s.consulted) : s.consulted)}`,
+      `${s.month.start || (hasText(s.month.na) ? lastCompletedMonthEnd(s.consulted).slice(0, 7) + "-01" : s.consulted)} → ${s.month.end || (hasText(s.month.na) ? lastCompletedMonthEnd(s.consulted) : s.consulted)}`,
       y + 15,
       30,
     );
+    line(`Devise : ${s.currency}`, y + 55, 30);
     return y + 90;
   }
   function finish() {
@@ -70,9 +72,9 @@ export function renderImages(p, s, episode) {
   }
   let y = header();
   line("MOIS", y, 30, "#71dfb2");
-  line(s.month.na ? "Non applicable" : pct(s.month.value), y + 75, 66);
+  line(hasText(s.month.na) ? "Non applicable" : pct(s.month.value), y + 75, 66);
   line("DEPUIS JANVIER", y + 145, 30, "#71dfb2");
-  line(s.ytd.na ? "Non applicable" : pct(s.ytd.value), y + 220, 66);
+  line(hasText(s.ytd.na) ? "Non applicable" : pct(s.ytd.value), y + 220, 66);
   y += 300;
   if (!benchmarkIssue(s))
     y =

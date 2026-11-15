@@ -10,6 +10,7 @@ import {
   blankSnapshot,
   canonicalUrl,
   nameOf,
+  hasText,
   weightPct,
   validEpisode,
   latestPublicationDate,
@@ -141,7 +142,7 @@ function SnapshotEvidence({ s }) {
           </h4>
           <p>
             {s[k].start || "Début inconnu"} → {s[k].end || "Fin inconnue"} :{" "}
-            {s[k].na ? `Non applicable : ${s[k].na}` : pct(s[k].value)}
+            {hasText(s[k].na) ? `Non applicable : ${s[k].na}` : pct(s[k].value)}
           </p>
           <p>
             Libellé source : {s[k].original || "non renseigné"} · {s[k].kind} ·{" "}
@@ -345,13 +346,13 @@ export default function App() {
                   {last?.month.start || "Période non renseignée"} →{" "}
                   {last?.month.end || "—"} · Mois :{" "}
                   {last && !performanceIssues(last, "month").length
-                    ? last.month.na
+                    ? hasText(last.month.na)
                       ? "Non applicable"
                       : pct(last.month.value)
                     : "À vérifier"}{" "}
                   · Depuis janvier :{" "}
                   {last && !performanceIssues(last, "ytd").length
-                    ? last.ytd.na
+                    ? hasText(last.ytd.na)
                       ? "Non applicable"
                       : pct(last.ytd.value)
                     : "À vérifier"}
@@ -471,7 +472,11 @@ export default function App() {
               </option>
             ))}
           </select>
-          <button onClick={() => setS(blankSnapshot())}>
+          <button
+            onClick={() =>
+              setS({ ...blankSnapshot(), currency: p.currency || "" })
+            }
+          >
             Ajouter un relevé
           </button>
           {snap && (
