@@ -49,7 +49,12 @@ const drafts=memory()
 const unnamed=saveSubscriberProfile(drafts,{profile:newSubscriberProfile(),draft:'À finir',field:'all'},null)
 assert.equal(unnamed.title,'Brouillon sans pseudonyme');assert.equal(unnamed.status,'draft')
 assert.equal(readSavedState(drafts).items.length,1)
-const unfinished={...profile,name:'Profil en cours',lines:[{asset:'medpace',label:'Medpace Holdings',isin:references.medpace.isin,weight:40,amount:NaN}]}
+// A live qualification may legitimately withdraw a specific equity. The fixture
+// tests draft transport and name/ticker/ISIN search, not perpetual admission of it.
+const representativeEquity=Object.entries(references).find(([,r])=>r.kind==='equity'&&r.isin&&r.name&&r.tickers?.length)
+assert(representativeEquity,'At least one qualified equity is required for the subscriber fixture')
+const [equityAsset,equityReference]=representativeEquity
+const unfinished={...profile,name:'Profil en cours',lines:[{asset:equityAsset,label:equityReference.name,isin:equityReference.isin,weight:40,amount:NaN}]}
 const partial=saveSubscriberProfile(drafts,{profile:unfinished,draft:'Texte encore en préparation',field:'sectors'},null)
 assert.equal(partial.status,'draft');assert.equal(partial.profile.lines[0].amount,null)
 const reread=readSavedState(drafts).items.find(row=>row.id===partial.id)
@@ -69,6 +74,6 @@ assert.equal(readSavedState(drafts).rejected.length,0)
 for(const patch of [{lines:[null]},{lines:[{...unfinished.lines[0],asset:'unknown'}]},{name:'x'.repeat(46)},{lines:Array(51).fill(unfinished.lines[0])},{lines:[{...unfinished.lines[0],amount:'150'}]}]){
  assert.equal(!!validSaved({...partial,profile:{...partial.profile,...patch}}),false)
 }
-for(const query of ['Medpace','MEDP','US58506Q1094'])assert(searchAssets(query,'equity').includes('medpace'))
-assert.equal(references.medpace.kind,'equity');assert.equal(references.medpace.isin,'US58506Q1094')
+for(const query of [equityReference.name,equityReference.tickers[0],equityReference.isin])assert(searchAssets(query,'equity').includes(equityAsset))
+assert.equal(references[equityAsset].kind,'equity');assert.equal(completed.profile.lines[0].isin,equityReference.isin)
 console.log('Profils abonnés : identité propre, création sans scénario, mises à jour, recherche, héritage, fichiers, protection des conflits/corruptions/quotas et limite commune validés.')
