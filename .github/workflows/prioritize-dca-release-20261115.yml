@@ -77,7 +77,9 @@ jobs:
               if any(job['name'] in {'deploy', 'deploy-fallback'} and
                      job['status'] == 'in_progress' for job in jobs['jobs']):
                   raise RuntimeError('Active publisher preserved: ' + str(run_id))
-              api('/actions/runs/' + str(run_id) + '/cancel', 'POST')
+              # Ordinary cancellation can start the old gate's always() fallback.
+              # No publisher is active; force-stop only this proved obsolete run.
+              api('/actions/runs/' + str(run_id) + '/force-cancel', 'POST')
               print('Retired superseded validation:', run_id, expected)
           print('Requested release preserved:', protected_run, release)
           PY
