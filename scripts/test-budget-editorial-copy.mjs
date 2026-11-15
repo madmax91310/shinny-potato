@@ -1,8 +1,9 @@
+// This dated audit protects the original source-backed collection. The live bank, including new editorial characters, is checked by test-budget-profiles and test-budget-new-profiles.
 import assert from 'node:assert/strict'
 import previous from '../src/pages/budget-profiles/editorial-lives-2026-11-06.json' with { type: 'json' }
 import patches from '../src/pages/budget-profiles/editorial-copy-2026-11-14.json' with { type: 'json' }
 import { reviseEditorialCopy } from '../src/pages/budget-profiles/editorial-copy.js'
-import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_REFERENCE_PROFILES as BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText, publicationContextFor } from '../src/pages/budget-profiles/lib.js'
 
 assert.deepEqual(Object.keys(patches).sort(), BUDGET_PROFILES.map(p => p.id).sort(), 'The review covers exactly the complete current collection')

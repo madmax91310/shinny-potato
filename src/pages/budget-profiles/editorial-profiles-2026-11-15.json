@@ -1,0 +1,2119 @@
+[
+  {
+    "profile": {
+      "id": "editorial-morgane-saisonnier-2026-11-15",
+      "name": "Morgane",
+      "age": 30,
+      "job": "Indépendante dans le tourisme",
+      "household": "Vit seule · locataire",
+      "location": "France",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2024-11-01",
+      "checkedAt": "2026-11-15",
+      "preparedAt": "2026-11-15",
+      "editorialReviewedAt": "2026-11-15",
+      "period": "Novembre 2026",
+      "budgetAsOf": "2026-11-15",
+      "country": "France",
+      "family": "single",
+      "children": "no",
+      "housing": "tenant",
+      "source": {
+        "url": "https://community.finary.com/t/dca-lump-sum-activite-saisonniere/18858/1",
+        "title": "DCA/lump sum activité saisonnière",
+        "publisher": "Finary"
+      },
+      "incomeBasis": "Moyenne sur l’année",
+      "incomeNote": "Les montants sont lissés sur l’année ; les encaissements réels varient fortement.",
+      "capacity": null,
+      "context": "Morgane reçoit 80 % de ses revenus annuels sur quatre mois. Après les frais de son activité et les prélèvements, cela représente 5 760 € disponibles par mois pendant cette période, puis 720 € sur chacun des huit autres mois. La moyenne est de 2 400 €.\n\nElle garde 18 000 € sur livrets : 12 000 € pour traverser les mois creux et 6 000 € pour les imprévus. Les 12 000 € financent aussi les versements au PEA pendant ces mois. Son PEA vaut 22 000 € et elle compte le garder au moins vingt ans.\n\nElle investit 500 € chaque mois, soit 6 000 € par an. Elle hésite à investir plutôt 1 500 € pendant chacun des quatre bons mois, puis à suspendre les achats pendant les huit autres. Dans les deux cas, elle veut garder assez d’argent pour vivre toute l’année.",
+      "caveat": "",
+      "hook": "",
+      "question": "Vous investiriez 500 € chaque mois ou 1 500 € pendant les quatre bons mois ?\nAvec des revenus saisonniers, comment séparez-vous l’argent des prochains mois de celui que vous pouvez investir ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-15",
+        "source": {
+          "url": "https://community.finary.com/t/dca-lump-sum-activite-saisonniere/18858/1",
+          "title": "DCA/lump sum activité saisonnière",
+          "publisher": "Finary",
+          "sourceDate": "2024-11-01"
+        },
+        "sourceFacts": [
+          "Activité saisonnière : 80 % des revenus sur quatre mois ; PEA à 500 €/mois ; alternative de quatre versements de 1 500 € ; dépenses annuelles déjà couvertes ailleurs dans la source."
+        ],
+        "createdFields": [
+          "Identité, genre, âge, logement, 28 800 € de ressources annuelles, tous les postes de dépenses, stocks de 18 000 € et 22 000 €, ventilation de trésorerie et horizon de vingt ans.",
+          "Activité indépendante dans le tourisme ; revenus disponibles après frais professionnels et prélèvements, sans chiffrer de régime fiscal réel."
+        ],
+        "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+        "originalSourcePreserved": true,
+        "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+        "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+        "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+        "coverage": {
+          "housing": "listed",
+          "food": "listed",
+          "transport": "listed",
+          "health": "listed",
+          "insurance": "listed",
+          "tax": "income-net-assumption",
+          "annualCosts": "grouped",
+          "dependents": "not_applicable",
+          "professionalCosts": "excluded-before-income",
+          "seasonality": "annual-reserve-checked"
+        },
+        "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+        "expectedIncome": 2400.0,
+        "expectedExpenses": 1650.0,
+        "expectedTransfers": 500.0,
+        "expectedBalance": 250.0
+      },
+      "editorialCreation": {
+        "reviewedAt": "2026-11-15",
+        "baseline": "new-bank-2026-11-15",
+        "finance": [
+          {
+            "type": "financial-stock",
+            "label": "Trésorerie et sécurité",
+            "amount": 18000
+          },
+          {
+            "type": "financial-stock",
+            "label": "PEA",
+            "amount": 22000
+          }
+        ]
+      },
+      "income": [
+        {
+          "label": "Revenus moyens sur l’année",
+          "amount": 2400,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Loyer et charges",
+          "amount": 620,
+          "category": "housing"
+        },
+        {
+          "label": "Énergie et eau",
+          "amount": 90,
+          "category": "bills"
+        },
+        {
+          "label": "Alimentation",
+          "amount": 280,
+          "category": "food"
+        },
+        {
+          "label": "Voiture et trajets",
+          "amount": 180,
+          "category": "transport"
+        },
+        {
+          "label": "Assurances",
+          "amount": 70,
+          "category": "bills"
+        },
+        {
+          "label": "Santé",
+          "amount": 65,
+          "category": "health"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 35,
+          "category": "bills"
+        },
+        {
+          "label": "Sorties",
+          "amount": 100,
+          "category": "leisure"
+        },
+        {
+          "label": "Vacances et cadeaux",
+          "amount": 100,
+          "category": "leisure"
+        },
+        {
+          "label": "Vêtements",
+          "amount": 50,
+          "category": "other"
+        },
+        {
+          "label": "Entretien et équipement",
+          "amount": 60,
+          "category": "other"
+        }
+      ],
+      "savings": [
+        {
+          "label": "PEA · ETF World",
+          "amount": 500,
+          "category": "other"
+        }
+      ]
+    },
+    "display": {
+      "alias": "Morgane",
+      "publicJob": "Indépendante dans le tourisme",
+      "publicHousehold": "Vit seule · locataire",
+      "publicIncomeNote": "Les montants sont lissés sur l’année ; les encaissements réels varient fortement.",
+      "publicBasis": "Moyenne sur l’année"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Moyenne sur l’année",
+        "incomeNote": "Les montants sont lissés sur l’année ; les encaissements réels varient fortement.",
+        "household": "Vit seule · locataire",
+        "transfersHeading": "Épargne et projets"
+      },
+      "paragraphs": [
+        {
+          "text": "Morgane reçoit 80 % de ses revenus annuels sur quatre mois. Après les frais de son activité et les prélèvements, cela représente 5 760 € disponibles par mois pendant cette période, puis 720 € sur chacun des huit autres mois. La moyenne est de 2 400 €.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Elle garde 18 000 € sur livrets : 12 000 € pour traverser les mois creux et 6 000 € pour les imprévus. Les 12 000 € financent aussi les versements au PEA pendant ces mois. Son PEA vaut 22 000 € et elle compte le garder au moins vingt ans.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Elle investit 500 € chaque mois, soit 6 000 € par an. Elle hésite à investir plutôt 1 500 € pendant chacun des quatre bons mois, puis à suspendre les achats pendant les huit autres. Dans les deux cas, elle veut garder assez d’argent pour vivre toute l’année.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Vous investiriez 500 € chaque mois ou 1 500 € pendant les quatre bons mois ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Avec des revenus saisonniers, comment séparez-vous l’argent des prochains mois de celui que vous pouvez investir ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-inspiration",
+          "url": "https://community.finary.com/t/dca-lump-sum-activite-saisonniere/18858/1",
+          "publishedAt": "2024-11-01",
+          "checkedAt": "2026-11-15",
+          "facts": [
+            "Activité saisonnière : 80 % des revenus sur quatre mois ; PEA à 500 €/mois ; alternative de quatre versements de 1 500 € ; dépenses annuelles déjà couvertes ailleurs dans la source."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-15",
+          "created": [
+            "Identité, genre, âge, logement, 28 800 € de ressources annuelles, tous les postes de dépenses, stocks de 18 000 € et 22 000 €, ventilation de trésorerie et horizon de vingt ans.",
+            "Activité indépendante dans le tourisme ; revenus disponibles après frais professionnels et prélèvements, sans chiffrer de régime fiscal réel."
+          ],
+          "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+        }
+      ],
+      "review": {
+        "access": "consulted",
+        "checkedAt": "2026-11-15",
+        "limit": "Source d’inspiration partielle ; les montants créés sont des choix éditoriaux et non les comptes réels de son auteur."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "sourceFacts": [
+        "Activité saisonnière : 80 % des revenus sur quatre mois ; PEA à 500 €/mois ; alternative de quatre versements de 1 500 € ; dépenses annuelles déjà couvertes ailleurs dans la source."
+      ],
+      "created": [
+        "Identité, genre, âge, logement, 28 800 € de ressources annuelles, tous les postes de dépenses, stocks de 18 000 € et 22 000 €, ventilation de trésorerie et horizon de vingt ans.",
+        "Activité indépendante dans le tourisme ; revenus disponibles après frais professionnels et prélèvements, sans chiffrer de régime fiscal réel."
+      ],
+      "sourceConsultationClaim": false,
+      "sourceCheckedAt": "2026-11-15",
+      "finance": [
+        {
+          "type": "financial-stock",
+          "label": "Trésorerie et sécurité",
+          "amount": 18000
+        },
+        {
+          "type": "financial-stock",
+          "label": "PEA",
+          "amount": 22000
+        }
+      ],
+      "coherence": {
+        "housing": "listed",
+        "food": "listed",
+        "transport": "listed",
+        "health": "listed",
+        "insurance": "listed",
+        "tax": "income-net-assumption",
+        "annualCosts": "grouped",
+        "dependents": "not_applicable",
+        "professionalCosts": "excluded-before-income",
+        "seasonality": "annual-reserve-checked"
+      },
+      "calculations": [
+        {
+          "kind": "annual-seasonal",
+          "incomeHigh": 5760,
+          "monthsHigh": 4,
+          "incomeLow": 720,
+          "monthsLow": 8,
+          "operatingReserve": 12000,
+          "emergencyReserve": 6000
+        }
+      ]
+    },
+    "expectedCents": {
+      "income": 240000,
+      "expenses": 165000,
+      "savings": 50000,
+      "available": 75000,
+      "balance": 25000
+    }
+  },
+  {
+    "profile": {
+      "id": "editorial-lison-dorian-van-2026-11-15",
+      "name": "Lison et Dorian",
+      "age": null,
+      "job": "Travailleurs saisonniers",
+      "household": "Un enfant de 2 ans · un chien",
+      "location": "France · vivent en van",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2021-12-09",
+      "checkedAt": "2026-11-15",
+      "preparedAt": "2026-11-15",
+      "editorialReviewedAt": "2026-11-15",
+      "period": "Novembre 2026",
+      "budgetAsOf": "2026-11-15",
+      "country": "France",
+      "family": "couple",
+      "children": "yes",
+      "housing": "other",
+      "source": {
+        "url": "https://www.outside.fr/enquete-vanlifers-comment-gagnent-ils-leur-vie-interview-de-tifeen-et-kevin-travailleurs-saisonniers/",
+        "title": "Vanlifers : travailleurs saisonniers",
+        "publisher": "Outside"
+      },
+      "incomeBasis": "Moyenne sur l’année",
+      "incomeNote": "Six mois travaillés, puis six mois sans salaire.",
+      "capacity": null,
+      "context": "Lison et Dorian travaillent six mois dans l’année. Ils gagnent alors 4 700 € à deux par mois et n’ont pas de salaire pendant les six autres mois. Les 2 350 € présentés sont donc une moyenne annuelle. Pendant les saisons, ils restent au même endroit et font garder leur enfant ; cette garde est comprise dans les dépenses.\n\nLe van est payé. Ils ont 18 000 € sur livrets : 14 000 € pour les mois sans salaire et 4 000 € d’imprévus. Leur PEA vaut 4 000 €. Les mois sans travail, leur trésorerie doit couvrir les dépenses et les 300 € de versements, soit 2 090 € par mois.\n\nIls ont aussi 600 € à part pour refaire l’aménagement, hors réparations courantes. Avec les 200 € mensuels, ils réuniraient 3 000 € en un an. Ils hésitent entre engager ces travaux ou rouler moins pour conserver une plus grande marge.",
+      "caveat": "",
+      "hook": "",
+      "question": "Avec un enfant, vous garderiez 4 000 € pour les imprévus du van ou davantage ?\nVous referiez l’aménagement pour 3 000 € ou vous préféreriez garder cet argent pour voyager plus longtemps ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-15",
+        "source": {
+          "url": "https://www.outside.fr/enquete-vanlifers-comment-gagnent-ils-leur-vie-interview-de-tifeen-et-kevin-travailleurs-saisonniers/",
+          "title": "Vanlifers : travailleurs saisonniers",
+          "publisher": "Outside",
+          "sourceDate": "2021-12-09"
+        },
+        "sourceFacts": [
+          "Couple travaillant en saisons, vivant sur la route avec un enfant ; dépenses liées au véhicule et aux voyages ; assurances et mutuelles annoncées autour de 150 €/mois."
+        ],
+        "createdFields": [
+          "Identités, âge de l’enfant, restriction à un chien, revenus, nombre de mois travaillés, totalité du budget détaillé sauf le repère assurances, patrimoines, financement de l’aménagement et questions. Les 600–1 200 € de dépenses historiques de la source ne sont pas présentés comme un budget actuel complet.",
+          "Révision du lot : enfant de deux ans, garde et vêtements à 180 €/mois, organisation locale pendant les saisons. Charges complètes de 1 790 €, solde de 260 € ; six mois sans salaire consomment 12 540 € avec les versements."
+        ],
+        "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+        "originalSourcePreserved": true,
+        "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+        "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+        "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+        "coverage": {
+          "housing": "vehicle-paid",
+          "food": "listed",
+          "transport": "listed",
+          "health": "listed",
+          "insurance": "listed",
+          "tax": "income-net-assumption",
+          "annualCosts": "listed",
+          "dependents": "childcare-added",
+          "professionalCosts": "not_applicable",
+          "seasonality": "annual-reserve-checked"
+        },
+        "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+        "expectedIncome": 2350.0,
+        "expectedExpenses": 1790.0,
+        "expectedTransfers": 300.0,
+        "expectedBalance": 260.0
+      },
+      "editorialCreation": {
+        "reviewedAt": "2026-11-15",
+        "baseline": "new-bank-2026-11-15",
+        "finance": [
+          {
+            "type": "project",
+            "label": "Aménagement du van",
+            "initialFunding": 600,
+            "targetAmount": 3000,
+            "horizonMonths": 12,
+            "monthlyFunding": 200
+          }
+        ]
+      },
+      "income": [
+        {
+          "label": "Salaires du couple, lissés sur l’année",
+          "amount": 2350,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Aires, stationnement et eau",
+          "amount": 160,
+          "category": "other"
+        },
+        {
+          "label": "Carburant et péages",
+          "amount": 400,
+          "category": "transport"
+        },
+        {
+          "label": "Alimentation et hygiène",
+          "amount": 400,
+          "category": "food"
+        },
+        {
+          "label": "Assurance du van et mutuelles",
+          "amount": 150,
+          "category": "transport"
+        },
+        {
+          "label": "Entretien et réparations du van",
+          "amount": 180,
+          "category": "transport"
+        },
+        {
+          "label": "Gaz, chauffage et électricité",
+          "amount": 45,
+          "category": "bills"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 45,
+          "category": "bills"
+        },
+        {
+          "label": "Garde et vêtements de leur enfant",
+          "amount": 180,
+          "category": "other"
+        },
+        {
+          "label": "Soins non remboursés",
+          "amount": 50,
+          "category": "health"
+        },
+        {
+          "label": "Chien",
+          "amount": 60,
+          "category": "other"
+        },
+        {
+          "label": "Sorties",
+          "amount": 70,
+          "category": "leisure"
+        },
+        {
+          "label": "Vêtements adultes et cadeaux",
+          "amount": 50,
+          "category": "other"
+        }
+      ],
+      "savings": [
+        {
+          "label": "Aménagement du van",
+          "amount": 200,
+          "category": "other"
+        },
+        {
+          "label": "PEA · ETF World",
+          "amount": 100,
+          "category": "other"
+        }
+      ]
+    },
+    "display": {
+      "alias": "Lison et Dorian",
+      "publicJob": "Travailleurs saisonniers",
+      "publicHousehold": "Un enfant de 2 ans · un chien",
+      "publicIncomeNote": "Six mois travaillés, puis six mois sans salaire.",
+      "publicBasis": "Moyenne sur l’année"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Moyenne sur l’année",
+        "incomeNote": "Six mois travaillés, puis six mois sans salaire.",
+        "household": "Un enfant de 2 ans · un chien",
+        "transfersHeading": "Épargne et projets",
+        "expenseLabels": {
+          "Aires, stationnement et eau": "Stationnement et eau",
+          "Alimentation et hygiène": "Courses et hygiène",
+          "Assurance du van et mutuelles": "Assurance van et mutuelles",
+          "Entretien et réparations du van": "Entretien et réparations",
+          "Gaz, chauffage et électricité": "Énergie du van",
+          "Garde et vêtements de leur enfant": "Garde et vêtements enfant",
+          "Soins non remboursés": "Soins non remboursés",
+          "Vêtements adultes et cadeaux": "Vêtements et cadeaux"
+        }
+      },
+      "paragraphs": [
+        {
+          "text": "Lison et Dorian travaillent six mois dans l’année. Ils gagnent alors 4 700 € à deux par mois et n’ont pas de salaire pendant les six autres mois. Les 2 350 € présentés sont donc une moyenne annuelle. Pendant les saisons, ils restent au même endroit et font garder leur enfant ; cette garde est comprise dans les dépenses.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Le van est payé. Ils ont 18 000 € sur livrets : 14 000 € pour les mois sans salaire et 4 000 € d’imprévus. Leur PEA vaut 4 000 €. Les mois sans travail, leur trésorerie doit couvrir les dépenses et les 300 € de versements, soit 2 090 € par mois.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Ils ont aussi 600 € à part pour refaire l’aménagement, hors réparations courantes. Avec les 200 € mensuels, ils réuniraient 3 000 € en un an. Ils hésitent entre engager ces travaux ou rouler moins pour conserver une plus grande marge.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Avec un enfant, vous garderiez 4 000 € pour les imprévus du van ou davantage ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Vous referiez l’aménagement pour 3 000 € ou vous préféreriez garder cet argent pour voyager plus longtemps ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-inspiration",
+          "url": "https://www.outside.fr/enquete-vanlifers-comment-gagnent-ils-leur-vie-interview-de-tifeen-et-kevin-travailleurs-saisonniers/",
+          "publishedAt": "2021-12-09",
+          "checkedAt": "2026-11-15",
+          "facts": [
+            "Couple travaillant en saisons, vivant sur la route avec un enfant ; dépenses liées au véhicule et aux voyages ; assurances et mutuelles annoncées autour de 150 €/mois."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-15",
+          "created": [
+            "Identités, âge de l’enfant, restriction à un chien, revenus, nombre de mois travaillés, totalité du budget détaillé sauf le repère assurances, patrimoines, financement de l’aménagement et questions. Les 600–1 200 € de dépenses historiques de la source ne sont pas présentés comme un budget actuel complet.",
+            "Révision du lot : enfant de deux ans, garde et vêtements à 180 €/mois, organisation locale pendant les saisons. Charges complètes de 1 790 €, solde de 260 € ; six mois sans salaire consomment 12 540 € avec les versements."
+          ],
+          "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+        }
+      ],
+      "review": {
+        "access": "consulted",
+        "checkedAt": "2026-11-15",
+        "limit": "Source d’inspiration partielle ; les montants créés sont des choix éditoriaux et non les comptes réels de son auteur."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "sourceFacts": [
+        "Couple travaillant en saisons, vivant sur la route avec un enfant ; dépenses liées au véhicule et aux voyages ; assurances et mutuelles annoncées autour de 150 €/mois."
+      ],
+      "created": [
+        "Identités, âge de l’enfant, restriction à un chien, revenus, nombre de mois travaillés, totalité du budget détaillé sauf le repère assurances, patrimoines, financement de l’aménagement et questions. Les 600–1 200 € de dépenses historiques de la source ne sont pas présentés comme un budget actuel complet.",
+        "Révision du lot : enfant de deux ans, garde et vêtements à 180 €/mois, organisation locale pendant les saisons. Charges complètes de 1 790 €, solde de 260 € ; six mois sans salaire consomment 12 540 € avec les versements."
+      ],
+      "sourceConsultationClaim": false,
+      "sourceCheckedAt": "2026-11-15",
+      "finance": [
+        {
+          "type": "project",
+          "label": "Aménagement du van",
+          "initialFunding": 600,
+          "targetAmount": 3000,
+          "horizonMonths": 12,
+          "monthlyFunding": 200
+        }
+      ],
+      "coherence": {
+        "housing": "vehicle-paid",
+        "food": "listed",
+        "transport": "listed",
+        "health": "listed",
+        "insurance": "listed",
+        "tax": "income-net-assumption",
+        "annualCosts": "listed",
+        "dependents": "childcare-added",
+        "professionalCosts": "not_applicable",
+        "seasonality": "annual-reserve-checked"
+      },
+      "calculations": [
+        {
+          "kind": "annual-seasonal",
+          "incomeHigh": 4700,
+          "monthsHigh": 6,
+          "incomeLow": 0,
+          "monthsLow": 6,
+          "operatingReserve": 14000,
+          "emergencyReserve": 4000
+        },
+        {
+          "kind": "project",
+          "target": 3000,
+          "initial": 600,
+          "monthly": 200,
+          "months": 12
+        }
+      ]
+    },
+    "expectedCents": {
+      "income": 235000,
+      "expenses": 179000,
+      "savings": 30000,
+      "available": 56000,
+      "balance": 26000
+    }
+  },
+  {
+    "profile": {
+      "id": "editorial-solene-marin-2026-11-15",
+      "name": "Solène",
+      "age": 35,
+      "job": "Marin de commerce",
+      "household": "Vit seule · propriétaire",
+      "location": "Brest",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2026-04-23",
+      "checkedAt": "2026-11-15",
+      "preparedAt": "2026-11-15",
+      "editorialReviewedAt": "2026-11-15",
+      "period": "Novembre 2026",
+      "budgetAsOf": "2026-11-15",
+      "country": "France",
+      "family": "single",
+      "children": "no",
+      "housing": "owner",
+      "source": {
+        "url": "https://community.finary.com/t/a-lire-1er-post-si-vous-etes-nouveau/17?page=148",
+        "title": "Présentation Navrug, marin de commerce, message 3232",
+        "publisher": "Finary"
+      },
+      "incomeBasis": "Montants mensuels",
+      "incomeNote": "",
+      "capacity": null,
+      "context": "Solène alterne les embarquements et les périodes à terre. Ses repas à bord sont pris en charge ; les 260 € correspondent aux achats qu’elle paie elle-même, lissés sur l’année.\n\nElle a 16 000 € sur livrets : 10 000 € de sécurité et 6 000 € pour des travaux. Les 350 € mensuels porteraient cette dernière enveloppe à 10 200 € dans un an, le montant prévu pour la salle de bains.\n\nElle possède aussi un PEA de 9 000 € et un PEE de 14 000 €, dont 10 000 € en actions de son employeur. Elle voudrait réduire cette concentration lorsque les sommes seront disponibles, tout en gardant ses ETF au moins quinze ans.",
+      "caveat": "",
+      "hook": "",
+      "question": "Sur ses 14 000 € de PEE, 10 000 € dépendent de son employeur : vous les garderiez ou vous diversifieriez dès qu’ils deviennent disponibles ?\nAvec les travaux déjà financés dans un an, vous conserveriez les 600 € mensuels en ETF ou vous changeriez leur répartition ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-15",
+        "source": {
+          "url": "https://community.finary.com/t/a-lire-1er-post-si-vous-etes-nouveau/17?page=148",
+          "title": "Présentation Navrug, marin de commerce, message 3232",
+          "publisher": "Finary",
+          "sourceDate": "2026-04-23"
+        },
+        "sourceFacts": [
+          "Présentation d’un marin de commerce de 35 ans, onze ans de métier, disposant d’un PEE, d’épargne libre et de sa résidence principale ; intérêt pour les ETF et les obligations."
+        ],
+        "createdFields": [
+          "Identité féminine, ville, vie seule, rotations et repas pris en charge, salaire disponible après prélèvements, dépenses, montants détenus, concentration employeur, PEA, travaux et horizon. Aucun avantage fiscal propre aux marins n’est supposé."
+        ],
+        "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+        "originalSourcePreserved": true,
+        "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+        "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+        "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+        "coverage": {
+          "housing": "listed",
+          "food": "paid-onshore-only",
+          "transport": "listed",
+          "health": "listed",
+          "insurance": "listed",
+          "tax": "income-net-assumption",
+          "annualCosts": "listed",
+          "dependents": "not_applicable",
+          "professionalCosts": "meals-in-kind-not-counted-as-income",
+          "seasonality": "annual-average"
+        },
+        "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+        "expectedIncome": 3600.0,
+        "expectedExpenses": 2050.0,
+        "expectedTransfers": 1100.0,
+        "expectedBalance": 450.0
+      },
+      "editorialCreation": {
+        "reviewedAt": "2026-11-15",
+        "baseline": "new-bank-2026-11-15",
+        "finance": [
+          {
+            "type": "financial-stock",
+            "label": "Sécurité",
+            "amount": 10000
+          },
+          {
+            "type": "project",
+            "label": "Salle de bains",
+            "initialFunding": 6000,
+            "targetAmount": 10200,
+            "horizonMonths": 12,
+            "monthlyFunding": 350
+          }
+        ]
+      },
+      "income": [
+        {
+          "label": "Salaire disponible moyen",
+          "amount": 3600,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Crédit du logement, assurance comprise",
+          "amount": 950,
+          "category": "housing"
+        },
+        {
+          "label": "Énergie et eau",
+          "amount": 100,
+          "category": "bills"
+        },
+        {
+          "label": "Copropriété et taxe foncière",
+          "amount": 200,
+          "category": "housing"
+        },
+        {
+          "label": "Assurances logement et auto",
+          "amount": 75,
+          "category": "housing"
+        },
+        {
+          "label": "Alimentation à terre",
+          "amount": 260,
+          "category": "food"
+        },
+        {
+          "label": "Voiture : trajets et entretien",
+          "amount": 100,
+          "category": "transport"
+        },
+        {
+          "label": "Mutuelle et santé",
+          "amount": 60,
+          "category": "health"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 40,
+          "category": "bills"
+        },
+        {
+          "label": "Sorties",
+          "amount": 110,
+          "category": "leisure"
+        },
+        {
+          "label": "Vacances",
+          "amount": 100,
+          "category": "leisure"
+        },
+        {
+          "label": "Vêtements et équipement",
+          "amount": 55,
+          "category": "other"
+        }
+      ],
+      "savings": [
+        {
+          "label": "PEA · ETF World",
+          "amount": 600,
+          "category": "other"
+        },
+        {
+          "label": "Travaux du logement",
+          "amount": 350,
+          "category": "other"
+        },
+        {
+          "label": "Réserve de sécurité",
+          "amount": 150,
+          "category": "other"
+        }
+      ]
+    },
+    "display": {
+      "alias": "Solène",
+      "publicJob": "Marin de commerce",
+      "publicHousehold": "Vit seule · propriétaire",
+      "publicIncomeNote": "",
+      "publicBasis": "Montants mensuels"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Montants mensuels",
+        "incomeNote": "",
+        "household": "Vit seule · propriétaire",
+        "transfersHeading": "Épargne et projets"
+      },
+      "paragraphs": [
+        {
+          "text": "Solène alterne les embarquements et les périodes à terre. Ses repas à bord sont pris en charge ; les 260 € correspondent aux achats qu’elle paie elle-même, lissés sur l’année.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Elle a 16 000 € sur livrets : 10 000 € de sécurité et 6 000 € pour des travaux. Les 350 € mensuels porteraient cette dernière enveloppe à 10 200 € dans un an, le montant prévu pour la salle de bains.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Elle possède aussi un PEA de 9 000 € et un PEE de 14 000 €, dont 10 000 € en actions de son employeur. Elle voudrait réduire cette concentration lorsque les sommes seront disponibles, tout en gardant ses ETF au moins quinze ans.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Sur ses 14 000 € de PEE, 10 000 € dépendent de son employeur : vous les garderiez ou vous diversifieriez dès qu’ils deviennent disponibles ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Avec les travaux déjà financés dans un an, vous conserveriez les 600 € mensuels en ETF ou vous changeriez leur répartition ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-inspiration",
+          "url": "https://community.finary.com/t/a-lire-1er-post-si-vous-etes-nouveau/17?page=148",
+          "publishedAt": "2026-04-23",
+          "checkedAt": "2026-11-15",
+          "facts": [
+            "Présentation d’un marin de commerce de 35 ans, onze ans de métier, disposant d’un PEE, d’épargne libre et de sa résidence principale ; intérêt pour les ETF et les obligations."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-15",
+          "created": [
+            "Identité féminine, ville, vie seule, rotations et repas pris en charge, salaire disponible après prélèvements, dépenses, montants détenus, concentration employeur, PEA, travaux et horizon. Aucun avantage fiscal propre aux marins n’est supposé."
+          ],
+          "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+        }
+      ],
+      "review": {
+        "access": "consulted",
+        "checkedAt": "2026-11-15",
+        "limit": "Source d’inspiration partielle ; les montants créés sont des choix éditoriaux et non les comptes réels de son auteur."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "sourceFacts": [
+        "Présentation d’un marin de commerce de 35 ans, onze ans de métier, disposant d’un PEE, d’épargne libre et de sa résidence principale ; intérêt pour les ETF et les obligations."
+      ],
+      "created": [
+        "Identité féminine, ville, vie seule, rotations et repas pris en charge, salaire disponible après prélèvements, dépenses, montants détenus, concentration employeur, PEA, travaux et horizon. Aucun avantage fiscal propre aux marins n’est supposé."
+      ],
+      "sourceConsultationClaim": false,
+      "sourceCheckedAt": "2026-11-15",
+      "finance": [
+        {
+          "type": "financial-stock",
+          "label": "Sécurité",
+          "amount": 10000
+        },
+        {
+          "type": "project",
+          "label": "Salle de bains",
+          "initialFunding": 6000,
+          "targetAmount": 10200,
+          "horizonMonths": 12,
+          "monthlyFunding": 350
+        }
+      ],
+      "coherence": {
+        "housing": "listed",
+        "food": "paid-onshore-only",
+        "transport": "listed",
+        "health": "listed",
+        "insurance": "listed",
+        "tax": "income-net-assumption",
+        "annualCosts": "listed",
+        "dependents": "not_applicable",
+        "professionalCosts": "meals-in-kind-not-counted-as-income",
+        "seasonality": "annual-average"
+      },
+      "calculations": [
+        {
+          "kind": "project",
+          "target": 10200,
+          "initial": 6000,
+          "monthly": 350,
+          "months": 12
+        }
+      ]
+    },
+    "expectedCents": {
+      "income": 360000,
+      "expenses": 205000,
+      "savings": 110000,
+      "available": 155000,
+      "balance": 45000
+    }
+  },
+  {
+    "profile": {
+      "id": "editorial-delphine-garde-alternee-2026-11-15",
+      "name": "Delphine",
+      "age": 42,
+      "job": "Fonctionnaire",
+      "household": "Séparée · deux enfants en garde alternée",
+      "location": "France · propriétaire",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2026-03-23",
+      "checkedAt": "2026-11-15",
+      "preparedAt": "2026-11-15",
+      "editorialReviewedAt": "2026-11-15",
+      "period": "Novembre 2026",
+      "budgetAsOf": "2026-11-15",
+      "country": "France",
+      "family": "single",
+      "children": "yes",
+      "housing": "owner",
+      "source": {
+        "url": "https://community.finary.com/t/avis-conseils-quand-on-part-de-0-a-40-ans/35110/1",
+        "title": "Repartir à 42 ans après un divorce",
+        "publisher": "Finary"
+      },
+      "incomeBasis": "Montants mensuels",
+      "incomeNote": "",
+      "capacity": null,
+      "context": "Après sa séparation, Delphine a 1 200 € de réserve, 100 € pour les projets et un PEA de 100 €. Elle vise 6 000 € de sécurité et, à terme, 1 000 € pour les projets.\n\nElle garde un virement de 50 € vers le PEA pour prendre l’habitude d’investir. Elle envisage soit un ETF World seul, soit plusieurs fonds américains, européens et émergents, avec un horizon d’environ vingt ans.\n\nSon budget comprend les dépenses qu’elle paie pour ses enfants, lissées sur l’année. La garde alternée ne réduit pas de moitié le crédit, le chauffage ou l’équipement de leur chambre. Avec 50 € de marge, elle veut surtout éviter de reprendre ce qu’elle vient d’épargner.",
+      "caveat": "",
+      "hook": "",
+      "question": "Avec 50 € par mois sur le PEA, vous choisiriez un ETF World seul ou plusieurs ETF ?\nAprès une séparation, quels postes de dépenses vous ont le plus surpris ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-15",
+        "source": {
+          "url": "https://community.finary.com/t/avis-conseils-quand-on-part-de-0-a-40-ans/35110/1",
+          "title": "Repartir à 42 ans après un divorce",
+          "publisher": "Finary",
+          "sourceDate": "2026-03-23"
+        },
+        "sourceFacts": [
+          "Fonctionnaire de 42 ans, deux enfants en garde alternée, prêt immobilier ; cibles de 6 000 € de sécurité et 1 000 € de projets ; PEA ouvert avec 100 € ; projet de 50 €/mois ; hésitation entre ETF World et plusieurs zones ; horizon vingt ans."
+        ],
+        "createdFields": [
+          "Identité féminine, salaire, toutes les dépenses, réserves actuelles de 1 200 € et 100 €, versements de 150 € et 20 €, caractère effectif du versement PEA, description des dépenses de garde. Aucune pension alimentaire ou aide non documentée n’est ajoutée."
+        ],
+        "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+        "originalSourcePreserved": true,
+        "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+        "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+        "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+        "coverage": {
+          "housing": "listed",
+          "food": "listed",
+          "transport": "listed",
+          "health": "listed",
+          "insurance": "listed",
+          "tax": "income-net-assumption",
+          "annualCosts": "grouped",
+          "dependents": "shared-custody-personal-outlays",
+          "professionalCosts": "not_applicable"
+        },
+        "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+        "expectedIncome": 2500.0,
+        "expectedExpenses": 2230.0,
+        "expectedTransfers": 220.0,
+        "expectedBalance": 50.0
+      },
+      "editorialCreation": {
+        "reviewedAt": "2026-11-15",
+        "baseline": "new-bank-2026-11-15",
+        "finance": [
+          {
+            "type": "project",
+            "label": "Réserve de sécurité",
+            "initialFunding": 1200,
+            "targetAmount": 6000,
+            "horizonMonths": 32,
+            "monthlyFunding": 150
+          }
+        ]
+      },
+      "income": [
+        {
+          "label": "Salaire disponible",
+          "amount": 2500,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Crédit du logement, assurance comprise",
+          "amount": 900,
+          "category": "housing"
+        },
+        {
+          "label": "Énergie et eau",
+          "amount": 170,
+          "category": "bills"
+        },
+        {
+          "label": "Taxe foncière et entretien",
+          "amount": 130,
+          "category": "housing"
+        },
+        {
+          "label": "Alimentation et hygiène",
+          "amount": 350,
+          "category": "food"
+        },
+        {
+          "label": "École et activités des enfants",
+          "amount": 130,
+          "category": "other"
+        },
+        {
+          "label": "Voiture et déplacements",
+          "amount": 150,
+          "category": "transport"
+        },
+        {
+          "label": "Assurances et mutuelle",
+          "amount": 110,
+          "category": "health"
+        },
+        {
+          "label": "Soins non remboursés",
+          "amount": 70,
+          "category": "health"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 45,
+          "category": "bills"
+        },
+        {
+          "label": "Vêtements",
+          "amount": 60,
+          "category": "other"
+        },
+        {
+          "label": "Sorties et cadeaux",
+          "amount": 55,
+          "category": "leisure"
+        },
+        {
+          "label": "Vacances",
+          "amount": 60,
+          "category": "leisure"
+        }
+      ],
+      "savings": [
+        {
+          "label": "Réserve de sécurité",
+          "amount": 150,
+          "category": "other"
+        },
+        {
+          "label": "Projets",
+          "amount": 20,
+          "category": "other"
+        },
+        {
+          "label": "PEA",
+          "amount": 50,
+          "category": "other"
+        }
+      ]
+    },
+    "display": {
+      "alias": "Delphine",
+      "publicJob": "Fonctionnaire",
+      "publicHousehold": "Séparée · deux enfants en garde alternée",
+      "publicIncomeNote": "",
+      "publicBasis": "Montants mensuels"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Montants mensuels",
+        "incomeNote": "",
+        "household": "Séparée · deux enfants en garde alternée",
+        "transfersHeading": "Épargne et projets"
+      },
+      "paragraphs": [
+        {
+          "text": "Après sa séparation, Delphine a 1 200 € de réserve, 100 € pour les projets et un PEA de 100 €. Elle vise 6 000 € de sécurité et, à terme, 1 000 € pour les projets.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Elle garde un virement de 50 € vers le PEA pour prendre l’habitude d’investir. Elle envisage soit un ETF World seul, soit plusieurs fonds américains, européens et émergents, avec un horizon d’environ vingt ans.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Son budget comprend les dépenses qu’elle paie pour ses enfants, lissées sur l’année. La garde alternée ne réduit pas de moitié le crédit, le chauffage ou l’équipement de leur chambre. Avec 50 € de marge, elle veut surtout éviter de reprendre ce qu’elle vient d’épargner.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Avec 50 € par mois sur le PEA, vous choisiriez un ETF World seul ou plusieurs ETF ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Après une séparation, quels postes de dépenses vous ont le plus surpris ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-inspiration",
+          "url": "https://community.finary.com/t/avis-conseils-quand-on-part-de-0-a-40-ans/35110/1",
+          "publishedAt": "2026-03-23",
+          "checkedAt": "2026-11-15",
+          "facts": [
+            "Fonctionnaire de 42 ans, deux enfants en garde alternée, prêt immobilier ; cibles de 6 000 € de sécurité et 1 000 € de projets ; PEA ouvert avec 100 € ; projet de 50 €/mois ; hésitation entre ETF World et plusieurs zones ; horizon vingt ans."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-15",
+          "created": [
+            "Identité féminine, salaire, toutes les dépenses, réserves actuelles de 1 200 € et 100 €, versements de 150 € et 20 €, caractère effectif du versement PEA, description des dépenses de garde. Aucune pension alimentaire ou aide non documentée n’est ajoutée."
+          ],
+          "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+        }
+      ],
+      "review": {
+        "access": "consulted",
+        "checkedAt": "2026-11-15",
+        "limit": "Source d’inspiration partielle ; les montants créés sont des choix éditoriaux et non les comptes réels de son auteur."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "sourceFacts": [
+        "Fonctionnaire de 42 ans, deux enfants en garde alternée, prêt immobilier ; cibles de 6 000 € de sécurité et 1 000 € de projets ; PEA ouvert avec 100 € ; projet de 50 €/mois ; hésitation entre ETF World et plusieurs zones ; horizon vingt ans."
+      ],
+      "created": [
+        "Identité féminine, salaire, toutes les dépenses, réserves actuelles de 1 200 € et 100 €, versements de 150 € et 20 €, caractère effectif du versement PEA, description des dépenses de garde. Aucune pension alimentaire ou aide non documentée n’est ajoutée."
+      ],
+      "sourceConsultationClaim": false,
+      "sourceCheckedAt": "2026-11-15",
+      "finance": [
+        {
+          "type": "project",
+          "label": "Réserve de sécurité",
+          "initialFunding": 1200,
+          "targetAmount": 6000,
+          "horizonMonths": 32,
+          "monthlyFunding": 150
+        }
+      ],
+      "coherence": {
+        "housing": "listed",
+        "food": "listed",
+        "transport": "listed",
+        "health": "listed",
+        "insurance": "listed",
+        "tax": "income-net-assumption",
+        "annualCosts": "grouped",
+        "dependents": "shared-custody-personal-outlays",
+        "professionalCosts": "not_applicable"
+      },
+      "calculations": []
+    },
+    "expectedCents": {
+      "income": 250000,
+      "expenses": 223000,
+      "savings": 22000,
+      "available": 27000,
+      "balance": 5000
+    }
+  },
+  {
+    "profile": {
+      "id": "editorial-patrice-ferme-2026-11-15",
+      "name": "Patrice",
+      "age": 47,
+      "job": "Salarié du BTP · agriculteur",
+      "household": "Trois enfants étudiants · dépenses à sa charge",
+      "location": "France · propriétaire",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2025-09-21",
+      "checkedAt": "2026-11-15",
+      "preparedAt": "2026-11-15",
+      "editorialReviewedAt": "2026-11-15",
+      "period": "Novembre 2026",
+      "budgetAsOf": "2026-11-15",
+      "country": "France",
+      "family": "other",
+      "children": "yes",
+      "housing": "owner",
+      "source": {
+        "url": "https://community.finary.com/t/avis-strategie-svp/29866",
+        "title": "BTP et agriculture : vendre la ferme ou conserver un crédit",
+        "publisher": "Finary"
+      },
+      "incomeBasis": "Montants mensuels",
+      "incomeNote": "",
+      "capacity": null,
+      "context": "Patrice cumule son emploi salarié et une petite exploitation qui ne lui rapporte plus de revenu personnel. Ce budget reprend les dépenses qu’il finance lui-même, dont l’aide à ses trois enfants étudiants. Il manque 100 € par mois avant tout nouveau placement.\n\nIl a 70 000 € sur PEA et 50 000 € disponibles, dont 20 000 € réservés aux études de ses trois enfants. Il envisage de vendre la ferme autour de 180 000 €. Cette vente n’est pas réalisée : les frais et les éventuelles dettes de l’exploitation restent à déduire.\n\nSon crédit immobilier, à 1,12 %, lui coûte 1 100 € par mois. Il hésite entre utiliser la vente pour alléger ce crédit et garder du capital placé. Il envisage des SCPI, mais aucun revenu futur de ces placements n’est compté dans le budget. Il veut surtout retrouver une marge sans dépendre d’un rendement espéré.",
+      "caveat": "",
+      "hook": "",
+      "question": "Après la vente, vous solderiez le crédit à 1,12 % pour retrouver une marge ou vous garderiez une partie du capital placé ?\nAvec trois enfants étudiants, quelle somme laisseriez-vous disponible avant de décider ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-15",
+        "source": {
+          "url": "https://community.finary.com/t/avis-strategie-svp/29866",
+          "title": "BTP et agriculture : vendre la ferme ou conserver un crédit",
+          "publisher": "Finary",
+          "sourceDate": "2025-09-21"
+        },
+        "sourceFacts": [
+          "47 ans, BTP et agriculture, trois enfants étudiants, PEA de 70 000 €, 50 000 € disponibles, ferme à vendre 180 000 €, crédit RP annoncé à 1,12 % et 1 100 €/mois ; hésitation remboursement/SCPI."
+        ],
+        "createdFields": [
+          "Identité publique, salaire disponible de 3 200 €, zéro prélèvement agricole personnel, toutes les dépenses sauf la mensualité immobilière, déficit mensuel, réservation de 20 000 € pour les enfants. Le prix de vente brut n’est ni un revenu mensuel ni un capital net acquis. Le revenu SCPI espéré dans la source n’est pas repris comme garanti.",
+          "Périmètre des dépenses financées par Patrice ; aucun salaire de conjoint ni revenu agricole futur supposé."
+        ],
+        "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+        "originalSourcePreserved": true,
+        "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+        "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+        "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+        "coverage": {
+          "housing": "listed",
+          "food": "personal-household-outlays",
+          "transport": "listed",
+          "health": "listed",
+          "insurance": "grouped",
+          "tax": "income-net-assumption",
+          "annualCosts": "grouped",
+          "dependents": "student-support-listed",
+          "professionalCosts": "farm-outside-personal-ledger",
+          "assetSale": "gross-contingent-not-income"
+        },
+        "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+        "expectedIncome": 3200.0,
+        "expectedExpenses": 3300.0,
+        "expectedTransfers": 0.0,
+        "expectedBalance": -100.0
+      },
+      "editorialCreation": {
+        "reviewedAt": "2026-11-15",
+        "baseline": "new-bank-2026-11-15",
+        "finance": [
+          {
+            "type": "financial-stock",
+            "label": "Disponible pour les études",
+            "amount": 20000
+          },
+          {
+            "type": "financial-stock",
+            "label": "Autres liquidités",
+            "amount": 30000
+          }
+        ]
+      },
+      "income": [
+        {
+          "label": "Salaire disponible",
+          "amount": 3200,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Crédit de la résidence principale",
+          "amount": 1100,
+          "category": "other"
+        },
+        {
+          "label": "Logement et études des enfants",
+          "amount": 1050,
+          "category": "housing"
+        },
+        {
+          "label": "Énergie et eau",
+          "amount": 180,
+          "category": "bills"
+        },
+        {
+          "label": "Alimentation",
+          "amount": 450,
+          "category": "food"
+        },
+        {
+          "label": "Voiture et déplacements",
+          "amount": 180,
+          "category": "transport"
+        },
+        {
+          "label": "Impôts locaux et assurances du logement",
+          "amount": 140,
+          "category": "housing"
+        },
+        {
+          "label": "Mutuelle et santé",
+          "amount": 80,
+          "category": "health"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 50,
+          "category": "bills"
+        },
+        {
+          "label": "Vêtements",
+          "amount": 40,
+          "category": "other"
+        },
+        {
+          "label": "Loisirs",
+          "amount": 30,
+          "category": "leisure"
+        }
+      ],
+      "savings": []
+    },
+    "display": {
+      "alias": "Patrice",
+      "publicJob": "Salarié du BTP · agriculteur",
+      "publicHousehold": "Trois enfants étudiants · dépenses à sa charge",
+      "publicIncomeNote": "",
+      "publicBasis": "Montants mensuels"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Montants mensuels",
+        "incomeNote": "",
+        "household": "Trois enfants étudiants · dépenses à sa charge",
+        "transfersHeading": "Épargne et projets"
+      },
+      "paragraphs": [
+        {
+          "text": "Patrice cumule son emploi salarié et une petite exploitation qui ne lui rapporte plus de revenu personnel. Ce budget reprend les dépenses qu’il finance lui-même, dont l’aide à ses trois enfants étudiants. Il manque 100 € par mois avant tout nouveau placement.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Il a 70 000 € sur PEA et 50 000 € disponibles, dont 20 000 € réservés aux études de ses trois enfants. Il envisage de vendre la ferme autour de 180 000 €. Cette vente n’est pas réalisée : les frais et les éventuelles dettes de l’exploitation restent à déduire.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Son crédit immobilier, à 1,12 %, lui coûte 1 100 € par mois. Il hésite entre utiliser la vente pour alléger ce crédit et garder du capital placé. Il envisage des SCPI, mais aucun revenu futur de ces placements n’est compté dans le budget. Il veut surtout retrouver une marge sans dépendre d’un rendement espéré.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Après la vente, vous solderiez le crédit à 1,12 % pour retrouver une marge ou vous garderiez une partie du capital placé ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Avec trois enfants étudiants, quelle somme laisseriez-vous disponible avant de décider ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-inspiration",
+          "url": "https://community.finary.com/t/avis-strategie-svp/29866",
+          "publishedAt": "2025-09-21",
+          "checkedAt": "2026-11-15",
+          "facts": [
+            "47 ans, BTP et agriculture, trois enfants étudiants, PEA de 70 000 €, 50 000 € disponibles, ferme à vendre 180 000 €, crédit RP annoncé à 1,12 % et 1 100 €/mois ; hésitation remboursement/SCPI."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-15",
+          "created": [
+            "Identité publique, salaire disponible de 3 200 €, zéro prélèvement agricole personnel, toutes les dépenses sauf la mensualité immobilière, déficit mensuel, réservation de 20 000 € pour les enfants. Le prix de vente brut n’est ni un revenu mensuel ni un capital net acquis. Le revenu SCPI espéré dans la source n’est pas repris comme garanti.",
+            "Périmètre des dépenses financées par Patrice ; aucun salaire de conjoint ni revenu agricole futur supposé."
+          ],
+          "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+        }
+      ],
+      "review": {
+        "access": "consulted",
+        "checkedAt": "2026-11-15",
+        "limit": "Source d’inspiration partielle ; les montants créés sont des choix éditoriaux et non les comptes réels de son auteur."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "sourceFacts": [
+        "47 ans, BTP et agriculture, trois enfants étudiants, PEA de 70 000 €, 50 000 € disponibles, ferme à vendre 180 000 €, crédit RP annoncé à 1,12 % et 1 100 €/mois ; hésitation remboursement/SCPI."
+      ],
+      "created": [
+        "Identité publique, salaire disponible de 3 200 €, zéro prélèvement agricole personnel, toutes les dépenses sauf la mensualité immobilière, déficit mensuel, réservation de 20 000 € pour les enfants. Le prix de vente brut n’est ni un revenu mensuel ni un capital net acquis. Le revenu SCPI espéré dans la source n’est pas repris comme garanti.",
+        "Périmètre des dépenses financées par Patrice ; aucun salaire de conjoint ni revenu agricole futur supposé."
+      ],
+      "sourceConsultationClaim": false,
+      "sourceCheckedAt": "2026-11-15",
+      "finance": [
+        {
+          "type": "financial-stock",
+          "label": "Disponible pour les études",
+          "amount": 20000
+        },
+        {
+          "type": "financial-stock",
+          "label": "Autres liquidités",
+          "amount": 30000
+        }
+      ],
+      "coherence": {
+        "housing": "listed",
+        "food": "personal-household-outlays",
+        "transport": "listed",
+        "health": "listed",
+        "insurance": "grouped",
+        "tax": "income-net-assumption",
+        "annualCosts": "grouped",
+        "dependents": "student-support-listed",
+        "professionalCosts": "farm-outside-personal-ledger",
+        "assetSale": "gross-contingent-not-income"
+      },
+      "calculations": []
+    },
+    "expectedCents": {
+      "income": 320000,
+      "expenses": 330000,
+      "savings": 0,
+      "available": -10000,
+      "balance": -10000
+    }
+  },
+  {
+    "profile": {
+      "id": "editorial-noemie-frontaliere-2026-11-15",
+      "name": "Noémie",
+      "age": 24,
+      "job": "Informaticienne au Luxembourg",
+      "household": "En couple · sans enfant · sa part du budget du couple",
+      "location": "Belgique · propriétaire",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2023-12-20",
+      "checkedAt": "2026-11-15",
+      "preparedAt": "2026-11-15",
+      "editorialReviewedAt": "2026-11-15",
+      "period": "Novembre 2026",
+      "budgetAsOf": "2026-11-15",
+      "country": "Belgique",
+      "family": "couple",
+      "children": "no",
+      "housing": "owner",
+      "source": {
+        "url": "https://community.finary.com/t/presentation-profil-24-ans-luxembourg-en-informatique-demande-de-remarques/10985",
+        "title": "24 ans : travail au Luxembourg et résidence en Belgique",
+        "publisher": "Finary"
+      },
+      "incomeBasis": "Montants mensuels",
+      "incomeNote": "Les 200 € de titres-restaurant sont en plus : les courses ci-dessous sont le montant payé sur son compte.",
+      "capacity": null,
+      "context": "Noémie a 10 000 € de réserve, 3 000 € sur un ETF World et 6 500 € d’épargne retraite. Elle veut pouvoir réduire son activité dans vingt à trente ans.\n\nElle reçoit aussi un bonus variable de 10 000 à 12 000 € dans l’année, qu’elle ne compte pas pour payer les dépenses courantes. Les 300 € mensuels pour la voiture représentent 3 600 € par an, avant ce bonus.\n\nElle hésite à utiliser le bonus pour rembourser plus vite le crédit automobile à 4 %, puis préparer la prochaine voiture sans emprunter, ou à renforcer ses ETF. Elle se demande aussi si les 267 € d’épargne retraite ne prennent pas trop de place à son âge.",
+      "caveat": "",
+      "hook": "",
+      "question": "Vous utiliseriez les 10 000 à 12 000 € de bonus pour le crédit auto à 4 % ou pour renforcer les ETF ?\nÀ 24 ans, vous garderiez les 267 € mensuels d’épargne retraite ou vous en réserveriez une partie aux projets plus proches ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-15",
+        "source": {
+          "url": "https://community.finary.com/t/presentation-profil-24-ans-luxembourg-en-informatique-demande-de-remarques/10985",
+          "title": "24 ans : travail au Luxembourg et résidence en Belgique",
+          "publisher": "Finary",
+          "sourceDate": "2023-12-20"
+        },
+        "sourceFacts": [
+          "24 ans, emploi au Luxembourg, résidence principale achetée en couple en Belgique ; salaire 4 400 €, titres-restaurant 200 €, bonus annuel variable ; stocks 10 000 €, 3 000 €, 6 500 € ; versements 450/267/200/300/100 ; crédit auto à 4 %."
+        ],
+        "createdFields": [
+          "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge.",
+          "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte."
+        ],
+        "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+        "originalSourcePreserved": true,
+        "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+        "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+        "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+        "coverage": {
+          "housing": "personal-share",
+          "food": "cash-after-meal-vouchers",
+          "transport": "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte.",
+          "health": "listed",
+          "insurance": "grouped",
+          "tax": "source-net-no-new-tax-claim",
+          "annualCosts": "grouped",
+          "dependents": "not_applicable",
+          "professionalCosts": "not_applicable",
+          "bonus": "excluded-from-monthly-income"
+        },
+        "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+        "expectedIncome": 4400.0,
+        "expectedExpenses": 2600.0,
+        "expectedTransfers": 1317.0,
+        "expectedBalance": 483.0
+      },
+      "editorialCreation": {
+        "reviewedAt": "2026-11-15",
+        "baseline": "new-bank-2026-11-15",
+        "finance": [
+          {
+            "type": "financial-stock",
+            "label": "Sécurité",
+            "amount": 10000
+          }
+        ]
+      },
+      "income": [
+        {
+          "label": "Salaire net",
+          "amount": 4400,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Part du crédit immobilier",
+          "amount": 1000,
+          "category": "other"
+        },
+        {
+          "label": "Crédit automobile",
+          "amount": 500,
+          "category": "transport"
+        },
+        {
+          "label": "Part de l’énergie et de l’eau",
+          "amount": 130,
+          "category": "bills"
+        },
+        {
+          "label": "Impôts locaux et assurances du foyer",
+          "amount": 170,
+          "category": "housing"
+        },
+        {
+          "label": "Courses payées sur le compte",
+          "amount": 180,
+          "category": "food"
+        },
+        {
+          "label": "Carburant et frais auto",
+          "amount": 260,
+          "category": "transport"
+        },
+        {
+          "label": "Santé",
+          "amount": 50,
+          "category": "health"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 40,
+          "category": "bills"
+        },
+        {
+          "label": "Sorties",
+          "amount": 140,
+          "category": "leisure"
+        },
+        {
+          "label": "Vacances",
+          "amount": 100,
+          "category": "leisure"
+        },
+        {
+          "label": "Vêtements et cadeaux",
+          "amount": 30,
+          "category": "other"
+        }
+      ],
+      "savings": [
+        {
+          "label": "ETF World",
+          "amount": 450,
+          "category": "other"
+        },
+        {
+          "label": "Épargne retraite",
+          "amount": 267,
+          "category": "other"
+        },
+        {
+          "label": "Réserve de sécurité",
+          "amount": 200,
+          "category": "other"
+        },
+        {
+          "label": "Prochaine voiture",
+          "amount": 300,
+          "category": "other"
+        },
+        {
+          "label": "Bitcoin et Ethereum",
+          "amount": 100,
+          "category": "other"
+        }
+      ]
+    },
+    "display": {
+      "alias": "Noémie",
+      "publicJob": "Informaticienne au Luxembourg",
+      "publicHousehold": "En couple · sans enfant · sa part du budget du couple",
+      "publicIncomeNote": "Les 200 € de titres-restaurant sont en plus : les courses ci-dessous sont le montant payé sur son compte.",
+      "publicBasis": "Montants mensuels"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Montants mensuels",
+        "incomeNote": "Les 200 € de titres-restaurant sont en plus : les courses ci-dessous sont le montant payé sur son compte.",
+        "household": "En couple · sans enfant · sa part du budget du couple",
+        "transfersHeading": "Épargne et projets"
+      },
+      "paragraphs": [
+        {
+          "text": "Noémie a 10 000 € de réserve, 3 000 € sur un ETF World et 6 500 € d’épargne retraite. Elle veut pouvoir réduire son activité dans vingt à trente ans.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Elle reçoit aussi un bonus variable de 10 000 à 12 000 € dans l’année, qu’elle ne compte pas pour payer les dépenses courantes. Les 300 € mensuels pour la voiture représentent 3 600 € par an, avant ce bonus.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Elle hésite à utiliser le bonus pour rembourser plus vite le crédit automobile à 4 %, puis préparer la prochaine voiture sans emprunter, ou à renforcer ses ETF. Elle se demande aussi si les 267 € d’épargne retraite ne prennent pas trop de place à son âge.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Vous utiliseriez les 10 000 à 12 000 € de bonus pour le crédit auto à 4 % ou pour renforcer les ETF ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "À 24 ans, vous garderiez les 267 € mensuels d’épargne retraite ou vous en réserveriez une partie aux projets plus proches ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-inspiration",
+          "url": "https://community.finary.com/t/presentation-profil-24-ans-luxembourg-en-informatique-demande-de-remarques/10985",
+          "publishedAt": "2023-12-20",
+          "checkedAt": "2026-11-15",
+          "facts": [
+            "24 ans, emploi au Luxembourg, résidence principale achetée en couple en Belgique ; salaire 4 400 €, titres-restaurant 200 €, bonus annuel variable ; stocks 10 000 €, 3 000 €, 6 500 € ; versements 450/267/200/300/100 ; crédit auto à 4 %."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-15",
+          "created": [
+            "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge.",
+            "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte."
+          ],
+          "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+        }
+      ],
+      "review": {
+        "access": "consulted",
+        "checkedAt": "2026-11-15",
+        "limit": "Source d’inspiration partielle ; les montants créés sont des choix éditoriaux et non les comptes réels de son auteur."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "sourceFacts": [
+        "24 ans, emploi au Luxembourg, résidence principale achetée en couple en Belgique ; salaire 4 400 €, titres-restaurant 200 €, bonus annuel variable ; stocks 10 000 €, 3 000 €, 6 500 € ; versements 450/267/200/300/100 ; crédit auto à 4 %."
+      ],
+      "created": [
+        "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge.",
+        "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte."
+      ],
+      "sourceConsultationClaim": false,
+      "sourceCheckedAt": "2026-11-15",
+      "finance": [
+        {
+          "type": "financial-stock",
+          "label": "Sécurité",
+          "amount": 10000
+        }
+      ],
+      "coherence": {
+        "housing": "personal-share",
+        "food": "cash-after-meal-vouchers",
+        "transport": "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte.",
+        "health": "listed",
+        "insurance": "grouped",
+        "tax": "source-net-no-new-tax-claim",
+        "annualCosts": "grouped",
+        "dependents": "not_applicable",
+        "professionalCosts": "not_applicable",
+        "bonus": "excluded-from-monthly-income"
+      },
+      "calculations": []
+    },
+    "expectedCents": {
+      "income": 440000,
+      "expenses": 260000,
+      "savings": 131700,
+      "available": 180000,
+      "balance": 48300
+    }
+  },
+  {
+    "profile": {
+      "id": "editorial-cedric-intermittent-2026-11-15",
+      "name": "Cédric",
+      "age": 32,
+      "job": "Intermittent du spectacle",
+      "household": "Vit chez ses parents · projet d’installation",
+      "location": "France",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2026-04-05",
+      "checkedAt": "2026-11-15",
+      "preparedAt": "2026-11-15",
+      "editorialReviewedAt": "2026-11-15",
+      "period": "Novembre 2026",
+      "budgetAsOf": "2026-11-15",
+      "country": "France",
+      "family": "other",
+      "children": "no",
+      "housing": "other",
+      "source": {
+        "url": "https://community.finary.com/t/scpi-maintenant-acheter-un-studio-locatif-en-restant-locataire-strategie-coherente/35326/",
+        "title": "Intermittence, SCPI et premier logement",
+        "publisher": "Finary"
+      },
+      "incomeBasis": "Montants mensuels",
+      "incomeNote": "Revenus variables de 2 000 à 4 000 € ; le montant présenté est une moyenne.",
+      "capacity": null,
+      "context": "Les revenus de Cédric varient entre 2 000 et 4 000 € selon les mois. Avec les mêmes dépenses et virements, les mois à 2 000 € ne laissent rien sur son compte, contre 800 € au niveau moyen présenté.\n\nIl a 12 000 € sur livrets : 6 000 € de sécurité et 6 000 € pour s’installer. Les 600 € mensuels porteraient l’enveloppe installation à 12 000 € en dix mois. Son PEA vaut 18 000 € ; il souhaite y garder l’argent au moins quinze ans.\n\nIl regarde des loyers à 800 €, avec 120 € d’énergie et d’internet, 20 € d’assurance habitation et 250 € de courses. Ces dépenses remplaceraient les 350 € versés à ses parents pour le logement et les repas : son budget passerait à 1 840 €. Les mois à 2 000 €, il resterait 160 € avant versements, et il manquerait 840 € en gardant les virements actuels. Il envisage aussi des SCPI et un studio à louer, tout en voulant rester mobile pour son travail.",
+      "caveat": "",
+      "hook": "",
+      "question": "Vous fixeriez les versements après quelques mois dans son logement ou vous conserveriez déjà les 400 € sur le PEA ?\nPour un intermittent qui veut rester mobile, vous achèteriez d’abord un studio à louer ou vous attendriez d’acheter votre propre logement ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-15",
+        "source": {
+          "url": "https://community.finary.com/t/scpi-maintenant-acheter-un-studio-locatif-en-restant-locataire-strategie-coherente/35326/",
+          "title": "Intermittence, SCPI et premier logement",
+          "publisher": "Finary",
+          "sourceDate": "2026-04-05"
+        },
+        "sourceFacts": [
+          "Intermittent déclarant 2 000 à 4 000 €/mois, PEA et liquidités ; réflexion SCPI, studio locatif et résidence principale plus tard ; il précise dans une réponse vivre chez ses parents sans loyer."
+        ],
+        "createdFields": [
+          "Prénom, âge, moyenne de 2 800 €, contribution au foyer distincte d’un loyer, dépenses, patrimoine chiffré, versements, loyers envisagés, charges futures, horizon et calendrier. Les hypothèses initiales de location de la source ne sont pas prises pour une location déjà en cours.",
+          "Futur logement corrigé : loyer 800 €, énergie/internet 120 €, assurance 20 €, courses 250 €, remplaçant 350 € d’hébergement et repas. Dépenses futures 1 840 € ; manque de 840 € en mois bas avec les virements actuels."
+        ],
+        "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+        "originalSourcePreserved": true,
+        "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+        "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+        "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+        "coverage": {
+          "housing": "contribution-includes-food",
+          "food": "home-contribution-plus-outside-meals",
+          "transport": "listed",
+          "health": "listed",
+          "insurance": "auto-within-car-budget-parent-housing-insured",
+          "tax": "income-net-assumption",
+          "annualCosts": "grouped",
+          "dependents": "not_applicable",
+          "professionalCosts": "unreimbursed-listed",
+          "futureHousing": "groceries-and-insurance-added"
+        },
+        "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+        "expectedIncome": 2800.0,
+        "expectedExpenses": 1000.0,
+        "expectedTransfers": 1000.0,
+        "expectedBalance": 800.0
+      },
+      "editorialCreation": {
+        "reviewedAt": "2026-11-15",
+        "baseline": "new-bank-2026-11-15",
+        "finance": [
+          {
+            "type": "financial-stock",
+            "label": "Sécurité",
+            "amount": 6000
+          },
+          {
+            "type": "project",
+            "label": "Installation",
+            "initialFunding": 6000,
+            "targetAmount": 12000,
+            "horizonMonths": 10,
+            "monthlyFunding": 600
+          }
+        ]
+      },
+      "income": [
+        {
+          "label": "Cachets et indemnités, moyenne",
+          "amount": 2800,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Participation au foyer",
+          "amount": 350,
+          "category": "housing"
+        },
+        {
+          "label": "Voiture et déplacements",
+          "amount": 150,
+          "category": "transport"
+        },
+        {
+          "label": "Mutuelle et santé",
+          "amount": 60,
+          "category": "health"
+        },
+        {
+          "label": "Téléphone et abonnements",
+          "amount": 40,
+          "category": "bills"
+        },
+        {
+          "label": "Frais professionnels non remboursés",
+          "amount": 80,
+          "category": "other"
+        },
+        {
+          "label": "Sorties",
+          "amount": 100,
+          "category": "leisure"
+        },
+        {
+          "label": "Vêtements",
+          "amount": 50,
+          "category": "other"
+        },
+        {
+          "label": "Vacances et cadeaux",
+          "amount": 100,
+          "category": "leisure"
+        },
+        {
+          "label": "Repas à l’extérieur",
+          "amount": 70,
+          "category": "food"
+        }
+      ],
+      "savings": [
+        {
+          "label": "Projet d’installation",
+          "amount": 600,
+          "category": "other"
+        },
+        {
+          "label": "PEA · ETF World",
+          "amount": 400,
+          "category": "other"
+        }
+      ]
+    },
+    "display": {
+      "alias": "Cédric",
+      "publicJob": "Intermittent du spectacle",
+      "publicHousehold": "Vit chez ses parents · projet d’installation",
+      "publicIncomeNote": "Revenus variables de 2 000 à 4 000 € ; le montant présenté est une moyenne.",
+      "publicBasis": "Montants mensuels"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Montants mensuels",
+        "incomeNote": "Revenus variables de 2 000 à 4 000 € ; le montant présenté est une moyenne.",
+        "household": "Vit chez ses parents · projet d’installation",
+        "transfersHeading": "Épargne et projets"
+      },
+      "paragraphs": [
+        {
+          "text": "Les revenus de Cédric varient entre 2 000 et 4 000 € selon les mois. Avec les mêmes dépenses et virements, les mois à 2 000 € ne laissent rien sur son compte, contre 800 € au niveau moyen présenté.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Il a 12 000 € sur livrets : 6 000 € de sécurité et 6 000 € pour s’installer. Les 600 € mensuels porteraient l’enveloppe installation à 12 000 € en dix mois. Son PEA vaut 18 000 € ; il souhaite y garder l’argent au moins quinze ans.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Il regarde des loyers à 800 €, avec 120 € d’énergie et d’internet, 20 € d’assurance habitation et 250 € de courses. Ces dépenses remplaceraient les 350 € versés à ses parents pour le logement et les repas : son budget passerait à 1 840 €. Les mois à 2 000 €, il resterait 160 € avant versements, et il manquerait 840 € en gardant les virements actuels. Il envisage aussi des SCPI et un studio à louer, tout en voulant rester mobile pour son travail.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Vous fixeriez les versements après quelques mois dans son logement ou vous conserveriez déjà les 400 € sur le PEA ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Pour un intermittent qui veut rester mobile, vous achèteriez d’abord un studio à louer ou vous attendriez d’acheter votre propre logement ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-inspiration",
+          "url": "https://community.finary.com/t/scpi-maintenant-acheter-un-studio-locatif-en-restant-locataire-strategie-coherente/35326/",
+          "publishedAt": "2026-04-05",
+          "checkedAt": "2026-11-15",
+          "facts": [
+            "Intermittent déclarant 2 000 à 4 000 €/mois, PEA et liquidités ; réflexion SCPI, studio locatif et résidence principale plus tard ; il précise dans une réponse vivre chez ses parents sans loyer."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-15",
+          "created": [
+            "Prénom, âge, moyenne de 2 800 €, contribution au foyer distincte d’un loyer, dépenses, patrimoine chiffré, versements, loyers envisagés, charges futures, horizon et calendrier. Les hypothèses initiales de location de la source ne sont pas prises pour une location déjà en cours.",
+            "Futur logement corrigé : loyer 800 €, énergie/internet 120 €, assurance 20 €, courses 250 €, remplaçant 350 € d’hébergement et repas. Dépenses futures 1 840 € ; manque de 840 € en mois bas avec les virements actuels."
+          ],
+          "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+        }
+      ],
+      "review": {
+        "access": "consulted",
+        "checkedAt": "2026-11-15",
+        "limit": "Source d’inspiration partielle ; les montants créés sont des choix éditoriaux et non les comptes réels de son auteur."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "sourceFacts": [
+        "Intermittent déclarant 2 000 à 4 000 €/mois, PEA et liquidités ; réflexion SCPI, studio locatif et résidence principale plus tard ; il précise dans une réponse vivre chez ses parents sans loyer."
+      ],
+      "created": [
+        "Prénom, âge, moyenne de 2 800 €, contribution au foyer distincte d’un loyer, dépenses, patrimoine chiffré, versements, loyers envisagés, charges futures, horizon et calendrier. Les hypothèses initiales de location de la source ne sont pas prises pour une location déjà en cours.",
+        "Futur logement corrigé : loyer 800 €, énergie/internet 120 €, assurance 20 €, courses 250 €, remplaçant 350 € d’hébergement et repas. Dépenses futures 1 840 € ; manque de 840 € en mois bas avec les virements actuels."
+      ],
+      "sourceConsultationClaim": false,
+      "sourceCheckedAt": "2026-11-15",
+      "finance": [
+        {
+          "type": "financial-stock",
+          "label": "Sécurité",
+          "amount": 6000
+        },
+        {
+          "type": "project",
+          "label": "Installation",
+          "initialFunding": 6000,
+          "targetAmount": 12000,
+          "horizonMonths": 10,
+          "monthlyFunding": 600
+        }
+      ],
+      "coherence": {
+        "housing": "contribution-includes-food",
+        "food": "home-contribution-plus-outside-meals",
+        "transport": "listed",
+        "health": "listed",
+        "insurance": "auto-within-car-budget-parent-housing-insured",
+        "tax": "income-net-assumption",
+        "annualCosts": "grouped",
+        "dependents": "not_applicable",
+        "professionalCosts": "unreimbursed-listed",
+        "futureHousing": "groceries-and-insurance-added"
+      },
+      "calculations": [
+        {
+          "kind": "project",
+          "target": 12000,
+          "initial": 6000,
+          "monthly": 600,
+          "months": 10
+        },
+        {
+          "kind": "low-income",
+          "income": 2000,
+          "expectedBalance": 0
+        },
+        {
+          "kind": "future-housing",
+          "income": 2000,
+          "newRent": 800,
+          "newUtilities": 120,
+          "replacedContribution": 350,
+          "expectedExpenses": 1840,
+          "expectedBalance": -840,
+          "newInsurance": 20,
+          "newGroceries": 250
+        }
+      ]
+    },
+    "expectedCents": {
+      "income": 280000,
+      "expenses": 100000,
+      "savings": 100000,
+      "available": 180000,
+      "balance": 80000
+    }
+  }
+]

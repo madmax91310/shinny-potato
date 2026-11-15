@@ -1,7 +1,8 @@
+// This dated audit protects the original source-backed collection. The live bank, including new editorial characters, is checked by test-budget-profiles and test-budget-new-profiles.
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_REFERENCE_PROFILES as BUDGET_PROFILES, BUDGET_REFERENCE_PUBLICATION_CONTEXT as BUDGET_PUBLICATION_CONTEXT, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { budgetTransfers } from '../src/pages/budget-profiles/presentation.js'
 import { analyzeBudget, budgetExpenseSections, budgetPublicIncomeRows, buildBudgetText, euro, hasSeparateBudgetCapacity, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 const before = JSON.parse(readFileSync(new URL('./fixtures/budget-editorial/before-2026-11-02.json', import.meta.url)))

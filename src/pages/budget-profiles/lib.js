@@ -191,6 +191,7 @@ export function refreshBudgetDraft(record) {
 
 export function sourceReply(profile) {
   if (!profile.source) return ''
+  if (profile.provenance?.nature === 'editorial-character') return `Source d’inspiration : ${profile.source.publisher}\n${profile.source.url}`
   return `Source : ${profile.source.publisher}\n${profile.source.url}`
 }
 

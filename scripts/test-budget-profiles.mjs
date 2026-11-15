@@ -1,4 +1,5 @@
 import './test-budget-social-image.mjs'
+import './test-budget-new-profiles.mjs'
 import './test-budget-audit-20261113.mjs'
 import './test-budget-editorial-copy.mjs'
 import './test-budget-presentation.mjs'
@@ -153,9 +154,9 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 
 // Prepared budgets preserve source statements and may show a deficit; the independent new ledgers are tested separately.
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
-  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id)
+  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id) || p
   if (source.kind==='prepared') assert.equal(analyzeBudget(source).balance, source.provenance?.expectedBalance ?? 0, p.id)
-  assert.match(sourceReply(p), /^Source : /)
+  assert.match(sourceReply(p), /^Source(?: d’inspiration)? : /)
   assert.match(buildBudgetText(p), /^Budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method || p.completion && BUDGET_COMPLETENESS[p.id].conclusion)

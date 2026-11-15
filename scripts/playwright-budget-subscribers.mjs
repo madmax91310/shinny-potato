@@ -140,7 +140,7 @@ try {
     await picker.locator(`[data-value="${firstId}"]`).click(); await expect(questions).toHaveValue(q)
     await page.reload(); await expect(questions).toHaveValue(q); await expect(picker.locator('[data-option]')).toHaveCount(2)
     await page.getByRole('button', { name: 'Profils', exact: true }).click()
-    await expect(page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator('[data-option]')).toHaveCount(70)
+    await expect(page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator('[data-option]')).toHaveCount(BUDGET_PROFILES.length)
     await picker.locator(`[data-value="${firstId}"]`).click(); await expect(questions).toHaveValue(q)
     await text.fill('Ma version personnelle à conserver.')
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('1210')
