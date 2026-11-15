@@ -6,16 +6,18 @@ import{SOCIAL_BODY_SIZE}from'../src/pages/budget-profiles/socialImage.js'
 import{BUDGET_PROFILES}from'../src/pages/budget-profiles/data.js'
 import{spawn}from'node:child_process'
 import{waitPreview}from'./wait-preview.mjs'
+import{DRAFT_KEY}from'../src/pages/budget-profiles/storage.js'
 import{buildBudgetText}from'../src/pages/budget-profiles/lib.js'
 const base=process.env.BUDGET_SOCIAL_BASE||'http://127.0.0.1:4399/shinny-potato',output=process.env.BUDGET_ARTIFACTS||'test-artifacts/budget-social'
 mkdirSync(output,{recursive:true})
 const server=process.env.BUDGET_SOCIAL_BASE?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4399','--strictPort'],{stdio:'ignore'})
-if(server)await waitPreview(server,base)
 const uiBase=process.env.BUDGET_PUBLIC_BASE||'http://127.0.0.1:4486/shinny-potato'
 const preview=process.env.BUDGET_PUBLIC_BASE?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4486','--strictPort'],{stdio:'ignore'})
-if(preview)await waitPreview(preview,uiBase)
-const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})})
+let browser
 try{
+ if(server)await waitPreview(server,base)
+ if(preview)await waitPreview(preview,uiBase)
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})})
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),phone=await browser.newPage({viewport:{width:390,height:488},deviceScaleFactor:1}),results=[],errors=[]
  page.on('pageerror',e=>errors.push(e.message))
  await page.addInitScript(()=>{const fill=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...args){const s=String(value),m=this.measureText(s),left=x-(this.textAlign==='right'?m.width:this.textAlign==='center'?m.width/2:0);this.canvas.budgetDrawn??=[];this.canvas.budgetDrawn.push({text:s,left,right:left+m.width,top:y-m.actualBoundingBoxAscent,bottom:y+m.actualBoundingBoxDescent,size:Number(this.font.match(/([\d.]+)px/)[1])});return fill.call(this,value,x,y,...args)}})
@@ -29,11 +31,29 @@ try{
    assert(!/exemple de budget|fictif|reconstitu|simulation|hypothèse|version éditoriale|préparé le|vérifié le/i.test(part.drawn.map(t=>t.text).join(' ')),p.id)
    for(const t of part.drawn)assert(t.left>=30&&t.right<=1050&&t.top>=0&&t.bottom<=1350,p.id+' bounds '+JSON.stringify(t))
    for(let x=0;x<part.drawn.length;x++)for(const b of part.drawn.slice(x+1)){const a=part.drawn[x];assert(!(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1),p.id+' overlap '+JSON.stringify([a,b]))}
-   const stem=`${p.id}-${String(i+1).padStart(2,'0')}`;writeFileSync(`${output}/${stem}.png`,Buffer.from(part.png,'base64'));await phone.setContent(`<body style="margin:0;background:#1c2127"><img width="390" height="487.5" src="data:image/png;base64,${part.png}"></body>`);await expect(phone.locator('img')).toBeVisible();await phone.screenshot({path:`${output}/${stem}-phone.png`});delete part.png
+   const stem=`${p.id}-${String(i+1).padStart(2,'0')}`;writeFileSync(`${output}/${stem}.png`,Buffer.from(part.png,'base64'));await phone.setContent(`<body style="margin:0;background:#1c2127"><img width="390" height="487.5" src="data:image/png;base64,${part.png}"></body>`);await expect(phone.locator('img')).toBeVisible();await phone.locator('img').evaluate(img=>img.decode());await phone.screenshot({path:`${output}/${stem}-phone.png`});delete part.png
   }
   results.push({id:p.id,name:p.name,count:r.pages.length,fit:r.fit,pages:r.pages});console.log(`Budget X ${index+1}/${BUDGET_PROFILES.length}: ${p.name} — ${r.pages.length} image(s)`)
  }
  assert.deepEqual(errors,[]);writeFileSync(`${output}/audit.json`,JSON.stringify(results,null,2));console.log(JSON.stringify({single:results.filter(r=>r.count===1).length,multiple:results.filter(r=>r.count>1).length,pages:results.reduce((s,r)=>s+r.count,0)}))
+ // A restored 72-row participation must also remain a numbered 4:5 series.
+ const dense={...structuredClone(BUDGET_PROFILES.find(p=>p.name==='Émilie')),id:'social-dense-72',currency:'CHF',kind:'participant',source:null,publishedAt:null,checkedAt:null,name:'Alexandrine et Maximilien',context:'Préparer une installation avec une réserve séparée.',question:'Quels postes reverriez-vous dans ce budget ?'}
+ for(const [key,amount]of [['income',100],['expenses',110],['savings',10]])dense[key]=Array.from({length:24},(_,i)=>({label:`Poste ${i+1} avec un long libellé complet et tous les détails à conserver`,amount}))
+ const densePages=await page.evaluate(async profile=>{const{renderBudgetImages}=await import('/shinny-potato/src/pages/budget-profiles/image.js');return(await renderBudgetImages(profile,'social')).map(c=>({width:c.width,height:c.height,rows:c.budgetLayout.sourceRows,drawn:c.budgetDrawn}))},dense)
+ assert(densePages.length>1);const denseRows=densePages.flatMap(p=>p.rows)
+ for(const [key,amount]of [['income',100],['expenses',110],['savings',10]]){const rows=denseRows.filter(r=>r.id.startsWith(key+':')&&r.amount!==undefined);assert.equal(rows.length,24);assert.equal(rows.reduce((s,r)=>s+r.amount,0),24*amount)}
+ for(const part of densePages){assert.deepEqual([part.width,part.height],[1080,1350]);for(const t of part.drawn)assert(t.left>=30&&t.right<=1050&&t.top>=0&&t.bottom<=1350);assert(!part.drawn.some(t=>t.text.includes('7 000')),'An adapted personal profile never inherits the bank character’s wealth')}
+ const custom='Mon texte personnalisé : il reste conservé quand je change les images.'
+ const restored=await browser.newContext({viewport:{width:390,height:950},acceptDownloads:true})
+ await restored.addInitScript(({key,profile,text})=>localStorage.setItem(key,JSON.stringify({profile,text,edited:true})),{key:DRAFT_KEY,profile:dense,text:custom})
+ const restoredPage=await restored.newPage();await restoredPage.goto(uiBase+'/le-budget-de');await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(custom)
+ await expect(restoredPage.locator('.budget-image-count')).toContainText(`${densePages.length} images`)
+ await restoredPage.getByRole('button',{name:`Image ${densePages.length} sur ${densePages.length}`,exact:true}).click()
+ const restoredImage=restoredPage.getByRole('region',{name:'Image du budget'}).locator('img');await expect.poll(()=>restoredImage.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350])
+ const event=restoredPage.waitForEvent('download');await restoredPage.getByRole('button',{name:'Télécharger le PNG',exact:true}).click();assert((await event).suggestedFilename().includes(`-sur-${String(densePages.length).padStart(2,'0')}`))
+ await restoredPage.getByLabel('Dépenses · montant 1',{exact:true}).fill('120');await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(custom)
+ await expect(restoredPage.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled();await restoredPage.getByRole('button',{name:'Rétablir le texte',exact:true}).click();const changed={...dense,expenses:dense.expenses.map((r,i)=>i? r:{...r,amount:120})};await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(changed));await expect(restoredPage.getByRole('checkbox',{name:'Profil publié',exact:true})).not.toBeChecked();assert(await restoredPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await restored.close()
+ console.log(`Restored 72-row CHF fixture: ${densePages.length} fixed 4:5 pages, every amount once, long names, deficit, manual question, selected download and protected custom text passed.`)
  // Exercise UI, selected download and the legacy modes on a real phone and desktop.
  for(const width of [1440,390,320]){
   const context=await browser.newContext({viewport:{width,height:950},permissions:['clipboard-read','clipboard-write'],acceptDownloads:true}),ui=await context.newPage();await ui.goto(uiBase+'/le-budget-de');
@@ -48,4 +68,4 @@ try{
   assert(await ui.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await context.close()
  }
  console.log('Budget X: all real-canvas pages, 390px phone captures, immutable inputs/texts, source row conservation, bounds, overlaps; desktop/mobile page navigation, selected PNG bytes, copy and both legacy formats passed.')
-}finally{await browser.close();server?.kill();preview?.kill()}
+}finally{await browser?.close();server?.kill();preview?.kill()}

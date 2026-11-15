@@ -1,25 +1,31 @@
-import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity, publicationContextFor } from './lib.js'
-import { budgetQualification, budgetPublicBasis, budgetTransfers } from './presentation.js'
+import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
+import { budgetQualification, budgetPublicBasis, budgetRowSymbol } from './presentation.js'
 
 export const SOCIAL_SIZE = { width: 1080, height: 1350 }
 export const SOCIAL_BODY_SIZE = 40
 const C = { ink:'#10182f', background:'#1c2127', cream:'#fff8e5', muted:'#c8ced9', income:'#dbd1ff', expense:'#ffc4ae', savings:'#c5f4cb', balance:'#f6e9c4', deficit:'#ffaaa8' }
 const M=32, GAP=20, INNER=1016, END=1186, STEP=50
 const type=(ctx,size,weight=600)=>{const font=`${weight} ${size}px Arial, sans-serif`;if(ctx.font!==font)ctx.font=font}
-const wrapCache=new WeakMap()
+const wrapCache=new WeakMap(),measureCache=new WeakMap(),rowCache=new WeakMap()
+function measure(ctx,value) {
+  let cache=measureCache.get(ctx);if(!cache){cache=new Map();measureCache.set(ctx,cache)}
+  const key=ctx.font+'|'+value
+  if(!cache.has(key))cache.set(key,ctx.measureText(value))
+  return cache.get(key)
+}
 function wrap(ctx,value,width,size=SOCIAL_BODY_SIZE,weight=600) {
   type(ctx,size,weight);let cache=wrapCache.get(ctx);if(!cache){cache=new Map();wrapCache.set(ctx,cache)}
   const key=JSON.stringify([value,width,size,weight]);if(cache.has(key))return cache.get(key)
   const result=[];let line=''
   const tokens=String(value).replace(/\d[\d \u00a0\u202f]*(?:[.,]\d+)?\s*(?:€|CHF|EUR|USD)/g,amount=>amount.replace(/\s/g,'\u00a0')).split(/[^\S\u00a0\u202f]+/).filter(Boolean)
   for(const word of tokens) {
-    if(line&&ctx.measureText(line+' '+word).width>width){result.push(line);line=''}
-    for(const char of (line?' ':'')+word){if(ctx.measureText(line+char).width>width){result.push(line);line=''}line+=char}
+    if(line&&measure(ctx,line+' '+word).width>width){result.push(line);line=''}
+    for(const char of (line?' ':'')+word){if(measure(ctx,line+char).width>width){result.push(line);line=''}line+=char}
   }
   if(line)result.push(line);cache.set(key,result);return result
 }
 export function socialBudgetLabel(label) {
-  return label.replace(/^Sa part /i,'Part ').replace(/^(Part) (?:du |de la |de l[’']|des |d[’'])/i,'$1 ')
+  return label.replace(/^Assurance-vieillesse luxembourgeoise$/i,'Assurance vieillesse (Luxembourg)').replace(/^Assurance-vie luxembourgeoise$/i,'Assurance-vie (Luxembourg)').replace(/^Sa part /i,'Part ').replace(/^(Part) (?:du |de la |de l[’']|des |d[’'])/i,'$1 ')
     .replace(/^Provision personnelle pour /i,'Provision ')
     .replace(/loyer et des charges hors énergie et eau/i,'loyer et charges (hors eau/énergie)')
     .replace(/énergie et de l’eau/i,'énergie et eau').replace(/entretien et des petits équipements/i,'entretien et équipement')
@@ -60,7 +66,8 @@ function sectionsFor(profile,a,p) {
   const note=[basis&&!/^Montants mensuels$/i.test(basis)&&basis,p.incomeNote].filter(Boolean).join(' · ').replace('Le salaire est celui de 2026 ; les dépenses reprennent la moyenne de 2025.', 'Salaire prévu, comparé aux dépenses moyennes de l’année précédente.')
   const sections=[{id:'income',title:'REVENUS',color:C.income,total:a.income,rows:[...(note?[{id:'income-note',label:note}]:[]),...rows('income',budgetPublicIncomeRows(profile))]}]
   sections.push({id:'expenses',title:'DÉPENSES',color:C.expense,total:a.expenses,rows:rows('expenses',budgetImageExpenses(profile))})
-  const transferKind=budgetTransfers(profile,publicationContextFor(profile)?.budget?.transfersHeading).kind
+  const transferKinds=new Set(budgetPublicSavingsRows(profile).map(row=>budgetRowSymbol(row,'savings').kind))
+  const transferKind=transferKinds.size===1?[...transferKinds][0]:'other'
   if(profile.savings.length)sections.push({id:'savings',title:({savings:'ÉPARGNE',investment:'PLACEMENTS',business:'ENTREPRISE',debt:'REMBOURSEMENTS'})[transferKind]||'VERSEMENTS',color:C.savings,total:a.savings,rows:rows('savings',budgetPublicSavingsRows(profile))})
   const highlights=socialBudgetHighlights(profile)
   if(hasSeparateBudgetCapacity(profile,a))highlights.push({id:'capacity',label:`Capacité ${profile.kind==='planned'?'envisagée':'annoncée'} : ${euro(profile.capacity,profile.currency)}/mois`})
@@ -69,21 +76,26 @@ function sectionsFor(profile,a,p) {
   return sections
 }
 function rowPlan(ctx,row,width,money,single=false) {
-  const amount=row.amount===undefined?'':money(row.amount);type(ctx,SOCIAL_BODY_SIZE,700)
-  const available=width-(amount&&!single?ctx.measureText(amount).width+18:0)
-  const longest=Math.max(0,...String(row.label).split(/\s+/).map(word=>ctx.measureText(word).width))
+  const amount=row.amount===undefined?'':money(row.amount)
+  let cache=rowCache.get(ctx);if(!cache){cache=new Map();rowCache.set(ctx,cache)}
+  const key=JSON.stringify([row,width,amount,single]);if(cache.has(key))return cache.get(key)
+  type(ctx,SOCIAL_BODY_SIZE,700)
+  const available=width-(amount&&!single?measure(ctx,amount).width+18:0)
+  const longest=Math.max(0,...String(row.label).split(/\s+/).map(word=>measure(ctx,word).width))
   const stacked=!!amount&&!single&&(available<160||longest>available),lines=wrap(ctx,row.label,stacked?width:available)
-  return {...row,lines,stacked,amountText:single?'':amount,height:lines.length*STEP+8+(stacked?STEP:0)}
+  const result={...row,lines,stacked,amountText:single?'':amount,height:lines.length*STEP+8+(stacked?STEP:0)}
+  cache.set(key,result);return result
 }
 function cardsFor(ctx,entries,width,money) {
+  if(width<=0&&entries.length)return {cards:[],height:Infinity}
   const cards=[];const inner=width-36
   for(const entry of entries) {
     let card=cards.at(-1)
     if(!card||card.section.id!==entry.section.id) {
       const first=entry.rowIndex===0&&!entry.fragment
       const section=entry.section,title=section.title+(first?'':' · SUITE'),total=first?section.total:undefined
-      type(ctx,30,800);const titleWidth=ctx.measureText(title).width;type(ctx,44,800)
-      const inline=total!==undefined&&titleWidth+ctx.measureText(money(total)).width+22<=inner
+      type(ctx,30,800);const titleWidth=measure(ctx,title).width;type(ctx,44,800)
+      const inline=total!==undefined&&titleWidth+measure(ctx,money(total)).width+22<=inner
       const heading=wrap(ctx,title,inner,30,800),header=22+(inline?54:heading.length*36+(total===undefined?0:54))+10
       card={section,title,heading,total,inline,header,height:header+8,rows:[],width};cards.push(card)
     }
@@ -94,7 +106,7 @@ function cardsFor(ctx,entries,width,money) {
 }
 function bestColumns(ctx,entries,money,limit) {
   let best=null
-  for(const widths of [[676,320],[648,348],[628,368],[596,400],[498,498],[400,596],[368,628],[320,676]]) {
+  for(const widths of [[1016,0],[676,320],[648,348],[628,368],[596,400],[498,498],[400,596],[368,628],[320,676]]) {
     const expense=entries.filter(e=>e.section.id==='expenses'),other=entries.filter(e=>e.section.id!=='expenses')
     for(const lists of [[expense,other],[other,expense]]) {
       if(!expense.length||!other.length)continue
@@ -122,7 +134,8 @@ function splitOversize(ctx,entries,money,limit) {
 }
 export function planSocialBudget(ctx,profile) {
   const a=analyzeBudget(profile);if(a.errors.length)throw new Error(a.errors.join(' '))
-  const p=budgetPublicPresentation(profile),money=n=>euro(n,profile.currency)
+  const p=budgetPublicPresentation(profile),amounts=new Map()
+  const money=n=>{if(!amounts.has(n))amounts.set(n,euro(n,profile.currency));return amounts.get(n)}
   const name=p.name+(profile.age&&!p.name.includes(' et ')&&!p.name.includes(String(profile.age))?`, ${profile.age} ans`:'')
   const title=wrap(ctx,name,INNER,62,800)
   const parts=[p.job,p.household,p.location].filter(Boolean),qualification=budgetQualification(profile)

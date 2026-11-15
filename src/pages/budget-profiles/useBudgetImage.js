@@ -12,19 +12,22 @@ export function useBudgetImage(profile, enabled, mode = 'social') {
       try {
         const { renderBudgetImages } = await import('./image.js')
         const request = JSON.parse(key), canvases = await renderBudgetImages(request.profile, request.mode)
-        const blobs = await Promise.all(canvases.map(canvas => new Promise((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error()), 'image/png'))))
-        if (!active) return
-        urls.push(...blobs.map(blob => URL.createObjectURL(blob)))
-        setResult({ key, attempt, urls })
+        for (const canvas of canvases) {
+          if (!active) return
+          const blob = await new Promise((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error()), 'image/png'))
+          if (!active) return
+          urls.push(URL.createObjectURL(blob))
+          setResult({ key, attempt, urls: [...urls], count: canvases.length })
+        }
       } catch (error) { if (active) setResult({ key, attempt, error: error.message || 'L’image n’a pas pu être préparée. Réessaie.' }) }
     }, 200)
     return () => { active = false; clearTimeout(timer); urls.forEach(url => URL.revokeObjectURL(url)) }
   }, [key, attempt, enabled])
   const current = enabled && result?.key === key && result.attempt === attempt ? result : null
-  const index = selection?.key === key ? Math.min(selection.index, (current?.urls?.length || 1) - 1) : 0
-  return { url: current?.urls?.[index] || '', count: current?.urls?.length || 0, index, format: mode,
-    error: current?.error || '', busy: enabled && !current,
-    select(index) { if (Number.isInteger(index) && index >= 0 && index < (current?.urls?.length || 0)) setSelection({ key, index }) },
+  const index = selection?.key === key ? Math.min(selection.index, (current?.count || 1) - 1) : 0
+  return { url: current?.urls?.[index] || '', count: current?.count || 0, index, format: mode,
+    error: current?.error || '', busy: enabled && (!current || !current.urls?.[index] && !current.error),
+    select(index) { if (Number.isInteger(index) && index >= 0 && index < (current?.count || 0)) setSelection({ key, index }) },
     retry: () => setAttempt(n => n + 1),
     download(filename) {
       if (!current?.urls?.[index]) throw new Error('L’image est en cours de préparation.')
