@@ -1,10 +1,14 @@
+// Read-only scenario clock follows the live equity photograph, not the machine date.
 import assert from 'node:assert/strict'
 import {execFileSync} from 'node:child_process'
 import {readFileSync} from 'node:fs'
 import {references} from '../src/pages/dca-profiles/engine.js'
 import {portfolioAnalytics} from '../src/pages/dca-profiles/analytics.js'
 import {projectDcaHoldings} from './lib/dca-holdings-projection.mjs'
-const ids=['IE00B3F81G20','IE00BKM4GZ66'],now=new Date('2026-11-12T15:00:00Z')
+const ids=['IE00B3F81G20','IE00BKM4GZ66']
+// Scenario clock covers every actual photograph; production freshness guards remain unchanged.
+const apple=Object.values(references).find(r=>r.isin==='US0378331005')
+const now=new Date(Math.max(Date.parse('2026-11-12T15:00:00Z'),Date.parse(apple.countries.asOf)))
 const records=JSON.parse(execFileSync(process.env.PYTHON||'python',['-c',"import sys,json;sys.path.insert(0,'scripts');from test_dca_qualified_heg_identity import parsed,SHARES;print(json.dumps({i:parsed(i)for i in SHARES}))"],{encoding:'utf8'}))
 const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))
 const books=Object.assign({},...[...new Set(Object.values(manifest))].map(n=>JSON.parse(readFileSync(`src/pages/dca-profiles/holdings-${n}.json`))))
@@ -21,3 +25,8 @@ assert(a.pairs[0].full);assert.equal(a.pairs[0].overlap,b.pairs[0].overlap)
 const partial=structuredClone(books);partial[mapped[0].asset]={...partial[mapped[0].asset],complete:false,rows:partial[mapped[0].asset].rows.slice(0,10)}
 assert(!portfolioAnalytics(lines,references,partial,now).pairs[0].full)
 console.log('Exact HEG identity; EM Small Cap admitted, EM IMI stays partial, original weights/proofs preserved, overlap order invariant.')
+
+// A source photograph genuinely later than the scenario remains refused.
+const futureRefs=structuredClone(references)
+futureRefs[other].countries.asOf=new Date(now.getTime()+86400000).toISOString().slice(0,10)
+assert(portfolioAnalytics(lines,futureRefs,books,now).qualification.some(q=>q.asset===other&&!q.valid&&q.reasons.includes('Date de composition future.')))
