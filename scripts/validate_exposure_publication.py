@@ -9,17 +9,19 @@ from pathlib import Path
 import subprocess
 from urllib.parse import urlsplit
 
-import observation_rebase_guard as guard
 from producer_report_contract import validate_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = 'src/data/exposure-etf-expansion-records.json'
-# Actual refusal 42668435788: the publication producer changed just these two
-# outputs. The shared ETF guard already qualifies them for the common issuer
-# collectors. The custom expansion adapter reads neither; seal that additional
-# reviewed code on both trees, without inheriting the ETF guard's wider scope.
+# Refusals42668435788 and43640391298: two independent publication outputs,
+# the coordination journal and two 13F-only validator/test files. Every other
+# changed path remains refused, including all acquisition dependencies. Keep
+# this scope local: the shared ETF guard must not inherit these permissions.
 INDEPENDENT = {'src/data/anniversary-levels.json',
-               'src/data/purchasing-power-observations.json'}
+               'src/data/purchasing-power-observations.json',
+               'docs/data-operations-coordination.md',
+               'scripts/test_investor_refresh.py',
+               'scripts/validate-investor-publication.py'}
 CUSTOM_COLLECTOR = 'scripts/collect_exposure_expansion.py'
 # Requalified 2026-11-14: explicit selection preflight and failure context only.
 # collect/collect_amundi/qualify_refresh/fund_siblings keep their financial paths;
@@ -36,7 +38,11 @@ def inputs(root, base, upstream):
     previous = Path.cwd()
     try:
         os.chdir(root)
-        changed = guard.check('etf', base, upstream)
+        changed = sorted(filter(None, subprocess.check_output(
+            ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
+            text=True).split('\0')))
+        # Exact local scope only; never widen the shared ETF guard. Acquisition
+        # and all its dependencies are unchanged because every other path fails.
         if set(changed) - INDEPENDENT:
             raise ValueError('Unqualified exposure input changed; recollect from master')
         if changed:

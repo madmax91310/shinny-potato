@@ -267,7 +267,15 @@ class WorkflowContracts(unittest.TestCase):
             self.assertTrue(group.endswith("|| 'production' }}"))
             self.assertIn('cancel-in-progress: false', before_steps)
             self.assertIn('queue: max', before_steps)
-            self.assertIn("ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}", job)
+            if filename == 'update-exposure-expansion.yml':
+                self.assertIn("ref: ${{ github.ref == 'refs/heads/master' && 'master' || github.ref }}", job)
+                commit = job.split('      - name: Commit validated observations', 1)[1]
+                self.assertIn("if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'", commit.split('        env:', 1)[0])
+                deploy = workflow.split('  deploy:', 1)[1]
+                self.assertIn("if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'", deploy)
+                self.assertIn('EXPOSURE_ISINS: ${{ inputs.isins }}', before_steps)
+            else:
+                self.assertIn("ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}", job)
         self.assertEqual(len(set(groups)), 1, 'Dependent production writes must serialize; PR checks remain independent')
 
     def test_production_collectors_queue_instead_of_replacing_pending_runs(self):

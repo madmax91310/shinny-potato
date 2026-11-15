@@ -68,6 +68,8 @@ jobs:
   refresh:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    env:
+      EXPOSURE_ISINS: ${{ inputs.isins }}
     concurrency:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
@@ -80,7 +82,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+          ref: ${{ github.ref == 'refs/heads/master' && 'master' || github.ref }}
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
@@ -132,7 +134,7 @@ jobs:
         run: echo 'Exact-share input plans, individual records and financial consumer checks passed'
       - name: Commit validated observations
         id: commit
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         env:
           VALIDATED_DATA_PREPARE: bash scripts/validate-exposure-publication.sh prepare
           VALIDATED_DATA_CHECK: bash scripts/validate-exposure-publication.sh check
@@ -145,7 +147,7 @@ jobs:
           bash scripts/commit-validated-data.sh 'Refresh exact-share ETF exposures' src/data/exposure-etf-expansion-records.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/exposures*.json src/pages/dca-profiles/holdings*.json
   deploy:
     needs: refresh
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     permissions:
       contents: read
       pages: write
