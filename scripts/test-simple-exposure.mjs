@@ -29,7 +29,7 @@ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{exec
   const download=page.waitForEvent('download')
   await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
   const png=await download
-  assert.equal(png.suggestedFilename(),'epargnant-libre-expositions.png')
+  assert.equal(png.suggestedFilename(),'epargnant-libre-expositions-sectors.png')
   assert.equal((await readFile(await png.path())).subarray(0,8).toString('hex'),'89504e470d0a1a0a')
   const popupEvent=page.waitForEvent('popup');await page.getByRole('link',{name:'Ouvrir l’image',exact:true}).click()
   const popup=await popupEvent;await popup.waitForLoadState();assert(await popup.locator('img').evaluate(async img=>{await img.decode();return img.naturalWidth===1600}));await popup.close()
