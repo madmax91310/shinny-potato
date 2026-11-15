@@ -60,12 +60,12 @@ export function socialBudgetHighlights(profile) {
   if(funding[profile.id])result.push({id:'funding',label:funding[profile.id]})
   return result
 }
-function sectionsFor(profile,a,p) {
-  const rows=(key,items)=>items.map((r,i)=>({...r,id:`${key}:${i}`,label:socialBudgetLabel(r.label)}))
+function sectionsFor(profile,a,p,mode = 'social') {
+  const rows=(key,items)=>items.map((r,i)=>({...r,id:`${key}:${i}`,label:mode === 'social' ? socialBudgetLabel(r.label) : r.label}))
   const basis=budgetPublicBasis(profile,p.basis)
   const note=[basis&&!/^Montants mensuels$/i.test(basis)&&basis,p.incomeNote].filter(Boolean).join(' · ').replace('Le salaire est celui de 2026 ; les dépenses reprennent la moyenne de 2025.', 'Salaire prévu, comparé aux dépenses moyennes de l’année précédente.')
   const sections=[{id:'income',title:'REVENUS',color:C.income,total:a.income,rows:[...(note?[{id:'income-note',label:note}]:[]),...rows('income',budgetPublicIncomeRows(profile))]}]
-  sections.push({id:'expenses',title:'DÉPENSES',color:C.expense,total:a.expenses,rows:rows('expenses',budgetImageExpenses(profile))})
+  sections.push({id:'expenses',title:'DÉPENSES',color:C.expense,total:a.expenses,rows:rows('expenses',budgetImageExpenses(profile,mode))})
   const transferKinds=new Set(budgetPublicSavingsRows(profile).map(row=>budgetRowSymbol(row,'savings').kind))
   const transferKind=transferKinds.size===1?[...transferKinds][0]:'other'
   if(profile.savings.length)sections.push({id:'savings',title:({savings:'ÉPARGNE',investment:'PLACEMENTS',business:'ENTREPRISE',debt:'REMBOURSEMENTS'})[transferKind]||'VERSEMENTS',color:C.savings,total:a.savings,rows:rows('savings',budgetPublicSavingsRows(profile))})
@@ -95,6 +95,7 @@ function cardsFor(ctx,entries,width,money) {
       const first=entry.rowIndex===0&&!entry.fragment
       const section=entry.section,title=section.title+(first?'':' · SUITE'),total=first?section.total:undefined
       type(ctx,30,800);const titleWidth=measure(ctx,title).width;type(ctx,44,800)
+      if(total!==undefined&&measure(ctx,money(total)).width>inner)return {cards:[],height:Infinity}
       const inline=total!==undefined&&titleWidth+measure(ctx,money(total)).width+22<=inner
       const heading=wrap(ctx,title,inner,30,800),header=22+(inline?54:heading.length*36+(total===undefined?0:54))+10
       card={section,title,heading,total,inline,header,height:header+8,rows:[],width};cards.push(card)
@@ -132,22 +133,35 @@ function splitOversize(ctx,entries,money,limit) {
     return parts
   })
 }
-export function planSocialBudget(ctx,profile) {
+export function planSocialBudget(ctx,profile,mode = 'social') {
   const a=analyzeBudget(profile);if(a.errors.length)throw new Error(a.errors.join(' '))
   const p=budgetPublicPresentation(profile),amounts=new Map()
-  const money=n=>{if(!amounts.has(n))amounts.set(n,euro(n,profile.currency));return amounts.get(n)}
+  const money=n=>{if(!amounts.has(n))amounts.set(n,(profile.approximate?'≈ ':'')+euro(n,profile.currency));return amounts.get(n)}
   const name=p.name+(profile.age&&!p.name.includes(' et ')&&!p.name.includes(String(profile.age))?`, ${profile.age} ans`:'')
   const title=wrap(ctx,name,INNER,62,800)
   const parts=[p.job,p.household,p.location].filter(Boolean),qualification=budgetQualification(profile)
   if(qualification&&!parts.join(' ').toLocaleLowerCase('fr').includes(qualification.toLocaleLowerCase('fr')))parts.push(qualification)
   const context=parts.join(' · ')
   let details=wrap(ctx,context,INNER,36,500)
-  const sections=sectionsFor(profile,a,p)
+  const sections=sectionsFor(profile,a,p,mode)
   if(details.length>5){sections.unshift({id:'situation',title:'SITUATION',color:C.cream,rows:[{id:'situation',label:context}]});details=wrap(ctx,budgetQualification(profile),INNER,36,500)}
   const header=88+title.length*74+details.length*44+16,limit=END-header
+  // Preserve the original narrative verbatim on separate readable pages. It
+  // contains wealth, funding conditions and alternatives absent from ledger rows.
+  const contextSection={id:'context',title:'PATRIMOINE ET PROJETS',color:C.cream,rows:profile.kind==='participant'?[]:profile.context.trim().split(/\n\s*\n/).filter(Boolean).map((label,i)=>({id:`context:${i}`,label}))}
+  const contextPages=[]
+  for(const row of contextSection.rows) {
+    const lines=wrap(ctx,row.label,INNER-36)
+    const size=Math.max(1,Math.floor((END-header-160)/STEP))
+    for(let i=0;i<lines.length;i+=size) {
+      const fragment={...row,id:row.id+`:part:${i/size}`,label:lines.slice(i,i+size).join(' ')}
+      const column=cardsFor(ctx,[{section:contextSection,row:fragment,rowIndex:0}],INNER,money)
+      contextPages.push({kind:'context',columns:[column],widths:[INNER],height:column.height})
+    }
+  }
   const entries=entriesFor(sections),candidate=bestColumns(ctx,entries,money,Infinity),single=candidate.height<=limit?candidate:null
   const fit={header,required:candidate.height,available:limit}
-  if(single)return {a,p,money,title,details,header,sections,pages:[{kind:'complete',...single}],single:true,fit}
+  if(single)return {a,p,money,title,details,header,sections,pages:[{kind:'complete',...single},...contextPages],single:true,fit}
   const pages=[],remaining=splitOversize(ctx,entries,money,Math.min(limit,1050-header))
   for(let from=0;from<remaining.length;) {
     const pageLimit=pages.length?limit:1050-header
@@ -159,7 +173,7 @@ export function planSocialBudget(ctx,profile) {
     if(!fit)throw new Error('Le contenu ne peut pas être composé à cette taille de caractères. Réduis la longueur d’un libellé.')
     pages.push({kind:pages.length?'details':'primary',...fit});from=end
   }
-  return {a,p,money,title,details,header,sections,pages,single:false,fit}
+  return {a,p,money,title,details,header,sections,pages:[...pages,...contextPages],single:false,fit}
 }
 function draw(ctx,value,x,y,size=SOCIAL_BODY_SIZE,color=C.ink,weight=600,align='left') {
   type(ctx,size,weight);ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='top';ctx.fillText(value,x,y)
@@ -188,9 +202,9 @@ function paintPrimaryTotals(ctx,plan) {
     box(ctx,x,y,498,104,color);draw(ctx,label,x+18,y+12,30,C.ink,800);draw(ctx,money(value),x+18,y+47,44,C.ink,800)
   }
 }
-export async function renderSocialBudgetImages(profile) {
+export async function renderSocialBudgetImages(profile,mode = 'social') {
   if(document.fonts?.ready)await document.fonts.ready
-  const measure=document.createElement('canvas').getContext('2d'),plan=planSocialBudget(measure,profile)
+  const measure=document.createElement('canvas').getContext('2d'),plan=planSocialBudget(measure,profile,mode)
   return plan.pages.map((page,index)=>{
     const canvas=document.createElement('canvas');Object.assign(canvas,SOCIAL_SIZE);const ctx=canvas.getContext('2d')
     ctx.fillStyle=C.background;ctx.fillRect(0,0,1080,1350)
@@ -208,7 +222,7 @@ export async function renderSocialBudgetImages(profile) {
       draw(ctx,plan.money(Math.abs(a.balance)),x,1245,42,C.ink,800)
     }
     draw(ctx,index<plan.pages.length-1?'Suite des postes et projets : image '+(index+2)+'/'+plan.pages.length:'Montants mensuels · Épargnant Libre',540,1312,26,C.cream,500,'center')
-    canvas.budgetFormat='social';canvas.budgetPage=index+1;canvas.budgetPageCount=plan.pages.length
+    canvas.budgetFormat=mode;canvas.budgetPage=index+1;canvas.budgetPageCount=plan.pages.length
     canvas.budgetLayout={kind:page.kind,fontSize:SOCIAL_BODY_SIZE,sourceRows:page.columns?.flatMap(c=>c.cards.flatMap(card=>card.rows.map(row=>({id:row.id,label:row.label,amount:row.amount}))))||[]}
     return canvas
   })
