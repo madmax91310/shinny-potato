@@ -11,7 +11,10 @@ for (const profile of BUDGET_PROFILES) {
   const original = previous[profile.id], snapshot = JSON.stringify(original)
   const revised = reviseEditorialCopy(original, patches[profile.id])
   assert.equal(JSON.stringify(original), snapshot, 'A copy review must not mutate prior evidence')
-  for (const field of ['income', 'expenses', 'savings', 'capacity']) assert.deepEqual(revised.publicProfile[field], original.publicProfile[field], 'Copy edits cannot change a financial ledger')
+  for (const field of ['income', 'expenses', 'savings', 'capacity']) {
+    if (profile.id === 'prepared-justbob-2026-10-30' && field === 'savings') assert.deepEqual(revised.publicProfile[field], [], 'Chantier 4: a calculated remainder is not a transfer')
+    else assert.deepEqual(revised.publicProfile[field], original.publicProfile[field], 'Other ledgers stay unchanged')
+  }
   const context = publicationContextFor(profile)
   assert.equal(context.budgetQuestion, '')
   assert(context.questions.length >= 1 && context.questions.length <= 2)

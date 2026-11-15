@@ -16559,6 +16559,33 @@
       "dailyWindowMonths": [],
       "timezone": "Europe/London",
       "anniversaryAvailable": false
+    },
+    {
+      "id": "stockUS58506Q1094",
+      "isin": "US58506Q1094",
+      "label": "Medpace Holdings",
+      "ticker": "MEDP",
+      "symbol": "MEDP",
+      "currency": "USD",
+      "timezone": "America/New_York",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "listingEvidenceId": "US58506Q1094:NASDAQ:MEDP:USD",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-11-13",
+        "isin": "US58506Q1094",
+        "ticker": "MEDP",
+        "exchange": "NASDAQ",
+        "currency": "USD"
+      },
+      "method": "ISIN qualifié dans les positions émetteur ; cotation exacte qualifiée par ces positions ou l’annuaire officiel référencé. Cours ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2016-09"
     }
   ]
 }

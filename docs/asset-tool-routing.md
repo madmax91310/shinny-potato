@@ -4,7 +4,7 @@ Généré le 2026-11-15 par `node scripts/audit-asset-tool-routing.mjs --write`.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 2 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 1 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -235,7 +235,7 @@ Actifs présentés sans historique automatique (Sans cotation : 2 · Historique 
 | iShares S&P 500 Financials Sector UCITS ETF | IE00B4JNQZ49 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core MSCI Europe UCITS ETF | IE00B4K48X80 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | HSBC EURO STOXX 50 | IE00B4K6B022 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| iShares S&P 500 Utilities Sector UCITS ETF | IE00B4KBBD01 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares S&P 500 Utilities Sector UCITS ETF | IE00B4KBBD01 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Core MSCI World UCITS ETF (Acc) | IE00B4L5Y983 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core MSCI Japan IMI UCITS ETF (Acc) | IE00B4L5YX21 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Physical Platinum ETC | IE00B4LHWP62 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
@@ -261,10 +261,10 @@ Actifs présentés sans historique automatique (Sans cotation : 2 · Historique 
 | iShares Agribusiness UCITS ETF USD (Acc) | IE00B6R52143 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI ACWI UCITS ETF USD (Acc) | IE00B6R52259 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | SPDR S&P US Dividend Aristocrats UCITS ETF | IE00B6YX5D40 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| iShares Edge MSCI Europe Minimum Volatility UCITS ETF | IE00B86MWN23 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares Edge MSCI Europe Minimum Volatility UCITS ETF | IE00B86MWN23 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI World Minimum Volatility UCITS ETF | IE00B8FHGS14 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | IE00B8GKDB10 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| iShares Edge MSCI EM Minimum Volatility UCITS ETF | IE00B8KGV557 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares Edge MSCI EM Minimum Volatility UCITS ETF | IE00B8KGV557 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | Eaton | IE00B8KQN827 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Vanguard FTSE Developed Europe UCITS ETF Distributing | IE00B945VV12 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | SPDR S&P Global Dividend Aristocrats UCITS ETF | IE00B9CQXS71 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -318,7 +318,7 @@ Actifs présentés sans historique automatique (Sans cotation : 2 · Historique 
 | Trane Technologies | IE00BK9ZQ967 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | WisdomTree Battery Solutions UCITS ETF USD Acc | IE00BKLF1R75 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core MSCI EM IMI UCITS ETF | IE00BKM4GZ66 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
-| iShares MSCI World Quality Dividend Advanced UCITS ETF | IE00BKPSFC54 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares MSCI World Quality Dividend Advanced UCITS ETF | IE00BKPSFC54 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares MSCI AC Far East ex-Japan UCITS ETF | IE00BKPX3K41 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / — / — | — |
 | State Street SPDR MSCI Europe UCITS ETF | IE00BKWQ0Q14 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Vanguard FTSE North America UCITS ETF | IE00BKX55R35 | — | — | missing | Oui / Oui | Complète | — / — / — | — |
@@ -358,7 +358,7 @@ Actifs présentés sans historique automatique (Sans cotation : 2 · Historique 
 | VanEck Video Gaming and eSports UCITS ETF | IE00BYWQWR46 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI World SRI UCITS ETF | IE00BYX2JD69 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Nasdaq US Biotechnology UCITS ETF | IE00BYXG2H39 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist) | IE00BYYHSQ67 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist) | IE00BYYHSQ67 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Automation & Robotics UCITS ETF | IE00BYZK4552 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Ageing Population UCITS ETF | IE00BYZK4669 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Healthcare Innovation UCITS ETF USD (Acc) | IE00BYZK4776 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -607,7 +607,7 @@ Actifs présentés sans historique automatique (Sans cotation : 2 · Historique 
 | Masco | US5745991068 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mastercard | US57636Q1040 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | McDonald’s | US5801351017 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Medpace Holdings | US58506Q1094 | — | — | missing | Oui / Oui | — | — / — / — | Sans cotation — Aucune cotation documentée ni candidate |
+| Medpace Holdings | US58506Q1094 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | MercadoLibre | US58733R1023 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Merck & Co. | US58933Y1055 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mettler-Toledo | US5926881054 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |

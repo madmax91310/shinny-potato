@@ -23,7 +23,7 @@ for (const p of BUDGET_PROFILES) {
   assert.equal(budgetFinancialReference(budgetBeforePelCorrection(p)), expected.financialReference, `${p.id}: preserve historical rows except the documented PEL correction`)
   const cents = key => p[key].reduce((sum, row) => sum + Math.round(row.amount * 100), 0)
   const income = cents('income'), expenses = cents('expenses'), savings = cents('savings'), balance = income - expenses - savings
-  const expectedCurrent = p.id === 'prepared-gritz-2026-10-30' ? { ...expected.before, savings:39500, balance:2900 } : expected.before
+  const expectedCurrent = p.id === 'prepared-gritz-2026-10-30' ? { ...expected.before, savings:39500, balance:2900 } : p.id === 'prepared-justbob-2026-10-30' ? { ...expected.before, savings:0, balance:1616700 } : expected.before
   assert.deepEqual({ income, expenses, savings, balance }, expectedCurrent, p.id)
   const calculated = analyzeBudget(p)
   for (const [key, value] of Object.entries({ income, expenses, savings, balance })) assert.equal(Math.round(calculated[key] * 100), value)
@@ -34,12 +34,12 @@ for (const p of BUDGET_PROFILES) {
   assert(!/20\d{2}| — /.test(text.split('\n')[0]))
   assert(!forbidden.test([view.name, view.job, view.household, budgetPublicBasis(p, view.basis), ...budgetPublicIncomeRows(p).map(row => row.label), ...p.expenses.map(row => row.label), ...p.savings.map(row => row.label)].join(' ')))
   if (expected.tax) {
-    assert(!/après (?:l’)?imp[oô]t/i.test(budgetPublicIncomeRows(p).map(row => row.label).join(' ')), 'Removing a fiscal note does not invent an after-tax wage')
+    assert.equal(p.income.length, budgetPublicIncomeRows(p).length, 'Fiscal clarification preserves each resource')
     assert(review.tax)
   }
   const custom = { profile: p, text: 'Mon ancien texte personnalisé\nMes propres phrases et chiffres.', edited: true, textFinance: expected.financialReference }
   assert.equal(refreshBudgetDraft(custom).text, custom.text)
-  assert.equal(staleBudgetText(refreshBudgetDraft(custom)), p.id === 'prepared-gritz-2026-10-30', 'Only the PEL correction marks the old custom financial text as stale')
+  assert.equal(staleBudgetText(refreshBudgetDraft(custom)), ['prepared-gritz-2026-10-30','prepared-justbob-2026-10-30'].includes(p.id), 'The PEL and remainder corrections marks the old custom financial text as stale')
   assert.equal(refreshBudgetDraft({ ...custom, edited: false }).text, text)
   assert(context.questions.length + Number(Boolean(context.budgetQuestion)) <= 2)
 }

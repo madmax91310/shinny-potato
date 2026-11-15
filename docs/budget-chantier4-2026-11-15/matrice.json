@@ -1,0 +1,2296 @@
+{
+  "baseline": "956c895a7f46b603469e1efa301dc2aad9cc6cdd",
+  "profiles": [
+    {
+      "id": "reddit-actif-2026-09-27",
+      "name": "Camille",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        27,
+        "Agente d’accueil",
+        "Vit en colocation · sa part du logement et ses dépenses",
+        "Angers"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 160000,
+        "expenses": 142800,
+        "savings": 10000,
+        "available": 17200,
+        "balance": 7200
+      },
+      "expensePercent": 89,
+      "monthlyLedgerHash": "44f27b7430ff6a1f87a0d2383f8058e766f491bb2d2c5dceaa9246e73d8a6317",
+      "sourceHash": "e2f4113c405d643cc6715f1e483d48fa0921a32ce97d6cd81914f587a83cdb06",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Colocation : les 750 € sont sa contribution au logement, aux factures et aux courses ; les dépenses personnelles restent distinctes. Projet voiture : 3 000 + 100 × 30 = 6 000 ; réserve séparée de 2 000.",
+      "textHash": "07d4092233bb34f3a19f744d03551f95f0402f41fbfd9ff23e3c512886498daa",
+      "questions": 2
+    },
+    {
+      "id": "reddit-couple-nord-2026-07-09",
+      "name": "Julie et Alex",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Julie : agente d’entretien à temps partiel · Alex : préparateur de commandes",
+        "Couple de 36 et 38 ans · un enfant de 10 ans pendant les vacances",
+        "Agglomération lilloise"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 246400,
+        "expenses": 225700,
+        "savings": 10000,
+        "available": 20700,
+        "balance": 10700
+      },
+      "expensePercent": 92,
+      "monthlyLedgerHash": "5655d31b0ce725344e6e20f311c9999b5b38f1e9d606425b9855d3cfc34b6985",
+      "sourceHash": "816985083dd003faaeebcb8293e3877879e3d8206f27277e738b496b1cc47064",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget du foyer prévu. Les 1 367 € restent une enveloppe de logement, factures fixes et crédits non ventilés ; soins et loisirs sont dans leurs lignes, pas retirés une seconde fois des 107 €.",
+      "textHash": "f1fb353691286aa416ca81711971e7324ca03425a41a9747e8c1bfede8d01252",
+      "questions": 2
+    },
+    {
+      "id": "reddit-salarie-26-2026-01-04",
+      "name": "Thomas",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        26,
+        "Premier CDI",
+        "Hébergé chez ses parents",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 170000,
+        "expenses": 65000,
+        "savings": 100000,
+        "available": 105000,
+        "balance": 5000
+      },
+      "expensePercent": 38,
+      "monthlyLedgerHash": "ee318c1c78e0c820fb9b9d77efe281e0c99d95b589c852a3234c724179b62e9c",
+      "sourceHash": "8d2d584585d5283697e3d5f9b210d3dd3d9ea1142718577bf07b2fbc4a71d41b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Vie chez les parents : logement et factures pris en charge dans la création existante ; mobile 15 séparé des abonnements de loisirs 10. Installation : 7 200 dont 2 500 de frais et 4 700 de premiers mois, réserve 10 000 séparée.",
+      "textHash": "a5a678465c6f6a59061a2e1d74cead283b5eb2156a983ddeae926f4547a10c44",
+      "questions": 2
+    },
+    {
+      "id": "finary-ingenieur-aero-2025-11-30",
+      "name": "Mathieu",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        28,
+        "Ingénieur aéronautique",
+        "Célibataire · sans enfant · propriétaire",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 305000,
+        "expenses": 268200,
+        "savings": 30000,
+        "available": 36800,
+        "balance": 6800
+      },
+      "expensePercent": 88,
+      "monthlyLedgerHash": "051ad5275381c3d67ea204884e8c1b241f8a0390243aad587562141bff9da2d6",
+      "sourceHash": "3fa9fbb2dc4802916c4c9f188548b423cede77224394bb4d95d2fa9c50bc8a85",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel propriétaire. Charges 60 définies hors énergie ; les impôts 260 restent une dépense explicite face au salaire explicitement avant impôt. Cuisine 2 500 : réduction du PEA envisagée, pas versement travaux déjà réalisé.",
+      "textHash": "ed33e913da28088b64bb3c71b1dcec0d9baa564022743501cc5efcfbb572cc63",
+      "questions": 2
+    },
+    {
+      "id": "finary-alternant-22-2025-05-15",
+      "name": "Lucas",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        22,
+        "Alternant en génie civil",
+        "Hébergé chez ses parents",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 150000,
+        "expenses": 74000,
+        "savings": 75000,
+        "available": 76000,
+        "balance": 1000
+      },
+      "expensePercent": 49,
+      "monthlyLedgerHash": "1915cea597c63b8bbfaf89b5fd262130a76d553f1d30bd95ce4e78d1fb317bda",
+      "sourceHash": "b072da0774477233cc9b2c5007a59e23f73e4d6dc8049a4c18988b1ac8c8cb72",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Contribution familiale 100 : logement, charges et repas au foyer ; les 100 de repas hors domicile sont distincts. Entretien automobile 50 hors forfait déplacements 400. PEA 750 laisse seulement 10.",
+      "textHash": "0ffd3ddeac7c1eddc1ce03fe7fba641c83400e7849721f8f9b0b520ee39fe5e1",
+      "questions": 2
+    },
+    {
+      "id": "finary-fonctionnaire-30-2025-05-21",
+      "name": "Nicolas",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        30,
+        "Fonctionnaire de l’État · catégorie C",
+        "Propriétaire de son appartement",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 215500,
+        "expenses": 166701,
+        "savings": 0,
+        "available": 48799,
+        "balance": 48799
+      },
+      "expensePercent": 77,
+      "monthlyLedgerHash": "44b174ab9a0ca56c81de22ad3b55f2c3eb53f13b359a537894492e3e99a9b5b9",
+      "sourceHash": "28118411a8e73a843f1273ab3b61e1d0d2c620ea29dc8f4eeb33ce4384df10a8",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Prêt familial, stocks et versement PEA encore envisagé distincts. Baisse de salaire et sport donnent 363 avant PEA ; vacances 100 déjà provisionnées.",
+      "textHash": "2ad3c38fdf0de73ad55adc9bf2c02d7bea08d5c64cd007f35784e2fe601d2eb5",
+      "questions": 2
+    },
+    {
+      "id": "finary-alternant-19-2025-09-27",
+      "name": "Hugo",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        19,
+        "Alternant",
+        "Locataire",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 122100,
+        "expenses": 107599,
+        "savings": 12000,
+        "available": 14501,
+        "balance": 2501
+      },
+      "expensePercent": 88,
+      "monthlyLedgerHash": "8150ab3da930cbc58cf0d3f9d37fe6bcfaf9a596f140ddcce4d95343bc86ada9",
+      "sourceHash": "ff6b2a7a4046ad6a32217cd77eee8726b393fba5fa5c7d31e0c4bd9bb4383cb5",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Bonus 150 non récurrent établi : sans lui, déficit avant versements 4,99. Aucun patrimoine de 424 ajouté aux recettes ; question sur versements conditionnels maintenue.",
+      "textHash": "d07ee450f47a16f92ba49dd60236389ff9ee915d53be828f259587d77b89fb4a",
+      "questions": 2
+    },
+    {
+      "id": "reddit-couple-35-2025-10-15",
+      "name": "Clara et Louis",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        35,
+        "",
+        "Deux adultes de 35 ans · projet d’enfant",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 505000,
+        "expenses": 463900,
+        "savings": 0,
+        "available": 41100,
+        "balance": 41100
+      },
+      "expensePercent": 92,
+      "monthlyLedgerHash": "b67da1eda99e30cda9de55d25bfbdf436d0e4c25a924c4a70a92f4fa69cf9447",
+      "sourceHash": "560b2eebb56c6eb69a72ebfe45c76b47f7331bd732727401e70b63055c0be179",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget du couple. Achats personnels 200 et 300 séparés des sorties communes 200 ; entretien leasing inclus, pneus à part. Projet enfant 200 seulement envisagé, pas déduit du reste 411.",
+      "textHash": "9d9d1d86e12a9c28acf1e38f74f3bbd4ef40d73f95301540722f51057334dd13",
+      "questions": 2
+    },
+    {
+      "id": "reddit-tech-26-2026-02-06",
+      "name": "Maxime",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        26,
+        "Salarié dans la tech · CDI",
+        "Célibataire · hébergé chez ses parents",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 190000,
+        "expenses": 107000,
+        "savings": 60000,
+        "available": 83000,
+        "balance": 23000
+      },
+      "expensePercent": 56,
+      "monthlyLedgerHash": "9c4ed4ad0f6101fc0cf8d91f5ccf052d88f7a5a58c4810f0e566df4e43e00f3c",
+      "sourceHash": "566ad7140cae103b8e74306405ecad1863d7a04bcf6de4757407394be856275a",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Contribution aux parents 400 couvre logement, charges et repas dans la définition éditoriale ; repas hors foyer 100 séparés. Forfait 70 mobile/abonnements personnels ; départ : 2 400 + 600 × 12 = 9 600 pour 8 000 d’objectifs.",
+      "textHash": "e92c9b50d73ef0f9a60ddfda98024507b342cd48ec53f19099b464eba02c44f6",
+      "questions": 2
+    },
+    {
+      "id": "reddit-alternant-20-2025-09-03",
+      "name": "Léo",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        20,
+        "Alternant",
+        "Logé et nourri chez ses parents",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 90000,
+        "expenses": 47000,
+        "savings": 38000,
+        "available": 43000,
+        "balance": 5000
+      },
+      "expensePercent": 52,
+      "monthlyLedgerHash": "f4113774ccf95969bc594946200502cea9400aff973f84fe6adec25fe1c47ed4",
+      "sourceHash": "50e190955eee0fe76dbea7c934950fcd3925f9c288cfc9b19259014fa186fede",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Logement et repas chez les parents. Téléphone déjà inclus dans les 200 ; 40 entretien séparé ; loisirs 200 ventilés 110+50+40. Installation et sécurité partagent un seul livret, pas deux stocks de 1 800.",
+      "textHash": "a292b3b033e3cceb518795a3b5edb578b572097e6d47294b85388b08f1148003",
+      "questions": 2
+    },
+    {
+      "id": "finary-cyber-24-2026-08-27",
+      "name": "Adrien",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        24,
+        "Junior en cybersécurité",
+        "En couple · sans enfant · dépenses à sa charge",
+        "France · emploi au Luxembourg"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 280000,
+        "expenses": 119000,
+        "savings": 145000,
+        "available": 161000,
+        "balance": 16000
+      },
+      "expensePercent": 43,
+      "monthlyLedgerHash": "fb8db5d4daf4729c5b5de08aad4ce72feade97588248553defab876209ee7c09",
+      "sourceHash": "1562b5e83fb69c47ccbc751cf22ad61dbb6ba341b94d25155764814725ef904b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel d’Adrien, pas revenus ou dépenses complets du couple. Prêt étudiant futur distinct de la provision actuelle sur livret ; 450 × 36 = 16 200 face au principal 15 000, conditions de prêt inconnues. Les 450 × 36 préparent 16 200 : capital de 15 000 et marge de 1 200 ; aucune hypothèse de taux ou de coût total du crédit.",
+      "textHash": "de4565a1167a390bebe608c8917bb73bda3fb5908ba6430a59a8656ae306c1c1",
+      "questions": 2
+    },
+    {
+      "id": "finary-ingenieur-21-2025-03-08",
+      "name": "Bastien",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        21,
+        "Alternant ingénieur",
+        "Étudiant · locataire",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 255000,
+        "expenses": 110700,
+        "savings": 30000,
+        "available": 144300,
+        "balance": 114300
+      },
+      "expensePercent": 43,
+      "monthlyLedgerHash": "af885ffc60c25cf5fcf6ca922ab81072be5144f2aa56adc2cfc23dcc4756e5ce",
+      "sourceHash": "befe7f7308a2821171efdb19e0a26f1d1070ede28a50f65ee5838cdd6a3b7920",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "APL déjà déduites du loyer 252, jamais rajoutées aux recettes. Aide parentale 400 distincte. PEA 300 prévu et encore vide, pas patrimoine déjà investi.",
+      "textHash": "50a305809164a0396db06b25eae29f177511a2e001ceafef0302c24acf846b4a",
+      "questions": 2
+    },
+    {
+      "id": "finary-alternant-21-2025-05-08",
+      "name": "Quentin",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        21,
+        "Alternant",
+        "Hébergé chez ses parents",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 109000,
+        "expenses": 21000,
+        "savings": 75000,
+        "available": 88000,
+        "balance": 13000
+      },
+      "expensePercent": 19,
+      "monthlyLedgerHash": "9a98494d49c09880b546657f62d9417a25c8f55aeaeed878565d8992ccd0c951",
+      "sourceHash": "da4258518dc88a99707cf930af9e24b0bec26c1a64f1b0daf18a5f0577df8879",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Version éditoriale chez les parents : hébergement, charges et repas pris en charge ; forfait 110 rassemble mobilité, assurances et abonnements dont téléphone. Le coût futur du logement n’est pas celui des 210 actuels.",
+      "textHash": "4a193c9fb5c4788fb7e3ce55a53db261107dfb11f293d0cea047c12838552afe",
+      "questions": 2
+    },
+    {
+      "id": "finary-locataire-25-2025-11-08",
+      "name": "Julien",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        25,
+        "Salarié",
+        "En couple · locataire · dépenses à sa charge",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 290000,
+        "expenses": 216000,
+        "savings": 0,
+        "available": 74000,
+        "balance": 74000
+      },
+      "expensePercent": 74,
+      "monthlyLedgerHash": "40b165bb8390834c9261c5a16a5d04d323ea05c612ef460068db2eb904aaf218",
+      "sourceHash": "f8a0bb00a607876f2ff71f8b03dbfbee266f6e8edfafa6707cea74c51484e63a",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Seules les dépenses de Julien sont présentées ; 900 est sa part du logement, 600 une enveloppe personnelle de vie courante sans ventilation numérique nouvelle. Prêt 660 distinct, 740 pas versement automatique.",
+      "textHash": "8aa5b1ad7ccc7e7b1d99ec4c034490f68bf8302a74602f0a83a0fbf863defd2b",
+      "questions": 2
+    },
+    {
+      "id": "finary-batiment-21-2025-09-30",
+      "name": "Antoine",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        21,
+        "Alternant dans le bâtiment",
+        "Logement et charges pris en charge pendant deux ans",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 150000,
+        "expenses": 70000,
+        "savings": 72500,
+        "available": 80000,
+        "balance": 7500
+      },
+      "expensePercent": 47,
+      "monthlyLedgerHash": "81f8e0e796b9272ee81a514dd960a751f43d0b2e75fe677e014e9845c56068e1",
+      "sourceHash": "3aad4fa3a9d50cb29e3901d6e99ab27a8ae395b98ffd89ecd3830ef9ba766bdd",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Logement sans loyer pendant deux ans : charges comprises définies pour le personnage, pas nouveau payeur source. Les 150 de mobilité incluent déjà assurance, carburant et frais associés.",
+      "textHash": "ffcd4c5cbfe17a69c21856fde5541ccf68a0c667cac10565109f650486985971",
+      "questions": 2
+    },
+    {
+      "id": "finary-etudiant-20-2025-03-19",
+      "name": "Simon",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        20,
+        "Étudiant préparant une alternance",
+        "Hébergé chez son père",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 120000,
+        "expenses": 59500,
+        "savings": 0,
+        "available": 60500,
+        "balance": 60500
+      },
+      "expensePercent": 50,
+      "monthlyLedgerHash": "530445235ea7c23fecdd234b5bf254aa8a0e78f5ba4e90e139284c0cbbe8a733",
+      "sourceHash": "2743a19f03a65f219a28a70fc5530a74b8bb0e4ea400c283a937e2457a3dfe20",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget d’alternance prévu. Les 300 au père couvrent logement, charges et repas au foyer ; 80 hors domicile séparés. Réserve 7 000 et PEA non encore ouvert restent des stocks/projets distincts.",
+      "textHash": "61bc2f317596749320639750492a3ef57f34d246987b6eb7b3d11e982e0d6909",
+      "questions": 2
+    },
+    {
+      "id": "finary-celibataire-31-2026-02-03",
+      "name": "Sébastien",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        31,
+        "Technicien de maintenance en CDI",
+        "Célibataire · locataire",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 240000,
+        "expenses": 177500,
+        "savings": 62500,
+        "available": 62500,
+        "balance": 0
+      },
+      "expensePercent": 74,
+      "monthlyLedgerHash": "6d12abf19d03bc139ca345ec12b9bafa10039d2b07a548f97fb1071f1873566e",
+      "sourceHash": "039d2380f3f89a25302379325756eedc62960eb31751e80402b3dc6f689bc710",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Réserve 28 300 distincte du PEA et des versements. Voyage financé dans l’enveloppe vacances/cadeaux de 200, sans réserver 2 000 une seconde fois sur les mêmes flux.",
+      "textHash": "bba0bc04d697c6a1b3a7fd3e5423f69be5e316ebf69ceb63dad0165a1154d8ef",
+      "questions": 2
+    },
+    {
+      "id": "finary-frontalier-37-2025-06-30",
+      "name": "Paul",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        37,
+        "Frontalier au Luxembourg",
+        "Célibataire · sans enfant · propriétaire",
+        "Thionville"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 670000,
+        "expenses": 332000,
+        "savings": 157200,
+        "available": 338000,
+        "balance": 180800
+      },
+      "expensePercent": 50,
+      "monthlyLedgerHash": "10ea7bca8ca62b01a976e4211e5d1647f7d76bf7ad8fc6349f465544e53128b9",
+      "sourceHash": "4b8cb02e9f4aa8686a1d0750766c067d4d8ddc68a379770c0581534553546eb1",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel. Voiture de fonction et carburant employeur déjà établis ; transports 100 concernent les trajets personnels. Stocks de placements et compte courant 35 000 séparés des recettes 6 700.",
+      "textHash": "f234d9678b958a745c1583d063e139c3bb0e91179ec1c5cbf9aa3f271904c695",
+      "questions": 2
+    },
+    {
+      "id": "finary-bois-18-2025-10-16",
+      "name": "Enzo",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        18,
+        "Salarié du secteur du bois",
+        "Projet de premier appartement",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 220000,
+        "expenses": 151300,
+        "savings": 0,
+        "available": 68700,
+        "balance": 68700
+      },
+      "expensePercent": 69,
+      "monthlyLedgerHash": "52a0d124161b4bcd3a930b75d5931746f88003d221d1b6e445ec64efcde48249",
+      "sourceHash": "0595d264b36d9b242133bba73a7969cf0979ab4dd6b3505984fd30bc08d4b588",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget de premier appartement prévu ; fourchettes logement/courses varient de 150. Les 300 envisagés complètent les frais et la sécurité, sans présenter les 687 comme un placement décidé.",
+      "textHash": "8b5a34c753fb11dcc3811c59549f993ed9fda684954f2e681f120d0646860c0f",
+      "questions": 2
+    },
+    {
+      "id": "mustachian-ingenieur-28-2025-08-16",
+      "name": "Romain",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        28,
+        "Ingénieur en automatisation",
+        "Vit seul",
+        "Neuchâtel · Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 739300,
+        "expenses": 364400,
+        "savings": 0,
+        "available": 374900,
+        "balance": 374900
+      },
+      "expensePercent": 49,
+      "monthlyLedgerHash": "3d05b09393a40a621c135d90a3ad236f266a7d323810b084fdab702117d004b4",
+      "sourceHash": "106602bce9f6cf06489ce353dda321afc539b1f24bbace2f4e8fff200ee3d275",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Moyenne comprenant héritage et ventes, pas salaire récurrent de 7 393. Le solde avant placements inclut le troisième pilier annuel, aucun deuxième prélèvement mensuel inventé.",
+      "textHash": "7603e6793230acaae29a0c8342db390158dcfb5fa2d6d6d51a692add08642765",
+      "questions": 2
+    },
+    {
+      "id": "prepared-nicolas1499-2026-10-30",
+      "name": "Nicolas et Marion",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        33,
+        "Professeur et salariée du secteur de la santé",
+        "Couple marié · 33 ans tous deux · un enfant de 2 ans · propriétaires",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 405000,
+        "expenses": 380600,
+        "savings": 15000,
+        "available": 24400,
+        "balance": 9400
+      },
+      "expensePercent": 94,
+      "monthlyLedgerHash": "d79c6cb65849c047c7fa4e3c91aee225602b5676d9e022a447dfafbb1df48961",
+      "sourceHash": "275c87ac3f79b4109d2eb242b0c215f05f327ee2333bcbd9518a74b73504c126",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget complet du foyer ; donation 190 000 stock hors salaires. Petit bricolage courant dans 944 distinct des gros travaux projetés, entretien auto 80 hors carburant/assurances.",
+      "textHash": "1bf7020f59fd75f7f1401ccd2f821fba449273141ab15f1ae1c2aba55799c753",
+      "questions": 2
+    },
+    {
+      "id": "prepared-carl78-2026-10-30",
+      "name": "Florian",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        32,
+        "Salarié en CDI",
+        "En couple · ses dépenses et sa part du foyer",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 250000,
+        "expenses": 136000,
+        "savings": 105000,
+        "available": 114000,
+        "balance": 9000
+      },
+      "expensePercent": 54,
+      "monthlyLedgerHash": "b435b10cc150def4af6c8a803bbdcc7cb4c21340a984b36322e8bdc0ce18f410",
+      "sourceHash": "4c4bb12a24ca316b432b534c7b8c3c9ae1d17af356f0240a2153bb2d0b7b258b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget de Florian seul : part commune et dépenses personnelles, pas salaire du couple. Sur les livrets, 15 000 de sécurité et 30 000 pour plusieurs projets ; pas 30 000 affectés à chacun.",
+      "textHash": "eb8c003ddd5b3f53dd937d1c36cadbb4f4889d411df9392deb202e9d0e866721",
+      "questions": 2
+    },
+    {
+      "id": "prepared-theoo-2026-10-30",
+      "name": "Théo",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        25,
+        "Alternant en master",
+        "En couple · ses dépenses et sa part du foyer",
+        "Paris · études à Bordeaux"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 176000,
+        "expenses": 156000,
+        "savings": 20000,
+        "available": 20000,
+        "balance": 0
+      },
+      "expensePercent": 89,
+      "monthlyLedgerHash": "31a6ee7bf80a0f4aa08a1d1856601c28e79f540279989a48ac8dbc71b54f233a",
+      "sourceHash": "72673ff1155255aea769b630f2d2ee1f445e4e337148499b13b3d9989c9408e0",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget individuel retenu pour Théo ; 700 est sa quote-part logement/charges/énergie/internet. Eau incluse dans cette enveloppe dans la définition éditoriale, sans deuxième facture ajoutée. Prêt futur non prélevé actuellement.",
+      "textHash": "adb6724595a4c28acb42a4cd89f7c5993769cf1c1b3dca1538569a7508123b4d",
+      "questions": 2
+    },
+    {
+      "id": "prepared-gritz-2026-10-30",
+      "name": "Guillaume",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        44,
+        "",
+        "Sans enfant · locataire · aucun crédit",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 280000,
+        "expenses": 237600,
+        "savings": 39500,
+        "available": 42400,
+        "balance": 2900
+      },
+      "expensePercent": 85,
+      "monthlyLedgerHash": "4874e9ba141e99a22721eb52ca227aa0e5eb13a9ab2d6547825646a17e64381b",
+      "sourceHash": "2dd92a177ea73ee29111738624babef1a91505174f09ca56865963017eab906e",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "PEL 45 et PEA 350 maintenus, reste 29. Loyer hors énergie définissant les 950 ; vacances provisionnées dans 532. Stocks distincts des flux ; liquidité du PEL non présumée.",
+      "textHash": "509b5c74783d338ce1d7d1d2adee9570d07182f412963623df7de9fbfdce9b7c",
+      "questions": 2
+    },
+    {
+      "id": "prepared-tom281-2026-10-30",
+      "name": "Thomas à Paris",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Salarié en CDI",
+        "Locataire · déplacements à moto",
+        "Paris"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 235000,
+        "expenses": 183500,
+        "savings": 46000,
+        "available": 51500,
+        "balance": 5500
+      },
+      "expensePercent": 78,
+      "monthlyLedgerHash": "8212d3f906c543469ba88f76d142e2cbc89373b0ade845fb7c96575826f7fdf8",
+      "sourceHash": "192a7d3870256c8e35574a4018da587099bbda8555bee002a7c542d57e4d7f1b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel ; loyer du parking futur exclu des ressources. Paiement téléphone 62 distinct des abonnements et d’un forfait mobile éventuel ; complément fiscal 90 conservé.",
+      "textHash": "1d2f897d979b431eed38d2943e23442a1382648aa94d15a7e5eb9f9fc17d114a",
+      "questions": 2
+    },
+    {
+      "id": "prepared-alessgiu-2026-10-30",
+      "name": "Alexandre",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Salarié",
+        "Locataire · peu de sorties",
+        "Belgique"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 230000,
+        "expenses": 161200,
+        "savings": 68800,
+        "available": 68800,
+        "balance": 0
+      },
+      "expensePercent": 70,
+      "monthlyLedgerHash": "82b914dd9507b189fa398f637b1683321ebd70712c43f101a4cdc313a64e9309",
+      "sourceHash": "321e1dbdc95c373433a9607a32eacf5d27ecb6b926c9874d3bd26461f16b2007",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Formation 2 500 face à 100 × 18 = 1 800 : manque 700 maintenu, pas puisé automatiquement dans la réserve 5 000 ; baisse des placements seulement envisagée.",
+      "textHash": "9802171bb01d45ff439b4bbe614c68e84ae5b033f493c4e01ddacc12b881d5d5",
+      "questions": 2
+    },
+    {
+      "id": "prepared-xiaolongbao641-2026-10-30",
+      "name": "Maxime et Clara",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        28,
+        "Salariés frontaliers",
+        "Couple marié · propriétaires",
+        "Thionville · travail au Luxembourg"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 835000,
+        "expenses": 385000,
+        "savings": 450000,
+        "available": 450000,
+        "balance": 0
+      },
+      "expensePercent": 46,
+      "monthlyLedgerHash": "d0e6d2c4c08ae12ec493e4ccb8cf6f9bfdb96f2bcc7fe7eacd81f3187a51384c",
+      "sourceHash": "eda038b9af1f01a6671f23342c337beb1a163193fb5e50aa1e0b394aa837689e",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget du couple. Revenus 8 200 à 8 500 : versements 4 500 impliquent -150 à +150 ; réserve/provisions 48 000 pas entièrement affectables à un seul projet.",
+      "textHash": "b5ad867acac3eb45c9027e599c59a686773751b60dfea6615404def36f732a83",
+      "questions": 2
+    },
+    {
+      "id": "prepared-abar4-2026-10-30",
+      "name": "Adrien et Léa",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        34,
+        "Un seul revenu · conjointe étudiante",
+        "Couple marié · avant la naissance de leur enfant",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 695600,
+        "expenses": 495600,
+        "savings": 200000,
+        "available": 200000,
+        "balance": 0
+      },
+      "expensePercent": 71,
+      "monthlyLedgerHash": "61716456e73e77c552bc854c1007f072d890df33fc140f5894fddb7aef088ae1",
+      "sourceHash": "5354dddb9692260f7354fb3efe422ef703f4f9d5f018c44bf364d77cfdda545c",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget du couple avant naissance, passé conservé ; revenu unique et impôts dans les dépenses. Deux poches de 5 000 distinctes ; pas de salaire de Léa inventé.",
+      "textHash": "66d4b6be94ba0917e182e1afdf37e1a3e6898197b6a443acff3bff9f0cff3200",
+      "questions": 2
+    },
+    {
+      "id": "prepared-justbob-2026-10-30",
+      "name": "Marc",
+      "status": "corrigé",
+      "financialStatus": "corrigé",
+      "identity": [
+        34,
+        "Salarié dans la tech",
+        "Célibataire",
+        "Zurich"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 2250000,
+        "expenses": 633300,
+        "savings": 0,
+        "available": 1616700,
+        "balance": 1616700
+      },
+      "expensePercent": 28,
+      "monthlyLedgerHash": "59073fc47ee123d35b4f43cbdb9fbc775edb225593bd4f4c08e07da3f2418c24",
+      "sourceHash": "236db6683232ab8131377123ce27119c594f084197690b4571130efcb12f38d2",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée",
+        "16 167 CHF reclassés en reste disponible, versements non établis retirés"
+      ],
+      "review": "Revenu moyen variable et dépense ponctuelle des yeux mensualisée maintenus. 120 000 disponibles couvrent 75 996 de dépenses annuelles ; ETF 900 000 stock distinct, pas de salaire pendant la pause.",
+      "textHash": "39afd8fa9ee650e645c8a07496d858fd8a9d2426e89c35825be853bebe8a146b",
+      "questions": 2
+    },
+    {
+      "id": "prepared-markus654-2026-10-30",
+      "name": "Samuel",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        36,
+        "Technicien réseaux",
+        "Vit seul",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 611400,
+        "expenses": 343900,
+        "savings": 260500,
+        "available": 267500,
+        "balance": 7000
+      },
+      "expensePercent": 56,
+      "monthlyLedgerHash": "925b7345c964be8d37a9246e6f15666675b9ef9dea842801918d0c36f7ea0519",
+      "sourceHash": "e643b6e3099236096b821f2139949ac60f9863d651f67e50e49577eccab6fc03",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel suisse avec impôts dans les dépenses. Pause : 21 600 préparés par 600 × 36, suffisants pour dépenses courantes seules, pas si troisième pilier maintenu ; condition publique conservée.",
+      "textHash": "17b60bc4c4ccc17c2c64cd96102d07c715099a4166a60727e6cc1e929dd8749c",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-01-2026-10-30",
+      "name": "Inès",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        42,
+        "Cheffe d’entreprise",
+        "Mariée, deux enfants · sa part du foyer et ses dépenses",
+        "Sud de la France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 240000,
+        "expenses": 175500,
+        "savings": 64500,
+        "available": 64500,
+        "balance": 0
+      },
+      "expensePercent": 73,
+      "monthlyLedgerHash": "2465c8ae84258ff137751d838af0a70c81737c75b7bcc809ce57d59b35b1cd36",
+      "sourceHash": "e6ca56d4f07b06f09fb023fc6155869c5517227c15c3662172736482525f347b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Sa part du foyer, pas budget complet du couple. Charges fixes 900 couvrent logement et factures communes hors lignes personnelles. Les 645 financent l’entreprise ; 435 de trésorerie après outils ne deviennent pas réserve personnelle.",
+      "textHash": "a971dec9d4bb2228977c7c3c2936212dabba46bd975198b5ef8f53ed0be19a7a",
+      "questions": 1
+    },
+    {
+      "id": "prepared-lot2-02-2026-10-30",
+      "name": "Aïcha",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        41,
+        "Cheffe de service en hébergement d’urgence",
+        "Mère célibataire · un enfant de 11 ans",
+        "Région parisienne"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 335000,
+        "expenses": 238000,
+        "savings": 80000,
+        "available": 97000,
+        "balance": 17000
+      },
+      "expensePercent": 71,
+      "monthlyLedgerHash": "fe07537877996f80a5871ba59aae02da1b8e9700045ac0c87df5e0ac2e9e5525",
+      "sourceHash": "3d5b04b2c65143d4cf9b28b5c618fdbe5e4c764b44c4b13c8e9941765e8a9547",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget monoparental ; logement 1 050 défini hors énergie/eau 120. Réserve 4 500 et vacances 1 200 séparées ; 800 unique enveloppe réserve/projets. Marges 20/170/320 selon salaire maintenues.",
+      "textHash": "dfdc105b8a94e4af8c0f03bf58f0ef9d6e38c226e138490f3a02945a7061a99d",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-03-2026-10-30",
+      "name": "Céline",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Conseillère France Travail",
+        "Mère célibataire · un enfant de 12 ans",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 167200,
+        "expenses": 136000,
+        "savings": 25000,
+        "available": 31200,
+        "balance": 6200
+      },
+      "expensePercent": 81,
+      "monthlyLedgerHash": "d329751b675ea44fab15574cd44b3a1e436ad06ca71f41df41210a78400faad2",
+      "sourceHash": "97e172804036ca2b0ca290998ca9b145c41b901ebf72224fb4f6714c54b572de",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget monoparental : loyer 620 défini hors énergie/eau 100, salaire hors primes et aides non ajoutées. Machine 600 financée par six versements projets de 100, pas par deux enveloppes à la fois.",
+      "textHash": "29b472daeff4eb9f9f1f0a8a113652ddbeb9d41a2f83d9bd4f221b90dc6672c9",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-04-2026-10-30",
+      "name": "Élodie",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        39,
+        "Entrepreneure",
+        "Mariée, deux enfants · sa part du foyer et ses dépenses",
+        "Bobigny"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 200000,
+        "expenses": 175000,
+        "savings": 10000,
+        "available": 25000,
+        "balance": 15000
+      },
+      "expensePercent": 88,
+      "monthlyLedgerHash": "9c25d30d07b95710a4fe1dca4a46b33051b38ba27901ae197a33344671efbb5f",
+      "sourceHash": "a810e265602c3cf1f8b6697d7bb2aae812df4a1ab8c2b3d13c73e528be310aa6",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Sa part du foyer, avant fin des indemnités. Le financement de l’ordinateur sur un an exige de poursuivre les versements après leur fin ; ce n’est pas garanti par les recettes actuelles.",
+      "textHash": "4f9c83138be6e565fae28973f25ada14402aae0ef4eef2462bd8c1bc250fa172",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-05-2026-10-30",
+      "name": "Soraya",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        49,
+        "Auxiliaire de vie",
+        "Divorcée · deux enfants adultes indépendants",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 275000,
+        "expenses": 268000,
+        "savings": 0,
+        "available": 7000,
+        "balance": 7000
+      },
+      "expensePercent": 97,
+      "monthlyLedgerHash": "cfb208d73fedcf7710a3e69a44bb08e2ab71ecb534bda514253019dee2536c35",
+      "sourceHash": "40a76184fcb86e0f7cd1e5c22be49614251afd6127830c823a5f507d4313ce0f",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel, enfants indépendants. Loyer hors énergie/eau ; soins/coiffure 150 et frais de santé 70 gardent des rôles distincts. Déficit 180 au salaire bas, marge 320 au haut, aucun virement inventé.",
+      "textHash": "ebde763c6254b71e0c7edea1fb610fca1317e89f685e770ad52afea1bdd13772",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-06-2026-10-30",
+      "name": "Maud",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        38,
+        "Communication",
+        "Célibataire · propriétaire",
+        "Région parisienne"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 470000,
+        "expenses": 326500,
+        "savings": 135000,
+        "available": 143500,
+        "balance": 8500
+      },
+      "expensePercent": 69,
+      "monthlyLedgerHash": "adcd1e6d512b4768ebb339e0ad710ea24ec1dca8c05d6deea8a325a03cdc525c",
+      "sourceHash": "af6ca4e392b0e750f9f0734dfa98708060ebd83fa3d9cdf29015be74f9b98046",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Charges de copropriété hors énergie ; cadeaux/achats occasionnels provisionnés. Travaux 12 000 couverts par 12 600 de flux projet à 36 mois, sans affecter aussi les 14 000 de sécurité.",
+      "textHash": "cbd74bd64345937b71529e514133ad2f2d555d66257c66d4c27ad6f3397b17bd",
+      "questions": 1
+    },
+    {
+      "id": "prepared-lot2-07-2026-10-30",
+      "name": "Sylvie et Alain",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Retraitée et salarié",
+        "Sylvie, 62 ans · couple marié · maison payée · enfants indépendants",
+        "Nord"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 400000,
+        "expenses": 300000,
+        "savings": 100000,
+        "available": 100000,
+        "balance": 0
+      },
+      "expensePercent": 75,
+      "monthlyLedgerHash": "1af8ef42a16b80ffc28855a8feadb971eb2a2cf5fe55140fe269ec4d0789a6e5",
+      "sourceHash": "c8fa1f7567da48cc65df677f1adbd3cb8bf2d0cb2a0de7c9eae206a58ccccb38",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget du couple, maison payée. Entretien courant 250 distinct du remplacement chauffage 6 000 ; poche travaux déjà 6 000 et réserve 18 000 séparées. Pension future d’Alain inconnue et non ajoutée.",
+      "textHash": "3ecd8ef9313ce943ff784e29abbc56f43b95584032a559a24ea9bd490f63228b",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-08-2026-10-30",
+      "name": "Émilie",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        30,
+        "Cheffe de projet",
+        "En concubinage · sans enfant · sa part du budget du couple",
+        "Val-d’Oise"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 230000,
+        "expenses": 173500,
+        "savings": 50000,
+        "available": 56500,
+        "balance": 6500
+      },
+      "expensePercent": 75,
+      "monthlyLedgerHash": "0b13e4aab42b55f028fbe36e845d845e68d6df6859dd7049f263efad7d3fe145",
+      "sourceHash": "8a9ab93b617846081a8582e994f1d22a01819a58a4858ccc30b2ad656cee21d5",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Sa contribution : 900 logement hors énergie/eau, assurances et télécoms à sa charge ; autres charges 70 définies entretien/petits équipements. 7 000 = 5 000 réserve + 2 000 apport ; 2 000 + 500 × 36 = 20 000 ; marge 65 dans les questions.",
+      "textHash": "74079502cd1496d33c0ef3b822258b365ccd1b025296b97745f34591bb979673",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-09-2026-10-30",
+      "name": "Anaïs",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        27,
+        "Hôtesse de l’air",
+        "Vit seule",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 140000,
+        "expenses": 123000,
+        "savings": 15000,
+        "available": 17000,
+        "balance": 2000
+      },
+      "expensePercent": 88,
+      "monthlyLedgerHash": "c7301bab90eb887e3fc045953279fd6c67c2f9f43d4ab14732ee0ce7f73e4e90",
+      "sourceHash": "66fbbeb9d852b897135b4627f04cb4fac2b56d91ad68e80f1d9d3450ab9e2e70",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Salaire de base seul, primes de frais variables exclues. Vacances 60 déjà provisionnées ; 150 d’épargne à partager entre apport et réserve, pas intégralement affectés aux deux.",
+      "textHash": "787fbdfcb86230dadc6208d093211d1eea676dfb6de50bed4b2a5de9cfe69937",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-10-2026-10-30",
+      "name": "Pauline",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        34,
+        "Professeure des écoles",
+        "Mariée · deux filles · sa part du budget du foyer",
+        "Nanterre"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 210000,
+        "expenses": 202000,
+        "savings": 6000,
+        "available": 8000,
+        "balance": 2000
+      },
+      "expensePercent": 96,
+      "monthlyLedgerHash": "ee266e74edc4918c4d0e76b90b8401b075fcc11417d7179d0446e76532944e0b",
+      "sourceHash": "fccb39f90fd7dd3ec1ef58d5c4b11033c6af1f0f937262faa791235eb711582f",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Seule sa part du foyer, pas les dépenses ou revenus entiers du conjoint. Entretien 70 distinct des travaux supplémentaires ; patrimoine personnel 3 500 et filles 2 000 séparés ; 80 × 24 = 1 920 sous 2 500.",
+      "textHash": "52246b5f9c4b733590aa742d8bbe7c8e39446b6cda661a92e21a0edff8c86caa",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-11-2026-10-30",
+      "name": "Zoé",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        24,
+        "Étudiante en master d’arts plastiques",
+        "Stage temporaire",
+        "Paris 19e"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 90400,
+        "expenses": 106797,
+        "savings": 0,
+        "available": -16397,
+        "balance": -16397
+      },
+      "expensePercent": 118,
+      "monthlyLedgerHash": "4326b18b2f84d64bd530df7db1884a0053d04ad7bb40999ced81b9267de98991",
+      "sourceHash": "b5db70e5ce0b5d3621cbddb705fa8e77b7925efa3d5a6c44fc1fe4fc39929984",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Logement 550 comprend charges et assurance dans la version préparée, pas nouveau loyer source. Aide parentale limitée à 100. Déficit 163,97 conservé ; réserve 700 et ordinateur 600 ne sont pas des ressources mensuelles.",
+      "textHash": "7dd6d0b1ba4a09553391659ae0b803f6b3a9d453f2e0e0ed646b3e978e1fec19",
+      "questions": 1
+    },
+    {
+      "id": "prepared-lot2-12-2026-10-30",
+      "name": "Jade",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        31,
+        "Responsable marketing",
+        "En couple · sans enfant · dépenses à sa charge",
+        "Paris"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 350000,
+        "expenses": 250000,
+        "savings": 100000,
+        "available": 100000,
+        "balance": 0
+      },
+      "expensePercent": 71,
+      "monthlyLedgerHash": "c0c14a9797db5d40aa80c8eab7ee66a04ef09b8becdf6d6fbb253bfbccea972e",
+      "sourceHash": "2374d2a0d9ff12529d17bfb92adf0eb6d30234c39a18c1d924dfe01d0109270c",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Sa part du foyer et dépenses personnelles, revenu du mois non annualisé. Les 6 000 hors sécurité restent disponibles ; voyage payé par provision 500, pas par une deuxième réservation sur le même stock.",
+      "textHash": "b842e9dee1b338e125293f331569def146455b0d8c51ca4316d9d9eedf970758",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-13-2026-10-30",
+      "name": "Lucie",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        27,
+        "Assistante commerciale",
+        "En couple · propriétaire · factures réglées sur son compte",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 265000,
+        "expenses": 255000,
+        "savings": 5000,
+        "available": 10000,
+        "balance": 5000
+      },
+      "expensePercent": 96,
+      "monthlyLedgerHash": "1cdd20aa6c657488b6cfa285740fabbe97619130f6fe87b1cd73523eb26420f5",
+      "sourceHash": "407d429fbfdd26aa2e1f8fe0754bc434cda92e1de442d9617abc4942e8073a83",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Compte de Lucie : salaire + contribution 600, pas salaire complet du conjoint. Factures communes qu’elle règle incluses en entier sur ce compte ; ne pas les diviser à nouveau. Provision impôt 50 ne garantit pas régularisation exacte.",
+      "textHash": "3e5b3a59d206a03b0be423090187c010b499741ddcc1e126ff2019e393c910f8",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-14-2026-10-30",
+      "name": "Chloé et Nathan",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Nathan : technicien support · Chloé : employée de commerce à temps partiel",
+        "Couple locataire · logement actuel",
+        "Rosny-sous-Bois"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 365000,
+        "expenses": 285000,
+        "savings": 80000,
+        "available": 80000,
+        "balance": 0
+      },
+      "expensePercent": 78,
+      "monthlyLedgerHash": "3940fd39eab5cf8143c0d171d09ac2f1e5e372f09fd7506b829b2fc0037c121f",
+      "sourceHash": "d95d40c1fb5cc3a9bead0ab0a5c429b02cb19e94741b2b859ee9bc111c878458",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget du couple ; comparaison de loyer 790 à 1 100 faite charges comprises, autres coûts inchangés seulement par condition. Fonds déménagement et réserve séparés ; pas de nouveau solde actuel 490.",
+      "textHash": "88dc7e572c72af6f448305fef32cf53107b8fa2a1316ff165aa5232a59837057",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-15-2026-10-30",
+      "name": "Hadrien",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        29,
+        "Ingénieur logiciel",
+        "En couple · sans enfant ni animal · dépenses à sa charge",
+        "Belgique"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 360000,
+        "expenses": 121158,
+        "savings": 238842,
+        "available": 238842,
+        "balance": 0
+      },
+      "expensePercent": 34,
+      "monthlyLedgerHash": "a01b2544952cb0449de72edafd6f1728771f283b81007ba44d62344a4744e225",
+      "sourceHash": "2786272a2abd6fa20b93839df403a7a5bfeefbfa8a207b57617816f334b60d7d",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée",
+        "Question redondante retirée"
+      ],
+      "review": "Seules sa part des dépenses et ses dépenses propres, pas foyer entier. Budget prévu, salaire 2026 et moyenne des dépenses 2025 conservés, pas mois observé. Réserve disponible 188,42 distincte des ETF 2 200.",
+      "textHash": "2e9839608f06783e75d1c510490fd3f33e7dcbd2669cc1b3f0c25cba86dbfe79",
+      "questions": 1
+    },
+    {
+      "id": "prepared-lot2-16-2026-10-30",
+      "name": "Victor",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        30,
+        "Commerce · 32 heures par semaine",
+        "Célibataire",
+        "Bruxelles"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 230000,
+        "expenses": 158000,
+        "savings": 65000,
+        "available": 72000,
+        "balance": 7000
+      },
+      "expensePercent": 69,
+      "monthlyLedgerHash": "7786ef209daafebc7fb8bb289ae15943ffda7f046917d0c162917871df26d5b9",
+      "sourceHash": "d5d65c7d17a8268c4ad3faaf3be55d1f5c2e107fa0cc965ca44c366c8751bf38",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Revenus des 32 heures actuelles uniquement. Réserve 4 000 vers 6 000 : 100 redirigés des ETF + marge 70 sur douze mois = 2 040, sans vendre ni inventer revenu de temps plein.",
+      "textHash": "1eddc308142bfc47cd260253869eb7555627c683b43f5879f0b47ee422fefda7",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-17-2026-10-30",
+      "name": "Olivier et Alice",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "",
+        "Couple marié · 39 et 37 ans · deux enfants de 3 ans et 6 mois",
+        "Paris"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 860000,
+        "expenses": 520000,
+        "savings": 285000,
+        "available": 340000,
+        "balance": 55000
+      },
+      "expensePercent": 60,
+      "monthlyLedgerHash": "effa176a78a30cac93a9f52111b74463bb90ce99ef46a9d96d9ad41e29743424",
+      "sourceHash": "31084ea8e03c24710c00a7dd7ca117d3871f9fe21ea17250803825fb532f840e",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget du foyer, crèche et ménage distincts des charges de copropriété et entretien privatif. Stocks disponibles 80 000, achat à huit ans, troisième enfant et loyers futurs non réalisés.",
+      "textHash": "857370af2b1df9fd231c37121febf726a54dcea81b7b18b7fe575ac7ae1d3180",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-18-2026-10-30",
+      "name": "Sébastien et Mélanie",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Ingénieur cyber pour lui",
+        "Couple marié · sans enfant · propriétaires",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 770833,
+        "expenses": 435000,
+        "savings": 335833,
+        "available": 335833,
+        "balance": 0
+      },
+      "expensePercent": 56,
+      "monthlyLedgerHash": "9ae5a6ffc0861a4b5c7d625629c8345a357005013535b29cdaf299e71b7e6ba2",
+      "sourceHash": "1a71210ee79170d08ee441aa5a6eb67ad4e29807396a33e5742bff265d74de3d",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget du foyer annualisé ; intéressement déjà dans les 90–95 k€ annuels, pas ajouté encore au salaire mensuel. Fonds attendus 50 000 distincts : conditionnels, 40 000 ETF + 10 000 apport une seule fois.",
+      "textHash": "d4b24097921946ccf900a71b2bdbfd4ddf9955b2a8c4e1b19c745743ae002698",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-19-2026-10-30",
+      "name": "Arthur et Emma",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Internes en médecine",
+        "Couple locataire",
+        "Nancy"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 330000,
+        "expenses": 250000,
+        "savings": 80000,
+        "available": 80000,
+        "balance": 0
+      },
+      "expensePercent": 76,
+      "monthlyLedgerHash": "afe2f278c6fb1f00147ccaf2082966b7b5f4bf600d26609ee87e1e777c9cd50d",
+      "sourceHash": "09a66142b34e242bcf4c7d9e6425430da1bd583f1c0f4f910837c0c2eef8ba79",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget du couple ; patrimoines de 30 000 et 15 000 distincts des flux. Bien locatif à 100 000 prix du projet, pas apport intégral ni loyer actuel ; crédit restant à chiffrer.",
+      "textHash": "c76f8980d529fcd3ed6c51ef4e6133e5ab9b6d467ae7d1186144eb0692566473",
+      "questions": 2
+    },
+    {
+      "id": "prepared-lot2-20-2026-10-30",
+      "name": "Vincent et Sarah",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Salariés",
+        "Couple marié · trois appartements locatifs",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 560000,
+        "expenses": 300000,
+        "savings": 260000,
+        "available": 260000,
+        "balance": 0
+      },
+      "expensePercent": 54,
+      "monthlyLedgerHash": "142b3d0a0cebd47c8aa9066768006ec74c8f42838c166a0e030064f39c826af3",
+      "sourceHash": "4d60686128d83a67c492ccb904f1a5dc59c70b2ad335f7bc4c0e4a12a14485d7",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget du foyer : les 400 de locatif sont déjà nets de charges, crédits et impôt. Dépenses présentées pour la vie familiale, pas seconde déduction des crédits locatifs. Objectif de rente non acquis.",
+      "textHash": "36912ab67dbece794f3eae2ef9e70452fb40cd44be09947320cb1fd59db574d6",
+      "questions": 2
+    },
+    {
+      "id": "reddit-famille-bourges-2026-07-12",
+      "name": "Élise et Karim",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Étudiante salariée et salarié à temps plein",
+        "Couple · un jeune enfant · locataires",
+        "Bourges"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 309290,
+        "expenses": 280092,
+        "savings": 0,
+        "available": 29198,
+        "balance": 29198
+      },
+      "expensePercent": 91,
+      "monthlyLedgerHash": "9adb6e70d88784b1c5457f355f97cd5d96808e3e419d64b68b6b355cb7cb8c84",
+      "sourceHash": "0ef8159a48988fff146b329f5190c814cb94efb4b39a4b8577ebf3622069df7f",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget prévu du foyer. Crédits regroupés 922,03 maintenus tant que baisse future non connue ; santé actuelle 25 séparée des anciens frais financés par crédit. Deux assurances auto et entretiens non redéduits.",
+      "textHash": "8f194a4f0badefe8697dd0425abbb7472be3da858ff0d09c0c3e770ee482d81e",
+      "questions": 2
+    },
+    {
+      "id": "budget-conseil-personne_seule-2025-2026",
+      "name": "Lina",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        31,
+        "Auxiliaire de bibliothèque à 60 %",
+        "Vit seule · locataire",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 250000,
+        "expenses": 263000,
+        "savings": 0,
+        "available": -13000,
+        "balance": -13000
+      },
+      "expensePercent": 105,
+      "monthlyLedgerHash": "74596a209ebe7a107a12e1f44f2e8e2635e53d7040c87b9b33d5596e3beb9ba7",
+      "sourceHash": "754288ee62d1b2d6d86a88b58388f4fa33f2737ecf837f2c4369d0aa123383ac",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel suisse déficitaire. Eau/chauffage inclus dans le poste logement pour le personnage éditorial, électricité séparée ; franchise et soins distincts de la prime maladie. Aucun versement formation inventé.",
+      "textHash": "784fd387b372ef73874ecdb7d072257eaf0231a0b3f66c7de2383672abd32ba8",
+      "questions": 1
+    },
+    {
+      "id": "budget-conseil-monoparent_1enfant-2025-2026",
+      "name": "Nadia",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        35,
+        "Assistante administrative à 80 %",
+        "Parent seul · un enfant de 8 ans · garde assurée par la famille",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 330000,
+        "expenses": 334000,
+        "savings": 0,
+        "available": -4000,
+        "balance": -4000
+      },
+      "expensePercent": 101,
+      "monthlyLedgerHash": "30d7e3311e6292fd1c3195047d054ec32eefdb47a7692b9d47a903fcdf30b98c",
+      "sourceHash": "5d361a46b2aead3565163d5b29f107f4a96f9707c51e880df18f94dd93901add",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Parent seul, garde familiale établie dans la version éditoriale, pas nouveau salaire ni pension. Eau/chauffage dans logement, optique dans provision existante ; déficit 40 maintenu et question compatible.",
+      "textHash": "8b1fdd11aa493d6c12c58c1d94c6a0bd0389c89814cd4fe605794b10104166aa",
+      "questions": 2
+    },
+    {
+      "id": "budget-conseil-monoparent_2enfants-2025-2026",
+      "name": "Karine",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        39,
+        "Aide-soignante à 80 %",
+        "Parent seul · deux enfants de 6 et 10 ans · relais familial après l’école",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 400000,
+        "expenses": 410000,
+        "savings": 0,
+        "available": -10000,
+        "balance": -10000
+      },
+      "expensePercent": 103,
+      "monthlyLedgerHash": "1269a44d6ec6d07bad319e256f2dffe37ed6c161bc8c3f0f5ad102766fac9b57",
+      "sourceHash": "e5677935df2626de034a3950876d17ebf7d9d00d8efef67fdb17f50d19bb8a0c",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Parent seul et deux enfants ; eau/chauffage dans logement, soins et primes maladie distincts. Camp 600 dans l’enveloppe école/camps, pas deuxième charge ; déficit 100 empêche versement certain.",
+      "textHash": "02ddf07e8256496ffec269454c43056f41ba182ed9de873778b5f25da63a6c9d",
+      "questions": 1
+    },
+    {
+      "id": "budget-conseil-couple-2025-2026",
+      "name": "Maëlle et Éric",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Deux emplois à mi-temps · entretien et logistique",
+        "Couple de 45 et 47 ans · sans enfant · locataires",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 375000,
+        "expenses": 399000,
+        "savings": 0,
+        "available": -24000,
+        "balance": -24000
+      },
+      "expensePercent": 106,
+      "monthlyLedgerHash": "280a85f3379f8a5319ab475c567f9dd89b970a8cecd25fa8f6e8e275102af87d",
+      "sourceHash": "af110618635f9894935cdb7d02dc9be58d214185bb68f4dc7b7916235ffe5714",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget du couple : eau/chauffage dans logement ; loisirs individuels et communs distingués, repas hors domicile distincts des courses. Déménagement reste à financer, aucune économie future portée aux recettes.",
+      "textHash": "4a9ffcdfc036169f851cf653d97c50620c61ea65a8fb255be64906aec9175cf7",
+      "questions": 2
+    },
+    {
+      "id": "budget-conseil-couple_1enfant-2025-2026",
+      "name": "Mélissa et Johan",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Mélissa : caissière à mi-temps · Johan : agent d’entretien à 60 %",
+        "Couple de 29 et 32 ans · un enfant de 4 ans · garde familiale",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 440000,
+        "expenses": 466000,
+        "savings": 0,
+        "available": -26000,
+        "balance": -26000
+      },
+      "expensePercent": 106,
+      "monthlyLedgerHash": "47fd4e45fae56026147680078fb5efdd3786427f33936fa64b22efc8f89d7a86",
+      "sourceHash": "3f4ccb09aeb4349ed8467dcf13d7dd5b26d52d31cefa9bf9667b23c0ebdd5114",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget familial déficitaire : eau/chauffage dans logement ; lit 600 dans provision appareils 60. Couper vacances 140 ne résout que partie du déficit 260 : manque 120 conservé.",
+      "textHash": "386e2acefad5d292495ccb04cd7d96a924636574a1c7653063da9aad67927a8e",
+      "questions": 2
+    },
+    {
+      "id": "budget-conseil-couple_2enfants-2025-2026",
+      "name": "Salomé et Fabien",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Assistante dentaire et préparateur de commandes · tous deux à 60 %",
+        "Couple de 36 et 38 ans · deux enfants de 5 et 9 ans · garde familiale",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 500000,
+        "expenses": 525000,
+        "savings": 0,
+        "available": -25000,
+        "balance": -25000
+      },
+      "expensePercent": 105,
+      "monthlyLedgerHash": "2082db6ed13fd0c3656b53a4c9a6b2844c0aee7f76f00b2f73e9c7fdd02e51b2",
+      "sourceHash": "605bfac835c47454abb5d2e5f4cd293e5c0c70a3f87ede1c5a8aaeabe2a52cd9",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget familial déficitaire : eau/chauffage dans logement. Garde familiale déjà gratuite : baisse du temps de travail ne crée pas économie de garde. Pas d’investissement d’un surplus inexistant.",
+      "textHash": "e4df90bb6cee74b0ac8cdecffef9914ddfaa1faac39dd9b026f9b8b44843845d",
+      "questions": 1
+    },
+    {
+      "id": "budget-conseil-couple_3enfants-2025-2026",
+      "name": "Amandine et Nicolas",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Aide à domicile à 70 % et chauffeur-livreur à 60 %",
+        "Couple de 40 et 42 ans · trois enfants de 4, 7 et 10 ans · garde familiale",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 550000,
+        "expenses": 580000,
+        "savings": 0,
+        "available": -30000,
+        "balance": -30000
+      },
+      "expensePercent": 105,
+      "monthlyLedgerHash": "3ab96f6bc3adc25d84e2b1f585b4a5ba1b55f9a045cdbb924482b4a6f4caf18d",
+      "sourceHash": "00d35348b125b2826a82826a49b96d6fdf26185a3e0bf677372f3da5a5fa9a1b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget familial déficitaire : eau/chauffage dans logement. Séjour 2 400 doit tenir dans provision vacances 180 sur 18 mois, mais provision non garantie tant que manque 300 ; aucune réserve affectée deux fois.",
+      "textHash": "011ea26fd9f6cb04a6cd827bf9aa1a740997f7a4848e0359b19c99ebaa49ed56",
+      "questions": 2
+    },
+    {
+      "id": "budget-conseil-monoparent_3enfants-2025-2026",
+      "name": "Yasmina",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        41,
+        "Employée administrative à 80 %",
+        "Parent seul · trois enfants de 5, 8 et 11 ans · relais familial après l’école",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 450000,
+        "expenses": 466000,
+        "savings": 0,
+        "available": -16000,
+        "balance": -16000
+      },
+      "expensePercent": 104,
+      "monthlyLedgerHash": "3b1ae6bc4d867fb6ea999fcc6f084f8c59c785b31a174041c57beacd7daf04a1",
+      "sourceHash": "582f3f1bfb34774b40bc7ec931c9ce5fe07ced0ef4fb9f36c04eb18a1a647286",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Parent seul : eau/chauffage dans logement. 60 × 18 = 1 080 face aux 1 200 orthodontie, au moins 120 à trouver hors autres soins ; déficit 160 intact, pas nouvelle aide créée.",
+      "textHash": "25104d150995c39b6a419416fd49ee925d9ca7a26df0875872cee9908fe6f4e7",
+      "questions": 2
+    },
+    {
+      "id": "budget-conseil-apprenties_majeures-2025-2026",
+      "name": "Timéo",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        19,
+        "Apprenti mécanicien · deuxième année",
+        "Chez ses parents · participation au logement et aux repas",
+        "Suisse"
+      ],
+      "currency": "CHF",
+      "expectedCents": {
+        "income": 140000,
+        "expenses": 140500,
+        "savings": 0,
+        "available": -500,
+        "balance": -500
+      },
+      "expensePercent": 100,
+      "monthlyLedgerHash": "2d43d4b3d00256ca774d7a9dc90521d421a06098a2178cbf490af4ea3e2a0f64",
+      "sourceHash": "db388af55334a5ed9c71dffa1e80488983c6032e1337b5480f7457c1b5dd992d",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Apprenti : contribution 300 inclut logement/repas/charges. Sorties/petits achats 220, activités régulières 70 et camps 40 distincts. Déficit 5 et projet permis 100 exigent 105 d’ajustements, pas seulement 100.",
+      "textHash": "775090607b44c9ddfb0aafe76b4b3da7b47e37d80bfe67ede21708f9c7281b7f",
+      "questions": 1
+    },
+    {
+      "id": "websourd-retraite-normandie-2026-10-02",
+      "name": "Michel",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        72,
+        "Retraité · ancien agent d’entretien",
+        "Locataire",
+        "Normandie"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 110000,
+        "expenses": 110000,
+        "savings": 0,
+        "available": 0,
+        "balance": 0
+      },
+      "expensePercent": 100,
+      "monthlyLedgerHash": "858b56e32bb88c8f486643eb9dbb9482bc7a2424b73f173b5109383dc4ebad10",
+      "sourceHash": "7860ec1bd1c0eeed219fd938f2bf8e094f3c23146524db7f0cadf92c3abb21da",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget individuel retraite : loyer hors électricité/gaz ; provision 60 déjà dans les 1 100. Stock 350 distinct de la provision ; réparation 120 vs remplacement 450 sans présumer fiabilité ou solution.",
+      "textHash": "b771c46bc96c2c37994c818847ade8e81df2116ea273e8d173e4843284587fc4",
+      "questions": 2
+    },
+    {
+      "id": "finary-freelance-lille-2025-03-02",
+      "name": "Benoît",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        29,
+        "Indépendant dans l’informatique",
+        "En couple · propriétaire · dépenses à sa charge",
+        "Lille"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 513000,
+        "expenses": 310000,
+        "savings": 200000,
+        "available": 203000,
+        "balance": 3000
+      },
+      "expensePercent": 60,
+      "monthlyLedgerHash": "0acaacd804d1140993f2995306f4e22e1280f7e26eee9be94513f8cbaa6a7747",
+      "sourceHash": "4569bca9ecba4b87a768b6ed2c20f42741c4644419bc8aeace45696dbc9520cd",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget de Benoît seul ; revenu indépendant disponible, pas chiffre d’affaires ou salaire du couple. Remboursements 1 200 distincts de vie courante 1 900 ventilée, réserve 12 000 vers 17 000 sans revenu locatif futur.",
+      "textHash": "9cf8c904ac93f8d3e18a0b4a073506d6b3bb6ffd8119c9ca8559799ec92c3509",
+      "questions": 2
+    },
+    {
+      "id": "finary-installation-projet-2026-02-21",
+      "name": "Axel",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        27,
+        "Technicien de laboratoire",
+        "Célibataire · locataire · installation dans son logement",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 250000,
+        "expenses": 150000,
+        "savings": 100000,
+        "available": 100000,
+        "balance": 0
+      },
+      "expensePercent": 60,
+      "monthlyLedgerHash": "8321f40e19a605d3c307a5f0c3bbf2ab1d842a352bf2ce4701936139675b2c22",
+      "sourceHash": "f155b37edeaaeeb569561aa19dbd31be20d1591e73773dad40c66eb8fa6fbc9e",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget d’installation prévu. Prêt équipement 600 est le stock à rembourser ; 50 × 12 dans les dépenses. LDDS 200 pour dépenses annuelles/projets distinct des 110 d’entretien courant ; questions recentrées sur crédit connu.",
+      "textHash": "2570d08ab3fafa0c93d33decfbd83680e3ae749ce9b4bfb24632409bddbb5587",
+      "questions": 2
+    },
+    {
+      "id": "finary-alternante-projet-2026-10-06",
+      "name": "Apolline",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        20,
+        "Étudiante en alternance",
+        "Loyer et charges du logement payés par ses parents",
+        ""
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 128478,
+        "expenses": 51000,
+        "savings": 65000,
+        "available": 77478,
+        "balance": 12478
+      },
+      "expensePercent": 40,
+      "monthlyLedgerHash": "ccb1d238abeff521714319847ee52ae15b1b0acaa62117fd49f3b235d42b0a3c",
+      "sourceHash": "41571624bded89eb22781facc445d58d642a825293709509175e53dbedf1dedb",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget d’alternance prévu. Prise en charge parentale étendue aux charges pour la cohérence du personnage, jamais attribuée à la source qui établit seulement le loyer. Forfait personnel 50 défini mobile/assurances/abonnements ; voyages se partagent un seul livret.",
+      "textHash": "c73014c91319e426cf8415a80c28e68953b1e587bf32eb464c8da5da2dd82aaa",
+      "questions": 2
+    },
+    {
+      "id": "finary-ingenieur-colocation-projet-2026-08-18",
+      "name": "Émilien",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        20,
+        "Élève ingénieur",
+        "colocation financée en partie par ses parents",
+        "Marseille"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 192500,
+        "expenses": 106500,
+        "savings": 0,
+        "available": 86000,
+        "balance": 86000
+      },
+      "expensePercent": 55,
+      "monthlyLedgerHash": "d2f48034594bc0ee283e4a6722f9c9a210cc4c7cf4f4a5922d3d069467889ab2",
+      "sourceHash": "bb533c3167121c66cefc4dfa16416a53924e4315b5edd124ffb9d2ca2403cf20",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Budget individuel en colocation : 400 d’aides comptés en recettes puis reversés aux parents pour logement, pas double recette. Répartition envisagée 170 séjour + 580 PEA = 750 ; réserve 2 500 conservée, marge 110 conditionnelle.",
+      "textHash": "d282b582e6d60fa41445604580b4389aae476d6633d9de29490b0e11fed82f0c",
+      "questions": 2
+    },
+    {
+      "id": "reference-bordeaux-budget-2026-03",
+      "name": "Clémence",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        28,
+        "Ingénieure en environnement",
+        "Seule · sans enfant · locataire",
+        "Bordeaux"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 228000,
+        "expenses": 200500,
+        "savings": 25000,
+        "available": 27500,
+        "balance": 2500
+      },
+      "expensePercent": 88,
+      "monthlyLedgerHash": "a7312bfbedc264183029bdf96857647854b284e25d69fd3d543c58e9e319b8a3",
+      "sourceHash": "34234a07dc1bc4395a83822e5180c2a0621a86e49a5697d0bd53c6073a05ad9b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel : courses/restaurants 380 séparés de sorties hors repas 95. Crédit auto 150 et assurance 67 dans 217 ; seule mensualité 150 libérée. Prime semestrielle non ajoutée au salaire régulier.",
+      "textHash": "cd991cb1e7f9ec69c5ee761a303e7d8d64f6a6f69be52bdfa5dbdac76bbd62ab",
+      "questions": 2
+    },
+    {
+      "id": "reference-couple-lille-budget-2026-01",
+      "name": "Hugo et Océane",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Comptable de 32 ans et infirmière de 30 ans",
+        "Couple · sans enfant · locataires",
+        "Lille"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 455000,
+        "expenses": 297000,
+        "savings": 145000,
+        "available": 158000,
+        "balance": 13000
+      },
+      "expensePercent": 65,
+      "monthlyLedgerHash": "686ddfa80d95b820575a0726083314080309b5acce9cee3801bafdc7ea1a3356",
+      "sourceHash": "7f56a4f993c7601bc017249235266c88637cc59aed5bb9b794a8fcfe8fd10917",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget du couple : salaire ordinaire d’Océane séparé des primes de nuit 350. Sans primes -220, puis -33 après fin du crédit 187. Réserve initiale 5 000 et apport 3 000 : objectifs financés par poches distinctes.",
+      "textHash": "b3c14a57dfdc60aabdaf4b5a9e938992a0b05b61355e81b74d201c054dafabbe",
+      "questions": 2
+    },
+    {
+      "id": "reference-indexo-belgique-2026-11",
+      "name": "Renaud",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        34,
+        "Employé administratif à temps plein",
+        "Vit seul · locataire",
+        "Belgique"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 220000,
+        "expenses": 200000,
+        "savings": 20000,
+        "available": 20000,
+        "balance": 0
+      },
+      "expensePercent": 91,
+      "monthlyLedgerHash": "9647109288908b17f9c6849823ab43db6fb59d1ddfe9776e70436b0491b5d7c8",
+      "sourceHash": "ae2713c6432d8ecae17bdce6e2e53b6a15dc942d70bd4329ce8789f29c4acb64",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel : 200 de primes/pécule annualisés ne sont pas une entrée chaque mois. Dépenses ordinaires absorbent salaire 2 000 ; épargne 200 dépend des primes. Réserve et formation ne peuvent toutes deux utiliser les 3 600 futurs.",
+      "textHash": "db8884512f691201041278f3b10108c127a8117782f98c7edf29444dd7e49e92",
+      "questions": 2
+    },
+    {
+      "id": "reference-vendeuse-rennes-2026",
+      "name": "Nolwenn",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        28,
+        "Vendeuse en prêt-à-porter · 32 heures par semaine",
+        "Vit seule · locataire d’un studio",
+        "Rennes"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 139800,
+        "expenses": 126800,
+        "savings": 5000,
+        "available": 13000,
+        "balance": 8000
+      },
+      "expensePercent": 91,
+      "monthlyLedgerHash": "94cdfa062091e51eebc37e4d7da2894b589e713f26dc379f7cffcbc68a306fa8",
+      "sourceHash": "6c244f44b643f0f48287ca2fae2722e4ebe7bac5d66eb6653975c7ee8054a9d2",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget individuel : vêtements/coiffure 50 distincts d’hygiène et soins non remboursés 38, mutuelle séparée. Dette environ 1 000 et douze échéances de 90 : pas exact principal supposé, aucune économie de crédit inventée.",
+      "textHash": "da2153c6509417f1e4ad938361a93c32faac801712d5ef2c12afd3cec0dd1110",
+      "questions": 2
+    },
+    {
+      "id": "reference-famille-lyon-2026",
+      "name": "Mélina et Loïc",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Mélina : assistante administrative · Loïc : technicien de maintenance",
+        "Couple de 34 et 36 ans · deux enfants de 7 et 10 ans · locataires",
+        "Banlieue de Lyon"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 450000,
+        "expenses": 395000,
+        "savings": 45000,
+        "available": 55000,
+        "balance": 10000
+      },
+      "expensePercent": 88,
+      "monthlyLedgerHash": "b7f2b35cbb15082111129cabd186bdc65bd517ddb10d636d4af32f3a4db45e53",
+      "sourceHash": "3d6649b236d4eca35e5ef0258908c7ef356f7f7531bbb602650e6e50225b108e",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée"
+      ],
+      "review": "Budget du foyer : repas cantine et courses maison, loisirs enfants et couple distincts. Stock enfants 500, réserve 2 200 et provisions mensuelles rentrée/vacances séparés ; fin du crédit dans 18 mois pas recette actuelle.",
+      "textHash": "660c429dbefc7c4f03c45507fc843e040edfc2f3f1001a4a40b6fe9e8b86d271",
+      "questions": 2
+    },
+    {
+      "id": "editorial-morgane-saisonnier-2026-11-15",
+      "name": "Morgane",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        30,
+        "Indépendante dans le tourisme",
+        "Vit seule · locataire",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 240000,
+        "expenses": 165000,
+        "savings": 50000,
+        "available": 75000,
+        "balance": 25000
+      },
+      "expensePercent": 69,
+      "monthlyLedgerHash": "6be86f15527d61c4bd3a8f714e49cc640b9d517effe45de2ed57314307c0864e",
+      "sourceHash": "db29cbe232c9f2eebb6e18804d590c32efc9a3a5886d86b20107296c5e9cddb0",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Titre des versements précisé"
+      ],
+      "review": "28 800 € annuels = 4 × 5 760 + 8 × 720 ; besoin des mois creux 8 × (1 650 + 500 − 720) = 11 440 €, couvert par 12 000 €, sécurité séparée. Deux rythmes de PEA à 6 000 €/an.",
+      "textHash": "17a5d8b74486872e92d5598ea7041a719cc0b0760bef4ac9a5d442b2b09dcd12",
+      "questions": 2
+    },
+    {
+      "id": "editorial-lison-dorian-van-2026-11-15",
+      "name": "Lison et Dorian",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        null,
+        "Travailleurs saisonniers",
+        "Un enfant de 2 ans · un chien",
+        "France · vivent en van"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 235000,
+        "expenses": 179000,
+        "savings": 30000,
+        "available": 56000,
+        "balance": 26000
+      },
+      "expensePercent": 76,
+      "monthlyLedgerHash": "6f0c3f6ad3281118b2895d28e56f3807728aa7e8b7b87610c383680a13e6bdc6",
+      "sourceHash": "b7adec5be9f246c50299d8749f0907f0767dea4ac85aa40a31a8586e7fed2b87",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Titre des versements précisé"
+      ],
+      "review": "28 200 € annuels = 6 × 4 700 ; six mois sans salaire coûtent 12 540 € avec versements, couverts par 14 000 €. 600 + 200 × 12 = 3 000 € pour le van ; garde, réparations et travaux distincts.",
+      "textHash": "ed505c4ec62bce655c42d44c8a65f6add71164fc0eaabcd3e88f424c3c7eee2c",
+      "questions": 2
+    },
+    {
+      "id": "editorial-solene-marin-2026-11-15",
+      "name": "Solène",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        35,
+        "Marin de commerce",
+        "Vit seule · propriétaire",
+        "Brest"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 360000,
+        "expenses": 205000,
+        "savings": 110000,
+        "available": 155000,
+        "balance": 45000
+      },
+      "expensePercent": 57,
+      "monthlyLedgerHash": "50c04e3ccd88e038f7a7356477642ee5efabd43273fb2dc2da266c2b4432f618",
+      "sourceHash": "eac04c2568768655a52c53e6c8fe7e21399f9f3cd8ae4379bc17adf179f3d451",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Titre des versements précisé"
+      ],
+      "review": "10 000 € de sécurité séparés des travaux : 6 000 + 350 × 12 = 10 200 €. Les 10 000 € en actions employeur font partie des 14 000 € de PEE.",
+      "textHash": "cd95a31cc431e045f8728de7b5be0f6a724a5366311d97449524c7fd23c0ed76",
+      "questions": 2
+    },
+    {
+      "id": "editorial-delphine-garde-alternee-2026-11-15",
+      "name": "Delphine",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        42,
+        "Fonctionnaire",
+        "Séparée · deux enfants en garde alternée",
+        "France · propriétaire"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 250000,
+        "expenses": 223000,
+        "savings": 22000,
+        "available": 27000,
+        "balance": 5000
+      },
+      "expensePercent": 89,
+      "monthlyLedgerHash": "1b3d8a8f6c11fcbff7825b1bafc9396d781f14a79b86cdf85c16bf6e64809ce6",
+      "sourceHash": "9eff67adcf46b9596b0143237e8460878c601b5dbb343a688566d658d69c40ab",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Titre des versements précisé"
+      ],
+      "review": "1 200 + 150 × 32 = 6 000 € de réserve ; les dépenses effectivement à sa charge en garde alternée ne sont pas divisées artificiellement. Marge 50 €.",
+      "textHash": "be3a110bc94fdfba11fe092207b49f327d65a515e17671f9d518a4ac0d5989b1",
+      "questions": 2
+    },
+    {
+      "id": "editorial-patrice-ferme-2026-11-15",
+      "name": "Patrice",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        47,
+        "Salarié du BTP · agriculteur",
+        "Trois enfants étudiants · dépenses à sa charge",
+        "France · propriétaire"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 320000,
+        "expenses": 330000,
+        "savings": 0,
+        "available": -10000,
+        "balance": -10000
+      },
+      "expensePercent": 103,
+      "monthlyLedgerHash": "de66d959315dde0fde1e463df83934061f626a71dca0abf8735320d3c23d774a",
+      "sourceHash": "5f492948ad12b5eb15a9cb0b0706c474c9656179de386a6dc9891972e26a822b",
+      "fixes": [
+        "Accroche existante placée avant les chiffres"
+      ],
+      "review": "Déficit 100 €, aucun revenu agricole ajouté ; 20 000 € études inclus dans les 50 000 € disponibles ; vente 180 000 € non réalisée, frais et dettes à déduire.",
+      "textHash": "93c1004d7b5fe18c14df7972ba18343cda54c0221a440ba17180e824228f0235",
+      "questions": 2
+    },
+    {
+      "id": "editorial-noemie-frontaliere-2026-11-15",
+      "name": "Noémie",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        24,
+        "Informaticienne au Luxembourg",
+        "En couple · sans enfant · sa part du budget du couple",
+        "Belgique · propriétaire"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 440000,
+        "expenses": 260000,
+        "savings": 131700,
+        "available": 180000,
+        "balance": 48300
+      },
+      "expensePercent": 59,
+      "monthlyLedgerHash": "95eb006f960a7de14e2bd7e8f3e43b538263eed082294b837652b2198342f5d8",
+      "sourceHash": "7be3985844d9a7265ec0d1537dcb4a77209ebe13df4f1fc8c3b0c111bb007687",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Qualification du revenu conservée",
+        "Titre des versements précisé"
+      ],
+      "review": "Carburant inclus dans les 260 € auto ; dépenses 2 600 €, versements 1 317 €, reste 483 €. Titres-restaurant hors compte, bonus annuel exclu du revenu courant ; prochaine voiture 3 600 €/an.",
+      "textHash": "c805ce569ca986fdd2d5f2b34a4d16fdd7548c6b32761ba19667df435d506f3e",
+      "questions": 2
+    },
+    {
+      "id": "editorial-cedric-intermittent-2026-11-15",
+      "name": "Cédric",
+      "status": "corrigé",
+      "financialStatus": "conforme",
+      "identity": [
+        32,
+        "Intermittent du spectacle",
+        "Vit chez ses parents · projet d’installation",
+        "France"
+      ],
+      "currency": "EUR",
+      "expectedCents": {
+        "income": 280000,
+        "expenses": 100000,
+        "savings": 100000,
+        "available": 180000,
+        "balance": 80000
+      },
+      "expensePercent": 36,
+      "monthlyLedgerHash": "7e90c2e024ade942176521766de9ce26b42e6a23b4d0eab90d7f2ed86153f21b",
+      "sourceHash": "da5c50a1d91bd791ea77cb20946dc5dbeb622c7598232c1607f189b56f8b1689",
+      "fixes": [
+        "Accroche existante placée avant les chiffres",
+        "Titre des versements précisé"
+      ],
+      "review": "1 000 − 350 + 800 + 120 + 20 + 250 = 1 840 € après départ. À 2 000 € : 160 € avant versements, déficit 840 € après. Installation 6 000 + 600 × 10 = 12 000 €.",
+      "textHash": "0cf71c36dc9953b9229c752a68d20ce797a3adcbb2019fe469d33de77be73b57",
+      "questions": 2
+    }
+  ]
+}
