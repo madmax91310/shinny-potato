@@ -1,7 +1,7 @@
-name: Prioritize requested DCA release (15 November)
+name: Prioritize corrected Budget release (15 November)
 
 # One-time operational action requested by the repository owner.
-# Only these two older validation runs may be retired; the requested release
+# Only these three older validation runs may be retired; the requested release
 # keeps its ordinary, complete Pages gate and every financial observation.
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
-      - name: Retire exactly two superseded validations
+      - name: Retire exactly three superseded validations
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -28,11 +28,12 @@ jobs:
 
           repo = os.environ['GH_REPO']
           assert repo == 'madmax91310/shinny-potato'
-          release = '272a3e4aa7124d3c337a6ea5ebb3cf6701af377e'
-          protected_run = 43711791374
+          release = '1925dcf61f2f954bf7e0d4bbfe2b1e21ae8da760'
+          protected_run = 43716632289
           older = {
-              43708365204: '39a484a3b64867d506d775e446aecd8e3c5b0c60',
-              43708536797: 'bdb2b7223b4b15648a531980287989bb761c9ccc',
+              43711791374: '272a3e4aa7124d3c337a6ea5ebb3cf6701af377e',
+              43712190555: '9575f06ab30cf4a18ed252d17eed1be21b63e6a1',
+              43715088961: 'dd9ce9cef86af7aabae70d0eba0c694b3a69ff06',
           }
           active = {'queued', 'pending', 'in_progress', 'waiting', 'requested'}
 
