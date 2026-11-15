@@ -8,7 +8,6 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
-import { renderPortfolioImage } from './image.js'
 import { investorPortrait } from './portrait.js'
 import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
 import { zipStore, dataURLBytes } from '../../lib/zip-store.js'
@@ -16,6 +15,8 @@ import { publicationPlan, cash } from './publication.js'
 import { detailedExport, detailedCSV, renderDetailedPages } from './exports.js'
 import './style.css'
 
+// Load the Canvas renderer when the user opens or downloads the image.
+const renderPortfolioImage = async portfolio => (await import('./image.js')).renderPortfolioImage(portfolio)
 const investorIntroduction = slug => investorModel(slug)?.intro ?? profileIntroduction(slug)
 
 export default function InvestorPortfolio() {
