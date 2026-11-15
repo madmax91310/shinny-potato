@@ -27,10 +27,26 @@ export async function checkBudgetOverview(page, profiles, output, width) {
     assert.deepEqual(bytes,Buffer.from(expected))
     if(profile===profiles[0])await download.saveAs(`${output}/overview-${width}.png`)
   }
+  if(profiles.length>1) {
+    await page.evaluate(()=>{window.failBudgetEncoding=true})
+    await page.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value="${profiles[0].id}"]`).click()
+    await expect(page.getByRole('button',{name:'Réessayer l’image',exact:true})).toBeVisible()
+    await expect(page.getByText('Préparation de l’image…',{exact:true})).toHaveCount(0)
+    await expect(page.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeDisabled()
+    await page.getByRole('button',{name:'Réessayer l’image',exact:true}).click()
+    await expect(page.getByRole('region',{name:'Image du budget',exact:true})).toHaveAttribute('aria-busy','false',{timeout:30000})
+    await expect(page.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled()
+  }
   console.log(`Budget overview: ${profiles.length} profiles at ${width}px, totals, bounds, overlaps and exact downloaded PNG checked.`)
 }
 
 export function captureOverviewText() {
+  const toBlob=HTMLCanvasElement.prototype.toBlob
+  HTMLCanvasElement.prototype.toBlob=function(callback,...args){
+    if(window.failBudgetEncoding&&this.width===1080){window.failBudgetEncoding=false;callback(null);return}
+    return toBlob.call(this,callback,...args)
+  }
+
   const original=CanvasRenderingContext2D.prototype.fillText
   CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...args){
     if(this.canvas.width===1080){
