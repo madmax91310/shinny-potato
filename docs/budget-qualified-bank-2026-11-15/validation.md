@@ -37,6 +37,8 @@ La première exécution intégrée de la dernière recette a dépassé le plafon
 
 Le premier découpage à trois lots a encore atteint 300 secondes sur le lot des sept profils précédents à 1440 px dans GitHub. Ce lot est donc lui aussi partagé. La comparaison aperçu/téléchargement utilise SHA-256 calculé de chaque côté : le navigateur transmet 64 caractères d'empreinte au lieu d'un grand tableau JSON d'octets PNG, puis le fichier téléchargé est conservé et rouvert. Les vérifications de dimensions, de contenu, de chevauchement et de persistance restent identiques.
 
+La suite globale de la PR a ensuite atteint le plafond de 40 minutes sur trois des quatre jobs navigateur : annulation, pas validation réussie. La matrice passe donc à six jobs, sans modifier ce plafond ni les 300 secondes par commande PNG. Les 127 parcours restent attribués exactement une fois ; le test vérifie aussi que la sélection des moteurs et le runner utilisent le même nombre de partitions. Les artefacts PNG sont collectés dans les répertoires distincts de chaque lot.
+
 ## Livraison
 
 Les contrôles GitHub, la fusion et la version réellement publiée seront rapportés dans la PR #1337 et le compte rendu de livraison après leur exécution. Un build local ne prouve pas la publication. `sha` identifie le code applicatif (qui embarque les profils), `dataSha` l'overlay de données automatisées : ils peuvent légitimement différer.
