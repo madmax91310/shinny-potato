@@ -2,7 +2,11 @@ import assert from 'node:assert/strict'
 import {mkdir} from 'node:fs/promises'
 import {staticBrowser,staticBase} from './static-browser.mjs'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
-import {prepareProfile} from '../src/pages/dca-profiles/engine.js'
+import {prepareProfile,references} from '../src/pages/dca-profiles/engine.js'
+const representativeEquity=Object.entries(references).find(([,r])=>r.kind==='equity'&&r.isin&&r.name&&r.tickers?.length)
+assert(representativeEquity,'The available catalogue must include a searchable equity')
+const [equityAsset,equityReference]=representativeEquity
+const unfinishedDraft='Mon brouillon de placement à finir'
 const output='test-artifacts/subscriber-profiles'
 await mkdir(output,{recursive:true})
 for(const width of [1440,390,320]){
@@ -46,27 +50,27 @@ for(const width of [1440,390,320]){
   await page.reload()
   await library.getByRole('button',{name:'Mettre à jour ce profil',exact:true}).waitFor()
   assert.equal(await name.inputValue(),'Élodie');assert.equal(await page.locator('.dca-position').count(),0)
-  const medpace=page.getByRole('group',{name:'Ajouter un actif',exact:true})
-  for(const query of ['Medpace','MEDP','US58506Q1094']){
-   await medpace.getByRole('searchbox').fill(query)
-   await medpace.locator('[data-option][data-value="medpace"]').waitFor()
+  const equityPicker=page.getByRole('group',{name:'Ajouter un actif',exact:true})
+  for(const query of [equityReference.name,equityReference.tickers[0],equityReference.isin]){
+   await equityPicker.getByRole('searchbox').fill(query)
+   await equityPicker.locator(`[data-option][data-value="${equityAsset}"]`).waitFor()
   }
-  await medpace.locator('[data-option][data-value="medpace"]').click()
+  await equityPicker.locator(`[data-option][data-value="${equityAsset}"]`).click()
   await page.getByRole('spinbutton',{name:'Poids position 1',exact:true}).fill('40')
   await page.getByRole('spinbutton',{name:'DCA position 1',exact:true}).fill('')
-  await page.locator('#dca-draft').fill('Mon brouillon Medpace à finir')
+  await page.locator('#dca-draft').fill(unfinishedDraft)
   await library.getByRole('button',{name:'Mettre à jour ce profil',exact:true}).click()
   await page.reload()
   await library.getByRole('button',{name:'Mettre à jour ce profil',exact:true}).waitFor()
   assert.equal(await page.getByRole('spinbutton',{name:'Poids position 1',exact:true}).inputValue(),'40')
   assert.equal(await page.getByRole('spinbutton',{name:'DCA position 1',exact:true}).inputValue(),'')
-  assert.equal(await page.locator('#dca-draft').inputValue(),'Mon brouillon Medpace à finir')
+  assert.equal(await page.locator('#dca-draft').inputValue(),unfinishedDraft)
   await library.getByRole('button',{name:'Ajouter un profil d’abonné',exact:true}).click()
   assert.equal(await name.inputValue(),'')
   await library.getByRole('button',{name:'Ouvrir Élodie',exact:true}).click()
   assert.equal(await page.getByRole('spinbutton',{name:'DCA position 1',exact:true}).inputValue(),'')
-  assert.equal(await page.locator('#dca-draft').inputValue(),'Mon brouillon Medpace à finir')
-  await page.getByRole('button',{name:'Retirer Medpace Holdings',exact:true}).click()
+  assert.equal(await page.locator('#dca-draft').inputValue(),unfinishedDraft)
+  await page.getByRole('button',{name:`Retirer ${equityReference.name}`,exact:true}).click()
   await page.getByRole('button',{name:'Ajouter un placement manuellement',exact:true}).click()
   const form=page.locator('.dca-manual-form')
   await form.getByLabel('Nom du placement',{exact:true}).fill('Fonds euros Mutavie')
