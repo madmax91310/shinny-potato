@@ -87,19 +87,51 @@ export function canonicalUrl(value) {
     return "";
   }
 }
-export const nameOf = (p) => p.name || p.pseudo || "Fiche sans nom";
-export const pct = (v) =>
-  v === "" || v == null
+export const nameOf = (p) =>
+  p.name.trim() || p.pseudo.trim() || "Fiche sans nom";
+export const validEpisode = (value) =>
+  /^\d{1,6}$/.test(String(value)) && Number(value) >= 1;
+export const weightPct = (value) =>
+  `${Number(value).toLocaleString("fr-FR", { maximumSignificantDigits: 10 })} %`;
+export const pct = (value) =>
+  value === "" || value == null || !Number.isFinite(Number(value))
     ? "Non renseignée"
-    : `${Number(v) > 0 ? "+" : ""}${Number(v).toLocaleString("fr-FR", { maximumFractionDigits: 4 })} %`;
+    : `${Number(value) > 0 ? "+" : ""}${weightPct(value)}`;
+export const latestPublicationDate = (p) =>
+  p.publications.reduce((date, h) => (h.date > date ? h.date : date), "");
+export const latestVerificationDate = (p, s) =>
+  validDate(s.consulted) && s.consulted <= today() && canonicalUrl(s.source)
+    ? [p.checked, s.consulted].sort().at(-1)
+    : p.checked;
+export function lastCompletedMonthEnd(consulted) {
+  return validDate(consulted)
+    ? new Date(
+        Date.UTC(
+          Number(consulted.slice(0, 4)),
+          Number(consulted.slice(5, 7)) - 1,
+          0,
+        ),
+      )
+        .toISOString()
+        .slice(0, 10)
+    : "";
+}
 export function performanceIssues(s, key) {
   const p = s[key],
     label = key === "month" ? "Mois" : "Depuis janvier",
     out = [];
-  if (p.na.trim())
-    return p.verified
-      ? []
-      : [`${label} : motif de non-applicabilité à vérifier`];
+  if (p.na.trim()) {
+    if (!p.verified)
+      out.push(`${label} : motif de non-applicabilité à vérifier`);
+    const expected = lastCompletedMonthEnd(s.consulted);
+    if (
+      key === "month" &&
+      ((p.start && p.start !== expected.slice(0, 7) + "-01") ||
+        (p.end && p.end !== expected))
+    )
+      out.push("Mois non applicable : préciser le dernier mois civil terminé");
+    return out;
+  }
   if (p.value === "" || !Number.isFinite(Number(p.value)))
     out.push(`${label} : rendement manquant`);
   if (!p.verified) out.push(`${label} : contrôle de la source requis`);
@@ -124,9 +156,11 @@ export function performanceIssues(s, key) {
       key === "month" &&
       (p.start !== p.end.slice(0, 7) + "-01" ||
         p.end !== last ||
-        p.end >= s.consulted.slice(0, 7) + "-01")
+        p.end !== lastCompletedMonthEnd(s.consulted))
     )
-      out.push("Mois : choisir un mois civil terminé à la consultation");
+      out.push(
+        "Mois : choisir le dernier mois civil terminé à la consultation",
+      );
     if (key === "ytd" && p.start !== p.end.slice(0, 4) + "-01-01")
       out.push(
         "Depuis janvier : début au 1er janvier requis, sinon expliquer la non-applicabilité",
@@ -207,23 +241,23 @@ export function benchmarkIssue(s) {
 export function buildText(p, s, n) {
   if (issues(p, s).length)
     throw new Error("Compléter les contrôles avant préparation");
-  const month = s.month.end
-      ? new Date(s.month.end + "T12:00:00Z").toLocaleDateString("fr-FR", {
+  const monthEnd = s.month.end || lastCompletedMonthEnd(s.consulted),
+    month = monthEnd
+      ? new Date(monthEnd + "T12:00:00Z").toLocaleDateString("fr-FR", {
           month: "long",
           year: "numeric",
+          timeZone: "UTC",
         })
       : "la période",
     positions = [...s.positions].sort(
       (a, b) => Number(b.weight) - Number(a.weight),
     );
-  return `${s.month.na ? `Un portefeuille à découvrir en ${month}.` : `${Number(s.month.value) < 0 ? "📉" : "📈"} ${pct(s.month.value)} en ${month} : voici sa répartition 👀`}\n\n🔎 LE PORTEFEUILLE DE LA SEMAINE #${n}\n\n${nameOf(p)} — portefeuille présenté comme réel par son auteur.${p.strategy ? ` ${p.strategy}` : ""}${p.objective ? ` Objectif communiqué : ${p.objective}` : ""}\n\n📊 SES PERFORMANCES DÉCLARÉES\n• ${month} : ${s.month.na ? `Non applicable (${s.month.na})` : pct(s.month.value)}\n• Depuis janvier : ${s.ytd.na ? `Non applicable (${s.ytd.na})` : pct(s.ytd.value)}${benchmarkIssue(s) ? "" : `\n• ${s.benchmark.name} : ${pct(s.benchmark.value)} sur les mêmes dates (${s.currency}, dividendes réinvestis)`}\n\n🍩 SES PRINCIPAUX PLACEMENTS\n${positions
+  return `${s.month.na ? `Un portefeuille à découvrir en ${month}.` : `${Number(s.month.value) < 0 ? "📉" : Number(s.month.value) > 0 ? "📈" : "↔️"} ${pct(s.month.value)} en ${month} : voici sa répartition 👀`}\n\n🔎 LE PORTEFEUILLE DE LA SEMAINE #${n}\n\n${nameOf(p)} — portefeuille présenté comme réel par son auteur.${p.strategy.trim() ? ` ${p.strategy.trim()}` : ""}${p.objective.trim() ? ` Objectif communiqué : ${p.objective.trim()}` : ""}\n\n📊 SES PERFORMANCES DÉCLARÉES\n• ${month} : ${s.month.na ? `Non applicable (${s.month.na})` : pct(s.month.value)}\n• Depuis janvier : ${s.ytd.na ? `Non applicable (${s.ytd.na})` : pct(s.ytd.value)}${benchmarkIssue(s) ? "" : `\n• ${s.benchmark.name} : ${pct(s.benchmark.value)} sur les mêmes dates (${s.currency}, dividendes réinvestis)`}\n\n🍩 SES PRINCIPAUX PLACEMENTS\n${positions
     .slice(0, 6)
-    .map(
-      (x) => `• ${x.name} : ${`${Number(x.weight).toLocaleString("fr-FR")} %`}`,
-    )
+    .map((x) => `• ${x.name} : ${weightPct(x.weight)}`)
     .join(
       "\n",
-    )}${positions.length > 6 ? "\nDétail complet dans les images." : ""}\n\n🧐 La première ligne représente ${`${Number(positions[0].weight).toLocaleString("fr-FR")} %`} du portefeuille.\n\n💬 Et toi, quel résultat pour ton portefeuille en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
+    )}${positions.length > 6 ? "\nDétail complet dans les images." : ""}\n\n🧐 La première ligne représente ${weightPct(positions[0].weight)} du portefeuille.\n\n💬 Et toi, quel résultat pour ton portefeuille en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
 }
 export function publication(p, s, d, date, url) {
   if (
@@ -233,11 +267,10 @@ export function publication(p, s, d, date, url) {
     d.snapshotId !== s.id ||
     !d.text.trim() ||
     /undefined|\{[^}]+\}/.test(d.text) ||
-    !Number.isInteger(Number(d.episode)) ||
-    Number(d.episode) < 1 ||
-    Number(d.episode) > 999999
+    !validEpisode(d.episode) ||
+    (url && !canonicalUrl(url))
   )
-    throw new Error("Relevé, texte ou numéro d’épisode invalide");
+    throw new Error("Relevé, texte, numéro d’épisode ou URL du post invalide");
   return structuredClone({
     id: id(),
     date,

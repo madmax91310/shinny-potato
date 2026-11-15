@@ -1,4 +1,10 @@
-import { nameOf, pct, benchmarkIssue } from "./lib.js";
+import {
+  nameOf,
+  pct,
+  benchmarkIssue,
+  weightPct,
+  lastCompletedMonthEnd,
+} from "./lib.js";
 // Preview and PNG share the same canvas pixels. No allocation is renormalized.
 export function renderImages(p, s, episode) {
   const canvases = [];
@@ -48,7 +54,7 @@ export function renderImages(p, s, episode) {
     line(`LE PORTEFEUILLE DE LA SEMAINE #${episode}`, 78, 30, "#71dfb2");
     let y = wrapped(nameOf(p), 155, 900, 44);
     line(
-      `${s.month.start || s.consulted} → ${s.month.end || s.consulted}`,
+      `${s.month.start || (s.month.na ? lastCompletedMonthEnd(s.consulted).slice(0, 7) + "-01" : s.consulted)} → ${s.month.end || (s.month.na ? lastCompletedMonthEnd(s.consulted) : s.consulted)}`,
       y + 15,
       30,
     );
@@ -81,7 +87,7 @@ export function renderImages(p, s, episode) {
     shown.push(r);
     y = wrapped(r.name, y, 720, 34);
     x.textAlign = "right";
-    x.fillText(`${Number(r.weight).toLocaleString("fr-FR")} %`, 1010, y - 44);
+    x.fillText(weightPct(r.weight), 1010, y - 44);
     x.textAlign = "left";
     y += 28;
   }
@@ -109,7 +115,7 @@ export function renderImages(p, s, episode) {
       }
       y = wrapped(r.name, y, 720, 34);
       x.textAlign = "right";
-      x.fillText(`${Number(r.weight).toLocaleString("fr-FR")} %`, 1010, y - 44);
+      x.fillText(weightPct(r.weight), 1010, y - 44);
       x.textAlign = "left";
       y += 28;
     }

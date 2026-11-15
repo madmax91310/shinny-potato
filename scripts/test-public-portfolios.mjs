@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import {
   blankProfile,
+  validEpisode,
+  weightPct,
+  nameOf,
+  latestPublicationDate,
+  latestVerificationDate,
+  lastCompletedMonthEnd,
   blankSnapshot,
   issues,
   buildText,
@@ -67,7 +73,7 @@ assert(issues(virtual, s).length);
 const published = publication(
   p,
   s,
-  { episode: 2, text: buildText(p, s, 2), snapshotId:s.id },
+  { episode: 2, text: buildText(p, s, 2), snapshotId: s.id },
   "2026-11-15",
   "",
 );
@@ -124,4 +130,69 @@ assert.notEqual(
   canonicalUrl("https://example.com/?portfolio=b"),
 );
 
-assert.throws(()=>publication(p,s,{episode:2,text:"Texte final",snapshotId:"another-snapshot"},"2026-11-15",""),/Relevé/);
+assert.throws(
+  () =>
+    publication(
+      p,
+      s,
+      { episode: 2, text: "Texte final", snapshotId: "another-snapshot" },
+      "2026-11-15",
+      "",
+    ),
+  /Relevé/,
+);
+
+assert(!validEpisode(""));
+assert(!validEpisode(0));
+assert(!validEpisode("1e3"));
+assert(validEpisode(25));
+assert.equal(pct(-0.00001), "-0,00001 %");
+assert.equal(weightPct(0.00001), "0,00001 %");
+assert.equal(pct("invalide"), "Non renseignée");
+assert.equal(nameOf({ ...p, name: "   " }), "TEST FICTIF");
+assert.equal(
+  latestPublicationDate({
+    publications: [{ date: "2026-11-10" }, { date: "2026-10-10" }],
+  }),
+  "2026-11-10",
+);
+assert.equal(
+  latestVerificationDate(
+    { ...p, checked: "2026-11-10" },
+    { consulted: "2026-10-10", source: p.url },
+  ),
+  "2026-11-10",
+);
+assert.equal(
+  latestVerificationDate(
+    { ...p, checked: "2026-11-10" },
+    { consulted: "2026-11-15", source: "" },
+  ),
+  "2026-11-10",
+);
+assert.equal(lastCompletedMonthEnd("2026-01-15"), "2025-12-31");
+assert.equal(lastCompletedMonthEnd("2024-03-15"), "2024-02-29");
+const outdated = structuredClone(s);
+outdated.month.start = "2026-09-01";
+outdated.month.end = "2026-09-30";
+assert(issues(p, outdated).some((x) => x.includes("dernier mois")));
+const zero = structuredClone(s);
+zero.month.value = 0;
+assert(buildText(p, zero, 1).startsWith("↔️"));
+const noMonth = structuredClone(s);
+Object.assign(noMonth.month, {
+  value: "",
+  start: "",
+  end: "",
+  na: "Créé en cours de mois",
+  verified: true,
+});
+assert.match(
+  buildText({ ...p, name: " ", objective: " " }, noMonth, 1),
+  /octobre 2026/,
+);
+assert(
+  !buildText({ ...p, objective: " " }, noMonth, 1).includes(
+    "Objectif communiqué",
+  ),
+);

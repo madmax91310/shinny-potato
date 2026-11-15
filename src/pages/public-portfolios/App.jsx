@@ -10,6 +10,9 @@ import {
   blankSnapshot,
   canonicalUrl,
   nameOf,
+  validEpisode,
+  latestPublicationDate,
+  latestVerificationDate,
   issues,
   performanceIssues,
   pct,
@@ -64,15 +67,15 @@ function Images({ profile, snapshot, episode }) {
   const ref = useRef(),
     [canvases, setCanvases] = useState([]);
   useEffect(() => {
+    if (!validEpisode(episode) || !ref.current) {
+      setCanvases([]);
+      return;
+    }
     const cs = renderImages(profile, snapshot, episode);
     ref.current.replaceChildren(...cs);
     setCanvases(cs);
   }, [profile, snapshot, episode]);
-  if (
-    !Number.isInteger(Number(episode)) ||
-    Number(episode) < 1 ||
-    String(episode).length > 6
-  )
+  if (!validEpisode(episode))
     return <p>Numéro d’épisode valide requis (1 à 999999).</p>;
   return (
     <section>
@@ -188,10 +191,6 @@ export default function App() {
   }
   function store(next = p) {
     const url = canonicalUrl(next.url);
-    if (next.url && !url) {
-      setMessage("URL http(s) invalide.");
-      return false;
-    }
     if (
       url &&
       db.profiles.some((x) => x.id !== next.id && canonicalUrl(x.url) === url)
@@ -237,7 +236,7 @@ export default function App() {
   function saveSnapshot() {
     const next = {
       ...p,
-      checked: s.consulted,
+      checked: latestVerificationDate(p, s),
       snapshots: [...p.snapshots, structuredClone(s)],
       draft: null,
     };
@@ -322,11 +321,9 @@ export default function App() {
           .sort((a, b) =>
             (sort === "checked"
               ? b.checked
-              : b.publications.at(-1)?.date || ""
+              : latestPublicationDate(b)
             ).localeCompare(
-              sort === "checked"
-                ? a.checked
-                : a.publications.at(-1)?.date || "",
+              sort === "checked" ? a.checked : latestPublicationDate(a),
             ),
           )
           .map((x) => {
@@ -355,7 +352,7 @@ export default function App() {
                 </p>
                 <p>
                   Vérifié le : {x.checked || "Jamais"} · Dernière publication :{" "}
-                  {x.publications.at(-1)?.date || "Jamais"}
+                  {latestPublicationDate(x) || "Jamais"}
                 </p>
                 <button onClick={() => open(x)}>Ouvrir / modifier</button>
               </article>
@@ -705,7 +702,10 @@ export default function App() {
                     draft: {
                       ...draft,
                       episode: v,
-                      text: draft.text.replace(/SEMAINE #\d+/, `SEMAINE #${v}`),
+                      text: draft.text.replace(
+                        /SEMAINE #[^\n]*/,
+                        `SEMAINE #${v}`,
+                      ),
                     },
                   })
                 }
@@ -724,7 +724,9 @@ export default function App() {
               </p>
               <button
                 disabled={
-                  !draft.text.trim() || /undefined|\{[^}]+\}/.test(draft.text)
+                  !validEpisode(draft.episode) ||
+                  !draft.text.trim() ||
+                  /undefined|\{[^}]+\}/.test(draft.text)
                 }
                 onClick={() =>
                   copyPublicationText(draft.text).catch((e) =>

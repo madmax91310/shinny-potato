@@ -25,12 +25,17 @@ const base = process.env.BASE_URL || staticBase;
 await page.goto(base + "portefeuilles-publics");
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
+await page.getByLabel("URL du portefeuille", { exact: true }).fill("https://");
 await page.getByRole("button", { name: "Sauvegarder", exact: true }).click();
 await page.close();
 page = await context.newPage();
 page.on("pageerror", (e) => errors.push(e.message));
 await page.goto(base + "portefeuilles-publics");
 await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
+assert.equal(
+  await page.getByLabel("URL du portefeuille", { exact: true }).inputValue(),
+  "https://",
+);
 await page.getByLabel("Pseudo", { exact: true }).fill("TEST FICTIF navigateur");
 await page.getByRole("button", { name: "Sauvegarder", exact: true }).click();
 await page.reload();
@@ -83,6 +88,12 @@ await page.getByRole("button", { name: "Sauvegarder le brouillon" }).click();
 await page.reload();
 await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
 assert.equal(await page.getByLabel("Relevé à préparer").inputValue(), s.id);
+await page.getByLabel("Numéro d’épisode", { exact: true }).fill("");
+assert(
+  await page.getByRole("button", { name: "Copier le texte" }).isDisabled(),
+);
+await page.getByLabel("Numéro d’épisode", { exact: true }).fill("1");
+assert.match(await page.locator("textarea").inputValue(), /SEMAINE #1/);
 await page.getByRole("button", { name: "Copier le texte" }).click();
 assert.match(
   await page.evaluate(() => navigator.clipboard.readText()),
