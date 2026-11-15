@@ -27,7 +27,7 @@ function wrap(ctx, value, size, width) {
 }
 function titleLayout(ctx, value, width, compact) {
   // Keep ordinary names on one line; wrap long exact share names without ellipses.
-  for (const maxLines of [1, 2]) {
+  for (const maxLines of (compact ? [1, 2, 3, 4] : [1, 2])) {
     for (let size = compact ? 70 : 160; size >= (maxLines === 1 ? (compact ? 44 : 85) : 30); size -= 2) {
       const lines = wrap(ctx, value, size, width)
       if (lines.length <= maxLines && lines.every(line => ctx.measureText(line).width <= width)) return { lines, size }

@@ -118,6 +118,7 @@ try {
         if (!rejected) throw new Error('Mixed net/gross comparison must be rejected')
       }
       for (const item of [
+        ...MARKET_ASSETS.filter(a=>commonYear(a.id,'bitcoin')).sort((a,b)=>b.label.length-a.label.length).slice(0,12).map(a=>({mode:'comparatif',assetIdA:a.id,assetIdB:'bitcoin',year:commonYear(a.id,'bitcoin')})),
         ...[1,2,3,4,5,6,7,8,9,10].filter(count => count <= worldYears.length).map(count => ({mode:'simple',assetId:'msciWorld',year:worldYears.at(-count)})),
         ...(longId ? [{mode:'simple',assetId:longId,year:getAnnualReturnStartYears(longId)[0]}] : []),
         ...['EUR','USD'].map(currency => ({mode:'simple',assetId:'msciWorld',year:sampleYear,currency})),
