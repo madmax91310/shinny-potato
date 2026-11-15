@@ -42,10 +42,18 @@ def match(pattern,text):
     return values[0]
 
 
+class StaleCoinSharesFactsheet(ValueError):
+    """Exact-share PDF is identified but too old; it cannot supply a value."""
+
+
 def coinshares(text,share,now,digest):
     if match(r'ISIN\s+([A-Z0-9]{12})',text)!=share['isin'] or match(r'Base Currency\s+([A-Z]{3})',text)!=share['currency']:
         reject('Wrong CoinShares exact share/currency')
-    stamp=document_date(match(r'Factsheet Data as of (\d+ [A-Za-z]+ 20\d{2})',text),now)
+    raw_stamp=match(r'Factsheet Data as of (\d+ [A-Za-z]+ 20\d{2})',text)
+    observed=dt.datetime.strptime(raw_stamp,'%d %B %Y').date()
+    if (now.date()-observed).days>75:
+        raise StaleCoinSharesFactsheet('Exact-share CoinShares factsheet is stale: '+observed.isoformat())
+    stamp=document_date(raw_stamp,now)
     ter=float(match(r'Management Fee\s+(?:Reduced to )?([\d.]+)% p\.a\.',text))
     if not 0<=ter<=5:reject('Invalid CoinShares fee')
     return {**share,'productId':share['isin'],'characteristics':{'terPct':ter,'asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest},
@@ -116,14 +124,14 @@ def collect_one(share,now):
     if share['parser']=='coinshares-document':
         try:
             body=download(share['sourceUrl'])
-        except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
-            # Only transport failures select a replacement. Invalid PDF content,
-            # identity or dates fail closed instead of trying another observation.
+            result=coinshares(pdf_text(body),share,now,proof(body))
+        except (urllib.error.URLError, TimeoutError, ResponseFormatError, StaleCoinSharesFactsheet) as error:
+            # An identified but stale PDF supplies no value. The independent
+            # exact-share API must pass its own identity/date/field controls.
+            # Invalid identities, future dates and malformed PDFs still fail closed.
             result=coinshares_widget_facts(share,now)
             result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(error)},
                                       {'url':result['sourceUrl'],'status':'validated'}]
-        else:
-            result=coinshares(pdf_text(body),share,now,proof(body))
         from collect_coinshares_aum import collect as collect_aum
         try:
             result['aum']=collect_aum(share,now)
