@@ -22,7 +22,7 @@ export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={})
   const probe=canvas.getContext('2d');probe.font='400 46px Arial'
   const plan=radialDonutLayout(rows,value=>probe.measureText(value).width)
   // A dense legend is more legible than metre-long crossing leaders. Keep every holding.
-  if(plan.height>1800||rows.length>18)return renderLegendDonut(title,rows,{allocation:true})
+  if(plan.height>1800||rows.length>18||(rows.length>4&&Math.max(...rows.map(row=>row.weight))>90))return renderLegendDonut(title,rows,{allocation:true})
   canvas.width=plan.width;canvas.height=plan.height
   const ctx=canvas.getContext('2d');ctx.fillStyle='#071d36';ctx.fillRect(0,0,plan.width,plan.height)
   text(ctx,'Épargnant Libre',plan.cx,83,46,'center',true)
