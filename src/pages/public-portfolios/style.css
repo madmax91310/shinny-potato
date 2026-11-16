@@ -11,10 +11,11 @@
   border-radius: 12px;
   padding: 20px;
   margin: 20px 0;
+  min-width: 0;
 }
 .pp-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 16px;
 }
 .pp label {
@@ -22,7 +23,10 @@
   flex-direction: column;
   gap: 6px;
   margin: 10px 0;
+  min-width: 0;
 }
+.pp input:not([type="checkbox"]),
+.pp textarea { width: 100%; box-sizing: border-box; }
 .pp input,
 .pp select,
 .pp textarea {
@@ -76,7 +80,28 @@
 .pp input[type="number"] {
   appearance: auto;
 }
-.pp .pp-controls { border: 0; padding: 0; margin: 0; min-width: 0; }
-.pp .pp-refresh { border: 1px solid #90b4a8; border-radius: 16px; padding: 18px; margin: 20px 0; }
-.pp .pp-acquisition { border-left: 3px solid #65b99a; padding-left: 12px; margin: 12px 0; }
-.pp .pp-controls:disabled { opacity: .65; }
+.pp .pp-controls {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.pp .pp-refresh {
+  border: 1px solid #90b4a8;
+  border-radius: 16px;
+  padding: 18px;
+  margin: 20px 0;
+}
+.pp .pp-acquisition {
+  border-left: 3px solid #65b99a;
+  padding-left: 12px;
+  margin: 12px 0;
+}
+.pp .pp-controls:disabled {
+  opacity: 0.65;
+}
+.pp section[aria-label="Préparer la publication"],
+.pp section[aria-label="Aperçu avant vérification"] {
+  border: 0;
+  padding: 0;
+}

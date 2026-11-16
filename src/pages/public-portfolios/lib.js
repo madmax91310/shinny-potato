@@ -32,6 +32,7 @@ export const blankSnapshot = () => ({
   total: "",
   source: "",
   method: "Non précisée",
+  methodNote: "",
   dividends: "Non précisé",
   fees: "Non précisé",
   positions: [],
@@ -86,6 +87,12 @@ export function canonicalUrl(value) {
   } catch {
     return "";
   }
+}
+// A shared dashboard keeps its identity across language, tracking and anchor variants.
+export function sourceKey(url) {
+  const value = canonicalUrl(url);
+  const match = value.match(/^https:\/\/app\.getquin\.com\/(?:[a-z]{2}\/)?dashboard\/([a-zA-Z0-9]+)(?:[?#].*)?$/);
+  return match ? `getquin:${match[1]}` : value;
 }
 export const hasText = (value) =>
   typeof value === "string" && value.trim() !== "";
@@ -142,6 +149,12 @@ export function performanceIssues(s, key) {
   }
   if (!hasNumericValue(p.value)) out.push(`${label} : rendement manquant`);
   if (!p.verified) out.push(`${label} : contrôle de la source requis`);
+  if (!canonicalUrl(s.source)) out.push(`${label} : lien justificatif requis`);
+  if (!["TWR", "TRI/IRR", "Autre"].includes(s.method) || (s.method === "Autre" && !hasText(s.methodNote)))
+    out.push(`${label} : méthode de calcul à documenter sur la source`);
+  if (!["Réinvestis", "Exclus", "Autre"].includes(s.dividends) || !["Inclus", "Exclus", "Autre"].includes(s.fees)
+      || ((s.dividends === "Autre" || s.fees === "Autre") && !hasText(s.methodNote)))
+    out.push(`${label} : traitement des dividendes et frais à documenter`);
   if (
     p.kind !== "Cumulée" ||
     /annual|growth rate|taux de croissance|rolling|30 (days|jours)|glissant/i.test(
@@ -269,7 +282,7 @@ export function buildText(p, s, n) {
     .map((x) => `• ${x.name} : ${weightPct(x.weight)}`)
     .join(
       "\n",
-    )}${positions.length > 6 ? "\nDétail complet dans les images." : ""}\n\n🧐 La première ligne représente ${weightPct(positions[0].weight)} du portefeuille.\n\n💬 Et toi, quel résultat pour ton portefeuille en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
+    )}${positions.length > 6 ? "\nDétail complet dans les images." : ""}\n${s.effective ? `Répartition au ${s.effective}.` : `Répartition consultée le ${s.consulted} ; date effective non fournie.`}\n\n🧐 La première ligne représente ${weightPct(positions[0].weight)} du portefeuille.\n\n💬 Et toi, quel résultat pour ton portefeuille en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
 }
 export function publication(p, s, d, date, url) {
   if (
@@ -278,6 +291,7 @@ export function publication(p, s, d, date, url) {
     issues(p, s).length ||
     d.snapshotId !== s.id ||
     !d.text.trim() ||
+    d.text.startsWith("BROUILLON — À COMPLÉTER") ||
     /undefined|\{[^}]+\}/.test(d.text) ||
     !validEpisode(d.episode) ||
     (url && !canonicalUrl(url))
@@ -291,6 +305,6 @@ export function publication(p, s, d, date, url) {
     text: d.text,
     profile: { ...p, publications: [], draft: null },
     snapshot: s,
-    image: { version: 1, episode: d.episode },
+    image: { version: 2, episode: d.episode },
   });
 }

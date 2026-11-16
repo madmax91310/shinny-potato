@@ -3,6 +3,8 @@ import argparse
 import copy
 import datetime as dt
 import json
+import os
+from pathlib import Path
 import re
 import subprocess
 
@@ -410,6 +412,12 @@ def subscriber_test_addition_only(base, upstream, path):
     return canonical(left) == canonical(right)
 
 
+class StaleCollectionInputs(ValueError):
+    def __init__(self, paths):
+        self.paths = paths
+        super().__init__('Collection inputs may have changed; recollect from master: ' + ', '.join(paths))
+
+
 def check(kind, base, upstream):
     paths = subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
@@ -439,7 +447,7 @@ def check(kind, base, upstream):
                 blocked.append(path)  # Unknown acquisition dependencies fail closed.
     blocked.sort()
     if blocked:
-        raise ValueError('Collection inputs may have changed; recollect from master: ' + ', '.join(blocked))
+        raise StaleCollectionInputs(blocked)
     return sorted(p for p in paths if p)
 
 
@@ -449,5 +457,22 @@ if __name__ == '__main__':
     p.add_argument('--base', required=True)
     p.add_argument('--upstream', default='HEAD^')
     a = p.parse_args()
-    print('Qualified upstream changes; financial revalidation still required:', check(a.kind, a.base, a.upstream))
+    try:
+        paths = check(a.kind, a.base, a.upstream)
+    except StaleCollectionInputs as error:
+        target = os.environ.get('VALIDATED_DATA_REFUSAL_FILE')
+        nonce = os.environ.get('VALIDATED_DATA_REFUSAL_NONCE')
+        if target and nonce:
+            # Opt-in machine result. Other callers retain the existing exception.
+            payload = {'schemaVersion': 1, 'reason': 'stale-collection-inputs',
+                       'kind': a.kind, 'base': subprocess.check_output(
+                           ['git', 'rev-parse', a.base], text=True).strip(),
+                       'upstream': subprocess.check_output(
+                           ['git', 'rev-parse', a.upstream], text=True).strip(),
+                       'nonce': nonce, 'paths': error.paths}
+            Path(target).write_text(json.dumps(payload) + '\n')
+            print(str(error), file=__import__('sys').stderr)
+            raise SystemExit(75)
+        raise ValueError(str(error)) from None
+    print('Qualified upstream changes; financial revalidation still required:', paths)
 

@@ -1,4 +1,4 @@
-import {HOME_TOOLS,TOOL_GROUPS} from "../src/tools.js";
+import { HOME_TOOLS, TOOL_GROUPS } from "../src/tools.js";
 import assert from "node:assert/strict";
 import {
   blankProfile,
@@ -17,6 +17,10 @@ import {
   benchmarkIssue,
 } from "../src/pages/public-portfolios/lib.js";
 import { load, save } from "../src/pages/public-portfolios/storage.js";
+import {
+  buildPreviewText,
+  performanceCompletion,
+} from "../src/pages/public-portfolios/preview.js";
 const bytes = new Map();
 globalThis.localStorage = {
   getItem: (k) => bytes.get(k) ?? null,
@@ -33,6 +37,7 @@ const s = blankSnapshot();
 s.consulted = "2026-11-15";
 s.currency = "EUR";
 s.source = p.url;
+s.method = 'TWR'; s.dividends = 'Réinvestis'; s.fees = 'Inclus';
 s.positions = [{ name: "Placement fictif", weight: 100 }];
 Object.assign(s.month, {
   value: -2.45,
@@ -49,6 +54,15 @@ Object.assign(s.ytd, {
   verified: true,
 });
 assert.deepEqual(issues(p, s), []);
+for (const field of ['method', 'dividends', 'fees']) {
+  const unqualified = structuredClone(s);
+  unqualified[field] = field === 'method' ? 'Non précisée' : 'Non précisé';
+  assert(issues(p, unqualified).length, `${field} cannot be silently treated as qualified`);
+}
+const otherMethod = { ...structuredClone(s), method: 'Autre' };
+assert(issues(p, otherMethod).length);
+otherMethod.methodNote = 'TEST FICTIF : méthode et traitement des flux explicités sur la source';
+assert.deepEqual(issues(p, otherMethod), []);
 assert.equal(pct(0), "0 %");
 assert.equal(pct(""), "Non renseignée");
 assert.match(buildText(p, s, 2), /-2,45/);
@@ -67,6 +81,70 @@ assert(issues(p, rolling).length);
 const missing = structuredClone(s);
 missing.month.value = "";
 assert(issues(p, missing).length);
+const raw = structuredClone(s);
+raw.month = blankSnapshot().month;
+raw.ytd = blankSnapshot().ytd;
+const rawBefore = JSON.stringify(raw);
+const preview = buildPreviewText(p, raw, 3);
+assert.match(preview, /^BROUILLON — À COMPLÉTER/);
+assert.match(preview, /SEMAINE #3/);
+assert.match(preview, /octobre 2026 : À renseigner et vérifier/);
+assert.match(preview, /Depuis janvier : À renseigner et vérifier/);
+assert(!/undefined|\{[^}]+\}/.test(preview));
+raw.month.value = -99;
+raw.ytd.value = 0;
+assert(!buildPreviewText(p, raw, 3).includes("-99"));
+assert.match(
+  buildPreviewText(p, raw, 3),
+  /Depuis janvier : À renseigner et vérifier/,
+);
+raw.month.value = "";
+raw.ytd.value = "";
+const completion = performanceCompletion(raw);
+assert.equal(
+  JSON.stringify(raw),
+  rawBefore,
+  "Completing creates an independent snapshot",
+);
+assert.notEqual(completion.id, raw.id);
+assert.deepEqual(completion.positions, raw.positions);
+assert.notEqual(completion.positions, raw.positions);
+assert.equal(completion.source, raw.source);
+assert.equal(completion.consulted, raw.consulted);
+assert.equal(completion.month.start, "2026-10-01");
+assert.equal(completion.month.end, "2026-10-31");
+assert.equal(completion.ytd.start, "2026-01-01");
+assert.equal(completion.ytd.end, "2026-10-31");
+assert.equal(completion.month.value, "");
+assert.equal(completion.month.original, "");
+assert.equal(completion.month.verified, false);
+const uncheckedDates = structuredClone(raw);
+uncheckedDates.month.verified = true;
+assert.equal(
+  performanceCompletion(uncheckedDates).month.verified,
+  false,
+  "Proposed dates never count as verified",
+);
+assert.throws(() => buildText(p, completion, 3));
+assert.throws(() =>
+  publication(
+    p,
+    completion,
+    { episode: 3, text: preview, snapshotId: completion.id },
+    "2026-11-15",
+    "",
+  ),
+);
+assert.equal(buildPreviewText(p, s, 3), buildText(p, s, 3));
+assert.throws(() =>
+  publication(
+    p,
+    s,
+    { episode: 3, text: preview, snapshotId: s.id },
+    "2026-11-15",
+    "",
+  ),
+);
 const incomplete = structuredClone(s);
 incomplete.positions[0].weight = 80;
 assert(issues(p, incomplete).some((x) => x.includes("80")));
@@ -233,6 +311,15 @@ assert(!buildText(p, whitespaceNa, 1).includes("Non applicable"));
 assert.equal(blankProfile().currency, "");
 assert.equal(blankSnapshot().currency, "");
 
-assert.equal(HOME_TOOLS.filter(tool=>tool.to==="/portefeuilles-publics").length,1);assert.equal(TOOL_GROUPS.flatMap(group=>group.tools).filter(tool=>tool.to==="/portefeuilles-publics").length,1);
+assert.equal(
+  HOME_TOOLS.filter((tool) => tool.to === "/portefeuilles-publics").length,
+  1,
+);
+assert.equal(
+  TOOL_GROUPS.flatMap((group) => group.tools).filter(
+    (tool) => tool.to === "/portefeuilles-publics",
+  ).length,
+  1,
+);
 
-await import('./test-public-portfolio-refresh.mjs');
+await import("./test-public-portfolio-refresh.mjs");

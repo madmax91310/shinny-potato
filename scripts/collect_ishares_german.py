@@ -13,6 +13,8 @@ COUNTRIES=dict(zip(
 SECTORS=dict(zip(
  ['Finanzwesen','Industrie','Gesundheitsversorgung','IT','Nichtzyklische Konsumgüter','Zyklische Konsumgüter','Energie','Materialien','Versorger','Kommunikation','Immobilien','Barmittel & Derivate'],
  ['Financials','Industrials','Health Care','Information Technology','Consumer Staples','Consumer Discretionary','Energy','Materials','Utilities','Communication Services','Real Estate','Cash and/or Derivatives']))
+# Published country-of-risk label; preserve the territory even for zero-weight rows.
+COUNTRIES['Jersey']='Jersey'
 SECTORS['Sonstige']='Other'
 
 

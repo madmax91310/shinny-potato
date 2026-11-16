@@ -2086,7 +2086,7 @@
       "scope": "fund",
       "asOf": "2026-11-13",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
-      "sha256": "cebe07166261c7a67910d9b85d212fb7bfcd557a29eaa303e67b08a67c8660c3",
+      "sha256": "25079f7954405677f1bf70ad6a3e126603d1628e6c8a6fb727b6c3d626084c49",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "10.45 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -2346,14 +2346,14 @@
     "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
     "provider": "DWS",
     "aum": {
-      "amount": 5010000000.0,
+      "amount": 5000000000.0,
       "currency": "GBP",
       "scope": "fund",
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
-      "sha256": "5d76bb4379a0b9b3926234545a3c0c5629c345095dc4ae2d9861c41f8e0bb3a5",
+      "sha256": "e51098d1e145e9ebcd488235be31acb324ed85db8fb702a01abbd441c05d2d1c",
       "sourceLabel": "Total AUM of fund",
-      "sourceReportedAmount": "5.01 B GBP",
+      "sourceReportedAmount": "5.00 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-11-16",
@@ -4899,7 +4899,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "9ecb5ba24103230e43850d404639349a378bd8d104abb595511ff98417919ee9",
+      "sha256": "761471b96536fc9e30e8b6e3bdcd7eebd7206780ac2b164b4f2cd39188672372",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "identityAsOf": "2026-09-30",
@@ -5097,7 +5097,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "9ecb5ba24103230e43850d404639349a378bd8d104abb595511ff98417919ee9",
+      "sha256": "761471b96536fc9e30e8b6e3bdcd7eebd7206780ac2b164b4f2cd39188672372",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "identityAsOf": "2026-09-30",
@@ -5332,12 +5332,12 @@
     "sourceUrl": "https://globalxetfs.eu/funds/botz/",
     "provider": "Global X",
     "aum": {
-      "amount": 151871941.18,
+      "amount": 151177497.72,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "bce9a7b3d5bb29e31c9280847bfcca4b1e40e2b3143cbc908e269f425e9750d7",
+      "sha256": "6e2a80f7448a0a57506cf0805f9a8f1710c7ca6d00a59e9576de1647e4b2ae04",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5382,7 +5382,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "bce9a7b3d5bb29e31c9280847bfcca4b1e40e2b3143cbc908e269f425e9750d7",
+      "sha256": "6e2a80f7448a0a57506cf0805f9a8f1710c7ca6d00a59e9576de1647e4b2ae04",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5436,7 +5436,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "bce9a7b3d5bb29e31c9280847bfcca4b1e40e2b3143cbc908e269f425e9750d7",
+      "sha256": "6e2a80f7448a0a57506cf0805f9a8f1710c7ca6d00a59e9576de1647e4b2ae04",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5444,56 +5444,56 @@
       "rows": [
         {
           "name": "KEYENCE CORP",
-          "weightPct": 11.0
+          "weightPct": 10.99
         },
         {
           "name": "ABB LTD-REG",
-          "weightPct": 9.04
-        },
-        {
-          "name": "NVIDIA CORP",
-          "weightPct": 8.27
+          "weightPct": 8.98
         },
         {
           "name": "INTUITIVE SURGICAL INC",
-          "weightPct": 8.07
+          "weightPct": 8.17
+        },
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 8.14
         },
         {
           "name": "FANUC CORP",
-          "weightPct": 7.94
+          "weightPct": 8.0
         },
         {
           "name": "DYNATRACE INC",
-          "weightPct": 4.69
+          "weightPct": 4.71
         },
         {
           "name": "SMC CORP",
-          "weightPct": 4.4
+          "weightPct": 4.59
         },
         {
           "name": "DAIFUKU CO LTD",
-          "weightPct": 4.03
+          "weightPct": 4.0
         },
         {
           "name": "COGNEX CORP",
-          "weightPct": 2.95
+          "weightPct": 2.92
         },
         {
           "name": "JBT MAREL CORP",
-          "weightPct": 2.27
+          "weightPct": 2.29
         }
       ],
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "bce9a7b3d5bb29e31c9280847bfcca4b1e40e2b3143cbc908e269f425e9750d7",
+      "sha256": "6e2a80f7448a0a57506cf0805f9a8f1710c7ca6d00a59e9576de1647e4b2ae04",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "bce9a7b3d5bb29e31c9280847bfcca4b1e40e2b3143cbc908e269f425e9750d7",
+      "sha256": "6e2a80f7448a0a57506cf0805f9a8f1710c7ca6d00a59e9576de1647e4b2ae04",
       "terPct": 0.5,
       "index": "Indxx Global Robotics & Artificial Intelligence Thematic v2 Index",
       "checkedAt": "2026-11-16",
@@ -5532,7 +5532,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "bce9a7b3d5bb29e31c9280847bfcca4b1e40e2b3143cbc908e269f425e9750d7",
+      "sha256": "6e2a80f7448a0a57506cf0805f9a8f1710c7ca6d00a59e9576de1647e4b2ae04",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5550,7 +5550,7 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-          "sha256": "bce9a7b3d5bb29e31c9280847bfcca4b1e40e2b3143cbc908e269f425e9750d7",
+          "sha256": "6e2a80f7448a0a57506cf0805f9a8f1710c7ca6d00a59e9576de1647e4b2ae04",
           "checkedAt": "2026-11-16",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5562,12 +5562,12 @@
       "terPct": {
         "checkedAt": "2026-11-16",
         "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-        "asOf": "2026-11-12"
+        "asOf": "2026-11-13"
       },
       "index": {
         "checkedAt": "2026-11-16",
         "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-        "asOf": "2026-11-12"
+        "asOf": "2026-11-13"
       }
     }
   },
@@ -5577,12 +5577,12 @@
     "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
     "provider": "Global X",
     "aum": {
-      "amount": 533140620.35,
+      "amount": 521332447.95,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "56ac9bb82a35187ebb1efd485d8ce11b72b5336a6d606929589f48d6a8e659fa",
+      "sha256": "6984fff04673271b46a34a924f0b68e88b0399dc2a2af8ba852f2733cf2cde4d",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5617,7 +5617,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "56ac9bb82a35187ebb1efd485d8ce11b72b5336a6d606929589f48d6a8e659fa",
+      "sha256": "6984fff04673271b46a34a924f0b68e88b0399dc2a2af8ba852f2733cf2cde4d",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5671,7 +5671,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "56ac9bb82a35187ebb1efd485d8ce11b72b5336a6d606929589f48d6a8e659fa",
+      "sha256": "6984fff04673271b46a34a924f0b68e88b0399dc2a2af8ba852f2733cf2cde4d",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5679,15 +5679,15 @@
       "rows": [
         {
           "name": "CAMECO CORP",
-          "weightPct": 15.22
+          "weightPct": 15.35
         },
         {
           "name": "NEXGEN ENERGY LTD",
-          "weightPct": 8.19
+          "weightPct": 8.27
         },
         {
           "name": "NAC KAZATOMPROM JSC-GDR REGS",
-          "weightPct": 6.82
+          "weightPct": 6.74
         },
         {
           "name": "OKLO INC",
@@ -5695,40 +5695,40 @@
         },
         {
           "name": "URANIUM ENERGY CORP",
-          "weightPct": 5.56
+          "weightPct": 5.57
         },
         {
           "name": "PALADIN ENERGY LTD",
-          "weightPct": 4.35
+          "weightPct": 3.7
         },
         {
           "name": "X-ENERGY INC",
-          "weightPct": 3.27
+          "weightPct": 3.3
         },
         {
           "name": "CENTRUS ENERGY CORP-CLASS A",
-          "weightPct": 3.18
+          "weightPct": 3.25
         },
         {
           "name": "DENISON MINES CORP",
-          "weightPct": 3.17
+          "weightPct": 3.2
         },
         {
           "name": "ITOCHU CORP",
-          "weightPct": 3.11
+          "weightPct": 3.19
         }
       ],
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "56ac9bb82a35187ebb1efd485d8ce11b72b5336a6d606929589f48d6a8e659fa",
+      "sha256": "6984fff04673271b46a34a924f0b68e88b0399dc2a2af8ba852f2733cf2cde4d",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "56ac9bb82a35187ebb1efd485d8ce11b72b5336a6d606929589f48d6a8e659fa",
+      "sha256": "6984fff04673271b46a34a924f0b68e88b0399dc2a2af8ba852f2733cf2cde4d",
       "terPct": 0.65,
       "index": "Solactive Global Uranium & Nuclear Components Total Return v2 Index",
       "checkedAt": "2026-11-16",
@@ -5767,7 +5767,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "56ac9bb82a35187ebb1efd485d8ce11b72b5336a6d606929589f48d6a8e659fa",
+      "sha256": "6984fff04673271b46a34a924f0b68e88b0399dc2a2af8ba852f2733cf2cde4d",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5785,7 +5785,7 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-          "sha256": "56ac9bb82a35187ebb1efd485d8ce11b72b5336a6d606929589f48d6a8e659fa",
+          "sha256": "6984fff04673271b46a34a924f0b68e88b0399dc2a2af8ba852f2733cf2cde4d",
           "checkedAt": "2026-11-16",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5797,12 +5797,12 @@
       "terPct": {
         "checkedAt": "2026-11-16",
         "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-        "asOf": "2026-11-12"
+        "asOf": "2026-11-13"
       },
       "index": {
         "checkedAt": "2026-11-16",
         "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-        "asOf": "2026-11-12"
+        "asOf": "2026-11-13"
       }
     }
   },
@@ -5817,7 +5817,7 @@
       "scope": "fund",
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "0ca2dc21c15b6d3136f43ea48655d9f63473e1c8f337254a87e018bf0533f3c9",
+      "sha256": "a4b5efb93a7087f426cda9a7e5442e1609bb451c2faaad784a4188c963cf03c7",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5837,7 +5837,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "0ca2dc21c15b6d3136f43ea48655d9f63473e1c8f337254a87e018bf0533f3c9",
+      "sha256": "a4b5efb93a7087f426cda9a7e5442e1609bb451c2faaad784a4188c963cf03c7",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5867,7 +5867,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "0ca2dc21c15b6d3136f43ea48655d9f63473e1c8f337254a87e018bf0533f3c9",
+      "sha256": "a4b5efb93a7087f426cda9a7e5442e1609bb451c2faaad784a4188c963cf03c7",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
@@ -5917,14 +5917,14 @@
       "asOf": "2026-11-12",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "0ca2dc21c15b6d3136f43ea48655d9f63473e1c8f337254a87e018bf0533f3c9",
+      "sha256": "a4b5efb93a7087f426cda9a7e5442e1609bb451c2faaad784a4188c963cf03c7",
       "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "asOf": "2026-11-12",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "0ca2dc21c15b6d3136f43ea48655d9f63473e1c8f337254a87e018bf0533f3c9",
+      "sha256": "a4b5efb93a7087f426cda9a7e5442e1609bb451c2faaad784a4188c963cf03c7",
       "terPct": 0.5,
       "index": "Indxx Cybersecurity v2 Index",
       "checkedAt": "2026-11-16",
@@ -5963,7 +5963,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "0ca2dc21c15b6d3136f43ea48655d9f63473e1c8f337254a87e018bf0533f3c9",
+      "sha256": "a4b5efb93a7087f426cda9a7e5442e1609bb451c2faaad784a4188c963cf03c7",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5981,7 +5981,7 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-          "sha256": "0ca2dc21c15b6d3136f43ea48655d9f63473e1c8f337254a87e018bf0533f3c9",
+          "sha256": "a4b5efb93a7087f426cda9a7e5442e1609bb451c2faaad784a4188c963cf03c7",
           "checkedAt": "2026-11-16",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -6008,14 +6008,14 @@
     "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
     "provider": "DWS",
     "aum": {
-      "amount": 7510000000.0,
+      "amount": 7490000000.0,
       "currency": "GBP",
       "scope": "fund",
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
-      "sha256": "4af6735e24c07b9f003a068301f2d34f3894567825d6ae0c97d510db1dc3d0bd",
+      "sha256": "e28b8763ea4ded6563897d3ee42512f1f3688d724edc41930caa8e483a3aaced",
       "sourceLabel": "Total AUM of fund",
-      "sourceReportedAmount": "7.51 B GBP",
+      "sourceReportedAmount": "7.49 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-11-16",
@@ -7824,9 +7824,9 @@
       "replicationMethod": "Physical (Full replication)",
       "asOf": "2026-10-31",
       "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
-      "sha256": "927f2e61444239b12904ba43a7e7b991837ccefb7462d8188dfadbf5de57cb0e",
+      "sha256": "bc3584839c5c37bcf3d933cf1dffa85bf04e37ab07d9fb88590e6bfc7af5801b",
       "checkedAt": "2026-11-16",
-      "modifiedAt": "2026-11-15"
+      "modifiedAt": "2026-11-16"
     },
     "performance": {
       "currency": "USD",
@@ -7876,14 +7876,14 @@
     "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
     "provider": "DWS",
     "aum": {
-      "amount": 23520000000.0,
+      "amount": 23460000000.0,
       "currency": "GBP",
       "scope": "fund",
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
-      "sha256": "9dd0b2c73f1c6e8379db27e65b08f5a134dcaad8d409ceb4d4a25eafa67bdd24",
+      "sha256": "4d80a3d78fab186a6c5295aec87dfa63de6076fadc4254656933b9df999d5dc9",
       "sourceLabel": "Total AUM of fund",
-      "sourceReportedAmount": "23.52 B GBP",
+      "sourceReportedAmount": "23.46 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-11-16",
@@ -8246,14 +8246,14 @@
     "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
     "provider": "DWS",
     "aum": {
-      "amount": 23520000000.0,
+      "amount": 23460000000.0,
       "currency": "GBP",
       "scope": "fund",
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
-      "sha256": "941d0a5396b3ab83a6442e1cfceedf4e8eedcb0660f6c53e1b12980dddd35752",
+      "sha256": "cd6d724d295a22b903e51ecf9363e2eece9ae464a722b2dda29fc67cb068de56",
       "sourceLabel": "Total AUM of fund",
-      "sourceReportedAmount": "23.52 B GBP",
+      "sourceReportedAmount": "23.46 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-11-16",
@@ -8616,14 +8616,14 @@
     "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
     "provider": "DWS",
     "aum": {
-      "amount": 760930000.0,
+      "amount": 759160000.0,
       "currency": "GBP",
       "scope": "fund",
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
-      "sha256": "0368a870ebf7e73a6ff83c453e1759297a7c510172275db06b34163177a0b0cd",
+      "sha256": "bfcb0aee06198dd563f93623cf62d339a771a49022287862b433be1a85caf3de",
       "sourceLabel": "Total AUM of fund",
-      "sourceReportedAmount": "760.93 M GBP",
+      "sourceReportedAmount": "759.16 M GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-11-16",
@@ -8847,20 +8847,20 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-11-13",
-      "checkedAt": "2026-11-15",
+      "checkedAt": "2026-11-16",
       "modifiedAt": "2026-11-14"
     },
     "sectors": {
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "rows": [
         {
           "name": "Financials",
-          "weightPct": 25.33,
+          "weightPct": 25.38,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 18.1,
+          "weightPct": 18.05,
           "label": "Industrials"
         },
         {
@@ -8870,37 +8870,37 @@
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 8.37,
+          "weightPct": 8.47,
           "label": "Consumer Staples"
         },
         {
           "name": "Information Technology",
-          "weightPct": 8.16,
+          "weightPct": 8.01,
           "label": "Information Technology"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 6.43,
+          "weightPct": 6.41,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Energy",
-          "weightPct": 5.61,
+          "weightPct": 5.69,
           "label": "Energy"
         },
         {
           "name": "Materials",
-          "weightPct": 5.51,
+          "weightPct": 5.44,
           "label": "Materials"
         },
         {
           "name": "Utilities",
-          "weightPct": 4.94,
+          "weightPct": 4.99,
           "label": "Utilities"
         },
         {
           "name": "Communication Services",
-          "weightPct": 2.73,
+          "weightPct": 2.74,
           "label": "Communication"
         },
         {
@@ -8922,49 +8922,49 @@
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "fa22a9a91e97088c60859029abc728302f0ad9ac80f292a2a8e3410c7798ee0c",
+      "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-15",
-      "modifiedAt": "2026-11-14"
+      "checkedAt": "2026-11-16",
+      "modifiedAt": "2026-11-16"
     },
     "countries": {
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 22.85
+          "weightPct": 22.98
         },
         {
           "name": "France",
-          "weightPct": 14.89
+          "weightPct": 14.9
         },
         {
           "name": "Switzerland",
-          "weightPct": 14.37
+          "weightPct": 14.33
         },
         {
           "name": "Germany",
-          "weightPct": 13.11
+          "weightPct": 13.1
         },
         {
           "name": "Netherlands",
-          "weightPct": 7.47
+          "weightPct": 7.37
         },
         {
           "name": "Spain",
-          "weightPct": 5.92
+          "weightPct": 5.94
         },
         {
           "name": "Italy",
-          "weightPct": 5.27
+          "weightPct": 5.28
         },
         {
           "name": "Sweden",
-          "weightPct": 4.82
+          "weightPct": 4.81
         },
         {
           "name": "Denmark",
-          "weightPct": 2.7
+          "weightPct": 2.71
         },
         {
           "name": "Belgium",
@@ -8972,7 +8972,7 @@
         },
         {
           "name": "Finland",
-          "weightPct": 1.83
+          "weightPct": 1.82
         },
         {
           "name": "Norway",
@@ -8990,163 +8990,167 @@
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "fa22a9a91e97088c60859029abc728302f0ad9ac80f292a2a8e3410c7798ee0c",
+      "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-15",
-      "modifiedAt": "2026-11-14"
+      "checkedAt": "2026-11-16",
+      "modifiedAt": "2026-11-16"
     },
     "countriesRisk": {
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 22.89068
+          "weightPct": 23.02517
         },
         {
           "name": "France",
-          "weightPct": 14.89325
+          "weightPct": 14.90071
         },
         {
           "name": "Switzerland",
-          "weightPct": 14.37362
+          "weightPct": 14.32895
         },
         {
           "name": "Germany",
-          "weightPct": 13.10736
+          "weightPct": 13.09736
         },
         {
           "name": "Netherlands",
-          "weightPct": 7.4736
+          "weightPct": 7.36831
         },
         {
           "name": "Spain",
-          "weightPct": 5.91689
+          "weightPct": 5.93913
         },
         {
           "name": "Italy",
-          "weightPct": 5.27386
+          "weightPct": 5.27744
         },
         {
           "name": "Sweden",
-          "weightPct": 4.83949
+          "weightPct": 4.82424
         },
         {
           "name": "Denmark",
-          "weightPct": 2.71297
+          "weightPct": 2.71916
         },
         {
           "name": "Belgium",
-          "weightPct": 1.95621
+          "weightPct": 1.95803
         },
         {
           "name": "Finland",
-          "weightPct": 1.83167
+          "weightPct": 1.82329
         },
         {
           "name": "Norway",
-          "weightPct": 1.24375
+          "weightPct": 1.25094
         },
         {
           "name": "Poland",
-          "weightPct": 0.99546
+          "weightPct": 0.99775
         },
         {
           "name": "Ireland",
-          "weightPct": 0.70851
+          "weightPct": 0.70715
         },
         {
           "name": "Austria",
-          "weightPct": 0.61016
+          "weightPct": 0.60688
         },
         {
           "name": "Greece",
-          "weightPct": 0.49922
+          "weightPct": 0.49743
         },
         {
           "name": "European Union",
-          "weightPct": 0.3395
+          "weightPct": 0.33961
         },
         {
           "name": "Portugal",
-          "weightPct": 0.30781
+          "weightPct": 0.31078
         },
         {
           "name": "United States",
-          "weightPct": 0.02594
+          "weightPct": 0.0277
         },
         {
           "name": "Australia",
+          "weightPct": 0.0
+        },
+        {
+          "name": "Jersey",
           "weightPct": 0.0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "fa22a9a91e97088c60859029abc728302f0ad9ac80f292a2a8e3410c7798ee0c",
+      "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-15",
-      "modifiedAt": "2026-11-14"
+      "checkedAt": "2026-11-16",
+      "modifiedAt": "2026-11-16"
     },
     "holdings": {
-      "asOf": "2026-11-12",
+      "asOf": "2026-11-13",
       "basis": "fund",
       "rows": [
         {
           "name": "ASML HOLDING",
-          "weightPct": 3.85791,
+          "weightPct": 3.75058,
           "isin": "NL0010273215"
         },
         {
           "name": "ROCHE PS PAR AG",
-          "weightPct": 2.23184,
+          "weightPct": 2.22037,
           "isin": "CH1499059983"
         },
         {
           "name": "HSBC HOLDINGS PLC",
-          "weightPct": 2.00431,
+          "weightPct": 2.00905,
           "isin": "GB0005405286"
         },
         {
           "name": "NOVARTIS AG",
-          "weightPct": 1.98855,
+          "weightPct": 1.98476,
           "isin": "CH0012005267"
         },
         {
           "name": "ASTRAZENECA PLC",
-          "weightPct": 1.86574,
+          "weightPct": 1.87658,
           "isin": "GB0009895292"
         },
         {
           "name": "SHELL",
-          "weightPct": 1.76411,
+          "weightPct": 1.78969,
           "isin": "GB00BP6MXD84"
         },
         {
           "name": "NESTLE SA",
-          "weightPct": 1.74111,
+          "weightPct": 1.76297,
           "isin": "CH0038863350"
         },
         {
           "name": "SAP",
-          "weightPct": 1.54474,
+          "weightPct": 1.55093,
           "isin": "DE0007164600"
         },
         {
           "name": "SIEMENS N AG",
-          "weightPct": 1.49324,
+          "weightPct": 1.48071,
           "isin": "DE0007236101"
         },
         {
           "name": "TOTALENERGIES",
-          "weightPct": 1.3281,
+          "weightPct": 1.35316,
           "isin": "FR0000120271"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
-      "sha256": "fa22a9a91e97088c60859029abc728302f0ad9ac80f292a2a8e3410c7798ee0c",
+      "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-15",
-      "modifiedAt": "2026-11-14"
+      "checkedAt": "2026-11-16",
+      "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "terPct": 0.2,
@@ -9160,7 +9164,7 @@
         "fundMethodologyTypeCode": "Replikation"
       },
       "productStructure": "Physisch",
-      "checkedAt": "2026-11-15",
+      "checkedAt": "2026-11-16",
       "modifiedAt": "2026-10-24"
     },
     "performance": {
@@ -9179,47 +9183,47 @@
         "2024": 8.96,
         "2025": 20.02
       },
-      "checkedAt": "2026-11-15",
+      "checkedAt": "2026-11-16",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "replicationMethodRaw": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "productStructure": {
-        "checkedAt": "2026-11-15",
+        "checkedAt": "2026-11-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       }

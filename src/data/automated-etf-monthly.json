@@ -207548,7 +207548,7 @@
         22.78732546
       ]
     ],
-    "checkedAt": "2026-11-14",
+    "checkedAt": "2026-11-16",
     "periodEnd": "2026-10",
     "sourceUrls": [
       "https://api.secondary.21shares.com/api/product_details/ABTC",
@@ -207575,10 +207575,10 @@
         "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC",
         "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
       ],
-      "checkedAt": "2026-11-14",
+      "checkedAt": "2026-11-16",
       "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "5a6b3905f103188b3c66d710968da302b4cd3d5bf09a7043ab4b6dbde2b53478"
+      "sha256": "f0b94dcd5179223110f43dbfd0266be5abd1bdc28e812dfe7e70c1ba408c117d"
     },
     "nativeValuationCurrency": "USD",
     "lastOfficialValuation": "2026-11-13",
@@ -207681,11 +207681,11 @@
         }
       ]
     },
-    "responseSha256": "5a6b3905f103188b3c66d710968da302b4cd3d5bf09a7043ab4b6dbde2b53478",
+    "responseSha256": "f0b94dcd5179223110f43dbfd0266be5abd1bdc28e812dfe7e70c1ba408c117d",
     "rawSourceHashes": {
-      "https://api.secondary.21shares.com/api/product_details/ABTC": "16ec670bc01d427efc002da33ec7eeeb1c72fb22aee180adb4b73b024623990d",
-      "https://api.secondary.21shares.com/api/product_valuation_history/ABTC": "a4ae50ab326c534bb044c197bea1dee97b062177e2e1106717bec69cf254dfc1",
-      "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC": "18f1f1a2b8da0aa359b09301fa261a8fc8f52fd530ba6158661d2c3408f78328",
+      "https://api.secondary.21shares.com/api/product_details/ABTC": "a4d694d6fd1042752f17e946d92b6023dc94a9b02f2fa022d82ad5f694e50b13",
+      "https://api.secondary.21shares.com/api/product_valuation_history/ABTC": "87d242565d60d9878b922d3b3baacc07014caf63e919b005709ec0756f0bac1a",
+      "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC": "b7bc7f6fb7aad8da7e1fe3f8a340a078a706bc54520e60398a2bf9e4ca640d58",
       "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "9811ba2a93131661323bac357cf1a839d6b8111bc2a98d6339073dc5e7fba94a"
     }
   },
@@ -272361,9 +272361,9 @@
       "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1d&events=div%2Csplits",
       "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1mo&events=div%2Csplits"
     ],
-    "checkedAt": "2026-11-10",
+    "checkedAt": "2026-11-16",
     "periodEnd": "2026-10",
-    "responseSha256": "5c0c7331e27f3d7712758053814abcfc24aaf476bcc645de704923da0d21ff87"
+    "responseSha256": "a8347d37346f613f9e8d39c6ee10903963231483054450f532fe5052b5c91f50"
   },
   "etcPalladiumMarket": {
     "id": "etcPalladiumMarket",
