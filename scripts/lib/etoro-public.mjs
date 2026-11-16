@@ -1,4 +1,11 @@
 // Only data observed on an unauthenticated, explicitly public profile page.
+export const ETORO_RESTRICTED_EXIT_CODE = 77;
+export function isEtoroVerificationUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && (url.hostname === 'captcha-delivery.com' || url.hostname.endsWith('.captcha-delivery.com'));
+  } catch { return false; }
+}
 export function parseEtoroPublic({ username, identity, stats, portfolio, names, consulted }) {
   const fail = () => { throw Error('Page eToro publique incomplète ou incompatible ; dernier relevé conservé.'); };
   const numeric = value => typeof value === 'number' && Number.isFinite(value);

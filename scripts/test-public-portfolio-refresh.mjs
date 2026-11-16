@@ -17,7 +17,11 @@ validateFeed(feed);
 const firstPrevious = await readPrevious('TEST_TOKEN', async () => ({ ok: false, status: 404 }));
 assert.equal(firstPrevious.sha, '');
 assert.deepEqual(firstPrevious.feed, feed, 'The first automated run preserves the already collected initial observations on failure');
-assert.equal(catalogue.length, 31);
+assert.equal(catalogue.length, 46);
+assert.equal(catalogue.filter(row=>row.platform==='eToro').length,16);
+const etoroObservations=feed.entries.filter(row=>catalogue.find(profile=>profile.id===row.catalogueId)?.platform==='eToro');
+assert.equal(etoroObservations.length,16);
+for(const row of etoroObservations){assert(row.observation.performances);assert.equal(row.observation.performances.month.verified,false);assert.equal(row.observation.performances.ytd.verified,false);assert.notEqual(row.observation.performances.ytd.value,'');}
 assert.equal(new Set(catalogue.map(row => row.url)).size, catalogue.length);
 assert.equal(new Set(catalogue.map(row => row.pseudo.toLowerCase())).size, catalogue.length);
 for (const row of catalogue) {
@@ -40,6 +44,21 @@ assert.equal(upgraded.profiles.length, catalogue.length - 1);
 assert(!upgraded.profiles.some(p => p.catalogueId === catalogue[0].id));
 assert.equal(upgraded.catalogueRevision, CATALOGUE_REVISION);
 assert.equal(seedCatalogue(upgraded), upgraded);
+// Revision three receives only the new public eToro sources. Personal fields,
+// prior deletions, virtual nature and frozen publication records remain intact.
+const newEtoro=catalogue.find(row=>row.introducedIn===4);
+const oldRows=db.profiles.filter(profile=>(catalogue.find(row=>row.id===profile.catalogueId).introducedIn||1)<=3).slice(1);
+const personal={...blankProfile(),id:'TEST-FICTIF-existing-profile',url:newEtoro.url.replace('/stats','/portfolio'),nature:'Démonstration / virtuel',notes:'TEST FICTIF note personnelle',publications:[{id:'TEST-FICTIF-episode',text:'TEST FICTIF ancien texte',snapshot:{id:'TEST-FICTIF-frozen',positions:[{name:'TEST FICTIF ancien placement',weight:100}]}}]};
+const oldPublications=structuredClone(personal.publications);
+const revisionThree=seedCatalogue({version:1,catalogueRevision:3,profiles:[...oldRows,personal]});
+assert.equal(revisionThree.profiles.length,catalogue.length-1);
+assert(!revisionThree.profiles.some(profile=>profile.catalogueId===catalogue[0].id));
+const retained=revisionThree.profiles.find(profile=>profile.id===personal.id);
+assert.equal(retained.catalogueId,newEtoro.id);assert.equal(retained.nature,personal.nature);assert.equal(retained.notes,personal.notes);assert.deepEqual(retained.publications,oldPublications);
+assert.equal(sourceKey(newEtoro.url),sourceKey(personal.url));
+assert.equal(sourceKey(newEtoro.url),sourceKey(newEtoro.url.replace('/stats','').toUpperCase().replace('HTTPS://WWW.ETORO.COM/PEOPLE/','https://www.etoro.com/people/')));
+assert.notEqual(sourceKey(newEtoro.url),sourceKey('https://www.etoro.com/people/TEST_FICTIF_DIFFERENT/stats'));
+validateFeed({...structuredClone(feed),entries:feed.entries.filter(row=>(catalogue.find(profile=>profile.id===row.catalogueId).introducedIn||1)<=3)});
 const legacyFeed = { ...structuredClone(feed), entries: feed.entries.filter(e => catalogue.find(c => c.id === e.catalogueId)?.introducedIn === undefined) };
 assert.equal(legacyFeed.entries.length, 20);
 assert.throws(() => validateFeed(legacyFeed));
@@ -192,4 +211,4 @@ assert(workflow.includes('cancel-in-progress: false'));
 assert(workflow.includes('queue: max'));
 assert(!workflow.includes('commit-validated-data') && !workflow.includes('deploy-pages.yml'));
 execFileSync('python3', ['-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_public_portfolio_collector.py'], { stdio: 'inherit' });
-console.log('Réserve sourcée : 31 profils, migration/doublons/suppression, relevés partiels, pannes sans perte, historique, validation du flux et publication avec bail vérifiés.');
+console.log('Réserve sourcée : 46 profils, migration/doublons/suppression, relevés partiels, pannes sans perte, historique, validation du flux et publication avec bail vérifiés.');

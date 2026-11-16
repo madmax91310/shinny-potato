@@ -1,5 +1,5 @@
 import initialFeed from "../src/pages/public-portfolios/initial-feed.json" with { type: "json" };
-import { FEED_URL, CATALOGUE_REVISION, sourceSnapshot } from "../src/pages/public-portfolios/refresh.js";
+import { FEED_URL, CATALOGUE_REVISION, sourceSnapshot, catalogue } from "../src/pages/public-portfolios/refresh.js";
 import { choose } from "./card-selection.mjs";
 import { expect } from "playwright/test";
 import { chromium } from "playwright";
@@ -39,7 +39,7 @@ await page
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 assert.equal(
   await page.locator(".pp article").count(),
-  31,
+  catalogue.length,
   "The reserve starts with researched public profiles including the public eToro reader",
 );
 // No refresh click: opening the tool must load the shared database automatically.
@@ -52,6 +52,12 @@ await expect(
     exact: true,
   }),
 ).toBeEnabled();
+const expectedCollected = catalogue.filter(profile=>profile.platform==='eToro').length;
+await expect(page.getByText(`${expectedCollected} portefeuilles avec rendements du mois et depuis janvier collectés, à contrôler dans leur fiche.`,{exact:true})).toBeVisible();
+await choose(page.getByRole('group',{name:'Plateforme',exact:true}),'eToro');
+await expect(page.locator('.pp article')).toHaveCount(expectedCollected);
+await choose(page.getByRole('group',{name:'Plateforme',exact:true}),'');
+await expect(page.locator('.pp article')).toHaveCount(catalogue.length);
 const initialLibrary = await page.evaluate(() =>
   JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
 );
@@ -93,7 +99,7 @@ await expect(page.getByRole("status")).toContainText("nouveau(x) relevé(s)");
 const libraryAfterRefresh = await page.evaluate(() =>
   JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
 );
-assert.equal(libraryAfterRefresh.profiles.length, 31);
+assert.equal(libraryAfterRefresh.profiles.length, catalogue.length);
 for (const profile of libraryAfterRefresh.profiles) {
   const old = libraryBeforeRefresh.profiles.find(
     (row) => row.id === profile.id,
@@ -255,12 +261,8 @@ Object.assign(incompleteSnapshot, {
 });
 completionProfile.snapshots = [incompleteSnapshot];
 await page.evaluate(
-  (p) =>
-    localStorage.setItem(
-      "el-public-portfolios-v1",
-      JSON.stringify({ version: 1, catalogueRevision: 3, profiles: [p] }),
-    ),
-  completionProfile,
+  ({profile,revision}) => localStorage.setItem("el-public-portfolios-v1",JSON.stringify({version:1,catalogueRevision:revision,profiles:[profile]})),
+  {profile:completionProfile,revision:CATALOGUE_REVISION},
 );
 await page.reload();
 await page
@@ -443,12 +445,8 @@ newer.id = crypto.randomUUID();
 newer.month.value = 9;
 p.snapshots = [s, newer];
 await page.evaluate(
-  (p) =>
-    localStorage.setItem(
-      "el-public-portfolios-v1",
-      JSON.stringify({ version: 1, catalogueRevision: 3, profiles: [p] }),
-    ),
-  p,
+  ({profile,revision}) => localStorage.setItem("el-public-portfolios-v1",JSON.stringify({version:1,catalogueRevision:revision,profiles:[profile]})),
+  {profile:p,revision:CATALOGUE_REVISION},
 );
 await page.reload();
 await page
@@ -559,7 +557,7 @@ delete legacySnapshot.acquisition.observationId;
 const recurrenceProfile = { ...blankProfile(), pseudo: 'TEST FICTIF récurrence',
   url: sourceEntry.source, catalogueId: sourceEntry.catalogueId, snapshots: [legacySnapshot],
   acquisition: { attemptedAt: sourceEntry.attemptedAt } };
-await page.evaluate(profile => localStorage.setItem('el-public-portfolios-v1', JSON.stringify({version:1,catalogueRevision:3,profiles:[profile]})), recurrenceProfile);
+await page.evaluate(({profile,revision}) => localStorage.setItem('el-public-portfolios-v1', JSON.stringify({version:1,catalogueRevision:revision,profiles:[profile]})), {profile:recurrenceProfile,revision:CATALOGUE_REVISION});
 const occurrenceFeed = (observation, offset) => {
   const result = structuredClone(initialFeed);
   const stamp = new Date(Date.now() + offset).toISOString().replace(/\.\d{3}Z$/, 'Z');

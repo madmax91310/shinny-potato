@@ -19,6 +19,7 @@ import {
   pct,
   benchmarkIssue,
   buildText,
+  collectedPerformance,
   publication,
   today,
 } from "./lib.js";
@@ -308,12 +309,13 @@ export default function App() {
           <strong>{db.profiles.filter(profile => !issues(profile, profile.snapshots.at(-1)).length).length} / {db.profiles.length} prêts pour un épisode résultats</strong>
           <span>Les autres fiches restent dans la réserve ; leurs performances sont à compléter avant publication.</span>
         </p>
+        <p>{db.profiles.filter(profile => { const snapshot = profile.snapshots.at(-1); return snapshot && collectedPerformance(snapshot, "month") && collectedPerformance(snapshot, "ytd"); }).length} portefeuilles avec rendements du mois et depuis janvier collectés, à contrôler dans leur fiche.</p>
         {db.profiles.some(profile=>profile.snapshots.at(-1)?.acquisition?.performanceSource) && <button disabled={refreshing} onClick={()=>open(db.profiles.find(profile=>profile.snapshots.at(-1)?.acquisition?.performanceSource),true)}>Voir le profil eToro avec rendements collectés</button>}
         <p>
           La base publique est préchargée et ses derniers relevés se chargent
           automatiquement à l’ouverture. La collecte du samedi à 07:10 UTC lit
-          les pages partagées sans connexion : positions Getquin et, pour le
-          profil eToro raccordé, rendements mensuels et positions. Les chiffres
+          les pages partagées sans connexion : positions Getquin et, pour
+          les profils eToro raccordés, rendements mensuels et positions. Les chiffres
           collectés restent à confirmer avant publication.
         </p>
         <p>
