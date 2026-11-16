@@ -1,3 +1,41 @@
+## 16 novembre — LifeStrategy, photographies de sous-jacents compatibles
+
+Même suivi #881, branche `fix/lifestrategy-compatible-retained-snapshots-20261116`.
+Ce lot possède uniquement la conservation bornée des huit dépendances exactes,
+leur sélection datée dans la dérivation, les tests et les déclencheurs LifeStrategy.
+Les preuves déjà qualifiées de septembre sont récupérables au commit41311ee9,
+avec leurs horloges du14novembre : aucune nouvelle consultation fournisseur
+ni remplacement de la part North America W10 par R35. Livres courants inchangés,
+transparisation des poches actions uniquement, recouvrement intégral toujours refusé.
+Dépendances coordonnées : #1363 possède le build, #1364 la qualification partielle
+Uranium et le même producteur ; leurs changements doivent être intégrés sans écrasement.
+#1359/#1361, #1253 et #1061 gardent leurs périmètres. Les autres familles financières
+et l'interface de supervision ne sont pas modifiées. Pas de réactivation Radar/IA.
+## 16 novembre — sous-ensemble Uranium, refus intégral maintenu
+
+Même suivi #881 : `fix/uranium-explicit-partial-holdings-20261116` possède
+collect_physical_holdings, l'admission partielle typée du producteur complet,
+son horloge séparée, la projection conservatrice et leurs recettes/fixture.
+Le contrôle PR exerce seulement IE000NDWFGA5, en lecture seule. Les70positions
+publiées restent tracées ;59poids actions publiés peuvent être renouvelés.
+Aucun poids FX inventé, aucune couverture intégrale ni recouvrement admis.
+#1253 possède toujours S&P ; #1359/#1361 et le calendrier ne sont pas modifiés.
+Aucune date de réussite complète renouvelée sur cette erreur partielle.
+Les données financières sont générées uniquement par le producteur ordinaire.
+## 16 novembre — calendrier statique partagé, validation financière
+
+Même suivi #881, #1363 reprend uniquement l'extraction statique déjà préparée
+dans #1365 : editorial-calendar.js et editorial-week.json, octets identiques.
+Les choix, notes, ordre et fonction publicationLabel sont comparés sur22routes.
+Aucun second plugin Vite, aucun changement éditorial ni hausse de budget.
+Refus ETF43896218366 :892261/892000 ; après01391687, un autre snapshot local
+refuse investisseurs725098/725000. Le calendrier statique supprime cette
+construction répétée. #1368 conserve le contrôle hebdomadaire actualisé.
+#1365 garde ses sources eToro et son interface ; #1359/#1361 sont préservées.
+Le correctif d'enregistrement #1360 a enregistré la reprise ETF43903822568,
+avec résultats individuels partiels conservés ; publication encore à vérifier.
+L'ancienne projection candidate non fusionnée est retirée, pas cumulée.
+
 ## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
 
 Même suivi #881, branche `fix/automation-recording-and-composition-20261116` :

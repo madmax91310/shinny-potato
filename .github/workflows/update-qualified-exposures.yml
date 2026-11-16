@@ -66,12 +66,16 @@ on:
       - 'scripts/jpm_holdings.py'
       - 'scripts/check_pending_sources.py'
       - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/lifestrategy_retained_holdings.py'
+      - 'scripts/test_lifestrategy_retained_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/lifestrategy_portfolio.py'
       - 'scripts/test_lifestrategy_portfolio.py'
       - 'scripts/test-lifestrategy-exact-sleeves.mjs'
       - 'scripts/fixtures/lifestrategy-nav/**'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/check-uranium-known-source.py'
+      - 'scripts/fixtures/physical-holdings/globalx-urnu-20261113-unvalued-fx.csv'
       - 'scripts/invesco_physical_holdings.py'
       - 'scripts/capture-invesco-physical.mjs'
       - 'scripts/invesco-physical-holdings-contracts.json'
@@ -154,12 +158,16 @@ on:
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/lifestrategy_retained_holdings.py'
+      - 'scripts/test_lifestrategy_retained_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/lifestrategy_portfolio.py'
       - 'scripts/test_lifestrategy_portfolio.py'
       - 'scripts/test-lifestrategy-exact-sleeves.mjs'
       - 'scripts/fixtures/lifestrategy-nav/**'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/check-uranium-known-source.py'
+      - 'scripts/fixtures/physical-holdings/globalx-urnu-20261113-unvalued-fx.csv'
       - 'scripts/invesco_physical_holdings.py'
       - 'scripts/capture-invesco-physical.mjs'
       - 'scripts/invesco-physical-holdings-contracts.json'
@@ -183,6 +191,31 @@ on:
 permissions:
   contents: read
 jobs:
+  uranium-known-source-control:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
+      - name: Qualify the single-share known subset through its ordinary producer
+        env:
+          PHYSICAL_SOURCE_PROOF_DIR: ${{ runner.temp }}/uranium-known-source/raw-source
+        run: python scripts/check-uranium-known-source.py "$RUNNER_TEMP/uranium-known-source"
+      - uses: actions/upload-artifact@v7.0.0
+        if: always()
+        with:
+          name: uranium-known-positions-source-control
+          path: ${{ runner.temp }}/uranium-known-source
+          if-no-files-found: error
   refresh:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -268,7 +301,7 @@ jobs:
       - name: Validate issuer economic index books
         run: python -m unittest discover -s scripts -p "test_invesco_economic_index.py"
       - name: Validate complete physical issuer portfolios
-        run: python -m unittest discover -s scripts -p "test_invesco_physical_holdings.py" && python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
+        run: python -m unittest discover -s scripts -p "test_invesco_physical_holdings.py" && python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_retained_holdings.py"
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py' && python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca

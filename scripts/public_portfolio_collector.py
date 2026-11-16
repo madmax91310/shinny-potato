@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import math
+import subprocess
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
@@ -118,7 +119,15 @@ def collect_entry(entry, previous, now, fetch=read_public_html):
               'capability': 'partial', 'lastSuccessAt': previous.get('lastSuccessAt', ''),
               'observation': previous.get('observation'), 'error': ''}
     try:
-        payload = parse_getquin(fetch(entry['url']), entry)
+        if entry.get('platform') == 'eToro':
+            expected = 'https://www.etoro.com/people/' + entry['pseudo'] + '/stats'
+            if entry['url'] != expected:
+                raise ValueError('Lien eToro public inattendu')
+            payload = json.loads(subprocess.check_output(
+                ['node', str(ROOT / 'scripts/read-etoro-public.mjs'), entry['pseudo'], now[:10]],
+                cwd=ROOT, timeout=180, text=True, stderr=subprocess.DEVNULL))
+        else:
+            payload = parse_getquin(fetch(entry['url']), entry)
         digest = observation_id(payload)
         old = previous.get('observation')
         result['observation'] = old if old and old.get('id') == digest else {
@@ -137,7 +146,11 @@ def main():
     args = parser.parse_args()
     catalogue = json.loads(CATALOGUE.read_text())
     previous = json.loads(args.previous.read_text()) if args.previous and args.previous.exists() else {'entries': []}
-    known = {row['catalogueId']: row for row in previous['entries']}
+    # A newly introduced source may already have a valid initial observation.
+    # Preserve it too if its first scheduled read fails during feed migration.
+    initial = json.loads((ROOT / 'src/pages/public-portfolios/initial-feed.json').read_text())
+    known = {row['catalogueId']: row for row in initial['entries']}
+    known.update({row['catalogueId']: row for row in previous['entries']})
     now = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
     entries = [collect_entry(entry, known.get(entry['id'], {}), now) for entry in catalogue]
     result = {'version': 1, 'collectedAt': now, 'entries': entries}

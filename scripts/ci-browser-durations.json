@@ -253,6 +253,29 @@
     "BUDGET_BATCH=complementary node scripts/playwright-budget-new-profiles.mjs 1440": 23.5,
     "node scripts/playwright-selected-records.mjs": 14.8,
     "node scripts/test-ranking-header-layout.mjs": 9.5,
-    "node scripts/test-scpi-ui.mjs": 6.3
+    "node scripts/test-scpi-ui.mjs": 6.3,
+    "node scripts/playwright-budget-social-image.mjs 0 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 1 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 2 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 3 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 4 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 5 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 6 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 7 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 8 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 9 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 10 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 11 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 12 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 13 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 14 16": 180,
+    "node scripts/playwright-budget-social-image.mjs 15 16": 180
+  },
+  "budgetSocialPartitionEvidence": {
+    "partitions": 16,
+    "schedulingEstimateSeconds": 180,
+    "reason": "A complete batch passed in approximately three minutes. All profiles, modes and former desktop/mobile cases remain covered; only scheduling estimates change, never command timeout policy.",
+    "measuredCommand": "node scripts/playwright-budget-social-image.mjs 3 16",
+    "measuredBrowser": "Chromium 153.0.8010.12 (Playwright headless shell)"
   }
 }

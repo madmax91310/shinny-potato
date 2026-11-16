@@ -79,7 +79,7 @@ def globalx_page(page, share):
     return expected
 
 
-def _globalx_csv(raw, now):
+def _globalx_csv(raw, now, *, partial_fx=False):
     reader = csv.DictReader(io.StringIO(raw.decode('utf-8-sig')))
     if reader.fieldnames != ['AS_OF_DATE', 'SEDOL', 'NAME', 'NET_ASSETS', 'TICKER',
                             'MARKET_PRICE', 'SHARES_HELD', 'MARKET_VALUE', 'ISIN', 'COUNTRY']:
@@ -88,6 +88,7 @@ def _globalx_csv(raw, now):
     identified_names = {r['NAME'] for r in published if ISIN.fullmatch(r.get('ISIN') or '')}
     rows, dates, total = [], set(), 0
     cash_total, cash_rows, settlement_rows = 0, [], []
+    unvalued, valued_fx = [], []
     cash = {'US DOLLAR', 'U.S. DOLLAR', 'EURO', 'BRITISH STERLING POUND', 'JAPANESE YEN',
             'NORWEGIAN KRONE', 'HONG KONG DOLLAR', 'CANADIAN DOLLAR', 'SWISS FRANC',
             'AUSTRALIAN DOLLAR', 'SOUTH KOREAN WON', 'KOREAN WON', 'SWEDISH KRONA',
@@ -105,7 +106,18 @@ def _globalx_csv(raw, now):
                    f"(name={row.get('NAME')!r}, isin={row.get('ISIN')!r}, "
                    f"asOf={row.get('AS_OF_DATE')!r})")
         value = row.get('NET_ASSETS')
+        # This opt-in never qualifies a complete book. Preserve the issuer's
+        # FX records, including unknown values and explicit zeroes, separately
+        # from the subset of published security NAV weights. Never price a
+        # currency contract from its notional SHARES_HELD.
+        fx = (row['NAME'] == 'CURRENCY CONTRACT - ZAR'
+              and not any(row.get(k) for k in ('ISIN', 'TICKER', 'SEDOL', 'COUNTRY')))
         if value is None or not value.strip():
+            if partial_fx and fx:
+                unvalued.append({'sourceRecord': record, 'weightPct': None,
+                    'marketValue': None if not (row.get('MARKET_VALUE') or '').strip() else row['MARKET_VALUE'],
+                    'published': dict(row)})
+                continue
             raise HoldingsSourceError('Missing ' + context, {
                 'kind':'missing-published-nav-weight', 'asOf':row['AS_OF_DATE'],
                 'recordNumber':record, 'name':row.get('NAME'),
@@ -123,6 +135,9 @@ def _globalx_csv(raw, now):
         if settlement and weight < -5:
             settlement_rows.append(row)
         total += weight
+        if fx:
+            valued_fx.append({'sourceRecord': record, 'weightPct': weight, 'published': dict(row)})
+            continue
         if not row['ISIN']:
             if row['NAME'] in cash and not row['TICKER']:
                 if row['SEDOL']:
@@ -142,8 +157,10 @@ def _globalx_csv(raw, now):
             rows[-1]['identityStatus'] = 'unpublished-separate-position'
     if len(dates) != 1 or not 99 <= total <= 100.5:
         raise ValueError('Truncated or mixed-date Global X portfolio')
+    if partial_fx and (not unvalued or settlement_rows):
+        raise ValueError('Partial Global X FX observation needs a missing weight and no unproved settlement denominator')
     proof = None
-    if settlement_rows:
+    if settlement_rows or (valued_fx and not partial_fx):
         # Signed settlement amounts offset the separately published cash. The
         # existing -5..100 bound applies to NET cash, never to a short equity.
         # Require the entire monetary book as independent denominator evidence.
@@ -170,8 +187,19 @@ def _globalx_csv(raw, now):
                      'netCashWeightPct': float(net_cash),
                      'publishedTotalWeightPct': float(sum(Decimal(r['NET_ASSETS']) for r in positions)), 'normalizationApplied': False,
                      'cashRows': [{k:r[k] for k in ('NAME','NET_ASSETS','MARKET_VALUE','AS_OF_DATE')} for r in cash_rows]}
+            if valued_fx:
+                proof['method'] = 'Every published market value and original NAV weight reconciled against their complete monetary book; valued currency contracts retained separately, no normalization'
+                proof['valuedFxPositions'] = valued_fx
         except (InvalidOperation, KeyError, TypeError) as error:
             raise ValueError('Missing or invalid Global X settlement monetary proof') from error
+    if partial_fx:
+        proof = {'kind': 'partial-unvalued-source-positions',
+                 'unvaluedPositions': unvalued, 'valuedFxPositions': valued_fx,
+                 'publishedPositions': [dict(r) for r in published if r.get('NAME')],
+                 'sourceRowCount': sum(bool(r.get('NAME')) for r in published),
+                 'knownPublishedWeightPct': total, 'complete': False,
+                 'financialDataQualified': False, 'knownSecurityWeightsQualified': True,
+                 'normalizationApplied': False}
     return checked_rows(rows, minimum=11, allow_unidentified=True), dates.pop(), proof
 
 
@@ -190,7 +218,21 @@ def collect_globalx(share, now):
     except HoldingsSourceError as error:
         error.diagnostic.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
                                 checkedAt=now.isoformat())
-        raise
+        if (share['isin'] != 'IE000NDWFGA5' or share.get('currency') != 'USD'
+                or error.diagnostic.get('kind') != 'missing-published-nav-weight'
+                or error.diagnostic.get('name') != 'CURRENCY CONTRACT - ZAR'):
+            raise
+        rows, stamp, partial = _globalx_csv(raw, now, partial_fx=True)
+        partial.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
+                       checkedAt=now.isoformat(),asOf=stamp)
+        result = observation(rows, stamp, url, raw, allow_unidentified=True,
+                             identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
+        result.update(complete=False, sourcePartial=True,
+                      scope='known-published-security-nav-weights',
+                      partialSourceProof=partial, unvaluedPositions=partial['unvaluedPositions'],
+                      partialSourceError=str(error),
+                      method='Partial published physical security NAV weights; unknown FX values, explicit zero FX and every original source row retained separately; no notional valuation, normalization or complete-overlap qualification')
+        return result
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        identitySourceUrl=share['sourceUrl'], identitySha256=digest(page),
                        **({'settlementCashProof': cash_proof} if cash_proof else {}))

@@ -360,5 +360,151 @@ class PhysicalHoldingsTest(unittest.TestCase):
         with self.assertRaises(ValueError): vanguard_pages([page], SHARE, NOW)
 
 
+
+
+# Current official13November fixture: known positions never certify the unvalued FX.
+"""Real unvalued FX fixture: renew known positions without admitting full overlap."""
+import copy, csv, datetime as dt, hashlib, io, json, pathlib, tempfile, unittest
+from unittest.mock import patch
+from collect_physical_holdings import collect_globalx, globalx_csv
+from observation_status import holdings_status
+from producer_report_contract import _complete_holdings_results
+GX_ROOT = pathlib.Path(__file__).resolve().parents[1]
+GX_NOW = dt.datetime(2026, 11, 16, 15, tzinfo=dt.timezone.utc)
+GX_ISIN = 'IE000NDWFGA5'
+GX_URL = 'https://globalxetfs.eu/api/funds/urnu/topholdingscsv'
+GX_SHARE = {'isin': GX_ISIN, 'currency': 'USD', 'parser': 'globalx-complete', 'sourceUrl': 'https://globalxetfs.eu/funds/urnu/'}
+GX_RAW = (GX_ROOT / 'scripts/fixtures/physical-holdings/globalx-urnu-20261113-unvalued-fx.csv').read_bytes()
+
+def mutate(change):
+    reader = csv.DictReader(io.StringIO(GX_RAW.decode('utf-8-sig')))
+    rows = list(reader)
+    change(rows)
+    out = io.StringIO()
+    writer = csv.DictWriter(out, fieldnames=reader.fieldnames)
+    writer.writeheader()
+    writer.writerows(rows)
+    return out.getvalue().encode()
+
+def source(raw=GX_RAW, share=GX_SHARE):
+    with patch('collect_physical_holdings.public_page', return_value='Exact identity is checked by the separate page contract'), patch('collect_physical_holdings.globalx_page', return_value=GX_URL), patch('collect_physical_holdings.download', return_value=raw):
+        return collect_globalx(share, GX_NOW)
+
+class PartialGlobalX(unittest.TestCase):
+
+    def test_real_source_preserves_every_published_position_and_unknown_value(self):
+        h = source()
+        p = h['partialSourceProof']
+        rows = [r for r in csv.DictReader(io.StringIO(GX_RAW.decode())) if r.get('NAME')]
+        self.assertFalse(h['complete'])
+        self.assertTrue(h['sourcePartial'])
+        self.assertEqual(h['asOf'], '2026-11-13')
+        self.assertEqual(p['publishedPositions'], rows)
+        self.assertEqual(p['sourceRowCount'], 70)
+        self.assertEqual(p['sha256'], hashlib.sha256(GX_RAW).hexdigest())
+        self.assertFalse(p['normalizationApplied'])
+        self.assertFalse(p['financialDataQualified'])
+        self.assertTrue(p['knownSecurityWeightsQualified'])
+        self.assertEqual(len(p['unvaluedPositions']), 1)
+        self.assertIsNone(p['unvaluedPositions'][0]['weightPct'])
+        self.assertIsNone(p['unvaluedPositions'][0]['marketValue'])
+        self.assertEqual(p['unvaluedPositions'][0]['published']['SHARES_HELD'], '-10676.5')
+        self.assertEqual([r['weightPct'] for r in p['valuedFxPositions']], [0])
+        expected = [r for r in rows if r['ISIN'] or r['NAME'] == 'VERDERA ENERGY CORP']
+        self.assertEqual([(r['name'], r['weightPct']) for r in h['rows']], [(r['NAME'], float(r['NET_ASSETS'])) for r in expected if float(r['NET_ASSETS']) > 0])
+        self.assertAlmostEqual(sum((r['weightPct'] for r in h['rows'])), 99.819)
+        self.assertEqual(len([r for r in h['rows'] if r['isin'] is None]), 2)
+        with self.assertRaisesRegex(ValueError, 'Missing Global X NET_ASSETS'):
+            globalx_csv(GX_RAW, GX_NOW)
+
+    def test_no_fallback_for_other_share_currency_or_unqualified_missing_field(self):
+        for share in [{**GX_SHARE, 'isin': 'IE00BM8R0J59'}, {**GX_SHARE, 'currency': 'EUR'}]:
+            with self.subTest(share=share), self.assertRaises(ValueError):
+                source(share=share)
+        for name in ['CAMECO CORP', 'CASH', 'VERDERA ENERGY CORP']:
+            raw = mutate(lambda rows: next((r for r in rows if r['NAME'] == name)).__setitem__('NET_ASSETS', ''))
+            with self.subTest(name=name), self.assertRaises(ValueError):
+                source(raw)
+
+    def test_schema_dates_identity_weights_and_unexpected_fx_remain_guarded(self):
+        bad = [GX_RAW.replace(b'NET_ASSETS', b'WEIGHT'), GX_RAW.replace(b'2026-11-13', b'2026-11-12', 1), GX_RAW.replace(b'CURRENCY CONTRACT - ZAR', b'CURRENCY CONTRACT - EUR')]
+        for value in ['NaN', '-1', '101', '15,3']:
+            bad.append(mutate(lambda rows: next((r for r in rows if r['NAME'] == 'CAMECO CORP')).__setitem__('NET_ASSETS', value)))
+        for raw in bad:
+            with self.subTest(raw=raw[:50]), self.assertRaises(ValueError):
+                source(raw)
+
+    def test_partial_source_clock_does_not_renew_complete_success_even_on_next_failure(self):
+        old = {'lastSuccessAt': '2026-11-11T07:00:00+00:00', 'status': 'failed'}
+        h = source()
+        status = holdings_status(old, {'checkedAt': old['lastSuccessAt']}, h, h['partialSourceError'], GX_NOW)
+        self.assertEqual(status['lastSuccessAt'], old['lastSuccessAt'])
+        self.assertEqual(status['lastPartialSuccessAt'], GX_NOW.isoformat())
+        self.assertEqual(status['status'], 'failed')
+        later = holdings_status(status, {**h, 'checkedAt': GX_NOW.isoformat()}, None, 'network failure', GX_NOW + dt.timedelta(days=1))
+        self.assertEqual(later['lastSuccessAt'], old['lastSuccessAt'])
+        self.assertEqual(later['lastPartialSuccessAt'], GX_NOW.isoformat())
+        repaired = holdings_status(later, h, {'complete': True, 'asOf': '2026-11-16'}, None, GX_NOW + dt.timedelta(days=1))
+        self.assertEqual(repaired['status'], 'validated')
+        self.assertEqual(repaired['lastSuccessAt'], (GX_NOW + dt.timedelta(days=1)).isoformat())
+
+    def test_ordinary_main_publishes_only_partial_record_and_keeps_full_incident(self):
+        import collect_dca_complete_holdings as c
+        old = {'asOf': '2026-11-11', 'checkedAt': '2026-11-11T07:00:00+00:00', 'complete': True, 'rows': [{'isin': None, 'name': 'Unidentified share class', 'weightPct': 0.004}]}
+        for fully_identified in [False, True]:
+            with self.subTest(fully_identified=fully_identified), tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                prior = copy.deepcopy(old)
+                if fully_identified:
+                    prior['rows'] = [{'isin': 'US0378331005', 'name': 'Apple', 'weightPct': 100}]
+                files = {'scripts/dca-complete-holdings-sources.json': {GX_ISIN: GX_SHARE}, 'scripts/generated-holdings-sources.json': {}, 'scripts/dca-equity-identities.json': {}, 'scripts/dca-equity-extra-identities.json': {}, 'src/data/dca-complete-holdings.json': {GX_ISIN: prior, 'unrelated': prior}, 'src/data/dca-holdings-status.json': {GX_ISIN: {'status': 'validated', 'lastSuccessAt': old['checkedAt']}}, 'src/data/dca-security-classifications.json': {}}
+                for name, d in files.items():
+                    p = root / name
+                    p.parent.mkdir(parents=True, exist_ok=True)
+                    p.write_text(json.dumps(d))
+                with patch.object(c, 'ROOT', root), patch('sys.argv', ['collect', '--apply', '--only', GX_ISIN, '--output', str(root / 'report.json')]), patch.dict('collect_physical_holdings.COLLECTORS', {'globalx-complete': lambda share, now: source()}), self.assertRaises(SystemExit):
+                    c.main()
+                stored = json.loads((root / 'src/data/dca-complete-holdings.json').read_text())
+                report = json.loads((root / 'report.json').read_text())
+                status = json.loads((root / 'src/data/dca-holdings-status.json').read_text())[GX_ISIN]
+                self.assertEqual(stored['unrelated'], prior)
+                self.assertEqual(status['lastSuccessAt'], old['checkedAt'])
+                self.assertEqual(status['status'], 'failed')
+                self.assertEqual(report['successes'], [])
+                self.assertEqual(len(_complete_holdings_results(report)['errors']), 1)
+                if fully_identified:
+                    self.assertEqual(stored[GX_ISIN], prior)
+                    self.assertEqual(report['updated'], [])
+                else:
+                    self.assertFalse(stored[GX_ISIN]['complete'])
+                    self.assertEqual(stored[GX_ISIN]['asOf'], '2026-11-13')
+                    self.assertEqual(report['updated'], [GX_ISIN])
+                    self.assertEqual(report['observations'][GX_ISIN]['partialSourceProof']['sourceRowCount'], 70)
+
+
+
+    def test_repaired_fx_needs_complete_independent_monetary_reconciliation(self):
+        from decimal import Decimal, ROUND_HALF_UP
+        def repaired(rows):
+            positions=[r for r in rows if r.get('NAME')]
+            first=positions[0]
+            self.assertEqual(first['NAME'],'CURRENCY CONTRACT - ZAR')
+            first['MARKET_VALUE']='0'
+            nav=sum(Decimal(r['MARKET_VALUE']) for r in positions)
+            for row in positions:
+                row['NET_ASSETS']=str((Decimal(row['MARKET_VALUE'])/nav*100).quantize(Decimal('.001'),rounding=ROUND_HALF_UP))
+        raw=mutate(repaired)
+        h=source(raw)
+        self.assertTrue(h['complete'])
+        self.assertNotIn('sourcePartial',h)
+        self.assertEqual(len(h['settlementCashProof']['valuedFxPositions']),2)
+        self.assertTrue(all(r['weightPct']==0 for r in h['settlementCashProof']['valuedFxPositions']))
+        reader=csv.DictReader(io.StringIO(raw.decode()));rows=list(reader)
+        equities=[r for r in rows if r.get('ISIN') and float(r['NET_ASSETS'])>2][:2]
+        equities[0]['NET_ASSETS']=str(Decimal(equities[0]['NET_ASSETS'])+Decimal('.01'))
+        equities[1]['NET_ASSETS']=str(Decimal(equities[1]['NET_ASSETS'])-Decimal('.01'))
+        out=io.StringIO();writer=csv.DictWriter(out,fieldnames=reader.fieldnames);writer.writeheader();writer.writerows(rows)
+        with self.assertRaisesRegex(ValueError,'monetary/weight units disagree'):source(out.getvalue().encode())
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,8 +1,9 @@
-import { schedulingDurations } from './browser-check-config.mjs'
+import { schedulingDurations, browserCheckTimeoutMs } from './browser-check-config.mjs'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { planShards } from './browser-shards.mjs'
 import { needsExtraEngines } from './browser-portability-engines.mjs'
+import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 const commands = JSON.parse(readFileSync(new URL('./ci-browser-checks.json', import.meta.url)))
 const durations = schedulingDurations(JSON.parse(readFileSync(new URL('./ci-browser-durations.json', import.meta.url))))
 for (const count of [1, 2, 4, 6, commands.length + 1]) {
@@ -28,3 +29,22 @@ assert.deepEqual(indices,Array.from({length:indices.length},(_,index)=>index))
 for(const script of ['browser-portability-engines','run-browser-checks'])assert(browserJob.includes(`node scripts/${script}.mjs \${{ matrix.shard }} ${indices.length}`))
 assert.deepEqual(planShards(commands,indices.length,durations).flatMap(s=>s.commands).sort(),[...commands].sort())
 console.log('Every check preserved exactly once; matching workflow/engine plans verified. Current estimates:',planShards(commands,indices.length,durations).map(s=>s.seconds))
+
+// Partitioning changes execution size, never the profiles or image modes covered.
+const budgetParts=commands.filter(command=>command.startsWith('node scripts/playwright-budget-social-image.mjs ')).map(command=>command.trim().split(/\s+/).slice(-2).map(Number))
+assert.equal(budgetParts.length,16)
+assert.deepEqual(budgetParts.map(([index,count])=>{assert.equal(count,16);return index}).sort((a,b)=>a-b),Array.from({length:16},(_,index)=>index))
+const budgetCoverage=budgetParts.flatMap(([part,count])=>BUDGET_PROFILES.filter((_,index)=>index%count===part).map(profile=>profile.id))
+assert.deepEqual(budgetCoverage.sort(),BUDGET_PROFILES.map(profile=>profile.id).sort())
+const budgetScript=readFileSync(new URL('./playwright-budget-social-image.mjs',import.meta.url),'utf8')
+assert(budgetScript.includes("for(const mode of ['social','detailed','summary'])"))
+for(const name of ['Émilie','Lucie','Amandine et Nicolas'])assert(BUDGET_PROFILES.some(profile=>profile.name===name),name+' remains audited')
+
+const limits=JSON.parse(readFileSync(new URL('./ci-browser-durations.json',import.meta.url))).seconds
+for(const command of commands.filter(command=>command.startsWith('node scripts/playwright-budget-social-image.mjs ')))assert.equal(browserCheckTimeoutMs(command,limits),300000,'Budget command timeout policy stays unchanged')
+assert(budgetScript.includes("['Émilie','Lucie','Amandine et Nicolas'].includes(p.name)"),'Repeated critical desktop/mobile cases stay in every partition')
+
+// The former four batches each ran four desktop cases at both widths.
+assert.deepEqual(budgetParts.map(([part])=>[Math.floor(part/4),part%4]).sort(),Array.from({length:4},(_,oldPart)=>Array.from({length:4},(_,fixture)=>[oldPart,fixture])).flat().sort())
+assert(budgetScript.includes('legacyDesktopProfile=shards===16?BUDGET_PROFILES[Math.floor(shard/4)]'))
+assert(budgetScript.includes('[desktopCases[shard%4]]'))
