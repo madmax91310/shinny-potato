@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import {chromium} from 'playwright'
+import {expect} from 'playwright/test'
 import {readFile} from 'node:fs/promises'
 import {spawn} from 'node:child_process'
 const base='http://127.0.0.1:4371/shinny-potato/'
@@ -22,17 +23,23 @@ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{exec
   await page.getByText('Personnaliser l’image',{exact:true}).click()
   for(const choice of ['all','both','countries','sectors']){
    await page.getByRole('group',{name:'Donuts de l’image',exact:true}).locator(`[data-option][data-value="${choice}"]`).click()
-   await page.locator('.dca-simple-preview img').waitFor()
-   await page.locator('.dca-simple-preview img').waitFor()
-   assert(await page.locator('.dca-simple-preview img').evaluate(async img=>{await img.decode();return img.naturalWidth===1600}))
+   await expect(page.getByRole('region',{name:'Image des expositions',exact:true})).toHaveAttribute('aria-busy','false',{timeout:30000})
+   const size=await page.locator('.dca-simple-preview img').evaluate(async img=>{await img.decode();return [img.naturalWidth,img.naturalHeight]})
+   if(['all','both'].includes(choice))assert.equal(size[0],1600,'Combined DCA image keeps its approved width')
+   else assert(size[0]>=2000,'Individual DCA donuts use the approved expanded readable geometry')
+   assert(size[1]>300)
   }
+  const selected=await page.locator('.dca-simple-preview img').evaluate(async img=>({size:[img.naturalWidth,img.naturalHeight],bytes:[...new Uint8Array(await(await fetch(img.src)).arrayBuffer())]}))
   const download=page.waitForEvent('download')
   await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
   const png=await download
   assert.equal(png.suggestedFilename(),'epargnant-libre-expositions-sectors.png')
-  assert.equal((await readFile(await png.path())).subarray(0,8).toString('hex'),'89504e470d0a1a0a')
+  const pngBytes=await readFile(await png.path())
+  assert.equal(pngBytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a')
+  assert.deepEqual(pngBytes,Buffer.from(selected.bytes),'Downloaded individual image matches the selected preview exactly')
+  assert.deepEqual([pngBytes.readUInt32BE(16),pngBytes.readUInt32BE(20)],selected.size)
   const popupEvent=page.waitForEvent('popup');await page.getByRole('link',{name:'Ouvrir l’image',exact:true}).click()
-  const popup=await popupEvent;await popup.waitForLoadState();assert(await popup.locator('img').evaluate(async img=>{await img.decode();return img.naturalWidth===1600}));await popup.close()
+  const popup=await popupEvent;await popup.waitForLoadState();assert.deepEqual(await popup.locator('img').evaluate(async img=>{await img.decode();return [img.naturalWidth,img.naturalHeight]}),selected.size);await popup.close()
   // An encoder failure is recoverable and never leaves a dead or stale download.
   await page.evaluate(()=>{window.originalToBlob=HTMLCanvasElement.prototype.toBlob;HTMLCanvasElement.prototype.toBlob=function(callback){callback(null)}})
   await page.getByRole('group',{name:'Donuts de l’image',exact:true}).locator('[data-option][data-value="both"]').click()
