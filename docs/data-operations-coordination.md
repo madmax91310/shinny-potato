@@ -51,6 +51,18 @@ Incident distinct de supervision41496122214 : le dernier état publié009d1e5 du
 
 Complément1novembre — `fix/market-private-service-recording-20261101` possède uniquement observation_rebase_guard.py et ses tests. Refus réel41338564974 : README, test API et worker de la banque privée après#1120. Audit des consommateurs : service CRUD indépendant consommant le catalogue public de tweets ; aucun import, lecture, commande npm ou appel de ses endpoints dans acquisition Python, exports de référence JS ou admission de candidats. Six fichiers précis sont qualifiés (incluant client/test/CI privé#1124), aucun répertoire ni autre producteur. Le recalage prépare toujours les projections et exige la revalidation financière complète du dernier arbre ; cours, changes, configuration, collecteurs, moteur et fichiers voisins restent protégés.75rejeux Git et contrôles de dépendances passent. Aucune modification des fichiers privés ou des PR#1122/#1123/#1124. La branche conditionnelle en production n’est pas prétendue exercée par les tests isolés.
 
+### 16 novembre — exposition EXSA et territoire Jersey, même suivi #881
+
+Base da07e8b8, dernier run 43832800491 : DE0002635307 refusé avec KeyError
+Jersey dans la traduction des pays du livre physique allemand. La réponse
+courante exacte reproduit le défaut sur JENKINS TOPCO PLC, poids publié 0 %.
+Le territoire reste explicitement Jersey ; aucune ligne ni poids supprimé,
+aucun inconnu remplacé par zéro, aucun panier ou indice substitué. La collecte
+et les contrôles existants sont réutilisés. Le top10 reste un top10 de fonds.
+Ce lot possède seulement collect_ishares_german.py, la régression et sa fixture.
+Les PR #1349/#1352 possèdent séparément les reprises SCPI et les rapports13F ;
+#1351/#1253/#1061/#1298 restent indépendantes. Aucun seuil ni maquette changé.
+
 ## Métadonnées ciblées de couverture — 2 novembre 2026
 
 Même chantier consolidé, `fix/qualified-share-hedging-metadata-20261102` possède seulement le générateur et les sources supplémentaires de métadonnées, le petit routeur de champs, les régressions et la portée de recette du workflow metadata.21parts déjà présentes avaient une voie limitée aux cotations. Le profil spécialiste justETF de la part exacte publie un état explicite de couverture ; le parseur existant le lit déjà. Aucune éligibilité PEA déduite d’une absence, d’un nom, d’une devise ou d’un statut ISA/SIPP. Source secondaire identifiée comme telle, pas preuve émetteur. Le champ actuel est inconnu sur les21parts ; les valeurs seront admises individuellement après lecture réelle. Aucune modification des cours, allocations ou formats.

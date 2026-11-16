@@ -109,6 +109,56 @@ class Expansion(unittest.TestCase):
         body=copy.deepcopy(original);body['productId']=123
         with self.assertRaises(ValueError):normalize(body)
 
+    def test_real_german_jersey_label_preserves_every_published_row_and_weight(self):
+        import gzip, hashlib
+        from unittest.mock import patch
+        import collect_ishares_german as german
+        raw_bytes=gzip.decompress((Path(__file__).parent/'fixtures/ishares-german-20261116/official.json.gz').read_bytes())
+        provenance=json.loads((Path(__file__).parent/'fixtures/ishares-german-20261116/provenance.json').read_text())
+        self.assertEqual(hashlib.sha256(raw_bytes).hexdigest(),provenance['sha256'])
+        raw=json.loads(raw_bytes); before=copy.deepcopy(raw)
+        original=raw['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        self.assertIn('Jersey',original['countryOfRisk']['value'])
+        unsupported={k:v for k,v in german.COUNTRIES.items() if k!='Jersey'}
+        with patch.object(german,'COUNTRIES',unsupported),self.assertRaisesRegex(KeyError,'Jersey'):
+            german.normalize(raw)
+        normal=german.normalize(raw)
+        after=normal['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        for key in original:
+            if key not in ('countryOfRisk','assetClass'):self.assertEqual(after[key],original[key],key)
+        jersey=original['countryOfRisk']['value'].index('Jersey')
+        self.assertEqual(after['countryOfRisk']['value'][jersey],'Jersey')
+        self.assertEqual(after['holdingPercent']['value'][jersey],0.0)
+        self.assertEqual(len(after['issueName']['value']),len(original['issueName']['value']))
+        self.assertEqual(raw,before,'Source proof and its published zero line remain immutable')
+        changed=copy.deepcopy(raw)
+        changed['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['countryOfRisk']['value'][jersey]='Unqualified new territory'
+        with self.assertRaises(KeyError):german.normalize(changed)
+
+    def test_real_german_recovery_reaches_existing_registry_idempotently(self):
+        import gzip
+        from unittest.mock import patch
+        import collect_ishares_german as german
+        from apply_etf_collection import merge_collection
+        raw=json.loads(gzip.decompress((Path(__file__).parent/'fixtures/ishares-german-20261116/official.json.gz').read_bytes()))
+        share=next(s for s in json.loads((Path(__file__).parent/'exposure-etf-expansion.json').read_text())['instruments']if s['isin']=='DE0002635307')
+        now=dt.datetime(2026,11,16,tzinfo=dt.timezone.utc)
+        with patch.object(german,'get_json',return_value=raw):result=german.collect(share,now)
+        for key in ('countries','countriesRisk','sectors','holdings'):
+            self.assertEqual(result[key]['asOf'],'2026-11-13');self.assertEqual(result[key]['basis'],'fund')
+        self.assertIn({'name':'Jersey','weightPct':0.0},result['countriesRisk']['rows'])
+        self.assertEqual(len(result['holdings']['rows']),10)
+        self.assertIsNot(result['holdings'].get('complete'),True)
+        prior={share['isin']:{'currency':'EUR','productId':251931},'unrelated':{'preserved':'exact'}};before=copy.deepcopy(prior)
+        report={'checkedAt':now.isoformat(),'shares':[result]}
+        first=merge_collection(report,prior,{})
+        self.assertEqual(first,merge_collection(report,first,{}));self.assertEqual(prior,before)
+        self.assertEqual(first['unrelated'],prior['unrelated'])
+        self.assertEqual(first[share['isin']]['countriesRisk']['rows'],result['countriesRisk']['rows'])
+        for key,value in [('productId',1),('currencyCode','USD')]:
+            changed=copy.deepcopy(raw);changed[key]=value
+            with self.assertRaises(ValueError):german.normalize(changed)
+
     def test_wrong_share_and_incomplete_exposure_rejected(self):
         s={'isin':'IE00B3RBWM25'}
         with self.assertRaises(ValueError):qualify({'isin':'IE00BK5BQT80'},s)
