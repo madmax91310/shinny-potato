@@ -1,9 +1,10 @@
+import {leaderPath} from './leader-layout.js'
 import { modelNatureLabel } from '../../data/investor-models.js'
 import { holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
-import { publicationPlan, portfolioOwner, cash, POSTER, posterCash } from './publication.js'
+import { publicationPlan, portfolioOwner, cash, POSTER } from './publication.js'
 import { loadPortfolioFont, posterFont } from './type.js'
-import { companyInitials, portfolioPortrait, positionLogo } from './media.js'
+import { portfolioPortrait, positionLogo } from './media.js'
 
 const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'
 function text(ctx, value, x, y, width, size, color = INK, serif = false) {
@@ -22,130 +23,149 @@ function glass(ctx, x, y, w, h, radius = 24) {
   ctx.shadowBlur = 0; ctx.strokeStyle = 'rgba(215,241,255,.45)'; ctx.lineWidth = 1
   ctx.beginPath(); ctx.roundRect(x+7,y+7,w-14,h-14,Math.max(4,radius-5)); ctx.stroke(); ctx.restore()
 }
-// Wrap unusually wide wordmarks at a transparent word gap. Original glyphs
-// and proportions are preserved; no letter or logo is cropped to fit a card.
-const wordmarks = new WeakMap()
-function readableLogo(image) {
-  if(!image || image.width/image.height<6)return image
-  if(wordmarks.has(image))return wordmarks.get(image)
-  const probe=document.createElement('canvas');probe.width=Math.ceil(image.width);probe.height=Math.ceil(image.height)
-  const ctx=probe.getContext('2d');ctx.drawImage(image,0,0,probe.width,probe.height)
-  const {data}=ctx.getImageData(0,0,probe.width,probe.height),w=probe.width,h=probe.height
-  let best={start:0,end:0},start=null
-  for(let x=Math.floor(w*.3);x<=Math.ceil(w*.7);x++) {
-    let blank=true
-    for(let y=0;y<h;y++)if(data[(y*w+x)*4+3]>5){blank=false;break}
-    if(blank && start===null)start=x
-    if(!blank && start!==null){if(x-start>best.end-best.start)best={start,end:x};start=null}
+const prepared=new WeakMap()
+function transparentLogo(image) {
+  if(!image)return null
+  if(prepared.has(image))return prepared.get(image)
+  const scale=Math.min(/\.svg(?:\?|$)/.test(image.src || '')?Infinity:1,640/image.width,640/image.height),c=document.createElement('canvas')
+  c.width=Math.round(image.width*scale);c.height=Math.round(image.height*scale)
+  const x=c.getContext('2d');x.drawImage(image,0,0,c.width,c.height)
+  const pixels=x.getImageData(0,0,c.width,c.height),d=pixels.data
+  let border=0,white=0,gray=0,ink=0
+  for(let y=0;y<c.height;y++)for(let xx=0;xx<c.width;xx++) {
+    const i=(y*c.width+xx)*4
+    if(!xx||!y||xx===c.width-1||y===c.height-1){border++;if(d[i]>242&&d[i+1]>242&&d[i+2]>242&&d[i+3]>240)white++}
+    if(d[i+3]>32&&Math.min(d[i],d[i+1],d[i+2])<230){ink++;if(Math.max(d[i],d[i+1],d[i+2])-Math.min(d[i],d[i+1],d[i+2])<24)gray++}
   }
-  let result=image
-  if(best.end-best.start>=Math.max(2,w*.008)) {
-    const wrapped=document.createElement('canvas');wrapped.width=Math.max(best.start,w-best.end);wrapped.height=h*2+Math.ceil(h*.2)
-    const c=wrapped.getContext('2d')
-    c.drawImage(probe,0,0,best.start,h,(wrapped.width-best.start)/2,0,best.start,h)
-    c.drawImage(probe,best.end,0,w-best.end,h,(wrapped.width-w+best.end)/2,wrapped.height-h,w-best.end,h)
-    result=wrapped
+  const grayOnly=ink>0&&gray/ink>.96
+  if(white/border>.85) {
+    // Remove an opaque website matte, not the brand's white lettering.
+    // Monochrome wordmarks also have transparent letter counters.
+    const seen=new Uint8Array(c.width*c.height),queue=[]
+    const add=(xx,y)=>{if(xx<0||y<0||xx>=c.width||y>=c.height)return;const n=y*c.width+xx,i=n*4;if(!seen[n]&&Math.min(d[i],d[i+1],d[i+2])>242){seen[n]=1;queue.push(n)}}
+    if(grayOnly){for(let i=0;i<d.length;i+=4)if(Math.min(d[i],d[i+1],d[i+2])>242)d[i+3]=0}
+    else {for(let xx=0;xx<c.width;xx++){add(xx,0);add(xx,c.height-1)}for(let y=0;y<c.height;y++){add(0,y);add(c.width-1,y)}
+      for(let q=0;q<queue.length;q++){const n=queue[q],xx=n%c.width,y=Math.floor(n/c.width);d[n*4+3]=0;add(xx-1,y);add(xx+1,y);add(xx,y-1);add(xx,y+1)}}
+    x.putImageData(pixels,0,0)
   }
-  probe.width=probe.height=1;wordmarks.set(image,result);return result
+  let l=c.width,t=c.height,r=0,b=0
+  const alpha=x.getImageData(0,0,c.width,c.height).data,colors=new Map();let opaque=0,transparent=0
+  for(let i=0;i<alpha.length;i+=4){if(alpha[i+3]<32)transparent++;if(alpha[i+3]>220){opaque++;const key=[alpha[i],alpha[i+1],alpha[i+2]].map(v=>Math.round(v/24)).join(',');colors.set(key,(colors.get(key)||0)+1)}}
+  const mono=opaque>0&&transparent>c.width*c.height*.02&&Math.max(...colors.values())/opaque>.94
+  for(let y=0;y<c.height;y++)for(let xx=0;xx<c.width;xx++)if(alpha[(y*c.width+xx)*4+3]>24){l=Math.min(l,xx);r=Math.max(r,xx);t=Math.min(t,y);b=Math.max(b,y)}
+  const result=document.createElement('canvas');result.width=Math.max(1,r-l+1);result.height=Math.max(1,b-t+1)
+  result.getContext('2d').drawImage(c,l,t,result.width,result.height,0,0,result.width,result.height)
+  const rgba=result.getContext('2d').getImageData(0,0,result.width,result.height).data,points=[]
+  for(let y=0;y<result.height;y+=6)for(let xx=0;xx<result.width;xx+=6)if(rgba[(y*result.width+xx)*4+3]>40)points.push([xx-result.width/2,y-result.height/2])
+  const value={image:result,mono,points};prepared.set(image,value);c.width=c.height=1;return value
 }
+const lightness=color=>{const v=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return v[0]*.2126+v[1]*.7152+v[2]*.0722}
 
-// The displayed preview is this very PNG; there is no separate CSS approximation.
+// One code-generated PNG is used unchanged by the preview and every download.
 export async function renderPortfolioImage(portfolio) {
-  if (portfolio?.kind === 'model') return renderModelImage(portfolio)
-  if (!portfolio) throw new Error('Charge un portefeuille avant de créer le visuel.')
-  const plan=publicationPlan(portfolio), owner=portfolioOwner(portfolio)
+  if(portfolio?.kind==='model')return renderModelImage(portfolio)
+  if(!portfolio)throw Error('Charge un portefeuille avant de créer le visuel.')
+  const plan=publicationPlan(portfolio),owner=portfolioOwner(portfolio)
   const [,portrait,logos]=await Promise.all([loadPortfolioFont(),portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait),Promise.all(plan.entries.map(positionLogo))])
   const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350
-  const ctx=canvas.getContext('2d');if(!ctx)throw new Error('Impossible de créer le visuel.')
-  const ink='#17191d',green='#16852f',bg='#f5f4f0'
+  const ctx=canvas.getContext('2d');if(!ctx)throw Error('Impossible de créer le visuel.')
+  const bg='#d7d7d7',ink='#080808',green='#006d26'
   ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350)
-  function label(value,x,y,size=34,color=ink,align='left',weight=750) {
+  function label(value,x,y,size=36,color=ink,align='center',weight=850) {
     ctx.font=posterFont(size,weight);ctx.fillStyle=color;ctx.textAlign=align;ctx.fillText(value,x,y)
   }
-  function wrap(value,width,size,maxLines=2) {
-    ctx.font=posterFont(size)
-    const lines=[];let line=''
-    for(let word of String(value).split(/\s+/)) {
-      // Do not strand a final letter on its own line (Coreweav / e).
-      // A deliberate ellipsis keeps the name legible at the fixed type size.
-      if(ctx.measureText(word).width>width) {
-        while(word && ctx.measureText(word+'…').width>width)word=word.slice(0,-1)
-        word+='…'
-      }
-      if(line && ctx.measureText(line+' '+word).width>width){lines.push(line);line=''}
-      line=line?line+' '+word:word
-    }
-    if(line.trim())lines.push(line.trim())
-    if(lines.length>maxLines){lines.length=maxLines;let last=lines[maxLines-1].trim();while(ctx.measureText(last+'…').width>width)last=last.slice(0,-1);lines[maxLines-1]=last+'…'}
-    return lines.map(l=>l.trim())
-  }
-  let titleSize=86
-  ctx.font=posterFont(titleSize,850)
-  while(ctx.measureText(owner).width>980 && titleSize>62){titleSize-=2;ctx.font=posterFont(titleSize,850)}
-  const title=wrap(owner,980,titleSize)
-  title.forEach((line,i)=>label(line,540,110+i*72,titleSize,green,'center',850))
-  const headerY=title.length>1?236:178
-  label('Son portefeuille',540,headerY,46,ink,'center',800)
-  const date=new Date(portfolio.snapshot.periodEnd+'T12:00:00Z'),quarter=Math.ceil((date.getUTCMonth()+1)/3)
-  label(`${quarter===1?'1er':quarter+'e'} trimestre ${date.getUTCFullYear()}`,540,headerY+44,32,ink,'center',550)
-  // A single secondary line, never a stack of legal names.
-  const fund=portfolio.identity.entityName || ''
-  if(title.length===1 && fund.toLowerCase()!==owner.toLowerCase())wrap(fund,980,25,1).forEach(line=>label(line,540,headerY+79,25,'#565b61','center',500))
-  const {cx,cy,outer,inner}=POSTER
-  plan.entries.forEach(entry=>{
-    ctx.beginPath();ctx.arc(cx,cy,outer,entry.start,entry.end);ctx.arc(cx,cy,inner,entry.end,entry.start,true);ctx.closePath();ctx.fillStyle=entry.color;ctx.fill()
-    // No minimum sector width or seam can erase a sub-pixel holding.
+  let titleSize=94;ctx.font=posterFont(titleSize,900)
+  while(ctx.measureText(owner).width>1000&&titleSize>60){titleSize-=2;ctx.font=posterFont(titleSize,900)}
+  const title=[];let line=''
+  for(const word of owner.split(/\s+/)){if(line&&ctx.measureText(line+' '+word).width>1000){title.push(line);line=''}line=line?line+' '+word:word}if(line)title.push(line)
+  title.forEach((line,i)=>label(line,540,(title.length>1?82:108)+i*65,titleSize,'#008c30','center',900))
+  const date=new Date(portfolio.snapshot.periodEnd+'T12:00:00Z')
+  label(`Portefeuille · T${Math.ceil((date.getUTCMonth()+1)/3)} ${date.getUTCFullYear()}`,540,title.length>1?218:190,title.length>1?48:55,ink,'center',900)
+  const {cx,cy,outer,inner,badgeRadius:br}=POSTER
+  plan.entries.forEach((e,i)=>{
+    ctx.beginPath();ctx.arc(cx,cy,outer,e.start,e.end);ctx.arc(cx,cy,inner,e.end,e.start,true);ctx.closePath();ctx.fillStyle=e.color;ctx.fill()
+    const prior=plan.entries[(i+plan.entries.length-1)%plan.entries.length]
+    if(e.weight>=.003&&prior.weight>=.003){ctx.strokeStyle=bg;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.start)*inner,cy+Math.sin(e.start)*inner);ctx.lineTo(cx+Math.cos(e.start)*outer,cy+Math.sin(e.start)*outer);ctx.stroke()}
   })
-  ctx.fillStyle='#e5e6df';ctx.beginPath();ctx.arc(cx,cy,inner,0,Math.PI*2);ctx.fill()
-  // A verified cutout can cross the inner edge by 16px. Its full aspect ratio
-  // and face remain intact; sector logos and badges are outside this footprint.
+  const occupied=new Uint8Array(1080*1350)
   if(portrait.image) {
-    const photo=portrait.image,k=Math.min((inner*2+26)/photo.width,(inner*2+45)/photo.height)
-    ctx.drawImage(photo,cx-photo.width*k/2,cy+inner-photo.height*k,photo.width*k,photo.height*k)
-  } else label(companyInitials(owner),cx,cy+28,82,green,'center',850)
-  function mark(source,row,x,y,width,height,support) {
-    const image=readableLogo(source)
-    ctx.fillStyle=image&&support==='dark'?ink:'#fff';ctx.beginPath();ctx.roundRect(x,y,width,height,10);ctx.fill()
-    if(image){const k=Math.min((width-12)/image.width,(height-12)/image.height);ctx.drawImage(image,x+(width-image.width*k)/2,y+(height-image.height*k)/2,image.width*k,image.height*k)}
-    else label(row.other?'…':companyInitials(row.label),x+width/2,y+height/2+11,30,ink,'center',800)
+    const image=portrait.image,k=Math.min(600/image.width,530/image.height)
+    const left=cx-image.width*k/2,top=cy+inner+40-image.height*k
+    const mask=document.createElement('canvas');mask.width=1080;mask.height=1350
+    const m=mask.getContext('2d');m.beginPath();m.arc(cx,cy,inner+20,0,Math.PI*2);m.rect(0,0,1080,cy+60);m.clip();m.drawImage(image,left,top,image.width*k,image.height*k)
+    ctx.drawImage(mask,0,0)
+    const pixels=m.getImageData(0,0,1080,1350).data
+    for(let i=0;i<occupied.length;i++)if(pixels[i*4+3]>12)occupied[i]=1
+    mask.width=mask.height=1
+  } else {
+    const words=owner.split(/\s+/),lines=[];let current=''
+    ctx.font=posterFont(40,800)
+    for(const word of words){if(current&&ctx.measureText(current+' '+word).width>330){lines.push(current);current=''}current=current?current+' '+word:word}if(current)lines.push(current)
+    lines.forEach((line,i)=>label(line,cx,cy+(i-(lines.length-1)/2)*48+14,40,ink,'center',800))
   }
-  plan.entries.forEach((entry,i)=>{
-    const {x,y}=entry,align=entry.side==='left'?'left':'right',tx=entry.side==='left'?x:x+172
-    const names=wrap(entry.label,172,34)
-    names.forEach((line,j)=>label(line,tx,y+30+j*35,34,green,align,800))
-    label(posterCash(entry.value,plan.currency),tx,y+102,30,ink,align,750)
-    const badgeWidth=entry.weight>=.999?136:118,badgeX=entry.side==='left'?x:x+172-badgeWidth,badgeY=y+112
-    ctx.fillStyle=entry.color;ctx.beginPath();ctx.roundRect(badgeX,badgeY,badgeWidth,36,18);ctx.fill()
-    // Dark text on a pale badge retains a visible, identical color key.
-    ctx.fillStyle='#ffffffdf';ctx.beginPath();ctx.roundRect(badgeX+3,badgeY+3,badgeWidth-6,30,15);ctx.fill()
-    label(percentage(entry.weight),badgeX+badgeWidth/2,badgeY+28,30,ink,'center',800)
-    const image=logos[i].image
-    if(entry.inside && !entry.other) {
-      const r=257,px=cx+Math.cos(entry.mid)*r,py=cy+Math.sin(entry.mid)*r
-      const width=Math.min(118,2*r*Math.sin(Math.min(Math.PI/2,entry.weight*Math.PI))-20)
-      mark(image,entry,px-width/2,py-40,width,80,logos[i].identity?.support)
-    } else if(!entry.other) {
-      if(names.length===1)mark(image,entry,x+41,y+41,90,32,logos[i].identity?.support)
-      else {const mx=entry.side==='left'?x+124:x;mark(image,entry,mx,badgeY-4,48,44,logos[i].identity?.support)}
-    }
-    // Logos and the same colored percentage rim identify sectors directly.
-    // No peripheral cards or long leader lines compete with the ring.
-    if(entry.weight<.001) {
-      const ax=cx+Math.cos(entry.mid)*(outer+3),ay=cy+Math.sin(entry.mid)*(outer+3)
-      const ex=entry.side==='left'?x+178:x-6,ey=entry.y+74
-      if(Math.hypot(ex-ax,ey-ay)<90){ctx.strokeStyle=entry.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ex,ey);ctx.stroke()}
+  for(const e of plan.entries)for(let y=Math.floor(e.badge.y-br-5);y<=e.badge.y+br+5;y++)for(let x=Math.floor(e.badge.x-br-5);x<=e.badge.x+br+5;x++)if(Math.hypot(x-e.badge.x,y-e.badge.y)<br+5)occupied[y*1080+x]=1
+  const extraLogos=[]
+  plan.entries.forEach((e,i)=>{
+    const logo=transparentLogo(logos[i].image)
+    if(logo&&!e.other) {
+      const image=logo.image,ratio=image.width/image.height
+      let placement=null
+      for(const width of [270,240,220,200,190,175,160,145,130,115,100,85,70,60]) {
+        const k=Math.min(width/image.width,150/image.height)
+        if(image.width*k<56||image.height*k<26)continue
+        logoSearch: for(const r of [270,286,305,325])for(const turn of [0,-.05,.05,-.1,.1])for(const radial of ratio>2.6?[true,false]:[false]) {
+          let a=radial?e.mid+turn:0;if(radial&&Math.cos(a)<0)a+=Math.PI
+          const c=Math.cos(a),sn=Math.sin(a),x=cx+Math.cos(e.mid+turn)*r,y=cy+Math.sin(e.mid+turn)*r
+          const fits=logo.points.every(([px,py])=>{
+            const xx=x+(px*c-py*sn)*k,yy=y+(px*sn+py*c)*k,d=Math.hypot(xx-cx,yy-cy)
+            const da=Math.abs(Math.atan2(Math.sin(Math.atan2(yy-cy,xx-cx)-e.mid),Math.cos(Math.atan2(yy-cy,xx-cx)-e.mid)))
+            return d>inner+8&&d<outer-6&&da<e.weight*Math.PI-.006&&!occupied[Math.round(yy)*1080+Math.round(xx)]
+          })
+          if(fits){placement={x,y,a,k};break logoSearch}
+        }
+        if(placement)break
+      }
+      let external=false
+      if(!placement) {
+        const k=Math.min(112/image.width,68/image.height),w=image.width*k,h=image.height*k
+        if(w>=56&&h>=26)externalSearch: for(const x of [e.box.x-w-12,e.box.x+e.box.width+12,e.box.x+(e.box.width-w)/2])for(const y of [e.box.y,e.box.y-h-10,e.box.y+e.box.height+10]) {
+          const overlaps=b=>x<b.x+b.width+7&&x+w+7>b.x&&y<b.y+b.height+7&&y+h+7>b.y
+          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps))continue
+          if(Math.hypot(cx-Math.max(x,Math.min(cx,x+w)),cy-Math.max(y,Math.min(cy,y+h)))<outer+6)continue
+          placement={x:x+w/2,y:y+h/2,a:0,k};extraLogos.push({x,y,width:w,height:h});external=true;break externalSearch
+        }
+      }
+      if(placement) {
+        const {x,y,a,k}=placement,paint=document.createElement('canvas');paint.width=image.width;paint.height=image.height
+        const p=paint.getContext('2d');p.drawImage(image,0,0)
+        if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=!external&&lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
+        ctx.save();ctx.translate(x,y);ctx.rotate(a)
+        if(!logo.mono&&!external){ctx.shadowColor='rgba(255,255,255,.65)';ctx.shadowBlur=3}
+        ctx.drawImage(paint,-image.width*k/2,-image.height*k/2,image.width*k,image.height*k);ctx.restore();paint.width=paint.height=1
+        const c=Math.cos(a),sn=Math.sin(a)
+        for(const [px,py] of logo.points){const xx=Math.round(x+(px*c-py*sn)*k),yy=Math.round(y+(px*sn+py*c)*k);for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++)if(xx+dx>=0&&xx+dx<1080&&yy+dy>=0&&yy+dy<1350)occupied[(yy+dy)*1080+xx+dx]=1}
+      }
     }
   })
-  const totalLabel='Valeur des positions déclarées',amount=cash(plan.total,plan.currency)
-  ctx.font=posterFont(30,600);const a=ctx.measureText(totalLabel).width
-  ctx.font=posterFont(44,850);const b=ctx.measureText(amount).width
-  const left=(1080-a-b-22)/2
-  label(totalLabel,left,1185,30,ink,'left',600);label(amount,left+a+22,1185,44,ink,'left',850)
-  if(portrait.image && /^CC BY/.test(portrait.license)) {
-    const credit=`Photo : ${portrait.author} · ${portrait.license} · détourée`
-    wrap(credit,992,22,2).forEach((line,i)=>label(line,540,1230+i*26,22,'#565b61','center',500))
-  }
-  label('Épargnant libre',540,1310,32,ink,'center',650)
+  const leaders=[]
+  plan.entries.forEach(e=>{
+    const {badge,box}=e
+    // Only ambiguous displaced associations receive a short connector.
+    if(Math.abs(Math.atan2(Math.sin(e.badgeAngle-e.mid),Math.cos(e.badgeAngle-e.mid)))>.015) {
+      ctx.strokeStyle=e.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.mid)*(outer-2),cy+Math.sin(e.mid)*(outer-2));ctx.lineTo(badge.x,badge.y);ctx.stroke()
+    }
+    const leader=leaderPath(e,plan.entries,POSTER,extraLogos,leaders)
+    if(leader){leaders.push(leader);ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();leader.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke()}
+    ctx.fillStyle=e.color;ctx.beginPath();ctx.arc(badge.x,badge.y,br,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#161616';ctx.lineWidth=2.5;ctx.stroke()
+    const pct=percentage(e.weight).replace(/\s/g,'')
+    let size=32;ctx.font=posterFont(size,900);while(ctx.measureText(pct).width>br*1.72&&size>25){size--;ctx.font=posterFont(size,900)}
+    label(pct,badge.x,badge.y+size*.35,size,lightness(e.color)<.179?'#fff':ink,'center',900)
+    box.lines.forEach((line,j)=>label(line,box.x+box.width/2,box.y+34+j*40,36,green,'center',850))
+    label(box.amount,box.x+box.width/2,box.y+box.lines.length*40+34,34,ink,'center',850)
+  })
+  label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
+  if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
+  label('Épargnant libre',540,1343,27,ink,'center',750)
   return canvas.toDataURL('image/png')
 }
 

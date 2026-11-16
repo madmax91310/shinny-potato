@@ -18,8 +18,14 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
   for(const entry of plan.entries) {
     assert.equal(entry.weight,entry.value/plan.total)
     assert(Math.abs((entry.end-entry.start)/(2*Math.PI)-entry.weight)<1e-12)
-    assert(entry.y>=POSTER.top && entry.y+entry.height<=POSTER.bottom)
-    for(const next of plan.entries)if(next!==entry&&next.side===entry.side)assert(entry.y+entry.height<=next.y||next.y+next.height<=entry.y)
+    const b=entry.box
+    assert(b.x>=20 && b.x+b.width<=1060 && b.y>=POSTER.top && b.y+b.height<=POSTER.bottom)
+    assert.equal(entry.badge.radius,POSTER.badgeRadius)
+    for(const next of plan.entries)if(next!==entry){
+      const c=next.box
+      assert(b.x+b.width<=c.x || c.x+c.width<=b.x || b.y+b.height<=c.y || c.y+c.height<=b.y,'Label collision')
+      assert(Math.hypot(entry.badge.x-next.badge.x,entry.badge.y-next.badge.y)>=2*POSTER.badgeRadius,'Badge collision')
+    }
   }
   const tweet=buildTweet(portfolio)
   assert.equal(tweet.split('👇').length,2)
@@ -71,3 +77,47 @@ const nearGreens=colorPositions([{displayLabel:'Nvidia',cusip:'67066G104'},{disp
 assert.equal(positionColor({displayLabel:'Cerebras Systems Inc',cusip:'15675D103'}),'#68882b')
 const rgb=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16))
 assert(Math.hypot(...rgb(nearGreens[0].color).map((v,i)=>v-rgb(nearGreens[1].color)[i]))>=95,'Near greens need a contrasting replacement')
+
+// Actual principal portfolios keep named positions without a fixed eight-line cap.
+const {readFileSync}=await import('node:fs')
+for(const slug of ['berkshire','tepper']) {
+  const p=normalizePortfolio(JSON.parse(readFileSync(`public/data/investors/${slug}.json`,'utf8')))
+  if(p.problem){assert.throws(()=>publicationPlan(p));continue}
+  const plan=publicationPlan(p)
+  // Pin this density regression to the reviewed filings, not future disclosures.
+  const reviewedTotal={berkshire:299253556246,tepper:7471257999}[slug]
+  if(p.snapshot.periodEnd==='2026-06-30' && plan.total===reviewedTotal)assert(plan.entries.filter(e=>!e.other).length>=9)
+  assert(plan.entries.every(e=>!['M','C','OP'].includes(e.label)))
+  assert.equal(publicationPlan(p),plan,'Reuse the deterministic layout')
+  p.holdings[0].value+=1
+  const revised=publicationPlan(p)
+  assert.equal(revised.total,plan.total+1,'Updated values invalidate the layout cache')
+}
+assert.equal(shortPosition({issuerName:'INDIVIOR PHARMACEUTICALS INC',cusip:'45579U109'}),'Indivior')
+
+// New reviewed issuer assets and the investor-only Alphabet variant retain provenance.
+const {createHash}=await import('node:crypto')
+for(const issuerName of ['MOODYS CORP','CHUBB LIMITED','OCCIDENTAL PETE CORP','VISTRA CORP','ISHARES INC','ALPHABET INC','META PLATFORMS INC']) {
+  const identity=logoIdentity({issuerName,...(issuerName==='ISHARES INC'?{cusip:'464286772'}:issuerName==='ALPHABET INC'?{cusip:'02079K305'}:issuerName==='META PLATFORMS INC'?{cusip:'30303M102'}:{})})
+  assert(identity,issuerName)
+  const source=identity.investorVariant || identity
+  assert(source.source.startsWith('https://'))
+  assert.equal(createHash('sha256').update(readFileSync(`public/asset-art/${source.file}`)).digest('hex'),source.sha256)
+}
+
+// Regression: the old straight Moody's leader crossed Chubb's two text lines.
+const {leaderPath}=await import('../src/pages/investor-portfolio/leader-layout.js')
+const moody={badge:{x:164,y:584,radius:50},box:{x:20,y:332,width:181,height:80}}
+const chubb={badge:{x:141,y:692,radius:50},box:{x:20,y:440,width:150,height:80}}
+const route=leaderPath(moody,[moody,chubb],POSTER)
+assert(route?.length>=3,'Route around the intervening name')
+for(let i=1;i<route.length;i++) {
+  const a=route[i-1],b=route[i]
+  // Exact intersection with the vertical span occupied by the intervening text.
+  const lo=Math.max(0,Math.min((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
+  const hi=Math.min(1,Math.max((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
+  if(lo<hi)for(const t of [lo,(lo+hi)/2,hi])assert(a.x+(b.x-a.x)*t<20 || a.x+(b.x-a.x)*t>170)
+}
+
+assert.equal(shortPosition({displayLabel:'TSMC',issuerName:'TAIWAN SEMICONDUCTOR'}),'TSMC')
+assert.equal(shortPosition({displayLabel:'Liberty Live Group I (53033H101)',issuerName:'LIBERTY LIVE GROUP INC',cusip:'53033H101',shareClass:'COM SER A'}),'Liberty Live A')

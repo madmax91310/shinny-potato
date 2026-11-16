@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
-import {parseEtoroPublic} from './lib/etoro-public.mjs';
+import {parseEtoroPublic, isEtoroVerificationUrl, ETORO_RESTRICTED_EXIT_CODE} from './lib/etoro-public.mjs';
+assert.equal(ETORO_RESTRICTED_EXIT_CODE,77,'Collector access-restriction protocol');
+assert(isEtoroVerificationUrl('https://geo.captcha-delivery.com/captcha/?challenge=TEST_FICTIF'));
+for(const value of ['https://www.etoro.com/people/TEST_FICTIF/stats','https://captcha-delivery.com.evil.test/captcha','https://www.etoro.com/?next=https://geo.captcha-delivery.com/captcha','invalid'])assert.equal(isEtoroVerificationUrl(value),false);
 const fixture=()=>({username:'TEST_FICTIF',identity:{username:'TEST_FICTIF',realCID:1},consulted:'2026-11-16',names:[{id:10,name:'TEST FICTIF A'},{id:20,name:'TEST FICTIF B'}],portfolio:{AggregatedPositions:[{InstrumentID:10,Direction:'Buy',Value:60},{InstrumentID:20,Direction:'Buy',Value:40}],AggregatedMirrors:[],CreditByUnrealizedEquity:0},stats:{dataComponentsResponse:[{type:'Performance',componentData:{firstActivity:'2018-01-01T00:00:00Z',monthly:{2026:Object.fromEntries(Array.from({length:11},(_,i)=>[i+1,{gain:i===0?10:i===1?-10:i===10?99:0,isSimulation:false}]))}}}]}});
 const input=fixture(),before=JSON.stringify(input),result=parseEtoroPublic(input);
 assert.equal(JSON.stringify(input),before);

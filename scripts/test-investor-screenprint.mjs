@@ -44,6 +44,20 @@ try {
     if(result.png){await writeFile(`${out}/${id}.png`,Buffer.from(result.png.split(',')[1],'base64'));delete result.png}
     results.push(result)
   }
+  // An explicitly sourced historical illustration never changes corporate ownership.
+  await page.evaluate(async()=>{
+    const {portfolioPortrait}=await import('/shinny-potato/src/pages/investor-portfolio/media.js')
+    const {portfolioOwner}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+    const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
+    const manifest=await(await fetch('/shinny-potato/data/investors/media/manifest.json')).json()
+    const p=normalizePortfolio(await(await fetch('/shinny-potato/data/investors/berkshire.json')).json())
+    const portrait=await portfolioPortrait(p.identity,manifest.berkshire)
+    if(!portrait.image||portrait.person!=='Warren Buffett'||portfolioOwner(p)!=='Berkshire Hathaway')throw Error('Historical illustration/ownership')
+    const wrong=await portfolioPortrait(p.identity,{...manifest.berkshire,person:'Homonyme'})
+    if(wrong.image)throw Error('Unverified historical portrait accepted')
+    const entity=await portfolioPortrait({slug:'gates-trust',displayName:'Gates Foundation Trust'},manifest['gates-trust'])
+    if(entity.image)throw Error('Historical exception leaked to another entity')
+  })
   // The actual paginated Canvas must keep each security's name, identifiers and
   // monetary line together. Reproduce the orphaned Monro/Gayner amounts from the audit.
   for(const slug of ['icahn','gayner','tepper']) {
@@ -51,7 +65,8 @@ try {
     await page.evaluate(async payload=>{
       const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
       const {renderDetailedPages}=await import('/shinny-potato/src/pages/investor-portfolio/exports.js')
-      const {labelLines,reportedAmount,weightLabel}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+      const {reportedAmount,weightLabel}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+      const {labelLines}=await import('/shinny-potato/src/pages/investor-portfolio/detail-labels.js')
       const portfolio=normalizePortfolio(payload),draws=new Map(),original=CanvasRenderingContext2D.prototype.fillText
       CanvasRenderingContext2D.prototype.fillText=function(value,...args){const rows=draws.get(this.canvas)||[];rows.push(value);draws.set(this.canvas,rows);return original.call(this,value,...args)}
       try { await renderDetailedPages(portfolio) } finally { CanvasRenderingContext2D.prototype.fillText=original }
@@ -82,6 +97,11 @@ try {
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
     await page.screenshot({path:`${out}/mobile-image-${width}.png`,fullPage:true})
     await page.getByRole('tab',{name:'Texte',exact:true}).click()
+    const detailSummary=page.getByText('Détail intégral · 3 positions',{exact:true})
+    await detailSummary.click()
+    await page.waitForFunction(()=>[...document.querySelectorAll('details')].some(d=>d.open&&d.querySelector('summary')?.textContent==='Détail intégral · 3 positions'&&d.querySelectorAll('p').length===3))
+    assert((await detailSummary.locator('..').innerText()).includes('037833100'))
+    await detailSummary.click()
     const [json]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger le détail JSON et les crédits'}).click()]);await json.saveAs(`${out}/detail-${width}.json`)
     assert.equal(JSON.parse(await readFile(`${out}/detail-${width}.json`,'utf8')).holdings.length,3)
     const [zip]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger les PNG détaillés (ZIP)'}).click()]);await zip.saveAs(`${out}/detail-${width}.zip`)

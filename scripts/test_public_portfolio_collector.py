@@ -1,6 +1,7 @@
 """Synthetic transport/schema fixtures; no test investor is shipped in the reserve."""
 import copy
 import json
+import subprocess
 import unittest
 from unittest.mock import patch
 from public_portfolio_collector import parse_getquin, collect_entry, permitted_url
@@ -23,6 +24,38 @@ def dashboard(value):
     return value['props']['initialState']['dashboard']['dashboards']['TestOnly']
 
 class PublicPortfolioCollectorTest(unittest.TestCase):
+    def test_access_challenge_stops_etoro_only_and_preserves_last_observations(self):
+        entry = {'id':'test-only-etoro','platform':'eToro','pseudo':'TEST_FICTIF','url':'https://www.etoro.com/people/TEST_FICTIF/stats'}
+        previous = {'lastSuccessAt': NOW, 'observation': {'id':'synthetic-last-valid','positions':[{'name':'TEST FICTIF','weight':100}]}}
+        blocked = set()
+        with patch('public_portfolio_collector.subprocess.check_output', side_effect=subprocess.CalledProcessError(77, ['synthetic-reader'])) as browser:
+            first = collect_entry(entry, previous, '2026-11-17T06:00:00Z', restricted_platforms=blocked)
+            second = collect_entry(entry, previous, '2026-11-17T06:00:01Z', restricted_platforms=blocked)
+            other = collect_entry(SOURCE, {}, NOW, fetch=lambda _: html(fixture()), restricted_platforms=blocked)
+        self.assertEqual(browser.call_count, 1, 'Never open another eToro browser after the access restriction')
+        self.assertEqual(blocked, {'eToro'})
+        for result in [first, second]:
+            self.assertEqual(result['observation'], previous['observation'])
+            self.assertEqual(result['lastSuccessAt'], NOW)
+            self.assertIn('vérification d’accès', result['error'])
+        self.assertFalse(other['error'], 'Other public platforms still refresh independently')
+
+    def test_exhausted_collection_budget_preserves_data_without_another_request(self):
+        previous = {'lastSuccessAt': NOW, 'observation': {'id': 'synthetic-last-valid', 'positions': [{'name': 'TEST FICTIF', 'weight': 100}]}}
+        with patch('public_portfolio_collector.time.monotonic', return_value=10), patch('public_portfolio_collector.subprocess.check_output') as browser:
+            failed = collect_entry(SOURCE, previous, '2026-11-17T06:00:00Z', fetch=lambda _: self.fail('No further request after the deadline'), deadline=9)
+        browser.assert_not_called()
+        self.assertEqual(failed['observation'], previous['observation'])
+        self.assertEqual(failed['lastSuccessAt'], NOW)
+        self.assertEqual(failed['attemptedAt'], '2026-11-17T06:00:00Z')
+        self.assertIn('durée', failed['error'])
+
+    def test_browser_timeout_uses_the_remaining_collection_budget(self):
+        entry = {'id':'test-only-etoro','platform':'eToro','pseudo':'TEST_FICTIF','url':'https://www.etoro.com/people/TEST_FICTIF/stats'}
+        with patch('public_portfolio_collector.time.monotonic', return_value=10), patch('public_portfolio_collector.subprocess.check_output', return_value=json.dumps({'source': entry['url'], 'positions': []})) as browser:
+            collect_entry(entry, {}, NOW, deadline=12)
+        self.assertEqual(browser.call_args.kwargs['timeout'], 2)
+
     def test_etoro_browser_failure_retains_previous_data(self):
         entry = {'id':'test-only-etoro','platform':'eToro','pseudo':'TEST_FICTIF','url':'https://www.etoro.com/people/TEST_FICTIF/stats'}
         previous = {'lastSuccessAt': NOW, 'observation': {'id':'synthetic-last-valid','positions':[{'name':'TEST FICTIF','weight':100}]}}
