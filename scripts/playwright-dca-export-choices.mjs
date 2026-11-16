@@ -50,7 +50,7 @@ try{
   const {renderImageSeries}=await import('/shinny-potato/src/pages/dca-profiles/image-series.js')
   const {newManualLine}=await import('/shinny-potato/src/pages/dca-profiles/placements.js')
   const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'))
-  const ctx=document.createElement('canvas').getContext('2d');ctx.font='400 46px Arial'
+  const ctx=document.createElement('canvas').getContext('2d');ctx.font='600 56px Arial'
   const run=(profile)=>radialDonutLayout(profile.lines.map(l=>({name:l.label,weight:l.weight})),s=>ctx.measureText(s).width)
   const plan=run(saved.profile)
   const overlap=(a,b)=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top
