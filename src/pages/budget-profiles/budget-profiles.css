@@ -33,3 +33,7 @@
 .budget-profiles-scope .budget-image-pages button{min-height:44px}
 .budget-profiles-scope .budget-image-pages [aria-pressed=true]{outline:2px solid #267863;outline-offset:2px}
 .budget-profiles-scope .budget-image-count{font-weight:600}
+
+.budget-publication-selection ul { list-style: none; padding: 0; display: grid; gap: .7rem; }
+.budget-publication-selection .budget-check { align-items: flex-start; }
+.budget-publication-selection span { min-width: 0; }

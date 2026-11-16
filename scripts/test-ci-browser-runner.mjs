@@ -1,12 +1,19 @@
 import assert from 'node:assert/strict'
+import { browserCheckTimeoutMs, schedulingDurations } from './browser-check-config.mjs'
 import {mkdtemp,mkdir,copyFile,writeFile,readFile,rm,access} from 'node:fs/promises'
 import {tmpdir} from 'node:os'
 import {join} from 'node:path'
 import {spawnSync} from 'node:child_process'
+assert.equal(browserCheckTimeoutMs('slow',{slow:1000}),1800000)
+assert.equal(browserCheckTimeoutMs('new',{}),300000)
+const config={seconds:{old:120},schedulingSeconds:{old:999}}
+assert.equal(browserCheckTimeoutMs('old',config.seconds),360000)
+assert.deepEqual(schedulingDurations(config),{old:999})
+assert.deepEqual(schedulingDurations({seconds:{old:120}}),{old:120})
 const directory=await mkdtemp(join(tmpdir(),'browser-runner-'))
 try{
  await mkdir(join(directory,'lib'))
- for(const file of ['run-browser-checks.mjs','browser-shards.mjs','browser-check-error.mjs','lib/bounded-command.mjs'])await copyFile(new URL(file,import.meta.url),join(directory,file))
+ for(const file of ['run-browser-checks.mjs','browser-shards.mjs','browser-check-config.mjs','browser-check-error.mjs','lib/bounded-command.mjs'])await copyFile(new URL(file,import.meta.url),join(directory,file))
  const fail='node -e "process.exit(7)"',later='node -e "require(\'fs\').writeFileSync(\'unexpected\',\'ran\')"'
  await writeFile(join(directory,'ci-browser-checks.json'),JSON.stringify([fail,later]))
  await writeFile(join(directory,'ci-browser-durations.json'),JSON.stringify({seconds:{[fail]:2,[later]:1}}))

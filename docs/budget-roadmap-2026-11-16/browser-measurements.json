@@ -1,0 +1,662 @@
+{
+  "run": 43821651933,
+  "selectedCode": "b423d25e2be9adb7893784d84430c434e7693649",
+  "source": "https://github.com/madmax91310/shinny-potato/actions/runs/43821651933",
+  "successfulCommandReceipts": [
+    {
+      "shard": 1,
+      "command": "node scripts/test-anniversary-logos.mjs",
+      "seconds": 349.3
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-budget-profiles.mjs 1440 0 2",
+      "seconds": 123.8
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-export-copy.mjs",
+      "seconds": 139.3
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-equity-monthly.mjs",
+      "seconds": 92.7
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-publication-studio.mjs",
+      "seconds": 45.1
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-automation-failures-ui.mjs",
+      "seconds": 28.6
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-publication.mjs",
+      "seconds": 31.1
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-portfolio-roadmap.mjs",
+      "seconds": 26.0
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-removed-ai.mjs",
+      "seconds": 38.1
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-dca-usage-storage.mjs",
+      "seconds": 23.3
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-tool-links.mjs",
+      "seconds": 19.0
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-presentations-ui.mjs",
+      "seconds": 16.7
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-preference-integrity.mjs",
+      "seconds": 15.4
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-budget-social-image.mjs 1 4",
+      "seconds": 186.1
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-publication-expansion.mjs",
+      "seconds": 107.4
+    },
+    {
+      "shard": 1,
+      "command": "BUDGET_BATCH=previous BUDGET_PART=0/2 node scripts/playwright-budget-new-profiles.mjs 1440",
+      "seconds": 18.8
+    },
+    {
+      "shard": 1,
+      "command": "BUDGET_BATCH=qualified BUDGET_PART=0/2 node scripts/playwright-budget-new-profiles.mjs 390",
+      "seconds": 31.5
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-performance-export.mjs",
+      "seconds": 67.4
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-cobalt-home.mjs",
+      "seconds": 14.0
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-household-sculpture.mjs",
+      "seconds": 12.5
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/playwright-lifestrategy.mjs",
+      "seconds": 11.3
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-presentations.mjs",
+      "seconds": 0.8
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-purchasing-power-editorial.mjs",
+      "seconds": 0.3
+    },
+    {
+      "shard": 1,
+      "command": "node scripts/test-automation-overview.mjs",
+      "seconds": 0.0
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-performance-links.mjs",
+      "seconds": 703.7
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-budget-profiles.mjs 1440 1 2",
+      "seconds": 243.7
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/test-index-ribbon.mjs",
+      "seconds": 60.7
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-publication-actions.mjs",
+      "seconds": 46.5
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/test-dca-images.mjs",
+      "seconds": 35.1
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-nasdaq-total-return.mjs",
+      "seconds": 26.2
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/test-etf-art.mjs",
+      "seconds": 25.6
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/test-purchasing-power-receipt.mjs",
+      "seconds": 21.5
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-dca-roadmap.mjs",
+      "seconds": 20.8
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-live-data-connections.mjs --discovered",
+      "seconds": 19.3
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-dca-eight.mjs",
+      "seconds": 24.3
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/test-image-density.mjs && node scripts/playwright-image-density.mjs",
+      "seconds": 20.1
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-market-stories.mjs --additions",
+      "seconds": 43.5
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-radar-retirement.mjs",
+      "seconds": 6.6
+    },
+    {
+      "shard": 0,
+      "command": "BUDGET_BATCH=qualified BUDGET_PART=1/2 node scripts/playwright-budget-new-profiles.mjs 1440",
+      "seconds": 37.1
+    },
+    {
+      "shard": 0,
+      "command": "BUDGET_BATCH=previous BUDGET_PART=1/2 node scripts/playwright-budget-new-profiles.mjs 320",
+      "seconds": 24.2
+    },
+    {
+      "shard": 0,
+      "command": "BUDGET_BATCH=complementary node scripts/playwright-budget-new-profiles.mjs 390",
+      "seconds": 33.5
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-sunday-questions.mjs",
+      "seconds": 22.5
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+      "seconds": 10.3
+    },
+    {
+      "shard": 0,
+      "command": "node scripts/playwright-producer-omissions.mjs",
+      "seconds": 4.3
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-tools.mjs",
+      "seconds": 498.6
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-budget-profiles.mjs 390 1 2",
+      "seconds": 177.8
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/test-duel-titanium.mjs",
+      "seconds": 104.9
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/test-investment-emerald.mjs",
+      "seconds": 70.6
+    },
+    {
+      "shard": 2,
+      "command": "TEST_NAV_IDS=etfFR0007054358Nav,etfIE00BK5BCD43Nav,etfIE00BK5BCH80Nav,etfLU1875395870Nav,etfGB00B15KXQ89Nav,etc_brent_crude_oilNav,etc_wti_crude_oilNav,etc_coffeeNav node scripts/playwright-remainder-nav.mjs",
+      "seconds": 38.3
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-official-nav.mjs",
+      "seconds": 28.5
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/test-simple-exposure.mjs",
+      "seconds": 25.7
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-data-automation-inventory.mjs",
+      "seconds": 20.9
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/test-weekly-publications.mjs",
+      "seconds": 24.8
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/test-practical-images.mjs",
+      "seconds": 19.7
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-interface-loading.mjs",
+      "seconds": 18.1
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-dca-selections.mjs",
+      "seconds": 13.6
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-public-portfolios.mjs",
+      "seconds": 7.9
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-budget-subscribers.mjs",
+      "seconds": 29.4
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-record-resilience.mjs",
+      "seconds": 49.0
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-etf-flows.mjs",
+      "seconds": 19.1
+    },
+    {
+      "shard": 2,
+      "command": "BUDGET_BATCH=previous BUDGET_PART=0/2 node scripts/playwright-budget-new-profiles.mjs 390",
+      "seconds": 16.9
+    },
+    {
+      "shard": 2,
+      "command": "BUDGET_BATCH=qualified BUDGET_PART=0/2 node scripts/playwright-budget-new-profiles.mjs 320",
+      "seconds": 26.1
+    },
+    {
+      "shard": 2,
+      "command": "BUDGET_BATCH=complementary node scripts/playwright-budget-new-profiles.mjs 320",
+      "seconds": 24.2
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-consumed-data.mjs",
+      "seconds": 10.7
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/test-commodity-allocation-ui.mjs",
+      "seconds": 7.4
+    },
+    {
+      "shard": 2,
+      "command": "node scripts/playwright-etf-completeness.mjs",
+      "seconds": 6.8
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-editorial-tools-20261108.mjs",
+      "seconds": 90.3
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-income-recovery.mjs",
+      "seconds": 141.3
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-budget-profiles.mjs 320 0 2",
+      "seconds": 111.6
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-new-instrument-consumers.mjs",
+      "seconds": 21.2
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-performance-rankings.mjs",
+      "seconds": 47.0
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-routing-additions.mjs",
+      "seconds": 38.1
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/test-exposure-observations.mjs --browser",
+      "seconds": 27.5
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-amundi-distributions.mjs",
+      "seconds": 24.1
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/test-global-audit.mjs --browser",
+      "seconds": 14.8
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-sector-guide.mjs",
+      "seconds": 21.3
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-distinct-asset-routing.mjs",
+      "seconds": 17.4
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-editorial-proof-clock.mjs",
+      "seconds": 17.4
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-dca-export-choices.mjs",
+      "seconds": 27.0
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-budget-social-image.mjs 0 4",
+      "seconds": 177.2
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-deferred-comparisons.mjs",
+      "seconds": 9.9
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-subscriber-profiles.mjs",
+      "seconds": 28.5
+    },
+    {
+      "shard": 5,
+      "command": "BUDGET_BATCH=previous BUDGET_PART=1/2 node scripts/playwright-budget-new-profiles.mjs 390",
+      "seconds": 19.0
+    },
+    {
+      "shard": 5,
+      "command": "BUDGET_BATCH=qualified BUDGET_PART=1/2 node scripts/playwright-budget-new-profiles.mjs 320",
+      "seconds": 27.2
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/test-index-ceramic.mjs",
+      "seconds": 12.4
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/playwright-ranking-ideas.mjs",
+      "seconds": 12.1
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/test-insurance-ui.mjs",
+      "seconds": 6.5
+    },
+    {
+      "shard": 5,
+      "command": "node scripts/test-regulatory-ui.mjs",
+      "seconds": 5.0
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-investment-validation.mjs",
+      "seconds": 249.4
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-budget-profiles.mjs 390 0 2",
+      "seconds": 253.3
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/test-route-loading.mjs",
+      "seconds": 145.2
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-dca-holdings-contracts.mjs",
+      "seconds": 91.5
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-index-concentration.mjs",
+      "seconds": 57.9
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-export-resources.mjs",
+      "seconds": 31.9
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-dca-analytics.mjs",
+      "seconds": 36.5
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/test-portfolio-metallic.mjs",
+      "seconds": 30.0
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-data-review-recovery.mjs",
+      "seconds": 26.6
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/test-resource-selections.mjs --browser",
+      "seconds": 22.8
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-hey-grok.mjs",
+      "seconds": 19.8
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/test-data-review-calendar.mjs",
+      "seconds": 21.3
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-budget-portability.mjs",
+      "seconds": 25.8
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-budget-social-image.mjs 2 4",
+      "seconds": 229.1
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-browser-portability.mjs",
+      "seconds": 37.5
+    },
+    {
+      "shard": 3,
+      "command": "BUDGET_BATCH=previous BUDGET_PART=1/2 node scripts/playwright-budget-new-profiles.mjs 1440",
+      "seconds": 150.8
+    },
+    {
+      "shard": 3,
+      "command": "BUDGET_BATCH=qualified BUDGET_PART=1/2 node scripts/playwright-budget-new-profiles.mjs 390",
+      "seconds": 163.5
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-profile-publication.mjs",
+      "seconds": 27.1
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-currency-consistency.mjs",
+      "seconds": 14.4
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-index-relief.mjs",
+      "seconds": 12.7
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/playwright-tweet-bank-storage.mjs",
+      "seconds": 14.6
+    },
+    {
+      "shard": 3,
+      "command": "node scripts/test-investment-crisis.mjs --browser",
+      "seconds": 5.2
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-new-instruments.mjs",
+      "seconds": 244.1
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/test-anniversary-art.mjs",
+      "seconds": 206.3
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-budget-profiles.mjs 320 1 2",
+      "seconds": 111.0
+    },
+    {
+      "shard": 4,
+      "command": "npm run test:radar:browser",
+      "seconds": 56.6
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-model-portfolios.mjs",
+      "seconds": 41.1
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/test-publication-continuity.mjs",
+      "seconds": 33.0
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/test-stylized-formats.mjs",
+      "seconds": 22.1
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-review-product.mjs",
+      "seconds": 20.1
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/test-presentation-images.mjs",
+      "seconds": 17.4
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-budget-completeness.mjs",
+      "seconds": 15.0
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/test-investor-screenprint.mjs",
+      "seconds": 32.5
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-acwi-allocation-recovery.mjs",
+      "seconds": 16.3
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-dca-image-series.mjs",
+      "seconds": 16.2
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-budget-social-image.mjs 3 4",
+      "seconds": 171.7
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-financial-consistency.mjs",
+      "seconds": 51.5
+    },
+    {
+      "shard": 4,
+      "command": "BUDGET_BATCH=qualified BUDGET_PART=0/2 node scripts/playwright-budget-new-profiles.mjs 1440",
+      "seconds": 25.6
+    },
+    {
+      "shard": 4,
+      "command": "BUDGET_BATCH=previous BUDGET_PART=0/2 node scripts/playwright-budget-new-profiles.mjs 320",
+      "seconds": 17.2
+    },
+    {
+      "shard": 4,
+      "command": "BUDGET_BATCH=complementary node scripts/playwright-budget-new-profiles.mjs 1440",
+      "seconds": 23.5
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/playwright-selected-records.mjs",
+      "seconds": 14.8
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/test-ranking-header-layout.mjs",
+      "seconds": 9.5
+    },
+    {
+      "shard": 4,
+      "command": "node scripts/test-scpi-ui.mjs",
+      "seconds": 6.3
+    }
+  ]
+}

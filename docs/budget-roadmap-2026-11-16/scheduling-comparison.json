@@ -1,0 +1,23 @@
+{
+  "run": 43821651933,
+  "before": [
+    1429.4999999999995,
+    1398.5000000000002,
+    1239.0000000000002,
+    1666.8999999999999,
+    1151.8,
+    896.8000000000001
+  ],
+  "after": [
+    1299.7999999999995,
+    1299.6,
+    1299.3999999999996,
+    1299.6999999999998,
+    1299.4000000000003,
+    1299.6000000000001
+  ],
+  "maxReduction": 0.22022916791649194,
+  "note": "Recorded original assignment versus deterministic replay using measured command costs; excludes setup, artifact uploads and the serialized deployment queue.",
+  "timeoutPolicyUnchanged": true,
+  "timeoutPolicySha256": "f6cbcaac8c73f3a8619d0cc330c79ee3f5b34c468efb9146489e927b3caad082"
+}
