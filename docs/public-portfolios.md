@@ -29,6 +29,14 @@ Les dates effectives, périodes de rendement, dividendes, frais et méthode de p
 
 La surveillance commune déclare ce collecteur et sa seule route dans `src/data/automation-workflows.json`. Le moniteur écoute ses fins de lancement. Son contrat spécifique contrôle la branche, le chemin du flux, la validation et le bail d’écriture ; les contrôles des producteurs financiers qui écrivent sur `master` restent conservés.
 
+## Préparer un format résultats
+
+Chaque carte propose « Préparer texte et images ». Ce bouton ouvre directement la préparation avec un aperçu du texte et des images, même quand les rendements manquent. Les aperçus portent une mention de brouillon ; les rendements absents, non vérifiés ou de période ambiguë ne deviennent pas des chiffres publiables. Aucun téléchargement ni copie finale n’est proposé pour cet aperçu.
+
+« Compléter les performances » crée une copie indépendante du relevé avec son allocation et sa provenance. Les dates du dernier mois civil terminé et du début d’année sont proposées seulement lorsqu’elles manquent ; elles restent à confirmer. Les valeurs et libellés originaux ne sont jamais inventés, et aucune case de vérification n’est cochée automatiquement. Le formulaire expose les deux périodes requises, conserve l’année facultative et l’allocation modifiable dans des sections dédiées.
+
+« Enregistrer et préparer le post » devient disponible après les contrôles : il conserve le nouveau relevé et prépare le texte final éditable et les PNG. Une simple sauvegarde incomplète reste possible. Le format résultats garde ses exigences de vérification et de non-applicabilité explicite ; aucune variante sans performance ne les contourne. Les visuels définitifs conservent le rendu v1 pour régénérer les épisodes antérieurs.
+
 ## Conservation éditoriale
 
 Un relevé corrigé ajoute une version. Une publication conserve texte final, date, numéro, URL facultative, profil sans historique récursif, relevé et version du rendu. Les images de l’historique utilisent cette photographie, jamais le dernier relevé. Le rendu v1 doit être conservé si le style évolue.
