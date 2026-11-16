@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { validEpisode } from "./lib.js";
 import { pngArchive } from "./archive.js";
 import { renderImages } from "./images.js";
+import { renderEditorialImages } from "./image-editorial.js";
 import { downloadPublicationBlob } from "../../design-system/downloadBlob.js";
 import { downloadImage } from "../../design-system/downloadImage.js";
 
@@ -10,7 +11,7 @@ export default function Images({
   snapshot,
   episode,
   preview = false,
-  version = 2,
+  version = 3,
 }) {
   const ref = useRef(),
     [canvases, setCanvases] = useState([]);
@@ -19,7 +20,7 @@ export default function Images({
       setCanvases([]);
       return;
     }
-    const cs = renderImages(profile, snapshot, episode, { preview, version });
+    const cs = (version >= 3 ? renderEditorialImages : renderImages)(profile, snapshot, episode, { preview, version });
     ref.current.replaceChildren(...cs);
     setCanvases(cs);
   }, [profile, snapshot, episode, preview, version]);

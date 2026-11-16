@@ -112,6 +112,18 @@ export const pct = (value) =>
   !hasNumericValue(value)
     ? "Non renseignée"
     : `${Number(value) > 0 ? "+" : ""}${weightPct(value)}`;
+// Display rounding only: source values and donut geometry stay untouched.
+export const editorialWeight = (value) => !hasNumericValue(value)
+  ? "Non renseigné"
+  : Number(value) > 0 && Number(value) < .01
+    ? "< 0,01 %"
+    : `${Number(value).toLocaleString("fr-FR", { maximumFractionDigits: 2 })} %`;
+export function collectedPerformance(snapshot, key) {
+  const original = snapshot.acquisition?.performanceValues?.[key], current = snapshot[key];
+  return original && snapshot.acquisition.performanceSource === snapshot.source &&
+    ["value", "start", "end", "kind", "original"].every(field => original[field] === current[field]) &&
+    hasNumericValue(original.value) && original.kind === "Cumulée" ? original : null;
+}
 export const latestPublicationDate = (p) =>
   p.publications.reduce((date, h) => (h.date > date ? h.date : date), "");
 export const latestVerificationDate = (p, s) =>
@@ -277,12 +289,17 @@ export function buildText(p, s, n) {
     positions = [...s.positions].sort(
       (a, b) => Number(b.weight) - Number(a.weight),
     );
-  return `${hasText(s.month.na) ? `Un portefeuille à découvrir en ${month}.` : `${Number(s.month.value) < 0 ? "📉" : Number(s.month.value) > 0 ? "📈" : "↔️"} ${pct(s.month.value)} en ${month} : voici sa répartition 👀`}\n\n🔎 LE PORTEFEUILLE DE LA SEMAINE #${n}\n\n${nameOf(p)} — portefeuille présenté comme réel par son auteur.${p.strategy.trim() ? ` ${p.strategy.trim()}` : ""}${p.objective.trim() ? ` Objectif communiqué : ${p.objective.trim()}` : ""}\n\n📊 SES PERFORMANCES DÉCLARÉES (${s.currency.trim()})\n• ${month} : ${hasText(s.month.na) ? `Non applicable (${s.month.na})` : pct(s.month.value)}\n• Depuis janvier : ${hasText(s.ytd.na) ? `Non applicable (${s.ytd.na})` : pct(s.ytd.value)}${benchmarkIssue(s) ? "" : `\n• ${s.benchmark.name} en ${month} : ${pct(s.benchmark.value)} (du ${s.benchmark.start} au ${s.benchmark.end}, ${s.currency}, dividendes réinvestis)`}\n\n🍩 SES PRINCIPAUX PLACEMENTS\n${positions
-    .slice(0, 6)
-    .map((x) => `• ${x.name} : ${weightPct(x.weight)}`)
-    .join(
-      "\n",
-    )}${positions.length > 6 ? "\nDétail complet dans les images." : ""}\n${s.effective ? `Répartition au ${s.effective}.` : `Répartition consultée le ${s.consulted} ; date effective non fournie.`}\n\n🧐 La première ligne représente ${weightPct(positions[0].weight)} du portefeuille.\n\n💬 Et toi, quel résultat pour ton portefeuille en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
+  const monthValue = Number(s.month.value);
+  const hook = hasText(s.month.na)
+    ? `Un portefeuille lancé en cours de période : voici ses premiers placements.`
+    : monthValue < 0
+      ? `📉 ${pct(s.month.value)} en ${month} : qu’y a-t-il dans ce portefeuille ?`
+      : monthValue > 0
+        ? `📈 ${pct(s.month.value)} en ${month} : voici sa répartition déclarée 👀`
+        : `↔️ 0 % en ${month} : un mois à l’équilibre. Voici sa répartition.`;
+  const first = positions[0];
+  const observation = `${first.name} pèse ${editorialWeight(first.weight)} du portefeuille${Number(first.weight) > 50 ? " : plus de la moitié sur une seule ligne." : "."}`;
+  return `${hook}\n\n🔎 LE PORTEFEUILLE DE LA SEMAINE #${n}\n\nLe portefeuille de ${nameOf(p)}.${p.strategy.trim() ? ` ${p.strategy.trim()}` : ""}${p.objective.trim() ? `\n🎯 ${p.objective.trim()}` : ""}\n\n📊 SES PERFORMANCES DÉCLARÉES (${s.currency.trim()})\n• ${month} : ${hasText(s.month.na) ? `Non applicable (${s.month.na})` : pct(s.month.value)}\n• Depuis janvier : ${hasText(s.ytd.na) ? `Non applicable (${s.ytd.na})` : `${s.ytd.approximate ? "≈ " : ""}${pct(s.ytd.value)}`}${benchmarkIssue(s) ? "" : `\n• ${s.benchmark.name} en ${month} : ${pct(s.benchmark.value)} (du ${s.benchmark.start} au ${s.benchmark.end}, ${s.currency}, dividendes réinvestis)`}\n\n🍩 SES PRINCIPAUX PLACEMENTS\n${positions.slice(0, 5).map(x => `• ${x.name} · ${editorialWeight(x.weight)}`).join("\n")}${positions.length > 5 ? "\nToutes les positions dans les images suivantes." : ""}\n\n🧐 ${observation}\n${s.effective ? `Répartition au ${s.effective}.` : `Répartition consultée le ${s.consulted} ; date effective non fournie.`}\n\n💬 Et toi, mieux ou moins bien en ${month} ?\n\n📌 Source : ${p.platform} — ${p.url}`;
 }
 export function publication(p, s, d, date, url) {
   if (
@@ -305,6 +322,6 @@ export function publication(p, s, d, date, url) {
     text: d.text,
     profile: { ...p, publications: [], draft: null },
     snapshot: s,
-    image: { version: 2, episode: d.episode },
+    image: { version: 3, episode: d.episode },
   });
 }

@@ -53,7 +53,7 @@ async function main() {
   try {
     const old = join(dir, 'previous.json'), out = join(dir, 'feed.json');
     if (previous.feed) writeFileSync(old, JSON.stringify(previous.feed));
-    execFileSync('python3', ['scripts/public_portfolio_collector.py', '--previous', old, '--output', out], { stdio: 'inherit', timeout: 900000 });
+    execFileSync('python3', ['scripts/public_portfolio_collector.py', '--previous', old, '--output', out], { stdio: 'inherit', timeout: 1200000 });
     const feed = validateFeed(JSON.parse(readFileSync(out, 'utf8')));
     feed.collectorCommit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
     const sha = await publishFeed(feed, previous.sha, token);

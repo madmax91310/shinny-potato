@@ -1,3 +1,4 @@
+import { Field, Check } from "./fields.jsx";
 import ChoicePicker from "../../design-system/ChoicePicker.jsx";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import PageHeader from "../../design-system/PageHeader";
@@ -10,7 +11,6 @@ import {
   sourceKey,
   nameOf,
   hasText,
-  weightPct,
   validEpisode,
   latestPublicationDate,
   latestVerificationDate,
@@ -23,7 +23,7 @@ import {
   today,
 } from "./lib.js";
 import { load, save } from "./storage.js";
-import { buildPreviewText, performanceCompletion } from "./preview.js";
+import { performanceCompletion } from "./preview.js";
 import {
   catalogue,
   seedCatalogue,
@@ -44,102 +44,9 @@ function loadLibrary() {
     };
   return next;
 }
-function Field({ label, value, onChange, type = "text", options }) {
-  return (
-    <label>
-      {label}
-      {options ? (
-        <ChoicePicker
-          aria-label={label}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        >
-          {options.map((v) => (
-            <option key={v} value={v}>
-              {v === "checked"
-                ? "Dernière vérification"
-                : v === "publication"
-                  ? "Dernière publication"
-                  : v || "Tous"}
-            </option>
-          ))}
-        </ChoicePicker>
-      ) : (
-        <input
-          step={type === "number" ? "any" : undefined}
-          type={type}
-          value={value ?? ""}
-          onChange={(e) => onChange(e.target.value)}
-        />
-      )}
-    </label>
-  );
-}
-function Check({ label, value, onChange }) {
-  return (
-    <label className="pp-check">
-      <input
-        type="checkbox"
-        checked={value}
-        onChange={(e) => onChange(e.target.checked)}
-      />
-      {label}
-    </label>
-  );
-}
-function PerformanceFields({ snapshot, onChange, metric: k }) {
-  return (
-    <fieldset key={k}>
-      <legend>
-        {k === "month"
-          ? "Dernier mois civil terminé"
-          : k === "ytd"
-            ? "Depuis janvier"
-            : "Un an (facultatif)"}
-      </legend>
-      <div className="pp-grid">
-        {[
-          ["value", "Rendement (%)", "number"],
-          ["start", "Du", "date"],
-          ["end", "Au", "date"],
-          ["original", "Libellé original"],
-          ["na", "Motif explicite de non-applicabilité"],
-        ].map(([f, l, t]) => (
-          <Field
-            key={f}
-            label={l}
-            type={t}
-            value={snapshot[k][f]}
-            onChange={(v) =>
-              onChange({
-                ...snapshot,
-                [k]: { ...snapshot[k], [f]: v, verified: false },
-              })
-            }
-          />
-        ))}
-        <Field
-          label="Type de performance"
-          value={snapshot[k].kind}
-          options={["Cumulée", "Annualisée", "Période glissante", "Ambiguë"]}
-          onChange={(v) =>
-            onChange({
-              ...snapshot,
-              [k]: { ...snapshot[k], kind: v, verified: false },
-            })
-          }
-        />
-      </div>
-      <Check
-        label="Période, rendement ou motif vérifiés sur la source"
-        value={snapshot[k].verified}
-        onChange={(v) =>
-          onChange({ ...snapshot, [k]: { ...snapshot[k], verified: v } })
-        }
-      />
-    </fieldset>
-  );
-}
+const DeferredPerformanceFields = lazy(() => import("./PerformanceFields.jsx"));
+function PerformanceFields(props) { return <Suspense fallback={<p>Chargement des champs…</p>}><DeferredPerformanceFields {...props}/></Suspense>; }
+const PreparationPreview = lazy(() => import("./PreparationPreview.jsx"));
 const DeferredImages = lazy(() => import("./Images.jsx"));
 function Images(props) {
   return (
@@ -148,64 +55,7 @@ function Images(props) {
     </Suspense>
   );
 }
-function SnapshotEvidence({ s }) {
-  return (
-    <details>
-      <summary>Vérifier le relevé sélectionné</summary>
-      <p>
-        Consulté le {s.consulted} · Données effectives :{" "}
-        {s.effective || "date non précisée"} · {s.currency}
-      </p>
-      <p>
-        Méthode : {s.method} · Dividendes : {s.dividends} · Frais : {s.fees}
-      </p>
-      {s.methodNote && <p>Précisions de méthode : {s.methodNote}</p>}
-      {s.acquisition && (
-        <p>
-          Collecté le{" "}
-          {new Date(s.acquisition.collectedAt).toLocaleString("fr-FR")} · À
-          confirmer. {s.acquisition.note}
-        </p>
-      )}
-      {s.total !== "" && s.total != null && (
-        <p>
-          Montant public : {s.total} {s.currency}
-        </p>
-      )}
-      {["month", "ytd", "year"].map((k) => (
-        <div key={k}>
-          <h4>
-            {k === "month"
-              ? "Mois civil"
-              : k === "ytd"
-                ? "Depuis janvier"
-                : "Un an (facultatif)"}
-          </h4>
-          <p>
-            {s[k].start || "Début inconnu"} → {s[k].end || "Fin inconnue"} :{" "}
-            {hasText(s[k].na) ? `Non applicable : ${s[k].na}` : pct(s[k].value)}
-          </p>
-          <p>
-            Libellé source : {s[k].original || "non renseigné"} · {s[k].kind} ·{" "}
-            {s[k].verified ? "Contrôlé manuellement" : "À vérifier"}
-          </p>
-        </div>
-      ))}
-      <h4>Allocation déclarée</h4>
-      {s.positions.map((r, i) => (
-        <p key={i}>
-          {r.name} {r.identifier ? `(${r.identifier})` : ""} :{" "}
-          {weightPct(r.weight)}
-        </p>
-      ))}
-      {canonicalUrl(s.source) && (
-        <a href={s.source} target="_blank" rel="noreferrer">
-          Source justificative du relevé
-        </a>
-      )}
-    </details>
-  );
-}
+const SnapshotEvidence = lazy(() => import("./SnapshotEvidence.jsx"));
 function AcquisitionInfo({ profile }) {
   const a = profile.acquisition;
   const latest = profile.snapshots.at(-1);
@@ -217,6 +67,7 @@ function AcquisitionInfo({ profile }) {
       {a.error && <p role="alert">Échec le {new Date(a.attemptedAt).toLocaleString("fr-FR")} : {a.error}</p>}
     </>}
     {latest && <p>Allocation : date effective {latest.effective || "non fournie"} · Consultation : {latest.consulted}. Période mensuelle : {latest.month.start || "non établie"} → {latest.month.end || "non établie"}.</p>}
+    {latest?.acquisition?.performanceSource && <p className="pp-collected-performance">Rendements collectés, à confirmer : mois {pct(latest.month.value)} · Depuis janvier {latest.ytd.approximate ? "≈ " : ""}{pct(latest.ytd.value)} au {latest.month.end}. Devise et conventions à vérifier ; aucun export automatiquement autorisé.</p>}
     {research && <details>
       <summary>Piste pour le premier épisode · performance non qualifiée</summary>
       <p>{research.pseudo} déclare {pct(research.declaredValue)} en {research.monthLabel} ({research.currency}). Source consultée le {research.checkedAt} ; publication du {research.publishedAt.slice(0, 10)}.</p>
@@ -453,12 +304,17 @@ export default function App() {
         <h3>
           Base publique commune · {catalogue.length} portefeuilles sourcés
         </h3>
+        <p className="pp-readiness">
+          <strong>{db.profiles.filter(profile => !issues(profile, profile.snapshots.at(-1)).length).length} / {db.profiles.length} prêts pour un épisode résultats</strong>
+          <span>Les autres fiches restent dans la réserve ; leurs performances sont à compléter avant publication.</span>
+        </p>
+        {db.profiles.some(profile=>profile.snapshots.at(-1)?.acquisition?.performanceSource) && <button disabled={refreshing} onClick={()=>open(db.profiles.find(profile=>profile.snapshots.at(-1)?.acquisition?.performanceSource),true)}>Voir le profil eToro avec rendements collectés</button>}
         <p>
           La base publique est préchargée et ses derniers relevés se chargent
           automatiquement à l’ouverture. La collecte du samedi à 07:10 UTC lit
-          les pages partagées Getquin sans connexion. Elle récupère les
-          positions et leurs poids, à confirmer. Les performances du mois et
-          depuis janvier restent à vérifier manuellement.
+          les pages partagées sans connexion : positions Getquin et, pour le
+          profil eToro raccordé, rendements mensuels et positions. Les chiffres
+          collectés restent à confirmer avant publication.
         </p>
         <p>
           Dernier flux chargé :{" "}
@@ -484,8 +340,10 @@ export default function App() {
           <summary>Acquisition : capacités et précautions</summary>
           <p>
             Getquin : récupération partielle des allocations des liens partagés
-            de la réserve recherchée, à confirmer. eToro, Mon Petit Portfolio et
-            autres : saisie manuelle. Les fiches ajoutées librement restent
+            de la réserve recherchée, à confirmer. eToro raccordé : lecture des
+            pages publiques Stats et Portfolio ; YTD approché par chaînage des
+            mois publiés, avec provenance. Mon Petit Portfolio : saisie manuelle.
+            Les fiches ajoutées librement restent
             manuelles tant qu’elles ne sont pas raccordées au catalogue de
             collecte. Aucune connexion ni restriction d’accès n’est contournée.
           </p>
@@ -622,7 +480,7 @@ export default function App() {
               aria-label="Préparer la publication"
             >
               <h3>Préparation</h3>
-              {snap && <SnapshotEvidence s={snap} />}
+              {snap && <Suspense fallback={<p>Chargement du relevé…</p>}><SnapshotEvidence s={snap} /></Suspense>}
               {errors.length > 0 && (
                 <>
                   <p>
@@ -646,33 +504,7 @@ export default function App() {
                   </details>
                 </>
               )}
-              {previewSnapshot && (errors.length > 0 || s) && (
-                <section aria-label="Aperçu avant vérification">
-                  <h4>Aperçu du post — export bloqué</h4>
-                  <p>
-                    Les performances non vérifiées sont masquées. Complète et
-                    enregistre le relevé pour obtenir le texte final et les
-                    téléchargements.
-                  </p>
-                  <label>
-                    Aperçu du texte à compléter
-                    <textarea
-                      readOnly
-                      value={buildPreviewText(
-                        p,
-                        previewSnapshot,
-                        p.draft?.episode || 1,
-                      )}
-                    />
-                  </label>
-                  <Images
-                    profile={p}
-                    snapshot={previewSnapshot}
-                    episode={p.draft?.episode || 1}
-                    preview
-                  />
-                </section>
-              )}
+              {previewSnapshot && (errors.length > 0 || s) && <Suspense fallback={<p>Chargement de l’aperçu…</p>}><PreparationPreview profile={p} snapshot={previewSnapshot}/></Suspense>}
               {snap && (
                 <p>
                   {benchmarkIssue(snap) || "Benchmark comparable sur le mois."}
