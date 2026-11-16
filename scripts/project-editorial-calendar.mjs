@@ -6,7 +6,7 @@ import { withDataMarks } from './data-bytes-plugin.mjs'
 // Resolve authored static choices at build time. Only the JSON is data: label
 // functions and any future runtime behaviour remain ordinary budgeted code.
 export function projectEditorialCalendar({ filename = fileURLToPath(new URL('../src/data/editorial-calendar.js', import.meta.url)) } = {}) {
-  const virtual = '\0virtual:editorial-calendar-values.json'
+  const virtual = '\0virtual:editorial-calendar-values'
   let values
   const data = withDataMarks({
     name: 'editorial-calendar-values',

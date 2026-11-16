@@ -14,7 +14,7 @@ try {
   writeFileSync(filename, source)
   const plugin = projectEditorialCalendar({ filename })
   const result = await plugin.transform.call({ addWatchFile: file => assert.equal(file, filename) }, source, filename)
-  const virtual = plugin.resolveId('\0virtual:editorial-calendar-values.json')
+  const virtual = plugin.resolveId('\0virtual:editorial-calendar-values')
   const data = await plugin.load(virtual)
   assert.equal(isDataModule(virtual), true)
   assert.equal(isDataModule(filename), false, 'Runtime calendar code must remain budgeted')
