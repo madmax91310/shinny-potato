@@ -14,7 +14,12 @@ export async function checkBudgetOverview(page, profiles, output, width) {
     assert.deepEqual(await img.evaluate(i=>[i.naturalWidth,i.naturalHeight]),[1080,1350])
     const drawn=await page.evaluate(()=>window.budgetOverviewText)
     const a=analyzeBudget(profile)
-    for(const key of ['income','expenses','savings','balance'])assert(drawn.some(t=>t.text===`${profile.approximate?'≈ ':''}${euro(Math.abs(a[key]),profile.currency)}`),profile.id+' '+key)
+    for(const key of ['income','expenses','savings','balance']) {
+      // A complete ledger omits an empty transfers section; the ordinary
+      // four-total overview still has to display its zero explicitly.
+      if(key==='savings'&&profile.mainImage==='complete'&&!profile.savings.length)continue
+      assert(drawn.some(t=>t.text===`${profile.approximate?'≈ ':''}${euro(Math.abs(a[key]),profile.currency)}`),profile.id+' '+key)
+    }
     for(const t of drawn)assert(t.left>=30&&t.right<=1050&&t.y>=0&&t.y+t.size<=1350,profile.id+' bounds '+JSON.stringify(t))
     for(let i=0;i<drawn.length;i++)for(const b of drawn.slice(i+1)){const a=drawn[i];assert(!(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.y+a.size,b.y+b.size)-Math.max(a.y,b.y)>1),profile.id+' overlap')}
     const pending=page.waitForEvent('download')

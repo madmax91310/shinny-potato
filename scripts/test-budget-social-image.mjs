@@ -29,8 +29,16 @@ try{
  const drawContext={...ctx,fillText(){},fillRect(){},beginPath(){},roundRect(){},fill(){},save(){},translate(){},scale(){},stroke(){},restore(){}}
  globalThis.Path2D=class{};globalThis.document={createElement(){return{width:0,height:0,getContext:()=>drawContext}}}
  const {renderBudgetImages,renderBudgetImage}=await import('../src/pages/budget-profiles/image.js')
- for(const profile of [...BUDGET_PROFILES,dense]) {
-  const before=JSON.stringify(profile),overview=await renderBudgetImages(profile,'overview')
+ for(const profile of [...BUDGET_PROFILES,dense,{...dense,mainImage:'complete'}]) {
+  const before=JSON.stringify(profile)
+  // Approximate metrics exercise the explicit refusal path. Real-font fit for
+  // every complete main image is mandatory in the browser/download recipe.
+  if(profile.mainImage==='complete'&&profile.kind!=='participant'&&!planSocialBudget(ctx,profile,'main').single){
+   await assert.rejects(()=>renderBudgetImages(profile,'overview'),/plusieurs pages/)
+   assert.equal(JSON.stringify(profile),before)
+   continue
+  }
+  const overview=await renderBudgetImages(profile,'overview')
   assert.equal(overview.length,1);assert.deepEqual([overview[0].width,overview[0].height],[1080,1350])
   assert.deepEqual(overview[0].budgetTotals,analyzeBudget(profile));assert.equal(JSON.stringify(profile),before)
  }

@@ -1,14 +1,24 @@
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { BUDGET_NEW_EDITORIAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_NEW_EDITORIAL_PROFILES as initialEditorialProfiles, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicSavingsRows, budgetImageExpenses, euro, analyzeBudget, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { socialBudgetLabel } from '../src/pages/budget-profiles/socialImage.js'
+import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
+const batch=process.env.BUDGET_BATCH || 'all'
+assert(['all','previous','qualified'].includes(batch),'Invalid budget batch')
+const availableProfiles = {previous:initialEditorialProfiles,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES,all:[...initialEditorialProfiles,...BUDGET_QUALIFIED_EDITORIAL_PROFILES]}[batch]
+const [part,parts]=(process.env.BUDGET_PART || '0/1').split('/').map(Number)
+assert(Number.isInteger(part)&&Number.isInteger(parts)&&parts>0&&part>=0&&part<parts,'Invalid budget partition')
+const partitionedProfiles=availableProfiles.filter((_,index)=>index%parts===part)
+const BUDGET_NEW_EDITORIAL_PROFILES = process.env.BUDGET_PROFILE_ID ? partitionedProfiles.filter(p=>p.id===process.env.BUDGET_PROFILE_ID) : partitionedProfiles
+assert(BUDGET_NEW_EDITORIAL_PROFILES.length,'Requested budget profile was not found')
 const root=process.env.BUDGET_PUBLIC_BASE || 'http://127.0.0.1:4493/shinny-potato'
-const output=process.env.BUDGET_ARTIFACTS || 'test-artifacts/budget-new-profiles'
+const output=process.env.BUDGET_ARTIFACTS || `test-artifacts/budget-new-profiles-${batch}-${part}-of-${parts}`
 const widths=process.argv.length>2?process.argv.slice(2).map(Number):[1440,390,320]
 assert(widths.length&&widths.every(width=>[1440,390,320].includes(width)),'Invalid budget viewport')
 mkdirSync(output,{recursive:true})
@@ -21,6 +31,13 @@ try {
   browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})})
   for(const width of widths) {
     const context=await browser.newContext({viewport:{width,height:950},permissions:['clipboard-read','clipboard-write'],reducedMotion:'reduce'})
+    const existing=BUDGET_PROFILES.find(p=>p.name==='Guillaume')
+    await context.addInitScript(({existing,finance})=>{
+      if(localStorage.getItem('el-budget-workspace-v2'))return
+      localStorage.setItem('el-budget-workspace-v2',JSON.stringify({version:4,
+        drafts:[{profile:existing,text:'Mon ancien texte personnel.',edited:true,textFinance:finance}],
+        activeId:existing.id,used:[existing.id],published:[existing.id],queued:[existing.id],publicationDates:{[existing.id]:'2026-11-01'}}))
+    },{existing,finance:budgetFinancialReference(existing)})
     await context.addInitScript(()=>{
       const fill=CanvasRenderingContext2D.prototype.fillText
       window.budgetCanvases=[]
@@ -44,7 +61,7 @@ try {
       if(previousProfileUrl) await expect(img).not.toHaveAttribute('src',previousProfileUrl)
       await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
       assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),buildBudgetText(p))
-      for(const mode of ['social','detailed','summary']) {
+      for(const mode of [...(p.mainImage==='complete'?['overview']:[]),'social','detailed','summary']) {
         const modeButton=page.getByRole('group',{name:'Version de l’image',exact:true}).locator(`[data-value="${mode}"]`)
         const wasSelected=await modeButton.getAttribute('aria-pressed')==='true'
         const previousUrl=await img.getAttribute('src')
@@ -59,13 +76,18 @@ try {
           await img.evaluate(e=>e.decode())
           const dimensions=await img.evaluate(e=>[e.naturalWidth,e.naturalHeight])
           assert.deepEqual(dimensions,[1080,1350],`${p.name}: every X page is 4:5, no long fallback`)
-          const bytes=await img.evaluate(async e=>Array.from(new Uint8Array(await (await fetch(e.src)).arrayBuffer())))
+          if(mode==='overview')assert.equal(count,1,'Complete main image must be a single PNG')
+          const previewDigest=await img.evaluate(async e=>{
+            const bytes=await (await fetch(e.src)).arrayBuffer()
+            return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('')
+          })
           const downloadPromise=page.waitForEvent('download')
           await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
           const download=await downloadPromise
-          assert.deepEqual(readFileSync(await download.path()),Buffer.from(bytes))
+          const bytes=readFileSync(await download.path())
+          assert.equal(createHash('sha256').update(bytes).digest('hex'),previewDigest,'Downloaded bytes match the selected preview')
           const filename=`${width}-${p.id}-${mode}-${part+1}.png`
-          writeFileSync(`${output}/${filename}`,Buffer.from(bytes))
+          writeFileSync(`${output}/${filename}`,bytes)
           results.push({width,id:p.id,mode,page:part+1,count,dimensions,bytes:bytes.length,filename})
         }
         const frames=await page.evaluate(()=>{const canvases=window.budgetCanvases,last=canvases.at(-1);return canvases.slice(-(last.budgetPageCount||1)).map(c=>c.budgetDraw)})
@@ -74,7 +96,7 @@ try {
         const visible=normalize(drawn.map(t=>t.text).join(' '))
         assert(!/exemple|ficti[fv]|reconstitu|version éditoriale|personnage éditorial|20\d\d|\.json|PR #/i.test(visible))
         for(const row of [...budgetPublicIncomeRows(p),...(mode==='summary'?budgetImageExpenses(p,'summary'):budgetPublicExpenseRows(p)),...budgetPublicSavingsRows(p)]) {
-          const label=mode==='social'?socialBudgetLabel(row.label):row.label
+          const label=['social','overview'].includes(mode)?socialBudgetLabel(row.label):row.label
           assert(visible.includes(normalize(label)),`${p.name}/${mode}: ${label}`)
           assert(visible.includes(normalize(euro(row.amount,p.currency))),`${p.name}/${mode}: ${row.amount}`)
         }
@@ -101,10 +123,15 @@ try {
     await expect(page.getByLabel('Texte prêt à publier')).toHaveValue('Mon texte personnel avec mes propres questions.')
     await page.getByRole('button',{name:'Rétablir le texte',exact:true}).click()
     await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(last))
+    const workspace=await page.evaluate(()=>JSON.parse(localStorage.getItem('el-budget-workspace-v2')))
+    assert.deepEqual(workspace.published,[existing.id],'Selection, copy and PNG download never mark a new profile published')
+    assert.deepEqual(workspace.publicationDates,{[existing.id]:'2026-11-01'})
+    assert(workspace.used.includes(existing.id)&&workspace.queued.includes(existing.id))
+    assert.equal(workspace.drafts.find(d=>d.profile.id===existing.id).text,'Mon ancien texte personnel.')
     assert.deepEqual(errors,[])
     await page.screenshot({path:`${output}/${width}-workspace.png`,fullPage:true})
     await context.close()
   }
   writeFileSync(`${output}/results${process.argv.length>2?'-'+widths.join('-'):''}.json`,JSON.stringify(results,null,2)+'\n')
-  console.log(`Seven profiles, ${results.length} exact PNGs, numbered 4:5 X pages, full labels/amounts, no overlaps, copies, source provenance and personal drafts verified at ${widths.join('/')}.`)
+  console.log(`${BUDGET_NEW_EDITORIAL_PROFILES.length} profiles, ${results.length} exact PNGs, numbered 4:5 X pages, full labels/amounts, no overlaps, copies, source provenance and personal drafts verified at ${widths.join('/')}.`)
 } finally {await browser?.close();server?.kill()}

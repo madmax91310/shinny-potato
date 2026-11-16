@@ -1,5 +1,6 @@
 import previousEditorialLives from './editorial-lives-2026-11-06.json' with { type: 'json' }
 import newEditorialProfiles from './editorial-profiles-2026-11-15.json' with { type: 'json' }
+import qualifiedEditorialProfiles from './editorial-profiles-qualified-2026-11-15.json' with { type: 'json' }
 import editorialCopy from './editorial-copy-2026-11-14.json' with { type: 'json' }
 import { reviseEditorialCopy } from './editorial-copy.js'
 import { createEditorialProfile, createEditorialContext } from './editorial-lives.js'
@@ -44,8 +45,10 @@ export const BUDGET_RELIABLE_PROFILES = BUDGET_ORIGINAL_PROFILES.map(profile => 
 // not become source photographs or inherit a fictitious historical review.
 export const BUDGET_REFERENCE_PROFILES = BUDGET_RELIABLE_PROFILES.map(p => createEditorialProfile(p, editorialLives[p.id]))
 export const BUDGET_NEW_EDITORIAL_PROFILES = newEditorialProfiles.map(entry => entry.profile)
-export const BUDGET_EDITORIAL_CREATIONS = { ...editorialLives, ...Object.fromEntries(newEditorialProfiles.map(entry => [entry.profile.id, entry.creation])) }
-export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES]
+export const BUDGET_QUALIFIED_EDITORIAL_PROFILES = qualifiedEditorialProfiles.map(entry => entry.profile)
+const currentEditorialProfiles = [...newEditorialProfiles, ...qualifiedEditorialProfiles]
+export const BUDGET_EDITORIAL_CREATIONS = { ...editorialLives, ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.creation])) }
+export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES]
 
 export const EXPENSE_CATEGORIES = [
   { id: 'housing', label: 'Logement', emoji: '🏠' },
@@ -62,7 +65,7 @@ export const BUDGET_ORIGINAL_EDITORIAL = Object.fromEntries(sourceProfiles.map(p
 export const BUDGET_RELIABLE_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...BUDGET_ORIGINAL_EDITORIAL[p.id], ...BUDGET_COMPLETENESS[p.id].public?.display }]))
 
 export const BUDGET_EDITORIAL = { ...Object.fromEntries(sourceProfiles.map(p => [p.id, { ...BUDGET_RELIABLE_EDITORIAL[p.id], ...editorialLives[p.id].display }])),
-  ...Object.fromEntries(newEditorialProfiles.map(entry => [entry.profile.id, entry.display])) }
+  ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.display])) }
 
 // Publication copy and its evidence; public labels may be shared by text and image.
 // The original photographs stay intact; prepared views explicitly carry the completion audit.
@@ -72,4 +75,4 @@ export const BUDGET_RELIABLE_PUBLICATION_CONTEXT = Object.fromEntries(sourceProf
 
 export const BUDGET_REFERENCE_PUBLICATION_CONTEXT = Object.fromEntries(sourceProfiles.map(p => [p.id, createEditorialContext(BUDGET_RELIABLE_PUBLICATION_CONTEXT[p.id], editorialLives[p.id])]))
 export const BUDGET_PUBLICATION_CONTEXT = { ...BUDGET_REFERENCE_PUBLICATION_CONTEXT,
-  ...Object.fromEntries(newEditorialProfiles.map(entry => [entry.profile.id, entry.publication])) }
+  ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.publication])) }

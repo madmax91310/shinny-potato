@@ -143,12 +143,12 @@ export function planSocialBudget(ctx,profile,mode = 'social') {
   if(qualification&&!parts.join(' ').toLocaleLowerCase('fr').includes(qualification.toLocaleLowerCase('fr')))parts.push(qualification)
   const context=parts.join(' · ')
   let details=wrap(ctx,context,INNER,36,500)
-  const sections=sectionsFor(profile,a,p,mode)
+  const sections=sectionsFor(profile,a,p,mode==='main'?'social':mode)
   if(details.length>5){sections.unshift({id:'situation',title:'SITUATION',color:C.cream,rows:[{id:'situation',label:context}]});details=wrap(ctx,budgetQualification(profile),INNER,36,500)}
   const header=88+title.length*74+details.length*44+16,limit=END-header
   // Preserve the original narrative verbatim on separate readable pages. It
   // contains wealth, funding conditions and alternatives absent from ledger rows.
-  const contextSection={id:'context',title:'PATRIMOINE ET PROJETS',color:C.cream,rows:profile.kind==='participant'?[]:profile.context.trim().split(/\n\s*\n/).filter(Boolean).map((label,i)=>({id:`context:${i}`,label}))}
+  const contextSection={id:'context',title:'PATRIMOINE ET PROJETS',color:C.cream,rows:profile.kind==='participant'||mode==='main'?[]:profile.context.trim().split(/\n\s*\n/).filter(Boolean).map((label,i)=>({id:`context:${i}`,label}))}
   const contextPages=[]
   for(const row of contextSection.rows) {
     const lines=wrap(ctx,row.label,INNER-36)
@@ -233,6 +233,15 @@ export async function renderSocialBudgetImage(profile){const pages=await renderS
 // use the same analysis as the detailed export; the complete rows remain there.
 export async function renderBudgetOverview(profile) {
   if(document.fonts?.ready)await document.fonts.ready
+  // New bank entries are qualified against the real fonts for a complete main
+  // image. Never silently replace it with a totals-only view or a long image.
+  if(profile.mainImage==='complete'&&profile.kind!=='participant') {
+    const images=await renderSocialBudgetImages(profile,'main')
+    if(images.length!==1)throw new Error('Ce budget nécessite plusieurs pages. Consulte le détail X complet.')
+    const canvas=images[0]
+    canvas.budgetFormat='overview';canvas.budgetTotals=analyzeBudget(profile)
+    return canvas
+  }
   const a=analyzeBudget(profile)
   if(a.errors.length)throw new Error(a.errors.join(' '))
   const p=budgetPublicPresentation(profile),canvas=document.createElement('canvas')

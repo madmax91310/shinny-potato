@@ -508,7 +508,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [0, 1, 2, 3]
+        shard: [0, 1, 2, 3, 4, 5]
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -537,7 +537,7 @@ jobs:
           key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - id: portable-engines
-        run: node scripts/browser-portability-engines.mjs ${{ matrix.shard }} 4
+        run: node scripts/browser-portability-engines.mjs ${{ matrix.shard }} 6
       - uses: actions/cache@v4
         if: steps.portable-engines.outputs.extra == 'true'
         with:
@@ -547,12 +547,12 @@ jobs:
           key: portable-engines-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - if: steps.portable-engines.outputs.extra == 'true'
         run: npx playwright install --with-deps firefox webkit
-      - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
+      - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 6
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: budget-new-profiles-${{ matrix.shard }}
-          path: test-artifacts/budget-new-profiles
+          path: test-artifacts/budget-new-profiles-*/**/*
           if-no-files-found: ignore
           retention-days: 14
       - uses: actions/upload-artifact@v7.0.1
