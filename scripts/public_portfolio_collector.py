@@ -4,6 +4,7 @@ import hashlib
 import json
 import math
 import subprocess
+import time
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
@@ -13,6 +14,9 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / 'src/pages/public-portfolios/catalogue.json'
 MAX_BYTES = 4_000_000
+
+class PublicAccessRestricted(Exception):
+    pass
 
 class NextData(HTMLParser):
     def __init__(self):
@@ -114,18 +118,30 @@ def parse_getquin(html, entry):
 def observation_id(payload):
     return hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()).hexdigest()
 
-def collect_entry(entry, previous, now, fetch=read_public_html):
+def collect_entry(entry, previous, now, fetch=read_public_html, deadline=None, restricted_platforms=None):
     result = {'catalogueId': entry['id'], 'source': entry['url'], 'attemptedAt': now,
               'capability': 'partial', 'lastSuccessAt': previous.get('lastSuccessAt', ''),
               'observation': previous.get('observation'), 'error': ''}
     try:
+        if restricted_platforms is not None and entry.get('platform') in restricted_platforms:
+            raise PublicAccessRestricted()
+        remaining = 180 if deadline is None else deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError('Public consultation budget exhausted')
         if entry.get('platform') == 'eToro':
             expected = 'https://www.etoro.com/people/' + entry['pseudo'] + '/stats'
             if entry['url'] != expected:
                 raise ValueError('Lien eToro public inattendu')
-            payload = json.loads(subprocess.check_output(
-                ['node', str(ROOT / 'scripts/read-etoro-public.mjs'), entry['pseudo'], now[:10]],
-                cwd=ROOT, timeout=180, text=True, stderr=subprocess.DEVNULL))
+            try:
+                payload = json.loads(subprocess.check_output(
+                    ['node', str(ROOT / 'scripts/read-etoro-public.mjs'), entry['pseudo'], now[:10]],
+                    cwd=ROOT, timeout=min(180, remaining), text=True, stderr=subprocess.DEVNULL))
+            except subprocess.CalledProcessError as error:
+                if error.returncode != 77:
+                    raise
+                if restricted_platforms is not None:
+                    restricted_platforms.add('eToro')
+                raise PublicAccessRestricted() from None
         else:
             payload = parse_getquin(fetch(entry['url']), entry)
         digest = observation_id(payload)
@@ -133,6 +149,10 @@ def collect_entry(entry, previous, now, fetch=read_public_html):
         result['observation'] = old if old and old.get('id') == digest else {
             **payload, 'id': digest, 'collectedAt': now}
         result['lastSuccessAt'] = now
+    except PublicAccessRestricted:
+        result['error'] = 'Consultation eToro interrompue : vérification d’accès requise. Dernier relevé conservé ; saisie manuelle disponible.'
+    except (TimeoutError, subprocess.TimeoutExpired):
+        result['error'] = 'Limite de durée de consultation atteinte. Dernier relevé conservé ; ouvrir la source.'
     except Exception:
         # Never persist credentials, response bodies or exception strings from
         # transport layers; a failed attempt retains the last successful data.
@@ -152,7 +172,11 @@ def main():
     known = {row['catalogueId']: row for row in initial['entries']}
     known.update({row['catalogueId']: row for row in previous['entries']})
     now = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
-    entries = [collect_entry(entry, known.get(entry['id'], {}), now) for entry in catalogue]
+    # Leave time to validate and publish the complete failure/success envelope.
+    # An unavailable platform must not prevent preserving every last valid row.
+    deadline = time.monotonic() + 1050
+    restricted_platforms = set()
+    entries = [collect_entry(entry, known.get(entry['id'], {}), now, deadline=deadline, restricted_platforms=restricted_platforms) for entry in catalogue]
     result = {'version': 1, 'collectedAt': now, 'entries': entries}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')

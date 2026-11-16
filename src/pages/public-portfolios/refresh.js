@@ -5,7 +5,7 @@ import { blankProfile, blankSnapshot, sourceKey, lastCompletedMonthEnd } from '.
 export const FEED_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/public-portfolio-data/public/data/public-portfolios-feed.json';
 export const COLLECTOR_URL = 'https://github.com/madmax91310/shinny-potato/actions/workflows/refresh-public-portfolios.yml';
 export { catalogue };
-export const CATALOGUE_REVISION = 3;
+export const CATALOGUE_REVISION = 4;
 const stamp = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString().replace('.000Z', 'Z') === v && Date.parse(v) <= Date.now() + 300000;
 const fail = () => { throw Error('Flux de relevés invalide ou incompatible. Les dernières données sont conservées.'); };
 

@@ -92,7 +92,9 @@ export function canonicalUrl(value) {
 export function sourceKey(url) {
   const value = canonicalUrl(url);
   const match = value.match(/^https:\/\/app\.getquin\.com\/(?:[a-z]{2}\/)?dashboard\/([a-zA-Z0-9]+)(?:[?#].*)?$/);
-  return match ? `getquin:${match[1]}` : value;
+  if (match) return `getquin:${match[1]}`;
+  const etoro = value.match(/^https:\/\/www\.etoro\.com\/people\/([a-zA-Z0-9_-]+)(?:\/(?:stats|portfolio))?(?:[?#].*)?$/);
+  return etoro ? `etoro:${etoro[1].toLowerCase()}` : value;
 }
 export const hasText = (value) =>
   typeof value === "string" && value.trim() !== "";
