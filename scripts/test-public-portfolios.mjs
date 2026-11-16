@@ -234,3 +234,5 @@ assert.equal(blankProfile().currency, "");
 assert.equal(blankSnapshot().currency, "");
 
 assert.equal(HOME_TOOLS.filter(tool=>tool.to==="/portefeuilles-publics").length,1);assert.equal(TOOL_GROUPS.flatMap(group=>group.tools).filter(tool=>tool.to==="/portefeuilles-publics").length,1);
+
+await import('./test-public-portfolio-refresh.mjs');

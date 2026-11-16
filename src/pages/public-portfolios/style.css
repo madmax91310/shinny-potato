@@ -76,3 +76,7 @@
 .pp input[type="number"] {
   appearance: auto;
 }
+.pp .pp-controls { border: 0; padding: 0; margin: 0; min-width: 0; }
+.pp .pp-refresh { border: 1px solid #90b4a8; border-radius: 16px; padding: 18px; margin: 20px 0; }
+.pp .pp-acquisition { border-left: 3px solid #65b99a; padding-left: 12px; margin: 12px 0; }
+.pp .pp-controls:disabled { opacity: .65; }

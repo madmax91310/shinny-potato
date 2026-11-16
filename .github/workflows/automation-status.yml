@@ -27,6 +27,7 @@ on:
       - Rehearse future data refreshes
       - Revue hebdomadaire des données
       - Deploy to GitHub Pages
+      - Refresh public portfolio allocations
     types: [completed]
   workflow_dispatch:
   schedule:

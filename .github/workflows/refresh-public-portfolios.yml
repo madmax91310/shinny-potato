@@ -1,0 +1,48 @@
+name: Refresh public portfolio allocations
+on:
+  push:
+    branches: [master]
+    paths:
+      - .github/workflows/refresh-public-portfolios.yml
+      - src/pages/public-portfolios/catalogue.json
+      - scripts/public_portfolio_collector.py
+      - scripts/refresh-public-portfolio-feed.mjs
+  workflow_dispatch:
+  schedule:
+    - cron: '10 6 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: public-portfolio-observations
+  cancel-in-progress: false
+  queue: max
+jobs:
+  collect:
+    if: github.repository == 'madmax91310/shinny-potato' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            .github/workflows
+            scripts
+            src/pages/public-portfolios
+            src/lib
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Test public portfolio collector
+        run: python3 -m unittest discover -s scripts -p 'test_public_portfolio_collector.py'
+      - name: Test public portfolio feed contracts
+        run: node scripts/test-public-portfolio-refresh.mjs
+      - name: Read public allocations and publish isolated feed
+        run: node scripts/refresh-public-portfolio-feed.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

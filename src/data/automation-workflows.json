@@ -687,5 +687,27 @@
       "Validate flow publication contracts",
       "Report blocked flow collection"
     ]
+  },
+  "refresh-public-portfolios.yml": {
+    "name": "Allocations de portefeuilles publics · Getquin",
+    "workflowName": "Refresh public portfolio allocations",
+    "collectionJob": "collect",
+    "maxAgeHours": 48,
+    "publishes": true,
+    "publicationBranch": "public-portfolio-data",
+    "publicationPath": "public/data/public-portfolios-feed.json",
+    "tools": [
+      "Portefeuilles publics"
+    ],
+    "paths": [
+      "/portefeuilles-publics"
+    ],
+    "collectionSteps": [
+      "Read public allocations and publish isolated feed"
+    ],
+    "validationSteps": [
+      "Test public portfolio collector",
+      "Test public portfolio feed contracts"
+    ]
   }
 }

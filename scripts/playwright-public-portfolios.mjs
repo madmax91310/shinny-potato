@@ -1,3 +1,5 @@
+import initialFeed from "../src/pages/public-portfolios/initial-feed.json" with { type: "json" };
+import { FEED_URL } from "../src/pages/public-portfolios/refresh.js";
 import { choose } from "./card-selection.mjs";
 import { expect } from "playwright/test";
 import { chromium } from "playwright";
@@ -27,11 +29,81 @@ const base = process.env.BASE_URL || staticBase;
 await page.goto(base);
 await page.locator('.workspace-tool-card[href$="/portefeuilles-publics"]').click();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
+assert.equal(await page.locator('.pp article').count(), 20, 'The reserve starts with twenty researched public profiles');
+const initialLibrary = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
+assert.equal(initialLibrary.catalogueRevision, 1);
+assert(initialLibrary.profiles.every(profile => profile.snapshots.length > 0));
+if (remote) {
+  // Exercise the actual public feed/CORS before any synthetic transport fixture.
+  await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText('nouveau(x) relevé(s)', { timeout: 25000 });
+}
+const transportFeed = structuredClone(initialFeed);
+const browserStamp = new Date(Date.now() + 1000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+transportFeed.collectedAt = browserStamp;
+transportFeed.entries.forEach((entry, index) => {
+  entry.attemptedAt = browserStamp;
+  if (entry.observation) {
+    entry.lastSuccessAt = browserStamp;
+    entry.observation.id = (index + 1).toString(16).padStart(64, '0');
+    entry.observation.collectedAt = browserStamp;
+    entry.observation.note = 'TEST FICTIF du transport, uniquement dans ce navigateur éphémère.';
+  }
+});
+await page.route(FEED_URL + '**', route => route.fulfill({ json: transportFeed }));
+const libraryBeforeRefresh = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
+await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+await expect(page.getByRole('status')).toContainText('nouveau(x) relevé(s)');
+const libraryAfterRefresh = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
+assert.equal(libraryAfterRefresh.profiles.length, 20);
+for (const profile of libraryAfterRefresh.profiles) {
+  const old = libraryBeforeRefresh.profiles.find(row => row.id === profile.id);
+  assert.equal(profile.snapshots.length, old.snapshots.length + 1);
+  assert.equal(profile.snapshots.at(-1).month.value, '');
+  assert.equal(profile.snapshots.at(-1).month.verified, false);
+  assert.equal(profile.checked, old.checked);
+}
+await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+await expect(page.getByRole('status')).toContainText('0 nouveau(x)');
+await page.unroute(FEED_URL + '**');
+const failedFeed = structuredClone(transportFeed);
+failedFeed.collectedAt = new Date(Date.now() + 2000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+failedFeed.entries[0].attemptedAt = failedFeed.collectedAt;
+failedFeed.entries[0].error = 'TEST FICTIF : source indisponible ; dernier relevé conservé.';
+await page.route(FEED_URL + '**', route => route.fulfill({ json: failedFeed }));
+await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+await expect(page.getByRole('status')).toContainText('1 source(s) en échec');
+await expect(page.getByRole('alert')).toContainText('TEST FICTIF : source indisponible');
+await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+await expect(page.getByRole('status')).toContainText('1 source(s) en échec');
+const libraryAfterFailure = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
+assert.deepEqual(libraryAfterFailure.profiles[0].snapshots, libraryAfterRefresh.profiles[0].snapshots);
+assert.equal(libraryAfterFailure.profiles[0].acquisition.lastSuccessAt, libraryAfterRefresh.profiles[0].acquisition.lastSuccessAt);
+await page.unroute(FEED_URL + '**');
+await page.route(FEED_URL + '**', route => route.fulfill({ status: 503, body: 'TEST failure' }));
+await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+await expect(page.getByRole('status')).toContainText('Derniers relevés conservés');
+assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1'))), libraryAfterFailure);
+await page.unroute(FEED_URL + '**');
+for (const width of [390, 320]) {
+  await page.setViewportSize({ width, height: 844 });
+  assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'The real seeded reserve must fit mobile widths');
+}
+await page.screenshot({ path: '/tmp/public-portfolio-reserve-mobile.png' });
+await page.setViewportSize({ width: 1440, height: 1000 });
+await page.screenshot({ path: '/tmp/public-portfolio-reserve-desktop.png' });
+await page.locator('.pp article').first().getByRole('button', { name: 'Ouvrir / modifier' }).click();
+await expect(page.getByRole('button', { name: 'Préparer / régénérer le tweet' })).toBeDisabled();
+assert.match(await page.getByRole('link', { name: 'Ouvrir la source', exact: true }).getAttribute('href'), /^https:\/\/app\.getquin\.com\/en\/dashboard\//);
+await page.reload();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
 await expect(
   page.getByRole("button", { name: "Sauvegarder", exact: true }),
 ).toBeInViewport();
 await page.getByLabel("URL du portefeuille", { exact: true }).fill("https://");
+await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+await expect(page.getByRole('status')).toContainText('Sauvegarde la fiche');
+assert.equal(await page.getByLabel('URL du portefeuille', { exact: true }).inputValue(), 'https://');
 assert.equal(
   await page
     .getByRole("group", { name: "Statut éditorial", exact: true })
@@ -44,7 +116,7 @@ await page.close();
 page = await context.newPage();
 page.on("pageerror", (e) => errors.push(e.message));
 await page.goto(base + "portefeuilles-publics");
-await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
+await page.locator("article").filter({ hasText: "Fiche sans nom" }).getByRole("button", { name: "Ouvrir / modifier" }).click();
 assert.equal(
   await page.getByLabel("URL du portefeuille", { exact: true }).inputValue(),
   "https://",
@@ -87,7 +159,7 @@ await page.evaluate(
   (p) =>
     localStorage.setItem(
       "el-public-portfolios-v1",
-      JSON.stringify({ version: 1, profiles: [p] }),
+      JSON.stringify({ version: 1, catalogueRevision: 1, profiles: [p] }),
     ),
   p,
 );
