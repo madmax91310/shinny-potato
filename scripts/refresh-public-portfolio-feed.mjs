@@ -6,6 +6,7 @@ import { join, resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { validateFeed } from '../src/pages/public-portfolios/refresh.js';
+import initialFeed from '../src/pages/public-portfolios/initial-feed.json' with { type: 'json' };
 export const BRANCH = 'public-portfolio-data';
 export const FILE = 'public/data/public-portfolios-feed.json';
 const REPO = 'madmax91310/shinny-potato';
@@ -22,7 +23,7 @@ export async function githubRequest(path, token, options = {}, transport = fetch
 }
 export async function readPrevious(token, transport = fetch) {
   const file = await githubRequest(`contents/${FILE}?ref=${BRANCH}`, token, {}, transport);
-  return file ? { sha: file.sha, feed: validateFeed(JSON.parse(Buffer.from(file.content, 'base64').toString('utf8'))) } : { sha: '', feed: null };
+  return file ? { sha: file.sha, feed: validateFeed(JSON.parse(Buffer.from(file.content, 'base64').toString('utf8'))) } : { sha: '', feed: validateFeed(initialFeed) };
 }
 export async function publishFeed(feed, expectedSha, token, transport = fetch) {
   validateFeed(feed);

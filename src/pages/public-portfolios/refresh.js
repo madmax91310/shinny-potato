@@ -42,7 +42,7 @@ export function sourceSnapshot(observation) {
 
 export function mergeFeed(db, input) {
   const feed = validateFeed(input);
-  let added = 0, failed = 0, unchanged = 0;
+  let added = 0, unchanged = 0;
   const profiles = db.profiles.map(profile => {
     const entry = feed.entries.find(row => row.catalogueId === profile.catalogueId);
     const known = catalogue.find(row => row.id === profile.catalogueId);
@@ -55,11 +55,11 @@ export function mergeFeed(db, input) {
     const newestCollection = snapshots.reduce((date, row) => row.acquisition?.collectedAt > date ? row.acquisition.collectedAt : date, '');
     if (o && o.collectedAt >= newestCollection && !snapshots.some(row => row.id === `collected:${o.id}`)) { snapshots.push(sourceSnapshot(o)); added++; }
     else unchanged++;
-    if (entry.error) failed++;
     const lastSuccessAt = [profile.acquisition?.lastSuccessAt || '', entry.lastSuccessAt || ''].sort().at(-1);
     return { ...profile, snapshots, acquisition: { capability: entry.capability, attemptedAt: entry.attemptedAt,
       lastSuccessAt, error: entry.error, source: entry.source } };
   });
+  const failed = profiles.filter(profile => profile.acquisition?.error).length;
   return { db: { ...db, profiles, feedLoadedAt: [db.feedLoadedAt || '', feed.collectedAt].sort().at(-1) }, added, failed, unchanged };
 }
 

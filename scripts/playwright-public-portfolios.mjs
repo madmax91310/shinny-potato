@@ -74,6 +74,8 @@ await page.route(FEED_URL + '**', route => route.fulfill({ json: failedFeed }));
 await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
 await expect(page.getByRole('status')).toContainText('1 source(s) en échec');
 await expect(page.getByRole('alert')).toContainText('TEST FICTIF : source indisponible');
+await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
+await expect(page.getByRole('status')).toContainText('1 source(s) en échec');
 const libraryAfterFailure = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
 assert.deepEqual(libraryAfterFailure.profiles[0].snapshots, libraryAfterRefresh.profiles[0].snapshots);
 assert.equal(libraryAfterFailure.profiles[0].acquisition.lastSuccessAt, libraryAfterRefresh.profiles[0].acquisition.lastSuccessAt);
