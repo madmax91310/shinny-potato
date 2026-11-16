@@ -1,5 +1,6 @@
 import { budgetRowSymbol, budgetPublicBasis, budgetSalaryLabel, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext, budgetQualification } from './presentation.js'
 import { budgetFinancialReference } from './completion.js'
+import { validAnnualProvision, provisionLabel } from './row-input.js'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
@@ -17,7 +18,7 @@ export function validBudget(profile) {
     ['job', 'location', 'household', 'period', 'incomeBasis', 'incomeNote'].every(key => safeText(profile[key], 250)) &&
     ['declared', 'planned', 'participant', 'prepared'].includes(profile.kind) && typeof profile.approximate === 'boolean' &&
     ['income', 'expenses', 'savings'].every(key => Array.isArray(profile[key]) && profile[key].length <= MAX_BUDGET_LINES &&
-      profile[key].every(row => row && safeText(row.label, 90) && (row.amount === null || validAmount(row.amount)))) &&
+      profile[key].every(row => row && safeText(row.label, 90) && (row.amount === null || validAmount(row.amount)) && validAnnualProvision(row))) &&
     (profile.capacity === null || validAmount(profile.capacity)) &&
     ['context', 'caveat', 'hook', 'question'].every(key => safeText(profile[key], 3000)) &&
     (profile.source === null || typeof profile.source === 'object' && ['publisher', 'title', 'url'].every(key => safeText(profile.source[key], 1500)) && /^https:\/\//.test(profile.source.url)) &&
@@ -91,7 +92,7 @@ export function budgetPublicIncomeRows(profile) {
 }
 export function budgetPublicExpenseRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.expenseLabels || {}
-  return profile.expenses.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
+  return profile.expenses.map(row => ({ ...row, label: provisionLabel({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }) }))
 }
 export function budgetPublicSavingsRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.savingsLabels || {}
@@ -160,7 +161,7 @@ export function budgetImageExpenses(profile, mode = 'detailed') {
   if (mode !== 'summary') return rows
   const groups = new Map(), result = []
   for (const [i, row] of profile.expenses.entries()) {
-    if (!row.category || row.category === 'other' || /^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label)) { result.push(rows[i]); continue }
+    if (row.annualProvision || !row.category || row.category === 'other' || /^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label)) { result.push(rows[i]); continue }
     let group = groups.get(row.category)
     if (!group) {
       group = { label: EXPENSE_CATEGORIES.find(c => c.id === row.category)?.label || row.category, amount: 0, category: row.category, members: [] }

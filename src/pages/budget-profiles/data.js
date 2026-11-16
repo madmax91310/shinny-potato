@@ -1,3 +1,4 @@
+import studioEditorialProfiles from './editorial-profiles-studio-2026-11-16.json' with { type: 'json' }
 import roadmapEditorialProfiles from './editorial-profiles-roadmap-2026-11-16.json' with { type: 'json' }
 import publicationSelection from './publication-selection-2026-11-16.json' with { type: 'json' }
 import previousEditorialLives from './editorial-lives-2026-11-06.json' with { type: 'json' }
@@ -51,10 +52,11 @@ export const BUDGET_NEW_EDITORIAL_PROFILES = newEditorialProfiles.map(entry => e
 export const BUDGET_QUALIFIED_EDITORIAL_PROFILES = qualifiedEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES = complementaryEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_ROADMAP_EDITORIAL_PROFILES = roadmapEditorialProfiles.map(entry => entry.profile)
+export const BUDGET_STUDIO_EDITORIAL_PROFILES = studioEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_PUBLICATION_SELECTION = publicationSelection
-const currentEditorialProfiles = [...newEditorialProfiles, ...qualifiedEditorialProfiles, ...complementaryEditorialProfiles, ...roadmapEditorialProfiles]
+const currentEditorialProfiles = [...newEditorialProfiles, ...qualifiedEditorialProfiles, ...complementaryEditorialProfiles, ...roadmapEditorialProfiles, ...studioEditorialProfiles]
 export const BUDGET_EDITORIAL_CREATIONS = { ...editorialLives, ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.creation])) }
-export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES, ...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, ...BUDGET_ROADMAP_EDITORIAL_PROFILES]
+export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES, ...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, ...BUDGET_ROADMAP_EDITORIAL_PROFILES, ...BUDGET_STUDIO_EDITORIAL_PROFILES]
 
 export const EXPENSE_CATEGORIES = [
   { id: 'housing', label: 'Logement', emoji: '🏠' },

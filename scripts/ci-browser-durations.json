@@ -101,7 +101,11 @@
     "node scripts/playwright-income-recovery.mjs": 300,
     "node scripts/playwright-budget-completeness.mjs": 20,
     "node scripts/playwright-investment-validation.mjs": 420,
-    "node scripts/playwright-editorial-tools-20261108.mjs": 300
+    "node scripts/playwright-editorial-tools-20261108.mjs": 300,
+    "BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs 1440": 25,
+    "BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs 390": 25,
+    "BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs 320": 25,
+    "node scripts/playwright-budget-studio.mjs": 30
   },
   "localObservations": {
     "date": "2026-11-01",

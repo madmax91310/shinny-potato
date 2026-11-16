@@ -26,11 +26,11 @@ try {
   assert.equal(findSavedDraft(p.id).text, custom.text, 'Switching profiles preserves a personal draft')
   assert(savePublished([p.id], { [p.id]: '2026-10-14' }))
   const backup = exportBudgetBackup(), incoming = parseBudgetBackup(JSON.stringify(backup))
-  assert.equal(incoming.publicationDates[p.id], '2026-10-14'); assert.equal(backup.version, 4)
+  assert.equal(incoming.publicationDates[p.id], '2026-10-14'); assert.equal(backup.version, 5)
   // A dated v3 snapshot migrates on read without changing bytes or inventing dates.
   const source=BUDGET_ORIGINAL_PROFILES[0], oldText='Mon budget avant compléments : 307 € restants.'
   const datedV3={...backup,version:3,workspace:{...backup.workspace,version:3,drafts:[{profile:source,text:oldText,edited:true}],activeId:source.id}}
-  const migrated=parseBudgetBackup(JSON.stringify(datedV3));assert.equal(migrated.version,4)
+  const migrated=parseBudgetBackup(JSON.stringify(datedV3));assert.equal(migrated.version,5)
   assert.equal(migrated.drafts[0].textFinance,budgetFinancialReference(source));assert.equal(migrated.publicationDates[p.id],'2026-10-14')
   assert(staleBudgetText(refreshBudgetDraft(migrated.drafts[0])));assert.equal(refreshBudgetDraft(migrated.drafts[0]).text,oldText)
   const bytesBefore=memory.get(WORKSPACE_KEY);parseBudgetBackup(JSON.stringify(datedV3));assert.equal(memory.get(WORKSPACE_KEY),bytesBefore,'Import preview cannot write a migration')

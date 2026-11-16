@@ -1,0 +1,570 @@
+[
+  {
+    "profile": {
+      "id": "editorial-studio-alternance-allocation-2026-11-16",
+      "name": "Maël",
+      "age": 22,
+      "job": "Étudiant en alternance",
+      "household": "",
+      "location": "",
+      "country": "",
+      "family": "",
+      "children": "",
+      "housing": "tenant",
+      "mainImage": "complete",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2026-04-02",
+      "checkedAt": "2026-11-16",
+      "preparedAt": "2026-11-16",
+      "editorialReviewedAt": "2026-11-16",
+      "period": "2026-04",
+      "budgetAsOf": "2026-04-02",
+      "source": {
+        "url": "https://www.reddit.com/r/VosSous/comments/1sahrhs/investissement_%C3%A9pargne_en_alternance/",
+        "title": "Alternance : répartition entre livret et placements",
+        "publisher": "Reddit · r/VosSous"
+      },
+      "incomeBasis": "Montants mensuels",
+      "incomeNote": "",
+      "capacity": null,
+      "income": [
+        {
+          "label": "Salaire",
+          "amount": 950,
+          "origin": "source"
+        },
+        {
+          "label": "CAF et Mobili-Jeune",
+          "amount": 220,
+          "origin": "source"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Loyer",
+          "amount": 250,
+          "origin": "source",
+          "category": "housing"
+        },
+        {
+          "label": "Courses et carburant",
+          "amount": 250,
+          "origin": "source",
+          "category": "food"
+        },
+        {
+          "label": "Énergie et eau",
+          "amount": 50,
+          "origin": "editorial-created",
+          "category": "bills"
+        },
+        {
+          "label": "Assurance habitation",
+          "amount": 10,
+          "origin": "editorial-created",
+          "category": "insurance"
+        },
+        {
+          "label": "Soins à sa charge",
+          "amount": 20,
+          "origin": "editorial-created",
+          "category": "health"
+        },
+        {
+          "label": "Vêtements",
+          "amount": 30,
+          "origin": "editorial-created",
+          "category": "other"
+        },
+        {
+          "label": "Sorties et loisirs",
+          "amount": 40,
+          "origin": "editorial-created",
+          "category": "leisure"
+        },
+        {
+          "label": "Provision cadeaux et vacances",
+          "amount": 30,
+          "origin": "editorial-created",
+          "category": "leisure",
+          "periodicity": "annual-provision",
+          "annualAmount": 360
+        },
+        {
+          "label": "Provision équipements",
+          "amount": 20,
+          "origin": "editorial-created",
+          "category": "other",
+          "periodicity": "annual-provision",
+          "annualAmount": 240
+        },
+        {
+          "label": "Provision entretien automobile",
+          "amount": 30,
+          "origin": "editorial-created",
+          "category": "transport",
+          "periodicity": "annual-provision",
+          "annualAmount": 360
+        }
+      ],
+      "savings": [
+        {
+          "label": "Livret A",
+          "amount": 300,
+          "origin": "source"
+        },
+        {
+          "label": "ETF sur PEA",
+          "amount": 70,
+          "origin": "source"
+        },
+        {
+          "label": "CTO · compte-titres",
+          "amount": 30,
+          "origin": "source"
+        }
+      ],
+      "context": "Maël a 2 500 € sur son Livret A et 1 000 € sur un compte épargne-temps. Pour ce dernier, un retrait demandé ce mois-ci est annoncé pour le 11 du mois suivant : ce n’est pas sa réserve immédiatement disponible.\n\nSes parents paient son forfait mobile et son assurance automobile. Il investit depuis un an, avec 70 € par mois sur son PEA et 30 € sur son compte-titres. Il envisage de passer de 300 € sur le livret et 100 € investis à 200 € de chaque côté.",
+      "caveat": "",
+      "hook": "",
+      "question": "Avec 2 500 € accessibles et 40 € de marge mensuelle, vous passeriez déjà à 200 € sur le livret et 200 € investis ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-16",
+        "source": {
+          "url": "https://www.reddit.com/r/VosSous/comments/1sahrhs/investissement_%C3%A9pargne_en_alternance/",
+          "title": "Alternance : répartition entre livret et placements",
+          "publisher": "Reddit · r/VosSous",
+          "sourceDate": "2026-04-02"
+        },
+        "sourceNature": "public-self-declaration-not-independently-verified",
+        "sourceFacts": [
+          "22 ans, alternance : salaire 950 €, aides CAF et Mobili-Jeune ensemble environ 220 €. Loyer 250 €, courses et essence ensemble 250 €. Versements actuels : livret 300 €, PEA ETF 70 €, CTO 30 € ; investissement depuis un an, encours non chiffré.",
+          "Livret A 2 500 €, CET Randstad 1 000 €. Auteur : retrait du CET demandé ce mois-ci payé le 11 du mois suivant. Ses parents règlent assurance automobile et mobile et aideraient partiellement pour une réparation ; aide non chiffrée. Question initiale : augmenter les placements en passant de 300/100 à 200/200 ou 100/300."
+        ],
+        "createdFields": [
+          "Prénom changé, métier spécifique et résidence non établis ; foyer et enfants inconnus. Aucun nouveau salaire ni aide calculée. Le rendement évoqué du CET est omis, pas garanti.",
+          "Postes ajoutés mensuels : énergie/eau 50, habitation 10, soins 20, vêtements 30, loisirs 40 ; provisions cadeaux/vacances 30, équipements 20, automobile 30. Les 250 € courses/carburant sont conservés sans doubler nourriture ni essence. Mobile et assurance automobile payés par les parents non redéduits ; aucune aide parentale encaissée inventée.",
+          "Dépenses 730 €, disponible 440 €, versements déclarés 400 €, solde 40 €. Le partage 200/200 reste une question, pas une seconde déduction de 400 €. Pas de montant de portefeuille déduit des versements. Accès internet distinct et santé exacte inconnus ; 20 € de soins est une préparation, pas une mutuelle vérifiée."
+        ],
+        "originalSourcePreserved": true,
+        "sourceSnapshot": {
+          "consultedAt": "2026-11-16",
+          "transport": "public-web-reader",
+          "access": "public thread and clearly attributed replies from the thread starter",
+          "sourcePublishedAt": "2026-04-02",
+          "authorHash": "bc5e0709e14d905f78df9d2bebd090a0e5980cefd547c0f800cbd5ba257f6dec",
+          "factsSha256": "3ac42d1a3e4e77458dde4499723fc9f9687a7a395332bc6a5522719b174f96ed",
+          "scope": "thread starter and own replies only",
+          "sourceDateEvidence": "Date absolue du fil dans les liens Reddit ou index de recherche ; libellé relatif du lecteur non utilisé comme date du budget."
+        },
+        "coverage": {
+          "scope": "personal",
+          "housing": "source",
+          "food": "grouped with fuel",
+          "health": "editorial-created",
+          "transport": "fuel grouped; car insurance and mobile paid by parents; maintenance provision prepared",
+          "annualCosts": "monthly-provisions",
+          "tax": "Source salary not relabelled after final tax."
+        },
+        "questionsOrigin": "expressed: Avec 2 500 € accessibles et 40 € de marge mensuelle, vous passeriez déjà à 200 € sur le livret et 200 € investis ?",
+        "limitations": "Résidence, spécialité professionnelle, impôt et encours non déclarés laissés inconnus. Les dépenses ajoutées et les versements proposés ne sont pas des déclarations authentiques.",
+        "expectedCents": {
+          "income": 117000,
+          "expenses": 73000,
+          "savings": 40000,
+          "available": 44000,
+          "balance": 4000
+        },
+        "expectedBalance": 40.0,
+        "method": "Source publique consultée ; déclarations conservées séparément des dépenses et versements préparés."
+      }
+    },
+    "display": {
+      "alias": "Maël",
+      "publicJob": "Étudiant en alternance",
+      "publicHousehold": "",
+      "publicIncomeNote": "",
+      "publicBasis": "Montants mensuels"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Montants mensuels",
+        "incomeNote": "",
+        "household": ""
+      },
+      "paragraphs": [
+        {
+          "text": "Maël a 2 500 € sur son Livret A et 1 000 € sur un compte épargne-temps. Pour ce dernier, un retrait demandé ce mois-ci est annoncé pour le 11 du mois suivant : ce n’est pas sa réserve immédiatement disponible.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Ses parents paient son forfait mobile et son assurance automobile. Il investit depuis un an, avec 70 € par mois sur son PEA et 30 € sur son compte-titres. Il envisage de passer de 300 € sur le livret et 100 € investis à 200 € de chaque côté.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Avec 2 500 € accessibles et 40 € de marge mensuelle, vous passeriez déjà à 200 € sur le livret et 200 € investis ?",
+          "origin": "expressed",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-consulted",
+          "url": "https://www.reddit.com/r/VosSous/comments/1sahrhs/investissement_%C3%A9pargne_en_alternance/",
+          "publishedAt": "2026-04-02",
+          "checkedAt": "2026-11-16",
+          "facts": [
+            "22 ans, alternance : salaire 950 €, aides CAF et Mobili-Jeune ensemble environ 220 €. Loyer 250 €, courses et essence ensemble 250 €. Versements actuels : livret 300 €, PEA ETF 70 €, CTO 30 € ; investissement depuis un an, encours non chiffré.",
+            "Livret A 2 500 €, CET Randstad 1 000 €. Auteur : retrait du CET demandé ce mois-ci payé le 11 du mois suivant. Ses parents règlent assurance automobile et mobile et aideraient partiellement pour une réparation ; aide non chiffrée. Question initiale : augmenter les placements en passant de 300/100 à 200/200 ou 100/300."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-16",
+          "created": [
+            "Prénom changé, métier spécifique et résidence non établis ; foyer et enfants inconnus. Aucun nouveau salaire ni aide calculée. Le rendement évoqué du CET est omis, pas garanti.",
+            "Postes ajoutés mensuels : énergie/eau 50, habitation 10, soins 20, vêtements 30, loisirs 40 ; provisions cadeaux/vacances 30, équipements 20, automobile 30. Les 250 € courses/carburant sont conservés sans doubler nourriture ni essence. Mobile et assurance automobile payés par les parents non redéduits ; aucune aide parentale encaissée inventée.",
+            "Dépenses 730 €, disponible 440 €, versements déclarés 400 €, solde 40 €. Le partage 200/200 reste une question, pas une seconde déduction de 400 €. Pas de montant de portefeuille déduit des versements. Accès internet distinct et santé exacte inconnus ; 20 € de soins est une préparation, pas une mutuelle vérifiée."
+          ]
+        }
+      ],
+      "review": {
+        "access": "consulted-public-reader",
+        "checkedAt": "2026-11-16",
+        "limit": "Déclarations publiques non indépendamment vérifiées ; date du fil, pas un suivi de la personne."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-16",
+      "baseline": "studio-2026-11-16",
+      "sourceFacts": [
+        "22 ans, alternance : salaire 950 €, aides CAF et Mobili-Jeune ensemble environ 220 €. Loyer 250 €, courses et essence ensemble 250 €. Versements actuels : livret 300 €, PEA ETF 70 €, CTO 30 € ; investissement depuis un an, encours non chiffré.",
+        "Livret A 2 500 €, CET Randstad 1 000 €. Auteur : retrait du CET demandé ce mois-ci payé le 11 du mois suivant. Ses parents règlent assurance automobile et mobile et aideraient partiellement pour une réparation ; aide non chiffrée. Question initiale : augmenter les placements en passant de 300/100 à 200/200 ou 100/300."
+      ],
+      "created": [
+        "Prénom changé, métier spécifique et résidence non établis ; foyer et enfants inconnus. Aucun nouveau salaire ni aide calculée. Le rendement évoqué du CET est omis, pas garanti.",
+        "Postes ajoutés mensuels : énergie/eau 50, habitation 10, soins 20, vêtements 30, loisirs 40 ; provisions cadeaux/vacances 30, équipements 20, automobile 30. Les 250 € courses/carburant sont conservés sans doubler nourriture ni essence. Mobile et assurance automobile payés par les parents non redéduits ; aucune aide parentale encaissée inventée.",
+        "Dépenses 730 €, disponible 440 €, versements déclarés 400 €, solde 40 €. Le partage 200/200 reste une question, pas une seconde déduction de 400 €. Pas de montant de portefeuille déduit des versements. Accès internet distinct et santé exacte inconnus ; 20 € de soins est une préparation, pas une mutuelle vérifiée."
+      ],
+      "sourceConsultationClaim": true,
+      "sourceCheckedAt": "2026-11-16",
+      "finance": [],
+      "coherence": {
+        "scope": "personal",
+        "housing": "source",
+        "food": "grouped with fuel",
+        "health": "editorial-created",
+        "transport": "fuel grouped; car insurance and mobile paid by parents; maintenance provision prepared",
+        "annualCosts": "monthly-provisions",
+        "tax": "Source salary not relabelled after final tax."
+      }
+    },
+    "expectedCents": {
+      "income": 117000,
+      "expenses": 73000,
+      "savings": 40000,
+      "available": 44000,
+      "balance": 4000
+    }
+  },
+  {
+    "profile": {
+      "id": "editorial-studio-alternance-demenagement-2026-11-16",
+      "name": "David",
+      "age": 25,
+      "job": "Étudiant en alternance",
+      "household": "Vit seul",
+      "location": "",
+      "country": "",
+      "family": "single",
+      "children": "",
+      "housing": "tenant",
+      "mainImage": "complete",
+      "currency": "EUR",
+      "kind": "prepared",
+      "approximate": true,
+      "publishedAt": "2026-10-28",
+      "checkedAt": "2026-11-16",
+      "preparedAt": "2026-11-16",
+      "editorialReviewedAt": "2026-11-16",
+      "period": "2026-10",
+      "budgetAsOf": "2026-10-28",
+      "source": {
+        "url": "https://www.reddit.com/r/VosSous/comments/1xi1483/besoin_de_conseils/",
+        "title": "Alternance : rapprocher son logement et rebâtir une réserve",
+        "publisher": "Reddit · r/VosSous"
+      },
+      "incomeBasis": "Montants mensuels",
+      "incomeNote": "",
+      "capacity": null,
+      "income": [
+        {
+          "label": "Salaire",
+          "amount": 1750,
+          "origin": "source"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Loyer actuel",
+          "amount": 450,
+          "origin": "source",
+          "category": "housing"
+        },
+        {
+          "label": "Énergie et eau",
+          "amount": 80,
+          "origin": "editorial-created",
+          "category": "bills"
+        },
+        {
+          "label": "Courses et hygiène",
+          "amount": 250,
+          "origin": "editorial-created",
+          "category": "food"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 35,
+          "origin": "editorial-created",
+          "category": "bills"
+        },
+        {
+          "label": "Assurance habitation",
+          "amount": 15,
+          "origin": "editorial-created",
+          "category": "insurance"
+        },
+        {
+          "label": "Soins à sa charge",
+          "amount": 30,
+          "origin": "editorial-created",
+          "category": "health"
+        },
+        {
+          "label": "Transports",
+          "amount": 120,
+          "origin": "editorial-created",
+          "category": "transport"
+        },
+        {
+          "label": "Vêtements",
+          "amount": 40,
+          "origin": "editorial-created",
+          "category": "other"
+        },
+        {
+          "label": "Sorties et loisirs",
+          "amount": 60,
+          "origin": "editorial-created",
+          "category": "leisure"
+        },
+        {
+          "label": "Provision cadeaux et vacances",
+          "amount": 70,
+          "origin": "editorial-created",
+          "category": "leisure",
+          "periodicity": "annual-provision",
+          "annualAmount": 840
+        },
+        {
+          "label": "Provision entretien et équipements",
+          "amount": 40,
+          "origin": "editorial-created",
+          "category": "other",
+          "periodicity": "annual-provision",
+          "annualAmount": 480
+        }
+      ],
+      "savings": [
+        {
+          "label": "Livret · réserve disponible",
+          "amount": 300,
+          "origin": "editorial-created"
+        }
+      ],
+      "context": "David a 80 € sur son Livret A et 1 800 € sur une assurance-vie. Il veut se rapprocher de son école et de son travail. Il cherche un loyer entre 550 et 700 €, hors électricité et internet, contre 450 € actuellement.\n\nÀ 700 € de loyer, en gardant les autres dépenses et les 300 € de versement, sa marge tomberait à 10 € par mois. Le remboursement de son prêt étudiant reste à venir ; sa future mensualité n’est pas encore connue. Les éventuelles économies de trajet ne sont pas comptées.",
+      "caveat": "",
+      "hook": "",
+      "question": "Quel plafond de loyer vous fixeriez-vous pour vous rapprocher du travail sans vous retrouver à découvert ?\nAvec seulement 80 € sur le livret, comment prépareriez-vous les frais du déménagement ?",
+      "provenance": {
+        "nature": "editorial-character",
+        "checkedAt": "2026-11-16",
+        "source": {
+          "url": "https://www.reddit.com/r/VosSous/comments/1xi1483/besoin_de_conseils/",
+          "title": "Alternance : rapprocher son logement et rebâtir une réserve",
+          "publisher": "Reddit · r/VosSous",
+          "sourceDate": "2026-10-28"
+        },
+        "sourceNature": "public-self-declaration-not-independently-verified",
+        "sourceFacts": [
+          "25 ans bientôt 26, étudiant en alternance, environ 1 750 € nets pour 1 900 € bruts. Vit seul et paie environ 450 € de loyer. Souhaite déménager près de son école et de son employeur ; recherche 550–700 €, 700 étant un plafond hors électricité et internet, pas une dépense actuelle.",
+          "Livret A 80 €, assurance-vie Horizeo 2 de 1 800 €, prêt étudiant initial de 15 000 € dont le remboursement commence dans quelques années, mensualité et capital restant dus non établis. Aide familiale antérieure non chiffrée, pas de revenu récurrent attribué. Demande comment remettre de côté et générer des revenus passifs."
+        ],
+        "createdFields": [
+          "Prénom changé. Âge conservé à 25 ans au moment décrit ; enfants et résidence laissés inconnus. Les 1 900 € bruts ne sont ni ajoutés au salaire net ni utilisés comme cash disponible. La source dit vivre seul, pas sans enfant.",
+          "Dépenses ajoutées : énergie/eau 80, alimentation/hygiène 250, télécoms 35, habitation 15, soins 30, transports 120 sans voiture imposée, vêtements 40, loisirs 60 ; provisions cadeaux/vacances 70, entretien/équipements 40. Frais de scolarité éventuels non établis ; pas de gratuité inventée. Loyer actuel 450 conservé, hypothèse actuelle de charges hors loyer documentée faute de décompte.",
+          "Versement préparé de 300 € vers une réserve liquide, non déclaré. Dépenses 1 190 €, disponible 560 €, solde 260 €. Avec un loyer de 700 remplaçant 450, solde 10 € à autres dépenses et versement identiques. Ni déménagement payé, ni future mensualité de dette, ni économies de trajet inconnues ne sont présentés comme inclus.",
+          "Le montant initial du prêt n’est pas présenté comme un capital restant dû vérifié. Aucune aide, dette nouvelle, patrimoine ou rendement ajouté. Les questions sur le plafond du loyer et le déménagement adaptent éditorialement le souhait exprimé de reconstruire une épargne."
+        ],
+        "originalSourcePreserved": true,
+        "sourceSnapshot": {
+          "consultedAt": "2026-11-16",
+          "transport": "public-web-reader",
+          "access": "public thread and clearly attributed replies from the thread starter",
+          "sourcePublishedAt": "2026-10-28",
+          "authorHash": "3df377c9b7bfd006e7079258d9e01bc72ff1f148f3b6f1aaccec96776389b859",
+          "factsSha256": "96406be66d757b037788063838cbdde299308f5a6701f5302f35e2db7bedd526",
+          "scope": "thread starter and own replies only",
+          "sourceDateEvidence": "Date absolue du fil dans les liens Reddit ou index de recherche ; libellé relatif du lecteur non utilisé comme date du budget."
+        },
+        "coverage": {
+          "scope": "personal",
+          "housing": "source current rent; future ceiling distinct",
+          "food": "editorial-created",
+          "health": "editorial-created",
+          "transport": "editorial-created; no vehicle inferred",
+          "annualCosts": "monthly-provisions",
+          "tax": "Source net retained; final income tax not established."
+        },
+        "questionsOrigin": "editorial: Quel plafond de loyer vous fixeriez-vous pour vous rapprocher du travail sans vous retrouver à découvert ?; editorial: Avec seulement 80 € sur le livret, comment prépareriez-vous les frais du déménagement ?",
+        "limitations": "Résidence, spécialité professionnelle, impôt et encours non déclarés laissés inconnus. Les dépenses ajoutées et les versements proposés ne sont pas des déclarations authentiques.",
+        "expectedCents": {
+          "income": 175000,
+          "expenses": 119000,
+          "savings": 30000,
+          "available": 56000,
+          "balance": 26000
+        },
+        "expectedBalance": 260.0,
+        "method": "Source publique consultée ; déclarations conservées séparément des dépenses et versements préparés."
+      }
+    },
+    "display": {
+      "alias": "David",
+      "publicJob": "Étudiant en alternance",
+      "publicHousehold": "Vit seul",
+      "publicIncomeNote": "",
+      "publicBasis": "Montants mensuels"
+    },
+    "publication": {
+      "budget": {
+        "basis": "Montants mensuels",
+        "incomeNote": "",
+        "household": "Vit seul"
+      },
+      "paragraphs": [
+        {
+          "text": "David a 80 € sur son Livret A et 1 800 € sur une assurance-vie. Il veut se rapprocher de son école et de son travail. Il cherche un loyer entre 550 et 700 €, hors électricité et internet, contre 450 € actuellement.",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "À 700 € de loyer, en gardant les autres dépenses et les 300 € de versement, sa marge tomberait à 10 € par mois. Le remboursement de son prêt étudiant reste à venir ; sa future mensualité n’est pas encore connue. Les éventuelles économies de trajet ne sont pas comptées.",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "Quel plafond de loyer vous fixeriez-vous pour vous rapprocher du travail sans vous retrouver à découvert ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        },
+        {
+          "text": "Avec seulement 80 € sur le livret, comment prépareriez-vous les frais du déménagement ?",
+          "origin": "editorial",
+          "evidence": [
+            0,
+            1
+          ]
+        }
+      ],
+      "budgetQuestion": "",
+      "evidence": [
+        {
+          "basis": "source-consulted",
+          "url": "https://www.reddit.com/r/VosSous/comments/1xi1483/besoin_de_conseils/",
+          "publishedAt": "2026-10-28",
+          "checkedAt": "2026-11-16",
+          "facts": [
+            "25 ans bientôt 26, étudiant en alternance, environ 1 750 € nets pour 1 900 € bruts. Vit seul et paie environ 450 € de loyer. Souhaite déménager près de son école et de son employeur ; recherche 550–700 €, 700 étant un plafond hors électricité et internet, pas une dépense actuelle.",
+            "Livret A 80 €, assurance-vie Horizeo 2 de 1 800 €, prêt étudiant initial de 15 000 € dont le remboursement commence dans quelques années, mensualité et capital restant dus non établis. Aide familiale antérieure non chiffrée, pas de revenu récurrent attribué. Demande comment remettre de côté et générer des revenus passifs."
+          ]
+        },
+        {
+          "basis": "editorial-preparation",
+          "reviewedAt": "2026-11-16",
+          "created": [
+            "Prénom changé. Âge conservé à 25 ans au moment décrit ; enfants et résidence laissés inconnus. Les 1 900 € bruts ne sont ni ajoutés au salaire net ni utilisés comme cash disponible. La source dit vivre seul, pas sans enfant.",
+            "Dépenses ajoutées : énergie/eau 80, alimentation/hygiène 250, télécoms 35, habitation 15, soins 30, transports 120 sans voiture imposée, vêtements 40, loisirs 60 ; provisions cadeaux/vacances 70, entretien/équipements 40. Frais de scolarité éventuels non établis ; pas de gratuité inventée. Loyer actuel 450 conservé, hypothèse actuelle de charges hors loyer documentée faute de décompte.",
+            "Versement préparé de 300 € vers une réserve liquide, non déclaré. Dépenses 1 190 €, disponible 560 €, solde 260 €. Avec un loyer de 700 remplaçant 450, solde 10 € à autres dépenses et versement identiques. Ni déménagement payé, ni future mensualité de dette, ni économies de trajet inconnues ne sont présentés comme inclus.",
+            "Le montant initial du prêt n’est pas présenté comme un capital restant dû vérifié. Aucune aide, dette nouvelle, patrimoine ou rendement ajouté. Les questions sur le plafond du loyer et le déménagement adaptent éditorialement le souhait exprimé de reconstruire une épargne."
+          ]
+        }
+      ],
+      "review": {
+        "access": "consulted-public-reader",
+        "checkedAt": "2026-11-16",
+        "limit": "Déclarations publiques non indépendamment vérifiées ; date du fil, pas un suivi de la personne."
+      }
+    },
+    "creation": {
+      "nature": "editorial-character",
+      "reviewedAt": "2026-11-16",
+      "baseline": "studio-2026-11-16",
+      "sourceFacts": [
+        "25 ans bientôt 26, étudiant en alternance, environ 1 750 € nets pour 1 900 € bruts. Vit seul et paie environ 450 € de loyer. Souhaite déménager près de son école et de son employeur ; recherche 550–700 €, 700 étant un plafond hors électricité et internet, pas une dépense actuelle.",
+        "Livret A 80 €, assurance-vie Horizeo 2 de 1 800 €, prêt étudiant initial de 15 000 € dont le remboursement commence dans quelques années, mensualité et capital restant dus non établis. Aide familiale antérieure non chiffrée, pas de revenu récurrent attribué. Demande comment remettre de côté et générer des revenus passifs."
+      ],
+      "created": [
+        "Prénom changé. Âge conservé à 25 ans au moment décrit ; enfants et résidence laissés inconnus. Les 1 900 € bruts ne sont ni ajoutés au salaire net ni utilisés comme cash disponible. La source dit vivre seul, pas sans enfant.",
+        "Dépenses ajoutées : énergie/eau 80, alimentation/hygiène 250, télécoms 35, habitation 15, soins 30, transports 120 sans voiture imposée, vêtements 40, loisirs 60 ; provisions cadeaux/vacances 70, entretien/équipements 40. Frais de scolarité éventuels non établis ; pas de gratuité inventée. Loyer actuel 450 conservé, hypothèse actuelle de charges hors loyer documentée faute de décompte.",
+        "Versement préparé de 300 € vers une réserve liquide, non déclaré. Dépenses 1 190 €, disponible 560 €, solde 260 €. Avec un loyer de 700 remplaçant 450, solde 10 € à autres dépenses et versement identiques. Ni déménagement payé, ni future mensualité de dette, ni économies de trajet inconnues ne sont présentés comme inclus.",
+        "Le montant initial du prêt n’est pas présenté comme un capital restant dû vérifié. Aucune aide, dette nouvelle, patrimoine ou rendement ajouté. Les questions sur le plafond du loyer et le déménagement adaptent éditorialement le souhait exprimé de reconstruire une épargne."
+      ],
+      "sourceConsultationClaim": true,
+      "sourceCheckedAt": "2026-11-16",
+      "finance": [],
+      "coherence": {
+        "scope": "personal",
+        "housing": "source current rent; future ceiling distinct",
+        "food": "editorial-created",
+        "health": "editorial-created",
+        "transport": "editorial-created; no vehicle inferred",
+        "annualCosts": "monthly-provisions",
+        "tax": "Source net retained; final income tax not established."
+      }
+    },
+    "expectedCents": {
+      "income": 175000,
+      "expenses": 119000,
+      "savings": 30000,
+      "available": 56000,
+      "balance": 26000
+    }
+  }
+]

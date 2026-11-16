@@ -24,13 +24,25 @@ export function useBudgetImage(profile, enabled, mode = 'social') {
               if (!active || failed) return
               if (!blob) { fail(); return }
               urls[index] = URL.createObjectURL(blob)
-              setResult({ key, attempt, urls: [...urls], count, prepare })
+              setResult({ key, attempt, urls: [...urls], count, prepare, allBlobs })
             }, 'image/png')
           } catch { fail() }
         }
+        const allBlobs = async () => {
+          const blobs = []
+          for (const canvas of canvases) {
+            if (!active || failed) throw new Error('Le budget ou le format a changé. Relance le téléchargement.')
+            const blob = await new Promise((resolve, reject) => {
+              try { canvas.toBlob(value => value ? resolve(value) : reject(new Error('PNG indisponible.')), 'image/png') } catch (error) { reject(error) }
+            })
+            blobs.push(blob)
+          }
+          if (!active || failed) throw new Error('Le budget ou le format a changé. Relance le téléchargement.')
+          return blobs
+        }
         // Announce the complete series immediately, then encode only requested
         // pages. A slow intermediate PNG must never block the selected page.
-        setResult({ key, attempt, urls: [], count, prepare })
+        setResult({ key, attempt, urls: [], count, prepare, allBlobs })
       } catch (error) { if (active) setResult({ key, attempt, error: error.message || 'L’image n’a pas pu être préparée. Réessaie.' }) }
     }, 200)
     return () => { active = false; clearTimeout(timer); urls.forEach(url => URL.revokeObjectURL(url)) }
@@ -40,6 +52,7 @@ export function useBudgetImage(profile, enabled, mode = 'social') {
   useEffect(() => { current?.prepare?.(index) }, [current, index])
   return { url: current?.urls?.[index] || '', count: current?.count || 0, index, format: mode,
     error: current?.error || '', busy: enabled && (!current || !current.urls?.[index] && !current.error),
+    allBlobs() { if (!current?.allBlobs) throw new Error('Les images sont en cours de préparation.'); return current.allBlobs() },
     select(index) { if (Number.isInteger(index) && index >= 0 && index < (current?.count || 0)) { setSelection({ key, index }); current.prepare?.(index) } },
     retry: () => setAttempt(n => n + 1),
     download(filename) {

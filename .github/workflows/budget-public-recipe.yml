@@ -1,0 +1,69 @@
+name: Budget public browser recipe
+on:
+  workflow_run:
+    workflows: [Deploy to GitHub Pages]
+    types: [completed]
+    branches: [master]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: budget-public-browser-recipe
+  cancel-in-progress: false
+jobs:
+  public-browser:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request')
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        width: [1440, 390, 320]
+    env:
+      BUDGET_PUBLIC_BASE: https://madmax91310.github.io/shinny-potato
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: master
+          fetch-depth: 0
+          filter: blob:none
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - name: Read actual public version and check trusted ancestry
+        id: published
+        run: |
+          curl --fail --retry 3 --silent --show-error "$BUDGET_PUBLIC_BASE/build-info.json?recipe=$GITHUB_RUN_ID" > /tmp/budget-public-before.json
+          SHA=$(node -e 'const fs=require("fs"),p=JSON.parse(fs.readFileSync("/tmp/budget-public-before.json")); if(!/^[a-f0-9]{40}$/.test(p.sha)||!/^[a-f0-9]{40}$/.test(p.dataSha))throw Error("Invalid public identifiers"); process.stdout.write(p.sha)')
+          git fetch --filter=blob:none origin "$SHA"
+          git merge-base --is-ancestor "$SHA" origin/master
+          if git cat-file -e "$SHA:scripts/playwright-budget-studio.mjs"; then
+            git checkout --detach "$SHA"
+            echo 'supported=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'supported=false' >> "$GITHUB_OUTPUT"
+            echo 'The served code predates the studio recipe. No feature validation claimed.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "Served code: $SHA" >> "$GITHUB_STEP_SUMMARY"
+          cat /tmp/budget-public-before.json >> "$GITHUB_STEP_SUMMARY"
+      - if: steps.published.outputs.supported == 'true'
+        run: npm ci
+      - if: steps.published.outputs.supported == 'true'
+        run: npx playwright install --with-deps chromium
+      - name: Exercise real public UI and downloaded files
+        if: steps.published.outputs.supported == 'true'
+        run: |
+          node scripts/playwright-budget-studio.mjs ${{ matrix.width }}
+          BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs ${{ matrix.width }}
+      - name: Verify public code stayed stable and record code/data versions
+        if: steps.published.outputs.supported == 'true'
+        run: |
+          curl --fail --retry 3 --silent --show-error "$BUDGET_PUBLIC_BASE/build-info.json?recipe-end=$GITHUB_RUN_ID" > /tmp/budget-public-after.json
+          node --input-type=module -e 'import fs from "node:fs";const before=JSON.parse(fs.readFileSync("/tmp/budget-public-before.json")),after=JSON.parse(fs.readFileSync("/tmp/budget-public-after.json"));if(before.sha!==after.sha)throw Error("Public code changed during the recipe; rerun against the new snapshot");if(!/^[a-f0-9]{40}$/.test(after.dataSha))throw Error("Invalid final dataSha");fs.mkdirSync("test-artifacts/budget-public",{recursive:true});fs.writeFileSync("test-artifacts/budget-public/versions.json",JSON.stringify({before,after,width:Number(process.env.RECIPE_WIDTH),codeStable:true},null,2));'
+        env:
+          RECIPE_WIDTH: ${{ matrix.width }}
+      - uses: actions/upload-artifact@v7.0.0
+        if: always()
+        with:
+          name: budget-public-${{ matrix.width }}
+          path: test-artifacts/budget-*/**/*

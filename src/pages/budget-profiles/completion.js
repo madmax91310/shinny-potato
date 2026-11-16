@@ -48,5 +48,6 @@ export function reviseCompletionReview(previous, revision) {
 }
 
 export const budgetFinancialReference = profile => JSON.stringify([profile.currency || 'EUR',
-  ...['income', 'expenses', 'savings'].map(key => profile[key].map(row => [row.label, row.amount === null ? null : Math.round(row.amount * 100)])), profile.capacity, ...(profile.editorialCreation?.finance?.length ? [profile.editorialCreation.finance] : [])])
+  ...['income', 'expenses', 'savings'].map(key => profile[key].map(row => [row.label, row.amount === null ? null : Math.round(row.amount * 100)])), profile.capacity, ...(profile.editorialCreation?.finance?.length ? [profile.editorialCreation.finance] : []),
+  ...(profile.expenses.some(row => row.annualProvision) ? [profile.expenses.map(row => row.annualProvision || null)] : [])])
 export const staleBudgetText = record => record.edited && record.textFinance !== budgetFinancialReference(record.profile)

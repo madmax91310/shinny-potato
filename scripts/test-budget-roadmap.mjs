@@ -2,12 +2,12 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import entries from '../src/pages/budget-profiles/editorial-profiles-roadmap-2026-11-16.json' with { type: 'json' }
 import before from '../docs/budget-roadmap-2026-11-16/financial-before.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_PUBLICATION_SELECTION, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_PUBLICATION_SELECTION, BUDGET_PUBLICATION_CONTEXT, BUDGET_STUDIO_EDITORIAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, refreshBudgetDraft, validBudget, matchesBudgetFilters } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 import { parseBudgetBackup } from '../src/pages/budget-profiles/storage.js'
 const ids=new Set(entries.map(e=>e.profile.id))
-assert.equal(BUDGET_PROFILES.length,before.length+entries.length)
+assert.equal(BUDGET_PROFILES.length,before.length+entries.length+BUDGET_STUDIO_EDITORIAL_PROFILES.length)
 for(const old of before){const p=BUDGET_PROFILES.find(p=>p.id===old.id),a=analyzeBudget(p);assert(p);for(const key of ['income','expenses','savings','balance'])assert.equal(Math.round(a[key]*100),old[key],p.id+'/'+key)}
 const sums=[['Iris',288000,116500,153700,17800],['Laurent et Eva',385000,312000,40000,33000]]
 assert.equal(entries.length,sums.length)

@@ -1,3 +1,5 @@
+import './test-budget-studio.mjs'
+import './audit-budget-studio.mjs'
 import './test-budget-chantier4.mjs'
 import './test-budget-social-image.mjs'
 import './test-budget-new-profiles.mjs'

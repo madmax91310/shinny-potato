@@ -5,7 +5,7 @@ import entries from '../src/pages/budget-profiles/editorial-profiles-complementa
 import preserved from '../docs/budget-complementary-bank-2026-11-16/existing-profiles-preserved.json' with { type: 'json' }
 import candidates from '../docs/budget-complementary-bank-2026-11-16/candidates.json' with { type: 'json' }
 import priorAuthors from '../docs/budget-qualified-bank-2026-11-15/source-author-check.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_ROADMAP_EDITORIAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_ROADMAP_EDITORIAL_PROFILES, BUDGET_STUDIO_EDITORIAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, validBudget, refreshBudgetDraft, matchesBudgetFilters } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 import { parseBudgetBackup, validWorkspace, loadWorkspace, previewBudgetImport, restoreBudgetBackup, WORKSPACE_KEY, budgetStorageSnapshot } from '../src/pages/budget-profiles/storage.js'
@@ -15,7 +15,7 @@ for (const record of preserved) {
   assert(p)
   assert.equal(createHash('sha256').update(JSON.stringify(stable(p))).digest('hex'),record.sha256,`${p.name}: existing complete object preserved`)
 }
-assert.equal(BUDGET_PROFILES.length,preserved.length+entries.length+BUDGET_ROADMAP_EDITORIAL_PROFILES.length)
+assert.equal(BUDGET_PROFILES.length,preserved.length+entries.length+BUDGET_ROADMAP_EDITORIAL_PROFILES.length+BUDGET_STUDIO_EDITORIAL_PROFILES.length)
 assert(!BUDGET_PROFILES.some(p=>p.age===76))
 assert.equal(new Set(BUDGET_PROFILES.map(p=>p.id)).size,BUDGET_PROFILES.length)
 const canonical = url => url.match(/community\.finary\.com\/t\/(?:[^/]+\/)?(\d+)/)?.[1] || url
