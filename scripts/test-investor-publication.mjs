@@ -97,8 +97,8 @@ assert.equal(shortPosition({issuerName:'INDIVIOR PHARMACEUTICALS INC',cusip:'455
 
 // New reviewed issuer assets and the investor-only Alphabet variant retain provenance.
 const {createHash}=await import('node:crypto')
-for(const issuerName of ['MOODYS CORP','CHUBB LIMITED','OCCIDENTAL PETE CORP','VISTRA CORP','ISHARES INC','ALPHABET INC']) {
-  const identity=logoIdentity({issuerName,...(issuerName==='ISHARES INC'?{cusip:'464286772'}:issuerName==='ALPHABET INC'?{cusip:'02079K305'}:{})})
+for(const issuerName of ['MOODYS CORP','CHUBB LIMITED','OCCIDENTAL PETE CORP','VISTRA CORP','ISHARES INC','ALPHABET INC','META PLATFORMS INC']) {
+  const identity=logoIdentity({issuerName,...(issuerName==='ISHARES INC'?{cusip:'464286772'}:issuerName==='ALPHABET INC'?{cusip:'02079K305'}:issuerName==='META PLATFORMS INC'?{cusip:'30303M102'}:{})})
   assert(identity,issuerName)
   const source=identity.investorVariant || identity
   assert(source.source.startsWith('https://'))
