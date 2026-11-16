@@ -925,3 +925,23 @@ exige encore complete=true pour Uranium. La recette vérifie désormais son
 unique sous-ensemble typé, les lignes FX inconnues conservées et le refus du
 recouvrement intégral ; les autres sources restent exigées complètes.
 Aucune donnée ni seuil financier changé pour obtenir la réussite de cette recette.
+
+## 16 novembre — compte HSBC et pays iBonds, erreurs individuelles préservées
+
+Même suivi #881, `fix/hsbc-ibonds-source-recovery-20261116` possède
+hsbc_holdings, la configuration exacte IE0008UEVOE0, la sortie partielle du
+collecteur qualifié et ses recettes. Le cron43918913412 révèle ces deux causes.
+HSBC : compte Eur Settlement For Capital Events explicitement valorisé197827EUR
+au10novembre, poids0,00787%, ISINvide ; classé compte séparé, jamais entreprise
+ni dividende. Cinquante titres et tous leurs poids natifs, réconciliation NAV et
+refus des comptes inconnus conservés. iBonds : table pays du1octobre périmée,
+structure physique EUR/FixedIncome et livre du13novembre qualifiés séparément.
+L’isolation existante permet pays de risque, cash signé et autres champs valides,
+sans renormalisation. L’échec pays primaire reste explicite dans le contrat du
+producteur, y compris --only ; aucune attribution de réussite globale/cache.
+Les identités primaires Defence et le lecteur de supervision ne sont pas modifiés.
+#1370 conserve les colonnes FTSE ; #1369 les NAV WisdomTree ; #1367 est fusionnée
+pour Uranium/LifeStrategy. Sources CopperMiners sans valeur/poids et Invesco
+régressant au29octobre restent distinctes, dernières observations conservées.
+Recettes isolées21+9 et rejeu natif ciblé réussis ; collecte GitHub, enregistrement
+et publication des deux voies encore à vérifier. Radar/IA/maquettes préservés.

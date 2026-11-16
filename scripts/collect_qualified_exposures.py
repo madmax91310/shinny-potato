@@ -65,7 +65,10 @@ def _collect_one(config,now,audit):
   result['sectors']=holdings_sectors(body,holdings['asOf'])
   result['countries']=countries
  if allocation_evidence:result.update(allocation_evidence)
- if not result['countries'].get('rows'):result['countries']=countries
+ if not result['countries'].get('rows'):
+  result['countries']=countries
+  for error in result.get('collectionErrors',[]):
+   if error.get('field')=='countries-primary':error['fallbackQualified']=True
  if any(not result[field].get('rows') for field in ['holdings','countries','sectors']):raise ValueError('Incomplete issuer composition')
  page_url=url
  name=body.get('fundName')
@@ -180,7 +183,7 @@ def main():
   write_json_atomic(ROOT/'src/data/automated-etf.json',current)
  active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
  for row in report['excluded']:row['active']=row['id']in active
- if any(c.get('allocationFallback') for c in configs):
+ if any(c.get('allocationFallback') or c.get('isolateAllocationFailures') for c in configs):
   from qualified_physical_allocation import contract_results
   report['contractResults']=contract_results(configs,report)
  write_json_atomic(args.output,report)
