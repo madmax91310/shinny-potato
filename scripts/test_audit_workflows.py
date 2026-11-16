@@ -193,6 +193,26 @@ class WorkflowContracts(unittest.TestCase):
                 self.assertNotIn('commit-validated-data.sh',workflow)
                 self.assertNotIn('actions/deploy-pages@',workflow)
                 continue  # Rehearsal is monitored, but must never publish synthetic data.
+            if config.get('publicationBranch'):
+                # A separately published public feed does not commit financial
+                # observations to master. Preserve every existing financial
+                # writer assertion below and require this writer's own lease.
+                self.assertEqual(filename, 'refresh-public-portfolios.yml')
+                self.assertEqual(config['publicationBranch'], 'public-portfolio-data')
+                self.assertEqual(config['publicationPath'], 'public/data/public-portfolios-feed.json')
+                workflow = (ROOT/'.github/workflows'/filename).read_text()
+                publisher = (ROOT/'scripts/refresh-public-portfolio-feed.mjs').read_text()
+                self.assertIn("export const BRANCH = 'public-portfolio-data'", publisher)
+                self.assertIn("export const FILE = 'public/data/public-portfolios-feed.json'", publisher)
+                self.assertIn('validateFeed(feed)', publisher)
+                self.assertIn("(current?.sha || '') !== expectedSha", publisher)
+                self.assertIn('sha: expectedSha', publisher)
+                self.assertNotIn("method: 'PATCH'", publisher)
+                self.assertNotIn('commit-validated-data.sh', workflow)
+                self.assertNotIn('actions/deploy-pages@', workflow)
+                for name in config['collectionSteps'] + config['validationSteps']:
+                    self.assertIn('name: ' + name + '\n', workflow)
+                continue
             if filename == 'update-editorial-radar.yml':
                 continue  # Dedicated status branch, no data commit to master.
             workflow = (ROOT/'.github/workflows'/filename).read_text()
@@ -276,7 +296,7 @@ class WorkflowContracts(unittest.TestCase):
             committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
             self.assertTrue(set(committed)<=set(paths),(filename,set(committed)-set(paths)))
             for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
-        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and not c.get('controlOnly') and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
+        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and not c.get('controlOnly') and not c.get('publicationBranch') and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
 
     def test_full_gate_can_adopt_newer_data_without_a_code_or_data_rollback(self):
         workflow=(ROOT/'.github/workflows/deploy-pages.yml').read_text()

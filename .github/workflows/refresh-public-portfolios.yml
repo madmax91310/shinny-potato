@@ -38,8 +38,11 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: python3 -m unittest discover -s scripts -p 'test_public_portfolio_collector.py'
-      - run: node scripts/test-public-portfolio-refresh.mjs
-      - run: node scripts/refresh-public-portfolio-feed.mjs
+      - name: Test public portfolio collector
+        run: python3 -m unittest discover -s scripts -p 'test_public_portfolio_collector.py'
+      - name: Test public portfolio feed contracts
+        run: node scripts/test-public-portfolio-refresh.mjs
+      - name: Read public allocations and publish isolated feed
+        run: node scripts/refresh-public-portfolio-feed.mjs
         env:
           GITHUB_TOKEN: ${{ github.token }}

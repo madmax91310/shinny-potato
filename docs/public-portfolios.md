@@ -27,6 +27,8 @@ Les dates effectives, périodes de rendement, dividendes, frais et méthode de p
 
 Le bouton **« Actualiser tous les portefeuilles »** charge ce dernier flux public depuis `raw.githubusercontent.com` et ajoute les observations nouvelles à la réserve locale. Il ne lance pas directement les sites sources ; l’interface l’explique et fournit le lien de relance GitHub. Le flux initial inclus dans l’application provient d’une lecture réelle des vingt pages. Les chargements suivants ne remplacent jamais les relevés précédents, leur vérification manuelle, les brouillons ou l’historique publié. Une observation inchangée ne crée pas de doublon. Un flux ancien, invalide ou une panne de transport ne supprime aucune donnée. Les échecs par source affichent leur date et la date du dernier succès de lecture, distincte de la vérification des performances.
 
+La surveillance commune déclare ce collecteur et sa seule route dans `src/data/automation-workflows.json`. Le moniteur écoute ses fins de lancement. Son contrat spécifique contrôle la branche, le chemin du flux, la validation et le bail d’écriture ; les contrôles des producteurs financiers qui écrivent sur `master` restent conservés.
+
 ## Conservation éditoriale
 
 Un relevé corrigé ajoute une version. Une publication conserve texte final, date, numéro, URL facultative, profil sans historique récursif, relevé et version du rendu. Les images de l’historique utilisent cette photographie, jamais le dernier relevé. Le rendu v1 doit être conservé si le style évolue.

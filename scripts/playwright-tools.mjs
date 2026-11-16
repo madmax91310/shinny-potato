@@ -1312,6 +1312,8 @@ try {
   await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, ibkrCount);
   reviewChecks.search = (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount;
   await page.reload({ waitUntil: 'networkidle' });
+  // Network idle does not guarantee that the deferred route finished rendering.
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, ibkrCount);
   reviewChecks.reload = (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount;
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil', exact: true }).fill('');
   const reserveCount = buildReview().items.filter(item => item.category === 'reserve').length;
