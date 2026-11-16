@@ -54,3 +54,5 @@ Les sources sont des déclarations publiques, pas une certification indépendant
 Pendant la validation, master a reçu #1362 pour le calendrier puis le correctif `0139168` réduisant son poids. Ce correctif est repris tel quel. L’extraction temporaire du calendrier et son garde de publication devenus inutiles sont retirés : aucun fichier calendrier ni logique d’un autre outil ne diffère du master intégré dans le périmètre final.
 
 Le mécanisme Pages a été relu : le build ordinaire peut exposer seulement `sha` et `builtAt` ; `dataSha` et `lane` sont ajoutés lors d’une composition avec des données plus récentes. La recette accepte cette absence légitime, conserve les métadonnées reçues et la signale comme `not-advertised` dans son reçu. Elle ne fabrique pas un `dataSha` égal au SHA du code. Si un `dataSha` est annoncé, il doit être valide et il est consigné tel quel.
+
+Une recette historique d’images a atteint sa limite de 300 secondes sur GitHub. Elle est répartie en huit partitions au lieu de quatre, avec tous les indices contrôlés et les mêmes cas extrêmes. Les délais et assertions ne sont pas relevés ; seules les estimations d’ordonnancement changent.

@@ -15,6 +15,13 @@ assert.throws(()=>needsExtraEngines(-1,4,commands,durations))
 assert.equal(planShards(['new check'], 1, {}).at(0).seconds, 15)
 assert.throws(() => planShards(commands, 0))
 assert.throws(() => planShards(['duplicate', 'duplicate'], 2))
+// Image partitions must retain every bank index after a recipe is split.
+const imagePartitions=commands.map(command=>command.match(/^node scripts\/playwright-budget-social-image\.mjs (\d+) (\d+)$/)).filter(Boolean)
+assert(imagePartitions.length)
+const imageParts=Number(imagePartitions[0][2])
+assert(imagePartitions.every(match=>Number(match[2])===imageParts))
+assert.deepEqual(imagePartitions.map(match=>Number(match[1])).sort((a,b)=>a-b),Array.from({length:imageParts},(_,index)=>index))
+
 // A hand-checkable scheduling example is independent of live catalogue growth.
 assert.deepEqual(planShards(['a','b','c','d'],2,{a:8,b:7,c:6,d:5}),[
   {commands:['a','d'],seconds:13}, {commands:['b','c'],seconds:13},
