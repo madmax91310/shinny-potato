@@ -1,9 +1,10 @@
+import {leaderPath} from './leader-layout.js'
 import { modelNatureLabel } from '../../data/investor-models.js'
 import { holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
-import { publicationPlan, portfolioOwner, cash, POSTER, posterCash } from './publication.js'
+import { publicationPlan, portfolioOwner, cash, POSTER } from './publication.js'
 import { loadPortfolioFont, posterFont } from './type.js'
-import { companyInitials, portfolioPortrait, positionLogo } from './media.js'
+import { portfolioPortrait, positionLogo } from './media.js'
 
 const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'
 function text(ctx, value, x, y, width, size, color = INK, serif = false) {
@@ -109,7 +110,7 @@ export async function renderPortfolioImage(portfolio) {
     if(logo&&!e.other) {
       const image=logo.image,ratio=image.width/image.height
       let placement=null
-      for(const width of [190,175,160,145,130,115,100,85,70,60]) {
+      for(const width of [270,240,220,200,190,175,160,145,130,115,100,85,70,60]) {
         const k=Math.min(width/image.width,150/image.height)
         if(image.width*k<56||image.height*k<26)continue
         logoSearch: for(const r of [270,286,305,325])for(const turn of [0,-.05,.05,-.1,.1])for(const radial of ratio>2.6?[true,false]:[false]) {
@@ -128,7 +129,6 @@ export async function renderPortfolioImage(portfolio) {
       if(!placement) {
         const k=Math.min(112/image.width,68/image.height),w=image.width*k,h=image.height*k
         if(w>=56&&h>=26)externalSearch: for(const x of [e.box.x-w-12,e.box.x+e.box.width+12,e.box.x+(e.box.width-w)/2])for(const y of [e.box.y,e.box.y-h-10,e.box.y+e.box.height+10]) {
-          const rect={x,y,w,h}
           const overlaps=b=>x<b.x+b.width+7&&x+w+7>b.x&&y<b.y+b.height+7&&y+h+7>b.y
           if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps))continue
           if(Math.hypot(cx-Math.max(x,Math.min(cx,x+w)),cy-Math.max(y,Math.min(cy,y+h)))<outer+6)continue
@@ -146,14 +146,16 @@ export async function renderPortfolioImage(portfolio) {
         for(const [px,py] of logo.points){const xx=Math.round(x+(px*c-py*sn)*k),yy=Math.round(y+(px*sn+py*c)*k);for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++)if(xx+dx>=0&&xx+dx<1080&&yy+dy>=0&&yy+dy<1350)occupied[(yy+dy)*1080+xx+dx]=1}
       }
     }
+  })
+  const leaders=[]
+  plan.entries.forEach(e=>{
     const {badge,box}=e
     // Only ambiguous displaced associations receive a short connector.
     if(Math.abs(Math.atan2(Math.sin(e.badgeAngle-e.mid),Math.cos(e.badgeAngle-e.mid)))>.015) {
       ctx.strokeStyle=e.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.mid)*(outer-2),cy+Math.sin(e.mid)*(outer-2));ctx.lineTo(badge.x,badge.y);ctx.stroke()
     }
-    const px=Math.max(box.x,Math.min(badge.x,box.x+box.width)),py=Math.max(box.y,Math.min(badge.y,box.y+box.height))
-    const d=Math.hypot(px-badge.x,py-badge.y)
-    if(d-br>24){ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(badge.x+(px-badge.x)*br/d,badge.y+(py-badge.y)*br/d);ctx.lineTo(px,py);ctx.stroke()}
+    const leader=leaderPath(e,plan.entries,POSTER,extraLogos,leaders)
+    if(leader){leaders.push(leader);ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();leader.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke()}
     ctx.fillStyle=e.color;ctx.beginPath();ctx.arc(badge.x,badge.y,br,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#161616';ctx.lineWidth=2.5;ctx.stroke()
     const pct=percentage(e.weight).replace(/\s/g,'')
     let size=32;ctx.font=posterFont(size,900);while(ctx.measureText(pct).width>br*1.72&&size>25){size--;ctx.font=posterFont(size,900)}
@@ -162,8 +164,8 @@ export async function renderPortfolioImage(portfolio) {
     label(box.amount,box.x+box.width/2,box.y+box.lines.length*40+34,34,ink,'center',850)
   })
   label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
-  if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1311,20,'#343434','center',550)
-  label('Épargnant libre',540,1343,24,ink,'center',750)
+  if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
+  label('Épargnant libre',540,1343,27,ink,'center',750)
   return canvas.toDataURL('image/png')
 }
 

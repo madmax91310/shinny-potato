@@ -61,12 +61,15 @@ export function colorPositions(rows) {
 export const posterCash=(value,currency)=>cash(value,currency).replace(/\s*\$US/,' $')
 export function shortPosition(row) {
   const issuerNames={'SPACE EXPLORATION TECHN CORP':'SpaceX'}
-  let name=String(shortNames[row.cusip] || issuerNames[row.issuerName] || row.displayLabel || row.issuerName || '').replace(/ \([A-Z0-9*@#]{9}\)$/,'')
-    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co)\b\.?/gi,'').replace(/Occidental Pete/i,'Occidental').replace(/Moodys/i,'Moody’s').replace(/Berkshire Hathaway/i,'Berkshire').replace(/^[,\s]+|[,\s]+$/g,'').replace(/\s+/g,' ').trim()
+  const distinct=/ \([A-Z0-9*@#]{9}\)$/.test(row.displayLabel || '')
+  let base=String(shortNames[row.cusip] || issuerNames[row.issuerName] || (distinct?row.issuerName:null) || row.displayLabel || row.issuerName || '')
+  if(distinct && !shortNames[row.cusip] && !issuerNames[row.issuerName] && base===base.toUpperCase())base=base.toLocaleLowerCase('fr-FR').replace(/\b\p{L}/gu,c=>c.toLocaleUpperCase('fr-FR'))
+  let name=base.replace(/ \([A-Z0-9*@#]{9}\)$/,'')
+    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co|Del|New|Plc)\b\.?/gi,'').replace(/Occidental Pete/i,'Occidental').replace(/Moodys/i,'Moody’s').replace(/Berkshire Hathaway/i,'Berkshire').replace(/^[,\s]+|[,\s]+$/g,'').replace(/\s+/g,' ').trim()
   // Preserve an explicit class discriminator; never merge securities to save space.
-  if(/ \([A-Z0-9*@#]{9}\)$/.test(row.displayLabel || '')) {
-    const cls=row.shareClass?.match(/(?:CL|CLASS)\s+([A-Z])\b/i)?.[1]
-    name=`${name.slice(0,cls?16:10)} ${cls || '·'+row.cusip.slice(-4)}`
+  if(distinct) {
+    const cls=row.shareClass?.match(/(?:CL|CLASS|SER|SERIES)\s+([A-Z])\b/i)?.[1]
+    name=`${name} ${cls || '·'+row.cusip.slice(-4)}`
   }
   if(name==='Ishares' && /KOR/.test(row.shareClass || ''))name='iShares Corée'
   if(name.length>23 && row.ticker)name=row.ticker

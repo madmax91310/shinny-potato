@@ -91,3 +91,30 @@ for(const slug of ['berkshire','tepper']) {
   assert.equal(revised.total,plan.total+1,'Updated values invalidate the layout cache')
 }
 assert.equal(shortPosition({issuerName:'INDIVIOR PHARMACEUTICALS INC',cusip:'45579U109'}),'Indivior')
+
+// New reviewed issuer assets and the investor-only Alphabet variant retain provenance.
+const {createHash}=await import('node:crypto')
+for(const issuerName of ['MOODYS CORP','CHUBB LIMITED','OCCIDENTAL PETE CORP','VISTRA CORP','ISHARES INC','ALPHABET INC']) {
+  const identity=logoIdentity({issuerName,...(issuerName==='ISHARES INC'?{cusip:'464286772'}:issuerName==='ALPHABET INC'?{cusip:'02079K305'}:{})})
+  assert(identity,issuerName)
+  const source=identity.investorVariant || identity
+  assert(source.source.startsWith('https://'))
+  assert.equal(createHash('sha256').update(readFileSync(`public/asset-art/${source.file}`)).digest('hex'),source.sha256)
+}
+
+// Regression: the old straight Moody's leader crossed Chubb's two text lines.
+const {leaderPath}=await import('../src/pages/investor-portfolio/leader-layout.js')
+const moody={badge:{x:164,y:584,radius:50},box:{x:20,y:332,width:181,height:80}}
+const chubb={badge:{x:141,y:692,radius:50},box:{x:20,y:440,width:150,height:80}}
+const route=leaderPath(moody,[moody,chubb],POSTER)
+assert(route?.length>=3,'Route around the intervening name')
+for(let i=1;i<route.length;i++) {
+  const a=route[i-1],b=route[i]
+  // Exact intersection with the vertical span occupied by the intervening text.
+  const lo=Math.max(0,Math.min((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
+  const hi=Math.min(1,Math.max((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
+  if(lo<hi)for(const t of [lo,(lo+hi)/2,hi])assert(a.x+(b.x-a.x)*t<20 || a.x+(b.x-a.x)*t>170)
+}
+
+assert.equal(shortPosition({displayLabel:'TSMC',issuerName:'TAIWAN SEMICONDUCTOR'}),'TSMC')
+assert.equal(shortPosition({displayLabel:'Liberty Live Group I (53033H101)',issuerName:'LIBERTY LIVE GROUP INC',cusip:'53033H101',shareClass:'COM SER A'}),'Liberty Live A')
