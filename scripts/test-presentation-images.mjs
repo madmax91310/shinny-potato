@@ -36,11 +36,19 @@ try {
       for(const c of result.calls.filter(c=>c.top>=640 && c.top<797)) assert(c.bottom<797,`${record.id}: metric value overlaps label`)
       // Two-line metric labels and conditions must not overlap each other or the footer.
       for(const c of result.calls.filter(c=>c.top>=797 && c.top<875)) assert(c.bottom<875,`${record.id}: metric label overlaps conditions`)
-      for(const c of result.calls.filter(c=>c.top>=875 && c.top<952)) assert(c.bottom<952,`${record.id}: conditions overlap footer`)
+      for(const c of result.calls.filter(c=>c.top>=875 && c.top<(kind==='scpi'?940:952))) assert(c.bottom<(kind==='scpi'?940:952),`${record.id}: conditions overlap footer`)
       const copy=result.calls.map(c=>c.value).join(' ').replace(/\s+/g,' ')
       assert.equal(copy.split('Épargnant Libre').length-1,1)
       assert(!copy.includes('Détail dans le texte'))
       assert.equal(result.height,1000)
+      if(kind==='scpi') {
+        assert(!copy.includes('Je te fais les présentations'))
+        assert(!copy.includes('Prix au') && !copy.includes('Minimum initial'))
+        const signature=result.calls.find(c=>c.value==='Épargnant Libre')
+        assert(Math.abs((signature.left+signature.right)/2-800)<1)
+        const top=[...record.snapshot.sectors].sort((a,b)=>b.value-a.value)[0]
+        assert(copy.includes(top.label) && copy.includes(String(top.value).replace('.',',')))
+      }
       const model=presentationReliefModel(record,kind)
       assert.equal(model.highlights.length,3)
       for(const r of model.highlights) {

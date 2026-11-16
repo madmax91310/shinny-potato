@@ -53,6 +53,33 @@ function loadBackdrop(kind) {
   }))
   return assets.get(file)
 }
+async function renderScpiImage(model, files) {
+  const [logos, backdrop] = await Promise.all([Promise.all(files.map(loadLogo)), loadBackdrop('scpi-editorial')])
+  const canvas = document.createElement('canvas'); canvas.width = 1600; canvas.height = 1000
+  const ctx = canvas.getContext('2d'); ctx.textBaseline = 'top'
+  ctx.drawImage(backdrop, 0, 0, 1600, 1000)
+  const shade = ctx.createLinearGradient(0, 0, 0, 360)
+  shade.addColorStop(0, '#051329b8'); shade.addColorStop(1, '#05132900')
+  ctx.fillStyle = shade; ctx.fillRect(0, 0, 1600, 360)
+  fittedText(ctx, model.title, 64, 112, 1460, 112, 60, '#fff5df', 700)
+  fittedText(ctx, model.subtitle, 68, 246, 1460, 42, 32, '#fff5df', 400)
+  // A small flat official mark replaces the central sculpture.
+  const logo = logos[0], scale = Math.min(235 / logo.width, 65 / logo.height)
+  const w = logo.width * scale, h = logo.height * scale
+  ctx.drawImage(tintMask(logoMask(logo, w, h), ['#fff5df', '#fff5df']), 1536 - w, 48)
+  ctx.fillStyle = '#061224'; ctx.fillRect(0, 675, 1600, 325)
+  for (let i = 0; i < model.highlights.length; i++) {
+    const metric = model.highlights[i], x = 48 + i * 512
+    ctx.textAlign = 'center'
+    fittedText(ctx, metric.value, x + 240, 710, 450, 106, 56, '#fff5df', 700)
+    fittedText(ctx, metric.label, x + 240, 831, 450, 38, 28, '#fff5df', 600, SANS, 2)
+    if (i === 0) fittedText(ctx, model.qualifier, x + 240, 887, 460, 27, 24, '#d8e3ee')
+    if (i < 2) { ctx.fillStyle = model.brand.color; ctx.fillRect(x + 494, 720, 3, 169) }
+  }
+  ctx.textAlign = 'center'; font(ctx, 36, 600); ctx.fillStyle = '#fff5df'
+  ctx.fillText('Épargnant Libre', 800, 940)
+  return canvas
+}
 function logoMask(img,width,height) {
   const layer=document.createElement('canvas');layer.width=Math.ceil(width);layer.height=Math.ceil(height)
   const ctx=layer.getContext('2d');ctx.drawImage(img,0,0,width,height)
@@ -100,6 +127,7 @@ export async function renderPresentationImage(record,kind) {
   await document.fonts.ready
   const model=presentationReliefModel(record,kind),files=brandAssets[record.id]
   if(!files)throw new Error('Logo de ce placement non référencé.')
+  if(kind === 'scpi') return renderScpiImage(model, files)
   const [logos,backdrop]=await Promise.all([Promise.all(files.map(loadLogo)),loadBackdrop(kind==='actor' ? (['immobilier','vignobles'].includes(record.family)?'scpi':'insurance') : kind)])
   const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1000
   const ctx=canvas.getContext('2d');ctx.textBaseline='top'
