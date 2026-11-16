@@ -1,9 +1,10 @@
 import initialFeed from "../src/pages/public-portfolios/initial-feed.json" with { type: "json" };
-import { FEED_URL, CATALOGUE_REVISION } from "../src/pages/public-portfolios/refresh.js";
+import { FEED_URL, CATALOGUE_REVISION, sourceSnapshot } from "../src/pages/public-portfolios/refresh.js";
 import { choose } from "./card-selection.mjs";
 import { expect } from "playwright/test";
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
+import { mkdirSync, copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import {
   blankProfile,
   blankSnapshot,
@@ -134,7 +135,7 @@ Object.assign(p, {
   nature: "Réel déclaré par son auteur",
 });
 const s = blankSnapshot();
-Object.assign(s, { consulted: "2026-11-15", source: p.url, currency: "EUR" });
+Object.assign(s, { consulted: "2026-11-15", source: p.url, currency: "EUR", method: "TWR", dividends: "Réinvestis", fees: "Inclus" });
 Object.assign(s.month, {
   value: -2.45,
   start: "2026-10-01",
@@ -248,6 +249,64 @@ await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
 await expect(
   page.getByRole("button", { name: "Sauvegarder", exact: true }),
 ).toBeInViewport();
+// Regression through real UI/storage: a legacy A -> B -> A must show the latest A.
+const sourceEntry = initialFeed.entries[0];
+const legacySnapshot = sourceSnapshot(sourceEntry.observation);
+legacySnapshot.id = `collected:${sourceEntry.observation.id}`;
+delete legacySnapshot.acquisition.observationId;
+const recurrenceProfile = { ...blankProfile(), pseudo: 'TEST FICTIF récurrence',
+  url: sourceEntry.source, catalogueId: sourceEntry.catalogueId, snapshots: [legacySnapshot],
+  acquisition: { attemptedAt: sourceEntry.attemptedAt } };
+await page.evaluate(profile => localStorage.setItem('el-public-portfolios-v1', JSON.stringify({version:1,catalogueRevision:2,profiles:[profile]})), recurrenceProfile);
+const occurrenceFeed = (observation, offset) => {
+  const result = structuredClone(initialFeed);
+  const stamp = new Date(Date.now() + offset).toISOString().replace(/\.\d{3}Z$/, 'Z');
+  result.collectedAt = stamp;
+  Object.assign(result.entries[0], { attemptedAt:stamp, lastSuccessAt:stamp, observation:{...observation,collectedAt:stamp} });
+  return result;
+};
+const middleObservation = structuredClone(sourceEntry.observation);
+middleObservation.id = 'b'.repeat(64);
+middleObservation.positions[0].weight += 0.001;
+middleObservation.positions[1].weight -= 0.001;
+let currentOccurrence = occurrenceFeed(middleObservation, 5000);
+await page.route(FEED_URL + '**', route => route.fulfill({json:currentOccurrence}));
+await page.reload();
+await expect(page.getByRole('status')).toContainText('1 nouveau(x)');
+currentOccurrence = occurrenceFeed(sourceEntry.observation, 10000);
+await page.getByRole('button', {name:'Actualiser tous les portefeuilles',exact:true}).click();
+await expect(page.getByRole('status')).toContainText('1 nouveau(x)');
+const recurrenceDb = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
+assert.equal(recurrenceDb.profiles[0].snapshots.length, 3);
+assert.deepEqual(recurrenceDb.profiles[0].snapshots.at(-1).positions, sourceEntry.observation.positions);
+await page.getByRole('button', {name:'Actualiser tous les portefeuilles',exact:true}).click();
+await expect(page.getByRole('status')).toContainText('0 nouveau(x)');
+await page.getByRole('button', {name:'Ajouter un portefeuille',exact:true}).click();
+await page.getByLabel('URL du portefeuille',{exact:true}).fill(sourceEntry.source.replace('/en/','/de/') + '?utm_source=test');
+await page.getByLabel('Pseudo',{exact:true}).fill('TEST FICTIF doublon linguistique');
+await page.getByRole('button',{name:'Sauvegarder',exact:true}).click();
+await expect(page.getByRole('status')).toContainText('Ce lien est déjà enregistré');
+assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')).profiles.length),1);
+await page.unroute(FEED_URL + '**');
+// Render the same 30-position fixture through the frozen v1 reference and current renderer.
+const oldRenderer = readFileSync('scripts/fixtures/public-portfolio-images-v1.txt', 'utf8');
+const currentRenderer = readFileSync('src/pages/public-portfolios/images.js', 'utf8');
+const pixelResult = await page.evaluate(({oldRenderer,currentRenderer,p,s}) => {
+  const hasText = value => typeof value === 'string' && value.trim() !== '';
+  const weightPct = value => `${Number(value).toLocaleString('fr-FR',{maximumSignificantDigits:10})} %`;
+  const pct = value => `${Number(value)>0?'+':''}${weightPct(value)}`;
+  const create = source => new Function('nameOf','hasText','pct','benchmarkIssue','weightPct','lastCompletedMonthEnd', source.replace(/import\s*\{[\s\S]*?\}\s*from\s*["'][^"']+["'];/, '').replace('export function renderImages','function renderImages') + ';return renderImages;')(
+    profile => profile.name.trim() || profile.pseudo.trim(), hasText,pct,()=>'not comparable',weightPct,()=> '2026-10-31');
+  s.positions = Array.from({length:30},(_,i)=>({name:'TEST FICTIF placement '+i+(i===1?' avec un libellé suffisamment long pour contrôler le retour à la ligne':''),weight:i===29?0.000011:(100-0.000011)/29}));
+  const a=create(oldRenderer)(p,s,1), b=create(currentRenderer)(p,s,1,{version:1}), c=create(currentRenderer)(p,s,1,{version:2});
+  return {pages:a.length,legacyIdentical:a.every((canvas,i)=>canvas.toDataURL()===b[i].toDataURL()),newDatesVisible:c[0].toDataURL()!==b[0].toDataURL()};
+}, {oldRenderer,currentRenderer,p,s});
+assert(pixelResult.legacyIdentical, 'Historical v1 PNG pixels remain identical');
+assert(pixelResult.newDatesVisible, 'The current renderer distinguishes allocation dates');
+mkdirSync('test-artifacts/public-portfolios',{recursive:true});
+for(const file of ['public-portfolio-export.png','public-portfolio-images.zip','public-portfolio-desktop.png','public-portfolio-mobile.png','public-portfolio-reserve-mobile.png','public-portfolio-reserve-desktop.png'])
+  copyFileSync('/tmp/'+file,'test-artifacts/public-portfolios/'+file);
+writeFileSync('test-artifacts/public-portfolios/pixel-regression.json',JSON.stringify(pixelResult,null,2)+'\n');
 for (const route of ["le-dca-de", "le-budget-de", "banque-tweets"]) {
   await page.goto(base + "" + route);
   await page.locator("h1").first().waitFor({ timeout: 60000 });

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { catalogue, CATALOGUE_REVISION, seedCatalogue, mergeFeed, validateFeed, sourceSnapshot } from '../src/pages/public-portfolios/refresh.js';
-import { blankProfile } from '../src/pages/public-portfolios/lib.js';
+import { blankProfile, sourceKey } from '../src/pages/public-portfolios/lib.js';
 import { publishFeed, readPrevious, BRANCH, FILE } from './refresh-public-portfolio-feed.mjs';
 const feed = JSON.parse(readFileSync(new URL('../src/pages/public-portfolios/initial-feed.json', import.meta.url)));
 validateFeed(feed);
@@ -72,6 +72,37 @@ assert.equal(after.checked, selected.checked); assert.equal(after.status, select
 assert.equal(mergeFeed(updated.db, fresh).added, 0, 'Repeated loading is idempotent');
 assert.equal(mergeFeed(updated.db, feed).added, 0, 'An older feed never rolls the source back');
 assert.equal(mergeFeed(updated.db, feed).db.feedLoadedAt, when);
+// A -> B -> A is a new occurrence, including when A used a legacy content-only ID.
+const legacyDb = structuredClone(db);
+const legacyProfile = legacyDb.profiles.find(row => row.id === selected.id);
+legacyProfile.snapshots[0].id = `collected:${observed.observation.id}`;
+delete legacyProfile.snapshots[0].acquisition.observationId;
+legacyProfile.draft.snapshotId = legacyProfile.snapshots[0].id;
+const intermediate = mergeFeed(legacyDb, fresh).db;
+const returned = structuredClone(fresh);
+returned.collectedAt = new Date(Date.now() + 3000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+const returnEntry = returned.entries.find(row => row.catalogueId === observed.catalogueId);
+returnEntry.attemptedAt = returnEntry.lastSuccessAt = returned.collectedAt;
+returnEntry.observation = { ...structuredClone(observed.observation), collectedAt: returned.collectedAt };
+const resultA = mergeFeed(intermediate, returned);
+const returnedProfile = resultA.db.profiles.find(row => row.id === selected.id);
+assert.equal(resultA.added, 1, 'Returning to a historical allocation creates a dated occurrence');
+assert.deepEqual(returnedProfile.snapshots.at(-1).positions, observed.observation.positions);
+assert.notEqual(returnedProfile.snapshots[0].id, returnedProfile.snapshots.at(-1).id);
+assert.equal(returnedProfile.snapshots[0].id, legacyProfile.snapshots[0].id);
+assert.deepEqual(returnedProfile.draft, legacyProfile.draft);
+assert.deepEqual(returnedProfile.publications, legacyProfile.publications);
+assert.equal(mergeFeed(resultA.db, returned).added, 0);
+const unchangedA = structuredClone(returned);
+unchangedA.collectedAt = new Date(Date.now() + 4000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+unchangedA.entries.find(row => row.catalogueId === observed.catalogueId).attemptedAt = unchangedA.collectedAt;
+unchangedA.entries.find(row => row.catalogueId === observed.catalogueId).lastSuccessAt = unchangedA.collectedAt;
+assert.equal(mergeFeed(resultA.db, unchangedA).added, 0, 'Consecutive identical reads do not create copies');
+for (const lang of ['', 'de/', 'fr/', 'en/']) {
+  assert.equal(sourceKey(catalogue[0].url.replace('/en/', '/' + lang) + '?utm_source=test#allocation'), sourceKey(catalogue[0].url));
+}
+assert.notEqual(sourceKey(catalogue[0].url), sourceKey(catalogue[1].url));
+assert.notEqual(sourceKey('https://example.com/en/dashboard/ABC'), sourceKey('https://example.com/de/dashboard/ABC'));
 const failure = structuredClone(fresh);
 failure.collectedAt = new Date(Date.now() + 2000).toISOString().replace(/\.\d{3}Z$/, 'Z');
 const failed = failure.entries.find(row => row.catalogueId === observed.catalogueId);

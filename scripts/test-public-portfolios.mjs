@@ -33,6 +33,7 @@ const s = blankSnapshot();
 s.consulted = "2026-11-15";
 s.currency = "EUR";
 s.source = p.url;
+s.method = 'TWR'; s.dividends = 'Réinvestis'; s.fees = 'Inclus';
 s.positions = [{ name: "Placement fictif", weight: 100 }];
 Object.assign(s.month, {
   value: -2.45,
@@ -49,6 +50,15 @@ Object.assign(s.ytd, {
   verified: true,
 });
 assert.deepEqual(issues(p, s), []);
+for (const field of ['method', 'dividends', 'fees']) {
+  const unqualified = structuredClone(s);
+  unqualified[field] = field === 'method' ? 'Non précisée' : 'Non précisé';
+  assert(issues(p, unqualified).length, `${field} cannot be silently treated as qualified`);
+}
+const otherMethod = { ...structuredClone(s), method: 'Autre' };
+assert(issues(p, otherMethod).length);
+otherMethod.methodNote = 'TEST FICTIF : méthode et traitement des flux explicités sur la source';
+assert.deepEqual(issues(p, otherMethod), []);
 assert.equal(pct(0), "0 %");
 assert.equal(pct(""), "Non renseignée");
 assert.match(buildText(p, s, 2), /-2,45/);

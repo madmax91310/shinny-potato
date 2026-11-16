@@ -7,7 +7,7 @@ import {
   lastCompletedMonthEnd,
 } from "./lib.js";
 // Preview and PNG share the same canvas pixels. No allocation is renormalized.
-export function renderImages(p, s, episode) {
+export function renderImages(p, s, episode, { version = 2 } = {}) {
   const canvases = [];
   function create() {
     const c = document.createElement("canvas");
@@ -84,7 +84,7 @@ export function renderImages(p, s, episode) {
         900,
         32,
       ) + 20;
-  line("RÉPARTITION", y, 32, "#71dfb2");
+  line(version === 1 ? "RÉPARTITION" : `RÉPARTITION · ${s.effective ? `AU ${s.effective}` : `CONSULTÉE LE ${s.consulted}`}`, y, version === 1 ? 32 : 28, "#71dfb2");
   y += 60;
   const shown = [];
   for (const r of s.positions) {
