@@ -15,8 +15,8 @@ const clash=(a,b,gap=20)=>a.x<b.x+b.width+gap&&a.x+a.width+gap>b.x&&a.y<b.y+b.he
 const clamp=(n,a,b)=>Math.max(a,Math.min(n,b))
 const delta=a=>Math.atan2(Math.sin(a),Math.cos(a))
 function circleClash(box,x,y,r){return Math.hypot(x-clamp(x,box.x,box.x+box.width),y-clamp(y,box.y,box.y+box.height))<r}
-function amounts(value,currency) {
-  return [2].map(d=>new Intl.NumberFormat('fr-FR',{...(currency?{style:'currency',currency}:{}),notation:'compact',minimumFractionDigits:0,maximumFractionDigits:d}).format(value).replace(/\s*\$US/,'$').replace(/\s/g,''))
+function amount(value,currency) {
+  return new Intl.NumberFormat('fr-FR',{...(currency?{style:'currency',currency}:{}),notation:'compact',minimumFractionDigits:0,maximumFractionDigits:2}).format(value).replace(/\s*\$US/,'$').replace(/\s/g,'')
 }
 export function arrangeOrbit(rows,start,currency,top=POSTER.top) {
   const {cx,cy,outer,badgeRadius:br,badgeOrbit:r}=POSTER
@@ -39,17 +39,16 @@ export function arrangeOrbit(rows,start,currency,top=POSTER.top) {
   }
   if(order.length>1 && order[0].badgeAngle+2*Math.PI-order.at(-1).badgeAngle<min)return null
   const candidates=entries.map(e=>{
-    const result=[],money=amounts(e.value,currency)
+    const result=[],money=amount(e.value,currency)
     for(const width of [220,180,150,260,130]) {
       const lines=wordLines(e.label,width)
       if(!lines)continue
-      const amount=money.find(s=>measure(s,34)<=width)
-      if(!amount)continue
-      const w=Math.max(...lines.map(s=>measure(s,36)),measure(amount,34)),h=lines.length*40+40
+      if(measure(money,34)>width)continue
+      const w=Math.max(...lines.map(s=>measure(s,36)),measure(money,34)),h=lines.length*40+40
       for(const turn of [0,-.12,.12,-.24,.24,-.38,.38,-.55,.55])for(const extra of [0,25,50,80]) {
         const a=e.badgeAngle+turn,c=Math.cos(a),s=Math.sin(a)
         const reach=r+br+9+Math.abs(c)*w/2+Math.abs(s)*h/2+extra
-        const box={x:clamp(cx+c*reach-w/2,20,1060-w),y:clamp(cy+s*reach-h/2,top,POSTER.bottom-h),width:w,height:h,lines,amount}
+        const box={x:clamp(cx+c*reach-w/2,20,1060-w),y:clamp(cy+s*reach-h/2,top,POSTER.bottom-h),width:w,height:h,lines,amount:money}
         const px=clamp(e.badge.x,box.x,box.x+w),py=clamp(e.badge.y,box.y,box.y+h)
         const distance=Math.hypot(px-e.badge.x,py-e.badge.y)-br
         if(distance<7||distance>170||circleClash(box,cx,cy,outer+5)||entries.some(o=>circleClash(box,o.badge.x,o.badge.y,br+3)))continue
