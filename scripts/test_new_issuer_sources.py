@@ -190,6 +190,12 @@ class IssuerSources(unittest.TestCase):
         delayed=copy.deepcopy(payload);delayed['metadata']['year_end_date']='2025-12-31'
         result=lg(delayed,s,now,'isolated-delayed-publication')
         self.assertNotIn('2026',result['performance']['years'])
+        self.assertNotIn('2020',result['performance']['years'])
+        self.assertTrue(any(reason.startswith('performance:') for reason in result['unavailable']))
+        older=copy.deepcopy(delayed)
+        older['funds'][0]['share_classes'][0]['data'][fields.index('launchDate')]='2018-01-01'
+        result=lg(older,s,now,'isolated-delayed-older-share')
+        self.assertNotIn('2026',result['performance']['years'])
         self.assertFalse(any(reason.startswith('performance:') for reason in result['unavailable']))
         unfinished=copy.deepcopy(payload);unfinished['metadata']['year_end_date']='2027-12-31'
         with self.assertRaisesRegex(ValueError,'Unfinished L&G calendar year'):
