@@ -83,6 +83,8 @@ def derive(isin, record, underliers, errors, now):
         source = underliers.get(key)
         if not source or source.get('complete') is not True or not source.get('sha256'):
             raise ValueError('Missing complete LifeStrategy equity dependency: ' + key)
+        from lifestrategy_retained_holdings import compatible_book
+        source = compatible_book(key, source, holdings['asOf'], now)
         stamp = fresh(source, now)
         # Same reporting date: no implied trading history between mismatched snapshots.
         if stamp != holdings['asOf']:
@@ -92,7 +94,8 @@ def derive(isin, record, underliers, errors, now):
         sources.add(source['sourceUrl'])
         dependencies.append(dict(isin=key, weightPct=fund['weightPct'], asOf=stamp,
                                  checkedAt=source['checkedAt'], sourceUrl=source['sourceUrl'],
-                                 sha256=source['sha256']))
+                                 sha256=source['sha256'],
+                                 **({'retainedSnapshotProof':source['retentionEvidence']} if source.get('retentionEvidence') else {})))
         for security in securities:
             target = rows.setdefault(security['isin'], dict(
                 isin=security['isin'], name=security['name'], weightPct=0))

@@ -12,6 +12,8 @@ assert.equal(result().pairs[0].overlap,100)
 assert.equal(result().groups[0].coverage,100)
 assert.equal(result().groups[0].rows.find(r=>r.isin===a).weight,68)
 for(const bad of [{...h,complete:false},{...h,approximation:true},
+ projectDcaHoldings({...h,sourcePartial:true},false,sourceUrl),
+ projectDcaHoldings({...h,unvaluedPositions:[{weightPct:null,published:{NAME:'CURRENCY CONTRACT - ZAR',SHARES_HELD:'-10676.5'}}]},false,sourceUrl),
  {...h,rows:[{isin:a,name:'Apple',weightPct:60},{isin:b,name:'Microsoft',weightPct:39.4}]},
  {...h,rows:[{isin:a,name:'Apple',weightPct:60},{isin:b,name:'Microsoft',weightPct:40.2}]},
  {...h,rows:[{isin:a,name:'Apple',weightPct:99.9},{isin:null,name:'Unidentified',weightPct:.1}]}]){
@@ -96,4 +98,21 @@ console.log('Holdings contracts: shared completeness, real source metadata, stal
  const a=portfolioAnalytics(lines,refs,observations,now),b=portfolioAnalytics([...lines].reverse(),refs,observations,now)
  assert.equal(a.pairs[0].full,true);assert.ok(Number.isFinite(a.pairs[0].overlap));assert.deepEqual(a.pairs,b.pairs)
  console.log('Biotech: both documented cash-only rights retained outside company shares; complete overlap restored on exact native fixture.')
+}
+
+{
+ const partial={...h,complete:false,sourcePartial:true,
+  unvaluedPositions:[{sourceRecord:2,weightPct:null,published:{NAME:'CURRENCY CONTRACT - ZAR',SHARES_HELD:'-10676.5'}}],
+  rows:[{isin:a,name:'Apple',weightPct:60},{isin:b,name:'Microsoft',weightPct:39.819}]}
+ const p=result(partial),reverse=portfolioAnalytics([...lines].reverse(),refs,{x:partial,y:h},now)
+ assert.equal(p.pairs[0].overlap,null)
+ assert.equal(p.groups[0].complete,false)
+ assert(Math.abs(p.groups[0].coverage-99.9276)<1e-9)
+ assert(Math.abs(p.groups[0].rows.find(r=>r.isin===b).weight-31.9276)<1e-9,'Published weights never scaled to fill missing coverage')
+ assert.deepEqual(p.pairs,reverse.pairs)
+ assert.equal(partial.unvaluedPositions[0].weightPct,null)
+ const projected=projectDcaHoldings(partial,false,sourceUrl)
+ assert.equal(projected.complete,false)
+ assert.deepEqual(projected.unvaluedPositions,partial.unvaluedPositions)
+ console.log('Unvalued FX: partial known positions remain usable without normalization, full overlap or inferred zero; company consolidation and order invariant.')
 }
