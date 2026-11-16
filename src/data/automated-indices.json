@@ -1839,6 +1839,16 @@
           1.12
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 4200,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
         "checkedAt": "2026-11-16",
@@ -11686,10 +11696,6 @@
           1.35
         ],
         [
-          "Greece                                    -                       -          -",
-          0.03
-        ],
-        [
           "Hong Kong",
           3.66
         ],
@@ -11838,6 +11844,30 @@
           1.89
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 320,
+        "excludedComparisonRows": [
+          {
+            "country": "Greece",
+            "primaryCells": [
+              "-",
+              "-",
+              "-"
+            ],
+            "comparisonCells": [
+              "1",
+              "577",
+              "0.03"
+            ]
+          }
+        ]
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
         "checkedAt": "2026-11-16",
@@ -12812,6 +12842,16 @@
           2.4
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 277,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
         "checkedAt": "2026-11-16",
@@ -13567,6 +13607,16 @@
           0.79
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 2298,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
         "checkedAt": "2026-11-16",
@@ -14633,6 +14683,15 @@
           0.83
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Wgt %"
+        ],
+        "constituentCount": 2467,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open",
         "checkedAt": "2026-11-16",
@@ -19742,7 +19801,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-16",
-        "sha256": "884373f8a37c7f47b753e1f6f7fe557598e5bdaa9cec101f8ae4f0060bf52640",
+        "sha256": "b200d6130170208dda17348f2f7bec4009801f344c495ec06332cf281d41db8e",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -19958,7 +20017,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-16",
-        "sha256": "e13c11e179dd3287afcadc71d5270520f1f12256f54cbd255cf29aa549d07fb2",
+        "sha256": "62ccdd2f401a7167cebc4dba4025b4c9b73a5cdfe6fb3aeafb2642de6fdd4875",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -20086,7 +20145,7 @@
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-11-16",
-        "sha256": "37abc8e20f94b3c533b35538fc19e67ff1795567078d455f084e122db2d94851",
+        "sha256": "ee8e639adcadc3fb6d54262f3ccda25c07e7e9d6a9c9332ef41781d6e2ee8a3c",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
@@ -22146,7 +22205,7 @@
       "source": {
         "url": "https://stoxx.com/index/sx5t/",
         "checkedAt": "2026-11-16",
-        "sha256": "41af622b6ca53a7a1a9b25f6f31d8043f498b72e1013531348f73f1fb3d86ff6",
+        "sha256": "3270b439ff135206d2aa980078c5eac5b42beb0b5329fd0ef7ea40aec1714858",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
@@ -23980,7 +24039,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-16",
-        "sha256": "a5ab586b574d64be1bdf2c4dd8c009fe782d16438e38cba79c3c1c058581a5c9",
+        "sha256": "b3b090658e1c01422a9a9b002729a567e31fd73be9ae1073fd0ce6c7b756e503",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -24614,7 +24673,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
         "checkedAt": "2026-11-16",
-        "sha256": "f2db0178957a8c6c4f8c6453963b90b5896812f9cc0b50568a039fe61c208a60",
+        "sha256": "8b262ec1cf49f26cf7ec39d7fd489c994721ebe440622979085156d81e7867ef",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -25120,7 +25179,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-16",
-        "sha256": "65de1a829112c61c240f39c934a6cdff0ed9716a718195cd029d78cdd5014a6f",
+        "sha256": "c157c6cff815d4f144ebc5226952fd8251dbcf3da03f3c67fa1eeb41a2e9df64",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
