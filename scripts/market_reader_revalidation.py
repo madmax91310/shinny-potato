@@ -91,6 +91,10 @@ ETF_ACQUISITION_ENTRIES = (ETF_BASELINE, 'scripts/build-automation-targets.mjs')
 # not the issuer acquisition baseline. Prove that separation on both trees;
 # retain the shared source guard and the complete merged-tree financial checks.
 ETF_READERS = {'docs/data-operations-coordination.md',
+               # Actual refusal43941239960: practical documentary output is
+               # absent from BOTH acquisition graphs on BOTH snapshots.
+               # Preserve the newer output and revalidate the merged tree.
+               'src/data/automated-practical-sheets.json',
                'scripts/lib/data-qualification.mjs',
                'scripts/test-data-qualification.mjs',
                # Cron43451234453: an independent INSEE receipt advanced during

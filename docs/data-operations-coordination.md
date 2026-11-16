@@ -898,3 +898,82 @@ deux adaptateurs, aucune donnée synthétique de test écrite en production.
 Le garde commun et ses exemptions restent inchangés. Après ce seul refus explicite, un nouveau master est acquis dans un worktree privé, les SCPI sont recollectées par leur producteur ordinaire et tous les contrôles financiers sont rejoués avant de rappeler l’enregistreur isolé, sur son seul chemin SCPI. Trois tentatives maximum, délais2/4s ; aucun force-push ou résolution de conflit financier. Un changement des dépendances ou du contrat de validation exige un nouveau workflow ordinaire depuis master, plutôt qu’une exécution sur l’ancien environnement. Les échecs financiers/authentification sans refus d’entrées ne déclenchent pas cette reprise. Les tentatives, plans préalables, SHAs de code et résultats partiels restent distincts dans l’artefact ; une panne ne renouvelle pas les anciennes preuves financières.
 
 Le lot annuel#1347 ne touche que son test de texte ; les PR#1298/#1253/#1061 et les correctionsETF#1341/#1346 sont préservées. Aucun collecteur commun, maquette, condition financière ou seuil n’est modifié ; aucun automatismeIA ou Radar réactivé. Recette isolée avec vraiGit/garde/enregistreur et source contrôlée ; collecte et publication ordinaires après fusion restent à démontrer séparément.
+
+## 16 novembre — livre Invesco Equal Weight, route publique exacte
+
+Même suivi #881, `fix/invesco-exact-uk-public-book-20261116` possède uniquement
+les routes du collecteur physique Invesco, la qualification de son compte exact,
+la capture publique et ses régressions. La route FR Nasdaq Equal Weight renvoie
+le29octobre contre un livre valide du12novembre : refus de régression maintenu.
+La page publique UK, son mandat physique, la part IE000L2SA8K5/USD/Acc non couverte,
+le widget exact, le recensement102 et les poids originaux du13novembre qualifient
+une voie indépendante.101titres et résidu Cash/Derivatives0,0318%, sans normalisation.
+Anciennes preuves FR et autres parts préservées ; aucun indice natif substitué.
+Page anonyme sans attestation ni contournement ; mention public UK conservée,
+licence de réutilisation non vérifiée. Tests locaux et capture réelle ne prouvent
+ni l'accès GitHub ni l'enregistrement/publication, à observer via le producteur.
+#1370 garde FTSE, #1372 HSBC/iBonds, #1253 S&P ; aucun fichier de leurs correctifs
+n'est repris. Aucune réactivation Radar/IA, aucun changement de maquette.
+
+Complément du même correctif : la part All-World distribuante IE0000QLH0G6
+présente aussi cette régression FR, observée au run43941254251. Sa page UK
+confirme échantillonnage physique et2089positions au13novembre ;2064poids
+actions positifs originaux et cash0,0671%, aucune transparisation d'indice.
+Seules ces deux parts qualifiées utilisent UK. L'autre part conserve FR.
+Le premier producteur post#1367,43938748488, est arrêté par une recette qui
+exige encore complete=true pour Uranium. La recette vérifie désormais son
+unique sous-ensemble typé, les lignes FX inconnues conservées et le refus du
+recouvrement intégral ; les autres sources restent exigées complètes.
+Aucune donnée ni seuil financier changé pour obtenir la réussite de cette recette.
+
+## 16 novembre — compte HSBC et pays iBonds, erreurs individuelles préservées
+
+Même suivi #881, `fix/hsbc-ibonds-source-recovery-20261116` possède
+hsbc_holdings, la configuration exacte IE0008UEVOE0, la sortie partielle du
+collecteur qualifié et ses recettes. Le cron43918913412 révèle ces deux causes.
+HSBC : compte Eur Settlement For Capital Events explicitement valorisé197827EUR
+au10novembre, poids0,00787%, ISINvide ; classé compte séparé, jamais entreprise
+ni dividende. Cinquante titres et tous leurs poids natifs, réconciliation NAV et
+refus des comptes inconnus conservés. iBonds : table pays du1octobre périmée,
+structure physique EUR/FixedIncome et livre du13novembre qualifiés séparément.
+L’isolation existante permet pays de risque, cash signé et autres champs valides,
+sans renormalisation. L’échec pays primaire reste explicite dans le contrat du
+producteur, y compris --only ; aucune attribution de réussite globale/cache.
+Les identités primaires Defence et le lecteur de supervision ne sont pas modifiés.
+#1370 conserve les colonnes FTSE ; #1369 les NAV WisdomTree ; #1367 est fusionnée
+pour Uranium/LifeStrategy. Sources CopperMiners sans valeur/poids et Invesco
+régressant au29octobre restent distinctes, dernières observations conservées.
+Recettes isolées21+9 et rejeu natif ciblé réussis ; collecte GitHub, enregistrement
+et publication des deux voies encore à vérifier. Radar/IA/maquettes préservés.
+
+## 16 novembre — pays FTSE, colonne exacte de l’indice principal
+
+Même suivi #881, `fix/ftse-primary-country-column-20261116` possède seulement
+collect_index_documents, sa recette et trois extractions PDF réelles. ENGD
+au30octobre : la ligne Grèce n’a ni titre, ni capitalisation, ni poids dans
+Dividend+ ;0,03% appartient uniquement à l’indice comparé. L’ancien parseur
+avalait les tirets dans le libellé et empruntait ce poids. Lecture des colonnes
+explicites, rapprochement des effectifs320 et trace de la ligne de comparaison ;
+aucun poids absent changé en zéro ni renormalisation. Zéros publiés conservés,
+champs principaux manquants refusés. Les dispositions avec capitalisations,
+entêtes sur deux lignes et tableaux de poids/comparaisons restent qualifiées.
+Six réponses officielles relues, pays/sectors/positions et effectifs comparés ;
+seul le pays de comparaison erroné est retiré du périmètre de l’indice principal.
+Les anciennes preuves/historiques restent conservés. #1367 possède Uranium et
+LifeStrategy ; #1369 les NAV WisdomTree ; leurs fichiers ne sont pas modifiés.
+Aucun workflow Radar ou IA réactivé, aucun seuil ni maquette changé. Une collecte
+GitHub ordinaire, son enregistrement et la consommation publique restent à prouver.
+## 16 novembre — reçu documentaire indépendant pendant l'enregistrement ETF
+
+Même suivi #881, `fix/independent-studio-practical-recording-20261116` possède
+uniquement l'adaptateur market_reader_revalidation et sa recette. Le refus réel
+43941239960 se produit après validation, quand automated-practical-sheets.json
+avance de dec5f1e3 à b05a01de. Les deux graphes d'acquisition ETF aux deux commits
+ne consomment pas ce fichier précis. Il rejoint les lecteurs revalidables de
+l'adaptateur ETF seulement ; la version récente est préservée, les projections
+et tous les contrôles financiers rejoués. Garde commun, autres producteurs,
+code de collecte et fichiers voisins restent protégés. Le refus mensuel sur
+les nouveaux lecteurs Budget est distinct : il demande une acquisition depuis
+le nouveau master, pas une exemption générale des configurations CI.
+41recettes d'adaptateur réussies ; enregistrement GitHub après fusion encore
+à démontrer. #1370 FTSE, #1372 HSBC/iBonds et #1373 Invesco gardent leurs fichiers.

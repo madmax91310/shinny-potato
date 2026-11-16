@@ -369,6 +369,24 @@ class ReaderRevalidation(unittest.TestCase):
                     reader.check_etf(self.base, changed)
                 self.base = self.commit({entry: 'export const restored = true;\n'})
 
+    def test_practical_output_race_is_independent_but_its_producer_and_dependencies_are_not(self):
+        path='src/data/automated-practical-sheets.json'
+        base=self.base
+        end=self.commit({path:'{"checkedAt":"2026-11-16","values":{"example":1}}'})
+        result=reader.check_etf(base,end)
+        self.assertEqual(result['qualifiedPublicationReaders'],[path])
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        for entry in reader.ETF_ACQUISITION_ENTRIES:
+            base=self.commit({entry:"import '../"+path+"';\n"})
+            end=self.commit({path:json.dumps({'values':{'example':2},'isolatedEntry':entry})})
+            with self.assertRaisesRegex(ValueError,'acquisition dependency'):reader.check_etf(base,end)
+            self.commit({entry:'export const restored = [];\n'})
+        for protected in ['scripts/collect_practical_sheets.py','src/data/automated-practical-sheets-extra.json']:
+            base=self.git('rev-parse','HEAD')
+            end=self.commit({protected:'changed protected neighbour\n'})
+            with self.assertRaises(ValueError):reader.check_etf(base,end)
+
     def test_etf_live_inflation_and_neighbouring_source_files_stay_protected(self):
         for path in ['src/data/inflation-monthly.js', 'scripts/collect_inflation.py',
                      'scripts/source-snapshots/another-financial-source.json']:
