@@ -898,3 +898,18 @@ deux adaptateurs, aucune donnée synthétique de test écrite en production.
 Le garde commun et ses exemptions restent inchangés. Après ce seul refus explicite, un nouveau master est acquis dans un worktree privé, les SCPI sont recollectées par leur producteur ordinaire et tous les contrôles financiers sont rejoués avant de rappeler l’enregistreur isolé, sur son seul chemin SCPI. Trois tentatives maximum, délais2/4s ; aucun force-push ou résolution de conflit financier. Un changement des dépendances ou du contrat de validation exige un nouveau workflow ordinaire depuis master, plutôt qu’une exécution sur l’ancien environnement. Les échecs financiers/authentification sans refus d’entrées ne déclenchent pas cette reprise. Les tentatives, plans préalables, SHAs de code et résultats partiels restent distincts dans l’artefact ; une panne ne renouvelle pas les anciennes preuves financières.
 
 Le lot annuel#1347 ne touche que son test de texte ; les PR#1298/#1253/#1061 et les correctionsETF#1341/#1346 sont préservées. Aucun collecteur commun, maquette, condition financière ou seuil n’est modifié ; aucun automatismeIA ou Radar réactivé. Recette isolée avec vraiGit/garde/enregistreur et source contrôlée ; collecte et publication ordinaires après fusion restent à démontrer séparément.
+
+## 16 novembre — reçu documentaire indépendant pendant l'enregistrement ETF
+
+Même suivi #881, `fix/independent-studio-practical-recording-20261116` possède
+uniquement l'adaptateur market_reader_revalidation et sa recette. Le refus réel
+43941239960 se produit après validation, quand automated-practical-sheets.json
+avance de dec5f1e3 à b05a01de. Les deux graphes d'acquisition ETF aux deux commits
+ne consomment pas ce fichier précis. Il rejoint les lecteurs revalidables de
+l'adaptateur ETF seulement ; la version récente est préservée, les projections
+et tous les contrôles financiers rejoués. Garde commun, autres producteurs,
+code de collecte et fichiers voisins restent protégés. Le refus mensuel sur
+les nouveaux lecteurs Budget est distinct : il demande une acquisition depuis
+le nouveau master, pas une exemption générale des configurations CI.
+41recettes d'adaptateur réussies ; enregistrement GitHub après fusion encore
+à démontrer. #1370 FTSE, #1372 HSBC/iBonds et #1373 Invesco gardent leurs fichiers.
