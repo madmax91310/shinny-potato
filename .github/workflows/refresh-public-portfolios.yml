@@ -6,6 +6,8 @@ on:
       - .github/workflows/refresh-public-portfolios.yml
       - src/pages/public-portfolios/catalogue.json
       - scripts/public_portfolio_collector.py
+      - scripts/read-etoro-public.mjs
+      - scripts/lib/etoro-public.mjs
       - scripts/refresh-public-portfolio-feed.mjs
   workflow_dispatch:
   schedule:
@@ -38,8 +40,12 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - name: Install public page reader
+        run: npm ci --ignore-scripts && npx playwright install --with-deps chromium
       - name: Test public portfolio collector
         run: python3 -m unittest discover -s scripts -p 'test_public_portfolio_collector.py'
+      - name: Test public monthly performance reader
+        run: node scripts/test-etoro-public.mjs
       - name: Test public portfolio feed contracts
         run: node scripts/test-public-portfolio-refresh.mjs
       - name: Read public allocations and publish isolated feed

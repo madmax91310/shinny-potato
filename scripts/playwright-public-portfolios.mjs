@@ -39,8 +39,8 @@ await page
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
 assert.equal(
   await page.locator(".pp article").count(),
-  30,
-  "The reserve starts with thirty researched public profiles",
+  31,
+  "The reserve starts with researched public profiles including the public eToro reader",
 );
 // No refresh click: opening the tool must load the shared database automatically.
 await expect(page.getByRole("status")).toContainText("nouveau(x) relevé(s)", {
@@ -72,7 +72,7 @@ transportFeed.entries.forEach((entry, index) => {
   if (entry.observation) {
     entry.lastSuccessAt = browserStamp;
     entry.observation.id = (index + 1).toString(16).padStart(64, "0");
-    entry.observation.collectedAt = browserStamp;
+    if (!entry.observation.performances) entry.observation.collectedAt = browserStamp;
     entry.observation.note =
       "TEST FICTIF du transport, uniquement dans ce navigateur éphémère.";
   }
@@ -93,13 +93,15 @@ await expect(page.getByRole("status")).toContainText("nouveau(x) relevé(s)");
 const libraryAfterRefresh = await page.evaluate(() =>
   JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
 );
-assert.equal(libraryAfterRefresh.profiles.length, 30);
+assert.equal(libraryAfterRefresh.profiles.length, 31);
 for (const profile of libraryAfterRefresh.profiles) {
   const old = libraryBeforeRefresh.profiles.find(
     (row) => row.id === profile.id,
   );
   assert.equal(profile.snapshots.length, old.snapshots.length + 1);
-  assert.equal(profile.snapshots.at(-1).month.value, "");
+  const expectedSnapshot=sourceSnapshot(transportFeed.entries.find(entry=>entry.catalogueId===profile.catalogueId).observation);
+  assert.equal(profile.snapshots.at(-1).month.value, expectedSnapshot.month.value);
+  assert.equal(profile.snapshots.at(-1).ytd.value, expectedSnapshot.ytd.value);
   assert.equal(profile.snapshots.at(-1).month.verified, false);
   assert.equal(profile.checked, old.checked);
 }
@@ -217,6 +219,23 @@ await sourcePreview
   .locator("canvas")
   .first()
   .screenshot({ path: "/tmp/pp-incomplete-preview.png" });
+assert(!/\d,\d{3,}/.test(await page.getByLabel("Aperçu du texte à compléter").innerText()), "Editorial weights do not expose machine precision");
+writeFileSync('/tmp/pp-real-editorial-preview.png', Buffer.from(await sourcePreview.locator('canvas').first().evaluate(canvas => canvas.toDataURL('image/png').split(',')[1]), 'base64'));
+await page.setViewportSize({width:390,height:844});
+assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), "The editorial preview fits mobile");
+await sourcePreview.screenshot({path:'/tmp/pp-editorial-preview-mobile.png'});
+await page.setViewportSize({width:1440,height:1000});
+await page.getByRole('button',{name:'Voir le profil eToro avec rendements collectés',exact:true}).click();
+await expect(page.getByLabel('Aperçu du texte à compléter')).toContainText('collecté, à confirmer');
+await expect(page.getByLabel('Aperçu du texte à compléter')).toContainText('≈');
+await expect(page.getByRole('button',{name:'Préparer / régénérer le tweet',exact:true})).toBeDisabled();
+assert.equal(await page.getByRole('button',{name:'Copier le texte',exact:true}).count(),0);
+writeFileSync('/tmp/pp-etoro-editorial-preview.png',Buffer.from(await sourcePreview.locator('canvas').first().evaluate(canvas=>canvas.toDataURL('image/png').split(',')[1]),'base64'));
+await page.getByRole('button',{name:'Compléter les performances',exact:true}).click();
+const liveEtoro=initialLibrary.profiles.find(profile=>profile.catalogueId==='etoro-jaynemesis').snapshots.at(-1);
+assert.equal(await page.getByRole('group',{name:'Dernier mois civil terminé',exact:true}).getByLabel('Rendement (%)',{exact:true}).inputValue(),String(liveEtoro.month.value));
+assert.equal(await page.getByRole('group',{name:'Depuis janvier',exact:true}).getByLabel('Rendement (%)',{exact:true}).inputValue(),String(liveEtoro.ytd.value));
+await expect(page.getByRole('button',{name:'Enregistrer et préparer le post',exact:true})).toBeDisabled();
 // Synthetic returns stay in an explicitly fictitious, ephemeral browser profile.
 const reserveBackup = await page.evaluate(() =>
   localStorage.getItem("el-public-portfolios-v1"),
@@ -239,7 +258,7 @@ await page.evaluate(
   (p) =>
     localStorage.setItem(
       "el-public-portfolios-v1",
-      JSON.stringify({ version: 1, catalogueRevision: 2, profiles: [p] }),
+      JSON.stringify({ version: 1, catalogueRevision: 3, profiles: [p] }),
     ),
   completionProfile,
 );
@@ -337,7 +356,7 @@ assert.equal(completed.snapshots.length, 2);
 assert.equal(completed.snapshots[0].month.value, "");
 assert.equal(completed.publications[0].snapshot.month.value, "-2.45");
 assert.equal(completed.publications[0].snapshot.ytd.value, "0");
-assert.equal(completed.publications[0].image.version, 2);
+assert.equal(completed.publications[0].image.version, 3);
 await page.reload();
 await page
   .getByRole("button", { name: "Ouvrir / modifier", exact: true })
@@ -427,7 +446,7 @@ await page.evaluate(
   (p) =>
     localStorage.setItem(
       "el-public-portfolios-v1",
-      JSON.stringify({ version: 1, catalogueRevision: 2, profiles: [p] }),
+      JSON.stringify({ version: 1, catalogueRevision: 3, profiles: [p] }),
     ),
   p,
 );
@@ -540,7 +559,7 @@ delete legacySnapshot.acquisition.observationId;
 const recurrenceProfile = { ...blankProfile(), pseudo: 'TEST FICTIF récurrence',
   url: sourceEntry.source, catalogueId: sourceEntry.catalogueId, snapshots: [legacySnapshot],
   acquisition: { attemptedAt: sourceEntry.attemptedAt } };
-await page.evaluate(profile => localStorage.setItem('el-public-portfolios-v1', JSON.stringify({version:1,catalogueRevision:2,profiles:[profile]})), recurrenceProfile);
+await page.evaluate(profile => localStorage.setItem('el-public-portfolios-v1', JSON.stringify({version:1,catalogueRevision:3,profiles:[profile]})), recurrenceProfile);
 const occurrenceFeed = (observation, offset) => {
   const result = structuredClone(initialFeed);
   const stamp = new Date(Date.now() + offset).toISOString().replace(/\.\d{3}Z$/, 'Z');

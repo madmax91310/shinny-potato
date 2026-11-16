@@ -1,16 +1,16 @@
 import catalogue from './catalogue.json' with { type: 'json' };
 import initialFeed from './initial-feed.json' with { type: 'json' };
-import { blankProfile, blankSnapshot, sourceKey } from './lib.js';
+import { blankProfile, blankSnapshot, sourceKey, lastCompletedMonthEnd } from './lib.js';
 
 export const FEED_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/public-portfolio-data/public/data/public-portfolios-feed.json';
 export const COLLECTOR_URL = 'https://github.com/madmax91310/shinny-potato/actions/workflows/refresh-public-portfolios.yml';
 export { catalogue };
-export const CATALOGUE_REVISION = 2;
+export const CATALOGUE_REVISION = 3;
 const stamp = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString().replace('.000Z', 'Z') === v && Date.parse(v) <= Date.now() + 300000;
 const fail = () => { throw Error('Flux de relevés invalide ou incompatible. Les dernières données sont conservées.'); };
 
 export function validateFeed(feed, { allowSubset = false } = {}) {
-  if (feed?.version !== 1 || !stamp(feed.collectedAt) || !Array.isArray(feed.entries) || (allowSubset ? !feed.entries.length || feed.entries.length > catalogue.length : feed.entries.length !== catalogue.length)) fail();
+  if (feed?.version !== 1 || !stamp(feed.collectedAt) || !Array.isArray(feed.entries) || !feed.entries.length || feed.entries.length > catalogue.length) fail();
   const ids = new Set();
   for (const entry of feed.entries) {
     const known = catalogue.find(row => row.id === entry.catalogueId);
@@ -19,7 +19,8 @@ export function validateFeed(feed, { allowSubset = false } = {}) {
     if (typeof entry.lastSuccessAt !== 'string' || (entry.lastSuccessAt && (!stamp(entry.lastSuccessAt) || entry.lastSuccessAt > entry.attemptedAt))) fail();
     const o = entry.observation;
     if (!o) { if (!entry.error || entry.lastSuccessAt) fail(); continue; }
-    if (!/^[a-f0-9]{64}$/.test(o.id) || o.source !== known.url || !stamp(o.collectedAt) || !entry.lastSuccessAt || o.collectedAt > entry.lastSuccessAt || !/^[A-Z]{3}$/.test(o.currency) || o.currency === 'XXX' || o.effective !== '' || typeof o.note !== 'string' || o.note.length > 1500 || !Array.isArray(o.positions) || !o.positions.length || o.positions.length > 500) fail();
+    if (!/^[a-f0-9]{64}$/.test(o.id) || o.source !== known.url || !stamp(o.collectedAt) || !entry.lastSuccessAt || o.collectedAt > entry.lastSuccessAt || (!(known.platform === 'eToro' && o.currency === '') && !/^[A-Z]{3}$/.test(o.currency)) || o.currency === 'XXX' || o.effective !== '' || typeof o.note !== 'string' || o.note.length > 1500 || !Array.isArray(o.positions) || !o.positions.length || o.positions.length > 500) fail();
+    if (o.performances) validatePerformances(o, known);
     let sum = 0;
     for (const row of o.positions) {
       if (typeof row.name !== 'string' || !row.name.trim() || row.name.length > 500 || typeof row.identifier !== 'string' || row.identifier.length > 100 || typeof row.weight !== 'number' || !Number.isFinite(row.weight) || row.weight < 0 || row.weight > 100) fail();
@@ -27,13 +28,36 @@ export function validateFeed(feed, { allowSubset = false } = {}) {
     }
     if (sum <= 0 || sum > 100.5) fail();
   }
+  if (!allowSubset && catalogue.some(row => (row.introducedIn || 1) <= 2 && !ids.has(row.id))) fail();
   return feed;
+}
+
+function validatePerformances(o, known) {
+  const p=o.performances, end=lastCompletedMonthEnd(o.collectedAt.slice(0,10)), year=end.slice(0,4), count=Number(end.slice(5,7));
+  const number=v=>typeof v==='number' && Number.isFinite(v) && v>=-100;
+  if (known.platform!=='eToro' || p.source!==known.url || p.method!=='Autre' || typeof p.methodNote!=='string' || p.methodNote.length>1000 || !Array.isArray(p.series) || p.series.length>12) fail();
+  const validMetric=(m,start)=>m && number(m.value) && m.start===start && m.end===end && m.kind==='Cumulée' && m.verified===false && m.na==='' && typeof m.original==='string' && m.original.length>0 && m.original.length<=500;
+  if (!validMetric(p.month,end.slice(0,7)+'-01')) fail();
+  if (p.month.original!==`eToro Performance · ${end.slice(0,7)}` || (p.ytd?.value!=='' && p.ytd.original!=='Cumul géométrique des mois eToro publiés, arrondis par la source')) fail();
+  const keys=new Set();
+  for (const row of p.series) {
+    if (!new RegExp('^'+year+'-(0[1-9]|1[0-2])$').test(row.month) || row.month>end.slice(0,7) || keys.has(row.month) || !number(row.value)) fail();
+    keys.add(row.month);
+  }
+  if (p.series.find(row=>row.month===end.slice(0,7))?.value!==p.month.value) fail();
+  if (p.ytd?.value!=='') {
+    if (!validMetric(p.ytd,year+'-01-01') || p.ytd.approximate!==true || p.series.length!==count) fail();
+    const computed=Number(((p.series.reduce((product,row)=>product*(1+row.value/100),1)-1)*100).toFixed(2));
+    if(p.ytd.value!==computed) fail();
+  } else if (!p.ytd || p.ytd.verified!==false) fail();
 }
 
 export function sourceSnapshot(observation) {
   return { ...blankSnapshot(), id: `collected:${observation.id}:${observation.collectedAt}`, consulted: observation.collectedAt.slice(0, 10), effective: observation.effective,
     currency: observation.currency, source: observation.source, positions: structuredClone(observation.positions),
-    acquisition: { kind: 'public-html', observationId: observation.id, collectedAt: observation.collectedAt, note: observation.note } };
+    ...(observation.performances ? {month:{...observation.performances.month,verified:false},ytd:{...observation.performances.ytd,verified:false},method:observation.performances.method,methodNote:observation.performances.methodNote} : {}),
+    acquisition: { kind: 'public-html', observationId: observation.id, collectedAt: observation.collectedAt, note: observation.note,
+      ...(observation.performances ? {performanceSource:observation.performances.source,series:structuredClone(observation.performances.series),performanceValues:{month:structuredClone(observation.performances.month),ytd:structuredClone(observation.performances.ytd)}} : {}) } };
 }
 
 export function mergeFeed(db, input) {
