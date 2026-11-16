@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {readFileSync}from'node:fs'
 import {holdingsConsumerQualifications,applyHoldingsConsumerQualification} from './lib/holdings-consumer-qualification.mjs'
 
 const isin='IE000W8WMSL2',now=new Date('2026-10-30T12:00:00Z')
@@ -47,3 +48,33 @@ const substitute=holdingsConsumerQualifications({references:{swap:{isin,syntheti
 assert.equal(substitute.status,'evaluated','Known synthetic classification is a consumer input, not a new source snapshot')
 assert.equal(substitute.valid,false);assert.match(substitute.reasons.join(' '),/substitution/)
 console.log('Actual holdings admission: excess weights stay partial; valid windows/scopes, source failures, expected aliases and immutable source clocks preserved.')
+
+// Actual failed CI inventory: the known subset has two unresolved identities,
+// but the missing full-book field previously hid their0.004% from the UI.
+const actual=JSON.parse(readFileSync(new URL('./fixtures/uranium-inventory-20261116.json',import.meta.url)))
+const original=actual.connection,originalJson=JSON.stringify(original)
+assert.equal(original.unidentifiedWeightPct,undefined)
+assert.equal(original.consumerQualification.outcomes[0].unidentifiedCoverage,0.004)
+const visible=applyHoldingsConsumerQualification(original,original.consumerQualification)
+assert.equal(visible.unidentifiedWeightPct,0.004)
+assert.equal(visible.actionState,'collection-error');assert.equal(visible.present,false)
+assert.equal(visible.checkedAt,null);assert.equal(visible.asOf,null)
+for(const key of['reason','lastAttemptAt','lastSuccessAt'])assert.equal(visible[key],original[key])
+assert.equal(visible.consumerQualification.outcomes[0].complete,false)
+assert.equal(visible.unidentifiedWeightEvidence.sourceContacted,false)
+assert.equal(visible.unidentifiedWeightEvidence.asOf,'2026-11-13')
+assert.equal(visible.unidentifiedWeightEvidence.sourceCheckedAt,original.consumerQualification.outcomes[0].sourceCheckedAt)
+assert.equal(JSON.stringify(original),originalJson)
+assert.deepEqual(applyHoldingsConsumerQualification(visible,visible.consumerQualification),visible,'Idempotent projection without clock renewal')
+for(const patch of[{status:'deferred'},{valid:false},{unidentifiedCoverage:null},{unidentifiedCoverage:-1},{unidentifiedCoverage:NaN}]){
+ const altered={...original.consumerQualification,outcomes:[{...original.consumerQualification.outcomes[0],...patch}]}
+ assert.equal(applyHoldingsConsumerQualification(original,altered).unidentifiedWeightPct,undefined)
+}
+const duplicate={...original.consumerQualification,outcomes:[original.consumerQualification.outcomes[0],{...original.consumerQualification.outcomes[0],asset:'alias'}]}
+assert.equal(applyHoldingsConsumerQualification(original,duplicate).unidentifiedWeightPct,0.004,'Aliases do not double count unknown weight')
+for(const patch of[{asOf:'2026-11-12'},{sourceSha256:'b'.repeat(64)},{unidentifiedCoverage:0.008}]){
+ const conflicting={...duplicate,outcomes:[duplicate.outcomes[0],{...duplicate.outcomes[1],...patch}]}
+ assert.equal(applyHoldingsConsumerQualification(original,conflicting).unidentifiedWeightPct,undefined)
+}
+assert.equal(applyHoldingsConsumerQualification({...original,asOf:'2026-11-12'},original.consumerQualification).unidentifiedWeightPct,undefined)
+console.log('Actual Uranium inventory: evaluated unidentified0.004% stays visible beside the full-book failure; no false source success, mixed snapshot, alias sum or overlap admission.')

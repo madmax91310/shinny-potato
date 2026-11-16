@@ -1004,3 +1004,22 @@ les partitions navigateur et tweet existantes. Aucune attente financière,
 aucune donnée et aucun seuil modifiés ; contrôle de régression dans la recette
 native déjà exécutée par la CI. Ce correctif de transport ne prouve pas une
 nouvelle collecte ni une publication publique.
+
+## 16 novembre — complément du même lot1378, sources NAV et qualification partielle
+
+Le producteur43959903558 enregistre six NAV ; trois accès sans slash
+(WTI, Artificial Intelligence, Wheat) échouent en403. La variante canonique du
+même endpoint officiel répond et passe la qualification financière locale pour
+les trois parts. Secours HTTP borné après403 uniquement, graphe/table réacquis
+ensemble ; anciennes tentatives et URL réellement capturées conservées, aucun
+repli après donnée invalide. La preuve GitHub et l'enregistrement ordinaire de
+ces trois voies restent à obtenir ; aucune réparation fournisseur annoncée
+sur le seul contrôle local. Le suivi reste881 et cette PR, pas un second chantier.
+
+L'artefact CI14276501472 montre aussi que la qualification effective Uranium
+contient0,004% d'identités inconnues mais que le résumé ne les transmet pas
+quand le livre complet manque. Propagation minimale de cette information déjà
+validée, avec date/hash de la photographie et accord des alias ; statut d'échec,
+dates source et blocage intégral inchangés. Le lecteur existant affiche cette
+limite sans changement d'interface. Fixture de la vraie connexion CI et cas de
+dates contradictoires, alias, idempotence et absence d'observation vérifiés.

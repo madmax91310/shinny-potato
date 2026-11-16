@@ -39,7 +39,7 @@ def acquire(source, *, qualified_identity=None):
             for url in candidate:
                 bodies[url]=download(url,headers=headers,max_bytes=8_000_000)
                 attempts.append({'url':url,'transport':'public-widget-http','status':'received'})
-            return bodies,{'actualNavTransport':'public-widget-http','accessAttempts':attempts,
+            return bodies,{'actualNavTransport':'public-widget-http'if candidate==endpoints else'public-widget-http-canonical-alternative','accessAttempts':attempts,
                            **({'configuredSourceUrls':endpoints,'resolvedSourceUrls':candidate,
                                'routeQualification':'Same official endpoint, exact entity and modes; canonical slash after HTTP403'}
                               if candidate!=endpoints else {})}

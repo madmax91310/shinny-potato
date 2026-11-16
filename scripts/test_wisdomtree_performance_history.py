@@ -221,6 +221,7 @@ class CanonicalRouteRecovery(unittest.TestCase):
    browser.assert_not_called();self.assertEqual(download.call_count,3)
    self.assertEqual(resolved_performance_urls(s,bodies,proof),alternative)
    self.assertEqual(list(bodies),alternative);self.assertEqual(proof['configuredSourceUrls'],primary)
+   self.assertEqual(proof['actualNavTransport'],'public-widget-http-canonical-alternative')
    self.assertEqual(proof['accessAttempts'][0]['status'],'unavailable')
    self.assertEqual(proof['accessAttempts'][0]['url'],primary[0])
    self.assertTrue(all(json.loads(bodies[u])['actualSource']==u for u in alternative))
