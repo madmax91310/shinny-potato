@@ -37,11 +37,19 @@ def revision(root, name='HEAD'):
 
 def read_report(path):
     data = json.loads(path.read_text())
-    validate_contract(data['resultContract'])
+    if not isinstance(data, dict) or not isinstance(data.get('resultContract'), dict):
+        raise ValueError('Missing SCPI producer result contract')
+    try:
+        validate_contract(data['resultContract'])
+    except (KeyError, TypeError, AttributeError) as error:
+        raise ValueError('Invalid SCPI producer result contract') from error
     if data['resultContract']['scope'].get('kind') != 'collect_scpi':
         raise ValueError('The recording report does not belong to the SCPI producer')
     if data.get('producerStarted') or not isinstance(data.get('observations'), list) or not data['observations']:
         raise ValueError('SCPI acquisition did not finish with explicit individual observations')
+    if any(not isinstance(r, dict) or not isinstance(r.get('id'), str) or not r['id']
+           or r.get('status') not in ('success', 'failure', 'waiting') for r in data['observations']):
+        raise ValueError('Invalid individual SCPI observation')
     return data
 
 
@@ -101,8 +109,12 @@ def publish(root, report, attempts=3, command=None):
         try:
             for attempt in range(1, attempts + 1):
                 state = {'attempt': attempt, 'collectionBase': revision(current),
-                         'report': current_report.name, 'phase': 'recording', 'status': 'attempted'}
+                         'report': current_report.name, 'phase': 'source-plan-validation', 'status': 'attempted'}
                 history.append(state)
+                plan = read_report(current_report)['resultContract'].get('inputPlan', {})
+                if not plan.get('durablePlan') or plan.get('codeSha') != state['collectionBase']:
+                    raise ValueError('SCPI source plan does not match the collection checkout')
+                state['phase'] = 'recording'
                 output = temp / f'outputs-{attempt}'
                 result = record(current, output)
                 if result.returncode == 0:
@@ -117,7 +129,10 @@ def publish(root, report, attempts=3, command=None):
                 state.update(status='failed', reason='Financial writer refused the candidate')
                 # Never reinterpret a failed financial check, push/auth error or
                 # conflicting observation as permission to write the same output.
-                if INPUT_REFUSAL not in result.stdout or attempt == attempts:
+                last_line = result.stdout.rstrip().splitlines()[-1:]
+                stale_inputs = bool(last_line and last_line[0].startswith('ValueError: ' + INPUT_REFUSAL)
+                                    and 'observation_rebase_guard.py' in result.stdout)
+                if not stale_inputs or attempt == attempts:
                     raise RuntimeError('SCPI recording refused; no unsafe retry or forced write')
                 run(['git', 'fetch', 'origin', 'master'], root)
                 latest = revision(root, 'FETCH_HEAD')
@@ -151,26 +166,30 @@ def publish(root, report, attempts=3, command=None):
             raise RuntimeError('SCPI recording retry budget exhausted')
         except Exception as error:
             if history:
+                if history[-1]['status'] == 'attempted':
+                    history[-1]['status'] = 'failed'
                 history[-1]['recoveryError'] = f'{type(error).__name__}: {error}'
             raise
         finally:
             # Financial source clocks and native results stay untouched; each
             # original attempt and its predeclared plan remain separate evidence.
-            if current_report.exists():
-                try:
-                    save_report(current_report, report, history)
-                except (KeyError, TypeError, ValueError):
-                    # Keep the last valid report and the invalid raw attempt
-                    # separately, with its failed phase and exact file identity.
+            try:
+                if current_report.exists():
+                    try:
+                        save_report(current_report, report, history)
+                    except (KeyError, TypeError, ValueError):
+                        # Keep the last valid report and invalid raw attempt
+                        # separately, with the phase and exact file identity.
+                        retained = json.loads(report.read_text())
+                        retained['recordingAttempts'] = history
+                        report.write_text(json.dumps(retained, ensure_ascii=False, indent=2) + '\n')
+                else:
                     retained = json.loads(report.read_text())
                     retained['recordingAttempts'] = history
                     report.write_text(json.dumps(retained, ensure_ascii=False, indent=2) + '\n')
-            else:
-                retained = json.loads(report.read_text())
-                retained['recordingAttempts'] = history
-                report.write_text(json.dumps(retained, ensure_ascii=False, indent=2) + '\n')
-            for checkout in reversed(checkouts):
-                run(['git', 'worktree', 'remove', '--force', str(checkout)], root)
+            finally:
+                for checkout in reversed(checkouts):
+                    run(['git', 'worktree', 'remove', '--force', str(checkout)], root)
 
 
 def main():

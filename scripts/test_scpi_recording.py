@@ -1,6 +1,7 @@
 """Isolated source/write races: no supplier calls or production observations."""
 import copy
 import importlib.util
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -8,7 +9,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, call
 
 SCRIPTS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location('scpi_recording', SCRIPTS / 'commit-scpi-observations.py')
@@ -16,14 +17,20 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 
-def report(failed=False):
+def report(failed=False, code_sha=None):
+    items = [{'id': key, 'instrument': {'type': 'scpi', 'id': key}, 'selected': True,
+              'fields': ['declared financial observation']} for key in ('a', 'b')]
+    plan = {'producer': 'collect_scpi', 'items': items, 'codeSha': code_sha,
+            'durablePlan': True, 'nonce': 'isolated-source-' + str(code_sha)}
+    plan['sha256'] = hashlib.sha256(json.dumps(plan, sort_keys=True).encode()).hexdigest()
     rows = [{'id': key, 'status': 'failure' if failed and key == 'b' else 'success',
              **({'reason': 'Source unavailable'} if failed and key == 'b' else {'checkedAt': '2026-11-16T08:00:00Z'})}
             for key in ('a', 'b')]
     return {'observations': rows, 'resultContract': {'schemaVersion': 1,
-            'protocol': 'producer-results-v1', 'scope': {'kind': 'collect_scpi', 'expectedIds': ['a', 'b'], 'requestedIds': ['a', 'b']},
-            'outcomes': [{'id': r['id'], 'status': 'failed' if r['status'] == 'failure' else 'succeeded',
-                          'sourceAttempted': True} for r in rows]}}
+            'protocol': 'producer-results-v1', 'inputPlan': plan,
+            'scope': {'kind': 'collect_scpi', 'items': items, 'expectedIds': ['a', 'b'], 'requestedIds': ['a', 'b']},
+            'outcomes': [{**item, 'status': 'failed' if r['status'] == 'failure' else 'succeeded',
+                          'sourceAttempted': True} for r, item in zip(rows, items)]}}
 
 
 class ScpiRecording(unittest.TestCase):
@@ -63,7 +70,7 @@ class ScpiRecording(unittest.TestCase):
         initial['a'].update(value=11, checkedAt='2026-11-16')
         self.file.write_text(json.dumps(initial))
         self.source_report = self.directory / 'scpi-observation.json'
-        self.source_report.write_text(json.dumps(report()))
+        self.source_report.write_text(json.dumps(report(code_sha=self.base)))
         self.source_report.with_name('scpi-observation.contract-plan.json').write_text('{"initialPlan":true}')
         self.real_run = subprocess.run
         self.acquisitions, self.validations = [], []
@@ -104,7 +111,7 @@ class ScpiRecording(unittest.TestCase):
         values['a'].update(value=12, checkedAt='2026-11-16')
         (root / 'src/data/automated-scpi.json').write_text(json.dumps(values))
         target = Path(args[-1])
-        target.write_text(json.dumps(report(getattr(self, 'partial', False))))
+        target.write_text(json.dumps(report(getattr(self, 'partial', False), code_sha=module.revision(root))))
         target.with_name(target.stem + '.contract-plan.json').write_text('{"freshPlan":true}')
         return subprocess.CompletedProcess(args, 1 if getattr(self, 'partial', False) else 0)
 
@@ -130,7 +137,7 @@ class ScpiRecording(unittest.TestCase):
         self.assertEqual(self.git('show', 'origin/master:src/data/other.json'), '{"concurrent":20}')
         final = json.loads(self.source_report.read_text())
         self.assertEqual([x['status'] for x in final['recordingAttempts']], ['failed', 'succeeded'])
-        self.assertEqual(json.loads(self.source_report.with_name('scpi-observation-attempt-1.json').read_text()), report())
+        self.assertEqual(json.loads(self.source_report.with_name('scpi-observation-attempt-1.json').read_text()), report(code_sha=self.base))
         self.assertEqual(json.loads(self.source_report.with_name('scpi-observation.contract-plan.json').read_text()), {'freshPlan': True})
         self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
 
@@ -175,12 +182,14 @@ class ScpiRecording(unittest.TestCase):
         self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
 
     def test_missing_result_or_unverified_cache_cannot_be_recorded(self):
-        for defect in ('omitted', 'cache', 'interrupted', 'empty', 'other-producer'):
-            data = report()
+        for defect in ('omitted', 'cache', 'interrupted', 'empty', 'other-producer', 'malformed-contract', 'malformed-observation'):
+            data = report(code_sha=self.base)
             if defect == 'omitted': data['resultContract']['outcomes'].pop()
             elif defect == 'cache': data['resultContract']['outcomes'][0]['sourceAttempted'] = False
             elif defect == 'interrupted': data['producerStarted'] = 'producer-results-v1'
             elif defect == 'other-producer': data['resultContract']['scope']['kind'] = 'other'
+            elif defect == 'malformed-contract': data['resultContract'] = None
+            elif defect == 'malformed-observation': data['observations'][0] = 'Invalid row'
             else: data['observations'] = []
             self.source_report.write_text(json.dumps(data))
             with self.subTest(defect=defect), patch.object(module, 'record') as record:
@@ -194,6 +203,23 @@ class ScpiRecording(unittest.TestCase):
                 module.publish(self.root, self.source_report)
         self.assertEqual(self.acquisitions, [])
         self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
+
+    def test_a_plan_from_a_different_checkout_or_without_a_durable_plan_cannot_record(self):
+        for missing in (False, True):
+            data = report(code_sha='0' * 40)
+            if missing: del data['resultContract']['inputPlan']
+            self.source_report.write_text(json.dumps(data))
+            with self.subTest(missing=missing), patch.object(module, 'record') as record:
+                with self.assertRaisesRegex(ValueError, 'does not match the collection checkout'):
+                    module.publish(self.root, self.source_report)
+                record.assert_not_called()
+
+    def test_an_earlier_guard_trace_does_not_hide_a_later_financial_failure(self):
+        message = 'observation_rebase_guard.py\nValueError: ' + module.INPUT_REFUSAL + '\nAssertionError: Financial check failed'
+        with patch.object(module, 'record', return_value=subprocess.CompletedProcess([], 1, message)), patch.object(module, 'validate') as validate:
+            with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
+                module.publish(self.root, self.source_report)
+        validate.assert_not_called()
 
     def test_interruption_before_new_report_keeps_attempt_history_and_does_not_record(self):
         upstream = self.advance()
@@ -217,12 +243,13 @@ class ScpiRecording(unittest.TestCase):
         def refuse(root, output):
             calls.append(root)
             self.advance({'docs/race.txt': str(len(calls)), 'source-config.json': '{"a":12,"b":20}'})
-            return subprocess.CompletedProcess([], 1, module.INPUT_REFUSAL)
+            return subprocess.CompletedProcess([], 1, 'observation_rebase_guard.py\nValueError: ' + module.INPUT_REFUSAL)
         with patch.object(module, 'record', side_effect=refuse), patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate', side_effect=self.validate):
             with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
                 module.publish(self.root, self.source_report)
         self.assertEqual(len(calls), 3)
         self.assertEqual(len(self.acquisitions), 2)
+        self.assertEqual(module.time.sleep.call_args_list, [call(2), call(4)])
         self.git('fetch', '-q', 'origin', 'master')
         self.assertEqual(json.loads(self.git('show', 'origin/master:src/data/automated-scpi.json')), self.old)
         self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
