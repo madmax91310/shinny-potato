@@ -9,7 +9,7 @@ Les consignes CLAUDE et l’audit du 18 octobre, notamment §5 et §7.8, ont ét
 | Critère demandé | Changement vérifié dans les PNG |
 | --- | --- |
 | Typographie | Inter variable locale sous SIL OFL, chargée avant export ; nom jusqu’à 86 px, positions 34 px, montants et pourcentages 30 px. Aucun monospace dans le nouveau rendu. |
-| Palette | Fond neutre clair, chiffres noirs, noms verts ; secteurs de couleurs distinctes, couleurs de remplacement déterministes partagées avec le détail. |
+| Palette | Fond neutre clair, chiffres noirs, noms verts ; secteurs de couleurs distinctes, couleurs de remplacement déterministes partagées avec le détail, en écartant aussi les teintes voisines. |
 | Place du graphique | Diamètre 664 px contre 470 px auparavant ; anneau de 161 px contre 90 px. Aucun agrandissement d’une position ni renormalisation du sous-ensemble présenté. |
 | Portrait | Détourage vérifié conservant ses proportions, jusqu’à 368 px de large ; peut dépasser légèrement l’intérieur de l’anneau. Les pourcentages restent à l’extérieur de son emprise. |
 | Logos | Intégrés dans les secteurs suffisamment grands, autrement placés auprès du libellé. Alphabet est cadré sur son mot-symbole existant, sans bande de site web et sans toucher l’asset des autres outils. Les logos manquants utilisent des initiales. |
@@ -33,7 +33,7 @@ Le relevé Berkshire 2026 reste attribué à Berkshire Hathaway, avec les initia
 
 ## Recette effectuée
 
-- `npm run build` : succès, budgets respectés ; route investisseurs 723,8 / 725 kB. Les pages PNG détaillées sont chargées à la demande pour conserver le budget existant, sans augmenter sa limite.
+- `npm run build` : succès, budgets respectés ; route investisseurs 724,1 / 725 kB. Les pages PNG détaillées sont chargées à la demande pour conserver le budget existant, sans augmenter sa limite.
 - `scripts/test-investor-screenprint.mjs` : 30 PNG (26 relevés et quatre cas synthétiques), absence de texte coupé/chevauché, dimensions, calculs et cohérence du texte. Téléchargements PNG/JSON/ZIP, presse-papiers, portrait/logo absent, panne source conservant la dernière version, échec Canvas et réessai, données incomplètes.
 - `scripts/test-investor-visual-ui.mjs` sur le site compilé : 56 parcours, les 28 profils à 1440 et 390 px. 52 PNG réellement téléchargés et rouverts ; identiques à l’aperçu et entre les deux largeurs. Les deux profils incomplets restent bloqués. Aucune erreur JavaScript ni débordement de page.
 - Test navigateur du dépôt avec Node 20 : `scripts/playwright-tools.mjs --investors` réussi pour les 28 textes, les sélections, le mobile et les états incomplets.

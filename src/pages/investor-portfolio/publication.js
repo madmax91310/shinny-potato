@@ -45,9 +45,12 @@ export function positionColor(row) {
 }
 export function colorPositions(rows) {
   const used=new Set()
+  const rgb=color=>[1,3,5].map(i=>parseInt(color.slice(i,i+2),16))
+  const separation=color=>Math.min(...[...used].map(other=>Math.hypot(...rgb(color).map((v,i)=>v-rgb(other)[i]))))
   return rows.map(row=>{
     let color=positionColor(row)
-    if(used.has(color))color=palette.find(c=>!used.has(c)) || color
+    // Avoid near twins as well as identical colors (e.g. Nvidia / Cerebras).
+    if(separation(color)<95)color=palette.filter(c=>!used.has(c)).sort((a,b)=>separation(b)-separation(a))[0] || color
     used.add(color)
     return {...row,color}
   })
