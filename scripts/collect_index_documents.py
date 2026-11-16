@@ -138,15 +138,67 @@ def ftse_composition(text, config, now):
     countries=[]
     if 'Country/Market Breakdown'in text:
         block=text.split('Country/Market Breakdown',1)[1].split('\f',1)[0]
+        lines = block.splitlines()
+        header_index = next((i for i, line in enumerate(lines)
+                             if line.strip().startswith('Country/Market') and 'Wgt %' in line), None)
+        if header_index is None:
+            reject('Unqualified FTSE country column layout')
+        header = re.split(r'\s{2,}', lines[header_index].strip())
+        if len(header) > 1 and header[1] == 'No. of':
+            continuation = next((re.split(r'\s{2,}', line.strip())
+                                 for line in lines[header_index+1:] if line.strip()), [])
+            groups = (len(header) - 1) // 3
+            if (len(header) != 1 + groups*3 or len(continuation) != groups*2
+                    or any(header[1+i*3:4+i*3] != ['No. of','Net MCap','Wgt %']
+                           or continuation[i*2] != 'Cons'
+                           or not re.fullmatch(r'\([A-Z]{3}m\)', continuation[i*2+1])
+                           for i in range(groups))):
+                reject('Unqualified wrapped FTSE country columns')
+            header = ['Country/Market'] + [cell for i in range(groups)
+                for cell in ['No. of Cons', 'Net MCap '+continuation[i*2+1], 'Wgt %']]
+        has_diff = header[-1] == 'Diff %'
+        data_columns = header[1:-1] if has_diff else header[1:]
+        width = 3 if len(data_columns) > 1 and data_columns[1].startswith('Net MCap') else 2
+        if (header[0] != 'Country/Market' or not data_columns or len(data_columns) % width
+                or any(data_columns[i] != 'No. of Cons' or data_columns[i+width-1] != 'Wgt %'
+                       or (width == 3 and not re.fullmatch(r'Net MCap \([A-Z]{3}m\)', data_columns[i+1]))
+                       for i in range(0, len(data_columns), width))):
+            reject('FTSE country column meanings changed')
+        excluded_comparison_rows = []
+        country_count = 0
         for line in block.splitlines():
-            m=re.match(r'\s*([A-Za-z ()/\-.]+?)\s{2,}([\d,]+)\s+(.+)',line)
-            if not m or not m[1].strip():continue
-            name=m[1].strip();numbers=re.findall(r'-?\d[\d,]*(?:\.\d+)?',m[3])
-            weight=next((float(n)for n in numbers if '.'in n),None)
-            if weight is None:continue
-            if name in ('Total','Totals'):
-                count=int(m[2].replace(',',''));break
-            else:countries.append({'name':name,'weightPct':weight})
+            cells = re.split(r'\s{2,}', line.strip())
+            if len(cells) < 2 or not re.fullmatch(r'[\d,]+|-', cells[1]):
+                continue
+            is_total = cells[0] in ('Total', 'Totals')
+            if len(cells) != len(header) and not (is_total and has_diff and len(cells) == len(header)-1):
+                reject('Incomplete FTSE primary country row')
+            name = cells[0]
+            primary = cells[1:1+width]
+            if primary == ['-']*width:
+                # A comparison-only country is not a primary-index weight.
+                # Retain its source cells without inventing a zero allocation.
+                comparison_end = len(header)-int(has_diff)
+                triples = [cells[i:i+width] for i in range(1+width, comparison_end, width)]
+                if name in ('Total', 'Totals') or not any(
+                        re.fullmatch(r'[\d,]+', t[0])
+                        and (width == 2 or re.fullmatch(r'[\d,]+(?:\.\d+)?', t[1]))
+                        and re.fullmatch(r'\d+\.\d+', t[-1]) for t in triples):
+                    reject('Unexplained empty FTSE primary country row')
+                excluded_comparison_rows.append({'country': name, 'primaryCells': primary,
+                                                  'comparisonCells': cells[1+width:]})
+                continue
+            if not (re.fullmatch(r'[\d,]+', primary[0])
+                    and (width == 2 or re.fullmatch(r'[\d,]+(?:\.\d+)?', primary[1]))
+                    and re.fullmatch(r'\d+\.\d+', primary[-1])):
+                reject('Missing FTSE primary country count, value or weight')
+            if name in ('Total', 'Totals'):
+                count = int(primary[0].replace(',', ''))
+                break
+            country_count += int(primary[0].replace(',', ''))
+            countries.append({'name': name, 'weightPct': float(primary[-1])})
+        if count is None or country_count != count:
+            reject('FTSE primary country constituent counts do not reconcile')
     if not countries and config.get('countryScope') and config['countryScope']['proof']in text:
         countries=[{'name':config['countryScope']['name'],'weightPct':100.0}]
         m=re.search(r'Totals\s+([\d,]+)\s+[\d,]+\s+100\.00',block)
@@ -174,7 +226,10 @@ def ftse_composition(text, config, now):
     return {'index':config['name'],'asOf':stamp,'constituents':count,'sectorMethod':heading,
       'countries':[[COUNTRY_LABELS.get(r['name'],r['name']),r['weightPct']]for r in countries],
       'sectors':[[SECTOR_LABELS.get(r['name'],r['name']),r['weightPct']]for r in rows],
-      'holdings':[[r['name'],r['weightPct']]for r in holdings]}
+      'holdings':[[r['name'],r['weightPct']]for r in holdings],
+      **({'countryTableQualification': {'columns': header[:1+width],
+          'constituentCount': country_count, 'excludedComparisonRows': excluded_comparison_rows}}
+         if 'Country/Market Breakdown' in text else {})}
 
 
 def ftse_returns(text,config,now):

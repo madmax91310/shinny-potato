@@ -945,3 +945,21 @@ pour Uranium/LifeStrategy. Sources CopperMiners sans valeur/poids et Invesco
 régressant au29octobre restent distinctes, dernières observations conservées.
 Recettes isolées21+9 et rejeu natif ciblé réussis ; collecte GitHub, enregistrement
 et publication des deux voies encore à vérifier. Radar/IA/maquettes préservés.
+
+## 16 novembre — pays FTSE, colonne exacte de l’indice principal
+
+Même suivi #881, `fix/ftse-primary-country-column-20261116` possède seulement
+collect_index_documents, sa recette et trois extractions PDF réelles. ENGD
+au30octobre : la ligne Grèce n’a ni titre, ni capitalisation, ni poids dans
+Dividend+ ;0,03% appartient uniquement à l’indice comparé. L’ancien parseur
+avalait les tirets dans le libellé et empruntait ce poids. Lecture des colonnes
+explicites, rapprochement des effectifs320 et trace de la ligne de comparaison ;
+aucun poids absent changé en zéro ni renormalisation. Zéros publiés conservés,
+champs principaux manquants refusés. Les dispositions avec capitalisations,
+entêtes sur deux lignes et tableaux de poids/comparaisons restent qualifiées.
+Six réponses officielles relues, pays/sectors/positions et effectifs comparés ;
+seul le pays de comparaison erroné est retiré du périmètre de l’indice principal.
+Les anciennes preuves/historiques restent conservés. #1367 possède Uranium et
+LifeStrategy ; #1369 les NAV WisdomTree ; leurs fichiers ne sont pas modifiés.
+Aucun workflow Radar ou IA réactivé, aucun seuil ni maquette changé. Une collecte
+GitHub ordinaire, son enregistrement et la consommation publique restent à prouver.
