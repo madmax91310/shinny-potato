@@ -15,10 +15,10 @@ const validView = value => ['overview', 'calendar'].includes(value)
 const validFavorites = value => Array.isArray(value) && value.every(path => typeof path === 'string')
 
 function ToolList({ tools, favorites, toggleFavorite }) {
-  return <div className="workspace-tool-grid">{tools.map(tool => <div className="home-tool-entry" key={tool.to}>
+  return <div className="workspace-tool-grid">{tools.map(tool => <div className={`home-tool-entry${tool.preferred ? ' home-tool-entry--midday-selected' : ''}`} key={tool.to}>
     <Link className="workspace-tool-card" to={tool.to} title={tool.summary || tool.description}>
       <span className="workspace-tool-icon"><ToolIcon to={tool.path ?? tool.to} /></span>
-      <div><h2>{tool.title}</h2>{tool.publicationDay && <span className="workspace-publication-day">{tool.publicationDay}</span>}</div>
+      <div><h2>{tool.title}</h2>{tool.preferred && <span className="home-midday-badge">Sélection du midi</span>}{tool.publicationDay && <span className="workspace-publication-day">{tool.publicationDay}</span>}</div>
     </Link>
     <button className="home-favorite" type="button" aria-label={`Favori : ${tool.title}`} aria-pressed={favorites.includes(tool.path ?? tool.to)} data-favorite-path={tool.path ?? tool.to} onClick={event => toggleFavorite(tool.path ?? tool.to, event.detail === 0)} title="Ajouter ou retirer des favoris">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z" /></svg>
@@ -111,7 +111,7 @@ export default function Home() {
         return tools.length > 0 && <section key={group.id} className="home-panel" data-group={group.id} aria-labelledby={`home-group-${group.id}`}><div className="home-section-heading"><h2 id={`home-group-${group.id}`}>{group.title}</h2><span>{tools.length}</span></div>{list(tools)}</section>
       })}
     </div> : <div className="home-calendar">
-      <p className="home-calendar-intro">Matin, midi et soir. Les formats des semaines A et B alternent : un seul des deux est publié. Les autres formats du midi s’ajoutent aux créneaux existants. Le dimanche soir, trois formats tournent. Le budget remplace le DCA le mardi ou ton tweet personnel le vendredi, selon tes publications.</p>
+      <p className="home-calendar-intro">Matin, midi et soir. Les formats des semaines A et B alternent : un seul des deux est publié. Les cartes vertes indiquent les sélections du midi ; les autres formats restent disponibles. Le jeudi, choisis un seul format de performance. Évite le même sujet à midi et le soir, notamment « Il y a X ans » le dimanche. Le dimanche soir, trois formats tournent. Le budget remplace le DCA le mardi ou ton tweet personnel le vendredi, selon tes publications.</p>
       <div className="home-days" role="tablist" aria-label="Jour de la semaine">{EDITORIAL_WEEK.map(({ day }, index) => <button key={day} ref={node => { dayButtons.current[index] = node }} type="button" role="tab" id={`home-tab-${index}`} aria-controls={`home-day-${index}`} aria-selected={index === dayIndex} tabIndex={index === dayIndex ? 0 : -1} onClick={() => setDayIndex(index)} onKeyDown={event => {
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? 6 : event.key === 'ArrowRight' ? (index + 1) % 7 : event.key === 'ArrowLeft' ? (index + 6) % 7 : null
         if (next !== null) { event.preventDefault(); setDayIndex(next); dayButtons.current[next].focus() }
@@ -120,8 +120,8 @@ export default function Home() {
         <div className="home-day-band"><h2>{selectedDay.day}</h2>{selectedDay.day.toLowerCase() === today && <span>Aujourd’hui</span>}</div>
         {[['morning', 'Matin', selectedDay.morning], ['midday', 'Midi', selectedDay.midday], ['evening', 'Soir', selectedDay.evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
           <h3>{label}</h3>
-          {selectedDay[`${period}Note`] && <p className="home-day-note">{selectedDay[`${period}Note`]}</p>}
-          {list(entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), path: entry.path, ...(entry.title ? { title: entry.title } : {}), to: entry.href ?? entry.path, publicationDay: entry.note || `${selectedDay.day} ${label.toLowerCase()}` })))}
+          {selectedDay[`${period}Note`] && <p className={`home-day-note${period === 'midday' && selectedDay.middayPreferred ? ' home-midday-note--selected' : ''}`}>{period === 'midday' && selectedDay.middayPreferred && <span className="home-midday-badge">Sélection du midi</span>}{selectedDay[`${period}Note`]}</p>}
+          {list(entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), path: entry.path, preferred: period === 'midday' && entry.preferred === true, ...(entry.title ? { title: entry.title } : {}), to: entry.href ?? entry.path, publicationDay: entry.note || `${selectedDay.day} ${label.toLowerCase()}` })))}
         </div>)}
       </section>
     </div>)}
