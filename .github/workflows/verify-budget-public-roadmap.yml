@@ -45,3 +45,11 @@ jobs:
           }
           console.log('Original verified public PNGs:',JSON.stringify({before:verification.before,after:verification.after,files}))
           JS
+      - name: Independently read the visible PNG labels
+        run: |
+          if ! command -v tesseract >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y tesseract-ocr
+          fi
+          tesseract evidence/budget-roadmap-public/390-editorial-roadmap-befire-first-home-2026-11-16-detailed-4.png stdout -l eng --psm 11
+          tesseract evidence/budget-roadmap-public/390-editorial-roadmap-lux-one-income-2026-11-16-summary-1.png stdout -l eng --psm 11
