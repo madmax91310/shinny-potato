@@ -1,4 +1,4 @@
-name: Verify public Budget roadmap
+name: Inspect verified Budget PNGs
 on:
   push:
     branches: [verify/budget-public-roadmap-20261116]
@@ -6,129 +6,42 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: verify-public-budget-roadmap-20261116
   cancel-in-progress: true
 jobs:
-  public-browser:
+  inspect-png:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        width: [1440, 390, 320]
-    timeout-minutes: 20
-    env:
-      BUDGET_PUBLIC_BASE: https://madmax91310.github.io/shinny-potato
-      BUDGET_VIEWPORT: ${{ matrix.width }}
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v7.0.1
-        with:
-          fetch-depth: 0
-          filter: blob:none
-          persist-credentials: false
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - name: Record and verify the served code
-        run: |
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict'
-          import { mkdirSync, writeFileSync } from 'node:fs'
-          import { execFileSync } from 'node:child_process'
-          const response=await fetch(process.env.BUDGET_PUBLIC_BASE+'/build-info.json?budget-roadmap='+Date.now(),{cache:'no-store'})
-          assert(response.ok)
-          const info=await response.json()
-          assert.match(info.sha,/^[a-f0-9]{40}$/)
-          if(info.dataSha)assert.match(info.dataSha,/^[a-f0-9]{40}$/)
-          execFileSync('git',['fetch','--no-tags','origin',info.sha],{stdio:'inherit'})
-          execFileSync('git',['merge-base','--is-ancestor','ce7cbf98ca20810289d5be6b7c59c1135b4abe84',info.sha])
-          mkdirSync('test-artifacts',{recursive:true})
-          writeFileSync('test-artifacts/public-budget-before.json',JSON.stringify(info,null,2)+'\n')
-          console.log('Public budget before browser checks:',JSON.stringify(info))
-          JS
-      - name: New profiles, all widths and actual downloads
-        env:
-          BUDGET_BATCH: roadmap
-          BUDGET_ARTIFACTS: test-artifacts/budget-roadmap-public
-        run: node scripts/playwright-budget-new-profiles.mjs ${{ matrix.width }}
-      - name: Complementary profiles, all widths and actual downloads
-        env:
-          BUDGET_BATCH: complementary
-          BUDGET_ARTIFACTS: test-artifacts/budget-complementary-public
-        run: node scripts/playwright-budget-new-profiles.mjs ${{ matrix.width }}
-      - name: Explicit selection and protected local statuses
-        if: matrix.width == 1440
-        run: node scripts/playwright-budget-publication-selection.mjs
-      - name: Backups, dated statuses and personal drafts
-        if: matrix.width == 1440
-        run: node scripts/playwright-budget-portability.mjs
-      - name: Reopen every downloaded PNG and record final versions
-        run: |
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict'
-          import { readFileSync, writeFileSync } from 'node:fs'
-          import { createHash } from 'node:crypto'
-          import { chromium } from 'playwright'
-          import { BUDGET_PROFILES } from './src/pages/budget-profiles/data.js'
-          const browser=await chromium.launch()
-          const reopened=[]; let profileCount=null
-          try {
-            const site=await browser.newPage({viewport:{width:Number(process.env.BUDGET_VIEWPORT),height:950}})
-            await site.goto(process.env.BUDGET_PUBLIC_BASE+'/le-budget-de')
-            await site.getByLabel('Texte prêt à publier').waitFor()
-            profileCount=Number((await site.locator('body').innerText()).match(/([0-9]+) profils/)?.[1])
-            assert.equal(profileCount,BUDGET_PROFILES.length)
-            await site.screenshot({path:'test-artifacts/public-budget-roster-'+process.env.BUDGET_VIEWPORT+'.png',fullPage:true})
-            await site.close()
-            const page=await browser.newPage()
-            await page.setContent('<img alt="PNG téléchargé">')
-            for(const [directory,count] of [['budget-roadmap-public',23],['budget-complementary-public',60]]) {
-              const base='test-artifacts/'+directory+'/'
-              const rows=JSON.parse(readFileSync(base+'results-'+process.env.BUDGET_VIEWPORT+'.json','utf8'))
-              assert.equal(rows.length,count)
-              for(const row of rows) {
-                const bytes=readFileSync(base+row.filename)
-                const dimensions=await page.locator('img').evaluate(async(img,src)=>{img.src=src;await img.decode();return [img.naturalWidth,img.naturalHeight]},'data:image/png;base64,'+bytes.toString('base64'))
-                assert.deepEqual(dimensions,[1080,1350])
-                reopened.push({file:directory+'/'+row.filename,dimensions,sha256:createHash('sha256').update(bytes).digest('hex')})
-              }
-            }
-
-            if(process.env.BUDGET_VIEWPORT==='390') {
-              const groups=[
-                ['budget-roadmap-public/390-editorial-roadmap-befire-first-home-2026-11-16-overview-1.png','budget-roadmap-public/390-editorial-roadmap-lux-one-income-2026-11-16-overview-1.png','budget-complementary-public/390-editorial-complementary-belgium-2026-11-16-overview-1.png'],
-                ['budget-complementary-public/390-editorial-complementary-retirement-2026-11-16-overview-1.png','budget-complementary-public/390-editorial-complementary-freelance-2026-11-16-overview-1.png','budget-roadmap-public/390-editorial-roadmap-befire-first-home-2026-11-16-summary-1.png'],
-                ['budget-roadmap-public/390-editorial-roadmap-befire-first-home-2026-11-16-detailed-4.png','budget-roadmap-public/390-editorial-roadmap-lux-one-income-2026-11-16-detailed-3.png','budget-roadmap-public/390-editorial-roadmap-lux-one-income-2026-11-16-summary-1.png']
-              ]
-              for(const [index,files] of groups.entries()) {
-                const sources=files.map(file=>({name:file.split('/').at(-1).replace('390-editorial-',''),src:'data:image/png;base64,'+readFileSync('test-artifacts/'+file).toString('base64')}))
-                const contact=await page.evaluate(async sources=>{
-                  const canvas=document.createElement('canvas');canvas.width=1170;canvas.height=520
-                  const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,1170,520)
-                  for(const [i,source]of sources.entries()){const img=new Image();img.src=source.src;await img.decode();ctx.drawImage(img,i*390,0,390,487.5);ctx.fillStyle='#111';ctx.font='12px Arial';ctx.fillText(source.name,i*390+3,506,384)}
-                  return canvas.toDataURL('image/png').split(',')[1]
-                },sources)
-                writeFileSync('test-artifacts/public-budget-contact-'+index+'.png',Buffer.from(contact,'base64'))
-                console.log('PUBLIC_BUDGET_CONTACT_'+index+'_BEGIN')
-                for(let at=0;at<contact.length;at+=12000)console.log(contact.slice(at,at+12000))
-                console.log('PUBLIC_BUDGET_CONTACT_'+index+'_END')
-              }
-            }
-          } finally {await browser.close()}
-          const before=JSON.parse(readFileSync('test-artifacts/public-budget-before.json','utf8'))
-          const response=await fetch(process.env.BUDGET_PUBLIC_BASE+'/build-info.json?budget-roadmap-after='+Date.now(),{cache:'no-store'})
-          assert(response.ok)
-          const after=await response.json()
-          assert.equal(after.sha,before.sha,'The public code must stay stable during this recipe; market dataSha may advance separately.')
-          writeFileSync('test-artifacts/public-budget-verification.json',JSON.stringify({before,after,profileCount,reopened},null,2)+'\n')
-          console.log('Public budget verified:',JSON.stringify({before,after,profileCount,downloadedAndReopened:reopened.length,viewport:Number(process.env.BUDGET_VIEWPORT)}))
-          JS
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
+      - uses: actions/download-artifact@v4
         with:
-          name: public-budget-roadmap-verification-${{ matrix.width }}
-          path: test-artifacts/
-          retention-days: 7
+          run-id: 43868408272
+          name: public-budget-roadmap-verification-390
+          github-token: ${{ github.token }}
+          path: evidence
+      - name: Read the original verified PNG bytes
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict'
+          import { readFileSync } from 'node:fs'
+          import { createHash } from 'node:crypto'
+          const verification=JSON.parse(readFileSync('evidence/public-budget-verification.json','utf8'))
+          const files=['budget-roadmap-public/390-editorial-roadmap-befire-first-home-2026-11-16-detailed-4.png','budget-roadmap-public/390-editorial-roadmap-lux-one-income-2026-11-16-summary-1.png']
+          for(const [index,file]of files.entries()){
+            const bytes=readFileSync('evidence/'+file)
+            const recorded=verification.reopened.find(row=>row.file===file)
+            assert(recorded)
+            assert.equal(createHash('sha256').update(bytes).digest('hex'),recorded.sha256)
+            assert.deepEqual(recorded.dimensions,[1080,1350])
+            console.log('VERIFIED_RAW_PNG_'+index+'_BEGIN')
+            const data=bytes.toString('base64')
+            for(let at=0;at<data.length;at+=12000)console.log(data.slice(at,at+12000))
+            console.log('VERIFIED_RAW_PNG_'+index+'_END')
+          }
+          console.log('Original verified public PNGs:',JSON.stringify({before:verification.before,after:verification.after,files}))
+          JS
