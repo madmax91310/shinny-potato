@@ -1,17 +1,10 @@
+import MIDDAY_SELECTIONS from './editorial-midday-selections.json' with { type: 'json' }
 // Calendrier complété le 16 novembre 2026 · ajouts sans suppression de créneaux. Les récaps restent hors application.
 const slot = (path, note = '', title) => ({ path, note, ...(title && { title }) })
 const recap = () => ({ morning: [], morningNote: 'Récap marché · hors application' })
 const alternating = (...paths) => paths.map((path, index) => slot(path, `Une semaine sur deux · semaine ${index ? 'B' : 'A'}`))
 // Choix du midi : conserver les autres possibilités et toutes les soirées.
-export const MIDDAY_SELECTIONS = {
-  Lundi: [slot('/france-100-menages')],
-  Mardi: [slot('/fiche-lexique')],
-  Mercredi: [slot('/portefeuilles-publics', '', 'Portefeuille de la semaine')],
-  Jeudi: ['/classements-performances', '/calculateur-investissement', '/performance-depuis', '/comparateur-indices']
-    .map(path => slot(path, 'Performances en rotation · un seul format au choix')),
-  Vendredi: alternating('/fiches-etf', '/comparatif-etf'),
-  Dimanche: [slot('/portefeuilles-investisseurs')],
-}
+export { MIDDAY_SELECTIONS }
 export const EDITORIAL_WEEK = [
   { day: 'Lundi', ...recap(), midday: [slot('/performance-depuis'), slot('/presentations')], evening: alternating('/tweets-factsheets', '/generateur-portefeuilles') },
   { day: 'Mardi', ...recap(), midday: [slot('/classements-performances'), slot('/fiche-lexique')], evening: [{ ...slot('/le-dca-de', 'Au choix avec Le budget de…', 'Le DCA d’un abonné'), href: '/le-dca-de?mode=dca' }, slot('/le-budget-de', 'À la place du DCA · selon tes publications')], eveningNote: 'DCA ou budget : choisis un seul format selon tes publications. Le budget peut aussi passer le vendredi soir.' },
