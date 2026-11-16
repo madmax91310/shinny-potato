@@ -11,7 +11,7 @@ import {qualifyPreferredManualNav,isQualifiedAnnualPortfolioFund,qualifiedManual
 import {assetEditorial} from '../src/pages/portfolio-generator/asset-editorial.js'
 import {generatedDuelPool} from '../src/pages/portfolio-duels/generate.js'
 import {getRecipes} from '../src/pages/portfolio-generator/recipes.js'
-import {hasCompleteAutomaticWindow} from '../src/pages/portfolio-generator/performance.js'
+import {hasCompleteAutomaticWindow,computeYearlyPerf} from '../src/pages/portfolio-generator/performance.js'
 import {PROFILES} from '../src/pages/portfolio-generator/theses.js'
 import {buildManualPortfolio,renderTweetText} from '../src/pages/portfolio-generator/engine.js'
 import {buildCustomDuel,buildTweet} from '../src/pages/portfolio-duels/lib.js'
@@ -62,7 +62,25 @@ for(const[isin,source]of Object.entries(fixture.restoredAnnual)){
  const expectedYears=Object.keys(live.years).map(Number).filter(y=>y<new Date().getUTCFullYear()).sort((a,b)=>a-b).slice(-6);assert.deepEqual(Object.keys(p.perf).map(Number),expectedYears);assert.deepEqual(duel.years,expectedYears)
  for(const y of duel.years){assert.equal(p.perf[y],live.years[y]);assert.equal(duel.a.annual[y],live.years[y])}
  for(const patch of[{currency:'USD'},{isin:'IE00B4K6B023'},{basis:'market-price'},{method:'calendar-year gross price return'},{method:'calendar-year proxy total return, net of fees'},{sourceUrls:['https://other.invalid']},{checkedAt:'2000-01-01'}])assert.equal(qualifyPreferredManualNav({...live,...patch}),null)
- const tweet=renderTweetText(p);assert(tweet.includes('2020')&&tweet.includes('2025'))
+ const tweet=renderTweetText(p)
+ assert(tweet.includes(`sur la période ${expectedYears[0]}–${expectedYears.at(-1)}`))
+ assert(tweet.includes(`Performance annualisée (${expectedYears[0]} à ${expectedYears.at(-1)})`))
+ // Hypothetical completed observations, in memory only. Neither the shared
+ // records nor the production clock are modified by this rollover scenario.
+ const NativeDate=Date
+ try {
+  globalThis.Date=class extends NativeDate {
+   constructor(...args){super(...(args.length?args:['2027-01-02T12:00:00Z']))}
+   static now(){return new NativeDate('2027-01-02T12:00:00Z').getTime()}
+  }
+  const future={...p,selection:p.selection.map(a=>({...a,calendarReturns:{...a.calendarReturns,2026:0,2027:99}}))}
+  assert.deepEqual(Object.keys(computeYearlyPerf(future.selection)).map(Number),[2021,2022,2023,2024,2025,2026])
+  const futureTweet=renderTweetText(future)
+  assert(futureTweet.includes('sur la période 2021–2026'))
+  assert(futureTweet.includes('Performance annualisée (2021 à 2026)'))
+  assert(futureTweet.includes('2026 : +0,0 %'))
+  assert(!futureTweet.includes('2027 :'))
+ } finally {globalThis.Date=NativeDate}
 }
 assert.equal(JSON.stringify(AUTOMATED_ETF),sourceBefore,'No observation, currency, source date, distribution or adjustment modified')
 assert.equal(JSON.stringify([MARKET.bitcoin,MARKET.ethereum]),marketBefore,'Native spot histories keep their independent namespace')

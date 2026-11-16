@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { normalizePortfolio, buildTweet, percentage } from '../src/pages/investor-portfolio/data.js'
 import { logoIdentity } from '../src/pages/investor-portfolio/media.js'
-import { cash, publicationPlan, reportedAmount, portfolioOwner } from '../src/pages/investor-portfolio/publication.js'
+import { cash, publicationPlan, reportedAmount, portfolioOwner, POSTER, colorPositions, shortPosition, positionColor } from '../src/pages/investor-portfolio/publication.js'
 export function sample(values, long=false) {
   const declaredTotal=values.reduce((s,v)=>s+v,0)
   return { as_of:'2026-11-15T12:00:00Z', data: { identity:{slug:'tepper',archetype:'hedge_fund',displayName:'David Tepper',entityName:'Appaloosa LP',personVerified:true,personPeriod:'2026-06-30',personSource:'https://foliofact.com/api/v1/funds/appaloosa',dataProvider:'FolioFact'},sourceUrl:'https://foliofact.com/funds/appaloosa',snapshot:{primaryVerified:true,sourceDocuments:['https://www.sec.gov/Archives/edgar/test/primary.xml','https://www.sec.gov/Archives/edgar/test/table.xml'],periodEnd:'2026-06-30',filedAt:'2026-08-14',currency:'USD',valueUnit:1,valueUnitSource:'https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow',declaredTotal,holdings:values.map((value,i)=>({issuerName:long?'Entreprise au nom particulièrement long et détaillé '.repeat(5)+i:'Entreprise '+i,ticker:'T'+i,cusip:String(i).padStart(9,'0'),shareClass:'COM',weight:value/declaredTotal,value,currency:'USD',unit:1,putCall:null}))} } }
@@ -18,7 +18,7 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
   for(const entry of plan.entries) {
     assert.equal(entry.weight,entry.value/plan.total)
     assert(Math.abs((entry.end-entry.start)/(2*Math.PI)-entry.weight)<1e-12)
-    assert(entry.y>=310 && entry.y+entry.height<=1020)
+    assert(entry.y>=POSTER.top && entry.y+entry.height<=POSTER.bottom)
     for(const next of plan.entries)if(next!==entry&&next.side===entry.side)assert(entry.y+entry.height<=next.y||next.y+next.height<=entry.y)
   }
   const tweet=buildTweet(portfolio)
@@ -57,3 +57,17 @@ const unverified=normalizePortfolio(sample([60,40]));unverified.identity.personV
 unverified.identity.personVerified=true;unverified.identity.personPeriod='2026-03-31';assert.equal(portfolioOwner(unverified),'Appaloosa LP')
 
 assert.equal(cash(78300000,'USD'),'78,3\u00a0M\u00a0$US') // Same explicit precision in Node 20 and Chromium.
+
+// Poster simplification must not hide the class discriminator or alter detail colors.
+assert.equal(shortPosition({displayLabel:'Alphabet (02079K305)',shareClass:'CAP STK CL A',cusip:'02079K305'}),'Alphabet A')
+assert.equal(shortPosition({displayLabel:'Berkshire Hathaway (084670108)',shareClass:'CL A',cusip:'084670108'}),'Berkshire A')
+assert.equal(shortPosition({displayLabel:'Uber Technologies Inc'}),'Uber')
+const colorPortfolio=normalizePortfolio(sample([10,9,8,7,6,5,4,3,2,1]))
+const allColors=colorPositions(colorPortfolio.holdings),colorPlan=publicationPlan(colorPortfolio)
+assert.equal(new Set(allColors.map(r=>r.color)).size,allColors.length)
+for(const row of colorPlan.entries.filter(r=>!r.other))assert.equal(row.color,allColors.find(r=>r.cusip===row.cusip).color)
+
+const nearGreens=colorPositions([{displayLabel:'Nvidia',cusip:'67066G104'},{displayLabel:'Cerebras Systems Inc',cusip:'15675D103'}])
+assert.equal(positionColor({displayLabel:'Cerebras Systems Inc',cusip:'15675D103'}),'#68882b')
+const rgb=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16))
+assert(Math.hypot(...rgb(nearGreens[0].color).map((v,i)=>v-rgb(nearGreens[1].color)[i]))>=95,'Near greens need a contrasting replacement')
