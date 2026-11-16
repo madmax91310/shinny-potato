@@ -25,6 +25,8 @@ assert(validBudget({...manual,expenses:[{label:'Ancienne provision',amount:20,an
 assert(!('annualProvision' in monthlyRow(manual.expenses[0])))
 assert(!('annualAmount' in annualRow({label:'Entretien',amount:20,annualAmount:240,periodicity:'annual-provision'},360)))
 assert.deepEqual(moveBudgetRow([1,2,3],1,-1),[2,1,3]);assert.deepEqual(moveBudgetRow([1,2],0,-1),[1,2])
+const longManual={...manual,expenses:[annualRow({label:'A'.repeat(90),category:'other'},120)]}
+assert(validBudget(duplicateBudget({profile:longManual,text:buildBudgetText(longManual),edited:false},'long-copy').profile),'Duplication preserves the raw 90-character label; the public Provision prefix is not stored twice')
 const custom={profile:manual,text:'Mes mots et mes questions.',edited:true,textFinance:budgetFinancialReference(manual)}
 const sourceWithAnnualBonus={...custom,profile:{...manual,income:[{label:'Salaire',amount:1000},{label:'Prime mensualisée',amount:100,annualAmount:1200}]}}
 assert(!duplicateBudget(sourceWithAnnualBonus,'bonus-copy').profile.income[1].annualProvision,'Legacy annual bonus metadata does not make a monthly income input readonly')
