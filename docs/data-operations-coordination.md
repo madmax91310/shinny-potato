@@ -796,3 +796,10 @@ acceptait encore cette voie pour les anciennes parts sans contrat explicite.
 Après correction, changement de structure refusé avant la géographie et avant
 l'enregistrement ; valeurs actuelles physiques inchangées. Régression dans les
 deux adaptateurs, aucune donnée synthétique de test écrite en production.
+
+
+16 novembre — même suivi #881, reprise SCPI bornée après refus d’entrées périmées. `fix/scpi-bounded-recording-recovery-20261116` possède uniquement `scripts/commit-scpi-observations.py`, sa régression et `update-scpi.yml`. Refus réel43821522698/job133145447013, basee8fe62ca→3cf07118 : quatorze lecteurs/revues Budget inconnus du garde. La reprise manuelle43822403080 a enregistré092f9cea et les huit fiches sont consommées publiquement ; elle ne corrige pas l’absence de reprise automatique.
+
+Le garde commun et ses exemptions restent inchangés. Après ce seul refus explicite, un nouveau master est acquis dans un worktree privé, les SCPI sont recollectées par leur producteur ordinaire et tous les contrôles financiers sont rejoués avant de rappeler l’enregistreur isolé, sur son seul chemin SCPI. Trois tentatives maximum, délais2/4s ; aucun force-push ou résolution de conflit financier. Un changement des dépendances ou du contrat de validation exige un nouveau workflow ordinaire depuis master, plutôt qu’une exécution sur l’ancien environnement. Les échecs financiers/authentification sans refus d’entrées ne déclenchent pas cette reprise. Les tentatives, plans préalables, SHAs de code et résultats partiels restent distincts dans l’artefact ; une panne ne renouvelle pas les anciennes preuves financières.
+
+Le lot annuel#1347 ne touche que son test de texte ; les PR#1298/#1253/#1061 et les correctionsETF#1341/#1346 sont préservées. Aucun collecteur commun, maquette, condition financière ou seuil n’est modifié ; aucun automatismeIA ou Radar réactivé. Recette isolée avec vraiGit/garde/enregistreur et source contrôlée ; collecte et publication ordinaires après fusion restent à démontrer séparément.
