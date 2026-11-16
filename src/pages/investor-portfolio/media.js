@@ -58,6 +58,9 @@ export async function portfolioPortrait(identity, supplied) {
     return { image, ...metadata, person: source.person }
   } catch { mediaCache.delete(identity.slug); return fallback }
 }
+export function portraitCredits(portfolio) {
+  return {...investorPortrait(portfolio.identity.slug), ...(portfolio.media?.portrait || mediaCache.get(portfolio.identity.slug) || {})}
+}
 export function mediaCredits(portfolio) {
-  return { portrait: {...investorPortrait(portfolio.identity.slug), ...(portfolio.media?.portrait || mediaCache.get(portfolio.identity.slug) || {})}, logos: portfolio.holdings.map(logoIdentity).filter(Boolean) }
+  return {portrait:portraitCredits(portfolio),logos:portfolio.holdings.map(logoIdentity).filter(Boolean)}
 }

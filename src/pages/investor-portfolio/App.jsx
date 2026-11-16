@@ -10,7 +10,7 @@ import { useEffect, useState, useRef, useMemo } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
-import { mediaCredits } from './media.js'
+import { portraitCredits } from './media.js'
 import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
 import { publicationPlan, portfolioOwner, cash, reportedAmount } from './publication.js'
 import './style.css'
@@ -48,6 +48,7 @@ export default function InvestorPortfolio() {
   }, [slug, retry])
 
   const model = investorModel(slug)
+  const portrait=portfolio && !model ? portraitCredits(portfolio) : null
   const ready = portfolio && portfolio.identity.slug === slug && !portfolio.problem
   const shown = portfolio && !model && ready ? publicationPlan(portfolio).entries : portfolio?.holdings || []
   const renderImage = useMemo(() => cachedImageRenderer(() => renderPortfolioImage(portfolio)), [portfolio])
@@ -161,8 +162,8 @@ export default function InvestorPortfolio() {
         {portfolio.snapshot.holdings.some(row=>row.putCall) && <details><summary>Options déclarées · hors image et total</summary><p>Poids sur le total déclaré, options incluses. Les valeurs déclarées ne mesurent pas les primes ni l’exposition nette.</p>{portfolio.snapshot.holdings.filter(row=>row.putCall).map((row,i)=><p key={i}>{row.issuerName} · {row.putCall} · {row.shareClass} · {row.cusip || 'identifiant non transmis'} · {Number.isFinite(row.value)?reportedAmount(row):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>}
         <p className="ip-note">Les lignes et classes transmises restent distinctes. Certains fournisseurs regroupent déjà des classes en amont ; ce manque de détail est conservé dans les exports. Les poids du visuel portent sur la somme des positions hors options, calculée sans arrondi.</p>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
-        {mediaCredits(portfolio).portrait.illustration?.note && <p className="ip-note">{mediaCredits(portfolio).portrait.illustration.note}</p>}
-        <p className="ip-note">Portrait de référence : {mediaCredits(portfolio).portrait.person} : <a href={mediaCredits(portfolio).portrait.source} target="_blank" rel="noreferrer">{mediaCredits(portfolio).portrait.author} ↗</a> · {mediaCredits(portfolio).portrait.license} · Affichage du nom si la réutilisation, l’identité ou le détourage ne sont pas établis.</p>
+        {portrait.illustration?.note && <p className="ip-note">{portrait.illustration.note}</p>}
+        <p className="ip-note">Portrait de référence : {portrait.person} : <a href={portrait.source} target="_blank" rel="noreferrer">{portrait.author} ↗</a> · {portrait.license} · Affichage du nom si la réutilisation, l’identité ou le détourage ne sont pas établis.</p>
         <History portfolio={portfolio} /></>}
         {model && <><p className="ip-note">{model.method}</p><p className="ip-note">{model.caution}</p><p className="ip-note">Cibles théoriques, sans performance ni conversion en produits UCITS. Le visuel utilise les poids du modèle ; une modification manuelle du texte ne modifie pas ces cibles.</p></>}
         <p className="ip-credit">{model ? "Source : publication de la méthode" : portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {model ? 'la publication' : portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>

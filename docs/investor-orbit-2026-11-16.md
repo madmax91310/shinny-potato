@@ -4,7 +4,7 @@
 
 La référence Buffett jointe à la demande a été réellement examinée : fond gris uni, nom vert très gras, deuxième ligne noire, anneau dominant, portrait détouré débordant dans l’anneau, logos dans les secteurs, pourcentages circulaires et libellés autour du cercle. Les chiffres du modèle ne sont pas repris.
 
-La branche dédiée `codex/investor-orbit` part de master 8dc5403 et intègre les actualisations concurrentes de master. La fusion eebf3f8 de #1348 et la livraison da07e8b annoncées ont été vérifiées. Les PNG « avant » ont été réellement téléchargés sur le site public ; leur build-info indique f45c20c2852644e10bc16df6437e6bc403dfc13f, avec données 4266a36fa589d52a3a116bddeafcb9868e836ce3. L’ancien rendu est toujours celui à deux colonnes, sans portrait Berkshire et avec petits ovales. La PR concurrente #1356 traite les exports et la pagination ; son travail n’est ni remplacé ni fusionné par cette refonte.
+La branche dédiée `codex/investor-orbit` part de master 8dc5403 et intègre les actualisations concurrentes de master. La fusion eebf3f8 de #1348 et la livraison da07e8b annoncées ont été vérifiées. Les PNG « avant » ont été réellement téléchargés sur le site public ; leur build-info indique f45c20c2852644e10bc16df6437e6bc403dfc13f, avec données 4266a36fa589d52a3a116bddeafcb9868e836ce3. L’ancien rendu est toujours celui à deux colonnes, sans portrait Berkshire et avec petits ovales. La PR concurrente #1356 a été fusionnée sur master pendant la validation. La refonte intègre cette fusion : les deux blocs de tests sont conservés, ainsi que le téléchargement Blob commun aux deux boutons et à l’aperçu, le cache de rendu avec réessai, la pagination par position complète et la devise/unité d’« Autres ».
 
 Aucun relevé financier, collecteur 13F, calcul de qualification, sélection utilisateur ou sauvegarde n’est modifié. Les modèles d’allocation conservent leur autre rendu.
 
@@ -30,10 +30,10 @@ Moody’s, Chubb Limited, Occidental, Vistra Corp et iShares rejoignent le regis
 
 ## Validation locale
 
-- Compilation complète `npm run build` réussie, puis compilation finale Vite et audit des budgets après les corrections visuelles : investisseurs 724,4/725 kB de code, sans relever le seuil.
+- Compilation complète `npm run build` réussie, puis compilation finale Vite et audit des budgets après les corrections visuelles : investisseurs 724,9/725 kB de code, sans relever le seuil.
 - Tests purs : proportions, valeurs, somme des poids, regroupement exact, invalidation du cache, 300 et 1 501 petites lignes, classes, noms longs, moins de 0,1 %, actifs et empreintes des nouveaux logos, régression d’un trait traversant le nom Chubb.
 - Contrôle Decimal indépendant des 26 déclarations qualifiées et des sélections réellement rendues ; deux conflits d’unités conservés.
-- 30 PNG contrôlés par le navigateur : 26 profils réels et quatre cas synthétiques ; bornes et collisions du texte, téléchargement, copie, JSON/CSV/ZIP, panne de source, réessai de génération et repli sans médias. Le ZIP Renaissance conserve les 3 151 positions, réparties sur 485 images détaillées.
+- 30 PNG contrôlés par le navigateur : 26 profils réels et quatre cas synthétiques ; bornes et collisions du texte, téléchargement, copie, JSON/CSV/ZIP, panne de source, réessai de génération et repli sans médias. Le ZIP Renaissance conserve les 3 151 positions, réparties sur 526 images détaillées.
 - Recette des 28 profils à 1440 et 390 px : 52 PNG téléchargés, rouverts, dimensions exactes, identité des octets avec l’aperçu et entre les deux largeurs ; quatre états incomplets attendus sur les deux largeurs.
 - Parcours réel sur la compilation locale : Tepper, PNG, copie, JSON, CSV, ZIP, réessai, conservation du dernier relevé lors d’un HTTP 503, repli sans photo/logo, police chargée et ouverture de l’historique. Portraits vérifiés peints pour Berkshire, Marks, Gerstner, Icahn et Hohn ; avertissement Fundsmith conservé dans le texte et le JSON.
 - Navigateur Node 20.20.2 : 28 textes synchronisés, usage mobile et rejet des relevés incomplets.
@@ -50,4 +50,4 @@ Dix profils exploitables disposent d’un portrait validé. Seize gardent un rep
 
 Sur les portefeuilles extrêmement dispersés, « Autres » reste important : afficher toutes les petites lignes autour de ce cercle produirait une image illisible. Le détail intégral reste disponible dans les exports. Les cas synthétiques inférieurs à 0,1 % affichent une borne explicite, jamais un zéro trompeur.
 
-La collecte existante est préservée ; cette recette ne prétend pas avoir attendu une nouvelle déclaration SEC et observé un cycle trimestriel entier. La récupération et la réutilisation des médias ont été exécutées, ainsi que les parcours à partir des données collectées. La fusion, le portail Pages et les téléchargements publics doivent encore être vérifiés après validation de la PR ; les résultats de livraison seront ajoutés à la description de celle-ci. Aucune publication sur X.
+La collecte existante est préservée ; cette recette ne prétend pas avoir attendu une nouvelle déclaration SEC et observé un cycle trimestriel entier. La récupération et la réutilisation des médias ont été exécutées, ainsi que les parcours à partir des données collectées. Le premier portail Pages a réussi ses 16 contrôles. Après intégration de #1356, le portail doit être rejoué sur la version combinée ; la fusion et les téléchargements publics doivent encore être vérifiés ; les résultats de livraison seront ajoutés à la description de celle-ci. Aucune publication sur X.

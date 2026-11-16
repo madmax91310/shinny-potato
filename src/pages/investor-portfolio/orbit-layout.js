@@ -38,7 +38,6 @@ export function arrangeOrbit(rows,start,currency,top=POSTER.top) {
     order[i].badgeAngle=a;order[i].badge={x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,radius:br}
   }
   if(order.length>1 && order[0].badgeAngle+2*Math.PI-order.at(-1).badgeAngle<min)return null
-  let cost=0
   const candidates=entries.map(e=>{
     const result=[],money=amounts(e.value,currency)
     for(const width of [220,180,150,260,130]) {
@@ -83,6 +82,5 @@ export function arrangeOrbit(rows,start,currency,top=POSTER.top) {
     return false
   }
   if(!place(entries.map((_,i)=>i)))return null
-  for(const e of entries)cost+=e.box.score+Math.abs(delta(e.badgeAngle-e.mid))*100
-  return {entries,cost}
+  return {entries}
 }
