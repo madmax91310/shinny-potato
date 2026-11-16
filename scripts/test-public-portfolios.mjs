@@ -4,6 +4,7 @@ import {
   blankProfile,
   validEpisode,
   weightPct,
+  editorialWeight,
   nameOf,
   latestPublicationDate,
   latestVerificationDate,
@@ -65,6 +66,16 @@ otherMethod.methodNote = 'TEST FICTIF : méthode et traitement des flux explicit
 assert.deepEqual(issues(p, otherMethod), []);
 assert.equal(pct(0), "0 %");
 assert.equal(pct(""), "Non renseignée");
+assert.equal(editorialWeight(60.39068541), "60,39 %");
+assert.equal(editorialWeight(0.00001), "< 0,01 %");
+assert.equal(editorialWeight(0), "0 %");
+assert.equal(editorialWeight(""), "Non renseigné");
+const precise = structuredClone(s);
+precise.positions = [{name: "ETF fictif", weight: 60.39068541}, {name: "Autre ligne fictive", weight: 39.60931459}];
+const beforeEditorial = JSON.stringify(precise);
+assert.match(buildText(p, precise, 1), /60,39 %/);
+assert(!buildText(p, precise, 1).includes("60,39068541"));
+assert.equal(JSON.stringify(precise), beforeEditorial, "Display rounding never changes the saved allocation");
 assert.match(buildText(p, s, 2), /-2,45/);
 for (const original of [
   "Annual return since Jan 2026",
@@ -322,4 +333,5 @@ assert.equal(
   1,
 );
 
+await import("./test-etoro-public.mjs");
 await import("./test-public-portfolio-refresh.mjs");

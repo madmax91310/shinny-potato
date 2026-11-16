@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { catalogue, CATALOGUE_REVISION, seedCatalogue, mergeFeed, validateFeed, sourceSnapshot } from '../src/pages/public-portfolios/refresh.js';
-import { blankProfile, sourceKey } from '../src/pages/public-portfolios/lib.js';
+import { blankProfile, sourceKey, collectedPerformance } from '../src/pages/public-portfolios/lib.js';
 import { publishFeed, readPrevious, BRANCH, FILE } from './refresh-public-portfolio-feed.mjs';
 const feed = JSON.parse(readFileSync(new URL('../src/pages/public-portfolios/initial-feed.json', import.meta.url)));
 const research = JSON.parse(readFileSync(new URL('../src/pages/public-portfolios/performance-research.json', import.meta.url)));
@@ -17,37 +17,37 @@ validateFeed(feed);
 const firstPrevious = await readPrevious('TEST_TOKEN', async () => ({ ok: false, status: 404 }));
 assert.equal(firstPrevious.sha, '');
 assert.deepEqual(firstPrevious.feed, feed, 'The first automated run preserves the already collected initial observations on failure');
-assert.equal(catalogue.length, 30);
-assert.equal(new Set(catalogue.map(row => row.url)).size, 30);
-assert.equal(new Set(catalogue.map(row => row.pseudo.toLowerCase())).size, 30);
+assert.equal(catalogue.length, 31);
+assert.equal(new Set(catalogue.map(row => row.url)).size, catalogue.length);
+assert.equal(new Set(catalogue.map(row => row.pseudo.toLowerCase())).size, catalogue.length);
 for (const row of catalogue) {
-  assert.match(row.url, /^https:\/\/app\.getquin\.com\/en\/dashboard\/[a-zA-Z0-9]+$/);
+  assert.match(row.url, row.platform === 'eToro' ? /^https:\/\/www\.etoro\.com\/people\/[a-zA-Z0-9_-]+\/stats$/ : /^https:\/\/app\.getquin\.com\/en\/dashboard\/[a-zA-Z0-9]+$/);
   assert(row.evidence.length >= 2);
-  assert(row.evidence.some(url => url.includes('/post/')));
+  assert(row.evidence.some(url => url.includes(row.platform === 'eToro' ? '/portfolio' : '/post/')));
   assert(!('age' in row || 'job' in row || 'income' in row || 'amount' in row));
 }
 const db = seedCatalogue({ version: 1, profiles: [] });
-assert.equal(db.profiles.length, 30);
+assert.equal(db.profiles.length, catalogue.length);
 assert.equal(db.catalogueRevision, CATALOGUE_REVISION);
 assert.equal(seedCatalogue(db), db);
 const deleted = { ...db, profiles: db.profiles.slice(1) };
-assert.equal(seedCatalogue(deleted).profiles.length, 29, 'Deleted seeds do not reappear');
+assert.equal(seedCatalogue(deleted).profiles.length, catalogue.length - 1, 'Deleted seeds do not reappear');
 assert.equal(seedCatalogue({ version: 1, profiles: [], error: 'unreadable' }).profiles.length, 0);
 // An existing v1 reserve receives only the ten new entries, never deleted originals.
-const legacyProfiles = db.profiles.filter(p => catalogue.find(c => c.id === p.catalogueId)?.introducedIn !== 2).slice(1);
+const legacyProfiles = db.profiles.filter(p => catalogue.find(c => c.id === p.catalogueId)?.introducedIn === undefined).slice(1);
 const upgraded = seedCatalogue({ version: 1, catalogueRevision: 1, profiles: legacyProfiles });
-assert.equal(upgraded.profiles.length, 29);
+assert.equal(upgraded.profiles.length, catalogue.length - 1);
 assert(!upgraded.profiles.some(p => p.catalogueId === catalogue[0].id));
 assert.equal(upgraded.catalogueRevision, CATALOGUE_REVISION);
 assert.equal(seedCatalogue(upgraded), upgraded);
-const legacyFeed = { ...structuredClone(feed), entries: feed.entries.filter(e => catalogue.find(c => c.id === e.catalogueId)?.introducedIn !== 2) };
+const legacyFeed = { ...structuredClone(feed), entries: feed.entries.filter(e => catalogue.find(c => c.id === e.catalogueId)?.introducedIn === undefined) };
 assert.equal(legacyFeed.entries.length, 20);
 assert.throws(() => validateFeed(legacyFeed));
 const previousVersion = await readPrevious('TEST_TOKEN', async () => ({ok:true,status:200,json:async()=>({sha:'old-lease',content:Buffer.from(JSON.stringify(legacyFeed)).toString('base64')})}));
 assert.equal(previousVersion.feed.entries.length, 20, 'The weekly collector migrates its previous twenty-profile feed without losing observations');
 const existing = { ...blankProfile(), url: catalogue[0].url.replace('/en/', '/'), pseudo: 'MON PSEUDO', nature: 'Démonstration / virtuel', strategy: 'Texte personnel' };
 const migration = seedCatalogue({ version: 1, profiles: [existing] });
-assert.equal(migration.profiles.length, 30);
+assert.equal(migration.profiles.length, catalogue.length);
 assert.equal(migration.profiles[0].id, existing.id);
 assert.equal(migration.profiles[0].nature, existing.nature);
 assert.equal(migration.profiles[0].strategy, existing.strategy);
@@ -58,6 +58,25 @@ assert.equal(snapshot.month.value, ''); assert.equal(snapshot.ytd.value, '');
 assert.equal(snapshot.month.verified, false); assert.equal(snapshot.method, 'Non précisée');
 assert.equal(snapshot.total, ''); assert.equal(snapshot.effective, '');
 assert.deepEqual(snapshot.positions, observed.observation.positions);
+const etoroEntry=feed.entries.find(row=>row.catalogueId==='etoro-jaynemesis');
+const etoroSnapshot=sourceSnapshot(etoroEntry.observation);
+assert.equal(etoroSnapshot.month.verified,false);
+assert.equal(etoroSnapshot.ytd.verified,false);
+assert.equal(etoroSnapshot.ytd.approximate,true);
+assert.equal(etoroSnapshot.currency,'');
+assert.equal(etoroSnapshot.month.value,etoroEntry.observation.performances.month.value);
+assert(etoroSnapshot.acquisition.series.length);
+assert.equal(collectedPerformance(etoroSnapshot,'month').value,etoroSnapshot.month.value);
+const editedEtoro=structuredClone(etoroSnapshot);editedEtoro.month.value+=1;
+assert.equal(collectedPerformance(editedEtoro,'month'),null,'An edited value cannot keep the collected preview attribution');
+validateFeed({...structuredClone(feed),entries:feed.entries.filter(row=>row.catalogueId!=='etoro-jaynemesis')});
+for(const mutate of [
+ value=>value.observation.performances.month.verified=true,
+ value=>value.observation.performances.month.start=value.observation.performances.month.end,
+ value=>value.observation.performances.ytd.value+=1,
+ value=>value.observation.performances.series.pop(),
+ value=>value.observation.performances.series[0].value=null,
+]) {const bad=structuredClone(feed);mutate(bad.entries.find(row=>row.catalogueId==='etoro-jaynemesis'));assert.throws(()=>validateFeed(bad));}
 const when = new Date(Date.now() + 1000).toISOString().replace(/\.\d{3}Z$/, 'Z');
 const fresh = structuredClone(feed);
 fresh.collectedAt = when;
@@ -173,4 +192,4 @@ assert(workflow.includes('cancel-in-progress: false'));
 assert(workflow.includes('queue: max'));
 assert(!workflow.includes('commit-validated-data') && !workflow.includes('deploy-pages.yml'));
 execFileSync('python3', ['-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_public_portfolio_collector.py'], { stdio: 'inherit' });
-console.log('Réserve sourcée : 30 profils, migration/doublons/suppression, relevés partiels, pannes sans perte, historique, validation du flux et publication avec bail vérifiés.');
+console.log('Réserve sourcée : 31 profils, migration/doublons/suppression, relevés partiels, pannes sans perte, historique, validation du flux et publication avec bail vérifiés.');

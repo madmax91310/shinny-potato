@@ -2,6 +2,7 @@
 import copy
 import json
 import unittest
+from unittest.mock import patch
 from public_portfolio_collector import parse_getquin, collect_entry, permitted_url
 
 SOURCE = {'id': 'test-only', 'pseudo': 'TEST_FICTIF', 'url': 'https://app.getquin.com/en/dashboard/TestOnly'}
@@ -22,6 +23,14 @@ def dashboard(value):
     return value['props']['initialState']['dashboard']['dashboards']['TestOnly']
 
 class PublicPortfolioCollectorTest(unittest.TestCase):
+    def test_etoro_browser_failure_retains_previous_data(self):
+        entry = {'id':'test-only-etoro','platform':'eToro','pseudo':'TEST_FICTIF','url':'https://www.etoro.com/people/TEST_FICTIF/stats'}
+        previous = {'lastSuccessAt': NOW, 'observation': {'id':'synthetic-last-valid','positions':[{'name':'TEST FICTIF','weight':100}]}}
+        with patch('public_portfolio_collector.subprocess.check_output', side_effect=RuntimeError('Synthetic unavailable public page')):
+            failed = collect_entry(entry, previous, '2026-11-17T06:00:00Z')
+        self.assertEqual(failed['observation'], previous['observation'])
+        self.assertEqual(failed['lastSuccessAt'], NOW)
+        self.assertTrue(failed['error'])
     def test_only_source_ratios_and_explicit_currency(self):
         observation = parse_getquin(html(fixture()), SOURCE)
         self.assertEqual(observation['currency'], 'USD')
