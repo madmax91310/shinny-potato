@@ -170,6 +170,8 @@ class IssuerSources(unittest.TestCase):
         data=payload['funds'][0]['share_classes'][0]['data']
         data[fields.index('netAssetValueFund__date')]='2027-01-10'
         data[fields.index('factSheet')][0][3]='2027-01-10'
+        # A share launched during 2020 first has six complete years in 2026.
+        data[fields.index('launchDate')]='2020-11-11'
         # A publisher may retain only six completed calendar observations.
         for offset in range(7,11):
             if f'cal{offset}y' in fields:data[fields.index(f'cal{offset}y')]=None
@@ -192,6 +194,11 @@ class IssuerSources(unittest.TestCase):
         unfinished=copy.deepcopy(payload);unfinished['metadata']['year_end_date']='2027-12-31'
         with self.assertRaisesRegex(ValueError,'Unfinished L&G calendar year'):
             lg(unfinished,s,now,'isolated-current-year')
+        recent=copy.deepcopy(payload)
+        recent['funds'][0]['share_classes'][0]['data'][fields.index('launchDate')]='2026-06-08'
+        result=lg(recent,s,now,'isolated-partial-launch-year')
+        self.assertNotIn('2026',result['performance']['years'])
+        self.assertTrue(any(reason.startswith('performance:') for reason in result['unavailable']))
 
     def test_coinshares_price_table_never_fund_performance(self):
         for isin,file,fee in [('GB00BLD4ZL17','coinshares.txt',.15),('GB00BLD4ZM24','coinshares-eth.txt',0)]:
