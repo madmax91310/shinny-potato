@@ -8,7 +8,14 @@ const number = value => value === '' ? null : Number(value)
 
 export default function ParticipantEditor({ profile, edit }) {
   const [preset, setPreset] = useState('')
-  function changeRow(key, index, patch) { edit({ [key]: profile[key].map((row, i) => i === index ? { ...row, ...patch } : row) }) }
+  function changeRow(key, index, patch) {
+    edit({ [key]: profile[key].map((row, i) => {
+      if (i !== index) return row
+      const next = { ...row, ...patch, origin: 'manual' }
+      if (Object.hasOwn(patch, 'amount') || Object.hasOwn(patch, 'annualProvision')) { delete next.annualAmount; delete next.periodicity }
+      return next
+    }) })
+  }
   function rows(key, title) {
     return <fieldset className="budget-lines"><legend>{title}</legend>
       {profile[key].map((row, index) => <div className="budget-row" key={index}>
