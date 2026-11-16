@@ -7,7 +7,7 @@ import { INVESTORS,normalizePortfolio,buildTweet } from '../src/pages/investor-p
 const base=process.env.INVESTOR_VISUAL_URL || 'http://127.0.0.1:4310/shinny-potato/'
 const out=process.env.INVESTOR_VISUAL_OUT || 'test-artifacts/investor-visual-ui'
 const remote=base.startsWith('https:')
-const browser=await chromium.launch({headless:true,...(remote&&process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{})})
+const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{}),...(remote&&process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{})})
 await mkdir(out,{recursive:true})
 try {
  const context=await browser.newContext({acceptDownloads:true,permissions:['clipboard-read','clipboard-write']})
@@ -25,12 +25,22 @@ try {
     assert(await downloadButton.isDisabled());results.push({slug,width,status:'incomplete',problem:portfolio.problem})
    } else {
     const path=`${out}/${slug}-${width}.png`
+    assert(!await page.getByLabel('Positions du visuel',{exact:true}).innerText().then(text=>text.includes('unité ?')||text.includes('devise inconnue')),`${slug}: qualified aggregate must retain its currency/unit`)
+    // Mobile exercises preview-first; desktop exercises download-first.
+    if(width===390) {
+     await page.getByRole('tab',{name:'Image',exact:true}).click()
+     await page.getByRole('img',{name:`Portefeuille ${portfolio.identity.displayName}`,exact:true}).waitFor()
+    }
     const [download]=await Promise.all([page.waitForEvent('download'),downloadButton.click()]);await download.saveAs(path)
+    assert(download.url().startsWith('blob:'),`${slug}: main PNG uses the mobile-safe Blob transfer`)
     await page.getByRole('tab',{name:'Image',exact:true}).click()
     const image=page.getByRole('img',{name:`Portefeuille ${portfolio.identity.displayName}`,exact:true})
     await image.waitFor()
     const preview=Buffer.from((await image.getAttribute('src')).split(',')[1],'base64'),bytes=await readFile(path)
     assert.deepEqual(preview,bytes,`${slug}: preview differs from download`)
+    const [previewDownload]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger cet aperçu',exact:true}).click()])
+    const previewPath=`${out}/${slug}-preview-download-${width}.png`;await previewDownload.saveAs(previewPath)
+    assert.deepEqual(await readFile(previewPath),bytes,`${slug}: the two download buttons differ`)
     assert.equal(bytes.readUInt32BE(16),1080);assert.equal(bytes.readUInt32BE(20),1350)
     if(width===390)assert.deepEqual(bytes,await readFile(`${out}/${slug}-1440.png`),`${slug}: viewport changed export`)
     await page.locator('.studio-preview').screenshot({path:`${out}/${slug}-preview-${width}.png`})

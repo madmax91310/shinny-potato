@@ -127,6 +127,28 @@ BUDGET_ARTIFACT = '''      - uses: actions/upload-artifact@v7.0.1
           if-no-files-found: ignore
           retention-days: 14
 '''
+PUBLIC_PORTFOLIO_BROWSER_ANCHOR = '      - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 6\n'
+PUBLIC_PORTFOLIO_ARTIFACT = '''      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: public-portfolio-proof-${{ matrix.shard }}
+          path: test-artifacts/public-portfolios
+          if-no-files-found: ignore
+          retention-days: 7
+'''
+
+
+def public_portfolio_artifact_only(before, after):
+    """Exact #1354/#1358 support archive, in either direction; no gate edit."""
+    if not isinstance(before, str) or not isinstance(after, str):
+        return False
+    for plain, archived in [(before, after), (after, before)]:
+        if (plain.count(PUBLIC_PORTFOLIO_BROWSER_ANCHOR) == 1
+                and 'name: public-portfolio-proof-' not in plain
+                and archived == plain.replace(PUBLIC_PORTFOLIO_BROWSER_ANCHOR,
+                    PUBLIC_PORTFOLIO_BROWSER_ANCHOR + PUBLIC_PORTFOLIO_ARTIFACT, 1)):
+            return True
+    return False
 
 
 def budget_browser_addition_only(base, upstream, path):
@@ -143,10 +165,12 @@ def budget_artifact_reader(base, upstream, paths, entries):
     if DEPLOY_WORKFLOW not in paths:
         return set()
     before, after = at(base, DEPLOY_WORKFLOW), at(upstream, DEPLOY_WORKFLOW)
-    # Only an archival step is appended. Changes to any command, permission,
-    # condition, test or publisher still require recollection/qualification.
-    if (before is None or before.count(BROWSER_ANCHOR) != 1 or BUDGET_ARTIFACT in before
-            or after != before.replace(BROWSER_ANCHOR, BROWSER_ANCHOR + BUDGET_ARTIFACT, 1)):
+    # Only the exact reviewed support archive can change. Commands, permission,
+    # conditions, tests, source acquisition and publishing remain protected.
+    budget_only = (before is not None and before.count(BROWSER_ANCHOR) == 1
+                   and BUDGET_ARTIFACT not in before
+                   and after == before.replace(BROWSER_ANCHOR, BROWSER_ANCHOR + BUDGET_ARTIFACT, 1))
+    if not (budget_only or public_portfolio_artifact_only(before, after)):
         raise ValueError('Protected publication workflow changed beyond the exact Budget artifact addition')
     for ref in (base, upstream):
         for entry in entries:
