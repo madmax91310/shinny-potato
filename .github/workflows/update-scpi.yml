@@ -72,8 +72,15 @@ jobs:
         with:
           name: scpi-observations
           path: |
-            ${{ runner.temp }}/scpi-observation*.json
-            ${{ runner.temp }}/**/*.contract-plan.json
+            ${{ runner.temp }}/scpi-observation.json
+            ${{ runner.temp }}/scpi-observation.contract-plan.json
+          retention-days: 35
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        with:
+          name: scpi-recording-attempts
+          path: ${{ runner.temp }}/scpi-recording-attempts/
+          if-no-files-found: ignore
           retention-days: 35
   deploy:
     needs: refresh

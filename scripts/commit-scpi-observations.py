@@ -97,11 +97,13 @@ def publish(root, report, attempts=3, command=None):
         raise ValueError('SCPI recording is limited to three attempts')
     root, report = Path(root).resolve(), Path(report).resolve()
     read_report(report)
-    original = report.with_name(report.stem + '-attempt-1.json')
+    evidence = report.parent / 'scpi-recording-attempts'
+    original = evidence / 'attempt-1' / report.name
+    original.parent.mkdir(parents=True, exist_ok=True)
     original.write_bytes(report.read_bytes())
-    plan = report.with_name(report.stem + '.contract-plan.json')
-    if plan.exists():
-        original.with_name(original.stem + '.contract-plan.json').write_bytes(plan.read_bytes())
+    plan_path = report.with_name(report.stem + '.contract-plan.json')
+    if plan_path.exists():
+        original.with_name(original.stem + '.contract-plan.json').write_bytes(plan_path.read_bytes())
     history, checkouts = [], []
     current, current_report = root, original
     with tempfile.TemporaryDirectory(prefix='scpi-recollect-') as temp:
@@ -109,7 +111,8 @@ def publish(root, report, attempts=3, command=None):
         try:
             for attempt in range(1, attempts + 1):
                 state = {'attempt': attempt, 'collectionBase': revision(current),
-                         'report': current_report.name, 'phase': 'source-plan-validation', 'status': 'attempted'}
+                         'report': current_report.relative_to(report.parent).as_posix(),
+                         'phase': 'source-plan-validation', 'status': 'attempted'}
                 history.append(state)
                 plan = read_report(current_report)['resultContract'].get('inputPlan', {})
                 if not plan.get('durablePlan') or plan.get('codeSha') != state['collectionBase']:
@@ -147,8 +150,10 @@ def publish(root, report, attempts=3, command=None):
                 checkout = temp / f'checkout-{attempt + 1}'
                 run(['git', 'worktree', 'add', '--detach', str(checkout), latest], root)
                 checkouts.append(checkout)
-                current_report = report.with_name(f'{report.stem}-attempt-{attempt + 1}.json')
-                state.update(recoveryBase=latest, recoveryPhase='acquisition', recoveryReport=current_report.name)
+                current_report = evidence / f'attempt-{attempt + 1}' / report.name
+                current_report.parent.mkdir(parents=True, exist_ok=True)
+                state.update(recoveryBase=latest, recoveryPhase='acquisition',
+                             recoveryReport=current_report.relative_to(report.parent).as_posix())
                 acquired = subprocess.run(['python3', 'scripts/collect_scpi.py', '--apply',
                                            '--output', str(current_report)], cwd=checkout)
                 if acquired.returncode not in (0, 1) or not current_report.exists():
@@ -171,22 +176,34 @@ def publish(root, report, attempts=3, command=None):
                 history[-1]['recoveryError'] = f'{type(error).__name__}: {error}'
             raise
         finally:
-            # Financial source clocks and native results stay untouched; each
-            # original attempt and its predeclared plan remain separate evidence.
+            # The registered report must represent the latest actual attempt,
+            # including an interrupted/invalid report. Older successes cannot
+            # mask its omissions. The original attempts stay in a separate
+            # support artifact, never among the monitor's current reports.
             try:
+                (evidence / 'recording-status.json').write_text(json.dumps(
+                    {'operation': 'SCPI recording', 'attempts': history}, ensure_ascii=False, indent=2) + '\n')
+                current_plan = current_report.with_name(current_report.stem + '.contract-plan.json')
                 if current_report.exists():
                     try:
-                        save_report(current_report, report, history)
-                    except (KeyError, TypeError, ValueError):
-                        # Keep the last valid report and invalid raw attempt
-                        # separately, with the phase and exact file identity.
-                        retained = json.loads(report.read_text())
-                        retained['recordingAttempts'] = history
-                        report.write_text(json.dumps(retained, ensure_ascii=False, indent=2) + '\n')
+                        latest = json.loads(current_report.read_text())
+                        if not isinstance(latest, dict): raise ValueError('Invalid source report shape')
+                        latest['recordingAttempts'] = history
+                        report.write_text(json.dumps(latest, ensure_ascii=False, indent=2) + '\n')
+                    except (TypeError, ValueError):
+                        report.write_bytes(current_report.read_bytes())
+                    if current_plan.exists():
+                        plan_path.write_bytes(current_plan.read_bytes())
+                    else:
+                        plan_path.unlink(missing_ok=True)
+                elif current_plan.exists():
+                    report.unlink(missing_ok=True)
+                    plan_path.write_bytes(current_plan.read_bytes())
                 else:
-                    retained = json.loads(report.read_text())
-                    retained['recordingAttempts'] = history
-                    report.write_text(json.dumps(retained, ensure_ascii=False, indent=2) + '\n')
+                    # No current scope was declared: expose the missing report
+                    # instead of certifying the previous attempt's old scope.
+                    report.unlink(missing_ok=True)
+                    plan_path.unlink(missing_ok=True)
             finally:
                 for checkout in reversed(checkouts):
                     run(['git', 'worktree', 'remove', '--force', str(checkout)], root)

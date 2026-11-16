@@ -20,7 +20,7 @@ spec.loader.exec_module(module)
 def report(failed=False, code_sha=None):
     items = [{'id': key, 'instrument': {'type': 'scpi', 'id': key}, 'selected': True,
               'fields': ['declared financial observation']} for key in ('a', 'b')]
-    plan = {'producer': 'collect_scpi', 'items': items, 'codeSha': code_sha,
+    plan = {'producer': 'collect_scpi', 'reportStem': 'scpi-observation', 'items': items, 'codeSha': code_sha,
             'durablePlan': True, 'nonce': 'isolated-source-' + str(code_sha)}
     plan['sha256'] = hashlib.sha256(json.dumps(plan, sort_keys=True).encode()).hexdigest()
     rows = [{'id': key, 'status': 'failure' if failed and key == 'b' else 'success',
@@ -137,7 +137,7 @@ class ScpiRecording(unittest.TestCase):
         self.assertEqual(self.git('show', 'origin/master:src/data/other.json'), '{"concurrent":20}')
         final = json.loads(self.source_report.read_text())
         self.assertEqual([x['status'] for x in final['recordingAttempts']], ['failed', 'succeeded'])
-        self.assertEqual(json.loads(self.source_report.with_name('scpi-observation-attempt-1.json').read_text()), report(code_sha=self.base))
+        self.assertEqual(json.loads((self.directory / 'scpi-recording-attempts/attempt-1/scpi-observation.json').read_text()), report(code_sha=self.base))
         self.assertEqual(json.loads(self.source_report.with_name('scpi-observation.contract-plan.json').read_text()), {'freshPlan': True})
         self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
 
@@ -232,11 +232,44 @@ class ScpiRecording(unittest.TestCase):
                 module.publish(self.root, self.source_report)
         validate.assert_not_called()
         self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
-        final = json.loads(self.source_report.read_text())
-        self.assertEqual(final['observations'], report()['observations'])
-        self.assertEqual(final['recordingAttempts'][0]['recoveryPhase'], 'acquisition')
-        self.assertIn('no complete auditable report', final['recordingAttempts'][0]['recoveryError'])
+        self.assertFalse(self.source_report.exists())
+        self.assertFalse(self.source_report.with_name('scpi-observation.contract-plan.json').exists())
+        final = json.loads((self.directory / 'scpi-recording-attempts/recording-status.json').read_text())
+        self.assertEqual(final['attempts'][0]['recoveryPhase'], 'acquisition')
+        self.assertIn('no complete auditable report', final['attempts'][0]['recoveryError'])
         self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
+
+    def test_retry_plan_without_a_report_does_not_reuse_the_old_successes(self):
+        upstream = self.advance()
+        latest = {}
+        def interrupted(args, **kwargs):
+            if args[:2] == ['python3', 'scripts/collect_scpi.py']:
+                target = Path(args[-1]); latest.update(report(code_sha=module.revision(kwargs['cwd'])))
+                target.with_name(target.stem + '.contract-plan.json').write_text(json.dumps(latest))
+                return subprocess.CompletedProcess(args, 2)
+            return self.real_run(args, **kwargs)
+        with patch.object(module.subprocess, 'run', side_effect=interrupted), patch.object(module, 'validate') as validate:
+            with self.assertRaisesRegex(RuntimeError, 'no complete auditable report'):
+                module.publish(self.root, self.source_report)
+        validate.assert_not_called()
+        self.assertFalse(self.source_report.exists())
+        self.assertEqual(json.loads(self.source_report.with_name('scpi-observation.contract-plan.json').read_text()), latest)
+        self.assertTrue((self.directory / 'scpi-recording-attempts/attempt-1/scpi-observation.json').exists())
+        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
+
+    def test_invalid_retry_report_remains_invalid_in_the_registered_artifact(self):
+        upstream = self.advance()
+        def malformed(args, **kwargs):
+            if args[:2] == ['python3', 'scripts/collect_scpi.py']:
+                Path(args[-1]).write_text('{')
+                return subprocess.CompletedProcess(args, 0)
+            return self.real_run(args, **kwargs)
+        with patch.object(module.subprocess, 'run', side_effect=malformed), patch.object(module, 'validate') as validate:
+            with self.assertRaises(json.JSONDecodeError):
+                module.publish(self.root, self.source_report)
+        validate.assert_not_called()
+        self.assertEqual(self.source_report.read_text(), '{')
+        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
 
     def test_repeated_input_races_exhaust_three_attempts_without_publishing(self):
         calls = []
@@ -260,7 +293,11 @@ class ScpiRecording(unittest.TestCase):
             self.assertIn("-p '" + pattern + "'", workflow)
         for command in ('node scripts/test-scpi.mjs', 'npm run audit:data-catalog', 'npm run build'):
             self.assertIn(command, workflow)
-        self.assertIn('scpi-observation*.json', workflow)
+        current_artifact = workflow.split('name: scpi-observations', 1)[1].split('- uses:', 1)[0]
+        self.assertIn('/scpi-observation.json', current_artifact)
+        self.assertIn('/scpi-observation.contract-plan.json', current_artifact)
+        self.assertNotIn('*.json', current_artifact)
+        self.assertIn('name: scpi-recording-attempts', workflow)
         self.assertLess(workflow.index('python scripts/commit-scpi-observations.py'), workflow.index('name: scpi-observations'))
         self.assertIn('steps.commit.outputs.collection_failed', workflow)
         self.assertEqual(module.WRITER[-1], 'src/data/automated-scpi.json')
@@ -272,6 +309,48 @@ class ScpiRecording(unittest.TestCase):
             for attempts in (0, 4, True):
                 with self.assertRaises(ValueError): module.publish(self.root, self.source_report, attempts=attempts)
             record.assert_not_called()
+
+
+class ArtifactContract(unittest.TestCase):
+    def reports(self, directory):
+        from publish_automation_status import artifact_reports
+        jobs = [{'name': 'refresh', 'conclusion': 'success', 'steps': [
+            {'name': 'Collect observations: collect', 'conclusion': 'success'}]}]
+        return artifact_reports('isolated/replay', 'update-scpi.yml', jobs,
+                                [{'id': 1, 'name': 'scpi-observations'}], directory,
+                                download=lambda *args: None)
+
+    def fixture(self, directory):
+        source = SCRIPTS / 'fixtures/scpi/recording-20261116'
+        for name in ('scpi-observation.json', 'scpi-observation.contract-plan.json'):
+            shutil.copyfile(source / name, Path(directory) / name)
+
+    def test_real_report_with_separate_support_attempts_has_no_out_of_contract_error(self):
+        with tempfile.TemporaryDirectory() as folder:
+            main, support = Path(folder) / 'main', Path(folder) / 'support'
+            main.mkdir(); support.mkdir()
+            self.fixture(main); self.fixture(support)
+            rows = self.reports(main)
+            self.assertEqual([e for r in rows for e in r.get('errors', [])], [])
+            expected = json.loads((main / 'scpi-observation.json').read_text())['resultContract']['scope']['expectedIds']
+            self.assertTrue(set(expected) <= {r['id'] for report in rows for r in report.get('successes', [])})
+            # Reproduce the old packaging defect without weakening the reader.
+            shutil.copyfile(main / 'scpi-observation.json', main / 'scpi-observation-attempt-1.json')
+            errors = [e for r in self.reports(main) for e in r.get('errors', [])]
+            self.assertTrue(any(e['id'] == 'report-read:scpi-observation-attempt-1' for e in errors))
+
+    def test_latest_interrupted_plan_reports_omissions_instead_of_earlier_successes(self):
+        with tempfile.TemporaryDirectory() as folder:
+            self.fixture(folder)
+            primary = Path(folder) / 'scpi-observation.json'
+            placeholder = Path(folder) / 'scpi-observation.contract-plan.json'
+            primary.write_bytes(placeholder.read_bytes())
+            expected = json.loads(placeholder.read_text())['resultContract']['scope']['expectedIds']
+            rows = self.reports(folder)
+            errors = {e['id'] for r in rows for e in r.get('errors', [])}
+            self.assertTrue({'report-result:collect_scpi:' + id for id in expected} <= errors)
+            successes = {e['id'] for r in rows for e in r.get('successes', [])}
+            self.assertFalse(set(expected) & successes)
 
 
 if __name__ == '__main__':
