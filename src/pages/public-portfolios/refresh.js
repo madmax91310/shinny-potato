@@ -1,17 +1,12 @@
 import catalogue from './catalogue.json' with { type: 'json' };
 import initialFeed from './initial-feed.json' with { type: 'json' };
-import { blankProfile, blankSnapshot, canonicalUrl } from './lib.js';
+import { blankProfile, blankSnapshot, sourceKey } from './lib.js';
 
 export const FEED_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/public-portfolio-data/public/data/public-portfolios-feed.json';
 export const COLLECTOR_URL = 'https://github.com/madmax91310/shinny-potato/actions/workflows/refresh-public-portfolios.yml';
 export { catalogue };
 export const CATALOGUE_REVISION = 2;
 const stamp = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString().replace('.000Z', 'Z') === v && Date.parse(v) <= Date.now() + 300000;
-const sourceKey = (url) => {
-  const value = canonicalUrl(url);
-  const match = value.match(/^https:\/\/app\.getquin\.com\/(?:[a-z]{2}\/)?dashboard\/([a-zA-Z0-9]+)$/);
-  return match ? `getquin:${match[1]}` : value;
-};
 const fail = () => { throw Error('Flux de relevés invalide ou incompatible. Les dernières données sont conservées.'); };
 
 export function validateFeed(feed, { allowSubset = false } = {}) {
@@ -36,9 +31,9 @@ export function validateFeed(feed, { allowSubset = false } = {}) {
 }
 
 export function sourceSnapshot(observation) {
-  return { ...blankSnapshot(), id: `collected:${observation.id}`, consulted: observation.collectedAt.slice(0, 10), effective: observation.effective,
+  return { ...blankSnapshot(), id: `collected:${observation.id}:${observation.collectedAt}`, consulted: observation.collectedAt.slice(0, 10), effective: observation.effective,
     currency: observation.currency, source: observation.source, positions: structuredClone(observation.positions),
-    acquisition: { kind: 'public-html', collectedAt: observation.collectedAt, note: observation.note } };
+    acquisition: { kind: 'public-html', observationId: observation.id, collectedAt: observation.collectedAt, note: observation.note } };
 }
 
 export function mergeFeed(db, input) {
@@ -53,8 +48,13 @@ export function mergeFeed(db, input) {
     // A repeated/old observation cannot replace a reviewed snapshot, change a
     // draft's binding, reclassify the portfolio or mutate a published episode.
     const o = entry.observation;
-    const newestCollection = snapshots.reduce((date, row) => row.acquisition?.collectedAt > date ? row.acquisition.collectedAt : date, '');
-    if (o && o.collectedAt >= newestCollection && !snapshots.some(row => row.id === `collected:${o.id}`)) { snapshots.push(sourceSnapshot(o)); added++; }
+    const collected = snapshots.filter(row => row.id.startsWith('collected:') && row.acquisition?.kind === 'public-html');
+    const latest = collected.reduce((newest, row) => !newest || row.acquisition.collectedAt >= newest.acquisition.collectedAt ? row : newest, null);
+    // Legacy IDs contain only the content hash. Never rewrite their references:
+    // drafts and published episodes may still point to them.
+    const latestContent = latest?.acquisition.observationId || latest?.id.split(':')[1];
+    const newestCollection = latest?.acquisition.collectedAt || '';
+    if (o && o.collectedAt >= newestCollection && latestContent !== o.id) { snapshots.push(sourceSnapshot(o)); added++; }
     else unchanged++;
     const lastSuccessAt = [profile.acquisition?.lastSuccessAt || '', entry.lastSuccessAt || ''].sort().at(-1);
     return { ...profile, snapshots, acquisition: { capability: entry.capability, attemptedAt: entry.attemptedAt,

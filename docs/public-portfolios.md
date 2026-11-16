@@ -49,3 +49,52 @@ Un relevé corrigé ajoute une version. Une publication conserve texte final, da
 - `node scripts/playwright-public-portfolios.mjs` : trente profils initiaux, actualisations répétées, panne par source et transport sans perte, sauvegarde incomplète/rechargement, copie réelle, PNG/ZIP, historique, mobile et routes DCA/Budget/tweets. `BASE_URL` exerce la version publique et son vrai flux avant les simulations de panne dans le navigateur éphémère.
 
 Aucune donnée fictive n’est ajoutée à la réserve de production. La lecture publique d’une allocation et la réussite d’une collecte ne certifient pas son rendement.
+
+
+## Corrections de fiabilité du 16 novembre 2026
+
+- Une allocation qui revient après un état différent (A → B → A) crée une nouvelle occurrence datée. Les lectures consécutives identiques restent dédupliquées. Les identifiants historiques, corrections, brouillons et publications restent intacts.
+- La sauvegarde manuelle et la migration comparent le même code de tableau Getquin, y compris dans une autre langue ou avec des paramètres de partage. Aucun doublon existant n’est supprimé automatiquement : une fiche peut contenir un historique personnel distinct.
+- Consultation, collecte, date effective d’allocation et période mensuelle sont affichées séparément. Une date effective inconnue reste inconnue. Le texte final précise la date de la répartition ; le rendu v2 la porte aussi. Les anciennes publications gardent leur rendu v1.
+- Une performance chiffrée ne passe plus les contrôles avec une méthode, des frais ou des dividendes non précisés. Une méthode « Autre » exige une description documentée ; modifier ces conventions retire les coches de contrôle. Les anciens relevés et textes restent sauvegardés ; un brouillon incomplet doit être complété avant un nouvel export.
+
+### Recherche pour un premier épisode
+
+Les trente publications justificatives du catalogue ont été relues le 16 novembre 2026 sans compte. Leurs auteurs et liens partagés concordent. Cette revue porte sur ces publications, pas sur l’intégralité des publications de chaque auteur.
+
+`performance-research.json` conserve une piste : Part_Time_Joe, bilan d’octobre publié le 1er novembre 2026, déclaration de −3,89 % en EUR. Le texte distingue un versement de la perte du mois. Il ne documente toutefois ni une méthode TWR/IRR, ni le traitement des dividendes/frais, et ne donne pas de rendement YTD chiffré. La valeur `relative_value` de la carte jointe n’a pas de période qualifiée : elle n’est pas réutilisée comme mois ou YTD. Les montants de début et fin de mois ne servent pas à reconstruire un rendement supposé.
+
+La piste apparaît dans la fiche avec son lien, sa date de revue et les éléments manquants. Elle ne préremplit aucune performance et ne coche aucune vérification. Un épisode complet avec performance mensuelle reste bloqué par ces preuves fournisseur manquantes. Aucun rendement de démonstration n’est enregistré dans le catalogue ou le flux.
+
+| Profil | Publication justificative | Conclusion sur le mois requis |
+|---|---|---|
+| Altmark96 | [2026-09-24](https://app.getquin.com/en/post/ksqCVGhiSk/mein-anfang) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| anticapitalism | [2026-06-12](https://app.getquin.com/en/post/zFmzSddVew/portfolio-update-5) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| AroundNicco | [2026-02-17](https://app.getquin.com/en/post/BfCJvMmVur/mid-month-update-february-26) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| BVLGARI | [2026-10-14](https://app.getquin.com/en/post/MuPkpjyAKl/meilenstein-400k) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Chris98_ | [2026-01-18](https://app.getquin.com/en/post/cfgnfbOHHa/vorstellung) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Daytamauit | [2026-08-08](https://app.getquin.com/en/post/xHCFasdoGm/portfolioanalyse) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| der_Don | [2026-10-27](https://app.getquin.com/en/post/FGuokofKJj/das-ist-jetzt-meine-endgultige-depot-aufstellung) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| DerDepotFuchs | [2026-10-22](https://app.getquin.com/en/post/txIgibxWff/zwischenstand-chf-25000-wie-lange-dauerts-wohl) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| DonkeyInvestor | [2022-11-24](https://app.getquin.com/en/post/NhIGEJGCTA/howto-portfolio-feedback-on-getquin) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| fizzelfritz | [2026-03-20](https://app.getquin.com/en/post/fyZjYvQkXn/portfolioumbau) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| IDtodal | [2026-10-06](https://app.getquin.com/en/post/RlkItAEDMm/kleines-update-zu-den-80k) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| jve05 | [2026-11-11](https://app.getquin.com/en/post/mqEfVeXmzx/tips-on-which-stocks-to-buy) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Lewi | [2025-08-06](https://app.getquin.com/en/post/MQUQsrgXZK/depot-eines-19-jahrigen-angehenden-bankkaufmann) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Maximil1an | [2026-07-21](https://app.getquin.com/en/post/XyOUxaPMvg/rostet-gerne-m21-dualer-student) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| mr_mezzanotte | [2026-09-16](https://app.getquin.com/en/post/JoKZLdJtxy/2-year-review) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Pherror | [2026-06-15](https://app.getquin.com/en/post/TqqxcxhyqX/mein-depot) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Pitosonzac | [2026-07-12](https://app.getquin.com/en/post/CDRxfRKdoh/first-post-feedback-appreciated) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| profit_pilot_3104 | [2026-09-26](https://app.getquin.com/en/post/uctVdsCWAa/rate-my-portfolio) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Timdie | [2026-09-16](https://app.getquin.com/en/post/EsMCEBLYQw/less-than-1000-away-from-the-20k-milestone) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| value_visionary_211 | [2025-08-12](https://app.getquin.com/en/post/qroiITaTDE/portfolioverkleinerung) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Catpitalist | [2026-10-30](https://app.getquin.com/en/post/McRqysFiao) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| cashing | [2026-01-04](https://app.getquin.com/en/post/nlRfigHRog) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Part_Time_Joe | [2026-11-01](https://app.getquin.com/en/post/tPaFJFpoXR) | Octobre 2026 déclaré ; méthode, conventions et YTD manquants |
+| 20fritz02 | [2025-11-03](https://app.getquin.com/en/post/upZPMkjfmX) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| GeneralRed | [2026-10-16](https://app.getquin.com/en/post/OJcYtwFSRA) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Oktoberfest | [2026-08-09](https://app.getquin.com/en/post/vPESoYBWzY) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Ricard99 | [2026-07-04](https://app.getquin.com/en/post/vzHQwWyaRM) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| Cloo | [2026-06-01](https://app.getquin.com/en/post/jvvFBecdiR) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| JoshuaDL | [2026-05-28](https://app.getquin.com/en/post/DGIjzuwZyV) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |
+| LMHNK | [2025-02-03](https://app.getquin.com/en/post/kgAeBricLv) | Pas de rendement d’octobre 2026 avec méthode qualifiée dans cette publication |

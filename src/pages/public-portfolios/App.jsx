@@ -7,6 +7,7 @@ import {
   blankProfile,
   blankSnapshot,
   canonicalUrl,
+  sourceKey,
   nameOf,
   hasText,
   weightPct,
@@ -31,6 +32,7 @@ import {
   COLLECTOR_URL,
 } from "./refresh.js";
 import "./style.css";
+import performanceResearch from "./performance-research.json";
 function loadLibrary() {
   const db = load();
   const next = seedCatalogue(db);
@@ -157,6 +159,7 @@ function SnapshotEvidence({ s }) {
       <p>
         Méthode : {s.method} · Dividendes : {s.dividends} · Frais : {s.fees}
       </p>
+      {s.methodNote && <p>Précisions de méthode : {s.methodNote}</p>}
       {s.acquisition && (
         <p>
           Collecté le{" "}
@@ -205,32 +208,23 @@ function SnapshotEvidence({ s }) {
 }
 function AcquisitionInfo({ profile }) {
   const a = profile.acquisition;
-  return (
-    <div className="pp-acquisition">
-      <p>
-        {a
-          ? "Allocation : récupération partielle à confirmer"
-          : "Acquisition : saisie manuelle"}
-      </p>
-      {a && (
-        <>
-          <p>
-            Dernier succès de lecture :{" "}
-            {a.lastSuccessAt
-              ? new Date(a.lastSuccessAt).toLocaleString("fr-FR")
-              : "aucun"}
-            . Cette date ne vérifie pas les performances.
-          </p>
-          {a.error && (
-            <p role="alert">
-              Échec le {new Date(a.attemptedAt).toLocaleString("fr-FR")} :{" "}
-              {a.error}
-            </p>
-          )}
-        </>
-      )}
-    </div>
-  );
+  const latest = profile.snapshots.at(-1);
+  const research = performanceResearch.find(row => row.catalogueId === profile.catalogueId);
+  return <div className="pp-acquisition">
+    <p>{a ? "Allocation : récupération partielle à confirmer" : "Acquisition : saisie manuelle"}</p>
+    {a && <>
+      <p>Dernier succès de lecture : {a.lastSuccessAt ? new Date(a.lastSuccessAt).toLocaleString("fr-FR") : "aucun"}. Cette date ne vérifie pas les performances.</p>
+      {a.error && <p role="alert">Échec le {new Date(a.attemptedAt).toLocaleString("fr-FR")} : {a.error}</p>}
+    </>}
+    {latest && <p>Allocation : date effective {latest.effective || "non fournie"} · Consultation : {latest.consulted}. Période mensuelle : {latest.month.start || "non établie"} → {latest.month.end || "non établie"}.</p>}
+    {research && <details>
+      <summary>Piste pour le premier épisode · performance non qualifiée</summary>
+      <p>{research.pseudo} déclare {pct(research.declaredValue)} en {research.monthLabel} ({research.currency}). Source consultée le {research.checkedAt} ; publication du {research.publishedAt.slice(0, 10)}.</p>
+      <p>À établir avant préparation : {research.missing.join(" ; ")}.</p>
+      <p>Ce chiffre reste une déclaration à contrôler ; il ne remplit aucun relevé et ne débloque aucun export.</p>
+      <a href={research.source} target="_blank" rel="noreferrer">Lire le bilan mensuel de l’auteur</a>
+    </details>}
+  </div>;
 }
 
 export default function App() {
@@ -323,7 +317,7 @@ export default function App() {
     const url = canonicalUrl(next.url);
     if (
       url &&
-      db.profiles.some((x) => x.id !== next.id && canonicalUrl(x.url) === url)
+      db.profiles.some((x) => x.id !== next.id && sourceKey(x.url) === sourceKey(url))
     ) {
       setMessage("Ce lien est déjà enregistré.");
       return false;
@@ -802,6 +796,7 @@ export default function App() {
                     profile={history.profile}
                     snapshot={history.snapshot}
                     episode={history.image.episode}
+                    version={history.image.version || 1}
                   />
                 </section>
               )}
@@ -938,19 +933,21 @@ export default function App() {
                     label="Méthode"
                     value={s.method}
                     options={["Non précisée", "TWR", "TRI/IRR", "Autre"]}
-                    onChange={(v) => setS({ ...s, method: v })}
+                    onChange={(v) => setS({ ...s, method: v, month: { ...s.month, verified: false }, ytd: { ...s.ytd, verified: false }, year: { ...s.year, verified: false }, benchmark: { ...s.benchmark, verified: false } })}
                   />
+                  <Field label="Précisions de méthode et référence dans la source" value={s.methodNote || ""}
+                    onChange={(v) => setS({ ...s, methodNote: v, month: { ...s.month, verified: false }, ytd: { ...s.ytd, verified: false }, year: { ...s.year, verified: false } })} />
                   <Field
                     label="Dividendes"
                     value={s.dividends}
                     options={["Non précisé", "Réinvestis", "Exclus", "Autre"]}
-                    onChange={(v) => setS({ ...s, dividends: v })}
+                    onChange={(v) => setS({ ...s, dividends: v, month: { ...s.month, verified: false }, ytd: { ...s.ytd, verified: false }, year: { ...s.year, verified: false }, benchmark: { ...s.benchmark, verified: false } })}
                   />
                   <Field
                     label="Frais"
                     value={s.fees}
                     options={["Non précisé", "Inclus", "Exclus", "Autre"]}
-                    onChange={(v) => setS({ ...s, fees: v })}
+                    onChange={(v) => setS({ ...s, fees: v, month: { ...s.month, verified: false }, ytd: { ...s.ytd, verified: false }, year: { ...s.year, verified: false }, benchmark: { ...s.benchmark, verified: false } })}
                   />
                 </div>
                 <div ref={performanceRef} style={{ scrollMarginTop: 120 }}>

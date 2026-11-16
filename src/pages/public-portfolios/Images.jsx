@@ -10,6 +10,7 @@ export default function Images({
   snapshot,
   episode,
   preview = false,
+  version = 2,
 }) {
   const ref = useRef(),
     [canvases, setCanvases] = useState([]);
@@ -18,10 +19,10 @@ export default function Images({
       setCanvases([]);
       return;
     }
-    const cs = renderImages(profile, snapshot, episode, { preview });
+    const cs = renderImages(profile, snapshot, episode, { preview, version });
     ref.current.replaceChildren(...cs);
     setCanvases(cs);
-  }, [profile, snapshot, episode, preview]);
+  }, [profile, snapshot, episode, preview, version]);
   if (!validEpisode(episode))
     return <p>Numéro d’épisode valide requis (1 à 999999).</p>;
   return (
