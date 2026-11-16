@@ -21,6 +21,7 @@ for(const mutate of [
  f=>f.portfolio.AggregatedPositions[0].Direction='Sell',
  f=>f.portfolio.AggregatedPositions[0].Value=NaN,
  f=>f.portfolio.AggregatedMirrors.push({}),
+ f=>delete f.portfolio.AggregatedMirrors,
  f=>f.names=[],
  f=>f.consulted='2026-02-31',
 ]){const f=fixture();mutate(f);assert.throws(()=>parseEtoroPublic(f));}

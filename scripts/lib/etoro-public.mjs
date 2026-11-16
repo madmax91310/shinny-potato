@@ -4,7 +4,7 @@ export function parseEtoroPublic({ username, identity, stats, portfolio, names, 
   const numeric = value => typeof value === 'number' && Number.isFinite(value);
   if (!/^[a-zA-Z0-9_-]{1,80}$/.test(username) || identity?.username?.toLowerCase() !== username.toLowerCase() || !Number.isSafeInteger(identity.realCID) || identity.realCID <= 0 || !/^\d{4}-\d{2}-\d{2}$/.test(consulted) || new Date(consulted+'T00:00:00Z').toISOString().slice(0,10)!==consulted) fail();
   const performance = stats?.dataComponentsResponse?.filter(row => row.type === 'Performance');
-  if (performance?.length !== 1 || !performance[0].componentData?.monthly || portfolio?.AggregatedMirrors?.length || !Array.isArray(portfolio?.AggregatedPositions) || !portfolio.AggregatedPositions.length || portfolio.AggregatedPositions.length > 499) fail();
+  if (performance?.length !== 1 || !performance[0].componentData?.monthly || !Array.isArray(portfolio?.AggregatedMirrors) || portfolio.AggregatedMirrors.length || !Array.isArray(portfolio?.AggregatedPositions) || !portfolio.AggregatedPositions.length || portfolio.AggregatedPositions.length > 499) fail();
   const end = new Date(consulted + 'T00:00:00Z'); end.setUTCDate(0);
   const endDate = end.toISOString().slice(0,10), year = end.getUTCFullYear(), lastMonth = end.getUTCMonth() + 1;
   const firstActivity = performance[0].componentData.firstActivity;
