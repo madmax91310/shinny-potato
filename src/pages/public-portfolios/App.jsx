@@ -26,7 +26,14 @@ import {
 } from "./lib.js";
 import { load, save } from "./storage.js";
 import { renderImages } from "./images.js";
+import { catalogue, seedCatalogue, mergeFeed, fetchLatestFeed, COLLECTOR_URL } from "./refresh.js";
 import "./style.css";
+function loadLibrary() {
+  const db = load();
+  const next = seedCatalogue(db);
+  if (next !== db && !save(next)) return { ...db, error: "Impossible d’enregistrer les profils recherchés. Les fiches existantes sont préservées." };
+  return next;
+}
 function Field({ label, value, onChange, type = "text", options }) {
   return (
     <label>
@@ -131,6 +138,7 @@ function SnapshotEvidence({ s }) {
       <p>
         Méthode : {s.method} · Dividendes : {s.dividends} · Frais : {s.fees}
       </p>
+      {s.acquisition && <p>Collecté le {new Date(s.acquisition.collectedAt).toLocaleString("fr-FR")} · À confirmer. {s.acquisition.note}</p>}
       {s.total !== "" && s.total != null && (
         <p>
           Montant public : {s.total} {s.currency}
@@ -170,10 +178,23 @@ function SnapshotEvidence({ s }) {
     </details>
   );
 }
+function AcquisitionInfo({ profile }) {
+  const a = profile.acquisition;
+  return <div className="pp-acquisition">
+    <p>{a ? "Allocation : récupération partielle à confirmer" : "Acquisition : saisie manuelle"}</p>
+    {a && <>
+      <p>Dernier succès de lecture : {a.lastSuccessAt ? new Date(a.lastSuccessAt).toLocaleString("fr-FR") : "aucun"}. Cette date ne vérifie pas les performances.</p>
+      {a.error && <p role="alert">Échec le {new Date(a.attemptedAt).toLocaleString("fr-FR")} : {a.error}</p>}
+    </>}
+  </div>;
+}
 
 export default function App() {
   const editorRef = useRef(null);
-  const [db, setDb] = useState(load),
+  const requestRef = useRef(null);
+  useEffect(() => () => { const pending = requestRef.current; requestRef.current = null; pending?.abort(); }, []);
+  const [db, setDb] = useState(loadLibrary),
+    [refreshing, setRefreshing] = useState(false),
     [p, setP] = useState(null),
     [s, setS] = useState(null),
     [selected, setSelected] = useState(""),
@@ -186,6 +207,31 @@ export default function App() {
     [history, setHistory] = useState(null),
     [pubDate, setPubDate] = useState(today),
     [postUrl, setPostUrl] = useState("");
+  async function refreshAll() {
+    if (s || (p && JSON.stringify(p) !== JSON.stringify(db.profiles.find(row => row.id === p.id)))) {
+      setMessage("Sauvegarde la fiche et le relevé en cours avant d’actualiser la réserve.");
+      return;
+    }
+    const controller = new AbortController();
+    requestRef.current = controller;
+    const timer = setTimeout(() => controller.abort(), 20000);
+    setRefreshing(true);
+    setMessage("Chargement des derniers relevés collectés…");
+    try {
+      const feed = await fetchLatestFeed(controller.signal);
+      if (controller.signal.aborted) return;
+      const result = mergeFeed(db, feed);
+      if (commit(result.db)) {
+        if (p) setP(structuredClone(result.db.profiles.find(row => row.id === p.id)));
+        setMessage(`${result.added} nouveau(x) relevé(s) à vérifier ; ${result.failed} source(s) en échec. Les publications et relevés précédents sont conservés.`);
+      }
+    } catch (error) {
+      if (requestRef.current === controller) setMessage(controller.signal.aborted ? "Chargement interrompu. Derniers relevés conservés." : error.message);
+    } finally {
+      clearTimeout(timer);
+      if (requestRef.current === controller) { requestRef.current = null; setRefreshing(false); }
+    }
+  }
   function commit(next) {
     if (db.error || !save(next)) {
       setMessage(
@@ -213,7 +259,7 @@ export default function App() {
   }
   function edit(key, value) {
     setMessage("");
-    setP({ ...p, [key]: value, draft: null });
+    setP({ ...p, [key]: value, draft: null, ...(key === "url" ? { catalogueId: undefined, acquisition: undefined } : {}) });
     setHistory(null);
   }
   function open(next) {
@@ -270,13 +316,18 @@ export default function App() {
         synchronisation entre appareils.
       </p>
       <p role="status">{db.error || message}</p>
+      <section className="pp-refresh" aria-label="Actualisation des portefeuilles publics">
+        <h3>{catalogue.length} portefeuilles publics recherchés</h3>
+        <p>La collecte quotidienne lit les pages partagées Getquin sans connexion. Elle récupère les positions et leurs poids, à confirmer. Les performances du mois et depuis janvier restent à vérifier manuellement.</p>
+        <p>Dernier flux chargé : {db.feedLoadedAt ? new Date(db.feedLoadedAt).toLocaleString("fr-FR") : "aucun"}.</p>
+        <button onClick={refreshAll} disabled={refreshing || !!db.error}>{refreshing ? "Chargement…" : "Actualiser tous les portefeuilles"}</button>
+        <p>Ce bouton charge les derniers relevés collectés ; il ne relance pas immédiatement les sites sources. <a href={COLLECTOR_URL} target="_blank" rel="noreferrer">Consulter ou relancer la collecte sur GitHub</a>.</p>
+      </section>
+      <fieldset className="pp-controls" disabled={refreshing}>
       <details>
         <summary>Acquisition : capacités et précautions</summary>
         <p>
-          Getquin, eToro, Mon Petit Portfolio et autres : saisie manuelle. Aucun
-          connecteur automatique fiable n’est activé dans cette version. Ouvre
-          la source, consulte les informations publiques puis ajoute un relevé.
-          Aucune connexion ni restriction d’accès n’est contournée.
+          Getquin : récupération partielle des allocations des liens partagés de la réserve recherchée, à confirmer. eToro, Mon Petit Portfolio et autres : saisie manuelle. Les fiches ajoutées librement restent manuelles tant qu’elles ne sont pas raccordées au catalogue de collecte. Aucune connexion ni restriction d’accès n’est contournée.
         </p>
         <p>
           La sauvegarde du lien ne récupère aucune donnée. Un échec de
@@ -367,6 +418,7 @@ export default function App() {
                   Vérifié le : {x.checked || "Jamais"} · Dernière publication :{" "}
                   {latestPublicationDate(x) || "Jamais"}
                 </p>
+                <AcquisitionInfo profile={x} />
                 <button onClick={() => open(x)}>Ouvrir / modifier</button>
               </article>
             );
@@ -379,6 +431,7 @@ export default function App() {
           onChange={() => setMessage("")}
         >
           <h2>{nameOf(p)}</h2>
+          <AcquisitionInfo profile={p} />
           <button onClick={() => store()}>Sauvegarder</button>
           {(message || db.error) && <p>{db.error || message}</p>}
           <button
@@ -823,6 +876,7 @@ export default function App() {
           )}
         </section>
       )}
+      </fieldset>
     </div>
   );
 }
