@@ -22,6 +22,15 @@ result = subprocess.run([sys.executable, str(root / 'scripts/collect_dca_complet
     '--apply', '--only', ISIN, '--output', str(report_path)], cwd=root)
 assert result.returncode in (0, 1), 'Producer interrupted before normal result'
 report = json.loads(report_path.read_text())
+contract = report['resultContract']
+expected_id = 'dca-holdings:' + ISIN
+assert [item['id'] for item in contract['inputPlan']['items'] if item['selected']] == [expected_id]
+assert contract['scope']['attemptedIds'] == [expected_id]
+assert contract['scope']['networkRequestedIds'] == [expected_id]
+assert not contract['issues'] and not contract['unscopedFailures']
+selected = [item for item in contract['outcomes'] if item['selected']]
+assert len(selected) == 1 and selected[0]['id'] == expected_id
+assert all(item['selected'] or item['status'] == 'not-attempted' for item in contract['outcomes'])
 after = json.loads(books_path.read_text())
 assert {k:v for k,v in before.items() if k != ISIN} == {k:v for k,v in after.items() if k != ISIN}, 'Single-share run changed another book'
 observation = report['observations'][ISIN]
@@ -38,6 +47,7 @@ if record.get('sourcePartial'):
     assert proof['normalizationApplied'] is False
     assert all(r['weightPct'] is None for r in record['unvaluedPositions'])
     assert json.loads(status_path.read_text())[ISIN]['lastSuccessAt'] == status_before[ISIN]['lastSuccessAt'], 'Partial check renewed complete-source success'
+    assert selected[0]['status'] == 'failed' and selected[0]['phase'] == 'validation'
     scope = 'known-security-weights-only; complete-book-error-preserved'
 else:
     assert result.returncode == 0 and record['complete'] is True and not report['errors']
