@@ -995,3 +995,12 @@ brutes et résumé natif14267936785 ; aucune valeur ni horloge nouvelle fabriqu�
 Recettes de refus et d'idempotence, lecture commune Présentation ETF et build local
 réussis ; CI sur le commit final et publication/PNG publics restent à vérifier.
 Aucun changement de collecte, seuil, maquette, Radar/IA ou catalogue.
+
+Complément CI : six écarts reproduits pour les trois présentations Invesco
+avec le même site construit et une ancienne projection Node ; les six
+disparaissent après transfert de la projection exacte du build. L'artefact
+validated-generated-data inclut donc native-fund-details.json, consommé par
+les partitions navigateur et tweet existantes. Aucune attente financière,
+aucune donnée et aucun seuil modifiés ; contrôle de régression dans la recette
+native déjà exécutée par la CI. Ce correctif de transport ne prouve pas une
+nouvelle collecte ni une publication publique.
