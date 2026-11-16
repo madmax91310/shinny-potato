@@ -660,7 +660,8 @@
       "provider": "iShares",
       "parser": "ishares",
       "collectSectors": true,
-      "holdingsAssetClass": "Fixed Income"
+      "holdingsAssetClass": "Fixed Income",
+      "isolateAllocationFailures": true
     },
     {
       "isin": "IE00B1FZS913",
@@ -1706,7 +1707,8 @@
       "combinedReplication": true,
       "metadataFields": [
         "listings"
-      ]
+      ],
+      "isolateAllocationFailures": true
     },
     {
       "isin": "IE00BYPC1H27",
@@ -1772,7 +1774,8 @@
       "combinedReplication": true,
       "metadataFields": [
         "listings"
-      ]
+      ],
+      "isolateAllocationFailures": true
     },
     {
       "isin": "IE00BSKRJX20",

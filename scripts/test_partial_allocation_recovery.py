@@ -1,4 +1,5 @@
 import copy,datetime as dt,gzip,json,unittest
+from unittest.mock import patch
 from pathlib import Path
 from collect_etf_pilot import collect,parse_share,allocation
 from apply_etf_collection import merge_collection
@@ -90,4 +91,46 @@ class StaleCountriesKeepIndependentFields(unittest.TestCase):
   selected=[s for s in json.loads((ROOT/'scripts/etf-pilot.json').read_text())['instruments']if s['isin']in wanted]
   self.assertEqual({s['isin']for s in selected},wanted)
   for share in selected:self.assertIs(share.get('isolateAllocationFailures'),True)
+class AdditionalStaleCountriesKeepIndependentFields(unittest.TestCase):
+ def setUp(self):
+  self.isin='IE00B2NPKV68';self.now=dt.datetime(2026,11,16,12,tzinfo=dt.timezone.utc)
+  self.body=json.loads(gzip.decompress((ROOT/'scripts/fixtures/ishares-stale-country-20261116/IE00B2NPKV68.json.gz').read_bytes()))
+  self.share=next(s for s in json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']if s['isin']==self.isin)
+ def refresh(self,body,current=None):
+  from refresh_additional_etf import refresh
+  # Exercise the ordinary additional-issuer adapter; only transport is replayed.
+  def replay(config,baseline,now=None):return collect(config,baseline,now,fetch=lambda *a,**k:json.dumps(body))
+  with patch('collect_etf_pilot.collect',side_effect=replay):
+   return refresh({'instruments':[self.share]},current or {},{self.isin:{'currency':'USD'}},self.now)
+ def test_additional_adapter_records_fresh_fields_and_keeps_primary_failure(self):
+  merged,report=self.refresh(self.body);r=report['shares'][0]
+  self.assertEqual(r['status'],'validated')
+  self.assertTrue(any(x['field']=='countries-primary' and x['fallbackQualified']for x in r['collectionErrors']))
+  value=merged[self.isin]
+  self.assertEqual(value['countries']['asOf'],'2026-11-13')
+  self.assertIn('Country of risk',value['countries']['method'])
+  self.assertEqual(value['performance']['checkedAt'],'2026-11-16')
+  self.assertTrue(value['performance']['years'])
+  self.assertEqual(len(value['holdings']['rows']),10)
+  self.assertIsNot(value['holdings'].get('complete'),True)
+ def test_double_failure_keeps_country_values_and_dates_while_calendar_updates(self):
+  b=copy.deepcopy(self.body)
+  b['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['holdingPercent']['value'].pop()
+  country=self.body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['geography']['subContainersByNameMap']['countries']
+  old_country={**allocation(country,self.now-dt.timedelta(days=1)),'checkedAt':'2026-11-15'}
+  old={self.isin:{'currency':'USD','productId':self.share['productId'],'countries':old_country}}
+  merged,report=self.refresh(b,old)
+  self.assertEqual(report['shares'][0]['status'],'validated')
+  self.assertTrue(any(x['field']=='countries-primary' and not x['fallbackQualified']for x in report['shares'][0]['collectionErrors']))
+  self.assertEqual(merged[self.isin]['countries'],old_country)
+  self.assertEqual(merged[self.isin]['performance']['checkedAt'],'2026-11-16')
+ def test_additional_identity_failure_never_records_other_values(self):
+  b=copy.deepcopy(self.body);b['productId']=1
+  merged,report=self.refresh(b)
+  self.assertEqual(report['shares'][0]['status'],'failed');self.assertNotIn(self.isin,merged)
+ def test_all_three_additional_refusals_use_existing_isolation(self):
+  wanted={'IE00B2NPKV68','IE00BFM6T814','IE00B3F81K65'}
+  selected=[s for s in json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']if s['isin']in wanted]
+  self.assertEqual({s['isin']for s in selected},wanted)
+  for s in selected:self.assertIs(s.get('isolateAllocationFailures'),True)
 if __name__=='__main__':unittest.main()

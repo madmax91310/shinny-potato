@@ -764,3 +764,24 @@ idempotent ; fixture brute publique et tests du seuil 45/46, identité, devise d
 rendement, conservation des dates et panne double. Acquisition GitHub, publication
 et consommation restent à démontrer après la fusion du lot. Les crons du 16 ne
 sont pas annoncés réussis à partir de leur seule échéance nominale.
+
+### 16 novembre — trois émetteurs complémentaires, même cause #881
+
+Après fusion #1341 (a9ad4b4d), les rapports existants contiennent aussi trois
+refus identiques dans le groupe complémentaire : IE00B2NPKV68, IE00BFM6T814 et
+IE00B3F81K65. Réponses exactes relues, cause reproduite et passage par le merger
+complémentaire validé pour les trois. La branche
+`fix/additional-ishares-stale-geography-20261116` possède uniquement leurs trois
+options dans `additional-etf-sources.json`, leur fixture et la suite de tests
+`test_partial_allocation_recovery.py`. L'adaptateur ordinaire transmet déjà les
+options et conserve les `collectionErrors` ; aucun nouveau mécanisme nécessaire.
+L'isolation existante permet la ventilation de risque du 13 novembre et les
+champs indépendants ; erreur primaire du 1er octobre maintenue. Tests de panne
+double avec dates anciennes conservées, identité erronée et absence d'admission
+du top10 au recouvrement complet. Aucun seuil changé, aucune part ajoutée.
+#1341 est fusionné et exécuté sur master ; ses observations sont enregistrées,
+mais leur publication reste à vérifier. Le second lot sera fusionné après cette
+preuve d'enregistrement, pour préserver les gardes d'entrées. #1344 possède le
+traitement 13F Fundsmith et ses reprises ; aucun de ses fichiers n'est modifié
+ici. #1342, #1343 et la présentation SCPI #1345 restent indépendantes et leurs
+changements sont préservés. Les succès locaux ne sont pas des preuves de cron.
