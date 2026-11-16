@@ -1,5 +1,6 @@
 import previousEditorialLives from './editorial-lives-2026-11-06.json' with { type: 'json' }
 import newEditorialProfiles from './editorial-profiles-2026-11-15.json' with { type: 'json' }
+import complementaryEditorialProfiles from './editorial-profiles-complementary-2026-11-16.json' with { type: 'json' }
 import qualifiedEditorialProfiles from './editorial-profiles-qualified-2026-11-15.json' with { type: 'json' }
 import editorialCopy from './editorial-copy-2026-11-14.json' with { type: 'json' }
 import { reviseEditorialCopy } from './editorial-copy.js'
@@ -46,9 +47,10 @@ export const BUDGET_RELIABLE_PROFILES = BUDGET_ORIGINAL_PROFILES.map(profile => 
 export const BUDGET_REFERENCE_PROFILES = BUDGET_RELIABLE_PROFILES.map(p => createEditorialProfile(p, editorialLives[p.id]))
 export const BUDGET_NEW_EDITORIAL_PROFILES = newEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_QUALIFIED_EDITORIAL_PROFILES = qualifiedEditorialProfiles.map(entry => entry.profile)
-const currentEditorialProfiles = [...newEditorialProfiles, ...qualifiedEditorialProfiles]
+export const BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES = complementaryEditorialProfiles.map(entry => entry.profile)
+const currentEditorialProfiles = [...newEditorialProfiles, ...qualifiedEditorialProfiles, ...complementaryEditorialProfiles]
 export const BUDGET_EDITORIAL_CREATIONS = { ...editorialLives, ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.creation])) }
-export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES]
+export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES, ...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES]
 
 export const EXPENSE_CATEGORIES = [
   { id: 'housing', label: 'Logement', emoji: '🏠' },
