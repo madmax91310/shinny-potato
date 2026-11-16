@@ -1,73 +1,80 @@
 import { integerPercentages, exposurePercentage } from './image.js'
-import { radialDonutLayout, wrapDonutLabel, shortDonutName, holdingColor, holdingPercentage } from './donut-layout.js'
-export function holdingImageRows(lines){return lines.filter(l=>l.weight>0).sort((a,b)=>b.weight-a.weight).map((l,i)=>({...l,name:shortDonutName(l.label),color:holdingColor(i)}))}
-function text(ctx,value,x,y,size=34,align='left',serif=false,color='#fff4df'){
- ctx.font=`400 ${size}px ${serif?'DcaEditorial, Georgia':'Arial'}`;ctx.textAlign=align;ctx.fillStyle=color;ctx.fillText(value,x,y)
+import { radialDonutLayout, shortDonutName, individualColor, holdingPercentage, INDIVIDUAL_LABEL_FONT } from './donut-layout.js'
+
+const NAVY='#071d36',IVORY='#fff4df'
+// Separating-axis collision test uses the rotated text rectangle, not its much
+// larger axis-aligned box (which would displace readable small percentages).
+function intersects(a,b){
+ for(const polygon of [a,b])for(let i=0;i<4;i++){
+  const p=polygon[i],q=polygon[(i+1)%4],axis={x:p.y-q.y,y:q.x-p.x}
+  const pa=a.map(v=>v.x*axis.x+v.y*axis.y),pb=b.map(v=>v.x*axis.x+v.y*axis.y)
+  if(Math.max(...pa)<Math.min(...pb)||Math.max(...pb)<Math.min(...pa))return false
+ }
+ return true
 }
-function ring(ctx,rows,x,y,r,width){
- let angle=-Math.PI/2
- for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(x,y,r,angle,end);ctx.arc(x,y,r-width,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
+export function holdingImageRows(lines){return lines.filter(l=>l.weight>0).sort((a,b)=>b.weight-a.weight).map((l,i)=>({...l,name:shortDonutName(l.label),color:individualColor(i)}))}
+function text(ctx,value,x,y,size=56,align='left',serif=false,color=IVORY){
+ ctx.font=`${serif?400:600} ${size}px ${serif?'DcaEditorial, Georgia':'Arial'}`;ctx.textAlign=align;ctx.fillStyle=color;ctx.fillText(value,x,y)
 }
-function base(canvas,title){
- const ctx=canvas.getContext('2d'),bg=ctx.createLinearGradient(0,0,canvas.width,canvas.height)
- bg.addColorStop(0,'#071b36');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,canvas.width,canvas.height)
- text(ctx,'Épargnant Libre',canvas.width/2,76,44,'center',true)
- ctx.fillStyle='#0d263e';ctx.strokeStyle='#23425e';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(24,116,canvas.width-48,canvas.height-140,24);ctx.fill();ctx.stroke()
- text(ctx,title,canvas.width/2,183,54,'center',true)
- return ctx
+// Neutral coverage slices retain their meaning instead of receiving an asset colour.
+function imageRows(rows,allocation){
+ const rounded=allocation?null:integerPercentages(rows)
+ return rows.map((row,i)=>{
+  const neutral=['Non ventilé ici','Écart d’arrondi','Sans objet','Autres expositions'].includes(row.name)
+  return {...row,color:allocation||neutral?row.color:individualColor(i),percentage:allocation?holdingPercentage(row.weight):exposurePercentage(row.weight,rounded[i])}
+ }).filter(row=>row.weight>0)
 }
 export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={}){
- const canvas=document.createElement('canvas')
- if(allocation){
-  const probe=canvas.getContext('2d');probe.font='400 46px Arial'
-  const plan=radialDonutLayout(rows,value=>probe.measureText(value).width)
-  // A dense legend is more legible than metre-long crossing leaders. Keep every holding.
-  if(plan.height>1800||rows.length>18||(rows.length>4&&Math.max(...rows.map(row=>row.weight))>90))return renderLegendDonut(title,rows,{allocation:true})
-  canvas.width=plan.width;canvas.height=plan.height
-  const ctx=canvas.getContext('2d');ctx.fillStyle='#071d36';ctx.fillRect(0,0,plan.width,plan.height)
-  text(ctx,'Épargnant Libre',plan.cx,83,46,'center',true)
-  text(ctx,title,plan.cx,167,54,'center',true)
-  let angle=-Math.PI/2
-  for(const row of plan.rows){
-   const end=angle+row.weight/100*Math.PI*2,pad=Math.min(.003,(end-angle)/8)
-   ctx.beginPath();ctx.arc(plan.cx,plan.cy,plan.outer,angle+pad,end-pad);ctx.arc(plan.cx,plan.cy,plan.inner,end-pad,angle+pad,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end
-  }
-  for(const label of plan.labels){
-   const cos=Math.cos(label.angle),sin=Math.sin(label.angle),r=(plan.outer+plan.inner)/2
-   const inRing=label.weight>=5
-   if(inRing){ctx.save();ctx.translate(plan.cx+r*cos,plan.cy+r*sin)
-   if(label.weight<8){let rotation=label.angle;if(cos<0)rotation+=Math.PI;ctx.rotate(rotation)}
-   ctx.font=`700 ${label.weight<8?32:44}px Arial`;ctx.textAlign='center';ctx.fillStyle='#071d36';ctx.fillText(holdingPercentage(label.weight).replace(label.weight<8?' ':'',''),0,10);ctx.restore()}
-   ctx.strokeStyle=label.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(plan.cx+(plan.outer+5)*cos,plan.cy+(plan.outer+5)*sin);ctx.lineTo(plan.cx+(plan.outer+25)*cos,plan.cy+(plan.outer+25)*sin);ctx.lineTo(label.x+(label.anchor==='left'?-10:10),plan.cy+(plan.outer+25)*sin);ctx.lineTo(label.x+(label.anchor==='left'?-10:10),label.y);ctx.stroke()
-   label.lines.forEach((line,i)=>text(ctx,line,label.x,label.top+43+i*label.gap,label.font,label.anchor))
-  }
-  return canvas
+ const canvas=document.createElement('canvas'),probe=canvas.getContext('2d')
+ probe.font=`600 ${INDIVIDUAL_LABEL_FONT}px Arial`
+ const plan=radialDonutLayout(imageRows(rows,allocation),value=>probe.measureText(value).width)
+ const scale=Math.min(1,16000/plan.width,16000/plan.height,Math.sqrt(32_000_000/(plan.width*plan.height)))
+ canvas.width=Math.floor(plan.width*scale);canvas.height=Math.floor(plan.height*scale)
+ const ctx=canvas.getContext('2d');ctx.scale(scale,scale);ctx.fillStyle=NAVY;ctx.fillRect(0,0,plan.width,plan.height)
+ text(ctx,'Épargnant Libre',plan.cx,78,46,'center',true)
+ text(ctx,title,plan.cx,155,52,'center',true)
+ if(scope)text(ctx,scope,plan.cx,211,26,'center',false,'#aec8df')
+ let angle=-Math.PI/2
+ for(const row of plan.rows){
+  const end=angle+row.weight/100*Math.PI*2
+  // No minimum angle or enlarged small slice: geometry always uses the true weight.
+  ctx.beginPath();ctx.arc(plan.cx,plan.cy,plan.outer,angle,end);ctx.arc(plan.cx,plan.cy,plan.inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill()
+  ctx.strokeStyle=NAVY;ctx.lineWidth=1.5;ctx.stroke();angle=end
  }
-
- return renderLegendDonut(title,rows,{allocation,scope})
-}
-function renderLegendDonut(title,rows,{allocation=false,scope=''}={}){
- const canvas=document.createElement('canvas')
- canvas.width=1600
- const measure=canvas.getContext('2d');measure.font='400 46px Arial'
- const layout=rows.map(row=>{const lines=wrapDonutLabel(value=>measure.measureText(value).width,row.name,allocation?1160:520);return {...row,lines,height:Math.max(96,lines.length*55+28)}})
- const totalHeight=layout.reduce((sum,row)=>sum+row.height,0)
- canvas.height=Math.max(1000,(allocation?900:330)+totalHeight+50)
- const ctx=base(canvas,title),cy=allocation?520:330+totalHeight/2
- if(scope)text(ctx,scope,800,226,24,'center',false,'#aec8df')
- const rounded=integerPercentages(rows)
- ring(ctx,rows,allocation?800:440,cy,255,85)
- if(!allocation&&rows.length&&rows[0].name!=='Sans objet'){
-  text(ctx,exposurePercentage(rows[0].weight,rounded[0]),440,cy-2,48,'center',true)
-  text(ctx,rows[0].name,440,cy+45,25,'center',true)
+ // Percentages stay inside the annulus, including tiny holdings. Closely spaced
+ // labels use an internal callout so their text never covers neighbouring values.
+ const placed=[],radius=(plan.outer+plan.inner)/2
+ for(const label of [...plan.labels].sort((a,b)=>b.weight-a.weight)){
+  const size=label.weight<5?32:40,rotation=label.weight<5?label.angle+(Math.cos(label.angle)<0?Math.PI:0):0
+  ctx.font=`700 ${size}px Arial`
+  const width=ctx.measureText(label.percentage).width+12,height=size+10
+  const boxAt=a=>{
+   const x=plan.cx+radius*Math.cos(a),y=plan.cy+radius*Math.sin(a)
+   const c=Math.cos(rotation),s=Math.sin(rotation)
+   const points=[[-width/2,-height/2],[width/2,-height/2],[width/2,height/2],[-width/2,height/2]].map(([dx,dy])=>({x:x+dx*c-dy*s,y:y+dx*s+dy*c}))
+   return {x,y,points}
+  }
+  let at=label.angle,box=boxAt(at)
+  const overlaps=b=>placed.some(p=>intersects(b.points,p.points))
+  for(let step=1;overlaps(box)&&step<720;step++){
+   at=label.angle+(step%2?1:-1)*Math.ceil(step/2)*.012;box=boxAt(at)
+  }
+  placed.push(box)
+  const shifted=Math.abs(at-label.angle)>.001
+  if(shifted){
+   ctx.strokeStyle=label.color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(plan.cx+(plan.outer-12)*Math.cos(label.angle),plan.cy+(plan.outer-12)*Math.sin(label.angle));ctx.lineTo(box.x,box.y);ctx.stroke()
+  }
+  ctx.save();ctx.translate(box.x,box.y);ctx.rotate(rotation)
+  if(shifted){ctx.fillStyle=NAVY;ctx.beginPath();ctx.roundRect(-width/2,-height/2,width,height,6);ctx.fill()}
+  ctx.font=`700 ${size}px Arial`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=shifted?IVORY:NAVY;ctx.fillText(label.percentage,0,1);ctx.restore()
  }
- let y=allocation?900:330
- for(const [i,row] of layout.entries()){
-  ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(allocation?100:810,y-12,8,0,Math.PI*2);ctx.fill()
-  row.lines.forEach((line,j)=>text(ctx,line,allocation?125:835,y+j*55,46))
-  text(ctx,allocation?holdingPercentage(row.weight):exposurePercentage(row.weight,rounded[i]),1510,y,46,'right')
-  y+=row.height
+ for(const label of plan.labels){
+  const cos=Math.cos(label.angle),sin=Math.sin(label.angle),sign=label.anchor==='left'?1:-1
+  const start={x:plan.cx+(plan.outer+6)*cos,y:plan.cy+(plan.outer+6)*sin},end={x:label.x-sign*12,y:label.y}
+  ctx.strokeStyle=label.color;ctx.lineWidth=3;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(start.x,start.y)
+  if(Math.abs(end.y-start.y)>35)ctx.lineTo(plan.cx+(plan.outer+22)*cos,start.y+16*sin)
+  ctx.lineTo(end.x,end.y);ctx.stroke()
+  label.lines.forEach((line,i)=>text(ctx,line,label.x,label.top+label.gap*.77+i*label.gap,label.font,label.anchor))
  }
  return canvas
 }
-
