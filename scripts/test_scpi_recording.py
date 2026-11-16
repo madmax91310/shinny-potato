@@ -364,6 +364,19 @@ class ScpiRecording(unittest.TestCase):
                     module.publish(self.root, self.source_report)
                 validate.assert_not_called()
 
+    def test_default_guard_preserves_the_legacy_cli_failure(self):
+        self.advance()
+        self.git('fetch', '-q', 'origin', 'master')
+        env = {k: v for k, v in os.environ.items()
+               if k not in ('VALIDATED_DATA_REFUSAL_FILE', 'VALIDATED_DATA_REFUSAL_NONCE')}
+        result = self.real_run(['python', 'scripts/observation_rebase_guard.py',
+                               '--kind', 'scpi', '--base', self.base,
+                               '--upstream', 'origin/master'], cwd=self.root,
+                               env=env, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertTrue(result.stderr.rstrip().splitlines()[-1].startswith(
+            'ValueError: Collection inputs may have changed; recollect from master:'))
+
     def test_keyboard_interruption_cleans_the_private_checkout(self):
         upstream = self.advance()
         with patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate', side_effect=KeyboardInterrupt):

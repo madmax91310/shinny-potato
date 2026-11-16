@@ -473,6 +473,6 @@ if __name__ == '__main__':
             Path(target).write_text(json.dumps(payload) + '\n')
             print(str(error), file=__import__('sys').stderr)
             raise SystemExit(75)
-        raise
+        raise ValueError(str(error)) from None
     print('Qualified upstream changes; financial revalidation still required:', paths)
 
