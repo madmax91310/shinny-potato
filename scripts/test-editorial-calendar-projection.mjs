@@ -30,5 +30,12 @@ try {
   writeFileSync(filename, changed)
   await plugin.transform.call({}, changed, filename)
   assert.ok((await plugin.load(virtual)).includes('Nouveau choix en rotation'), 'Projection follows current authored choices')
+  const { createServer } = await import('vite')
+  const server = await createServer({ configFile: false, server: { middlewareMode: true, watch: null }, plugins: [projectEditorialCalendar()] })
+  try {
+    const actual = await server.ssrLoadModule('/src/data/editorial-calendar.js')
+    assert.deepEqual(actual.EDITORIAL_WEEK, canonical.EDITORIAL_WEEK, 'Actual Vite loader accepts the projected module')
+    for (const path of paths) assert.equal(actual.publicationLabel(path), canonical.publicationLabel(path))
+  } finally { await server.close() }
   console.log(`Editorial calendar projection: choices, notes and labels preserved for ${paths.size} paths; runtime remains code`)
 } finally { rmSync(directory, { recursive: true, force: true }) }
