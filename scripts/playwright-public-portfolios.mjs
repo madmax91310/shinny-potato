@@ -66,7 +66,20 @@ assert(
   initialLibrary.profiles.every((profile) => profile.snapshots.length > 0),
 );
 assert(initialLibrary.feedLoadedAt);
-assert(initialLibrary.profiles.every((profile) => !profile.acquisition.error));
+if (!remote) assert(initialLibrary.profiles.every((profile) => !profile.acquisition.error));
+else {
+  // A live provider may legitimately reject a read. The product must show the
+  // incident and retain its last real observation instead of claiming success.
+  const failed = initialLibrary.profiles.filter(profile=>profile.acquisition.error);
+  await expect(page.locator('.pp article .pp-acquisition [role="alert"]')).toHaveCount(failed.length);
+  for (const profile of failed) {
+    assert(profile.acquisition.lastSuccessAt && profile.snapshots.some(snapshot=>snapshot.acquisition?.kind==='public-html'));
+    const card=page.locator('.pp article').filter({has:page.getByRole('heading',{name:profile.name||profile.pseudo,exact:true})});
+    await expect(card.locator('.pp-acquisition [role="alert"]')).toContainText(profile.acquisition.error);
+    await expect(card.locator('.pp-acquisition')).toContainText('Dernier succès de lecture');
+  }
+  console.log(`Production feed: ${initialLibrary.profiles.length} retained profiles; ${failed.length} visible acquisition incidents with preserved observations.`);
+}
 if (!remote) await page.unroute(FEED_URL + "**");
 const transportFeed = structuredClone(initialFeed);
 const browserStamp = new Date(Date.now() + 1000)

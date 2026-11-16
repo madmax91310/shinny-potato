@@ -117,7 +117,10 @@ try{
   await page.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value="${david.id}"]`).click()
   await page.getByRole('group',{name:'Version de l’image',exact:true}).locator('[data-value="social"]').click()
   await expect(page.getByRole('button',{name:'Image 2 sur 3',exact:true})).toBeVisible()
-  await page.getByRole('button',{name:'Image 2 sur 3',exact:true}).click();await expect(pngButton).toBeEnabled()
+  await page.getByRole('button',{name:'Image 2 sur 3',exact:true}).click()
+  await expect(page.locator('.budget-image-count')).toContainText('Image 2 sur 3')
+  await expect(page.getByRole('region',{name:'Image du budget'})).toHaveAttribute('aria-busy','false',{timeout:30000})
+  await expect(pngButton).toBeEnabled()
   const pageTwoPromise=page.waitForEvent('download');await pngButton.click();const pageTwo=await pageTwoPromise
   await page.getByText('Vérifier et télécharger la publication',{exact:true}).click()
   const multiPromise=page.waitForEvent('download');await page.getByRole('region',{name:'Relecture de la publication'}).getByRole('button',{name:'Télécharger texte + 3 PNG (ZIP)',exact:true}).click()
