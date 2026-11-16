@@ -207,6 +207,7 @@ export default function App() {
     [history, setHistory] = useState(null),
     [pubDate, setPubDate] = useState(today),
     [postUrl, setPostUrl] = useState("");
+  useEffect(() => { if (!db.error) void refreshAll(); }, []);
   async function refreshAll() {
     if (s || (p && JSON.stringify(p) !== JSON.stringify(db.profiles.find(row => row.id === p.id)))) {
       setMessage("Sauvegarde la fiche et le relevé en cours avant d’actualiser la réserve.");
@@ -317,8 +318,8 @@ export default function App() {
       </p>
       <p role="status">{db.error || message}</p>
       <section className="pp-refresh" aria-label="Actualisation des portefeuilles publics">
-        <h3>{catalogue.length} portefeuilles publics recherchés</h3>
-        <p>La collecte quotidienne lit les pages partagées Getquin sans connexion. Elle récupère les positions et leurs poids, à confirmer. Les performances du mois et depuis janvier restent à vérifier manuellement.</p>
+        <h3>Base publique commune · {catalogue.length} portefeuilles sourcés</h3>
+        <p>La base publique est préchargée et ses derniers relevés se chargent automatiquement à l’ouverture. La collecte du samedi à 07:10 UTC lit les pages partagées Getquin sans connexion. Elle récupère les positions et leurs poids, à confirmer. Les performances du mois et depuis janvier restent à vérifier manuellement.</p>
         <p>Dernier flux chargé : {db.feedLoadedAt ? new Date(db.feedLoadedAt).toLocaleString("fr-FR") : "aucun"}.</p>
         <button onClick={refreshAll} disabled={refreshing || !!db.error}>{refreshing ? "Chargement…" : "Actualiser tous les portefeuilles"}</button>
         <p>Ce bouton charge les derniers relevés collectés ; il ne relance pas immédiatement les sites sources. <a href={COLLECTOR_URL} target="_blank" rel="noreferrer">Consulter ou relancer la collecte sur GitHub</a>.</p>

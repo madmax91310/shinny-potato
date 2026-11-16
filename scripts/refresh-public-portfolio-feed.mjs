@@ -23,7 +23,7 @@ export async function githubRequest(path, token, options = {}, transport = fetch
 }
 export async function readPrevious(token, transport = fetch) {
   const file = await githubRequest(`contents/${FILE}?ref=${BRANCH}`, token, {}, transport);
-  return file ? { sha: file.sha, feed: validateFeed(JSON.parse(Buffer.from(file.content, 'base64').toString('utf8'))) } : { sha: '', feed: validateFeed(initialFeed) };
+  return file ? { sha: file.sha, feed: validateFeed(JSON.parse(Buffer.from(file.content, 'base64').toString('utf8')), { allowSubset: true }) } : { sha: '', feed: validateFeed(initialFeed) };
 }
 export async function publishFeed(feed, expectedSha, token, transport = fetch) {
   validateFeed(feed);
