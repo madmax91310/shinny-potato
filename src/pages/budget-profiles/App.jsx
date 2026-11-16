@@ -14,6 +14,7 @@ import '../dca-profiles/dca-profiles.css'
 import './budget-profiles.css'
 
 const profiles = [...BUDGET_PROFILES].sort(compareBudgetRecency)
+const PublicationSelection = lazy(() => import('./PublicationSelection.jsx'))
 const BackupPanel = lazy(() => import('./BackupPanel.jsx'))
 const SourceEvidencePanel = lazy(() => import('./SourceEvidencePanel.jsx'))
 const ParticipantEditor = lazy(() => import('./ParticipantEditor.jsx'))
@@ -88,6 +89,12 @@ export default function App() {
     if (saveQueued(next)) { setQueued(next); setFeedback('Statut à publier prochainement mis à jour.') }
     else setFeedback('Le statut n’a pas pu être enregistré. Les données précédentes sont conservées.')
   }
+  function addPublicationSelection(ids) {
+    const selected = ids.filter(id => profiles.some(p => p.id === id) && !published.includes(id))
+    const next = [...new Set([...queued, ...selected])]
+    if (saveQueued(next)) { setQueued(next); setFeedback(`${selected.length} profil(s) ajouté(s) à la file. Aucun statut publié n’a changé.`); return true }
+    setFeedback('La sélection n’a pas été enregistrée : le stockage est inaccessible ou a changé dans un autre onglet. Recharge après avoir sauvegardé ton texte.'); return false
+  }
   function restored() {
     memoryDrafts.current = new Map(loadSavedDrafts().map(d => [d.profile.id, d]))
     setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setPublicationDates(loadPublished().dates); setQueued(loadQueued().value); setSaved(loadSavedDrafts())
@@ -103,6 +110,9 @@ export default function App() {
     <details className="dca-simple-card" onToggle={e => { if (e.currentTarget.open) setBackupOpen(true) }}><summary>Brouillons et transfert entre appareils</summary>
       {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''} · {published.includes(d.profile.id)?publicationLabel(publicationDates[d.profile.id]):'Non publié'}</option>)}</ChoicePicker></label>}
       {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
+    </details>
+    <details className="dca-simple-card"><summary>Préparer les prochaines publications</summary>
+      <Suspense fallback={<p>Chargement de la sélection…</p>}><PublicationSelection used={used} published={published} publicationDates={publicationDates} queued={queued} onAdd={addPublicationSelection}/></Suspense>
     </details>
     <details className="dca-simple-card budget-subscribers" open={subscriberOpen} onToggle={e => setSubscriberOpen(e.currentTarget.open)}>
       <summary>Mes profils d’abonnés</summary>

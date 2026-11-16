@@ -446,7 +446,7 @@
       "context": "Monique paie les courses et l’énergie. Son mari règle de son côté le loyer, l’eau, la mutuelle, les télécoms et l’assurance de la voiture : ces montants ne sortent pas de sa pension.\n\nElle prévoit 100 € par mois pour les imprévus. Les vacances, les cadeaux et le remplacement des équipements ont leurs propres provisions, avant cette épargne.",
       "caveat": "",
       "hook": "",
-      "question": "Dans un couple à la retraite avec deux comptes séparés, comment répartissez-vous les dépenses qui augmentent ?\nLes 500 € de courses vous semblent-ils réalistes pour deux, produits d’entretien compris ?",
+      "question": "Dans un couple à la retraite avec deux comptes séparés, comment répartissez-vous les dépenses qui augmentent ?\nLes 500 € de courses vous semblent-ils réalistes, avec les produits d’entretien et quelques plats à emporter ?",
       "provenance": {
         "nature": "editorial-character",
         "checkedAt": "2026-11-16",
@@ -499,7 +499,76 @@
         "expectedExpenses": 970.0,
         "expectedTransfers": 100.0,
         "expectedBalance": 90.0,
-        "method": "Public source consulted; original facts, calculations and creations separated."
+        "method": "Public source consulted; original facts, calculations and creations separated.",
+        "editorialReviews": [
+          {
+            "reviewedAt": "2026-11-16",
+            "basis": "editorial-copy-clarification",
+            "reason": "Question précise sur le périmètre réellement indiqué dans la source, sans imposer une taille du foyer à partir du seul mariage.",
+            "before": {
+              "context": "Monique paie les courses et l’énergie. Son mari règle de son côté le loyer, l’eau, la mutuelle, les télécoms et l’assurance de la voiture : ces montants ne sortent pas de sa pension.\n\nElle prévoit 100 € par mois pour les imprévus. Les vacances, les cadeaux et le remplacement des équipements ont leurs propres provisions, avant cette épargne.",
+              "question": "Dans un couple à la retraite avec deux comptes séparés, comment répartissez-vous les dépenses qui augmentent ?\nLes 500 € de courses vous semblent-ils réalistes pour deux, produits d’entretien compris ?",
+              "incomeNote": "",
+              "expenses": [
+                {
+                  "label": "Courses et entretien courant",
+                  "amount": 500,
+                  "category": "food",
+                  "origin": "source"
+                },
+                {
+                  "label": "Électricité et gaz",
+                  "amount": 150,
+                  "category": "bills",
+                  "origin": "editorial-created"
+                },
+                {
+                  "label": "Part assurance habitation",
+                  "amount": 15,
+                  "category": "bills",
+                  "origin": "editorial-created"
+                },
+                {
+                  "label": "Santé à sa charge",
+                  "amount": 40,
+                  "category": "health",
+                  "origin": "editorial-created"
+                },
+                {
+                  "label": "Déplacements personnels",
+                  "amount": 35,
+                  "category": "transport",
+                  "origin": "editorial-created"
+                },
+                {
+                  "label": "Vêtements",
+                  "amount": 60,
+                  "category": "other",
+                  "origin": "editorial-created"
+                },
+                {
+                  "label": "Loisirs et sorties",
+                  "amount": 50,
+                  "category": "leisure",
+                  "origin": "editorial-created"
+                },
+                {
+                  "label": "Provision vacances et cadeaux",
+                  "amount": 80,
+                  "category": "leisure",
+                  "origin": "editorial-created"
+                },
+                {
+                  "label": "Provision équipements du logement",
+                  "amount": 40,
+                  "category": "other",
+                  "origin": "editorial-created"
+                }
+              ]
+            },
+            "monthlyTotalsUnchanged": true
+          }
+        ]
       },
       "editorialCreation": {
         "nature": "editorial-character",
@@ -619,14 +688,16 @@
           "text": "Monique paie les courses et l’énergie. Son mari règle de son côté le loyer, l’eau, la mutuelle, les télécoms et l’assurance de la voiture : ces montants ne sortent pas de sa pension.",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         },
         {
           "text": "Elle prévoit 100 € par mois pour les imprévus. Les vacances, les cadeaux et le remplacement des équipements ont leurs propres provisions, avant cette épargne.",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         }
       ],
@@ -636,15 +707,17 @@
           "origin": "editorial",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         },
         {
-          "text": "Les 500 € de courses vous semblent-ils réalistes pour deux, produits d’entretien compris ?",
+          "text": "Les 500 € de courses vous semblent-ils réalistes, avec les produits d’entretien et quelques plats à emporter ?",
           "origin": "editorial",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         }
       ],
@@ -670,6 +743,11 @@
             "Énergie 150 €, santé résiduelle 40 €, part habitation 15 €, déplacements 35 €, vêtements 60 €, loisirs 50 €, provisions vacances/cadeaux 80 € et équipements 40 € créés. Courses source 500 € conservées, pas de repas à emporter comptés en plus. Mutuelle et assurance auto prises en charge par le conjoint, aucun deuxième forfait télécom.",
             "Versement de précaution de 100 € préparé ; aucun patrimoine détenu inventé. Seul l’extrait public a été consulté, article abonné non contourné ; le reste de l’article n’est pas présenté comme lu."
           ]
+        },
+        {
+          "basis": "editorial-review",
+          "reviewedAt": "2026-11-16",
+          "reason": "Question précise sur le périmètre réellement indiqué dans la source, sans imposer une taille du foyer à partir du seul mariage."
         }
       ],
       "review": {
@@ -1099,7 +1177,7 @@
       "incomeBasis": "Montants mensuels",
       "incomeNote": "",
       "capacity": null,
-      "context": "Séverine se verse environ 4 500 € par mois après les frais et prélèvements de son activité. Ses clients ne paient pas toujours à la même vitesse ; ses dépenses courantes restent séparées de la trésorerie professionnelle.\n\nElle vise une réserve d’environ 19 000 €, soit six mois de dépenses. Elle détient aussi une assurance-vie, un PEA et un PER, sans montant précisé ici. Les 1 300 € mensuels couvrent son épargne et ses placements ; après ces versements et les provisions du mois, la marge n’est que de 1 €.",
+      "context": "Séverine se verse environ 4 500 € par mois après les frais et prélèvements de son activité. Elle sépare ses comptes personnels de la trésorerie professionnelle pour gérer les paiements tardifs des clients.\n\nElle vise une réserve d’environ 19 000 €, soit six mois de dépenses. Elle détient aussi une assurance-vie, un PEA et un PER, sans montant précisé ici. Les 1 300 € mensuels couvrent son épargne et ses placements ; après ces versements et les provisions du mois, la marge n’est que de 1 €.",
       "caveat": "",
       "hook": "",
       "question": "Indépendants, vous vous versez un montant fixe ou vous l’adaptez aux encaissements ?\nAvec une marge aussi petite, quelle dépense garderiez-vous flexible les mois plus faibles ?",
@@ -1203,7 +1281,106 @@
           "transfers": [
             1300
           ]
-        }
+        },
+        "editorialReviews": [
+          {
+            "reviewedAt": "2026-11-16",
+            "basis": "editorial-copy-clarification",
+            "reason": "Remplacement de « les clients ne paient pas toujours à la même vitesse » par une phrase concrète sur les retards de paiement ; aucun fait financier ajouté.",
+            "before": {
+              "context": "Séverine se verse environ 4 500 € par mois après les frais et prélèvements de son activité. Ses clients ne paient pas toujours à la même vitesse ; ses dépenses courantes restent séparées de la trésorerie professionnelle.\n\nElle vise une réserve d’environ 19 000 €, soit six mois de dépenses. Elle détient aussi une assurance-vie, un PEA et un PER, sans montant précisé ici. Les 1 300 € mensuels couvrent son épargne et ses placements ; après ces versements et les provisions du mois, la marge n’est que de 1 €.",
+              "question": "Indépendants, vous vous versez un montant fixe ou vous l’adaptez aux encaissements ?\nAvec une marge aussi petite, quelle dépense garderiez-vous flexible les mois plus faibles ?",
+              "incomeNote": "",
+              "expenses": [
+                {
+                  "label": "Loyer et charges",
+                  "amount": 1540,
+                  "category": "housing",
+                  "origin": "source-calculated"
+                },
+                {
+                  "label": "Assurance habitation",
+                  "amount": 18,
+                  "category": "bills",
+                  "origin": "source"
+                },
+                {
+                  "label": "Électricité",
+                  "amount": 60,
+                  "category": "bills",
+                  "origin": "source"
+                },
+                {
+                  "label": "Internet et mobile personnel",
+                  "amount": 55,
+                  "category": "bills",
+                  "origin": "source-calculated"
+                },
+                {
+                  "label": "Courses",
+                  "amount": 400,
+                  "category": "food",
+                  "origin": "source"
+                },
+                {
+                  "label": "Restaurants et cafés",
+                  "amount": 180,
+                  "category": "food",
+                  "origin": "source"
+                },
+                {
+                  "label": "Transports et trajets personnels",
+                  "amount": 176,
+                  "category": "transport",
+                  "origin": "source-calculated"
+                },
+                {
+                  "label": "Mutuelle et soins",
+                  "amount": 95,
+                  "category": "health",
+                  "origin": "source-calculated"
+                },
+                {
+                  "label": "Protection juridique",
+                  "amount": 10,
+                  "category": "bills",
+                  "origin": "source"
+                },
+                {
+                  "label": "Sport, culture et abonnements",
+                  "amount": 115,
+                  "category": "leisure",
+                  "origin": "source-calculated"
+                },
+                {
+                  "label": "Vêtements",
+                  "amount": 120,
+                  "category": "other",
+                  "origin": "source"
+                },
+                {
+                  "label": "Provision vacances",
+                  "amount": 250,
+                  "category": "leisure",
+                  "origin": "source"
+                },
+                {
+                  "label": "Cadeaux et dons",
+                  "amount": 60,
+                  "category": "other",
+                  "origin": "source"
+                },
+                {
+                  "label": "Provision imprévus courants",
+                  "amount": 120,
+                  "category": "other",
+                  "origin": "source"
+                }
+              ]
+            },
+            "monthlyTotalsUnchanged": true
+          }
+        ]
       },
       "editorialCreation": {
         "nature": "editorial-character",
@@ -1351,17 +1528,19 @@
       },
       "paragraphs": [
         {
-          "text": "Séverine se verse environ 4 500 € par mois après les frais et prélèvements de son activité. Ses clients ne paient pas toujours à la même vitesse ; ses dépenses courantes restent séparées de la trésorerie professionnelle.",
+          "text": "Séverine se verse environ 4 500 € par mois après les frais et prélèvements de son activité. Elle sépare ses comptes personnels de la trésorerie professionnelle pour gérer les paiements tardifs des clients.",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         },
         {
           "text": "Elle vise une réserve d’environ 19 000 €, soit six mois de dépenses. Elle détient aussi une assurance-vie, un PEA et un PER, sans montant précisé ici. Les 1 300 € mensuels couvrent son épargne et ses placements ; après ces versements et les provisions du mois, la marge n’est que de 1 €.",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         }
       ],
@@ -1371,7 +1550,8 @@
           "origin": "editorial",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         },
         {
@@ -1379,7 +1559,8 @@
           "origin": "editorial",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         }
       ],
@@ -1406,6 +1587,11 @@
             "Regroupements calculés : logement 1 450+90 ; télécoms 30+25 ; transport 86+50+40 ; santé 55+40 ; loisirs 20+45+50. Les composants originaux restent dans sourceLedger. Provision imprévus 120 € consommable dans le mois, distincte du versement 1 300 €. Répartition mensuelle entre enveloppes non établie, pas de taux de l’article transformé en encours détenu.",
             "La page est un portrait publié, sans preuve d’authenticité indépendante. Pas de citation inventée ou de contribution reçue. Photographie rattachée à la publication initiale de septembre 2025 ; modification du 13 novembre 2026 enregistrée séparément, sans rafraîchir artificiellement l’âge ou les chiffres."
           ]
+        },
+        {
+          "basis": "editorial-review",
+          "reviewedAt": "2026-11-16",
+          "reason": "Remplacement de « les clients ne paient pas toujours à la même vitesse » par une phrase concrète sur les retards de paiement ; aucun fait financier ajouté."
         }
       ],
       "review": {
@@ -1477,7 +1663,7 @@
         "publisher": "Budget Famille"
       },
       "incomeBasis": "Montants mensuels",
-      "incomeNote": "",
+      "incomeNote": "Salaires seuls",
       "capacity": null,
       "context": "Ingrid et Joël organisent ce mois avec leurs deux salaires. Les allocations et les revenus ponctuels ne sont pas chiffrés ici ; la marge de 290 € correspond donc à ce budget de base.\n\nIls prévoient déjà 250 € par mois pour les dépenses annuelles : vacances, rentrée, cadeaux, entretien de la voiture et régularisations. Les assurances payées à part ne sont pas reprises dans cette enveloppe.",
       "caveat": "",
@@ -1536,7 +1722,174 @@
         "expectedExpenses": 4110.0,
         "expectedTransfers": 400.0,
         "expectedBalance": 290.0,
-        "method": "Public source consulted; original facts, calculations and creations separated."
+        "method": "Public source consulted; original facts, calculations and creations separated.",
+        "sourceLedger": {
+          "expensesBeforeClarification": [
+            {
+              "label": "Loyer",
+              "amount": 1450,
+              "category": "housing",
+              "origin": "source"
+            },
+            {
+              "label": "Gaz et électricité",
+              "amount": 220,
+              "category": "bills",
+              "origin": "source"
+            },
+            {
+              "label": "Eau",
+              "amount": 40,
+              "category": "bills",
+              "origin": "source"
+            },
+            {
+              "label": "Courses, hygiène et entretien",
+              "amount": 850,
+              "category": "food",
+              "origin": "source"
+            },
+            {
+              "label": "Voiture et transports en commun",
+              "amount": 420,
+              "category": "transport",
+              "origin": "source"
+            },
+            {
+              "label": "Assurances habitation, auto et santé",
+              "amount": 170,
+              "category": "bills",
+              "origin": "source"
+            },
+            {
+              "label": "Téléphones et internet",
+              "amount": 90,
+              "category": "bills",
+              "origin": "source"
+            },
+            {
+              "label": "Garderie, repas et activités",
+              "amount": 220,
+              "category": "other",
+              "origin": "source"
+            },
+            {
+              "label": "Soins à leur charge",
+              "amount": 80,
+              "category": "health",
+              "origin": "source"
+            },
+            {
+              "label": "Vêtements",
+              "amount": 120,
+              "category": "other",
+              "origin": "source"
+            },
+            {
+              "label": "Loisirs et sorties",
+              "amount": 200,
+              "category": "leisure",
+              "origin": "source"
+            },
+            {
+              "label": "Provision dépenses annuelles",
+              "amount": 250,
+              "category": "other",
+              "origin": "source",
+              "sourceAnnualAmount": 3000,
+              "calculation": "annual / 12; excludes insurance premiums listed separately"
+            }
+          ]
+        },
+        "editorialReviews": [
+          {
+            "reviewedAt": "2026-11-16",
+            "basis": "editorial-copy-clarification",
+            "reason": "Périmètre des ressources visible aussi sur les images : salaires seuls. Regroupement énergie 220 + eau 40 = 260 pour conserver la police de 40 px et une image principale complète ; toutes les composantes et tous les totaux sont préservés.",
+            "before": {
+              "context": "Ingrid et Joël organisent ce mois avec leurs deux salaires. Les allocations et les revenus ponctuels ne sont pas chiffrés ici ; la marge de 290 € correspond donc à ce budget de base.\n\nIls prévoient déjà 250 € par mois pour les dépenses annuelles : vacances, rentrée, cadeaux, entretien de la voiture et régularisations. Les assurances payées à part ne sont pas reprises dans cette enveloppe.",
+              "question": "À Bruxelles, ce budget de courses et de déplacements vous paraît-il réaliste pour quatre ?\nVous organiseriez les dépenses annuelles mois par mois ou avec les revenus ponctuels ?",
+              "incomeNote": "",
+              "expenses": [
+                {
+                  "label": "Loyer",
+                  "amount": 1450,
+                  "category": "housing",
+                  "origin": "source"
+                },
+                {
+                  "label": "Gaz et électricité",
+                  "amount": 220,
+                  "category": "bills",
+                  "origin": "source"
+                },
+                {
+                  "label": "Eau",
+                  "amount": 40,
+                  "category": "bills",
+                  "origin": "source"
+                },
+                {
+                  "label": "Courses, hygiène et entretien",
+                  "amount": 850,
+                  "category": "food",
+                  "origin": "source"
+                },
+                {
+                  "label": "Voiture et transports en commun",
+                  "amount": 420,
+                  "category": "transport",
+                  "origin": "source"
+                },
+                {
+                  "label": "Assurances habitation, auto et santé",
+                  "amount": 170,
+                  "category": "bills",
+                  "origin": "source"
+                },
+                {
+                  "label": "Téléphones et internet",
+                  "amount": 90,
+                  "category": "bills",
+                  "origin": "source"
+                },
+                {
+                  "label": "Garderie, repas et activités",
+                  "amount": 220,
+                  "category": "other",
+                  "origin": "source"
+                },
+                {
+                  "label": "Soins à leur charge",
+                  "amount": 80,
+                  "category": "health",
+                  "origin": "source"
+                },
+                {
+                  "label": "Vêtements",
+                  "amount": 120,
+                  "category": "other",
+                  "origin": "source"
+                },
+                {
+                  "label": "Loisirs et sorties",
+                  "amount": 200,
+                  "category": "leisure",
+                  "origin": "source"
+                },
+                {
+                  "label": "Provision dépenses annuelles",
+                  "amount": 250,
+                  "category": "other",
+                  "origin": "source",
+                  "sourceAnnualAmount": 3000,
+                  "calculation": "annual / 12; excludes insurance premiums listed separately"
+                }
+              ]
+            },
+            "monthlyTotalsUnchanged": true
+          }
+        ]
       },
       "editorialCreation": {
         "nature": "editorial-character",
@@ -1586,16 +1939,15 @@
           "origin": "source"
         },
         {
-          "label": "Gaz et électricité",
-          "amount": 220,
+          "label": "Énergie et eau",
+          "amount": 260,
           "category": "bills",
-          "origin": "source"
-        },
-        {
-          "label": "Eau",
-          "amount": 40,
-          "category": "bills",
-          "origin": "source"
+          "origin": "source-calculated",
+          "sourceAmounts": [
+            220,
+            40
+          ],
+          "calculation": "source energy 220 + water 40; no amount changed"
         },
         {
           "label": "Courses, hygiène et entretien",
@@ -1667,13 +2019,13 @@
       "alias": "Ingrid et Joël",
       "publicJob": "",
       "publicHousehold": "En couple · deux enfants de 4 et 9 ans",
-      "publicIncomeNote": "",
+      "publicIncomeNote": "Salaires seuls",
       "publicBasis": "Montants mensuels"
     },
     "publication": {
       "budget": {
         "basis": "Montants mensuels",
-        "incomeNote": "",
+        "incomeNote": "Salaires seuls",
         "household": "En couple · deux enfants de 4 et 9 ans",
         "transfersHeading": "Épargne mensuelle"
       },
@@ -1682,14 +2034,16 @@
           "text": "Ingrid et Joël organisent ce mois avec leurs deux salaires. Les allocations et les revenus ponctuels ne sont pas chiffrés ici ; la marge de 290 € correspond donc à ce budget de base.",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         },
         {
           "text": "Ils prévoient déjà 250 € par mois pour les dépenses annuelles : vacances, rentrée, cadeaux, entretien de la voiture et régularisations. Les assurances payées à part ne sont pas reprises dans cette enveloppe.",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         }
       ],
@@ -1699,7 +2053,8 @@
           "origin": "editorial",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         },
         {
@@ -1707,7 +2062,8 @@
           "origin": "editorial",
           "evidence": [
             0,
-            1
+            1,
+            2
           ]
         }
       ],
@@ -1733,6 +2089,11 @@
             "La provision annuelle est retenue pour vacances, fêtes, rentrée, entretien et taxe automobile, et régularisations. L’article y mentionne aussi une assurance automobile déjà couverte dans les 170 € : cette composante ne doit pas être comptée deux fois ; l’enveloppe de 250 € est conservée et son périmètre préparé exclut les primes déjà payées. Les 420 € couvrent les déplacements courants, pas cette provision d’entretien annuel.",
             "Les autres ressources n’ont aucun montant établi pour ce foyer : le texte signale le périmètre des seuls salaires, sans prétendre que le foyer ne reçoit rien d’autre. Pas de barème d’allocations ni de chèques-repas utilisé pour fabriquer une ressource. Aucun patrimoine détenu ou projet immobilier inventé."
           ]
+        },
+        {
+          "basis": "editorial-review",
+          "reviewedAt": "2026-11-16",
+          "reason": "Périmètre des ressources visible aussi sur les images : salaires seuls. Regroupement énergie 220 + eau 40 = 260 pour conserver la police de 40 px et une image principale complète ; toutes les composantes et tous les totaux sont préservés."
         }
       ],
       "review": {

@@ -5,13 +5,13 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { BUDGET_NEW_EDITORIAL_PROFILES as initialEditorialProfiles, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_NEW_EDITORIAL_PROFILES as initialEditorialProfiles, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_ROADMAP_EDITORIAL_PROFILES, BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicSavingsRows, budgetImageExpenses, euro, analyzeBudget, sourceReply, matchesBudgetFilters } from '../src/pages/budget-profiles/lib.js'
 import { socialBudgetLabel } from '../src/pages/budget-profiles/socialImage.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 const batch=process.env.BUDGET_BATCH || 'all'
-assert(['all','previous','qualified','complementary'].includes(batch),'Invalid budget batch')
-const availableProfiles = {previous:initialEditorialProfiles,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES,complementary:BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,all:[...initialEditorialProfiles,...BUDGET_QUALIFIED_EDITORIAL_PROFILES,...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES]}[batch]
+assert(['all','previous','qualified','complementary','roadmap'].includes(batch),'Invalid budget batch')
+const availableProfiles = {previous:initialEditorialProfiles,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES,complementary:BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,roadmap:BUDGET_ROADMAP_EDITORIAL_PROFILES,all:[...initialEditorialProfiles,...BUDGET_QUALIFIED_EDITORIAL_PROFILES,...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,...BUDGET_ROADMAP_EDITORIAL_PROFILES]}[batch]
 const [part,parts]=(process.env.BUDGET_PART || '0/1').split('/').map(Number)
 assert(Number.isInteger(part)&&Number.isInteger(parts)&&parts>0&&part>=0&&part<parts,'Invalid budget partition')
 const partitionedProfiles=availableProfiles.filter((_,index)=>index%parts===part)
@@ -54,7 +54,7 @@ try {
     await page.goto(root+'/le-budget-de')
     const picker=page.getByRole('group',{name:'Choisir un profil',exact:true})
     for(const p of BUDGET_NEW_EDITORIAL_PROFILES) {
-      if(batch==='complementary') {
+      if(['complementary','roadmap'].includes(batch)) {
         const income=analyzeBudget(p).income
         const [min,max]=[[0,1500],[1500,2500],[2500,4000],[4000,7000],[7000,Infinity]].find(([lo,hi])=>income>=lo&&income<hi)
         const filters={country:p.country||'unknown',income:`${p.currency||'EUR'}:${min}:${max}`,family:p.family||'unknown',children:p.children||'unknown',housing:p.housing||'unknown'}

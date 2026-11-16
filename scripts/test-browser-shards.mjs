@@ -1,9 +1,10 @@
+import { schedulingDurations } from './browser-check-config.mjs'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { planShards } from './browser-shards.mjs'
 import { needsExtraEngines } from './browser-portability-engines.mjs'
 const commands = JSON.parse(readFileSync(new URL('./ci-browser-checks.json', import.meta.url)))
-const durations = JSON.parse(readFileSync(new URL('./ci-browser-durations.json', import.meta.url))).seconds
+const durations = schedulingDurations(JSON.parse(readFileSync(new URL('./ci-browser-durations.json', import.meta.url))))
 for (const count of [1, 2, 4, 6, commands.length + 1]) {
   const shards = planShards(commands, count, durations)
   assert.deepEqual(shards.flatMap(s => s.commands).sort(), [...commands].sort())
