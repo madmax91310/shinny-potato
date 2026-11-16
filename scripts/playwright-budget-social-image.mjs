@@ -12,7 +12,9 @@ const shard=Number(process.argv[2]||0),shards=Number(process.argv[3]||1)
 assert(Number.isInteger(shard)&&Number.isInteger(shards)&&shards>0&&shard>=0&&shard<shards,'Invalid budget X partition')
 const uiProfiles=BUDGET_PROFILES.filter((_,index)=>index%shards===shard)
 // Keep every profile's partition and all repeated critical desktop/mobile cases.
-const auditProfiles=BUDGET_PROFILES.filter(p=>uiProfiles.includes(p)||['Émilie','Lucie','Amandine et Nicolas'].includes(p.name))
+const legacyDesktopProfile=shards===16?BUDGET_PROFILES[Math.floor(shard/4)]:null
+const imageDimensions=img=>img.evaluate(async node=>{await node.decode();return[node.naturalWidth,node.naturalHeight]})
+const auditProfiles=BUDGET_PROFILES.filter(p=>p===legacyDesktopProfile||uiProfiles.includes(p)||['Émilie','Lucie','Amandine et Nicolas'].includes(p.name))
 const base=process.env.BUDGET_SOCIAL_BASE||'http://127.0.0.1:4399/shinny-potato',output=process.env.BUDGET_ARTIFACTS||`test-artifacts/budget-social-${shard}`
 mkdirSync(output,{recursive:true})
 const server=process.env.BUDGET_SOCIAL_BASE?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4399','--strictPort'],{stdio:'ignore'})
@@ -59,7 +61,7 @@ try{
  await restoredPage.getByRole('group',{name:'Version de l’image',exact:true}).locator('[data-value="social"]').click()
  await expect(restoredPage.locator('.budget-image-count')).toContainText(`${densePages.length} images`)
  await restoredPage.getByRole('button',{name:`Image ${densePages.length} sur ${densePages.length}`,exact:true}).click()
- const restoredRegion=restoredPage.getByRole('region',{name:'Image du budget'});await expect(restoredRegion).toHaveAttribute('aria-busy','false',{timeout:30000});const restoredImage=restoredRegion.locator('img');await expect.poll(()=>restoredImage.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350])
+ const restoredRegion=restoredPage.getByRole('region',{name:'Image du budget'});await expect(restoredRegion).toHaveAttribute('aria-busy','false',{timeout:30000});const restoredImage=restoredRegion.locator('img');assert.deepEqual(await imageDimensions(restoredImage),[1080,1350])
  const event=restoredPage.waitForEvent('download');await restoredPage.getByRole('button',{name:'Télécharger le PNG',exact:true}).click();assert((await event).suggestedFilename().includes(`-sur-${String(densePages.length).padStart(2,'0')}`))
  assert((await restoredPage.evaluate(()=>window.budgetPngRequests)).every(index=>index===1||index===densePages.length),'Only requested PNG pages are encoded')
  await restoredPage.getByLabel('Dépenses · montant 1',{exact:true}).fill('120');await expect(restoredPage.getByLabel('Texte prêt à publier')).toHaveValue(custom)
@@ -68,13 +70,17 @@ try{
  // Exercise UI, selected download and the legacy modes on a real phone and desktop.
  for(const width of [1440,390,320]){
   const context=await browser.newContext({viewport:{width,height:950},permissions:['clipboard-read','clipboard-write'],acceptDownloads:true}),ui=await context.newPage();await ui.goto(uiBase+'/le-budget-de');
-  for(const p of (width===390?uiProfiles:[BUDGET_PROFILES.find(p=>p.name==='Émilie'),BUDGET_PROFILES.find(p=>p.name==='Lucie'),BUDGET_PROFILES.find(p=>results.some(r=>r.id===p.id&&r.count>1)),BUDGET_PROFILES.find(p=>p.name==='Amandine et Nicolas')])){
+  const desktopCases=[BUDGET_PROFILES.find(p=>p.name==='Émilie'),BUDGET_PROFILES.find(p=>p.name==='Lucie'),legacyDesktopProfile||BUDGET_PROFILES.find(p=>results.some(r=>r.id===p.id&&r.count>1)),BUDGET_PROFILES.find(p=>p.name==='Amandine et Nicolas')]
+  // Across sixteen batches retain the four cases from each former four-way batch.
+  if(legacyDesktopProfile)assert(results.some(r=>r.id===legacyDesktopProfile.id&&r.count>1),'The former multi-page desktop fixture stays multi-page')
+  for(const p of (width===390?uiProfiles:shards===16?[desktopCases[shard%4]]:desktopCases)){
+   console.log(`Budget UI ${width}px: ${p.name}`)
    await ui.getByRole('group',{name:'Version de l’image',exact:true}).locator('[data-value="social"]').click();await ui.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value="${p.id}"]`).click();await expect(ui.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(p));const count=results.find(r=>r.id===p.id).count;await expect(ui.locator('.budget-image-count')).toContainText(`${count} image`);
    for(let i=0;i<count;i++){
-    if(count>1)await ui.getByRole('button',{name:`Image ${i+1} sur ${count}`,exact:true}).click();const img=ui.getByRole('region',{name:'Image du budget'}).locator('img');await expect(ui.getByRole('region',{name:'Image du budget'})).toHaveAttribute('aria-busy','false',{timeout:30000});await expect(img).toHaveAttribute('alt',new RegExp(`image ${i+1} sur ${count}`));await expect(ui.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled();await expect.poll(()=>img.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350]);const bytes=await img.evaluate(async i=>{const b=await(await fetch(i.src)).blob();return await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=()=>reject(reader.error);reader.readAsDataURL(b)})});const event=ui.waitForEvent('download');await ui.getByRole('button',{name:'Télécharger le PNG',exact:true}).click();const d=await event;assert.deepEqual(readFileSync(await d.path()),Buffer.from(bytes,'base64'));if(count>1)assert(d.suggestedFilename().includes(`-${String(i+1).padStart(2,'0')}-sur-`),d.suggestedFilename());
+    if(count>1)await ui.getByRole('button',{name:`Image ${i+1} sur ${count}`,exact:true}).click();const img=ui.getByRole('region',{name:'Image du budget'}).locator('img');await expect(ui.getByRole('region',{name:'Image du budget'})).toHaveAttribute('aria-busy','false',{timeout:30000});await expect(img).toHaveAttribute('alt',new RegExp(`image ${i+1} sur ${count}`));await expect(ui.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled();assert.deepEqual(await imageDimensions(img),[1080,1350]);const bytes=await img.evaluate(async i=>{const b=await(await fetch(i.src)).blob();return await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=()=>reject(reader.error);reader.readAsDataURL(b)})});const event=ui.waitForEvent('download');await ui.getByRole('button',{name:'Télécharger le PNG',exact:true}).click();const d=await event;assert.deepEqual(readFileSync(await d.path()),Buffer.from(bytes,'base64'));if(count>1)assert(d.suggestedFilename().includes(`-${String(i+1).padStart(2,'0')}-sur-`),d.suggestedFilename());
    }
    await ui.getByRole('button',{name:'Copier le texte',exact:true}).click();await expect(ui.getByRole('checkbox',{name:'Profil publié',exact:true})).not.toBeChecked();assert.equal(await ui.evaluate(()=>navigator.clipboard.readText()),buildBudgetText(p));
-   for(const mode of ['detailed','summary']){await ui.getByRole('group',{name:'Version de l’image',exact:true}).locator(`[data-value="${mode}"]`).click();await expect(ui.getByRole('region',{name:'Image du budget'})).toHaveAttribute('aria-busy','false',{timeout:30000});await expect(ui.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled();await expect.poll(()=>ui.getByRole('region',{name:'Image du budget'}).locator('img').evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1080,1350])}
+   for(const mode of ['detailed','summary']){await ui.getByRole('group',{name:'Version de l’image',exact:true}).locator(`[data-value="${mode}"]`).click();await expect(ui.getByRole('region',{name:'Image du budget'})).toHaveAttribute('aria-busy','false',{timeout:30000});await expect(ui.getByRole('button',{name:'Télécharger le PNG',exact:true})).toBeEnabled();assert.deepEqual(await imageDimensions(ui.getByRole('region',{name:'Image du budget'}).locator('img')),[1080,1350])}
   }
   assert(await ui.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await context.close()
  }

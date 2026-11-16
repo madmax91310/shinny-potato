@@ -43,3 +43,8 @@ for(const name of ['Émilie','Lucie','Amandine et Nicolas'])assert(BUDGET_PROFIL
 const limits=JSON.parse(readFileSync(new URL('./ci-browser-durations.json',import.meta.url))).seconds
 for(const command of commands.filter(command=>command.startsWith('node scripts/playwright-budget-social-image.mjs ')))assert.equal(browserCheckTimeoutMs(command,limits),300000,'Budget command timeout policy stays unchanged')
 assert(budgetScript.includes("['Émilie','Lucie','Amandine et Nicolas'].includes(p.name)"),'Repeated critical desktop/mobile cases stay in every partition')
+
+// The former four batches each ran four desktop cases at both widths.
+assert.deepEqual(budgetParts.map(([part])=>[Math.floor(part/4),part%4]).sort(),Array.from({length:4},(_,oldPart)=>Array.from({length:4},(_,fixture)=>[oldPart,fixture])).flat().sort())
+assert(budgetScript.includes('legacyDesktopProfile=shards===16?BUDGET_PROFILES[Math.floor(shard/4)]'))
+assert(budgetScript.includes('[desktopCases[shard%4]]'))
