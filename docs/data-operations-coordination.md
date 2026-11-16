@@ -977,3 +977,56 @@ les nouveaux lecteurs Budget est distinct : il demande une acquisition depuis
 le nouveau master, pas une exemption générale des configurations CI.
 41recettes d'adaptateur réussies ; enregistrement GitHub après fusion encore
 à démontrer. #1370 FTSE, #1372 HSBC/iBonds et #1373 Invesco gardent leurs fichiers.
+
+## 16 novembre — top10 Invesco depuis les livres exacts déjà qualifiés
+
+Même suivi #881, `fix/invesco-shared-presentation-topten-20261116` possède
+uniquement native-fund-details, son lecteur de présentation et leurs régressions.
+Dépendance #1373 fusionnée612ab5e5. Les trois parts physiques déjà inscrites dans
+le contrat Invesco commun alimentent le top10 des présentations depuis leur livre
+qualifié, au lieu de garder un ancien top10 attribué à l'indice interne de l'API.
+Réconciliation NAV et recensement exacts, compte/part/page/métadonnées, identités,
+poids natifs, source et dates préservés ; sociétés regroupées par le moteur commun.
+Contrat distinct du livre WisdomTree, sans en affaiblir l'admission cash seul.
+La projection reste fonds/top10/incomplète : aucune admission d'indice exact ni
+recouvrement intégral par ce top10, aucune transformation d'un livre partiel.
+Les livres GitHub du13novembre sont reconstruits en fixture depuis leurs captures
+brutes et résumé natif14267936785 ; aucune valeur ni horloge nouvelle fabriquée.
+Recettes de refus et d'idempotence, lecture commune Présentation ETF et build local
+réussis ; CI sur le commit final et publication/PNG publics restent à vérifier.
+Aucun changement de collecte, seuil, maquette, Radar/IA ou catalogue.
+
+Complément CI : six écarts reproduits pour les trois présentations Invesco
+avec le même site construit et une ancienne projection Node ; les six
+disparaissent après transfert de la projection exacte du build. L'artefact
+validated-generated-data inclut donc native-fund-details.json, consommé par
+les partitions navigateur et tweet existantes. Aucune attente financière,
+aucune donnée et aucun seuil modifiés ; contrôle de régression dans la recette
+native déjà exécutée par la CI. Ce correctif de transport ne prouve pas une
+nouvelle collecte ni une publication publique.
+
+## 16 novembre — complément du même lot1378, sources NAV et qualification partielle
+
+Le producteur43959903558 enregistre six NAV ; trois accès sans slash
+(WTI, Artificial Intelligence, Wheat) échouent en403. La variante canonique du
+même endpoint officiel répond et passe la qualification financière locale pour
+les trois parts. Secours HTTP borné après403 uniquement, graphe/table réacquis
+ensemble ; anciennes tentatives et URL réellement capturées conservées, aucun
+repli après donnée invalide. La preuve GitHub et l'enregistrement ordinaire de
+ces trois voies restent à obtenir ; aucune réparation fournisseur annoncée
+sur le seul contrôle local. Le suivi reste881 et cette PR, pas un second chantier.
+
+L'artefact CI14276501472 montre aussi que la qualification effective Uranium
+contient0,004% d'identités inconnues mais que le résumé ne les transmet pas
+quand le livre complet manque. Propagation minimale de cette information déjà
+validée, avec date/hash de la photographie et accord des alias ; statut d'échec,
+dates source et blocage intégral inchangés. Le lecteur existant affiche cette
+limite sans changement d'interface. Fixture de la vraie connexion CI et cas de
+dates contradictoires, alias, idempotence et absence d'observation vérifiés.
+
+La première qualification GitHub ciblée43973548020 n'a pas atteint le
+fournisseur : pdftotext était absent du point d'entrée manuel existant. Ses
+dépendances PDF et navigateur ordinaires sont désormais préparées explicitement.
+La recette fournisseur PR déjà provisionnée cible les trois seules routes
+réparées, au lieu de recollecter quatre témoins concluants sans nécessité.
+Ces échecs d'environnement ne sont ni des refus financiers ni des403 fournisseur.

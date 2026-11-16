@@ -201,6 +201,77 @@ class OrdinaryBrowserTransport(unittest.TestCase):
 
 if __name__=='__main__':unittest.main()
 
+class CanonicalRouteRecovery(unittest.TestCase):
+ def test_real_qualification_entrypoint_provisions_pdf_and_browser_before_source(self):
+  workflow=(ROOT/'.github/workflows/verify-remainder-nav.yml').read_text()
+  source=workflow.index('name: Collect exact shares, verify identity, income, currency and annual bounds')
+  for dependency in ['bash scripts/ensure-ci-runtime.sh poppler','run: npm ci','bash scripts/ensure-ci-runtime.sh chromium']:
+   self.assertLess(workflow.index(dependency),source,'The observed pdftotext failure must not recur as a supplier incident')
+
+ def sources(self):
+  return [s for s in configurations()if s.get('wisdomPerformancePathStyle')=='issuer-widget']
+
+ def test_three_exact_registered_shares_keep_actual_canonical_sources_after_primary403(self):
+  from unittest.mock import patch
+  import urllib.error
+  from wisdomtree_performance_history import acquire,urls,canonical_alternative_urls,resolved_performance_urls
+  selected=self.sources();self.assertEqual({s['wisdomTicker']for s in selected},{'CRUD','WTAI','WEAT'})
+  for s in selected:
+   primary=urls(s);alternative=canonical_alternative_urls(s)
+   def fetch(url,**kwargs):
+    if url in primary:raise urllib.error.HTTPError(url,403,'denied',None,None)
+    self.assertIn(url,alternative);self.assertEqual(kwargs['max_bytes'],8_000_000)
+    return json.dumps({'actualSource':url}).encode()
+   with self.subTest(id=s['id']),patch('wisdomtree_performance_history.download',side_effect=fetch)as download,patch('wisdomtree_performance_history.subprocess.run')as browser:
+    bodies,proof=acquire(s)
+   browser.assert_not_called();self.assertEqual(download.call_count,3)
+   self.assertEqual(resolved_performance_urls(s,bodies,proof),alternative)
+   self.assertEqual(list(bodies),alternative);self.assertEqual(proof['configuredSourceUrls'],primary)
+   self.assertEqual(proof['actualNavTransport'],'public-widget-http-canonical-alternative')
+   self.assertEqual(proof['accessAttempts'][0]['status'],'unavailable')
+   self.assertEqual(proof['accessAttempts'][0]['url'],primary[0])
+   self.assertTrue(all(json.loads(bodies[u])['actualSource']==u for u in alternative))
+
+ def test_partial_primary_pair_is_discarded_and_both_canonical_responses_reacquired(self):
+  from unittest.mock import patch
+  import urllib.error
+  from wisdomtree_performance_history import acquire,urls,canonical_alternative_urls
+  s=self.sources()[0];primary=urls(s);alternative=canonical_alternative_urls(s)
+  def fetch(url,**kwargs):
+   if url==primary[0]:return b'old-primary-graph'
+   if url==primary[1]:raise urllib.error.HTTPError(url,403,'denied',None,None)
+   return ('new-canonical-'+url).encode()
+  with patch('wisdomtree_performance_history.download',side_effect=fetch)as download,patch('wisdomtree_performance_history.subprocess.run')as browser:
+   bodies,proof=acquire(s)
+  self.assertEqual([c.args[0]for c in download.call_args_list],primary+alternative)
+  self.assertNotIn(b'old-primary-graph',bodies.values());self.assertEqual(list(bodies),alternative);browser.assert_not_called()
+
+ def test_no_extra_route_for_other_shares_or_changed_exact_identity(self):
+  from wisdomtree_performance_history import canonical_alternative_urls
+  s=self.sources()[0]
+  for key,value in [('isin','GB0000000000'),('navCurrency','EUR'),('wisdomListingId',-1),('sourceUrl','https://example.invalid'),('factsheetUrl','https://example.invalid')]:
+   with self.subTest(key=key),self.assertRaises(ValueError):canonical_alternative_urls({**s,key:value})
+  self.assertIsNone(canonical_alternative_urls(next(s for s in configurations()if s.get('wisdomTicker')=='COCO')))
+
+ def test_non403_or_invalid_success_never_enters_alternative_or_browser(self):
+  from unittest.mock import patch
+  import urllib.error
+  from wisdomtree_performance_history import acquire,urls
+  s=self.sources()[0]
+  for status in [401,404,429,500,503]:
+   with patch('wisdomtree_performance_history.download',side_effect=urllib.error.HTTPError(urls(s)[0],status,'failed',None,None))as download,patch('wisdomtree_performance_history.subprocess.run')as browser,self.assertRaises(urllib.error.HTTPError):acquire(s)
+   self.assertEqual(download.call_count,1);browser.assert_not_called()
+  with patch('wisdomtree_performance_history.download',return_value=b'<html>challenge</html>')as download,patch('wisdomtree_performance_history.subprocess.run')as browser:
+   bodies,proof=acquire(s)
+   with self.assertRaises(json.JSONDecodeError):json.loads(next(iter(bodies.values())))
+  self.assertEqual(download.call_count,2);self.assertNotIn('resolvedSourceUrls',proof);browser.assert_not_called()
+
+ def test_missing_mixed_or_out_of_scope_response_urls_are_refused(self):
+  from wisdomtree_performance_history import urls,canonical_alternative_urls,resolved_performance_urls
+  s=self.sources()[0];primary=urls(s);alternative=canonical_alternative_urls(s)
+  for actual,keys in [(alternative,alternative[:1]),([primary[0],alternative[1]],[primary[0],alternative[1]]),(['https://example.invalid']*2,['https://example.invalid'])]:
+   with self.subTest(actual=actual),self.assertRaises(ValueError):resolved_performance_urls(s,dict.fromkeys(keys,b'[]'),{'resolvedSourceUrls':actual})
+
 class DocumentedWidgetPath(unittest.TestCase):
  def test_only_the_wti_existing_share_changes_to_the_actual_issuer_widget_path(self):
   from wisdomtree_performance_history import urls

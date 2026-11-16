@@ -282,7 +282,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
                 'product_performance_metrics.performance_monthly','product_performance_metrics.performance_details'],
             'historicFxQualification':'Existing validated monthly ECB observations; not a new historic ECB source consultation'}
     elif kind=='wisdomtree' and source.get('navHistoryTransport')=='official-dataspan-nav-tr':
-        from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for,acquire
+        from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for,acquire,resolved_performance_urls
         from collect_public_issuer import wisdomtree_factsheet
         graph_url,table_url=performance_urls(source)
         # Reacquire and fully qualify the exact official product PDF before any
@@ -296,6 +296,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         transport={}
         if document_fetch is download:
             bodies,transport=acquire(source,qualified_identity=identity_binding)
+            graph_url,table_url=resolved_performance_urls(source,bodies,transport)
             graph,table=[json.loads(document(url,supplied=bodies[url]))for url in (graph_url,table_url)]
         else:
             graph,table=[json.loads(document(url))for url in (graph_url,table_url)]

@@ -29,6 +29,22 @@ export function holdingsConsumerQualifications({references,assets=references,hol
 export function applyHoldingsConsumerQualification(connection,qualification) {
  if(connection.field!=='completeHoldings'||!qualification)return connection
  const result={...connection,consumerQualification:{...qualification,priorActionState:connection.actionState}}
+ // A failed full-book collection can still retain an evaluated partial book.
+ // Surface its known unidentified weight without renewing any source clock or
+ // certifying completeness. Aliases must agree on the same exact snapshot.
+ const outcomes=qualification.outcomes
+ const first=outcomes[0]
+ if(connection.unidentifiedWeightPct==null&&first?.status==='evaluated'&&first.valid===true&&
+   Number.isFinite(first.unidentifiedCoverage)&&first.unidentifiedCoverage>0&&first.unidentifiedCoverage<=100&&
+   (!connection.asOf||connection.asOf===first.asOf)&&
+   outcomes.every(r=>r.status==='evaluated'&&r.valid===true&&r.asOf===first.asOf&&
+    r.sourceCheckedAt===first.sourceCheckedAt&&r.sourceSha256===first.sourceSha256&&
+    r.sourceUrl===first.sourceUrl&&r.unidentifiedCoverage===first.unidentifiedCoverage)){
+  result.unidentifiedWeightPct=first.unidentifiedCoverage
+  result.unidentifiedWeightEvidence={stage:'consumer-validation',sourceContacted:false,
+   asOf:first.asOf,sourceCheckedAt:first.sourceCheckedAt,sha256:first.sourceSha256,
+   sourceUrl:first.sourceUrl,assetIds:outcomes.map(r=>r.asset)}
+ }
  // Source failures, conflicts, excluded scopes and pre-existing qualifications
  // retain their own cause and clocks. A complete alternative cannot erase them.
  if(connection.actionState!=='current')return result

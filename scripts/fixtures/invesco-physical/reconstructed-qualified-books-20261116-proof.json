@@ -1,0 +1,35 @@
+{
+  "kind": "Reconstruction of actual GitHub-qualified records from original public-census/raw metadata and native observation summary; no new provider acquisition, values or success clock",
+  "run": 43949872954,
+  "artifact": 14267936785,
+  "artifactSha256": "67192dc60b85dbd021b9b8bba97b3301485578754b61e19e1c3e899acd68a49f",
+  "records": {
+    "IE000716YHJ7": {
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7/holdings/index?idType=isin&loadType=initial",
+      "sourceSha256": "213f53f532a590d5650725f63664ab9090b5fb177f0c394d59107c56e6c23c60",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-16T20:31:47.043485+00:00",
+      "identitySha256": "c3dadbcdce00875f8aa53b874262cf4f1bbe65cc2be5b94d446953ebd6e1639e",
+      "metadataSha256": "38dfb193ff6919ccccbb505d642ecc328adb8802c01617a610d5fef6d22220e5",
+      "rows": 2064
+    },
+    "IE0000QLH0G6": {
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6/holdings/index?idType=isin&loadType=initial",
+      "sourceSha256": "213f53f532a590d5650725f63664ab9090b5fb177f0c394d59107c56e6c23c60",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-16T20:31:47.043485+00:00",
+      "identitySha256": "60fec2a7bb56410a63b6cccaa410b440e5b1fecc9fc1680ee8d5d2c097ba649c",
+      "metadataSha256": "8549c64f4f366f1557975320085fed44d1fb3b8a4e258ebbda14205090f50110",
+      "rows": 2064
+    },
+    "IE000L2SA8K5": {
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5/holdings/index?idType=isin&loadType=initial",
+      "sourceSha256": "9fe5d70892e3721d6feb76014ca6b79258759dcf4bd6af5cb4a3ab74113a541a",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-16T20:31:47.043485+00:00",
+      "identitySha256": "a7e1869883a5f0fdd2785d796fb389ccec129c475618bd6c0e68bf8e55e71813",
+      "metadataSha256": "da2576ca787d40d676bc163e45b66ddaf01d81474ffd0e54b5bee3c8b331c9a9",
+      "rows": 101
+    }
+  }
+}

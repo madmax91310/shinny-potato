@@ -20,6 +20,14 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.1
+      - name: Prepare ordinary official document reader
+        run: bash scripts/ensure-ci-runtime.sh poppler
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: Prepare ordinary public browser fallback
+        run: bash scripts/ensure-ci-runtime.sh chromium
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'

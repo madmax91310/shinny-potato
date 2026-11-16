@@ -308,6 +308,7 @@ jobs:
             src/data/monthly-duel-returns.json
             src/data/ranking-annual.json
             src/data/index-company-compositions.json
+            src/data/native-fund-details.json
           if-no-files-found: error
           retention-days: 2
       - uses: actions/upload-artifact@v7.0.1
