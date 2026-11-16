@@ -17,7 +17,14 @@ export function logoIdentity(row) {
 export async function positionLogo(row) {
   const identity = logoIdentity(row)
   if (!identity) return { image: null, identity: null }
-  return { image: await loadArtImage(identity.file).catch(() => null), identity }
+  let image=await loadArtImage(identity.file).catch(()=>null)
+  // Investor-only optical framing of the existing issuer asset. Remove the
+  // website footer strip, preserving every Alphabet glyph and other consumers.
+  if(image && identity.id==='alphabet' && image.width===800 && image.height===188) {
+    const framed=document.createElement('canvas');framed.width=414;framed.height=102
+    framed.getContext('2d').drawImage(image,0,0,414,102,0,0,414,102);image=framed
+  }
+  return {image,identity}
 }
 const mediaCache = new Map()
 export async function portfolioPortrait(identity, supplied) {

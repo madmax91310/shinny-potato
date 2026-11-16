@@ -19,7 +19,7 @@ export function monetaryStatus(snapshot) {
   if (Math.abs(rows.reduce((sum, r) => sum + r.value, 0) - snapshot.declaredTotal) > rows.length * .5) return 'La somme des positions ne correspond pas au total déclaré.'
   return null
 }
-// Fixed readable monospace type makes wrapping deterministic in Node and Canvas.
+// Deterministic wrapping for the text detail pages; the poster measures its font.
 export function labelLines(value, columns = 14, maxChars = Infinity) {
   const chars = [...String(value)]
   const short = chars.length > maxChars ? chars.slice(0, maxChars - 1).join('') + '…' : chars.join('')
@@ -33,27 +33,56 @@ export function labelLines(value, columns = 14, maxChars = Infinity) {
   if (line) lines.push(line)
   return lines
 }
-const palette = ['#186447', '#298565', '#54a17b', '#92bd9c', '#b4d7b4', '#538d8a', '#79a8a1', '#a3c5be', '#d5e4d0', '#628264', '#8ab28b', '#c0d6c5']
-function arrange(rows, start = -Math.PI / 2) {
-  let angle = start
-  const entries = rows.map((row, i) => {
-    const mid = angle + row.weight * Math.PI
-    const entry = { ...row, color: palette[i % palette.length], start: angle, end: angle + row.weight * Math.PI * 2, mid,
-      side: Math.cos(mid) < 0 ? 'left' : 'right', desiredY: 638 + Math.sin(mid) * 235,
-      lines: labelLines(row.label, 14, 40), inside: row.weight >= .14 }
-    entry.height = 148 + entry.lines.length * 29
-    angle = entry.end
-    return entry
+// These colors describe the illustration, never the financial data. A security's
+// identity gives it the same color on every page, even when grouped in the main.
+const palette = ['#1769cc','#e34c46','#f6ae2d','#803fb0','#00a889','#ef729b','#164455','#ae743b','#68882b','#5567a8','#e27635','#37959f']
+const brands = { Amazon:'#f6ae2d', Apple:'#789ab5', Microsoft:'#1769cc', Nvidia:'#83ac32', Meta:'#5865ce', Micron:'#803fb0', TSMC:'#e34c46', Alphabet:'#37959f', 'Coca-Cola':'#e34c46', 'American Express':'#1769cc', 'Bank of America':'#803fb0', Uber:'#164455' }
+export function positionColor(row) {
+  if(row.other)return '#b8bdc4'
+  const name=String(row.displayLabel || row.label || row.issuerName || '').replace(/ \(.*\)$/,'').replace(/ Technologies Inc$/,'')
+  let hash=0;for(const char of String(row.cusip || row.securityId || name))hash=(hash*31+char.charCodeAt(0))>>>0
+  return brands[name] || palette[hash%palette.length]
+}
+export function colorPositions(rows) {
+  const used=new Set()
+  return rows.map(row=>{
+    let color=positionColor(row)
+    if(used.has(color))color=palette.find(c=>!used.has(c)) || color
+    used.add(color)
+    return {...row,color}
   })
-  for (const side of ['left', 'right']) {
-    const cards = entries.filter(e => e.side === side).sort((a,b) => a.desiredY - b.desiredY)
-    const top = 310, bottom = 1020, gap = 12
-    if (cards.reduce((s,e) => s + e.height + gap, -gap) > bottom - top) return null
-    let y = top
-    for (const card of cards) { card.y = Math.max(y, card.desiredY - card.height / 2); y = card.y + card.height + gap }
-    let end = bottom
-    for (const card of [...cards].reverse()) { card.y = Math.min(card.y, end - card.height); end = card.y - gap }
-    for (const card of cards) card.x = side === 'left' ? 28 : 784
+}
+export const posterCash=(value,currency)=>cash(value,currency).replace(/\s*\$US/,' $')
+export function shortPosition(row) {
+  let name=String(row.displayLabel || row.issuerName || '').replace(/ \([A-Z0-9*@#]{9}\)$/,'')
+    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co)\b\.?/gi,'').replace(/Berkshire Hathaway/i,'Berkshire').replace(/\s+/g,' ').trim()
+  // Preserve an explicit class discriminator; never merge securities to save space.
+  if(/ \([A-Z0-9*@#]{9}\)$/.test(row.displayLabel || '')) {
+    const cls=row.shareClass?.match(/(?:CL|CLASS)\s+([A-Z])\b/i)?.[1]
+    name=`${name.slice(0,cls?16:10)} ${cls || '·'+row.cusip.slice(-4)}`
+  }
+  if(name.length>23 && row.ticker)name=row.ticker
+  return name || row.issuerName
+}
+export const POSTER = { cx:540, cy:700, outer:332, inner:171, top:295, bottom:1110, gap:18, labelWidth:172 }
+function arrange(rows, start = -Math.PI / 2) {
+  let angle=start
+  const entries=rows.map(row=>{
+    const mid=angle+row.weight*Math.PI
+    const entry={...row,color:row.color || positionColor(row),start:angle,end:angle+row.weight*Math.PI*2,mid,
+      side:Math.cos(mid)<0?'left':'right',desiredY:POSTER.cy+Math.sin(mid)*405,
+      // Two name lines, amount and percent badge, at readable fixed sizes.
+      height:148,inside:row.weight>=.055}
+    angle=entry.end;return entry
+  })
+  for(const side of ['left','right']) {
+    const labels=entries.filter(e=>e.side===side).sort((a,b)=>a.desiredY-b.desiredY)
+    if(labels.length*148+Math.max(0,labels.length-1)*POSTER.gap>POSTER.bottom-POSTER.top)return null
+    let y=POSTER.top
+    for(const e of labels){e.y=Math.max(y,e.desiredY-e.height/2);y=e.y+e.height+POSTER.gap}
+    let end=POSTER.bottom
+    for(const e of [...labels].reverse()){e.y=Math.min(e.y,end-e.height);end=e.y-POSTER.gap}
+    for(const e of labels)e.x=side==='left'?32:876
   }
   return entries
 }
@@ -63,17 +92,17 @@ export function publicationPlan(portfolio) {
   if (!holdings?.length || holdings.some(r => !Number.isFinite(r.value))) throw new Error('Montants vérifiés nécessaires pour ce visuel.')
   const total = holdings.reduce((sum,r) => sum + r.value, 0)
   if (!(total > 0)) throw new Error('Total des positions absent.')
-  const sorted = [...holdings].sort((a,b) => b.value - a.value)
+  const sorted = colorPositions([...holdings].sort((a,b) => b.value - a.value))
   let best
-  // The physical area at the minimum card height bounds attempts, not the portfolio.
-  const capacity = Math.floor(2 * (1020 - 310 + 12) / (177 + 12))
+  // The physical area at the minimum label height bounds attempts, not the portfolio.
+  const capacity = 2 * Math.floor((POSTER.bottom - POSTER.top + POSTER.gap) / (148 + POSTER.gap))
   for (let n = 1; n <= Math.min(sorted.length, capacity); n++) {
-    const selected = sorted.slice(0,n).map(r => ({ ...r, label: r.displayLabel || r.issuerName, weight: r.value / total }))
+    const selected = sorted.slice(0,n).map(r => ({ ...r, label: shortPosition(r), weight: r.value / total }))
     const rest = sorted.slice(n)
-    if (rest.length) selected.push({ issuerName: 'Autres positions', label: 'Autres positions', ticker: '', other: true, count: rest.length, value: rest.reduce((s,r) => s + r.value, 0), weight: rest.reduce((s,r) => s + r.value, 0) / total })
-    // Rotate the real sectors to balance both card columns. Midpoints between
+    if (rest.length) selected.push({ issuerName: 'Autres positions', label: 'Autres', ticker: '', other: true, count: rest.length, value: rest.reduce((s,r) => s + r.value, 0), weight: rest.reduce((s,r) => s + r.value, 0) / total })
+    // Rotate the real sectors to balance the available label space. Midpoints between
     // all side-transition angles cover every possible split without moving
-    // leaders across the donut or changing a single sector's proportion.
+    // labels across the donut or changing a single sector's proportion.
     let mid=0
     const transitions=[]
     for(const row of selected) {
@@ -83,8 +112,13 @@ export function publicationPlan(portfolio) {
     }
     transitions.sort((a,b)=>a-b)
     const rotations=[-Math.PI/2,...transitions.map((a,i)=>(a+(transitions[i+1]??transitions[0]+2*Math.PI))/2)]
-    let entries=null
-    for(const rotation of rotations) { entries=arrange(selected,rotation);if(entries)break }
+    let entries=null,cost=Infinity
+    for(const rotation of rotations) {
+      const candidate=arrange(selected,rotation)
+      if(!candidate)continue
+      const distance=candidate.reduce((sum,e)=>sum+Math.hypot(POSTER.cx+Math.cos(e.mid)*POSTER.outer-(e.side==='left'?210:870),POSTER.cy+Math.sin(e.mid)*POSTER.outer-e.y-74),0)
+      if(distance<cost){entries=candidate;cost=distance}
+    }
     if (entries) best = { entries, total, currency: portfolio.snapshot.currency, hiddenCount: rest.length }
   }
   if (!best) throw new Error('La composition ne tient pas dans le visuel. Consulter le détail.')
