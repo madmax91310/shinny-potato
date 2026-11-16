@@ -1,19 +1,7 @@
-import MIDDAY_SELECTIONS from './editorial-midday-selections.json' with { type: 'json' }
-// Calendrier complété le 16 novembre 2026 · ajouts sans suppression de créneaux. Les récaps restent hors application.
-const slot = (path, note = '', title) => ({ path, note, ...(title && { title }) })
-const recap = () => ({ morning: [], morningNote: 'Récap marché · hors application' })
-const alternating = (...paths) => paths.map((path, index) => slot(path, `Une semaine sur deux · semaine ${index ? 'B' : 'A'}`))
-// Choix du midi : conserver les autres possibilités et toutes les soirées.
-export { MIDDAY_SELECTIONS }
-export const EDITORIAL_WEEK = [
-  { day: 'Lundi', ...recap(), midday: [slot('/performance-depuis'), slot('/presentations')], evening: alternating('/tweets-factsheets', '/generateur-portefeuilles') },
-  { day: 'Mardi', ...recap(), midday: [slot('/classements-performances'), slot('/fiche-lexique')], evening: [{ ...slot('/le-dca-de', 'Au choix avec Le budget de…', 'Le DCA d’un abonné'), href: '/le-dca-de?mode=dca' }, slot('/le-budget-de', 'À la place du DCA · selon tes publications')], eveningNote: 'DCA ou budget : choisis un seul format selon tes publications. Le budget peut aussi passer le vendredi soir.' },
-  { day: 'Mercredi', ...recap(), midday: [slot('/calculateur-investissement'), slot('/france-100-menages')], evening: alternating('/comparatif-courtiers', '/hey-grok') },
-  { day: 'Jeudi', ...recap(), midday: [slot('/classements-performances'), slot('/comparateur-indices')], evening: [{ ...slot('/banque-tweets', 'Dans la Banque de tweets', 'Guide'), href: '/banque-tweets?category=Guide%20ETF' }] },
-  { day: 'Vendredi', ...recap(), midday: alternating('/fiches-etf', '/comparatif-etf'), evening: [slot('/le-budget-de', 'À la place de ton tweet personnel · selon tes publications')], eveningNote: 'Ton tweet personnel ou Le budget de… si tu ne l’as pas publié mardi.' },
-  { day: 'Samedi', ...recap(), midday: [], middayNote: 'Ton bilan de la semaine', evening: [], eveningNote: 'Quote de ton bilan' },
-  { day: 'Dimanche', ...recap(), midday: [slot('/portefeuilles-investisseurs'), slot('/il-y-a-x-ans')], evening: [{ ...slot('/banque-tweets', 'Dans la Banque de tweets', 'Question du dimanche'), href: '/banque-tweets?category=Question%20dimanche' }, ...['/fiches-pratiques', '/faits-marquants-marches', '/il-y-a-x-ans'].map(path => slot(path, 'En rotation · une fois sur trois'))] },
-].map(day => {
+import config from './editorial-calendar-config.json' with { type: 'json' }
+// Shared raw calendar configuration; presentation and scheduling remain unchanged.
+export const MIDDAY_SELECTIONS = config.middaySelections
+export const EDITORIAL_WEEK = config.week.map(day => {
   const selections = MIDDAY_SELECTIONS[day.day] || []
   const midday = [...day.midday, ...selections.filter(choice => !day.midday.some(entry => entry.path === choice.path))]
   return {
@@ -22,7 +10,7 @@ export const EDITORIAL_WEEK = [
     midday: [...midday.map(entry => {
       const choice = selections.find(item => item.path === entry.path)
       return choice ? { ...entry, ...choice, preferred: true } : entry
-    }), slot('/idees-classements')],
+    }), { path: '/idees-classements', note: '' }],
   }
 })
 
