@@ -9,9 +9,14 @@ concurrency:
 jobs:
   public-browser:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        width: [1440, 390, 320]
     timeout-minutes: 20
     env:
       BUDGET_PUBLIC_BASE: https://madmax91310.github.io/shinny-potato
+      BUDGET_VIEWPORT: ${{ matrix.width }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -44,15 +49,17 @@ jobs:
         env:
           BUDGET_BATCH: roadmap
           BUDGET_ARTIFACTS: test-artifacts/budget-roadmap-public
-        run: node scripts/playwright-budget-new-profiles.mjs 1440 390 320
+        run: node scripts/playwright-budget-new-profiles.mjs ${{ matrix.width }}
       - name: Complementary profiles, all widths and actual downloads
         env:
           BUDGET_BATCH: complementary
           BUDGET_ARTIFACTS: test-artifacts/budget-complementary-public
-        run: node scripts/playwright-budget-new-profiles.mjs 1440 390 320
+        run: node scripts/playwright-budget-new-profiles.mjs ${{ matrix.width }}
       - name: Explicit selection and protected local statuses
+        if: matrix.width == 1440
         run: node scripts/playwright-budget-publication-selection.mjs
       - name: Backups, dated statuses and personal drafts
+        if: matrix.width == 1440
         run: node scripts/playwright-budget-portability.mjs
       - name: Reopen every downloaded PNG and record final versions
         run: |
@@ -66,9 +73,9 @@ jobs:
           try {
             const page=await browser.newPage()
             await page.setContent('<img alt="PNG téléchargé">')
-            for(const [directory,count] of [['budget-roadmap-public',69],['budget-complementary-public',180]]) {
+            for(const [directory,count] of [['budget-roadmap-public',23],['budget-complementary-public',60]]) {
               const base='test-artifacts/'+directory+'/'
-              const rows=JSON.parse(readFileSync(base+'results-1440-390-320.json','utf8'))
+              const rows=JSON.parse(readFileSync(base+'results-'+process.env.BUDGET_VIEWPORT+'.json','utf8'))
               assert.equal(rows.length,count)
               for(const row of rows) {
                 const bytes=readFileSync(base+row.filename)
@@ -84,11 +91,11 @@ jobs:
           const after=await response.json()
           assert.equal(after.sha,before.sha,'The public code must stay stable during this recipe; market dataSha may advance separately.')
           writeFileSync('test-artifacts/public-budget-verification.json',JSON.stringify({before,after,reopened},null,2)+'\n')
-          console.log('Public budget verified:',JSON.stringify({before,after,downloadedAndReopened:reopened.length,viewports:[1440,390,320]}))
+          console.log('Public budget verified:',JSON.stringify({before,after,downloadedAndReopened:reopened.length,viewport:Number(process.env.BUDGET_VIEWPORT)}))
           JS
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
-          name: public-budget-roadmap-verification
+          name: public-budget-roadmap-verification-${{ matrix.width }}
           path: test-artifacts/
           retention-days: 7
