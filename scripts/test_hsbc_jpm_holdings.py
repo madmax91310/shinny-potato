@@ -57,6 +57,32 @@ class FullSources(unittest.TestCase):
             if change=='currency':target[6]='JPY'
             with self.subTest(change=change),self.assertRaises(ValueError):parse_positions(bad,stamp)
 
+    def test_hsbc_capital_settlement_is_a_valued_account_not_a_company_or_dividend(self):
+        raw=gzip.decompress((FIX/'hsbc-euro-stoxx-20261110.xls.gz').read_bytes())
+        now=dt.datetime(2026,11,16,tzinfo=dt.timezone.utc)
+        rows,stamp,excluded=parse_workbook(raw,now)
+        self.assertEqual(stamp,'2026-11-10')
+        book=xlrd.open_workbook(file_contents=raw);sheet=book.sheet_by_index(0)
+        values=[sheet.row_values(i) for i in range(7,sheet.nrows)]
+        source=next(r for r in values if r[2]=='Eur Settlement For Capital Events')
+        account=next(r for r in excluded if r['name']==source[2])
+        self.assertEqual(source[0],'')
+        self.assertEqual(source[4],197827.0)
+        self.assertEqual(account,{'name':source[2],'weightPct':0.00787,'kind':'cash-receivable-payable'})
+        self.assertEqual(len(rows),50)
+        self.assertNotIn(source[2],[r['name']for r in rows])
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows+excluded),100,places=4)
+        self.assertEqual(parse_workbook(raw,now),(rows,stamp,excluded))
+        for r in rows:self.assertEqual(r['weightPct'],next(v[7]for v in values if v[0]==r['isin']))
+        for change in ['name','isin','weight','value','currency']:
+            bad=copy.deepcopy(values);target=next(r for r in bad if r[2]==source[2])
+            if change=='name':target[2]='Eur Unqualified Capital Account'
+            elif change=='isin':target[0]='FR0000120321'
+            elif change=='weight':target[7]+=.1
+            elif change=='value':target[4]+=100000
+            else:target[6]='JPY'
+            with self.subTest(change=change),self.assertRaises(ValueError):parse_positions(bad,stamp)
+
     def jpm(self):return json.loads((FIX/'jpm-daily.json').read_text())
 
     def test_jpm_full_list_excludes_option_overlay_without_renormalisation(self):

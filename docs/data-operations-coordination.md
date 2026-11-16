@@ -883,3 +883,24 @@ deux adaptateurs, aucune donnée synthétique de test écrite en production.
 Le garde commun et ses exemptions restent inchangés. Après ce seul refus explicite, un nouveau master est acquis dans un worktree privé, les SCPI sont recollectées par leur producteur ordinaire et tous les contrôles financiers sont rejoués avant de rappeler l’enregistreur isolé, sur son seul chemin SCPI. Trois tentatives maximum, délais2/4s ; aucun force-push ou résolution de conflit financier. Un changement des dépendances ou du contrat de validation exige un nouveau workflow ordinaire depuis master, plutôt qu’une exécution sur l’ancien environnement. Les échecs financiers/authentification sans refus d’entrées ne déclenchent pas cette reprise. Les tentatives, plans préalables, SHAs de code et résultats partiels restent distincts dans l’artefact ; une panne ne renouvelle pas les anciennes preuves financières.
 
 Le lot annuel#1347 ne touche que son test de texte ; les PR#1298/#1253/#1061 et les correctionsETF#1341/#1346 sont préservées. Aucun collecteur commun, maquette, condition financière ou seuil n’est modifié ; aucun automatismeIA ou Radar réactivé. Recette isolée avec vraiGit/garde/enregistreur et source contrôlée ; collecte et publication ordinaires après fusion restent à démontrer séparément.
+
+
+## 16 novembre — compte HSBC et pays iBonds, erreurs individuelles préservées
+
+Même suivi #881, `fix/hsbc-ibonds-source-recovery-20261116` possède
+hsbc_holdings, la configuration exacte IE0008UEVOE0, la sortie partielle du
+collecteur qualifié et ses recettes. Le cron43918913412 révèle ces deux causes.
+HSBC : compte Eur Settlement For Capital Events explicitement valorisé197827EUR
+au10novembre, poids0,00787%, ISINvide ; classé compte séparé, jamais entreprise
+ni dividende. Cinquante titres et tous leurs poids natifs, réconciliation NAV et
+refus des comptes inconnus conservés. iBonds : table pays du1octobre périmée,
+structure physique EUR/FixedIncome et livre du13novembre qualifiés séparément.
+L’isolation existante permet pays de risque, cash signé et autres champs valides,
+sans renormalisation. L’échec pays primaire reste explicite dans le contrat du
+producteur, y compris --only ; aucune attribution de réussite globale/cache.
+Les identités primaires Defence et le lecteur de supervision ne sont pas modifiés.
+#1370 conserve les colonnes FTSE ; #1369 les NAV WisdomTree ; #1367 est fusionnée
+pour Uranium/LifeStrategy. Sources CopperMiners sans valeur/poids et Invesco
+régressant au29octobre restent distinctes, dernières observations conservées.
+Recettes isolées21+9 et rejeu natif ciblé réussis ; collecte GitHub, enregistrement
+et publication des deux voies encore à vérifier. Radar/IA/maquettes préservés.

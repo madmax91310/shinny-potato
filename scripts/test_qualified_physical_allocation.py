@@ -264,4 +264,7 @@ class QualifiedPhysicalAllocation(unittest.TestCase):
         self.assertTrue(all(r['status'] == 'failed' for r in caught.exception.primaryAllocationChecks))
 
 
+# The same producer handles the exact physical iBonds field recovery.
+from test_ibonds_country_recovery import IBondsCountryRecovery
+
 if __name__ == '__main__': unittest.main()

@@ -105,6 +105,21 @@ def contract_results(configs, report):
     from publish_automation_status import _normalize_report
     legacy = _normalize_report({'records': report['records'], 'excluded': report['excluded']})
     successes, errors, inactive = (list(legacy.get(key, [])) for key in ('successes', 'errors', 'inactive'))
+    # A qualified alternative does not repair a stale primary table. Preserve
+    # the existing parent identity and report its exact failed fields, including
+    # targeted runs without the Defence-only primary scope.
+    isolated = {c['isin'] for c in configs if c.get('isolateAllocationFailures')
+                and c.get('allocationFallback') != MODE}
+    for row in report['records']:
+        partial = row.get('collectionErrors', []) if row['isin'] in isolated else []
+        if not partial:
+            continue
+        successes = [item for item in successes if item['id'] != row['isin']]
+        errors.append({'id': row['isin'], 'name': row['isin'],
+            'field': ', '.join(sorted({e['field'] for e in partial})),
+            'error': ' ; '.join(e.get('reason','Unqualified primary field') for e in partial),
+            'phase': 'validation', 'sourceAttempted': True,
+            'qualifiedAlternativeAvailable': all(e.get('fallbackQualified') for e in partial)})
     observed = {r['isin']: r for r in [*report['records'], *report['excluded']]}
     for config in configs:
         if config.get('allocationFallback') != MODE:
