@@ -26,10 +26,10 @@ try {
   assert.deepEqual(projected.MIDDAY_SELECTIONS, canonical.MIDDAY_SELECTIONS)
   const paths = new Set(canonical.EDITORIAL_WEEK.flatMap(day => [...day.morning, ...day.midday, ...day.evening].map(entry => entry.path)))
   for (const path of [...paths, '/absent']) assert.equal(projected.publicationLabel(path), canonical.publicationLabel(path))
-  const changed = source.replace('Performances en rotation', 'Nouveau choix en rotation')
+  const changed = source.replace('Ton bilan de la semaine', 'Nouveau bilan de la semaine')
   writeFileSync(filename, changed)
   await plugin.transform.call({}, changed, filename)
-  assert.ok((await plugin.load(virtual)).includes('Nouveau choix en rotation'), 'Projection follows current authored choices')
+  assert.ok((await plugin.load(virtual)).includes('Nouveau bilan de la semaine'), 'Projection follows current authored choices')
   const { createServer } = await import('vite')
   const server = await createServer({ configFile: false, server: { middlewareMode: true, watch: null }, plugins: [projectEditorialCalendar()] })
   try {

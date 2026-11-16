@@ -4,6 +4,8 @@ Même suivi #881 : `fix/stable-json-code-budget-20261116` possède uniquement la
 projection build du calendrier, sa recette, son raccord Vite/prebuild et cette
 note. #1362 conserve intégralement les choix, notes et fonctions éditoriales.
 Échec ETF43896218366 à892261/892000octets : aucune hausse de budget.
+Après01391687 : refus distinct investisseurs725098/725000 dans le build local.
+La projection suit les constantes réellement déclarées sans restaurer MIDDAY_SELECTIONS.
 Les seules valeurs statiques sont projetées ; les fonctions restent comptées
 comme code. #1359/#1361 et les producteurs financiers ne sont pas modifiés.
 Enregistrement et publication réels restent à prouver après fusion.

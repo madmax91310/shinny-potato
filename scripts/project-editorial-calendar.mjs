@@ -25,10 +25,11 @@ export function projectEditorialCalendar({ filename = fileURLToPath(new URL('../
       if (id.split('?')[0] !== filename) return
       const parsed = parseSync(filename, source)
       if (parsed.errors.length) throw Error('Invalid editorial calendar')
-      const names = ['MIDDAY_SELECTIONS', 'EDITORIAL_WEEK']
+      const allowed = ['MIDDAY_SELECTIONS', 'EDITORIAL_WEEK']
       const initializers = parsed.program.body.flatMap(node => node.type === 'ExportNamedDeclaration' && node.declaration?.type === 'VariableDeclaration'
-        ? node.declaration.declarations.filter(decl => names.includes(decl.id?.name)).map(decl => ({ name: decl.id.name, init: decl.init })) : [])
-      if (initializers.length !== names.length) throw Error('Missing static editorial calendar exports')
+        ? node.declaration.declarations.filter(decl => allowed.includes(decl.id?.name)).map(decl => ({ name: decl.id.name, init: decl.init })) : [])
+      if (!initializers.some(item => item.name === 'EDITORIAL_WEEK')) throw Error('Missing static editorial calendar export')
+      const names = initializers.map(item => item.name)
       const canonical = await import(`${pathToFileURL(filename).href}?projection=${createHash('sha256').update(source).digest('hex')}`)
       values = Object.fromEntries(names.map(name => [name, canonical[name]]))
       for (const { name, init } of initializers.sort((a, b) => b.init.start - a.init.start)) {
