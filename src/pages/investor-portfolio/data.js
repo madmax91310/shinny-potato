@@ -25,10 +25,15 @@ const SHORT_NAMES = { AMZN: 'Amazon', MU: 'Micron', TSM: 'TSMC', GOOG: 'Alphabet
   LRCX: 'Lam Research', AMAT: 'Applied Materials', NVDA: 'Nvidia', META: 'Meta', INTC: 'Intel', UTHR: 'United Therapeutics',
 }
 const COMPANY_NAMES = { apple:'Apple', amazon:'Amazon', alphabet:'Alphabet', microsoft:'Microsoft', micron:'Micron', tsmc:'TSMC', nvidia:'Nvidia', meta:'Meta', tesla:'Tesla', cocacola:'Coca-Cola', 'bank-of-america':'Bank of America', 'american-express':'American Express', broadcom:'Broadcom', asml:'ASML', berkshire:'Berkshire Hathaway', visa:'Visa' }
+// Editorial identity from Tepper's SEC row (2026-06-30), CUSIP and class together.
+// Never label every iShares security as the same ETF from the issuer name alone.
+const SECURITY_NAMES = { '464286772': { shareClass: 'MSCI STH KOR ETF', name: 'ETF MSCI Corée du Sud' } }
 export function holdingName(row) {
-  return SHORT_NAMES[row.ticker] || COMPANY_NAMES[logoIdentity(row)?.id] || (row.issuerName === row.issuerName.toUpperCase()
+  const security = SECURITY_NAMES[row.cusip]
+  if (security && security.shareClass === row.shareClass) return security.name
+  return (SHORT_NAMES[row.ticker] || COMPANY_NAMES[logoIdentity(row)?.id] || (row.issuerName === row.issuerName.toUpperCase()
     ? row.issuerName.toLocaleLowerCase('fr-FR').replace(/\b\p{L}/gu, (letter) => letter.toLocaleUpperCase('fr-FR'))
-    : row.issuerName)
+    : row.issuerName)).replace(/(?:\s*,\s*)+$/g, '').trim()
 }
 
 export function normalizePortfolio(payload) {

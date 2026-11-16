@@ -58,7 +58,7 @@ export function colorPositions(rows) {
 export const posterCash=(value,currency)=>cash(value,currency).replace(/\s*\$US/,' $')
 export function shortPosition(row) {
   let name=String(row.displayLabel || row.issuerName || '').replace(/ \([A-Z0-9*@#]{9}\)$/,'')
-    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co)\b\.?/gi,'').replace(/Berkshire Hathaway/i,'Berkshire').replace(/\s+/g,' ').trim()
+    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co)\b\.?/gi,'').replace(/Berkshire Hathaway/i,'Berkshire').replace(/\s+/g,' ').replace(/(?:\s*,\s*)+$/g,'').trim()
   // Preserve an explicit class discriminator; never merge securities to save space.
   if(/ \([A-Z0-9*@#]{9}\)$/.test(row.displayLabel || '')) {
     const cls=row.shareClass?.match(/(?:CL|CLASS)\s+([A-Z])\b/i)?.[1]
@@ -102,7 +102,7 @@ export function publicationPlan(portfolio) {
   for (let n = 1; n <= Math.min(sorted.length, capacity); n++) {
     const selected = sorted.slice(0,n).map(r => ({ ...r, label: shortPosition(r), weight: r.value / total }))
     const rest = sorted.slice(n)
-    if (rest.length) selected.push({ issuerName: 'Autres positions', label: 'Autres', ticker: '', other: true, count: rest.length, value: rest.reduce((s,r) => s + r.value, 0), weight: rest.reduce((s,r) => s + r.value, 0) / total })
+    if (rest.length) selected.push({ issuerName: 'Autres positions', label: 'Autres', ticker: '', other: true, currency: portfolio.snapshot.currency, unit: 1, count: rest.length, value: rest.reduce((s,r) => s + r.value, 0), weight: rest.reduce((s,r) => s + r.value, 0) / total })
     // Rotate the real sectors to balance the available label space. Midpoints between
     // all side-transition angles cover every possible split without moving
     // labels across the donut or changing a single sector's proportion.
