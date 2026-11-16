@@ -60,8 +60,8 @@ jobs:
         with:
           name: investor-observations
           path: |
-            ${{ runner.temp }}/investor-observations*.json
-            ${{ runner.temp }}/**/*.contract-plan.json
+            ${{ runner.temp }}/investor-observations.json
+            ${{ runner.temp }}/investor-observations.contract-plan.json
           retention-days: 35
   update:
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
@@ -119,8 +119,15 @@ jobs:
         with:
           name: investor-observations
           path: |
-            ${{ runner.temp }}/investor-observations*.json
-            ${{ runner.temp }}/**/*.contract-plan.json
+            ${{ runner.temp }}/investor-observations.json
+            ${{ runner.temp }}/investor-observations.contract-plan.json
+          retention-days: 35
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investor-recording-attempts
+          path: ${{ runner.temp }}/investor-recording-attempts/
+          if-no-files-found: ignore
           retention-days: 35
   # GITHUB_TOKEN pushes do not trigger the usual push workflow. Explicitly reuse
   # the same checked build and Pages deployment for the newly committed snapshot.

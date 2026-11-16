@@ -6,6 +6,7 @@ import shlex
 from pathlib import Path
 import subprocess
 import tempfile
+from contextlib import contextmanager
 
 ROOT = Path(__file__).resolve().parents[1]
 WRITER = ['bash','scripts/commit-validated-data.sh','Update SEC 13F portfolios and preserve prior quarters','public/data/investors']
@@ -22,6 +23,35 @@ def record(root, report, output, command):
     return subprocess.run(command, cwd=root, env=env).returncode
 
 
+def copy_report_evidence(source, target):
+    """Preserve the actual last attempt, including a missing/invalid report.
+
+    A retry keeps the canonical basename: the declared plan must still match
+    the registered report. Its immutable originals live in a support artifact.
+    """
+    if source == target:
+        return
+    if source.exists():
+        target.write_bytes(source.read_bytes())
+    else:
+        target.unlink(missing_ok=True)
+    plan = source.with_name(source.stem + '.contract-plan.json')
+    destination = target.with_name(target.stem + '.contract-plan.json')
+    if plan.exists():
+        destination.write_bytes(plan.read_bytes())
+    else:
+        destination.unlink(missing_ok=True)
+
+
+@contextmanager
+def preserve_latest_report(target):
+    state = {'path': target}
+    try:
+        yield state
+    finally:
+        copy_report_evidence(state['path'], target)
+
+
 def publish(root, report, attempts=3, command=None):
     command = command or WRITER
     if command != WRITER:
@@ -30,10 +60,16 @@ def publish(root, report, attempts=3, command=None):
     if not cache.is_absolute(): cache = (root/cache).resolve()
     network_env = {**os.environ, 'INVESTOR_HTTP_CACHE': str(cache)}
     report = report.resolve()
-    report.with_name(report.stem+'-attempt-1.json').write_bytes(report.read_bytes())
+    evidence = report.parent / 'investor-recording-attempts'
+    original = evidence / 'attempt-1' / report.name
+    original.parent.mkdir(parents=True, exist_ok=True)
+    original.write_bytes(report.read_bytes())
+    plan = report.with_name(report.stem + '.contract-plan.json')
+    if plan.exists():
+        original.with_name(original.stem + '.contract-plan.json').write_bytes(plan.read_bytes())
     # Each retry gets its own checkout. The caller's files/index and all other
     # writers remain untouched, and the original financial guard still runs.
-    with tempfile.TemporaryDirectory(prefix='investor-recollect-') as temp:
+    with tempfile.TemporaryDirectory(prefix='investor-recollect-') as temp, preserve_latest_report(report) as evidence_state:
         temp = Path(temp)
         current, current_report = root, report
         for attempt in range(1, attempts + 1):
@@ -44,8 +80,7 @@ def publish(root, report, attempts=3, command=None):
                 result = dict(line.split('=', 1) for line in output.read_text().splitlines())
                 data = json.loads(current_report.read_text())
                 result['collection_failed'] = str(any(r['status'] == 'failed' for r in data['managers'])).lower()
-                if current_report != report:
-                    report.write_bytes(current_report.read_bytes())
+                copy_report_evidence(current_report, report)
                 return result
             run(['git', 'fetch', 'origin', 'master'], root)
             latest = subprocess.check_output(['git', 'rev-parse', 'FETCH_HEAD'], cwd=root, text=True).strip()
@@ -54,7 +89,9 @@ def publish(root, report, attempts=3, command=None):
             checkout = temp / f'checkout-{attempt}'
             run(['git', 'worktree', 'add', '--detach', str(checkout), latest], root)
             try:
-                current_report = report.with_name(f'{report.stem}-attempt-{attempt+1}.json')
+                current_report = evidence / f'attempt-{attempt+1}' / report.name
+                current_report.parent.mkdir(parents=True, exist_ok=True)
+                evidence_state['path'] = current_report
                 current_report.unlink(missing_ok=True)
                 # Reuse the existing acquisition and validator, including explicit
                 # partial-source results and byte-for-byte failed-file retention.
@@ -67,6 +104,7 @@ def publish(root, report, attempts=3, command=None):
                 # can only publish its own freshly revalidated observations.
                 current = checkout
             except BaseException:
+                copy_report_evidence(current_report, report)
                 run(['git', 'worktree', 'remove', '--force', str(checkout)], root)
                 raise
         raise RuntimeError('13F retry budget exhausted')

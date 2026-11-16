@@ -1,5 +1,22 @@
 ## 15 novembre — reprise bornée des origines officielles ABTC
 
+### 16 novembre — contrat des tentatives 13F, même suivi #881
+
+Base 53ff24bc, après #1344/#1348 ; #1349 possède uniquement la reprise SCPI.
+Ce complément possède le conditionnement des rapports 13F, sa recette et le
+classement technique minimal d'une copie historique dans publish_automation_status.py.
+Le run réel 43823335908 contient une copie attempt-1 strictement identique au
+rapport enregistré, avec plan préalable vérifié. Elle ne représente ni un second
+contrôle fournisseur ni une troisième panne financière. La reconnaissance exige
+le nom exact, les octets identiques et le plan valide ; toute autre omission ou
+différence reste une erreur. Les deux conflits d'unités financiers demeurent.
+Les futures tentatives sont conservées dans un artefact de support distinct ;
+le rapport courant garde son nom et son plan, y compris après interruption.
+Aucun collecteur, seuil financier, interface ou contrat partagé n'est assoupli.
+La relecture historique doit viser le run d'origine ; un succès ultérieur ne
+certifie pas rétrospectivement une tentative antérieure. Aucun fichier des PR
+#1351/#1298/#1253/#1061 n'est pris en charge.
+
 Branche `fix/abtc-qualified-origin-failover-20261115`, même suivi #881 : helper calendrier partagé, consommateur NAV mensuel, régressions ABTC et leurs trois commandes CI. Les PR #1298, #1253 et #1061 ne sont pas modifiées. Incident réel du producteur ETF43715089091 : historique secondaire HTTP410 ; page officielle déclare primaire et secondaire, bundle primaire qualifié localement. Le secondaire fonctionne à nouveau au contrôle suivant : panne intermittente, pas indisponibilité générale. Après erreur de transport uniquement, une tentative sur l'autre origine reprend les trois documents ensemble et applique les contrôles financiers existants. Aucune bascule sur erreur financière, aucun mélange de documents/cache, aucun double ajustement. Échec primaire conservé séparément ; collecte réelle GitHub et publication restent à vérifier. Les preuves du lot précédent bc4b7a73/données84597a39 sont conservées.
 
 ## Suite du même lot #881 — manifeste des nouveaux fichiers de données
