@@ -744,3 +744,23 @@ Quatre parts L&G existantes sont concernées, sans ajout au catalogue. Aucun
 chiffre vivant, seuil, contrat de supervision, mécanisme de reprise ou maquette
 modifié. Les essais 2027 ne modifient que des objets isolés en mémoire. Une
 recette verte ne prouve pas l'acquisition réelle fin 2026 ni un futur cron.
+
+Complément du même lot, priorité aux pannes actives : l'observation ordinaire
+43781619011 contient six refus complets, devenus actifs au passage du 15 au
+16 novembre. Pays au 1er octobre (46 jours) contre positions et autres champs
+récents. Réponses exactes des six produits relues ; l'ancien parseur refuse
+chaque fiche à cause de ce seul champ. Configuration `etf-pilot.json` : activation
+du mécanisme existant d'isolation pour IE00B1FZS350, IE00B3F81R35, IE00B4WXJJ64,
+IE00B66F4759, IE00BF3N7094 et IE00BFZPF546. Aucun seuil, parseur ni mécanisme
+partagé de supervision modifié. Identité, devise et conventions restent strictes.
+Le producteur ordinaire peut alors exécuter son secours déjà qualifié : pays de
+risque de toutes les positions publiées du 13 novembre, cash et inconnus compris,
+poids d'origine. Méthode explicite différente de la table primaire. Le refus
+primaire demeure dans `collectionErrors`, même si le secours fonctionne. Sans
+secours admissible, dernières valeurs et dates conservées ; les performances et
+autres champs valides continuent. Le top 10 ne devient pas un livre intégral.
+Rejeu isolé des six réponses réelles jusqu'au merge de stockage réussi et
+idempotent ; fixture brute publique et tests du seuil 45/46, identité, devise de
+rendement, conservation des dates et panne double. Acquisition GitHub, publication
+et consommation restent à démontrer après la fusion du lot. Les crons du 16 ne
+sont pas annoncés réussis à partir de leur seule échéance nominale.
