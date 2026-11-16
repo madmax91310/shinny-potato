@@ -161,6 +161,38 @@ class IssuerSources(unittest.TestCase):
         with self.assertRaises(ValueError):lg(c,s,NOW,'h')
         with self.assertRaises(ValueError):decode([{'code_name':'x'},{'code_name':'x'}],[1,2])
 
+    def test_lg_completed_calendar_window_advances_without_inventing_a_year(self):
+        payload=json.loads((FIX/'lg.json').read_text());s=share('IE00BF0M2Z96')
+        now=dt.datetime(2027,1,12,tzinfo=UTC)
+        payload['metadata']['as_at_date']='2027-01-10'
+        payload['metadata']['year_end_date']='2026-12-31'
+        fields=[f['code_name'] for f in payload['metadata']['share_class_fields']]
+        data=payload['funds'][0]['share_classes'][0]['data']
+        data[fields.index('netAssetValueFund__date')]='2027-01-10'
+        data[fields.index('factSheet')][0][3]='2027-01-10'
+        # A publisher may retain only six completed calendar observations.
+        for offset in range(7,11):
+            if f'cal{offset}y' in fields:data[fields.index(f'cal{offset}y')]=None
+        result=lg(payload,s,now,'isolated-source-response')
+        self.assertEqual(set(result['performance']['years']),set(map(str,range(2021,2027))))
+        self.assertEqual(result['performance']['years']['2026'],72.17)
+        self.assertFalse(any(reason.startswith('performance:') for reason in result['unavailable']))
+        self.assertNotIn('2020',result['performance']['years'])
+        # A hole remains explicit; the other published annual values survive.
+        gapped=copy.deepcopy(payload)
+        gapped['funds'][0]['share_classes'][0]['data'][fields.index('cal3y')]=None
+        result=lg(gapped,s,now,'isolated-gap')
+        self.assertNotIn('2024',result['performance']['years'])
+        self.assertTrue(any('2021–2026' in reason for reason in result['unavailable']))
+        # A delayed publisher cannot create 2026 from its still-labelled 2025 data.
+        delayed=copy.deepcopy(payload);delayed['metadata']['year_end_date']='2025-12-31'
+        result=lg(delayed,s,now,'isolated-delayed-publication')
+        self.assertNotIn('2026',result['performance']['years'])
+        self.assertFalse(any(reason.startswith('performance:') for reason in result['unavailable']))
+        unfinished=copy.deepcopy(payload);unfinished['metadata']['year_end_date']='2027-12-31'
+        with self.assertRaisesRegex(ValueError,'Unfinished L&G calendar year'):
+            lg(unfinished,s,now,'isolated-current-year')
+
     def test_coinshares_price_table_never_fund_performance(self):
         for isin,file,fee in [('GB00BLD4ZL17','coinshares.txt',.15),('GB00BLD4ZM24','coinshares-eth.txt',0)]:
             text=(FIX/file).read_text();s=share(isin);r=coinshares(text,s,NOW,'h')

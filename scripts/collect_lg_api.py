@@ -36,8 +36,11 @@ def parse(payload, share, now, digest):
     for offset in range(1,11):
         y=last-offset+1;value=data.get(f'cal{offset}y')
         if value is not None and launch<=f'{y}-01-01' and y>=2020:years[str(y)]=bounded_return(float(value))
-    if any(str(y) not in years for y in range(2020,2026)):
-        result['unavailable'].append('performance: incomplete 2020–2025 calendar window; existing simulation proxy preserved')
+    # Follow the publisher's labelled last completed year, not a frozen archive
+    # or the wall clock: delayed January publication must not invent a return.
+    first=last-5
+    if any(str(y) not in years for y in range(first,last+1)):
+        result['unavailable'].append(f'performance: incomplete {first}–{last} calendar window; existing simulation proxy preserved')
     result['performance']={'currency':share['currency'],'basis':'fund','years':years,'asOf':stamp,
                           'method':'calendar-year exact-share NAV total return, net income reinvested, net of fees',
                           'sourceUrl':share['sourceUrl'],'sha256':digest}

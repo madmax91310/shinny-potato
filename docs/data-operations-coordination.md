@@ -727,3 +727,20 @@ L’ancien fichier de capacités reste inchangé pour les anciens producteurs.
 Le prochain enregistrement ordinaire et son ingestion publique restent à prouver.
 
 Le décodeur du nouveau format est différé jusqu’à la présence de son marqueur ; les vérifications bornées UTF-8/gzip/SHA-256 sont communes avec le format historique. Les budgets de route et de chunk restent inchangés. Rejeu navigateur et écriture GitHub restent des preuves distinctes des égalités Python/Node.
+
+### 16 novembre — fenêtre annuelle L&G après le bilan 8211204f
+
+Même suivi #881, branche `fix/rolling-landg-calendar-20261116`, départ master
+8895d8e4 après #1337 et les dernières observations ETF. Propriété limitée à
+`collect_lg_api.py` et sa recette déjà exécutée par le producteur ordinaire
+`test_new_issuer_sources.py`. Les PR #1298/#1253/#1061 restent indépendantes.
+La condition de disponibilité six ans était figée sur 2020–2025 ; un rejeu
+isolé d'une réponse 2021–2026 la reproduit comme fausse lacune. La fenêtre suit
+maintenant la dernière année civile explicitement publiée par la source, avec
+les mêmes six années consécutives requises. Trou, lancement partiel et année
+inachevée restent refusés ; un fournisseur encore étiqueté 2025 en janvier 2027
+ne produit jamais 2026. Les observations historiques ne sont pas prolongées.
+Quatre parts L&G existantes sont concernées, sans ajout au catalogue. Aucun
+chiffre vivant, seuil, contrat de supervision, mécanisme de reprise ou maquette
+modifié. Les essais 2027 ne modifient que des objets isolés en mémoire. Une
+recette verte ne prouve pas l'acquisition réelle fin 2026 ni un futur cron.
