@@ -114,6 +114,7 @@ assert.equal(creationCalls.filter(row => row.options.method === 'PUT').length, 1
 const workflow = readFileSync(new URL('../.github/workflows/refresh-public-portfolios.yml', import.meta.url), 'utf8');
 assert(workflow.includes("cron: '10 6 * * *'"));
 assert(workflow.includes('cancel-in-progress: false'));
+assert(workflow.includes('queue: max'));
 assert(!workflow.includes('commit-validated-data') && !workflow.includes('deploy-pages.yml'));
 execFileSync('python3', ['-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_public_portfolio_collector.py'], { stdio: 'inherit' });
 console.log('Réserve sourcée : 20 profils, migration/doublons/suppression, relevés partiels, pannes sans perte, historique, validation du flux et publication avec bail vérifiés.');
