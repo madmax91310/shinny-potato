@@ -37,7 +37,7 @@ try{
   await page.getByText('Brouillons et transfert entre appareils',{exact:true}).click()
   const download=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click()
   const backup=JSON.parse(readFileSync(await(await download).path(),'utf8'))
-  assert.equal(backup.version,4);const saved=backup.workspace.drafts.find(d=>d.profile.id===profile.id);assert.equal(saved.text,custom);assert.equal(saved.textFinance,budgetFinancialReference(profile));assert.equal(backup.workspace.publicationDates[profile.id],'2026-10-14')
+  assert.equal(backup.version,5);const saved=backup.workspace.drafts.find(d=>d.profile.id===profile.id);assert.equal(saved.text,custom);assert.equal(saved.textFinance,budgetFinancialReference(profile));assert.equal(backup.workspace.publicationDates[profile.id],'2026-10-14')
   await upload(page,legacy);await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('conflit');await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click();await expect(warning).toHaveCount(0)
   await upload(page,legacy);await page.getByLabel('Gestion des conflits',{exact:true}).selectOption('use-imported');await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click();await expect(text).toHaveValue(custom);await expect(warning).toBeVisible();await statuses()
   await page.getByText('Source et vérification du profil',{exact:true}).click()

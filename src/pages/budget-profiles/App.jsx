@@ -4,16 +4,18 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
+import { analyzeBudget, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
 import { budgetFinancialReference, staleBudgetText } from './completion.js'
-import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, peekWorkspace, WORKSPACE_KEY } from './storage.js'
+import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, peekWorkspace, WORKSPACE_KEY } from './workspace.js'
 import { publicationLabel } from '../../lib/publication-date.js'
-import PublicationStatus from './PublicationStatus.jsx'
 import { useBudgetImage } from './useBudgetImage.js'
 import '../dca-profiles/dca-profiles.css'
 import './budget-profiles.css'
 
 const profiles = [...BUDGET_PROFILES].sort(compareBudgetRecency)
+const PublicationStatus = lazy(() => import('./PublicationStatus.jsx'))
+const PreparationPanel = lazy(() => import('./PreparationPanel.jsx'))
+const PublicationQueue = lazy(() => import('./PublicationQueue.jsx'))
 const PublicationSelection = lazy(() => import('./PublicationSelection.jsx'))
 const BackupPanel = lazy(() => import('./BackupPanel.jsx'))
 const SourceEvidencePanel = lazy(() => import('./SourceEvidencePanel.jsx'))
@@ -32,6 +34,7 @@ export default function App() {
   const [publishedInitial] = useState(loadPublished), [published, setPublished] = useState(publishedInitial.value)
   const [publicationDates, setPublicationDates] = useState(publishedInitial.dates)
   const [queuedInitial] = useState(loadQueued), [queued, setQueued] = useState(queuedInitial.value)
+  const [scheduledDates, setScheduledDates] = useState(queuedInitial.dates)
   const [saved, setSaved] = useState(loadSavedDrafts)
   const [subscriberOpen, setSubscriberOpen] = useState(initial.value.profile.kind === 'participant')
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
@@ -48,7 +51,7 @@ export default function App() {
     if (!saveDraft(record)) setFeedback('Brouillon en mémoire : le stockage est indisponible, illisible ou modifié dans un autre onglet. Les données précédentes sont conservées.')
   }, [record])
   useEffect(() => {
-    const changed = event => { if (event.key === WORKSPACE_KEY || event.key === null) { const latest=peekWorkspace(); if(latest.readable){setPublished(latest.value.published);setPublicationDates(latest.value.publicationDates);setUsed(latest.value.used);setQueued(latest.value.queued)} setFeedback('Les données ont changé dans un autre onglet. Recharge la page après avoir conservé ton texte en cours.') } }
+    const changed = event => { if (event.key === WORKSPACE_KEY || event.key === null) { const latest=peekWorkspace(); if(latest.readable){setPublished(latest.value.published);setPublicationDates(latest.value.publicationDates);setUsed(latest.value.used);setQueued(latest.value.queued);setScheduledDates(latest.value.scheduledDates)} setFeedback('Les données ont changé dans un autre onglet. Recharge la page après avoir conservé ton texte en cours.') } }
     window.addEventListener('storage', changed); return () => window.removeEventListener('storage', changed)
   }, [])
   const a = analyzeBudget(profile), image = useBudgetImage(profile, !a.errors.length, imageMode)
@@ -66,12 +69,12 @@ export default function App() {
     if (!pool.length) { seen.current = new Set([profile.id]); pool = filtered.filter(p => p.id !== profile.id) }
     choose(pool[Math.floor(Math.random() * pool.length)])
   }
-  function adapt() {
-    const p = { ...structuredClone(profile), id: `participation-${crypto.randomUUID()}`, name: budgetDisplayName(profile), kind: 'participant', source: null, publishedAt: null, checkedAt: null,
-      income: budgetPublicIncomeRows(profile), expenses: budgetPublicExpenseRows(profile), savings: budgetPublicSavingsRows(profile),
-      incomeNote: '', context: '', caveat: '', hook: '', question: '' }
-    setSubscriberOpen(true); choose(p)
+  async function adapt() {
+    const { duplicateBudget } = await import('./manual.js')
+    const next = duplicateBudget(record, `participation-${crypto.randomUUID()}`)
+    setSubscriberOpen(true); setApproved(false); setRecord(next); setFeedback('Copie créée avec un nouvel identifiant. Vérifie la présentation et les lignes avant de publier.')
   }
+
   function createSubscriber() { setSubscriberOpen(true); choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` }) }
   function toggleUsed() {
     const next = used.includes(profile.id) ? used.filter(id => id !== profile.id) : [...used, profile.id]
@@ -84,10 +87,13 @@ export default function App() {
     if (savePublished(next, dates)) { setPublished(next); setPublicationDates(dates); setFeedback(checked ? 'Publication déclarée enregistrée.' : 'Statut publié retiré.'); return true }
     setFeedback('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.'); return false
   }
+  function changeQueue(ids, dates = scheduledDates) {
+    const nextDates = Object.fromEntries(Object.entries(dates).filter(([id]) => ids.includes(id)))
+    if (saveQueued(ids, nextDates)) { setQueued(ids); setScheduledDates(nextDates); setFeedback('File et dates prévues enregistrées.'); return true }
+    setFeedback('La file n’a pas été enregistrée : le stockage est inaccessible ou a changé dans un autre onglet. Les données précédentes sont conservées.'); return false
+  }
   function markQueued(checked) {
-    const next = checked ? [...new Set([...queued, profile.id])] : queued.filter(id => id !== profile.id)
-    if (saveQueued(next)) { setQueued(next); setFeedback('Statut à publier prochainement mis à jour.') }
-    else setFeedback('Le statut n’a pas pu être enregistré. Les données précédentes sont conservées.')
+    changeQueue(checked ? [...new Set([...queued, profile.id])] : queued.filter(id => id !== profile.id))
   }
   function addPublicationSelection(ids) {
     const selected = ids.filter(id => profiles.some(p => p.id === id) && !published.includes(id))
@@ -97,7 +103,7 @@ export default function App() {
   }
   function restored() {
     memoryDrafts.current = new Map(loadSavedDrafts().map(d => [d.profile.id, d]))
-    setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setPublicationDates(loadPublished().dates); setQueued(loadQueued().value); setSaved(loadSavedDrafts())
+    setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setPublicationDates(loadPublished().dates); setQueued(loadQueued().value); setScheduledDates(loadQueued().dates); setSaved(loadSavedDrafts())
   }
   function filter(key, title, options) {
     return <label>{title}<ChoicePicker aria-label={title} value={filters[key]} onChange={e => setFilters({ ...filters, [key]: e.target.value })}><option value="">Tous</option>{options.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</ChoicePicker></label>
@@ -106,7 +112,7 @@ export default function App() {
   return <div className="dca-profiles-scope dca-simple budget-profiles-scope">
     <PageHeader title="Le budget de…" subtitle="Choisis un profil ou prépare une participation, puis récupère le texte et l’image."/>
     {(!initial.readable || !usageInitial.readable || !publishedInitial.readable || !queuedInitial.readable) && <p role="alert">Un ancien enregistrement local est illisible. Il est conservé sans modification.</p>}
-    <PublicationStatus checkbox key={profile.id} lockName={WORKSPACE_KEY} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/>
+    <Suspense fallback={<p>Chargement du suivi…</p>}><PublicationStatus checkbox key={profile.id} lockName={WORKSPACE_KEY} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/></Suspense>
     <details className="dca-simple-card" onToggle={e => { if (e.currentTarget.open) setBackupOpen(true) }}><summary>Brouillons et transfert entre appareils</summary>
       {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''} · {published.includes(d.profile.id)?publicationLabel(publicationDates[d.profile.id]):'Non publié'}</option>)}</ChoicePicker></label>}
       {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
@@ -114,6 +120,7 @@ export default function App() {
     <details className="dca-simple-card"><summary>Préparer les prochaines publications</summary>
       <Suspense fallback={<p>Chargement de la sélection…</p>}><PublicationSelection used={used} published={published} publicationDates={publicationDates} queued={queued} onAdd={addPublicationSelection}/></Suspense>
     </details>
+    <details className="dca-simple-card"><summary>Ma file de publication · {queued.length} profil(s)</summary><Suspense fallback={<p>Chargement…</p>}><PublicationQueue profiles={[...profiles, ...saved.filter(d => d.profile.kind === 'participant').map(d => d.profile)]} queued={queued} scheduledDates={scheduledDates} published={published} publicationDates={publicationDates} onChange={changeQueue} onChoose={choose}/></Suspense></details>
     <details className="dca-simple-card budget-subscribers" open={subscriberOpen} onToggle={e => setSubscriberOpen(e.currentTarget.open)}>
       <summary>Mes profils d’abonnés</summary>
       {subscriberOpen && <Suspense fallback={<p>Chargement des profils…</p>}><SubscriberProfiles drafts={saved} activeId={profile.id} onCreate={createSubscriber} onChoose={choose} published={published} publicationDates={publicationDates}/></Suspense>}
@@ -146,6 +153,7 @@ export default function App() {
 
           <Button variant="secondary" onClick={adapt}>Adapter ce budget</Button>
         </>}
+        {!prepared && <Button variant="secondary" onClick={adapt}>Dupliquer ce profil</Button>}
         {!prepared && <Suspense fallback={<p>Chargement de la participation…</p>}><ParticipantEditor profile={profile} edit={edit}/></Suspense>}
         {!!a.errors.length && <div className="dca-errors" role="alert">{a.errors.map(error => <p key={error}>{error}</p>)}</div>}
         {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Reste disponible après versements</dt><dd>{money(a.balance)}</dd></div>}</dl>}
@@ -166,6 +174,7 @@ export default function App() {
             {image.error && <Button variant="secondary" onClick={image.retry}>Réessayer l’image</Button>}
           </div><p role="status">{image.error || (image.busy ? 'Préparation de l’image…' : '')}</p>
         </section>
+        <details className="dca-simple-card"><summary>Vérifier et télécharger la publication</summary><Suspense fallback={<p>Chargement…</p>}><PreparationPanel record={record} image={image} onFeedback={setFeedback}/></Suspense></details>
         <section className="dca-simple-card dca-text-card">
           <label htmlFor="budget-draft">Texte prêt à publier</label><textarea id="budget-draft" maxLength={20000} value={text} onChange={e => { setApproved(false); setRecord({ ...record, text: e.target.value, edited: true }) }}/>
           {staleBudgetText(record) && <div className="dca-errors" role="alert"><p>Les montants du budget ont changé. Votre texte personnalisé est conservé, mais il peut encore afficher les anciens chiffres. « Rétablir le texte » le régénère volontairement.</p><Button variant="secondary" onClick={() => setRecord({ ...record, textFinance: budgetFinancialReference(profile) })}>J’ai vérifié les montants de mon texte</Button></div>}

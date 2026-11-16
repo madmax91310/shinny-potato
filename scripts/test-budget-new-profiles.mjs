@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import entries from '../src/pages/budget-profiles/editorial-profiles-2026-11-15.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_REFERENCE_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_ROADMAP_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_REFERENCE_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_ROADMAP_EDITORIAL_PROFILES, BUDGET_STUDIO_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, budgetPublicPresentation, validBudget, sourceReply, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 import { validDraft, validWorkspace, parseBudgetBackup } from '../src/pages/budget-profiles/storage.js'
@@ -15,8 +15,8 @@ const expected = [
   ['Cédric',280000,100000,100000,80000],
 ]
 assert.equal(entries.length,7)
-assert.deepEqual(BUDGET_PROFILES.map(p=>p.id), [...BUDGET_REFERENCE_PROFILES,...BUDGET_NEW_EDITORIAL_PROFILES,...BUDGET_QUALIFIED_EDITORIAL_PROFILES,...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,...BUDGET_ROADMAP_EDITORIAL_PROFILES].map(p=>p.id))
-assert.equal(BUDGET_PROFILES.length,BUDGET_REFERENCE_PROFILES.length+entries.length+BUDGET_QUALIFIED_EDITORIAL_PROFILES.length+BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES.length+BUDGET_ROADMAP_EDITORIAL_PROFILES.length)
+assert.deepEqual(BUDGET_PROFILES.map(p=>p.id), [...BUDGET_REFERENCE_PROFILES,...BUDGET_NEW_EDITORIAL_PROFILES,...BUDGET_QUALIFIED_EDITORIAL_PROFILES,...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,...BUDGET_ROADMAP_EDITORIAL_PROFILES,...BUDGET_STUDIO_EDITORIAL_PROFILES].map(p=>p.id))
+assert.equal(BUDGET_PROFILES.length,BUDGET_REFERENCE_PROFILES.length+entries.length+BUDGET_QUALIFIED_EDITORIAL_PROFILES.length+BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES.length+BUDGET_ROADMAP_EDITORIAL_PROFILES.length+BUDGET_STUDIO_EDITORIAL_PROFILES.length)
 assert(!BUDGET_NEW_EDITORIAL_PROFILES.some(p=>p.name==='Hélène'||p.age===76))
 assert.equal(new Set(BUDGET_PROFILES.map(p=>p.id)).size,BUDGET_PROFILES.length)
 assert.deepEqual(Object.keys(BUDGET_PUBLICATION_CONTEXT).sort(),BUDGET_PROFILES.map(p=>p.id).sort())
@@ -46,8 +46,8 @@ for(const [i,entry] of entries.entries()) {
   const custom={profile:p,text:'Mon texte personnel conservé',edited:true,textFinance:budgetFinancialReference(p)}
   assert(validDraft(custom));assert.equal(refreshBudgetDraft(custom).text,custom.text)
   assert.equal(refreshBudgetDraft({...custom,edited:false}).text,text)
-  const workspace={version:4,drafts:[custom],activeId:p.id,used:[p.id],published:[p.id],queued:[p.id],publicationDates:{[p.id]:'2026-11-15'}}
-  assert(validWorkspace(workspace));assert.deepEqual(parseBudgetBackup(JSON.stringify({format:'le-budget-de',version:4,readable:true,workspace})),workspace)
+  const workspace={version:5,scheduledDates:{},drafts:[custom],activeId:p.id,used:[p.id],published:[p.id],queued:[p.id],publicationDates:{[p.id]:'2026-11-15'}}
+  assert(validWorkspace(workspace));assert.deepEqual(parseBudgetBackup(JSON.stringify({format:'le-budget-de',version:5,readable:true,workspace})),workspace)
   for(const f of entry.creation.finance.filter(f=>f.type==='project')) assert.equal(f.initialFunding+f.monthlyFunding*f.horizonMonths,f.targetAmount)
 }
 

@@ -146,5 +146,9 @@
   "BUDGET_BATCH=roadmap node scripts/playwright-budget-new-profiles.mjs 1440",
   "BUDGET_BATCH=roadmap node scripts/playwright-budget-new-profiles.mjs 390",
   "BUDGET_BATCH=roadmap node scripts/playwright-budget-new-profiles.mjs 320",
-  "node scripts/playwright-budget-publication-selection.mjs"
+  "node scripts/playwright-budget-publication-selection.mjs",
+  "BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs 1440",
+  "BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs 390",
+  "BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs 320",
+  "node scripts/playwright-budget-studio.mjs"
 ]

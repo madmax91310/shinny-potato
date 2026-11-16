@@ -23,7 +23,7 @@ async function addRow(page, title, label, amount, category) {
   await group.getByRole('button', { name: 'Ajouter un poste', exact: true }).click()
   await page.getByLabel(`${title} · poste ${index}`, { exact: true }).fill(label)
   await page.getByLabel(`${title} · montant ${index}`, { exact: true }).fill(String(amount))
-  if (category) await group.locator('select').nth(index - 1).selectOption(category)
+  if (category) await group.locator('.budget-category select').nth(index - 1).selectOption(category)
 }
 async function capture(page, id) {
   const p = (await active(page)).profile
@@ -101,7 +101,7 @@ try {
     await addRow(page, 'Revenus', 'Allocations familiales', 200)
     await page.getByLabel('Dépenses · poste 1', { exact: true }).fill('Loyer et charges')
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('1000')
-    await page.getByRole('group', { name: 'Dépenses', exact: true }).locator('select').first().selectOption('housing')
+    await page.getByRole('group', { name: 'Dépenses', exact: true }).locator('.budget-category select').first().selectOption('housing')
     await addRow(page, 'Dépenses', 'Alimentation et hygiène', 400.25, 'food')
     await addRow(page, 'Dépenses', 'Repas au travail', 100, 'food')
     await page.getByText('Épargne et projets', { exact: true }).click()
@@ -159,7 +159,7 @@ try {
     await page.getByText('Brouillons et transfert entre appareils', { exact: true }).click()
     const download = page.waitForEvent('download'); await page.getByRole('button', { name: 'Exporter les brouillons et statuts', exact: true }).click()
     const backup = JSON.parse(readFileSync(await (await download).path(), 'utf8'))
-    assert.equal(backup.version, 4); assert.equal(backup.workspace.publicationDates[firstId], '2026-11-01')
+    assert.equal(backup.version, 5); assert.equal(backup.workspace.publicationDates[firstId], '2026-11-01')
     assert.equal(backup.workspace.drafts.filter(d => d.profile.kind === 'participant').length, 2)
     const incoming = structuredClone(backup), incomingDraft = incoming.workspace.drafts.find(d => d.profile.id === firstId)
     incomingDraft.profile.question = 'Question de mon autre appareil ?'
