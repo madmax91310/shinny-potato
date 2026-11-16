@@ -845,3 +845,22 @@ deux adaptateurs, aucune donnée synthétique de test écrite en production.
 Le garde commun et ses exemptions restent inchangés. Après ce seul refus explicite, un nouveau master est acquis dans un worktree privé, les SCPI sont recollectées par leur producteur ordinaire et tous les contrôles financiers sont rejoués avant de rappeler l’enregistreur isolé, sur son seul chemin SCPI. Trois tentatives maximum, délais2/4s ; aucun force-push ou résolution de conflit financier. Un changement des dépendances ou du contrat de validation exige un nouveau workflow ordinaire depuis master, plutôt qu’une exécution sur l’ancien environnement. Les échecs financiers/authentification sans refus d’entrées ne déclenchent pas cette reprise. Les tentatives, plans préalables, SHAs de code et résultats partiels restent distincts dans l’artefact ; une panne ne renouvelle pas les anciennes preuves financières.
 
 Le lot annuel#1347 ne touche que son test de texte ; les PR#1298/#1253/#1061 et les correctionsETF#1341/#1346 sont préservées. Aucun collecteur commun, maquette, condition financière ou seuil n’est modifié ; aucun automatismeIA ou Radar réactivé. Recette isolée avec vraiGit/garde/enregistreur et source contrôlée ; collecte et publication ordinaires après fusion restent à démontrer séparément.
+
+
+## 16 novembre — pays FTSE, colonne exacte de l’indice principal
+
+Même suivi #881, `fix/ftse-primary-country-column-20261116` possède seulement
+collect_index_documents, sa recette et trois extractions PDF réelles. ENGD
+au30octobre : la ligne Grèce n’a ni titre, ni capitalisation, ni poids dans
+Dividend+ ;0,03% appartient uniquement à l’indice comparé. L’ancien parseur
+avalait les tirets dans le libellé et empruntait ce poids. Lecture des colonnes
+explicites, rapprochement des effectifs320 et trace de la ligne de comparaison ;
+aucun poids absent changé en zéro ni renormalisation. Zéros publiés conservés,
+champs principaux manquants refusés. Les dispositions avec capitalisations,
+entêtes sur deux lignes et tableaux de poids/comparaisons restent qualifiées.
+Six réponses officielles relues, pays/sectors/positions et effectifs comparés ;
+seul le pays de comparaison erroné est retiré du périmètre de l’indice principal.
+Les anciennes preuves/historiques restent conservés. #1367 possède Uranium et
+LifeStrategy ; #1369 les NAV WisdomTree ; leurs fichiers ne sont pas modifiés.
+Aucun workflow Radar ou IA réactivé, aucun seuil ni maquette changé. Une collecte
+GitHub ordinaire, son enregistrement et la consommation publique restent à prouver.
