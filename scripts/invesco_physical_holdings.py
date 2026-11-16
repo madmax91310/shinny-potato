@@ -19,15 +19,47 @@ ROOT = Path(__file__).resolve().parent
 CONTRACT = json.loads((ROOT/'invesco-physical-holdings-contracts.json').read_text())
 
 
-def metadata_url(isin):
-    return f'https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/{isin}?idType=isin'
-
-
-def qualify_metadata(raw, isin, now):
+def acquisition_route(isin, route_id=None):
     share = CONTRACT['shares'].get(isin)
     if not share:
         raise ValueError('Unqualified Invesco physical share')
-    fields = invesco_characteristics(raw, isin, metadata_url(isin), now.date())
+    if route_id is None or route_id == 'primary':
+        return dict(account=CONTRACT['account'], locale='fr-FR', pageUrl=share['pageUrl'],
+                    mandateLiteral=share.get('mandateLiteral'))
+    route = share.get('qualifiedRoutes', {}).get(route_id)
+    if not route or route.get('account') != 'en_GB' or route.get('locale') != 'en-GB':
+        raise ValueError('Unqualified Invesco public acquisition route')
+    return route
+
+
+def metadata_url(isin, route_id=None):
+    account = acquisition_route(isin, route_id)['account']
+    return f'https://dng-api.invesco.com/cache/v1/accounts/{account}/shareclasses/{isin}?idType=isin'
+
+
+def table_scope(table, locale, stamp):
+    if locale == 'fr-FR':
+        census = re.search(r'Afficher\s+1\s+à\s+10\s+de\s+(\d+)\s+produits', table)
+        date = re.search(r'\bau\s+(\d{2})/(\d{2})/(\d{4})\b', table)
+        valid = bool(date and f'{date[3]}-{date[2]}-{date[1]}' == stamp)
+    else:
+        census = re.search(r'Showing\s+1\s+to\s+10\s+of\s+(\d+)\b', table)
+        date = re.search(r'\bas of\s+(\d{1,2})-([A-Za-z]{3})-(\d{2})\b', table)
+        months = 'jan feb mar apr may jun jul aug sep oct nov dec'.split()
+        valid = bool(date and date[2].lower() in months
+            and int(date[1]) == int(stamp[8:10]) and months.index(date[2].lower())+1 == int(stamp[5:7])
+            and date[3] == stamp[2:4])
+    if not census or not valid:
+        raise ValueError('Unqualified Invesco public table census/date')
+    return int(census[1])
+
+
+def qualify_metadata(raw, isin, now, route_id=None):
+    share = CONTRACT['shares'].get(isin)
+    if not share:
+        raise ValueError('Unqualified Invesco physical share')
+    fields = invesco_characteristics(raw, isin, metadata_url(isin, route_id), now.date(),
+                                     account=acquisition_route(isin, route_id)['account'])
     data = json.loads(raw)
     account = data.get('account', {})
     benchmarks = data.get('benchmarkRelationships')
@@ -48,9 +80,11 @@ def qualify_metadata(raw, isin, now):
 
 def parse_capture(capture, metadata_raw, isin, now):
     from collect_physical_holdings import checked_rows, digest
-    metadata = qualify_metadata(metadata_raw, isin, now)
     share = CONTRACT['shares'][isin]
-    url = f'https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/{isin}/holdings/index?idType=isin&loadType=initial'
+    route_id = capture.get('acquisitionRoute', 'primary')
+    route = acquisition_route(isin, route_id)
+    metadata = qualify_metadata(metadata_raw, isin, now, route_id)
+    url = f"https://dng-api.invesco.com/cache/v1/accounts/{route['account']}/shareclasses/{isin}/holdings/index?idType=isin&loadType=initial"
     raw = base64.b64decode(capture['bodyBase64'], validate=True)
     payload = json.loads(raw)
     mode = share.get('mandate', 'physical-sampling')
@@ -59,21 +93,19 @@ def parse_capture(capture, metadata_raw, isin, now):
     mandate_field = 'physicalReplicationMandateConfirmed' if mode == 'full-physical-replication' else 'samplingMandateConfirmed'
     table = capture['tableText']
     stamp = document_date(payload['effectiveDate'], now)
-    census = re.search(r'Afficher\s+1\s+à\s+10\s+de\s+(\d+)\s+produits', table)
-    date = re.search(r'\bau\s+(\d{2})/(\d{2})/(\d{4})\b', table)
+    census = table_scope(table, route['locale'], stamp)
     widget = capture.get('widget', {})
-    if (capture.get('isin') != isin or capture.get('pageUrl') != share['pageUrl']
+    if (capture.get('isin') != isin or capture.get('pageUrl') != route['pageUrl']
             or capture.get('pageTitle') != share['shareName'] or capture.get('sourceUrl') != url
             or capture.get(mandate_field) is not True
             or digest(raw) != capture.get('sourceSha256') or payload != capture.get('payload')
-            or digest(table) != capture.get('tableTextSha256') or not census or not date
-            or f'{date[3]}-{date[2]}-{date[1]}' != stamp or capture.get('asOf') != stamp
+            or digest(table) != capture.get('tableTextSha256') or capture.get('asOf') != stamp
             or widget != dict(isin=isin, tableVariation='holdings', variationType='index',
                               apiResponseKey='holdings', top10Holdings=True, displayComponent=True, maxRowCount=10)):
         raise ValueError('Unqualified Invesco public sampled-fund table proof')
     entries = payload['holdings']
-    if (type(capture.get('publisherRowCount')) is not int or int(census[1]) < 11
-            or int(census[1]) != capture['publisherRowCount'] or len(entries) != int(census[1])):
+    if (type(capture.get('publisherRowCount')) is not int or census < 11
+            or census != capture['publisherRowCount'] or len(entries) != census):
         raise ValueError('Truncated Invesco public table; ten-row view is not a complete source')
     positions, rows, selected, identities = [], [], [], set()
     residual_count = 0
@@ -107,9 +139,11 @@ def collect(share, now, raw_identity):
     isin = share['isin']
     if share.get('holdingsContract') != CONTRACT['methodCode'] or share.get('currency') != CONTRACT['currency']:
         raise ValueError('Unqualified Invesco physical collection contract')
-    raw_metadata = download(metadata_url(isin))
-    qualify_metadata(raw_metadata, isin, now)
-    completed = subprocess.run(['node', str(ROOT/'capture-invesco-physical.mjs'), isin],
+    route_id = CONTRACT['shares'][isin].get('preferredAcquisitionRoute', 'primary')
+    route = acquisition_route(isin, route_id)
+    raw_metadata = download(metadata_url(isin, route_id))
+    qualify_metadata(raw_metadata, isin, now, route_id)
+    completed = subprocess.run(['node', str(ROOT/'capture-invesco-physical.mjs'), isin, route_id],
                                capture_output=True, timeout=100, check=False)
     if completed.returncode:
         raise ValueError('Invesco public fund capture failed: '+completed.stderr.decode(errors='replace')[-1500:])
@@ -123,9 +157,10 @@ def collect(share, now, raw_identity):
                          navReconciliation=reconciliation,
                          excludedWeightPctByType=reconciliation['excludedWeightPctByType'],
                          identitySourceUrl=share['sourceUrl'], identitySha256=digest(raw_identity),
-                         metadataSourceUrl=metadata_url(isin), metadataSha256=digest(raw_metadata),
+                         metadataSourceUrl=metadata_url(isin, route_id), metadataSha256=digest(raw_metadata),
                          metadataAsOf=metadata['effectiveDate'],
                          coverageProof={'kind':('issuer-physical-replicated-fund-public-table' if CONTRACT['shares'][isin].get('mandate')=='full-physical-replication' else 'issuer-physical-sampled-fund-public-table'),
+                            'acquisitionRoute':route_id, 'accessConditions':route.get('accessConditions'),
                             'pageUrl':capture['pageUrl'], 'pageTitle':capture['pageTitle'],
                             'asOf':stamp, 'publisherRowCount':capture['publisherRowCount'],
                             'tableTextSha256':capture['tableTextSha256'],

@@ -139,4 +139,45 @@ class EqualWeightPhysical(unittest.TestCase):
         import subprocess
         subprocess.run(['node',str(Path(__file__).parent/'test-invesco-equalweight-consumers.mjs')],check=True,capture_output=True)
 
+
+    def uk_book(self):
+        return json.loads(gzip.decompress((Path(__file__).parent/
+            'fixtures/invesco-physical/uk-equalweight-20261116.json.gz').read_bytes()))
+
+    def test_uk_real_economic_book_original_weights_idempotent(self):
+        book=self.uk_book();now=dt.datetime(2026,11,16,tzinfo=dt.timezone.utc)
+        result=parse_capture(book['capture'],book['metadataRaw'],'IE000L2SA8K5',now)
+        rows,stamp,raw,proof,metadata=result
+        self.assertEqual(stamp,'2026-11-13');self.assertEqual(len(rows),101)
+        self.assertEqual(proof['sourceRowCount'],102);self.assertFalse(proof['normalizationApplied'])
+        self.assertAlmostEqual(proof['excludedWeightPctByType']['Cash and/or Derivatives'],.0318)
+        original={r['isin']:r['weight'] for r in json.loads(raw)['holdings'] if r.get('isin')}
+        self.assertTrue(all(r['weightPct']==original[r['isin']] for r in rows))
+        self.assertEqual(parse_capture(book['capture'],book['metadataRaw'],'IE000L2SA8K5',now),result)
+
+    def test_uk_exact_route_endpoint_date_metadata_and_mandate_required(self):
+        original=self.uk_book();now=dt.datetime(2026,11,16,tzinfo=dt.timezone.utc)
+        for key,value in [('acquisitionRoute','unknown'),('acquisitionRoute','primary'),
+                ('sourceUrl',original['capture']['sourceUrl'].replace('en_GB','fr_FR')),
+                ('pageUrl',original['capture']['pageUrl'].replace('/uk/en/','/fr/fr/')),
+                ('physicalReplicationMandateConfirmed',False),('publisherRowCount',10),
+                ('asOf','2026-11-12'),('isin','IE000716YHJ7')]:
+            with self.subTest(key=key,value=value):
+                book=copy.deepcopy(original);book['capture'][key]=value
+                with self.assertRaises(ValueError):parse_capture(book['capture'],book['metadataRaw'],'IE000L2SA8K5',now)
+        for key,value in [('shareClassCurrency','EUR'),('hedgedIndicator',True),
+                          ('replicationMethod','Synthetic'),('shareClassFullName','Other share')]:
+            book=copy.deepcopy(original);m=json.loads(book['metadataRaw']);m[key]=value
+            book['metadataRaw']=json.dumps(m)
+            with self.assertRaises(ValueError):parse_capture(book['capture'],book['metadataRaw'],'IE000L2SA8K5',now)
+
+    def test_english_public_date_compared_to_full_iso_source_year(self):
+        from invesco_physical_holdings import table_scope
+        self.assertEqual(table_scope('as of 31-Dec-26 Showing 1 to 10 of 102','en-GB','2026-12-31'),102)
+        self.assertEqual(table_scope('as of 02-Jan-27 Showing 1 to 10 of 102','en-GB','2027-01-02'),102)
+        for text in ['as of 31-Dec-26 Showing 1 to 10 of 102',
+                     'as of 02-Feb-27 Showing 1 to 10 of 102',
+                     'as of 02-Jan-27 Showing 1 to 10 of 10x']:
+            with self.assertRaises(ValueError):table_scope(text,'en-GB','2027-01-02')
+
 if __name__ == '__main__':unittest.main()

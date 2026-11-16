@@ -516,12 +516,14 @@ def dws_factsheet_listings(text,isin):
     return rows
 
 
-def invesco_characteristics(body, isin, url, today):
+def invesco_characteristics(body, isin, url, today, *, account="fr_FR"):
     """Explicit characteristics of the requested share, never inferred from its name."""
     from urllib.parse import urlsplit, parse_qs
     p = urlsplit(url)
+    if account != 'fr_FR' and (account != 'en_GB' or isin != 'IE000L2SA8K5'):
+        raise ValueError('Unqualified Invesco characteristics account')
     if (p.scheme != 'https' or p.netloc != 'dng-api.invesco.com'
-            or p.path != f'/cache/v1/accounts/fr_FR/shareclasses/{isin}'
+            or p.path != f'/cache/v1/accounts/{account}/shareclasses/{isin}'
             or parse_qs(p.query) != {'idType': ['isin']} or p.fragment):
         raise ValueError('Wrong Invesco characteristics reference')
     def unique(pairs):
