@@ -5,10 +5,11 @@ export const validAnnualProvision = row => row.annualProvision === undefined ||
     typeof row.annualProvision.amount === 'number' && Number.isFinite(row.annualProvision.amount) && row.annualProvision.amount >= 0 && row.annualProvision.amount <= 10000000 && row.amount === monthlyProvision(row.annualProvision.amount))
 export const provisionLabel = row => row.annualProvision && !/^provision\b/i.test(row.label) ? `Provision ${row.label}` : row.label
 export function annualRow(row, amount) {
-  return { ...row, amount: monthlyProvision(amount), annualProvision: { amount } }
+  const { annualAmount: _annualAmount, periodicity: _periodicity, ...rest } = row
+  return { ...rest, amount: monthlyProvision(amount), annualProvision: { amount } }
 }
 export function monthlyRow(row, amount = row.amount) {
-  const { annualProvision: _annual, ...rest } = row
+  const { annualProvision: _annual, annualAmount: _annualAmount, periodicity: _periodicity, ...rest } = row
   return { ...rest, amount }
 }
 export function moveBudgetRow(rows, index, direction) {

@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict'
+import presets from '../src/pages/budget-profiles/manual-presets.json' with { type:'json' }
+import { EXPENSE_CATEGORIES } from '../src/pages/budget-profiles/data.js'
 import { BUDGET_PROFILES, BUDGET_STUDIO_EDITORIAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, validBudget, blankBudget, refreshBudgetDraft, budgetImageExpenses } from '../src/pages/budget-profiles/lib.js'
 import { duplicateBudget } from '../src/pages/budget-profiles/manual.js'
@@ -9,6 +11,7 @@ import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-p
 import { WORKSPACE_KEY, loadWorkspace, saveDraft, saveQueued, loadQueued, exportBudgetBackup, parseBudgetBackup, previewBudgetImport, restoreBudgetBackup, budgetStorageSnapshot, validWorkspace } from '../src/pages/budget-profiles/storage.js'
 import entries from '../src/pages/budget-profiles/editorial-profiles-studio-2026-11-16.json' with { type:'json' }
 
+assert(presets.every(p=>EXPENSE_CATEGORIES.some(c=>c.id===p.category)))
 assert.equal(monthlyProvision(100),8.33); assert.equal(monthlyProvision(120),10); assert.equal(monthlyProvision(null),null)
 const manual={...blankBudget(),id:'manual-annual',name:'Alice',income:[{label:'Salaire',amount:1000}],expenses:[annualRow({label:'Cadeaux',category:'other'},100)],question:'Quel budget pour les cadeaux ?'}
 assert(validBudget(manual));assert.equal(analyzeBudget(manual).expenses,8.33)
@@ -19,13 +22,14 @@ assert(!validBudget({...manual,expenses:[{...manual.expenses[0],amount:100}]}),'
 assert(!validBudget({...manual,expenses:[{...manual.expenses[0],annualProvision:{amount:100,secret:true}}]}))
 assert(validBudget({...manual,expenses:[{label:'Ancienne provision',amount:20,annualAmount:240,periodicity:'annual-provision'}]}),'Existing provision schema is still accepted unchanged')
 assert(!('annualProvision' in monthlyRow(manual.expenses[0])))
+assert(!('annualAmount' in annualRow({label:'Entretien',amount:20,annualAmount:240,periodicity:'annual-provision'},360)))
 assert.deepEqual(moveBudgetRow([1,2,3],1,-1),[2,1,3]);assert.deepEqual(moveBudgetRow([1,2],0,-1),[1,2])
 const custom={profile:manual,text:'Mes mots et mes questions.',edited:true,textFinance:budgetFinancialReference(manual)}
 const copy=duplicateBudget(custom,'copy','2026-11-16T00:00:00Z')
 assert.equal(copy.text,custom.text);assert.equal(copy.profile.question,manual.question);assert.equal(copy.profile.kind,'participant');assert.equal(copy.profile.source,null);assert(!copy.profile.editorialCreation)
 assert(staleBudgetText({...copy,profile:{...copy.profile,expenses:[annualRow(manual.expenses[0],120)]}}))
 const bank=BUDGET_PROFILES.find(p=>p.name==='Guillaume'),adapted=duplicateBudget({profile:bank,text:'custom',edited:true},'new-person')
-assert(validBudget(adapted.profile));assert.equal(adapted.profile.question,'');assert.equal(adapted.profile.context,'');assert.equal(adapted.edited,false);assert.equal(adapted.profile.source,null);assert(!adapted.profile.editorialCreation);assert(!adapted.profile.provenance.sourceFacts)
+assert(validBudget(adapted.profile));assert.equal(adapted.profile.question,'');assert.equal(adapted.profile.context,'');assert.equal(adapted.edited,false);assert.equal(adapted.profile.source,null);assert(!adapted.profile.editorialCreation);assert(!adapted.profile.provenance.sourceFacts);assert(adapted.profile.expenses.every(r=>EXPENSE_CATEGORIES.some(c=>c.id===r.category)))
 assert.equal(adapted.profile.savings.find(r=>/PEL/.test(r.label)).amount,45)
 const suggested=suggestBudgetPublications(BUDGET_PROFILES,{published:[bank.id],queued:[BUDGET_PROFILES[0].id]})
 assert(suggested.length);assert(!suggested.some(p=>[bank.id,BUDGET_PROFILES[0].id].includes(p.id)));assert.deepEqual(suggested,suggestBudgetPublications(BUDGET_PROFILES,{published:[bank.id],queued:[BUDGET_PROFILES[0].id]}));assert.equal(new Set(suggested.map(p=>p.id)).size,suggested.length)
