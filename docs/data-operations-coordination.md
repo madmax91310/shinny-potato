@@ -1,3 +1,15 @@
+## 16 novembre — sous-ensemble Uranium, refus intégral maintenu
+
+Même suivi #881 : `fix/uranium-explicit-partial-holdings-20261116` possède
+collect_physical_holdings, l'admission partielle typée du producteur complet,
+son horloge séparée, la projection conservatrice et leurs recettes/fixture.
+Le contrôle PR exerce seulement IE000NDWFGA5, en lecture seule. Les70positions
+publiées restent tracées ;59poids actions publiés peuvent être renouvelés.
+Aucun poids FX inventé, aucune couverture intégrale ni recouvrement admis.
+#1253 possède toujours S&P ; #1359/#1361 et le calendrier ne sont pas modifiés.
+Aucune date de réussite complète renouvelée sur cette erreur partielle.
+Les données financières sont générées uniquement par le producteur ordinaire.
+
 ## 15 novembre — reprise bornée des origines officielles ABTC
 
 ### 16 novembre — contrat des tentatives 13F, même suivi #881
