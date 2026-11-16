@@ -18,8 +18,14 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
   for(const entry of plan.entries) {
     assert.equal(entry.weight,entry.value/plan.total)
     assert(Math.abs((entry.end-entry.start)/(2*Math.PI)-entry.weight)<1e-12)
-    assert(entry.y>=POSTER.top && entry.y+entry.height<=POSTER.bottom)
-    for(const next of plan.entries)if(next!==entry&&next.side===entry.side)assert(entry.y+entry.height<=next.y||next.y+next.height<=entry.y)
+    const b=entry.box
+    assert(b.x>=20 && b.x+b.width<=1060 && b.y>=POSTER.top && b.y+b.height<=POSTER.bottom)
+    assert.equal(entry.badge.radius,POSTER.badgeRadius)
+    for(const next of plan.entries)if(next!==entry){
+      const c=next.box
+      assert(b.x+b.width<=c.x || c.x+c.width<=b.x || b.y+b.height<=c.y || c.y+c.height<=b.y,'Label collision')
+      assert(Math.hypot(entry.badge.x-next.badge.x,entry.badge.y-next.badge.y)>=2*POSTER.badgeRadius,'Badge collision')
+    }
   }
   const tweet=buildTweet(portfolio)
   assert.equal(tweet.split('👇').length,2)
@@ -71,3 +77,17 @@ const nearGreens=colorPositions([{displayLabel:'Nvidia',cusip:'67066G104'},{disp
 assert.equal(positionColor({displayLabel:'Cerebras Systems Inc',cusip:'15675D103'}),'#68882b')
 const rgb=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16))
 assert(Math.hypot(...rgb(nearGreens[0].color).map((v,i)=>v-rgb(nearGreens[1].color)[i]))>=95,'Near greens need a contrasting replacement')
+
+// Actual principal portfolios keep named positions without a fixed eight-line cap.
+const {readFileSync}=await import('node:fs')
+for(const slug of ['berkshire','tepper']) {
+  const p=normalizePortfolio(JSON.parse(readFileSync(`public/data/investors/${slug}.json`,'utf8')))
+  const plan=publicationPlan(p)
+  assert(plan.entries.filter(e=>!e.other).length>=9)
+  assert(plan.entries.every(e=>!['M','C','OP'].includes(e.label)))
+  assert.equal(publicationPlan(p),plan,'Reuse the deterministic layout')
+  p.holdings[0].value+=1
+  const revised=publicationPlan(p)
+  assert.equal(revised.total,plan.total+1,'Updated values invalidate the layout cache')
+}
+assert.equal(shortPosition({issuerName:'INDIVIOR PHARMACEUTICALS INC',cusip:'45579U109'}),'Indivior')

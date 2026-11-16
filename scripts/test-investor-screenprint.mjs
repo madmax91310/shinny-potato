@@ -44,6 +44,20 @@ try {
     if(result.png){await writeFile(`${out}/${id}.png`,Buffer.from(result.png.split(',')[1],'base64'));delete result.png}
     results.push(result)
   }
+  // An explicitly sourced historical illustration never changes corporate ownership.
+  await page.evaluate(async()=>{
+    const {portfolioPortrait}=await import('/shinny-potato/src/pages/investor-portfolio/media.js')
+    const {portfolioOwner}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+    const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
+    const manifest=await(await fetch('/shinny-potato/data/investors/media/manifest.json')).json()
+    const p=normalizePortfolio(await(await fetch('/shinny-potato/data/investors/berkshire.json')).json())
+    const portrait=await portfolioPortrait(p.identity,manifest.berkshire)
+    if(!portrait.image||portrait.person!=='Warren Buffett'||portfolioOwner(p)!=='Berkshire Hathaway')throw Error('Historical illustration/ownership')
+    const wrong=await portfolioPortrait(p.identity,{...manifest.berkshire,person:'Homonyme'})
+    if(wrong.image)throw Error('Unverified historical portrait accepted')
+    const entity=await portfolioPortrait({slug:'gates-trust',displayName:'Gates Foundation Trust'},manifest['gates-trust'])
+    if(entity.image)throw Error('Historical exception leaked to another entity')
+  })
   // Real app download, preview bytes, copy, full exports, errors and retry.
   const fixture=sample([900000,99999,1]);Object.assign(fixture.data.snapshot.holdings[0],{issuerName:'Apple Inc.',ticker:'AAPL',cusip:'037833100'});fixture.data.identity.personVerified=true;fixture.data.identity.personSource='https://foliofact.com/api/v1/funds/appaloosa';fixture.data.identity.personPeriod='2026-06-30'
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))

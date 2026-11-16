@@ -10,9 +10,7 @@ import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
 import { mediaCredits } from './media.js'
 import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
-import { zipStore, dataURLBytes } from '../../lib/zip-store.js'
 import { publicationPlan, portfolioOwner, cash, reportedAmount } from './publication.js'
-import { detailedExport, detailedCSV, renderDetailedPages } from './exports.js'
 import './style.css'
 
 // Load the Canvas renderer when the user opens or downloads the image.
@@ -71,9 +69,17 @@ export default function InvestorPortfolio() {
     link.href=url;link.download=`portefeuille-${slug}-${portfolio.snapshot.periodEnd}.${suffix}`
     startPublicationDownload(link);setTimeout(()=>URL.revokeObjectURL(url),30000)
   }
+  async function downloadData(format) {
+    setError('')
+    try {
+      const {detailedExport,detailedCSV}=await import('./exports.js')
+      save(format==='json'?JSON.stringify(detailedExport(portfolio),null,2):detailedCSV(portfolio),format==='json'?'application/json':'text/csv;charset=utf-8',format)
+    } catch(problem) {setError(problem.message)}
+  }
   async function downloadDetails() {
     setExporting(true);setError('')
     try {
+      const [{detailedExport,detailedCSV,renderDetailedPages},{zipStore,dataURLBytes}]=await Promise.all([import('./exports.js'),import('../../lib/zip-store.js')])
       const pages=await renderDetailedPages(portfolio)
       const files=pages.map((png,i)=>({name:`detail-${i+1}.png`,bytes:dataURLBytes(png)}))
       const encode=value=>new TextEncoder().encode(value)
@@ -147,15 +153,16 @@ export default function InvestorPortfolio() {
         </WorkspaceActions>
         {!model && <>
         <WorkspaceActions>
-          <Button type="button" variant="secondary" onClick={() => save(JSON.stringify(detailedExport(portfolio),null,2),'application/json','json')}>Télécharger le détail JSON et les crédits</Button>
-          <Button type="button" variant="secondary" onClick={() => save(detailedCSV(portfolio),'text/csv;charset=utf-8','csv')}>Télécharger toutes les positions CSV</Button>
+          <Button type="button" variant="secondary" onClick={() => downloadData('json')}>Télécharger le détail JSON et les crédits</Button>
+          <Button type="button" variant="secondary" onClick={() => downloadData('csv')}>Télécharger toutes les positions CSV</Button>
           <Button type="button" variant="secondary" onClick={downloadDetails} disabled={exporting}>Télécharger les PNG détaillés (ZIP)</Button>
         </WorkspaceActions>
         <details><summary>Détail intégral · {portfolio.holdings.length} positions</summary>{portfolio.holdings.map((row,i)=><p key={i}>{row.issuerName} · {row.ticker} · {row.shareClass || 'classe non transmise'} · {row.cusip || row.securityId || 'identifiant non transmis'} · {Number.isFinite(row.value)?reportedAmount(row):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>
         {portfolio.snapshot.holdings.some(row=>row.putCall) && <details><summary>Options déclarées · hors image et total</summary><p>Poids sur le total déclaré, options incluses. Les valeurs déclarées ne mesurent pas les primes ni l’exposition nette.</p>{portfolio.snapshot.holdings.filter(row=>row.putCall).map((row,i)=><p key={i}>{row.issuerName} · {row.putCall} · {row.shareClass} · {row.cusip || 'identifiant non transmis'} · {Number.isFinite(row.value)?reportedAmount(row):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>}
         <p className="ip-note">Les lignes et classes transmises restent distinctes. Certains fournisseurs regroupent déjà des classes en amont ; ce manque de détail est conservé dans les exports. Les poids du visuel portent sur la somme des positions hors options, calculée sans arrondi.</p>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
-        <p className="ip-note">Portrait de référence : {mediaCredits(portfolio).portrait.person} : <a href={mediaCredits(portfolio).portrait.source} target="_blank" rel="noreferrer">{mediaCredits(portfolio).portrait.author} ↗</a> · {mediaCredits(portfolio).portrait.license} · Affichage par initiales si la réutilisation, l’identité ou le détourage ne sont pas établis.</p>
+        {mediaCredits(portfolio).portrait.illustration?.note && <p className="ip-note">{mediaCredits(portfolio).portrait.illustration.note}</p>}
+        <p className="ip-note">Portrait de référence : {mediaCredits(portfolio).portrait.person} : <a href={mediaCredits(portfolio).portrait.source} target="_blank" rel="noreferrer">{mediaCredits(portfolio).portrait.author} ↗</a> · {mediaCredits(portfolio).portrait.license} · Affichage du nom si la réutilisation, l’identité ou le détourage ne sont pas établis.</p>
         <History portfolio={portfolio} /></>}
         {model && <><p className="ip-note">{model.method}</p><p className="ip-note">{model.caution}</p><p className="ip-note">Cibles théoriques, sans performance ni conversion en produits UCITS. Le visuel utilise les poids du modèle ; une modification manuelle du texte ne modifie pas ces cibles.</p></>}
         <p className="ip-credit">{model ? "Source : publication de la méthode" : portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {model ? 'la publication' : portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
