@@ -1,3 +1,17 @@
+## 16 novembre — LifeStrategy, photographies de sous-jacents compatibles
+
+Même suivi #881, branche `fix/lifestrategy-compatible-retained-snapshots-20261116`.
+Ce lot possède uniquement la conservation bornée des huit dépendances exactes,
+leur sélection datée dans la dérivation, les tests et les déclencheurs LifeStrategy.
+Les preuves déjà qualifiées de septembre sont récupérables au commit41311ee9,
+avec leurs horloges du14novembre : aucune nouvelle consultation fournisseur
+ni remplacement de la part North America W10 par R35. Livres courants inchangés,
+transparisation des poches actions uniquement, recouvrement intégral toujours refusé.
+Dépendances coordonnées : #1363 possède le build, #1364 la qualification partielle
+Uranium et le même producteur ; leurs changements doivent être intégrés sans écrasement.
+#1359/#1361, #1253 et #1061 gardent leurs périmètres. Les autres familles financières
+et l'interface de supervision ne sont pas modifiées. Pas de réactivation Radar/IA.
+
 ## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
 
 Même suivi #881, branche `fix/automation-recording-and-composition-20261116` :

@@ -66,6 +66,8 @@ on:
       - 'scripts/jpm_holdings.py'
       - 'scripts/check_pending_sources.py'
       - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/lifestrategy_retained_holdings.py'
+      - 'scripts/test_lifestrategy_retained_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/lifestrategy_portfolio.py'
       - 'scripts/test_lifestrategy_portfolio.py'
@@ -154,6 +156,8 @@ on:
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/lifestrategy_retained_holdings.py'
+      - 'scripts/test_lifestrategy_retained_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/lifestrategy_portfolio.py'
       - 'scripts/test_lifestrategy_portfolio.py'
@@ -268,7 +272,7 @@ jobs:
       - name: Validate issuer economic index books
         run: python -m unittest discover -s scripts -p "test_invesco_economic_index.py"
       - name: Validate complete physical issuer portfolios
-        run: python -m unittest discover -s scripts -p "test_invesco_physical_holdings.py" && python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
+        run: python -m unittest discover -s scripts -p "test_invesco_physical_holdings.py" && python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_retained_holdings.py"
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py' && python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca
