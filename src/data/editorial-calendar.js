@@ -1,7 +1,17 @@
-// Calendrier complété le 12 novembre 2026 · ajouts sans suppression de créneaux. Les récaps restent hors application.
+// Calendrier complété le 16 novembre 2026 · ajouts sans suppression de créneaux. Les récaps restent hors application.
 const slot = (path, note = '', title) => ({ path, note, ...(title && { title }) })
 const recap = () => ({ morning: [], morningNote: 'Récap marché · hors application' })
 const alternating = (...paths) => paths.map((path, index) => slot(path, `Une semaine sur deux · semaine ${index ? 'B' : 'A'}`))
+// Choix du midi : conserver les autres possibilités et toutes les soirées.
+export const MIDDAY_SELECTIONS = {
+  Lundi: [slot('/france-100-menages')],
+  Mardi: [slot('/fiche-lexique')],
+  Mercredi: [slot('/portefeuilles-publics', '', 'Portefeuille de la semaine')],
+  Jeudi: ['/classements-performances', '/calculateur-investissement', '/performance-depuis', '/comparateur-indices']
+    .map(path => slot(path, 'Performances en rotation · un seul format au choix')),
+  Vendredi: alternating('/fiches-etf', '/comparatif-etf'),
+  Dimanche: [slot('/portefeuilles-investisseurs')],
+}
 export const EDITORIAL_WEEK = [
   { day: 'Lundi', ...recap(), midday: [slot('/performance-depuis'), slot('/presentations')], evening: alternating('/tweets-factsheets', '/generateur-portefeuilles') },
   { day: 'Mardi', ...recap(), midday: [slot('/classements-performances'), slot('/fiche-lexique')], evening: [{ ...slot('/le-dca-de', 'Au choix avec Le budget de…', 'Le DCA d’un abonné'), href: '/le-dca-de?mode=dca' }, slot('/le-budget-de', 'À la place du DCA · selon tes publications')], eveningNote: 'DCA ou budget : choisis un seul format selon tes publications. Le budget peut aussi passer le vendredi soir.' },
@@ -10,7 +20,18 @@ export const EDITORIAL_WEEK = [
   { day: 'Vendredi', ...recap(), midday: alternating('/fiches-etf', '/comparatif-etf'), evening: [slot('/le-budget-de', 'À la place de ton tweet personnel · selon tes publications')], eveningNote: 'Ton tweet personnel ou Le budget de… si tu ne l’as pas publié mardi.' },
   { day: 'Samedi', ...recap(), midday: [], middayNote: 'Ton bilan de la semaine', evening: [], eveningNote: 'Quote de ton bilan' },
   { day: 'Dimanche', ...recap(), midday: [slot('/portefeuilles-investisseurs'), slot('/il-y-a-x-ans')], evening: [{ ...slot('/banque-tweets', 'Dans la Banque de tweets', 'Question du dimanche'), href: '/banque-tweets?category=Question%20dimanche' }, ...['/fiches-pratiques', '/faits-marquants-marches', '/il-y-a-x-ans'].map(path => slot(path, 'En rotation · une fois sur trois'))] },
-].map(day => ({ ...day, midday: [...day.midday, slot('/idees-classements')] }))
+].map(day => {
+  const selections = MIDDAY_SELECTIONS[day.day] || []
+  const midday = [...day.midday, ...selections.filter(choice => !day.midday.some(entry => entry.path === choice.path))]
+  return {
+    ...day,
+    ...(day.day === 'Samedi' ? { middayPreferred: true } : {}),
+    midday: [...midday.map(entry => {
+      const choice = selections.find(item => item.path === entry.path)
+      return choice ? { ...entry, ...choice, preferred: true } : entry
+    }), slot('/idees-classements')],
+  }
+})
 
 export function publicationLabel(path) {
   if (EDITORIAL_WEEK.every(day => day.midday.some(entry => entry.path === path))
