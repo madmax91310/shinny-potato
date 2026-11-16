@@ -99,13 +99,15 @@ def restore_dependencies(previous, parents, selected, now, root):
     restores September observations already collected before this fix existed.
     """
     from lifestrategy_portfolio import qualified_stored_portfolio
-    from lifestrategy_holdings import FUNDS
+    from lifestrategy_holdings import FUNDS, fresh
     updated, proofs, failures = {}, [], {}
     books, recovery_error = None, None
     for fund in sorted(set(selected) & FUNDS):
         record = parents[fund]
         try:
             parent = qualified_stored_portfolio(record, now)
+            if parent and fresh(parent, now) != fresh(record['assetAllocation'], now):
+                raise ValueError('Parent and allocation dates differ before retained dependency recovery')
         except Exception as error:
             failures[fund] = str(error)
             continue
