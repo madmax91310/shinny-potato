@@ -796,3 +796,20 @@ acceptait encore cette voie pour les anciennes parts sans contrat explicite.
 Après correction, changement de structure refusé avant la géographie et avant
 l'enregistrement ; valeurs actuelles physiques inchangées. Régression dans les
 deux adaptateurs, aucune donnée synthétique de test écrite en production.
+
+### 16 novembre — contrat des tentatives 13F, même suivi #881
+
+Base 53ff24bc, après #1344/#1348 ; #1349 possède uniquement la reprise SCPI.
+Ce complément possède le conditionnement des rapports 13F, sa recette et le
+classement technique minimal d'une copie historique dans publish_automation_status.py.
+Le run réel 43823335908 contient une copie attempt-1 strictement identique au
+rapport enregistré, avec plan préalable vérifié. Elle ne représente ni un second
+contrôle fournisseur ni une troisième panne financière. La reconnaissance exige
+le nom exact, les octets identiques et le plan valide ; toute autre omission ou
+différence reste une erreur. Les deux conflits d'unités financiers demeurent.
+Les futures tentatives sont conservées dans un artefact de support distinct ;
+le rapport courant garde son nom et son plan, y compris après interruption.
+Aucun collecteur, seuil financier, interface ou contrat partagé n'est assoupli.
+La relecture historique doit viser le run d'origine ; un succès ultérieur ne
+certifie pas rétrospectivement une tentative antérieure. Aucun fichier des PR
+#1351/#1298/#1253/#1061 n'est pris en charge.

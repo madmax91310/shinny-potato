@@ -520,6 +520,8 @@ class PublicationTests(unittest.TestCase):
         def controlled_acquisition(args, **kwargs):
             if args[:2] == ['python3', 'scripts/update-investor-13f.py']:
                 checkout = pathlib.Path(kwargs['cwd'])
+                self.assertEqual(pathlib.Path(args[-1]).name, self.report_path.name,
+                                 'A retry keeps the registered producer report stem')
                 acquisitions.append(checkout)
                 self.assertTrue(pathlib.Path(kwargs['env']['INVESTOR_HTTP_CACHE']).is_absolute())
                 self.assertFalse(str(kwargs['env']['INVESTOR_HTTP_CACHE']).startswith(str(checkout)))
@@ -544,6 +546,8 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(len(acquisitions), 1)
         self.assertEqual(result['changed'], 'true')
         self.assertEqual(result['collection_failed'], 'false')
+        first = self.report_path.parent / 'investor-recording-attempts/attempt-1' / self.report_path.name
+        self.assertEqual(json.loads(first.read_text()), self.report)
         self.assertEqual(before, self.git('status', '--porcelain'))
         self.git('fetch', '-q', 'origin', 'master')
         self.assertIn('independent', self.git('show', 'origin/master:src/data/dca-security-classifications.json'))
@@ -729,6 +733,112 @@ class PublicationTests(unittest.TestCase):
         path.write_text(json.dumps(payload))
         with self.assertRaises(ValueError):
             self.publication.audit(self.root, self.report, self.base, self.now)
+
+
+class RecordingReportContractTests(unittest.TestCase):
+    """Replay the real 43823335908 archive; never recollect its suppliers."""
+    source = pathlib.Path(__file__).resolve().parent
+    workflow = 'update-investor-13f.yml'
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = pathlib.Path(self.tmp.name)
+        fixture = self.source / 'fixtures/investor-recording-20261116'
+        for name in ('investor-observations.json', 'investor-observations.contract-plan.json'):
+            (self.root / name).write_bytes((fixture / name).read_bytes())
+        self.primary = self.root / 'investor-observations.json'
+        self.duplicate = self.root / 'investor-observations-attempt-1.json'
+        self.duplicate.write_bytes(self.primary.read_bytes())
+        spec = importlib.util.spec_from_file_location('investor_recording_reports', self.source / 'commit-investor-observations.py')
+        self.recording = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.recording)
+
+    def jobs(self):
+        from publish_automation_status import REPORT_CONTRACTS
+        return [{'name': 'update', 'conclusion': 'success',
+                 'started_at': '2026-11-16T07:22:02Z', 'completed_at': '2026-11-16T07:36:00Z',
+                 'steps': [{'name': REPORT_CONTRACTS[self.workflow]['reports'][0]['steps'][0], 'conclusion': 'failure'}]},
+                {'name': 'deploy / publish', 'conclusion': 'success', 'steps': []}]
+
+    def reports(self):
+        from publish_automation_status import artifact_reports
+        return artifact_reports('isolated/replay', self.workflow, self.jobs(),
+                                [{'id': 14205289418, 'name': 'investor-observations'}], self.root,
+                                download=lambda *args: None)
+
+    def test_real_duplicate_is_support_and_both_financial_failures_remain(self):
+        rows = self.reports()
+        errors = [e for r in rows for e in r.get('errors', [])]
+        self.assertEqual({e['id'] for e in errors}, {'investor:druckenmiller', 'investor:klarman'})
+        support = next(s for r in rows for s in r.get('successes', [])
+                       if s['id'] == 'report-read:investor-observations-attempt-1')
+        self.assertFalse(support['sourceAttempted'])
+        self.assertFalse(support['evidence']['sourceControl'])
+        self.assertEqual(support['evidence']['sha256'], 'f26fa89c1e4449e750cb92d480eec3c2b903e355eadf2ce9d871b3528cfa2cc6')
+
+    def test_changed_bytes_unknown_name_and_missing_plan_stay_errors(self):
+        for defect in ('bytes', 'name', 'plan'):
+            with self.subTest(defect=defect):
+                self.duplicate.write_bytes(self.primary.read_bytes())
+                path = self.duplicate
+                if defect == 'bytes': path.write_bytes(path.read_bytes() + b'\n')
+                elif defect == 'name':
+                    path = self.root / 'investor-observations-attempt-9.json'
+                    self.duplicate.rename(path)
+                else:
+                    plan = self.root / 'investor-observations.contract-plan.json'
+                    saved = plan.read_bytes(); plan.unlink()
+                errors = [e for r in self.reports() for e in r.get('errors', [])]
+                self.assertTrue(any(e['id'] == 'report-read:' + path.stem for e in errors))
+                if defect == 'name': path.rename(self.duplicate)
+                elif defect == 'plan': plan.write_bytes(saved)
+
+    def test_same_old_artifact_can_repair_only_its_technical_proof(self):
+        from publish_automation_status import update_status, merge_proof_retry
+        run = {'id': 43823335908, 'run_attempt': 1, 'path': '.github/workflows/' + self.workflow,
+               'head_branch': 'master', 'event': 'workflow_dispatch', 'status': 'completed',
+               'conclusion': 'failure', 'run_started_at': '2026-11-16T07:22:02Z',
+               'updated_at': '2026-11-16T09:00:00Z',
+               'html_url': 'https://github.com/madmax91310/shinny-potato/actions/runs/43823335908'}
+        with patch('publish_automation_status.duplicate_investor_attempt', return_value=None):
+            before = update_status({}, run, self.jobs(), self.reports())
+        key = 'report-read:investor-observations-attempt-1:run:43823335908:attempt:1'
+        self.assertIn(key, before['workflows'][self.workflow]['proofFailures'])
+        checks = {k: v.get('checkedAt') for k, v in before['workflows'][self.workflow]['sourceChecks'].items()}
+        after = merge_proof_retry(before, run, self.reports())
+        row = after['workflows'][self.workflow]
+        self.assertNotIn(key, row['proofFailures'])
+        self.assertFalse(row['proofChecks'][key]['evidence']['sourceControl'])
+        self.assertEqual(set(row['dataFailures']), {'investor:druckenmiller', 'investor:klarman'})
+        self.assertEqual({k: v.get('checkedAt') for k, v in row['sourceChecks'].items()}, checks)
+        self.assertNotIn('investor-observations-attempt-1.json', row.get('reportQualifications', {}))
+
+    def test_current_report_and_plan_are_copied_without_rewriting_their_scope(self):
+        source = self.root / 'investor-recording-attempts/attempt-2/investor-observations.json'
+        source.parent.mkdir(parents=True)
+        source.write_bytes(self.primary.read_bytes())
+        plan = source.with_name('investor-observations.contract-plan.json')
+        original_plan = self.root / plan.name
+        plan.write_bytes(original_plan.read_bytes())
+        self.primary.write_text('old report'); original_plan.write_text('old plan')
+        self.recording.copy_report_evidence(source, self.primary)
+        self.assertEqual(self.primary.read_bytes(), source.read_bytes())
+        self.assertEqual(original_plan.read_bytes(), plan.read_bytes())
+        self.assertEqual(json.loads(self.primary.read_text())['resultContract']['inputPlan']['reportStem'], 'investor-observations')
+        source.unlink()
+        self.recording.copy_report_evidence(source, self.primary)
+        self.assertFalse(self.primary.exists())
+        self.assertEqual(original_plan.read_bytes(), plan.read_bytes())
+
+    def test_workflow_separates_current_reports_from_attempt_support(self):
+        text = (self.source.parent / '.github/workflows/update-investor-13f.yml').read_text()
+        for artifact in text.split('name: investor-observations')[1:]:
+            current = artifact.split('- uses:', 1)[0]
+            self.assertIn('/investor-observations.json', current)
+            self.assertIn('/investor-observations.contract-plan.json', current)
+            self.assertNotIn('*.json', current)
+        self.assertIn('name: investor-recording-attempts', text)
 
 
 if __name__ == '__main__':

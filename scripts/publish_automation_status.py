@@ -595,8 +595,8 @@ def merge_proof_retry(state, run, reports):
                 for key in list(failures):
                     if ':run:' not in key and identifier.startswith(key+':run:') and failures[key].get('runUrl') == run['html_url']:
                         failures.pop(key)
-                        checks[key] = {'runUrl':run['html_url'], 'evidence':evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
-                checks[identifier] = {'runUrl':run['html_url'], 'evidence':evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
+                        checks[key] = {'runUrl':run['html_url'], 'evidence':success.get('evidence') or evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
+                checks[identifier] = {'runUrl':run['html_url'], 'evidence':success.get('evidence') or evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
             else:
                 failure=row.get('dataFailures',{}).get(identifier,{})
                 failed_at=timestamp(failure.get('sourcePhaseCompletedAt') or failure.get('completedAt'))
@@ -648,6 +648,43 @@ def merge_proof_retry(state, run, reports):
     return refresh_scope_proofs(result,run,reports)
 
 
+def duplicate_investor_attempt(path, workflow, paths, sidecars, artifacts):
+    """Requalify only the known byte-identical first 13F report copy.
+
+    It is technical support evidence, never a second supplier control. A
+    different payload, unknown name or unverified input plan remains an error.
+    """
+    if workflow != 'update-investor-13f.yml' or path.name != 'investor-observations-attempt-1.json':
+        return None
+    primary = [p for p in paths if p.name == 'investor-observations.json']
+    if len(primary) != 1 or sum(p.name == path.name for p in paths) != 1:
+        return None
+    primary = primary[0]
+    plan = sidecars.get(primary.name)
+    if not plan or plan.stat().st_size > 8_000_000 or path.stat().st_size != primary.stat().st_size:
+        return None
+    try:
+        planned = json.loads(plan.read_text())
+        observed = read_report_safely(primary, workflow, planned)
+        evidence = observed.get('_reportEvidence') or {}
+        if evidence.get('producerContract') != 'producer-results-v1' or not evidence.get('scopePlanVerified'):
+            return None
+        # The successful bounded primary reader establishes the same size limit.
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != evidence.get('sha256'):
+            return None
+        proof = {'file': path.name, 'schema': 'duplicate-attempt-support', 'sha256': digest,
+                 'artifactId': max(a.get('id', 0) for a in artifacts),
+                 'duplicateOf': primary.name, 'planSha256': planned['resultContract']['inputPlan']['sha256'],
+                 'sourceControl': False,
+                 'reason': 'Exact duplicate of the registered report with its verified predeclared plan; support evidence only.'}
+        return {'successes': [{'id': 'report-read:' + path.stem, 'sourceAttempted': False,
+                               'phase': 'reporting', 'evidence': proof}],
+                'errors': []}
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
 def artifact_reports(repo, workflow, jobs, artifacts, directory, download=download_status_artifact):
     """The contract is conditional on executed steps, never on unattempted fields."""
     contract = REPORT_CONTRACTS[workflow]
@@ -694,6 +731,10 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
             if path.name in contract.get('supportFiles',[]):
                 continue  # Explicitly declared inputs/snapshots, never observation reports.
             if path.name not in names:
+                duplicate = duplicate_investor_attempt(path, workflow, paths, sidecars, available)
+                if duplicate:
+                    reports.append(duplicate)
+                    continue
                 reports.append(report_error('report-read:' + path.stem, 'Rapport hors contrat : ' + path.name))
                 continue
             planned=None
