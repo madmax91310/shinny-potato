@@ -49,6 +49,7 @@ MANAGERS = {
     'laffont': ('coatue-management', 'Philippe Laffont', 'Coatue Management LLC'),
     'renaissance': ('renaissance-technologies', 'Renaissance Technologies', 'Renaissance Technologies LLC'),
 }
+PERSON_ALIASES = {'gayner': ('Thomas Gayner', 'https://ir.mklgroup.com/investor-relations/governance/board-of-directors/'), 'hohn': ('Chris Hohn', 'https://ciff.org/finance-and-governance/')}
 _last_request_at = 0
 MAX_RATE_LIMIT_RETRIES = 3
 MAX_RETRY_AFTER_SECONDS = 300
@@ -279,10 +280,12 @@ def make_portfolio(slug, source_slug, display, entity):
     exits = [{'issuerName': row['security']['name'], 'ticker': row['security']['ticker'] or '', 'putCall': None}
              for row in rows if row.get('position_type') == 'direct' and row.get('change') == 'sold'
              and float(row.get('value') or 0) == 0 and float(row.get('shares') or 0) == 0]
+    person_names = [display] + ([PERSON_ALIASES[slug][0]] if slug in PERSON_ALIASES else [])
     result = {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
         'identity': {'slug': slug, 'archetype': 'hedge_fund', 'displayName': display,
                      'entityName': entity, 'dataProvider': 'FolioFact',
-                     'personVerified': fund.get('fund', {}).get('manager') == display or any(p.get('name') == display for p in fund.get('investors', [])),
+                     'personVerified': fund.get('fund', {}).get('manager') in person_names or any(p.get('name') in person_names for p in fund.get('investors', [])),
+                     **({'personAliasSource': PERSON_ALIASES[slug][1]} if slug in PERSON_ALIASES else {}),
                      'personSource': base, 'personPeriod': period},
         'snapshot': {'periodEnd': period, 'holdings': holdings,
                      'filedAt': fund['filing'].get('filed_on'),
@@ -364,6 +367,9 @@ def enrich_sec_positions(portfolio):
     cik = primary.findtext('.//credentials/cik')
     total = int(primary.findtext('.//tableValueTotal', '0'))
     count = int(primary.findtext('.//tableEntryTotal', '0'))
+    folder_cik = re.search(r'/data/(\d+)/', folder)
+    if not folder_cik or not cik or int(folder_cik[1]) != int(cik):
+        raise ValueError('SEC folder and signed filer CIK disagree')
     if not entity or not cik or total <= 0 or count != len(tables):
         raise ValueError('SEC manager, declared total or row count missing/inconsistent')
     if primary.findtext('.//isAmendment', '').lower() == 'true' and primary.findtext('.//amendmentType', '').upper() != 'RESTATEMENT':
@@ -395,8 +401,21 @@ def enrich_sec_positions(portfolio):
         raise ValueError('SEC information table does not reconcile with declared total')
     provider_total = snapshot.get('declaredTotal', snapshot.get('totalValueUsd'))
     if provider_total is not None and abs(row_total - provider_total) > .5 * count:
-        # A factor of 1,000 is a unit conflict, not permission to silently multiply.
-        raise ValueError(f'SEC/provider valuation conflict: SEC rows {row_total} USD, provider {provider_total} USD')
+        # Never repair a possible reporting-unit error by guessing a multiplier.
+        if any(abs(provider_total - row_total * factor) <= .5 * count * max(1, factor)
+               for factor in (1000, 1000000, .001, .000001)):
+            raise ValueError(f'SEC/provider unit conflict: SEC rows {row_total} USD, provider {provider_total} USD; no inferred conversion')
+        normalized = lambda name: re.sub(r'[^a-z0-9]', '', name.lower())
+        if normalized(entity) != normalized(data['identity'].get('entityName', '')):
+            raise ValueError('Conflicting provider and unconfirmed primary filer identity')
+        # A complete signed primary filing outranks a secondary portfolio feed.
+        # Keep the disagreement visible in the PNG, text, app and full exports.
+        # No provider value is used to fill, rescale or infer a primary row.
+        snapshot['reconciliationWarning'] = ('Valeurs de la déclaration SEC retenues ; le fournisseur présente un autre total. Voir les sources dans le détail.')
+        snapshot['sourceReconciliation'] = {'status': 'primary-authoritative',
+            'primaryTotal': row_total, 'providerTotal': provider_total,
+            'providerPeriodEnd': snapshot['periodEnd'], 'providerSource': data['sourceUrl'],
+            'primarySource': original, 'reason': 'Complete primary table, explicit USD units, cover total and entry count verified.'}
     snapshot['reportedCoverTotal'] = total
     snapshot['reconciliationDifference'] = row_total - total
     total = row_total

@@ -111,17 +111,20 @@ class RefreshTests(unittest.TestCase):
         directory = {'directory': {'item': [{'name': 'primary.xml'}, {'name': 'table.xml'}]}}
         original = portfolio('2026-06-30')
         original['data']['snapshot'].update(filingUrl='https://www.sec.gov/Archives/edgar/data/1/2/', declaredTotal=100)
-        for kind in ['good', 'rounding', 'provider-conflict', 'total', 'count', 'date', 'additional']:
+        for kind in ['good', 'rounding', 'provider-conflict', 'primary-authoritative', 'total', 'count', 'date', 'additional']:
             data = copy.deepcopy(original)
             cover = primary
             if kind == 'rounding': cover = cover.replace('Total>100', 'Total>101')
             if kind == 'provider-conflict': data['data']['snapshot']['declaredTotal'] = 100000
+            if kind == 'primary-authoritative':
+                data['data']['snapshot']['declaredTotal'] = 125
+                data['data']['identity']['entityName'] = 'Exact Filer Inc'
             if kind == 'total': cover = cover.replace('Total>100', 'Total>110')
             if kind == 'count': cover = cover.replace('Total>3', 'Total>4')
             if kind == 'date': cover = cover.replace('06-30-2026', '03-31-2026')
             if kind == 'additional': cover = cover.replace('<isAmendment>false', '<amendmentType>NEW HOLDINGS</amendmentType><isAmendment>true')
             with patch.object(module, 'get_json', side_effect=[directory, cover, table]):
-                if kind not in ('good', 'rounding'):
+                if kind not in ('good', 'rounding', 'primary-authoritative'):
                     with self.assertRaises(ValueError): module.enrich_sec_positions(data)
                 else:
                     module.enrich_sec_positions(data)
@@ -130,6 +133,9 @@ class RefreshTests(unittest.TestCase):
                     rows = data['data']['snapshot']['holdings']
                     self.assertEqual([(r['shareClass'], r['value']) for r in rows], [('A', 80), ('B', 20)])
                     self.assertEqual(len(rows[0]['sourceRows']), 2)
+                    if kind == 'primary-authoritative':
+                        self.assertEqual(data['data']['snapshot']['sourceReconciliation']['providerTotal'],125)
+                        self.assertIn('fournisseur',data['data']['snapshot']['reconciliationWarning'])
                     self.assertTrue(data['data']['snapshot']['primaryVerified'])
                     self.assertEqual(data['data']['snapshot']['declaredTotal'], 100)
                     self.assertEqual(data['data']['snapshot']['reconciliationDifference'], -1 if kind == 'rounding' else 0)
@@ -502,6 +508,55 @@ class PublicationTests(unittest.TestCase):
             ['bash', 'scripts/commit-validated-data.sh', 'Validated test polls',
              'public/data/investors'], cwd=self.root, env=env,
             capture_output=True, text=True)
+
+    def test_concurrent_dca_change_recollects_and_records_without_overwrite(self):
+        spec = importlib.util.spec_from_file_location('investor_recording', self.source / 'commit-investor-observations.py')
+        recording = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(recording)
+        self.advance('src/data/dca-security-classifications.json')
+        actual_run = self.subprocess.run
+        acquisitions = []
+
+        def controlled_acquisition(args, **kwargs):
+            if args[:2] == ['python3', 'scripts/update-investor-13f.py']:
+                checkout = pathlib.Path(kwargs['cwd'])
+                acquisitions.append(checkout)
+                self.assertNotEqual(checkout, self.root)
+                self.assertIn('independent', (checkout / 'src/data/dca-security-classifications.json').read_text())
+                reviews = json.loads((checkout / 'public/data/investors/review-metadata.json').read_text())
+                now = module.dt.datetime.now(module.dt.timezone.utc).isoformat()
+                for review in reviews:
+                    review['lastSuccessfulPollAt'] = now
+                (checkout / 'public/data/investors/review-metadata.json').write_text(json.dumps(reviews))
+                report = copy.deepcopy(self.report)
+                report['checkedAt'] = now
+                pathlib.Path(args[-1]).write_text(json.dumps(report))
+                return self.subprocess.CompletedProcess(args, 0)
+            if args[:2] == ['python3', 'scripts/refresh-investor-media.py']:
+                return self.subprocess.CompletedProcess(args, 0)
+            return actual_run(args, **kwargs)
+
+        before = self.git('status', '--porcelain')
+        with patch.object(recording.subprocess, 'run', side_effect=controlled_acquisition):
+            result = recording.publish(self.root, self.report_path)
+        self.assertEqual(len(acquisitions), 1)
+        self.assertEqual(result['changed'], 'true')
+        self.assertEqual(result['collection_failed'], 'false')
+        self.assertEqual(before, self.git('status', '--porcelain'))
+        self.git('fetch', '-q', 'origin', 'master')
+        self.assertIn('independent', self.git('show', 'origin/master:src/data/dca-security-classifications.json'))
+        reviews = json.loads(self.git('show', 'origin/master:public/data/investors/review-metadata.json'))
+        self.assertTrue(all(r['positionsCollectedAt'] == self.old_clock and r['lastSuccessfulPollAt'] >= self.fresh_clock for r in reviews))
+
+    def test_financial_failure_without_upstream_change_is_not_retried(self):
+        import os
+        spec = importlib.util.spec_from_file_location('investor_recording', self.source / 'commit-investor-observations.py')
+        recording = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(recording)
+        with patch.dict(os.environ, {'FORCE_AUDIT_FAILURE': '1'}):
+            with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
+                recording.publish(self.root, self.report_path)
+        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], self.base)
 
     def test_reviewed_source_fingerprints_are_current(self):
         import hashlib

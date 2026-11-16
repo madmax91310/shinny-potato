@@ -91,6 +91,7 @@ export function buildTweet(portfolio, intro = '') {
     `Portefeuille de ${portfolioOwner(portfolio)} :`,
     `Positions déclarées au ${dateFR(snapshot.periodEnd)} · hors options`,
     [...plan.entries].sort((a,b) => b.weight-a.weight).map(row => `${row.other ? '📦' : emojiFor(row.ticker || logoIdentity(row)?.id)} ${row.label} : ${percentage(row.weight)} · ${cash(row.value, plan.currency)}`).join('\n'),
+    ...(snapshot.reconciliationWarning ? ['Chiffres SEC ; le fournisseur affiche un autre total.'] : []),
     'Quelle ligne aimerais-tu avoir dans ton portefeuille ? 👇',
   ].join('\n\n')
 }
@@ -111,5 +112,9 @@ export async function loadPortfolio(slug, signal) {
       portfolio.lastError = review?.lastAttemptStatus === 'failed' ? review.lastError : null
     }
   } catch (error) { if (error.name === 'AbortError') throw error }
+  try {
+    const response = await fetch(`${import.meta.env.BASE_URL}data/investors/media/manifest.json`, {signal,cache:'no-cache'})
+    if(response.ok)portfolio.media={portrait:(await response.json())[slug]}
+  } catch(error) {if(error.name==='AbortError')throw error}
   return portfolio
 }

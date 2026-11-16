@@ -11,7 +11,7 @@ import { investorPortrait } from './portrait.js'
 export function logoIdentity(row) {
   const matches = Object.entries(aliases).filter(([,v]) => v.aliases.includes(row.issuerName) || (row.isin && v.securities?.includes(row.isin)) || (row.cusip && v.securities?.some(isin => /^(US|CA)/.test(isin) && isin.slice(2,11) === row.cusip)))
   if (matches.length !== 1) return null
-  const id = matches[0][0], source = additional[id] || official[id], logo = registry.companies[id] || source
+  const id = matches[0][0], source = additional[id] || official[id], logo = registry.companies[id]?.file ? registry.companies[id] : source
   return logo?.file && source ? { id, ...logo, ...source } : null
 }
 export async function positionLogo(row) {
@@ -20,7 +20,7 @@ export async function positionLogo(row) {
   return { image: await loadArtImage(identity.file).catch(() => null), identity }
 }
 const mediaCache = new Map()
-export async function portfolioPortrait(identity) {
+export async function portfolioPortrait(identity, supplied) {
   const fallback = { image: null, reason: 'Photo vérifiée et réutilisable indisponible.', person: identity.displayName }
   // Corporate ownership is never silently attributed to a former or unverified manager.
   if (entityPortfolio(identity.slug)) return { ...fallback, reason: 'Présentation de l’entité déclarante.' }
@@ -28,11 +28,12 @@ export async function portfolioPortrait(identity) {
   try {
     const source = investorPortrait(identity.slug)
     if (source.person !== identity.displayName) return fallback
+    if (supplied && supplied.sourceDigest !== mediaCache.get(identity.slug)?.sourceDigest) mediaCache.delete(identity.slug)
     if (!mediaCache.has(identity.slug)) {
-      const response = await fetch(`${import.meta.env.BASE_URL}data/investors/media/manifest.json`, { cache:'no-cache' })
-      if (!response.ok) return fallback
-      const metadata = (await response.json())[identity.slug]
-      if (metadata?.status !== 'ready' || !metadata.file?.startsWith('data/investors/media/') || metadata.source !== source.source || metadata.license !== source.license) return { ...fallback, reason: metadata?.reason || fallback.reason }
+      const response = supplied ? null : await fetch(`${import.meta.env.BASE_URL}data/investors/media/manifest.json`, { cache:'no-cache' })
+      if (!supplied && !response.ok) return fallback
+      const metadata = supplied || (await response.json())[identity.slug]
+      if (metadata?.status !== 'ready' || !metadata.file?.startsWith('data/investors/media/') || !(metadata.source === source.source && metadata.license === source.license || source.commonsPortrait && metadata.identityVerified === true && metadata.person === source.person && metadata.wikidataId === source.commonsPortrait.wikidataId && metadata.title === source.commonsPortrait.title && (/^CC BY(?:-SA)? /.test(metadata.license) || ['CC0','Domaine public'].includes(metadata.license)))) return { ...fallback, reason: metadata?.reason || fallback.reason }
       mediaCache.set(identity.slug, metadata)
     }
     const metadata = mediaCache.get(identity.slug)
@@ -46,5 +47,5 @@ export async function portfolioPortrait(identity) {
   } catch { mediaCache.delete(identity.slug); return fallback }
 }
 export function mediaCredits(portfolio) {
-  return { portrait: investorPortrait(portfolio.identity.slug), logos: portfolio.holdings.map(logoIdentity).filter(Boolean) }
+  return { portrait: {...investorPortrait(portfolio.identity.slug), ...(portfolio.media?.portrait || mediaCache.get(portfolio.identity.slug) || {})}, logos: portfolio.holdings.map(logoIdentity).filter(Boolean) }
 }
