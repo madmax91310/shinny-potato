@@ -43,7 +43,12 @@ class FourIssuerRecovery(unittest.TestCase):
                                       ('IE000RDRMSD1','sectors',-.1),
                                       ('IE00B3F81R35','sectors',-.01)]:
             body = json.loads((FIX/(isin+'.json')).read_text())
-            share = next(s for s in PILOT if s['isin']==isin)
+            share = copy.deepcopy(next(s for s in PILOT if s['isin']==isin))
+            # This historical allocation-only capture predates the explicit
+            # structure evidence. Do not invent that field in the raw fixture:
+            # current production and fallback scope are checked separately in
+            # test_partial_allocation_recovery against complete real responses.
+            share.pop('expectedStructure', None)
             result = parse_share(body, share, NOW)
             rows = result[field]['rows']
             self.assertEqual(next(r['weightPct'] for r in rows if r['name']=='Cash and/or Derivatives'), expected)
