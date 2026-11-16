@@ -551,13 +551,6 @@ jobs:
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
-          name: public-portfolio-proof-${{ matrix.shard }}
-          path: test-artifacts/public-portfolios
-          if-no-files-found: ignore
-          retention-days: 7
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
           name: budget-new-profiles-${{ matrix.shard }}
           path: test-artifacts/budget-new-profiles-*/**/*
           if-no-files-found: ignore
