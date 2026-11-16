@@ -1,5 +1,8 @@
 name: Verify public Budget roadmap
 on:
+  push:
+    branches: [verify/budget-public-roadmap-20261116]
+    paths: [.github/workflows/verify-budget-public-roadmap.yml]
   workflow_dispatch:
 permissions:
   contents: read
