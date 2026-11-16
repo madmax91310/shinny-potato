@@ -1,7 +1,8 @@
 import { modelNatureLabel } from '../../data/investor-models.js'
-import { ATTRIBUTION, dateFR, holdingName, percentage } from './data.js'
+import { holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
-import { publicationPlan, portfolioOwner, cash, labelLines } from './publication.js'
+import { publicationPlan, portfolioOwner, cash, POSTER, posterCash } from './publication.js'
+import { loadPortfolioFont, posterFont } from './type.js'
 import { companyInitials, portfolioPortrait, positionLogo } from './media.js'
 
 const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'
@@ -48,73 +49,103 @@ function readableLogo(image) {
   probe.width=probe.height=1;wordmarks.set(image,result);return result
 }
 
+// The displayed preview is this very PNG; there is no separate CSS approximation.
 export async function renderPortfolioImage(portfolio) {
   if (portfolio?.kind === 'model') return renderModelImage(portfolio)
   if (!portfolio) throw new Error('Charge un portefeuille avant de créer le visuel.')
-  const plan = publicationPlan(portfolio), owner = portfolioOwner(portfolio)
-  const [portrait, logos] = await Promise.all([portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait), Promise.all(plan.entries.map(positionLogo))])
-  const canvas = document.createElement('canvas'); canvas.width=1080; canvas.height=1350
-  const ctx = canvas.getContext('2d'); if(!ctx) throw new Error('Impossible de créer le visuel.')
-  ctx.fillStyle='#f7f8f2'; ctx.fillRect(0,0,1080,1350)
-  const ink='#183b2d', green='#186447'
-  function label(value,x,y,size=30,color=ink,align='left') {
-    ctx.font=`600 ${size}px monospace`; ctx.fillStyle=color; ctx.textAlign=align; ctx.fillText(value,x,y)
+  const plan=publicationPlan(portfolio), owner=portfolioOwner(portfolio)
+  const [,portrait,logos]=await Promise.all([loadPortfolioFont(),portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait),Promise.all(plan.entries.map(positionLogo))])
+  const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350
+  const ctx=canvas.getContext('2d');if(!ctx)throw new Error('Impossible de créer le visuel.')
+  const ink='#17191d',green='#16852f',bg='#f5f4f0'
+  ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350)
+  function label(value,x,y,size=34,color=ink,align='left',weight=750) {
+    ctx.font=posterFont(size,weight);ctx.fillStyle=color;ctx.textAlign=align;ctx.fillText(value,x,y)
   }
-  label('Le portefeuille de',540,65,36,ink,'center')
-  // Long names wrap at a fixed readable size, never shrink to microscopic text.
-  const fullTitle = labelLines(owner,29), title=fullTitle.slice(0,2)
-  if(fullTitle.length>2)title[1]=title[1].slice(0,28)+'…'
-  title.forEach((line,i)=>label(line,540,126+i*44,40,ink,'center'))
-  label(`Positions au ${dateFR(portfolio.snapshot.periodEnd)}`,540,278,29,green,'center')
-  const entity = labelLines(portfolio.identity.entityName || portfolio.identity.displayName, 50)
-  entity.slice(0,2).forEach((line,i)=>label(line,540,210+i*27,24,ink,'center'))
-  const cx=540,cy=638,outer=235,inner=145
+  function wrap(value,width,size,maxLines=2) {
+    ctx.font=posterFont(size)
+    const lines=[];let line=''
+    for(let word of String(value).split(/\s+/)) {
+      // Do not strand a final letter on its own line (Coreweav / e).
+      // A deliberate ellipsis keeps the name legible at the fixed type size.
+      if(ctx.measureText(word).width>width) {
+        while(word && ctx.measureText(word+'…').width>width)word=word.slice(0,-1)
+        word+='…'
+      }
+      if(line && ctx.measureText(line+' '+word).width>width){lines.push(line);line=''}
+      line=line?line+' '+word:word
+    }
+    if(line.trim())lines.push(line.trim())
+    if(lines.length>maxLines){lines.length=maxLines;let last=lines[maxLines-1].trim();while(ctx.measureText(last+'…').width>width)last=last.slice(0,-1);lines[maxLines-1]=last+'…'}
+    return lines.map(l=>l.trim())
+  }
+  let titleSize=86
+  ctx.font=posterFont(titleSize,850)
+  while(ctx.measureText(owner).width>980 && titleSize>62){titleSize-=2;ctx.font=posterFont(titleSize,850)}
+  const title=wrap(owner,980,titleSize)
+  title.forEach((line,i)=>label(line,540,110+i*72,titleSize,green,'center',850))
+  const headerY=title.length>1?236:178
+  label('Son portefeuille',540,headerY,46,ink,'center',800)
+  const date=new Date(portfolio.snapshot.periodEnd+'T12:00:00Z'),quarter=Math.ceil((date.getUTCMonth()+1)/3)
+  label(`${quarter===1?'1er':quarter+'e'} trimestre ${date.getUTCFullYear()}`,540,headerY+44,32,ink,'center',550)
+  // A single secondary line, never a stack of legal names.
+  const fund=portfolio.identity.entityName || ''
+  if(title.length===1 && fund.toLowerCase()!==owner.toLowerCase())wrap(fund,980,25,1).forEach(line=>label(line,540,headerY+79,25,'#565b61','center',500))
+  const {cx,cy,outer,inner}=POSTER
   plan.entries.forEach(entry=>{
-    ctx.beginPath(); ctx.arc(cx,cy,outer,entry.start,entry.end); ctx.arc(cx,cy,inner,entry.end,entry.start,true); ctx.closePath()
-    ctx.fillStyle=entry.color; ctx.fill()
+    ctx.beginPath();ctx.arc(cx,cy,outer,entry.start,entry.end);ctx.arc(cx,cy,inner,entry.end,entry.start,true);ctx.closePath();ctx.fillStyle=entry.color;ctx.fill()
+    // No minimum sector width or seam can erase a sub-pixel holding.
   })
-  // Cutout always stays inside the central hole; no percentage can be hidden.
-  ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,inner-7,0,Math.PI*2); ctx.clip()
-  ctx.fillStyle='#e4ecdf';ctx.fillRect(cx-inner,cy-inner,inner*2,inner*2)
+  ctx.fillStyle='#e5e6df';ctx.beginPath();ctx.arc(cx,cy,inner,0,Math.PI*2);ctx.fill()
+  // A verified cutout can cross the inner edge by 16px. Its full aspect ratio
+  // and face remain intact; sector logos and badges are outside this footprint.
   if(portrait.image) {
-    const photo=portrait.image, scale=Math.min(282/photo.width,282/photo.height)
-    ctx.drawImage(photo,cx-photo.width*scale/2,cy+inner-8-photo.height*scale,photo.width*scale,photo.height*scale)
-  } else {
-    const initials=owner.split(/\s+/).slice(0,2).map(w=>w[0]).join('')
-    label(initials,cx,cy+22,62,green,'center')
-  }
-  ctx.restore()
-  function mark(image,row,x,y,width,height=width,support='light') {
-    ctx.fillStyle=image&&support==='dark'?'#183b2d':'#fff';ctx.beginPath();ctx.roundRect(x,y,width,height,8);ctx.fill()
-    if(image) { const k=Math.min((width-10)/image.width,(height-10)/image.height);ctx.drawImage(image,x+(width-image.width*k)/2,y+(height-image.height*k)/2,image.width*k,image.height*k) }
-    else label(row.other?'…':row.ticker || companyInitials(row.label),x+width/2,y+height/2+8,28,green,'center')
+    const photo=portrait.image,k=Math.min((inner*2+26)/photo.width,(inner*2+45)/photo.height)
+    ctx.drawImage(photo,cx-photo.width*k/2,cy+inner-photo.height*k,photo.width*k,photo.height*k)
+  } else label(companyInitials(owner),cx,cy+28,82,green,'center',850)
+  function mark(source,row,x,y,width,height,support) {
+    const image=readableLogo(source)
+    ctx.fillStyle=image&&support==='dark'?ink:'#fff';ctx.beginPath();ctx.roundRect(x,y,width,height,10);ctx.fill()
+    if(image){const k=Math.min((width-12)/image.width,(height-12)/image.height);ctx.drawImage(image,x+(width-image.width*k)/2,y+(height-image.height*k)/2,image.width*k,image.height*k)}
+    else label(row.other?'…':companyInitials(row.label),x+width/2,y+height/2+11,30,ink,'center',800)
   }
   plan.entries.forEach((entry,i)=>{
-    const {x,y,height}=entry, image=readableLogo(logos[i].image)
-    const anchorX=cx+Math.cos(entry.mid)*(outer+3),anchorY=cy+Math.sin(entry.mid)*(outer+3)
-    const edge=entry.side==='left'?x+268:x, elbow=entry.side==='left'?302:778
-    ctx.strokeStyle=entry.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(anchorX,anchorY);ctx.lineTo(elbow,anchorY);ctx.lineTo(edge,y+height/2);ctx.stroke()
-    ctx.fillStyle='#fff';ctx.beginPath();ctx.roundRect(x,y,268,height,14);ctx.fill()
-    ctx.fillStyle=entry.color;ctx.fillRect(x,y+12,5,height-24)
-    mark(image,entry,x+12,y+10,244,60,logos[i].identity?.support)
-    entry.lines.forEach((line,j)=>label(line,x+15,y+99+j*29,28))
-    label(cash(entry.value,plan.currency),x+15,y+height-49,28)
-    label(percentage(entry.weight),x+15,y+height-16,29,green)
-    if(entry.inside && !entry.other && (!image || image.width/image.height<=2)) {
-      const r=190,px=cx+Math.cos(entry.mid)*r,py=cy+Math.sin(entry.mid)*r
-      mark(image,entry,px-30,py-30,60,60,logos[i].identity?.support)
+    const {x,y}=entry,align=entry.side==='left'?'left':'right',tx=entry.side==='left'?x:x+172
+    const names=wrap(entry.label,172,34)
+    names.forEach((line,j)=>label(line,tx,y+30+j*35,34,green,align,800))
+    label(posterCash(entry.value,plan.currency),tx,y+102,30,ink,align,750)
+    const badgeWidth=entry.weight>=.999?136:118,badgeX=entry.side==='left'?x:x+172-badgeWidth,badgeY=y+112
+    ctx.fillStyle=entry.color;ctx.beginPath();ctx.roundRect(badgeX,badgeY,badgeWidth,36,18);ctx.fill()
+    // Dark text on a pale badge retains a visible, identical color key.
+    ctx.fillStyle='#ffffffdf';ctx.beginPath();ctx.roundRect(badgeX+3,badgeY+3,badgeWidth-6,30,15);ctx.fill()
+    label(percentage(entry.weight),badgeX+badgeWidth/2,badgeY+28,30,ink,'center',800)
+    const image=logos[i].image
+    if(entry.inside && !entry.other) {
+      const r=257,px=cx+Math.cos(entry.mid)*r,py=cy+Math.sin(entry.mid)*r
+      const width=Math.min(118,2*r*Math.sin(Math.min(Math.PI/2,entry.weight*Math.PI))-20)
+      mark(image,entry,px-width/2,py-40,width,80,logos[i].identity?.support)
+    } else if(!entry.other) {
+      if(names.length===1)mark(image,entry,x+41,y+41,90,32,logos[i].identity?.support)
+      else {const mx=entry.side==='left'?x+124:x;mark(image,entry,mx,badgeY-4,48,44,logos[i].identity?.support)}
+    }
+    // Logos and the same colored percentage rim identify sectors directly.
+    // No peripheral cards or long leader lines compete with the ring.
+    if(entry.weight<.001) {
+      const ax=cx+Math.cos(entry.mid)*(outer+3),ay=cy+Math.sin(entry.mid)*(outer+3)
+      const ex=entry.side==='left'?x+178:x-6,ey=entry.y+74
+      if(Math.hypot(ex-ax,ey-ay)<90){ctx.strokeStyle=entry.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ex,ey);ctx.stroke()}
     }
   })
-  label('Valeur des positions déclarées',540,1065,30,ink,'center')
-  label(cash(plan.total,plan.currency),540,1122,49,green,'center')
-  label('13F · hors options · valeurs à la date du relevé',540,1168,24,ink,'center')
-  label(portfolio.snapshot.reconciliationWarning ? `${portfolio.holdings.length} lignes · SEC prioritaire (écart fournisseur)` : `${portfolio.holdings.length} lignes · détail intégral dans l’export`,540,1202,24,ink,'center')
-  label('Épargnant libre',540,1320,34,green,'center')
+  const totalLabel='Valeur des positions déclarées',amount=cash(plan.total,plan.currency)
+  ctx.font=posterFont(30,600);const a=ctx.measureText(totalLabel).width
+  ctx.font=posterFont(44,850);const b=ctx.measureText(amount).width
+  const left=(1080-a-b-22)/2
+  label(totalLabel,left,1185,30,ink,'left',600);label(amount,left+a+22,1185,44,ink,'left',850)
   if(portrait.image && /^CC BY/.test(portrait.license)) {
-    const credit=labelLines(`Photo : ${portrait.author} · ${portrait.license} · détourée`,65)
-    credit.slice(0,2).forEach((line,i)=>label(line,540,1238+i*28,24,ink,'center'))
+    const credit=`Photo : ${portrait.author} · ${portrait.license} · détourée`
+    wrap(credit,992,22,2).forEach((line,i)=>label(line,540,1230+i*26,22,'#565b61','center',500))
   }
-  if (!['SEC','FolioFact'].includes(portfolio.identity.dataProvider)) label(ATTRIBUTION,540,1280,24,ink,'center')
+  label('Épargnant libre',540,1310,32,ink,'center',650)
   return canvas.toDataURL('image/png')
 }
 
