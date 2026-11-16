@@ -26,7 +26,7 @@ Le portrait Buffett préexistant provient du SelectUSA Investment Summit 2015, p
 
 Le détourage automatique utilise le cache existant, avec empreinte du fichier et des métadonnées. Pour Ackman, un masque de sujet vérifié retire les deux personnes en arrière-plan de la source existante ; aucune partie du visage n’est volontairement supprimée. Ce masque est conservé avec la source et réutilisé, sans retouche récurrente.
 
-Moody’s, Chubb Limited, Occidental, Vistra Corp et iShares rejoignent le registre de logos existant, avec alias explicites et identifiants vérifiés. Une variante compacte Google est rattachée à Alphabet seulement pour cet outil ; les classes Alphabet restent distinctes et les autres outils gardent leur logo par défaut. Chaque nouvel SVG possède sa provenance, sa licence et son empreinte contrôlée.
+Moody’s, Chubb Limited, Occidental, Vistra Corp et iShares rejoignent le registre de logos existant, avec alias explicites et identifiants vérifiés. Une variante compacte Google est rattachée à Alphabet seulement pour cet outil, et le symbole Meta complet est extrait du SVG officiel existant pour tenir dans les parts étroites ; les classes Alphabet restent distinctes et les autres outils gardent leur logo par défaut. Chaque nouvel SVG possède sa provenance, sa licence et son empreinte contrôlée.
 
 ## Validation locale
 
