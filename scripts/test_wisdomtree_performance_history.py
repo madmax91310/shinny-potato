@@ -202,6 +202,12 @@ class OrdinaryBrowserTransport(unittest.TestCase):
 if __name__=='__main__':unittest.main()
 
 class CanonicalRouteRecovery(unittest.TestCase):
+ def test_real_qualification_entrypoint_provisions_pdf_and_browser_before_source(self):
+  workflow=(ROOT/'.github/workflows/verify-remainder-nav.yml').read_text()
+  source=workflow.index('name: Collect exact shares, verify identity, income, currency and annual bounds')
+  for dependency in ['bash scripts/ensure-ci-runtime.sh poppler','run: npm ci','bash scripts/ensure-ci-runtime.sh chromium']:
+   self.assertLess(workflow.index(dependency),source,'The observed pdftotext failure must not recur as a supplier incident')
+
  def sources(self):
   return [s for s in configurations()if s.get('wisdomPerformancePathStyle')=='issuer-widget']
 

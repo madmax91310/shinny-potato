@@ -1023,3 +1023,10 @@ validée, avec date/hash de la photographie et accord des alias ; statut d'éche
 dates source et blocage intégral inchangés. Le lecteur existant affiche cette
 limite sans changement d'interface. Fixture de la vraie connexion CI et cas de
 dates contradictoires, alias, idempotence et absence d'observation vérifiés.
+
+La première qualification GitHub ciblée43973548020 n'a pas atteint le
+fournisseur : pdftotext était absent du point d'entrée manuel existant. Ses
+dépendances PDF et navigateur ordinaires sont désormais préparées explicitement.
+La recette fournisseur PR déjà provisionnée cible les trois seules routes
+réparées, au lieu de recollecter quatre témoins concluants sans nécessité.
+Ces échecs d'environnement ne sont ni des refus financiers ni des403 fournisseur.
