@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { dataBytesReport, withDataMarks } from './scripts/data-bytes-plugin.mjs'
+import { projectEditorialCalendar } from './scripts/project-editorial-calendar.mjs'
 const base = '/shinny-potato/'
 
 // https://vite.dev/config/
@@ -45,7 +46,7 @@ export default defineConfig(async ({ isPreview }) => {
     ] } } },
   },
   // Data projections are marked so route budgets measure code, not monthly data growth.
-  plugins: [...[projectSelectedData(), projectLightRegistries(), toolData.plugin].map(withDataMarks), react(), tailwindcss(),
+  plugins: [projectEditorialCalendar(), ...[projectSelectedData(), projectLightRegistries(), toolData.plugin].map(withDataMarks), react(), tailwindcss(),
     ...[issuerParts.plugin, metadataParts.plugin, characteristicParts.plugin].map(withDataMarks), dataBytesReport()],
   }
 })
