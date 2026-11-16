@@ -3,7 +3,6 @@ import {consumerChanges,requiredDataPath} from './prepare-validated-data.mjs'
 assert.deepEqual(consumerChanges(['src/data/automated-scpi.json','scripts/collect_corum.py']),[])
 assert.deepEqual(consumerChanges(['src/pages/Home.jsx','src/tools.js','src/data/editorial-calendar.js']),['src/pages/Home.jsx','src/tools.js','src/data/editorial-calendar.js'],'Pending calendar code must trigger full code publication instead of repeatedly publishing old code with newer data')
 for(const path of ['src/data/catalog.js','src/pages/scpi-presentation/lib.js','src/pages/presentations/Actors.jsx','src/pages/presentation-shared/imageExport.js','src/styles.css']) assert.deepEqual(consumerChanges([path]),[path])
-assert.deepEqual(consumerChanges(['src/data/editorial-calendar-config.json']),['src/data/editorial-calendar-config.json'],'Extracted calendar settings remain application configuration and require code publication')
 assert.deepEqual(consumerChanges(['scripts/listing-source-hosts.json']),['scripts/listing-source-hosts.json'],'Listing source authorities are compiled into the application')
 assert.equal(requiredDataPath('src/data/automated-scpi.json'),'src/data/automated-scpi.json')
 for(const path of ['../src/data/automated-scpi.json','src/data/../../other.json','src/data/config.js','src/data/actor.json;echo danger']) assert.throws(()=>requiredDataPath(path))
