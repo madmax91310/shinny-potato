@@ -253,6 +253,27 @@
     "BUDGET_BATCH=complementary node scripts/playwright-budget-new-profiles.mjs 1440": 23.5,
     "node scripts/playwright-selected-records.mjs": 14.8,
     "node scripts/test-ranking-header-layout.mjs": 9.5,
-    "node scripts/test-scpi-ui.mjs": 6.3
+    "node scripts/test-scpi-ui.mjs": 6.3,
+    "node scripts/playwright-budget-social-image.mjs 0 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 1 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 2 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 3 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 4 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 5 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 6 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 7 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 8 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 9 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 10 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 11 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 12 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 13 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 14 16": 100,
+    "node scripts/playwright-budget-social-image.mjs 15 16": 100
+  },
+  "budgetSocialPartitionEvidence": {
+    "partitions": 16,
+    "schedulingEstimateSeconds": 100,
+    "reason": "Smaller profile batches retain all three image modes, repeated critical profiles, all UI cases and the unchanged per-command timeout policy."
   }
 }
