@@ -143,5 +143,20 @@ class RetainedLifeStrategyTest(unittest.TestCase):
                 self.assertEqual(after[isin]['checkedAt'], '2026-11-14T14:51:25.690636+00:00')
                 self.assertEqual(after[isin]['validatedAt'], NOW.isoformat())
                 self.assertEqual(report['observations'][isin]['scope'], 'equity-lookthrough')
+            # One invalid parent cannot discard the other three derivations or
+            # masquerade as a supplier access failure. Prior valid book remains.
+            invalid = copy.deepcopy(FIXTURE['parents'])
+            invalid['IE00BMVB5K07']['underlyingHoldings']['rows'][0]['weightPct'] += .01
+            (root/'src/data/lifestrategy.json').write_text(json.dumps(invalid))
+            with patch.object(collector, 'ROOT', root), patch.object(collector, 'dt', types.SimpleNamespace(datetime=Clock)), \
+                 patch.object(retained, 'bootstrap_books', side_effect=AssertionError('Already retained')), \
+                 patch('sys.argv', ['collector','--apply','--only',*FIXTURE['parents'],'--output',str(output)]), self.assertRaises(SystemExit):
+                collector.main()
+            partial = json.loads(output.read_text())
+            self.assertEqual(len(partial['successes']),3)
+            self.assertEqual(len(partial['errors']),1)
+            self.assertEqual(partial['errors'][0]['phase'],'validation')
+            self.assertIs(partial['errors'][0]['sourceAttempted'],False)
+            self.assertEqual(json.loads((root/'src/data/dca-complete-holdings.json').read_text())['IE00BMVB5K07'],after['IE00BMVB5K07'])
 
 if __name__ == '__main__': unittest.main()

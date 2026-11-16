@@ -13,9 +13,10 @@
     {
       "pattern": "src/data/dca-complete-holdings.json",
       "consumers": [
-        "src/pages/dca-profiles/holdings-loader.js"
+        "src/pages/dca-profiles/holdings-loader.js",
+        "scripts/lifestrategy_retained_holdings.py"
       ],
-      "mechanism": "projection de build en fragments datés",
+      "mechanism": "projection de build en fragments datés ; producteur : conservation bornée et lecture des photographies historiques exactes des sous-jacents LifeStrategy, sans contrôle fournisseur déduit",
       "producer": "scripts/build-dca-exposures.mjs"
     },
     {
