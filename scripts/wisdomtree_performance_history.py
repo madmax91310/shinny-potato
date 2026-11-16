@@ -9,6 +9,7 @@ import datetime as dt
 import hashlib
 import json
 import math
+import calendar
 import base64
 import subprocess
 import urllib.error
@@ -141,10 +142,22 @@ def parse(graph, table, source, anchor, now):
                 or row.get('ticker') != ticker+' LN' or row.get('entityName') != name
                 or row.get('currency') != currency or row.get('levelTypeID') != 2
                 or row.get('levelType') != 'NAV (TR)'
-                or row.get('windowTag') not in ('calYearEnd','monthEnd')
+                or row.get('windowTag') not in ('calYearEnd','monthEnd','rolling12')
                 or any(row.get(k) != (0 if row['windowTag']=='calYearEnd' else None)
                        for k in ('checkDiff', 'checkDiffSumEntityGroup', 'checkDiffSumDataSet'))):
             raise ValueError('Official performance share/currency/convention conflict')
+        if row['windowTag'] == 'rolling12':
+            # New official widget rows are rolling twelve-month windows, never
+            # calendar years. Keep every identity/convention/diagnostic gate;
+            # validate the published shape without using its return in a price
+            # series, a monthly calculation or a closed-calendar corroboration.
+            end = dt.date.fromisoformat(row['dt'])
+            value = row.get('windowRoR')
+            if (row.get('rorWindow') != 'yearOverYear'
+                    or end.day != calendar.monthrange(end.year, end.month)[1]
+                    or end > dt.date.fromisoformat(row['cobDate'])
+                    or type(value) not in (int, float) or not math.isfinite(value)):
+                raise ValueError('Unqualified rolling twelve-month table window')
     fund = []
     for row in graph:
         if type(row.get('wtTypeID')) is not int or row['wtTypeID'] not in (1, 2, 3):
@@ -219,6 +232,7 @@ def parse(graph, table, source, anchor, now):
         'issuerChartInception': source.get('wisdomChartInception', source['wisdomInception']),
         'tablePublicationDate': next(iter(table_dates)), 'closedTableCalendarChecks': closed_checks,
         'snapshotQualification': 'Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used',
+        'unusedRollingWindows': [{'periodEnd':r['dt'],'window':r['rorWindow'],'usedForCalendarQualification':False} for r in products if r['windowTag']=='rolling12'],
         'excludedPreWindowObservations':excluded,'suppliedExactSecurityStart':source['periodStart']+'-01',
         'scaleProof': {'anchor': anchor, 'sourcePerformanceLevel': points[anchor['date']], 'factor': scale,
             'method': 'Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim',

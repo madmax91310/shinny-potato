@@ -1,3 +1,18 @@
+## 16 novembre — neuf historiques NAV WisdomTree, périodes glissantes
+
+Même suivi #881, `fix/wisdomtree-rolling-table-windows-20261116` possède seulement
+wisdomtree_performance_history, sa régression/fixture réelle et ses déclencheurs.
+Cron43898359717 : neuf refus du même format rolling12/yearOverYear ajouté par
+le fournisseur. Tous les contrôles d'identité/devise/NAV(TR) restent stricts ;
+ces fenêtres ne deviennent pas des années civiles ni des rendements utilisés.
+Pas de changement de seuil ou de valeur. Reprise ordinaire ciblée sur les neuf
+identifiants existants, préservation des autres sources et des73/79fenêtres.
+#1363 possède le calendrier partagé ; #1364 Uranium ; #1367 LifeStrategy ;
+#1359/#1361/#1365 gardent leurs interfaces, #1253 sa source S&P. Aucun fichier
+Radar, source de frais ou catalogue supplémentaire. La preuve GitHub/publie reste
+requise après la recette locale ; ne pas confondre cette panne avec les 403 natifs
+sur les livres complets WisdomTree, qui restent distincts.
+
 ## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
 
 Même suivi #881, branche `fix/automation-recording-and-composition-20261116` :
