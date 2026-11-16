@@ -1,5 +1,5 @@
 import initialFeed from "../src/pages/public-portfolios/initial-feed.json" with { type: "json" };
-import { FEED_URL } from "../src/pages/public-portfolios/refresh.js";
+import { FEED_URL, CATALOGUE_REVISION } from "../src/pages/public-portfolios/refresh.js";
 import { choose } from "./card-selection.mjs";
 import { expect } from "playwright/test";
 import { chromium } from "playwright";
@@ -26,18 +26,20 @@ let page = harness?.page || (await context.newPage());
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const base = process.env.BASE_URL || staticBase;
+if (!remote) await page.route(FEED_URL + '**', route => route.fulfill({ json: initialFeed }));
 await page.goto(base);
 await page.locator('.workspace-tool-card[href$="/portefeuilles-publics"]').click();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
-assert.equal(await page.locator('.pp article').count(), 20, 'The reserve starts with twenty researched public profiles');
+assert.equal(await page.locator('.pp article').count(), 30, 'The reserve starts with thirty researched public profiles');
+// No refresh click: opening the tool must load the shared database automatically.
+await expect(page.getByRole('status')).toContainText('nouveau(x) relevé(s)', { timeout: 25000 });
+await expect(page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true })).toBeEnabled();
 const initialLibrary = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
-assert.equal(initialLibrary.catalogueRevision, 1);
+assert.equal(initialLibrary.catalogueRevision, CATALOGUE_REVISION);
 assert(initialLibrary.profiles.every(profile => profile.snapshots.length > 0));
-if (remote) {
-  // Exercise the actual public feed/CORS before any synthetic transport fixture.
-  await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
-  await expect(page.getByRole('status')).toContainText('nouveau(x) relevé(s)', { timeout: 25000 });
-}
+assert(initialLibrary.feedLoadedAt);
+assert(initialLibrary.profiles.every(profile => !profile.acquisition.error));
+if (!remote) await page.unroute(FEED_URL + '**');
 const transportFeed = structuredClone(initialFeed);
 const browserStamp = new Date(Date.now() + 1000).toISOString().replace(/\.\d{3}Z$/, 'Z');
 transportFeed.collectedAt = browserStamp;
@@ -55,7 +57,7 @@ const libraryBeforeRefresh = await page.evaluate(() => JSON.parse(localStorage.g
 await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
 await expect(page.getByRole('status')).toContainText('nouveau(x) relevé(s)');
 const libraryAfterRefresh = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
-assert.equal(libraryAfterRefresh.profiles.length, 20);
+assert.equal(libraryAfterRefresh.profiles.length, 30);
 for (const profile of libraryAfterRefresh.profiles) {
   const old = libraryBeforeRefresh.profiles.find(row => row.id === profile.id);
   assert.equal(profile.snapshots.length, old.snapshots.length + 1);
@@ -159,7 +161,7 @@ await page.evaluate(
   (p) =>
     localStorage.setItem(
       "el-public-portfolios-v1",
-      JSON.stringify({ version: 1, catalogueRevision: 1, profiles: [p] }),
+      JSON.stringify({ version: 1, catalogueRevision: 2, profiles: [p] }),
     ),
   p,
 );

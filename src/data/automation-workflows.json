@@ -692,7 +692,7 @@
     "name": "Allocations de portefeuilles publics · Getquin",
     "workflowName": "Refresh public portfolio allocations",
     "collectionJob": "collect",
-    "maxAgeHours": 48,
+    "maxAgeHours": 192,
     "publishes": true,
     "publicationBranch": "public-portfolio-data",
     "publicationPath": "public/data/public-portfolios-feed.json",

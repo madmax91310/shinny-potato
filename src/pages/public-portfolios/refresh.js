@@ -5,6 +5,7 @@ import { blankProfile, blankSnapshot, canonicalUrl } from './lib.js';
 export const FEED_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/public-portfolio-data/public/data/public-portfolios-feed.json';
 export const COLLECTOR_URL = 'https://github.com/madmax91310/shinny-potato/actions/workflows/refresh-public-portfolios.yml';
 export { catalogue };
+export const CATALOGUE_REVISION = 2;
 const stamp = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString().replace('.000Z', 'Z') === v && Date.parse(v) <= Date.now() + 300000;
 const sourceKey = (url) => {
   const value = canonicalUrl(url);
@@ -13,8 +14,8 @@ const sourceKey = (url) => {
 };
 const fail = () => { throw Error('Flux de relevés invalide ou incompatible. Les dernières données sont conservées.'); };
 
-export function validateFeed(feed) {
-  if (feed?.version !== 1 || !stamp(feed.collectedAt) || !Array.isArray(feed.entries) || feed.entries.length !== catalogue.length) fail();
+export function validateFeed(feed, { allowSubset = false } = {}) {
+  if (feed?.version !== 1 || !stamp(feed.collectedAt) || !Array.isArray(feed.entries) || (allowSubset ? !feed.entries.length || feed.entries.length > catalogue.length : feed.entries.length !== catalogue.length)) fail();
   const ids = new Set();
   for (const entry of feed.entries) {
     const known = catalogue.find(row => row.id === entry.catalogueId);
@@ -64,9 +65,10 @@ export function mergeFeed(db, input) {
 }
 
 export function seedCatalogue(db) {
-  if (db.error || db.catalogueRevision >= 1) return db;
+  if (db.error || db.catalogueRevision >= CATALOGUE_REVISION) return db;
   const profiles = [...db.profiles];
   for (const entry of catalogue) {
+    if ((entry.introducedIn || 1) <= (db.catalogueRevision || 0)) continue;
     const existing = profiles.find(row => sourceKey(row.url) === sourceKey(entry.url));
     if (existing) {
       // Link a source without changing any personal fields or old publications.
@@ -75,7 +77,7 @@ export function seedCatalogue(db) {
       platform: entry.platform, pseudo: entry.pseudo, url: entry.url, strategy: entry.strategy, objective: entry.objective || '',
       nature: entry.nature, notes: entry.note, evidence: entry.evidence.join('\n') });
   }
-  return mergeFeed({ ...db, profiles, catalogueRevision: 1 }, initialFeed).db;
+  return mergeFeed({ ...db, profiles, catalogueRevision: CATALOGUE_REVISION }, initialFeed).db;
 }
 
 export async function fetchLatestFeed(signal) {
