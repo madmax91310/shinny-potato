@@ -86,11 +86,18 @@ class StaleCountriesKeepIndependentFields(unittest.TestCase):
   calendar=b['componentsByNameMap']['performance']['containersByNameMap']['returns']['subContainersByNameMap']['calendar']['dataPointsByNameMap']
   calendar['returnsByCurrency']['value']['annualNav']='EUR'
   r=self.collect(b);self.assertEqual(r['shares'],[]);self.assertEqual(len(r['failures']),1)
+  b=copy.deepcopy(self.body)
+  facts=b['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+  facts['productStructure']['value']='Synthetic'
+  facts['fundMethodologyTypeCode']['value']='Synthetic Replication'
+  r=self.collect(b);self.assertEqual(r['shares'],[]);self.assertEqual(len(r['failures']),1)
  def test_all_six_observed_stale_country_failures_opt_in_to_existing_isolation(self):
   wanted={'IE00B1FZS350','IE00B3F81R35','IE00B4WXJJ64','IE00B66F4759','IE00BF3N7094','IE00BFZPF546'}
   selected=[s for s in json.loads((ROOT/'scripts/etf-pilot.json').read_text())['instruments']if s['isin']in wanted]
   self.assertEqual({s['isin']for s in selected},wanted)
-  for share in selected:self.assertIs(share.get('isolateAllocationFailures'),True)
+  for share in selected:
+   self.assertIs(share.get('isolateAllocationFailures'),True)
+   self.assertEqual(share.get('expectedStructure'),'Physical')
 class AdditionalStaleCountriesKeepIndependentFields(unittest.TestCase):
  def setUp(self):
   self.isin='IE00B2NPKV68';self.now=dt.datetime(2026,11,16,12,tzinfo=dt.timezone.utc)
@@ -128,9 +135,17 @@ class AdditionalStaleCountriesKeepIndependentFields(unittest.TestCase):
   b=copy.deepcopy(self.body);b['productId']=1
   merged,report=self.refresh(b)
   self.assertEqual(report['shares'][0]['status'],'failed');self.assertNotIn(self.isin,merged)
+  b=copy.deepcopy(self.body)
+  facts=b['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+  facts['productStructure']['value']='Synthetic'
+  facts['fundMethodologyTypeCode']['value']='Synthetic Replication'
+  merged,report=self.refresh(b)
+  self.assertEqual(report['shares'][0]['status'],'failed');self.assertNotIn(self.isin,merged)
  def test_all_three_additional_refusals_use_existing_isolation(self):
   wanted={'IE00B2NPKV68','IE00BFM6T814','IE00B3F81K65'}
   selected=[s for s in json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']if s['isin']in wanted]
   self.assertEqual({s['isin']for s in selected},wanted)
-  for s in selected:self.assertIs(s.get('isolateAllocationFailures'),True)
+  for s in selected:
+   self.assertIs(s.get('isolateAllocationFailures'),True)
+   self.assertEqual(s.get('expectedStructure'),'Physical')
 if __name__=='__main__':unittest.main()

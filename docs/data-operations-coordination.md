@@ -785,3 +785,14 @@ preuve d'enregistrement, pour préserver les gardes d'entrées. #1344 possède l
 traitement 13F Fundsmith et ses reprises ; aucun de ses fichiers n'est modifié
 ici. #1342, #1343 et la présentation SCPI #1345 restent indépendantes et leurs
 changements sont préservés. Les succès locaux ne sont pas des preuves de cron.
+
+Complément de qualification physique du même lot : les neuf réponses officielles
+acquises indiquent explicitement `productStructure=Physical`. Le secours par
+positions ne peut jamais devenir une exposition à un panier de substitution.
+Le contrat `expectedStructure=Physical` existant est donc explicité pour les neuf
+parts (deux l'avaient déjà), sans nouveau parseur ni assouplissement. Reproduction
+isolée d'un passage déclaré en synthétique avant le correctif : le collecteur
+acceptait encore cette voie pour les anciennes parts sans contrat explicite.
+Après correction, changement de structure refusé avant la géographie et avant
+l'enregistrement ; valeurs actuelles physiques inchangées. Régression dans les
+deux adaptateurs, aucune donnée synthétique de test écrite en production.
