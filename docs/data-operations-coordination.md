@@ -9,17 +9,19 @@ Aucun poids FX inventé, aucune couverture intégrale ni recouvrement admis.
 #1253 possède toujours S&P ; #1359/#1361 et le calendrier ne sont pas modifiés.
 Aucune date de réussite complète renouvelée sur cette erreur partielle.
 Les données financières sont générées uniquement par le producteur ordinaire.
-## 16 novembre — validation interrompue par la construction du calendrier
+## 16 novembre — calendrier statique partagé, validation financière
 
-Même suivi #881 : `fix/stable-json-code-budget-20261116` possède uniquement la
-projection build du calendrier, sa recette, son raccord Vite/prebuild et cette
-note. #1362 conserve intégralement les choix, notes et fonctions éditoriales.
-Échec ETF43896218366 à892261/892000octets : aucune hausse de budget.
-Après01391687 : refus distinct investisseurs725098/725000 dans le build local.
-La projection suit les constantes réellement déclarées sans restaurer MIDDAY_SELECTIONS.
-Les seules valeurs statiques sont projetées ; les fonctions restent comptées
-comme code. #1359/#1361 et les producteurs financiers ne sont pas modifiés.
-Enregistrement et publication réels restent à prouver après fusion.
+Même suivi #881, #1363 reprend uniquement l'extraction statique déjà préparée
+dans #1365 : editorial-calendar.js et editorial-week.json, octets identiques.
+Les choix, notes, ordre et fonction publicationLabel sont comparés sur22routes.
+Aucun second plugin Vite, aucun changement éditorial ni hausse de budget.
+Refus ETF43896218366 :892261/892000 ; après01391687, un autre snapshot local
+refuse investisseurs725098/725000. Le calendrier statique supprime cette
+construction répétée. #1368 conserve le contrôle hebdomadaire actualisé.
+#1365 garde ses sources eToro et son interface ; #1359/#1361 sont préservées.
+Le correctif d'enregistrement #1360 a enregistré la reprise ETF43903822568,
+avec résultats individuels partiels conservés ; publication encore à vérifier.
+L'ancienne projection candidate non fusionnée est retirée, pas cumulée.
 
 ## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
 
