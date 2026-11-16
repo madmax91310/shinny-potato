@@ -1,9 +1,59 @@
 {
-  "checkedAt": "2026-11-16T18:41:58.389Z",
+  "checkedAt": "2026-11-16T21:42:06.120Z",
   "total": 702,
   "outside": 60,
   "complete": 637,
   "gaps": [
+    {
+      "asset": "lifestrategy80",
+      "isin": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "kind": "etf",
+      "provider": null,
+      "countries": {
+        "coverage": 0,
+        "eligible": 80.38038,
+        "outside": false,
+        "missing": 80.38038,
+        "reasons": [
+          "Ventilation absente"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 70.31370069412459,
+        "eligible": 80.38038,
+        "outside": false,
+        "missing": 23.86196019000002,
+        "reasons": [],
+        "asOf": "2026-09-30"
+      }
+    },
+    {
+      "asset": "lifestrategy60",
+      "isin": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "kind": "etf",
+      "provider": null,
+      "countries": {
+        "coverage": 0,
+        "eligible": 60.294520000000006,
+        "outside": false,
+        "missing": 60.294520000000006,
+        "reasons": [
+          "Ventilation absente"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 75.11347442520481,
+        "eligible": 60.294520000000006,
+        "outside": false,
+        "missing": 15.005211140000007,
+        "reasons": [],
+        "asOf": "2026-09-30"
+      }
+    },
     {
       "asset": "lifestrategy20",
       "isin": "IE00BMVB5K07",
@@ -50,56 +100,6 @@
         "eligible": 40.22632000000001,
         "outside": false,
         "missing": 0.038903320000009955,
-        "reasons": [],
-        "asOf": "2026-09-30"
-      }
-    },
-    {
-      "asset": "lifestrategy60",
-      "isin": "IE00BMVB5P51",
-      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
-      "kind": "etf",
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 60.294520000000006,
-        "outside": false,
-        "missing": 60.294520000000006,
-        "reasons": [
-          "Ventilation absente"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 99.90898866099272,
-        "eligible": 60.294520000000006,
-        "outside": false,
-        "missing": 0.05487485000001158,
-        "reasons": [],
-        "asOf": "2026-09-30"
-      }
-    },
-    {
-      "asset": "lifestrategy80",
-      "isin": "IE00BMVB5R75",
-      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
-      "kind": "etf",
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 80.38038,
-        "outside": false,
-        "missing": 80.38038,
-        "reasons": [
-          "Ventilation absente"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 99.9106482825784,
-        "eligible": 80.38038,
-        "outside": false,
-        "missing": 0.07182124999999928,
         "reasons": [],
         "asOf": "2026-09-30"
       }
