@@ -137,6 +137,10 @@ class ScpiRecording(unittest.TestCase):
         self.assertEqual(self.git('show', 'origin/master:src/data/other.json'), '{"concurrent":20}')
         final = json.loads(self.source_report.read_text())
         self.assertEqual([x['status'] for x in final['recordingAttempts']], ['failed', 'succeeded'])
+        refusal = final['recordingAttempts'][0]['refusal']
+        self.assertEqual((refusal['reason'], refusal['kind'], refusal['base']),
+                         ('stale-collection-inputs', 'scpi', self.base))
+        self.assertIn('source-config.json', refusal['paths'])
         self.assertEqual(json.loads((self.directory / 'scpi-recording-attempts/attempt-1/scpi-observation.json').read_text()), report(code_sha=self.base))
         self.assertEqual(json.loads(self.source_report.with_name('scpi-observation.contract-plan.json').read_text()), {'freshPlan': True})
         self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
@@ -197,12 +201,21 @@ class ScpiRecording(unittest.TestCase):
                 record.assert_not_called()
 
     def test_dependency_change_requires_a_fresh_workflow_not_an_old_runtime(self):
-        upstream = self.advance({'package.json': '{"changed":true}'})
-        with patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate'):
-            with self.assertRaisesRegex(RuntimeError, 'runtime dependencies changed'):
-                module.publish(self.root, self.source_report)
-        self.assertEqual(self.acquisitions, [])
-        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
+        paths = ['package.json', 'package-lock.json', 'vite.config.js',
+                 'scripts/test-scpi.mjs', 'scripts/test_corum.py',
+                 'scripts/audit-data-provenance.mjs', 'scripts/lib/new-validator.mjs',
+                 'scripts/fixtures/scpi/new-contract.json', '.github/workflows/update-scpi.yml',
+                 'src/data/evidence.js', 'src/lib/new-validator.js',
+                 'src/pages/scpi-presentation/lib.js', 'src/data/freshness-policy.json']
+        for path in paths:
+            with self.subTest(path=path):
+                upstream = self.advance({path: '{"changed":true}'})
+                with patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate') as validate:
+                    with self.assertRaisesRegex(RuntimeError, 'no unsafe retry|runtime dependencies changed'):
+                        module.publish(self.root, self.source_report)
+                self.assertEqual(self.acquisitions, [])
+                validate.assert_not_called()
+                self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
 
     def test_a_plan_from_a_different_checkout_or_without_a_durable_plan_cannot_record(self):
         for missing in (False, True):
@@ -215,7 +228,7 @@ class ScpiRecording(unittest.TestCase):
                 record.assert_not_called()
 
     def test_an_earlier_guard_trace_does_not_hide_a_later_financial_failure(self):
-        message = 'observation_rebase_guard.py\nValueError: ' + module.INPUT_REFUSAL + '\nAssertionError: Financial check failed'
+        message = 'observation_rebase_guard.py\nValueError: Collection inputs may have changed; recollect from master:\nAssertionError: Financial check failed'
         with patch.object(module, 'record', return_value=subprocess.CompletedProcess([], 1, message)), patch.object(module, 'validate') as validate:
             with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
                 module.publish(self.root, self.source_report)
@@ -273,10 +286,11 @@ class ScpiRecording(unittest.TestCase):
 
     def test_repeated_input_races_exhaust_three_attempts_without_publishing(self):
         calls = []
+        real_record = module.record
         def refuse(root, output):
             calls.append(root)
             self.advance({'docs/race.txt': str(len(calls)), 'source-config.json': '{"a":12,"b":20}'})
-            return subprocess.CompletedProcess([], 1, 'observation_rebase_guard.py\nValueError: ' + module.INPUT_REFUSAL)
+            return real_record(root, output)
         with patch.object(module, 'record', side_effect=refuse), patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate', side_effect=self.validate):
             with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
                 module.publish(self.root, self.source_report)
@@ -286,6 +300,100 @@ class ScpiRecording(unittest.TestCase):
         self.git('fetch', '-q', 'origin', 'master')
         self.assertEqual(json.loads(self.git('show', 'origin/master:src/data/automated-scpi.json')), self.old)
         self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
+
+    def test_source_financial_and_provenance_errors_block_even_a_real_stale_refusal(self):
+        upstream = self.advance()
+        for kind in ('provider', 'financial', 'provenance', 'contract-issue', 'unscoped'):
+            data = report(True, code_sha=self.base)
+            data['observations'][1]['reason'] = kind + ' failure'
+            if kind == 'contract-issue': data['resultContract']['issues'] = ['Provenance mismatch']
+            if kind == 'unscoped': data['resultContract']['unscopedFailures'] = [{'id': 'unknown'}]
+            self.source_report.write_text(json.dumps(data))
+            with self.subTest(kind=kind), patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate') as validate:
+                with self.assertRaisesRegex(RuntimeError, 'recollection is forbidden'):
+                    module.publish(self.root, self.source_report)
+                validate.assert_not_called()
+            self.assertEqual(self.acquisitions, [])
+            self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
+
+    def test_a_partial_recollection_cannot_trigger_another_recollection(self):
+        self.partial = True
+        real_record = module.record
+        calls = []
+        def racing(root, output):
+            calls.append(root)
+            self.advance({'docs/race.txt': str(len(calls)), 'source-config.json': '{"a":12,"b":20}'})
+            return real_record(root, output)
+        with patch.object(module, 'record', side_effect=racing), patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate', side_effect=self.validate):
+            with self.assertRaisesRegex(RuntimeError, 'recollection is forbidden'):
+                module.publish(self.root, self.source_report)
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(len(self.acquisitions), 1)
+        self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
+        self.git('fetch', '-q', 'origin', 'master')
+        self.assertEqual(json.loads(self.git('show', 'origin/master:src/data/automated-scpi.json')), self.old)
+
+    def test_concurrently_weakened_guard_cannot_approve_its_own_contract(self):
+        upstream = self.advance({'scripts/observation_rebase_guard.py': 'print("Everything approved")\n'})
+        with patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate') as validate:
+            with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
+                module.publish(self.root, self.source_report)
+        validate.assert_not_called()
+        self.assertEqual(self.acquisitions, [])
+        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
+
+    def test_logs_and_invalid_receipts_cannot_authorize_recovery(self):
+        message = 'observation_rebase_guard.py\nValueError: Collection inputs may have changed; recollect from master:'
+        for defect in ('missing', 'malformed', 'nonce', 'kind', 'base', 'paths', 'exit-code'):
+            def writer(args, **kwargs):
+                if args != module.WRITER:
+                    return self.real_run(args, **kwargs)
+                env = kwargs['env']
+                receipt = {'schemaVersion': 1, 'reason': 'stale-collection-inputs',
+                           'nonce': env['VALIDATED_DATA_REFUSAL_NONCE'], 'kind': 'scpi',
+                           'base': self.base, 'upstream': 'f' * 40, 'paths': ['source-config.json']}
+                if defect == 'nonce': receipt['nonce'] = 'an earlier attempt'
+                if defect == 'kind': receipt['kind'] = 'actors'
+                if defect == 'base': receipt['base'] = '0' * 40
+                if defect == 'paths': receipt['paths'] = []
+                if defect != 'missing':
+                    Path(env['VALIDATED_DATA_REFUSAL_FILE']).write_text('{' if defect == 'malformed' else json.dumps(receipt))
+                return subprocess.CompletedProcess(args, 1 if defect == 'exit-code' else 75, message)
+            with self.subTest(defect=defect), patch.object(module.subprocess, 'run', side_effect=writer), patch.object(module, 'validate') as validate:
+                with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
+                    module.publish(self.root, self.source_report)
+                validate.assert_not_called()
+
+    def test_keyboard_interruption_cleans_the_private_checkout(self):
+        upstream = self.advance()
+        with patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate', side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                module.publish(self.root, self.source_report)
+        self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
+        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
+        history = json.loads((self.directory / 'scpi-recording-attempts/recording-status.json').read_text())
+        self.assertIn('KeyboardInterrupt', history['attempts'][0]['recoveryError'])
+
+    def test_cleanup_attempts_every_checkout_without_masking_the_primary_failure(self):
+        real_record, real_run = module.record, module.run
+        calls, removals = [], []
+        def refuse(root, output):
+            calls.append(root)
+            self.advance({'docs/race.txt': str(len(calls)), 'source-config.json': '{"a":12,"b":20}'})
+            return real_record(root, output)
+        def cleanup(command, root, **kwargs):
+            result = real_run(command, root, **kwargs)
+            if command[:3] == ['git', 'worktree', 'remove']:
+                removals.append(command[-1])
+                if len(removals) == 1:
+                    raise OSError('Injected cleanup failure after removal')
+            return result
+        with patch.object(module, 'record', side_effect=refuse), patch.object(module.subprocess, 'run', side_effect=self.acquire), patch.object(module, 'validate', side_effect=self.validate), patch.object(module, 'run', side_effect=cleanup):
+            with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
+                module.publish(self.root, self.source_report)
+        self.assertEqual(len(removals), 2)
+        self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
+        self.assertTrue((self.directory / 'scpi-recording-attempts/cleanup-errors.json').exists())
 
     def test_retry_validation_and_artifact_remain_bound_to_the_ordinary_workflow(self):
         workflow = (SCRIPTS.parent / '.github/workflows/update-scpi.yml').read_text()

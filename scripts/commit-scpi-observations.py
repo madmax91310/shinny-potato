@@ -4,7 +4,10 @@ import json
 import os
 from pathlib import Path
 import re
+import secrets
+import shlex
 import subprocess
+import sys
 import tempfile
 import time
 
@@ -14,13 +17,13 @@ ROOT = Path(__file__).resolve().parents[1]
 WRITER = ['bash', 'scripts/commit-validated-data.sh',
           'Refresh validated official SCPI presentations', 'src/data/automated-scpi.json']
 CHECK = 'bash scripts/validate-producer-publication.sh scpi'
-INPUT_REFUSAL = 'Collection inputs may have changed; recollect from master:'
-DEPENDENCIES = ['package.json', 'package-lock.json',
-                'scripts/python-installer-requirements.txt', 'scripts/python-constraints.txt',
-                '.github/workflows/update-scpi.yml', 'scripts/commit-scpi-observations.py',
-                'scripts/validate-producer-publication.sh', 'scripts/commit-validated-data.sh',
-                'scripts/observation_rebase_guard.py', 'scripts/producer_report_contract.py',
-                'scripts/producer_report_plans.py']
+# Fail closed for executable validation/acquisition code, helper modules, fixture
+# contracts and runtime definitions. New helpers are protected without maintaining
+# an incomplete list of current imports. Independent JSON observations and prose
+# can still be recollected against a fresh checkout.
+DEPENDENCIES = ['package.json', 'package-lock.json', 'vite.config.js',
+                'scripts', '.github', 'src/lib', 'src/design-system',
+                ':(glob)src/**/*.js', 'src/data/freshness-policy.json']
 PYTHON_TESTS = ['test_scpi.py', 'test_scpi_recording.py', 'test_iroko_snapshot.py',
                 'test_corum.py', 'test_corum_vector.py', 'test_extended_scpi.py',
                 'test_scpi_current_bulletins.py', 'test_presentation_expansion.py',
@@ -60,11 +63,46 @@ def source_failed(data):
         r['status'] == 'failed' for r in contract['outcomes'])
 
 
+def runtime_changes(root, base, upstream):
+    return subprocess.check_output(
+        ['git', 'diff', '--name-only', base, upstream, '--', *DEPENDENCIES],
+        cwd=root, text=True).strip()
+
+
+def validate_publication(root):
+    # This entry point lives in the ORIGINAL checkout: concurrently edited
+    # guards and validators cannot approve their own changed contract.
+    base = os.environ['VALIDATED_DATA_ORIGINAL_BASE']
+    changed = runtime_changes(root, base, revision(root, 'HEAD^'))
+    if changed:
+        raise RuntimeError('SCPI runtime dependencies changed; a fresh ordinary workflow is required: ' + changed)
+    raise SystemExit(subprocess.run(shlex.split(CHECK), cwd=root).returncode)
+
+
 def record(root, output):
+    refusal = output.with_suffix('.refusal.json')
+    refusal.unlink(missing_ok=True)
+    nonce = secrets.token_hex(32)
     result = subprocess.run(WRITER, cwd=root, text=True, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, env={**os.environ,
-                            'GITHUB_OUTPUT': str(output), 'VALIDATED_DATA_CHECK': CHECK})
+                            'GITHUB_OUTPUT': str(output), 'VALIDATED_DATA_CHECK': shlex.join(
+                                [sys.executable, str(ROOT / 'scripts/commit-scpi-observations.py'), '--validate-publication']),
+                            'VALIDATED_DATA_REFUSAL_FILE': str(refusal),
+                            'VALIDATED_DATA_REFUSAL_NONCE': nonce})
     print(result.stdout, end='', flush=True)
+    result.stale_refusal = None
+    if result.returncode == 75 and refusal.exists():
+        try:
+            data = json.loads(refusal.read_text())
+            if (data.get('schemaVersion') == 1 and data.get('reason') == 'stale-collection-inputs'
+                    and data.get('kind') == 'scpi' and data.get('nonce') == nonce
+                    and data.get('base') == revision(root)
+                    and re.fullmatch('[a-f0-9]{40}', data.get('upstream', ''))
+                    and isinstance(data.get('paths'), list) and data['paths']
+                    and all(isinstance(p, str) and p for p in data['paths'])):
+                result.stale_refusal = data
+        except (ValueError, TypeError, AttributeError):
+            pass  # Invalid evidence cannot authorize recovery.
     return result
 
 
@@ -132,18 +170,18 @@ def publish(root, report, attempts=3, command=None):
                 state.update(status='failed', reason='Financial writer refused the candidate')
                 # Never reinterpret a failed financial check, push/auth error or
                 # conflicting observation as permission to write the same output.
-                last_line = result.stdout.rstrip().splitlines()[-1:]
-                stale_inputs = bool(last_line and last_line[0].startswith('ValueError: ' + INPUT_REFUSAL)
-                                    and 'observation_rebase_guard.py' in result.stdout)
-                if not stale_inputs or attempt == attempts:
+                refusal = getattr(result, 'stale_refusal', None)
+                if refusal:
+                    state['refusal'] = refusal
+                if source_failed(read_report(current_report)):
+                    raise RuntimeError('SCPI source, financial or provenance failure; recollection is forbidden')
+                if not refusal or attempt == attempts:
                     raise RuntimeError('SCPI recording refused; no unsafe retry or forced write')
                 run(['git', 'fetch', 'origin', 'master'], root)
                 latest = revision(root, 'FETCH_HEAD')
                 if latest == state['collectionBase']:
                     raise RuntimeError('SCPI recording refused without a newer master')
-                changed = subprocess.check_output(
-                    ['git', 'diff', '--name-only', state['collectionBase'], latest, '--', *DEPENDENCIES],
-                    cwd=root, text=True).strip()
+                changed = runtime_changes(root, state['collectionBase'], latest)
                 if changed:
                     raise RuntimeError('SCPI runtime dependencies changed (including the validation contract); a fresh ordinary workflow is required: ' + changed)
                 time.sleep(2 ** attempt)
@@ -169,7 +207,7 @@ def publish(root, report, attempts=3, command=None):
                 state['recoveryPhase'] = 'validated'
                 current = checkout
             raise RuntimeError('SCPI recording retry budget exhausted')
-        except Exception as error:
+        except BaseException as error:
             if history:
                 if history[-1]['status'] == 'attempted':
                     history[-1]['status'] = 'failed'
@@ -205,15 +243,29 @@ def publish(root, report, attempts=3, command=None):
                     report.unlink(missing_ok=True)
                     plan_path.unlink(missing_ok=True)
             finally:
+                cleanup_errors = []
                 for checkout in reversed(checkouts):
-                    run(['git', 'worktree', 'remove', '--force', str(checkout)], root)
+                    try:
+                        run(['git', 'worktree', 'remove', '--force', str(checkout)], root)
+                    except Exception as error:
+                        cleanup_errors.append(str(error))
+                if cleanup_errors:
+                    (evidence / 'cleanup-errors.json').write_text(json.dumps(cleanup_errors) + '\n')
+                    # Attempt every removal; retain the primary failure, if any.
+                    if sys.exc_info()[0] is None:
+                        raise RuntimeError('SCPI worktree cleanup failed: ' + '; '.join(cleanup_errors))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--report', required=True, type=Path)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument('--report', type=Path)
+    mode.add_argument('--validate-publication', action='store_true')
     parser.add_argument('command', nargs=argparse.REMAINDER)
     args = parser.parse_args()
+    if args.validate_publication:
+        validate_publication(Path.cwd())
+        return
     command = args.command[1:] if args.command[:1] == ['--'] else args.command
     result = publish(ROOT, args.report, command=command)
     text = ''.join(f'{key}={result[key]}\n' for key in ('changed', 'commit_sha', 'collection_failed'))
