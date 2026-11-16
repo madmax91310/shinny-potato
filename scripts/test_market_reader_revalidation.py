@@ -96,6 +96,47 @@ class ReaderRevalidation(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'Protected publication workflow'):
                     operation(self.base,end)
 
+    def test_actual_public_portfolio_proof_step_can_be_added_or_removed(self):
+        fixture = json.loads((ROOT/'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json').read_text())
+        initial = self.base
+        for before, after in [('before', 'after'), ('after', 'before')]:
+            self.git('reset', '--hard', initial)
+            base = self.commit({reader.DEPLOY_WORKFLOW: fixture[before]})
+            end = self.commit({reader.DEPLOY_WORKFLOW: fixture[after]})
+            for kind, operation in [('market', reader.check), ('etf', reader.check_etf)]:
+                allowed = set(shared.ALLOWED[kind])
+                with self.assertRaises(ValueError):
+                    shared.check(kind, base, end)
+                proof = operation(base, end)
+                self.assertEqual(proof['qualifiedPublicationReaders'], [reader.DEPLOY_WORKFLOW])
+                self.assertTrue(proof['financialRevalidationRequired'])
+                self.assertFalse(proof['sourceControlsRenewedByThisAdapter'])
+                self.assertEqual(shared.ALLOWED[kind], allowed)
+
+    def test_public_portfolio_proof_is_not_a_general_workflow_exemption(self):
+        fixture = json.loads((ROOT/'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json').read_text())
+        base = self.commit({reader.DEPLOY_WORKFLOW: fixture['after']})
+        for changed in [fixture['before'].replace('contents: read', 'contents: write', 1),
+                        fixture['before'].replace('matrix.shard }} 6', 'matrix.shard }} 5', 1),
+                        fixture['before'].replace('test-artifacts/public-portfolios', 'src/data'),
+                        fixture['before'].replace('retention-days: 7', 'retention-days: 8'),
+                        fixture['before'].replace('name: public-portfolio-proof-', 'name: unreviewed-'),
+                        fixture['before'].replace('actions/upload-artifact@v7.0.1', 'actions/upload-artifact@v7.0.2', 1)]:
+            self.assertNotEqual(changed, fixture['before'])
+            end = self.commit({reader.DEPLOY_WORKFLOW: changed})
+            for operation in [reader.check, reader.check_etf]:
+                with self.assertRaisesRegex(ValueError, 'Protected publication workflow'):
+                    operation(base, end)
+
+    def test_public_proof_step_stays_guarded_if_acquisition_reads_workflow(self):
+        fixture = json.loads((ROOT/'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json').read_text())
+        for entry, operation in [(reader.BASELINE, reader.check), (reader.ETF_BASELINE, reader.check_etf)]:
+            base = self.commit({reader.DEPLOY_WORKFLOW: fixture['after'],
+                                entry: "import '../.github/workflows/deploy-pages.yml';\n"})
+            end = self.commit({reader.DEPLOY_WORKFLOW: fixture['before']})
+            with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
+                operation(base, end)
+
     def test_new_budget_reader_is_rejected_if_acquisition_imports_it(self):
         path='src/pages/budget-profiles/editorial-profiles-2026-11-15.json'
         fixture,_=self.budget_new_profiles_snapshots()
