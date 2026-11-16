@@ -31,6 +31,13 @@ assert(staleBudgetText({...copy,profile:{...copy.profile,expenses:[annualRow(man
 const bank=BUDGET_PROFILES.find(p=>p.name==='Guillaume'),adapted=duplicateBudget({profile:bank,text:'custom',edited:true},'new-person')
 assert(validBudget(adapted.profile));assert.equal(adapted.profile.question,'');assert.equal(adapted.profile.context,'');assert.equal(adapted.edited,false);assert.equal(adapted.profile.source,null);assert(!adapted.profile.editorialCreation);assert(!adapted.profile.provenance.sourceFacts);assert(adapted.profile.expenses.every(r=>EXPENSE_CATEGORIES.some(c=>c.id===r.category)))
 assert.equal(adapted.profile.savings.find(r=>/PEL/.test(r.label)).amount,45)
+for(const p of BUDGET_PROFILES){
+ const template=duplicateBudget({profile:p,text:buildBudgetText(p),edited:false},'template')
+ assert(validBudget(template.profile),p.id)
+ assert.equal(template.profile.question,'');assert.equal(template.profile.context,'')
+ assert(!/exemple de budget|profil fictif|budget reconstitué|version éditoriale|hypothèse|impôt non précisé/i.test(template.text))
+ if(p.kind==='planned'||p.completion?.forecast)assert.match(template.text,/budget prévu/i,'Adapting a forecast does not turn it into an observed month')
+}
 const suggested=suggestBudgetPublications(BUDGET_PROFILES,{published:[bank.id],queued:[BUDGET_PROFILES[0].id]})
 assert(suggested.length);assert(!suggested.some(p=>[bank.id,BUDGET_PROFILES[0].id].includes(p.id)));assert.deepEqual(suggested,suggestBudgetPublications(BUDGET_PROFILES,{published:[bank.id],queued:[BUDGET_PROFILES[0].id]}));assert.equal(new Set(suggested.map(p=>p.id)).size,suggested.length)
 assert.deepEqual(moveQueuedProfile(['a','b'],'b',-1),['b','a'])
