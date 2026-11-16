@@ -180,4 +180,18 @@ class EqualWeightPhysical(unittest.TestCase):
                      'as of 02-Jan-27 Showing 1 to 10 of 10x']:
             with self.assertRaises(ValueError):table_scope(text,'en-GB','2027-01-02')
 
+
+    def test_uk_allworld_distributing_sampling_book_preserves_nav_and_cash(self):
+        from invesco_physical_holdings import acquisition_route
+        book=json.loads(gzip.decompress((Path(__file__).parent/
+            'fixtures/invesco-physical/uk-allworld-dist-20261116.json.gz').read_bytes()))
+        now=dt.datetime(2026,11,16,tzinfo=dt.timezone.utc)
+        rows,stamp,raw,proof,metadata=parse_capture(book['capture'],book['metadataRaw'],'IE0000QLH0G6',now)
+        self.assertEqual(stamp,'2026-11-13');self.assertEqual(proof['sourceRowCount'],2089)
+        self.assertFalse(proof['normalizationApplied']);self.assertEqual(metadata['distributionFrequency'],'Quarterly')
+        self.assertGreater(proof['excludedWeightPctByType']['Cash and/or Derivatives'],0)
+        bad=copy.deepcopy(book['capture']);bad['samplingMandateConfirmed']=False
+        with self.assertRaises(ValueError):parse_capture(bad,book['metadataRaw'],'IE0000QLH0G6',now)
+        with self.assertRaises(ValueError):acquisition_route('IE000716YHJ7','uk-public')
+
 if __name__ == '__main__':unittest.main()

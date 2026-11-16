@@ -50,7 +50,7 @@ try{
  const pageTitle=literal(await page.locator('h1').innerText())
  const count=tableText.match(censusPattern)
  const stamp=tableText.match(english?/\bas of\s+(\d{1,2})-([A-Za-z]{3})-(\d{2})\b/:/\bau\s+(\d{2})\/(\d{2})\/(\d{4})\b/)
- const sampling=literal(bodyText).toLowerCase().includes("le fonds détiendra un nombre de titres inférieur à celui de l'indice de référence")
+ const sampling=english?Boolean(route.samplingMandateLiteral)&&literal(bodyText).includes(route.samplingMandateLiteral):literal(bodyText).toLowerCase().includes("le fonds détiendra un nombre de titres inférieur à celui de l'indice de référence")
  const mode=share.mandate||'physical-sampling'
  if(!['physical-sampling','full-physical-replication'].includes(mode))throw Error('Unqualified replication mandate')
  const replicated=mode==='full-physical-replication'&&Boolean(route.mandateLiteral)&&literal(bodyText).includes(route.mandateLiteral)

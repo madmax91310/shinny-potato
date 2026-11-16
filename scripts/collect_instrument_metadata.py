@@ -520,7 +520,7 @@ def invesco_characteristics(body, isin, url, today, *, account="fr_FR"):
     """Explicit characteristics of the requested share, never inferred from its name."""
     from urllib.parse import urlsplit, parse_qs
     p = urlsplit(url)
-    if account != 'fr_FR' and (account != 'en_GB' or isin != 'IE000L2SA8K5'):
+    if account != 'fr_FR' and (account != 'en_GB' or isin not in ('IE000L2SA8K5','IE0000QLH0G6')):
         raise ValueError('Unqualified Invesco characteristics account')
     if (p.scheme != 'https' or p.netloc != 'dng-api.invesco.com'
             or p.path != f'/cache/v1/accounts/{account}/shareclasses/{isin}'

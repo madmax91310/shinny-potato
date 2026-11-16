@@ -914,3 +914,14 @@ licence de réutilisation non vérifiée. Tests locaux et capture réelle ne pro
 ni l'accès GitHub ni l'enregistrement/publication, à observer via le producteur.
 #1370 garde FTSE, #1372 HSBC/iBonds, #1253 S&P ; aucun fichier de leurs correctifs
 n'est repris. Aucune réactivation Radar/IA, aucun changement de maquette.
+
+Complément du même correctif : la part All-World distribuante IE0000QLH0G6
+présente aussi cette régression FR, observée au run43941254251. Sa page UK
+confirme échantillonnage physique et2089positions au13novembre ;2064poids
+actions positifs originaux et cash0,0671%, aucune transparisation d'indice.
+Seules ces deux parts qualifiées utilisent UK. L'autre part conserve FR.
+Le premier producteur post#1367,43938748488, est arrêté par une recette qui
+exige encore complete=true pour Uranium. La recette vérifie désormais son
+unique sous-ensemble typé, les lignes FX inconnues conservées et le refus du
+recouvrement intégral ; les autres sources restent exigées complètes.
+Aucune donnée ni seuil financier changé pour obtenir la réussite de cette recette.

@@ -11,7 +11,17 @@
     "IE0000QLH0G6": {
       "pageUrl": "https://www.invesco.com/fr/fr/financial-products/etfs/invesco-ftse-all-world-ucits-etf-dist.html",
       "shareName": "Invesco FTSE All-World UCITS ETF Dist",
-      "distribution": "Quarterly"
+      "distribution": "Quarterly",
+      "preferredAcquisitionRoute": "uk-public",
+      "qualifiedRoutes": {
+        "uk-public": {
+          "account": "en_GB",
+          "locale": "en-GB",
+          "pageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-ftse-all-world-ucits-etf-dist.html",
+          "samplingMandateLiteral": "The use of the sampling approach will result in the fund holding a smaller number of securities than are in the Reference Index.",
+          "accessConditions": "Anonymous public page, no investor-status attestation or challenge. Page states intended for UK residents. Access observed; reuse licence not verified. Fund economic book, not native index composition."
+        }
+      }
     },
     "IE000L2SA8K5": {
       "pageUrl": "https://www.invesco.com/fr/fr/financial-products/etfs/invesco-nasdaq-100-equal-weight-ucits-etf-acc.html",
