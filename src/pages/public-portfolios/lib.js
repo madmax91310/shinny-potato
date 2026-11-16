@@ -291,6 +291,7 @@ export function publication(p, s, d, date, url) {
     issues(p, s).length ||
     d.snapshotId !== s.id ||
     !d.text.trim() ||
+    d.text.startsWith("BROUILLON — À COMPLÉTER") ||
     /undefined|\{[^}]+\}/.test(d.text) ||
     !validEpisode(d.episode) ||
     (url && !canonicalUrl(url))

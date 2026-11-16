@@ -5,9 +5,10 @@ import {
   benchmarkIssue,
   weightPct,
   lastCompletedMonthEnd,
+  performanceIssues,
 } from "./lib.js";
 // Preview and PNG share the same canvas pixels. No allocation is renormalized.
-export function renderImages(p, s, episode, { version = 2 } = {}) {
+export function renderImages(p, s, episode, { preview = false, version = 2 } = {}) {
   const canvases = [];
   function create() {
     const c = document.createElement("canvas");
@@ -52,14 +53,23 @@ export function renderImages(p, s, episode, { version = 2 } = {}) {
     return y + lines.length * (size + 10);
   }
   function header() {
-    line(`LE PORTEFEUILLE DE LA SEMAINE #${episode}`, 78, 30, "#71dfb2");
-    let y = wrapped(nameOf(p), 155, 900, 44);
+    if (preview) line("APERÇU — CONTRÔLES À COMPLÉTER", 42, 30, "#f1b56b");
+    const offset = preview ? 35 : 0;
     line(
-      `${s.month.start || (hasText(s.month.na) ? lastCompletedMonthEnd(s.consulted).slice(0, 7) + "-01" : s.consulted)} → ${s.month.end || (hasText(s.month.na) ? lastCompletedMonthEnd(s.consulted) : s.consulted)}`,
+      `LE PORTEFEUILLE DE LA SEMAINE #${episode}`,
+      78 + offset,
+      30,
+      "#71dfb2",
+    );
+    let y = wrapped(nameOf(p), 155 + offset, 900, 44);
+    line(
+      preview
+        ? `Consulté le ${s.consulted || "date à renseigner"}`
+        : `${s.month.start || (hasText(s.month.na) ? lastCompletedMonthEnd(s.consulted).slice(0, 7) + "-01" : s.consulted)} → ${s.month.end || (hasText(s.month.na) ? lastCompletedMonthEnd(s.consulted) : s.consulted)}`,
       y + 15,
       30,
     );
-    line(`Devise : ${s.currency}`, y + 55, 30);
+    line(`Devise : ${s.currency || "à renseigner"}`, y + 55, 30);
     return y + 90;
   }
   function finish() {
@@ -71,12 +81,26 @@ export function renderImages(p, s, episode, { version = 2 } = {}) {
     canvases.push(c);
   }
   let y = header();
+  const metric = (key) =>
+    preview && performanceIssues(s, key).length
+      ? "À RENSEIGNER / VÉRIFIER"
+      : hasText(s[key].na)
+        ? "Non applicable"
+        : pct(s[key].value);
   line("MOIS", y, 30, "#71dfb2");
-  line(hasText(s.month.na) ? "Non applicable" : pct(s.month.value), y + 75, 66);
+  line(
+    metric("month"),
+    y + 75,
+    preview && performanceIssues(s, "month").length ? 44 : 66,
+  );
   line("DEPUIS JANVIER", y + 145, 30, "#71dfb2");
-  line(hasText(s.ytd.na) ? "Non applicable" : pct(s.ytd.value), y + 220, 66);
+  line(
+    metric("ytd"),
+    y + 220,
+    preview && performanceIssues(s, "ytd").length ? 44 : 66,
+  );
   y += 300;
-  if (!benchmarkIssue(s))
+  if (!preview && !benchmarkIssue(s))
     y =
       wrapped(
         `${s.benchmark.name} · mois : ${pct(s.benchmark.value)}`,

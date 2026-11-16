@@ -1,4 +1,4 @@
-import {HOME_TOOLS,TOOL_GROUPS} from "../src/tools.js";
+import { HOME_TOOLS, TOOL_GROUPS } from "../src/tools.js";
 import assert from "node:assert/strict";
 import {
   blankProfile,
@@ -17,6 +17,10 @@ import {
   benchmarkIssue,
 } from "../src/pages/public-portfolios/lib.js";
 import { load, save } from "../src/pages/public-portfolios/storage.js";
+import {
+  buildPreviewText,
+  performanceCompletion,
+} from "../src/pages/public-portfolios/preview.js";
 const bytes = new Map();
 globalThis.localStorage = {
   getItem: (k) => bytes.get(k) ?? null,
@@ -77,6 +81,70 @@ assert(issues(p, rolling).length);
 const missing = structuredClone(s);
 missing.month.value = "";
 assert(issues(p, missing).length);
+const raw = structuredClone(s);
+raw.month = blankSnapshot().month;
+raw.ytd = blankSnapshot().ytd;
+const rawBefore = JSON.stringify(raw);
+const preview = buildPreviewText(p, raw, 3);
+assert.match(preview, /^BROUILLON — À COMPLÉTER/);
+assert.match(preview, /SEMAINE #3/);
+assert.match(preview, /octobre 2026 : À renseigner et vérifier/);
+assert.match(preview, /Depuis janvier : À renseigner et vérifier/);
+assert(!/undefined|\{[^}]+\}/.test(preview));
+raw.month.value = -99;
+raw.ytd.value = 0;
+assert(!buildPreviewText(p, raw, 3).includes("-99"));
+assert.match(
+  buildPreviewText(p, raw, 3),
+  /Depuis janvier : À renseigner et vérifier/,
+);
+raw.month.value = "";
+raw.ytd.value = "";
+const completion = performanceCompletion(raw);
+assert.equal(
+  JSON.stringify(raw),
+  rawBefore,
+  "Completing creates an independent snapshot",
+);
+assert.notEqual(completion.id, raw.id);
+assert.deepEqual(completion.positions, raw.positions);
+assert.notEqual(completion.positions, raw.positions);
+assert.equal(completion.source, raw.source);
+assert.equal(completion.consulted, raw.consulted);
+assert.equal(completion.month.start, "2026-10-01");
+assert.equal(completion.month.end, "2026-10-31");
+assert.equal(completion.ytd.start, "2026-01-01");
+assert.equal(completion.ytd.end, "2026-10-31");
+assert.equal(completion.month.value, "");
+assert.equal(completion.month.original, "");
+assert.equal(completion.month.verified, false);
+const uncheckedDates = structuredClone(raw);
+uncheckedDates.month.verified = true;
+assert.equal(
+  performanceCompletion(uncheckedDates).month.verified,
+  false,
+  "Proposed dates never count as verified",
+);
+assert.throws(() => buildText(p, completion, 3));
+assert.throws(() =>
+  publication(
+    p,
+    completion,
+    { episode: 3, text: preview, snapshotId: completion.id },
+    "2026-11-15",
+    "",
+  ),
+);
+assert.equal(buildPreviewText(p, s, 3), buildText(p, s, 3));
+assert.throws(() =>
+  publication(
+    p,
+    s,
+    { episode: 3, text: preview, snapshotId: s.id },
+    "2026-11-15",
+    "",
+  ),
+);
 const incomplete = structuredClone(s);
 incomplete.positions[0].weight = 80;
 assert(issues(p, incomplete).some((x) => x.includes("80")));
@@ -243,6 +311,15 @@ assert(!buildText(p, whitespaceNa, 1).includes("Non applicable"));
 assert.equal(blankProfile().currency, "");
 assert.equal(blankSnapshot().currency, "");
 
-assert.equal(HOME_TOOLS.filter(tool=>tool.to==="/portefeuilles-publics").length,1);assert.equal(TOOL_GROUPS.flatMap(group=>group.tools).filter(tool=>tool.to==="/portefeuilles-publics").length,1);
+assert.equal(
+  HOME_TOOLS.filter((tool) => tool.to === "/portefeuilles-publics").length,
+  1,
+);
+assert.equal(
+  TOOL_GROUPS.flatMap((group) => group.tools).filter(
+    (tool) => tool.to === "/portefeuilles-publics",
+  ).length,
+  1,
+);
 
-await import('./test-public-portfolio-refresh.mjs');
+await import("./test-public-portfolio-refresh.mjs");

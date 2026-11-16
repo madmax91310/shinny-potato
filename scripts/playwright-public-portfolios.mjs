@@ -28,86 +28,346 @@ let page = harness?.page || (await context.newPage());
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const base = process.env.BASE_URL || staticBase;
-if (!remote) await page.route(FEED_URL + '**', route => route.fulfill({ json: initialFeed }));
+if (!remote)
+  await page.route(FEED_URL + "**", (route) =>
+    route.fulfill({ json: initialFeed }),
+  );
 await page.goto(base);
-await page.locator('.workspace-tool-card[href$="/portefeuilles-publics"]').click();
+await page
+  .locator('.workspace-tool-card[href$="/portefeuilles-publics"]')
+  .click();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).waitFor();
-assert.equal(await page.locator('.pp article').count(), 30, 'The reserve starts with thirty researched public profiles');
+assert.equal(
+  await page.locator(".pp article").count(),
+  30,
+  "The reserve starts with thirty researched public profiles",
+);
 // No refresh click: opening the tool must load the shared database automatically.
-await expect(page.getByRole('status')).toContainText('nouveau(x) relevé(s)', { timeout: 25000 });
-await expect(page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true })).toBeEnabled();
-const initialLibrary = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
+await expect(page.getByRole("status")).toContainText("nouveau(x) relevé(s)", {
+  timeout: 25000,
+});
+await expect(
+  page.getByRole("button", {
+    name: "Actualiser tous les portefeuilles",
+    exact: true,
+  }),
+).toBeEnabled();
+const initialLibrary = await page.evaluate(() =>
+  JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
+);
 assert.equal(initialLibrary.catalogueRevision, CATALOGUE_REVISION);
-assert(initialLibrary.profiles.every(profile => profile.snapshots.length > 0));
+assert(
+  initialLibrary.profiles.every((profile) => profile.snapshots.length > 0),
+);
 assert(initialLibrary.feedLoadedAt);
-assert(initialLibrary.profiles.every(profile => !profile.acquisition.error));
-if (!remote) await page.unroute(FEED_URL + '**');
+assert(initialLibrary.profiles.every((profile) => !profile.acquisition.error));
+if (!remote) await page.unroute(FEED_URL + "**");
 const transportFeed = structuredClone(initialFeed);
-const browserStamp = new Date(Date.now() + 1000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+const browserStamp = new Date(Date.now() + 1000)
+  .toISOString()
+  .replace(/\.\d{3}Z$/, "Z");
 transportFeed.collectedAt = browserStamp;
 transportFeed.entries.forEach((entry, index) => {
   entry.attemptedAt = browserStamp;
   if (entry.observation) {
     entry.lastSuccessAt = browserStamp;
-    entry.observation.id = (index + 1).toString(16).padStart(64, '0');
+    entry.observation.id = (index + 1).toString(16).padStart(64, "0");
     entry.observation.collectedAt = browserStamp;
-    entry.observation.note = 'TEST FICTIF du transport, uniquement dans ce navigateur éphémère.';
+    entry.observation.note =
+      "TEST FICTIF du transport, uniquement dans ce navigateur éphémère.";
   }
 });
-await page.route(FEED_URL + '**', route => route.fulfill({ json: transportFeed }));
-const libraryBeforeRefresh = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
-await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
-await expect(page.getByRole('status')).toContainText('nouveau(x) relevé(s)');
-const libraryAfterRefresh = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
+await page.route(FEED_URL + "**", (route) =>
+  route.fulfill({ json: transportFeed }),
+);
+const libraryBeforeRefresh = await page.evaluate(() =>
+  JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
+);
+await page
+  .getByRole("button", {
+    name: "Actualiser tous les portefeuilles",
+    exact: true,
+  })
+  .click();
+await expect(page.getByRole("status")).toContainText("nouveau(x) relevé(s)");
+const libraryAfterRefresh = await page.evaluate(() =>
+  JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
+);
 assert.equal(libraryAfterRefresh.profiles.length, 30);
 for (const profile of libraryAfterRefresh.profiles) {
-  const old = libraryBeforeRefresh.profiles.find(row => row.id === profile.id);
+  const old = libraryBeforeRefresh.profiles.find(
+    (row) => row.id === profile.id,
+  );
   assert.equal(profile.snapshots.length, old.snapshots.length + 1);
-  assert.equal(profile.snapshots.at(-1).month.value, '');
+  assert.equal(profile.snapshots.at(-1).month.value, "");
   assert.equal(profile.snapshots.at(-1).month.verified, false);
   assert.equal(profile.checked, old.checked);
 }
-await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
-await expect(page.getByRole('status')).toContainText('0 nouveau(x)');
-await page.unroute(FEED_URL + '**');
+await page
+  .getByRole("button", {
+    name: "Actualiser tous les portefeuilles",
+    exact: true,
+  })
+  .click();
+await expect(page.getByRole("status")).toContainText("0 nouveau(x)");
+await page.unroute(FEED_URL + "**");
 const failedFeed = structuredClone(transportFeed);
-failedFeed.collectedAt = new Date(Date.now() + 2000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+failedFeed.collectedAt = new Date(Date.now() + 2000)
+  .toISOString()
+  .replace(/\.\d{3}Z$/, "Z");
 failedFeed.entries[0].attemptedAt = failedFeed.collectedAt;
-failedFeed.entries[0].error = 'TEST FICTIF : source indisponible ; dernier relevé conservé.';
-await page.route(FEED_URL + '**', route => route.fulfill({ json: failedFeed }));
-await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
-await expect(page.getByRole('status')).toContainText('1 source(s) en échec');
-await expect(page.getByRole('alert')).toContainText('TEST FICTIF : source indisponible');
-await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
-await expect(page.getByRole('status')).toContainText('1 source(s) en échec');
-const libraryAfterFailure = await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1')));
-assert.deepEqual(libraryAfterFailure.profiles[0].snapshots, libraryAfterRefresh.profiles[0].snapshots);
-assert.equal(libraryAfterFailure.profiles[0].acquisition.lastSuccessAt, libraryAfterRefresh.profiles[0].acquisition.lastSuccessAt);
-await page.unroute(FEED_URL + '**');
-await page.route(FEED_URL + '**', route => route.fulfill({ status: 503, body: 'TEST failure' }));
-await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
-await expect(page.getByRole('status')).toContainText('Derniers relevés conservés');
-assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('el-public-portfolios-v1'))), libraryAfterFailure);
-await page.unroute(FEED_URL + '**');
+failedFeed.entries[0].error =
+  "TEST FICTIF : source indisponible ; dernier relevé conservé.";
+await page.route(FEED_URL + "**", (route) =>
+  route.fulfill({ json: failedFeed }),
+);
+await page
+  .getByRole("button", {
+    name: "Actualiser tous les portefeuilles",
+    exact: true,
+  })
+  .click();
+await expect(page.getByRole("status")).toContainText("1 source(s) en échec");
+await expect(page.getByRole("alert")).toContainText(
+  "TEST FICTIF : source indisponible",
+);
+await page
+  .getByRole("button", {
+    name: "Actualiser tous les portefeuilles",
+    exact: true,
+  })
+  .click();
+await expect(page.getByRole("status")).toContainText("1 source(s) en échec");
+const libraryAfterFailure = await page.evaluate(() =>
+  JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
+);
+assert.deepEqual(
+  libraryAfterFailure.profiles[0].snapshots,
+  libraryAfterRefresh.profiles[0].snapshots,
+);
+assert.equal(
+  libraryAfterFailure.profiles[0].acquisition.lastSuccessAt,
+  libraryAfterRefresh.profiles[0].acquisition.lastSuccessAt,
+);
+await page.unroute(FEED_URL + "**");
+await page.route(FEED_URL + "**", (route) =>
+  route.fulfill({ status: 503, body: "TEST failure" }),
+);
+await page
+  .getByRole("button", {
+    name: "Actualiser tous les portefeuilles",
+    exact: true,
+  })
+  .click();
+await expect(page.getByRole("status")).toContainText(
+  "Derniers relevés conservés",
+);
+assert.deepEqual(
+  await page.evaluate(() =>
+    JSON.parse(localStorage.getItem("el-public-portfolios-v1")),
+  ),
+  libraryAfterFailure,
+);
+await page.unroute(FEED_URL + "**");
 for (const width of [390, 320]) {
   await page.setViewportSize({ width, height: 844 });
-  assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'The real seeded reserve must fit mobile widths');
+  assert(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+    "The real seeded reserve must fit mobile widths",
+  );
 }
-await page.screenshot({ path: '/tmp/public-portfolio-reserve-mobile.png' });
+await page.screenshot({ path: "/tmp/public-portfolio-reserve-mobile.png" });
 await page.setViewportSize({ width: 1440, height: 1000 });
-await page.screenshot({ path: '/tmp/public-portfolio-reserve-desktop.png' });
-await page.locator('.pp article').first().getByRole('button', { name: 'Ouvrir / modifier' }).click();
-await expect(page.getByRole('button', { name: 'Préparer / régénérer le tweet' })).toBeDisabled();
-assert.match(await page.getByRole('link', { name: 'Ouvrir la source', exact: true }).getAttribute('href'), /^https:\/\/app\.getquin\.com\/en\/dashboard\//);
+await page.screenshot({ path: "/tmp/public-portfolio-reserve-desktop.png" });
+await page
+  .locator(".pp article")
+  .first()
+  .getByRole("button", { name: "Préparer texte et images" })
+  .click();
+await expect(
+  page.getByRole("button", { name: "Préparer / régénérer le tweet" }),
+).toBeDisabled();
+assert.match(
+  await page
+    .getByRole("link", { name: "Ouvrir la source", exact: true })
+    .getAttribute("href"),
+  /^https:\/\/app\.getquin\.com\/en\/dashboard\//,
+);
+// Exercise the actual preloaded profile, not a pre-qualified synthetic draft.
+const sourcePreview = page.getByRole("region", {
+  name: "Aperçu avant vérification",
+});
+await expect(page.getByLabel("Aperçu du texte à compléter")).toContainText(
+  "BROUILLON",
+);
+await expect(sourcePreview.locator("canvas").first()).toBeVisible();
+assert.equal(
+  await page.getByRole("button", { name: /Télécharger image/ }).count(),
+  0,
+);
+assert.equal(
+  await page
+    .getByRole("button", { name: "Copier le texte", exact: true })
+    .count(),
+  0,
+);
+await sourcePreview
+  .locator("canvas")
+  .first()
+  .screenshot({ path: "/tmp/pp-incomplete-preview.png" });
+// Synthetic returns stay in an explicitly fictitious, ephemeral browser profile.
+const reserveBackup = await page.evaluate(() =>
+  localStorage.getItem("el-public-portfolios-v1"),
+);
+const completionProfile = blankProfile();
+Object.assign(completionProfile, {
+  pseudo: "TEST FICTIF — parcours de complétion",
+  url: "https://example.com/test-completion",
+  nature: "Réel déclaré par son auteur",
+});
+const incompleteSnapshot = blankSnapshot();
+Object.assign(incompleteSnapshot, {
+  consulted: "2026-11-15",
+  currency: "EUR",
+  source: completionProfile.url,
+  positions: [{ name: "Placement fictif", weight: 100 }],
+});
+completionProfile.snapshots = [incompleteSnapshot];
+await page.evaluate(
+  (p) =>
+    localStorage.setItem(
+      "el-public-portfolios-v1",
+      JSON.stringify({ version: 1, catalogueRevision: 2, profiles: [p] }),
+    ),
+  completionProfile,
+);
+await page.reload();
+await page
+  .getByRole("button", { name: "Préparer texte et images", exact: true })
+  .click();
+await page
+  .getByRole("button", { name: "Compléter les performances", exact: true })
+  .click();
+const civilMonth = page.getByRole("group", {
+  name: "Dernier mois civil terminé",
+  exact: true,
+});
+const yearToDate = page.getByRole("group", {
+  name: "Depuis janvier",
+  exact: true,
+});
+assert.equal(
+  await civilMonth.getByLabel("Du", { exact: true }).inputValue(),
+  "2026-10-01",
+);
+assert.equal(
+  await civilMonth.getByLabel("Au", { exact: true }).inputValue(),
+  "2026-10-31",
+);
+assert.equal(
+  await yearToDate.getByLabel("Du", { exact: true }).inputValue(),
+  "2026-01-01",
+);
+const saveAndPrepare = page.getByRole("button", {
+  name: "Enregistrer et préparer le post",
+  exact: true,
+});
+await expect(saveAndPrepare).toBeDisabled();
+await civilMonth.getByLabel("Rendement (%)", { exact: true }).fill("-2.45");
+await civilMonth
+  .getByLabel("Libellé original", { exact: true })
+  .fill("TEST FICTIF : October return");
+await yearToDate.getByLabel("Rendement (%)", { exact: true }).fill("0");
+await yearToDate
+  .getByLabel("Libellé original", { exact: true })
+  .fill("TEST FICTIF : YTD cumulative return");
+await expect(saveAndPrepare).toBeDisabled();
+await choose(page.getByRole('group',{name:'Méthode',exact:true}), 'TWR');
+await choose(page.getByRole('group',{name:'Dividendes',exact:true}), 'Réinvestis');
+await choose(page.getByRole('group',{name:'Frais',exact:true}), 'Inclus');
+await civilMonth.getByRole("checkbox").check();
+await yearToDate.getByRole("checkbox").check();
+await expect(saveAndPrepare).toBeEnabled();
+await yearToDate
+  .getByLabel("Libellé original", { exact: true })
+  .fill("Annual return since Jan 2026");
+await yearToDate.getByRole("checkbox").check();
+await expect(saveAndPrepare).toBeDisabled();
+await yearToDate
+  .getByLabel("Libellé original", { exact: true })
+  .fill("TEST FICTIF : YTD cumulative return");
+await yearToDate.getByRole("checkbox").check();
+await page.setViewportSize({ width: 390, height: 844 });
+assert(
+  await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+  "Completion form fits mobile",
+);
+await civilMonth.scrollIntoViewIfNeeded();
+await page.screenshot({ path: "/tmp/pp-completion-mobile.png" });
+await saveAndPrepare.click();
+await expect(page.getByLabel("Texte final éditable")).toHaveValue(/-2,45 %/);
+await expect(page.getByLabel("Texte final éditable")).toContainText(
+  "Depuis janvier : 0 %",
+);
+assert.equal(
+  await page.getByRole("region", { name: "Aperçu avant vérification" }).count(),
+  0,
+);
+await page
+  .getByRole("button", { name: "Copier le texte", exact: true })
+  .click();
+assert.match(
+  await page.evaluate(() => navigator.clipboard.readText()),
+  /-2,45 %/,
+);
+const completedDownload = page.waitForEvent("download");
+await page
+  .getByRole("button", { name: "Télécharger image 1", exact: true })
+  .click();
+await (await completedDownload).saveAs("/tmp/pp-completion-export.png");
+await page
+  .getByRole("button", { name: "Marquer comme publié", exact: true })
+  .click();
+const completed = await page.evaluate(
+  () => JSON.parse(localStorage.getItem("el-public-portfolios-v1")).profiles[0],
+);
+assert.equal(completed.snapshots.length, 2);
+assert.equal(completed.snapshots[0].month.value, "");
+assert.equal(completed.publications[0].snapshot.month.value, "-2.45");
+assert.equal(completed.publications[0].snapshot.ytd.value, "0");
+assert.equal(completed.publications[0].image.version, 2);
+await page.reload();
+await page
+  .getByRole("button", { name: "Ouvrir / modifier", exact: true })
+  .click();
+await page.getByRole("button", { name: /Épisode #1/ }).click();
+await expect(
+  page.getByRole("heading", { name: "Publication conservée #1" }),
+).toBeVisible();
+await page.evaluate(
+  (raw) => localStorage.setItem("el-public-portfolios-v1", raw),
+  reserveBackup,
+);
+await page.setViewportSize({ width: 1440, height: 1000 });
 await page.reload();
 await page.getByRole("button", { name: "Ajouter un portefeuille" }).click();
 await expect(
   page.getByRole("button", { name: "Sauvegarder", exact: true }),
 ).toBeInViewport();
 await page.getByLabel("URL du portefeuille", { exact: true }).fill("https://");
-await page.getByRole('button', { name: 'Actualiser tous les portefeuilles', exact: true }).click();
-await expect(page.getByRole('status')).toContainText('Sauvegarde la fiche');
-assert.equal(await page.getByLabel('URL du portefeuille', { exact: true }).inputValue(), 'https://');
+await page
+  .getByRole("button", {
+    name: "Actualiser tous les portefeuilles",
+    exact: true,
+  })
+  .click();
+await expect(page.getByRole("status")).toContainText("Sauvegarde la fiche");
+assert.equal(
+  await page.getByLabel("URL du portefeuille", { exact: true }).inputValue(),
+  "https://",
+);
 assert.equal(
   await page
     .getByRole("group", { name: "Statut éditorial", exact: true })
@@ -120,7 +380,11 @@ await page.close();
 page = await context.newPage();
 page.on("pageerror", (e) => errors.push(e.message));
 await page.goto(base + "portefeuilles-publics");
-await page.locator("article").filter({ hasText: "Fiche sans nom" }).getByRole("button", { name: "Ouvrir / modifier" }).click();
+await page
+  .locator("article")
+  .filter({ hasText: "Fiche sans nom" })
+  .getByRole("button", { name: "Ouvrir / modifier" })
+  .click();
 assert.equal(
   await page.getByLabel("URL du portefeuille", { exact: true }).inputValue(),
   "https://",
@@ -168,7 +432,13 @@ await page.evaluate(
   p,
 );
 await page.reload();
-await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
+await page
+  .getByRole("button", { name: "Préparer texte et images", exact: true })
+  .click();
+await expect(page.getByLabel("Texte final éditable")).toHaveValue(/SEMAINE #1/);
+await expect(
+  page.getByRole("button", { name: "Télécharger image 1", exact: true }),
+).toBeVisible();
 await choose(
   page.getByRole("group", { name: "Relevé à préparer", exact: true }),
   s.id,

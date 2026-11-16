@@ -13,7 +13,8 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-26.04
-    timeout-minutes: 20
+    # Initial acquisition plus two fully validated recollections.
+    timeout-minutes: 40
     concurrency:
       group: scpi-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
