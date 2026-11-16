@@ -1,0 +1,94 @@
+name: Verify public Budget roadmap
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verify-public-budget-roadmap-20261116
+  cancel-in-progress: false
+jobs:
+  public-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BUDGET_PUBLIC_BASE: https://madmax91310.github.io/shinny-potato
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Record and verify the served code
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict'
+          import { mkdirSync, writeFileSync } from 'node:fs'
+          import { execFileSync } from 'node:child_process'
+          const response=await fetch(process.env.BUDGET_PUBLIC_BASE+'/build-info.json?budget-roadmap='+Date.now(),{cache:'no-store'})
+          assert(response.ok)
+          const info=await response.json()
+          assert.match(info.sha,/^[a-f0-9]{40}$/)
+          if(info.dataSha)assert.match(info.dataSha,/^[a-f0-9]{40}$/)
+          execFileSync('git',['fetch','--no-tags','origin',info.sha],{stdio:'inherit'})
+          execFileSync('git',['merge-base','--is-ancestor','ce7cbf98ca20810289d5be6b7c59c1135b4abe84',info.sha])
+          mkdirSync('test-artifacts',{recursive:true})
+          writeFileSync('test-artifacts/public-budget-before.json',JSON.stringify(info,null,2)+'\n')
+          console.log('Public budget before browser checks:',JSON.stringify(info))
+          JS
+      - name: New profiles, all widths and actual downloads
+        env:
+          BUDGET_BATCH: roadmap
+          BUDGET_ARTIFACTS: test-artifacts/budget-roadmap-public
+        run: node scripts/playwright-budget-new-profiles.mjs 1440 390 320
+      - name: Complementary profiles, all widths and actual downloads
+        env:
+          BUDGET_BATCH: complementary
+          BUDGET_ARTIFACTS: test-artifacts/budget-complementary-public
+        run: node scripts/playwright-budget-new-profiles.mjs 1440 390 320
+      - name: Explicit selection and protected local statuses
+        run: node scripts/playwright-budget-publication-selection.mjs
+      - name: Backups, dated statuses and personal drafts
+        run: node scripts/playwright-budget-portability.mjs
+      - name: Reopen every downloaded PNG and record final versions
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict'
+          import { readFileSync, writeFileSync } from 'node:fs'
+          import { createHash } from 'node:crypto'
+          import { chromium } from 'playwright'
+          const browser=await chromium.launch()
+          const reopened=[]
+          try {
+            const page=await browser.newPage()
+            await page.setContent('<img alt="PNG téléchargé">')
+            for(const [directory,count] of [['budget-roadmap-public',69],['budget-complementary-public',180]]) {
+              const base='test-artifacts/'+directory+'/'
+              const rows=JSON.parse(readFileSync(base+'results-1440-390-320.json','utf8'))
+              assert.equal(rows.length,count)
+              for(const row of rows) {
+                const bytes=readFileSync(base+row.filename)
+                const dimensions=await page.locator('img').evaluate(async(img,src)=>{img.src=src;await img.decode();return [img.naturalWidth,img.naturalHeight]},'data:image/png;base64,'+bytes.toString('base64'))
+                assert.deepEqual(dimensions,[1080,1350])
+                reopened.push({file:directory+'/'+row.filename,dimensions,sha256:createHash('sha256').update(bytes).digest('hex')})
+              }
+            }
+          } finally {await browser.close()}
+          const before=JSON.parse(readFileSync('test-artifacts/public-budget-before.json','utf8'))
+          const response=await fetch(process.env.BUDGET_PUBLIC_BASE+'/build-info.json?budget-roadmap-after='+Date.now(),{cache:'no-store'})
+          assert(response.ok)
+          const after=await response.json()
+          assert.equal(after.sha,before.sha,'The public code must stay stable during this recipe; market dataSha may advance separately.')
+          writeFileSync('test-artifacts/public-budget-verification.json',JSON.stringify({before,after,reopened},null,2)+'\n')
+          console.log('Public budget verified:',JSON.stringify({before,after,downloadedAndReopened:reopened.length,viewports:[1440,390,320]}))
+          JS
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: public-budget-roadmap-verification
+          path: test-artifacts/
+          retention-days: 7
