@@ -10,6 +10,9 @@ on:
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'
+      - 'scripts/market_reader_revalidation.py'
+      - 'scripts/test_market_reader_revalidation.py'
+      - 'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
@@ -103,6 +106,9 @@ on:
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'
+      - 'scripts/market_reader_revalidation.py'
+      - 'scripts/test_market_reader_revalidation.py'
+      - 'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
@@ -243,6 +249,7 @@ jobs:
           if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
       - run: python -m unittest discover -s scripts -p 'test_etf_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+      - run: python -m unittest discover -s scripts -p 'test_market_reader_revalidation.py'
       - run: node scripts/test-comparison-automation.mjs
       - run: node scripts/test-vaneck-document.mjs
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'

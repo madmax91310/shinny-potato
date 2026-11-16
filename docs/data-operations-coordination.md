@@ -1,3 +1,16 @@
+## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
+
+Même suivi #881, branche `fix/automation-recording-and-composition-20261116` :
+ce lot possède seulement l’adaptateur market_reader_revalidation, sa régression,
+la fixture du bloc public-portfolio-proof et les déclencheurs/tests des workflows
+mensuel et ETF. Refus réels43873059998/43873059993 après acquisition/validation.
+Ajout ou retrait des sept lignes exactes d’archivage seulement ; graphes des cinq
+entrées d’acquisition aux deux commits, garde source et revalidation financière
+complète inchangés. #1358 conserve la propriété du regroupement Pages ; aucune
+modification du workflow deploy-pages. #1356/#1359 (investisseurs), #1253 (S&P),
+#1061 (PEA) et #1298 sont préservées. Une reprise après fusion doit recollecter
+sur master courant ; les sorties non enregistrées ne sont pas republiées.
+
 ## 15 novembre — reprise bornée des origines officielles ABTC
 
 ### 16 novembre — contrat des tentatives 13F, même suivi #881
