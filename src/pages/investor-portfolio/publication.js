@@ -71,7 +71,7 @@ export function shortPosition(row) {
     const cls=row.shareClass?.match(/(?:CL|CLASS|SER|SERIES)\s+([A-Z])\b/i)?.[1]
     name=`${name} ${cls || '·'+row.cusip.slice(-4)}`
   }
-  if(name==='Ishares' && /KOR/.test(row.shareClass || ''))name='iShares Corée'
+  if(row.cusip==='464286772' && row.shareClass==='MSCI STH KOR ETF')name='iShares Corée'
   if(name.length>23 && row.ticker)name=row.ticker
   return name || row.issuerName
 }
@@ -93,7 +93,7 @@ export function publicationPlan(portfolio) {
   for(let n=Math.min(sorted.length,capacity);n>=1&&!best;n--) {
     const selected=sorted.slice(0,n).map(r=>({...r,label:shortPosition(r),weight:r.value/total}))
     const rest=sorted.slice(n)
-    if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:'Autres',other:true,count:rest.length,value,weight:value/total,color:'#f4d539'})}
+    if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:'Autres',other:true,ticker:'',currency:portfolio.snapshot.currency,unit:1,count:rest.length,value,weight:value/total,color:'#f4d539'})}
     let layout=null
     const other=selected.find(r=>r.other)
     const base=other?-Math.PI/2-Math.PI*2*(1-other.weight)-Math.PI*other.weight:-80*Math.PI/180

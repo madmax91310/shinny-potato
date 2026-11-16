@@ -9,7 +9,7 @@ const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1',
 let browser
 try {
   for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,200))}
-  browser=await chromium.launch({headless:true})
+  browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})})
   const context=await browser.newContext({acceptDownloads:true,permissions:['clipboard-read','clipboard-write']})
   const page=await context.newPage();await page.goto(base)
   await mkdir(out,{recursive:true})
@@ -58,6 +58,24 @@ try {
     const entity=await portfolioPortrait({slug:'gates-trust',displayName:'Gates Foundation Trust'},manifest['gates-trust'])
     if(entity.image)throw Error('Historical exception leaked to another entity')
   })
+  // The actual paginated Canvas must keep each security's name, identifiers and
+  // monetary line together. Reproduce the orphaned Monro/Gayner amounts from the audit.
+  for(const slug of ['icahn','gayner','tepper']) {
+    const payload=JSON.parse(await readFile(`public/data/investors/${slug}.json`,'utf8'))
+    await page.evaluate(async payload=>{
+      const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
+      const {renderDetailedPages}=await import('/shinny-potato/src/pages/investor-portfolio/exports.js')
+      const {labelLines,reportedAmount,weightLabel}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+      const portfolio=normalizePortfolio(payload),draws=new Map(),original=CanvasRenderingContext2D.prototype.fillText
+      CanvasRenderingContext2D.prototype.fillText=function(value,...args){const rows=draws.get(this.canvas)||[];rows.push(value);draws.set(this.canvas,rows);return original.call(this,value,...args)}
+      try { await renderDetailedPages(portfolio) } finally { CanvasRenderingContext2D.prototype.fillText=original }
+      const pages=[...draws.values()]
+      for(const row of portfolio.holdings) {
+        const required=[...labelLines(row.issuerName,56),...labelLines([row.ticker,row.shareClass,row.cusip,row.securityId].filter(Boolean).join(' · '),56),...labelLines(`${reportedAmount(row)} · ${weightLabel(row.weight)}`,56)]
+        if(!pages.some(page=>required.every(line=>page.includes(line))))throw Error(`Position split across pages: ${row.issuerName}`)
+      }
+    },payload)
+  }
   // Real app download, preview bytes, copy, full exports, errors and retry.
   const fixture=sample([900000,99999,1]);Object.assign(fixture.data.snapshot.holdings[0],{issuerName:'Apple Inc.',ticker:'AAPL',cusip:'037833100'});fixture.data.identity.personVerified=true;fixture.data.identity.personSource='https://foliofact.com/api/v1/funds/appaloosa';fixture.data.identity.personPeriod='2026-06-30'
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))
@@ -67,11 +85,14 @@ try {
     await page.getByRole('button',{name:'📋 Copier le tweet'}).click()
     const draft=await page.locator('#ip-draft').inputValue();assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),draft)
     const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'⬇️ Télécharger le PNG',exact:true}).click()])
+    assert(download.url().startsWith('blob:'),'Main PNG must use the same Blob download path as the preview')
     await download.saveAs(`${out}/download-${width}.png`)
     await page.getByRole('tab',{name:'Image',exact:true}).click()
     const preview=page.getByRole('img',{name:'Portefeuille David Tepper',exact:true});await preview.waitFor()
     const previewBytes=Buffer.from((await preview.getAttribute('src')).split(',')[1],'base64')
     assert.deepEqual(await readFile(`${out}/download-${width}.png`),previewBytes)
+    const [previewDownload]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger cet aperçu',exact:true}).click()]);await previewDownload.saveAs(`${out}/preview-download-${width}.png`)
+    assert.deepEqual(await readFile(`${out}/preview-download-${width}.png`),previewBytes,'Both buttons must save the exact same PNG')
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
     await page.screenshot({path:`${out}/mobile-image-${width}.png`,fullPage:true})
     await page.getByRole('tab',{name:'Texte',exact:true}).click()
@@ -88,6 +109,9 @@ try {
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))
   await page.getByRole('button',{name:'Réessayer le chargement'}).click();await page.getByRole('alert').filter({hasText:'503'}).waitFor({state:'hidden'})
   // One real Canvas export failure exposes a retry action and then succeeds.
+  // A fresh snapshot invalidates the shared successful preview/download cache.
+  await page.getByRole('button',{name:'Actualiser les données disponibles'}).click()
+  await page.waitForFunction(()=>[...document.querySelectorAll('button')].some(b=>b.textContent.includes('Actualiser les données disponibles')&&!b.disabled))
   await page.evaluate(()=>{const original=HTMLCanvasElement.prototype.toDataURL;HTMLCanvasElement.prototype.toDataURL=function(){HTMLCanvasElement.prototype.toDataURL=original;throw new Error('Erreur de génération simulée')}})
   await page.getByRole('button',{name:'⬇️ Télécharger le PNG',exact:true}).click()
   await page.getByRole('alert').filter({hasText:'Erreur de génération simulée'}).waitFor()

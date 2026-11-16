@@ -40,3 +40,4 @@ for(const review of reviews) {
   assert(!review.data.snapshot.holdings)
 }
 console.log(`${INVESTORS.length} profils sourcés, photographie, états incomplets, montants, texte court et métadonnées vérifiés.`)
+await import('./test-investor-functional.mjs')

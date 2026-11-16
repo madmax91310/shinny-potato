@@ -1,10 +1,12 @@
 import { MODEL_INVESTORS, investorModel, modelNatureLabel } from '../../data/investor-models.js'
 import History from './History.jsx'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadImage } from '../../design-system/downloadImage.js'
+import { cachedImageRenderer } from './image-export.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
@@ -48,7 +50,7 @@ export default function InvestorPortfolio() {
   const model = investorModel(slug)
   const ready = portfolio && portfolio.identity.slug === slug && !portfolio.problem
   const shown = portfolio && !model && ready ? publicationPlan(portfolio).entries : portfolio?.holdings || []
-  const renderImage = useCallback(() => renderPortfolioImage(portfolio), [portfolio])
+  const renderImage = useMemo(() => cachedImageRenderer(() => renderPortfolioImage(portfolio)), [portfolio])
   const sources = INVESTOR_PROFILES[slug]?.sourceUrls ?? model?.sourceUrls ?? []
 
   function updateIntro(value) {
@@ -90,10 +92,8 @@ export default function InvestorPortfolio() {
   async function download() {
     setExporting(true); setError('')
     try {
-      const link = document.createElement('a')
-      link.href = await renderPortfolioImage(portfolio)
-      link.download = `portefeuille-${slug}-${model ? "allocation-modele" : portfolio.snapshot.periodEnd}.png`
-      startPublicationDownload(link)
+      const image = await renderImage()
+      downloadImage(image, `portefeuille-${slug}-${model ? "allocation-modele" : portfolio.snapshot.periodEnd}.png`)
     } catch (problem) { setError(problem.message); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
     finally { setExporting(false) }
   }
