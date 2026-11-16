@@ -14,6 +14,7 @@ import entries from '../src/pages/budget-profiles/editorial-profiles-studio-2026
 assert(presets.every(p=>EXPENSE_CATEGORIES.some(c=>c.id===p.category)))
 assert.equal(monthlyProvision(100),8.33); assert.equal(monthlyProvision(120),10); assert.equal(monthlyProvision(null),null)
 const manual={...blankBudget(),id:'manual-annual',name:'Alice',income:[{label:'Salaire',amount:1000}],expenses:[annualRow({label:'Cadeaux',category:'other'},100)],question:'Quel budget pour les cadeaux ?'}
+assert(!validBudget({...manual,income:[annualRow({label:'Salaire'},12000)]}),'This version supports annual expenses only; income stays editable monthly')
 assert(validBudget(manual));assert.equal(analyzeBudget(manual).expenses,8.33)
 assert.match(buildBudgetText(manual),/Provision Cadeaux/)
 const combined={...manual,expenses:[annualRow({label:'Électricité',category:'bills'},120),{label:'Téléphone',category:'bills',amount:20}]}
@@ -25,6 +26,8 @@ assert(!('annualProvision' in monthlyRow(manual.expenses[0])))
 assert(!('annualAmount' in annualRow({label:'Entretien',amount:20,annualAmount:240,periodicity:'annual-provision'},360)))
 assert.deepEqual(moveBudgetRow([1,2,3],1,-1),[2,1,3]);assert.deepEqual(moveBudgetRow([1,2],0,-1),[1,2])
 const custom={profile:manual,text:'Mes mots et mes questions.',edited:true,textFinance:budgetFinancialReference(manual)}
+const sourceWithAnnualBonus={...custom,profile:{...manual,income:[{label:'Salaire',amount:1000},{label:'Prime mensualisée',amount:100,annualAmount:1200}]}}
+assert(!duplicateBudget(sourceWithAnnualBonus,'bonus-copy').profile.income[1].annualProvision,'Legacy annual bonus metadata does not make a monthly income input readonly')
 const copy=duplicateBudget(custom,'copy','2026-11-16T00:00:00Z')
 assert.equal(copy.text,custom.text);assert.equal(copy.profile.question,manual.question);assert.equal(copy.profile.kind,'participant');assert.equal(copy.profile.source,null);assert(!copy.profile.editorialCreation)
 assert(staleBudgetText({...copy,profile:{...copy.profile,expenses:[annualRow(manual.expenses[0],120)]}}))

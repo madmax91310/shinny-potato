@@ -6,6 +6,8 @@ import { budgetFinancialReference } from './completion.js'
 
 const copyRow = row => ({ label: row.label, amount: row.amount,
   ...(row.category && { category: EXPENSE_CATEGORIES.some(c => c.id === row.category) ? row.category : 'other' }),
+})
+const copyExpenseRow = row => ({ ...copyRow(row),
   ...(row.annualProvision ? { annualProvision: structuredClone(row.annualProvision) } : Number.isFinite(row.annualAmount) && monthlyProvision(row.annualAmount) === row.amount ? { annualProvision: { amount: row.annualAmount } } : {}),
 })
 export function duplicateBudget(record, id, now = new Date().toISOString()) {
@@ -14,7 +16,7 @@ export function duplicateBudget(record, id, now = new Date().toISOString()) {
     job: [person.job, !/budget prévu/i.test(person.job) && budgetQualification(p)].filter(Boolean).join(' · '), household: person.household, location: person.location, period: p.period,
     country: p.country || '', family: p.family || '', children: p.children || '', housing: p.housing || '',
     approximate: p.approximate, incomeBasis: budgetPublicBasis(p, person.basis), incomeNote: person.incomeNote, capacity: p.capacity,
-    income: budgetPublicIncomeRows(p).map(copyRow), expenses: budgetPublicExpenseRows(p).map(copyRow), savings: budgetPublicSavingsRows(p).map(copyRow),
+    income: budgetPublicIncomeRows(p).map(copyRow), expenses: budgetPublicExpenseRows(p).map(copyExpenseRow), savings: budgetPublicSavingsRows(p).map(copyRow),
     context: personal ? p.context : '', question: personal ? p.question : '',
     provenance: { nature: 'manual-copy', copiedAt: now, copiedFrom: { id: p.id, source: p.source, period: p.period },
       originalLines: structuredClone({ income: p.income, expenses: p.expenses, savings: p.savings }),
