@@ -231,6 +231,12 @@ def main():
                 if isinstance(error,HoldingsSourceError):rejected[isin]=error.diagnostic
                 continue
             h,securities=result
+            if (h.get('sourcePartial') and previous.get(isin,{}).get('complete') is True
+                    and previous[isin].get('rows')
+                    and all(re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or '') for r in previous[isin]['rows'])):
+                errors[isin]='New partial source cannot replace the previously complete identified book'
+                rejected[isin]=h['partialSourceProof']
+                continue
             downgrade=ranking_nav_downgrade(isin,previous.get(isin,{}),h,now)
             if downgrade:
                 errors[isin]=downgrade['reason']
@@ -246,13 +252,40 @@ def main():
                     'financialDataQualified':False,'normalizationApplied':False}
                 continue
             fresh[isin]={**h,'checkedAt':now.isoformat()}
+            if h.get('sourcePartial'):
+                # The subset can be renewed; the expected complete book still
+                # fails, keeping the previous full-source-success clock.
+                errors[isin]=h['partialSourceError']
+                rejected[isin]=h['partialSourceProof']
             for r in securities:
                 if r['isin'] not in wanted:continue
                 if r['isin'] not in evidence or evidence[r['isin']]['asOf']<h['asOf']:evidence[r['isin']]={**r,'asOf':h['asOf'],'checkedAt':now.isoformat(),'sourceUrl':h['sourceUrl']}
+    # Retain exact prior monthly books before a new source photograph replaces
+    # them. No source clock or latest observation is changed by this cache.
+    from lifestrategy_retained_holdings import carry_snapshots
+    for isin,h in list(fresh.items()):
+        try:fresh[isin]=carry_snapshots(isin,previous.get(isin,{}),h,now)
+        except Exception as error:
+            # One invalid retained input must not discard other sources.
+            errors[isin]='Retained snapshot validation failed: '+str(error)
+            fresh.pop(isin)
+    restored_dependency_snapshots=[]
     derived={isin:c for isin,c in config.items() if c.get('parser')=='lifestrategy-lookthrough'}
     if derived:
         from lifestrategy_holdings import derive
         records=json.loads((ROOT/'src/data/lifestrategy.json').read_text())
+        from lifestrategy_retained_holdings import restore_dependencies
+        try:
+            restored,restored_dependency_snapshots,restoration_errors=restore_dependencies({**previous,**fresh},records,derived,now,ROOT)
+            # Only archival children change. Latest books and source-control
+            # dates stay untouched; these are not fresh source observations.
+            for key,h in restored.items():
+                if key in fresh:fresh[key]=h
+                else:previous[key]=h
+        except Exception as error:
+            # Individual derivations still run and keep their precise refusal;
+            # a recovery failure is attached to them, never treated as a success.
+            restoration_errors={key:str(error) for key in derived}
         for isin in derived:
             try:
                 h=derive(isin,records[isin],{**previous,**fresh},errors,now)
@@ -260,7 +293,7 @@ def main():
                 # The derivation did not fetch its parent fund documents.
                 # Keep the oldest real dependency control and its own validation clock.
                 fresh[isin]=h
-            except Exception as e:errors[isin]=str(e)
+            except Exception as e:errors[isin]=str(e)+(('; retained snapshot recovery: '+restoration_errors[isin]) if isin in restoration_errors else '')
     if args.apply:
         write_json_atomic(path,{**previous,**fresh})
         ep=ROOT/'src/data/dca-security-classifications.json';old=json.loads(ep.read_text()) if ep.exists() else {}
@@ -279,18 +312,18 @@ def main():
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
-    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','sourceAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions','qualifiedIdentityPositions'] if key in h},
+    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','sourceAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions','qualifiedIdentityPositions','sourcePartial','partialSourceProof','unvaluedPositions'] if key in h},
         'completeFile':h.get('complete') is True,'rows':len(h['rows']),
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}
         for isin,h in fresh.items()}
-    write_json_atomic(args.output,{'observations':observations,'rejectedObservations':rejected,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
+    write_json_atomic(args.output,{'restoredDependencySnapshots':restored_dependency_snapshots,'observations':observations,'rejectedObservations':rejected,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh if not fresh[isin].get('sourcePartial')],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error,**({'phase':'validation','sourceAttempted':False,'scope':'equity-lookthrough'} if isin in derived else {'phase':'validation','sourceAttempted':True,'partialObservationPrepared':True} if fresh.get(isin,{}).get('sourcePartial') else {})} for isin,error in errors.items()]})
     # Audit each success even if an unrelated support fails later in this run.
     # Only bounded public-source metadata; never the thousands of holding rows.
     for isin,entry in observations.items():
         fields=['sourceAttempts','asOf','checkedAt','basis','scope','sourceUrl','sha256','rows','publishedEquityWeightPct','identifiedEquityWeightPct']
-        print('Validated holdings observation: '+json.dumps({'isin':isin,**{key:entry[key]for key in fields if key in entry}},sort_keys=True))
-    print(f'Complete holdings: {len(fresh)}/{len(config)}; identified securities: {len(evidence)}; errors: {errors}')
+        print(('Validated known positions (partial source): ' if entry.get('sourcePartial') else 'Validated holdings observation: ')+json.dumps({'isin':isin,**{key:entry[key]for key in fields if key in entry}},sort_keys=True))
+    print(f'Complete holdings: {sum(not h.get("sourcePartial") for h in fresh.values())}/{len(config)}; partial sources: {sum(bool(h.get("sourcePartial")) for h in fresh.values())}; identified securities: {len(evidence)}; errors: {errors}')
     if errors:raise SystemExit(1)
 if __name__=='__main__':__import__('producer_report_contract').run('collect_dca_complete_holdings', main)
 
