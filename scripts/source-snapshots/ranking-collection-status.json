@@ -1,13 +1,16 @@
 {
-  "checkedAt": "2026-11-16T21:21:41.246037+00:00",
-  "attemptedIds": [],
+  "checkedAt": "2026-11-16T22:04:47.533890+00:00",
+  "attemptedIds": [
+    "fx:TWD",
+    "fx:ECB"
+  ],
   "fxFailed": false,
   "crossFxFailed": false,
   "fxSources": {
     "TWD": {
       "id": "fx:TWD",
       "status": "validated",
-      "checkedAt": "2026-11-16T12:20:26.231169+00:00",
+      "checkedAt": "2026-11-16T22:04:47.533890+00:00",
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "sourceAttempts": [
         {
@@ -21,14 +24,14 @@
         {
           "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
           "status": "downloaded",
-          "sha256": "a10dc5364203db3de90b1ce6164f0b7ce6861ffaff7bf477b7c6c04ce3f781b6"
+          "sha256": "c424bcdfe0947e48d9bc3937fd3a9e82bf144e5ac6454ae95a68346196394c77"
         }
       ]
     },
     "ECB": {
       "id": "fx:ECB",
       "status": "validated",
-      "checkedAt": "2026-11-16T12:20:26.231169+00:00"
+      "checkedAt": "2026-11-16T22:04:47.533890+00:00"
     }
   },
   "series": [
