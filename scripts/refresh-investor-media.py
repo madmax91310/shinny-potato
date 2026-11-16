@@ -23,6 +23,7 @@ def refresh():
     session = None
     for slug, source in json.loads(SOURCES.read_text()).items():
         metadata = {key: source.get(key) for key in ('source', 'url', 'author', 'license', 'title')}
+        metadata.update({key: source[key] for key in ('excludePolygons', 'maskNote') if key in source})
         local = ROOT / 'public/asset-art' / source['file']
         digest = None
         if source.get('commonsPortrait') and slug not in ENTITIES:
@@ -35,9 +36,13 @@ def refresh():
                     result[slug] = {**retained, 'reason': f'Dernier portrait vérifié conservé : {error}'}
                     continue
                 metadata['resolutionError'] = str(error)
+        illustration = source.get('illustration', {})
+        historical = slug == 'berkshire' and illustration.get('person') == 'Warren Buffett' and illustration.get('entity') == 'Berkshire Hathaway' and illustration.get('nature') == 'historical-association' and illustration.get('associationSource', '').startswith('https://www.berkshirehathaway.com/')
+        if historical:
+            metadata.update(person=illustration['person'], illustration=illustration)
         metadata['status'] = 'initials'
         metadata['reason'] = 'Portrait non validé : '+metadata['resolutionError'] if metadata.get('resolutionError') else 'Réutilisation non documentée pour ce portrait.'
-        if slug in ENTITIES:
+        if slug in ENTITIES and not historical:
             metadata['reason'] = 'Portefeuille d’une entité ; aucune attribution à son fondateur.'
         elif reusable(metadata.get('license', '')):
             try:
@@ -58,6 +63,17 @@ def refresh():
                         image=image.crop(tuple(box))
                     image.thumbnail((900, 1100))
                     cutout = remove(image, session=session, post_process_mask=True)
+                    if metadata.get('excludePolygons'):
+                        from PIL import ImageDraw
+                        mask = cutout.getchannel('A')
+                        draw = ImageDraw.Draw(mask)
+                        # Reviewed source coordinates scale with the existing thumbnail.
+                        original_width, original_height = Image.open(local).size
+                        for polygon in metadata['excludePolygons']:
+                            if len(polygon) < 3 or any(not (0 <= x <= original_width and 0 <= y <= original_height) for x, y in polygon):
+                                raise ValueError('Masque de sujet incompatible avec la source')
+                            draw.polygon([(round(x*image.width/original_width),round(y*image.height/original_height)) for x,y in polygon],fill=0)
+                        cutout.putalpha(mask)
                     alpha = cutout.getchannel('A')
                     bbox = alpha.getbbox()
                     # Reject blank, opaque or obviously broken segmentation.

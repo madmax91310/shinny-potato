@@ -1,6 +1,7 @@
 import TOOL_SUMMARIES from './data/tool-summaries.json' with {type: 'json'}
 import ETF_FLOW_TOOL from './data/etf-flows-tool.json' with {type: 'json'}
-import { publicationLabel } from './data/editorial-calendar.js'
+import PUBLICATION_LABELS from './data/editorial-publication-labels.json' with {type:'json'}
+const publicationLabel=path=>Object.hasOwn(PUBLICATION_LABELS,path)?PUBLICATION_LABELS[path]:''
 import { INVESTORS } from './data/investor-roster.js'
 // Registre central des outils : source unique pour le dashboard, la nav et les routes.
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.

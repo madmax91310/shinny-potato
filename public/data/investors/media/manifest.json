@@ -5,10 +5,69 @@
     "author": "Senate Democrats",
     "license": "CC BY 2.0",
     "title": "File:Bill Ackman (26410186110) (cropped).jpg",
+    "excludePolygons": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          160,
+          0
+        ],
+        [
+          160,
+          320
+        ],
+        [
+          60,
+          400
+        ],
+        [
+          0,
+          530
+        ]
+      ],
+      [
+        [
+          468,
+          265
+        ],
+        [
+          593,
+          265
+        ],
+        [
+          593,
+          425
+        ],
+        [
+          570,
+          425
+        ],
+        [
+          570,
+          380
+        ],
+        [
+          450,
+          330
+        ],
+        [
+          450,
+          310
+        ],
+        [
+          460,
+          290
+        ]
+      ]
+    ],
+    "maskNote": "Masque de sujet vérifié sur la photo source 593 × 549 : retrait des personnes en arrière-plan, visage et proportions de Bill Ackman conservés.",
     "status": "ready",
     "reason": null,
-    "file": "data/investors/media/ackman-35781946a27e9cbe.png",
-    "sourceDigest": "35781946a27e9cbebbbb41f4748b5ff926706eff8c82f5668763f54f1f866975",
+    "file": "data/investors/media/ackman-3aeb7e2ee556f1ac.png",
+    "sourceDigest": "3aeb7e2ee556f1ac39030e1ed4732d4c03983776076514c070d301ffa72540c1",
     "adaptation": "Détourage automatique u2netp ; proportions conservées."
   },
   "cathie-wood": {
@@ -83,8 +142,20 @@
     "author": "International Trade Administration",
     "license": "Domaine public",
     "title": "File:Warren Buffett at the 2015 SelectUSA Investment Summit.jpg",
-    "status": "initials",
-    "reason": "Portefeuille d’une entité ; aucune attribution à son fondateur."
+    "person": "Warren Buffett",
+    "illustration": {
+      "person": "Warren Buffett",
+      "entity": "Berkshire Hathaway",
+      "nature": "historical-association",
+      "associationSource": "https://www.berkshirehathaway.com/letters/2024ltr.pdf",
+      "associationDate": "2025-02-22",
+      "note": "Portrait d’illustration de l’association historique de Warren Buffett à Berkshire Hathaway. Les positions sont celles déclarées par l’entreprise, pas ses avoirs personnels."
+    },
+    "status": "ready",
+    "reason": null,
+    "file": "data/investors/media/berkshire-ef329d9ef8268345.png",
+    "sourceDigest": "ef329d9ef8268345b7a345829b1e47f624aa1dabcfa3cd4ffcb7c5778a9bdfb1",
+    "adaptation": "Détourage automatique u2netp ; proportions conservées."
   },
   "li-lu": {
     "source": "https://www.himcap.com/",
