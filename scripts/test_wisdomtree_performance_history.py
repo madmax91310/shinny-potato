@@ -273,3 +273,51 @@ class CurrentCanonicalIssuerWidgets(unittest.TestCase):
     self.assertEqual(len(e['controlledFields']),17)
     for patch in [{'isin':'JE00BN7KB334'},{'navCurrency':'EUR'},{'wisdomClassId':1},{'wisdomTicker':'NGAS'}]:
      with self.assertRaises(ValueError):urls({**ordinary[e['id']],**patch})
+
+class RollingTableWindows(unittest.TestCase):
+ def current(self):
+  source=next(s for s in configurations()if s['id']=='etc_wheatNav')
+  graph=json.loads(gzip.decompress((FIX/'WEAT-20261116-graph.gz').read_bytes()))
+  table=json.loads(gzip.decompress((FIX/'WEAT-20261116-tabular.gz').read_bytes()))
+  return source,graph,table,anchor_for(source),dt.datetime(2026,11,16,17,tzinfo=dt.timezone.utc)
+ def test_real_response_qualifies_closed_calendars_without_using_rolling_returns(self):
+  source,graph,table,anchor,now=self.current()
+  points,proof=parse(graph,table,source,anchor,now)
+  self.assertEqual(max(points),'2026-11-13')
+  self.assertEqual(len(points),1218)
+  self.assertEqual(len(proof['unusedRollingWindows']),5)
+  self.assertTrue(all(r['usedForCalendarQualification'] is False for r in proof['unusedRollingWindows']))
+  self.assertEqual([r['year']for r in proof['closedTableCalendarChecks']],[2022,2023,2024,2025])
+  self.assertFalse(proof['scaleProof']['anchorIsFreshSourceCheck'])
+  self.assertEqual(proof['scaleProof']['anchor'],anchor)
+  altered=copy.deepcopy(table)
+  for row in altered:
+   if row.get('wtTypeID')==1 and row.get('windowTag')=='rolling12':row['windowRoR']=77
+  other,checks=parse(graph,altered,source,anchor,now)
+  self.assertEqual(other,points,'Unused rolling values cannot change historical levels')
+  self.assertEqual(checks['closedTableCalendarChecks'],proof['closedTableCalendarChecks'])
+  self.assertEqual(parse(graph,table,source,anchor,now),(points,proof),'Repeated parsing stays idempotent')
+ def test_every_rolling_row_still_requires_exact_identity_and_convention(self):
+  source,graph,table,anchor,now=self.current()
+  for field,value in [('entityID','GB0000000000'),('entityGroup','idxBmk'),('currency','EUR'),
+   ('entityListingID',1),('wtListingID',1),('ticker','OTHER LN'),('entityName','Other fund'),
+   ('levelTypeID',1),('levelType','Price'),('checkDiff',.01),('checkDiffSumEntityGroup',0),('checkDiffSumDataSet',0)]:
+   rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='rolling12')[field]=value
+   with self.subTest(field=field),self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)
+ def test_unknown_malformed_duplicate_or_future_rolling_windows_remain_refused(self):
+  source,graph,table,anchor,now=self.current()
+  for patch in [{'windowTag':'rolling24'},{'rorWindow':'calYE'},{'dt':'2026-10-30'},
+                {'dt':'2026-11-30'},{'windowRoR':None},{'windowRoR':True},{'windowRoR':float('nan')}]:
+   rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='rolling12').update(patch)
+   with self.subTest(patch=patch),self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)
+  rolling=next(r for r in table if r.get('wtTypeID')==1 and r.get('windowTag')=='rolling12')
+  with self.assertRaises(ValueError):parse(graph,table+[rolling],source,anchor,now)
+ def test_closed_calendar_checks_are_never_replaced_by_rolling_or_current_year(self):
+  source,graph,table,anchor,now=self.current()
+  without_closed=[r for r in table if not(r.get('wtTypeID')==1 and r.get('windowTag')=='calYearEnd')]
+  with self.assertRaisesRegex(ValueError,'No independently matched completed table calendar'):
+   parse(graph,without_closed,source,anchor,now)
+  rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='calYearEnd')['dt']='2026-12-31'
+  with self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)
+  rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='calYearEnd' and r['dt']=='2023-12-31')['windowRoR']+=.05
+  with self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)
