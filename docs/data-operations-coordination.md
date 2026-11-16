@@ -977,3 +977,21 @@ les nouveaux lecteurs Budget est distinct : il demande une acquisition depuis
 le nouveau master, pas une exemption générale des configurations CI.
 41recettes d'adaptateur réussies ; enregistrement GitHub après fusion encore
 à démontrer. #1370 FTSE, #1372 HSBC/iBonds et #1373 Invesco gardent leurs fichiers.
+
+## 16 novembre — top10 Invesco depuis les livres exacts déjà qualifiés
+
+Même suivi #881, `fix/invesco-shared-presentation-topten-20261116` possède
+uniquement native-fund-details, son lecteur de présentation et leurs régressions.
+Dépendance #1373 fusionnée612ab5e5. Les trois parts physiques déjà inscrites dans
+le contrat Invesco commun alimentent le top10 des présentations depuis leur livre
+qualifié, au lieu de garder un ancien top10 attribué à l'indice interne de l'API.
+Réconciliation NAV et recensement exacts, compte/part/page/métadonnées, identités,
+poids natifs, source et dates préservés ; sociétés regroupées par le moteur commun.
+Contrat distinct du livre WisdomTree, sans en affaiblir l'admission cash seul.
+La projection reste fonds/top10/incomplète : aucune admission d'indice exact ni
+recouvrement intégral par ce top10, aucune transformation d'un livre partiel.
+Les livres GitHub du13novembre sont reconstruits en fixture depuis leurs captures
+brutes et résumé natif14267936785 ; aucune valeur ni horloge nouvelle fabriquée.
+Recettes de refus et d'idempotence, lecture commune Présentation ETF et build local
+réussis ; CI sur le commit final et publication/PNG publics restent à vérifier.
+Aucun changement de collecte, seuil, maquette, Radar/IA ou catalogue.
