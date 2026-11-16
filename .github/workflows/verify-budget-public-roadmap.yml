@@ -68,9 +68,17 @@ jobs:
           import { readFileSync, writeFileSync } from 'node:fs'
           import { createHash } from 'node:crypto'
           import { chromium } from 'playwright'
+          import { BUDGET_PROFILES } from './src/pages/budget-profiles/data.js'
           const browser=await chromium.launch()
-          const reopened=[]
+          const reopened=[]; let profileCount=null
           try {
+            const site=await browser.newPage({viewport:{width:Number(process.env.BUDGET_VIEWPORT),height:950}})
+            await site.goto(process.env.BUDGET_PUBLIC_BASE+'/le-budget-de')
+            await site.getByLabel('Texte prêt à publier').waitFor()
+            profileCount=Number((await site.locator('body').innerText()).match(/([0-9]+) profils/)?.[1])
+            assert.equal(profileCount,BUDGET_PROFILES.length)
+            await site.screenshot({path:'test-artifacts/public-budget-roster-'+process.env.BUDGET_VIEWPORT+'.png',fullPage:true})
+            await site.close()
             const page=await browser.newPage()
             await page.setContent('<img alt="PNG téléchargé">')
             for(const [directory,count] of [['budget-roadmap-public',23],['budget-complementary-public',60]]) {
@@ -99,6 +107,7 @@ jobs:
                   for(const [i,source]of sources.entries()){const img=new Image();img.src=source.src;await img.decode();ctx.drawImage(img,i*390,0,390,487.5);ctx.fillStyle='#111';ctx.font='12px Arial';ctx.fillText(source.name,i*390+3,506,384)}
                   return canvas.toDataURL('image/png').split(',')[1]
                 },sources)
+                writeFileSync('test-artifacts/public-budget-contact-'+index+'.png',Buffer.from(contact,'base64'))
                 console.log('PUBLIC_BUDGET_CONTACT_'+index+'_BEGIN')
                 for(let at=0;at<contact.length;at+=12000)console.log(contact.slice(at,at+12000))
                 console.log('PUBLIC_BUDGET_CONTACT_'+index+'_END')
@@ -110,8 +119,8 @@ jobs:
           assert(response.ok)
           const after=await response.json()
           assert.equal(after.sha,before.sha,'The public code must stay stable during this recipe; market dataSha may advance separately.')
-          writeFileSync('test-artifacts/public-budget-verification.json',JSON.stringify({before,after,reopened},null,2)+'\n')
-          console.log('Public budget verified:',JSON.stringify({before,after,downloadedAndReopened:reopened.length,viewport:Number(process.env.BUDGET_VIEWPORT)}))
+          writeFileSync('test-artifacts/public-budget-verification.json',JSON.stringify({before,after,profileCount,reopened},null,2)+'\n')
+          console.log('Public budget verified:',JSON.stringify({before,after,profileCount,downloadedAndReopened:reopened.length,viewport:Number(process.env.BUDGET_VIEWPORT)}))
           JS
       - uses: actions/upload-artifact@v7.0.1
         if: always()
