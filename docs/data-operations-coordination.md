@@ -963,3 +963,17 @@ Les anciennes preuves/historiques restent conservés. #1367 possède Uranium et
 LifeStrategy ; #1369 les NAV WisdomTree ; leurs fichiers ne sont pas modifiés.
 Aucun workflow Radar ou IA réactivé, aucun seuil ni maquette changé. Une collecte
 GitHub ordinaire, son enregistrement et la consommation publique restent à prouver.
+## 16 novembre — reçu documentaire indépendant pendant l'enregistrement ETF
+
+Même suivi #881, `fix/independent-studio-practical-recording-20261116` possède
+uniquement l'adaptateur market_reader_revalidation et sa recette. Le refus réel
+43941239960 se produit après validation, quand automated-practical-sheets.json
+avance de dec5f1e3 à b05a01de. Les deux graphes d'acquisition ETF aux deux commits
+ne consomment pas ce fichier précis. Il rejoint les lecteurs revalidables de
+l'adaptateur ETF seulement ; la version récente est préservée, les projections
+et tous les contrôles financiers rejoués. Garde commun, autres producteurs,
+code de collecte et fichiers voisins restent protégés. Le refus mensuel sur
+les nouveaux lecteurs Budget est distinct : il demande une acquisition depuis
+le nouveau master, pas une exemption générale des configurations CI.
+41recettes d'adaptateur réussies ; enregistrement GitHub après fusion encore
+à démontrer. #1370 FTSE, #1372 HSBC/iBonds et #1373 Invesco gardent leurs fichiers.
