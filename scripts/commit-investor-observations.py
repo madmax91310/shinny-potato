@@ -26,6 +26,9 @@ def publish(root, report, attempts=3, command=None):
     command = command or WRITER
     if command != WRITER:
         raise ValueError('Only the existing isolated 13F writer and owned path are allowed')
+    cache = Path(os.environ.get('INVESTOR_HTTP_CACHE', '.cache/investor-http'))
+    if not cache.is_absolute(): cache = (root/cache).resolve()
+    network_env = {**os.environ, 'INVESTOR_HTTP_CACHE': str(cache)}
     report = report.resolve()
     report.with_name(report.stem+'-attempt-1.json').write_bytes(report.read_bytes())
     # Each retry gets its own checkout. The caller's files/index and all other
@@ -55,10 +58,10 @@ def publish(root, report, attempts=3, command=None):
                 current_report.unlink(missing_ok=True)
                 # Reuse the existing acquisition and validator, including explicit
                 # partial-source results and byte-for-byte failed-file retention.
-                acquired = subprocess.run(['python3', 'scripts/update-investor-13f.py', '--output', str(current_report)], cwd=checkout)
+                acquired = subprocess.run(['python3', 'scripts/update-investor-13f.py', '--output', str(current_report)], cwd=checkout, env=network_env)
                 if acquired.returncode not in (0, 1) or not current_report.exists():
                     raise RuntimeError('Recollection produced no auditable observations.')
-                run(['python3', 'scripts/refresh-investor-media.py'], checkout)
+                run(['python3', 'scripts/refresh-investor-media.py'], checkout, env=network_env)
                 run(['python3', 'scripts/validate-investor-publication.py', 'validate', '--report', str(current_report)], checkout)
                 # Keep this checkout alive through recording; the next iteration
                 # can only publish its own freshly revalidated observations.

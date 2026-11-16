@@ -521,6 +521,8 @@ class PublicationTests(unittest.TestCase):
             if args[:2] == ['python3', 'scripts/update-investor-13f.py']:
                 checkout = pathlib.Path(kwargs['cwd'])
                 acquisitions.append(checkout)
+                self.assertTrue(pathlib.Path(kwargs['env']['INVESTOR_HTTP_CACHE']).is_absolute())
+                self.assertFalse(str(kwargs['env']['INVESTOR_HTTP_CACHE']).startswith(str(checkout)))
                 self.assertNotEqual(checkout, self.root)
                 self.assertIn('independent', (checkout / 'src/data/dca-security-classifications.json').read_text())
                 reviews = json.loads((checkout / 'public/data/investors/review-metadata.json').read_text())
