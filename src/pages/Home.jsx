@@ -120,7 +120,7 @@ export default function Home() {
         <div className="home-day-band"><h2>{selectedDay.day}</h2>{selectedDay.day.toLowerCase() === today && <span>Aujourd’hui</span>}</div>
         {[['morning', 'Matin', selectedDay.morning], ['midday', 'Midi', selectedDay.midday], ['evening', 'Soir', selectedDay.evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
           <h3>{label}</h3>
-          {selectedDay[`${period}Note`] && <p className={`home-day-note${period === 'midday' && selectedDay.middayPreferred ? ' home-midday-note--selected' : ''}`}>{period === 'midday' && selectedDay.middayPreferred && <span className="home-midday-badge">Sélection du midi</span>}{selectedDay[`${period}Note`]}</p>}
+          {selectedDay[`${period}Note`] && <>{period === 'midday' && selectedDay.middayPreferred && <span className="home-midday-badge">Sélection du midi</span>}<p className={`home-day-note${period === 'midday' && selectedDay.middayPreferred ? ' home-midday-note--selected' : ''}`}>{selectedDay[`${period}Note`]}</p></>}
           {list(entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), path: entry.path, preferred: period === 'midday' && entry.preferred === true, ...(entry.title ? { title: entry.title } : {}), to: entry.href ?? entry.path, publicationDay: entry.note || `${selectedDay.day} ${label.toLowerCase()}` })))}
         </div>)}
       </section>
