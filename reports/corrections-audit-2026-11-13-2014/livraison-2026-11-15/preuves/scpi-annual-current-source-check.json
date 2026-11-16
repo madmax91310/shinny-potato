@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-11-16T11:30:25.760485+00:00",
+  "purpose": "Read-only annual rollover check: distinguish actual annual periods from projections; no record/publication or production date change.",
+  "iroko": {
+    "sourceUrl": "https://opendata.iroko.com/api/figure-embed.js",
+    "rows": [
+      {
+        "name": "distribution_yield",
+        "period": "y-2025",
+        "unit": "%",
+        "value": 7.14,
+        "update_date": "2025-12-31"
+      },
+      {
+        "name": "distribution_yield",
+        "period": "y-2024",
+        "unit": "%",
+        "value": 7.32,
+        "update_date": "2024-12-31"
+      },
+      {
+        "name": "distribution_yield",
+        "period": "y-2023",
+        "unit": "%",
+        "value": 7.12,
+        "update_date": "2023-12-31"
+      },
+      {
+        "name": "distribution_yield",
+        "period": "y-2022",
+        "unit": "%",
+        "value": 7.04,
+        "update_date": "2022-12-31"
+      },
+      {
+        "name": "distribution_yield",
+        "period": "y-2021",
+        "unit": "%",
+        "value": 7.1,
+        "update_date": "2021-12-31"
+      },
+      {
+        "name": "distribution_yield",
+        "period": "y-2020",
+        "unit": "%",
+        "value": 7.56,
+        "update_date": "2020-12-31"
+      }
+    ]
+  },
+  "remake": {
+    "sourceUrl": "https://www.remake.fr/remake-live",
+    "performance": {
+      "cible": 5.5,
+      "elements": [
+        {
+          "year": "2022",
+          "taux": 7.64,
+          "perf": 7.64
+        },
+        {
+          "year": "2023",
+          "taux": 7.79,
+          "perf": 9.79
+        },
+        {
+          "year": "2024",
+          "taux": 7.5,
+          "perf": 7.5
+        },
+        {
+          "year": "2025",
+          "taux": 7.05,
+          "perf": 7.05
+        }
+      ]
+    }
+  }
+}

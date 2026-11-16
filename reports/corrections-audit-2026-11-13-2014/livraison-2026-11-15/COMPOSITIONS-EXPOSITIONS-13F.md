@@ -1,3 +1,30 @@
+# Compositions, expositions et 13F — 16 novembre 2026
+
+Version publique vérifiée : code `f45c20c2`, données `b62c57d4`. Les collectes, reçus, contrôles et parcours publics sont détaillés dans BILAN.md.
+
+| Actifs / famille | Périmètre utilisable | Actualisation démontrée | Limite et pièce nécessaire |
+|---|---|---|---|
+| Neuf iShares physiques | Pays de risque du livre publié, liquidités et inconnus conservés | Source ordinaire 43836713977, observation du 13 novembre, registres et publication rapprochés | Table pays primaire du 1er octobre toujours périmée ; l’alternative n’est pas la composition exacte d’un indice |
+| EXSA, DE0002635307 | Pays, secteurs et principales positions du fonds | 36 résultats natifs validés dans 43864450028 ; commit 6c2bab29 publié ; Jersey reconnu sans modifier ligne ou poids | La paire avec Core Europe reste partielle : 371 entreprises communes, aucun score intégral |
+| WisdomTree WDEF, WQTM, WTAI, GGRA, VOLT, WCLD | Livres du 12 novembre conservés ; cinq restent admissibles selon la compatibilité de la paire | Renouvellement encore refusé : API et pages HTTP 403 depuis GitHub | Endpoint officiel accessible et livre exact. Le classement sans dénominateur NAV et le calendrier de négociation XLSX ne conviennent pas. WCLD : classe actuelle nCino représentant 1,658092388 % à identifier |
+| Global X Uranium, IE000NDWFGA5 | Dernier livre partiel du 11 novembre : poids publiés 99,823 %, identifiés 99,819 % | 72 lignes officielles examinées ; échec de renouvellement conservé | Valeur de deux contrats ZAR absente ; notionnel insuffisant. Deux classes Verdera de 0,002 % restent à identifier, distinctes de la classe cotée à 0,006 % |
+| Russell 1000 | Secteurs, nombre de titres et substituts explicitement qualifiés | Collectes Russell/Dow précédemment rétablies préservées | Livre exact daté, poids et identités titres → entreprises manquants ; 1 023 ou 1 022 titres ne sont pas un nombre d’entreprises consolidées |
+| Sources natives S&P | Dernières compositions et substituts qualifiés conservés | Primaire toujours HTTP 403 ; PR #1253 non modifiée | Source de composition accessible et conditions d’usage qualifiées ; un flux de performance ne constitue pas une composition |
+| LifeStrategy 20/40/60/80 | Transparisation des poches actions : 20,2663 / 39,9098 / 59,7738 / 79,6992 % | Parcours publics partiels et PNG vérifiés ; 4 203 et 4 205 entreprises communes pour les deux paires | Parents du 30 septembre et sous-jacents du 31 octobre incompatibles ; photographies communes et poches obligations/liquidités nécessaires avant qualification totale |
+| Investisseurs 13F | 26 fiches qualifiées, deux bloquées ; contrôles et dates des positions distincts | 43859991189 : 26 contrôles sans changement et deux échecs ; commit 8dc54036, 50 chemins publics ; 52 PNG et quatre refus visibles | Contradictions d’unités Druckenmiller et Klarman : déclaration d’unité ou voie indépendante explicitement qualifiée nécessaire |
+| SCPI | Huit fiches, 16 PNG ; neuf résultats source dont le contrôle secondaire Iroko | Push 43856006333 et commit 41646f9c publiés ; aucun montant ni date de donnée renouvelé artificiellement | Reprise conditionnelle testée isolément ; complément #1355 contrôlé par push43873060316 et enregistré604d5407 ; publication encore à observer |
+
+La paire World/S&P conserve 440 entreprises communes. Les quatre paires testées sont partielles : aucun score de recouvrement intégral n’est annoncé. La recette compare la consolidation indépendante des poids bruts et l’invariance à l’ordre des actifs, sans renormalisation.
+
+Les tableaux séparés couvrent 702 entrées de sélecteur et 695 ISIN, comprenant des actions et des alias, ainsi que 52 fiches d’indices. Leur qualification ne certifie pas leurs crons.
+
+La fausse erreur technique de copie du rapport 13F est corrigée sur le run d’origine 43823335908, avec octets et plan préalable vérifiés. Son classement technique porte `sourceControl=false` : aucun contrôle fournisseur ni montant n’est certifié par cette relecture. Les deux erreurs financières restent ouvertes. Les rapports courants et les tentatives futures ont des artefacts distincts ; interruptions et omissions restent détectables.
+
+
+---
+
+# Archive du bilan précédent — état daté, ne pas confondre avec la livraison ci-dessus
+
 # Compositions, expositions et 13F
 
 Relevé 2026-11-15T23:44:48.417698+00:00. Code public `fdf1b581402f909f04d1e4f6bfe98126742b0c20`, données `eb865db0b760ed5b47fdfd003bf51df60e92a14c`, voie `validated-data`. Suivi unique [#881](https://github.com/madmax91310/shinny-potato/issues/881). Les preuves antérieures restent datées ; ce complément ne les réécrit pas.

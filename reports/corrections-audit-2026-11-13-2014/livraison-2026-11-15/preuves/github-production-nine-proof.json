@@ -1,0 +1,1608 @@
+{
+  "run": 43836713977,
+  "head": "49dcf75ff80ae0893c709674fdcbd1c24e4a16a0",
+  "event": "push",
+  "artifact": 14211531655,
+  "artifactDigest": "sha256:bc6fc1c563964304e1b78dbb2d2fbb65cefc22ad700c9732a664e4c031e66227",
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "8a02fb984515f61c2925c44c28be509bc0e3665a",
+    "files": {
+      "src/data/annual-fx.json": "44a2c56dfd160a19085e2437fbf946a9783ff887",
+      "src/data/automated-etf.json": "5879d152f14bb3a20b5b685925bb01a6e536a992",
+      "src/data/automated-indices.json": "086aa6212f00e215c123445cb5a15e4feea18914",
+      "src/data/official-performance-currencies.json": "beb96851b2c29a6117ab3c840262c153e3737aa1"
+    }
+  },
+  "groups": [
+    {
+      "report": "observation.json",
+      "totalRecords": 42,
+      "statuses": {
+        "validated": 42
+      },
+      "wholePartFailures": [],
+      "outcomes": [
+        {
+          "isin": "IE00B1FZS350",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "United States",
+                "weightPct": 67.03827
+              },
+              {
+                "name": "Japan",
+                "weightPct": 7.0777
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 4.17469
+              },
+              {
+                "name": "Australia",
+                "weightPct": 3.81017
+              },
+              {
+                "name": "Hong Kong",
+                "weightPct": 3.67953
+              },
+              {
+                "name": "Singapore",
+                "weightPct": 3.24916
+              },
+              {
+                "name": "Canada",
+                "weightPct": 2.18022
+              },
+              {
+                "name": "France",
+                "weightPct": 1.87726
+              },
+              {
+                "name": "Switzerland",
+                "weightPct": 1.7337
+              },
+              {
+                "name": "Germany",
+                "weightPct": 1.34518
+              },
+              {
+                "name": "Belgium",
+                "weightPct": 1.06439
+              },
+              {
+                "name": "Sweden",
+                "weightPct": 0.98624
+              },
+              {
+                "name": "Israel",
+                "weightPct": 0.52173
+              },
+              {
+                "name": "Spain",
+                "weightPct": 0.45193
+              },
+              {
+                "name": "New Zealand",
+                "weightPct": 0.24801
+              },
+              {
+                "name": "Netherlands",
+                "weightPct": 0.13842
+              },
+              {
+                "name": "Korea (South)",
+                "weightPct": 0.13215
+              },
+              {
+                "name": "Finland",
+                "weightPct": 0.08129
+              },
+              {
+                "name": "Ireland",
+                "weightPct": 0.07597
+              },
+              {
+                "name": "European Union",
+                "weightPct": 0.04164
+              },
+              {
+                "name": "Norway",
+                "weightPct": 0.03695
+              },
+              {
+                "name": "Austria",
+                "weightPct": 0.0341
+              },
+              {
+                "name": "Italy",
+                "weightPct": 0.0212
+              },
+              {
+                "name": "Denmark",
+                "weightPct": 4e-05
+              },
+              {
+                "name": "Other",
+                "weightPct": 0.0
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          "performance": {
+            "currency": "USD",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2016": 5.5,
+              "2017": 10.59,
+              "2018": -5.8,
+              "2019": 21.95,
+              "2020": -9.47,
+              "2021": 25.18,
+              "2022": -24.33,
+              "2023": 8.92,
+              "2024": 1.0,
+              "2025": 8.24
+            }
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/etf-pilot.json",
+            "blob": "c3a30fa1906e27d410660cc3d804be1d96f5f532"
+          }
+        },
+        {
+          "isin": "IE00B3F81R35",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "United States",
+                "weightPct": 21.35804
+              },
+              {
+                "name": "France",
+                "weightPct": 18.37812
+              },
+              {
+                "name": "Germany",
+                "weightPct": 12.65798
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 9.30246
+              },
+              {
+                "name": "Spain",
+                "weightPct": 5.4329
+              },
+              {
+                "name": "Italy",
+                "weightPct": 5.21365
+              },
+              {
+                "name": "Netherlands",
+                "weightPct": 4.71573
+              },
+              {
+                "name": "Switzerland",
+                "weightPct": 3.39382
+              },
+              {
+                "name": "Sweden",
+                "weightPct": 2.64855
+              },
+              {
+                "name": "Japan",
+                "weightPct": 2.21846
+              },
+              {
+                "name": "Denmark",
+                "weightPct": 2.16131
+              },
+              {
+                "name": "Belgium",
+                "weightPct": 1.91659
+              },
+              {
+                "name": "Australia",
+                "weightPct": 1.62302
+              },
+              {
+                "name": "Finland",
+                "weightPct": 1.18026
+              },
+              {
+                "name": "Austria",
+                "weightPct": 1.14899
+              },
+              {
+                "name": "Canada",
+                "weightPct": 1.10734
+              },
+              {
+                "name": "Ireland",
+                "weightPct": 0.97486
+              },
+              {
+                "name": "Luxembourg",
+                "weightPct": 0.92245
+              },
+              {
+                "name": "Norway",
+                "weightPct": 0.68082
+              },
+              {
+                "name": "Greece",
+                "weightPct": 0.58349
+              },
+              {
+                "name": "Portugal",
+                "weightPct": 0.49207
+              },
+              {
+                "name": "Poland",
+                "weightPct": 0.38416
+              },
+              {
+                "name": "Czech Republic",
+                "weightPct": 0.25961
+              },
+              {
+                "name": "New Zealand",
+                "weightPct": 0.19961
+              },
+              {
+                "name": "China",
+                "weightPct": 0.14649
+              },
+              {
+                "name": "Romania",
+                "weightPct": 0.14581
+              },
+              {
+                "name": "Israel",
+                "weightPct": 0.14162
+              },
+              {
+                "name": "Hungary",
+                "weightPct": 0.1265
+              },
+              {
+                "name": "South Africa",
+                "weightPct": 0.11451
+              },
+              {
+                "name": "Hong Kong",
+                "weightPct": 0.08319
+              },
+              {
+                "name": "Iceland",
+                "weightPct": 0.06614
+              },
+              {
+                "name": "Bermuda",
+                "weightPct": 0.05387
+              },
+              {
+                "name": "Slovak Republic",
+                "weightPct": 0.04231
+              },
+              {
+                "name": "Slovenia",
+                "weightPct": 0.03978
+              },
+              {
+                "name": "Mexico",
+                "weightPct": 0.03765
+              },
+              {
+                "name": "Croatia (Hrvatska)",
+                "weightPct": 0.03632
+              },
+              {
+                "name": "Brazil",
+                "weightPct": 0.03533
+              },
+              {
+                "name": "Korea (South)",
+                "weightPct": 0.03159
+              },
+              {
+                "name": "Estonia",
+                "weightPct": 0.02974
+              },
+              {
+                "name": "Lithuania",
+                "weightPct": 0.02709
+              },
+              {
+                "name": "Singapore",
+                "weightPct": 0.02174
+              },
+              {
+                "name": "Taiwan",
+                "weightPct": 0.02037
+              },
+              {
+                "name": "Cyprus",
+                "weightPct": 0.01949
+              },
+              {
+                "name": "Latvia",
+                "weightPct": 0.00965
+              },
+              {
+                "name": "Malta",
+                "weightPct": 0.00918
+              },
+              {
+                "name": "European Union",
+                "weightPct": -0.19229
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          "performance": {
+            "currency": "EUR",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2016": 4.64,
+              "2017": 2.29,
+              "2018": -1.41,
+              "2019": 6.14,
+              "2020": 2.53,
+              "2021": -1.15,
+              "2022": -13.86,
+              "2023": 8.04,
+              "2024": 4.58,
+              "2025": 3.13
+            }
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/etf-pilot.json",
+            "blob": "c3a30fa1906e27d410660cc3d804be1d96f5f532"
+          }
+        },
+        {
+          "isin": "IE00B4WXJJ64",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "France",
+                "weightPct": 23.13537
+              },
+              {
+                "name": "Italy",
+                "weightPct": 21.61999
+              },
+              {
+                "name": "Germany",
+                "weightPct": 19.56743
+              },
+              {
+                "name": "Spain",
+                "weightPct": 14.10491
+              },
+              {
+                "name": "Belgium",
+                "weightPct": 4.85207
+              },
+              {
+                "name": "Netherlands",
+                "weightPct": 4.23374
+              },
+              {
+                "name": "Austria",
+                "weightPct": 3.53564
+              },
+              {
+                "name": "Ireland",
+                "weightPct": 2.42031
+              },
+              {
+                "name": "Portugal",
+                "weightPct": 1.90449
+              },
+              {
+                "name": "Finland",
+                "weightPct": 1.80265
+              },
+              {
+                "name": "Greece",
+                "weightPct": 1.02884
+              },
+              {
+                "name": "Slovak Republic",
+                "weightPct": 0.81346
+              },
+              {
+                "name": "Slovenia",
+                "weightPct": 0.36274
+              },
+              {
+                "name": "Croatia (Hrvatska)",
+                "weightPct": 0.36024
+              },
+              {
+                "name": "Luxembourg",
+                "weightPct": 0.27023
+              },
+              {
+                "name": "Bulgaria",
+                "weightPct": 0.25736
+              },
+              {
+                "name": "Lithuania",
+                "weightPct": 0.23489
+              },
+              {
+                "name": "Latvia",
+                "weightPct": 0.16198
+              },
+              {
+                "name": "Cyprus",
+                "weightPct": 0.11165
+              },
+              {
+                "name": "Switzerland",
+                "weightPct": 0.00571
+              },
+              {
+                "name": "United States",
+                "weightPct": 9e-05
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 1e-05
+              },
+              {
+                "name": "European Union",
+                "weightPct": -0.78385
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          "performance": {
+            "currency": "EUR",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2016": 3.05,
+              "2017": -0.01,
+              "2018": 0.8,
+              "2019": 6.7,
+              "2020": 4.84,
+              "2021": -3.53,
+              "2022": -18.52,
+              "2023": 7.06,
+              "2024": 1.75,
+              "2025": 0.61
+            }
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/etf-pilot.json",
+            "blob": "c3a30fa1906e27d410660cc3d804be1d96f5f532"
+          }
+        },
+        {
+          "isin": "IE00B66F4759",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "France",
+                "weightPct": 18.8723
+              },
+              {
+                "name": "Italy",
+                "weightPct": 16.4447
+              },
+              {
+                "name": "United States",
+                "weightPct": 14.12772
+              },
+              {
+                "name": "Germany",
+                "weightPct": 11.12905
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 8.62335
+              },
+              {
+                "name": "Luxembourg",
+                "weightPct": 5.31813
+              },
+              {
+                "name": "Netherlands",
+                "weightPct": 3.95231
+              },
+              {
+                "name": "Sweden",
+                "weightPct": 2.56753
+              },
+              {
+                "name": "Ireland",
+                "weightPct": 2.43296
+              },
+              {
+                "name": "Spain",
+                "weightPct": 2.33385
+              },
+              {
+                "name": "Japan",
+                "weightPct": 2.23847
+              },
+              {
+                "name": "Czech Republic",
+                "weightPct": 1.44579
+              },
+              {
+                "name": "Greece",
+                "weightPct": 1.29192
+              },
+              {
+                "name": "Slovenia",
+                "weightPct": 1.22211
+              },
+              {
+                "name": "Switzerland",
+                "weightPct": 0.94067
+              },
+              {
+                "name": "Finland",
+                "weightPct": 0.90007
+              },
+              {
+                "name": "Austria",
+                "weightPct": 0.83216
+              },
+              {
+                "name": "Belgium",
+                "weightPct": 0.7526
+              },
+              {
+                "name": "Poland",
+                "weightPct": 0.74488
+              },
+              {
+                "name": "Bulgaria",
+                "weightPct": 0.60364
+              },
+              {
+                "name": "Hungary",
+                "weightPct": 0.46601
+              },
+              {
+                "name": "Denmark",
+                "weightPct": 0.46308
+              },
+              {
+                "name": "Romania",
+                "weightPct": 0.4531
+              },
+              {
+                "name": "Portugal",
+                "weightPct": 0.41936
+              },
+              {
+                "name": "Canada",
+                "weightPct": 0.31694
+              },
+              {
+                "name": "Jersey",
+                "weightPct": 0.24178
+              },
+              {
+                "name": "Serbia",
+                "weightPct": 0.21387
+              },
+              {
+                "name": "Lithuania",
+                "weightPct": 0.19188
+              },
+              {
+                "name": "South Africa",
+                "weightPct": 0.14476
+              },
+              {
+                "name": "Israel",
+                "weightPct": 0.10656
+              },
+              {
+                "name": "China",
+                "weightPct": 0.10083
+              },
+              {
+                "name": "Estonia",
+                "weightPct": 0.08848
+              },
+              {
+                "name": "Norway",
+                "weightPct": 0.07682
+              },
+              {
+                "name": "Cayman Islands",
+                "weightPct": 0.0
+              },
+              {
+                "name": "European Union",
+                "weightPct": -0.05758
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          "performance": {
+            "currency": "EUR",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2016": 8.05,
+              "2017": 4.77,
+              "2018": -3.52,
+              "2019": 9.37,
+              "2020": 0.92,
+              "2021": 2.97,
+              "2022": -9.72,
+              "2023": 11.33,
+              "2024": 6.67,
+              "2025": 4.8
+            }
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/etf-pilot.json",
+            "blob": "c3a30fa1906e27d410660cc3d804be1d96f5f532"
+          }
+        },
+        {
+          "isin": "IE00BF3N7094",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "France",
+                "weightPct": 18.8723
+              },
+              {
+                "name": "Italy",
+                "weightPct": 16.4447
+              },
+              {
+                "name": "United States",
+                "weightPct": 14.12772
+              },
+              {
+                "name": "Germany",
+                "weightPct": 11.12905
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 8.62335
+              },
+              {
+                "name": "Luxembourg",
+                "weightPct": 5.31813
+              },
+              {
+                "name": "Netherlands",
+                "weightPct": 3.95231
+              },
+              {
+                "name": "Sweden",
+                "weightPct": 2.56753
+              },
+              {
+                "name": "Ireland",
+                "weightPct": 2.43296
+              },
+              {
+                "name": "Spain",
+                "weightPct": 2.33385
+              },
+              {
+                "name": "Japan",
+                "weightPct": 2.23847
+              },
+              {
+                "name": "Czech Republic",
+                "weightPct": 1.44579
+              },
+              {
+                "name": "Greece",
+                "weightPct": 1.29192
+              },
+              {
+                "name": "Slovenia",
+                "weightPct": 1.22211
+              },
+              {
+                "name": "Switzerland",
+                "weightPct": 0.94067
+              },
+              {
+                "name": "Finland",
+                "weightPct": 0.90007
+              },
+              {
+                "name": "Austria",
+                "weightPct": 0.83216
+              },
+              {
+                "name": "Belgium",
+                "weightPct": 0.7526
+              },
+              {
+                "name": "Poland",
+                "weightPct": 0.74488
+              },
+              {
+                "name": "Bulgaria",
+                "weightPct": 0.60364
+              },
+              {
+                "name": "Hungary",
+                "weightPct": 0.46601
+              },
+              {
+                "name": "Denmark",
+                "weightPct": 0.46308
+              },
+              {
+                "name": "Romania",
+                "weightPct": 0.4531
+              },
+              {
+                "name": "Portugal",
+                "weightPct": 0.41936
+              },
+              {
+                "name": "Canada",
+                "weightPct": 0.31694
+              },
+              {
+                "name": "Jersey",
+                "weightPct": 0.24178
+              },
+              {
+                "name": "Serbia",
+                "weightPct": 0.21387
+              },
+              {
+                "name": "Lithuania",
+                "weightPct": 0.19188
+              },
+              {
+                "name": "South Africa",
+                "weightPct": 0.14476
+              },
+              {
+                "name": "Israel",
+                "weightPct": 0.10656
+              },
+              {
+                "name": "China",
+                "weightPct": 0.10083
+              },
+              {
+                "name": "Estonia",
+                "weightPct": 0.08848
+              },
+              {
+                "name": "Norway",
+                "weightPct": 0.07682
+              },
+              {
+                "name": "Cayman Islands",
+                "weightPct": 0.0
+              },
+              {
+                "name": "European Union",
+                "weightPct": -0.05758
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          "performance": {
+            "currency": "EUR",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2018": -3.52,
+              "2019": 9.37,
+              "2020": 0.92,
+              "2021": 2.97,
+              "2022": -9.72,
+              "2023": 11.33,
+              "2024": 6.67,
+              "2025": 4.8
+            }
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/etf-pilot.json",
+            "blob": "c3a30fa1906e27d410660cc3d804be1d96f5f532"
+          }
+        },
+        {
+          "isin": "IE00BFZPF546",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "India",
+                "weightPct": 10.21902
+              },
+              {
+                "name": "Mexico",
+                "weightPct": 10.18081
+              },
+              {
+                "name": "China",
+                "weightPct": 10.02865
+              },
+              {
+                "name": "Malaysia",
+                "weightPct": 9.43775
+              },
+              {
+                "name": "Indonesia",
+                "weightPct": 8.69003
+              },
+              {
+                "name": "Poland",
+                "weightPct": 8.32171
+              },
+              {
+                "name": "Thailand",
+                "weightPct": 7.87452
+              },
+              {
+                "name": "South Africa",
+                "weightPct": 7.27933
+              },
+              {
+                "name": "Colombia",
+                "weightPct": 5.09185
+              },
+              {
+                "name": "Germany",
+                "weightPct": 4.76185
+              },
+              {
+                "name": "Czech Republic",
+                "weightPct": 4.32428
+              },
+              {
+                "name": "Romania",
+                "weightPct": 2.97628
+              },
+              {
+                "name": "Brazil",
+                "weightPct": 2.88689
+              },
+              {
+                "name": "Hungary",
+                "weightPct": 2.65341
+              },
+              {
+                "name": "Peru",
+                "weightPct": 1.99056
+              },
+              {
+                "name": "Turkey",
+                "weightPct": 1.35152
+              },
+              {
+                "name": "Chile",
+                "weightPct": 1.34849
+              },
+              {
+                "name": "Dominican Republic",
+                "weightPct": 0.16004
+              },
+              {
+                "name": "Serbia",
+                "weightPct": 0.15483
+              },
+              {
+                "name": "Uruguay",
+                "weightPct": 0.11525
+              },
+              {
+                "name": "United States",
+                "weightPct": 0.06773
+              },
+              {
+                "name": "Paraguay",
+                "weightPct": 0.04646
+              },
+              {
+                "name": "Uzbekistan",
+                "weightPct": 0.03475
+              },
+              {
+                "name": "European Union",
+                "weightPct": 0.00295
+              },
+              {
+                "name": "Argentina",
+                "weightPct": 0.00066
+              },
+              {
+                "name": "Russian Federation",
+                "weightPct": 0.00029
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 0.0
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          "performance": {
+            "currency": "USD",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2019": 11.56,
+              "2020": 1.71,
+              "2021": -10.36,
+              "2022": -11.15,
+              "2023": 12.08,
+              "2024": -3.11,
+              "2025": 18.42
+            }
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/etf-pilot.json",
+            "blob": "c3a30fa1906e27d410660cc3d804be1d96f5f532"
+          }
+        }
+      ]
+    },
+    {
+      "report": "additional-observation.json",
+      "totalRecords": 126,
+      "statuses": {
+        "validated": 126
+      },
+      "wholePartFailures": [],
+      "outcomes": [
+        {
+          "isin": "IE00B2NPKV68",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "Saudi Arabia",
+                "weightPct": 6.36276
+              },
+              {
+                "name": "Mexico",
+                "weightPct": 6.16187
+              },
+              {
+                "name": "Turkey",
+                "weightPct": 4.87647
+              },
+              {
+                "name": "Indonesia",
+                "weightPct": 4.31421
+              },
+              {
+                "name": "Brazil",
+                "weightPct": 3.849
+              },
+              {
+                "name": "Poland",
+                "weightPct": 3.57178
+              },
+              {
+                "name": "Colombia",
+                "weightPct": 3.50618
+              },
+              {
+                "name": "Dominican Republic",
+                "weightPct": 3.49859
+              },
+              {
+                "name": "Philippines",
+                "weightPct": 3.43107
+              },
+              {
+                "name": "Hungary",
+                "weightPct": 3.39345
+              },
+              {
+                "name": "Chile",
+                "weightPct": 3.34788
+              },
+              {
+                "name": "Romania",
+                "weightPct": 3.28233
+              },
+              {
+                "name": "South Africa",
+                "weightPct": 3.2807
+              },
+              {
+                "name": "Bahrain",
+                "weightPct": 3.24678
+              },
+              {
+                "name": "Panama",
+                "weightPct": 3.21203
+              },
+              {
+                "name": "Peru",
+                "weightPct": 3.1963
+              },
+              {
+                "name": "China",
+                "weightPct": 3.1505
+              },
+              {
+                "name": "Egypt",
+                "weightPct": 3.10558
+              },
+              {
+                "name": "Argentina",
+                "weightPct": 2.98937
+              },
+              {
+                "name": "Oman",
+                "weightPct": 2.57473
+              },
+              {
+                "name": "Nigeria",
+                "weightPct": 2.47712
+              },
+              {
+                "name": "Uruguay",
+                "weightPct": 2.15927
+              },
+              {
+                "name": "Malaysia",
+                "weightPct": 2.01973
+              },
+              {
+                "name": "Ecuador",
+                "weightPct": 1.84277
+              },
+              {
+                "name": "Angola",
+                "weightPct": 1.83678
+              },
+              {
+                "name": "Ukraine",
+                "weightPct": 1.77032
+              },
+              {
+                "name": "Kazakhstan",
+                "weightPct": 1.17408
+              },
+              {
+                "name": "Cote D'Ivoire (Ivory Coast)",
+                "weightPct": 1.08246
+              },
+              {
+                "name": "Costa Rica",
+                "weightPct": 1.00489
+              },
+              {
+                "name": "Pakistan",
+                "weightPct": 0.99208
+              },
+              {
+                "name": "Sri Lanka",
+                "weightPct": 0.96687
+              },
+              {
+                "name": "Kenya",
+                "weightPct": 0.94037
+              },
+              {
+                "name": "Ghana",
+                "weightPct": 0.90247
+              },
+              {
+                "name": "India",
+                "weightPct": 0.72424
+              },
+              {
+                "name": "Serbia",
+                "weightPct": 0.71482
+              },
+              {
+                "name": "Jamaica",
+                "weightPct": 0.66795
+              },
+              {
+                "name": "Morocco",
+                "weightPct": 0.63602
+              },
+              {
+                "name": "Jordan",
+                "weightPct": 0.54426
+              },
+              {
+                "name": "Lebanon",
+                "weightPct": 0.37246
+              },
+              {
+                "name": "Guatemala",
+                "weightPct": 0.35784
+              },
+              {
+                "name": "El Salvador",
+                "weightPct": 0.33428
+              },
+              {
+                "name": "Paraguay",
+                "weightPct": 0.29595
+              },
+              {
+                "name": "Azerbaijan",
+                "weightPct": 0.29136
+              },
+              {
+                "name": "Senegal",
+                "weightPct": 0.25343
+              },
+              {
+                "name": "Bulgaria",
+                "weightPct": 0.21288
+              },
+              {
+                "name": "Suriname",
+                "weightPct": 0.20895
+              },
+              {
+                "name": "Latvia",
+                "weightPct": 0.18616
+              },
+              {
+                "name": "Benin",
+                "weightPct": 0.17447
+              },
+              {
+                "name": "Cameroon",
+                "weightPct": 0.15926
+              },
+              {
+                "name": "Trinidad and Tobago",
+                "weightPct": 0.15204
+              },
+              {
+                "name": "Bolivia",
+                "weightPct": 0.15084
+              },
+              {
+                "name": "Ireland",
+                "weightPct": 0.10743
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 0.00839
+              },
+              {
+                "name": "European Union",
+                "weightPct": 0.00184
+              },
+              {
+                "name": "Switzerland",
+                "weightPct": 0.00037
+              },
+              {
+                "name": "United States",
+                "weightPct": -0.07596
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "checkedAt": "2026-11-16",
+            "modifiedAt": "2026-11-16"
+          },
+          "performance": {
+            "currency": "USD",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2016": 9.62,
+              "2017": 9.95,
+              "2018": -5.48,
+              "2019": 15.73,
+              "2020": 5.41,
+              "2021": -2.46,
+              "2022": -17.98,
+              "2023": 10.6,
+              "2024": 5.99,
+              "2025": 13.58
+            },
+            "checkedAt": "2026-11-16"
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/additional-etf-sources.json",
+            "blob": "f46e2b4d87030ec80e31b1ab0d324d038318407a"
+          }
+        },
+        {
+          "isin": "IE00BFM6T814",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "India",
+                "weightPct": 20.3174
+              },
+              {
+                "name": "Korea (South)",
+                "weightPct": 19.96168
+              },
+              {
+                "name": "China",
+                "weightPct": 19.91048
+              },
+              {
+                "name": "Malaysia",
+                "weightPct": 12.74259
+              },
+              {
+                "name": "Indonesia",
+                "weightPct": 11.93733
+              },
+              {
+                "name": "Thailand",
+                "weightPct": 9.82511
+              },
+              {
+                "name": "Philippines",
+                "weightPct": 5.21325
+              },
+              {
+                "name": "United States",
+                "weightPct": 0.08388
+              },
+              {
+                "name": "European Union",
+                "weightPct": 0.00797
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 0.00031
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86",
+            "checkedAt": "2026-11-16",
+            "modifiedAt": "2026-11-16"
+          },
+          "performance": {
+            "currency": "USD",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2019": 9.02,
+              "2020": 8.93,
+              "2021": -4.24,
+              "2022": -8.18,
+              "2023": 5.49,
+              "2024": 1.45,
+              "2025": 5.89
+            },
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86",
+            "asOf": "2025-12-31",
+            "yearEvidence": {
+              "2019": {
+                "asOf": "2019-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86"
+              },
+              "2020": {
+                "asOf": "2020-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86"
+              },
+              "2021": {
+                "asOf": "2021-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86"
+              },
+              "2022": {
+                "asOf": "2022-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86"
+              },
+              "2023": {
+                "asOf": "2023-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86"
+              },
+              "2024": {
+                "asOf": "2024-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86"
+              },
+              "2025": {
+                "asOf": "2025-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "8d452d55902dd967b33c1f16f992d0a7c4fe2856423b1765102448fd82d68b86"
+              }
+            },
+            "checkedAt": "2026-11-16",
+            "modifiedAt": "2026-11-16"
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/additional-etf-sources.json",
+            "blob": "f46e2b4d87030ec80e31b1ab0d324d038318407a"
+          }
+        },
+        {
+          "isin": "IE00B3F81K65",
+          "status": "validated",
+          "countries": {
+            "asOf": "2026-11-13",
+            "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+            "rows": [
+              {
+                "name": "United States",
+                "weightPct": 56.03185
+              },
+              {
+                "name": "Japan",
+                "weightPct": 11.81318
+              },
+              {
+                "name": "France",
+                "weightPct": 7.98047
+              },
+              {
+                "name": "Italy",
+                "weightPct": 7.44269
+              },
+              {
+                "name": "United Kingdom",
+                "weightPct": 7.29802
+              },
+              {
+                "name": "Germany",
+                "weightPct": 6.66032
+              },
+              {
+                "name": "Canada",
+                "weightPct": 2.67341
+              },
+              {
+                "name": "European Union",
+                "weightPct": 0.0917
+              },
+              {
+                "name": "Switzerland",
+                "weightPct": 0.00833
+              }
+            ],
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15",
+            "checkedAt": "2026-11-16",
+            "modifiedAt": "2026-11-16"
+          },
+          "performance": {
+            "currency": "USD",
+            "basis": "fund",
+            "method": "calendar-year NAV total return, income reinvested, fund fees included",
+            "years": {
+              "2016": 1.58,
+              "2017": 6.08,
+              "2018": -0.54,
+              "2019": 5.65,
+              "2020": 9.38,
+              "2021": -6.6,
+              "2022": -18.12,
+              "2023": 4.32,
+              "2024": -3.54,
+              "2025": 6.45
+            },
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15",
+            "asOf": "2025-12-31",
+            "yearEvidence": {
+              "2016": {
+                "asOf": "2016-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2017": {
+                "asOf": "2017-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2018": {
+                "asOf": "2018-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2019": {
+                "asOf": "2019-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2020": {
+                "asOf": "2020-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2021": {
+                "asOf": "2021-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2022": {
+                "asOf": "2022-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2023": {
+                "asOf": "2023-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2024": {
+                "asOf": "2024-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              },
+              "2025": {
+                "asOf": "2025-12-31",
+                "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+                "sha256": "74564a5bb7f71c6a989b72818863f09ca1174ff074a810e99454f85054c12c15"
+              }
+            },
+            "checkedAt": "2026-11-16",
+            "modifiedAt": "2026-11-16"
+          },
+          "sourceErrors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ],
+          "holdingsCount": 10,
+          "holdingsComplete": false,
+          "expectedStructure": "Physical",
+          "configuredContractEvidence": {
+            "expectedStructure": "Physical",
+            "file": "scripts/additional-etf-sources.json",
+            "blob": "f46e2b4d87030ec80e31b1ab0d324d038318407a"
+          }
+        }
+      ]
+    }
+  ],
+  "limitation": "Actual production acquisition/validation/registration; public publication still to verify. Native country errors remain explicit; no scheduled proof or new monthly qualification.",
+  "derivedMetadataCorrection": {
+    "reason": "Three additional adapter records did not repeat their configured expectedStructure field in the native record. The first derived summary looked there instead of the actual executed source configuration; its null was not evidence of an absent guard. Exact config blobs from the executed head now linked. No source observation or financial value modified.",
+    "correctedIsins": [
+      "IE00B2NPKV68",
+      "IE00BFM6T814",
+      "IE00B3F81K65"
+    ]
+  }
+}

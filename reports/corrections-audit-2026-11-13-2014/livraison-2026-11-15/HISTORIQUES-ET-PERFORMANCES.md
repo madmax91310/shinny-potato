@@ -1,3 +1,26 @@
+# Historiques et performances — 16 novembre 2026
+
+Version publique prouvée : codef45c20c2 / donnéesb62c57d4. Voir BILAN.md pour les PR, contrôles et traces originales.
+
+| Donnée | Disponibilité et convention | Actualisation démontrée | Limite |
+|---|---|---|---|
+| Groupe litigieux79 fenêtres |73 utilisables ; six refus exacts conservés, pas une mesure du catalogue entier | Producteurs et périodes qualifiés préservés, contrôle public `public-financial-window-proof.json` | Aucun nouveau déblocage des six dans ce lot ; ancienne divergence séparée d’une voie indépendante |
+| ABTC CH0454664001 | NAV officielle exacte, ajustements et calendrier existants |43865185684 contrôle réel inchangé à octobre2026 ; enregistrement382dfd69 puis publicationb62c57d4 | Exécution manuelle, pas cron observé |
+| Bitwise DE000A27Z304 Paris | CotationParis en devise et convention qualifiées ; depuisjuin2021 | Mensuel43865185684 inchangé à octobre ; clôture43865781289 inchangée au13novembre ; sources et registres publiés | L’ancienne voieXetra400 reste distincte ; décembre2020 absent pour2021 |
+| Changes historiques BCE/TWD | Méthodes et dates exactes du registre partagé | BCE et secoursFedH10 contrôlés dans43865185684 ; deux timeoutsFRED conservés | Les autres séries de classement non sélectionnées ne sont pas certifiées |
+| Neuf iShares, calendriersannuels | NAVtotalreturn selon chaque part ; années complètes jusqu’à2025 | Collecte43836713977 puis publication et20PNG sur10parts avecEXSA | Pays primaires périmés isolés, pas un calendrier mensuel nouveau |
+| QuatreL&G | NAVréinvestie annuelle et year_end_date explicite | API réelle mutualisée ; plage glissante corrigée#1341 et tests#1347 | Acquisition2026 encore future, profondeur minimale et lancement conservés |
+| Palladium | NAV2025 utilisable/cotation2025 refusée ; cotationdécembre2014 utilisable/NAVdécembre2014 refusée | Voies récentes préservées | Ne pas mélanger NAV, cours et rendement ni annoncer les deux restrictions résolues |
+
+Les six refus : DE000A0H08P6/2019 ; DE000A27Z304/2021 ; FR0010755611/2021et2024 ; FR0013411998/2025 ; FR0013412004/2025. LeCSV individuel donne outils, bornes, résidus et pièces. La réponse officielle Amundi déjà acquise le16novembre indique « Capitalisation and/or distribution » pour les trois partsAmundi ; le qualificateur exige une politique explicitement capitalisante. Une histoiredividende null ne prouve pas zéro. Cette nouvelle preuve explique le blocage d’une voieNAV, pas la cause des quatre anciennes divergences de cours.
+
+77 anciennes divergences et deux résidus restent suivis indépendamment. Ni le calendrier annuel ni le nouveau contrôle courant ne les clôturent. Déclenchements planifiés postcorrectifs non observés au relevé13:24 ; dates nominales et limites dans passages-planifies.json. Préparation721 configurations et fin2026 documentée séparément.
+
+
+---
+
+# Archive du bilan précédent — état daté, ne pas confondre avec la livraison ci-dessus
+
 # Historiques et performances
 
 Relevé 2026-11-15T23:44:48.417698+00:00. Code public `fdf1b581402f909f04d1e4f6bfe98126742b0c20`, données `eb865db0b760ed5b47fdfd003bf51df60e92a14c`, voie `validated-data`. Suivi unique [#881](https://github.com/madmax91310/shinny-potato/issues/881). Les preuves antérieures restent datées ; ce complément ne les réécrit pas.

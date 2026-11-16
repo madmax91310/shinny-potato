@@ -1,0 +1,63 @@
+{
+  "run": 41639923023,
+  "artifact": 13232852348,
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "270cc03ff9dc0d35f7c06a7c618546c9a9b017a2",
+    "files": {
+      "src/data/auto-history-identities.json": "4197f506d6ea86b2f40922653c937e45106cecad",
+      "src/data/automated-etf-monthly.json": "595ce5c67ffcd5b68936bde042c7d3466c48086b",
+      "src/data/automated-monthly.json": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+      "src/data/dca-complete-holdings.json": "4ac8248d62009257112fa30d4a64f36de55aef82",
+      "src/data/dca-equity-exposures.json": "64e2d23b7b024192c9ab26346a91051b449d4912",
+      "src/data/qualified-exposure-etfs.json": "3dedb6e9dc0b6c4dd8d3833bde12983b6543481e",
+      "src/data/qualified-listing-records.json": "5ec0e848d0ba9eb793e75e95839e6772e3072bf1"
+    }
+  },
+  "files": [
+    {
+      "path": "src/data/auto-history-identities.json",
+      "expected": "4197f506d6ea86b2f40922653c937e45106cecad",
+      "current": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "match": false
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "expected": "595ce5c67ffcd5b68936bde042c7d3466c48086b",
+      "current": "543cfdb41d2de876f61100817c0eab981635dde5",
+      "match": false
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "expected": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+      "current": "ce0230d7d8b9e6a37ecd8de5f9abc7491c564565",
+      "match": false
+    },
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "expected": "4ac8248d62009257112fa30d4a64f36de55aef82",
+      "current": "a9f094850ee16a012b5a74b8abc18e7c7804ee85",
+      "match": false
+    },
+    {
+      "path": "src/data/dca-equity-exposures.json",
+      "expected": "64e2d23b7b024192c9ab26346a91051b449d4912",
+      "current": "143bcd6cdc22eec7abbeb929cb3b1acbd8529924",
+      "match": false
+    },
+    {
+      "path": "src/data/qualified-exposure-etfs.json",
+      "expected": "3dedb6e9dc0b6c4dd8d3833bde12983b6543481e",
+      "current": "323b87e9ffb4cc33c837488c07aaa3a5f662d961",
+      "match": false
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "expected": "5ec0e848d0ba9eb793e75e95839e6772e3072bf1",
+      "current": "66e795f467a7bf4bbc426bfb2cc01ea7f118fe95",
+      "match": false
+    }
+  ],
+  "checkedAt": "2026-11-16T11:04:51.394821+00:00",
+  "limitation": "Unchanged files prove publication only of matching bytes. Later descendants/qualified refreshes do not prove publication of all old observation bytes. No relaunch or status change performed."
+}

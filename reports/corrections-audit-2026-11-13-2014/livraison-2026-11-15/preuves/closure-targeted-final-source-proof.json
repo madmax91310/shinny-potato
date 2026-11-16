@@ -1,0 +1,71 @@
+{
+  "run": 43865781289,
+  "event": "workflow_dispatch",
+  "artifact": 14227952319,
+  "artifactDigest": "sha256:c08aee4cde65e06a7a92d23fe48648db6ce060f4e55fb0ebbb6e810dc0504562",
+  "scope": {
+    "requestedIds": [
+      "anniversary-etfDE000A27Z304Paris"
+    ],
+    "expectedIds": [
+      "anniversary-etfDE000A27Z304Paris"
+    ],
+    "networkRequestedIds": [
+      "anniversary-etfDE000A27Z304Paris"
+    ],
+    "derivedIds": []
+  },
+  "expectedItems": 1,
+  "attemptedOutcomes": [
+    {
+      "id": "anniversary-etfDE000A27Z304Paris",
+      "checkedAt": "2026-11-16T12:59:47.441300+00:00",
+      "asOf": "2026-11-13",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1793491200&period2=1794787200&interval=1d&events=splits",
+      "responseSha256": "98eacfa14a214a9295cb232d5b04b0d0bcefe699b9b290ed45d41cdc37c62479",
+      "status": "unchanged-verified",
+      "sourceAttempted": true
+    }
+  ],
+  "errors": [],
+  "recordedCommit": "b62c57d432fcb5ef2fefffab772b780dea984905",
+  "publicBuild": {
+    "sha": "f45c20c2852644e10bc16df6437e6bc403dfc13f",
+    "dataSha": "b62c57d432fcb5ef2fefffab772b780dea984905",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-16T13:04:29.268Z"
+  },
+  "publishedCanonicalBlob": "ead32747e47f6fe00b2d7ffe07a92bf129a945f7",
+  "limitation": "One explicitly requested Paris listing;705 other results not-attempted. Unchanged-verified source check does not create a session or certify the oldXetra route. Original native receipt and all canonical paths match published manifest.",
+  "receiptArtifact": 14230086674,
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "b62c57d432fcb5ef2fefffab772b780dea984905",
+    "files": {
+      "src/data/anniversary-index-history.json": "e1fe716aaca82126881a06e71a049dd6681a9247",
+      "src/data/anniversary-levels.json": "ead32747e47f6fe00b2d7ffe07a92bf129a945f7",
+      "src/data/purchasing-power-observations.json": "2045aa7a0593020864c23e3ea268a79c1c379b9f"
+    }
+  },
+  "receiptDigest": "sha256:09987a31f02ca81b2373163c9f6c2a9eb4a8864fa8a0d1278e08d017386e3fb6",
+  "publicationChecks": [
+    {
+      "path": "src/data/anniversary-index-history.json",
+      "recordedBlob": "e1fe716aaca82126881a06e71a049dd6681a9247",
+      "publicCanonicalBlob": "e1fe716aaca82126881a06e71a049dd6681a9247",
+      "exact": true
+    },
+    {
+      "path": "src/data/anniversary-levels.json",
+      "recordedBlob": "ead32747e47f6fe00b2d7ffe07a92bf129a945f7",
+      "publicCanonicalBlob": "ead32747e47f6fe00b2d7ffe07a92bf129a945f7",
+      "exact": true
+    },
+    {
+      "path": "src/data/purchasing-power-observations.json",
+      "recordedBlob": "2045aa7a0593020864c23e3ea268a79c1c379b9f",
+      "publicCanonicalBlob": "2045aa7a0593020864c23e3ea268a79c1c379b9f",
+      "exact": true
+    }
+  ]
+}

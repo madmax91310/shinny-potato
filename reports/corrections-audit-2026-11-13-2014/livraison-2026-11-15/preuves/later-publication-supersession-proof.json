@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-16T13:34:02.140637+00:00",
+  "priorFullyVerifiedBuild": {
+    "sha": "f45c20c2852644e10bc16df6437e6bc403dfc13f",
+    "dataSha": "b62c57d432fcb5ef2fefffab772b780dea984905",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-16T13:04:29.268Z"
+  },
+  "latestPublicBuild": {
+    "sha": "f45c20c2852644e10bc16df6437e6bc403dfc13f",
+    "dataSha": "4266a36fa589d52a3a116bddeafcb9868e836ce3",
+    "lane": "validated-data",
+    "builtAt": "2026-11-16T13:25:53.754Z"
+  },
+  "changedCanonicalDataPaths": [
+    "src/data/automated-presentation-actors.json"
+  ],
+  "preservedConsumerSources": 241,
+  "limitation": "Later independent actor collector is explicitly preserved. Financial records used in the96priorPNGand4monthlyPNG recipes are byte-identical between the twodataSHA. This does not certify new actor terms.",
+  "manifestCanonicalChanges": [
+    "src/data/automated-presentation-actors.json"
+  ],
+  "allOtherCanonicalManifestBlobsEqual": true
+}

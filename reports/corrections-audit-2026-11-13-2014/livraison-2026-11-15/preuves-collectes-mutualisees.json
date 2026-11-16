@@ -7639,6 +7639,923 @@
         }
       },
       "limitation": "25 contrôles validés, trois conflits conservés. Les trois PNG monétaires restent bloqués ; les positions antérieures ne deviennent pas une nouvelle collecte réussie."
+    },
+    "905272253fcfabfc49f01665": {
+      "assets": [
+        "IE00B1FZS350",
+        "IE00B3F81R35",
+        "IE00B4WXJJ64",
+        "IE00B66F4759",
+        "IE00BF3N7094",
+        "IE00BFZPF546",
+        "IE00B2NPKV68",
+        "IE00BFM6T814",
+        "IE00B3F81K65"
+      ],
+      "families": [
+        "countries"
+      ],
+      "dataIds": [
+        "IE00B1FZS350:coverage:countries",
+        "IE00B3F81R35:coverage:countries",
+        "IE00B4WXJJ64:coverage:countries",
+        "IE00B66F4759:coverage:countries",
+        "IE00BF3N7094:coverage:countries",
+        "IE00BFZPF546:coverage:countries",
+        "IE00B2NPKV68:coverage:countries",
+        "IE00BFM6T814:coverage:countries",
+        "IE00B3F81K65:coverage:countries"
+      ],
+      "fields": [
+        "countries.asOf",
+        "countries.rows",
+        "countries.method"
+      ],
+      "source": "Exact official iShares product responses; qualified physical structure contract",
+      "sourceRun": "43836713977",
+      "event": "push",
+      "artifact": 14211531655,
+      "recordedCommit": "8a02fb984515f61c2925c44c28be509bc0e3665a",
+      "scopeByAsset": {
+        "IE00B1FZS350": {
+          "asOf": "2026-11-13"
+        },
+        "IE00B3F81R35": {
+          "asOf": "2026-11-13"
+        },
+        "IE00B4WXJJ64": {
+          "asOf": "2026-11-13"
+        },
+        "IE00B66F4759": {
+          "asOf": "2026-11-13"
+        },
+        "IE00BF3N7094": {
+          "asOf": "2026-11-13"
+        },
+        "IE00BFZPF546": {
+          "asOf": "2026-11-13"
+        },
+        "IE00B2NPKV68": {
+          "asOf": "2026-11-13"
+        },
+        "IE00BFM6T814": {
+          "asOf": "2026-11-13"
+        },
+        "IE00B3F81K65": {
+          "asOf": "2026-11-13"
+        }
+      },
+      "requiresAsOfMatch": true,
+      "checkedAt": "2026-11-16",
+      "dataAsOf": "2026-11-13",
+      "successful": true,
+      "publication": {
+        "checkedAt": "2026-11-16T10:53:44.592155+00:00",
+        "build": {
+          "sha": "8a02fb984515f61c2925c44c28be509bc0e3665a",
+          "builtAt": "2026-11-16T09:37:05Z"
+        },
+        "run": 43836713977,
+        "recordedCommit": "8a02fb984515f61c2925c44c28be509bc0e3665a",
+        "paths": [
+          {
+            "path": "src/data/annual-fx.json",
+            "recorded": "44a2c56dfd160a19085e2437fbf946a9783ff887",
+            "publicManifest": "44a2c56dfd160a19085e2437fbf946a9783ff887"
+          },
+          {
+            "path": "src/data/automated-etf.json",
+            "recorded": "5879d152f14bb3a20b5b685925bb01a6e536a992",
+            "publicManifest": "5879d152f14bb3a20b5b685925bb01a6e536a992"
+          },
+          {
+            "path": "src/data/automated-indices.json",
+            "recorded": "086aa6212f00e215c123445cb5a15e4feea18914",
+            "publicManifest": "086aa6212f00e215c123445cb5a15e4feea18914"
+          },
+          {
+            "path": "src/data/official-performance-currencies.json",
+            "recorded": "beb96851b2c29a6117ab3c840262c153e3737aa1",
+            "publicManifest": "beb96851b2c29a6117ab3c840262c153e3737aa1"
+          }
+        ],
+        "scope": "Nine exact parts; primary-country errors retained, no full overlap or monthly qualification inferred."
+      },
+      "consumptionProof": "preuves/nine-public-etfs-proof.json: actual nine selectors, exact copied text and annual values painted in18 downloadedPNGs,1440/390",
+      "sourceFailuresKept": [
+        {
+          "isin": "IE00B1FZS350",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B3F81R35",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B4WXJJ64",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B66F4759",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00BF3N7094",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00BFZPF546",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B2NPKV68",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00BFM6T814",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B3F81K65",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        }
+      ],
+      "limitation": "Alternative Country of risk of all published physical fund holdings including cash and unknowns, unnormalised. Primary stale countries error retained; not exact index or full overlap.",
+      "sourceProof": "preuves/github-production-nine-proof.json"
+    },
+    "3bce64370184af2da2c522ce": {
+      "assets": [
+        "IE00B1FZS350",
+        "IE00B3F81R35",
+        "IE00B4WXJJ64",
+        "IE00B66F4759",
+        "IE00BF3N7094",
+        "IE00BFZPF546",
+        "IE00B2NPKV68",
+        "IE00BFM6T814",
+        "IE00B3F81K65"
+      ],
+      "families": [
+        "performance"
+      ],
+      "dataIds": [
+        "IE00B1FZS350:catalog:11",
+        "IE00B2NPKV68:catalog:11",
+        "IE00B3F81K65:catalog:9",
+        "IE00B3F81R35:catalog:12",
+        "IE00B4WXJJ64:catalog:11",
+        "IE00B66F4759:catalog:12",
+        "IE00BF3N7094:catalog:8",
+        "IE00BFM6T814:catalog:6",
+        "IE00BFZPF546:catalog:10"
+      ],
+      "fields": [
+        "performance.years",
+        "performance.currency",
+        "performance.method"
+      ],
+      "source": "Exact official iShares product responses; qualified physical structure contract",
+      "sourceRun": "43836713977",
+      "event": "push",
+      "artifact": 14211531655,
+      "recordedCommit": "8a02fb984515f61c2925c44c28be509bc0e3665a",
+      "scopeByAsset": {},
+      "requiresAsOfMatch": false,
+      "checkedAt": "2026-11-16",
+      "dataAsOf": "Annual maps ending2025; exact source years per asset in source proof",
+      "successful": true,
+      "publication": {
+        "checkedAt": "2026-11-16T10:53:44.592155+00:00",
+        "build": {
+          "sha": "8a02fb984515f61c2925c44c28be509bc0e3665a",
+          "builtAt": "2026-11-16T09:37:05Z"
+        },
+        "run": 43836713977,
+        "recordedCommit": "8a02fb984515f61c2925c44c28be509bc0e3665a",
+        "paths": [
+          {
+            "path": "src/data/annual-fx.json",
+            "recorded": "44a2c56dfd160a19085e2437fbf946a9783ff887",
+            "publicManifest": "44a2c56dfd160a19085e2437fbf946a9783ff887"
+          },
+          {
+            "path": "src/data/automated-etf.json",
+            "recorded": "5879d152f14bb3a20b5b685925bb01a6e536a992",
+            "publicManifest": "5879d152f14bb3a20b5b685925bb01a6e536a992"
+          },
+          {
+            "path": "src/data/automated-indices.json",
+            "recorded": "086aa6212f00e215c123445cb5a15e4feea18914",
+            "publicManifest": "086aa6212f00e215c123445cb5a15e4feea18914"
+          },
+          {
+            "path": "src/data/official-performance-currencies.json",
+            "recorded": "beb96851b2c29a6117ab3c840262c153e3737aa1",
+            "publicManifest": "beb96851b2c29a6117ab3c840262c153e3737aa1"
+          }
+        ],
+        "scope": "Nine exact parts; primary-country errors retained, no full overlap or monthly qualification inferred."
+      },
+      "consumptionProof": "preuves/nine-public-etfs-proof.json: actual nine selectors, exact copied text and annual values painted in18 downloadedPNGs,1440/390",
+      "sourceFailuresKept": [
+        {
+          "isin": "IE00B1FZS350",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B3F81R35",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B4WXJJ64",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B66F4759",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00BF3N7094",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00BFZPF546",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B2NPKV68",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00BFM6T814",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        },
+        {
+          "isin": "IE00B3F81K65",
+          "errors": [
+            {
+              "field": "countries-primary",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "reason": "Missing, future or stale issuer snapshot",
+              "fallbackQualified": true
+            }
+          ]
+        }
+      ],
+      "limitation": "Official annual NAV total returns with reinvested income; no monthly window qualified and no definitive2026 added.",
+      "sourceProof": "preuves/github-production-nine-proof.json"
+    },
+    "b0702c8271fd19b2f788e52f": {
+      "assets": [
+        "IE00BYPLS672",
+        "IE00BF0M2Z96",
+        "IE00BK5BCD43",
+        "IE00BK5BCH80"
+      ],
+      "families": [
+        "performance"
+      ],
+      "fields": [
+        "performance.years",
+        "performance.currency",
+        "performance.method"
+      ],
+      "dataIds": [
+        "IE00BF0M2Z96:catalog:8",
+        "IE00BK5BCD43:catalog:8",
+        "IE00BK5BCH80:catalog:6",
+        "IE00BYPLS672:catalog:7"
+      ],
+      "source": "Official mutualised L&G fund-centre API; explicit completed year_end_date",
+      "sourceRun": "43829867285",
+      "event": "pull_request",
+      "artifact": 14208836345,
+      "successful": true,
+      "checkedAt": "2026-11-16",
+      "sourceProof": "preuves/github-lg-current-proof.json",
+      "limitation": "Actual current calendar control, plus isolated future rollover test. Not acquisition of2026, not supplier cron and not resolution of older monthly quotations."
+    },
+    "7d7ab339b946a69a46de2bdf": {
+      "assets": [
+        "investor:morfit",
+        "investor:dorsey",
+        "investor:vinall",
+        "investor:marks",
+        "investor:watsa",
+        "investor:gavin-baker",
+        "investor:einhorn",
+        "investor:halvorsen",
+        "investor:gerstner",
+        "investor:gayner",
+        "investor:tepper",
+        "investor:ackman",
+        "investor:berkshire",
+        "investor:cathie-wood",
+        "investor:thiel",
+        "investor:loeb",
+        "investor:aschenbrenner",
+        "investor:li-lu",
+        "investor:gates-trust",
+        "investor:terry-smith",
+        "investor:pabrai",
+        "investor:hohn",
+        "investor:baker-bros",
+        "investor:icahn",
+        "investor:laffont",
+        "investor:renaissance"
+      ],
+      "families": [
+        "13f",
+        "completeHoldings"
+      ],
+      "dataIds": [
+        "investor:morfit:investor:holdings",
+        "investor:morfit:investor:quarterChanges",
+        "investor:morfit:investor:filing-availability",
+        "investor:dorsey:investor:holdings",
+        "investor:dorsey:investor:quarterChanges",
+        "investor:dorsey:investor:filing-availability",
+        "investor:vinall:investor:holdings",
+        "investor:vinall:investor:quarterChanges",
+        "investor:vinall:investor:filing-availability",
+        "investor:marks:investor:holdings",
+        "investor:marks:investor:quarterChanges",
+        "investor:marks:investor:filing-availability",
+        "investor:watsa:investor:holdings",
+        "investor:watsa:investor:quarterChanges",
+        "investor:watsa:investor:filing-availability",
+        "investor:gavin-baker:investor:holdings",
+        "investor:gavin-baker:investor:quarterChanges",
+        "investor:gavin-baker:investor:filing-availability",
+        "investor:einhorn:investor:holdings",
+        "investor:einhorn:investor:quarterChanges",
+        "investor:einhorn:investor:filing-availability",
+        "investor:halvorsen:investor:holdings",
+        "investor:halvorsen:investor:quarterChanges",
+        "investor:halvorsen:investor:filing-availability",
+        "investor:gerstner:investor:holdings",
+        "investor:gerstner:investor:quarterChanges",
+        "investor:gerstner:investor:filing-availability",
+        "investor:gayner:investor:holdings",
+        "investor:gayner:investor:quarterChanges",
+        "investor:gayner:investor:filing-availability",
+        "investor:tepper:investor:holdings",
+        "investor:tepper:investor:quarterChanges",
+        "investor:tepper:investor:filing-availability",
+        "investor:ackman:investor:holdings",
+        "investor:ackman:investor:quarterChanges",
+        "investor:ackman:investor:filing-availability",
+        "investor:berkshire:investor:holdings",
+        "investor:berkshire:investor:quarterChanges",
+        "investor:berkshire:investor:filing-availability",
+        "investor:cathie-wood:investor:holdings",
+        "investor:cathie-wood:investor:quarterChanges",
+        "investor:cathie-wood:investor:filing-availability",
+        "investor:thiel:investor:holdings",
+        "investor:thiel:investor:quarterChanges",
+        "investor:thiel:investor:filing-availability",
+        "investor:loeb:investor:holdings",
+        "investor:loeb:investor:quarterChanges",
+        "investor:loeb:investor:filing-availability",
+        "investor:aschenbrenner:investor:holdings",
+        "investor:aschenbrenner:investor:quarterChanges",
+        "investor:aschenbrenner:investor:filing-availability",
+        "investor:li-lu:investor:holdings",
+        "investor:li-lu:investor:quarterChanges",
+        "investor:li-lu:investor:filing-availability",
+        "investor:gates-trust:investor:holdings",
+        "investor:gates-trust:investor:quarterChanges",
+        "investor:gates-trust:investor:filing-availability",
+        "investor:terry-smith:investor:holdings",
+        "investor:terry-smith:investor:quarterChanges",
+        "investor:terry-smith:investor:filing-availability",
+        "investor:pabrai:investor:holdings",
+        "investor:pabrai:investor:quarterChanges",
+        "investor:pabrai:investor:filing-availability",
+        "investor:hohn:investor:holdings",
+        "investor:hohn:investor:quarterChanges",
+        "investor:hohn:investor:filing-availability",
+        "investor:baker-bros:investor:holdings",
+        "investor:baker-bros:investor:quarterChanges",
+        "investor:baker-bros:investor:filing-availability",
+        "investor:icahn:investor:holdings",
+        "investor:icahn:investor:quarterChanges",
+        "investor:icahn:investor:filing-availability",
+        "investor:laffont:investor:holdings",
+        "investor:laffont:investor:quarterChanges",
+        "investor:laffont:investor:filing-availability",
+        "investor:renaissance:investor:holdings",
+        "investor:renaissance:investor:quarterChanges",
+        "investor:renaissance:investor:filing-availability"
+      ],
+      "fields": [
+        "positions/weights",
+        "declared changes",
+        "filing availability"
+      ],
+      "source": "Ordinary13F provider control; Fundsmith independently qualified original SEC filing",
+      "sourceRun": "43823335908",
+      "event": "workflow_dispatch",
+      "successful": true,
+      "checkedAt": "2026-11-16T07:31:24.541438+00:00",
+      "scopeByAsset": {
+        "investor:morfit": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:dorsey": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:vinall": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:marks": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:watsa": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:gavin-baker": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:einhorn": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:halvorsen": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:gerstner": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:gayner": {
+          "periodEnd": "2026-09-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:tepper": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:ackman": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:berkshire": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:cathie-wood": {
+          "periodEnd": "2026-09-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:thiel": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:druckenmiller": {
+          "periodEnd": null,
+          "status": "failed",
+          "changed": null
+        },
+        "investor:loeb": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:aschenbrenner": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:li-lu": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:gates-trust": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:klarman": {
+          "periodEnd": null,
+          "status": "failed",
+          "changed": null
+        },
+        "investor:terry-smith": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:pabrai": {
+          "periodEnd": "2026-09-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:hohn": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:baker-bros": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:icahn": {
+          "periodEnd": "2026-09-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:laffont": {
+          "periodEnd": "2026-06-30",
+          "status": "validated",
+          "changed": false
+        },
+        "investor:renaissance": {
+          "periodEnd": "2026-09-30",
+          "status": "validated",
+          "changed": false
+        }
+      },
+      "sourceProof": "preuves/13f-current-publication-chain-proof.json",
+      "consumptionProof": "preuves/13f-public-proof.json",
+      "limitation": "26validated controls, not26new declarations; two unit conflicts retained; old Fundsmith provider discrepancy not explained; manual execution does not prove cron."
+    },
+    "d2303554a8b6d69b9402f9ec": {
+      "assets": [
+        "history:etfCH0454664001Nav",
+        "history:etfDE000A27Z304Paris"
+      ],
+      "dataIds": [
+        "history:etfCH0454664001Nav:catalog:0",
+        "history:etfDE000A27Z304Paris:catalog:0"
+      ],
+      "families": [
+        "monthly"
+      ],
+      "fields": [
+        "qualified monthly series and identity/currency/split/calendar controls in source report"
+      ],
+      "sourceRun": "43865185684",
+      "event": "workflow_dispatch",
+      "successful": true,
+      "controlOnly": true,
+      "sourceProof": "preuves/monthly-targeted-final-source-proof.json",
+      "publicationProof": "preuves/final-public-byte-proof.json",
+      "limitation": "Two explicit series verified unchanged through October2026; not all721 series, not cron, not repair of old BitwiseXetra."
+    },
+    "31dc70a1c497befd558a07eb": {
+      "assets": [
+        "DE0002635307"
+      ],
+      "families": [
+        "countries",
+        "sectors",
+        "holdings"
+      ],
+      "dataIds": [
+        "DE0002635307:coverage:countries",
+        "DE0002635307:coverage:sectors",
+        "DE0002635307:coverage:holdings"
+      ],
+      "fields": [
+        "published native fund countries/sectors/top holdings"
+      ],
+      "sourceRun": "43864450028",
+      "event": "push",
+      "successful": true,
+      "sourceProof": "preuves/german-production-source-proof.json",
+      "publicationProof": "preuves/final-public-byte-proof.json",
+      "consumptionProof": "preuves/public-qualified-compositions-final-proof.json",
+      "limitation": "Physical fund portfolio. Jersey territory restored without weight/row changes. Does not alone certify full index composition or a supplier cron."
+    },
+    "4c65c73372dd2f6f3d80a8e0": {
+      "assets": [
+        "investor:morfit",
+        "investor:dorsey",
+        "investor:vinall",
+        "investor:marks",
+        "investor:watsa",
+        "investor:gavin-baker",
+        "investor:einhorn",
+        "investor:halvorsen",
+        "investor:gerstner",
+        "investor:gayner",
+        "investor:tepper",
+        "investor:ackman",
+        "investor:berkshire",
+        "investor:cathie-wood",
+        "investor:thiel",
+        "investor:loeb",
+        "investor:aschenbrenner",
+        "investor:li-lu",
+        "investor:gates-trust",
+        "investor:terry-smith",
+        "investor:pabrai",
+        "investor:hohn",
+        "investor:baker-bros",
+        "investor:icahn",
+        "investor:laffont",
+        "investor:renaissance"
+      ],
+      "families": [
+        "13f",
+        "completeHoldings"
+      ],
+      "dataIds": [
+        "investor:morfit:investor:holdings",
+        "investor:morfit:investor:quarterChanges",
+        "investor:morfit:investor:filing-availability",
+        "investor:dorsey:investor:holdings",
+        "investor:dorsey:investor:quarterChanges",
+        "investor:dorsey:investor:filing-availability",
+        "investor:vinall:investor:holdings",
+        "investor:vinall:investor:quarterChanges",
+        "investor:vinall:investor:filing-availability",
+        "investor:marks:investor:holdings",
+        "investor:marks:investor:quarterChanges",
+        "investor:marks:investor:filing-availability",
+        "investor:watsa:investor:holdings",
+        "investor:watsa:investor:quarterChanges",
+        "investor:watsa:investor:filing-availability",
+        "investor:gavin-baker:investor:holdings",
+        "investor:gavin-baker:investor:quarterChanges",
+        "investor:gavin-baker:investor:filing-availability",
+        "investor:einhorn:investor:holdings",
+        "investor:einhorn:investor:quarterChanges",
+        "investor:einhorn:investor:filing-availability",
+        "investor:halvorsen:investor:holdings",
+        "investor:halvorsen:investor:quarterChanges",
+        "investor:halvorsen:investor:filing-availability",
+        "investor:gerstner:investor:holdings",
+        "investor:gerstner:investor:quarterChanges",
+        "investor:gerstner:investor:filing-availability",
+        "investor:gayner:investor:holdings",
+        "investor:gayner:investor:quarterChanges",
+        "investor:gayner:investor:filing-availability",
+        "investor:tepper:investor:holdings",
+        "investor:tepper:investor:quarterChanges",
+        "investor:tepper:investor:filing-availability",
+        "investor:ackman:investor:holdings",
+        "investor:ackman:investor:quarterChanges",
+        "investor:ackman:investor:filing-availability",
+        "investor:berkshire:investor:holdings",
+        "investor:berkshire:investor:quarterChanges",
+        "investor:berkshire:investor:filing-availability",
+        "investor:cathie-wood:investor:holdings",
+        "investor:cathie-wood:investor:quarterChanges",
+        "investor:cathie-wood:investor:filing-availability",
+        "investor:thiel:investor:holdings",
+        "investor:thiel:investor:quarterChanges",
+        "investor:thiel:investor:filing-availability",
+        "investor:loeb:investor:holdings",
+        "investor:loeb:investor:quarterChanges",
+        "investor:loeb:investor:filing-availability",
+        "investor:aschenbrenner:investor:holdings",
+        "investor:aschenbrenner:investor:quarterChanges",
+        "investor:aschenbrenner:investor:filing-availability",
+        "investor:li-lu:investor:holdings",
+        "investor:li-lu:investor:quarterChanges",
+        "investor:li-lu:investor:filing-availability",
+        "investor:gates-trust:investor:holdings",
+        "investor:gates-trust:investor:quarterChanges",
+        "investor:gates-trust:investor:filing-availability",
+        "investor:terry-smith:investor:holdings",
+        "investor:terry-smith:investor:quarterChanges",
+        "investor:terry-smith:investor:filing-availability",
+        "investor:pabrai:investor:holdings",
+        "investor:pabrai:investor:quarterChanges",
+        "investor:pabrai:investor:filing-availability",
+        "investor:hohn:investor:holdings",
+        "investor:hohn:investor:quarterChanges",
+        "investor:hohn:investor:filing-availability",
+        "investor:baker-bros:investor:holdings",
+        "investor:baker-bros:investor:quarterChanges",
+        "investor:baker-bros:investor:filing-availability",
+        "investor:icahn:investor:holdings",
+        "investor:icahn:investor:quarterChanges",
+        "investor:icahn:investor:filing-availability",
+        "investor:laffont:investor:holdings",
+        "investor:laffont:investor:quarterChanges",
+        "investor:laffont:investor:filing-availability",
+        "investor:renaissance:investor:holdings",
+        "investor:renaissance:investor:quarterChanges",
+        "investor:renaissance:investor:filing-availability"
+      ],
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "sourceRun": "43859991189",
+      "event": "workflow_dispatch",
+      "successful": true,
+      "controlOnly": true,
+      "checkedAt": "2026-11-16T11:50:39.836723+00:00",
+      "sourceProof": "preuves/investor-production-final-source-proof.json",
+      "consumptionProof": "preuves/public-13f-final-proof.json",
+      "publicationProof": "preuves/final-public-byte-proof.json",
+      "limitation": "26 unchanged-verified controls, not new positions; two unit errors remain; no supplier cron."
+    },
+    "e339314d4c486f30ae1309be": {
+      "assets": [
+        "anniversary:etfDE000A27Z304Paris"
+      ],
+      "dataIds": [
+        "anniversary:etfDE000A27Z304Paris:daily-close"
+      ],
+      "families": [
+        "daily-close"
+      ],
+      "fields": [
+        "exact listing/currency/date/close/split controls"
+      ],
+      "sourceRun": "43865781289",
+      "event": "workflow_dispatch",
+      "successful": true,
+      "controlOnly": true,
+      "sourceProof": "preuves/closure-targeted-final-source-proof.json",
+      "publicationProof": "preuves/final-public-byte-proof.json",
+      "limitation": "One Paris listing unchanged atNov13;705 not-attempted; oldXetra excluded. No new session nor cron."
+    },
+    "8a2782b0212435fb49d8d695": {
+      "assets": [
+        "scpi:activimmo",
+        "scpi:corum-eurion",
+        "scpi:corum-origin",
+        "scpi:corum-xl",
+        "scpi:epargne-pierre",
+        "scpi:iroko-zen",
+        "scpi:remake-live",
+        "scpi:transitions-europe"
+      ],
+      "dataIds": [
+        "scpi:activimmo:coverage:snapshot",
+        "scpi:corum-eurion:coverage:snapshot",
+        "scpi:corum-origin:coverage:snapshot",
+        "scpi:corum-xl:coverage:snapshot",
+        "scpi:epargne-pierre:coverage:snapshot",
+        "scpi:iroko-zen:coverage:snapshot",
+        "scpi:remake-live:coverage:snapshot",
+        "scpi:transitions-europe:coverage:snapshot"
+      ],
+      "families": [
+        "snapshot"
+      ],
+      "fields": [
+        "published SCPI snapshot and original observation date"
+      ],
+      "sourceRun": "43856006333",
+      "event": "push",
+      "successful": true,
+      "controlOnly": true,
+      "sourceProof": "preuves/scpi-production-source-proof.json",
+      "consumptionProof": "preuves/public-scpi-current-final-proof.json",
+      "publicationProof": "preuves/final-public-byte-proof.json",
+      "limitation": "Eight snapshots source-controlled; no financial values/dates changed. Ninth shadow operation not a ninthSCPI. Later#1355 not production-exercised."
     }
   },
   "limitation": "Périmètres exacts par instrument/champ/période. Une réussite globale ne certifie pas les champs absents ; les échecs, contrôles sans changement et versions antérieures restent distincts."

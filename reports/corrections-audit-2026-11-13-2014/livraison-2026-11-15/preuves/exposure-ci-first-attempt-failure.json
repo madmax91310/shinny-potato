@@ -1,0 +1,149 @@
+{
+  "run": 43854315242,
+  "attempt": 1,
+  "head": "c41469bc7a9cc009f7dc45c1ed0bb29c0b485b64",
+  "diagnostic": "Native clipboard confirmation missing only in WebKit; Chromium and Firefox passed. Existing exact test rerun once; no app/financial/test code or thresholds changed. Original failure retained.",
+  "failedJob": {
+    "completedAt": "2026-11-16T11:45:35Z",
+    "conclusion": "failure",
+    "databaseId": 133261843208,
+    "name": "browser-checks (3)",
+    "startedAt": "2026-11-16T11:24:12Z",
+    "status": "completed",
+    "steps": [
+      {
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/checkout@v7.0.1",
+        "number": 2,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/setup-node@v7.0.0",
+        "number": 3,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run npm ci",
+        "number": 4,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/download-artifact@v4",
+        "number": 5,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/download-artifact@v4",
+        "number": 6,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/download-artifact@v4",
+        "number": 7,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/cache@v4",
+        "number": 8,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run npx playwright install --with-deps chromium",
+        "number": 9,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run node scripts/browser-portability-engines.mjs 3 6",
+        "number": 10,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/cache@v4",
+        "number": 11,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run npx playwright install --with-deps firefox webkit",
+        "number": 12,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "name": "Run node scripts/run-browser-checks.mjs 3 6",
+        "number": 13,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v7.0.1",
+        "number": 14,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v7.0.1",
+        "number": 15,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v7.0.1",
+        "number": 16,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v7.0.1",
+        "number": 17,
+        "status": "completed"
+      },
+      {
+        "conclusion": "skipped",
+        "name": "Post Run actions/cache@v4",
+        "number": 31,
+        "status": "completed"
+      },
+      {
+        "conclusion": "skipped",
+        "name": "Post Run actions/cache@v4",
+        "number": 32,
+        "status": "completed"
+      },
+      {
+        "conclusion": "skipped",
+        "name": "Post Run actions/setup-node@v7.0.0",
+        "number": 33,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v7.0.1",
+        "number": 34,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 35,
+        "status": "completed"
+      }
+    ],
+    "url": "https://github.com/madmax91310/shinny-potato/actions/runs/43854315242/job/133261843208"
+  }
+}

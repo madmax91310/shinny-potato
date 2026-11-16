@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-11-16T11:32:02.240824+00:00",
+  "productionDateUnchanged": "2026-11-16",
+  "testDateIsolated": "2027-01-02",
+  "sourceProof": "scpi-annual-current-source-check.json",
+  "irokoActualFunctionResult": [
+    {
+      "year": 2023,
+      "distribution": 7.12
+    },
+    {
+      "year": 2024,
+      "distribution": 7.32
+    },
+    {
+      "year": 2025,
+      "distribution": 7.14
+    }
+  ],
+  "annualStatus": {
+    "latestPublishedYear": 2025,
+    "expectedYear": 2026,
+    "awaitingPublication": true
+  },
+  "remakeOfficialTarget": 5.5,
+  "remakeLatestPublishedYear": 2025,
+  "remakeTargetIsNotAnnualPerformance": true,
+  "limitation": "Actual current official rows, existing annual_iroko/annual_status functions exercised with isolated date; not actual acquisition2026, not a full2027producer/source-format certification and not a scheduled run."
+}

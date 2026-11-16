@@ -1,60 +1,64 @@
 {
-  "checkedAt": "2026-11-15T23:36:11.497195+00:00",
-  "run": 43774588231,
-  "artifact": 14186550661,
-  "deploymentArtifactBuild": {
-    "sha": "fdf1b581402f909f04d1e4f6bfe98126742b0c20",
-    "dataSha": "eb865db0b760ed5b47fdfd003bf51df60e92a14c",
-    "lane": "validated-data",
-    "builtAt": "2026-11-15T23:32:31.013Z"
-  },
+  "at": "2026-11-16T13:21:05.972548+00:00",
+  "run": 43864954307,
+  "artifact": 14229040003,
+  "artifactName": "github-pages-current-data",
+  "artifactSha256": "c050ab0e280dad4af165eff31a30199322de5cc9fbcbc708dd643ff122b944de",
   "build": {
-    "sha": "fdf1b581402f909f04d1e4f6bfe98126742b0c20",
-    "dataSha": "eb865db0b760ed5b47fdfd003bf51df60e92a14c",
-    "lane": "validated-data",
-    "builtAt": "2026-11-15T23:32:31.013Z"
+    "sha": "f45c20c2852644e10bc16df6437e6bc403dfc13f",
+    "dataSha": "b62c57d432fcb5ef2fefffab772b780dea984905",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-16T13:04:29.268Z"
   },
-  "dataSnapshotNote": "Code files compared to validated code deployment artifact; newer data snapshot is independently verified by publication manifest and source receipts.",
-  "actualServedFilesEqualDeploymentArtifact": [
+  "files": [
+    {
+      "path": "build-info.json",
+      "bytes": 170,
+      "sha256": "20526708faf727effb0e8df37af688ba8dd980c7902bee52d8c1b33f6c52a1d5",
+      "publicEqualsArtifact": true
+    },
     {
       "path": "index.html",
       "bytes": 788,
-      "sha256": "31751bcee93cb6980d4686cc42ed9548c577bce3c928be5e193414c68df02865"
+      "sha256": "cc88b789ccb17bf27ab87fe430c92eb34283540d8ea1ffa8b0fcb755537e22ea",
+      "publicEqualsArtifact": true
     },
     {
-      "path": "assets/index-BVoyWDuu.js",
-      "bytes": 264865,
-      "sha256": "8667698cb38b211506052e5c32b69f36db04d541d974fb12d04572aa106ca027"
+      "path": "assets/monitor-scope-storage-CayWGXQm.js",
+      "bytes": 669,
+      "sha256": "16c69c36b8dc4a84a9f52a8b4299db742ddaa453d3ee02972e172c1358e061f6",
+      "publicEqualsArtifact": true
     },
     {
-      "path": "assets/rolldown-runtime-8BhlS34s.js",
-      "bytes": 807,
-      "sha256": "1cb5c6ead7e29370203f12e2d5cdf50ec1f02dd70ee2d050d909afbf2406f6b1"
-    },
-    {
-      "path": "assets/react-B5Ws8Y4Y.js",
-      "bytes": 7532,
-      "sha256": "7bf1606c333b20cd615362de7964c777ab8e0e33764bf05970be40b482b6844e"
+      "path": "assets/index-D4ztXdxS.js",
+      "bytes": 264867,
+      "sha256": "47545a243062a5364991c17783da9988b67f76ad2de175acc7ae109bbb67e0e6",
+      "publicEqualsArtifact": true
     },
     {
       "path": "assets/preload-helper-Dp3WIDEx.js",
       "bytes": 1210,
-      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7"
+      "sha256": "202cbc0c111347cdb2b0d4dc4cb7c7913ae2fa216365f2fb36fffb74efe307b7",
+      "publicEqualsArtifact": true
+    },
+    {
+      "path": "assets/react-B5Ws8Y4Y.js",
+      "bytes": 7532,
+      "sha256": "7bf1606c333b20cd615362de7964c777ab8e0e33764bf05970be40b482b6844e",
+      "publicEqualsArtifact": true
+    },
+    {
+      "path": "assets/rolldown-runtime-8BhlS34s.js",
+      "bytes": 807,
+      "sha256": "1cb5c6ead7e29370203f12e2d5cdf50ec1f02dd70ee2d050d909afbf2406f6b1",
+      "publicEqualsArtifact": true
     },
     {
       "path": "assets/index-Cc6W5S3E.css",
       "bytes": 100965,
-      "sha256": "5b14a101fc74d4f52e26dccd8dbef013daa01fb95d983ef60bb73b7eba465e9c"
-    },
-    {
-      "path": "monitor-scope-storage-capabilities.json",
-      "bytes": 65,
-      "sha256": "2f574a955f5d11330d88930ed3e6988dfd210fa947f2952cfcd62ac3200a724a"
-    },
-    {
-      "path": "assets/monitor-scope-storage-BKly-pcv.js",
-      "bytes": 668,
-      "sha256": "dfa1389ff5639c202dcad93bfd6eb994ba558c7f80505654b8f615d6f1bb2011"
+      "sha256": "5b14a101fc74d4f52e26dccd8dbef013daa01fb95d983ef60bb73b7eba465e9c",
+      "publicEqualsArtifact": true
     }
-  ]
+  ],
+  "note": "The initially built github-pages code artifact14226230849 correctly predates validated data graft; actual deployed current-data artifact compared here."
 }

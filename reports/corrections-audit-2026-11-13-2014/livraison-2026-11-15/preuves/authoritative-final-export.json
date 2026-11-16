@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-11-15T23:42:00.592Z",
-  "monitorCheckedAt": "2026-11-15T23:34:56.109281+00:00",
+  "generatedAt": "2026-11-16T13:21:08.581Z",
+  "monitorCheckedAt": "2026-11-16T13:17:47.818654+00:00",
   "source": "Actual complete public browser export, new clean browser context; includes editorial calendar and normal waiting states",
   "counts": {
-    "failure": 61,
+    "failure": 68,
     "connection": 254,
-    "monitoring": 455,
-    "qualification": 2662,
+    "monitoring": 366,
+    "qualification": 2726,
     "due": 30,
     "editorial": 28,
-    "archive": 3980,
-    "waiting": 809,
+    "archive": 4068,
+    "waiting": 818,
     "not-applicable": 1637,
-    "history": 1301
+    "history": 1307
   },
-  "points": 11217,
-  "signals": 15205,
+  "points": 11302,
+  "signals": 15374,
   "denominators": {
     "fields": 4598,
-    "workflows": 25,
+    "workflows": 26,
     "requiredConsumerContracts": 30319
   },
   "preliminaryReadOnlyLimitation": "Initial reducer-only snapshot omitted review calendar, explicitly noted in its audit-summary. Initial identities and matrix rows are retained; added review points are not new financial failures."

@@ -1,0 +1,1088 @@
+{
+  "run": 43864450028,
+  "head": "f45c20c2852644e10bc16df6437e6bc403dfc13f",
+  "event": "push",
+  "sourceArtifact": 14223559525,
+  "receiptArtifact": 14224549478,
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "6c2bab2913492cc85db2d162bd85fff4dfa407ac",
+    "files": {
+      "src/data/exposure-etf-expansion-records.json": "1d2d1f50f0d135bc634de901d484d2f82a859259"
+    }
+  },
+  "scope": {
+    "kind": "collect_exposure_expansion",
+    "mode": "full",
+    "expectedIds": [
+      "etf-exposure-expansion-LU1681038672",
+      "etf-exposure-expansion-FR0011869304",
+      "etf-exposure-expansion-FR0013346681",
+      "etf-exposure-expansion-LU3180074463",
+      "etf-exposure-expansion-LU1829219390",
+      "etf-exposure-expansion-FR0007054358",
+      "etf-exposure-expansion-LU1681040223",
+      "etf-exposure-expansion-IE0003XJA0J9",
+      "etf-exposure-expansion-IE0009HF1MK9",
+      "etf-exposure-expansion-LU0380865021",
+      "etf-exposure-expansion-LU0328475792",
+      "etf-exposure-expansion-LU0274209237",
+      "etf-exposure-expansion-IE00BJ0KDQ92",
+      "etf-exposure-expansion-IE00BK1PV551",
+      "etf-exposure-expansion-LU2903252349",
+      "etf-exposure-expansion-IE0008471009",
+      "etf-exposure-expansion-IE0008470928",
+      "etf-exposure-expansion-DE0002635307",
+      "etf-exposure-expansion-IE00B1YZSC51",
+      "etf-exposure-expansion-IE00BK5BQX27",
+      "etf-exposure-expansion-IE00B945VV12",
+      "etf-exposure-expansion-IE00B3RBWM25",
+      "etf-exposure-expansion-IE00BK5BQV03",
+      "etf-exposure-expansion-IE00BFMXXD54",
+      "etf-exposure-expansion-IE00B3XXRP09",
+      "etf-exposure-expansion-IE00BKWQ0Q14",
+      "etf-exposure-expansion-IE00BFY0GT14",
+      "etf-exposure-expansion-IE000716YHJ7",
+      "etf-exposure-expansion-IE0000QLH0G6",
+      "etf-exposure-expansion-IE00BMC38736",
+      "etf-exposure-expansion-IE00BDVPNG13",
+      "etf-exposure-expansion-IE00BKLF1R75",
+      "etf-exposure-expansion-IE00BLCHJB90",
+      "etf-exposure-expansion-IE000NDWFGA5",
+      "etf-exposure-expansion-IE00BMH5Y871",
+      "etf-exposure-expansion-FR0013412269"
+    ],
+    "requestedIds": [
+      "etf-exposure-expansion-LU1681038672",
+      "etf-exposure-expansion-FR0011869304",
+      "etf-exposure-expansion-FR0013346681",
+      "etf-exposure-expansion-LU3180074463",
+      "etf-exposure-expansion-LU1829219390",
+      "etf-exposure-expansion-FR0007054358",
+      "etf-exposure-expansion-LU1681040223",
+      "etf-exposure-expansion-IE0003XJA0J9",
+      "etf-exposure-expansion-IE0009HF1MK9",
+      "etf-exposure-expansion-LU0380865021",
+      "etf-exposure-expansion-LU0328475792",
+      "etf-exposure-expansion-LU0274209237",
+      "etf-exposure-expansion-IE00BJ0KDQ92",
+      "etf-exposure-expansion-IE00BK1PV551",
+      "etf-exposure-expansion-LU2903252349",
+      "etf-exposure-expansion-IE0008471009",
+      "etf-exposure-expansion-IE0008470928",
+      "etf-exposure-expansion-DE0002635307",
+      "etf-exposure-expansion-IE00B1YZSC51",
+      "etf-exposure-expansion-IE00BK5BQX27",
+      "etf-exposure-expansion-IE00B945VV12",
+      "etf-exposure-expansion-IE00B3RBWM25",
+      "etf-exposure-expansion-IE00BK5BQV03",
+      "etf-exposure-expansion-IE00BFMXXD54",
+      "etf-exposure-expansion-IE00B3XXRP09",
+      "etf-exposure-expansion-IE00BKWQ0Q14",
+      "etf-exposure-expansion-IE00BFY0GT14",
+      "etf-exposure-expansion-IE000716YHJ7",
+      "etf-exposure-expansion-IE0000QLH0G6",
+      "etf-exposure-expansion-IE00BMC38736",
+      "etf-exposure-expansion-IE00BDVPNG13",
+      "etf-exposure-expansion-IE00BKLF1R75",
+      "etf-exposure-expansion-IE00BLCHJB90",
+      "etf-exposure-expansion-IE000NDWFGA5",
+      "etf-exposure-expansion-IE00BMH5Y871",
+      "etf-exposure-expansion-FR0013412269"
+    ],
+    "items": [
+      {
+        "id": "etf-exposure-expansion-LU1681038672",
+        "instrument": "LU1681038672",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-FR0011869304",
+        "instrument": "FR0011869304",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-FR0013346681",
+        "instrument": "FR0013346681",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-LU3180074463",
+        "instrument": "LU3180074463",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-LU1829219390",
+        "instrument": "LU1829219390",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-FR0007054358",
+        "instrument": "FR0007054358",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-LU1681040223",
+        "instrument": "LU1681040223",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE0003XJA0J9",
+        "instrument": "IE0003XJA0J9",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE0009HF1MK9",
+        "instrument": "IE0009HF1MK9",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-LU0380865021",
+        "instrument": "LU0380865021",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-LU0328475792",
+        "instrument": "LU0328475792",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-LU0274209237",
+        "instrument": "LU0274209237",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BJ0KDQ92",
+        "instrument": "IE00BJ0KDQ92",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BK1PV551",
+        "instrument": "IE00BK1PV551",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-LU2903252349",
+        "instrument": "LU2903252349",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE0008471009",
+        "instrument": "IE0008471009",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE0008470928",
+        "instrument": "IE0008470928",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-DE0002635307",
+        "instrument": "DE0002635307",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00B1YZSC51",
+        "instrument": "IE00B1YZSC51",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BK5BQX27",
+        "instrument": "IE00BK5BQX27",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00B945VV12",
+        "instrument": "IE00B945VV12",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00B3RBWM25",
+        "instrument": "IE00B3RBWM25",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BK5BQV03",
+        "instrument": "IE00BK5BQV03",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BFMXXD54",
+        "instrument": "IE00BFMXXD54",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00B3XXRP09",
+        "instrument": "IE00B3XXRP09",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BKWQ0Q14",
+        "instrument": "IE00BKWQ0Q14",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BFY0GT14",
+        "instrument": "IE00BFY0GT14",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE000716YHJ7",
+        "instrument": "IE000716YHJ7",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE0000QLH0G6",
+        "instrument": "IE0000QLH0G6",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BMC38736",
+        "instrument": "IE00BMC38736",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BDVPNG13",
+        "instrument": "IE00BDVPNG13",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BKLF1R75",
+        "instrument": "IE00BKLF1R75",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BLCHJB90",
+        "instrument": "IE00BLCHJB90",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE000NDWFGA5",
+        "instrument": "IE000NDWFGA5",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-IE00BMH5Y871",
+        "instrument": "IE00BMH5Y871",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      },
+      {
+        "id": "etf-exposure-expansion-FR0013412269",
+        "instrument": "FR0013412269",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-11-16T12:14:29.326305+00:00",
+    "planSha256": "1281b54afeb3f4ec33a7fec97e0248affb9db25b5ae2f2662c69f1da6026a0c6",
+    "attemptedIds": [
+      "etf-exposure-expansion-LU1681038672",
+      "etf-exposure-expansion-FR0011869304",
+      "etf-exposure-expansion-FR0013346681",
+      "etf-exposure-expansion-LU3180074463",
+      "etf-exposure-expansion-LU1829219390",
+      "etf-exposure-expansion-FR0007054358",
+      "etf-exposure-expansion-LU1681040223",
+      "etf-exposure-expansion-IE0003XJA0J9",
+      "etf-exposure-expansion-IE0009HF1MK9",
+      "etf-exposure-expansion-LU0380865021",
+      "etf-exposure-expansion-LU0328475792",
+      "etf-exposure-expansion-LU0274209237",
+      "etf-exposure-expansion-IE00BJ0KDQ92",
+      "etf-exposure-expansion-IE00BK1PV551",
+      "etf-exposure-expansion-LU2903252349",
+      "etf-exposure-expansion-IE0008471009",
+      "etf-exposure-expansion-IE0008470928",
+      "etf-exposure-expansion-DE0002635307",
+      "etf-exposure-expansion-IE00B1YZSC51",
+      "etf-exposure-expansion-IE00BK5BQX27",
+      "etf-exposure-expansion-IE00B945VV12",
+      "etf-exposure-expansion-IE00B3RBWM25",
+      "etf-exposure-expansion-IE00BK5BQV03",
+      "etf-exposure-expansion-IE00BFMXXD54",
+      "etf-exposure-expansion-IE00B3XXRP09",
+      "etf-exposure-expansion-IE00BKWQ0Q14",
+      "etf-exposure-expansion-IE00BFY0GT14",
+      "etf-exposure-expansion-IE000716YHJ7",
+      "etf-exposure-expansion-IE0000QLH0G6",
+      "etf-exposure-expansion-IE00BMC38736",
+      "etf-exposure-expansion-IE00BDVPNG13",
+      "etf-exposure-expansion-IE00BKLF1R75",
+      "etf-exposure-expansion-IE00BLCHJB90",
+      "etf-exposure-expansion-IE000NDWFGA5",
+      "etf-exposure-expansion-IE00BMH5Y871",
+      "etf-exposure-expansion-FR0013412269"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [
+      "etf-exposure-expansion-LU1681038672",
+      "etf-exposure-expansion-FR0011869304",
+      "etf-exposure-expansion-FR0013346681",
+      "etf-exposure-expansion-LU3180074463",
+      "etf-exposure-expansion-LU1829219390",
+      "etf-exposure-expansion-FR0007054358",
+      "etf-exposure-expansion-LU1681040223",
+      "etf-exposure-expansion-IE0003XJA0J9",
+      "etf-exposure-expansion-IE0009HF1MK9",
+      "etf-exposure-expansion-LU0380865021",
+      "etf-exposure-expansion-LU0328475792",
+      "etf-exposure-expansion-LU0274209237",
+      "etf-exposure-expansion-IE00BJ0KDQ92",
+      "etf-exposure-expansion-IE00BK1PV551",
+      "etf-exposure-expansion-LU2903252349",
+      "etf-exposure-expansion-IE0008471009",
+      "etf-exposure-expansion-IE0008470928",
+      "etf-exposure-expansion-DE0002635307",
+      "etf-exposure-expansion-IE00B1YZSC51",
+      "etf-exposure-expansion-IE00BK5BQX27",
+      "etf-exposure-expansion-IE00B945VV12",
+      "etf-exposure-expansion-IE00B3RBWM25",
+      "etf-exposure-expansion-IE00BK5BQV03",
+      "etf-exposure-expansion-IE00BFMXXD54",
+      "etf-exposure-expansion-IE00B3XXRP09",
+      "etf-exposure-expansion-IE00BKWQ0Q14",
+      "etf-exposure-expansion-IE00BFY0GT14",
+      "etf-exposure-expansion-IE000716YHJ7",
+      "etf-exposure-expansion-IE0000QLH0G6",
+      "etf-exposure-expansion-IE00BMC38736",
+      "etf-exposure-expansion-IE00BDVPNG13",
+      "etf-exposure-expansion-IE00BKLF1R75",
+      "etf-exposure-expansion-IE00BLCHJB90",
+      "etf-exposure-expansion-IE000NDWFGA5",
+      "etf-exposure-expansion-IE00BMH5Y871",
+      "etf-exposure-expansion-FR0013412269"
+    ],
+    "networkAttemptUnknownIds": [],
+    "runId": "43864450028",
+    "attempt": "1",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "nonce": "91555089-175c-48b1-b5aa-c41f81c2a07f"
+  },
+  "target": {
+    "isin": "DE0002635307",
+    "status": "validated",
+    "record": {
+      "currency": "EUR",
+      "productId": 251931,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 9867264988.17,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-11-13",
+        "checkedAt": "2026-11-16",
+        "modifiedAt": "2026-11-14"
+      },
+      "sectors": {
+        "asOf": "2026-11-13",
+        "rows": [
+          {
+            "name": "Financials",
+            "weightPct": 25.38,
+            "label": "Financials"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 18.05,
+            "label": "Industrials"
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 13.35,
+            "label": "Health Care"
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 8.47,
+            "label": "Consumer Staples"
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 8.01,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 6.41,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Energy",
+            "weightPct": 5.69,
+            "label": "Energy"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 5.44,
+            "label": "Materials"
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 4.99,
+            "label": "Utilities"
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 2.74,
+            "label": "Communication"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.01,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.45,
+            "label": "Cash and/or Derivatives"
+          },
+          {
+            "name": "Other",
+            "weightPct": 0.0,
+            "label": "Autres"
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.sector",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "basis": "fund",
+        "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-16",
+        "modifiedAt": "2026-11-16"
+      },
+      "countries": {
+        "asOf": "2026-11-13",
+        "rows": [
+          {
+            "name": "United Kingdom",
+            "weightPct": 22.98
+          },
+          {
+            "name": "France",
+            "weightPct": 14.9
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 14.33
+          },
+          {
+            "name": "Germany",
+            "weightPct": 13.1
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 7.37
+          },
+          {
+            "name": "Spain",
+            "weightPct": 5.94
+          },
+          {
+            "name": "Italy",
+            "weightPct": 5.28
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 4.81
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.71
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.96
+          },
+          {
+            "name": "Finland",
+            "weightPct": 1.82
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.24
+          },
+          {
+            "name": "Other",
+            "weightPct": 3.12
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.45
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.geography.countries",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "basis": "fund",
+        "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-16",
+        "modifiedAt": "2026-11-16"
+      },
+      "countriesRisk": {
+        "asOf": "2026-11-13",
+        "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+        "rows": [
+          {
+            "name": "United Kingdom",
+            "weightPct": 23.02517
+          },
+          {
+            "name": "France",
+            "weightPct": 14.90071
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 14.32895
+          },
+          {
+            "name": "Germany",
+            "weightPct": 13.09736
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 7.36831
+          },
+          {
+            "name": "Spain",
+            "weightPct": 5.93913
+          },
+          {
+            "name": "Italy",
+            "weightPct": 5.27744
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 4.82424
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.71916
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.95803
+          },
+          {
+            "name": "Finland",
+            "weightPct": 1.82329
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.25094
+          },
+          {
+            "name": "Poland",
+            "weightPct": 0.99775
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.70715
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.60688
+          },
+          {
+            "name": "Greece",
+            "weightPct": 0.49743
+          },
+          {
+            "name": "European Union",
+            "weightPct": 0.33961
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.31078
+          },
+          {
+            "name": "United States",
+            "weightPct": 0.0277
+          },
+          {
+            "name": "Australia",
+            "weightPct": 0.0
+          },
+          {
+            "name": "Jersey",
+            "weightPct": 0.0
+          }
+        ],
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "basis": "fund",
+        "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-16",
+        "modifiedAt": "2026-11-16"
+      },
+      "holdings": {
+        "asOf": "2026-11-13",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "ASML HOLDING",
+            "weightPct": 3.75058,
+            "isin": "NL0010273215"
+          },
+          {
+            "name": "ROCHE PS PAR AG",
+            "weightPct": 2.22037,
+            "isin": "CH1499059983"
+          },
+          {
+            "name": "HSBC HOLDINGS PLC",
+            "weightPct": 2.00905,
+            "isin": "GB0005405286"
+          },
+          {
+            "name": "NOVARTIS AG",
+            "weightPct": 1.98476,
+            "isin": "CH0012005267"
+          },
+          {
+            "name": "ASTRAZENECA PLC",
+            "weightPct": 1.87658,
+            "isin": "GB0009895292"
+          },
+          {
+            "name": "SHELL",
+            "weightPct": 1.78969,
+            "isin": "GB00BP6MXD84"
+          },
+          {
+            "name": "NESTLE SA",
+            "weightPct": 1.76297,
+            "isin": "CH0038863350"
+          },
+          {
+            "name": "SAP",
+            "weightPct": 1.55093,
+            "isin": "DE0007164600"
+          },
+          {
+            "name": "SIEMENS N AG",
+            "weightPct": 1.48071,
+            "isin": "DE0007236101"
+          },
+          {
+            "name": "TOTALENERGIES",
+            "weightPct": 1.35316,
+            "isin": "FR0000120271"
+          }
+        ],
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+        "sha256": "45a36922339a3e8228c5dc4f2c3a8ea88677c7aba729d3d23b6a89b6fb450b94",
+        "translation": "Explicit German-to-English labels; published weights unchanged",
+        "checkedAt": "2026-11-16",
+        "modifiedAt": "2026-11-16"
+      },
+      "characteristics": {
+        "terPct": 0.2,
+        "index": "STOXX Europe 600 Index (EUR)",
+        "distribution": "Distributing",
+        "domicile": "Deutschland",
+        "replicationMethod": "Replikation",
+        "inceptionDate": "20040213",
+        "replicationMethodRaw": {
+          "productStructure": "Physisch",
+          "fundMethodologyTypeCode": "Replikation"
+        },
+        "productStructure": "Physisch",
+        "checkedAt": "2026-11-16",
+        "modifiedAt": "2026-10-24"
+      },
+      "performance": {
+        "currency": "EUR",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 1.58,
+          "2017": 10.79,
+          "2018": -10.97,
+          "2019": 27.64,
+          "2020": -1.89,
+          "2021": 25.06,
+          "2022": -10.44,
+          "2023": 16.02,
+          "2024": 8.96,
+          "2025": 20.02
+        },
+        "checkedAt": "2026-11-16",
+        "modifiedAt": "2026-10-16"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "index": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "distribution": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "domicile": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "replicationMethod": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "inceptionDate": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        },
+        "productStructure": {
+          "checkedAt": "2026-11-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+          "asOf": null
+        }
+      }
+    },
+    "retainedFields": [],
+    "unavailable": [],
+    "collectionErrors": [],
+    "sourceAttempts": []
+  },
+  "allOutcomes": [
+    {
+      "isin": "LU1681038672",
+      "status": "validated"
+    },
+    {
+      "isin": "FR0011869304",
+      "status": "validated"
+    },
+    {
+      "isin": "FR0013346681",
+      "status": "validated"
+    },
+    {
+      "isin": "LU3180074463",
+      "status": "validated"
+    },
+    {
+      "isin": "LU1829219390",
+      "status": "validated"
+    },
+    {
+      "isin": "FR0007054358",
+      "status": "validated"
+    },
+    {
+      "isin": "LU1681040223",
+      "status": "validated"
+    },
+    {
+      "isin": "IE0003XJA0J9",
+      "status": "validated"
+    },
+    {
+      "isin": "IE0009HF1MK9",
+      "status": "validated"
+    },
+    {
+      "isin": "LU0380865021",
+      "status": "validated"
+    },
+    {
+      "isin": "LU0328475792",
+      "status": "validated"
+    },
+    {
+      "isin": "LU0274209237",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BJ0KDQ92",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BK1PV551",
+      "status": "validated"
+    },
+    {
+      "isin": "LU2903252349",
+      "status": "validated"
+    },
+    {
+      "isin": "IE0008471009",
+      "status": "validated"
+    },
+    {
+      "isin": "IE0008470928",
+      "status": "validated"
+    },
+    {
+      "isin": "DE0002635307",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00B1YZSC51",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BK5BQX27",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00B945VV12",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00B3RBWM25",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BK5BQV03",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BFMXXD54",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00B3XXRP09",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BKWQ0Q14",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BFY0GT14",
+      "status": "validated"
+    },
+    {
+      "isin": "IE000716YHJ7",
+      "status": "validated"
+    },
+    {
+      "isin": "IE0000QLH0G6",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BMC38736",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BKLF1R75",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BLCHJB90",
+      "status": "validated"
+    },
+    {
+      "isin": "IE000NDWFGA5",
+      "status": "validated"
+    },
+    {
+      "isin": "IE00BMH5Y871",
+      "status": "validated"
+    },
+    {
+      "isin": "FR0013412269",
+      "status": "validated"
+    }
+  ],
+  "limitation": "Real acquisition/validation/recording. Full provider source records36/36, own correction affects onlyEXSA. Publication and browser consumption checked separately; not scheduled."
+}

@@ -1,3 +1,27 @@
+# Reliquat après publication f45c20c2 / b62c57d4 — 16 novembre 2026
+
+| Cause | Pièce exacte et prochaine action utile |
+|---|---|
+| Six fenêtres refusées sur le groupe constant de 79 | Voir le CSV individuel : cinq parts, périodes, outils, bornes et résidus. Pour quatre cas Amundi, prouver la politique historique de revenus, la complétude des distributions et la convention ajustée ; la réponse actuelle est ambiguë. Pour Bitwise 2021, obtenir décembre 2020 ; Paris commence en juin 2021. Pour iShares Retail 2019, obtenir unités/facteurs et bornes exactes XETR 2018/2019 |
+| Palladium | Deux restrictions distinctes : NAV décembre 2014 et cotation 2025. Obtenir les bornes et facteurs propres à chacune ; les voies indépendantes utilisables restent disponibles |
+| WisdomTree | Voie officielle de livre natif fonctionnant depuis Actions, et classe actuelle nCino pour WCLD. Ne pas répéter les mêmes 403 sans nouvelle piste ; classement sans NAV et XLSX de calendrier non qualifiés |
+| Uranium | Valorisation des deux contrats ZAR et identité exacte des deux classes Verdera. Conserver les 72 lignes et valeurs inconnues ; ne pas déduire zéro ni un ISIN du nom |
+| Russell / S&P | Livre économique exact daté, poids et identités permettant la consolidation des entreprises ; source native accessible et conditions d’utilisation qualifiées. S&P reste attribué à #1253, substituts explicites préservés |
+| LifeStrategy | Photographies compatibles des fonds parents et sous-jacents, puis couverture des obligations et liquidités. Transparisation actions partielle conservée sans renormalisation |
+| Deux dossiers 13F | Unité exacte des déclarations Druckenmiller/Klarman ou autre voie indépendante qualifiée. Le faux incident de copie de rapport est corrigé séparément, pas ces deux montants |
+| Conflits documentaires et financiers | Deux qualifications PEA, QYLD à date identique, BCOM Other à −0,11 % et top 10 d’indice contradictoire : preuve explicite nécessaire ; aucune valeur choisie arbitrairement |
+| Ancienne publication onboarding 41639923023 | Reçu 13232852348 retrouvé, sept empreintes anciennes différentes des fichiers actuellement servis. Une publication ultérieure ne prouve pas que les octets anciens ont été servis ; conserver cette limite historique |
+| Autres reliquats connus | Linxea Vie : plage de taux non qualifiée ; ACPR : PDF fonds-euros inaccessible ; XTB : brochure officielle absente ou ambiguë ; flux ETF manuels ; document JEPG expiré ; tables pays primaires iShares périmées malgré le secours opérationnel. Dernières valeurs et dates conservées, aucune réparation revendiquée ici |
+| Compléments concurrents | #1355 renforce la reprise SCPI : neuf résultats source et enregistrement604d5407 prouvés par push43873060316 ; publication encore à observer, sans preuve de cron ou de branche conditionnelle. #1356 et #1357 sont en cours ; leurs fichiers ne sont pas repris ici |
+| Déclenchements et passage annuel | Aucun cron fournisseur postcorrectif du 16 novembre visible à 13:24 ; les crons du moniteur ne les remplacent pas. Voir passages-planifies.json pour les échéances nominales. Fin 2026 et janvier 2027 restent des observations futures |
+
+L’export courant conserve tous les diagnostics et le rapprochement conserve les 1 218 identités initiales. Regrouper ces causes ne supprime aucun impact. Les limites ne sont pas déclarées réparées par une recette supplémentaire et ne permettent pas d’annoncer une automatisation complète.
+
+
+---
+
+# Archive du bilan précédent — état daté, ne pas confondre avec la livraison ci-dessus
+
 # Limites conservées — chantier consolidé #881
 
 Relevé 2026-11-15T23:44:48.417698+00:00. Code public `fdf1b581402f909f04d1e4f6bfe98126742b0c20`, données `eb865db0b760ed5b47fdfd003bf51df60e92a14c`, voie `validated-data`. Suivi unique [#881](https://github.com/madmax91310/shinny-potato/issues/881). Les preuves antérieures restent datées ; ce complément ne les réécrit pas.

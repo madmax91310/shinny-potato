@@ -1,0 +1,177 @@
+{
+  "checkedAt": "2026-11-16T13:21:52.375444+00:00",
+  "run": 43865185684,
+  "event": "workflow_dispatch",
+  "artifact": 14227770798,
+  "artifactDigest": "sha256:a3162a39f60b3d40a92a48e9e746f2e6583afc39f0121b2a8528288c2d32fd84",
+  "scope": {
+    "requestedIds": [
+      "etfCH0454664001Nav",
+      "etfDE000A27Z304Paris"
+    ],
+    "expectedIds": [
+      "etfCH0454664001Nav",
+      "etfDE000A27Z304Paris"
+    ],
+    "selection": "explicit"
+  },
+  "sourceCheckedAt": "2026-11-16T12:23:22.536853+00:00",
+  "series": [
+    {
+      "id": "etfCH0454664001Nav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "f0b94dcd5179223110f43dbfd0266be5abd1bdc28e812dfe7e70c1ba408c117d",
+      "controlScope": {
+        "controlledInstrument": "CH0454664001",
+        "controlledFields": [
+          "product_details.details.isin",
+          "product_details.ticker",
+          "product_details.currency.short_name",
+          "product_details.inception_date",
+          "product_details.valuation_date",
+          "product_details.nav_per_unit",
+          "product_valuation_history.valuation_date",
+          "product_valuation_history.nav_per_share",
+          "product_valuation_history.fiat_denominator",
+          "product_valuation_history.index:split-check-only",
+          "product_performance_metrics.performance_monthly",
+          "product_performance_metrics.performance_details"
+        ],
+        "requestedStart": "2019-03-01",
+        "controlledCalendarYears": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etfDE000A27Z304Paris",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "a8347d37346f613f9e8d39c6ee10903963231483054450f532fe5052b5c91f50"
+    }
+  ],
+  "ranking": {
+    "checkedAt": "2026-11-16T12:20:26.231169+00:00",
+    "attemptedIds": [
+      "fx:TWD",
+      "fx:ECB"
+    ],
+    "fxFailed": false,
+    "crossFxFailed": false,
+    "fxSources": {
+      "TWD": {
+        "id": "fx:TWD",
+        "status": "validated",
+        "checkedAt": "2026-11-16T12:20:26.231169+00:00",
+        "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
+        "sourceAttempts": [
+          {
+            "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-16",
+            "error": "The read operation timed out"
+          },
+          {
+            "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS",
+            "error": "The read operation timed out"
+          },
+          {
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
+            "status": "downloaded",
+            "sha256": "a10dc5364203db3de90b1ce6164f0b7ce6861ffaff7bf477b7c6c04ce3f781b6"
+          }
+        ]
+      },
+      "ECB": {
+        "id": "fx:ECB",
+        "status": "validated",
+        "checkedAt": "2026-11-16T12:20:26.231169+00:00"
+      }
+    }
+  },
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "382dfd6912f54bf6d2da4f2e7a029364e54f012e",
+    "files": {
+      "src/data/anniversary-levels.json": "0369f0562b031d0831a3254742c4fe324d53ab59",
+      "src/data/auto-history-identities.json": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "src/data/automated-etf-monthly.json": "16a86e995e259d835807a624bfe4ab0161f3fb5a",
+      "src/data/automated-indices.json": "fc3a4b96e5d2095277a8444ac488eaa687791dbb",
+      "src/data/automated-monthly.json": "ce0230d7d8b9e6a37ecd8de5f9abc7491c564565",
+      "src/data/monthly-fx.json": "59736cf31cbb26866e23688884a565638cacfb4a",
+      "src/data/qualified-listing-records.json": "fa0807f139c7441496c95fdc42a60887daa462d1",
+      "src/data/ranking-histories.json": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "src/data/shared-listing-identities.json": "85501822e060001ee2c3f94bb95b12b0470225db"
+    }
+  },
+  "receiptArtifact": 14228399899,
+  "publicationChecks": [
+    {
+      "path": "src/data/anniversary-levels.json",
+      "recordedBlob": "0369f0562b031d0831a3254742c4fe324d53ab59",
+      "publishedBlob": "ead32747e47f6fe00b2d7ffe07a92bf129a945f7",
+      "exact": false
+    },
+    {
+      "path": "src/data/auto-history-identities.json",
+      "recordedBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "publishedBlob": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "exact": true
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "recordedBlob": "16a86e995e259d835807a624bfe4ab0161f3fb5a",
+      "publishedBlob": "16a86e995e259d835807a624bfe4ab0161f3fb5a",
+      "exact": true
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "recordedBlob": "fc3a4b96e5d2095277a8444ac488eaa687791dbb",
+      "publishedBlob": "fc3a4b96e5d2095277a8444ac488eaa687791dbb",
+      "exact": true
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "recordedBlob": "ce0230d7d8b9e6a37ecd8de5f9abc7491c564565",
+      "publishedBlob": "ce0230d7d8b9e6a37ecd8de5f9abc7491c564565",
+      "exact": true
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "recordedBlob": "59736cf31cbb26866e23688884a565638cacfb4a",
+      "publishedBlob": "59736cf31cbb26866e23688884a565638cacfb4a",
+      "exact": true
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "recordedBlob": "fa0807f139c7441496c95fdc42a60887daa462d1",
+      "publishedBlob": "fa0807f139c7441496c95fdc42a60887daa462d1",
+      "exact": true
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "recordedBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "publishedBlob": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "exact": true
+    },
+    {
+      "path": "src/data/shared-listing-identities.json",
+      "recordedBlob": "85501822e060001ee2c3f94bb95b12b0470225db",
+      "publishedBlob": "85501822e060001ee2c3f94bb95b12b0470225db",
+      "exact": true
+    }
+  ],
+  "publicBuild": {
+    "sha": "f45c20c2852644e10bc16df6437e6bc403dfc13f",
+    "dataSha": "b62c57d432fcb5ef2fefffab772b780dea984905",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-16T13:04:29.268Z"
+  },
+  "limitation": "Two requested monthly series plus explicit FX acquisition only. Other ranking statuses predate this run and do not become fresh successes. Manual dispatch is not supplier cron. Shared listing controls and local derivations have separate scopes."
+}

@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-11-16T11:41:10.835252+00:00",
+  "sourceRun": 43836713977,
+  "sourceEvent": "push",
+  "artifact": 14211531655,
+  "report": "amundi-observation.json",
+  "responseFingerprint": {
+    "kind": "canonical JSON SHA256; not raw HTTP bytes",
+    "sha256": "a6022c4696674120695867a7f761f561504696d51e5f71338fe3547be6605c33"
+  },
+  "results": [
+    {
+      "isin": "FR0010755611",
+      "sourceDistributionPolicy": "Capitalisation and/or distribution",
+      "exactIdentity": "FR0010755611",
+      "rawNavCurrency": "EUR",
+      "ordinaryNavQualificationError": "Amundi NAV requires explicitly accumulating share",
+      "missingPiece": "Explicit historical income policy/cash completeness and adjusted-series convention for this exact share. Null dividend history from dated30October capture does not prove zero distributions. Market/NAV residual is separate."
+    },
+    {
+      "isin": "FR0013411998",
+      "sourceDistributionPolicy": "Capitalisation and/or distribution",
+      "exactIdentity": "FR0013411998",
+      "rawNavCurrency": "EUR",
+      "ordinaryNavQualificationError": "Amundi NAV requires explicitly accumulating share",
+      "missingPiece": "Explicit historical income policy/cash completeness and adjusted-series convention for this exact share. Null dividend history from dated30October capture does not prove zero distributions. Market/NAV residual is separate."
+    },
+    {
+      "isin": "FR0013412004",
+      "sourceDistributionPolicy": "Capitalisation and/or distribution",
+      "exactIdentity": "FR0013412004",
+      "rawNavCurrency": "EUR",
+      "ordinaryNavQualificationError": "Amundi NAV requires explicitly accumulating share",
+      "missingPiece": "Explicit historical income policy/cash completeness and adjusted-series convention for this exact share. Null dividend history from dated30October capture does not prove zero distributions. Market/NAV residual is separate."
+    }
+  ],
+  "limitation": "Existing real source response reused, no new network collection and no new monthly series admitted. This proves current policy qualification block, not absence of cash or cause of old price divergence."
+}

@@ -1,0 +1,1132 @@
+{
+  "run": 43859991189,
+  "head": "b28c4bee5f503c27e810434a5ed13320b50410d2",
+  "event": "workflow_dispatch",
+  "sourceArtifact": 14224095168,
+  "attemptArtifact": 14224055290,
+  "receiptArtifact": 14223815625,
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "8dc54036bff9217a6ff1439f7824132b129e3262",
+    "files": {
+      "public/data/investors/ackman.json": "5f78bf47be5c18bab3d2d30c0c13772fe432c9a3",
+      "public/data/investors/archive/cathie-wood/2026-06-30.json": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+      "public/data/investors/archive/gayner/2026-06-30.json": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+      "public/data/investors/archive/icahn/2026-06-30.json": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+      "public/data/investors/archive/klarman/2026-06-30.json": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+      "public/data/investors/archive/pabrai/2026-06-30.json": "92fde4822555660dead1e3026b61b9885e10d30e",
+      "public/data/investors/archive/renaissance/2026-06-30.json": "11327fe1778e1154023a628cbebadd9b179ee878",
+      "public/data/investors/aschenbrenner.json": "beed76949f646ab09b93b8ba31237213b060a5a3",
+      "public/data/investors/baker-bros.json": "3a0a5862455cacfec8e6400621f5fe361689cabc",
+      "public/data/investors/berkshire.json": "4b14a19f1edd24a1773db26a3946b762653646f5",
+      "public/data/investors/cathie-wood.json": "f4e973c6bfadf64a8423d6b288e5d86fe38b213b",
+      "public/data/investors/dorsey.json": "4b28914d5d8705e083cf66c3831b42d422b11114",
+      "public/data/investors/druckenmiller.json": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+      "public/data/investors/einhorn.json": "fcf3dea2250cc4e3b300e68f0e95072051321909",
+      "public/data/investors/gates-trust.json": "1b9cdff8021674d701ae2ca0068aee46aa793c21",
+      "public/data/investors/gavin-baker.json": "4c8c55ea40c3065e088313e6b868ca4ca6a3417d",
+      "public/data/investors/gayner.json": "def4833a3b676233efab9aa19541f6d00f319cb3",
+      "public/data/investors/gerstner.json": "f2089f0a3d92deba270c14e8b484539097d05780",
+      "public/data/investors/halvorsen.json": "dbec17ebdede4f5987b7490f9c662e5375f7e49b",
+      "public/data/investors/hohn.json": "a94e025cbb65ec2e440108009881ad2e1f8ea29a",
+      "public/data/investors/icahn.json": "5a1247781caca7f97216f49a587e20767ce668e2",
+      "public/data/investors/klarman.json": "8aa1754aa6fcf12851638db54850c99e0ee46c76",
+      "public/data/investors/laffont.json": "07f1ef13e88f28aa234c9aaeb78a85358bd30c1c",
+      "public/data/investors/li-lu.json": "425a6d478a671f9336aee7f7a24678336952ba8e",
+      "public/data/investors/loeb.json": "c3bd0c735e09fee47aa8efd23d39956e9384c0ae",
+      "public/data/investors/marks.json": "a8df5a15c91f24b5f4362373d09070da8f242933",
+      "public/data/investors/media/ackman-35781946a27e9cbe.png": "0108e887c66a5d3ac158806ef6c83e9bf8180bea",
+      "public/data/investors/media/cathie-wood-dd6053a4d3e54bf7.png": "bb195f1e1cfa05f7058cf8e8dc7731c21095776f",
+      "public/data/investors/media/gerstner-6319e2097718ca3c.png": "906a785c534ce821231f6c53d7ac4531faca492e",
+      "public/data/investors/media/hohn-4dd73ae57437bb6c.png": "e76b6f29353be25d0bc855d92403cf626990993d",
+      "public/data/investors/media/icahn-a830c9ac80fe8716.png": "9c9bf4f1e2aea4f440c35be9744da38604b5a3a0",
+      "public/data/investors/media/klarman-2d354859f07bf5f7.png": "b651a9034766410a60e1162fdf62206e7c2bcc5a",
+      "public/data/investors/media/manifest.json": "2d36894ba160d7ec00a3cc9b7a353fea530b92e3",
+      "public/data/investors/media/marks-67a24115babd2d27.png": "22e10f073d398fc4aaddb5e93a18ff7b853b7f82",
+      "public/data/investors/media/original-gerstner-d15238e9f36f39e5.image": "405f43d12680372cea5527321ad2f04b04684a41",
+      "public/data/investors/media/original-hohn-3c648db863e40961.image": "4c9f1d9e9bf9f90400744b1d3a5428a35f6e0602",
+      "public/data/investors/media/original-icahn-8640f1e045efd8c5.image": "ecea3d5c498e7fe7550b3d32082a565e45606217",
+      "public/data/investors/media/original-marks-f59381f75681025a.image": "5d73731b4bf007b5e258857822bac734a4c0212f",
+      "public/data/investors/media/tepper-2f6abdf02b5c595c.png": "f4504330a2fee6a746addb7594d624cd70ebb296",
+      "public/data/investors/media/thiel-5803d52d98273fd9.png": "beb28df75041f80bffe7677d00c2f6a03837029c",
+      "public/data/investors/media/watsa-513182715bf342f9.png": "b1c0794a390a2408dbfc8259c4614a21826e08dd",
+      "public/data/investors/morfit.json": "8925ce49367796a24d489b4c712690618cddfc60",
+      "public/data/investors/pabrai.json": "a7f2aba6131a20552fd079677565c253050df55c",
+      "public/data/investors/renaissance.json": "45d12bbb7e0e2fd9b3edbc50041b90c3ab9ce680",
+      "public/data/investors/review-metadata.json": "3b29127236d6b9d68f97f29239a09f3ca4b4e6bb",
+      "public/data/investors/tepper.json": "03197fbba365d3db06c15b69233b188b9d005687",
+      "public/data/investors/terry-smith.json": "7ad78e5fdb7e85486230e3ff590776e3f92fbabe",
+      "public/data/investors/thiel.json": "369068268371f66012b7d264e990db2e91baeb50",
+      "public/data/investors/vinall.json": "3a6b36325134d1c8cdde4984a7cc5ff3aac3b779",
+      "public/data/investors/watsa.json": "42caed2492cc616cde6c6d180bd1b9bb4b262c76"
+    }
+  },
+  "sourceCheckedAt": "2026-11-16T11:50:39.836723+00:00",
+  "scope": {
+    "kind": "update-investor-13f",
+    "mode": "full",
+    "expectedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:druckenmiller",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:klarman",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "requestedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:druckenmiller",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:klarman",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "items": [
+      {
+        "id": "investor:morfit",
+        "instrument": "morfit",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:dorsey",
+        "instrument": "dorsey",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:vinall",
+        "instrument": "vinall",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:marks",
+        "instrument": "marks",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:watsa",
+        "instrument": "watsa",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gavin-baker",
+        "instrument": "gavin-baker",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:einhorn",
+        "instrument": "einhorn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:halvorsen",
+        "instrument": "halvorsen",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gerstner",
+        "instrument": "gerstner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gayner",
+        "instrument": "gayner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:tepper",
+        "instrument": "tepper",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:ackman",
+        "instrument": "ackman",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:berkshire",
+        "instrument": "berkshire",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:cathie-wood",
+        "instrument": "cathie-wood",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:thiel",
+        "instrument": "thiel",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:druckenmiller",
+        "instrument": "druckenmiller",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:loeb",
+        "instrument": "loeb",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:aschenbrenner",
+        "instrument": "aschenbrenner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:li-lu",
+        "instrument": "li-lu",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gates-trust",
+        "instrument": "gates-trust",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:klarman",
+        "instrument": "klarman",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:terry-smith",
+        "instrument": "terry-smith",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:pabrai",
+        "instrument": "pabrai",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:hohn",
+        "instrument": "hohn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:baker-bros",
+        "instrument": "baker-bros",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:icahn",
+        "instrument": "icahn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:laffont",
+        "instrument": "laffont",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:renaissance",
+        "instrument": "renaissance",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-11-16T11:42:31.979396+00:00",
+    "planSha256": "181d77a520b708ebe200359819bbd5a43da89ee12d45a127a1173e444dafcf6a",
+    "attemptedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:druckenmiller",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:klarman",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "networkAttemptUnknownIds": [
+      "investor:druckenmiller",
+      "investor:klarman"
+    ],
+    "runId": "43859991189",
+    "attempt": "1",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "nonce": "cb6ada5f-4580-4284-b1cc-bd4e62e5c5d7"
+  },
+  "outcomes": [
+    {
+      "id": "investor:morfit",
+      "instrument": "morfit",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:dorsey",
+      "instrument": "dorsey",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:vinall",
+      "instrument": "vinall",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:marks",
+      "instrument": "marks",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:watsa",
+      "instrument": "watsa",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:gavin-baker",
+      "instrument": "gavin-baker",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:einhorn",
+      "instrument": "einhorn",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:halvorsen",
+      "instrument": "halvorsen",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:gerstner",
+      "instrument": "gerstner",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:gayner",
+      "instrument": "gayner",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-09-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:tepper",
+      "instrument": "tepper",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:ackman",
+      "instrument": "ackman",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:berkshire",
+      "instrument": "berkshire",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:cathie-wood",
+      "instrument": "cathie-wood",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-09-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:thiel",
+      "instrument": "thiel",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:druckenmiller",
+      "instrument": "druckenmiller",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "field": "Portefeuille 13F",
+      "error": "SEC/provider unit conflict: SEC rows 5210856 USD, provider 5210856000.0 USD; no inferred conversion",
+      "status": "failed",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "investor:loeb",
+      "instrument": "loeb",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:aschenbrenner",
+      "instrument": "aschenbrenner",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:li-lu",
+      "instrument": "li-lu",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:gates-trust",
+      "instrument": "gates-trust",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:klarman",
+      "instrument": "klarman",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "field": "Portefeuille 13F",
+      "error": "SEC/provider unit conflict: SEC rows 5045853 USD, provider 5045853000.0 USD; no inferred conversion",
+      "status": "failed",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "investor:terry-smith",
+      "instrument": "terry-smith",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:pabrai",
+      "instrument": "pabrai",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-09-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:hohn",
+      "instrument": "hohn",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:baker-bros",
+      "instrument": "baker-bros",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:icahn",
+      "instrument": "icahn",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-09-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:laffont",
+      "instrument": "laffont",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-06-30",
+      "operationAttempted": true
+    },
+    {
+      "id": "investor:renaissance",
+      "instrument": "renaissance",
+      "fields": [
+        "13F last successful check",
+        "positions date",
+        "report quarter",
+        "amendments"
+      ],
+      "selected": true,
+      "status": "unchanged-verified",
+      "sourceAttempted": true,
+      "reason": "Contr\u00f4le source r\u00e9ussi ; relev\u00e9 inchang\u00e9",
+      "periodEnd": "2026-09-30",
+      "operationAttempted": true
+    }
+  ],
+  "nativeManagers": [
+    {
+      "slug": "morfit",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "dorsey",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "vinall",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "marks",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "watsa",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gavin-baker",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "einhorn",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "halvorsen",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gerstner",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gayner",
+      "status": "validated",
+      "periodEnd": "2026-09-30",
+      "changed": false
+    },
+    {
+      "slug": "tepper",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "ackman",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "berkshire",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "cathie-wood",
+      "status": "validated",
+      "periodEnd": "2026-09-30",
+      "changed": false
+    },
+    {
+      "slug": "thiel",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "druckenmiller",
+      "status": "failed",
+      "reason": "SEC/provider unit conflict: SEC rows 5210856 USD, provider 5210856000.0 USD; no inferred conversion"
+    },
+    {
+      "slug": "loeb",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "aschenbrenner",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "li-lu",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gates-trust",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "klarman",
+      "status": "failed",
+      "reason": "SEC/provider unit conflict: SEC rows 5045853 USD, provider 5045853000.0 USD; no inferred conversion"
+    },
+    {
+      "slug": "terry-smith",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "pabrai",
+      "status": "validated",
+      "periodEnd": "2026-09-30",
+      "changed": false
+    },
+    {
+      "slug": "hohn",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "baker-bros",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "icahn",
+      "status": "validated",
+      "periodEnd": "2026-09-30",
+      "changed": false
+    },
+    {
+      "slug": "laffont",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "renaissance",
+      "status": "validated",
+      "periodEnd": "2026-09-30",
+      "changed": false
+    }
+  ],
+  "artifactMembers": [
+    "investor-observations.json",
+    "investor-observations.contract-plan.json"
+  ],
+  "limitation": "Real ordinary producer manually dispatched to validate changed artifact contract. Not scheduled. Successful source/validation/recording and stage do not yet prove final public publication. Failed manager files/quarters retained."
+}

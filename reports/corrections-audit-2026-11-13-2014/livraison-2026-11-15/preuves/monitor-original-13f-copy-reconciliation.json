@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-11-16T11:58:56.363183+00:00",
+  "monitorCommit": "dd0bab67c97b73c8e05d006c5bf52b34bca27d26",
+  "monitorCheckedAt": "2026-11-16T11:56:48.821088+00:00",
+  "wireSha256": "e0f89c7eec190c6a51b4590b7e8dae96028c65bb59cd39c127c45bb663399179",
+  "decodedSha256": "9cfa142617a65646863c61233e0de72da67969f0a83d2bd472394d44eacf2a66",
+  "lastRun": 43823335908,
+  "duplicateAttemptProofFailures": {},
+  "duplicateAttemptTechnicalChecks": {
+    "report-read:investor-observations-attempt-1:run:43823335908:attempt:1": {
+      "evidence": {
+        "artifactId": 14205289418,
+        "duplicateOf": "investor-observations.json",
+        "file": "investor-observations-attempt-1.json",
+        "planSha256": "91690117524d0a829fc5f84818b6fc4f68255a37b336cf97ca86f90c2cdbfc9e",
+        "reason": "Exact duplicate of the registered report with its verified predeclared plan; support evidence only.",
+        "schema": "duplicate-attempt-support",
+        "sha256": "f26fa89c1e4449e750cb92d480eec3c2b903e355eadf2ce9d871b3528cfa2cc6",
+        "sourceControl": false
+      },
+      "readAt": "2026-11-16T11:52:27.581680+00:00",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43823335908"
+    }
+  },
+  "sourceFinancialFailures": {
+    "investor:druckenmiller": {
+      "cause": "SEC/provider unit conflict: SEC rows 5210856 USD, provider 5210856000.0 USD; no inferred conversion",
+      "runId": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43823335908",
+      "sourcePhaseCompletedAt": "2026-11-16T07:32:01Z",
+      "completedAt": "2026-11-16T07:32:01Z",
+      "lastSuccessAt": null
+    },
+    "investor:klarman": {
+      "cause": "SEC/provider unit conflict: SEC rows 5045853 USD, provider 5045853000.0 USD; no inferred conversion",
+      "runId": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/43823335908",
+      "sourcePhaseCompletedAt": "2026-11-16T07:32:01Z",
+      "completedAt": "2026-11-16T07:32:01Z",
+      "lastSuccessAt": null
+    }
+  },
+  "limitation": "Bounded transport and selected proof hashes verified. No source collection or financial qualification inferred from reporting evidence."
+}
