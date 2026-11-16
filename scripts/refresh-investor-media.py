@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from investor_media_sources import resolve, reusable
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ROOT / 'public/asset-art/investors/sources.json'
@@ -23,11 +24,22 @@ def refresh():
     for slug, source in json.loads(SOURCES.read_text()).items():
         metadata = {key: source.get(key) for key in ('source', 'url', 'author', 'license', 'title')}
         local = ROOT / 'public/asset-art' / source['file']
+        digest = None
+        if source.get('commonsPortrait') and slug not in ENTITIES:
+            try:
+                local, resolved = resolve(source, slug, OUTPUT)
+                metadata.update(resolved)
+            except Exception as error:
+                retained = prior.get(slug, {})
+                if isinstance(error, (OSError, TimeoutError)) and retained.get('status') == 'ready' and retained.get('wikidataId') == source['commonsPortrait']['wikidataId'] and retained.get('title') == source['commonsPortrait']['title'] and (ROOT/'public'/retained.get('file','')).is_file():
+                    result[slug] = {**retained, 'reason': f'Dernier portrait vérifié conservé : {error}'}
+                    continue
+                metadata['resolutionError'] = str(error)
         metadata['status'] = 'initials'
-        metadata['reason'] = 'Réutilisation non documentée pour ce portrait.'
+        metadata['reason'] = 'Portrait non validé : '+metadata['resolutionError'] if metadata.get('resolutionError') else 'Réutilisation non documentée pour ce portrait.'
         if slug in ENTITIES:
             metadata['reason'] = 'Portefeuille d’une entité ; aucune attribution à son fondateur.'
-        elif source.get('license', '').startswith(('CC BY ', 'CC BY-SA ')) or source.get('license') == 'Domaine public':
+        elif reusable(metadata.get('license', '')):
             try:
                 # Official/manual substitutions go through the existing source registry.
                 # Reuse the verified local source; no recurring remote photo download.
@@ -39,6 +51,11 @@ def refresh():
                     if session is None:
                         session = new_session('u2netp', providers=['CPUExecutionProvider'])
                     image = Image.open(local).convert('RGBA')
+                    if metadata.get('crop'):
+                        box = metadata['crop']
+                        if len(box)!=4 or not (0<=box[0]<box[2]<=image.width and 0<=box[1]<box[3]<=image.height):
+                            raise ValueError('Cadrage vérifié incompatible avec la photo')
+                        image=image.crop(tuple(box))
                     image.thumbnail((900, 1100))
                     cutout = remove(image, session=session, post_process_mask=True)
                     alpha = cutout.getchannel('A')

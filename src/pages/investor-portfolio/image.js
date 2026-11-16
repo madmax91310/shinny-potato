@@ -21,11 +21,38 @@ function glass(ctx, x, y, w, h, radius = 24) {
   ctx.shadowBlur = 0; ctx.strokeStyle = 'rgba(215,241,255,.45)'; ctx.lineWidth = 1
   ctx.beginPath(); ctx.roundRect(x+7,y+7,w-14,h-14,Math.max(4,radius-5)); ctx.stroke(); ctx.restore()
 }
+// Wrap unusually wide wordmarks at a transparent word gap. Original glyphs
+// and proportions are preserved; no letter or logo is cropped to fit a card.
+const wordmarks = new WeakMap()
+function readableLogo(image) {
+  if(!image || image.width/image.height<6)return image
+  if(wordmarks.has(image))return wordmarks.get(image)
+  const probe=document.createElement('canvas');probe.width=Math.ceil(image.width);probe.height=Math.ceil(image.height)
+  const ctx=probe.getContext('2d');ctx.drawImage(image,0,0,probe.width,probe.height)
+  const {data}=ctx.getImageData(0,0,probe.width,probe.height),w=probe.width,h=probe.height
+  let best={start:0,end:0},start=null
+  for(let x=Math.floor(w*.3);x<=Math.ceil(w*.7);x++) {
+    let blank=true
+    for(let y=0;y<h;y++)if(data[(y*w+x)*4+3]>5){blank=false;break}
+    if(blank && start===null)start=x
+    if(!blank && start!==null){if(x-start>best.end-best.start)best={start,end:x};start=null}
+  }
+  let result=image
+  if(best.end-best.start>=Math.max(2,w*.008)) {
+    const wrapped=document.createElement('canvas');wrapped.width=Math.max(best.start,w-best.end);wrapped.height=h*2+Math.ceil(h*.2)
+    const c=wrapped.getContext('2d')
+    c.drawImage(probe,0,0,best.start,h,(wrapped.width-best.start)/2,0,best.start,h)
+    c.drawImage(probe,best.end,0,w-best.end,h,(wrapped.width-w+best.end)/2,wrapped.height-h,w-best.end,h)
+    result=wrapped
+  }
+  probe.width=probe.height=1;wordmarks.set(image,result);return result
+}
+
 export async function renderPortfolioImage(portfolio) {
   if (portfolio?.kind === 'model') return renderModelImage(portfolio)
   if (!portfolio) throw new Error('Charge un portefeuille avant de créer le visuel.')
   const plan = publicationPlan(portfolio), owner = portfolioOwner(portfolio)
-  const [portrait, logos] = await Promise.all([portfolioPortrait({...portfolio.identity,displayName:owner}), Promise.all(plan.entries.map(positionLogo))])
+  const [portrait, logos] = await Promise.all([portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait), Promise.all(plan.entries.map(positionLogo))])
   const canvas = document.createElement('canvas'); canvas.width=1080; canvas.height=1350
   const ctx = canvas.getContext('2d'); if(!ctx) throw new Error('Impossible de créer le visuel.')
   ctx.fillStyle='#f7f8f2'; ctx.fillRect(0,0,1080,1350)
@@ -63,7 +90,7 @@ export async function renderPortfolioImage(portfolio) {
     else label(row.other?'…':row.ticker || companyInitials(row.label),x+width/2,y+height/2+8,28,green,'center')
   }
   plan.entries.forEach((entry,i)=>{
-    const {x,y,height}=entry, image=logos[i].image
+    const {x,y,height}=entry, image=readableLogo(logos[i].image)
     const anchorX=cx+Math.cos(entry.mid)*(outer+3),anchorY=cy+Math.sin(entry.mid)*(outer+3)
     const edge=entry.side==='left'?x+268:x, elbow=entry.side==='left'?302:778
     ctx.strokeStyle=entry.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(anchorX,anchorY);ctx.lineTo(elbow,anchorY);ctx.lineTo(edge,y+height/2);ctx.stroke()
@@ -81,7 +108,7 @@ export async function renderPortfolioImage(portfolio) {
   label('Valeur des positions déclarées',540,1065,30,ink,'center')
   label(cash(plan.total,plan.currency),540,1122,49,green,'center')
   label('13F · hors options · valeurs à la date du relevé',540,1168,24,ink,'center')
-  label(`${portfolio.holdings.length} lignes · détail intégral dans l’export`,540,1202,24,ink,'center')
+  label(portfolio.snapshot.reconciliationWarning ? `${portfolio.holdings.length} lignes · SEC prioritaire (écart fournisseur)` : `${portfolio.holdings.length} lignes · détail intégral dans l’export`,540,1202,24,ink,'center')
   label('Épargnant libre',540,1320,34,green,'center')
   if(portrait.image && /^CC BY/.test(portrait.license)) {
     const credit=labelLines(`Photo : ${portrait.author} · ${portrait.license} · détourée`,65)

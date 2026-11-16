@@ -6,8 +6,11 @@ on:
     paths:
       - 'scripts/update-investor-13f.py'
       - 'scripts/test_investor_refresh.py'
+      - 'scripts/test_investor_media.py'
       - 'scripts/refresh-investor-media.py'
+      - 'scripts/investor_media_sources.py'
       - 'scripts/validate-investor-publication.py'
+      - 'scripts/commit-investor-observations.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/producer_report_contract.py'
       - 'scripts/producer_report_plans.py'
@@ -40,7 +43,7 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      - run: python -m unittest discover -s scripts -p "test_investor*.py"
       # Fetch and validate all registered live portfolios in the disposable PR workspace.
       # No commit or deployment is possible from this read-only job.
       # Source failures remain explicit; the independent validator must certify
@@ -57,17 +60,17 @@ jobs:
         with:
           name: investor-observations
           path: |
-            ${{ runner.temp }}/investor-observations.json
+            ${{ runner.temp }}/investor-observations*.json
             ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
   update:
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     runs-on: ubuntu-26.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+      collection_failed: ${{ steps.commit.outputs.collection_failed == 'true' || (steps.commit.outcome != 'success' && steps.collect.outcome == 'failure') }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -78,7 +81,7 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      - run: python -m unittest discover -s scripts -p "test_investor*.py"
       - uses: actions/cache@v4
         with:
           path: .cache/investor-http
@@ -91,14 +94,6 @@ jobs:
         env:
           INVESTOR_HTTP_CACHE: .cache/investor-http
         run: python -u scripts/update-investor-13f.py --output "$RUNNER_TEMP/investor-observations.json"
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: investor-observations
-          path: |
-            ${{ runner.temp }}/investor-observations.json
-            ${{ runner.temp }}/**/*.contract-plan.json
-          retention-days: 35
       - uses: actions/cache@v4
         with:
           path: ~/.u2net
@@ -118,7 +113,15 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Update SEC 13F portfolios and preserve prior quarters' public/data/investors
+          python scripts/commit-investor-observations.py --report "$RUNNER_TEMP/investor-observations.json" -- bash scripts/commit-validated-data.sh 'Update SEC 13F portfolios and preserve prior quarters' public/data/investors
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investor-observations
+          path: |
+            ${{ runner.temp }}/investor-observations*.json
+            ${{ runner.temp }}/**/*.contract-plan.json
+          retention-days: 35
   # GITHUB_TOKEN pushes do not trigger the usual push workflow. Explicitly reuse
   # the same checked build and Pages deployment for the newly committed snapshot.
   deploy:
@@ -136,5 +139,5 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - run: |
-          echo 'Collecte 13F partielle : les investisseurs en échec gardent leur dernier relevé validé ; les autres ont été enregistrés. Voir investor-observations.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Collecte 13F partielle : les investisseurs en échec gardent leur dernier relevé validé ; Enregistrement : ${{ needs.update.result }} ; publication : ${{ needs.deploy.result }}. Voir investor-observations.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
