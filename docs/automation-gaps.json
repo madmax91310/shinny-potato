@@ -1096,7 +1096,7 @@
       "asOf": "2026-11-13",
       "checkedAt": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "222c6cbeb706f067f791cd95e2fe636808784ef4b49d93428df31ab6596cb015",
+      "sha256": "b9198cf757a8f01f2e73b25e10c3fbf2b4e598dc08bb92aa222b11f543b8f082",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1832,7 +1832,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "38ca76963df3087974e5079601858608fdd9d184fffdad7c0b9a38a1e0960043",
+      "sha256": "6dce676b90f07c069ccade0d5d43b17c140c6bafa5b7fe86ac5b81fafd411201",
       "evidence": []
     },
     {
@@ -1846,7 +1846,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "38ca76963df3087974e5079601858608fdd9d184fffdad7c0b9a38a1e0960043",
+      "sha256": "6dce676b90f07c069ccade0d5d43b17c140c6bafa5b7fe86ac5b81fafd411201",
       "evidence": []
     },
     {
@@ -1860,7 +1860,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "38ca76963df3087974e5079601858608fdd9d184fffdad7c0b9a38a1e0960043",
+      "sha256": "6dce676b90f07c069ccade0d5d43b17c140c6bafa5b7fe86ac5b81fafd411201",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1898,10 +1898,10 @@
       "label": "Positions pondérées",
       "configured": true,
       "status": "source-conflict",
-      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.",
+      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA.",
       "checkedAt": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "38ca76963df3087974e5079601858608fdd9d184fffdad7c0b9a38a1e0960043",
+      "sha256": "6dce676b90f07c069ccade0d5d43b17c140c6bafa5b7fe86ac5b81fafd411201",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 06 Nov 2026",
@@ -1927,6 +1927,16 @@
         "AMD",
         "Advanced Micro Devices Inc",
         "3.20",
+        "Country Supplement - Austria",
+        "Country Supplement - Denmark",
+        "Country Supplement - English (PL)",
+        "Country Supplement - Germany",
+        "Country Supplement - Luxembourg",
+        "Country Supplement - Polish",
+        "Country Supplement - Switzerland",
+        "Country Supplement - UK",
+        "German Consolidated Prospectus",
+        "Additional Documents",
         "TSLA",
         "Tesla Inc",
         "3.10",
