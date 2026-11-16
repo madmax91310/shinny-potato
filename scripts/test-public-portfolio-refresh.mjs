@@ -5,6 +5,14 @@ import { catalogue, CATALOGUE_REVISION, seedCatalogue, mergeFeed, validateFeed, 
 import { blankProfile, sourceKey } from '../src/pages/public-portfolios/lib.js';
 import { publishFeed, readPrevious, BRANCH, FILE } from './refresh-public-portfolio-feed.mjs';
 const feed = JSON.parse(readFileSync(new URL('../src/pages/public-portfolios/initial-feed.json', import.meta.url)));
+const research = JSON.parse(readFileSync(new URL('../src/pages/public-portfolios/performance-research.json', import.meta.url)));
+for (const candidate of research) {
+  const source = catalogue.find(row => row.id === candidate.catalogueId);
+  assert(source && source.evidence.includes(candidate.source));
+  assert.equal(candidate.status, 'unqualified');
+  assert(candidate.missing.length && Number.isFinite(candidate.declaredValue));
+  assert(!('verified' in candidate) && !('observation' in candidate));
+}
 validateFeed(feed);
 const firstPrevious = await readPrevious('TEST_TOKEN', async () => ({ ok: false, status: 404 }));
 assert.equal(firstPrevious.sha, '');

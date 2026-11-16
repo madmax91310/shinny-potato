@@ -5,6 +5,7 @@ import { expect } from "playwright/test";
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import { mkdirSync, copyFileSync, readFileSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import {
   blankProfile,
   blankSnapshot,
@@ -209,6 +210,18 @@ await page
   })
   .click();
 await (await archiveDownload).saveAs("/tmp/public-portfolio-images.zip");
+const downloadedPixels = await page.locator('canvas').first().evaluate(canvas => canvas.toDataURL('image/png').split(',')[1]);
+assert.equal(readFileSync('/tmp/public-portfolio-export.png').toString('base64'), downloadedPixels, 'Downloaded PNG matches the preview pixels');
+execFileSync('python3', ['-c', `import zipfile,struct
+with zipfile.ZipFile('/tmp/public-portfolio-images.zip') as archive:
+ assert archive.testzip() is None
+ assert archive.namelist() and len(archive.namelist()) == len(set(archive.namelist()))
+ for name in archive.namelist():
+  data=archive.read(name)
+  assert data[:8] == b'\\x89PNG\\r\\n\\x1a\\n'
+  assert struct.unpack('>II',data[16:24]) == (1080,1350)
+ assert archive.read(archive.namelist()[0]) == open('/tmp/public-portfolio-export.png','rb').read()
+print('PNG/ZIP: preview parity, dimensions and CRC verified')`], {stdio:'inherit'});
 assert.deepEqual(
   await page
     .locator("canvas")
