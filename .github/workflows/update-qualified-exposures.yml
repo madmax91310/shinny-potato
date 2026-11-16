@@ -74,6 +74,8 @@ on:
       - 'scripts/test-lifestrategy-exact-sleeves.mjs'
       - 'scripts/fixtures/lifestrategy-nav/**'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/check-uranium-known-source.py'
+      - 'scripts/fixtures/physical-holdings/globalx-urnu-20261113-unvalued-fx.csv'
       - 'scripts/invesco_physical_holdings.py'
       - 'scripts/capture-invesco-physical.mjs'
       - 'scripts/invesco-physical-holdings-contracts.json'
@@ -164,6 +166,8 @@ on:
       - 'scripts/test-lifestrategy-exact-sleeves.mjs'
       - 'scripts/fixtures/lifestrategy-nav/**'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/check-uranium-known-source.py'
+      - 'scripts/fixtures/physical-holdings/globalx-urnu-20261113-unvalued-fx.csv'
       - 'scripts/invesco_physical_holdings.py'
       - 'scripts/capture-invesco-physical.mjs'
       - 'scripts/invesco-physical-holdings-contracts.json'
@@ -187,6 +191,31 @@ on:
 permissions:
   contents: read
 jobs:
+  uranium-known-source-control:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
+      - name: Qualify the single-share known subset through its ordinary producer
+        env:
+          PHYSICAL_SOURCE_PROOF_DIR: ${{ runner.temp }}/uranium-known-source/raw-source
+        run: python scripts/check-uranium-known-source.py "$RUNNER_TEMP/uranium-known-source"
+      - uses: actions/upload-artifact@v7.0.0
+        if: always()
+        with:
+          name: uranium-known-positions-source-control
+          path: ${{ runner.temp }}/uranium-known-source
+          if-no-files-found: error
   refresh:
     runs-on: ubuntu-24.04
     timeout-minutes: 30

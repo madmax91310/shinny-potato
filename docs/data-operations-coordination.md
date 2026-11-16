@@ -11,6 +11,28 @@ Dépendances coordonnées : #1363 possède le build, #1364 la qualification part
 Uranium et le même producteur ; leurs changements doivent être intégrés sans écrasement.
 #1359/#1361, #1253 et #1061 gardent leurs périmètres. Les autres familles financières
 et l'interface de supervision ne sont pas modifiées. Pas de réactivation Radar/IA.
+## 16 novembre — sous-ensemble Uranium, refus intégral maintenu
+
+Même suivi #881 : `fix/uranium-explicit-partial-holdings-20261116` possède
+collect_physical_holdings, l'admission partielle typée du producteur complet,
+son horloge séparée, la projection conservatrice et leurs recettes/fixture.
+Le contrôle PR exerce seulement IE000NDWFGA5, en lecture seule. Les70positions
+publiées restent tracées ;59poids actions publiés peuvent être renouvelés.
+Aucun poids FX inventé, aucune couverture intégrale ni recouvrement admis.
+#1253 possède toujours S&P ; #1359/#1361 et le calendrier ne sont pas modifiés.
+Aucune date de réussite complète renouvelée sur cette erreur partielle.
+Les données financières sont générées uniquement par le producteur ordinaire.
+## 16 novembre — validation interrompue par la construction du calendrier
+
+Même suivi #881 : `fix/stable-json-code-budget-20261116` possède uniquement la
+projection build du calendrier, sa recette, son raccord Vite/prebuild et cette
+note. #1362 conserve intégralement les choix, notes et fonctions éditoriales.
+Échec ETF43896218366 à892261/892000octets : aucune hausse de budget.
+Après01391687 : refus distinct investisseurs725098/725000 dans le build local.
+La projection suit les constantes réellement déclarées sans restaurer MIDDAY_SELECTIONS.
+Les seules valeurs statiques sont projetées ; les fonctions restent comptées
+comme code. #1359/#1361 et les producteurs financiers ne sont pas modifiés.
+Enregistrement et publication réels restent à prouver après fusion.
 
 ## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
 
