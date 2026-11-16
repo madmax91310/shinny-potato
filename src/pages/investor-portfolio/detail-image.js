@@ -1,5 +1,6 @@
+import {labelLines} from './detail-labels.js'
 import { dateFR } from './data.js'
-import { portfolioOwner, labelLines } from './publication.js'
+import { portfolioOwner } from './publication.js'
 import { loadPortfolioFont, posterFont } from './type.js'
 import { detailBlocks, paginateDetailBlocks } from './detail-pagination.js'
 export async function renderDetailedPages(portfolio) {

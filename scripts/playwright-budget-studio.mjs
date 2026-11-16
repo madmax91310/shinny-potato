@@ -22,6 +22,15 @@ async function readZip(path){
  assert.equal(view.getUint32(offset,true),0x02014b50)
  return files
 }
+// Page navigation exists before its requested PNG has been encoded. Wait for
+// that exact image and decode it before checking the download action.
+async function selectedPngReady(page,number){
+ const region=page.getByRole('region',{name:'Image du budget',exact:true})
+ const image=region.locator(`img[alt*="image ${number} sur "]`)
+ await image.waitFor({state:'visible'})
+ await image.evaluate(img=>img.decode())
+ await expect(region).toHaveAttribute('aria-busy','false')
+}
 try{
  if(server)await waitPreview(server,base)
  for(const width of widths){
@@ -85,8 +94,8 @@ try{
   await page.getByRole('button',{name:'Copier le texte',exact:true}).click();assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),exactText)
   const mode=page.getByRole('group',{name:'Version de l’image',exact:true})
   await mode.locator('[data-value="social"]').click()
-  const pngButton=page.getByRole('button',{name:'Télécharger le PNG',exact:true});await expect(pngButton).toBeEnabled()
-  const img=page.getByRole('region',{name:'Image du budget'}).locator('img');await img.evaluate(e=>e.decode())
+  const pngButton=page.getByRole('button',{name:'Télécharger le PNG',exact:true})
+  await selectedPngReady(page,1);await expect(pngButton).toBeEnabled()
   const pngPromise=page.waitForEvent('download');await pngButton.click();const png=await pngPromise;await png.saveAs(`${out}/${width}-selected.png`)
   await page.getByText('Vérifier et télécharger la publication',{exact:true}).click()
   const review=page.getByRole('region',{name:'Relecture de la publication'})
@@ -117,10 +126,29 @@ try{
   await page.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value="${david.id}"]`).click()
   await page.getByRole('group',{name:'Version de l’image',exact:true}).locator('[data-value="social"]').click()
   await expect(page.getByRole('button',{name:'Image 2 sur 3',exact:true})).toBeVisible()
+  // Hold genuine encoder callbacks on mobile: navigation must remain usable,
+  // while the download stays disabled until the selected PNG is ready.
+  if(width===390)await page.evaluate(()=>{
+   window.budgetStudioNativeToBlob=HTMLCanvasElement.prototype.toBlob
+   window.budgetStudioPendingPng=[];window.budgetStudioReleasePng=false
+   HTMLCanvasElement.prototype.toBlob=function(callback,...args){
+    window.budgetStudioNativeToBlob.call(this,blob=>{
+     if(window.budgetStudioReleasePng)callback(blob)
+     else window.budgetStudioPendingPng.push(()=>callback(blob))
+    },...args)
+   }
+  })
   await page.getByRole('button',{name:'Image 2 sur 3',exact:true}).click()
-  await expect(page.locator('.budget-image-count')).toContainText('Image 2 sur 3')
-  await expect(page.getByRole('region',{name:'Image du budget'})).toHaveAttribute('aria-busy','false',{timeout:30000})
-  await expect(pngButton).toBeEnabled()
+  if(width===390){
+   await expect(page.getByRole('region',{name:'Image du budget',exact:true})).toHaveAttribute('aria-busy','true')
+   await expect(pngButton).toBeDisabled()
+   await page.evaluate(()=>{
+    window.budgetStudioReleasePng=true
+    HTMLCanvasElement.prototype.toBlob=window.budgetStudioNativeToBlob
+    window.budgetStudioPendingPng.splice(0).forEach(release=>release())
+   })
+  }
+  await selectedPngReady(page,2);await expect(pngButton).toBeEnabled()
   const pageTwoPromise=page.waitForEvent('download');await pngButton.click();const pageTwo=await pageTwoPromise
   await page.getByText('Vérifier et télécharger la publication',{exact:true}).click()
   const multiPromise=page.waitForEvent('download');await page.getByRole('region',{name:'Relecture de la publication'}).getByRole('button',{name:'Télécharger texte + 3 PNG (ZIP)',exact:true}).click()
