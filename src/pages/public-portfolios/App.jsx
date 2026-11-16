@@ -347,9 +347,27 @@ export default function App() {
   }
   function open(next, forPreparation = false) {
     setMessage("");
-    setP(structuredClone(next));
+    const opened = structuredClone(next);
+    const source =
+      opened.snapshots.find((row) => row.id === opened.draft?.snapshotId) ||
+      opened.snapshots.at(-1);
+    if (
+      forPreparation &&
+      source &&
+      !opened.draft &&
+      !issues(opened, source).length
+    ) {
+      opened.status = "Brouillon";
+      opened.draft = {
+        episode: 1,
+        text: buildText(opened, source, 1),
+        snapshotId: source.id,
+      };
+      if (!store(opened)) return;
+    }
+    setP(opened);
     setS(null);
-    setSelected(next.draft?.snapshotId || next.snapshots.at(-1)?.id || "");
+    setSelected(opened.draft?.snapshotId || source?.id || "");
     setHistory(null);
     requestAnimationFrame(() =>
       (forPreparation ? preparationRef : editorRef).current?.scrollIntoView({

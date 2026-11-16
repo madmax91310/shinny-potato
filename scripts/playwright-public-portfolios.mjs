@@ -430,7 +430,13 @@ await page.evaluate(
   p,
 );
 await page.reload();
-await page.getByRole("button", { name: "Ouvrir / modifier" }).click();
+await page
+  .getByRole("button", { name: "Préparer texte et images", exact: true })
+  .click();
+await expect(page.getByLabel("Texte final éditable")).toHaveValue(/SEMAINE #1/);
+await expect(
+  page.getByRole("button", { name: "Télécharger image 1", exact: true }),
+).toBeVisible();
 await choose(
   page.getByRole("group", { name: "Relevé à préparer", exact: true }),
   s.id,
