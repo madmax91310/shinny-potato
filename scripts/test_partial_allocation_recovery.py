@@ -1,6 +1,6 @@
 import copy,datetime as dt,gzip,json,unittest
 from pathlib import Path
-from collect_etf_pilot import collect,parse_share
+from collect_etf_pilot import collect,parse_share,allocation
 from apply_etf_collection import merge_collection
 from ishares_sector_fallback import classified_position_allocation
 ROOT=Path(__file__).resolve().parents[1];ISIN='IE00B6R52259';NOW=dt.datetime(2026,10,26,12,tzinfo=dt.timezone.utc)
@@ -44,4 +44,50 @@ class PartialAllocationRecovery(unittest.TestCase):
   for key,value in [('productId',1),('currencyCode','EUR')]:
    b=copy.deepcopy(self.body);b[key]=value;r=self.collect(b)
    self.assertEqual(r['shares'],[]);self.assertEqual(len(r['failures']),1)
+class StaleCountriesKeepIndependentFields(unittest.TestCase):
+ def setUp(self):
+  self.body=json.loads(gzip.decompress((ROOT/'scripts/fixtures/ishares-stale-country-20261116/IE00B1FZS350.json.gz').read_bytes()))
+  self.isin='IE00B1FZS350';self.now=dt.datetime(2026,11,16,12,tzinfo=dt.timezone.utc)
+  self.share=next(s for s in json.loads((ROOT/'scripts/etf-pilot.json').read_text())['instruments']if s['isin']==self.isin)
+  self.baseline={self.isin:{'currency':'USD'}}
+ def collect(self,body):return collect({'instruments':[self.share]},self.baseline,self.now,fetch=lambda *a,**k:json.dumps(body))
+ def test_stale_country_does_not_block_valid_calendar_and_other_fields(self):
+  report=self.collect(self.body);self.assertEqual(report['failures'],[])
+  r=report['shares'][0]
+  self.assertEqual(r['countries']['asOf'],'2026-11-13')
+  self.assertIn('Country of risk',r['countries']['method'])
+  self.assertEqual(r['rawComponents']['exposureBreakdowns']['containersByNameMap']['geography']['subContainersByNameMap']['countries']['dataPointsByNameMap']['asOf']['value'],20261001)
+  self.assertTrue(r['performance']['years']);self.assertGreater(r['aum']['amount'],0)
+  self.assertTrue(r['sectors']['rows'])
+  self.assertTrue(any(x['field']=='countries-primary' and x['fallbackQualified']for x in r['collectionErrors']))
+  self.assertEqual(len(r['holdings']['rows']),10)
+  self.assertIsNot(r['holdings'].get('complete'),True)
+ def test_old_country_values_and_clocks_survive_independent_publication(self):
+  b=copy.deepcopy(self.body)
+  b['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['holdingPercent']['value'].pop()
+  report=self.collect(b);self.assertEqual(report['failures'],[])
+  self.assertTrue(any(x['field']=='countries-primary' and not x['fallbackQualified']for x in report['shares'][0]['collectionErrors']))
+  country=self.body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['geography']['subContainersByNameMap']['countries']
+  old_country={**allocation(country,self.now-dt.timedelta(days=1)),'checkedAt':'2026-11-15'}
+  old={'currency':'USD','productId':self.share['productId'],'countries':old_country}
+  merged=merge_collection(report,{self.isin:old},self.baseline)[self.isin]
+  self.assertEqual(merged['countries'],old_country)
+  self.assertEqual(merged['performance']['checkedAt'],'2026-11-16')
+  self.assertEqual(merged['aum']['checkedAt'],'2026-11-16')
+ def test_date_limit_and_identity_and_return_currency_guards_remain(self):
+  country=self.body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['geography']['subContainersByNameMap']['countries']
+  self.assertEqual(allocation(country,self.now-dt.timedelta(days=1))['asOf'],'2026-10-01')
+  with self.assertRaisesRegex(ValueError,'stale issuer snapshot'):allocation(country,self.now)
+  for key,value in [('productId',1),('currencyCode','EUR')]:
+   b=copy.deepcopy(self.body);b[key]=value;r=self.collect(b)
+   self.assertEqual(r['shares'],[]);self.assertEqual(len(r['failures']),1)
+  b=copy.deepcopy(self.body)
+  calendar=b['componentsByNameMap']['performance']['containersByNameMap']['returns']['subContainersByNameMap']['calendar']['dataPointsByNameMap']
+  calendar['returnsByCurrency']['value']['annualNav']='EUR'
+  r=self.collect(b);self.assertEqual(r['shares'],[]);self.assertEqual(len(r['failures']),1)
+ def test_all_six_observed_stale_country_failures_opt_in_to_existing_isolation(self):
+  wanted={'IE00B1FZS350','IE00B3F81R35','IE00B4WXJJ64','IE00B66F4759','IE00BF3N7094','IE00BFZPF546'}
+  selected=[s for s in json.loads((ROOT/'scripts/etf-pilot.json').read_text())['instruments']if s['isin']in wanted]
+  self.assertEqual({s['isin']for s in selected},wanted)
+  for share in selected:self.assertIs(share.get('isolateAllocationFailures'),True)
 if __name__=='__main__':unittest.main()
