@@ -13,6 +13,20 @@ Radar, source de frais ou catalogue supplémentaire. La preuve GitHub/publie res
 requise après la recette locale ; ne pas confondre cette panne avec les 403 natifs
 sur les livres complets WisdomTree, qui restent distincts.
 
+## 16 novembre — calendrier statique partagé, validation financière
+
+Même suivi #881, #1363 reprend uniquement l'extraction statique déjà préparée
+dans #1365 : editorial-calendar.js et editorial-week.json, octets identiques.
+Les choix, notes, ordre et fonction publicationLabel sont comparés sur22routes.
+Aucun second plugin Vite, aucun changement éditorial ni hausse de budget.
+Refus ETF43896218366 :892261/892000 ; après01391687, un autre snapshot local
+refuse investisseurs725098/725000. Le calendrier statique supprime cette
+construction répétée. #1368 conserve le contrôle hebdomadaire actualisé.
+#1365 garde ses sources eToro et son interface ; #1359/#1361 sont préservées.
+Le correctif d'enregistrement #1360 a enregistré la reprise ETF43903822568,
+avec résultats individuels partiels conservés ; publication encore à vérifier.
+L'ancienne projection candidate non fusionnée est retirée, pas cumulée.
+
 ## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
 
 Même suivi #881, branche `fix/automation-recording-and-composition-20261116` :
