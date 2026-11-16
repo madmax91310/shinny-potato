@@ -1,3 +1,4 @@
+import { validPublicationDate } from './publication.js'
 import { analyzeBudget, compareBudgetRecency } from './lib.js'
 const signature = p => {
   const income = analyzeBudget(p).income
@@ -22,4 +23,8 @@ export function moveQueuedProfile(ids, id, direction) {
   ;[next[index], next[target]] = [next[target], next[index]]
   return next
 }
-export const scheduledLabel = date => date ? `Prévu le ${date.slice(8, 10)}/${date.slice(5, 7)}/${date.slice(0, 4)}` : 'Date prévue non renseignée'
+export function plannedBudgetDate(dates, id, date) {
+  const rest = Object.fromEntries(Object.entries(dates).filter(([key]) => key !== id))
+  return date ? { ...rest, [id]: date } : rest
+}
+export const scheduledLabel = date => validPublicationDate(date) ? `Prévu le ${date.slice(8, 10)}/${date.slice(5, 7)}/${date.slice(0, 4)}` : 'Date prévue non renseignée'

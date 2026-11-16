@@ -5,7 +5,7 @@ import { BUDGET_PROFILES, BUDGET_STUDIO_EDITORIAL_PROFILES } from '../src/pages/
 import { analyzeBudget, buildBudgetText, validBudget, blankBudget, refreshBudgetDraft, budgetImageExpenses } from '../src/pages/budget-profiles/lib.js'
 import { duplicateBudget } from '../src/pages/budget-profiles/manual.js'
 import { annualRow, monthlyRow, monthlyProvision, moveBudgetRow } from '../src/pages/budget-profiles/row-input.js'
-import { suggestBudgetPublications, moveQueuedProfile } from '../src/pages/budget-profiles/queue.js'
+import { suggestBudgetPublications, moveQueuedProfile, scheduledLabel, plannedBudgetDate } from '../src/pages/budget-profiles/queue.js'
 import { reviewBudget } from '../src/pages/budget-profiles/review.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { WORKSPACE_KEY, loadWorkspace, saveDraft, saveQueued, loadQueued, exportBudgetBackup, parseBudgetBackup, previewBudgetImport, restoreBudgetBackup, budgetStorageSnapshot, validWorkspace } from '../src/pages/budget-profiles/storage.js'
@@ -46,6 +46,8 @@ for(const p of BUDGET_PROFILES){
 const suggested=suggestBudgetPublications(BUDGET_PROFILES,{published:[bank.id],queued:[BUDGET_PROFILES[0].id]})
 assert(suggested.length);assert(!suggested.some(p=>[bank.id,BUDGET_PROFILES[0].id].includes(p.id)));assert.deepEqual(suggested,suggestBudgetPublications(BUDGET_PROFILES,{published:[bank.id],queued:[BUDGET_PROFILES[0].id]}));assert.equal(new Set(suggested.map(p=>p.id)).size,suggested.length)
 assert.deepEqual(moveQueuedProfile(['a','b'],'b',-1),['b','a'])
+assert.equal(scheduledLabel({}),'Date prévue non renseignée');assert.equal(scheduledLabel(Object.prototype.constructor),'Date prévue non renseignée')
+const prototypeDate=plannedBudgetDate({},'__proto__','2026-12-01');assert(Object.hasOwn(prototypeDate,'__proto__'));assert.equal(Object.getPrototypeOf(prototypeDate),Object.prototype);assert.equal(prototypeDate.__proto__,'2026-12-01');assert(!Object.hasOwn(plannedBudgetDate(prototypeDate,'__proto__',''),'__proto__'))
 const leo=reviewBudget(BUDGET_PROFILES.find(p=>p.name==='Léo'));assert.notEqual(leo.coverage.find(c=>c.id==='telecoms').status,'unknown')
 const vague=reviewBudget({...manual,expenses:[{label:'Autres dépenses',amount:100}]});assert(vague.coverage.every(item=>item.status==='unknown'))
 const health=reviewBudget({...manual,expenses:[{label:'Assurance automobile',amount:100}]});assert.equal(health.coverage.find(c=>c.id==='assurances_sante').status,'unknown')
