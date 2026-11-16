@@ -65,14 +65,15 @@ export async function renderPortfolioImage(portfolio) {
   function wrap(value,width,size,maxLines=2) {
     ctx.font=posterFont(size)
     const lines=[];let line=''
-    for(const word of String(value).split(/\s+/)) {
-      if(line && ctx.measureText(line+' '+word).width>width){lines.push(line);line=''}
-      // Break unbroken identifiers instead of drawing beyond the margin.
-      for(const char of word) {
-        if(ctx.measureText(line+char).width>width){lines.push(line);line=''}
-        line+=char
+    for(let word of String(value).split(/\s+/)) {
+      // Do not strand a final letter on its own line (Coreweav / e).
+      // A deliberate ellipsis keeps the name legible at the fixed type size.
+      if(ctx.measureText(word).width>width) {
+        while(word && ctx.measureText(word+'…').width>width)word=word.slice(0,-1)
+        word+='…'
       }
-      line+=' '
+      if(line && ctx.measureText(line+' '+word).width>width){lines.push(line);line=''}
+      line=line?line+' '+word:word
     }
     if(line.trim())lines.push(line.trim())
     if(lines.length>maxLines){lines.length=maxLines;let last=lines[maxLines-1].trim();while(ctx.measureText(last+'…').width>width)last=last.slice(0,-1);lines[maxLines-1]=last+'…'}

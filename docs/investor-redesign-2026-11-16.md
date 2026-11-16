@@ -49,4 +49,4 @@ Les preuves structurées sont dans [financial-check.json](../reports/investor-re
 
 Druckenmiller et Klarman restent bloqués par leurs conflits d’unités ; aucun visuel complet n’est produit pour eux. Les personnes sans portrait réutilisable vérifié gardent les initiales. Les portefeuilles très diversifiés gardent une part « Autres » parfois majoritaire ; leur détail reste intégral. Les noms très longs peuvent être abrégés sur l’image, avec les identités complètes conservées dans les exports. Aucun changement des collectes programmées ni publication sur X.
 
-La vérification de la version publique et les références de PR/fusion seront consignées après le portail Pages.
+Les références de fusion, du portail Pages et de la version publique sont consignées dans la [PR #1348](https://github.com/madmax91310/shinny-potato/pull/1348), mise à jour après le déploiement.
