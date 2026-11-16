@@ -9,15 +9,6 @@ Aucun poids FX inventé, aucune couverture intégrale ni recouvrement admis.
 #1253 possède toujours S&P ; #1359/#1361 et le calendrier ne sont pas modifiés.
 Aucune date de réussite complète renouvelée sur cette erreur partielle.
 Les données financières sont générées uniquement par le producteur ordinaire.
-## 16 novembre — validation interrompue par la construction du calendrier
-
-Même suivi #881 : `fix/stable-json-code-budget-20261116` possède uniquement la
-projection build du calendrier, sa recette, son raccord Vite/prebuild et cette
-note. #1362 conserve intégralement les choix, notes et fonctions éditoriales.
-Échec ETF43896218366 à892261/892000octets : aucune hausse de budget.
-Les seules valeurs statiques sont projetées ; les fonctions restent comptées
-comme code. #1359/#1361 et les producteurs financiers ne sont pas modifiés.
-Enregistrement et publication réels restent à prouver après fusion.
 
 ## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
 
