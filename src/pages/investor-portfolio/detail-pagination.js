@@ -1,4 +1,5 @@
-import { labelLines, colorPositions, reportedAmount, weightLabel } from './publication.js'
+import {labelLines} from './detail-labels.js'
+import { colorPositions, reportedAmount, weightLabel } from './publication.js'
 
 export function detailBlocks(portfolio) {
   const blocks = colorPositions(portfolio.holdings).map(row => ({

@@ -30,13 +30,14 @@ Moody’s, Chubb Limited, Occidental, Vistra Corp et iShares rejoignent le regis
 
 ## Validation locale
 
-- Compilation complète `npm run build` réussie, puis compilation finale Vite et audit des budgets après les corrections visuelles : investisseurs 724,9/725 kB de code, sans relever le seuil.
+- Compilation complète `npm run build` réussie, puis compilation finale Vite et audit des budgets après les corrections visuelles : investisseurs 721,6/725 kB de code, sans relever le seuil.
 - Tests purs : proportions, valeurs, somme des poids, regroupement exact, invalidation du cache, 300 et 1 501 petites lignes, classes, noms longs, moins de 0,1 %, actifs et empreintes des nouveaux logos, régression d’un trait traversant le nom Chubb.
 - Contrôle Decimal indépendant des 26 déclarations qualifiées et des sélections réellement rendues ; deux conflits d’unités conservés.
 - 30 PNG contrôlés par le navigateur : 26 profils réels et quatre cas synthétiques ; bornes et collisions du texte, téléchargement, copie, JSON/CSV/ZIP, panne de source, réessai de génération et repli sans médias. Le ZIP Renaissance conserve les 3 151 positions, réparties sur 526 images détaillées.
 - Recette des 28 profils à 1440 et 390 px : 52 PNG téléchargés, rouverts, dimensions exactes, identité des octets avec l’aperçu et entre les deux largeurs ; quatre états incomplets attendus sur les deux largeurs.
 - Parcours réel sur la compilation locale : Tepper, PNG, copie, JSON, CSV, ZIP, réessai, conservation du dernier relevé lors d’un HTTP 503, repli sans photo/logo, police chargée et ouverture de l’historique. Portraits vérifiés peints pour Berkshire, Marks, Gerstner, Icahn et Hohn ; avertissement Fundsmith conservé dans le texte et le JSON.
 - Navigateur Node 20.20.2 : 28 textes synchronisés, usage mobile et rejet des relevés incomplets.
+- Les 22 libellés de calendrier projetés sont comparés au registre canonique et aux badges des outils, sans modifier la source du calendrier.
 - Six tests Python du cache et des licences ; audit des 28 profils ; lint ciblé sans avertissement.
 - Registre partagé : empreintes et alias contrôlés ; 203 logos décodés et 178 rendus indices/variantes/devises contrôlés, y compris médias absents, corrompus, retardés et réessai.
 

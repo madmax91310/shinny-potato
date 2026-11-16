@@ -22,20 +22,6 @@ export function monetaryStatus(snapshot) {
   if (Math.abs(rows.reduce((sum, r) => sum + r.value, 0) - snapshot.declaredTotal) > rows.length * .5) return 'La somme des positions ne correspond pas au total déclaré.'
   return null
 }
-// Deterministic wrapping for the text detail pages; the poster measures its font.
-export function labelLines(value, columns = 14, maxChars = Infinity) {
-  const chars = [...String(value)]
-  const short = chars.length > maxChars ? chars.slice(0, maxChars - 1).join('') + '…' : chars.join('')
-  const lines = []; let line = ''
-  for (const word of short.split(/\s+/)) {
-    for (let part of word.match(new RegExp(`.{1,${columns}}`, 'gu')) ?? []) {
-      if (line && [...line + ' ' + part].length > columns) { lines.push(line); line = '' }
-      line = line ? line + ' ' + part : part
-    }
-  }
-  if (line) lines.push(line)
-  return lines
-}
 // These colors describe the illustration, never the financial data. A security's
 // identity gives it the same color on every page, even when grouped in the main.
 const palette = ['#1769cc','#e34c46','#f6ae2d','#803fb0','#00a889','#ef729b','#164455','#ae743b','#68882b','#5567a8','#e27635','#37959f']
