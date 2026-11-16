@@ -13,3 +13,13 @@ Les choix, notes et libellés des22routes sont comparés au module canonique ;
 une modification des choix est reprise automatiquement par la projection.
 Le test est exécuté par prebuild. La publication et le prochain producteur
 ordinaire restent à vérifier après fusion : une recette ne les remplace pas.
+
+## Rapprochement du correctif concurrent01391687
+
+Cette correction réduit bien le budget de Données à revoir. Le build local
+complet sur01391687 conserve toutefois un refus distinct : portefeuille
+investisseurs725098/725000octets. La projection est adaptée aux constantes
+effectivement déclarées (EDITORIAL_WEEK obligatoire, MIDDAY_SELECTIONS seulement
+si présent), sans restaurer les choix ou structures supprimés par l'autre lot.
+Les fonctions restent du code, les seuils inchangés. La première fermeture de
+cette PR et les deux échecs de recette sont conservés comme historique.
