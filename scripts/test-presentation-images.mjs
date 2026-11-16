@@ -32,15 +32,23 @@ try {
       assert.equal(result.width,1600)
       for(const c of result.calls)assert(c.left>=55 && c.right<=1545 && c.top>=45 && c.bottom<result.height-15,`${record.id}: overflowing text ${c.value}`)
       for(const c of result.calls.filter(c=>/^[≤>]?[ \d ,]+(?:%|€)/.test(c.value)))assert(parseFloat(c.font.match(/([\d.]+)px/)[1])>=56,`${record.id}: figures too small ${c.value}`)
-      // Qualitative values may wrap above their labels; keep both lines clear.
-      for(const c of result.calls.filter(c=>c.top>=640 && c.top<797)) assert(c.bottom<797,`${record.id}: metric value overlaps label`)
-      // Two-line metric labels and conditions must not overlap each other or the footer.
-      for(const c of result.calls.filter(c=>c.top>=797 && c.top<875)) assert(c.bottom<875,`${record.id}: metric label overlaps conditions`)
-      for(const c of result.calls.filter(c=>c.top>=875 && c.top<952)) assert(c.bottom<952,`${record.id}: conditions overlap footer`)
+      // Check the actual row boundaries of each layout, including long sector labels.
+      const labelTop=kind==='scpi'?831:797, qualifierTop=kind==='scpi'?887:875, footerTop=kind==='scpi'?940:952
+      for(const c of result.calls.filter(c=>c.top>=640 && c.top<labelTop)) assert(c.bottom<labelTop,`${record.id}: metric value overlaps label`)
+      for(const c of result.calls.filter(c=>c.top>=labelTop && c.top<qualifierTop)) assert(c.bottom<(kind==='scpi'&&c.top===831&&c.left>550?footerTop:qualifierTop),`${record.id}: metric label overlaps conditions`)
+      for(const c of result.calls.filter(c=>c.top>=qualifierTop && c.top<footerTop)) assert(c.bottom<footerTop,`${record.id}: conditions overlap footer`)
       const copy=result.calls.map(c=>c.value).join(' ').replace(/\s+/g,' ')
       assert.equal(copy.split('Épargnant Libre').length-1,1)
       assert(!copy.includes('Détail dans le texte'))
       assert.equal(result.height,1000)
+      if(kind==='scpi') {
+        assert(!copy.includes('Je te fais les présentations'))
+        assert(!copy.includes('Prix au') && !copy.includes('Minimum initial'))
+        const signature=result.calls.find(c=>c.value==='Épargnant Libre')
+        assert(Math.abs((signature.left+signature.right)/2-800)<1)
+        const top=[...record.snapshot.sectors].sort((a,b)=>b.value-a.value)[0]
+        assert(copy.includes(top.label) && copy.includes(String(top.value).replace('.',',')))
+      }
       const model=presentationReliefModel(record,kind)
       assert.equal(model.highlights.length,3)
       for(const r of model.highlights) {

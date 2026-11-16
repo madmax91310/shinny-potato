@@ -107,12 +107,14 @@ export function presentationReliefModel(record,kind) {
     brand: presentationBrands[record.id] }
   if(kind==='scpi') {
     const latest=record.annual.years.at(-1)
+    const top=[...record.snapshot.sectors].sort((a,b)=>b.value-a.value)[0]
     model.highlights=[
       row(`Distribution ${latest.year}`,pct(latest.distribution)),
-      row('Prix de la part',euro(record.price.value)),
-      row('Minimum initial',euro(record.conditions.minimum)),
+      row('Pour une part',euro(record.price.value)),
+      row(top.label,pct(top.value)),
     ]
-    model.qualifier='Taux de distribution brut de fiscalité étrangère · Prix au '+dateLabel(record.price.asOf)
+    model.qualifier='Brut de fiscalité étrangère'
+    model.subtitle='SCPI · Immobilier d’entreprise'
   } else {
     model.highlights=record.euroFunds.slice(0,2).map(f=>{
       const r=f.years.at(-1)
