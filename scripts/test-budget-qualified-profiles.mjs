@@ -3,7 +3,7 @@ import entries from '../src/pages/budget-profiles/editorial-profiles-qualified-2
 import candidates from '../docs/budget-qualified-bank-2026-11-15/candidates.json' with { type: 'json' }
 import authors from '../docs/budget-qualified-bank-2026-11-15/source-author-check.json' with { type: 'json' }
 import browserCommands from './ci-browser-checks.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_QUALIFIED_EDITORIAL_PROFILES, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_EDITORIAL, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, validBudget, matchesBudgetFilters, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 
@@ -75,9 +75,9 @@ for(const width of [1440,390,320]) {
     const batch=command.match(/BUDGET_BATCH=(\w+)/)?.[1]
     const partition=command.match(/BUDGET_PART=(\d+)\/(\d+)/)
     const part=Number(partition?.[1]||0),count=Number(partition?.[2]||1)
-    const profiles={previous:BUDGET_NEW_EDITORIAL_PROFILES,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES}[batch]
+    const profiles={previous:BUDGET_NEW_EDITORIAL_PROFILES,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES,complementary:BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES}[batch]
     assert(profiles&&count>0&&part<count,'Known complete budget CI batch')
     covered.push(...profiles.filter((_,index)=>index%count===part).map(p=>p.id))
   }
-  assert.deepEqual(covered.sort(),[...BUDGET_NEW_EDITORIAL_PROFILES,...BUDGET_QUALIFIED_EDITORIAL_PROFILES].map(p=>p.id).sort())
+  assert.deepEqual(covered.sort(),[...BUDGET_NEW_EDITORIAL_PROFILES,...BUDGET_QUALIFIED_EDITORIAL_PROFILES,...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES].map(p=>p.id).sort())
 }
