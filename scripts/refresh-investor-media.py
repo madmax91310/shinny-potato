@@ -23,7 +23,7 @@ def refresh():
     session = None
     for slug, source in json.loads(SOURCES.read_text()).items():
         metadata = {key: source.get(key) for key in ('source', 'url', 'author', 'license', 'title')}
-        metadata.update({key: source[key] for key in ('excludePolygons', 'maskNote') if key in source})
+        metadata.update({key: source[key] for key in ('excludePolygons', 'maskNote', 'maxPublicationScale') if key in source})
         if source.get('sourceSha256'):
             metadata.update({key: source[key] for key in ('person', 'licenseUrl', 'sourceSha1', 'sourceSha256', 'identitySource', 'identityVerified', 'checkedAt', 'crop', 'cropForSha1', 'cropNote') if key in source})
         local = ROOT / 'public/asset-art' / source['file']
@@ -81,6 +81,13 @@ def refresh():
                         if session is None:
                             session = new_session('u2netp', providers=['CPUExecutionProvider'])
                         cutout = remove(image, session=session, post_process_mask=True)
+                    if reviewed and reviewed.get('refineEdges'):
+                        from PIL import ImageChops
+                        from rembg import remove, new_session
+                        if session is None:
+                            session = new_session('u2netp', providers=['CPUExecutionProvider'])
+                        segmented = remove(image, session=session, post_process_mask=True)
+                        cutout.putalpha(ImageChops.darker(image.getchannel('A'), segmented.getchannel('A')))
                     if metadata.get('excludePolygons'):
                         from PIL import ImageDraw
                         mask = cutout.getchannel('A')

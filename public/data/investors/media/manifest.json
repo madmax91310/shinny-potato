@@ -71,25 +71,33 @@
     "adaptation": "Détourage automatique u2netp ; proportions conservées."
   },
   "cathie-wood": {
-    "source": "https://commons.wikimedia.org/wiki/File%3ACathie_Wood.jpg",
-    "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Cathie_Wood.jpg",
-    "author": "Steve Jurvetson",
-    "license": "CC BY 2.0",
-    "title": "File:Cathie Wood.jpg",
-    "maskNote": "Contour photographique revu manuellement le 17 novembre 2026 ; fond et trous de segmentation corrigés sans modifier les pixels du sujet.",
-    "reviewedMask": "investors/cathie-wood-mask.json",
-    "maskSha256": "1716b758bdc69bdbcda9e5b730fec875f766ac27ce4fab2303fc4b825dd70881",
+    "source": "https://commons.wikimedia.org/wiki/File:Cathie_Wood_ARK_Invest_Photo.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Cathie_Wood_ARK_Invest_Photo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Caroline Wood",
+    "license": "CC BY-SA 4.0",
+    "title": "File:Cathie Wood ARK Invest Photo.jpg",
+    "maskNote": "Contour revu sur le fichier source exact ; cheveux, lunettes et vêtements préservés.",
+    "person": "Cathie Wood",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceSha1": "edcfaf83c81ce4b163ff80b2458af70b7bb99fad",
+    "sourceSha256": "a393a9fbc2c723ce653bf6a82fed9723053c2f36a9c7dd4adec339a1a9f327bd",
+    "identitySource": "https://commons.wikimedia.org/wiki/File:Cathie_Wood_ARK_Invest_Photo.jpg",
+    "identityVerified": true,
+    "checkedAt": "2026-11-17",
     "crop": [
-      0,
-      40,
-      450,
-      480
+      150,
+      250,
+      1190,
+      1450
     ],
-    "cropNote": "Cadrage de publication sur le buste et la main levée, après détourage ; chaise et jambes hors cadre.",
+    "cropForSha1": "edcfaf83c81ce4b163ff80b2458af70b7bb99fad",
+    "cropNote": "Cadrage sur cheveux, visage et buste de la photographie 2020, sans agrandissement génératif. Le portrait Jurvetson et son masque #1380 sont conservés en archive.",
+    "reviewedMask": "investors/cathie-wood-ark-mask.json",
+    "maskSha256": "fb13ed4b31ea512a8093bbcecc0ae155426721b5cd7892bd97acfd482fc42e1a",
     "status": "ready",
     "reason": null,
-    "file": "data/investors/media/cathie-wood-57eb7f1a5e7d626f.png",
-    "sourceDigest": "57eb7f1a5e7d626ffe45610805f6c41b7fffa23c2907a95149747d28a809a2c8",
+    "file": "data/investors/media/cathie-wood-ea122ad3e73111f8.png",
+    "sourceDigest": "ea122ad3e73111f8d632e7956c25e1a3efa18f49dd09e15be2605eee9df500fc",
     "adaptation": "Détourage et cadrage de publication revus sur la photographie originale ; pixels et proportions conservés."
   },
   "thiel": {
@@ -147,10 +155,11 @@
     "author": "Appaloosa Management",
     "license": "CC BY-SA 3.0",
     "title": "File:David Tepper 01.jpg",
+    "maxPublicationScale": 1.5,
     "status": "ready",
     "reason": null,
-    "file": "data/investors/media/tepper-2f6abdf02b5c595c.png",
-    "sourceDigest": "2f6abdf02b5c595ccd5e6f752a32b9f52aef910d3d5b1ebc494ae26544b9a706",
+    "file": "data/investors/media/tepper-d801a04c026016d0.png",
+    "sourceDigest": "d801a04c026016d02ecdd1182b76b03eece58c1ce8102d4c107db339a92f6e75",
     "adaptation": "Détourage automatique u2netp ; proportions conservées."
   },
   "loeb": {
@@ -328,6 +337,7 @@
     "author": "Gleuschk",
     "license": "CC BY-SA 3.0",
     "title": "File:Jim Simons at MSRI.jpg",
+    "maskNote": "Fond sombre derrière le haut du crâne exclu ; boucles blanches réelles de la nuque conservées, revue 17 novembre 2026.",
     "person": "Jim Simons",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "sourceSha1": "be1809caf0f0eed9d52e99f5c51cf09992dd6dfe",
@@ -335,6 +345,8 @@
     "identitySource": "https://commons.wikimedia.org/wiki/File:Jim_Simons_at_MSRI.jpg",
     "identityVerified": true,
     "checkedAt": "2026-11-17",
+    "reviewedMask": "investors/renaissance-mask.json",
+    "maskSha256": "98fc75feec27f09de0f8623affd75e114f86780114764f95ba1af1096d880023",
     "illustration": {
       "nature": "historical-association",
       "person": "Jim Simons",
@@ -346,9 +358,9 @@
     },
     "status": "ready",
     "reason": null,
-    "file": "data/investors/media/renaissance-b8dc68a63d9eea93.png",
-    "sourceDigest": "b8dc68a63d9eea93d0e78e6e26f3bdbe16d68812adf647adfa771981d046579a",
-    "adaptation": "Détourage automatique u2netp ; proportions conservées."
+    "file": "data/investors/media/renaissance-74c6dbfdf3ca2fe9.png",
+    "sourceDigest": "74c6dbfdf3ca2fe9ae0eb1bdabf7503fa3405d904aecb9ba689c1bb3aafef585",
+    "adaptation": "Détourage et cadrage de publication revus sur la photographie originale ; pixels et proportions conservés."
   },
   "einhorn": {
     "source": "https://tech.cornell.edu/news/david-m-einhorn-president-of-greenlight-capital-joins-the-council-at-cornell-tech/",
@@ -374,6 +386,9 @@
     "author": "The White House",
     "license": "Domaine public",
     "title": "Brad Gerstner at the White House 2025 (54581192563).jpg",
+    "maskNote": "Personne en arrière-plan exclue ; microphone, costume et visage préservés, revue 17 novembre 2026.",
+    "reviewedMask": "investors/gerstner-mask.json",
+    "maskSha256": "d934d40530f5bdb28987b294d289b3d4c15024c5f615e80e01e0490725ea5191",
     "crop": [
       90,
       20,
@@ -389,9 +404,9 @@
     "identityVerified": true,
     "status": "ready",
     "reason": null,
-    "file": "data/investors/media/gerstner-6319e2097718ca3c.png",
-    "sourceDigest": "6319e2097718ca3c177741f648adb59e02284830339b6841de2836a6d2be01e5",
-    "adaptation": "Détourage automatique u2netp ; proportions conservées."
+    "file": "data/investors/media/gerstner-c82a06c78b440fc9.png",
+    "sourceDigest": "c82a06c78b440fc930697aacf962de6d281f6aa6cb0e3282eb4375c995bd5fe1",
+    "adaptation": "Détourage et cadrage de publication revus sur la photographie originale ; pixels et proportions conservés."
   },
   "gayner": {
     "source": "https://ir.mklgroup.com/investor-relations/governance/board-of-directors/person-details/default.aspx?ItemId=8d182144-912b-4754-8328-744dd68649df",

@@ -68,22 +68,29 @@
     "maskNote": "Masque de sujet vérifié sur la photo source 593 × 549 : retrait des personnes en arrière-plan, visage et proportions de Bill Ackman conservés."
   },
   "cathie-wood": {
-    "title": "File:Cathie Wood.jpg",
-    "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Cathie_Wood.jpg",
-    "license": "CC BY 2.0",
-    "author": "Steve Jurvetson",
-    "description": "Cathie Wood",
-    "source": "https://commons.wikimedia.org/wiki/File%3ACathie_Wood.jpg",
-    "file": "investors/cathie-wood.webp",
-    "reviewedMask": "investors/cathie-wood-mask.json",
-    "maskNote": "Contour photographique revu manuellement le 17 novembre 2026 ; fond et trous de segmentation corrigés sans modifier les pixels du sujet.",
+    "person": "Cathie Wood",
+    "title": "File:Cathie Wood ARK Invest Photo.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Cathie_Wood_ARK_Invest_Photo.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Cathie_Wood_ARK_Invest_Photo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "file": "investors/cathie-wood-ark-original.jpg",
+    "author": "Caroline Wood",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceSha1": "edcfaf83c81ce4b163ff80b2458af70b7bb99fad",
+    "sourceSha256": "a393a9fbc2c723ce653bf6a82fed9723053c2f36a9c7dd4adec339a1a9f327bd",
+    "identitySource": "https://commons.wikimedia.org/wiki/File:Cathie_Wood_ARK_Invest_Photo.jpg",
+    "identityVerified": true,
+    "checkedAt": "2026-11-17",
+    "reviewedMask": "investors/cathie-wood-ark-mask.json",
     "crop": [
-      0,
-      40,
-      450,
-      480
+      150,
+      250,
+      1190,
+      1450
     ],
-    "cropNote": "Cadrage de publication sur le buste et la main levée, après détourage ; chaise et jambes hors cadre."
+    "cropForSha1": "edcfaf83c81ce4b163ff80b2458af70b7bb99fad",
+    "cropNote": "Cadrage sur cheveux, visage et buste de la photographie 2020, sans agrandissement génératif. Le portrait Jurvetson et son masque #1380 sont conservés en archive.",
+    "maskNote": "Contour revu sur le fichier source exact ; cheveux, lunettes et vêtements préservés."
   },
   "thiel": {
     "title": "File:Peter Thiel (2014).jpg",
@@ -130,7 +137,8 @@
     "author": "Appaloosa Management",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File%3ADavid_Tepper_01.jpg",
-    "file": "investors/tepper.webp"
+    "file": "investors/tepper.webp",
+    "maxPublicationScale": 1.5
   },
   "loeb": {
     "title": "Daniel S. Loeb · Third Point",
@@ -297,7 +305,9 @@
       "associationSource": "https://www.simonsfoundation.org/news/simons-foundation-co-founder-mathematician-and-investor-jim-simons-dies-at-86/",
       "associationDate": "2024-05-10",
       "note": "Jim Simons · fondateur (1938–2024). Portrait d’illustration ; les positions sont celles de Renaissance Technologies, jamais son patrimoine personnel."
-    }
+    },
+    "reviewedMask": "investors/renaissance-mask.json",
+    "maskNote": "Fond sombre derrière le haut du crâne exclu ; boucles blanches réelles de la nuque conservées, revue 17 novembre 2026."
   },
   "einhorn": {
     "title": "David Einhorn · Cornell University",
@@ -335,7 +345,9 @@
         390
       ],
       "cropForSha1": "d15238e9f36f39e5ce42db61cd9fb37759d5ef02"
-    }
+    },
+    "reviewedMask": "investors/gerstner-mask.json",
+    "maskNote": "Personne en arrière-plan exclue ; microphone, costume et visage préservés, revue 17 novembre 2026."
   },
   "gayner": {
     "title": "Tom Gayner · Markel Group",

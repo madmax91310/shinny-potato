@@ -2,6 +2,7 @@ import { entityPortfolio } from './publication.js'
 export { companyInitials } from '../factsheet-tweets/companyLogos.js'
 import registry from '../factsheet-tweets/companyLogoRegistry.json' with { type: 'json' }
 import aliases from '../factsheet-tweets/companyLogoAliases.json' with { type: 'json' }
+import investorLogos from '../../../public/asset-art/investor-logos/sources.json' with { type: 'json' }
 import official from '../../../public/asset-art/official-logos/sources.json' with { type: 'json' }
 import additional from '../../../public/asset-art/index-logos/sources.json' with { type: 'json' }
 import { loadArtImage } from '../../lib/art-resources.js'
@@ -9,6 +10,8 @@ import { investorPortrait } from './portrait.js'
 
 // Exact reviewed aliases only. No fuzzy names or globally ambiguous tickers.
 export function logoIdentity(row) {
+  const local=Object.entries(investorLogos).find(([,v])=>v.cusips.includes(row.cusip) || v.aliases.includes(row.issuerName))
+  if(local)return {id:local[0],...local[1]}
   const matches = Object.entries(aliases).filter(([,v]) => v.aliases.includes(row.issuerName) || (row.isin && v.securities?.includes(row.isin)) || (row.cusip && v.securities?.some(isin => /^(US|CA)/.test(isin) && isin.slice(2,11) === row.cusip)))
   if (matches.length !== 1) return null
   const id = matches[0][0], source = additional[id] || official[id], logo = registry.companies[id]?.file ? registry.companies[id] : source
