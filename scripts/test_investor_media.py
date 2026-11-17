@@ -9,6 +9,28 @@ import investor_media_sources as media
 
 
 class MediaTests(unittest.TestCase):
+    def test_reviewed_photographs_keep_clothes_hair_and_hand(self):
+        import json
+        from PIL import Image
+        from investor_portrait_masks import reviewed_cutout
+        folder=Path(__file__).resolve().parents[1]/'public/asset-art/investors'
+        cases={
+            'gates-trust': ([(450,450),(550,1000),(450,1000),(100,900)],[(800,300),(50,100)]),
+            'cathie-wood': ([(415,210),(220,330),(150,100)],[(270,80),(140,580)])
+        }
+        for slug,(subject,background) in cases.items():
+            with self.subTest(slug=slug):
+                source=(folder/f'{slug}.webp').read_bytes()
+                image=Image.open(io.BytesIO(source)).convert('RGBA')
+                spec=json.loads((folder/f'{slug}-mask.json').read_text())
+                cutout=reviewed_cutout(image,spec,source)
+                self.assertEqual(cutout.size,image.size)
+                self.assertEqual(cutout.convert('RGB').tobytes(),image.convert('RGB').tobytes())
+                for point in subject:self.assertGreaterEqual(cutout.getpixel(point)[3],250)
+                for point in background:self.assertEqual(cutout.getpixel(point)[3],0)
+                with self.assertRaisesRegex(ValueError,'Photo différente'):
+                    reviewed_cutout(image,spec,b'changed photograph')
+
     def fixture(self, license='CC BY 2.0'):
         content=b'verified image bytes'
         source={'person':'Verified Investor','commonsPortrait':{'wikidataId':'Q123','title':'Verified Investor.jpg','identitySource':'https://official.example/team/investor'}}

@@ -65,7 +65,7 @@ const lightness=color=>{const v=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/2
 export async function renderPortfolioImage(portfolio) {
   if(portfolio?.kind==='model')return renderModelImage(portfolio)
   if(!portfolio)throw Error('Charge un portefeuille avant de créer le visuel.')
-  const plan=publicationPlan(portfolio),owner=portfolioOwner(portfolio)
+  const plan=publicationPlan(portfolio),owner=portfolioOwner(portfolio),series=editorialSeries(portfolio)
   const [,portrait,logos]=await Promise.all([loadPortfolioFont(),portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait),Promise.all(plan.entries.map(positionLogo))])
   const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350
   const ctx=canvas.getContext('2d');if(!ctx)throw Error('Impossible de créer le visuel.')
@@ -78,9 +78,10 @@ export async function renderPortfolioImage(portfolio) {
   while(ctx.measureText(owner).width>1000&&titleSize>60){titleSize-=2;ctx.font=posterFont(titleSize,900)}
   const title=[];let line=''
   for(const word of owner.split(/\s+/)){if(line&&ctx.measureText(line+' '+word).width>1000){title.push(line);line=''}line=line?line+' '+word:word}if(line)title.push(line)
-  title.forEach((line,i)=>label(line,540,(title.length>1?82:108)+i*65,titleSize,'#008c30','center',900))
+  title.forEach((line,i)=>label(line,540,(title.length>1?72:98)+i*65,titleSize,'#008c30','center',900))
   const date=new Date(portfolio.snapshot.periodEnd+'T12:00:00Z')
-  label(`Portefeuille · T${Math.ceil((date.getUTCMonth()+1)/3)} ${date.getUTCFullYear()}`,540,title.length>1?218:190,title.length>1?48:55,ink,'center',900)
+  label(`Portefeuille · T${Math.ceil((date.getUTCMonth()+1)/3)} ${date.getUTCFullYear()}`,540,title.length>1?186:151,title.length>1?36:40,ink,'center',900)
+  label('Principales positions',540,title.length>1?223:192,28,ink,'center',750)
   const {cx,cy,outer,inner,badgeRadius:br}=POSTER
   plan.entries.forEach((e,i)=>{
     ctx.beginPath();ctx.arc(cx,cy,outer,e.start,e.end);ctx.arc(cx,cy,inner,e.end,e.start,true);ctx.closePath();ctx.fillStyle=e.color;ctx.fill()
@@ -88,11 +89,13 @@ export async function renderPortfolioImage(portfolio) {
     if(e.weight>=.003&&prior.weight>=.003){ctx.strokeStyle=bg;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.start)*inner,cy+Math.sin(e.start)*inner);ctx.lineTo(cx+Math.cos(e.start)*outer,cy+Math.sin(e.start)*outer);ctx.stroke()}
   })
   const occupied=new Uint8Array(1080*1350)
+  ctx.font=posterFont(24,750)
+  const captionWidth=portrait.illustration?.caption?Math.ceil(ctx.measureText(portrait.illustration.caption).width/2)*2+24:0
   if(portrait.image) {
     const image=portrait.image,k=Math.min(600/image.width,530/image.height)
-    const left=cx-image.width*k/2,top=cy+inner+40-image.height*k
+    const left=cx-image.width*k/2,top=cy+inner+40-image.height*k,half=Math.min(280,image.width*k*.46)
     const mask=document.createElement('canvas');mask.width=1080;mask.height=1350
-    const m=mask.getContext('2d');m.beginPath();m.arc(cx,cy,inner+20,0,Math.PI*2);m.rect(0,0,1080,cy+60);m.clip();m.drawImage(image,left,top,image.width*k,image.height*k)
+    const m=mask.getContext('2d');m.beginPath();m.moveTo(cx,cy+inner+20);m.bezierCurveTo(cx-200,cy+inner+20,cx-half,cy+70,cx-half,cy-70);m.lineTo(cx-300,350);m.lineTo(cx+300,350);m.lineTo(cx+half,cy-70);m.bezierCurveTo(cx+half,cy+70,cx+200,cy+inner+20,cx,cy+inner+20);m.closePath();m.clip();m.drawImage(image,left,top,image.width*k,image.height*k)
     ctx.drawImage(mask,0,0)
     const pixels=m.getImageData(0,0,1080,1350).data
     for(let i=0;i<occupied.length;i++)if(pixels[i*4+3]>12)occupied[i]=1
@@ -102,10 +105,15 @@ export async function renderPortfolioImage(portfolio) {
     ctx.font=posterFont(40,800)
     for(const word of words){if(current&&ctx.measureText(current+' '+word).width>330){lines.push(current);current=''}current=current?current+' '+word:word}if(current)lines.push(current)
     lines.forEach((line,i)=>label(line,cx,cy+(i-(lines.length-1)/2)*48-30,40,ink,'center',800))
-    const series=editorialSeries(portfolio)
     if(series.coverage<.5){label(`Les ${series.topCount} premières`,cx,cy+100,27,ink);label(`${weightLabel(series.coverage)} du portefeuille`,cx,cy+136,27,ink)}
   }
   for(const e of plan.entries)for(let y=Math.floor(e.badge.y-br-5);y<=e.badge.y+br+5;y++)for(let x=Math.floor(e.badge.x-br-5);x<=e.badge.x+br+5;x++)if(Math.hypot(x-e.badge.x,y-e.badge.y)<br+5)occupied[y*1080+x]=1
+  if(portrait.image){
+    const bands=[]
+    if(series.coverage<.5)bands.push([cx-170,cy+106,340,50])
+    if(portrait.illustration?.caption)bands.push([cx-captionWidth/2-4,cy+151,captionWidth+8,42])
+    for(const [x,y,w,h] of bands)for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)occupied[yy*1080+xx]=1
+  }
   // Reserve validated leader routes before placing any external logo.
   for(const e of plan.entries)for(let i=1;i<(e.leader?.length || 0);i++){
     const a=e.leader[i-1],b=e.leader[i],steps=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y))
@@ -121,7 +129,7 @@ export async function renderPortfolioImage(portfolio) {
       for(const width of [270,240,220,200,190,175,160,145,130,115,100,85,70,60]) {
         const k=Math.min(width/image.width,150/image.height)
         if(image.width*k<56||image.height*k<26)continue
-        logoSearch: for(const r of [270,286,305,325])for(const turn of [0,-.05,.05,-.1,.1])for(const radial of ratio>2.6?[true,false]:[false]) {
+        logoSearch: for(const r of [245,270,295,320,345])for(const turn of [0,-.08,.08,-.16,.16,-.24,.24,-.32,.32])for(const radial of ratio>2.6?[true,false]:[false]) {
           let a=radial?e.mid+turn:0;if(radial&&Math.cos(a)<0)a+=Math.PI
           const c=Math.cos(a),sn=Math.sin(a),x=cx+Math.cos(e.mid+turn)*r,y=cy+Math.sin(e.mid+turn)*r
           const fits=logo.points.every(([px,py])=>{
@@ -172,17 +180,31 @@ export async function renderPortfolioImage(portfolio) {
     label(pct,badge.x,badge.y+size*.35,size,lightness(e.color)<.179?'#fff':ink,'center',900)
     box.lines.forEach((line,j)=>label(line,box.x+box.width/2,box.y+34+j*40,36,green,'center',850))
   })
+  const amounts=[]
+  for(const e of plan.entries){
+    const value=cash(e.value,plan.currency),size=27;ctx.font=posterFont(size,650)
+    const width=ctx.measureText(value).width+8,box=e.box
+    const candidates=[{x:box.x+(box.width-width)/2,y:box.y+box.height+8},{x:box.x+(box.width-width)/2,y:box.y-39}]
+    const overlap=(a,b)=>a.x<b.x+b.width+5&&a.x+a.width+5>b.x&&a.y<b.y+b.height+5&&a.y+a.height+5>b.y
+    for(const at of candidates){
+      const b={...at,width,height:31}
+      if(b.x<20||b.x+width>1060||b.y<202||b.y+31>1244||amounts.some(a=>overlap(a,b))||plan.entries.some(r=>overlap(b,r.box)||Math.hypot(r.badge.x-Math.max(b.x,Math.min(r.badge.x,b.x+width)),r.badge.y-Math.max(b.y,Math.min(r.badge.y,b.y+31)))<br+8))continue
+      if(Math.hypot(cx-Math.max(b.x,Math.min(cx,b.x+width)),cy-Math.max(b.y,Math.min(cy,b.y+31)))<outer+6)continue
+      if(routeOccupied(b.x,b.y,width,31))continue
+      label(value,b.x+width/2,b.y+25,size,ink,'center',650);amounts.push(b);break
+    }
+  }
   label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
-  const coverage=editorialSeries(portfolio)
+  const coverage=series
   if(portrait.image&&coverage.coverage<.5){ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(cx-166,cy+110,332,42,12);ctx.fill();label(`${coverage.topCount} premières · ${weightLabel(coverage.coverage)}`,cx,cy+140,27,ink)}
-  if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-240,cy+155,480,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
+  if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-captionWidth/2,cy+155,captionWidth,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
   if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
-  const series=editorialSeries(portfolio)
   label(`Épargnant libre${series.pages.length>1?` · 1/${series.pages.length}`:''}`,540,1343,27,ink,'center',750)
   const photo=portrait.image?Object.fromEntries(['person','title','source','url','author','license','licenseUrl','adaptation','sourceDigest','illustration'].map(key=>[key,portrait[key]])):null
   if(photo&&!photo.licenseUrl){const match=photo.license.match(/^CC BY(-SA)? ([0-9.]+)/);if(match)photo.licenseUrl=`https://creativecommons.org/licenses/by${match[1]?'-sa':''}/${match[2]}/`}
   return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
 }
+
 
 
 // The approved glass background and cards also frame allocation models. All

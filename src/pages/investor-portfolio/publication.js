@@ -51,7 +51,7 @@ export function shortPosition(row) {
   let base=String(shortNames[row.cusip] || issuerNames[row.issuerName] || (distinct?row.issuerName:null) || row.displayLabel || row.issuerName || '')
   if(distinct && !shortNames[row.cusip] && !issuerNames[row.issuerName] && base===base.toUpperCase())base=base.toLocaleLowerCase('fr-FR').replace(/\b\p{L}/gu,c=>c.toLocaleUpperCase('fr-FR'))
   let name=base.replace(/ \([A-Z0-9*@#]{9}\)$/,'')
-    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co|Del|New|Plc)\b\.?/gi,'').replace(/Occidental Pete/i,'Occidental').replace(/Moodys/i,'Moody’s').replace(/Berkshire Hathaway/i,'Berkshire').replace(/^[,\s]+|[,\s]+$/g,'').replace(/\s+/g,' ').trim()
+    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co|Del|New|Plc)\b\.?/gi,'').replace(/Occidental Pete/i,'Occidental').replace(/Moodys/i,'Moody’s').replace(/Berkshire Hathaway/i,'Berkshire').replace(/^[,\s]+|[,&\s]+$/g,'').replace(/\s+/g,' ').trim()
   // Preserve an explicit class discriminator; never merge securities to save space.
   if(distinct) {
     const cls=row.shareClass?.match(/(?:CL|CLASS|SER|SERIES)\s+([A-Z])\b/i)?.[1]

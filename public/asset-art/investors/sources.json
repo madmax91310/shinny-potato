@@ -74,7 +74,16 @@
     "author": "Steve Jurvetson",
     "description": "Cathie Wood",
     "source": "https://commons.wikimedia.org/wiki/File%3ACathie_Wood.jpg",
-    "file": "investors/cathie-wood.webp"
+    "file": "investors/cathie-wood.webp",
+    "reviewedMask": "investors/cathie-wood-mask.json",
+    "maskNote": "Contour photographique revu manuellement le 17 novembre 2026 ; fond et trous de segmentation corrigés sans modifier les pixels du sujet.",
+    "crop": [
+      0,
+      40,
+      450,
+      480
+    ],
+    "cropNote": "Cadrage de publication sur le buste et la main levée, après détourage ; chaise et jambes hors cadre."
   },
   "thiel": {
     "title": "File:Peter Thiel (2014).jpg",
@@ -102,7 +111,9 @@
       "associationSource": "https://www.gatesfoundation.org/about/financials/foundation-trust",
       "associationDate": "2026-11-17",
       "note": "Bill Gates · trustee. Portrait d’illustration ; les positions sont celles de Gates Foundation Trust, jamais son patrimoine personnel."
-    }
+    },
+    "reviewedMask": "investors/gates-trust-mask.json",
+    "maskNote": "Contour photographique revu manuellement le 17 novembre 2026 ; fond et trous de segmentation corrigés sans modifier les pixels du sujet."
   },
   "klarman": {
     "title": "File:Seth Klarman at 147th Preakness Stakes.jpg",

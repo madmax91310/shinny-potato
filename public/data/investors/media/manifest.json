@@ -76,11 +76,21 @@
     "author": "Steve Jurvetson",
     "license": "CC BY 2.0",
     "title": "File:Cathie Wood.jpg",
+    "maskNote": "Contour photographique revu manuellement le 17 novembre 2026 ; fond et trous de segmentation corrigés sans modifier les pixels du sujet.",
+    "reviewedMask": "investors/cathie-wood-mask.json",
+    "maskSha256": "1716b758bdc69bdbcda9e5b730fec875f766ac27ce4fab2303fc4b825dd70881",
+    "crop": [
+      0,
+      40,
+      450,
+      480
+    ],
+    "cropNote": "Cadrage de publication sur le buste et la main levée, après détourage ; chaise et jambes hors cadre.",
     "status": "ready",
     "reason": null,
-    "file": "data/investors/media/cathie-wood-dd6053a4d3e54bf7.png",
-    "sourceDigest": "dd6053a4d3e54bf740d802b5b9653f9a7050d5da9ef0634c3cb351dc3f214f20",
-    "adaptation": "Détourage automatique u2netp ; proportions conservées."
+    "file": "data/investors/media/cathie-wood-57eb7f1a5e7d626f.png",
+    "sourceDigest": "57eb7f1a5e7d626ffe45610805f6c41b7fffa23c2907a95149747d28a809a2c8",
+    "adaptation": "Détourage et cadrage de publication revus sur la photographie originale ; pixels et proportions conservés."
   },
   "thiel": {
     "source": "https://commons.wikimedia.org/wiki/File%3APeter_Thiel_%282014%29.jpg",
@@ -100,6 +110,9 @@
     "author": "European Commission - Photographer: Lukasz Kobus",
     "license": "CC BY 4.0",
     "title": "File:Bill Gates - 2023 - P062021-967902 (cropped).jpg",
+    "maskNote": "Contour photographique revu manuellement le 17 novembre 2026 ; fond et trous de segmentation corrigés sans modifier les pixels du sujet.",
+    "reviewedMask": "investors/gates-trust-mask.json",
+    "maskSha256": "688c7bb0fc64097cf6f13bd1e684b5cd7a99c537e8d3f90e5a26ae33c52625f7",
     "person": "Bill Gates",
     "illustration": {
       "nature": "historical-association",
@@ -112,9 +125,9 @@
     },
     "status": "ready",
     "reason": null,
-    "file": "data/investors/media/gates-trust-2c744e93c674e10e.png",
-    "sourceDigest": "2c744e93c674e10eed9bc6a8599ed9463fdc71722305afa264170d9c05f04120",
-    "adaptation": "Détourage automatique u2netp ; proportions conservées."
+    "file": "data/investors/media/gates-trust-8df7a4a74aaf128d.png",
+    "sourceDigest": "8df7a4a74aaf128d61d16115b535765d3dc6aaae77bfa5d377d1a6a241aaf916",
+    "adaptation": "Détourage et cadrage de publication revus sur la photographie originale ; pixels et proportions conservés."
   },
   "klarman": {
     "source": "https://commons.wikimedia.org/wiki/File:Seth_Klarman_at_147th_Preakness_Stakes.jpg",
