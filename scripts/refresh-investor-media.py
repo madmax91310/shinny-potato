@@ -27,6 +27,12 @@ def refresh():
         if source.get('sourceSha256'):
             metadata.update({key: source[key] for key in ('person', 'licenseUrl', 'sourceSha1', 'sourceSha256', 'identitySource', 'identityVerified', 'checkedAt', 'crop', 'cropForSha1', 'cropNote') if key in source})
         local = ROOT / 'public/asset-art' / source['file']
+        reviewed = None
+        if source.get('reviewedMask'):
+            mask_bytes = (ROOT / 'public/asset-art' / source['reviewedMask']).read_bytes()
+            reviewed = json.loads(mask_bytes)
+            metadata.update(reviewedMask=source['reviewedMask'], maskSha256=hashlib.sha256(mask_bytes).hexdigest())
+            metadata.update({key: source[key] for key in ('crop', 'cropNote') if key in source})
         digest = None
         if source.get('commonsPortrait') and slug not in ENTITIES:
             try:
@@ -58,17 +64,23 @@ def refresh():
                 target = OUTPUT / f'{slug}-{digest[:16]}.png'
                 if not target.exists():
                     from PIL import Image
-                    from rembg import remove, new_session
-                    if session is None:
-                        session = new_session('u2netp', providers=['CPUExecutionProvider'])
                     image = Image.open(local).convert('RGBA')
+                    if reviewed:
+                        from investor_portrait_masks import reviewed_cutout
+                        image = reviewed_cutout(image, reviewed, local.read_bytes())
                     if metadata.get('crop'):
                         box = metadata['crop']
                         if len(box)!=4 or not (0<=box[0]<box[2]<=image.width and 0<=box[1]<box[3]<=image.height):
                             raise ValueError('Cadrage vérifié incompatible avec la photo')
                         image=image.crop(tuple(box))
                     image.thumbnail((900, 1100))
-                    cutout = remove(image, session=session, post_process_mask=True)
+                    if reviewed:
+                        cutout = image
+                    else:
+                        from rembg import remove, new_session
+                        if session is None:
+                            session = new_session('u2netp', providers=['CPUExecutionProvider'])
+                        cutout = remove(image, session=session, post_process_mask=True)
                     if metadata.get('excludePolygons'):
                         from PIL import ImageDraw
                         mask = cutout.getchannel('A')
@@ -88,6 +100,8 @@ def refresh():
                         raise ValueError('Masque de détourage inexploitable')
                     cutout.crop(bbox).save(target, optimize=True)
                 metadata.update(status='ready', reason=None, file=f'data/investors/media/{target.name}', sourceDigest=digest, adaptation='Détourage automatique u2netp ; proportions conservées.')
+                if reviewed:
+                    metadata['adaptation'] = 'Contour alpha revu sur la photographie originale ; pixels et proportions conservés.'
             except Exception as error:
                 retained = prior.get(slug, {})
                 if retained.get('status') == 'ready' and retained.get('sourceDigest') == locals().get('digest') and (ROOT / 'public' / retained.get('file', '')).is_file():
