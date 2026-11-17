@@ -1,8 +1,8 @@
-import {leaderPath} from './leader-layout.js'
+import {pngCredits} from './png-credits.js'
 import { modelNatureLabel } from '../../data/investor-models.js'
 import { holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
-import { publicationPlan, portfolioOwner, cash, POSTER } from './publication.js'
+import { publicationPlan, editorialSeries, weightLabel, portfolioOwner, cash, POSTER } from './publication.js'
 import { loadPortfolioFont, posterFont } from './type.js'
 import { portfolioPortrait, positionLogo } from './media.js'
 
@@ -24,7 +24,7 @@ function glass(ctx, x, y, w, h, radius = 24) {
   ctx.beginPath(); ctx.roundRect(x+7,y+7,w-14,h-14,Math.max(4,radius-5)); ctx.stroke(); ctx.restore()
 }
 const prepared=new WeakMap()
-function transparentLogo(image) {
+export function transparentLogo(image) {
   if(!image)return null
   if(prepared.has(image))return prepared.get(image)
   const scale=Math.min(/\.svg(?:\?|$)/.test(image.src || '')?Infinity:1,640/image.width,640/image.height),c=document.createElement('canvas')
@@ -101,9 +101,17 @@ export async function renderPortfolioImage(portfolio) {
     const words=owner.split(/\s+/),lines=[];let current=''
     ctx.font=posterFont(40,800)
     for(const word of words){if(current&&ctx.measureText(current+' '+word).width>330){lines.push(current);current=''}current=current?current+' '+word:word}if(current)lines.push(current)
-    lines.forEach((line,i)=>label(line,cx,cy+(i-(lines.length-1)/2)*48+14,40,ink,'center',800))
+    lines.forEach((line,i)=>label(line,cx,cy+(i-(lines.length-1)/2)*48-30,40,ink,'center',800))
+    const series=editorialSeries(portfolio)
+    if(series.coverage<.5){label(`Les ${series.topCount} premières`,cx,cy+100,27,ink);label(`${weightLabel(series.coverage)} du portefeuille`,cx,cy+136,27,ink)}
   }
   for(const e of plan.entries)for(let y=Math.floor(e.badge.y-br-5);y<=e.badge.y+br+5;y++)for(let x=Math.floor(e.badge.x-br-5);x<=e.badge.x+br+5;x++)if(Math.hypot(x-e.badge.x,y-e.badge.y)<br+5)occupied[y*1080+x]=1
+  // Reserve validated leader routes before placing any external logo.
+  for(const e of plan.entries)for(let i=1;i<(e.leader?.length || 0);i++){
+    const a=e.leader[i-1],b=e.leader[i],steps=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y))
+    for(let n=0;n<=steps;n++){const x=Math.round(a.x+(b.x-a.x)*n/Math.max(1,steps)),y=Math.round(a.y+(b.y-a.y)*n/Math.max(1,steps));for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++)if(x+dx>=0&&x+dx<1080&&y+dy>=0&&y+dy<1350)occupied[(y+dy)*1080+x+dx]=1}
+  }
+  const routeOccupied=(x,y,w,h)=>{for(let yy=Math.floor(y);yy<y+h;yy+=2)for(let xx=Math.floor(x);xx<x+w;xx+=2)if(occupied[yy*1080+xx])return true;return false}
   const extraLogos=[]
   plan.entries.forEach((e,i)=>{
     const logo=transparentLogo(logos[i].image)
@@ -130,7 +138,7 @@ export async function renderPortfolioImage(portfolio) {
         const k=Math.min(112/image.width,68/image.height),w=image.width*k,h=image.height*k
         if(w>=56&&h>=26)externalSearch: for(const x of [e.box.x-w-12,e.box.x+e.box.width+12,e.box.x+(e.box.width-w)/2])for(const y of [e.box.y,e.box.y-h-10,e.box.y+e.box.height+10]) {
           const overlaps=b=>x<b.x+b.width+7&&x+w+7>b.x&&y<b.y+b.height+7&&y+h+7>b.y
-          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps))continue
+          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps)||routeOccupied(x,y,w,h))continue
           if(Math.hypot(cx-Math.max(x,Math.min(cx,x+w)),cy-Math.max(y,Math.min(cy,y+h)))<outer+6)continue
           placement={x:x+w/2,y:y+h/2,a:0,k};extraLogos.push({x,y,width:w,height:h});external=true;break externalSearch
         }
@@ -147,26 +155,33 @@ export async function renderPortfolioImage(portfolio) {
       }
     }
   })
-  const leaders=[]
-  plan.entries.forEach(e=>{
-    const {badge,box}=e
+  // Draw all sector associations beneath every badge, so later lines cannot cross a percentage.
+  plan.entries.forEach(e=>{const {badge}=e
     // Only ambiguous displaced associations receive a short connector.
     if(Math.abs(Math.atan2(Math.sin(e.badgeAngle-e.mid),Math.cos(e.badgeAngle-e.mid)))>.015) {
       ctx.strokeStyle=e.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.mid)*(outer-2),cy+Math.sin(e.mid)*(outer-2));ctx.lineTo(badge.x,badge.y);ctx.stroke()
     }
-    const leader=leaderPath(e,plan.entries,POSTER,extraLogos,leaders)
-    if(leader){leaders.push(leader);ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();leader.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke()}
+  })
+  plan.entries.forEach(e=>{
+    const {badge,box}=e
+    const leader=e.leader
+    if(leader){ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();leader.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke()}
     ctx.fillStyle=e.color;ctx.beginPath();ctx.arc(badge.x,badge.y,br,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#161616';ctx.lineWidth=2.5;ctx.stroke()
     const pct=percentage(e.weight).replace(/\s/g,'')
     let size=32;ctx.font=posterFont(size,900);while(ctx.measureText(pct).width>br*1.72&&size>25){size--;ctx.font=posterFont(size,900)}
     label(pct,badge.x,badge.y+size*.35,size,lightness(e.color)<.179?'#fff':ink,'center',900)
     box.lines.forEach((line,j)=>label(line,box.x+box.width/2,box.y+34+j*40,36,green,'center',850))
-    label(box.amount,box.x+box.width/2,box.y+box.lines.length*40+34,34,ink,'center',850)
   })
   label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
+  const coverage=editorialSeries(portfolio)
+  if(portrait.image&&coverage.coverage<.5){ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(cx-166,cy+110,332,42,12);ctx.fill();label(`${coverage.topCount} premières · ${weightLabel(coverage.coverage)}`,cx,cy+140,27,ink)}
+  if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-240,cy+155,480,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
   if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
-  label('Épargnant libre',540,1343,27,ink,'center',750)
-  return canvas.toDataURL('image/png')
+  const series=editorialSeries(portfolio)
+  label(`Épargnant libre${series.pages.length>1?` · 1/${series.pages.length}`:''}`,540,1343,27,ink,'center',750)
+  const photo=portrait.image?Object.fromEntries(['person','title','source','url','author','license','licenseUrl','adaptation','sourceDigest','illustration'].map(key=>[key,portrait[key]])):null
+  if(photo&&!photo.licenseUrl){const match=photo.license.match(/^CC BY(-SA)? ([0-9.]+)/);if(match)photo.licenseUrl=`https://creativecommons.org/licenses/by${match[1]?'-sa':''}/${match[2]}/`}
+  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
 }
 
 

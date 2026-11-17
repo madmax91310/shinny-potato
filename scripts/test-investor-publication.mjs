@@ -19,6 +19,8 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
     assert.equal(entry.weight,entry.value/plan.total)
     assert(Math.abs((entry.end-entry.start)/(2*Math.PI)-entry.weight)<1e-12)
     const b=entry.box
+    const ex=Math.max(b.x,Math.min(entry.badge.x,b.x+b.width)),ey=Math.max(b.y,Math.min(entry.badge.y,b.y+b.height))
+    assert(Math.hypot(ex-entry.badge.x,ey-entry.badge.y)-entry.badge.radius<24 || entry.leader?.length>=2,'A displaced label must retain an unambiguous route')
     assert(b.x>=20 && b.x+b.width<=1060 && b.y>=POSTER.top && b.y+b.height<=POSTER.bottom)
     assert.equal(entry.badge.radius,POSTER.badgeRadius)
     for(const next of plan.entries)if(next!==entry){
@@ -121,3 +123,29 @@ for(let i=1;i<route.length;i++) {
 
 assert.equal(shortPosition({displayLabel:'TSMC',issuerName:'TAIWAN SEMICONDUCTOR'}),'TSMC')
 assert.equal(shortPosition({displayLabel:'Liberty Live Group I (53033H101)',issuerName:'LIBERTY LIVE GROUP INC',cusip:'53033H101',shareClass:'COM SER A'}),'Liberty Live A')
+
+// The editorial selection remains contiguous and finite, independently of archive size.
+const {editorialSeries}=await import('../src/pages/investor-portfolio/publication.js')
+const {INVESTORS}=await import('../src/pages/investor-portfolio/data.js')
+for(const [slug] of INVESTORS){
+  const p=normalizePortfolio(JSON.parse(readFileSync(`public/data/investors/${slug}.json`)))
+  if(p.problem){assert.throws(()=>editorialSeries(p));continue}
+  const series=editorialSeries(p),rows=[...p.holdings].sort((a,b)=>b.value-a.value)
+  assert(series.pages.length>=1&&series.pages.length<=4)
+  assert.equal(series.coverage,rows.slice(0,series.topCount).reduce((s,r)=>s+r.value,0)/p.total)
+  const named=series.main.entries.filter(r=>!r.other),next=series.pages.slice(1).flatMap(page=>page.rows)
+  assert.deepEqual([...named,...next].map(r=>r.cusip),rows.slice(0,series.coveredCount).map(r=>r.cusip))
+  assert.equal(series.main.hiddenCount,rows.length-named.length)
+  if(series.main.hiddenCount)assert.equal(series.main.entries.find(r=>r.other).label,`Autres · ${series.main.hiddenCount} positions`)
+  assert(next.every(r=>r.value/p.total>0))
+}
+
+// Standalone PNGs retain machine-readable credits, with valid framing and CRC.
+const {pngCredits}=await import('../src/pages/investor-portfolio/png-credits.js')
+const png='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGBgAAAABQABpfZFQAAAAABJRU5ErkJggg=='
+const attributed=Buffer.from(pngCredits(png,{author:'Créateur',license:'CC0'}).split(',')[1],'base64')
+const zlib=await import('node:zlib')
+let found=false
+for(let offset=8;offset<attributed.length;){const size=attributed.readUInt32BE(offset),type=attributed.toString('ascii',offset+4,offset+8),content=attributed.subarray(offset+8,offset+8+size)
+ if(type==='iTXt'){found=true;assert.equal(content.toString('utf8'),'Description\0\0\0\0\0{"author":"Créateur","license":"CC0"}');assert.equal(attributed.readUInt32BE(offset+8+size),zlib.crc32(attributed.subarray(offset+4,offset+8+size)))}offset+=size+12}
+assert(found)

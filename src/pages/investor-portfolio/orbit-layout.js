@@ -1,3 +1,4 @@
+import {leaderPath} from './leader-layout.js'
 import widths from './type-metrics.json' with {type:'json'}
 export const POSTER={cx:540,cy:720,outer:380,inner:185,badgeRadius:50,badgeOrbit:400,top:202,bottom:1244}
 export const measure=(s,size)=>[...String(s)].reduce((n,c)=>n+(widths[c]??.7),0)*size+4
@@ -15,14 +16,12 @@ const clash=(a,b,gap=20)=>a.x<b.x+b.width+gap&&a.x+a.width+gap>b.x&&a.y<b.y+b.he
 const clamp=(n,a,b)=>Math.max(a,Math.min(n,b))
 const delta=a=>Math.atan2(Math.sin(a),Math.cos(a))
 function circleClash(box,x,y,r){return Math.hypot(x-clamp(x,box.x,box.x+box.width),y-clamp(y,box.y,box.y+box.height))<r}
-function amount(value,currency) {
-  return new Intl.NumberFormat('fr-FR',{...(currency?{style:'currency',currency}:{}),notation:'compact',minimumFractionDigits:0,maximumFractionDigits:2}).format(value).replace(/\s*\$US/,'$').replace(/\s/g,'')
-}
-export function arrangeOrbit(rows,start,currency,top=POSTER.top) {
+export function arrangeOrbit(rows,start,_currency,top=POSTER.top) {
   const {cx,cy,outer,badgeRadius:br,badgeOrbit:r}=POSTER
   let angle=start
   const entries=rows.map(row=>{const e={...row,start:angle,end:angle+row.weight*Math.PI*2,mid:angle+row.weight*Math.PI};angle=e.end;return e})
-  const min=2*Math.asin((br*2+10)/(2*r)),shift=.22
+  const min=2*Math.asin((br*2+10)/(2*r)),shift=.65
+  // Allow modest angular displacement of annotations, without changing sectors.
   // Start after the largest angular gap; this opens the circular ordering at
   // its uncongested edge, without changing any sector or security weight.
   const mids=entries.map(e=>((e.mid%(2*Math.PI))+2*Math.PI)%(2*Math.PI)).sort((a,b)=>a-b)
@@ -39,16 +38,15 @@ export function arrangeOrbit(rows,start,currency,top=POSTER.top) {
   }
   if(order.length>1 && order[0].badgeAngle+2*Math.PI-order.at(-1).badgeAngle<min)return null
   const candidates=entries.map(e=>{
-    const result=[],money=amount(e.value,currency)
+    const result=[]
     for(const width of [220,180,150,260,130]) {
       const lines=wordLines(e.label,width)
       if(!lines)continue
-      if(measure(money,34)>width)continue
-      const w=Math.max(...lines.map(s=>measure(s,36)),measure(money,34)),h=lines.length*40+40
+      const w=Math.max(...lines.map(s=>measure(s,36))),h=lines.length*40
       for(const turn of [0,-.12,.12,-.24,.24,-.38,.38,-.55,.55])for(const extra of [0,25,50,80]) {
         const a=e.badgeAngle+turn,c=Math.cos(a),s=Math.sin(a)
         const reach=r+br+9+Math.abs(c)*w/2+Math.abs(s)*h/2+extra
-        const box={x:clamp(cx+c*reach-w/2,20,1060-w),y:clamp(cy+s*reach-h/2,top,POSTER.bottom-h),width:w,height:h,lines,amount:money}
+        const box={x:clamp(cx+c*reach-w/2,20,1060-w),y:clamp(cy+s*reach-h/2,top,POSTER.bottom-h),width:w,height:h,lines}
         const px=clamp(e.badge.x,box.x,box.x+w),py=clamp(e.badge.y,box.y,box.y+h)
         const distance=Math.hypot(px-e.badge.x,py-e.badge.y)-br
         if(distance<7||distance>170||circleClash(box,cx,cy,outer+5)||entries.some(o=>circleClash(box,o.badge.x,o.badge.y,br+3)))continue
@@ -81,5 +79,12 @@ export function arrangeOrbit(rows,start,currency,top=POSTER.top) {
     return false
   }
   if(!place(entries.map((_,i)=>i)))return null
+  const routes=[]
+  for(const e of entries){
+    const b=e.box,end={x:clamp(e.badge.x,b.x,b.x+b.width),y:clamp(e.badge.y,b.y,b.y+b.height)}
+    e.leader=leaderPath(e,entries,POSTER,[],routes)
+    if(Math.hypot(end.x-e.badge.x,end.y-e.badge.y)-e.badge.radius>=24&&!e.leader)return null
+    if(e.leader)routes.push(e.leader)
+  }
   return {entries}
 }

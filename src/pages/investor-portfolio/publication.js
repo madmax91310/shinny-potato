@@ -79,7 +79,8 @@ export function publicationPlan(portfolio) {
   for(let n=Math.min(sorted.length,capacity);n>=1&&!best;n--) {
     const selected=sorted.slice(0,n).map(r=>({...r,label:shortPosition(r),weight:r.value/total}))
     const rest=sorted.slice(n)
-    if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:'Autres',other:true,ticker:'',currency:portfolio.snapshot.currency,unit:1,count:rest.length,value,weight:value/total,color:'#f4d539'})}
+    if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:`Autres · ${rest.length} positions`,other:true,ticker:'',currency:portfolio.snapshot.currency,unit:1,count:rest.length,value,weight:value/total,color:'#f4d539'})}
+    if(new Set(selected.map(r=>r.color)).size!==selected.length)continue
     let layout=null
     const other=selected.find(r=>r.other)
     const base=other?-Math.PI/2-Math.PI*2*(1-other.weight)-Math.PI*other.weight:-80*Math.PI/180
@@ -96,3 +97,15 @@ export function publicationPlan(portfolio) {
   return best
 }
 export const emojiFor = ticker => ({ apple:'🍎', 'american-express':'💳', cocacola:'🥤', 'bank-of-america':'🏦', amazon:'📦', microsoft:'💻', nvidia:'💻', AAPL:'🍎', AXP:'💳', KO:'🥤', BAC:'🏦', MSFT:'💻', AMZN:'📦', NVDA:'💻', META:'💬', V:'💳', CVX:'⛽', TSM:'💻' }[ticker] || '📌')
+
+// A publication is a short editorial series; the complete archive stays separate.
+export function editorialSeries(portfolio) {
+  const main=publicationPlan(portfolio), named=main.entries.filter(r=>!r.other).length
+  const rows=colorPositions([...portfolio.holdings].sort((a,b)=>b.value-a.value))
+  const top=rows.slice(0,Math.min(12,rows.length))
+  const coverage=top.reduce((s,r)=>s+r.value,0)/main.total
+  const remaining=rows.slice(named)
+  // Keep a short four-image editorial series, separate from the full archive.
+  const complements=Math.min(coverage<.5?3:2,Math.ceil(remaining.length/12))
+  return {main,coverage,topCount:top.length,pages:[{kind:'summary'},...Array.from({length:complements},(_,i)=>({kind:'continuation',start:named+i*12,rows:remaining.slice(i*12,(i+1)*12)}))],coveredCount:named+Math.min(remaining.length,complements*12)}
+}
