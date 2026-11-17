@@ -31,7 +31,7 @@ Les pixels RVB restent ceux des sources, seuls alpha, cadrage et redimensionneme
 
 ## Vérification
 
-Compilation complète et budget inchangé : **724,9 / 725 kB**. Huit tests médias ; 30 rendus valides et deux refus financiers, contrôles des textes et compléments, copie, téléchargements, pannes et réessai. Archive Renaissance réelle vérifiée : 3151 lignes, 526 PNG, CRC valide. Les huit allocations modèles restent identiques octet pour octet.
+Compilation complète et budget inchangé : **724,9 / 725 kB**. La validation 13F découvrait les tests médias avant d’installer Pillow : dépendance désormais installée avec les contraintes existantes avant les tests des jobs PR et programmé, sans changement de collecte, de timeout ou de garde. Huit tests médias ; 30 rendus valides et deux refus financiers, contrôles des textes et compléments, copie, téléchargements, pannes et réessai. Archive Renaissance réelle vérifiée : 3151 lignes, 526 PNG, CRC valide. Les huit allocations modèles restent identiques octet pour octet.
 
 Recette de compilation : 56 parcours ordinateur/mobile, 132 PNG, aperçu et deux boutons de téléchargement identiques, navigation, ZIP éditoriaux, 56 contrôles copie/JSON/CSV et récupération. La dernière correction alpha de Gerstner a une recette ciblée supplémentaire sur les deux largeurs, ses PNG/ZIP/JSON/CSV et ses aperçus. Vérification indépendante des 28 profils depuis les JSON effectivement téléchargés : sommes, sélection, Autres, dénominateurs et CRC des ZIP. Les blocages Druckenmiller/Klarman restent bloquants.
 
