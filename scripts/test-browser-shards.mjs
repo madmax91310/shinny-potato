@@ -6,7 +6,7 @@ import { needsExtraEngines } from './browser-portability-engines.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 const commands = JSON.parse(readFileSync(new URL('./ci-browser-checks.json', import.meta.url)))
 const durations = schedulingDurations(JSON.parse(readFileSync(new URL('./ci-browser-durations.json', import.meta.url))))
-for (const count of [1, 2, 4, 6, commands.length + 1]) {
+for (const count of [1, 2, 4, 6, 8, commands.length + 1]) {
   const shards = planShards(commands, count, durations)
   assert.deepEqual(shards.flatMap(s => s.commands).sort(), [...commands].sort())
   assert.deepEqual(planShards(commands, count, durations), shards)
