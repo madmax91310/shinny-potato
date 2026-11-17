@@ -450,6 +450,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_support_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      - run: python -m unittest discover -s scripts -p "test_investor_media.py"
       - run: python -m unittest discover -s scripts -p "test_exposure_publication.py"
       - run: python -m unittest discover -s scripts -p "test_data_automation.py"
       - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"

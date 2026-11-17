@@ -11,7 +11,8 @@ try {
   for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,200))}
   browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})})
   const context=await browser.newContext({acceptDownloads:true,permissions:['clipboard-read','clipboard-write']})
-  const page=await context.newPage();await page.goto(base)
+  const page=await context.newPage();await page.goto(base+'portefeuilles-investisseurs')
+  await page.waitForFunction(()=>Boolean(document.querySelector('#ip-draft')?.value))
   await mkdir(out,{recursive:true})
   const results=[]
   const cases=[['concentre',sample([999900,100])],['dense',sample(Array(300).fill(1))],['longs',sample([5,4,3,2,1],true)],['petite',sample([999999,1])]]

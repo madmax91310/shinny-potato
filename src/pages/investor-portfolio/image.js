@@ -1,9 +1,28 @@
 import {pngCredits} from './png-credits.js'
-import { percentage } from './data.js'
+import { modelNatureLabel } from '../../data/investor-models.js'
+import { holdingName, percentage } from './data.js'
+import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 import { publicationPlan, editorialSeries, weightLabel, portfolioOwner, cash, POSTER } from './publication.js'
 import { loadPortfolioFont, posterFont } from './type.js'
 import { portfolioPortrait, positionLogo } from './media.js'
 
+const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'
+function text(ctx, value, x, y, width, size, color = INK, serif = false) {
+  ctx.fillStyle = color
+  do { ctx.font = `${serif ? '500' : '600'} ${size}px ${serif ? 'Georgia' : 'Arial'}, serif`; size-- } while (ctx.measureText(value).width > width && size > 12)
+  ctx.fillText(value, x, y)
+}
+function glass(ctx, x, y, w, h, radius = 24) {
+  ctx.save()
+  const body = ctx.createLinearGradient(x,y,x+w,y+h)
+  body.addColorStop(0,'rgba(49,107,151,.38)'); body.addColorStop(.4,'rgba(7,24,44,.82)'); body.addColorStop(1,'rgba(17,42,66,.94)')
+  ctx.fillStyle = body; ctx.beginPath(); ctx.roundRect(x,y,w,h,radius); ctx.fill()
+  const rim = ctx.createLinearGradient(x,y,x+w,y+h)
+  rim.addColorStop(0,'#e6faff'); rim.addColorStop(.18,'#58bcff'); rim.addColorStop(.44,'#172d51'); rim.addColorStop(.67,'#f5dbc0'); rim.addColorStop(.8,'#99ddff'); rim.addColorStop(1,'#5882a0')
+  ctx.strokeStyle = rim; ctx.lineWidth = 4; ctx.shadowColor = '#34a4ff'; ctx.shadowBlur = 18; ctx.stroke()
+  ctx.shadowBlur = 0; ctx.strokeStyle = 'rgba(215,241,255,.45)'; ctx.lineWidth = 1
+  ctx.beginPath(); ctx.roundRect(x+7,y+7,w-14,h-14,Math.max(4,radius-5)); ctx.stroke(); ctx.restore()
+}
 const prepared=new WeakMap()
 export function transparentLogo(image) {
   if(!image)return null
@@ -44,7 +63,7 @@ const lightness=color=>{const v=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/2
 
 // One code-generated PNG is used unchanged by the preview and every download.
 export async function renderPortfolioImage(portfolio) {
-  if(portfolio?.kind==='model')return (await import('./model-image.js')).renderModelImage(portfolio)
+  if(portfolio?.kind==='model')return renderModelImage(portfolio)
   if(!portfolio)throw Error('Charge un portefeuille avant de créer le visuel.')
   const plan=publicationPlan(portfolio),owner=portfolioOwner(portfolio),series=editorialSeries(portfolio)
   const [,portrait,logos]=await Promise.all([loadPortfolioFont(),portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait),Promise.all(plan.entries.map(positionLogo))])
@@ -70,6 +89,8 @@ export async function renderPortfolioImage(portfolio) {
     if(e.weight>=.003&&prior.weight>=.003){ctx.strokeStyle=bg;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.start)*inner,cy+Math.sin(e.start)*inner);ctx.lineTo(cx+Math.cos(e.start)*outer,cy+Math.sin(e.start)*outer);ctx.stroke()}
   })
   const occupied=new Uint8Array(1080*1350)
+  ctx.font=posterFont(24,750)
+  const captionWidth=portrait.illustration?.caption?Math.ceil(ctx.measureText(portrait.illustration.caption).width/2)*2+24:0
   if(portrait.image) {
     const image=portrait.image,k=Math.min(600/image.width,530/image.height)
     const left=cx-image.width*k/2,top=cy+inner+40-image.height*k,half=Math.min(280,image.width*k*.46)
@@ -90,9 +111,16 @@ export async function renderPortfolioImage(portfolio) {
   if(portrait.image){
     const bands=[]
     if(series.coverage<.5)bands.push([cx-170,cy+106,340,50])
-    if(portrait.illustration?.caption)bands.push([cx-244,cy+151,488,42])
+    if(portrait.illustration?.caption)bands.push([cx-captionWidth/2-4,cy+151,captionWidth+8,42])
     for(const [x,y,w,h] of bands)for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)occupied[yy*1080+xx]=1
   }
+  // Reserve validated leader routes before placing any external logo.
+  for(const e of plan.entries)for(let i=1;i<(e.leader?.length || 0);i++){
+    const a=e.leader[i-1],b=e.leader[i],steps=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y))
+    for(let n=0;n<=steps;n++){const x=Math.round(a.x+(b.x-a.x)*n/Math.max(1,steps)),y=Math.round(a.y+(b.y-a.y)*n/Math.max(1,steps));for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++)if(x+dx>=0&&x+dx<1080&&y+dy>=0&&y+dy<1350)occupied[(y+dy)*1080+x+dx]=1}
+  }
+  const routeOccupied=(x,y,w,h)=>{for(let yy=Math.floor(y);yy<y+h;yy+=2)for(let xx=Math.floor(x);xx<x+w;xx+=2)if(occupied[yy*1080+xx])return true;return false}
+  const extraLogos=[]
   plan.entries.forEach((e,i)=>{
     const logo=transparentLogo(logos[i].image)
     if(logo&&!e.other) {
@@ -113,12 +141,22 @@ export async function renderPortfolioImage(portfolio) {
         }
         if(placement)break
       }
+      let external=false
+      if(!placement) {
+        const k=Math.min(112/image.width,68/image.height),w=image.width*k,h=image.height*k
+        if(w>=56&&h>=26)externalSearch: for(const x of [e.box.x-w-12,e.box.x+e.box.width+12,e.box.x+(e.box.width-w)/2])for(const y of [e.box.y,e.box.y-h-10,e.box.y+e.box.height+10]) {
+          const overlaps=b=>x<b.x+b.width+7&&x+w+7>b.x&&y<b.y+b.height+7&&y+h+7>b.y
+          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps)||routeOccupied(x,y,w,h))continue
+          if(Math.hypot(cx-Math.max(x,Math.min(cx,x+w)),cy-Math.max(y,Math.min(cy,y+h)))<outer+6)continue
+          placement={x:x+w/2,y:y+h/2,a:0,k};extraLogos.push({x,y,width:w,height:h});external=true;break externalSearch
+        }
+      }
       if(placement) {
         const {x,y,a,k}=placement,paint=document.createElement('canvas');paint.width=image.width;paint.height=image.height
         const p=paint.getContext('2d');p.drawImage(image,0,0)
-        if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
+        if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=!external&&lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
         ctx.save();ctx.translate(x,y);ctx.rotate(a)
-        if(!logo.mono){ctx.shadowColor='rgba(255,255,255,.65)';ctx.shadowBlur=3}
+        if(!logo.mono&&!external){ctx.shadowColor='rgba(255,255,255,.65)';ctx.shadowBlur=3}
         ctx.drawImage(paint,-image.width*k/2,-image.height*k/2,image.width*k,image.height*k);ctx.restore();paint.width=paint.height=1
         const c=Math.cos(a),sn=Math.sin(a)
         for(const [px,py] of logo.points){const xx=Math.round(x+(px*c-py*sn)*k),yy=Math.round(y+(px*sn+py*c)*k);for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++)if(xx+dx>=0&&xx+dx<1080&&yy+dy>=0&&yy+dy<1350)occupied[(yy+dy)*1080+xx+dx]=1}
@@ -152,15 +190,14 @@ export async function renderPortfolioImage(portfolio) {
       const b={...at,width,height:31}
       if(b.x<20||b.x+width>1060||b.y<202||b.y+31>1244||amounts.some(a=>overlap(a,b))||plan.entries.some(r=>overlap(b,r.box)||Math.hypot(r.badge.x-Math.max(b.x,Math.min(r.badge.x,b.x+width)),r.badge.y-Math.max(b.y,Math.min(r.badge.y,b.y+31)))<br+8))continue
       if(Math.hypot(cx-Math.max(b.x,Math.min(cx,b.x+width)),cy-Math.max(b.y,Math.min(cy,b.y+31)))<outer+6)continue
-      const crossed=plan.entries.some(r=>(r.leader||[]).some((p,i,path)=>i&&Array.from({length:20},(_,n)=>({x:path[i-1].x+(p.x-path[i-1].x)*n/19,y:path[i-1].y+(p.y-path[i-1].y)*n/19})).some(p=>p.x>b.x-4&&p.x<b.x+width+4&&p.y>b.y-4&&p.y<b.y+35)))
-      if(crossed)continue
+      if(routeOccupied(b.x,b.y,width,31))continue
       label(value,b.x+width/2,b.y+25,size,ink,'center',650);amounts.push(b);break
     }
   }
   label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
   const coverage=series
   if(portrait.image&&coverage.coverage<.5){ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(cx-166,cy+110,332,42,12);ctx.fill();label(`${coverage.topCount} premières · ${weightLabel(coverage.coverage)}`,cx,cy+140,27,ink)}
-  if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-240,cy+155,480,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
+  if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-captionWidth/2,cy+155,captionWidth,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
   if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
   label(`Épargnant libre${series.pages.length>1?` · 1/${series.pages.length}`:''}`,540,1343,27,ink,'center',750)
   const photo=portrait.image?Object.fromEntries(['person','title','source','url','author','license','licenseUrl','adaptation','sourceDigest','illustration'].map(key=>[key,portrait[key]])):null
@@ -169,3 +206,51 @@ export async function renderPortfolioImage(portfolio) {
 }
 
 
+
+// The approved glass background and cards also frame allocation models. All
+// classes remain visible; a model never inherits a person's portrait or 13F date.
+async function renderModelImage(portfolio) {
+  const { model, holdings } = portfolio
+  const [, studio] = await Promise.all([loadEditorialFont(), loadArtImage('approved/investor-glass.webp')])
+  const height = Math.max(H, holdings.length * 107 + 440)
+  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = height
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('Impossible de créer le visuel.')
+  ctx.drawImage(studio, 0, 0, W, height)
+  ctx.fillStyle = 'rgba(2,10,25,.84)'; ctx.fillRect(45, 40, 1510, 197)
+  text(ctx, model.name, 75, 115, 1450, 62, GOLD, true)
+  text(ctx, modelNatureLabel(model), 75, 173, 1450, 38, CYAN)
+  text(ctx, model.publication, 75, 221, 1450, 30)
+  const columns = 1
+  const count = Math.ceil(holdings.length / columns)
+  const step = (height - 460) / count
+  const width = columns === 2 ? 710 : 1450
+  holdings.forEach((row, i) => {
+    const col = Math.floor(i / count), line = i % count
+    const x = 75 + col * 740, y = 265 + line * step
+    glass(ctx, x, y, width, step - 14, 16)
+    // Long class names wrap at a fixed readable size, rather than shrinking.
+    const size = columns === 2 ? 32 : 46
+    const maxWidth = width - 180
+    ctx.font = `600 ${size}px Arial, serif`
+    const words = holdingName(row).split(' '), lines = []; let current = ''
+    for (const word of words) {
+      const next = current ? current + ' ' + word : word
+      if (current && ctx.measureText(next).width > maxWidth) { lines.push(current); current = word }
+      else current = next
+    }
+    if (current) lines.push(current)
+    const firstY = y + (step - 14) / 2 - (lines.length - 1) * (size + 3) / 2 + size * .35
+    lines.forEach((line, j) => text(ctx, line, x + 23, firstY + j * (size + 3), maxWidth, size))
+    ctx.textAlign = 'right'
+    text(ctx, percentage(row.weight), x + width - 22, y + (step - 14) / 2 + 15, 140, 43, CYAN, true)
+    ctx.textAlign = 'left'
+  })
+  ctx.fillStyle = 'rgba(2,10,25,.9)'; ctx.fillRect(45, height - 175, 1510, 96)
+  text(ctx, 'Cibles théoriques · aucune détention personnelle', 75, height - 141, 1450, 32, CYAN)
+  text(ctx, model.denominator === 12 ? 'Chaque poche vaut exactement 1/12 · pourcentages arrondis' : model.nature === 'published-model' ? 'Poids cibles publiés · aucune performance calculée' : 'Poids cibles pédagogiques · aucune performance calculée', 75, height - 94, 1450, 28)
+  ctx.fillStyle = 'rgba(2,10,25,.88)'; ctx.fillRect(0, height - 72, W, 72)
+  text(ctx, 'Pas un conseil financier', 75, height - 26, 750, 27, GOLD, true)
+  ctx.textAlign = 'right'; text(ctx, 'Épargnant Libre', 1525, height - 26, 650, 28, GOLD, true); ctx.textAlign = 'left'
+  return canvas.toDataURL('image/png')
+}

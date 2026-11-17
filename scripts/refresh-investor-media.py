@@ -101,7 +101,7 @@ def refresh():
                     cutout.crop(bbox).save(target, optimize=True)
                 metadata.update(status='ready', reason=None, file=f'data/investors/media/{target.name}', sourceDigest=digest, adaptation='Détourage automatique u2netp ; proportions conservées.')
                 if reviewed:
-                    metadata['adaptation'] = 'Contour alpha revu sur la photographie originale ; pixels et proportions conservés.'
+                    metadata['adaptation'] = 'Détourage et cadrage de publication revus sur la photographie originale ; pixels et proportions conservés.'
             except Exception as error:
                 retained = prior.get(slug, {})
                 if retained.get('status') == 'ready' and retained.get('sourceDigest') == locals().get('digest') and (ROOT / 'public' / retained.get('file', '')).is_file():
