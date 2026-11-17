@@ -109,7 +109,6 @@ jobs:
       - name: Prepare licensed portrait cutouts (fallback initials on failure)
         continue-on-error: true
         run: |
-          python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
           python -m pip install -c scripts/python-constraints.txt 'rembg[cpu]==2.0.69' pillow
           python scripts/refresh-investor-media.py
       - name: Validate collected observations
