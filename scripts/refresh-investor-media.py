@@ -24,6 +24,8 @@ def refresh():
     for slug, source in json.loads(SOURCES.read_text()).items():
         metadata = {key: source.get(key) for key in ('source', 'url', 'author', 'license', 'title')}
         metadata.update({key: source[key] for key in ('excludePolygons', 'maskNote') if key in source})
+        if source.get('sourceSha256'):
+            metadata.update({key: source[key] for key in ('person', 'licenseUrl', 'sourceSha1', 'sourceSha256', 'identitySource', 'identityVerified', 'checkedAt', 'crop', 'cropForSha1', 'cropNote') if key in source})
         local = ROOT / 'public/asset-art' / source['file']
         digest = None
         if source.get('commonsPortrait') and slug not in ENTITIES:
@@ -37,7 +39,7 @@ def refresh():
                     continue
                 metadata['resolutionError'] = str(error)
         illustration = source.get('illustration', {})
-        historical = slug == 'berkshire' and illustration.get('person') == 'Warren Buffett' and illustration.get('entity') == 'Berkshire Hathaway' and illustration.get('nature') == 'historical-association' and illustration.get('associationSource', '').startswith('https://www.berkshirehathaway.com/')
+        historical = slug in ENTITIES and illustration.get('person') == source.get('person') and illustration.get('nature') == 'historical-association' and bool(illustration.get('associationSource'))
         if historical:
             metadata.update(person=illustration['person'], illustration=illustration)
         metadata['status'] = 'initials'
@@ -48,6 +50,10 @@ def refresh():
             try:
                 # Official/manual substitutions go through the existing source registry.
                 # Reuse the verified local source; no recurring remote photo download.
+                if source.get('sourceSha256') and hashlib.sha256(local.read_bytes()).hexdigest()!=source['sourceSha256']:
+                    raise ValueError('Photo locale différente de la source vérifiée')
+                if source.get('sourceSha256') and metadata.get('crop') and metadata.get('cropForSha1') != hashlib.sha1(local.read_bytes()).hexdigest():
+                    raise ValueError('Source du cadrage modifiée')
                 digest = hashlib.sha256(local.read_bytes() + json.dumps(metadata, sort_keys=True).encode() + b'u2netp-v1').hexdigest()
                 target = OUTPUT / f'{slug}-{digest[:16]}.png'
                 if not target.exists():

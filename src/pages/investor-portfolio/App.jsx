@@ -1,18 +1,18 @@
 import { MODEL_INVESTORS, investorModel, modelNatureLabel } from '../../data/investor-models.js'
-import History from './History.jsx'
+const PortfolioDetails=lazy(()=>import('./PortfolioDetails.jsx'))
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { downloadImage } from '../../design-system/downloadImage.js'
 import { cachedImageRenderer } from './image-export.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useEffect, useState, useRef, useMemo } from 'react'
+import { lazy, Suspense, useEffect, useState, useRef, useMemo } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
 import { portraitCredits } from './media.js'
 import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
-import { publicationPlan, portfolioOwner, cash, reportedAmount } from './publication.js'
+import { publicationPlan, editorialSeries, portfolioOwner, cash, reportedAmount } from './publication.js'
 import './style.css'
 
 // Load the Canvas renderer when the user opens or downloads the image.
@@ -30,6 +30,8 @@ export default function InvestorPortfolio() {
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
   const [exporting, setExporting] = useState(false)
+  const [imagePage,setImagePage]=useState(0)
+  useEffect(()=>setImagePage(0),[slug,portfolio])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -51,7 +53,9 @@ export default function InvestorPortfolio() {
   const portrait=portfolio && !model ? portraitCredits(portfolio) : null
   const ready = portfolio && portfolio.identity.slug === slug && !portfolio.problem
   const shown = portfolio && !model && ready ? publicationPlan(portfolio).entries : portfolio?.holdings || []
-  const renderImage = useMemo(() => cachedImageRenderer(() => renderPortfolioImage(portfolio)), [portfolio])
+  const series=ready&&!model?editorialSeries(portfolio):null
+  const pageIndex=Math.min(imagePage,(series?.pages.length || 1)-1)
+  const renderImage = useMemo(() => cachedImageRenderer(() => pageIndex ? import('./series-image.js').then(m=>m.renderSeriesPage(portfolio,pageIndex)) : renderPortfolioImage(portfolio)), [portfolio,pageIndex])
   const sources = INVESTOR_PROFILES[slug]?.sourceUrls ?? model?.sourceUrls ?? []
 
   function updateIntro(value) {
@@ -79,6 +83,15 @@ export default function InvestorPortfolio() {
       save(format==='json'?JSON.stringify(detailedExport(portfolio),null,2):detailedCSV(portfolio),format==='json'?'application/json':'text/csv;charset=utf-8',format)
     } catch(problem) {setError(problem.message)}
   }
+  async function downloadSeries() {
+    setExporting(true);setError('')
+    try {
+      const [{renderSeriesPage},{zipStore,dataURLBytes}]=await Promise.all([import('./series-image.js'),import('../../lib/zip-store.js')])
+      const files=[]
+      for(let i=0;i<series.pages.length;i++)files.push({name:`publication-${i+1}.png`,bytes:dataURLBytes(await renderSeriesPage(portfolio,i))})
+      save(zipStore(files),'application/zip','publication.zip')
+    }catch(problem){setError(problem.message)}finally{setExporting(false)}
+  }
   async function downloadDetails() {
     setExporting(true);setError('')
     try {
@@ -94,7 +107,7 @@ export default function InvestorPortfolio() {
     setExporting(true); setError('')
     try {
       const image = await renderImage()
-      downloadImage(image, `portefeuille-${slug}-${model ? "allocation-modele" : portfolio.snapshot.periodEnd}.png`)
+      downloadImage(image, `portefeuille-${slug}-${model ? "allocation-modele" : portfolio.snapshot.periodEnd}${pageIndex?`-page-${pageIndex+1}`:""}.png`)
     } catch (problem) { setError(problem.message); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
     finally { setExporting(false) }
   }
@@ -102,13 +115,19 @@ export default function InvestorPortfolio() {
   return <div className="ip-scope">
     <PageHeader title="Portefeuille d’investisseur" subtitle="Déclarations 13F et allocations modèles publiées, avec texte modifiable et visuel assorti." />
     {error && <p role="alert" className="ip-error">{error} <Button type="button" onClick={() => setRetry(value => value+1)}>Réessayer le chargement</Button>{ready && <Button type="button" onClick={download} disabled={exporting}>Réessayer le PNG</Button>}</p>}
-    <ToolWorkspace renderImage={renderImage} imageFilename={`portefeuille-${slug}-${portfolio?.snapshot.periodEnd || "modele"}.png`} imageDisabled={!ready} imageAlt={`Portefeuille ${portfolio ? portfolioOwner(portfolio) : "investisseur"}`}>
+    <ToolWorkspace renderImage={renderImage} imageFilename={`portefeuille-${slug}-${portfolio?.snapshot.periodEnd || "modele"}${pageIndex?`-page-${pageIndex+1}`:""}.png`} imageDisabled={!ready} imageAlt={`Portefeuille ${portfolio ? portfolioOwner(portfolio) : "investisseur"}`}>
     <section className="ip-panel tool-settings">
       <label htmlFor="ip-investor">Choisir un investisseur</label>
       <ChoicePicker id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
         <optgroup label="Déclarations de sociétés ou de fonds · 13F">{INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}</optgroup>
         <optgroup label="Méthodes · allocations modèles et adaptations">{MODEL_INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}</optgroup>
       </ChoicePicker>
+      {series?.pages.length>1 && <div className="ip-series" aria-label="Série de publication">
+        <p>Série pour X · {series.pages.length} images · {series.coveredCount} positions nommées. Le détail intégral reste séparé.</p>
+        <label htmlFor="ip-image-page">Image de la série</label>
+        <select id="ip-image-page" value={pageIndex} onChange={e=>setImagePage(Number(e.target.value))}>{series.pages.map((p,i)=><option key={i} value={i}>{i+1}/{series.pages.length} · {i?'Positions suivantes':'Synthèse'}</option>)}</select>
+        <Button type="button" variant="secondary" disabled={exporting} onClick={downloadSeries}>Télécharger la série pour X (ZIP)</Button>
+      </div>}
       <p className="ip-bio">{intro.trim() || investorIntroduction(slug)}</p>
       {loading && <p role="status">Chargement du portefeuille…</p>}
 
@@ -149,6 +168,7 @@ export default function InvestorPortfolio() {
           </div>
         </div>
         <WorkspaceActions>
+          {series?.pages.length>1 && <><Button type="button" variant="secondary" disabled={!pageIndex} onClick={()=>setImagePage(i=>i-1)}>Image précédente</Button><span aria-live="polite">Image {pageIndex+1}/{series.pages.length}</span><Button type="button" variant="secondary" disabled={pageIndex===series.pages.length-1} onClick={()=>setImagePage(i=>i+1)}>Image suivante</Button></>}
           <Button type="button" onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le tweet'}</Button>
           <Button type="button" variant="secondary" onClick={download} disabled={exporting || !ready}>{exporting ? 'Création du PNG…' : '⬇️ Télécharger le PNG'}</Button>
         </WorkspaceActions>
@@ -158,13 +178,7 @@ export default function InvestorPortfolio() {
           <Button type="button" variant="secondary" onClick={() => downloadData('csv')}>Télécharger toutes les positions CSV</Button>
           <Button type="button" variant="secondary" onClick={downloadDetails} disabled={exporting}>Télécharger les PNG détaillés (ZIP)</Button>
         </WorkspaceActions>
-        <details><summary>Détail intégral · {portfolio.holdings.length} positions</summary>{portfolio.holdings.map((row,i)=><p key={i}>{row.issuerName} · {row.ticker} · {row.shareClass || 'classe non transmise'} · {row.cusip || row.securityId || 'identifiant non transmis'} · {Number.isFinite(row.value)?reportedAmount(row):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>
-        {portfolio.snapshot.holdings.some(row=>row.putCall) && <details><summary>Options déclarées · hors image et total</summary><p>Poids sur le total déclaré, options incluses. Les valeurs déclarées ne mesurent pas les primes ni l’exposition nette.</p>{portfolio.snapshot.holdings.filter(row=>row.putCall).map((row,i)=><p key={i}>{row.issuerName} · {row.putCall} · {row.shareClass} · {row.cusip || 'identifiant non transmis'} · {Number.isFinite(row.value)?reportedAmount(row):'montant indisponible'} · {percentage(row.weight)}</p>)}</details>}
-        <p className="ip-note">Les lignes et classes transmises restent distinctes. Certains fournisseurs regroupent déjà des classes en amont ; ce manque de détail est conservé dans les exports. Les poids du visuel portent sur la somme des positions hors options, calculée sans arrondi.</p>
-        <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
-        {portrait.illustration?.note && <p className="ip-note">{portrait.illustration.note}</p>}
-        <p className="ip-note">Portrait de référence : {portrait.person} : <a href={portrait.source} target="_blank" rel="noreferrer">{portrait.author} ↗</a> · {portrait.license} · Affichage du nom si la réutilisation, l’identité ou le détourage ne sont pas établis.</p>
-        <History portfolio={portfolio} /></>}
+        <Suspense fallback={<p>Chargement du détail…</p>}><PortfolioDetails {...{portfolio,portrait,series}} /></Suspense></>}
         {model && <><p className="ip-note">{model.method}</p><p className="ip-note">{model.caution}</p><p className="ip-note">Cibles théoriques, sans performance ni conversion en produits UCITS. Le visuel utilise les poids du modèle ; une modification manuelle du texte ne modifie pas ces cibles.</p></>}
         <p className="ip-credit">{model ? "Source : publication de la méthode" : portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {model ? 'la publication' : portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}

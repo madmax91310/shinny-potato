@@ -44,6 +44,29 @@ try {
     if(result.png){await writeFile(`${out}/${id}.png`,Buffer.from(result.png.split(',')[1],'base64'));delete result.png}
     results.push(result)
   }
+  const seriesChecks=[]
+  for(const [id,payload] of cases){
+    const check=await page.evaluate(async({id,payload})=>{
+      const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
+      const {editorialSeries}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+      const {renderSeriesPage}=await import('/shinny-potato/src/pages/investor-portfolio/series-image.js')
+      const p=normalizePortfolio(payload);if(p.problem)return {id,blocked:true}
+      const series=editorialSeries(p),original=CanvasRenderingContext2D.prototype.fillText
+      for(let i=1;i<series.pages.length;i++){
+        const boxes=[]
+        CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...args){
+          const m=this.measureText(value),b={value,l:x-m.actualBoundingBoxLeft,r:x+m.actualBoundingBoxRight,t:y-m.actualBoundingBoxAscent,b:y+m.actualBoundingBoxDescent}
+          if(b.l<0||b.r>1080||b.t<0||b.b>1350)throw Error(`Series clipped ${id}: ${value}`)
+          for(const a of boxes)if(Math.min(a.r,b.r)-Math.max(a.l,b.l)>1&&Math.min(a.b,b.b)-Math.max(a.t,b.t)>1)throw Error(`Series overlap ${id}: ${a.value} / ${value}`)
+          boxes.push(b);return original.call(this,value,x,y,...args)
+        }
+        try{await renderSeriesPage(p,i)}finally{CanvasRenderingContext2D.prototype.fillText=original}
+      }
+      return {id,pages:series.pages.length,covered:series.coveredCount,coverage:series.coverage}
+    },{id,payload})
+    seriesChecks.push(check)
+  }
+  await writeFile(`${out}/series-layout.json`,JSON.stringify(seriesChecks,null,2))
   // An explicitly sourced historical illustration never changes corporate ownership.
   await page.evaluate(async()=>{
     const {portfolioPortrait}=await import('/shinny-potato/src/pages/investor-portfolio/media.js')
@@ -56,7 +79,14 @@ try {
     const wrong=await portfolioPortrait(p.identity,{...manifest.berkshire,person:'Homonyme'})
     if(wrong.image)throw Error('Unverified historical portrait accepted')
     const entity=await portfolioPortrait({slug:'gates-trust',displayName:'Gates Foundation Trust'},manifest['gates-trust'])
-    if(entity.image)throw Error('Historical exception leaked to another entity')
+    if(!entity.image||entity.person!=='Bill Gates')throw Error('Verified Gates trustee illustration missing')
+    const baker=await portfolioPortrait({slug:'baker-bros',displayName:'Baker Bros. Advisors'},manifest['baker-bros'])
+    if(baker.image)throw Error('Unverified founder illustration accepted')
+    for(const slug of ['pabrai','li-lu','renaissance']){
+      const payload=await(await fetch(`/shinny-potato/data/investors/${slug}.json`)).json()
+      const p=normalizePortfolio(payload),photo=await portfolioPortrait(p.identity,manifest[slug])
+      if(!photo.image)throw Error(`Verified photograph missing: ${slug}`)
+    }
   })
   // The actual paginated Canvas must keep each security's name, identifiers and
   // monetary line together. Reproduce the orphaned Monro/Gayner amounts from the audit.

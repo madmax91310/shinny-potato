@@ -20,7 +20,7 @@ const people = {
   'gates-trust': 'Bill Gates', klarman: 'Seth Klarman',
   'terry-smith': 'Terry Smith', pabrai: 'Mohnish Pabrai', hohn: 'Christopher Hohn',
   'baker-bros': 'Felix Baker · cofondateur', icahn: 'Carl Icahn',
-  laffont: 'Philippe Laffont', renaissance: 'Jim Simons · fondateur (1938–2024)',
+  laffont: 'Philippe Laffont', renaissance: 'Jim Simons',
 }
 export const INVESTOR_PORTRAITS = Object.freeze(Object.fromEntries(Object.entries(people).map(([slug, person]) => [slug, { ...sources[slug], person }])))
 export function investorPortrait(slug) {
