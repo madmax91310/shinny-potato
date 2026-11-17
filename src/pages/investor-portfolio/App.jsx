@@ -125,7 +125,7 @@ export default function InvestorPortfolio() {
       {series?.pages.length>1 && <div className="ip-series" aria-label="Série de publication">
         <p>Série pour X · {series.pages.length} images · {series.coveredCount} positions nommées. Le détail intégral reste séparé.</p>
         <label htmlFor="ip-image-page">Image de la série</label>
-        <select id="ip-image-page" value={pageIndex} onChange={e=>setImagePage(Number(e.target.value))}>{series.pages.map((p,i)=><option key={i} value={i}>{i+1}/{series.pages.length} · {i?'Positions suivantes':'Synthèse'}</option>)}</select>
+        <ChoicePicker id="ip-image-page" value={String(pageIndex)} onChange={e=>setImagePage(Number(e.target.value))}>{series.pages.map((p,i)=><option key={i} value={String(i)}>{i+1}/{series.pages.length} · {i?'Positions suivantes':'Synthèse'}</option>)}</ChoicePicker>
         <Button type="button" variant="secondary" disabled={exporting} onClick={downloadSeries}>Télécharger la série pour X (ZIP)</Button>
       </div>}
       <p className="ip-bio">{intro.trim() || investorIntroduction(slug)}</p>
