@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-15T16:42:45.088359+00:00",
+  "as_of": "2026-11-17T21:09:00.736979+00:00",
   "data": {
     "identity": {
       "slug": "aschenbrenner",
@@ -9,253 +9,13 @@
       "dataProvider": "SEC",
       "personVerified": true,
       "personSource": "https://foliofact.com/api/v1/funds/situational-awareness",
-      "personPeriod": "2026-06-30",
+      "personPeriod": "2026-09-30",
       "declaringCik": "0002045724",
-      "entitySource": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/"
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000610/"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
-        {
-          "issuerName": "SANDISK CORP",
-          "shareClass": "COM",
-          "cusip": "80004C200",
-          "securityId": "80004C200",
-          "ticker": "",
-          "putCall": null,
-          "value": 5673738513,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 5673738513,
-              "issuerName": "SANDISK CORP",
-              "shares": "2495344",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.2802913054062051
-        },
-        {
-          "issuerName": "MICRON TECHNOLOGY INC",
-          "shareClass": "COM",
-          "cusip": "595112103",
-          "securityId": "595112103",
-          "ticker": "",
-          "putCall": null,
-          "value": 5573819392,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 5573819392,
-              "issuerName": "MICRON TECHNOLOGY INC",
-              "shares": "4828786",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.27535514897320057
-        },
-        {
-          "issuerName": "BLOOM ENERGY CORP",
-          "shareClass": "COM CL A",
-          "cusip": "093712107",
-          "securityId": "093712107",
-          "ticker": "",
-          "putCall": null,
-          "value": 1898778982,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1898778982,
-              "issuerName": "BLOOM ENERGY CORP",
-              "shares": "6272808",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.09380256744705662
-        },
-        {
-          "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
-          "shareClass": "SPONSORED ADS",
-          "cusip": "874039100",
-          "securityId": "874039100",
-          "ticker": "",
-          "putCall": null,
-          "value": 1265099645,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1265099645,
-              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
-              "shares": "2649035",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.06249784514275811
-        },
-        {
-          "issuerName": "NEBIUS GROUP N.V.",
-          "shareClass": "CLASS ASHS",
-          "cusip": "N97284108",
-          "securityId": "N97284108",
-          "ticker": "",
-          "putCall": null,
-          "value": 1232894684,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1232894684,
-              "issuerName": "NEBIUS GROUP N.V.",
-              "shares": "4464260",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.06090687112473397
-        },
-        {
-          "issuerName": "COREWEAVE INC",
-          "shareClass": "COM CL A",
-          "cusip": "21873S108",
-          "securityId": "21873S108",
-          "ticker": "",
-          "putCall": null,
-          "value": 744515203,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 744515203,
-              "issuerName": "COREWEAVE INC",
-              "shares": "7479558",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.03678018253141089
-        },
-        {
-          "issuerName": "CORE SCIENTIFIC INC NEW",
-          "shareClass": "COM",
-          "cusip": "21874A106",
-          "securityId": "21874A106",
-          "ticker": "",
-          "putCall": null,
-          "value": 665556824,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 665556824,
-              "issuerName": "CORE SCIENTIFIC INC NEW",
-              "shares": "26008473",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0328795186090325
-        },
-        {
-          "issuerName": "STMICROELECTRONICS",
-          "shareClass": "NY REGISTRY",
-          "cusip": "861012102",
-          "securityId": "861012102",
-          "ticker": "",
-          "putCall": null,
-          "value": 584344203,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 584344203,
-              "issuerName": "STMICROELECTRONICS",
-              "shares": "7802700",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.028867491705890414
-        },
-        {
-          "issuerName": "APPLIED DIGITAL CORP",
-          "shareClass": "COM NEW",
-          "cusip": "038169207",
-          "securityId": "038169207",
-          "ticker": "",
-          "putCall": null,
-          "value": 469022807,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 469022807,
-              "issuerName": "APPLIED DIGITAL CORP",
-              "shares": "15384616",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.023170439479735783
-        },
-        {
-          "issuerName": "RIOT PLATFORMS INC",
-          "shareClass": "COM",
-          "cusip": "767292105",
-          "securityId": "767292105",
-          "ticker": "",
-          "putCall": null,
-          "value": 468198000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 468198000,
-              "issuerName": "RIOT PLATFORMS INC",
-              "shares": "17100000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.023129692760406283
-        },
         {
           "issuerName": "SHARONAI HOLDINGS INC",
           "shareClass": "COM CL A",
@@ -263,14 +23,14 @@
           "securityId": "778920306",
           "ticker": "",
           "putCall": null,
-          "value": 456836112,
+          "value": 440673870,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 456836112,
+              "value": 440673870,
               "issuerName": "SHARONAI HOLDINGS INC",
-              "shares": "5396127",
+              "shares": "8070950",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -278,23 +38,63 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.02256839822557669
+          "weight": 0.279357662523272
         },
         {
-          "issuerName": "IREN LIMITED",
-          "shareClass": "ORDINARY SHARES",
-          "cusip": "Q4982L109",
-          "securityId": "Q4982L109",
+          "issuerName": "BLOOM ENERGY CORP",
+          "shareClass": "COM CL A",
+          "cusip": "093712107",
+          "securityId": "093712107",
           "ticker": "",
-          "putCall": null,
-          "value": 433250547,
+          "putCall": "CALL",
+          "value": 389156900,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 433250547,
-              "issuerName": "IREN LIMITED",
-              "shares": "9474099",
+              "value": 49856400,
+              "issuerName": "BLOOM ENERGY CORP",
+              "shares": "180000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 33237600,
+              "issuerName": "BLOOM ENERGY CORP",
+              "shares": "120000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 65090300,
+              "issuerName": "BLOOM ENERGY CORP",
+              "shares": "235000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 90018500,
+              "issuerName": "BLOOM ENERGY CORP",
+              "shares": "325000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 110792000,
+              "issuerName": "BLOOM ENERGY CORP",
+              "shares": "400000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 40162100,
+              "issuerName": "BLOOM ENERGY CORP",
+              "shares": "145000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -302,7 +102,151 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.021403235469583302
+          "weight": 0.2466993605470701
+        },
+        {
+          "issuerName": "NEBIUS GROUP N.V.",
+          "shareClass": "CLASS ASHS",
+          "cusip": "N97284108",
+          "securityId": "N97284108",
+          "ticker": "",
+          "putCall": "CALL",
+          "value": 332590800,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 51893600,
+              "issuerName": "NEBIUS GROUP N.V.",
+              "shares": "220000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 47176000,
+              "issuerName": "NEBIUS GROUP N.V.",
+              "shares": "200000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 44817200,
+              "issuerName": "NEBIUS GROUP N.V.",
+              "shares": "190000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 70764000,
+              "issuerName": "NEBIUS GROUP N.V.",
+              "shares": "300000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 51893600,
+              "issuerName": "NEBIUS GROUP N.V.",
+              "shares": "220000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 66046400,
+              "issuerName": "NEBIUS GROUP N.V.",
+              "shares": "280000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.21084024896857406
+        },
+        {
+          "issuerName": "SANDISK CORP",
+          "shareClass": "COM",
+          "cusip": "80004C200",
+          "securityId": "80004C200",
+          "ticker": "",
+          "putCall": "CALL",
+          "value": 182688450,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 104393400,
+              "issuerName": "SANDISK CORP",
+              "shares": "60000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 78295050,
+              "issuerName": "SANDISK CORP",
+              "shares": "45000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.1158122181421822
+        },
+        {
+          "issuerName": "ROUNDHILL ETF TRUST",
+          "shareClass": "MEMORY ETF",
+          "cusip": "77926X320",
+          "securityId": "77926X320",
+          "ticker": "",
+          "putCall": "CALL",
+          "value": 140337000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 33198000,
+              "issuerName": "ROUNDHILL ETF TRUST",
+              "shares": "550000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 45270000,
+              "issuerName": "ROUNDHILL ETF TRUST",
+              "shares": "750000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 25954800,
+              "issuerName": "ROUNDHILL ETF TRUST",
+              "shares": "430000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            },
+            {
+              "value": 35914200,
+              "issuerName": "ROUNDHILL ETF TRUST",
+              "shares": "595000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.08896424080131735
         },
         {
           "issuerName": "CLEANSPARK INC",
@@ -311,14 +255,14 @@
           "securityId": "18452B209",
           "ticker": "",
           "putCall": null,
-          "value": 178617822,
+          "value": 38885094,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 178617822,
+              "value": 38885094,
               "issuerName": "CLEANSPARK INC",
-              "shares": "12276139",
+              "shares": "3019029",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -326,23 +270,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.008823991867528136
+          "weight": 0.024650540243826364
         },
         {
-          "issuerName": "KEEL INFRASTRUCTURE CORP",
-          "shareClass": "SHSCOM",
-          "cusip": "486917107",
-          "securityId": "486917107",
+          "issuerName": "IREN LIMITED",
+          "shareClass": "ORDINARY SHARES",
+          "cusip": "Q4982L109",
+          "securityId": "Q4982L109",
           "ticker": "",
           "putCall": null,
-          "value": 151830996,
+          "value": 21579080,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 151830996,
-              "issuerName": "KEEL INFRASTRUCTURE CORP",
-              "shares": "26451393",
+              "value": 21579080,
+              "issuerName": "IREN LIMITED",
+              "shares": "527864",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -350,55 +294,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.007500681952905556
-        },
-        {
-          "issuerName": "SOLARIS ENERGY INFRAS INC",
-          "shareClass": "COM CL A",
-          "cusip": "83418M103",
-          "securityId": "83418M103",
-          "ticker": "",
-          "putCall": null,
-          "value": 90889306,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 90889306,
-              "issuerName": "SOLARIS ENERGY INFRAS INC",
-              "shares": "1129621",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.004490069848625051
-        },
-        {
-          "issuerName": "WHITEFIBER INC",
-          "shareClass": "SHS",
-          "cusip": "G96115103",
-          "securityId": "G96115103",
-          "ticker": "",
-          "putCall": null,
-          "value": 68282760,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 68282760,
-              "issuerName": "WHITEFIBER INC",
-              "shares": "1757600",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.003373272119130282
+          "weight": 0.013679688673627705
         },
         {
           "issuerName": "BITDEER TECHNOLOGIES GROUP",
@@ -407,14 +303,14 @@
           "securityId": "G11448100",
           "ticker": "",
           "putCall": null,
-          "value": 54584072,
+          "value": 20294143,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 54584072,
+              "value": 20294143,
               "issuerName": "BITDEER TECHNOLOGIES GROUP",
-              "shares": "3439450",
+              "shares": "1934618",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -422,95 +318,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0026965361128665553
+          "weight": 0.01286512484026571
         },
         {
-          "issuerName": "T1 ENERGY INC",
-          "shareClass": "COM NEW",
-          "cusip": "35834F104",
-          "securityId": "35834F104",
-          "ticker": "",
-          "putCall": null,
-          "value": 46452000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 46452000,
-              "issuerName": "T1 ENERGY INC",
-              "shares": "4900000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00229479939706362
-        },
-        {
-          "issuerName": "BLOOM ENERGY CORP",
-          "shareClass": "COM CL A",
-          "cusip": "093712107",
-          "securityId": "093712107",
-          "ticker": "",
-          "putCall": "CALL",
-          "value": 44133660,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 44133660,
-              "issuerName": "BLOOM ENERGY CORP",
-              "shares": "145800",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0021802698776847242
-        },
-        {
-          "issuerName": "HIVE DIGITAL TECHNOLOGIES LT",
-          "shareClass": "COM NEW",
-          "cusip": "433921103",
-          "securityId": "433921103",
-          "ticker": "",
-          "putCall": null,
-          "value": 33246763,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 33246763,
-              "issuerName": "HIVE DIGITAL TECHNOLOGIES LT",
-              "shares": "9133726",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0016424406201394357
-        },
-        {
-          "issuerName": "BABCOCK & WILCOX ENTERPRISES",
+          "issuerName": "FERMI INC",
           "shareClass": "COM",
-          "cusip": "05614L209",
-          "securityId": "05614L209",
+          "cusip": "314911108",
+          "securityId": "314911108",
           "ticker": "",
           "putCall": null,
-          "value": 28587059,
+          "value": 11248691,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 28587059,
-              "issuerName": "BABCOCK & WILCOX ENTERPRISES",
-              "shares": "2027451",
+              "value": 11248691,
+              "issuerName": "FERMI INC",
+              "shares": "2671898",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -518,192 +342,138 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0014122441607901087
-        },
-        {
-          "issuerName": "PROPETRO HLDG CORP",
-          "shareClass": "COM",
-          "cusip": "74347M108",
-          "securityId": "74347M108",
-          "ticker": "",
-          "putCall": null,
-          "value": 28111878,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 28111878,
-              "issuerName": "PROPETRO HLDG CORP",
-              "shares": "1960382",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.001388769497217042
-        },
-        {
-          "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
-          "shareClass": "SPONSORED ADS",
-          "cusip": "874039100",
-          "securityId": "874039100",
-          "ticker": "",
-          "putCall": "CALL",
-          "value": 23878500,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 23878500,
-              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
-              "shares": "50000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0011796341901916742
-        },
-        {
-          "issuerName": "VISHAY INTERTECHNOLOGY INC",
-          "shareClass": "COM",
-          "cusip": "928298108",
-          "securityId": "928298108",
-          "ticker": "",
-          "putCall": null,
-          "value": 20167500,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 20167500,
-              "issuerName": "VISHAY INTERTECHNOLOGY INC",
-              "shares": "375000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0009963051502686765
-        },
-        {
-          "issuerName": "INFOSYS LTD",
-          "shareClass": "SPONSORED ADR",
-          "cusip": "456788108",
-          "securityId": "456788108",
-          "ticker": "",
-          "putCall": "PUT",
-          "value": 5245000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 5245000,
-              "issuerName": "INFOSYS LTD",
-              "shares": "500000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00025911097127354445
-        },
-        {
-          "issuerName": "CEREBRAS SYSTEMS INC",
-          "shareClass": "COM CL A",
-          "cusip": "15675D103",
-          "securityId": "15675D103",
-          "ticker": "",
-          "putCall": null,
-          "value": 2210000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 2210000,
-              "issuerName": "CEREBRAS SYSTEMS INC",
-              "shares": "10000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00010917735872536381
+          "weight": 0.007130915259864549
         }
       ],
-      "filedAt": "2026-08-14",
-      "declaredTotal": 20242292228,
+      "filedAt": "2026-11-16",
+      "declaredTotal": 1577454028,
       "currency": "USD",
       "valueUnit": 1,
       "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
       "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
       "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
+        "priorPeriodLabel": "Q2 2026",
         "exits": [
           {
-            "issuerName": "Power Solutions International Inc - US",
-            "ticker": "PSIX",
+            "issuerName": "Sandisk Corp.",
+            "ticker": "SNDK",
             "putCall": null
           },
           {
-            "issuerName": "Advanced Micro Devices Inc.",
-            "ticker": "AMD",
+            "issuerName": "Micron Technology Inc.",
+            "ticker": "MU",
             "putCall": null
           },
           {
-            "issuerName": "Vaneck Vectors ETF TR",
-            "ticker": "SMH",
+            "issuerName": "Bloom Energy Corp.",
+            "ticker": "BE",
             "putCall": null
           },
           {
-            "issuerName": "Intel Corp.",
-            "ticker": "INTC",
+            "issuerName": "Taiwan Semiconductor Manufacturing",
+            "ticker": "TSM",
             "putCall": null
           },
           {
-            "issuerName": "ASML Holding NV",
-            "ticker": "ASML",
+            "issuerName": "Nebius Group N.V.",
+            "ticker": "NBIS",
             "putCall": null
           },
           {
-            "issuerName": "Corning Inc.",
-            "ticker": "GLW",
+            "issuerName": "Coreweave Inc.",
+            "ticker": "CRWV",
             "putCall": null
           },
           {
-            "issuerName": "Nvidia Corporation",
-            "ticker": "NVDA",
+            "issuerName": "Core Scientific Inc.",
+            "ticker": "CORZ",
+            "putCall": null
+          },
+          {
+            "issuerName": "Stmicroelectronics Nv - US NY Reg Shrs",
+            "ticker": "STM",
+            "putCall": null
+          },
+          {
+            "issuerName": "Applied Digital Corp.",
+            "ticker": "APLD",
+            "putCall": null
+          },
+          {
+            "issuerName": "RIOT Platforms Inc.",
+            "ticker": "RIOT",
+            "putCall": null
+          },
+          {
+            "issuerName": "KEEL Infrastructure Corp.",
+            "ticker": "KEEL",
+            "putCall": null
+          },
+          {
+            "issuerName": "Solaris Energy Infrastructure Inc - US",
+            "ticker": "SEI",
+            "putCall": null
+          },
+          {
+            "issuerName": "Whitefiber Inc - US",
+            "ticker": "WYFI",
+            "putCall": null
+          },
+          {
+            "issuerName": "T1 Energy Inc - US",
+            "ticker": "TE",
+            "putCall": null
+          },
+          {
+            "issuerName": "Hive Digital Technologies Ltd - US",
+            "ticker": "HIVE",
+            "putCall": null
+          },
+          {
+            "issuerName": "Babcock & Wilcox Enterprises Inc - US",
+            "ticker": "BW",
+            "putCall": null
+          },
+          {
+            "issuerName": "Propetro Holding Corp - US",
+            "ticker": "PUMP",
+            "putCall": null
+          },
+          {
+            "issuerName": "Vishay Intertechnology Inc.",
+            "ticker": "VSH",
+            "putCall": null
+          },
+          {
+            "issuerName": "Cerebras Systems Inc.",
+            "ticker": "CBRS",
             "putCall": null
           }
         ]
       },
       "publicationSource": "https://foliofact.com/funds/situational-awareness",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/",
-      "reportedCoverTotal": 20242292228,
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000610/",
+      "reportedCoverTotal": 1577454028,
       "reconciliationDifference": 0,
-      "providerDeclaredTotal": 20242292228.0,
-      "providerHoldingsCount": 26,
+      "providerDeclaredTotal": 1577454028.0,
+      "providerHoldingsCount": 9,
       "providerTotalDifference": 0.0,
       "sourceDocuments": [
-        "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/form13fInfoTable.xml",
-        "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/primary_doc.xml"
+        "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000610/form13fInfoTable.xml",
+        "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000610/primary_doc.xml"
       ],
-      "originalRowCount": 26,
+      "originalRowCount": 23,
       "primaryVerified": true
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000610/",
     "discoverySourceUrl": "https://foliofact.com/funds/situational-awareness",
-    "filingHistory": []
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000418/",
+        "snapshotUrl": "data/investors/archive/aschenbrenner/2026-06-30.json"
+      }
+    ]
   }
 }

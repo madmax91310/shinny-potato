@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-15T16:43:10.680788+00:00",
+  "as_of": "2026-11-17T21:09:21.111337+00:00",
   "data": {
     "identity": {
       "slug": "gates-trust",
@@ -9,12 +9,12 @@
       "dataProvider": "SEC",
       "personVerified": false,
       "personSource": "https://foliofact.com/api/v1/funds/gates-foundation-trust",
-      "personPeriod": "2026-06-30",
+      "personPeriod": "2026-09-30",
       "declaringCik": "0001166559",
-      "entitySource": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/"
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926128337/"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
         {
           "issuerName": "BERKSHIRE HATHAWAY INC DEL",
@@ -23,14 +23,14 @@
           "securityId": "084670702",
           "ticker": "",
           "putCall": null,
-          "value": 7350651039,
+          "value": 6199132421,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 7350651039,
+              "value": 6199132421,
               "issuerName": "BERKSHIRE HATHAWAY INC DEL",
-              "shares": "14689844",
+              "shares": "12449307",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -38,31 +38,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.2135278276632693
-        },
-        {
-          "issuerName": "CATERPILLAR INC",
-          "shareClass": "COM",
-          "cusip": "149123101",
-          "securityId": "149123101",
-          "ticker": "",
-          "putCall": null,
-          "value": 6765963549,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 6765963549,
-              "issuerName": "CATERPILLAR INC",
-              "shares": "6353614",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.19654333895074652
+          "weight": 0.2073722773092183
         },
         {
           "issuerName": "CANADIAN NATL RY CO",
@@ -71,12 +47,12 @@
           "securityId": "136375102",
           "ticker": "",
           "putCall": null,
-          "value": 6179825963,
+          "value": 6162204855,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 6179825963,
+              "value": 6162204855,
               "issuerName": "CANADIAN NATL RY CO",
               "shares": "51826786",
               "amountType": "SH",
@@ -86,7 +62,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.17951672664302917
+          "weight": 0.2061369829265777
+        },
+        {
+          "issuerName": "CATERPILLAR INC",
+          "shareClass": "COM",
+          "cusip": "149123101",
+          "securityId": "149123101",
+          "ticker": "",
+          "putCall": null,
+          "value": 5151446695,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 5151446695,
+              "issuerName": "CATERPILLAR INC",
+              "shares": "6353614",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.1723252803828428
         },
         {
           "issuerName": "WASTE MGMT INC DEL",
@@ -95,14 +95,14 @@
           "securityId": "94106L109",
           "ticker": "",
           "putCall": null,
-          "value": 5955519423,
+          "value": 4183024419,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 5955519423,
+              "value": 4183024419,
               "issuerName": "WASTE MGMT INC DEL",
-              "shares": "26720744",
+              "shares": "20513066",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -110,7 +110,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.1730008836295673
+          "weight": 0.1399297903154277
         },
         {
           "issuerName": "DEERE & CO",
@@ -119,12 +119,12 @@
           "securityId": "244199105",
           "ticker": "",
           "putCall": null,
-          "value": 2256551587,
+          "value": 2388957196,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2256551587,
+              "value": 2388957196,
               "issuerName": "DEERE & CO",
               "shares": "3557378",
               "amountType": "SH",
@@ -134,7 +134,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.06555018811609414
+          "weight": 0.07991497204520913
         },
         {
           "issuerName": "ECOLAB INC",
@@ -143,12 +143,12 @@
           "securityId": "278865100",
           "ticker": "",
           "putCall": null,
-          "value": 1453799239,
+          "value": 1432770522,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1453799239,
+              "value": 1432770522,
               "issuerName": "ECOLAB INC",
               "shares": "5218044",
               "amountType": "SH",
@@ -158,7 +158,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.042231169962384074
+          "weight": 0.04792878516389696
         },
         {
           "issuerName": "WALMART INC",
@@ -167,12 +167,12 @@
           "securityId": "931142103",
           "ticker": "",
           "putCall": null,
-          "value": 950305425,
+          "value": 871938370,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 950305425,
+              "value": 871938370,
               "issuerName": "WALMART INC",
               "shares": "8390477",
               "amountType": "SH",
@@ -182,7 +182,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.02760526270942052
+          "weight": 0.029167927571229373
         },
         {
           "issuerName": "FEDEX CORP",
@@ -191,12 +191,12 @@
           "securityId": "31428X106",
           "ticker": "",
           "putCall": null,
-          "value": 746615273,
+          "value": 679757763,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 746615273,
+              "value": 679757763,
               "issuerName": "FEDEX CORP",
               "shares": "2384362",
               "amountType": "SH",
@@ -206,7 +206,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.021688301688934083
+          "weight": 0.022739136020777366
         },
         {
           "issuerName": "COCA-COLA FEMSA SAB DE CV",
@@ -215,12 +215,12 @@
           "securityId": "191241108",
           "ticker": "",
           "putCall": null,
-          "value": 660313894,
+          "value": 671438241,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 660313894,
+              "value": 671438241,
               "issuerName": "COCA-COLA FEMSA SAB DE CV",
               "shares": "6214719",
               "amountType": "SH",
@@ -230,31 +230,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.019181347422646204
-        },
-        {
-          "issuerName": "HOME DEPOT INC",
-          "shareClass": "COM",
-          "cusip": "437076102",
-          "securityId": "437076102",
-          "ticker": "",
-          "putCall": null,
-          "value": 352680000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 352680000,
-              "issuerName": "HOME DEPOT INC",
-              "shares": "1000000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.01024494209570405
+          "weight": 0.022460832847672082
         },
         {
           "issuerName": "WASTE CONNECTIONS INC",
@@ -263,12 +239,12 @@
           "securityId": "94106B101",
           "ticker": "",
           "putCall": null,
-          "value": 339910081,
+          "value": 313890208,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 339910081,
+              "value": 313890208,
               "issuerName": "WASTE CONNECTIONS INC",
               "shares": "2039175",
               "amountType": "SH",
@@ -278,7 +254,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.009873990863080054
+          "weight": 0.01050019951784221
+        },
+        {
+          "issuerName": "HOME DEPOT INC",
+          "shareClass": "COM",
+          "cusip": "437076102",
+          "securityId": "437076102",
+          "ticker": "",
+          "putCall": null,
+          "value": 284490000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 284490000,
+              "issuerName": "HOME DEPOT INC",
+              "shares": "1000000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00951670897879978
         },
         {
           "issuerName": "MADISON SQUARE GRDN SPRT COR",
@@ -287,12 +287,12 @@
           "securityId": "55825T103",
           "ticker": "",
           "putCall": null,
-          "value": 238052427,
+          "value": 240048835,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 238052427,
+              "value": 240048835,
               "issuerName": "MADISON SQUARE GRDN SPRT COR",
               "shares": "592406",
               "amountType": "SH",
@@ -302,127 +302,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.006915144976627015
-        },
-        {
-          "issuerName": "FEDEX FGHT HLDG CO INC",
-          "shareClass": "COMMON STOCK",
-          "cusip": "314352105",
-          "securityId": "314352105",
-          "ticker": "",
-          "putCall": null,
-          "value": 180019331,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 180019331,
-              "issuerName": "FEDEX FGHT HLDG CO INC",
-              "shares": "1192181",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0052293513162140785
-        },
-        {
-          "issuerName": "COUPANG INC",
-          "shareClass": "CL A",
-          "cusip": "22266T109",
-          "securityId": "22266T109",
-          "ticker": "",
-          "putCall": null,
-          "value": 160638542,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 160638542,
-              "issuerName": "COUPANG INC",
-              "shares": "9248045",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00466636203109993
-        },
-        {
-          "issuerName": "WEST PHARMACEUTICAL SVSC INC",
-          "shareClass": "COM",
-          "cusip": "955306105",
-          "securityId": "955306105",
-          "ticker": "",
-          "putCall": null,
-          "value": 159575500,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 159575500,
-              "issuerName": "WEST PHARMACEUTICAL SVSC INC",
-              "shares": "444500",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.004635481902554786
-        },
-        {
-          "issuerName": "ANHEUSER BUSCH INBEV SA NV",
-          "shareClass": "SPONSORED ADR",
-          "cusip": "03524A108",
-          "securityId": "03524A108",
-          "ticker": "",
-          "putCall": null,
-          "value": 140327200,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 140327200,
-              "issuerName": "ANHEUSER BUSCH INBEV SA NV",
-              "shares": "1703000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.004076341268153231
-        },
-        {
-          "issuerName": "PACCAR INC",
-          "shareClass": "COM",
-          "cusip": "693718108",
-          "securityId": "693718108",
-          "ticker": "",
-          "putCall": null,
-          "value": 120120000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 120120000,
-              "issuerName": "PACCAR INC",
-              "shares": "1000000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0034893457086763373
+          "weight": 0.008030071016186604
         },
         {
           "issuerName": "SCHRODINGER INC",
@@ -431,12 +311,12 @@
           "securityId": "80810D103",
           "ticker": "",
           "putCall": null,
-          "value": 113452040,
+          "value": 216780667,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 113452040,
+              "value": 216780667,
               "issuerName": "SCHRODINGER INC",
               "shares": "6981664",
               "amountType": "SH",
@@ -446,23 +326,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.003295649258363105
+          "weight": 0.007251708390696
         },
         {
-          "issuerName": "MCDONALDS CORP",
+          "issuerName": "WEST PHARMACEUTICAL SVSC INC",
           "shareClass": "COM",
-          "cusip": "580135101",
-          "securityId": "580135101",
+          "cusip": "955306105",
+          "securityId": "955306105",
           "ticker": "",
           "putCall": null,
-          "value": 90526819,
+          "value": 164802820,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 90526819,
-              "issuerName": "MCDONALDS CORP",
-              "shares": "334900",
+              "value": 164802820,
+              "issuerName": "WEST PHARMACEUTICAL SVSC INC",
+              "shares": "444500",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -470,7 +350,127 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0026296983632847944
+          "weight": 0.005512954679691813
+        },
+        {
+          "issuerName": "DOLLAR TREE INC",
+          "shareClass": "COM",
+          "cusip": "256746108",
+          "securityId": "256746108",
+          "ticker": "",
+          "putCall": null,
+          "value": 155183728,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 155183728,
+              "issuerName": "DOLLAR TREE INC",
+              "shares": "1361022",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0051911785216395044
+        },
+        {
+          "issuerName": "FEDEX FGHT HLDG CO INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "314352105",
+          "securityId": "314352105",
+          "ticker": "",
+          "putCall": null,
+          "value": 130400758,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 130400758,
+              "issuerName": "FEDEX FGHT HLDG CO INC",
+              "shares": "1192181",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.004362143008544754
+        },
+        {
+          "issuerName": "COUPANG INC",
+          "shareClass": "CL A",
+          "cusip": "22266T109",
+          "securityId": "22266T109",
+          "ticker": "",
+          "putCall": null,
+          "value": 128270384,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 128270384,
+              "issuerName": "COUPANG INC",
+              "shares": "9248045",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00429087811566978
+        },
+        {
+          "issuerName": "ANHEUSER BUSCH INBEV SA NV",
+          "shareClass": "SPONSORED ADR",
+          "cusip": "03524A108",
+          "securityId": "03524A108",
+          "ticker": "",
+          "putCall": null,
+          "value": 125119410,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 125119410,
+              "issuerName": "ANHEUSER BUSCH INBEV SA NV",
+              "shares": "1703000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.004185472292766462
+        },
+        {
+          "issuerName": "PACCAR INC",
+          "shareClass": "COM",
+          "cusip": "693718108",
+          "securityId": "693718108",
+          "ticker": "",
+          "putCall": null,
+          "value": 109810000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 109810000,
+              "issuerName": "PACCAR INC",
+              "shares": "1000000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0036733446270941117
         },
         {
           "issuerName": "DANAHER CORP DEL",
@@ -479,12 +479,12 @@
           "securityId": "235851102",
           "ticker": "",
           "putCall": null,
-          "value": 71049040,
+          "value": 82638150,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 71049040,
+              "value": 82638150,
               "issuerName": "DANAHER CORP DEL",
               "shares": "373000",
               "amountType": "SH",
@@ -494,7 +494,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.002063891631947831
+          "weight": 0.0027643967243010403
+        },
+        {
+          "issuerName": "MCDONALDS CORP",
+          "shareClass": "COM",
+          "cusip": "580135101",
+          "securityId": "580135101",
+          "ticker": "",
+          "putCall": null,
+          "value": 77341806,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 77341806,
+              "issuerName": "MCDONALDS CORP",
+              "shares": "334900",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0025872243649927612
         },
         {
           "issuerName": "KRAFT HEINZ CO",
@@ -503,12 +527,12 @@
           "securityId": "500754106",
           "ticker": "",
           "putCall": null,
-          "value": 58402812,
+          "value": 56177472,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 58402812,
+              "value": 56177472,
               "issuerName": "KRAFT HEINZ CO",
               "shares": "2472600",
               "amountType": "SH",
@@ -518,7 +542,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0016965334784118456
+          "weight": 0.001879238821008377
         },
         {
           "issuerName": "HORMEL FOODS CORP",
@@ -527,12 +551,12 @@
           "securityId": "440452100",
           "ticker": "",
           "putCall": null,
-          "value": 51756898,
+          "value": 41580683,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 51756898,
+              "value": 41580683,
               "issuerName": "HORMEL FOODS CORP",
               "shares": "2085290",
               "amountType": "SH",
@@ -542,7 +566,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.001503477438650507
+          "weight": 0.001390949626527215
         },
         {
           "issuerName": "ON HLDG AG",
@@ -551,12 +575,12 @@
           "securityId": "H5919C104",
           "ticker": "",
           "putCall": null,
-          "value": 17710000,
+          "value": 14805000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 17710000,
+              "value": 14805000,
               "issuerName": "ON HLDG AG",
               "shares": "500000",
               "amountType": "SH",
@@ -566,7 +590,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0005144548160227933
+          "weight": 0.0004952542318926174
         },
         {
           "issuerName": "VERALTO CORP",
@@ -575,12 +599,12 @@
           "securityId": "92338C103",
           "ticker": "",
           "putCall": null,
-          "value": 11025850,
+          "value": 11727089,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 11025850,
+              "value": 11727089,
               "issuerName": "VERALTO CORP",
               "shares": "124333",
               "amountType": "SH",
@@ -590,36 +614,42 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.00032028806511829
+          "weight": 0.0003922924994955328
         }
       ],
-      "filedAt": "2026-08-14",
-      "declaredTotal": 34424791932,
+      "filedAt": "2026-11-16",
+      "declaredTotal": 29893737492,
       "currency": "USD",
       "valueUnit": 1,
       "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
       "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
       "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
+        "priorPeriodLabel": "Q2 2026",
         "exits": []
       },
       "publicationSource": "https://foliofact.com/funds/gates-foundation-trust",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/",
-      "reportedCoverTotal": 34424791932,
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926128337/",
+      "reportedCoverTotal": 29893737492,
       "reconciliationDifference": 0,
-      "providerDeclaredTotal": 34424791932.0,
-      "providerHoldingsCount": 24,
+      "providerDeclaredTotal": 29893737492.0,
+      "providerHoldingsCount": 25,
       "providerTotalDifference": 0.0,
       "sourceDocuments": [
-        "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/infotable.xml",
-        "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/primary_doc.xml"
+        "https://www.sec.gov/Archives/edgar/data/1166559/000110465926128337/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/1166559/000110465926128337/primary_doc.xml"
       ],
-      "originalRowCount": 24,
+      "originalRowCount": 25,
       "primaryVerified": true
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926128337/",
     "discoverySourceUrl": "https://foliofact.com/funds/gates-foundation-trust",
-    "filingHistory": []
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/",
+        "snapshotUrl": "data/investors/archive/gates-trust/2026-06-30.json"
+      }
+    ]
   }
 }

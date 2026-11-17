@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-15T16:39:40.408770+00:00",
+  "as_of": "2026-11-17T21:05:55.968672+00:00",
   "data": {
     "identity": {
       "slug": "vinall",
@@ -9,12 +9,12 @@
       "dataProvider": "SEC",
       "personVerified": true,
       "personSource": "https://foliofact.com/api/v1/funds/rv-capital",
-      "personPeriod": "2026-06-30",
+      "personPeriod": "2026-09-30",
       "declaringCik": "0001766596",
-      "entitySource": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/"
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000014/"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
         {
           "issuerName": "CARVANA CO",
@@ -23,14 +23,14 @@
           "securityId": "146869102",
           "ticker": "",
           "putCall": null,
-          "value": 116060143,
+          "value": 126787842,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 116060143,
+              "value": 126787842,
               "issuerName": "CARVANA CO",
-              "shares": "1763296",
+              "shares": "2027308",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -38,7 +38,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.3031184126232204
+          "weight": 0.3138806894411749
         },
         {
           "issuerName": "META PLATFORMS INC",
@@ -47,14 +47,14 @@
           "securityId": "30303M102",
           "ticker": "",
           "putCall": null,
-          "value": 78295620,
+          "value": 94353170,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 78295620,
+              "value": 94353170,
               "issuerName": "META PLATFORMS INC",
-              "shares": "138997",
+              "shares": "130110",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -62,7 +62,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.20448746172707083
+          "weight": 0.23358421109936064
         },
         {
           "issuerName": "CREDIT ACCEP CORP MICH",
@@ -71,14 +71,14 @@
           "securityId": "225310101",
           "ticker": "",
           "putCall": null,
-          "value": 68941113,
+          "value": 58960647,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 68941113,
+              "value": 58960647,
               "issuerName": "CREDIT ACCEP CORP MICH",
-              "shares": "108272",
+              "shares": "111037",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -86,7 +86,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.18005596233875107
+          "weight": 0.14596516699335998
         },
         {
           "issuerName": "INTERACTIVE BROKERS GROUP IN",
@@ -95,12 +95,12 @@
           "securityId": "45841N107",
           "ticker": "",
           "putCall": null,
-          "value": 48836925,
+          "value": 47927966,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 48836925,
+              "value": 47927966,
               "issuerName": "INTERACTIVE BROKERS GROUP IN",
               "shares": "561086",
               "amountType": "SH",
@@ -110,23 +110,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.12754913789309452
+          "weight": 0.11865225225296595
         },
         {
-          "issuerName": "H WORLD GROUP LTD",
+          "issuerName": "ATOUR LIFESTYLE HLDGS LTD",
           "shareClass": "SPONSORED ADS",
-          "cusip": "44332N106",
-          "securityId": "44332N106",
+          "cusip": "04965M106",
+          "securityId": "04965M106",
           "ticker": "",
           "putCall": null,
-          "value": 21419590,
+          "value": 20853477,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 21419590,
-              "issuerName": "H WORLD GROUP LTD",
-              "shares": "513413",
+              "value": 20853477,
+              "issuerName": "ATOUR LIFESTYLE HLDGS LTD",
+              "shares": "639285",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -134,7 +134,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0559423067386726
+          "weight": 0.05162564197603177
         },
         {
           "issuerName": "YUM CHINA HLDGS INC",
@@ -143,14 +143,14 @@
           "securityId": "98850P109",
           "ticker": "",
           "putCall": null,
-          "value": 16267118,
+          "value": 17722526,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 16267118,
+              "value": 17722526,
               "issuerName": "YUM CHINA HLDGS INC",
-              "shares": "398021",
+              "shares": "431205",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -158,7 +158,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.042485411948136376
+          "weight": 0.043874543424432984
         },
         {
           "issuerName": "MICROSOFT CORP",
@@ -167,12 +167,12 @@
           "securityId": "594918104",
           "ticker": "",
           "putCall": null,
-          "value": 12346962,
+          "value": 16976990,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 12346962,
+              "value": 16976990,
               "issuerName": "MICROSOFT CORP",
               "shares": "33100",
               "amountType": "SH",
@@ -182,7 +182,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.03224700078268233
+          "weight": 0.04202886682017928
         },
         {
           "issuerName": "ALPHABET INC",
@@ -191,12 +191,12 @@
           "securityId": "02079K305",
           "ticker": "",
           "putCall": null,
-          "value": 11621672,
+          "value": 11189482,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 11621672,
+              "value": 11189482,
               "issuerName": "ALPHABET INC",
               "shares": "32520",
               "amountType": "SH",
@@ -206,31 +206,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.030352735035555894
-        },
-        {
-          "issuerName": "DEERE & CO",
-          "shareClass": "COM",
-          "cusip": "244199105",
-          "securityId": "244199105",
-          "ticker": "",
-          "putCall": null,
-          "value": 3172284,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 3172284,
-              "issuerName": "DEERE & CO",
-              "shares": "5001",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.008285167203955971
+          "weight": 0.02770109711820489
         },
         {
           "issuerName": "PAYCOM SOFTWARE INC",
@@ -239,12 +215,12 @@
           "securityId": "70432V102",
           "ticker": "",
           "putCall": null,
-          "value": 2688924,
+          "value": 4656622,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2688924,
+              "value": 4656622,
               "issuerName": "PAYCOM SOFTWARE INC",
               "shares": "21395",
               "amountType": "SH",
@@ -254,7 +230,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.007022758661812784
+          "weight": 0.011528106329208938
         },
         {
           "issuerName": "SALESFORCE INC",
@@ -263,12 +239,12 @@
           "securityId": "79466L302",
           "ticker": "",
           "putCall": null,
-          "value": 2429953,
+          "value": 3560860,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2429953,
+              "value": 3560860,
               "issuerName": "SALESFORCE INC",
               "shares": "15511",
               "amountType": "SH",
@@ -278,7 +254,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.006346394869675736
+          "weight": 0.008815397235040108
         },
         {
           "issuerName": "MORNINGSTAR INC",
@@ -287,12 +263,12 @@
           "securityId": "617700109",
           "ticker": "",
           "putCall": null,
-          "value": 577274,
+          "value": 703148,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 577274,
+              "value": 703148,
               "issuerName": "MORNINGSTAR INC",
               "shares": "3700",
               "amountType": "SH",
@@ -302,7 +278,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0015076870836584868
+          "weight": 0.0017407392975359835
         },
         {
           "issuerName": "SPOTIFY TECHNOLOGY S A",
@@ -311,12 +287,12 @@
           "securityId": "L8681T102",
           "ticker": "",
           "putCall": null,
-          "value": 229565,
+          "value": 243690,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 229565,
+              "value": 243690,
               "issuerName": "SPOTIFY TECHNOLOGY S A",
               "shares": "500",
               "amountType": "SH",
@@ -326,36 +302,53 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0005995630937129691
+          "weight": 0.0006032880125045422
         }
       ],
-      "filedAt": "2026-08-14",
-      "declaredTotal": 382887143,
+      "filedAt": "2026-11-16",
+      "declaredTotal": 403936420,
       "currency": "USD",
       "valueUnit": 1,
       "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
       "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
       "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
-        "exits": []
+        "priorPeriodLabel": "Q2 2026",
+        "exits": [
+          {
+            "issuerName": "H World Group Ltd.",
+            "ticker": "HTHT",
+            "putCall": null
+          },
+          {
+            "issuerName": "Deere & Co.",
+            "ticker": "DE",
+            "putCall": null
+          }
+        ]
       },
       "publicationSource": "https://foliofact.com/funds/rv-capital",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/",
-      "reportedCoverTotal": 382887143,
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000014/",
+      "reportedCoverTotal": 403936420,
       "reconciliationDifference": 0,
-      "providerDeclaredTotal": 382887143.0,
-      "providerHoldingsCount": 13,
+      "providerDeclaredTotal": 403936420.0,
+      "providerHoldingsCount": 12,
       "providerTotalDifference": 0.0,
       "sourceDocuments": [
-        "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/information_table.xml",
-        "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/primary_doc.xml"
+        "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000014/information_table.xml",
+        "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000014/primary_doc.xml"
       ],
-      "originalRowCount": 13,
+      "originalRowCount": 12,
       "primaryVerified": true
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000014/",
     "discoverySourceUrl": "https://foliofact.com/funds/rv-capital",
-    "filingHistory": []
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1766596/000176659626000007/",
+        "snapshotUrl": "data/investors/archive/vinall/2026-06-30.json"
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-15T16:42:34.842912+00:00",
+  "as_of": "2026-11-17T21:08:41.197922+00:00",
   "data": {
     "identity": {
       "slug": "loeb",
@@ -9,28 +9,28 @@
       "dataProvider": "SEC",
       "personVerified": true,
       "personSource": "https://foliofact.com/api/v1/funds/third-point",
-      "personPeriod": "2026-06-30",
+      "personPeriod": "2026-09-30",
       "declaringCik": "0001040273",
-      "entitySource": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/"
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000004/"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
         {
-          "issuerName": "WARNER BROS DISCOVERY INC",
-          "shareClass": "COM SER A",
-          "cusip": "934423104",
-          "securityId": "934423104",
+          "issuerName": "META PLATFORMS INC",
+          "shareClass": "CL A",
+          "cusip": "30303M102",
+          "securityId": "30303M102",
           "ticker": "",
           "putCall": null,
-          "value": 533200000,
+          "value": 474992900,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 533200000,
-              "issuerName": "WARNER BROS DISCOVERY INC",
-              "shares": "20000000",
+              "value": 474992900,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "655000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -38,23 +38,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.11394204456461073
+          "weight": 0.10350424045332503
         },
         {
-          "issuerName": "AMAZON COM INC",
+          "issuerName": "UNUM GROUP",
           "shareClass": "COM",
-          "cusip": "023135106",
-          "securityId": "023135106",
+          "cusip": "91529Y106",
+          "securityId": "91529Y106",
           "ticker": "",
           "putCall": null,
-          "value": 417095000,
+          "value": 438650000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 417095000,
-              "issuerName": "AMAZON COM INC",
-              "shares": "1750000",
+              "value": 438650000,
+              "issuerName": "UNUM GROUP",
+              "shares": "5000000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -62,23 +62,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.08913101477433666
+          "weight": 0.09558487100512666
         },
         {
-          "issuerName": "ALPHABET INC",
-          "shareClass": "CAP STK CL A",
-          "cusip": "02079K305",
-          "securityId": "02079K305",
+          "issuerName": "NVIDIA CORPORATION",
+          "shareClass": "COM",
+          "cusip": "67066G104",
+          "securityId": "67066G104",
           "ticker": "",
           "putCall": null,
-          "value": 366304250,
+          "value": 342570000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 366304250,
-              "issuerName": "ALPHABET INC",
-              "shares": "1025000",
+              "value": 342570000,
+              "issuerName": "NVIDIA CORPORATION",
+              "shares": "1500000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -86,7 +86,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.07827729778264499
+          "weight": 0.0746483740116864
         },
         {
           "issuerName": "CRH PLC",
@@ -95,14 +95,14 @@
           "securityId": "G25508105",
           "ticker": "",
           "putCall": null,
-          "value": 234865000,
+          "value": 235152000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 234865000,
+              "value": 235152000,
               "issuerName": "CRH PLC",
-              "shares": "2195000",
+              "shares": "2840000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -110,127 +110,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.05018941916104144
-        },
-        {
-          "issuerName": "TELEPHONE & DATA SYS INC",
-          "shareClass": "COM NEW",
-          "cusip": "879433829",
-          "securityId": "879433829",
-          "ticker": "",
-          "putCall": null,
-          "value": 232237750,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 232237750,
-              "issuerName": "TELEPHONE & DATA SYS INC",
-              "shares": "6275000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.04962798961006175
-        },
-        {
-          "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
-          "shareClass": "SPONSORED ADS",
-          "cusip": "874039100",
-          "securityId": "874039100",
-          "ticker": "",
-          "putCall": null,
-          "value": 219682200,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 219682200,
-              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
-              "shares": "460000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.046944934400697164
-        },
-        {
-          "issuerName": "LIVE NATION ENTERTAINMENT IN",
-          "shareClass": "COM",
-          "cusip": "538034109",
-          "securityId": "538034109",
-          "ticker": "",
-          "putCall": null,
-          "value": 207829850,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 207829850,
-              "issuerName": "LIVE NATION ENTERTAINMENT IN",
-              "shares": "1135000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.04441214934462934
-        },
-        {
-          "issuerName": "KEYSIGHT TECHNOLOGIES INC",
-          "shareClass": "COM",
-          "cusip": "49338L103",
-          "securityId": "49338L103",
-          "ticker": "",
-          "putCall": null,
-          "value": 204790950,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 204790950,
-              "issuerName": "KEYSIGHT TECHNOLOGIES INC",
-              "shares": "585000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.04376275234682852
-        },
-        {
-          "issuerName": "SOMNIGROUP INTERNATIONAL INC",
-          "shareClass": "COM",
-          "cusip": "88023U101",
-          "securityId": "88023U101",
-          "ticker": "",
-          "putCall": null,
-          "value": 201548290,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 201548290,
-              "issuerName": "SOMNIGROUP INTERNATIONAL INC",
-              "shares": "2570769",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.04306981290529086
+          "weight": 0.05124124834514429
         },
         {
           "issuerName": "BLOCK INC",
@@ -239,14 +119,14 @@
           "securityId": "852234103",
           "ticker": "",
           "putCall": null,
-          "value": 194479668,
+          "value": 233825400,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 194479668,
+              "value": 233825400,
               "issuerName": "BLOCK INC",
-              "shares": "2558943",
+              "shares": "3180000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -254,23 +134,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.04155928544292329
+          "weight": 0.05095217302341763
         },
         {
-          "issuerName": "NORFOLK SOUTHN CORP",
+          "issuerName": "MICROSOFT CORP",
           "shareClass": "COM",
-          "cusip": "655844108",
-          "securityId": "655844108",
+          "cusip": "594918104",
+          "securityId": "594918104",
           "ticker": "",
           "putCall": null,
-          "value": 188754000,
+          "value": 230805000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 188754000,
-              "issuerName": "NORFOLK SOUTHN CORP",
-              "shares": "600000",
+              "value": 230805000,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "450000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -278,7 +158,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.040335740209580896
+          "weight": 0.050294006958482296
         },
         {
           "issuerName": "FLEX LTD",
@@ -287,14 +167,14 @@
           "securityId": "Y2573F102",
           "ticker": "",
           "putCall": null,
-          "value": 166932100,
+          "value": 219980000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 166932100,
+              "value": 219980000,
               "issuerName": "FLEX LTD",
-              "shares": "1030000",
+              "shares": "2000000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -302,7 +182,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0356725145863917
+          "weight": 0.04793516453598031
         },
         {
           "issuerName": "CAPITAL ONE FINL CORP",
@@ -311,14 +191,14 @@
           "securityId": "14040H105",
           "ticker": "",
           "putCall": null,
-          "value": 165511500,
+          "value": 214307700,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 165511500,
+              "value": 214307700,
               "issuerName": "CAPITAL ONE FINL CORP",
-              "shares": "825000",
+              "shares": "1110000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -326,23 +206,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.03536893981424525
+          "weight": 0.04669913110658927
         },
         {
-          "issuerName": "HUT 8 CORP",
+          "issuerName": "KEYSIGHT TECHNOLOGIES INC",
           "shareClass": "COM",
-          "cusip": "44812J104",
-          "securityId": "44812J104",
+          "cusip": "49338L103",
+          "securityId": "49338L103",
           "ticker": "",
           "putCall": null,
-          "value": 151810175,
+          "value": 207502800,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 151810175,
-              "issuerName": "HUT 8 CORP",
-              "shares": "1315000",
+              "value": 207502800,
+              "issuerName": "KEYSIGHT TECHNOLOGIES INC",
+              "shares": "570000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -350,23 +230,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.032441038494394885
+          "weight": 0.04521629629819354
         },
         {
-          "issuerName": "CARPENTER TECHNOLOGY CORP",
+          "issuerName": "LIVE NATION ENTERTAINMENT IN",
           "shareClass": "COM",
-          "cusip": "144285103",
-          "securityId": "144285103",
+          "cusip": "538034109",
+          "securityId": "538034109",
           "ticker": "",
           "putCall": null,
-          "value": 132620600,
+          "value": 202313500,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 132620600,
-              "issuerName": "CARPENTER TECHNOLOGY CORP",
-              "shares": "215000",
+              "value": 202313500,
+              "issuerName": "LIVE NATION ENTERTAINMENT IN",
+              "shares": "1195000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -374,7 +254,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.02834032692307842
+          "weight": 0.04408551191176494
         },
         {
           "issuerName": "API GROUP CORP",
@@ -383,14 +263,14 @@
           "securityId": "00187Y100",
           "ticker": "",
           "putCall": null,
-          "value": 121332750,
+          "value": 190491000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 121332750,
+              "value": 190491000,
               "issuerName": "API GROUP CORP",
-              "shares": "2865000",
+              "shares": "4935000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -398,23 +278,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.025928172557477067
+          "weight": 0.04150930733531878
         },
         {
-          "issuerName": "MASTEC INC",
-          "shareClass": "COM",
-          "cusip": "576323109",
-          "securityId": "576323109",
+          "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "874039100",
+          "securityId": "874039100",
           "ticker": "",
           "putCall": null,
-          "value": 120657400,
+          "value": 182476000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 120657400,
-              "issuerName": "MASTEC INC",
-              "shares": "290000",
+              "value": 182476000,
+              "issuerName": "TAIWAN SEMICONDUCTOR MANUFAC",
+              "shares": "400000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -422,223 +302,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.025783853803169658
-        },
-        {
-          "issuerName": "TRANSDIGM GROUP INC",
-          "shareClass": "COM",
-          "cusip": "893641100",
-          "securityId": "893641100",
-          "ticker": "",
-          "putCall": null,
-          "value": 105231160,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 105231160,
-              "issuerName": "TRANSDIGM GROUP INC",
-              "shares": "79000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.022487347191120933
-        },
-        {
-          "issuerName": "DANAHER CORP DEL",
-          "shareClass": "COM",
-          "cusip": "235851102",
-          "securityId": "235851102",
-          "ticker": "",
-          "putCall": null,
-          "value": 102859200,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 102859200,
-              "issuerName": "DANAHER CORP DEL",
-              "shares": "540000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.021980471774719068
-        },
-        {
-          "issuerName": "UNION PAC CORP",
-          "shareClass": "COM",
-          "cusip": "907818108",
-          "securityId": "907818108",
-          "ticker": "",
-          "putCall": null,
-          "value": 95200000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 95200000,
-              "issuerName": "UNION PAC CORP",
-              "shares": "350000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.020343740890005516
-        },
-        {
-          "issuerName": "TTM TECHNOLOGIES INC",
-          "shareClass": "COM",
-          "cusip": "87305R109",
-          "securityId": "87305R109",
-          "ticker": "",
-          "putCall": null,
-          "value": 94445100,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 94445100,
-              "issuerName": "TTM TECHNOLOGIES INC",
-              "shares": "505000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.02018242271775903
-        },
-        {
-          "issuerName": "PERFORMANCE FOOD GROUP CO",
-          "shareClass": "COM",
-          "cusip": "71377A103",
-          "securityId": "71377A103",
-          "ticker": "",
-          "putCall": null,
-          "value": 75458250,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 75458250,
-              "issuerName": "PERFORMANCE FOOD GROUP CO",
-              "shares": "675000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.016125032416105658
-        },
-        {
-          "issuerName": "ALPHABET INC",
-          "shareClass": "DEP SHS RP1/20 A",
-          "cusip": "02079K404",
-          "securityId": "02079K404",
-          "ticker": "",
-          "putCall": null,
-          "value": 66157000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 66157000,
-              "issuerName": "ALPHABET INC",
-              "shares": "1300000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.014137404055253098
-        },
-        {
-          "issuerName": "ASML HLDG NV",
-          "shareClass": "N Y REGISTRY SHS",
-          "cusip": "N07059210",
-          "securityId": "N07059210",
-          "ticker": "",
-          "putCall": null,
-          "value": 59606160,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 59606160,
-              "issuerName": "ASML HLDG NV",
-              "shares": "30000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.01273752389168289
-        },
-        {
-          "issuerName": "SYSCO CORP",
-          "shareClass": "COM",
-          "cusip": "871829107",
-          "securityId": "871829107",
-          "ticker": "",
-          "putCall": null,
-          "value": 48157226,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 48157226,
-              "issuerName": "SYSCO CORP",
-              "shares": "580000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.010290946719805008
-        },
-        {
-          "issuerName": "ARES MANAGEMENT CORPORATION",
-          "shareClass": "CL A COM STK",
-          "cusip": "03990B101",
-          "securityId": "03990B101",
-          "ticker": "",
-          "putCall": null,
-          "value": 41741250,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 41741250,
-              "issuerName": "ARES MANAGEMENT CORPORATION",
-              "shares": "375000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00891988628597629
+          "weight": 0.0397627833615217
         },
         {
           "issuerName": "SPACE EXPLORATION TECHN CORP",
@@ -647,14 +311,14 @@
           "securityId": "84615Q103",
           "ticker": "",
           "putCall": null,
-          "value": 30825707,
+          "value": 147905407,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 30825707,
+              "value": 147905407,
               "issuerName": "SPACE EXPLORATION TECHN CORP",
-              "shares": "180415",
+              "shares": "980415",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -662,7 +326,247 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.006587291974361652
+          "weight": 0.03222961187519835
+        },
+        {
+          "issuerName": "TELEPHONE & DATA SYS INC",
+          "shareClass": "COM NEW",
+          "cusip": "879433829",
+          "securityId": "879433829",
+          "ticker": "",
+          "putCall": null,
+          "value": 145856000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 145856000,
+              "issuerName": "TELEPHONE & DATA SYS INC",
+              "shares": "4300000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.031783031905445694
+        },
+        {
+          "issuerName": "LIBERTY MEDIA CORP DEL",
+          "shareClass": "COM SER C",
+          "cusip": "531229755",
+          "securityId": "531229755",
+          "ticker": "",
+          "putCall": null,
+          "value": 134904000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 134904000,
+              "issuerName": "LIBERTY MEDIA CORP DEL",
+              "shares": "1460000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0293965153039453
+        },
+        {
+          "issuerName": "ARES MANAGEMENT CORPORATION",
+          "shareClass": "CL A COM STK",
+          "cusip": "03990B101",
+          "securityId": "03990B101",
+          "ticker": "",
+          "putCall": null,
+          "value": 134757200,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 134757200,
+              "issuerName": "ARES MANAGEMENT CORPORATION",
+              "shares": "1160000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0293645265679062
+        },
+        {
+          "issuerName": "CASEYS GEN STORES INC",
+          "shareClass": "COM",
+          "cusip": "147528103",
+          "securityId": "147528103",
+          "ticker": "",
+          "putCall": null,
+          "value": 112565100,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 112565100,
+              "issuerName": "CASEYS GEN STORES INC",
+              "shares": "185000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.024528714380894066
+        },
+        {
+          "issuerName": "SOMNIGROUP INTERNATIONAL INC",
+          "shareClass": "COM",
+          "cusip": "88023U101",
+          "securityId": "88023U101",
+          "ticker": "",
+          "putCall": null,
+          "value": 111798000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 111798000,
+              "issuerName": "SOMNIGROUP INTERNATIONAL INC",
+              "shares": "1800000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.024361557981605268
+        },
+        {
+          "issuerName": "BANK OF AMER CORP",
+          "shareClass": "COM",
+          "cusip": "060505104",
+          "securityId": "060505104",
+          "ticker": "",
+          "putCall": null,
+          "value": 108860000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 108860000,
+              "issuerName": "BANK OF AMER CORP",
+              "shares": "2000000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.02372134744698071
+        },
+        {
+          "issuerName": "MASTEC INC",
+          "shareClass": "COM",
+          "cusip": "576323109",
+          "securityId": "576323109",
+          "ticker": "",
+          "putCall": null,
+          "value": 107878100,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 107878100,
+              "issuerName": "MASTEC INC",
+              "shares": "505000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.02350738464100799
+        },
+        {
+          "issuerName": "HUT 8 CORP",
+          "shareClass": "COM",
+          "cusip": "44812J104",
+          "securityId": "44812J104",
+          "ticker": "",
+          "putCall": null,
+          "value": 105429450,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 105429450,
+              "issuerName": "HUT 8 CORP",
+              "shares": "1224500",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.022973806858295795
+        },
+        {
+          "issuerName": "ALPHABET INC",
+          "shareClass": "CAP STK CL A",
+          "cusip": "02079K305",
+          "securityId": "02079K305",
+          "ticker": "",
+          "putCall": null,
+          "value": 60214000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 60214000,
+              "issuerName": "ALPHABET INC",
+              "shares": "175000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.013121047355984718
+        },
+        {
+          "issuerName": "ALPHABET INC",
+          "shareClass": "DEP SHS RP1/20 A",
+          "cusip": "02079K404",
+          "securityId": "02079K404",
+          "ticker": "",
+          "putCall": null,
+          "value": 53988000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 53988000,
+              "issuerName": "ALPHABET INC",
+              "shares": "1100000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.01176435886429905
         },
         {
           "issuerName": "STATE STR SPDR S&P 500 ETF T",
@@ -671,14 +575,14 @@
           "securityId": "78462F103",
           "ticker": "",
           "putCall": "PUT",
-          "value": 28800000,
+          "value": 46520430,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 28800000,
+              "value": 46520430,
               "issuerName": "STATE STR SPDR S&P 500 ETF T",
-              "shares": "40000",
+              "shares": "61000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -686,7 +590,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0061544090087411645
+          "weight": 0.010137123676400375
+        },
+        {
+          "issuerName": "PERFORMANCE FOOD GROUP CO",
+          "shareClass": "COM",
+          "cusip": "71377A103",
+          "securityId": "71377A103",
+          "ticker": "",
+          "putCall": null,
+          "value": 43307291,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 43307291,
+              "issuerName": "PERFORMANCE FOOD GROUP CO",
+              "shares": "473252",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.009436958449370758
         },
         {
           "issuerName": "STRATA CRITICAL MEDICAL INC",
@@ -695,12 +623,12 @@
           "securityId": "092667104",
           "ticker": "",
           "putCall": null,
-          "value": 26350000,
+          "value": 25550000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 26350000,
+              "value": 25550000,
               "issuerName": "STRATA CRITICAL MEDICAL INC",
               "shares": "5000000",
               "amountType": "SH",
@@ -710,7 +638,55 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.005630856853483669
+          "weight": 0.005567521837868428
+        },
+        {
+          "issuerName": "RIOT PLATFORMS INC",
+          "shareClass": "COM",
+          "cusip": "767292105",
+          "securityId": "767292105",
+          "ticker": "",
+          "putCall": null,
+          "value": 18576748,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 18576748,
+              "issuerName": "RIOT PLATFORMS INC",
+              "shares": "921923",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.004048001963466875
+        },
+        {
+          "issuerName": "ECHOSTAR CORP",
+          "shareClass": "NOTE 3.875%11/3",
+          "cusip": "278768AB2",
+          "securityId": "278768AB2",
+          "ticker": "",
+          "putCall": null,
+          "value": 13995991,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 13995991,
+              "issuerName": "ECHOSTAR CORP",
+              "shares": "5000000",
+              "amountType": "PRN",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.003049823308614872
         },
         {
           "issuerName": "ALPHABET INC",
@@ -719,12 +695,12 @@
           "securityId": "02079K602",
           "ticker": "",
           "putCall": null,
-          "value": 10060000,
+          "value": 9698000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 10060000,
+              "value": 9698000,
               "issuerName": "ALPHABET INC",
               "shares": "200000",
               "amountType": "SH",
@@ -734,23 +710,47 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.002149769257914448
+          "weight": 0.0021132613222562824
         },
         {
-          "issuerName": "ARS PHARMACEUTICALS INC",
-          "shareClass": "COM",
-          "cusip": "82835W108",
-          "securityId": "82835W108",
+          "issuerName": "APPLIED DIGITAL CORP",
+          "shareClass": "NOTE 2.750% 6/0",
+          "cusip": "038169AB4",
+          "securityId": "038169AB4",
           "ticker": "",
           "putCall": null,
-          "value": 8010000,
+          "value": 9292660,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 8010000,
-              "issuerName": "ARS PHARMACEUTICALS INC",
-              "shares": "1000000",
+              "value": 9292660,
+              "issuerName": "APPLIED DIGITAL CORP",
+              "shares": "3500000",
+              "amountType": "PRN",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0020249349307979035
+        },
+        {
+          "issuerName": "ECHOSTAR CORP",
+          "shareClass": "CL A",
+          "cusip": "278768106",
+          "securityId": "278768106",
+          "ticker": "",
+          "putCall": null,
+          "value": 8941000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 8941000,
+              "issuerName": "ECHOSTAR CORP",
+              "shares": "100000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -758,7 +758,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0017116950055561363
+          "weight": 0.001948305782872079
         },
         {
           "issuerName": "AURORA INNOVATION INC",
@@ -767,12 +767,12 @@
           "securityId": "051774107",
           "ticker": "",
           "putCall": null,
-          "value": 7041398,
+          "value": 5719845,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 7041398,
+              "value": 5719845,
               "issuerName": "AURORA INNOVATION INC",
               "shares": "1032463",
               "amountType": "SH",
@@ -782,31 +782,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0015047098362962507
+          "weight": 0.0012463938139617432
         },
         {
-          "issuerName": "RIOT PLATFORMS INC",
-          "shareClass": "NOTE 0.750% 1/1",
-          "cusip": "767292AB1",
-          "securityId": "767292AB1",
+          "issuerName": "ARS PHARMACEUTICALS INC",
+          "shareClass": "COM",
+          "cusip": "82835W108",
+          "securityId": "82835W108",
           "ticker": "",
           "putCall": null,
-          "value": 7033950,
+          "value": 4310000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 7033950,
-              "issuerName": "RIOT PLATFORMS INC",
-              "shares": "3500000",
-              "amountType": "PRN",
+              "value": 4310000,
+              "issuerName": "ARS PHARMACEUTICALS INC",
+              "shares": "1000000",
+              "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0015031182377442678
+          "weight": 0.0009391788305758484
         },
         {
           "issuerName": "HERTZ GLOBAL HLDGS INC",
@@ -815,14 +815,14 @@
           "securityId": "42806J148",
           "ticker": "",
           "putCall": null,
-          "value": 4327300,
+          "value": 2896765,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 4327300,
+              "value": 2896765,
               "issuerName": "HERTZ GLOBAL HLDGS INC",
-              "shares": "3970000",
+              "shares": "3329615",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -830,31 +830,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0009247213230390847
-        },
-        {
-          "issuerName": "FLYEXCLUSIVE INC",
-          "shareClass": "COM CL A",
-          "cusip": "343928107",
-          "securityId": "343928107",
-          "ticker": "",
-          "putCall": null,
-          "value": 2044000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 2044000,
-              "issuerName": "FLYEXCLUSIVE INC",
-              "shares": "1022000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0004367920838148243
+          "weight": 0.0006312251427269251
         },
         {
           "issuerName": "BAUSCH PLUS LOMB CORP",
@@ -863,12 +839,12 @@
           "securityId": "071705107",
           "ticker": "",
           "putCall": null,
-          "value": 1407600,
+          "value": 1445000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1407600,
+              "value": 1445000,
               "issuerName": "BAUSCH PLUS LOMB CORP",
               "shares": "85000",
               "amountType": "SH",
@@ -878,23 +854,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0003007967403022244
+          "weight": 0.0003148755012023436
         },
         {
-          "issuerName": "CORE SCIENTIFIC INC NEW",
-          "shareClass": "COM",
-          "cusip": "21874A106",
-          "securityId": "21874A106",
+          "issuerName": "FLYEXCLUSIVE INC",
+          "shareClass": "COM CL A",
+          "cusip": "343928107",
+          "securityId": "343928107",
           "ticker": "",
           "putCall": null,
-          "value": 1381860,
+          "value": 1246840,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1381860,
-              "issuerName": "CORE SCIENTIFIC INC NEW",
-              "shares": "54000",
+              "value": 1246840,
+              "issuerName": "FLYEXCLUSIVE INC",
+              "shares": "1022000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -902,103 +878,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.000295296237250662
-        },
-        {
-          "issuerName": "EROCK INC",
-          "shareClass": "CL A COM",
-          "cusip": "296013105",
-          "securityId": "296013105",
-          "ticker": "",
-          "putCall": null,
-          "value": 1203935,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1203935,
-              "issuerName": "EROCK INC",
-              "shares": "83030",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00025727459756731924
-        },
-        {
-          "issuerName": "APPLIED DIGITAL CORP",
-          "shareClass": "COM NEW",
-          "cusip": "038169207",
-          "securityId": "038169207",
-          "ticker": "",
-          "putCall": null,
-          "value": 820600,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 820600,
-              "issuerName": "APPLIED DIGITAL CORP",
-              "shares": "22000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0001753579177976736
-        },
-        {
-          "issuerName": "LITHIUM ARGENTINA AG",
-          "shareClass": "NOTE 1.750% 1/1",
-          "cusip": "53680QAA6",
-          "securityId": "53680QAA6",
-          "ticker": "",
-          "putCall": null,
-          "value": 611750,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 611750,
-              "issuerName": "LITHIUM ARGENTINA AG",
-              "shares": "625000",
-              "amountType": "PRN",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00013072776774643776
-        },
-        {
-          "issuerName": "AURORA INNOVATION INC",
-          "shareClass": "*W EXP 11/03/202",
-          "cusip": "051774115",
-          "securityId": "051774115",
-          "ticker": "",
-          "putCall": null,
-          "value": 587384,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 587384,
-              "issuerName": "AURORA INNOVATION INC",
-              "shares": "1835000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00012552088129133402
+          "weight": 0.00027169506568797933
         },
         {
           "issuerName": "WOLFSPEED INC",
@@ -1007,12 +887,12 @@
           "securityId": "97785W106",
           "ticker": "",
           "putCall": null,
-          "value": 482500,
+          "value": 281300,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 482500,
+              "value": 281300,
               "issuerName": "WOLFSPEED INC",
               "shares": "10000",
               "amountType": "SH",
@@ -1022,7 +902,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0001031077203721393
+          "weight": 6.129721694686453e-05
+        },
+        {
+          "issuerName": "AURORA INNOVATION INC",
+          "shareClass": "*W EXP 11/03/202",
+          "cusip": "051774115",
+          "securityId": "051774115",
+          "ticker": "",
+          "putCall": null,
+          "value": 56885,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 56885,
+              "issuerName": "AURORA INNOVATION INC",
+              "shares": "1835000",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 1.2395635215152468e-05
         },
         {
           "issuerName": "FLYEXCLUSIVE INC",
@@ -1031,12 +935,12 @@
           "securityId": "343928115",
           "ticker": "",
           "putCall": null,
-          "value": 77175,
+          "value": 55051,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 77175,
+              "value": 55051,
               "issuerName": "FLYEXCLUSIVE INC",
               "shares": "367499",
               "amountType": "SH",
@@ -1046,82 +950,118 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 1.649189289061109e-05
+          "weight": 1.1995993921584926e-05
         }
       ],
-      "filedAt": "2026-08-14",
-      "declaredTotal": 4679571988,
+      "filedAt": "2026-11-16",
+      "declaredTotal": 4589115363,
       "currency": "USD",
       "valueUnit": 1,
       "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
       "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
       "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
+        "priorPeriodLabel": "Q2 2026",
         "exits": [
           {
-            "issuerName": "Meta Platforms Inc.",
-            "ticker": "META",
+            "issuerName": "Warner Bros Discovery Inc.",
+            "ticker": "WBD",
             "putCall": null
           },
           {
-            "issuerName": "SPDR Gold TR",
-            "ticker": "GLD",
+            "issuerName": "Amazon.com Inc.",
+            "ticker": "AMZN",
             "putCall": null
           },
           {
-            "issuerName": "Nvidia Corporation",
-            "ticker": "NVDA",
+            "issuerName": "Norfolk Southn Corp.",
+            "ticker": "NSC",
             "putCall": null
           },
           {
-            "issuerName": "KLA Corp",
-            "ticker": "KLAC",
+            "issuerName": "Carpenter Technology Corp.",
+            "ticker": "CRS",
             "putCall": null
           },
           {
-            "issuerName": "Lam Research Corp.",
-            "ticker": "LRCX",
+            "issuerName": "TransDigm Group Inc.",
+            "ticker": "TDG",
             "putCall": null
           },
           {
-            "issuerName": "Broadcom Inc.",
-            "ticker": "AVGO",
+            "issuerName": "Danaher Corporation",
+            "ticker": "DHR",
             "putCall": null
           },
           {
-            "issuerName": "Vaneck Vectors ETF TR",
-            "ticker": "SMH",
+            "issuerName": "Union Pacific Corp.",
+            "ticker": "UNP",
             "putCall": null
           },
           {
-            "issuerName": "Sharkninja Inc.",
-            "ticker": "SN",
+            "issuerName": "Ttm Technologies Inc - US",
+            "ticker": "TTMI",
             "putCall": null
           },
           {
-            "issuerName": "Claritev Corporation",
-            "ticker": "CTEV",
+            "issuerName": "ASML Holding NV",
+            "ticker": "ASML",
+            "putCall": null
+          },
+          {
+            "issuerName": "Sysco Corp.",
+            "ticker": "SYY",
+            "putCall": null
+          },
+          {
+            "issuerName": "Riot Platforms Inc. - CUSIP 767292AB1 needs mapping",
+            "ticker": "Unmapped CUSIP",
+            "putCall": null
+          },
+          {
+            "issuerName": "Core Scientific Inc.",
+            "ticker": "CORZ",
+            "putCall": null
+          },
+          {
+            "issuerName": "ERock Inc - US",
+            "ticker": "EROC",
+            "putCall": null
+          },
+          {
+            "issuerName": "Applied Digital Corp.",
+            "ticker": "APLD",
+            "putCall": null
+          },
+          {
+            "issuerName": "Lithium Argentina AG - CUSIP 53680QAA6 needs mapping",
+            "ticker": "Unmapped CUSIP",
             "putCall": null
           }
         ]
       },
       "publicationSource": "https://foliofact.com/funds/third-point",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/",
-      "reportedCoverTotal": 4679571988,
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000004/",
+      "reportedCoverTotal": 4589115363,
       "reconciliationDifference": 0,
-      "providerDeclaredTotal": 4679571988.0,
-      "providerHoldingsCount": 43,
+      "providerDeclaredTotal": 4589115363.0,
+      "providerHoldingsCount": 39,
       "providerTotalDifference": 0.0,
       "sourceDocuments": [
-        "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/infotable.xml",
-        "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/primary_doc.xml"
+        "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000004/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000004/primary_doc.xml"
       ],
-      "originalRowCount": 43,
+      "originalRowCount": 39,
       "primaryVerified": true
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000004/",
     "discoverySourceUrl": "https://foliofact.com/funds/third-point",
-    "filingHistory": []
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/",
+        "snapshotUrl": "data/investors/archive/loeb/2026-06-30.json"
+      }
+    ]
   }
 }
