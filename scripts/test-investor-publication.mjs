@@ -19,6 +19,8 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
     assert.equal(entry.weight,entry.value/plan.total)
     assert(Math.abs((entry.end-entry.start)/(2*Math.PI)-entry.weight)<1e-12)
     const b=entry.box
+    const ex=Math.max(b.x,Math.min(entry.badge.x,b.x+b.width)),ey=Math.max(b.y,Math.min(entry.badge.y,b.y+b.height))
+    assert(Math.hypot(ex-entry.badge.x,ey-entry.badge.y)-entry.badge.radius<24 || entry.leader?.length>=2,'A displaced label must retain an unambiguous route')
     assert(b.x>=20 && b.x+b.width<=1060 && b.y>=POSTER.top && b.y+b.height<=POSTER.bottom)
     assert.equal(entry.badge.radius,POSTER.badgeRadius)
     for(const next of plan.entries)if(next!==entry){

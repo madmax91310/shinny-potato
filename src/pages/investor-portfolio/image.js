@@ -1,5 +1,4 @@
 import {pngCredits} from './png-credits.js'
-import {leaderPath} from './leader-layout.js'
 import { modelNatureLabel } from '../../data/investor-models.js'
 import { holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
@@ -107,6 +106,12 @@ export async function renderPortfolioImage(portfolio) {
     if(series.coverage<.5){label(`Les ${series.topCount} premières`,cx,cy+100,27,ink);label(`${weightLabel(series.coverage)} du portefeuille`,cx,cy+136,27,ink)}
   }
   for(const e of plan.entries)for(let y=Math.floor(e.badge.y-br-5);y<=e.badge.y+br+5;y++)for(let x=Math.floor(e.badge.x-br-5);x<=e.badge.x+br+5;x++)if(Math.hypot(x-e.badge.x,y-e.badge.y)<br+5)occupied[y*1080+x]=1
+  // Reserve validated leader routes before placing any external logo.
+  for(const e of plan.entries)for(let i=1;i<(e.leader?.length || 0);i++){
+    const a=e.leader[i-1],b=e.leader[i],steps=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y))
+    for(let n=0;n<=steps;n++){const x=Math.round(a.x+(b.x-a.x)*n/Math.max(1,steps)),y=Math.round(a.y+(b.y-a.y)*n/Math.max(1,steps));for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++)if(x+dx>=0&&x+dx<1080&&y+dy>=0&&y+dy<1350)occupied[(y+dy)*1080+x+dx]=1}
+  }
+  const routeOccupied=(x,y,w,h)=>{for(let yy=Math.floor(y);yy<y+h;yy+=2)for(let xx=Math.floor(x);xx<x+w;xx+=2)if(occupied[yy*1080+xx])return true;return false}
   const extraLogos=[]
   plan.entries.forEach((e,i)=>{
     const logo=transparentLogo(logos[i].image)
@@ -133,7 +138,7 @@ export async function renderPortfolioImage(portfolio) {
         const k=Math.min(112/image.width,68/image.height),w=image.width*k,h=image.height*k
         if(w>=56&&h>=26)externalSearch: for(const x of [e.box.x-w-12,e.box.x+e.box.width+12,e.box.x+(e.box.width-w)/2])for(const y of [e.box.y,e.box.y-h-10,e.box.y+e.box.height+10]) {
           const overlaps=b=>x<b.x+b.width+7&&x+w+7>b.x&&y<b.y+b.height+7&&y+h+7>b.y
-          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps))continue
+          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps)||routeOccupied(x,y,w,h))continue
           if(Math.hypot(cx-Math.max(x,Math.min(cx,x+w)),cy-Math.max(y,Math.min(cy,y+h)))<outer+6)continue
           placement={x:x+w/2,y:y+h/2,a:0,k};extraLogos.push({x,y,width:w,height:h});external=true;break externalSearch
         }
@@ -157,11 +162,10 @@ export async function renderPortfolioImage(portfolio) {
       ctx.strokeStyle=e.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.mid)*(outer-2),cy+Math.sin(e.mid)*(outer-2));ctx.lineTo(badge.x,badge.y);ctx.stroke()
     }
   })
-  const leaders=[]
   plan.entries.forEach(e=>{
     const {badge,box}=e
-    const leader=leaderPath(e,plan.entries,POSTER,extraLogos,leaders)
-    if(leader){leaders.push(leader);ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();leader.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke()}
+    const leader=e.leader
+    if(leader){ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();leader.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke()}
     ctx.fillStyle=e.color;ctx.beginPath();ctx.arc(badge.x,badge.y,br,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#161616';ctx.lineWidth=2.5;ctx.stroke()
     const pct=percentage(e.weight).replace(/\s/g,'')
     let size=32;ctx.font=posterFont(size,900);while(ctx.measureText(pct).width>br*1.72&&size>25){size--;ctx.font=posterFont(size,900)}

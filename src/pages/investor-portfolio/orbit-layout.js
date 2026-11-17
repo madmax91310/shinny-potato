@@ -1,3 +1,4 @@
+import {leaderPath} from './leader-layout.js'
 import widths from './type-metrics.json' with {type:'json'}
 export const POSTER={cx:540,cy:720,outer:380,inner:185,badgeRadius:50,badgeOrbit:400,top:202,bottom:1244}
 export const measure=(s,size)=>[...String(s)].reduce((n,c)=>n+(widths[c]??.7),0)*size+4
@@ -78,5 +79,12 @@ export function arrangeOrbit(rows,start,_currency,top=POSTER.top) {
     return false
   }
   if(!place(entries.map((_,i)=>i)))return null
+  const routes=[]
+  for(const e of entries){
+    const b=e.box,end={x:clamp(e.badge.x,b.x,b.x+b.width),y:clamp(e.badge.y,b.y,b.y+b.height)}
+    e.leader=leaderPath(e,entries,POSTER,[],routes)
+    if(Math.hypot(end.x-e.badge.x,end.y-e.badge.y)-e.badge.radius>=24&&!e.leader)return null
+    if(e.leader)routes.push(e.leader)
+  }
   return {entries}
 }

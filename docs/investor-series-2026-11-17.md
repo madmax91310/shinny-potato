@@ -11,38 +11,38 @@ Le site initial sert le code 77bd0158205833dddb6a129db9f4304ec0e139bb et les don
 
 | Profil | Positions sources / hors options | Nommées avant → après | Autres avant → après | Portrait après | Compléments éditoriaux |
 | --- | ---: | ---: | ---: | --- | ---: |
-| morfit | 18 / 18 | 10 → 18 | 13.2646 % → 0.0000 % | nom de remplacement | 0 |
+| morfit | 18 / 18 | 10 → 13 | 13.2646 % → 4.7691 % | nom de remplacement | 1 |
 | dorsey | 11 / 11 | 11 → 11 | 0.0000 % → 0.0000 % | nom de remplacement | 0 |
-| vinall | 13 / 13 | 8 → 13 | 2.3762 % → 0.0000 % | nom de remplacement | 0 |
-| marks | 145 / 138 | 7 → 12 | 59.6700 % → 48.9773 % | photo | 2 |
+| vinall | 13 / 13 | 8 → 12 | 2.3762 % → 0.0600 % | nom de remplacement | 1 |
+| marks | 145 / 138 | 7 → 11 | 59.6700 % → 50.8081 % | photo | 2 |
 | watsa | 34 / 34 | 7 → 9 | 17.0958 % → 12.0081 % | photo | 2 |
-| gavin-baker | 49 / 46 | 6 → 14 | 33.5220 % → 16.1280 % | nom de remplacement | 2 |
-| einhorn | 46 / 46 | 4 → 14 | 65.0934 % → 37.3153 % | nom de remplacement | 2 |
-| halvorsen | 90 / 90 | 7 → 15 | 72.3986 % → 52.8778 % | nom de remplacement | 3 |
-| gerstner | 20 / 20 | 10 → 16 | 16.7191 % → 2.1931 % | photo | 1 |
-| gayner | 145 / 145 | 7 → 16 | 64.9380 % → 45.1426 % | nom de remplacement | 3 |
-| tepper | 27 / 25 | 10 → 17 | 18.3882 % → 4.5154 % | photo | 1 |
-| ackman | 14 / 14 | 11 → 14 | 1.6291 % → 0.0000 % | photo | 0 |
-| berkshire | 29 / 29 | 9 → 16 | 14.7412 % → 2.3084 % | photo | 2 |
-| cathie-wood | 182 / 181 | 5 → 11 | 75.6986 % → 57.0602 % | photo | 3 |
+| gavin-baker | 49 / 46 | 6 → 12 | 33.5220 % → 19.5905 % | nom de remplacement | 2 |
+| einhorn | 46 / 46 | 4 → 12 | 65.0934 % → 42.0531 % | nom de remplacement | 2 |
+| halvorsen | 90 / 90 | 7 → 13 | 72.3986 % → 57.1703 % | nom de remplacement | 3 |
+| gerstner | 20 / 20 | 10 → 14 | 16.7191 % → 5.7052 % | photo | 1 |
+| gayner | 145 / 145 | 7 → 13 | 64.9380 % → 50.2032 % | nom de remplacement | 3 |
+| tepper | 27 / 25 | 10 → 15 | 18.3882 % → 7.4876 % | photo | 1 |
+| ackman | 14 / 14 | 11 → 12 | 1.6291 % → 0.8609 % | photo | 1 |
+| berkshire | 29 / 29 | 9 → 14 | 14.7412 % → 3.7878 % | photo | 2 |
+| cathie-wood | 182 / 181 | 5 → 8 | 75.6986 % → 65.9905 % | photo | 3 |
 | thiel | 8 / 8 | 8 → 8 | 0.0000 % → 0.0000 % | photo | 0 |
 | druckenmiller | 95 / 86 | bloqué | bloqué | nom de remplacement | 0 |
-| loeb | 43 / 42 | 7 → 18 | 52.4549 % → 14.7479 % | nom de remplacement | 2 |
-| aschenbrenner | 26 / 23 | 7 → 13 | 15.4426 % → 2.5998 % | nom de remplacement | 1 |
+| loeb | 43 / 42 | 7 → 15 | 52.4549 % → 22.2137 % | nom de remplacement | 2 |
+| aschenbrenner | 26 / 23 | 7 → 10 | 15.4426 % → 7.8986 % | nom de remplacement | 2 |
 | li-lu | 8 / 8 | 8 → 8 | 0.0000 % → 0.0000 % | photo | 0 |
 | gates-trust | 24 / 24 | 8 → 11 | 8.0336 % → 4.1036 % | photo | 2 |
 | klarman | 21 / 21 | bloqué | bloqué | photo prête, inutilisée | 0 |
-| terry-smith | 41 / 41 | 6 → 19 | 65.5202 % → 11.9257 % | nom de remplacement | 2 |
+| terry-smith | 41 / 41 | 6 → 14 | 65.5202 % → 30.8350 % | nom de remplacement | 2 |
 | pabrai | 4 / 4 | 4 → 4 | 0.0000 % → 0.0000 % | photo | 0 |
 | hohn | 11 / 11 | 8 → 11 | 4.4692 % → 0.0000 % | photo | 0 |
-| baker-bros | 84 / 84 | 8 → 14 | 34.1843 % → 17.8347 % | nom de remplacement | 2 |
-| icahn | 10 / 10 | 5 → 10 | 3.1512 % → 0.0000 % | photo | 0 |
-| laffont | 73 / 73 | 10 → 20 | 44.1043 % → 16.8823 % | nom de remplacement | 2 |
+| baker-bros | 84 / 84 | 8 → 12 | 34.1843 % → 21.6068 % | nom de remplacement | 2 |
+| icahn | 10 / 10 | 5 → 9 | 3.1512 % → 0.4288 % | photo | 1 |
+| laffont | 73 / 73 | 10 → 13 | 44.1043 % → 34.0574 % | nom de remplacement | 2 |
 | renaissance | 3151 / 3151 | 3 → 7 | 94.9154 % → 90.5205 % | photo | 3 |
 
 ## Cause et correction
 
-La contrainte de déplacement angulaire des pastilles (±0,22 radian) rejetait les petites positions voisines très tôt, indépendamment de la surface disponible. Les noms et montants individuels occupaient ensemble deux à trois lignes. Le moteur conserve le grand donut de 760 px, les noms à 36 px, les pastilles rondes et les angles exacts. Il autorise un déplacement modéré (±0,65 radian), retire les montants individuels de la périphérie (conservés dans le texte, l’application et les détails), et cherche le maximum de positions que la géométrie et les libellés permettent, sans minimum imposé ni plafond de douze. Les noms continuent à envelopper les mots et les classes restent distinctes. Les traits de liaison sont dessinés sous l’ensemble des pastilles, sans repeindre leurs pourcentages. Le solde est explicitement « Autres · N positions ».
+La contrainte de déplacement angulaire des pastilles (±0,22 radian) rejetait les petites positions voisines très tôt, indépendamment de la surface disponible. Les noms et montants individuels occupaient ensemble deux à trois lignes. Le moteur conserve le grand donut de 760 px, les noms à 36 px, les pastilles rondes et les angles exacts. Il autorise un déplacement modéré (±0,65 radian), retire les montants individuels de la périphérie (conservés dans le texte, l’application et les détails), et cherche le maximum de positions que les noms, pastilles, couleurs distinctes et trajets de liaison permettent, sans minimum imposé ni plafond de douze. Les noms continuent à envelopper les mots et les classes restent distinctes. Les traits de secteur sont dessinés sous l’ensemble des pastilles, sans repeindre leurs pourcentages. Tout nom éloigné exige un trajet validé qui contourne textes, autres pastilles et autres traits ; un placement sans liaison possible est rejeté. Les trajets sont réservés avant les logos extérieurs. Le solde est explicitement « Autres · N positions ».
 
 Renaissance conserve sept positions dans sa synthèse : forcer douze grandes pastilles dans 13,4 % du cercle produit une association illisible. La série montre les positions suivantes sur trois pages de barres, soit quatre images au total. Les autres séries utilisent uniquement les compléments nécessaires, au maximum quatre images pour X. Les barres portent les poids sur le portefeuille admissible complet ; leur longueur compare les positions de la page, sans masquer le pourcentage exact. La couverture du top douze est calculée à partir des valeurs entières ; elle est affichée sur les pages complémentaires et dans les synthèses dispersées. Les milliers de lignes et centaines d’images de l’archive Renaissance ne deviennent pas un carrousel de publication.
 

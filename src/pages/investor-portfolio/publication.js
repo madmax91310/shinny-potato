@@ -80,6 +80,7 @@ export function publicationPlan(portfolio) {
     const selected=sorted.slice(0,n).map(r=>({...r,label:shortPosition(r),weight:r.value/total}))
     const rest=sorted.slice(n)
     if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:`Autres · ${rest.length} positions`,other:true,ticker:'',currency:portfolio.snapshot.currency,unit:1,count:rest.length,value,weight:value/total,color:'#f4d539'})}
+    if(new Set(selected.map(r=>r.color)).size!==selected.length)continue
     let layout=null
     const other=selected.find(r=>r.other)
     const base=other?-Math.PI/2-Math.PI*2*(1-other.weight)-Math.PI*other.weight:-80*Math.PI/180
