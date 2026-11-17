@@ -237,21 +237,21 @@
               "sourceUrl": "https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "afc308c09ca2773aa7373d3a9583693dca42ffd40c5c2aa10da27cd34faf7f39",
+              "sha256": "2b8a56354117af9c8c21bd7a0fc91ca9bf06374668b5baca55b1b9e73d948ac4",
               "kind": "page",
               "statement": "télécharger votre Imprimé Fiscal Unique"
             }
           ],
           "scope": "bourso ; ifu ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "afc308c09ca2773aa7373d3a9583693dca42ffd40c5c2aa10da27cd34faf7f39",
+          "sha256": "2b8a56354117af9c8c21bd7a0fc91ca9bf06374668b5baca55b1b9e73d948ac4",
           "values": {},
           "decisiveDocument": "boursoIfu",
           "statement": "télécharger votre Imprimé Fiscal Unique",
           "checkedSources": [
             {
               "sourceUrl": "https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361",
-              "sha256": "afc308c09ca2773aa7373d3a9583693dca42ffd40c5c2aa10da27cd34faf7f39"
+              "sha256": "2b8a56354117af9c8c21bd7a0fc91ca9bf06374668b5baca55b1b9e73d948ac4"
             }
           ]
         },
@@ -262,7 +262,7 @@
             "resume": "Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics.",
             "full": "Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics."
           },
-          "checkedAt": "2026-11-16",
+          "checkedAt": "2026-11-17",
           "sourceUrl": "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf",
           "refs": [
             {
@@ -277,7 +277,7 @@
           ],
           "scope": "bourso ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "9271a942ebc2a00f3bb548e2ef9602fa6123da28a6e53cdeb5c55677c1868e10",
+          "sha256": "8a30cc5aac22325ef84e1defb35e6ba2bfc82008baec64cbd0b8a32f65ea65e8",
           "values": {},
           "decisiveDocument": "boursoContract",
           "statement": "espèces soit toujours créditeur. Les BOURSORAMA. sommes déposées sur le compte espèces ne donnent pas lieu à rémunération",
@@ -288,7 +288,7 @@
             },
             {
               "sourceUrl": "https://www.boursobank.com/bourse/cto-compte-titres-ordinaire",
-              "sha256": "2aa5224935eeac956adea0ce1ecf993ecafc85244856ab6935af0d91c4a36f3d"
+              "sha256": "8afd046fd178b7867ff9c61752bc5d713e09588e3e6fe0673cc1584e2ee187dd"
             }
           ]
         },
@@ -505,21 +505,21 @@
               "sourceUrl": "https://www.fortuneo.fr/bourse/ordres-intelligents",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "b4ceb2bff8ce9af66af4e6948629756b20ba436f533329f42edd1c32140d9ed4",
+              "sha256": "3d585b823930bb576312f91321c827fc873ad6adbd76c09c7861baccd41d28ec",
               "kind": "page",
               "statement": "Fortuneo"
             }
           ],
           "scope": "fortuneo ; dca ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "643d1dfdbb58bb2cec3c3ae3f50af3179cbf40741371e17d30e870e1b2337682",
+          "sha256": "fe022ad45f23fb445b877f62cd36ce5eb564c78d8d3af94c3c885313e36183da",
           "values": {},
           "decisiveDocument": "fortuneoSmartOrders",
           "statement": "Fortuneo",
           "checkedSources": [
             {
               "sourceUrl": "https://www.fortuneo.fr/bourse/ordres-intelligents",
-              "sha256": "b4ceb2bff8ce9af66af4e6948629756b20ba436f533329f42edd1c32140d9ed4"
+              "sha256": "3d585b823930bb576312f91321c827fc873ad6adbd76c09c7861baccd41d28ec"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
@@ -527,19 +527,19 @@
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/bourse",
-              "sha256": "b02d0fc75436cafacf4973013d8ae5004bc52995453454c9c425f4f2eb15b7e6"
+              "sha256": "e021d7142d6ca880a3f435423ea1ffbe5296c85fb3c48e8cf3502b831b0aab02"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sommes-minimales-sont-necessaires-pour-ouvrir-un-compte-contrat-chez-fortuneo",
-              "sha256": "6b0608e973556bc758261c3effddf22b448780a31b7ee6a48360f116c35879f8"
+              "sha256": "c0aa7b12952f01b759e226ac3797467e27b7f4880a54d42f709b1a49d1c9818e"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sont-les-valeurs-eligibles-aux-ordres-intelligents",
-              "sha256": "84cb8eb6d59a53858d75644fdcb8a41cc12df9c92f1deaf287becb01c830749c"
+              "sha256": "518bd1ac1cbb0be8e11583b065b9918cbbbc1b4fcc3dcdc00edef666fbc1cb18"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/quels-sont-les-differents-types-dordres-en-bourse",
-              "sha256": "82ef1a3d210094f1bf15a863b5e82dd82a6cd5424855aaede9bc375f6634728d"
+              "sha256": "2a0d49778ea9f66c5fa3b7307d6df722739f3ee8e855e5acec518f5998258bfe"
             }
           ]
         },
@@ -657,21 +657,21 @@
               "sourceUrl": "https://www.fortuneo.fr/faq/comment-telecharger-mon-imprime-fiscal-unique-ifu",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "d8e9c6d573121a592b307c36faa49472c2d4ea4cf26e48ba02c5f49256964ae9",
+              "sha256": "a6ed430c721c3592e65fb76bcef8b97151f78265f3772cc3c514e46871430e67",
               "kind": "page",
               "statement": "Vous pourrez alors télécharger votre IFU"
             }
           ],
           "scope": "fortuneo ; ifu ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "d8e9c6d573121a592b307c36faa49472c2d4ea4cf26e48ba02c5f49256964ae9",
+          "sha256": "a6ed430c721c3592e65fb76bcef8b97151f78265f3772cc3c514e46871430e67",
           "values": {},
           "decisiveDocument": "fortuneoIfu",
           "statement": "Vous pourrez alors télécharger votre IFU",
           "checkedSources": [
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/comment-telecharger-mon-imprime-fiscal-unique-ifu",
-              "sha256": "d8e9c6d573121a592b307c36faa49472c2d4ea4cf26e48ba02c5f49256964ae9"
+              "sha256": "a6ed430c721c3592e65fb76bcef8b97151f78265f3772cc3c514e46871430e67"
             }
           ]
         },
@@ -697,7 +697,7 @@
           ],
           "scope": "fortuneo ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "1c0eddc04100823341eb38bc5a233891b689945822f01d4b17bc1e9c8157e614",
+          "sha256": "fc343abb6aebb13440f76ecdf75231b8899ad003c7b01e725f65907954ddfc63",
           "values": {},
           "decisiveDocument": "fortuneoContract",
           "statement": "compte espèces ne donnent pas lieu à rémunération",
@@ -708,31 +708,31 @@
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sont-les-fonctions-du-compte-espece",
-              "sha256": "faeb0f1c0f8a78be252e2654fd670809443e8453ff92b5d90432a4a9c1e75250"
+              "sha256": "67396ccc0a135768308333e23bd1873abbcac42593e5a012282d5c05435d2c6c"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/quelle-est-la-difference-entre-le-compte-especes-et-le-compte-titres",
-              "sha256": "cd73608e1b405c9a9a2b12de9b939879ddc09d5b01d22eb084e15f90009dc93d"
+              "sha256": "5791f6a776b8cc49ebe6db469255ad6de4ce15377f78c6ed33a7f41d146acebb"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/bourse",
-              "sha256": "b02d0fc75436cafacf4973013d8ae5004bc52995453454c9c425f4f2eb15b7e6"
+              "sha256": "e021d7142d6ca880a3f435423ea1ffbe5296c85fb3c48e8cf3502b831b0aab02"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/comment-alimenter-un-compte-titres-ordinaire-ou-un-compte-especes",
-              "sha256": "b166996363792f5be78feeed10adab754b2954c45c3689d1a4139495c319bdff"
+              "sha256": "ed0f860ba3a176b4d64c7587c7226f8f8089b4e4a19f96d93df0988f5a5873ae"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/comment-transferer-un-pea-pea-pme-ou-un-compte-titres-ordinaire-chez-fortuneo",
-              "sha256": "9292212e7d6f9cc405cfc6cf44abe265fac928163334c9d17bda843b85d35cf8"
+              "sha256": "69901d90403161e430b5d1b5d0ecb34cb536b879d464341d894988f7e1b04eb3"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sommes-minimales-sont-necessaires-pour-ouvrir-un-compte-contrat-chez-fortuneo",
-              "sha256": "6b0608e973556bc758261c3effddf22b448780a31b7ee6a48360f116c35879f8"
+              "sha256": "c0aa7b12952f01b759e226ac3797467e27b7f4880a54d42f709b1a49d1c9818e"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/qui-peut-ouvrir-un-compte-bourse",
-              "sha256": "3b691c1d9d952584f7dc2165df96e1803f682d1feaf052b73439da3b7118bde5"
+              "sha256": "de4b46d9d855328fa0369806572842cd056aea5521809aedd854112c2b6d891c"
             }
           ]
         }
@@ -882,21 +882,21 @@
               "sourceUrl": "https://www.xtb.com/fr/pea",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6",
+              "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc",
               "kind": "page",
               "statement": "PEA - Plan d’Épargne en Actions | XTB"
             }
           ],
           "scope": "xtb ; pea ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6",
+          "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc",
           "values": {},
           "decisiveDocument": "xtbPea",
           "statement": "PEA - Plan d’Épargne en Actions | XTB",
           "checkedSources": [
             {
               "sourceUrl": "https://www.xtb.com/fr/pea",
-              "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6"
+              "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc"
             }
           ]
         },
@@ -948,21 +948,21 @@
               "sourceUrl": "https://www.xtb.com/fr/pea",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6",
+              "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc",
               "kind": "page",
               "statement": "Actuellement, XTB ne permet pas aux personnes fiscalement rattachées d'ouvrir un PEA"
             }
           ],
           "scope": "xtb ; jeune ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6",
+          "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc",
           "values": {},
           "decisiveDocument": "xtbPea",
           "statement": "Actuellement, XTB ne permet pas aux personnes fiscalement rattachées d'ouvrir un PEA",
           "checkedSources": [
             {
               "sourceUrl": "https://www.xtb.com/fr/pea",
-              "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6"
+              "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc"
             }
           ]
         },
@@ -1023,14 +1023,14 @@
               "sourceUrl": "https://www.xtb.com/fr/pea",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6",
+              "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc",
               "kind": "page",
               "statement": "argent sur votre compte espèces pour acheter des actifs éligibles. Le compte espèces ne génère pas d’intérêts"
             }
           ],
           "scope": "xtb ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "e55bbd77097630b79fafbaeb50a380c2acca5ce49bf49353c35e8ec799678ced",
+          "sha256": "4c4ce729c7e1620a553bc8e69753c76556929e47713c5989a9b4fb1d53f57c25",
           "values": {},
           "decisiveDocument": "xtbInterest",
           "statement": "Au-delà de 100 000 EUR de fonds disponibles, ainsi qu’à l’issue de cette période de 90 jours",
@@ -1041,7 +1041,7 @@
             },
             {
               "sourceUrl": "https://www.xtb.com/fr/pea",
-              "sha256": "39732274b2b43b2e800507a9f8dd78bbe6247ce90f3a4b06a6b9b86e25d6aed6"
+              "sha256": "deab44acafa2b1576ff00ae622900d6adfded4eb63dcf8e8f9f70a1a103114dc"
             }
           ]
         }
@@ -1208,7 +1208,7 @@
               "sourceUrl": "https://www.home.saxo/fr-fr/products/autoinvest",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "9506abd41e38d0b1873a1ea664858f1efc96dc0c4a6f6d3a7db59e614ce52f99",
+              "sha256": "21500acbb07223c0e13836e42df5684912f64e9932f4a4b8414393d99d807e59",
               "kind": "page",
               "statement": "Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA"
             },
@@ -1217,25 +1217,25 @@
               "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "b4ce69a758ebbe42dcbff785b9b89a865b816f965302b6fa029459d12474b200",
+              "sha256": "849a5622855a30d996d4921656d63b4ffac201bf722855c111489f5fdfa464bb",
               "kind": "page",
               "statement": "automatique et mensuel Gratuit : 0€ de frais sur l'achat d'ETF et de Fonds Diversifié : marchés internationaux et thématiques Comment faire si vous êtes déjà client ? 1. Choisissez dans quoi vous voulez investir et le montant Choisissez les ETF et/ou les fonds dans lesquels vous souhaitez investir de manière récurrente. 2. Transférez des fonds et configurez un paiement mensuel Configurez un paiement mensuel automatique depuis votre compte bancaire personnel vers votre Plan Epargne Programmé. Vous pourrez toujours modifier le montant a posteriori. Consultez notre article dédié aux dépôts permanents/récurrents ici 3. Votre Plan Epargne Programmé est maintenant prêt et vos fonds seront investis automatiquement chaque mois Votre compte est maintenant prêt et vous pouvez suivre les performances depuis votre plateforme. Veuillez vous assurer que vos dépôts mensuels couvrent le montant à investir. Vous pouvez ouvrir un Plan Epargne Programmé Saxo depuis toutes les plateformes Saxo : SaxoTrader SaxoInvestor Mon profil > Demander de nouveaux comptes > Ouvrir un Plan Epargne Programmé Consultez l'article dédié à l'ouverture du Plan Epargne ici Qu'est-ce que le Plan Epargne Programmé Saxo ? Il s'agit d'un type de compte qui vous permet d'investir automatiquement un montant fixe chaque mois dans des ETF et des fonds. Vous avez la flexibilité de choisir les titres et le montant que vous souhaitez investir. Sans frais de transaction et sans frais mensuels , et avec l'avantage des intérêts composés, cela peut être un moyen efficace de faire croître votre épargne. De plus, en utilisant la méthode de lissage des coûts ( DCA : Dollar Cost Averaging ), vous pouvez atténuer votre risque et éviter de devoir \"timer\" le marché (Market timing : essayez de prédire les mouvements futurs du marché). Vous pouvez consulter l'article relatif au Dollar Cost Averaging en cliquant ici Nous avons aussi créé un article vous expliquant ce que sont les intérêts composés, lisez le ici Est-il possible d'utiliser le Plan Epargne Programmé dans le cadre du PEA ? Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA mais nous travaillons activement à ce que cela soit possible. Nous ne manquerons pas de vous informer dès que vous pourrez investir automatiquement via votre PEA. Comment déposer des fonds ? Connexion à votre compte bancaire personnel Utilisez l'IBAN de votre Plan Epargne Programmé, découvrez comment trouver les coordonnées bancaires de vos comptes ici . Votre dépôt sera disponible sur votre compte dans un délai de 1 à 3 jours ouvrés. Il est important de vous assurer que votre dépôt mensuel automatique couvre le montant des investissements mensuels que vous avez choisis. Pour configurer un versement mensuel, vous devez vous rendre sur votre banque personnelle et configurer un virement mensuel vers votre Plan Épargne Programmé. Vous disposez aussi d'un article vous expliquant comment procéder, cliquez ici Y a-t-il des limites au montant que je peux investir chaque mois ? + Vous avez une flexibilité totale pour décider combien vous souhaitez investir chaque mois. Il n'y a pas de limites minimales ou maximales sur vos investissements mensuels. Vous pouvez commencer avec n'importe quel montant et l'ajuster à tout moment. Puis-je modifier mon montant d'investissement mensuel ? + Oui, si vous souhaitez modifier le montant à investir mensuellement, naviguez vers : Portefeuille > Choisissez votre Plan Epargne Programmé > Cliquez sur Modifier Vous pouvez modifier le montant et les titres jusqu'à un jour ouvrable avant que vos fonds ne soient investis. Veuillez consulter la section : Quand mes fonds seront-ils investis chaque mois ? Combien coûte l'investissement ? + L'ouverture d'un Plan Épargne Programmé est gratuite, sans frais de tenue de compte, et sans frais de transaction pour les investissements mensuels automatiques . Vous avez à payer des frais de transaction uniquement lors de la vente de vos positions"
             }
           ],
           "scope": "saxo ; dca ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "e443465217caa873f4338db63448a914c90d271e765f744b16f6c552dc1e2158",
+          "sha256": "dbe2edb214d328b0c4f579b9d3268fac44a002aea7c15559b2d70464a8747e2e",
           "values": {},
           "decisiveDocument": "saxoAutoinvest",
           "statement": "Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA",
           "checkedSources": [
             {
               "sourceUrl": "https://www.home.saxo/fr-fr/products/autoinvest",
-              "sha256": "9506abd41e38d0b1873a1ea664858f1efc96dc0c4a6f6d3a7db59e614ce52f99"
+              "sha256": "21500acbb07223c0e13836e42df5684912f64e9932f4a4b8414393d99d807e59"
             },
             {
               "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo",
-              "sha256": "b4ce69a758ebbe42dcbff785b9b89a865b816f965302b6fa029459d12474b200"
+              "sha256": "849a5622855a30d996d4921656d63b4ffac201bf722855c111489f5fdfa464bb"
             }
           ]
         },
@@ -1320,21 +1320,21 @@
               "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "1a5bc4dfb94981bd8eadacfad01169325857610ac7562292f2035618889471c5",
+              "sha256": "f828a4a2c7c36e2cc18d11df56a4de73a5b2f8598a47809520a0ce7ef5212c4f",
               "kind": "page",
               "statement": "Saxo Banque ne propose pas de PEA assurance-vie, ni de PEA Jeune"
             }
           ],
           "scope": "saxo ; jeune ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "1a5bc4dfb94981bd8eadacfad01169325857610ac7562292f2035618889471c5",
+          "sha256": "f828a4a2c7c36e2cc18d11df56a4de73a5b2f8598a47809520a0ce7ef5212c4f",
           "values": {},
           "decisiveDocument": "saxoPeaHelp",
           "statement": "Saxo Banque ne propose pas de PEA assurance-vie, ni de PEA Jeune",
           "checkedSources": [
             {
               "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA",
-              "sha256": "1a5bc4dfb94981bd8eadacfad01169325857610ac7562292f2035618889471c5"
+              "sha256": "f828a4a2c7c36e2cc18d11df56a4de73a5b2f8598a47809520a0ce7ef5212c4f"
             }
           ]
         },
@@ -1386,21 +1386,21 @@
               "sourceUrl": "https://www.home.saxo/fr-fr/campaigns/interest-rates-cal",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "54d7372e51393bb754a1fe32cf6f6ca2588995b1688da257045eecc7f3c0c9ff",
+              "sha256": "b0bd6e74f43bed7b57165789fedf1bc7f58dddcb233b82328469b7325ad9c30a",
               "kind": "page",
               "statement": "Les clients VIP* peuvent percevoir des intérêts"
             }
           ],
           "scope": "saxo ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "54d7372e51393bb754a1fe32cf6f6ca2588995b1688da257045eecc7f3c0c9ff",
+          "sha256": "b0bd6e74f43bed7b57165789fedf1bc7f58dddcb233b82328469b7325ad9c30a",
           "values": {},
           "decisiveDocument": "saxoInterest",
           "statement": "Les clients VIP* peuvent percevoir des intérêts",
           "checkedSources": [
             {
               "sourceUrl": "https://www.home.saxo/fr-fr/campaigns/interest-rates-cal",
-              "sha256": "54d7372e51393bb754a1fe32cf6f6ca2588995b1688da257045eecc7f3c0c9ff"
+              "sha256": "b0bd6e74f43bed7b57165789fedf1bc7f58dddcb233b82328469b7325ad9c30a"
             }
           ]
         }
@@ -1510,7 +1510,7 @@
               "sourceUrl": "https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-boursiere.html",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "d550c38f08e3ad92edb56dea7de61752855e948af8278fbcd67fa85eae25a96c",
+              "sha256": "7572a3d2fdee70e3486b969dbcfd511b08898558fc593f250116461e1bc0f7ec",
               "kind": "page",
               "statement": "1 à 3 fonds"
             },
@@ -1526,14 +1526,14 @@
           ],
           "scope": "caidf ; dca ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "dab3e91d7b16f91a6cbd619e01ad19aeceff26d4bd069a73bcc58d6a7399ec50",
+          "sha256": "3516998f2f2f80709a3225de0423d3adf2ddd4e7316b417e9fe1429227cedd05",
           "values": {},
           "decisiveDocument": "caPeb",
           "statement": "1 à 3 fonds",
           "checkedSources": [
             {
               "sourceUrl": "https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-boursiere.html",
-              "sha256": "d550c38f08e3ad92edb56dea7de61752855e948af8278fbcd67fa85eae25a96c"
+              "sha256": "7572a3d2fdee70e3486b969dbcfd511b08898558fc593f250116461e1bc0f7ec"
             },
             {
               "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
@@ -1622,21 +1622,21 @@
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "098b56d54448621adb7e7f292cdea0e4c27f71bdc32252f9025d61570efcae20",
+              "sha256": "6178676ad83992753127f9b6cc7b5c382f5d21c0d5c1818786cba8da0878736f",
               "kind": "page",
               "statement": "PEA Jeune Le PEA Jeune est accessible à toute personne âgée de 18 ans à 25 ans, rattachée au foyer fiscal des ou d’un parent(s) Le plafond de versement du PEA Jeune s’élève à 20 000"
             }
           ],
           "scope": "caidf ; jeune ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "098b56d54448621adb7e7f292cdea0e4c27f71bdc32252f9025d61570efcae20",
+          "sha256": "6178676ad83992753127f9b6cc7b5c382f5d21c0d5c1818786cba8da0878736f",
           "values": {},
           "decisiveDocument": "caIdfPea",
           "statement": "PEA Jeune Le PEA Jeune est accessible à toute personne âgée de 18 ans à 25 ans, rattachée au foyer fiscal des ou d’un parent(s) Le plafond de versement du PEA Jeune s’élève à 20 000",
           "checkedSources": [
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-              "sha256": "098b56d54448621adb7e7f292cdea0e4c27f71bdc32252f9025d61570efcae20"
+              "sha256": "6178676ad83992753127f9b6cc7b5c382f5d21c0d5c1818786cba8da0878736f"
             }
           ]
         },
@@ -1662,7 +1662,7 @@
           ],
           "scope": "caidf ; ifu ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "192fa5f9e48ada2926ff7dd39de98211aedb97cd3460a29e03d0376f8f133727",
+          "sha256": "e74b7fdca048a352d95a2c2cbee1622292c77d795799c99d9b9171457982a390",
           "values": {},
           "decisiveDocument": "caTariff",
           "statement": "Réédition de document lié à la gestion et au suivi des comptes (IFU",
@@ -1673,7 +1673,7 @@
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/particulier/epargne/bourse/offre-bourse-integral.html",
-              "sha256": "434407829114b189c9996dac129f43b4c4a017e428265ff5a9384c29755ddd4b"
+              "sha256": "50e5d6e21a1f0a49f42dae1fe7acea073fe27c432133cbd115833efeaaf2a97d"
             }
           ]
         },
@@ -1692,21 +1692,21 @@
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "7f310a2fe142c1280e881fc8743f1266bfdd8ac1e388623bd5f0fea5e8a39c3b",
+              "sha256": "c442d0026b475f1f4ea91a4d60504c129f3a304be91b66718cf2ea44531ae05c",
               "kind": "page",
               "statement": "argent détenu sur ce compte espèces n’est pas rémunéré"
             }
           ],
           "scope": "caidf ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "98fbfd4939d624f88c9ba4c8a38ac196bc361cfc1acf75caf063cbb0abb14081",
+          "sha256": "f68f355224827a9f4e2b0b554f21ccd5498473c35f0bc3c288b9f4c1d6494d76",
           "values": {},
           "decisiveDocument": "caIdfPeaPme",
           "statement": "argent détenu sur ce compte espèces n’est pas rémunéré",
           "checkedSources": [
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
-              "sha256": "7f310a2fe142c1280e881fc8743f1266bfdd8ac1e388623bd5f0fea5e8a39c3b"
+              "sha256": "c442d0026b475f1f4ea91a4d60504c129f3a304be91b66718cf2ea44531ae05c"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/relation-banque-client/CGL_CPT_FUSIONNE_PART_PDF(002).pdf",
@@ -1718,19 +1718,19 @@
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-              "sha256": "098b56d54448621adb7e7f292cdea0e4c27f71bdc32252f9025d61570efcae20"
+              "sha256": "6178676ad83992753127f9b6cc7b5c382f5d21c0d5c1818786cba8da0878736f"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/informations/relation-banque-client/gestion-epargne.html",
-              "sha256": "699555fdc99bc8f8afb3b19ed0d13f60e9904e5ac2b1fdee993883642cd60bce"
+              "sha256": "7c56a1a9611b392570950cf67cc4d825aba367e198a8d85415686d221571f85d"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/compte-titres.html",
-              "sha256": "0c132b67aef98edc70a79406dff30cc2b30027bfb97dccc27d4f7727e437f4c8"
+              "sha256": "e0eb34fc6ed4680e121d9cbaee5eaf6021812eda977bd62237e0861c45d5537a"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/offre-bourse-integral.html",
-              "sha256": "766543bf97d8ef40e7c2a86beac978675c49b429493c8c3681656e353d695775"
+              "sha256": "63c572fd6baea85298101c1b5160b0e25c90e2437bc834b34efa83a1c48b6ad7"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/66289.1789655190953.CGL_CTO_PDF.pdf",
@@ -1768,7 +1768,7 @@
           ],
           "scope": "caidf ; change ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "3e5b5200843be2ed728a6b817d9addc1d4deb4965b29a0c204709f8e536c37c2",
+          "sha256": "ee87807e641a827e1481b6cf3b621f50cdfeb86ea6c666949cacc47866ddaadc",
           "values": {},
           "decisiveDocument": "caCtoContract",
           "statement": "Des opérations peuvent être réalisées dans une devise autre que l'euro. Dans ce cas, votre compte espèces associé à votre CTO est débité (en cas d’achat de titres financiers) ou crédité (en cas de vente de titres financiers) du montant en euros correspondant. Des frais peuvent s’appliquer. Ce montant en euros est calculé en appliquant le taux de change que nous pratiquons au moment de l'opération pour la devise concernée.",
@@ -1783,15 +1783,15 @@
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-              "sha256": "098b56d54448621adb7e7f292cdea0e4c27f71bdc32252f9025d61570efcae20"
+              "sha256": "6178676ad83992753127f9b6cc7b5c382f5d21c0d5c1818786cba8da0878736f"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
-              "sha256": "7f310a2fe142c1280e881fc8743f1266bfdd8ac1e388623bd5f0fea5e8a39c3b"
+              "sha256": "c442d0026b475f1f4ea91a4d60504c129f3a304be91b66718cf2ea44531ae05c"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/informations/relation-banque-client/gestion-epargne.html",
-              "sha256": "699555fdc99bc8f8afb3b19ed0d13f60e9904e5ac2b1fdee993883642cd60bce"
+              "sha256": "7c56a1a9611b392570950cf67cc4d825aba367e198a8d85415686d221571f85d"
             }
           ]
         }
@@ -1801,7 +1801,7 @@
       "asOf": null,
       "checkedAt": "2026-11-17",
       "sourceUrl": "https://www.interactivebrokers.ie/en/pricing/commissions-stocks.php",
-      "sha256": "5147d15cad6376f7fc68b0d5db1c40c4dffb19362e34b7c7adca5cd1295bc75d",
+      "sha256": "a717673ee35cc8e420e486c015fe7798b48bd8989226ecf8f1312a22d39924a0",
       "page": null,
       "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
       "dateStatus": "not-published",
@@ -1912,25 +1912,25 @@
               "sourceUrl": "https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "52cc118e8ca403b4b434eeadb17f0af9d6182dd3495b80c0b24a3d494da3db8d",
+              "sha256": "763a4415503b03448fbebdd702176b36659ecd0a448ad4ef909b5739caf48762",
               "kind": "page",
               "statement": "Account must have fractional share trading enabled"
             }
           ],
           "scope": "ibkr ; dca ; portée exacte des sources publiques",
           "method": "Rapprochement de trois sources officielles : condition obligatoire d’activation des fractions pour Recurring Investments, entité IBIE éligible, et fractions interdites sur PEA ; exclusion déduite de cette incompatibilité",
-          "sha256": "ac3d66972efb241de9eef749a793beeb03868c4b26237064e2d01b3c7e9785b9",
+          "sha256": "63a636b8fd430a9e1173fd4b92a583d29d950748ed67b5e8d37ba359d861a05e",
           "values": {},
           "decisiveDocument": "ibkrFractionalFaq",
           "statement": "Fractional share trading is not allowed in a PEA Account",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php",
-              "sha256": "a2e71b358c91fe68abcdf4d6ee1ec913622cde97553ad7c533485805e8022c55"
+              "sha256": "363c82aa74b1d28e585ef87b8ddb64b4141f2ce93da675176bf68b89ba284610"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
@@ -1942,7 +1942,7 @@
             },
             {
               "sourceUrl": "https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/",
-              "sha256": "52cc118e8ca403b4b434eeadb17f0af9d6182dd3495b80c0b24a3d494da3db8d"
+              "sha256": "763a4415503b03448fbebdd702176b36659ecd0a448ad4ef909b5739caf48762"
             },
             {
               "sourceUrl": "https://www.ibkrguides.com/clientportal/adding-accounts-info.htm",
@@ -1950,19 +1950,19 @@
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/commission-free-etfs-mkt.php",
-              "sha256": "42faece756e63f1abd3f456ff7701978a4d861d7cedd7347e9828e006d45d06a"
+              "sha256": "da0b7a058164d919a03467a461f42c716118aa1782a63ae85347ea9fbb789c8d"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/ordertypes.php",
-              "sha256": "7fed5cee4a5a4061bb9802cd373ce13b120c37bc1dc29237ecb55aea573ac645"
+              "sha256": "193e7ce612fa49ee03e41b26a3c388e270d7e65fe45d1cd191d3f6e4621feba9"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/products-futures.php",
-              "sha256": "a59024589bd423c45bca578c0bc578b445f48eca3bda8fa4b21eb07d57e046eb"
+              "sha256": "a3d374836eeb339fbca6282f0a6f5df0669d91d4d40d86766744483ff82b2c5d"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/third-party-integration.php",
-              "sha256": "06802197cf080425650422acd2bd84b6f169283e914cd748c963c935d52b4111"
+              "sha256": "9d8d58844183f40b248587afed3feba146f928f6541b7256136a26a9cf5d7fd8"
             }
           ]
         },
@@ -1981,21 +1981,21 @@
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e",
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370",
               "kind": "page",
               "statement": "Ouvrir un PEA Pour ouvrir un PEA vous devez être un résident fiscal français"
             }
           ],
           "scope": "ibkr ; pea ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e",
+          "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370",
           "values": {},
           "decisiveDocument": "ibkrPea",
           "statement": "Ouvrir un PEA Pour ouvrir un PEA vous devez être un résident fiscal français",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
             }
           ]
         },
@@ -2021,14 +2021,14 @@
           ],
           "scope": "ibkr ; pme ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "06156f9dceed7bae50f031193d6743b6a850b55ba3e4602d6098e6e516321ae6",
+          "sha256": "0b9e5c306332b0e39488174a9cbd353266be3e1611fded6df02fb4a04a161697",
           "values": {},
           "decisiveDocument": "ibkrPmeFaq",
           "statement": "IBKR does not offer PEA-PME Accounts",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/749793090",
@@ -2040,7 +2040,7 @@
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/products-futures.php",
-              "sha256": "a59024589bd423c45bca578c0bc578b445f48eca3bda8fa4b21eb07d57e046eb"
+              "sha256": "a3d374836eeb339fbca6282f0a6f5df0669d91d4d40d86766744483ff82b2c5d"
             }
           ]
         },
@@ -2066,14 +2066,14 @@
           ],
           "scope": "ibkr ; jeune ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "94ca803d87db173f2bb0eab0ddc0ae72757604ad511f885bb353820c3a624652",
+          "sha256": "57dc6a0ebd4be144ad912e5dd202a82e792c48c5bb005703fdae56e85ac5fc1c",
           "values": {},
           "decisiveDocument": "ibkrYoungFaq",
           "statement": "Any French individual tax resident over the age of 18 can open a Plan d'épargne en actions \\(PEA\\) Account, provided he or she does not already own one, and is fiscally independent",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047241",
@@ -2085,7 +2085,7 @@
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/products-futures.php",
-              "sha256": "a59024589bd423c45bca578c0bc578b445f48eca3bda8fa4b21eb07d57e046eb"
+              "sha256": "a3d374836eeb339fbca6282f0a6f5df0669d91d4d40d86766744483ff82b2c5d"
             }
           ]
         },
@@ -2104,21 +2104,21 @@
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e",
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370",
               "kind": "page",
               "statement": "Un IFU disponible pour votre PEA"
             }
           ],
           "scope": "ibkr ; ifu ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e",
+          "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370",
           "values": {},
           "decisiveDocument": "ibkrPea",
           "statement": "Un IFU disponible pour votre PEA",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
             }
           ]
         },
@@ -2137,7 +2137,7 @@
               "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "69a842b4ad5f63e7dc4c1bda6391331f064f28a043a2a52652cd60abc0ed7f73",
+              "sha256": "91400b0c73af8ba05d97a0eece56627decf89d29a64f1c6f481489ac8780d0af",
               "kind": "page",
               "statement": "Interest will not be payable on the first EUR 10,000 or USD"
             },
@@ -2146,25 +2146,25 @@
               "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "1dbecae1855c89bdd4d689eb35e410c315e059671c925736c410ecd7381951ea",
+              "sha256": "806fa6d103697536fd38a392d7860128e5ea1e30c74c7629501d257a26aa336a",
               "kind": "page",
               "statement": "Le compte espèces du PEA fonctionne comme un compte de dépôt. Il n’est pas rémunéré."
             }
           ],
           "scope": "ibkr ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "aa392771eeddd4578b2edc3a4d8eeffd84c771bf7d09fa27aaecdc42c4907fcf",
+          "sha256": "7ea8c9b77454a389454d3ba4b646b57bb61d1fdbfaf14911955fc6888f4340b4",
           "values": {},
           "decisiveDocument": "ibkrInterest",
           "statement": "Interest will not be payable on the first EUR 10,000 or USD",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
-              "sha256": "69a842b4ad5f63e7dc4c1bda6391331f064f28a043a2a52652cd60abc0ed7f73"
+              "sha256": "91400b0c73af8ba05d97a0eece56627decf89d29a64f1c6f481489ac8780d0af"
             },
             {
               "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
-              "sha256": "1dbecae1855c89bdd4d689eb35e410c315e059671c925736c410ecd7381951ea"
+              "sha256": "806fa6d103697536fd38a392d7860128e5ea1e30c74c7629501d257a26aa336a"
             }
           ]
         },
@@ -2192,14 +2192,14 @@
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e",
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370",
               "kind": "page",
               "statement": "Pas de frais d'ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert"
             }
           ],
           "scope": "ibkr ; entrant ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "b6b27937a94f501c7e0f7ab3cd6fa0eaf1e0c263a45e821aa448753d6627b0aa",
+          "sha256": "f8b5cdfd232227abc5e66621689b83fe2805ddce43920dcf038e3dd121496976",
           "values": {},
           "decisiveDocument": "ibkrTransfer",
           "statement": "You can transfer PEA accounts held with other brokers (delivering broker/ceding broker) into your account",
@@ -2210,7 +2210,7 @@
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+              "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
             }
           ]
         },
@@ -2810,11 +2810,11 @@
             "full": "Plans programmés sur PEA et CTO ; ETF de la sélection sans courtage, actions au tarif habituel."
           },
           "checkedAt": "2026-11-17",
-          "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc1a5f14b411794906719",
+          "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc95371e80e1794938167",
           "refs": [
             {
               "document": "bdPlans",
-              "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc1a5f14b411794906719",
+              "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc95371e80e1794938167",
               "discoveryUrl": null,
               "page": 1,
               "sha256": "1f4a01e7fcc2ae592abd85b60b46084f0379837c1029fb580ec4ebdf6ad73ac4",
@@ -2830,7 +2830,7 @@
           "statement": "les frais de courtage sont gratuits pour les ETF. Pour les actions, les frais de courtage s’appliquent selon le tarif habituel du client",
           "checkedSources": [
             {
-              "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc1a5f14b411794906719",
+              "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc95371e80e1794938167",
               "sha256": "1f4a01e7fcc2ae592abd85b60b46084f0379837c1029fb580ec4ebdf6ad73ac4"
             }
           ]
@@ -3031,21 +3031,21 @@
               "sourceUrl": "https://www.boursedirect.fr/fr/bourse/tarifs",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "9585eb5bc4c0a71854cb2cdb4ea1ac4cdc5c981f2611ac26d71b497cd48b4865",
+              "sha256": "20981bed7fb1e1d4b2e52acf2cf840454d1352c30f56b24ba2e2b12baf885cf1",
               "kind": "page",
               "statement": "REMBOURSÉS** * Hors bourses étrangères. ** À hauteur de 200 € pour un compte titres et 150 € pour un compte PEA"
             }
           ],
           "scope": "bd ; entrant ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "9585eb5bc4c0a71854cb2cdb4ea1ac4cdc5c981f2611ac26d71b497cd48b4865",
+          "sha256": "20981bed7fb1e1d4b2e52acf2cf840454d1352c30f56b24ba2e2b12baf885cf1",
           "values": {},
           "decisiveDocument": "bdTariffPage",
           "statement": "REMBOURSÉS** * Hors bourses étrangères. ** À hauteur de 200 € pour un compte titres et 150 € pour un compte PEA",
           "checkedSources": [
             {
               "sourceUrl": "https://www.boursedirect.fr/fr/bourse/tarifs",
-              "sha256": "9585eb5bc4c0a71854cb2cdb4ea1ac4cdc5c981f2611ac26d71b497cd48b4865"
+              "sha256": "20981bed7fb1e1d4b2e52acf2cf840454d1352c30f56b24ba2e2b12baf885cf1"
             }
           ]
         }
@@ -3060,7 +3060,7 @@
       "bourso:profile:pea": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf: <urlopen error [Errno 54] Connection reset by peer>",
       "bourso:profile:pme": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf: <urlopen error [Errno 54] Connection reset by peer>",
       "bourso:profile:jeune": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf: <urlopen error [Errno 54] Connection reset by peer>",
-      "bourso:profile:cash": "Découverte incomplète : https://www.boursobank.com/bourse/cto-compte-titres-ordinaire: https://www.boursobank.com/bourse/cto-compte-titres-ordinaire: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "bourso:profile:boursomarkets": "https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit: <urlopen error _ssl.c:993: The handshake operation timed out>",
       "bourso:profile:garde": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf: <urlopen error [Errno 54] Connection reset by peer>",
       "bd:profile:cash": "Clause officielle absente ou modifiée : (?:espèces|liquidités).{0,100}?(?:non rémunéré|pas.{0,30}?intérêt|ne.{0,30}?intérêt) | Aucun passage proche dans le document actuel"
     }
@@ -3168,8 +3168,8 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://support.traderepublic.com/fr-fr/319?web_view=true": {
-        "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
+      "https://support.traderepublic.com/fr-fr/414?web_view=true": {
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/414?web_view=true",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3178,8 +3178,8 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://support.traderepublic.com/fr-fr/414?web_view=true": {
-        "sourceUrl": "https://support.traderepublic.com/fr-fr/414?web_view=true",
+      "https://support.traderepublic.com/fr-fr/319?web_view=true": {
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3188,23 +3188,23 @@
         "mode": "direct",
         "catalogueErrors": []
       },
+      "https://www.boursedirect.fr/fr/bourse/tarifs": {
+        "sourceUrl": "https://www.boursedirect.fr/fr/bourse/tarifs",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
       "https://epargne.boursedirect.fr/epargne/placements-epargne/compte-titres-dont-pea-et-pea-pme/le-pea-plan-d-epargne-en-actions": {
         "sourceUrl": "https://www.boursedirect.fr/fr/bourse/pea",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361": {
-        "sourceUrl": "https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361",
+      "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html": {
+        "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit": {
-        "sourceUrl": "https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
-      "https://www.boursedirect.fr/fr/bourse/tarifs": {
-        "sourceUrl": "https://www.boursedirect.fr/fr/bourse/tarifs",
+      "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?filename=2026_BD_CP_Plan-Investissement.pdf": {
+        "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc95371e80e1794938167",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3218,23 +3218,8 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html": {
-        "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
-      "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?filename=2026_BD_CP_Plan-Investissement.pdf": {
-        "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6afc1a5f14b411794906719",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
       "https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-boursiere.html": {
         "sourceUrl": "https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-boursiere.html",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
-      "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf": {
-        "sourceUrl": "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3248,23 +3233,13 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.credit-agricole.fr/particulier/epargne/bourse/service-de-bourse-en-ligne-invest-store.html": {
-        "sourceUrl": "https://www.credit-agricole.fr/particulier/epargne/bourse/offre-bourse-integral.html",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
-      "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo": {
-        "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
       "https://www.fortuneo.fr/faq/comment-telecharger-mon-imprime-fiscal-unique-ifu": {
         "sourceUrl": "https://www.fortuneo.fr/faq/comment-telecharger-mon-imprime-fiscal-unique-ifu",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA": {
-        "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA",
+      "https://www.credit-agricole.fr/particulier/epargne/bourse/service-de-bourse-en-ligne-invest-store.html": {
+        "sourceUrl": "https://www.credit-agricole.fr/particulier/epargne/bourse/offre-bourse-integral.html",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3278,8 +3253,13 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.ibkrguides.com/clientportal/pea-transfer.htm": {
-        "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
+      "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf": {
+        "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
+      "https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA": {
+        "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3288,18 +3268,18 @@
         "mode": "direct",
         "catalogueErrors": []
       },
+      "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo": {
+        "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
       "https://www.home.saxo/fr-fr/products/autoinvest": {
         "sourceUrl": "https://www.home.saxo/fr-fr/products/autoinvest",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf": {
-        "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
-      "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php": {
-        "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php",
+      "https://www.ibkrguides.com/clientportal/pea-transfer.htm": {
+        "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3308,13 +3288,18 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047241": {
-        "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047241",
+      "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/370325745": {
+        "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/370325745",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475": {
-        "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
+      "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php": {
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
+      "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047241": {
+        "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047241",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3323,8 +3308,13 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/370325745": {
-        "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/370325745",
+      "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475": {
+        "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
+      "https://www.interactivebrokers.ie/fr/index.php?f=47097": {
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3333,13 +3323,13 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif": {
-        "sourceUrl": "https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif",
+      "https://www.xtb.com/fr/interets": {
+        "sourceUrl": "https://www.xtb.com/fr/interets",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385": {
-        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+      "https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif": {
+        "sourceUrl": "https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3348,13 +3338,18 @@
         "mode": "fallback",
         "catalogueErrors": []
       },
-      "https://www.xtb.com/fr/interets": {
-        "sourceUrl": "https://www.xtb.com/fr/interets",
+      "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385": {
+        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.interactivebrokers.ie/fr/index.php?f=47097": {
-        "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
+      "https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361": {
+        "sourceUrl": "https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
+      "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf": {
+        "sourceUrl": "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3373,6 +3368,11 @@
         "mode": "direct",
         "catalogueErrors": []
       },
+      "https://www.boursobank.com/bourse/cto-compte-titres-ordinaire": {
+        "sourceUrl": "https://www.boursobank.com/bourse/cto-compte-titres-ordinaire",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
       "https://www.boursedirect.fr/fr/bourse/compte-societe": {
         "sourceUrl": "https://www.boursedirect.fr/fr/bourse/compte-societe",
         "mode": "direct",
@@ -3383,18 +3383,18 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/compte-titres.html": {
-        "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/compte-titres.html",
-        "mode": "direct",
-        "catalogueErrors": []
-      },
       "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/offre-bourse-integral.html": {
         "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/offre-bourse-integral.html",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.fortuneo.fr/faq/quelles-sommes-minimales-sont-necessaires-pour-ouvrir-un-compte-contrat-chez-fortuneo": {
-        "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sommes-minimales-sont-necessaires-pour-ouvrir-un-compte-contrat-chez-fortuneo",
+      "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/compte-titres.html": {
+        "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/compte-titres.html",
+        "mode": "direct",
+        "catalogueErrors": []
+      },
+      "https://www.fortuneo.fr/faq/comment-transferer-un-pea-pea-pme-ou-un-compte-titres-ordinaire-chez-fortuneo": {
+        "sourceUrl": "https://www.fortuneo.fr/faq/comment-transferer-un-pea-pea-pme-ou-un-compte-titres-ordinaire-chez-fortuneo",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3403,13 +3403,13 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.fortuneo.fr/faq/comment-alimenter-un-compte-titres-ordinaire-ou-un-compte-especes": {
-        "sourceUrl": "https://www.fortuneo.fr/faq/comment-alimenter-un-compte-titres-ordinaire-ou-un-compte-especes",
+      "https://www.fortuneo.fr/faq/quelles-sommes-minimales-sont-necessaires-pour-ouvrir-un-compte-contrat-chez-fortuneo": {
+        "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sommes-minimales-sont-necessaires-pour-ouvrir-un-compte-contrat-chez-fortuneo",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.fortuneo.fr/faq/comment-transferer-un-pea-pea-pme-ou-un-compte-titres-ordinaire-chez-fortuneo": {
-        "sourceUrl": "https://www.fortuneo.fr/faq/comment-transferer-un-pea-pea-pme-ou-un-compte-titres-ordinaire-chez-fortuneo",
+      "https://www.fortuneo.fr/faq/comment-alimenter-un-compte-titres-ordinaire-ou-un-compte-especes": {
+        "sourceUrl": "https://www.fortuneo.fr/faq/comment-alimenter-un-compte-titres-ordinaire-ou-un-compte-especes",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3423,13 +3423,13 @@
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.interactivebrokers.ie/fr/trading/products-futures.php": {
-        "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/products-futures.php",
+      "https://www.interactivebrokers.ie/fr/trading/third-party-integration.php": {
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/third-party-integration.php",
         "mode": "direct",
         "catalogueErrors": []
       },
-      "https://www.interactivebrokers.ie/fr/trading/third-party-integration.php": {
-        "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/third-party-integration.php",
+      "https://www.interactivebrokers.ie/fr/trading/products-futures.php": {
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/products-futures.php",
         "mode": "direct",
         "catalogueErrors": []
       },
@@ -3452,7 +3452,7 @@
         "hubs": [
           {
             "sourceUrl": "https://www.boursedirect.fr/fr/bourse/tarifs",
-            "sha256": "9585eb5bc4c0a71854cb2cdb4ea1ac4cdc5c981f2611ac26d71b497cd48b4865"
+            "sha256": "20981bed7fb1e1d4b2e52acf2cf840454d1352c30f56b24ba2e2b12baf885cf1"
           },
           {
             "sourceUrl": "https://www.boursedirect.fr/pdf/CGBDMARS24.pdf",
@@ -3460,11 +3460,11 @@
           },
           {
             "sourceUrl": "https://www.boursedirect.fr/fr/bourse/pea",
-            "sha256": "c2d1e80fe589d2376b351ea86d912854f9b76555bb64527b7fb3ca38068e0f6d"
+            "sha256": "407716eabd1dc8c0076d7aad26c81635acf2dc2e47da7a342a475b545e05c9e7"
           },
           {
             "sourceUrl": "https://www.boursedirect.fr/fr/bourse/compte-titres",
-            "sha256": "1e2fb462c3e838deafe39f7466fa407021c25fe9db0bb0e7b5c549d9a605d508"
+            "sha256": "8d0986eeedd5a1e209ec2e2c1da981b8c10e9d754ae96796f52541cb6a2ec4b6"
           }
         ],
         "candidates": [
@@ -3475,28 +3475,30 @@
       "bourso:profile:cash": {
         "hubs": [
           {
+            "sourceUrl": "https://www.boursobank.com/bourse/cto-compte-titres-ordinaire",
+            "sha256": "8afd046fd178b7867ff9c61752bc5d713e09588e3e6fe0673cc1584e2ee187dd"
+          },
+          {
             "sourceUrl": "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf",
             "sha256": "ce856bac839862f153e23430b0ca10783888939eff2cc63e80ae24677ec8e2cf"
           }
         ],
         "candidates": [],
-        "errors": [
-          "https://www.boursobank.com/bourse/cto-compte-titres-ordinaire: https://www.boursobank.com/bourse/cto-compte-titres-ordinaire: <urlopen error _ssl.c:993: The handshake operation timed out>"
-        ]
+        "errors": []
       },
       "caidf:profile:cash": {
         "hubs": [
           {
             "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-            "sha256": "098b56d54448621adb7e7f292cdea0e4c27f71bdc32252f9025d61570efcae20"
+            "sha256": "6178676ad83992753127f9b6cc7b5c382f5d21c0d5c1818786cba8da0878736f"
           },
           {
             "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/informations/relation-banque-client/gestion-epargne.html",
-            "sha256": "699555fdc99bc8f8afb3b19ed0d13f60e9904e5ac2b1fdee993883642cd60bce"
+            "sha256": "7c56a1a9611b392570950cf67cc4d825aba367e198a8d85415686d221571f85d"
           },
           {
             "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
-            "sha256": "7f310a2fe142c1280e881fc8743f1266bfdd8ac1e388623bd5f0fea5e8a39c3b"
+            "sha256": "c442d0026b475f1f4ea91a4d60504c129f3a304be91b66718cf2ea44531ae05c"
           },
           {
             "sourceUrl": "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/relation-banque-client/CGL_CPT_FUSIONNE_PART_PDF(002).pdf",
@@ -3518,15 +3520,15 @@
         "hubs": [
           {
             "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-            "sha256": "098b56d54448621adb7e7f292cdea0e4c27f71bdc32252f9025d61570efcae20"
+            "sha256": "6178676ad83992753127f9b6cc7b5c382f5d21c0d5c1818786cba8da0878736f"
           },
           {
             "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
-            "sha256": "7f310a2fe142c1280e881fc8743f1266bfdd8ac1e388623bd5f0fea5e8a39c3b"
+            "sha256": "c442d0026b475f1f4ea91a4d60504c129f3a304be91b66718cf2ea44531ae05c"
           },
           {
             "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/informations/relation-banque-client/gestion-epargne.html",
-            "sha256": "699555fdc99bc8f8afb3b19ed0d13f60e9904e5ac2b1fdee993883642cd60bce"
+            "sha256": "7c56a1a9611b392570950cf67cc4d825aba367e198a8d85415686d221571f85d"
           },
           {
             "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
@@ -3544,7 +3546,7 @@
         "hubs": [
           {
             "sourceUrl": "https://www.fortuneo.fr/faq/bourse",
-            "sha256": "b02d0fc75436cafacf4973013d8ae5004bc52995453454c9c425f4f2eb15b7e6"
+            "sha256": "e021d7142d6ca880a3f435423ea1ffbe5296c85fb3c48e8cf3502b831b0aab02"
           },
           {
             "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
@@ -3552,11 +3554,11 @@
           },
           {
             "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sont-les-fonctions-du-compte-espece",
-            "sha256": "faeb0f1c0f8a78be252e2654fd670809443e8453ff92b5d90432a4a9c1e75250"
+            "sha256": "67396ccc0a135768308333e23bd1873abbcac42593e5a012282d5c05435d2c6c"
           },
           {
             "sourceUrl": "https://www.fortuneo.fr/faq/quelle-est-la-difference-entre-le-compte-especes-et-le-compte-titres",
-            "sha256": "cd73608e1b405c9a9a2b12de9b939879ddc09d5b01d22eb084e15f90009dc93d"
+            "sha256": "5791f6a776b8cc49ebe6db469255ad6de4ce15377f78c6ed33a7f41d146acebb"
           }
         ],
         "candidates": [
@@ -3571,11 +3573,11 @@
         "hubs": [
           {
             "sourceUrl": "https://www.fortuneo.fr/faq/bourse",
-            "sha256": "b02d0fc75436cafacf4973013d8ae5004bc52995453454c9c425f4f2eb15b7e6"
+            "sha256": "e021d7142d6ca880a3f435423ea1ffbe5296c85fb3c48e8cf3502b831b0aab02"
           },
           {
             "sourceUrl": "https://www.fortuneo.fr/bourse/ordres-intelligents",
-            "sha256": "b4ceb2bff8ce9af66af4e6948629756b20ba436f533329f42edd1c32140d9ed4"
+            "sha256": "3d585b823930bb576312f91321c827fc873ad6adbd76c09c7861baccd41d28ec"
           },
           {
             "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
@@ -3597,11 +3599,11 @@
           },
           {
             "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-            "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+            "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
           },
           {
             "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php",
-            "sha256": "a2e71b358c91fe68abcdf4d6ee1ec913622cde97553ad7c533485805e8022c55"
+            "sha256": "363c82aa74b1d28e585ef87b8ddb64b4141f2ce93da675176bf68b89ba284610"
           },
           {
             "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
@@ -3613,7 +3615,7 @@
           },
           {
             "sourceUrl": "https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/",
-            "sha256": "52cc118e8ca403b4b434eeadb17f0af9d6182dd3495b80c0b24a3d494da3db8d"
+            "sha256": "763a4415503b03448fbebdd702176b36659ecd0a448ad4ef909b5739caf48762"
           }
         ],
         "candidates": [
@@ -3632,7 +3634,7 @@
           },
           {
             "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-            "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+            "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
           },
           {
             "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047241",
@@ -3652,7 +3654,7 @@
           },
           {
             "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-            "sha256": "9f7b5d9e5bbadca0ceac3ca028e8b38a2b54649e9a24fe706f7b0896e05e099e"
+            "sha256": "ba6344e19a65900e8388eaae4ae3e913966c0a091ad7416ffa8016ff07bd4370"
           },
           {
             "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/749793090",
