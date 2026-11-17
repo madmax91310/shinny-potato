@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-16T16:59:00.070567+00:00",
+  "head": "8465cc97b6cf36bf0c9c66c64a909685111d1529",
+  "ordinaryProducer": true,
+  "sourceAcquisition": false,
+  "method": "Isolated replay of exact already-qualified dated evidence; not supplier refresh or production publication",
+  "derivedFunds": [
+    "IE00BMVB5K07",
+    "IE00BMVB5M21",
+    "IE00BMVB5P51",
+    "IE00BMVB5R75"
+  ],
+  "tests": [
+    "build-dca-exposures",
+    "test-lifestrategy",
+    "test-lifestrategy-exact-sleeves",
+    "test:dca"
+  ]
+}

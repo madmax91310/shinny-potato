@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-11-17T02:12:11.517093+00:00",
+  "code": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+  "data": "fd5cbf64986cc171d207d59fe0e5af3dc2582e99",
+  "commands": [
+    "node scripts/test-performance-rankings.mjs",
+    "node scripts/test-qualified-return-windows.mjs"
+  ],
+  "exitCode": 0,
+  "observed": "99categories, exact annual NAV/ECB conversion, geometric calculations, cross-asset conventions, shared periods/ties, portfolio weights/rebalancing/drift; strict malformed/missing windows; BitwiseParis and Palladium restrictions passed on the later actual public inputs.",
+  "limitation": "Functional regressions, not independent supplier certification or cron proof."
+}

@@ -1,3 +1,33 @@
+# Historiques et performances — complément des 16–17 novembre
+
+Relevé de clôture `2026-11-17T02:38:15.222429+00:00`. Code servi `77bd0158205833dddb6a129db9f4304ec0e139bb`, contexte données `fd5cbf64986cc171d207d59fe0e5af3dc2582e99`, voie `validated-data`, construction `2026-11-17T01:09:07.603Z`. Le contexte données n'est pas assimilé à une publication de chaque fichier : `preuves/continuation-20261116/final-public-byte-proof.json` rapproche les empreintes réellement servies et les reçus par périmètre.
+
+| Famille | Disponibilité et mise à jour | Limite |
+|---|---|---|
+| Neuf NAV WisdomTree : Copper, Brent, WTI, Coffee, Artificial Intelligence, Cloud, Cocoa, Natural Gas, Wheat | Extraction rolling réparée, neuf identités/conventions exactes réellement contrôlées, données mensuelles jusqu'à octobre2026 enregistrées et publiées. Performance depuis vérifiée publiquement dans les formats disponibles. | Calendriers glissants exclus ; source NAV/rendement qualifié distincte des anciennes cotations. Six contrôles par relance ciblée puis trois par producteur ordinaire postcorrectif ; ces évènements ne sont pas des preuves de cron. |
+| Bitwise Paris / ABTC | Voies qualifiées et dernières périodes préservées ; sélections, textes calculés et PNG publics vérifiés. | Ancienne route mensuelle Bitwise Xetra toujours400 ; dernier contrôle quotidien séparé refusé pour régression/convention, non reproduit localement et candidat rejeté brut non conservé. Paris a réussi. Une tentative échouée n'est ni une réussite ni une indisponibilité générale de Bitwise. |
+| Groupe constant79 |73 fenêtres qualifiées conservées. | Six refus sur cinq parts, liste exacte dans `historiques-six-fenetres-refusees.csv`.77 anciennes divergences et2résidus restent distincts. |
+| Palladium | Périodes NAV et de cotation déjà qualifiées conservées. | Décembre2014 NAV et cotation2025 restent séparément refusés. Nouvelle preuve de rapprochement des bornes jointe, aucune donnée remplacée. |
+
+Le tableau `historiques-mensuels-usages.csv` décrit775historiques exposés par les getters publics et3899lignes historique/outil, leurs bornes présentes et leurs restrictions ; ce ne sont ni775collectes fraîchement certifiées ni une admission de toutes les fenêtres.
+
+La première reprise des neuf NAV a bien contrôlé les sources mais son enregistrement a été refusé après modification concurrente de package.json. Ce refus est conservé. Le producteur43959903558 a enregistré six contrôles réussis et trois403 explicites. Le producteur ordinaire postcorrectif contrôle ensuite les trois seuls échecs ; la preuve finale est l'union des neuf résultats individuels publiés, pas une prétendue réussite9/9 du run43959903558. Aucune tentative ancienne n'est réécrite. Le producteur push43958707900 ne contrôlait que l'ancienne voie Xetra : son job vert n'est pas annoncé comme une collecte financière réussie.
+
+Palladium : la borne du31décembre2014 associe NAV23,584359 et niveau10012,1551, facteur424,525216 contre417,715655 aux bornes adjacentes. Un niveau NAV23,96882899 serait implicite si le facteur était constant, soit1,63019% d'écart. Ce calcul d'investigation ne prouve pas quelle composante est fausse et ne justifie aucun remplacement. Il manque la NAV USD officielle contemporaine et la réconciliation exacte de convention/bornes.
+
+Les nouveaux documents Amundi confirment des changements de nom/organisation, pas une absence de distribution ni les facteurs attendus. Les quatre refus Amundi restent justifiés ; lettres et sources exactes sont jointes. Aucune distribution absente déduite comme zéro.
+
+Prochaines observations nominales :17novembre06:45UTC reprise ciblée ;2décembre06:15 collecte mensuelle complète ; clôtures selon le calendrier du producteur. Les preuves Nasdaq antérieures restent acquises, distinctes du cron mensuel postcorrectif encore attendu.
+
+Même suivi [#881](https://github.com/madmax91310/shinny-potato/issues/881), mêmes matrices et identités. 35271 couples donnée/usage conservés, dont 35 259 initiaux ; ce ne sont pas autant de champs financièrement certifiés. Les 1 218 identités initiales sont toutes réconciliées, sans transformer une absence en résolution. L'export public complet contient11437 diagnostics au relevé, catégories dans `denominateurs.json` ; qualifications, attentes, traces historiques et pannes ne sont pas additionnées comme des erreurs financières. Radar arrêté, Portefeuilles IA et Analyse d'entreprise non restaurés, aucune publication sur X.
+
+
+---
+
+# Archive du bilan précédent — état daté, pas le statut courant
+
+Les preuves de cette version antérieure restent dans le [commit d2c4c9f9](https://github.com/madmax91310/shinny-potato/tree/d2c4c9f9f87ec83c947bf5f6275e8fa804572fac/reports/corrections-audit-2026-11-13-2014/livraison-2026-11-15). Les tableaux ci-dessus et les fichiers courants décrivent le nouveau relevé.
+
 # Historiques et performances — 16 novembre 2026
 
 Version publique prouvée : codef45c20c2 / donnéesb62c57d4. Voir BILAN.md pour les PR, contrôles et traces originales.

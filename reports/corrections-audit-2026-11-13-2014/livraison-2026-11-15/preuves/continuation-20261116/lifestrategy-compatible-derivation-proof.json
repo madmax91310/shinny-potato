@@ -1,0 +1,228 @@
+{
+  "reconstructedFromMergedCommit": "41311ee98d707f38b876517a1ea64c4b260b7fc8",
+  "canonicalPath": "src/data/dca-complete-holdings.json",
+  "canonicalSha256": "df418058850eac7870e8df7d476b9abbe2f40b4a0d2860775756b3aa2d8c7703",
+  "checkedAt": "2026-11-16T16:23:25.198341+00:00",
+  "results": [
+    {
+      "isin": "IE00BMVB5K07",
+      "qualified": true,
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+      "validatedAt": "2026-11-16T16:23:25.198341+00:00",
+      "scope": "equity-lookthrough",
+      "rows": 4235,
+      "equityWeightPct": 20.266324409933,
+      "equitySleeveWeightPct": 20.36421,
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.43583,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 0.80717,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 0.12121,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        }
+      ]
+    },
+    {
+      "isin": "IE00BMVB5M21",
+      "qualified": true,
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+      "validatedAt": "2026-11-16T16:23:25.198341+00:00",
+      "scope": "equity-lookthrough",
+      "rows": 4235,
+      "equityWeightPct": 39.909759510398004,
+      "equitySleeveWeightPct": 40.22632,
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.45166,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 18.70258,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 2.07208,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        }
+      ]
+    },
+    {
+      "isin": "IE00BMVB5P51",
+      "qualified": true,
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+      "validatedAt": "2026-11-16T16:23:25.198341+00:00",
+      "scope": "equity-lookthrough",
+      "rows": 4237,
+      "equityWeightPct": 59.773788365533,
+      "equitySleeveWeightPct": 60.294520000000006,
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.22193,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 19.21787,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BQW10",
+          "weightPct": 12.70134,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "eb81e8357ce271981f7cc699b82d1ab256160ed6242f588846552b066e004d35"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 4.18338,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        },
+        {
+          "isin": "IE00BK5BQX27",
+          "weightPct": 2.70728,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "6873df8a84b9798c22c68d940fe62705faaf44e67f80a05242090a024791c6ab"
+        },
+        {
+          "isin": "IE00BFMXYX26",
+          "weightPct": 1.24035,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "5eee2fcd6cbb2f2935ce72dc55ed45fdda764f0d85f2cef3e1053e2cae01cebf"
+        },
+        {
+          "isin": "IE00BK5BQZ41",
+          "weightPct": 1.02237,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "f1d2edfb3fda077274ad6770edb1728084d0a144b2d405b5d2c56274d9eb86dc"
+        }
+      ]
+    },
+    {
+      "isin": "IE00BMVB5R75",
+      "qualified": true,
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+      "validatedAt": "2026-11-16T16:23:25.198341+00:00",
+      "scope": "equity-lookthrough",
+      "rows": 4310,
+      "equityWeightPct": 79.699191899022,
+      "equitySleeveWeightPct": 80.38038,
+      "dependencies": [
+        {
+          "isin": "IE00BK5BQW10",
+          "weightPct": 19.37793,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "eb81e8357ce271981f7cc699b82d1ab256160ed6242f588846552b066e004d35"
+        },
+        {
+          "isin": "IE00BK5BQV03",
+          "weightPct": 19.31337,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "78932f81962f05cccbfd23fa444ded3d06d531bdb1b947e97b6641a9eb16cf0e"
+        },
+        {
+          "isin": "IE00BK5BQT80",
+          "weightPct": 19.30127,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "8655165275717585d4a9a586ea7e1b45444bde283367d5ac7d5521f7109ffe15"
+        },
+        {
+          "isin": "IE00BFMXXD54",
+          "weightPct": 6.40855,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "ecef499e33a380aeb6a4785163e428f717d2e49d1e6ae3522ac56bf34bec8079"
+        },
+        {
+          "isin": "IE00BK5BR733",
+          "weightPct": 6.11657,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "a22453689c55382beda358204a1c023c90b19388104b648c3938566be6ab5e06"
+        },
+        {
+          "isin": "IE00BK5BQX27",
+          "weightPct": 5.4291,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "6873df8a84b9798c22c68d940fe62705faaf44e67f80a05242090a024791c6ab"
+        },
+        {
+          "isin": "IE00BFMXYX26",
+          "weightPct": 2.43046,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "5eee2fcd6cbb2f2935ce72dc55ed45fdda764f0d85f2cef3e1053e2cae01cebf"
+        },
+        {
+          "isin": "IE00BK5BQZ41",
+          "weightPct": 2.00313,
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-14T14:51:25.690636+00:00",
+          "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+          "sha256": "f1d2edfb3fda077274ad6770edb1728084d0a144b2d405b5d2c56274d9eb86dc"
+        }
+      ]
+    }
+  ]
+}

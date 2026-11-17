@@ -1,0 +1,1023 @@
+{
+  "checkedAt": "2026-11-16T22:30:54.272014+00:00",
+  "run": 43959903558,
+  "event": "workflow_dispatch",
+  "sourceArtifact": 14278545117,
+  "artifactSha256": "d96dcb0a34c747875e8e24515b2841f804a5a158494fdf2736bf2f1f1c800e70",
+  "receiptArtifact": 14278019278,
+  "receiptSha256": "cad97cfb39d23e4de87c8873b536583ce6b5ecb39daa892b8951e9b73561d5cb",
+  "report": {
+    "checkedAt": "2026-11-16T22:07:42.636051+00:00",
+    "scope": {
+      "requestedIds": [
+        "etfGB00B15KXQ89Nav",
+        "etc_brent_crude_oilNav",
+        "etc_wti_crude_oilNav",
+        "etc_coffeeNav",
+        "etfIE00BDVPNG13Nav",
+        "etfCloudWisdomtreeNav",
+        "etc_cocoaNav",
+        "etc_natural_gasNav",
+        "etc_wheatNav"
+      ],
+      "expectedIds": [
+        "etfGB00B15KXQ89Nav",
+        "etc_brent_crude_oilNav",
+        "etc_wti_crude_oilNav",
+        "etc_coffeeNav",
+        "etfIE00BDVPNG13Nav",
+        "etfCloudWisdomtreeNav",
+        "etc_cocoaNav",
+        "etc_natural_gasNav",
+        "etc_wheatNav"
+      ],
+      "selection": "explicit"
+    },
+    "series": [
+      {
+        "id": "etfGB00B15KXQ89Nav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "b1c36ac4d5b864ed0900f531fe165cace40887c9dfcfe8b68a844c6de417eb1f",
+        "controlScope": {
+          "controlledInstrument": "GB00B15KXQ89",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2015-01-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_brent_crude_oilNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "bd04686f5e1077d1aeb12c1a1d99a6e02d9322b88797783a48a986e41a318447",
+        "controlScope": {
+          "controlledInstrument": "JE00B78CGV99",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2019-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_wti_crude_oilNav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      },
+      {
+        "id": "etc_coffeeNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "e6369307d79bef19a7cbca3555d976ad4ae79b87d420979ed7b78f221bc3a230",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB557",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etfIE00BDVPNG13Nav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      },
+      {
+        "id": "etfCloudWisdomtreeNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "aab163e84601b68f95e3015048e19f0304d8feb19b1172ea58dfdf4aa7ce9bad",
+        "controlScope": {
+          "controlledInstrument": "IE00BJGWQN72",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2019-09-01",
+          "controlledCalendarYears": [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_cocoaNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "10719c98fc56cdea3064baf22f0dee9b00e25778c6e851ec99adb09b01d92dd9",
+        "controlScope": {
+          "controlledInstrument": "JE00B2QXZK10",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2015-01-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_natural_gasNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "4a8a0b7d58f6e64fc6531dba1bd245a0fb57285006e89ca7d4a2989cd69924f8",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB334",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_wheatNav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      }
+    ]
+  },
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "681755283bcba6a3e79f784dde39823fe8b01b6d",
+    "files": {
+      "src/data/anniversary-levels.json": "3678064af203af948ffd464c4aac221254caf647",
+      "src/data/auto-history-identities.json": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "src/data/automated-etf-monthly.json": "a79cc52d644722ba8b4f940b822a16eb0846097f",
+      "src/data/automated-indices.json": "d4ac31f578216e94d816a985f20569a7f851fe61",
+      "src/data/automated-monthly.json": "ce0230d7d8b9e6a37ecd8de5f9abc7491c564565",
+      "src/data/monthly-fx.json": "54ed9aa5b3d94536385a5d1594890a8f19bebe30",
+      "src/data/qualified-listing-records.json": "707730f426114e294cb0900d41fc746836b20abf",
+      "src/data/ranking-histories.json": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "src/data/shared-listing-identities.json": "5e7e5a45f00971561f36fdbd50cbab0b3a636576"
+    }
+  },
+  "recordingSucceeded": true,
+  "sourceOutcomeCounts": {
+    "validated": 6,
+    "failed": 3
+  },
+  "currentSourceFailures": [],
+  "publicationProven": true,
+  "limitation": "Nine exact successful individual controls from two scoped ordinary runs (six+three), recorded and actually published; not a9/9run43959903558, not cron, not nine newly admitted windows. Failed attempts retained; old Xetra400 separate; source points unchanged.",
+  "allNineLatestControlsPublished": true,
+  "latestOrdinaryRun": 43981587026,
+  "latestOrdinaryReport": {
+    "checkedAt": "2026-11-17T00:07:33.451272+00:00",
+    "scope": {
+      "requestedIds": [
+        "etfDE000A27Z304",
+        "etc_wti_crude_oilNav",
+        "etfIE00BDVPNG13Nav",
+        "etc_wheatNav"
+      ],
+      "expectedIds": [
+        "etfDE000A27Z304",
+        "etc_wti_crude_oilNav",
+        "etfIE00BDVPNG13Nav",
+        "etc_wheatNav"
+      ],
+      "selection": "failed-or-missing"
+    },
+    "series": [
+      {
+        "id": "etfDE000A27Z304",
+        "status": "failed",
+        "reason": "HTTP Error 400: Bad Request"
+      },
+      {
+        "id": "etc_wti_crude_oilNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "3c882197a874473f636da4a6a5c829e8767e6cb8936bbdf3d4dbcdfe6d85789f",
+        "controlScope": {
+          "controlledInstrument": "GB00B15KXV33",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2019-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etfIE00BDVPNG13Nav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "2d8cf93dcd50902bd582d493cd82783f2468b6aeabbffc9acc5e57ec95aff42e",
+        "controlScope": {
+          "controlledInstrument": "IE00BDVPNG13",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2018-12-01",
+          "controlledCalendarYears": [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_wheatNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "5fa7045811d030579455b213581a23a31d4373451fdae3720943edc8d4dfe183",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB664",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      }
+    ]
+  },
+  "latestReceipt": {
+    "schemaVersion": 1,
+    "commit": "b0d9b1e4536802d3442a50dc384f725047418381",
+    "files": {
+      "src/data/anniversary-levels.json": "d92415f236058e179b42957d3cece463afd91c8e",
+      "src/data/auto-history-identities.json": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "src/data/automated-etf-monthly.json": "b874a60acc39e5fd1ea0a1bfe94320deca116420",
+      "src/data/automated-indices.json": "b37f4e861eed67431700216617349c5526e2e419",
+      "src/data/automated-monthly.json": "ce0230d7d8b9e6a37ecd8de5f9abc7491c564565",
+      "src/data/monthly-fx.json": "54ed9aa5b3d94536385a5d1594890a8f19bebe30",
+      "src/data/qualified-listing-records.json": "dcdd4d8044326f1b4194b00bd8b1e9c5be448352",
+      "src/data/ranking-histories.json": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "src/data/shared-listing-identities.json": "8c76a3c05427b99a28208dd7d768769b32584294"
+    }
+  },
+  "latestSourceArtifact": 14286043029,
+  "latestSourceArtifactSha256": "ebcec73ccf7842594f734b27f88be2094e0ca5237ba05b07de42c12d742cc31e",
+  "latestReceiptArtifact": 14287080325,
+  "latestReceiptArtifactSha256": "25836402d0850139c09402c387740226e1c80cdee122de6c78722ba84a5e4704",
+  "publicationBuild": {
+    "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+    "dataSha": "b0d9b1e4536802d3442a50dc384f725047418381",
+    "lane": "validated-data",
+    "builtAt": "2026-11-17T00:33:37.212Z"
+  },
+  "publishedMonthlySourceBlob": "b874a60acc39e5fd1ea0a1bfe94320deca116420",
+  "successfulControlUnion": [
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "run": 43959903558,
+      "event": "workflow_dispatch",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-16",
+      "periodEnd": "2026-10",
+      "isin": "GB00B15KXQ89",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "responseSha256": "b1c36ac4d5b864ed0900f531fe165cace40887c9dfcfe8b68a844c6de417eb1f",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k": "0722c1d60b1d6203393cacdf9bb130b611a533b01eac263afbe8cd279481b2ea",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular": "1d3560d6eb754ea990547599396059c04997516661614732d80e1bc7039e9c59"
+      },
+      "controlScope": {
+        "controlledInstrument": "GB00B15KXQ89",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2015-01-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 142,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etc_brent_crude_oilNav",
+      "run": 43959903558,
+      "event": "workflow_dispatch",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-16",
+      "periodEnd": "2026-10",
+      "isin": "JE00B78CGV99",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "responseSha256": "bd04686f5e1077d1aeb12c1a1d99a6e02d9322b88797783a48a986e41a318447",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99": "bad551694b390ebb1f748f06ddc6df1d4a335a0894c9d4e69bcb5cb056c33bc9",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k": "5a49e812a9629a13a9ce488fbb9f9ad2584c4ac2109e4642313f79b5fdf6968f",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular": "d5facd24884be114f69eda6a7ed47450ba8c8933268550bd9e99c000c4140ba1"
+      },
+      "controlScope": {
+        "controlledInstrument": "JE00B78CGV99",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2019-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 83,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "run": 43981587026,
+      "event": "push",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-17",
+      "periodEnd": "2026-10",
+      "isin": "GB00B15KXV33",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "responseSha256": "3c882197a874473f636da4a6a5c829e8767e6cb8936bbdf3d4dbcdfe6d85789f",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "93ed1edcde289657319925f6fc18e105c65ab1d6091e974b589a8f84d7b9c83f",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "0ed8f19d7bee748c0ecb4c8b334d2228488b6c4b22de23ba7817dce41d1dc14e"
+      },
+      "controlScope": {
+        "controlledInstrument": "GB00B15KXV33",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2019-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 83,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etc_coffeeNav",
+      "run": 43959903558,
+      "event": "workflow_dispatch",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-16",
+      "periodEnd": "2026-10",
+      "isin": "JE00BN7KB557",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "responseSha256": "e6369307d79bef19a7cbca3555d976ad4ae79b87d420979ed7b78f221bc3a230",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557": "f0deee10717cc07e2d23608b6412cf32356173d5e30c61f08296948a3ddd7593",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k": "bf02e817711b48ae52a44fc7f95d06fc8f99b5f532a6b84b8833fce7dc5580b2",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular": "724cb84d5acd182d3a1950d4367753ab4a9683b364b09221d8c2141617a66175"
+      },
+      "controlScope": {
+        "controlledInstrument": "JE00BN7KB557",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2021-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 59,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "run": 43981587026,
+      "event": "push",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-17",
+      "periodEnd": "2026-10",
+      "isin": "IE00BDVPNG13",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+      "responseSha256": "2d8cf93dcd50902bd582d493cd82783f2468b6aeabbffc9acc5e57ec95aff42e",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k": "bdc352516b8a430f5b7a8b18c285d1a78046b4089be12c2d5fb1f36e1fbf53c6",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular": "b697ef89eafaf2381f5cd8ee85018ee85d6665ac0f936c08fe4e43f8ad8cc9c1"
+      },
+      "controlScope": {
+        "controlledInstrument": "IE00BDVPNG13",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2018-12-01",
+        "controlledCalendarYears": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 95,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etfCloudWisdomtreeNav",
+      "run": 43959903558,
+      "event": "workflow_dispatch",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-16",
+      "periodEnd": "2026-10",
+      "isin": "IE00BJGWQN72",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+      "responseSha256": "aab163e84601b68f95e3015048e19f0304d8feb19b1172ea58dfdf4aa7ce9bad",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k": "9ac03f5b35e9021b668586dcbeb4b2d7a4b8cebdbdd60324fcd6ae7327635c00",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular": "b8a7dca70bee975a3a6687a818b9d106569ecbc914034763db9137f25c62fa0f"
+      },
+      "controlScope": {
+        "controlledInstrument": "IE00BJGWQN72",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2019-09-01",
+        "controlledCalendarYears": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 86,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etc_cocoaNav",
+      "run": 43959903558,
+      "event": "workflow_dispatch",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-16",
+      "periodEnd": "2026-10",
+      "isin": "JE00B2QXZK10",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+      "responseSha256": "10719c98fc56cdea3064baf22f0dee9b00e25778c6e851ec99adb09b01d92dd9",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10": "d111eb277740a11231a9c42f8d0bd16f82d2e651dba0d4d06374676a44685976",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k": "84071f8f69893538b97afa0dca896ea378cbd97328cf3ca0b89960dcf27f0eee",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular": "07734c88c84655fa010e198a4f5631125211f895eb619aca495aea0a315b6310"
+      },
+      "controlScope": {
+        "controlledInstrument": "JE00B2QXZK10",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2015-01-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 142,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "run": 43959903558,
+      "event": "workflow_dispatch",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-16",
+      "periodEnd": "2026-10",
+      "isin": "JE00BN7KB334",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+      "responseSha256": "4a8a0b7d58f6e64fc6531dba1bd245a0fb57285006e89ca7d4a2989cd69924f8",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334": "d545d7e1b1dac8df3a205575802edf60f1a7fc1ba9ab09021d637f9bb8f13d2d",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k": "8c73fd1fa50dbbe7778d53469c3ce089378fc69b0e84cfcb157d4e7dd7dccd6e",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular": "b0ad20d42b1199a6506376f59ed7215e46f764784ab5ae1dfda606f0860377dc"
+      },
+      "controlScope": {
+        "controlledInstrument": "JE00BN7KB334",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2021-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 59,
+      "allPriorQualifiedPointsUnchanged": true
+    },
+    {
+      "id": "etc_wheatNav",
+      "run": 43981587026,
+      "event": "push",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "checkedAt": "2026-11-17",
+      "periodEnd": "2026-10",
+      "isin": "JE00BN7KB664",
+      "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+      "responseSha256": "5fa7045811d030579455b213581a23a31d4373451fdae3720943edc8d4dfe183",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664": "4ab8c90ccbd9723fcbe4ad1f1a47bed5f43b5b53e7d82caac4a90a58932555ad",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k": "b3001afd9b9633188053caaeb223e1222a1fb6a7dc9eaf55d15b9664e9c7a58b",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular": "294441cb17ea6eeb1614aba3a2e39bf3ad2ea985c73800387cb858b5de69817c"
+      },
+      "controlScope": {
+        "controlledInstrument": "JE00BN7KB664",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2021-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      },
+      "monthlyPointCount": 59,
+      "allPriorQualifiedPointsUnchanged": true
+    }
+  ],
+  "previousFailedControls": [
+    {
+      "id": "etc_wti_crude_oilNav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+    },
+    {
+      "id": "etc_wheatNav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+    }
+  ],
+  "otherCurrentFailures": [
+    {
+      "id": "etfDE000A27Z304",
+      "status": "failed",
+      "reason": "HTTP Error 400: Bad Request"
+    }
+  ],
+  "canonicalFallbackNaturalProductionInvocation": "Not observed in this run: recorded provenance uses original primary URL pairs. Conditional fallback tested in isolation; alternative independently qualified in real GitHub43977041416.",
+  "latestActualPublication": {
+    "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+    "dataSha": "fd5cbf64986cc171d207d59fe0e5af3dc2582e99",
+    "lane": "validated-data",
+    "builtAt": "2026-11-17T01:09:07.603Z"
+  },
+  "latestMonthlySourceBlobUnchanged": true
+}

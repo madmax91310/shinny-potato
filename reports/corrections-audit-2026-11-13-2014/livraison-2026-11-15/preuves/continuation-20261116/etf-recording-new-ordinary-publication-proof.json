@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-16T16:55:00.841546+00:00",
+  "build": {
+    "sha": "484c950a5c3a9737ecbe7bb6910bc113778ae193",
+    "dataSha": "ef387d8a3a06f74ea2215a8e6055119e7377993f",
+    "lane": "fallback",
+    "builtAt": "2026-11-16T16:06:09Z"
+  },
+  "run": 43903822568,
+  "event": "workflow_dispatch",
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "1c08dfcdc4dc32dcf3fe106b8145712f4568dbf6",
+    "files": {
+      "src/data/annual-fx.json": "3563954344a08c470d84c29d84086fb9a6e2f45a",
+      "src/data/automated-etf.json": "7594b2f7530058564db425b71977abbbe263afba",
+      "src/data/automated-indices.json": "49ba3c43eee142ce30e9654a1d96fdf6b9836da2",
+      "src/data/official-performance-currencies.json": "beb96851b2c29a6117ab3c840262c153e3737aa1"
+    }
+  },
+  "checks": [
+    {
+      "path": "src/data/annual-fx.json",
+      "recorded": "3563954344a08c470d84c29d84086fb9a6e2f45a",
+      "published": "44a2c56dfd160a19085e2437fbf946a9783ff887",
+      "exactMatch": false
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "recorded": "7594b2f7530058564db425b71977abbbe263afba",
+      "published": "bede41730769f906af87273b94225a204fdefdea",
+      "exactMatch": false
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "recorded": "49ba3c43eee142ce30e9654a1d96fdf6b9836da2",
+      "published": "fc3a4b96e5d2095277a8444ac488eaa687791dbb",
+      "exactMatch": false
+    },
+    {
+      "path": "src/data/official-performance-currencies.json",
+      "recorded": "beb96851b2c29a6117ab3c840262c153e3737aa1",
+      "published": "beb96851b2c29a6117ab3c840262c153e3737aa1",
+      "exactMatch": true
+    }
+  ],
+  "fullyPublished": false,
+  "limitation": "Individual supplier errors retained; neither full-field certification nor cron proof"
+}

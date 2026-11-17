@@ -1,0 +1,12 @@
+2026-11-16T16:56:44.7986257Z Rebasing (1/1)
+2026-11-16T16:56:44.7986633Z Successfully rebased and updated detached HEAD.
+2026-11-16T16:56:46.7681837Z Traceback (most recent call last):
+2026-11-16T16:56:46.7682646Z   File "/tmp/tmp.7zdwvkYveS/checkout/scripts/market_reader_revalidation.py", line 290, in <module>
+2026-11-16T16:56:46.7683472Z     print(json.dumps(operation(args.base, args.upstream), sort_keys=True))
+2026-11-16T16:56:46.7684035Z                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-16T16:56:46.7684885Z   File "/tmp/tmp.7zdwvkYveS/checkout/scripts/market_reader_revalidation.py", line 266, in check
+2026-11-16T16:56:46.7685706Z     permitted |= subscriber_readers(base, upstream, paths, MARKET_ACQUISITION_ENTRIES)
+2026-11-16T16:56:46.7686317Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-16T16:56:46.7686843Z   File "/tmp/tmp.7zdwvkYveS/checkout/scripts/market_reader_revalidation.py", line 239, in subscriber_readers
+2026-11-16T16:56:46.7687468Z     raise ValueError('Protected acquisition/validation configuration changed: ' + path)
+2026-11-16T16:56:46.7688047Z ValueError: Protected acquisition/validation configuration changed: scripts/ci-browser-checks.json

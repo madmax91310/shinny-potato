@@ -1,0 +1,265 @@
+{
+  "isin": "IE00BDBRDM35",
+  "productId": 291770,
+  "checkedAt": "2026-11-16T16:53:50.848056+00:00",
+  "environment": "local readonly diagnosis; not Actions or a source-success publication",
+  "sourceConfiguration": {
+    "isin": "IE00BDBRDM35",
+    "productId": 291770,
+    "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
+    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
+    "currency": "EUR",
+    "distribution": "Accumulating",
+    "requireFullHistory": false,
+    "collectHoldings": true,
+    "collectSectors": true,
+    "provider": "iShares",
+    "holdingsAssetClass": "Fixed Income"
+  },
+  "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+  "sha256": "ab382298dc1bc9aebf1cc68c15a2f9cc6fa9a936fb6822fb0c9e21cc3203eb78",
+  "attempts": [],
+  "status": "parsed-locally",
+  "identity": null,
+  "countries": {
+    "asOf": "2026-10-08",
+    "rows": [
+      {
+        "name": "United States",
+        "weightPct": 39.64
+      },
+      {
+        "name": "China",
+        "weightPct": 11.36
+      },
+      {
+        "name": "Japan",
+        "weightPct": 8.09
+      },
+      {
+        "name": "France",
+        "weightPct": 4.91
+      },
+      {
+        "name": "Germany",
+        "weightPct": 4.59
+      },
+      {
+        "name": "United Kingdom",
+        "weightPct": 4.25
+      },
+      {
+        "name": "Canada",
+        "weightPct": 3.71
+      },
+      {
+        "name": "Italy",
+        "weightPct": 2.95
+      },
+      {
+        "name": "Supranational",
+        "weightPct": 2.78
+      },
+      {
+        "name": "Spain",
+        "weightPct": 2.11
+      },
+      {
+        "name": "Australia",
+        "weightPct": 1.73
+      },
+      {
+        "name": "Korea (South)",
+        "weightPct": 1.38
+      },
+      {
+        "name": "Netherlands",
+        "weightPct": 1.14
+      },
+      {
+        "name": "Other",
+        "weightPct": 10.709999999999996
+      },
+      {
+        "name": "Cash and/or Derivatives",
+        "weightPct": 0.65
+      }
+    ],
+    "sourceComponent": "exposureBreakdowns.geography.countries"
+  },
+  "sectors": {
+    "asOf": "2026-11-13",
+    "rows": [
+      {
+        "name": "Treasuries",
+        "weightPct": 53.19
+      },
+      {
+        "name": "Agency Fixed Rate",
+        "weightPct": 9.34
+      },
+      {
+        "name": "Owned No Guarantee",
+        "weightPct": 6.43
+      },
+      {
+        "name": "Banking",
+        "weightPct": 4.79
+      },
+      {
+        "name": "Supranational",
+        "weightPct": 2.74
+      },
+      {
+        "name": "Mortgage Collateralized",
+        "weightPct": 1.85
+      },
+      {
+        "name": "Local Government",
+        "weightPct": 1.84
+      },
+      {
+        "name": "Consumer Cyclical",
+        "weightPct": 1.59
+      },
+      {
+        "name": "Government Guaranteed",
+        "weightPct": 1.52
+      },
+      {
+        "name": "Electric",
+        "weightPct": 1.49
+      },
+      {
+        "name": "Sovereign",
+        "weightPct": 1.42
+      },
+      {
+        "name": "Healthcare",
+        "weightPct": 1.42
+      },
+      {
+        "name": "Communications",
+        "weightPct": 1.35
+      },
+      {
+        "name": "Insurance",
+        "weightPct": 1.19
+      },
+      {
+        "name": "Energy",
+        "weightPct": 1.08
+      },
+      {
+        "name": "Consumer Non-Cyclical",
+        "weightPct": 1.06
+      },
+      {
+        "name": "Capital Goods",
+        "weightPct": 0.99
+      },
+      {
+        "name": "Local Government Guarantee",
+        "weightPct": 0.77
+      },
+      {
+        "name": "Reits",
+        "weightPct": 0.51
+      },
+      {
+        "name": "Transportation",
+        "weightPct": 0.51
+      },
+      {
+        "name": "Local Government No Guarantee",
+        "weightPct": 0.5
+      },
+      {
+        "name": "Basic Industry",
+        "weightPct": 0.48
+      },
+      {
+        "name": "Brokerage/Asset Managers/Exchanges",
+        "weightPct": 0.29
+      },
+      {
+        "name": "Natural Gas",
+        "weightPct": 0.27
+      },
+      {
+        "name": "Finance Companies",
+        "weightPct": 0.24
+      },
+      {
+        "name": "Real Estate",
+        "weightPct": 0.23
+      },
+      {
+        "name": "Industrial Other",
+        "weightPct": 0.16
+      },
+      {
+        "name": "Public Sector Collateralized",
+        "weightPct": 0.15
+      },
+      {
+        "name": "Utility Other",
+        "weightPct": 0.12
+      },
+      {
+        "name": "Government Sponsored",
+        "weightPct": 0.09
+      },
+      {
+        "name": "Financial Other",
+        "weightPct": 0.06
+      },
+      {
+        "name": "Hybrid Collateralized",
+        "weightPct": 0.04
+      },
+      {
+        "name": "CMBS",
+        "weightPct": 0.02
+      },
+      {
+        "name": "Covered Other",
+        "weightPct": 0.02
+      },
+      {
+        "name": "Whole Business",
+        "weightPct": 0.01
+      },
+      {
+        "name": "Stranded Cost Utility",
+        "weightPct": 0.01
+      },
+      {
+        "name": "ABS Other",
+        "weightPct": 0.0
+      },
+      {
+        "name": "Auto Backed",
+        "weightPct": 0.0
+      },
+      {
+        "name": "Credit Card",
+        "weightPct": 0.0
+      },
+      {
+        "name": "Residential Mortgage",
+        "weightPct": 0.0
+      },
+      {
+        "name": "Other",
+        "weightPct": 1.49
+      },
+      {
+        "name": "Cash and/or Derivatives",
+        "weightPct": 0.76
+      }
+    ],
+    "sourceComponent": "exposureBreakdowns.sector"
+  },
+  "collectionErrors": []
+}

@@ -1,0 +1,815 @@
+{
+  "checkedAt": "2026-11-16T23:24:38.923461+00:00",
+  "run": 43977041416,
+  "event": "workflow_dispatch",
+  "sourceArtifact": 14281470468,
+  "artifactSha256": "566cb736e9c79cb893037c2395d637cf3718640a4a6c81d09f07011108f56254",
+  "scope": {
+    "requestedIds": [
+      "etc_wti_crude_oilNav",
+      "etfIE00BDVPNG13Nav",
+      "etc_wheatNav"
+    ],
+    "expectedIds": [
+      "etc_wti_crude_oilNav",
+      "etfIE00BDVPNG13Nav",
+      "etc_wheatNav"
+    ]
+  },
+  "records": [
+    {
+      "id": "etc_wti_crude_oilNav",
+      "isin": "GB00B15KXV33",
+      "periodEnd": "2026-10",
+      "actualSourceUrls": [
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular"
+      ],
+      "actualSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k": "93ed1edcde289657319925f6fc18e105c65ab1d6091e974b589a8f84d7b9c83f",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular": "0ed8f19d7bee748c0ecb4c8b334d2228488b6c4b22de23ba7817dce41d1dc14e"
+      },
+      "calendarProof": {
+        "controlledInstrument": "GB00B15KXV33",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2019-12-01",
+        "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "dailyObservations": 1712,
+        "sourceSnapshotDate": "2026-11-12",
+        "issuerProductInception": "2006-09-22",
+        "issuerChartInception": "2006-09-22",
+        "tablePublicationDate": "2026-11-13",
+        "closedTableCalendarChecks": [
+          {
+            "year": 2020,
+            "start": "2019-12-31",
+            "end": "2020-12-31",
+            "startValue": 2220.6552734375,
+            "endValue": 1067.8681640625,
+            "dailyDerived": -51.91202448953385,
+            "published": -51.91,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2021,
+            "start": "2020-12-31",
+            "end": "2021-12-31",
+            "startValue": 1067.8681640625,
+            "endValue": 1763.351318359375,
+            "dailyDerived": 65.12818507961155,
+            "published": 65.13,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 1763.351318359375,
+            "endValue": 2280.596923828125,
+            "dailyDerived": 29.33309999450342,
+            "published": 29.33,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2023,
+            "start": "2022-12-30",
+            "end": "2023-12-29",
+            "startValue": 2280.596923828125,
+            "endValue": 2220.09814453125,
+            "dailyDerived": -2.6527607164936406,
+            "published": -2.65,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2024,
+            "start": "2023-12-29",
+            "end": "2024-12-31",
+            "startValue": 2220.09814453125,
+            "endValue": 2443.3486328125,
+            "dailyDerived": 10.055883737896053,
+            "published": 10.06,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2025,
+            "start": "2024-12-31",
+            "end": "2025-12-31",
+            "startValue": 2443.3486328125,
+            "endValue": 2182.297119140625,
+            "dailyDerived": -10.684169674606881,
+            "published": -10.68,
+            "publishedDecimalPlaces": 2
+          }
+        ],
+        "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
+        "unusedRollingWindows": [
+          {
+            "periodEnd": "2022-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2023-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2024-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2025-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2026-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          }
+        ],
+        "excludedPreWindowObservations": 2470,
+        "suppliedExactSecurityStart": "2019-12-01",
+        "scaleProof": {
+          "anchor": {
+            "isin": "GB00B15KXV33",
+            "currency": "USD",
+            "date": "2026-10-27",
+            "nav": 19.0396,
+            "classId": 1000076,
+            "rawWorkbookSha256": "82c42b5d648d89853b3692c03034b00533bdefcf8f8c274569ded0a11c3fb044",
+            "workbook": "scripts/fixtures/wisdomtree-performance/GB00B15KXV33-qualified-nav.xlsx.gz",
+            "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export",
+            "sourceCheckedAt": "2026-10-28",
+            "recordCommit": "7b24cc0d55d4a7f6945226084704dd45a3f31030",
+            "method": "Previously qualified exact-share official NAV, immutable unit anchor only; not a new source consultation"
+          },
+          "sourcePerformanceLevel": 4692.70556640625,
+          "factor": 0.004057275644203869,
+          "method": "Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim",
+          "anchorIsFreshSourceCheck": false
+        },
+        "actualNavTransport": "public-widget-http",
+        "accessAttempts": [
+          {
+            "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k",
+            "transport": "public-widget-http",
+            "status": "received"
+          },
+          {
+            "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular",
+            "transport": "public-widget-http",
+            "status": "received"
+          }
+        ],
+        "sourceRuntime": {
+          "runId": "43977041416",
+          "attempt": "1",
+          "event": "workflow_dispatch",
+          "codeRevision": "4702f9ad694eaf7efffbe25df07f6fcf11581a46",
+          "kind": "github"
+        },
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "calendarRegistryPerformanceHash": "7a99a767216e70935f7c195106416d2238e1dde8adc5dd07ef2c3311cbc1f5b4",
+        "calendarSource": {
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+          "sha256": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
+          "asOf": "2026-09-30",
+          "checkedAt": null,
+          "method": "calendar-year exact ETP NAV total return, net of fees"
+        },
+        "calendarSourceConsultedByThisCollector": true,
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "productPageReferenceOnly": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+        "historyUnqualifiedReturnWindows": [],
+        "qualifiedCalendarYears": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+        "checks": [
+          {
+            "year": 2020,
+            "start": "2019-12-31",
+            "end": "2020-12-31",
+            "startValue": 9.009810555090851,
+            "endValue": 4.332635493271483,
+            "dailyDerived": -51.91202448953385,
+            "published": -51.91,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2021,
+            "start": "2020-12-31",
+            "end": "2021-12-31",
+            "startValue": 4.332635493271483,
+            "endValue": 7.154402356154275,
+            "dailyDerived": 65.12818507961155,
+            "published": 65.13,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 7.154402356154275,
+            "endValue": 9.253010353294117,
+            "dailyDerived": 29.33309999450342,
+            "published": 29.33,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2023,
+            "start": "2022-12-30",
+            "end": "2023-12-29",
+            "startValue": 9.253010353294117,
+            "endValue": 9.007550129548841,
+            "dailyDerived": -2.6527607164936406,
+            "published": -2.65,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2024,
+            "start": "2023-12-29",
+            "end": "2024-12-31",
+            "startValue": 9.007550129548841,
+            "endValue": 9.913338898208979,
+            "dailyDerived": 10.055883737896053,
+            "published": 10.06,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2025,
+            "start": "2024-12-31",
+            "end": "2025-12-31",
+            "startValue": 9.913338898208979,
+            "endValue": 8.854180949905526,
+            "dailyDerived": -10.684169674606892,
+            "published": -10.68,
+            "publishedDecimalPlaces": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "isin": "IE00BDVPNG13",
+      "periodEnd": "2026-10",
+      "actualSourceUrls": [
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular"
+      ],
+      "actualSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k": "bdc352516b8a430f5b7a8b18c285d1a78046b4089be12c2d5fb1f36e1fbf53c6",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular": "b697ef89eafaf2381f5cd8ee85018ee85d6665ac0f936c08fe4e43f8ad8cc9c1"
+      },
+      "calendarProof": {
+        "controlledInstrument": "IE00BDVPNG13",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2018-12-01",
+        "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "dailyObservations": 1960,
+        "sourceSnapshotDate": "2026-11-13",
+        "issuerProductInception": "2018-11-30",
+        "issuerChartInception": "2018-12-05",
+        "tablePublicationDate": "2026-11-13",
+        "closedTableCalendarChecks": [
+          {
+            "year": 2019,
+            "start": "2018-12-31",
+            "end": "2019-12-31",
+            "startValue": 9129.9169921875,
+            "endValue": 13488.279296875,
+            "dailyDerived": 47.737151481409576,
+            "published": 47.74,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2020,
+            "start": "2019-12-31",
+            "end": "2020-12-31",
+            "startValue": 13488.279296875,
+            "endValue": 23591.578125,
+            "dailyDerived": 74.90428249410404,
+            "published": 74.9,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2021,
+            "start": "2020-12-31",
+            "end": "2021-12-31",
+            "startValue": 23591.578125,
+            "endValue": 27199.046875,
+            "dailyDerived": 15.291341388379465,
+            "published": 15.29,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 27199.046875,
+            "endValue": 15887.9619140625,
+            "dailyDerived": -41.58632842143481,
+            "published": -41.59,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2023,
+            "start": "2022-12-30",
+            "end": "2023-12-29",
+            "startValue": 15887.9619140625,
+            "endValue": 24648.390625,
+            "dailyDerived": 55.138782169307746,
+            "published": 55.14,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2024,
+            "start": "2023-12-29",
+            "end": "2024-12-31",
+            "startValue": 24648.390625,
+            "endValue": 27453.318359375,
+            "dailyDerived": 11.379760151683339,
+            "published": 11.38,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2025,
+            "start": "2024-12-31",
+            "end": "2025-12-31",
+            "startValue": 27453.318359375,
+            "endValue": 33921.3359375,
+            "dailyDerived": 23.560057452640315,
+            "published": 23.56,
+            "publishedDecimalPlaces": 2
+          }
+        ],
+        "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
+        "unusedRollingWindows": [
+          {
+            "periodEnd": "2022-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2023-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2024-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2025-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2026-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          }
+        ],
+        "excludedPreWindowObservations": 1,
+        "suppliedExactSecurityStart": "2018-12-01",
+        "scaleProof": {
+          "anchor": {
+            "isin": "IE00BDVPNG13",
+            "currency": "USD",
+            "date": "2026-10-21",
+            "nav": 114.5198,
+            "classId": 1123138,
+            "format": "qualified-nav-modal-json",
+            "rawNavSha256": "0e8c2106d3cc7b791708fd1d51192fddf8541784c374c1fb32de13da5a57e2da",
+            "rawPageSha256": "9298706e4be7a4d0cf0bede6a425907cb81c9e04333c579f095e57178df62159",
+            "navFile": "reports/reliquat-2026-10-23/preuves/IE00BDVPNG13-wisdom-daily.json.gz",
+            "pageFile": "reports/reliquat-2026-10-23/preuves/IE00BDVPNG13-wisdom-page.html.gz",
+            "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1123138?view=navHistoryModal",
+            "sourceCheckedAt": "2026-10-23T05:23:59.532114+00:00",
+            "method": "Original exact-share official NAV and identity verified by immutable hashes; historical scale reference only, not a fresh source control"
+          },
+          "sourcePerformanceLevel": 45498.609375,
+          "factor": 0.002516995608725679,
+          "method": "Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim",
+          "anchorIsFreshSourceCheck": false
+        },
+        "actualNavTransport": "public-widget-http",
+        "accessAttempts": [
+          {
+            "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k",
+            "transport": "public-widget-http",
+            "status": "received"
+          },
+          {
+            "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular",
+            "transport": "public-widget-http",
+            "status": "received"
+          }
+        ],
+        "sourceRuntime": {
+          "runId": "43977041416",
+          "attempt": "1",
+          "event": "workflow_dispatch",
+          "codeRevision": "4702f9ad694eaf7efffbe25df07f6fcf11581a46",
+          "kind": "github"
+        },
+        "calendarRegistry": "src/data/exposure-etf-expansion-records.json",
+        "calendarRegistryPerformanceHash": "2497b70f2d405a17dbdfa54511eb690d17909b80effc66f256ed0b54fd48ba52",
+        "calendarSource": {
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+          "asOf": "2026-09-30",
+          "checkedAt": null,
+          "method": "calendar-year exact-share NAV return, net of fees"
+        },
+        "calendarSourceConsultedByThisCollector": true,
+        "controlledCalendarYears": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "productPageReferenceOnly": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+        "historyUnqualifiedReturnWindows": [],
+        "qualifiedCalendarYears": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+        "checks": [
+          {
+            "year": 2019,
+            "start": "2018-12-31",
+            "end": "2019-12-31",
+            "startValue": 22.979960977365895,
+            "endValue": 33.94993975949986,
+            "dailyDerived": 47.737151481409576,
+            "published": 47.74,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2020,
+            "start": "2019-12-31",
+            "end": "2020-12-31",
+            "startValue": 33.94993975949986,
+            "endValue": 59.379898543533784,
+            "dailyDerived": 74.90428249410404,
+            "published": 74.9,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2021,
+            "start": "2020-12-31",
+            "end": "2021-12-31",
+            "startValue": 59.379898543533784,
+            "endValue": 68.4598815458989,
+            "dailyDerived": 15.291341388379465,
+            "published": 15.29,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 68.4598815458989,
+            "endValue": 39.98993036929615,
+            "dailyDerived": -41.58632842143479,
+            "published": -41.59,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2023,
+            "start": "2022-12-30",
+            "end": "2023-12-29",
+            "startValue": 39.98993036929615,
+            "endValue": 62.03989096528019,
+            "dailyDerived": 55.138782169307746,
+            "published": 55.14,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2024,
+            "start": "2023-12-29",
+            "end": "2024-12-31",
+            "startValue": 62.03989096528019,
+            "endValue": 69.09988175549493,
+            "dailyDerived": 11.379760151683339,
+            "published": 11.38,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2025,
+            "start": "2024-12-31",
+            "end": "2025-12-31",
+            "startValue": 69.09988175549493,
+            "endValue": 85.37985359679607,
+            "dailyDerived": 23.560057452640315,
+            "published": 23.56,
+            "publishedDecimalPlaces": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "isin": "JE00BN7KB664",
+      "periodEnd": "2026-10",
+      "actualSourceUrls": [
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=gro10k",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=tabular"
+      ],
+      "actualSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=gro10k": "b3001afd9b9633188053caaeb223e1222a1fb6a7dc9eaf55d15b9664e9c7a58b",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=tabular": "294441cb17ea6eeb1614aba3a2e39bf3ad2ea985c73800387cb858b5de69817c"
+      },
+      "calendarProof": {
+        "controlledInstrument": "JE00BN7KB664",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2021-12-01",
+        "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "dailyObservations": 1218,
+        "sourceSnapshotDate": "2026-11-13",
+        "issuerProductInception": "2006-09-22",
+        "issuerChartInception": "2006-09-22",
+        "tablePublicationDate": "2026-11-13",
+        "closedTableCalendarChecks": [
+          {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 3061.384033203125,
+            "endValue": 2931.436279296875,
+            "dailyDerived": -4.244738735711174,
+            "published": -4.24,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2023,
+            "start": "2022-12-30",
+            "end": "2023-12-29",
+            "startValue": 2931.436279296875,
+            "endValue": 2119.705322265625,
+            "dailyDerived": -27.690554379914722,
+            "published": -27.69,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2024,
+            "start": "2023-12-29",
+            "end": "2024-12-31",
+            "startValue": 2119.705322265625,
+            "endValue": 1696.7578125,
+            "dailyDerived": -19.953127697653837,
+            "published": -19.95,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2025,
+            "start": "2024-12-31",
+            "end": "2025-12-31",
+            "startValue": 1696.7578125,
+            "endValue": 1392.8504638671875,
+            "dailyDerived": -17.91106228560905,
+            "published": -17.91,
+            "publishedDecimalPlaces": 2
+          }
+        ],
+        "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
+        "unusedRollingWindows": [
+          {
+            "periodEnd": "2022-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2023-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2024-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2025-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          },
+          {
+            "periodEnd": "2026-10-31",
+            "window": "yearOverYear",
+            "usedForCalendarQualification": false
+          }
+        ],
+        "excludedPreWindowObservations": 3790,
+        "suppliedExactSecurityStart": "2021-12-01",
+        "scaleProof": {
+          "anchor": {
+            "isin": "JE00BN7KB664",
+            "currency": "USD",
+            "date": "2026-10-21",
+            "nav": 19.8985,
+            "classId": 1000235,
+            "format": "qualified-nav-modal-json",
+            "rawNavSha256": "151cfa9a0fa62cbe09da1f188955ce71ce6d48fe732c99956923061c520f9906",
+            "rawPageSha256": "0e681a98e93dd3d951ad4e8d8bc5338f517b5a42941806afa95cd30585a8bbe0",
+            "navFile": "reports/reliquat-2026-10-23/preuves/JE00BN7KB664-wisdom-daily.json.gz",
+            "pageFile": "reports/reliquat-2026-10-23/preuves/JE00BN7KB664-wisdom-page.html.gz",
+            "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000235?view=navHistoryModal",
+            "sourceCheckedAt": "2026-10-23T05:23:57.313863+00:00",
+            "method": "Original exact-share official NAV and identity verified by immutable hashes; historical scale reference only, not a fresh source control"
+          },
+          "sourcePerformanceLevel": 1626.04248046875,
+          "factor": 0.012237380166269535,
+          "method": "Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim",
+          "anchorIsFreshSourceCheck": false
+        },
+        "actualNavTransport": "public-widget-http",
+        "accessAttempts": [
+          {
+            "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=gro10k",
+            "transport": "public-widget-http",
+            "status": "received"
+          },
+          {
+            "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=tabular",
+            "transport": "public-widget-http",
+            "status": "received"
+          }
+        ],
+        "sourceRuntime": {
+          "runId": "43977041416",
+          "attempt": "1",
+          "event": "workflow_dispatch",
+          "codeRevision": "4702f9ad694eaf7efffbe25df07f6fcf11581a46",
+          "kind": "github"
+        },
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "calendarRegistryPerformanceHash": "cde8c9e319cc12875d38893c9e766b335472b6af8d7fef733faeba78b7748a52",
+        "calendarSource": {
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+          "sha256": "4ab8c90ccbd9723fcbe4ad1f1a47bed5f43b5b53e7d82caac4a90a58932555ad",
+          "asOf": "2026-09-30",
+          "checkedAt": null,
+          "method": "calendar-year exact ETP NAV total return, net of fees"
+        },
+        "calendarSourceConsultedByThisCollector": true,
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "productPageReferenceOnly": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wheat",
+        "historyUnqualifiedReturnWindows": [],
+        "qualifiedCalendarYears": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+        "checks": [
+          {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 37.46332024925416,
+            "endValue": 35.87310018295054,
+            "dailyDerived": -4.244738735711184,
+            "published": -4.24,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2023,
+            "start": "2022-12-30",
+            "end": "2023-12-29",
+            "startValue": 35.87310018295054,
+            "endValue": 25.93963986902933,
+            "dailyDerived": -27.690554379914722,
+            "published": -27.69,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2024,
+            "start": "2023-12-29",
+            "end": "2024-12-31",
+            "startValue": 25.93963986902933,
+            "endValue": 20.763870401650383,
+            "dailyDerived": -19.953127697653837,
+            "published": -19.95,
+            "publishedDecimalPlaces": 2
+          },
+          {
+            "year": 2025,
+            "start": "2024-12-31",
+            "end": "2025-12-31",
+            "startValue": 20.763870401650383,
+            "endValue": 17.044840641107644,
+            "dailyDerived": -17.911062285609034,
+            "published": -17.91,
+            "publishedDecimalPlaces": 2
+          }
+        ]
+      }
+    }
+  ],
+  "sourceCode": "Same exact source modules asf5b8efc3; isolatedbranch4702f9adchangesonly3transportstyleproperties to requestthecanonicalroute directly",
+  "registeredExactAlternative": true,
+  "artificialPrimaryFailure": false,
+  "financialFieldsChanged": false,
+  "productionRegistryWritten": false,
+  "neverMergeDiagnosticBranch": true,
+  "limitation": "Actual authorized public canonical JSON/PDF acquisitions and unchanged financial qualification in GitHub; not a natural production fallback invocation, source cron or data publication. Ordinary productionpath still to verify aftermerge."
+}

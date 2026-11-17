@@ -1,0 +1,19 @@
+{
+  "run": 43959467236,
+  "head": "0f12eb11e7f49eb800a008affd8867ab18aed392",
+  "artifact": 14273892199,
+  "sha256": "0cc83b80bd885348c375f97505dd645166daed958c1fe3279e4cda52c5b1bc47",
+  "files": [
+    "performance-links.json",
+    "simulation-links.json",
+    "tool-links.json",
+    "monthly-duel-returns.json",
+    "ranking-annual.json",
+    "index-company-compositions.json"
+  ],
+  "missing": "native-fund-details.json",
+  "failure": "Fiches ETF6errors: Node fixtures still old generated projection while dist uses new3 Invesco top10s",
+  "claim": "Exact six failures reproduced with unchanged built artifact, all fixed by transferring only exact prebuild projection; no product/financial expectation changes",
+  "before": "ci-projection-before.json",
+  "after": "ci-projection-after.json"
+}

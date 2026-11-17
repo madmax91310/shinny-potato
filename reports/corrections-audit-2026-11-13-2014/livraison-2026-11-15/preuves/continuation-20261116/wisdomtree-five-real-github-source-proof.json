@@ -1,0 +1,989 @@
+{
+  "at": "2026-11-16T17:34:27.355202+00:00",
+  "run": 43916173931,
+  "job": 133470800677,
+  "event": "pull_request",
+  "head": "7699301d",
+  "artifact": 14251091825,
+  "artifactSha256": "2252437a290bed6f3e5958e41b22fc86a89afff2b60a46087053c84729783271",
+  "checkedAt": "2026-11-16T17:23:35.884321+00:00",
+  "scope": {
+    "requestedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_coffeeNav",
+      "etc_cocoaNav",
+      "etc_natural_gasNav",
+      "etc_wheatNav"
+    ],
+    "expectedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_coffeeNav",
+      "etc_cocoaNav",
+      "etc_natural_gasNav",
+      "etc_wheatNav"
+    ]
+  },
+  "rows": [
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "status": "validated",
+      "reason": null,
+      "isin": "GB00B15KXQ89",
+      "currency": "USD",
+      "valuationBasis": "fund-nav-total-return",
+      "periodStart": "2015-01",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-16",
+      "actualNavTransport": "public-widget-http",
+      "sourceEvidence": {},
+      "sourceSnapshotDate": "2026-11-12",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
+      "accessAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+          "transport": "public-widget-http",
+          "status": "received"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular",
+          "transport": "public-widget-http",
+          "status": "received"
+        }
+      ],
+      "sourceRuntime": {
+        "runId": "43916173931",
+        "attempt": "1",
+        "event": "pull_request",
+        "codeRevision": "a4baad109709f1f469e4d68b5c2da7fccb39a019",
+        "kind": "github"
+      },
+      "closedCalendarChecks": [
+        {
+          "year": 2016,
+          "start": "2015-12-31",
+          "end": "2016-12-30",
+          "startValue": 5266.92724609375,
+          "endValue": 6033.90087890625,
+          "dailyDerived": 14.56207000735259,
+          "published": 14.56,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2017,
+          "start": "2016-12-30",
+          "end": "2017-12-29",
+          "startValue": 6033.90087890625,
+          "endValue": 7704.28759765625,
+          "dailyDerived": 27.68336358639001,
+          "published": 27.68,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2018,
+          "start": "2017-12-29",
+          "end": "2018-12-31",
+          "startValue": 7704.28759765625,
+          "endValue": 5995.9287109375,
+          "dailyDerived": -22.174131807312804,
+          "published": -22.17,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2019,
+          "start": "2018-12-31",
+          "end": "2019-12-31",
+          "startValue": 5995.9287109375,
+          "endValue": 6365.3291015625,
+          "dailyDerived": 6.160853613071771,
+          "published": 6.16,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 6365.3291015625,
+          "endValue": 7766.68017578125,
+          "dailyDerived": 22.015375039677988,
+          "published": 22.02,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 7766.68017578125,
+          "endValue": 9764.013671875,
+          "dailyDerived": 25.716695562178703,
+          "published": 25.72,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 9764.013671875,
+          "endValue": 8306.5830078125,
+          "dailyDerived": -14.926552881225398,
+          "published": -14.93,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 8306.5830078125,
+          "endValue": 8553.501953125,
+          "dailyDerived": 2.9725694076645937,
+          "published": 2.97,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 8553.501953125,
+          "endValue": 8930.8447265625,
+          "dailyDerived": 4.411558862152809,
+          "published": 4.41,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 8930.8447265625,
+          "endValue": 12254.2314453125,
+          "dailyDerived": 37.2124566096804,
+          "published": 37.21,
+          "publishedDecimalPlaces": 2
+        }
+      ],
+      "checks": [
+        {
+          "year": 2016,
+          "start": "2015-12-31",
+          "end": "2016-12-30",
+          "startValue": 21.332755874246452,
+          "endValue": 24.439246719151843,
+          "dailyDerived": 14.56207000735259,
+          "published": 14.56,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2017,
+          "start": "2016-12-30",
+          "end": "2017-12-29",
+          "startValue": 24.439246719151843,
+          "endValue": 31.204852246189542,
+          "dailyDerived": 27.68336358639003,
+          "published": 27.68,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2018,
+          "start": "2017-12-29",
+          "end": "2018-12-31",
+          "startValue": 31.204852246189542,
+          "endValue": 24.28544717884226,
+          "dailyDerived": -22.174131807312815,
+          "published": -22.17,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2019,
+          "start": "2018-12-31",
+          "end": "2019-12-31",
+          "startValue": 24.28544717884226,
+          "endValue": 25.7816380288106,
+          "dailyDerived": 6.160853613071771,
+          "published": 6.16,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 25.7816380288106,
+          "endValue": 31.4575623322255,
+          "dailyDerived": 22.015375039677988,
+          "published": 22.02,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 31.4575623322255,
+          "endValue": 39.54740786848653,
+          "dailyDerived": 25.716695562178682,
+          "published": 25.72,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 39.54740786848653,
+          "endValue": 33.64434311984299,
+          "dailyDerived": -14.926552881225398,
+          "published": -14.93,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 33.64434311984299,
+          "endValue": 34.64444457083316,
+          "dailyDerived": 2.972569407664616,
+          "published": 2.97,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 34.64444457083316,
+          "endValue": 36.17280463554137,
+          "dailyDerived": 4.411558862152809,
+          "published": 4.41,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 36.17280463554137,
+          "endValue": 49.633593865046656,
+          "dailyDerived": 37.21245660968038,
+          "published": 37.21,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    {
+      "id": "etc_coffeeNav",
+      "status": "validated",
+      "reason": null,
+      "isin": "JE00BN7KB557",
+      "currency": "USD",
+      "valuationBasis": "fund-nav-total-return",
+      "periodStart": "2021-12",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-16",
+      "actualNavTransport": "public-widget-http",
+      "sourceEvidence": {},
+      "sourceSnapshotDate": "2026-11-13",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
+      "accessAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+          "transport": "public-widget-http",
+          "status": "received"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
+          "transport": "public-widget-http",
+          "status": "received"
+        }
+      ],
+      "sourceRuntime": {
+        "runId": "43916173931",
+        "attempt": "1",
+        "event": "pull_request",
+        "codeRevision": "a4baad109709f1f469e4d68b5c2da7fccb39a019",
+        "kind": "github"
+      },
+      "closedCalendarChecks": [
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 4629.66259765625,
+          "endValue": 3559.41796875,
+          "dailyDerived": -23.117119365200768,
+          "published": -23.12,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 3559.41796875,
+          "endValue": 4378.6328125,
+          "dailyDerived": 23.01541574893191,
+          "published": 23.02,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 4378.6328125,
+          "endValue": 8112.65478515625,
+          "dailyDerived": 85.27826224652743,
+          "published": 85.28,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 8112.65478515625,
+          "endValue": 10289.49609375,
+          "dailyDerived": 26.832662873523503,
+          "published": 26.83,
+          "publishedDecimalPlaces": 2
+        }
+      ],
+      "checks": [
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 31.030000294997457,
+          "endValue": 23.856758087780744,
+          "dailyDerived": -23.117119365200768,
+          "published": -23.12,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 23.856758087780744,
+          "endValue": 29.347490145900423,
+          "dailyDerived": 23.01541574893191,
+          "published": 23.02,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 29.347490145900423,
+          "endValue": 54.37451975529518,
+          "dailyDerived": 85.27826224652743,
+          "published": 85.28,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 54.37451975529518,
+          "endValue": 68.96465133033098,
+          "dailyDerived": 26.832662873523503,
+          "published": 26.83,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    {
+      "id": "etc_cocoaNav",
+      "status": "validated",
+      "reason": null,
+      "isin": "JE00B2QXZK10",
+      "currency": "USD",
+      "valuationBasis": "fund-nav-total-return",
+      "periodStart": "2015-01",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-16",
+      "actualNavTransport": "public-widget-http",
+      "sourceEvidence": {},
+      "sourceSnapshotDate": "2026-11-13",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
+      "accessAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+          "transport": "public-widget-http",
+          "status": "received"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular",
+          "transport": "public-widget-http",
+          "status": "received"
+        }
+      ],
+      "sourceRuntime": {
+        "runId": "43916173931",
+        "attempt": "1",
+        "event": "pull_request",
+        "codeRevision": "a4baad109709f1f469e4d68b5c2da7fccb39a019",
+        "kind": "github"
+      },
+      "closedCalendarChecks": [
+        {
+          "year": 2016,
+          "start": "2015-12-31",
+          "end": "2016-12-30",
+          "startValue": 8442.9208984375,
+          "endValue": 5598.59716796875,
+          "dailyDerived": -33.68885916004659,
+          "published": -33.69,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2017,
+          "start": "2016-12-30",
+          "end": "2017-12-29",
+          "startValue": 5598.59716796875,
+          "endValue": 4842.37548828125,
+          "dailyDerived": -13.507342232337605,
+          "published": -13.51,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2018,
+          "start": "2017-12-29",
+          "end": "2018-12-31",
+          "startValue": 4842.37548828125,
+          "endValue": 5775.02294921875,
+          "dailyDerived": 19.26012270619133,
+          "published": 19.26,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2019,
+          "start": "2018-12-31",
+          "end": "2019-12-31",
+          "startValue": 5775.02294921875,
+          "endValue": 6023.80224609375,
+          "dailyDerived": 4.3078494936311,
+          "published": 4.31,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 6023.80224609375,
+          "endValue": 6356.79541015625,
+          "dailyDerived": 5.527956437787052,
+          "published": 5.53,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 6356.79541015625,
+          "endValue": 5897.8037109375,
+          "dailyDerived": -7.220488777811207,
+          "published": -7.22,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 5897.8037109375,
+          "endValue": 5706.80615234375,
+          "dailyDerived": -3.2384522774053015,
+          "published": -3.24,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 5706.80615234375,
+          "endValue": 9500.44140625,
+          "dailyDerived": 66.47562844496177,
+          "published": 66.48,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 9500.44140625,
+          "endValue": 41435.125,
+          "dailyDerived": 336.13894584667736,
+          "published": 336.14,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 41435.125,
+          "endValue": 23950.638671875,
+          "dailyDerived": -42.197257346574915,
+          "published": -42.2,
+          "publishedDecimalPlaces": 2
+        }
+      ],
+      "checks": [
+        {
+          "year": 2016,
+          "start": "2015-12-31",
+          "end": "2016-12-30",
+          "startValue": 3.6733679775614543,
+          "endValue": 2.435852213170524,
+          "dailyDerived": -33.68885916004659,
+          "published": -33.69,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2017,
+          "start": "2016-12-30",
+          "end": "2017-12-29",
+          "startValue": 2.435852213170524,
+          "endValue": 2.1068333184636114,
+          "dailyDerived": -13.507342232337615,
+          "published": -13.51,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2018,
+          "start": "2017-12-29",
+          "end": "2018-12-31",
+          "startValue": 2.1068333184636114,
+          "endValue": 2.512612000814626,
+          "dailyDerived": 19.260122706191353,
+          "published": 19.26,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2019,
+          "start": "2018-12-31",
+          "end": "2019-12-31",
+          "startValue": 2.512612000814626,
+          "endValue": 2.620851544168633,
+          "dailyDerived": 4.3078494936311,
+          "published": 4.31,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 2.620851544168633,
+          "endValue": 2.7657310758293443,
+          "dailyDerived": 5.527956437787052,
+          "published": 5.53,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 2.7657310758293443,
+          "endValue": 2.566031773874649,
+          "dailyDerived": -7.220488777811218,
+          "published": -7.22,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 2.566031773874649,
+          "endValue": 2.482932059454662,
+          "dailyDerived": -3.2384522774052904,
+          "published": -3.24,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 2.482932059454662,
+          "endValue": 4.13347674983858,
+          "dailyDerived": 66.47562844496173,
+          "published": 66.48,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 4.13347674983858,
+          "endValue": 18.027701923563484,
+          "dailyDerived": 336.13894584667736,
+          "published": 336.14,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 18.027701923563484,
+          "endValue": 10.420506149203964,
+          "dailyDerived": -42.197257346574915,
+          "published": -42.2,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "status": "validated",
+      "reason": null,
+      "isin": "JE00BN7KB334",
+      "currency": "USD",
+      "valuationBasis": "fund-nav-total-return",
+      "periodStart": "2021-12",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-16",
+      "actualNavTransport": "public-widget-http",
+      "sourceEvidence": {},
+      "sourceSnapshotDate": "2026-11-13",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
+      "accessAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+          "transport": "public-widget-http",
+          "status": "received"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular",
+          "transport": "public-widget-http",
+          "status": "received"
+        }
+      ],
+      "sourceRuntime": {
+        "runId": "43916173931",
+        "attempt": "1",
+        "event": "pull_request",
+        "codeRevision": "a4baad109709f1f469e4d68b5c2da7fccb39a019",
+        "kind": "github"
+      },
+      "closedCalendarChecks": [
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 54.28776550292969,
+          "endValue": 63.79619598388672,
+          "dailyDerived": 17.514868023890017,
+          "published": 17.51,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 63.79619598388672,
+          "endValue": 21.747634887695312,
+          "dailyDerived": -65.9107654425223,
+          "published": -65.91,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 21.747634887695312,
+          "endValue": 15.87313175201416,
+          "dailyDerived": -27.01214714159521,
+          "published": -27.01,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 15.87313175201416,
+          "endValue": 11.956602096557617,
+          "dailyDerived": -24.67395670019289,
+          "published": -24.67,
+          "publishedDecimalPlaces": 2
+        }
+      ],
+      "checks": [
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 26.976551790531914,
+          "endValue": 31.70145923403992,
+          "dailyDerived": 17.514868023890017,
+          "published": 17.51,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 31.70145923403992,
+          "endValue": 10.806784796435041,
+          "dailyDerived": -65.9107654425223,
+          "published": -65.91,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 10.806784796435041,
+          "endValue": 7.887640185946467,
+          "dailyDerived": -27.01214714159521,
+          "published": -27.01,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 7.887640185946467,
+          "endValue": 5.941447261799023,
+          "dailyDerived": -24.67395670019288,
+          "published": -24.67,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    {
+      "id": "etc_wheatNav",
+      "status": "validated",
+      "reason": null,
+      "isin": "JE00BN7KB664",
+      "currency": "USD",
+      "valuationBasis": "fund-nav-total-return",
+      "periodStart": "2021-12",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-16",
+      "actualNavTransport": "public-widget-http",
+      "sourceEvidence": {},
+      "sourceSnapshotDate": "2026-11-13",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
+      "accessAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k",
+          "transport": "public-widget-http",
+          "status": "received"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular",
+          "transport": "public-widget-http",
+          "status": "received"
+        }
+      ],
+      "sourceRuntime": {
+        "runId": "43916173931",
+        "attempt": "1",
+        "event": "pull_request",
+        "codeRevision": "a4baad109709f1f469e4d68b5c2da7fccb39a019",
+        "kind": "github"
+      },
+      "closedCalendarChecks": [
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 3061.384033203125,
+          "endValue": 2931.436279296875,
+          "dailyDerived": -4.244738735711174,
+          "published": -4.24,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 2931.436279296875,
+          "endValue": 2119.705322265625,
+          "dailyDerived": -27.690554379914722,
+          "published": -27.69,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 2119.705322265625,
+          "endValue": 1696.7578125,
+          "dailyDerived": -19.953127697653837,
+          "published": -19.95,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 1696.7578125,
+          "endValue": 1392.8504638671875,
+          "dailyDerived": -17.91106228560905,
+          "published": -17.91,
+          "publishedDecimalPlaces": 2
+        }
+      ],
+      "checks": [
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 37.46332024925416,
+          "endValue": 35.87310018295054,
+          "dailyDerived": -4.244738735711184,
+          "published": -4.24,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 35.87310018295054,
+          "endValue": 25.93963986902933,
+          "dailyDerived": -27.690554379914722,
+          "published": -27.69,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 25.93963986902933,
+          "endValue": 20.763870401650383,
+          "dailyDerived": -19.953127697653837,
+          "published": -19.95,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 20.763870401650383,
+          "endValue": 17.044840641107644,
+          "dailyDerived": -17.911062285609034,
+          "published": -17.91,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    }
+  ],
+  "publication": "Read-only source qualification, not production recording or cron; four further affected routes still need ordinary acquisition"
+}

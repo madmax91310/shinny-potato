@@ -1,0 +1,308 @@
+{
+  "at": "2026-11-16T20:54:28.244683+00:00",
+  "causes": [
+    {
+      "id": "recording-public-portfolio-artifact",
+      "kind": "enregistrement",
+      "pr": 1360,
+      "assets": "Résultats des producteurs mensuel et ETF, sans certification du catalogue",
+      "tools": [
+        "Performance depuis",
+        "Et si tu avais investi",
+        "Qui a vraiment gagné",
+        "Présentation ETF",
+        "DCA",
+        "Duels"
+      ],
+      "before": "Bloc exact de sept lignes d’archivage empêchait l’enregistrement de résultats validés",
+      "after": "Adaptateur limité à ce bloc ; garde source et revalidation complète conservés",
+      "code": "ef387d8a",
+      "sourceProof": "etf-recording-new-ordinary-publication-proof.json",
+      "state": "Corrigé, enregistré et publié sur les périmètres de reçus ; gardes et revalidation conservés.",
+      "finalProof": "final-public-byte-proof.json"
+    },
+    {
+      "id": "wisdomtree-nav-rolling-table",
+      "kind": "acquisition/extraction",
+      "pr": 1369,
+      "assets": [
+        "GB00B15KXQ89",
+        "JE00B78CGV99",
+        "GB00B15KXV33",
+        "JE00BN7KB557",
+        "IE00BDVPNG13",
+        "IE00BJGWQN72",
+        "JE00B2QXZK10",
+        "JE00BN7KB334",
+        "JE00BN7KB664"
+      ],
+      "series": [
+        "etfGB00B15KXQ89Nav",
+        "etc_brent_crude_oilNav",
+        "etc_wti_crude_oilNav",
+        "etc_coffeeNav",
+        "etfIE00BDVPNG13Nav",
+        "etfCloudWisdomtreeNav",
+        "etc_cocoaNav",
+        "etc_natural_gasNav",
+        "etc_wheatNav"
+      ],
+      "tools": [
+        "Performance depuis",
+        "Et si tu avais investi",
+        "Qui a vraiment gagné",
+        "DCA",
+        "Générateur/Duels selon admission"
+      ],
+      "before": "Neuf calendriers NAV refusés sur des lignes rolling12/yearOverYear nouvelles",
+      "after": "Fenêtres glissantes reconnues mais jamais assimilées aux calendriers/bornes/points ;9/9 collectées dans GitHub",
+      "code": "2fea154a",
+      "sourceProof": "wisdomtree-nine-ordinary-source-proof.json",
+      "state": "Neuf contrôles publiés : six du run43959903558 puis trois du producteur43981587026. Ancien rapport partiel conservé. Aucun nouveau refus historique levé.",
+      "finalProof": "wisdomtree-nine-final-recording-public-proof.json"
+    },
+    {
+      "id": "lifestrategy-compatible-retained-snapshots",
+      "kind": "qualification/raccordement",
+      "pr": 1367,
+      "assets": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "fields": [
+        "equity-lookthrough only"
+      ],
+      "tools": [
+        "DCA",
+        "Actifs et exposition",
+        "recouvrement partiel"
+      ],
+      "before": "Parents septembre / sous-jacents octobre rendaient les dérivations incompatibles",
+      "after": "Huit dépendances exactes septembre retenues avec leurs preuves originales ; quatre dérivations réussies, poche actions seulement",
+      "code": "8b132a34",
+      "sourceProof": "consolidated-real-github-source-proof.json",
+      "state": "Quatre dérivations actions enregistrées et publiées ; parcours desktop/mobile et PNG vérifiés. Aucun recouvrement intégral du fonds.",
+      "finalProof": "qualified-post1378-actual-source-recording-proof.json"
+    },
+    {
+      "id": "uranium-known-subset-and-publication-gate",
+      "kind": "qualification/publication",
+      "pr": [
+        1367,
+        1373
+      ],
+      "assets": [
+        "IE000NDWFGA5"
+      ],
+      "fields": [
+        "59 published security NAV weights",
+        "unknown FX valuation preserved"
+      ],
+      "tools": [
+        "DCA",
+        "Actifs et exposition",
+        "common positions lower bound"
+      ],
+      "before": "Une FX non valorisée arrêtait le renouvellement des poids connus puis une ancienne recette exigeait complète=true",
+      "after": "Sous-ensemble typé renouvelé ;70lignes source et poids FX inconnus conservés ; aucun recouvrement intégral",
+      "sourceProof": "consolidated-real-github-source-proof.json",
+      "state": "Sous-ensemble connu renouvelé, enregistré et publié ; calculs et PNG publics vérifiés. FX et deux identités inconnues conservés ; recouvrement complet refusé.",
+      "finalProof": "qualified-post1378-actual-source-recording-proof.json"
+    },
+    {
+      "id": "ftse-comparison-country-column",
+      "kind": "donnée financière erronée",
+      "pr": 1373,
+      "assets": [
+        "ftse-epra-nareit-developed-dividend-plus"
+      ],
+      "fields": [
+        "index countries/weights"
+      ],
+      "tools": [
+        "Coulisses des indices",
+        "consommateurs de composition exacte compatibles"
+      ],
+      "before": "Greece0,03% provenait de la colonne de comparaison ; la colonne primaire est vide et exclut la Grèce",
+      "after": "22pays/320titres, poids natifs100,01% ; six dispositions FTSE recoupées, autres champs préservés",
+      "sourceProof": "ftse-engd-real-github-source-proof.json",
+      "state": "Donnée corrigée et publiée ; sélection, texte, aperçu et deux PNG publics contrôlés.",
+      "finalProof": "final-public-byte-proof.json"
+    },
+    {
+      "id": "hsbc-valued-settlement-account",
+      "kind": "extraction/qualification",
+      "pr": 1373,
+      "assets": [
+        "IE00B4K6B022"
+      ],
+      "fields": [
+        "economic securities",
+        "separate settlement receivable"
+      ],
+      "tools": [
+        "DCA",
+        "Actifs et exposition",
+        "recouvrement compatible"
+      ],
+      "before": "Compte de règlement explicitement valorisé non reconnu",
+      "after": "Compte197827EUR/0,00787% séparé ;50titres à leurs poids publiés ; aucun dividende inféré",
+      "sourceProof": "hsbc-ibonds-real-github-source-proof.json",
+      "state": "Livre qualifié, enregistré et public ; calculs de composition et PNG vérifiés. Aucun ajustement de dividende historique inféré.",
+      "finalProof": "qualified-post1378-actual-source-recording-proof.json"
+    },
+    {
+      "id": "ibonds-independent-fields-and-qualified-risk-country",
+      "kind": "validation/raccordement",
+      "pr": 1373,
+      "assets": [
+        "IE0008UEVOE0"
+      ],
+      "fields": [
+        "same-book countries of risk",
+        "sectors",
+        "holdings",
+        "qualified annual calendars"
+      ],
+      "tools": [
+        "Présentation ETF",
+        "consommateurs obligataires compatibles ; pays DCA non applicable lorsque prévu"
+      ],
+      "before": "Table primaire pays au1octobre faisait refuser toute la part malgré les champs récents",
+      "after": "Champs indépendants et pays de risque du13novembre préservés, cash signé ; échec primaire reste explicite",
+      "sourceProof": "hsbc-ibonds-real-github-source-proof.json",
+      "state": "Champs indépendants et alternative pays de risque publiés ; primaire périmé demeure explicitement en échec.",
+      "finalProof": "qualified-post1378-actual-source-recording-proof.json"
+    },
+    {
+      "id": "invesco-exact-independent-public-route",
+      "kind": "actualisation",
+      "pr": 1373,
+      "assets": [
+        "IE000L2SA8K5",
+        "IE0000QLH0G6"
+      ],
+      "fields": [
+        "exact fund economic book, original NAV weights"
+      ],
+      "tools": [
+        "DCA",
+        "Actifs et exposition",
+        "recouvrement selon identités/paire"
+      ],
+      "before": "Réponses FR du29octobre plus anciennes que les livres conservés du12novembre",
+      "after": "Voies officielles UK réelles dans GitHub, livres du13novembre,101/2064titres positifs ; les routes FR restent tracées, pas déclarées réparées",
+      "sourceProof": "consolidated-real-github-source-proof.json",
+      "state": "Deux livres exacts UK enregistrés et publiés, trois projections top10 fonds raccordées ; six PNG ETF et parcours de composition vérifiés. Ancienne route FR non déclarée réparée.",
+      "finalProof": "qualified-post1378-actual-source-recording-proof.json"
+    },
+    {
+      "id": "etf-independent-practical-output-race",
+      "kind": "enregistrement",
+      "pr": 1373,
+      "assets": "Observations ETF et indices, pas les données documentaires elles-mêmes",
+      "tools": [
+        "Présentation ETF",
+        "Coulisses des indices",
+        "consommateurs calendriers/expositions"
+      ],
+      "before": "43941239960 refusé après actualisation du seul registre documentaire indépendant",
+      "after": "Deux graphes/deux commits vérifiés ; conservation de la version récente et revalidation financière complète",
+      "sourceProof": "practical-output-exact-recording-graphs-proof.json",
+      "state": "Adaptateur validé, observations ordinaires enregistrées et publiées. Course précise testée isolément, sans la prétendre naturellement reproduite.",
+      "finalProof": "etf-real-automatic-recovery-recorded-published-proof.json"
+    },
+    {
+      "id": "scpi-fresh-automatic-workflow-recovery",
+      "kind": "reprise existante démontrée",
+      "pr": 1355,
+      "assets": [
+        "iroko-zen",
+        "remake-live",
+        "corum-origin",
+        "corum-xl",
+        "corum-eurion",
+        "transitions-europe",
+        "activimmo",
+        "epargne-pierre"
+      ],
+      "fields": [
+        "nine operations incl Iroko quarterly allocation"
+      ],
+      "tools": [
+        "Présentation SCPI"
+      ],
+      "before": "Cron43915394580 acquisition/validation valides, enregistrement refusé sur dépendances changées",
+      "after": "Bot43918956165 recollecte sur nouveau master,9observations acquises et enregistrées ee47d8c6 ; empreinte publique exacte",
+      "sourceProof": "scpi-real-automatic-recovery-published-proof.json",
+      "state": "reprise automatique et publication prouvées ; ne réécrit pas le cron initial en réussite"
+    },
+    {
+      "id": "palladium-2014-nav-income-inconsistency",
+      "kind": "restriction financière",
+      "assets": [
+        "IE00B4556L06"
+      ],
+      "periods": [
+        "2014-12 NAV",
+        "2025 London old quote separate"
+      ],
+      "tools": [
+        "Usages mensuels traversant décembre2014 sur voie NAV ; usages 2025 sur ancienne cotation seulement"
+      ],
+      "before": "Deux composants officiels ne concordent pas au31décembre2014",
+      "after": "Réconciliation quantitative conservée : NAV23,584359USD contre niveau réinvesti impliquant23,96882899USD, résidu1,63019% ; aucune correction sans pièce indépendante",
+      "sourceProof": "palladium-existing-bound-reconciliation.json",
+      "state": "bloqué financièrement, sans nouvelle acquisition ni résolution inférée"
+    },
+    {
+      "id": "wisdomtree-three-exact-canonical-nav-standby",
+      "pr": 1378,
+      "before": "Trois accès403 lors du dernier producteur ordinaire43959903558, derniers contrôles valides conservés",
+      "after": "Routes canoniques officielles des trois parts réellement qualifiées en GitHub43977041416 ; secours strict après403, paire complète et provenance réelle,31tests",
+      "state": "Trois NAV contrôlées par producteur ordinaire43981587026, enregistrées b0d9b1e et publiques. Secours canonique qualifié réellement dans GitHub ; branche conditionnelle naturelle non observée.",
+      "finalProof": "wisdomtree-nine-final-recording-public-proof.json"
+    },
+    {
+      "id": "invesco-three-shared-presentation-topten",
+      "pr": 1378,
+      "before": "Livres récents collectables mais top10 non raccordés aux présentations de trois parts",
+      "after": "Projection commune consolidée fonds/top10/incomplète ; identité, source et poids exacts conservés",
+      "state": "Trois top10 fonds publiés ; six parcours desktop/mobile jusqu’au PNG vérifiés. Ne constituent pas une composition exacte d’indice.",
+      "finalProof": "final-public-byte-proof.json"
+    },
+    {
+      "id": "generated-projection-missing-from-browser-artifact",
+      "pr": 1378,
+      "before": "Six écarts texte de présentation reproduits avec le fichier natif manquant dans les données générées de CI",
+      "after": "Projection exacte du build incluse dans l’artefact partagé, attentes financières inchangées",
+      "state": "Artefact corrigé, seize contrôles PR puis seize contrôles de publication réussis ; code77bd0158 effectivement servi.",
+      "finalProof": "pr1378-production-all-required-ci-proof.json"
+    },
+    {
+      "id": "uranium-partial-unidentified-weight-inventory-omission",
+      "pr": 1378,
+      "before": "0,004%non identifiés présents dans l’observation valide mais perdus dans la projection de supervision",
+      "after": "Propagation datée et typée seulement pour les observations cohérentes ; état complet absent/en erreur conservé",
+      "state": "Projection publiée et vérifiée ; 0,004% non identifiés préservés, livre complet demeure en échec.",
+      "finalProof": "uranium-inventory-propagation-proof.json"
+    },
+    {
+      "id": "nav-read-only-runtime-missing-pdftotext",
+      "pr": 1378,
+      "before": "Qualification manuelle43973548020 recevait le PDF puis échouait avant qualification NAV car pdftotext absent",
+      "after": "Dépendances ordinaires PDF/Node/navigateur installées par le point d’entrée existant",
+      "state": "Qualification réelle43977041416 réussie sur les trois parts ; pas un nouveau producteur financier"
+    },
+    {
+      "id": "13f-ordinary-schedule-and-fresh-master-recovery",
+      "before": "Nouveau passage planifié et sa consommation restaient à démontrer dans ce lot",
+      "after": "Cron43968781853,26contrôles valides, recollecte après master concurrent, deux portefeuilles réellement modifiés puis54chemins publics",
+      "state": "preuve de fonctionnement acquise, pas une nouvelle réparation de source ; Watsa/Laffont T3 et4PNG/8exports publics vérifiés ;2conflits conservés"
+    }
+  ],
+  "note": "Suivi consolidé par cause ; preuves datées, limites fournisseur et crons futurs séparés. Aucun succès global ne certifie tous les champs.",
+  "updatedAt": "2026-11-17T02:50:49.380771+00:00"
+}

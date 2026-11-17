@@ -1,0 +1,275 @@
+{
+  "at": "2026-11-16T20:23:32.693655+00:00",
+  "run": 43933106596,
+  "event": "pull_request",
+  "head": "ef30e1056827b04cfec6c32ac3676f058701e898",
+  "artifact": 14259289076,
+  "artifactSha256": "70ec8c68875b1bc1d7403d123d87a74e1b87be9124cd8d0d66c76c426427996f",
+  "observation": {
+    "id": "ftse-epra-nareit-developed-dividend-plus",
+    "name": "FTSE EPRA Nareit Developed Dividend+",
+    "errors": [],
+    "unavailable": [],
+    "facts": {
+      "index": "FTSE EPRA Nareit Developed Dividend+",
+      "asOf": "2026-10-30",
+      "constituents": 320,
+      "sectorMethod": "Property Sector Breakdown",
+      "countries": [
+        [
+          "🇦🇺 Australie",
+          3.92
+        ],
+        [
+          "Austria",
+          0.04
+        ],
+        [
+          "Belgium",
+          1.06
+        ],
+        [
+          "🇨🇦 Canada",
+          2.2
+        ],
+        [
+          "Finland",
+          0.08
+        ],
+        [
+          "🇫🇷 France",
+          1.88
+        ],
+        [
+          "🇩🇪 Allemagne",
+          1.35
+        ],
+        [
+          "Hong Kong",
+          3.66
+        ],
+        [
+          "Ireland",
+          0.05
+        ],
+        [
+          "Israel",
+          0.56
+        ],
+        [
+          "Italy",
+          0.01
+        ],
+        [
+          "🇯🇵 Japon",
+          7.11
+        ],
+        [
+          "🇰🇷 Corée du Sud",
+          0.13
+        ],
+        [
+          "Netherlands",
+          0.13
+        ],
+        [
+          "New Zealand",
+          0.24
+        ],
+        [
+          "Norway",
+          0.05
+        ],
+        [
+          "Singapore",
+          3.31
+        ],
+        [
+          "Spain",
+          0.46
+        ],
+        [
+          "Sweden",
+          0.96
+        ],
+        [
+          "🇨🇭 Suisse",
+          1.74
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          4.21
+        ],
+        [
+          "🇺🇸 États-Unis",
+          66.86
+        ]
+      ],
+      "sectors": [
+        [
+          "Data Centers",
+          12.36
+        ],
+        [
+          "Diversified",
+          16.67
+        ],
+        [
+          "HealthCare",
+          7.93
+        ],
+        [
+          "Industrial",
+          14.07
+        ],
+        [
+          "Industrial/Office Mixed",
+          1.2
+        ],
+        [
+          "Lodging/Resorts",
+          3.06
+        ],
+        [
+          "Office",
+          5.0
+        ],
+        [
+          "Residential",
+          11.98
+        ],
+        [
+          "Retail",
+          18.72
+        ],
+        [
+          "Self Storage",
+          6.15
+        ],
+        [
+          "Speciality",
+          2.86
+        ]
+      ],
+      "holdings": [
+        [
+          "Prologis",
+          7.24
+        ],
+        [
+          "Equinix Inc",
+          5.96
+        ],
+        [
+          "Simon Property Group",
+          4.16
+        ],
+        [
+          "Digital Realty Trust",
+          4.0
+        ],
+        [
+          "Public Storage",
+          3.26
+        ],
+        [
+          "Realty Income",
+          3.17
+        ],
+        [
+          "Vivmark Residential",
+          2.81
+        ],
+        [
+          "Ventas Inc",
+          2.59
+        ],
+        [
+          "Iron Mountain",
+          2.06
+        ],
+        [
+          "Extra Space Storage",
+          1.89
+        ]
+      ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 320,
+        "excludedComparisonRows": [
+          {
+            "country": "Greece",
+            "primaryCells": [
+              "-",
+              "-",
+              "-"
+            ],
+            "comparisonCells": [
+              "1",
+              "577",
+              "0.03"
+            ]
+          }
+        ]
+      },
+      "source": {
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+        "checkedAt": "2026-11-16",
+        "label": "Composition officielle automatisée · FTSE EPRA Nareit Developed Dividend+",
+        "sha256": "cf683af0469de89505295f3e13448324b6d386ff21718e79489744599fe60f74"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "returns": {
+      "asOf": "2026-10-30",
+      "currency": "USD",
+      "variant": "TOTAL",
+      "values": [
+        [
+          2025,
+          9.5
+        ],
+        [
+          2024,
+          2.2
+        ],
+        [
+          2023,
+          10.1
+        ],
+        [
+          2022,
+          -23.4
+        ],
+        [
+          2021,
+          26.5
+        ],
+        [
+          2020,
+          -8.7
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+        "checkedAt": "2026-11-16",
+        "sha256": "cf683af0469de89505295f3e13448324b6d386ff21718e79489744599fe60f74",
+        "label": "Rendements calendaires officiels automatisés · FTSE EPRA Nareit Developed Dividend+"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "FTSE EPRA Nareit Developed Dividend+ · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
+        "date": "2026-10-30"
+      }
+    }
+  },
+  "countryWeightTotal": 100.01,
+  "limitation": "Actual ordinary GitHub source/qualification, read-only PR. No production recording, publication or cron claimed."
+}

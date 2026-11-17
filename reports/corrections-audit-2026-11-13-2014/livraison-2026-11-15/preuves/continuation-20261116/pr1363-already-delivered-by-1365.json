@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-16T17:49:31.294051+00:00",
+  "pr": 1363,
+  "upstreamPR": 1365,
+  "upstreamMerge": "95f0f7eb",
+  "master": "ee47d8c67decd5e1a3129b43017da982e94a27ec",
+  "candidate": "45e670e60fc720726e01bca277c607740dfc4ced",
+  "files": [
+    {
+      "path": "src/data/editorial-calendar.js",
+      "candidateBlob": "6e771221b73f0c4c43b9982ec4f8fd64f70c1d32",
+      "masterBlob": "6e771221b73f0c4c43b9982ec4f8fd64f70c1d32",
+      "identical": true
+    },
+    {
+      "path": "src/data/editorial-week.json",
+      "candidateBlob": "b6b6d9d90a250021c3b0376f5fa4849aa53f5987",
+      "masterBlob": "b6b6d9d90a250021c3b0376f5fa4849aa53f5987",
+      "identical": true
+    }
+  ],
+  "remainingMergeChanges": [
+    "docs/data-operations-coordination.md"
+  ],
+  "publication": "Source merged upstream; public code still requires separate verification"
+}

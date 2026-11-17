@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-17T01:02:18.074976+00:00",
+  "runs": {
+    "43981586822": [
+      {
+        "id": 133732390308,
+        "name": "report-failures",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+            "conclusion": "failure"
+          }
+        ]
+      }
+    ],
+    "43981586911": [
+      {
+        "id": 133732587231,
+        "name": "report-failures",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> \"$GITHUB_STEP_SUMMARY\"",
+            "conclusion": "failure"
+          }
+        ]
+      }
+    ],
+    "43981587026": [
+      {
+        "id": 133723607095,
+        "name": "report-failures",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+            "conclusion": "failure"
+          }
+        ]
+      }
+    ]
+  },
+  "note": "Recorded and public financial source data are separately proven; investigate remaining actual workflow failures before final closure.",
+  "diagnosis": "All three failures are the deliberate report-failures jobs for actual individual source errors; no newly failed financial acquisition for repaired3NAV, no recording or publication failure. Guard/reporting remains unchanged; structured individual failures retained.",
+  "atDiagnosis": "2026-11-17T01:03:41.835752+00:00"
+}

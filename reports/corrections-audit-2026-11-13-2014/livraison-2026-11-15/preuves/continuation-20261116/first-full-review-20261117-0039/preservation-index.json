@@ -1,0 +1,54 @@
+{
+  "at": "2026-11-17T01:07:29.002489+00:00",
+  "sourceSnapshotMonitorAt": "2026-11-17T00:39:25.851852+00:00",
+  "losslesslyPreserved": [
+    {
+      "path": "final-review-browser/automation-status-raw.json",
+      "preserved": "first-full-review-20261117-0039/automation-status-raw.json.gz",
+      "originalSha256": "ffa639f900670bf746e0701d83149a3195281802442fdb3b2681acd9ca62de82",
+      "originalBytes": 49648045,
+      "gzipBytes": 36074973
+    },
+    {
+      "path": "final-review-browser/donnees-a-revoir-complet.json",
+      "preserved": "first-full-review-20261117-0039/donnees-a-revoir-complet.json.gz",
+      "originalSha256": "082117834fc3cb49c13d0ae26532d8e7ef0d74255ba3054237f5617c90baa56b",
+      "originalBytes": 413438679,
+      "gzipBytes": 28230589
+    },
+    {
+      "path": "final-export/final-current-issues.json",
+      "preserved": "first-full-review-20261117-0039/final-current-issues.json.gz",
+      "originalSha256": "3ed80f3635153ca0af69b9ea544cd61e8ced685bea67010ef66a1c8f658b5b4d",
+      "originalBytes": 232726198,
+      "gzipBytes": 16250910
+    },
+    {
+      "path": "final-export/final-monitor-reconciliation-view.json",
+      "preserved": "first-full-review-20261117-0039/final-monitor-reconciliation-view.json.gz",
+      "originalSha256": "546b8ad1cc82548c87f159e36519019f0b5577b6ddc26cb4d869caa1d0c1981f",
+      "originalBytes": 89478964,
+      "gzipBytes": 6255105
+    },
+    {
+      "path": "final-export/final-cause-keys.json",
+      "preserved": "first-full-review-20261117-0039/final-cause-keys.json.gz",
+      "originalSha256": "7ae605df8d41789a3b9ec0a42f61fab546d531c374be55a18624f54d94a36f38",
+      "originalBytes": 5097265,
+      "gzipBytes": 218059
+    }
+  ],
+  "regenerableUnpublishedDraftsReleased": [
+    {
+      "path": "livraison/matrice-donnees-usages.csv",
+      "sha256": "191d065e6b6d1d17e6b03fadb7580c76a369c3ea72e63b5e412a3ed7cc6dd5ed",
+      "bytes": 76763003
+    },
+    {
+      "path": "livraison/matrice-donnees-usages-integrale.csv",
+      "sha256": "c4912130a7f5975f956b67ef54537d81fe51e0c619426dc0934b6675ff45dd18",
+      "bytes": 76763003
+    }
+  ],
+  "reason": "A newer actual automatic monitor snapshot appeared. Preserve first full public export and rawsource, regenerate current reports from the newer export. Original archived matrix and1218initialIDs remain untouched."
+}

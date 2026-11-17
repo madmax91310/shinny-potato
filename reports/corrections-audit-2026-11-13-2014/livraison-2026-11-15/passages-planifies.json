@@ -1,146 +1,481 @@
 {
-  "checkedAt": "2026-11-16T13:24:23.976918+00:00",
-  "source": "GitHub Actions event=schedule,100 available runs",
-  "workflows": [
-    {
-      "workflow": "Update active monthly market histories",
-      "latestObservedSchedule": {
-        "id": 43723585814,
-        "created_at": "2026-11-15T14:18:00Z",
-        "updated_at": "2026-11-15T14:39:23Z",
-        "head_sha": "a596304e41b641c94e55b078ecd58314b64147e4",
+  "checkedAt": "2026-11-17T02:14:28.736425+00:00",
+  "scheduledRunsActuallyObserved": {
+    "update-investor-13f.yml": [
+      {
+        "id": 43968781853,
+        "event": "schedule",
+        "head_sha": "f0adde7bb88e98f054b51cabf90b26b3f4381aef",
+        "created_at": "2026-11-16T22:18:30Z",
+        "run_started_at": "2026-11-16T22:18:30Z",
+        "status": "completed",
         "conclusion": "failure",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43723585814"
+        "run_attempt": 1
       },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Update active ETF issuer data",
-      "latestObservedSchedule": {
-        "id": 43725658991,
-        "created_at": "2026-11-15T14:40:44Z",
-        "updated_at": "2026-11-15T16:13:12Z",
-        "head_sha": "d2195bc5102e211cccf62a51d895fdf62d057fbc",
-        "conclusion": "failure",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43725658991"
-      },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Update investor 13F portfolios",
-      "latestObservedSchedule": {
+      {
         "id": 43749652575,
-        "created_at": "2026-11-15T18:57:27Z",
-        "updated_at": "2026-11-15T20:35:44Z",
+        "event": "schedule",
         "head_sha": "2f2fc40ad48e3f1af5f255797ccea5d5d88b1e32",
+        "created_at": "2026-11-15T18:57:27Z",
+        "run_started_at": "2026-11-15T18:57:27Z",
+        "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43749652575"
+        "run_attempt": 1
       },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Update SCPI presentations",
-      "latestObservedSchedule": {
-        "id": 43726539441,
-        "created_at": "2026-11-15T14:50:28Z",
-        "updated_at": "2026-11-15T14:53:25Z",
-        "head_sha": "428806e955fb89d2c7c26b87a70ff864756f9514",
+      {
+        "id": 43625726669,
+        "event": "schedule",
+        "head_sha": "bfa517dc7ccfaf4b858eed9965397e373df28f5e",
+        "created_at": "2026-11-14T18:17:02Z",
+        "run_started_at": "2026-11-14T18:17:02Z",
+        "status": "completed",
         "conclusion": "failure",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43726539441"
-      },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Refresh 35 portfolio exposure ETFs",
-      "latestObservedSchedule": {
-        "id": 43727252361,
-        "created_at": "2026-11-15T14:58:33Z",
-        "updated_at": "2026-11-15T16:21:24Z",
-        "head_sha": "e2c0e862a66aae85beb8f95ab7dfb40565470a1e",
-        "conclusion": "success",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43727252361"
-      },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Update qualified exposure ETF data",
-      "latestObservedSchedule": {
-        "id": 43727308310,
-        "created_at": "2026-11-15T14:59:12Z",
-        "updated_at": "2026-11-15T16:46:39Z",
-        "head_sha": "e2c0e862a66aae85beb8f95ab7dfb40565470a1e",
+        "run_attempt": 1
+      }
+    ],
+    "update-market-monthly.yml": [
+      {
+        "id": 43907101081,
+        "event": "schedule",
+        "head_sha": "0139168776110a1b273f476bf1db854b88a5b019",
+        "created_at": "2026-11-16T16:24:17Z",
+        "run_started_at": "2026-11-16T16:24:17Z",
+        "status": "completed",
         "conclusion": "failure",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43727308310"
+        "run_attempt": 1
       },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Update publication observations",
-      "latestObservedSchedule": {
-        "id": 43727084478,
-        "created_at": "2026-11-15T14:56:35Z",
-        "updated_at": "2026-11-15T15:02:11Z",
-        "head_sha": "2b3176d09c98045ea3b1f0e6f30080650c0c10c1",
+      {
+        "id": 43898359717,
+        "event": "schedule",
+        "head_sha": "ef387d8a3a06f74ea2215a8e6055119e7377993f",
+        "created_at": "2026-11-16T15:37:34Z",
+        "run_started_at": "2026-11-16T15:37:34Z",
+        "status": "completed",
         "conclusion": "failure",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43727084478"
+        "run_attempt": 1
       },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Update Vanguard LifeStrategy data",
-      "latestObservedSchedule": {
+      {
+        "id": 43723585814,
+        "event": "schedule",
+        "head_sha": "a596304e41b641c94e55b078ecd58314b64147e4",
+        "created_at": "2026-11-15T14:18:00Z",
+        "run_started_at": "2026-11-15T14:18:00Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      }
+    ],
+    "update-lifestrategy.yml": [
+      {
+        "id": 43880581588,
+        "event": "schedule",
+        "head_sha": "6c6891440bb3012e846e1b9d7398c701eaaa1b73",
+        "created_at": "2026-11-16T13:56:04Z",
+        "run_started_at": "2026-11-16T13:56:04Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      {
         "id": 43716281467,
-        "created_at": "2026-11-15T12:55:14Z",
-        "updated_at": "2026-11-15T13:48:34Z",
+        "event": "schedule",
         "head_sha": "dd9ce9cef86af7aabae70d0eba0c694b3a69ff06",
+        "created_at": "2026-11-15T12:55:14Z",
+        "run_started_at": "2026-11-15T12:55:14Z",
+        "status": "completed",
         "conclusion": "failure",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43716281467"
+        "run_attempt": 1
       },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    },
-    {
-      "workflow": "Refresh fully automated index sheets",
-      "latestObservedSchedule": {
-        "id": 43723416254,
-        "created_at": "2026-11-15T14:16:06Z",
-        "updated_at": "2026-11-15T14:20:20Z",
-        "head_sha": "84597a3943d8516152ceb140120b4de44b16e4c5",
+      {
+        "id": 43594847235,
+        "event": "schedule",
+        "head_sha": "edbeb02790175c5f3961f095951c50f29d779f98",
+        "created_at": "2026-11-14T12:26:40Z",
+        "run_started_at": "2026-11-14T12:26:40Z",
+        "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43723416254"
+        "run_attempt": 1
+      }
+    ],
+    "update-qualified-exposures.yml": [
+      {
+        "id": 43918913412,
+        "event": "schedule",
+        "head_sha": "e964bab2d0799db4fd2178532e559e681422a5c2",
+        "created_at": "2026-11-16T17:29:28Z",
+        "run_started_at": "2026-11-16T17:29:28Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
       },
-      "postNov16CorrectionScheduleObserved": false,
-      "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
-    }
-  ],
-  "latestMonitorSchedules": [
+      {
+        "id": 43727308310,
+        "event": "schedule",
+        "head_sha": "e2c0e862a66aae85beb8f95ab7dfb40565470a1e",
+        "created_at": "2026-11-15T14:59:12Z",
+        "run_started_at": "2026-11-15T14:59:12Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      {
+        "id": 43605419666,
+        "event": "schedule",
+        "head_sha": "0a7c05b946d4ffa3459394f0e2095761699adc16",
+        "created_at": "2026-11-14T14:32:47Z",
+        "run_started_at": "2026-11-14T14:32:47Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      }
+    ],
+    "update-scpi.yml": [
+      {
+        "id": 43915394580,
+        "event": "schedule",
+        "head_sha": "db7773b8fb0727130b6023e6e89dbd7ad9cfbd3a",
+        "created_at": "2026-11-16T17:09:39Z",
+        "run_started_at": "2026-11-16T17:09:39Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      {
+        "id": 43726539441,
+        "event": "schedule",
+        "head_sha": "428806e955fb89d2c7c26b87a70ff864756f9514",
+        "created_at": "2026-11-15T14:50:28Z",
+        "run_started_at": "2026-11-15T14:50:28Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      {
+        "id": 43604012169,
+        "event": "schedule",
+        "head_sha": "a62d8608301e025b30e4d28b096bb8e6e6191a76",
+        "created_at": "2026-11-14T14:16:38Z",
+        "run_started_at": "2026-11-14T14:16:38Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      }
+    ],
+    "update-instrument-metadata.yml": [
+      {
+        "id": 43942078143,
+        "event": "schedule",
+        "head_sha": "2fea154ad3aa862368ad88f304b101bc82e54f72",
+        "created_at": "2026-11-16T19:42:10Z",
+        "run_started_at": "2026-11-16T19:42:10Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      {
+        "id": 43735528646,
+        "event": "schedule",
+        "head_sha": "dbc40d334a1cabc3469cc776fcabf5c8f5aca616",
+        "created_at": "2026-11-15T16:27:00Z",
+        "run_started_at": "2026-11-15T16:27:00Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      {
+        "id": 43612530634,
+        "event": "schedule",
+        "head_sha": "799d4d12c77297f3ac926d30bc3be50ca66b9487",
+        "created_at": "2026-11-14T15:52:46Z",
+        "run_started_at": "2026-11-14T15:52:46Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      }
+    ]
+  },
+  "qualifiedStageProofs": [
     {
-      "id": 43815669776,
-      "created_at": "2026-11-16T06:16:49Z",
-      "conclusion": "success"
+      "workflow": "update-investor-13f.yml",
+      "event": "schedule",
+      "run": 43968781853,
+      "proof": "preuves/continuation-20261116/cron13f-20261116-real-source-record-publication-proof.json",
+      "scope": "26individualsuccessfulcontrols,2unitconflicts;2changedportfolios,54publishedreceiptfiles;52targetPNGtotalincludes4actual13F"
     },
     {
-      "id": 43778182529,
-      "created_at": "2026-11-16T00:04:12Z",
-      "conclusion": "success"
+      "workflow": "update-scpi.yml",
+      "event": "schedule then automaticbotworkflow_dispatch",
+      "run": 43915394580,
+      "recovery": 43918956165,
+      "proof": "preuves/continuation-20261116/scpi-real-automatic-recovery-published-proof.json",
+      "scope": "Scheduled source success thenrecordingrefused;freshautomaticrecovery actuallyrecordedandpublic,notretroactivefullcronsuccess"
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "event": "automaticbotworkflow_dispatch",
+      "run": 43992136948,
+      "proof": "preuves/continuation-20261116/etf-real-automatic-recovery-recorded-published-proof.json",
+      "scope": "Actuallyautomaticproduction source/record/publication,notprovidercron"
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "event": "push",
+      "run": 43981587026,
+      "proof": "preuves/continuation-20261116/wisdomtree-nine-final-recording-public-proof.json",
+      "scope": "Exact4selected,3NAVvalidatedandpublished,oldXetra400retained;9successfulcontrols union6+3,notscheduledproof"
     }
   ],
-  "nextNominalUTC": {
-    "monthly targeted recovery": "2026-11-17T06:45:00Z",
-    "monthly full": "2026-12-02T06:15:00Z",
-    "ETF": "2026-11-17T07:10:00Z",
-    "SCPI": "2026-11-17T07:20:00Z",
-    "13F": "2026-11-17T12:25:00Z",
-    "exposure expansion": "2026-11-17T07:45:00Z",
-    "publication observations": "2026-11-17T07:40:00Z",
-    "LifeStrategy": "2026-11-17T05:35:00Z"
+  "nextNominalUtc": {
+    "LifeStrategy": "2026-11-17 05:35",
+    "indices": "2026-11-17 06:40",
+    "monthlyTargetedRetry": "2026-11-17 06:45",
+    "ETF": "2026-11-17 07:10",
+    "SCPI": "2026-11-17 07:20",
+    "closes": "2026-11-17 07:40",
+    "exposure": "2026-11-17 07:45",
+    "qualifiedBooks": "2026-11-17 07:50",
+    "13F": "2026-11-17 12:25",
+    "nextCompleteMonthly": "2026-12-02 06:15",
+    "annual2026FirstCompleteMonthly": "2027-01-02 06:15"
   },
-  "note": "Nominal16Nov06:15/06:45 and12:25 passed but no supplier schedule visible in this API snapshot; no future success claimed. Earlier Nasdaq equal/Nasdaq100 schedule proofs retained independently."
+  "limitations": [
+    "Nominalcronnotasuccessoraguaranteedstart;delaysactuallyobserved",
+    "Supervisioncronisnotprovidercron",
+    "Noextraordinaryproviderrelaunchforthiscensus",
+    "ExistingNasdaqscheduleproofsretained;postfinalmonthlyprovidercronstillfuture",
+    "26monitorregistryentriesarenot26independentnetworkcollectors;qualification/control/orchestration/publicationrolesdiffer"
+  ],
+  "previousDatedScheduledCensus": {
+    "checkedAt": "2026-11-16T22:21:41Z",
+    "runs": {
+      "update-investor-13f.yml": [
+        {
+          "id": 43968781853,
+          "event": "schedule",
+          "head_sha": "f0adde7bb88e98f054b51cabf90b26b3f4381aef",
+          "created_at": "2026-11-16T22:18:30Z",
+          "run_started_at": "2026-11-16T22:18:30Z",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_attempt": 1
+        }
+      ],
+      "update-market-monthly.yml": [
+        {
+          "id": 43907101081,
+          "event": "schedule",
+          "head_sha": "0139168776110a1b273f476bf1db854b88a5b019",
+          "created_at": "2026-11-16T16:24:17Z",
+          "run_started_at": "2026-11-16T16:24:17Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        },
+        {
+          "id": 43898359717,
+          "event": "schedule",
+          "head_sha": "ef387d8a3a06f74ea2215a8e6055119e7377993f",
+          "created_at": "2026-11-16T15:37:34Z",
+          "run_started_at": "2026-11-16T15:37:34Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ],
+      "update-lifestrategy.yml": [
+        {
+          "id": 43880581588,
+          "event": "schedule",
+          "head_sha": "6c6891440bb3012e846e1b9d7398c701eaaa1b73",
+          "created_at": "2026-11-16T13:56:04Z",
+          "run_started_at": "2026-11-16T13:56:04Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ],
+      "update-qualified-exposures.yml": [
+        {
+          "id": 43918913412,
+          "event": "schedule",
+          "head_sha": "e964bab2d0799db4fd2178532e559e681422a5c2",
+          "created_at": "2026-11-16T17:29:28Z",
+          "run_started_at": "2026-11-16T17:29:28Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ],
+      "update-scpi.yml": [
+        {
+          "id": 43915394580,
+          "event": "schedule",
+          "head_sha": "db7773b8fb0727130b6023e6e89dbd7ad9cfbd3a",
+          "created_at": "2026-11-16T17:09:39Z",
+          "run_started_at": "2026-11-16T17:09:39Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ],
+      "update-instrument-metadata.yml": [
+        {
+          "id": 43942078143,
+          "event": "schedule",
+          "head_sha": "2fea154ad3aa862368ad88f304b101bc82e54f72",
+          "created_at": "2026-11-16T19:42:10Z",
+          "run_started_at": "2026-11-16T19:42:10Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ]
+    }
+  },
+  "previousDeliveryDatedCensus": {
+    "checkedAt": "2026-11-16T13:24:23.976918+00:00",
+    "source": "GitHub Actions event=schedule,100 available runs",
+    "workflows": [
+      {
+        "workflow": "Update active monthly market histories",
+        "latestObservedSchedule": {
+          "id": 43723585814,
+          "created_at": "2026-11-15T14:18:00Z",
+          "updated_at": "2026-11-15T14:39:23Z",
+          "head_sha": "a596304e41b641c94e55b078ecd58314b64147e4",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43723585814"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Update active ETF issuer data",
+        "latestObservedSchedule": {
+          "id": 43725658991,
+          "created_at": "2026-11-15T14:40:44Z",
+          "updated_at": "2026-11-15T16:13:12Z",
+          "head_sha": "d2195bc5102e211cccf62a51d895fdf62d057fbc",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43725658991"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Update investor 13F portfolios",
+        "latestObservedSchedule": {
+          "id": 43749652575,
+          "created_at": "2026-11-15T18:57:27Z",
+          "updated_at": "2026-11-15T20:35:44Z",
+          "head_sha": "2f2fc40ad48e3f1af5f255797ccea5d5d88b1e32",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43749652575"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Update SCPI presentations",
+        "latestObservedSchedule": {
+          "id": 43726539441,
+          "created_at": "2026-11-15T14:50:28Z",
+          "updated_at": "2026-11-15T14:53:25Z",
+          "head_sha": "428806e955fb89d2c7c26b87a70ff864756f9514",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43726539441"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Refresh 35 portfolio exposure ETFs",
+        "latestObservedSchedule": {
+          "id": 43727252361,
+          "created_at": "2026-11-15T14:58:33Z",
+          "updated_at": "2026-11-15T16:21:24Z",
+          "head_sha": "e2c0e862a66aae85beb8f95ab7dfb40565470a1e",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43727252361"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Update qualified exposure ETF data",
+        "latestObservedSchedule": {
+          "id": 43727308310,
+          "created_at": "2026-11-15T14:59:12Z",
+          "updated_at": "2026-11-15T16:46:39Z",
+          "head_sha": "e2c0e862a66aae85beb8f95ab7dfb40565470a1e",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43727308310"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Update publication observations",
+        "latestObservedSchedule": {
+          "id": 43727084478,
+          "created_at": "2026-11-15T14:56:35Z",
+          "updated_at": "2026-11-15T15:02:11Z",
+          "head_sha": "2b3176d09c98045ea3b1f0e6f30080650c0c10c1",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43727084478"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Update Vanguard LifeStrategy data",
+        "latestObservedSchedule": {
+          "id": 43716281467,
+          "created_at": "2026-11-15T12:55:14Z",
+          "updated_at": "2026-11-15T13:48:34Z",
+          "head_sha": "dd9ce9cef86af7aabae70d0eba0c694b3a69ff06",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43716281467"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      },
+      {
+        "workflow": "Refresh fully automated index sheets",
+        "latestObservedSchedule": {
+          "id": 43723416254,
+          "created_at": "2026-11-15T14:16:06Z",
+          "updated_at": "2026-11-15T14:20:20Z",
+          "head_sha": "84597a3943d8516152ceb140120b4de44b16e4c5",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/43723416254"
+        },
+        "postNov16CorrectionScheduleObserved": false,
+        "limitation": "An earlier schedule and a current push/manual result are distinct proofs. No success inferred from elapsed nominal time."
+      }
+    ],
+    "latestMonitorSchedules": [
+      {
+        "id": 43815669776,
+        "created_at": "2026-11-16T06:16:49Z",
+        "conclusion": "success"
+      },
+      {
+        "id": 43778182529,
+        "created_at": "2026-11-16T00:04:12Z",
+        "conclusion": "success"
+      }
+    ],
+    "nextNominalUTC": {
+      "monthly targeted recovery": "2026-11-17T06:45:00Z",
+      "monthly full": "2026-12-02T06:15:00Z",
+      "ETF": "2026-11-17T07:10:00Z",
+      "SCPI": "2026-11-17T07:20:00Z",
+      "13F": "2026-11-17T12:25:00Z",
+      "exposure expansion": "2026-11-17T07:45:00Z",
+      "publication observations": "2026-11-17T07:40:00Z",
+      "LifeStrategy": "2026-11-17T05:35:00Z"
+    },
+    "note": "Nominal16Nov06:15/06:45 and12:25 passed but no supplier schedule visible in this API snapshot; no future success claimed. Earlier Nasdaq equal/Nasdaq100 schedule proofs retained independently."
+  }
 }

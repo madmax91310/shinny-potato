@@ -1,3 +1,46 @@
+# Livraison consolidée — complément des 16–17 novembre, corrections et preuves publiques
+
+Relevé de clôture `2026-11-17T02:38:15.222429+00:00`. Code servi `77bd0158205833dddb6a129db9f4304ec0e139bb`, contexte données `fd5cbf64986cc171d207d59fe0e5af3dc2582e99`, voie `validated-data`, construction `2026-11-17T01:09:07.603Z`. Le contexte données n'est pas assimilé à une publication de chaque fichier : `preuves/continuation-20261116/final-public-byte-proof.json` rapproche les empreintes réellement servies et les reçus par périmètre.
+
+## Corrections livrées
+
+| PR | Avant → après | Portée et preuve |
+|---|---|---|
+| #1360 | Un bloc d'archivage de sept lignes empêchait l'enregistrement d'observations indépendantes → adaptateur strict et revalidation conservée. | Producteurs ordinaires enregistrés ; aucun contournement du garde source. |
+| #1367 | Dérivations LifeStrategy bloquées par des photographies incompatibles → huit dépendances exactes de septembre retrouvées avec leurs preuves originales. Uranium n'actualisait plus les positions connues → sous-ensemble explicitement partiel renouvelable. | Quatre poches actions seulement ; FX inconnus conservés, recouvrement intégral refusé. |
+| #1369 | Neuf NAV WisdomTree refusaient un nouveau format rolling12 → lignes reconnues, exclues du calcul calendaire et des niveaux. | Neuf contrôles réels puis enregistrement et publication ; pas neuf nouvelles fenêtres libérées. |
+| #1373 | Pays FTSE emprunté à l'indice comparé ; compte HSBC non identifié ; pays primaire iBonds périmé ; deux livres Invesco FR régressifs ; recette Uranium trop générale ; course d'un reçu documentaire ETF. | Colonnes financières strictes, compte exact valorisé, secours pays de risque séparé, voies UK des mêmes parts qualifiées, recette partielle correcte, adaptateur documentaire limité. Sources et reçus réels joints. |
+| #1378 | Top10 Invesco datés/attribués à l'indice interne → projection commune pour trois parts ; secours canonique des trois accès NAV et propagation des0,004% non identifiés Uranium. | Fonds/top10/incomplet ; aucune admission d'indice exact ou de recouvrement par ce top10. Projection exacte du build transmise aux tests, six écarts reproduits puis corrigés sans toucher aux attentes financières. |
+
+#1363/#1364/#1370/#1372/#1375 sont fermées car remplacées ou intégrées ; elles ne sont pas comptées comme des livraisons supplémentaires. Les correctifs concurrents #1365/#1366/#1371/#1374/#1376/#1377 et la présentation publique #1359 sont préservés.
+
+## Résultat des sept axes
+
+| Axe | Résultat et limite |
+|---|---|
+| Publication | Commit public, manifeste, registres et projections vérifiés sur les fichiers effectivement servis ; pas sur la seule couleur du workflow. |
+| Collectes ordinaires | Expositions43958707997 et ETF43958708136 acquis, validés et enregistrés ; six NAV contrôlées par43959903558, puis trois autres par le producteur ordinaire postcorrectif (preuves individuelles et union explicite des périmètres jointes). L'ancienne voie Xetra demeure en400, Paris est opérationnel séparément. |
+| Outils | 52 téléchargements PNG ciblés récents : présentations ETF 6, DCA et recouvrement 12, performances 22, Coulisses FTSE 2, preuve quatre ETF de l’ancienne publication 6, 13F nouvelles positions 4, sur ordinateur et mobile ; calculs/texte/aperçu et restrictions contrôlés. Les100 PNG du bilan précédent gardent leur date et ne deviennent pas des recettes de ce nouveau code. |
+| Compositions | Nouveaux livres Invesco UK et HSBC utilisables, top10 communs raccordés ; maintenance des poches actions LifeStrategy et du sous-ensemble Uranium rétablie. Livres complets insuffisants conservés comme tels. |
+| Historiques |73/79 fenêtres préservées, aucune nouvelle fenêtre litigieuse débloquée dans ce complément ; six refus et deux restrictions Palladium conservés avec leurs pièces manquantes. |
+| Autonomie | Reprise SCPI réellement automatique après refus d’enregistrement prouvée jusqu’au fichier public ; nouvelle reprise ETF43992136948 déclenchée par le bot, enregistréefd5cbf64 et publiée. Sept anciens refus HTTP de l’annuaire commun contrôlés avec succès, une réponse mutualisée pour sept encours ; les pages produit403 et les livres complets restent distincts. Le cron13F du16novembre est démontré jusqu’aux nouvelles positions publiques et exports ; les autres passages fournisseur postcorrectifs du17novembre restent à observer. Les runs push/manuels ne sont pas des crons. |
+| Passage annuel | Raccordements et tests de changement d'année conservés,721 configurations documentées. Acquisition des dernières bornes2026 et publication annuelle restent futures, aucune année complète anticipée. |
+
+Le moniteur est relu après ses mises à jour automatiques :69 diagnostics de panne au relevé00:39,62 au relevé01:04,55 au relevé01:32 ;14diagnostics ne figurent plus dans la catégorie panne, aucune nouvelle panne dans ce différentiel. Les sept anciennes erreurs d’étapes disposent de preuves natives de résolution ; les sept contrôles de l’annuaire sont individuellement requalifiés dans la reprise automatique puis exactement publiés. Le relevé ne déduit aucune réparation de la seule disparition d’une ligne. Ce ne sont pas14réparations financières différentes. L’export final complet contient11437 diagnostics toutes catégories confondues, pas autant de pannes.
+
+L’ancienne alerte de publication onboard du3novembre porte sur quatre parts (World/S&P500/WorldSmallCap/EMIMI). Leurs livres13novembre sont désormais qualifiés par le collecteur commun, enregistrés8f3ce9f, exactement publics et exercés dans six nouveaux PNG. Le garde natif exige une preuve du même workflow pour clôturer son ancienne publication : l’alerte reste visible comme défaut d’attribution de cette voie indépendante ; elle ne prouve pas une indisponibilité actuelle des quatre fonds. Preuve exacte jointe ; aucun rejeu d’intégration/catalogue pour produire un vert.
+
+Les 197 opérations de livres validées comprennent192 fichiers complets, quatre poches actions LifeStrategy et un périmètre direct DWS partiel ; elles ne certifient pas197 recouvrements complets. Huit refus de livres complets restent explicites. AGGH a réussi dans le producteur ordinaire après un refus transitoire ; pas de réparation de parseur inventée. Les six livres WisdomTree, les valorisations GlobalX manquantes, les pièces Russell/S&P et les anciennes divergences financières restent ouverts. **Automatisation complète non démontrée.**
+
+Même suivi [#881](https://github.com/madmax91310/shinny-potato/issues/881), mêmes matrices et identités. 35271 couples donnée/usage conservés, dont 35 259 initiaux ; ce ne sont pas autant de champs financièrement certifiés. Les 1 218 identités initiales sont toutes réconciliées, sans transformer une absence en résolution. L'export public complet contient11437 diagnostics au relevé, catégories dans `denominateurs.json` ; qualifications, attentes, traces historiques et pannes ne sont pas additionnées comme des erreurs financières. Radar arrêté, Portefeuilles IA et Analyse d'entreprise non restaurés, aucune publication sur X.
+
+
+---
+
+# Archive du bilan précédent — état daté, pas le statut courant
+
+Les preuves de cette version antérieure restent dans le [commit d2c4c9f9](https://github.com/madmax91310/shinny-potato/tree/d2c4c9f9f87ec83c947bf5f6275e8fa804572fac/reports/corrections-audit-2026-11-13-2014/livraison-2026-11-15). Les tableaux ci-dessus et les fichiers courants décrivent le nouveau relevé.
+
 # Livraison actualisée — 16 novembre 2026 — preuves publiques de 13:04 à 13:24 UTC
 
 Code réellement servi : `f45c20c2852644e10bc16df6437e6bc403dfc13f` ; données : `b62c57d432fcb5ef2fefffab772b780dea984905` ; construction finale `2026-11-16T13:04:29.268Z`.
@@ -47,7 +90,7 @@ Complément concurrent préservé : [#1355](https://github.com/madmax91310/shinn
 
 Export public complet du13:21, moniteur du13:17:47.818654 : **11 302 diagnostics**, dont68failure,254connection,366monitoring,2726qualification,30due,28editorial,4068archive,818waiting,1637nonapplicables et1307history ;15 374 signaux. Les76failure du relevé initial deviennent68 : huit identités quittent ce type, aucune nouvellefailure à ce relevé. LeCSV conserve leur statut, pas huit réparations arbitrairement déduites.
 
-Les1 218 identités initiales sont toutes conservées :19 résolutions enregistrées dans le moniteur,8 incidents actifs dans l’export,64 qualifications documentaires,25 preuves de supervision,1102 traces historiques/attentes/nonapplicables. Ces19 résolutions sont un état du suivi, pas19 nouvelles corrections de ce lot. Toutes les identités publiques courantes sont également exportées.
+Les 1 218 identités initiales sont toutes conservées :19 résolutions enregistrées dans le moniteur,8 incidents actifs dans l’export,64 qualifications documentaires,25 preuves de supervision,1102 traces historiques/attentes/nonapplicables. Ces19 résolutions sont un état du suivi, pas19 nouvelles corrections de ce lot. Toutes les identités publiques courantes sont également exportées.
 
 La matrice conserve **35 271 couples donnée/usage**, dont les35 259 initiaux et12 ajouts du lot précédent, sans nouveau catalogue. Le consommateur courant projette34 048 couples et30 319 exigences ;1223 anciens couples hors projection sont conservés, pas supprimés ni déclarés réparés. Les4598 champs déclarés et ces couples ne sont pas certifiés financièrement par un workflow vert.24 groupes de preuves mutualisées indiquent leurs champs, instruments, tentatives et limites exacts.
 

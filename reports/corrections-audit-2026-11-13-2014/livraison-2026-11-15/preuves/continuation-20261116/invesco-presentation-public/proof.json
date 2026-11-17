@@ -1,0 +1,599 @@
+{
+  "checkedAt": "2026-11-17T00:32:39.493Z",
+  "pinnedCode": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+  "results": [
+    {
+      "isin": "IE000716YHJ7",
+      "width": 1440,
+      "build": {
+        "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+        "dataSha": "d24a82f53dd97d1603fcd231330c0e3fdfd3dcb0",
+        "lane": "validated-code-data",
+        "builtAt": "2026-11-17T00:31:30.120Z"
+      },
+      "holdingsAsOf": "2026-11-13",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7/holdings/index?idType=isin&loadType=initial",
+      "sha256": "213f53f532a590d5650725f63664ab9090b5fb177f0c394d59107c56e6c23c60",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "scope": "top-10-companies",
+      "basis": "fund",
+      "complete": false,
+      "topTen": [
+        {
+          "name": "APPLE INC USD0.00001",
+          "weightPct": 4.9185,
+          "securities": [
+            "US0378331005"
+          ]
+        },
+        {
+          "name": "MICROSOFT CORP USD0.00000625",
+          "weightPct": 3.7271,
+          "securities": [
+            "US5949181045"
+          ]
+        },
+        {
+          "name": "NVIDIA CORP USD0.001",
+          "weightPct": 3.6468,
+          "securities": [
+            "US67066G1040"
+          ]
+        },
+        {
+          "name": "Alphabet",
+          "weightPct": 2.9696,
+          "securities": [
+            "US02079K3059",
+            "US02079K1079"
+          ]
+        },
+        {
+          "name": "AMAZON.COM INC USD0.01",
+          "weightPct": 2.4747,
+          "securities": [
+            "US0231351067"
+          ]
+        },
+        {
+          "name": "TSMC",
+          "weightPct": 1.6772,
+          "securities": [
+            "TW0002330008"
+          ]
+        },
+        {
+          "name": "BROADCOM INC NPV",
+          "weightPct": 1.5479,
+          "securities": [
+            "US11135F1012"
+          ]
+        },
+        {
+          "name": "Meta Platforms INC USD0.000006",
+          "weightPct": 1.3497,
+          "securities": [
+            "US30303M1027"
+          ]
+        },
+        {
+          "name": "ELI LILLY &amp; CO NPV",
+          "weightPct": 1.0968,
+          "securities": [
+            "US5324571083"
+          ]
+        },
+        {
+          "name": "TESLA INC USD0.001",
+          "weightPct": 1.073,
+          "securities": [
+            "US88160R1014"
+          ]
+        }
+      ],
+      "whatIs": "Le FTSE All-World couvre les grandes et moyennes entreprises des pays développés et émergents selon la classification FTSE. Les poids reposent sur les capitalisations disponibles en Bourse. Les petites entreprises restent en dehors de cet univers.\n\nRépartition par pays publiée du fonds au 31/10/2026 : États-Unis 62,9 % · Japon 5,9 % · Taïwan 3,3 %.\n\nAu 13/11/2026, Apple Inc Usd0.00001 (4,92 %), Microsoft Corp Usd0.00000625 (3,73 %), Nvidia Corp Usd0.001 (3,65 %) forment les trois premières lignes publiées du fonds. Elles représentent ensemble 12,29 %.",
+      "textEqualsEngine": true,
+      "previewEqualsDownload": true,
+      "pngSha256": "c5712f974f1fe1f52f47c56d6329fb2149a46e58c99af0fa87e7413576d75579",
+      "pngDimensions": [
+        1600,
+        1600
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE000716YHJ7",
+      "width": 390,
+      "build": {
+        "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+        "dataSha": "d24a82f53dd97d1603fcd231330c0e3fdfd3dcb0",
+        "lane": "validated-code-data",
+        "builtAt": "2026-11-17T00:31:30.120Z"
+      },
+      "holdingsAsOf": "2026-11-13",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7/holdings/index?idType=isin&loadType=initial",
+      "sha256": "213f53f532a590d5650725f63664ab9090b5fb177f0c394d59107c56e6c23c60",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "scope": "top-10-companies",
+      "basis": "fund",
+      "complete": false,
+      "topTen": [
+        {
+          "name": "APPLE INC USD0.00001",
+          "weightPct": 4.9185,
+          "securities": [
+            "US0378331005"
+          ]
+        },
+        {
+          "name": "MICROSOFT CORP USD0.00000625",
+          "weightPct": 3.7271,
+          "securities": [
+            "US5949181045"
+          ]
+        },
+        {
+          "name": "NVIDIA CORP USD0.001",
+          "weightPct": 3.6468,
+          "securities": [
+            "US67066G1040"
+          ]
+        },
+        {
+          "name": "Alphabet",
+          "weightPct": 2.9696,
+          "securities": [
+            "US02079K3059",
+            "US02079K1079"
+          ]
+        },
+        {
+          "name": "AMAZON.COM INC USD0.01",
+          "weightPct": 2.4747,
+          "securities": [
+            "US0231351067"
+          ]
+        },
+        {
+          "name": "TSMC",
+          "weightPct": 1.6772,
+          "securities": [
+            "TW0002330008"
+          ]
+        },
+        {
+          "name": "BROADCOM INC NPV",
+          "weightPct": 1.5479,
+          "securities": [
+            "US11135F1012"
+          ]
+        },
+        {
+          "name": "Meta Platforms INC USD0.000006",
+          "weightPct": 1.3497,
+          "securities": [
+            "US30303M1027"
+          ]
+        },
+        {
+          "name": "ELI LILLY &amp; CO NPV",
+          "weightPct": 1.0968,
+          "securities": [
+            "US5324571083"
+          ]
+        },
+        {
+          "name": "TESLA INC USD0.001",
+          "weightPct": 1.073,
+          "securities": [
+            "US88160R1014"
+          ]
+        }
+      ],
+      "whatIs": "Le FTSE All-World couvre les grandes et moyennes entreprises des pays développés et émergents selon la classification FTSE. Les poids reposent sur les capitalisations disponibles en Bourse. Les petites entreprises restent en dehors de cet univers.\n\nRépartition par pays publiée du fonds au 31/10/2026 : États-Unis 62,9 % · Japon 5,9 % · Taïwan 3,3 %.\n\nAu 13/11/2026, Apple Inc Usd0.00001 (4,92 %), Microsoft Corp Usd0.00000625 (3,73 %), Nvidia Corp Usd0.001 (3,65 %) forment les trois premières lignes publiées du fonds. Elles représentent ensemble 12,29 %.",
+      "textEqualsEngine": true,
+      "previewEqualsDownload": true,
+      "pngSha256": "c5712f974f1fe1f52f47c56d6329fb2149a46e58c99af0fa87e7413576d75579",
+      "pngDimensions": [
+        1600,
+        1600
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE0000QLH0G6",
+      "width": 1440,
+      "build": {
+        "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+        "dataSha": "d24a82f53dd97d1603fcd231330c0e3fdfd3dcb0",
+        "lane": "validated-code-data",
+        "builtAt": "2026-11-17T00:31:30.120Z"
+      },
+      "holdingsAsOf": "2026-11-13",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6/holdings/index?idType=isin&loadType=initial",
+      "sha256": "213f53f532a590d5650725f63664ab9090b5fb177f0c394d59107c56e6c23c60",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "scope": "top-10-companies",
+      "basis": "fund",
+      "complete": false,
+      "topTen": [
+        {
+          "name": "APPLE INC USD0.00001",
+          "weightPct": 4.9185,
+          "securities": [
+            "US0378331005"
+          ]
+        },
+        {
+          "name": "MICROSOFT CORP USD0.00000625",
+          "weightPct": 3.7271,
+          "securities": [
+            "US5949181045"
+          ]
+        },
+        {
+          "name": "NVIDIA CORP USD0.001",
+          "weightPct": 3.6468,
+          "securities": [
+            "US67066G1040"
+          ]
+        },
+        {
+          "name": "Alphabet",
+          "weightPct": 2.9696,
+          "securities": [
+            "US02079K3059",
+            "US02079K1079"
+          ]
+        },
+        {
+          "name": "AMAZON.COM INC USD0.01",
+          "weightPct": 2.4747,
+          "securities": [
+            "US0231351067"
+          ]
+        },
+        {
+          "name": "TSMC",
+          "weightPct": 1.6772,
+          "securities": [
+            "TW0002330008"
+          ]
+        },
+        {
+          "name": "BROADCOM INC NPV",
+          "weightPct": 1.5479,
+          "securities": [
+            "US11135F1012"
+          ]
+        },
+        {
+          "name": "Meta Platforms INC USD0.000006",
+          "weightPct": 1.3497,
+          "securities": [
+            "US30303M1027"
+          ]
+        },
+        {
+          "name": "ELI LILLY &amp; CO NPV",
+          "weightPct": 1.0968,
+          "securities": [
+            "US5324571083"
+          ]
+        },
+        {
+          "name": "TESLA INC USD0.001",
+          "weightPct": 1.073,
+          "securities": [
+            "US88160R1014"
+          ]
+        }
+      ],
+      "whatIs": "Le FTSE All-World couvre les grandes et moyennes entreprises des pays développés et émergents selon la classification FTSE. Les poids reposent sur les capitalisations disponibles en Bourse. Les petites entreprises restent en dehors de cet univers.\n\nRépartition par pays publiée du fonds au 31/10/2026 : États-Unis 62,9 % · Japon 5,9 % · Taïwan 3,3 %.\n\nAu 13/11/2026, Apple Inc Usd0.00001 (4,92 %), Microsoft Corp Usd0.00000625 (3,73 %), Nvidia Corp Usd0.001 (3,65 %) forment les trois premières lignes publiées du fonds. Elles représentent ensemble 12,29 %.",
+      "textEqualsEngine": true,
+      "previewEqualsDownload": true,
+      "pngSha256": "c78e3ad44c1cc00ddc39d5e19f7181c9c0c2f3ed4c22734abfde3b6c85a5bb79",
+      "pngDimensions": [
+        1600,
+        1600
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE0000QLH0G6",
+      "width": 390,
+      "build": {
+        "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+        "dataSha": "d24a82f53dd97d1603fcd231330c0e3fdfd3dcb0",
+        "lane": "validated-code-data",
+        "builtAt": "2026-11-17T00:31:30.120Z"
+      },
+      "holdingsAsOf": "2026-11-13",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6/holdings/index?idType=isin&loadType=initial",
+      "sha256": "213f53f532a590d5650725f63664ab9090b5fb177f0c394d59107c56e6c23c60",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "scope": "top-10-companies",
+      "basis": "fund",
+      "complete": false,
+      "topTen": [
+        {
+          "name": "APPLE INC USD0.00001",
+          "weightPct": 4.9185,
+          "securities": [
+            "US0378331005"
+          ]
+        },
+        {
+          "name": "MICROSOFT CORP USD0.00000625",
+          "weightPct": 3.7271,
+          "securities": [
+            "US5949181045"
+          ]
+        },
+        {
+          "name": "NVIDIA CORP USD0.001",
+          "weightPct": 3.6468,
+          "securities": [
+            "US67066G1040"
+          ]
+        },
+        {
+          "name": "Alphabet",
+          "weightPct": 2.9696,
+          "securities": [
+            "US02079K3059",
+            "US02079K1079"
+          ]
+        },
+        {
+          "name": "AMAZON.COM INC USD0.01",
+          "weightPct": 2.4747,
+          "securities": [
+            "US0231351067"
+          ]
+        },
+        {
+          "name": "TSMC",
+          "weightPct": 1.6772,
+          "securities": [
+            "TW0002330008"
+          ]
+        },
+        {
+          "name": "BROADCOM INC NPV",
+          "weightPct": 1.5479,
+          "securities": [
+            "US11135F1012"
+          ]
+        },
+        {
+          "name": "Meta Platforms INC USD0.000006",
+          "weightPct": 1.3497,
+          "securities": [
+            "US30303M1027"
+          ]
+        },
+        {
+          "name": "ELI LILLY &amp; CO NPV",
+          "weightPct": 1.0968,
+          "securities": [
+            "US5324571083"
+          ]
+        },
+        {
+          "name": "TESLA INC USD0.001",
+          "weightPct": 1.073,
+          "securities": [
+            "US88160R1014"
+          ]
+        }
+      ],
+      "whatIs": "Le FTSE All-World couvre les grandes et moyennes entreprises des pays développés et émergents selon la classification FTSE. Les poids reposent sur les capitalisations disponibles en Bourse. Les petites entreprises restent en dehors de cet univers.\n\nRépartition par pays publiée du fonds au 31/10/2026 : États-Unis 62,9 % · Japon 5,9 % · Taïwan 3,3 %.\n\nAu 13/11/2026, Apple Inc Usd0.00001 (4,92 %), Microsoft Corp Usd0.00000625 (3,73 %), Nvidia Corp Usd0.001 (3,65 %) forment les trois premières lignes publiées du fonds. Elles représentent ensemble 12,29 %.",
+      "textEqualsEngine": true,
+      "previewEqualsDownload": true,
+      "pngSha256": "c78e3ad44c1cc00ddc39d5e19f7181c9c0c2f3ed4c22734abfde3b6c85a5bb79",
+      "pngDimensions": [
+        1600,
+        1600
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE000L2SA8K5",
+      "width": 1440,
+      "build": {
+        "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+        "dataSha": "d24a82f53dd97d1603fcd231330c0e3fdfd3dcb0",
+        "lane": "validated-code-data",
+        "builtAt": "2026-11-17T00:31:30.120Z"
+      },
+      "holdingsAsOf": "2026-11-13",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5/holdings/index?idType=isin&loadType=initial",
+      "sha256": "9fe5d70892e3721d6feb76014ca6b79258759dcf4bd6af5cb4a3ab74113a541a",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "scope": "top-10-companies",
+      "basis": "fund",
+      "complete": false,
+      "topTen": [
+        {
+          "name": "APPLOVIN CORP-CLASS A USD 0.0000",
+          "weightPct": 1.3694,
+          "securities": [
+            "US03831W1080"
+          ]
+        },
+        {
+          "name": "IDEXX LABORATORIES INC USD0.1",
+          "weightPct": 1.3195,
+          "securities": [
+            "US45168D1046"
+          ]
+        },
+        {
+          "name": "MODERNA INC USD0.0001",
+          "weightPct": 1.3141,
+          "securities": [
+            "US60770K1079"
+          ]
+        },
+        {
+          "name": "MARRIOTT INTERNATIONAL -CL A USD0.01",
+          "weightPct": 1.2924,
+          "securities": [
+            "US5719032022"
+          ]
+        },
+        {
+          "name": "WALMART INC USD0.1",
+          "weightPct": 1.2748,
+          "securities": [
+            "US9311421039"
+          ]
+        },
+        {
+          "name": "REGENERON PHARMACEUTICALS USD0.001",
+          "weightPct": 1.2502,
+          "securities": [
+            "US75886F1075"
+          ]
+        },
+        {
+          "name": "NXP SEMICONDUCTORS NV NPV",
+          "weightPct": 1.2319,
+          "securities": [
+            "NL0009538784"
+          ]
+        },
+        {
+          "name": "INTUITIVE SURGICAL INC USD0.001",
+          "weightPct": 1.2298,
+          "securities": [
+            "US46120E6023"
+          ]
+        },
+        {
+          "name": "COSTCO WHOLESALE CORP USD0.005",
+          "weightPct": 1.2212,
+          "securities": [
+            "US22160K1051"
+          ]
+        },
+        {
+          "name": "GE HEALTHCARE TECHNOLOG-W/I USD NPV",
+          "weightPct": 1.2166,
+          "securities": [
+            "US36266G1076"
+          ]
+        }
+      ],
+      "whatIs": "Indice suivi : Nasdaq 100 Equal Weighted Index.\n\nTu suis les entreprises du Nasdaq-100 avec une pondération égale des émetteurs lors des rééquilibrages trimestriels.\n\nRépartition par pays publiée du fonds au 31/10/2026 : États-Unis 91,8 % · Pays-Bas 2,9 % · Canada 2,3 %.\n\nAu 13/11/2026, Applovin Corp-(classe A) Usd 0.0000 (1,37 %), Idexx Laboratories Inc Usd0.1 (1,32 %), Moderna Inc Usd0.0001 (1,31 %) forment les trois premières lignes publiées du fonds. Elles représentent ensemble 4 %.",
+      "textEqualsEngine": true,
+      "previewEqualsDownload": true,
+      "pngSha256": "efba74c62062276c2da73e47ab5fdb669d83d6a9bb9a14027036c3cad80f8618",
+      "pngDimensions": [
+        1600,
+        1600
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE000L2SA8K5",
+      "width": 390,
+      "build": {
+        "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+        "dataSha": "d24a82f53dd97d1603fcd231330c0e3fdfd3dcb0",
+        "lane": "validated-code-data",
+        "builtAt": "2026-11-17T00:31:30.120Z"
+      },
+      "holdingsAsOf": "2026-11-13",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5/holdings/index?idType=isin&loadType=initial",
+      "sha256": "9fe5d70892e3721d6feb76014ca6b79258759dcf4bd6af5cb4a3ab74113a541a",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "scope": "top-10-companies",
+      "basis": "fund",
+      "complete": false,
+      "topTen": [
+        {
+          "name": "APPLOVIN CORP-CLASS A USD 0.0000",
+          "weightPct": 1.3694,
+          "securities": [
+            "US03831W1080"
+          ]
+        },
+        {
+          "name": "IDEXX LABORATORIES INC USD0.1",
+          "weightPct": 1.3195,
+          "securities": [
+            "US45168D1046"
+          ]
+        },
+        {
+          "name": "MODERNA INC USD0.0001",
+          "weightPct": 1.3141,
+          "securities": [
+            "US60770K1079"
+          ]
+        },
+        {
+          "name": "MARRIOTT INTERNATIONAL -CL A USD0.01",
+          "weightPct": 1.2924,
+          "securities": [
+            "US5719032022"
+          ]
+        },
+        {
+          "name": "WALMART INC USD0.1",
+          "weightPct": 1.2748,
+          "securities": [
+            "US9311421039"
+          ]
+        },
+        {
+          "name": "REGENERON PHARMACEUTICALS USD0.001",
+          "weightPct": 1.2502,
+          "securities": [
+            "US75886F1075"
+          ]
+        },
+        {
+          "name": "NXP SEMICONDUCTORS NV NPV",
+          "weightPct": 1.2319,
+          "securities": [
+            "NL0009538784"
+          ]
+        },
+        {
+          "name": "INTUITIVE SURGICAL INC USD0.001",
+          "weightPct": 1.2298,
+          "securities": [
+            "US46120E6023"
+          ]
+        },
+        {
+          "name": "COSTCO WHOLESALE CORP USD0.005",
+          "weightPct": 1.2212,
+          "securities": [
+            "US22160K1051"
+          ]
+        },
+        {
+          "name": "GE HEALTHCARE TECHNOLOG-W/I USD NPV",
+          "weightPct": 1.2166,
+          "securities": [
+            "US36266G1076"
+          ]
+        }
+      ],
+      "whatIs": "Indice suivi : Nasdaq 100 Equal Weighted Index.\n\nTu suis les entreprises du Nasdaq-100 avec une pondération égale des émetteurs lors des rééquilibrages trimestriels.\n\nRépartition par pays publiée du fonds au 31/10/2026 : États-Unis 91,8 % · Pays-Bas 2,9 % · Canada 2,3 %.\n\nAu 13/11/2026, Applovin Corp-(classe A) Usd 0.0000 (1,37 %), Idexx Laboratories Inc Usd0.1 (1,32 %), Moderna Inc Usd0.0001 (1,31 %) forment les trois premières lignes publiées du fonds. Elles représentent ensemble 4 %.",
+      "textEqualsEngine": true,
+      "previewEqualsDownload": true,
+      "pngSha256": "efba74c62062276c2da73e47ab5fdb669d83d6a9bb9a14027036c3cad80f8618",
+      "pngDimensions": [
+        1600,
+        1600
+      ],
+      "errors": []
+    }
+  ],
+  "limitation": "Three already catalogued exact fund top10 presentation connections. Fund composition not a native index/full book. PNG retains existing identity, characteristics and annual performance design; no new technical/composition text inserted into it. Source acquisition, recording, cron and field qualification remain separate proofs."
+}

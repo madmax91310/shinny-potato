@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-11-17T00:38:06.564Z",
+  "run": 43968781853,
+  "event": "schedule",
+  "receiptCommit": "9ff7d4beb5a0f5570aaa0e71da162cb163e27747",
+  "results": [
+    {
+      "slug": "watsa",
+      "width": 1440,
+      "sourceGitBlob": "7de676404c26798b3ecc23517716e4857683a29c",
+      "periodEnd": "2026-09-30",
+      "holdings": 34,
+      "total": 2648176662,
+      "currency": "USD",
+      "exports": [
+        {
+          "format": "json",
+          "bytes": 51280,
+          "sha256": "5c7eccbb9eb674e8ef95ce6f533fd76882b731e7775dc7e52e8ae1b7540822b7",
+          "exactAgainstNormalizedPublicSource": true
+        },
+        {
+          "format": "csv",
+          "bytes": 8685,
+          "sha256": "bad7fede35bd092a942a328cee33c389c0922c506515fca7ec707de17d463a0f",
+          "exactAgainstNormalizedPublicSource": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "slug": "laffont",
+      "width": 1440,
+      "sourceGitBlob": "03103dee6b94b9cfe5737953776cae90524415ac",
+      "periodEnd": "2026-09-30",
+      "holdings": 73,
+      "total": 54495247703,
+      "currency": "USD",
+      "exports": [
+        {
+          "format": "json",
+          "bytes": 204400,
+          "sha256": "3ecec54c122e0d1e3f384bf95c8173896090d8f9c2ff4827eed8cc1b652eaf52",
+          "exactAgainstNormalizedPublicSource": true
+        },
+        {
+          "format": "csv",
+          "bytes": 18464,
+          "sha256": "5e7bdf44f574e947ef6a626244964585f90ad80f24477a0a79d07abc09726818",
+          "exactAgainstNormalizedPublicSource": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "slug": "watsa",
+      "width": 390,
+      "sourceGitBlob": "7de676404c26798b3ecc23517716e4857683a29c",
+      "periodEnd": "2026-09-30",
+      "holdings": 34,
+      "total": 2648176662,
+      "currency": "USD",
+      "exports": [
+        {
+          "format": "json",
+          "bytes": 51280,
+          "sha256": "5c7eccbb9eb674e8ef95ce6f533fd76882b731e7775dc7e52e8ae1b7540822b7",
+          "exactAgainstNormalizedPublicSource": true
+        },
+        {
+          "format": "csv",
+          "bytes": 8685,
+          "sha256": "bad7fede35bd092a942a328cee33c389c0922c506515fca7ec707de17d463a0f",
+          "exactAgainstNormalizedPublicSource": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "slug": "laffont",
+      "width": 390,
+      "sourceGitBlob": "03103dee6b94b9cfe5737953776cae90524415ac",
+      "periodEnd": "2026-09-30",
+      "holdings": 73,
+      "total": 54495247703,
+      "currency": "USD",
+      "exports": [
+        {
+          "format": "json",
+          "bytes": 204400,
+          "sha256": "3ecec54c122e0d1e3f384bf95c8173896090d8f9c2ff4827eed8cc1b652eaf52",
+          "exactAgainstNormalizedPublicSource": true
+        },
+        {
+          "format": "csv",
+          "bytes": 18464,
+          "sha256": "5e7bdf44f574e947ef6a626244964585f90ad80f24477a0a79d07abc09726818",
+          "exactAgainstNormalizedPublicSource": true
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "limitation": "Four targeted source-byte/JSON/CSV consumer journeys for the two changed managers. No new provider calls or transaction/position changes; shares, units, original snapshot and options retained."
+}

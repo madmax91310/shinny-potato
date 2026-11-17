@@ -1,0 +1,58 @@
+{
+  "readAt": "2026-11-16T16:15:10.565180+00:00",
+  "run": 43904655010,
+  "event": "pull_request",
+  "head": "9fad1fca01b98b1c1d337b12a5d6ec535fee50f0",
+  "job": 133430133756,
+  "artifact": 14245550870,
+  "artifactSha256": "d630830d8b015cc7a3650ada7491f7ca9a0271230a61302b8cf51b86869905e1",
+  "control": {
+    "isin": "IE000NDWFGA5",
+    "scope": "known-security-weights-only; complete-book-error-preserved",
+    "asOf": "2026-11-13",
+    "checkedAt": "2026-11-16T16:13:02.544300+00:00",
+    "sha256": "b3256cfd1c69ef6aeef6c7ea05ddc18fc26b30dc8c7bd92ea30334c8a42b4d63",
+    "knownSecurityRows": 59,
+    "completeBookQualified": false,
+    "ordinaryProducerExitCode": 1,
+    "productionWrite": false
+  },
+  "scope": {
+    "mode": "targeted",
+    "requestedIds": [
+      "dca-holdings:IE000NDWFGA5"
+    ],
+    "planSha256": "05a702df9a62e22c7af3250eb8a98e326b21f5e90a3d337194e56184c3bd2f6e",
+    "attemptedIds": [
+      "dca-holdings:IE000NDWFGA5"
+    ],
+    "networkRequestedIds": [
+      "dca-holdings:IE000NDWFGA5"
+    ],
+    "runId": "43904655010",
+    "attempt": "1"
+  },
+  "outcomes": [
+    {
+      "id": "dca-holdings:IE000NDWFGA5",
+      "instrument": "IE000NDWFGA5",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "field": "Composition compl\u00e8te",
+      "error": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-11-13')",
+      "phase": "validation",
+      "sourceAttempted": true,
+      "partialObservationPrepared": true,
+      "status": "failed",
+      "operationAttempted": true
+    }
+  ],
+  "notAttempted": 204,
+  "completeBookQualified": false,
+  "publication": "PR only, no production write; ordinary producer publication still required"
+}

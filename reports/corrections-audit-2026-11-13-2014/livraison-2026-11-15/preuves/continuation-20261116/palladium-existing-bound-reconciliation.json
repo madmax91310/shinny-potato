@@ -1,0 +1,47 @@
+{
+  "readAt": "2026-11-16T20:37:11.036724+00:00",
+  "kind": "Quantitative reconciliation of existing qualified-registry evidence, NOT a new source acquisition",
+  "isin": "IE00B4556L06",
+  "series": "etcPalladium",
+  "providerCheckedAt": "2026-11-08",
+  "providerSourceSha256": "0c2798ec0fbe41ff4223c5194a94eb3b8ed11e05866a34ba9c7a4e4a2d94e213",
+  "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+  "convention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+  "incomeTreatment": "No Income",
+  "checks": [
+    {
+      "month": "2014-11",
+      "returnAsOf": "2014-11-28",
+      "publishedNav": 23.918122,
+      "publishedIncomeIndex": 9990.974,
+      "observedRatio": 417.7156551003461,
+      "expectedRatioAfterPublishedCash": 417.71565490685816,
+      "qualified": true
+    },
+    {
+      "month": "2014-12",
+      "returnAsOf": "2014-12-31",
+      "publishedNav": 23.584359,
+      "publishedIncomeIndex": 10012.1551,
+      "observedRatio": 424.52521605526783,
+      "expectedRatioAfterPublishedCash": 417.71565490685816,
+      "qualified": false
+    },
+    {
+      "month": "2015-01",
+      "returnAsOf": "2015-01-30",
+      "publishedNav": 22.897066,
+      "publishedIncomeIndex": 9564.462899999999,
+      "observedRatio": 417.71565404930044,
+      "expectedRatioAfterPublishedCash": 417.71565490685816,
+      "qualified": true
+    }
+  ],
+  "monthEnd": "2014-12-31",
+  "publishedPerShareNAV": 23.584359,
+  "incomeIndexImpliedPerShareNAV": 23.96882899261341,
+  "relativeDisagreementPct": 1.6301905538895989,
+  "restrictionPreserved": true,
+  "missingEvidence": "Independent official exact-share USD NAV or reconciled income-reinvested level for 2014-12-31, with corresponding bounds/units; current two official components disagree. This numerical residual does not identify which component is wrong and is not permission to drop either control.",
+  "separateRestriction": "Old London market quote 2025 remains a different restriction; current qualified NAV2025 does not repair it."
+}

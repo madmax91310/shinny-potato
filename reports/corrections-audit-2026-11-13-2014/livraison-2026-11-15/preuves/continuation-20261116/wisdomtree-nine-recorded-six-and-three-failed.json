@@ -1,0 +1,341 @@
+{
+  "checkedAt": "2026-11-16T22:30:54.272014+00:00",
+  "run": 43959903558,
+  "event": "workflow_dispatch",
+  "sourceArtifact": 14278545117,
+  "artifactSha256": "d96dcb0a34c747875e8e24515b2841f804a5a158494fdf2736bf2f1f1c800e70",
+  "receiptArtifact": 14278019278,
+  "receiptSha256": "cad97cfb39d23e4de87c8873b536583ce6b5ecb39daa892b8951e9b73561d5cb",
+  "report": {
+    "checkedAt": "2026-11-16T22:07:42.636051+00:00",
+    "scope": {
+      "requestedIds": [
+        "etfGB00B15KXQ89Nav",
+        "etc_brent_crude_oilNav",
+        "etc_wti_crude_oilNav",
+        "etc_coffeeNav",
+        "etfIE00BDVPNG13Nav",
+        "etfCloudWisdomtreeNav",
+        "etc_cocoaNav",
+        "etc_natural_gasNav",
+        "etc_wheatNav"
+      ],
+      "expectedIds": [
+        "etfGB00B15KXQ89Nav",
+        "etc_brent_crude_oilNav",
+        "etc_wti_crude_oilNav",
+        "etc_coffeeNav",
+        "etfIE00BDVPNG13Nav",
+        "etfCloudWisdomtreeNav",
+        "etc_cocoaNav",
+        "etc_natural_gasNav",
+        "etc_wheatNav"
+      ],
+      "selection": "explicit"
+    },
+    "series": [
+      {
+        "id": "etfGB00B15KXQ89Nav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "b1c36ac4d5b864ed0900f531fe165cace40887c9dfcfe8b68a844c6de417eb1f",
+        "controlScope": {
+          "controlledInstrument": "GB00B15KXQ89",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2015-01-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_brent_crude_oilNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "bd04686f5e1077d1aeb12c1a1d99a6e02d9322b88797783a48a986e41a318447",
+        "controlScope": {
+          "controlledInstrument": "JE00B78CGV99",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2019-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_wti_crude_oilNav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      },
+      {
+        "id": "etc_coffeeNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "e6369307d79bef19a7cbca3555d976ad4ae79b87d420979ed7b78f221bc3a230",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB557",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etfIE00BDVPNG13Nav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      },
+      {
+        "id": "etfCloudWisdomtreeNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "aab163e84601b68f95e3015048e19f0304d8feb19b1172ea58dfdf4aa7ce9bad",
+        "controlScope": {
+          "controlledInstrument": "IE00BJGWQN72",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2019-09-01",
+          "controlledCalendarYears": [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_cocoaNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "10719c98fc56cdea3064baf22f0dee9b00e25778c6e851ec99adb09b01d92dd9",
+        "controlScope": {
+          "controlledInstrument": "JE00B2QXZK10",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2015-01-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_natural_gasNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "4a8a0b7d58f6e64fc6531dba1bd245a0fb57285006e89ca7d4a2989cd69924f8",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB334",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      {
+        "id": "etc_wheatNav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      }
+    ]
+  },
+  "receipt": {
+    "schemaVersion": 1,
+    "commit": "681755283bcba6a3e79f784dde39823fe8b01b6d",
+    "files": {
+      "src/data/anniversary-levels.json": "3678064af203af948ffd464c4aac221254caf647",
+      "src/data/auto-history-identities.json": "2b72eec67c38ae74c34ac92956df4b517435f739",
+      "src/data/automated-etf-monthly.json": "a79cc52d644722ba8b4f940b822a16eb0846097f",
+      "src/data/automated-indices.json": "d4ac31f578216e94d816a985f20569a7f851fe61",
+      "src/data/automated-monthly.json": "ce0230d7d8b9e6a37ecd8de5f9abc7491c564565",
+      "src/data/monthly-fx.json": "54ed9aa5b3d94536385a5d1594890a8f19bebe30",
+      "src/data/qualified-listing-records.json": "707730f426114e294cb0900d41fc746836b20abf",
+      "src/data/ranking-histories.json": "9f27c08a760365c538c61e03caf0fe76def48837",
+      "src/data/shared-listing-identities.json": "5e7e5a45f00971561f36fdbd50cbab0b3a636576"
+    }
+  },
+  "recordingSucceeded": true,
+  "sourceOutcomeCounts": {
+    "validated": 6,
+    "failed": 3
+  },
+  "currentSourceFailures": [
+    {
+      "id": "etc_wti_crude_oilNav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+    },
+    {
+      "id": "etc_wheatNav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+    }
+  ],
+  "publicationProven": false,
+  "limitation": "PARTIAL:6source controls recorded,3currentHTTP403. Original9/9source success in43942283114 did not record. Keep last valid clocks for failed3; no new window or cron proof. Canonical alternate path currently investigated separately."
+}

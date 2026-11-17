@@ -1,3 +1,33 @@
+# Compositions, expositions et13F — complément des 16–17 novembre
+
+Relevé de clôture `2026-11-17T02:38:15.222429+00:00`. Code servi `77bd0158205833dddb6a129db9f4304ec0e139bb`, contexte données `fd5cbf64986cc171d207d59fe0e5af3dc2582e99`, voie `validated-data`, construction `2026-11-17T01:09:07.603Z`. Le contexte données n'est pas assimilé à une publication de chaque fichier : `preuves/continuation-20261116/final-public-byte-proof.json` rapproche les empreintes réellement servies et les reçus par périmètre.
+
+| Actif / données | Usage réellement rétabli | Limite préservée |
+|---|---|---|
+| Invesco IE000L2SA8K5 / IE0000QLH0G6 | Livres exacts du13novembre par routes publiques UK :101/2064 actions, poids99,968%/99,9312%, cash et réconciliation NAV conservés ; DCA/expositions et recouvrement selon qualification de la paire. | Anciennes routes FR au29octobre non déclarées réparées. Livre du fonds, pas indice exact ; conditions d'audience UK consignées, licence non déduite d'un HTTP200. |
+| Invesco IE000716YHJ7 + les deux parts ci-dessus | Top10 de sociétés consolidées raccordés aux présentations depuis le même registre commun, poids et dates natifs. | Projection explicitement incomplète, aucun déverrouillage de recouvrement ou d'indice par le top10. |
+| HSBC IE00B4K6B022 |50 actions du10novembre ; compte EUR de règlement valorisé197827EUR/0,00787% distingué d'une entreprise. | Aucun changement de dividende, d'historique ou d'encours déduit de cette qualification. |
+| FTSE EPRA Nareit Developed Dividend+ |22 pays de l'indice principal au30octobre,320titres ; source/registre/Coulisses/texte/PNG vérifiés. | Grèce0,03% appartient uniquement à la comparaison. Somme arrondie100,01% conservée, pas de renormalisation ni livre intégral inventé. |
+| iBonds IE0008UEVOE0 | Champs indépendants qualifiés et pays de risque issus du livre physique récent. | Table primaire pays1octobre toujours en échec individuel. Pas de donut géographique inventé pour un usage obligataire non applicable. |
+| Uranium IE000NDWFGA5 |59 actions renouvelées au13novembre,99,819% publiés/99,815% identifiés, expositions/positions partielles et entreprises communes. | Contrat ZAR sans valorisation, deux identités Verdera inconnues ; livre complet et score intégral bloqués. |
+| LifeStrategy20/40/60/80 | Quatre poches actions septembre recalculables avec huit sous-jacents compatibles et preuves archivées exactes. |20,2663/39,9098/59,7738/79,6992% du fonds ; pas une transparisation complète actions+obligations+liquidités. Date de contrôle des sous-jacents conservés non renouvelée artificiellement. |
+|13F | Cron43968781853 :26contrôles qualifiés, reprise réelle après changement de master ; Watsa et Laffont renouvelés au30septembre2026 ;54fichiers du reçu effectivement publics et quatre PNG ordinateur/mobile. | Deux conflits d'unités conservés, aucune conversion par1000 inférée ;26contrôles ne sont pas26nouvelles déclarations. |
+
+Producteur ordinaire43958707997 :197 opérations validées, huit refus de livre complet conservés (six WisdomTree, Uranium, CopperMiners). La recette de publication accepte uniquement le sous-ensemble Uranium explicitement typé et vérifie le refus de score intégral ; les autres livres restent exigés complets. Une réussite de recette n'est pas une réparation de source.
+
+Les tableaux `compositions-usages-dca-expositions.csv` et `compositions-indices-actifs.csv` reprennent702entrées de sélection/695ISIN et52fiches d’indice réellement proposées, leurs couvertures, dates, limites et usages. Titres, classes d'actions et entreprises consolidées restent distincts. L'invariance à l'ordre des actifs est vérifiée ; aucun poids partiel renormalisé.
+
+Prochains crons nominaux17novembre :05:35LifeStrategy,06:40indices,07:10ETF,07:45expositions,07:50livres qualifiés,12:2513F. Leurs réussites ne sont pas anticipées. Le passage planifié13F du16novembre est désormais démontré séparément, y compris sa reprise et les deux mises à jour de positions.
+
+Même suivi [#881](https://github.com/madmax91310/shinny-potato/issues/881), mêmes matrices et identités. 35271 couples donnée/usage conservés, dont 35 259 initiaux ; ce ne sont pas autant de champs financièrement certifiés. Les 1 218 identités initiales sont toutes réconciliées, sans transformer une absence en résolution. L'export public complet contient11437 diagnostics au relevé, catégories dans `denominateurs.json` ; qualifications, attentes, traces historiques et pannes ne sont pas additionnées comme des erreurs financières. Radar arrêté, Portefeuilles IA et Analyse d'entreprise non restaurés, aucune publication sur X.
+
+
+---
+
+# Archive du bilan précédent — état daté, pas le statut courant
+
+Les preuves de cette version antérieure restent dans le [commit d2c4c9f9](https://github.com/madmax91310/shinny-potato/tree/d2c4c9f9f87ec83c947bf5f6275e8fa804572fac/reports/corrections-audit-2026-11-13-2014/livraison-2026-11-15). Les tableaux ci-dessus et les fichiers courants décrivent le nouveau relevé.
+
 # Compositions, expositions et 13F — 16 novembre 2026
 
 Version publique vérifiée : code `f45c20c2`, données `b62c57d4`. Les collectes, reçus, contrôles et parcours publics sont détaillés dans BILAN.md.

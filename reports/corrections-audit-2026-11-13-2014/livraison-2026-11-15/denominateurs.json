@@ -1,26 +1,26 @@
 {
-  "generatedAt": "2026-11-16T13:32:08.770296+00:00",
-  "monitorAt": "2026-11-16T13:17:47.818654+00:00",
+  "generatedAt": "2026-11-17T02:16:24.079964+00:00",
+  "monitorAt": "2026-11-17T01:32:40.576794+00:00",
   "initialIdentities": 1218,
   "identityStates": {
-    "résolution enregistrée dans le moniteur ; preuve jointe": 19,
-    "qualification documentaire": 64,
-    "incident actif dans la boîte publique": 8,
+    "résolution enregistrée dans le moniteur ; preuve jointe": 10,
+    "qualification documentaire": 74,
+    "incident actif dans la boîte publique": 7,
     "preuve de supervision": 25,
     "trace publique historique, attente ou non applicable ; aucune panne active déduite": 1102
   },
-  "currentDiagnostics": 11302,
+  "currentDiagnostics": 11437,
   "currentKinds": {
-    "failure": 68,
-    "connection": 254,
-    "monitoring": 366,
-    "qualification": 2726,
-    "due": 30,
+    "failure": 55,
+    "connection": 256,
+    "monitoring": 454,
+    "qualification": 2743,
+    "due": 27,
     "editorial": 28,
-    "archive": 4068,
-    "waiting": 818,
+    "archive": 4076,
+    "waiting": 808,
     "not-applicable": 1637,
-    "history": 1307
+    "history": 1353
   },
   "initialDataUsageRowsPreserved": 35259,
   "newDataUsageRows": 12,
@@ -30,6 +30,8 @@
   "currentRequiredConsumerContracts": 30319,
   "dataUsageRows": 35271,
   "uniqueDataIds": 10530,
-  "newProofGroups": 24,
+  "proofGroupsTotal": 37,
+  "preservedProofGroups": 24,
+  "addedProofGroupsThisComplement": 13,
   "limitation": "Aucune assimilation des couples donnée/usage à des champs financièrement certifiés. Absence du moniteur ≠ réparation. Preuves de source, stockage, publication et cron distinctes."
 }

@@ -1,0 +1,218 @@
+{
+  "checkedAt": "2026-11-17T01:25:42.382412+00:00",
+  "historicalIncident": {
+    "name": "Intégration des nouveaux actifs",
+    "tools": [],
+    "impactScope": "collector",
+    "workflow": "onboard-assets.yml",
+    "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41639923023",
+    "to": "/donnees-a-revoir",
+    "lastSuccessAt": "2026-11-03T12:57:17.813625+00:00",
+    "completedAt": "2026-11-03T13:48:59Z",
+    "sourcePhaseCompletedAt": "2026-11-03T12:58:30Z",
+    "runId": 41639923023,
+    "attempt": 1,
+    "attemptedDataIds": [
+      "dca-holdings:IE00B4L5Y983",
+      "dca-holdings:IE00B5BMR087",
+      "dca-holdings:IE00BF4RFH31",
+      "dca-holdings:IE00BKM4GZ66"
+    ],
+    "kind": "failure",
+    "field": "Publication",
+    "failedSteps": [
+      {
+        "job": "deploy / publish-code / build",
+        "step": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs"
+      }
+    ],
+    "cause": "deploy / publish-code / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+    "id": "publication:onboard-assets.yml",
+    "firstSeenAt": "2026-11-03T13:52:10.536832+00:00",
+    "lastSeenAt": "2026-11-17T01:04:57.627463+00:00",
+    "observations": [
+      {
+        "cause": "deploy / publish-code / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41639923023",
+        "completedAt": "2026-11-03T13:48:59Z",
+        "lastSuccessAt": "2026-11-03T12:57:17.813625+00:00"
+      }
+    ],
+    "members": [
+      "dca-holdings:IE00B4L5Y983",
+      "dca-holdings:IE00B5BMR087",
+      "dca-holdings:IE00BF4RFH31",
+      "dca-holdings:IE00BKM4GZ66"
+    ],
+    "impactQualified": false,
+    "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+    "collectorTools": [
+      "Et si tu avais investi",
+      "Performance depuis",
+      "Il y a X ans",
+      "Qui a vraiment gagné ?",
+      "Duel",
+      "Générateur",
+      "Portefeuille / DCA",
+      "Présentation ETF"
+    ],
+    "stage": "Publication",
+    "key": "publication:onboard-assets.yml",
+    "sourceUrls": [],
+    "signals": [
+      {
+        "name": "Intégration des nouveaux actifs",
+        "tools": [],
+        "impactScope": "collector",
+        "workflow": "onboard-assets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41639923023",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-11-03T12:57:17.813625+00:00",
+        "completedAt": "2026-11-03T13:48:59Z",
+        "sourcePhaseCompletedAt": "2026-11-03T12:58:30Z",
+        "runId": 41639923023,
+        "attempt": 1,
+        "attemptedDataIds": [
+          "dca-holdings:IE00B4L5Y983",
+          "dca-holdings:IE00B5BMR087",
+          "dca-holdings:IE00BF4RFH31",
+          "dca-holdings:IE00BKM4GZ66"
+        ],
+        "kind": "failure",
+        "field": "Publication",
+        "failedSteps": [
+          {
+            "job": "deploy / publish-code / build",
+            "step": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs"
+          }
+        ],
+        "cause": "deploy / publish-code / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+        "id": "publication:onboard-assets.yml",
+        "firstSeenAt": "2026-11-03T13:52:10.536832+00:00",
+        "lastSeenAt": "2026-11-17T01:04:57.627463+00:00",
+        "observations": [
+          {
+            "cause": "deploy / publish-code / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41639923023",
+            "completedAt": "2026-11-03T13:48:59Z",
+            "lastSuccessAt": "2026-11-03T12:57:17.813625+00:00"
+          }
+        ],
+        "members": [
+          "dca-holdings:IE00B4L5Y983",
+          "dca-holdings:IE00B5BMR087",
+          "dca-holdings:IE00BF4RFH31",
+          "dca-holdings:IE00BKM4GZ66"
+        ],
+        "impactQualified": false,
+        "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+        "collectorTools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Il y a X ans",
+          "Qui a vraiment gagné ?",
+          "Duel",
+          "Générateur",
+          "Portefeuille / DCA",
+          "Présentation ETF"
+        ],
+        "stage": "Publication",
+        "key": "publication:onboard-assets.yml",
+        "sourceUrls": []
+      }
+    ]
+  },
+  "historicalRun": {
+    "id": 41639923023,
+    "head_sha": "1872b7d8ba125751e923fe7ba233f5b46620a4c9",
+    "created_at": "2026-11-03T12:56:20Z",
+    "conclusion": "failure",
+    "event": "schedule"
+  },
+  "currentSuccessfulScope": [
+    {
+      "dataId": "dca-holdings:IE00B4L5Y983",
+      "isin": "IE00B4L5Y983",
+      "sourceRun": 43981586911,
+      "sourceStatus": "succeeded",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "eb6f64b6b7cd1427a516b9fa8454dd9a45e3c364be1070071961b7e46d67ddab",
+      "rows": 1246,
+      "originalWeightSum": 99.48797,
+      "basis": "fund",
+      "completeFile": true,
+      "nativeControlMetadataMatchesPublished": true,
+      "publishedFinancialRowsEqualValidatedRecord": true
+    },
+    {
+      "dataId": "dca-holdings:IE00B5BMR087",
+      "isin": "IE00B5BMR087",
+      "sourceRun": 43981586911,
+      "sourceStatus": "succeeded",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "06dff5002d460001e2df91f7a5900d1aac02a40f60ad6949ebf91e5cfa2ca6d9",
+      "rows": 503,
+      "originalWeightSum": 99.92746,
+      "basis": "fund",
+      "completeFile": true,
+      "nativeControlMetadataMatchesPublished": true,
+      "publishedFinancialRowsEqualValidatedRecord": true
+    },
+    {
+      "dataId": "dca-holdings:IE00BF4RFH31",
+      "isin": "IE00BF4RFH31",
+      "sourceRun": 43981586911,
+      "sourceStatus": "succeeded",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "89b986d8db4f7318a81fd2aee584153bd60ed41e98a1ec6cd736c2b12d38482a",
+      "rows": 3585,
+      "originalWeightSum": 99.58034,
+      "basis": "fund",
+      "completeFile": true,
+      "nativeControlMetadataMatchesPublished": true,
+      "publishedFinancialRowsEqualValidatedRecord": true
+    },
+    {
+      "dataId": "dca-holdings:IE00BKM4GZ66",
+      "isin": "IE00BKM4GZ66",
+      "sourceRun": 43981586911,
+      "sourceStatus": "succeeded",
+      "asOf": "2026-11-13",
+      "checkedAt": "2026-11-16T23:53:57.562379+00:00",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "773187a5e346e95cd6794b26aa8b5fddc8def1934fc0661cdb44f6a84e1b59f2",
+      "rows": 2861,
+      "originalWeightSum": 99.37473,
+      "basis": "fund",
+      "completeFile": true,
+      "nativeControlMetadataMatchesPublished": true,
+      "publishedFinancialRowsEqualValidatedRecord": true
+    }
+  ],
+  "currentRecord": "8f3ce9f341bf02421b080a32c69758c721939c63",
+  "publishedSourcePath": "src/data/dca-complete-holdings.json",
+  "publishedSourceGitBlob": "2d56c56dca814d7a8d8e60be7cf47ccfccd88333",
+  "currentPublicBuild": {
+    "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+    "dataSha": "b0d9b1e4536802d3442a50dc384f725047418381",
+    "lane": "validated-data",
+    "builtAt": "2026-11-17T00:33:37.212Z"
+  },
+  "publicConsumerProof": "onboard-current-four-public/proof.json",
+  "meaning": "All four original field identities have newer individually qualified same-share physical fund books, recorded by the ordinary common producer and actually published; six current desktop/mobile consumer/PNG journeys cover these four shares. Current data/use availability is restored independently of the old workflow.",
+  "limitation": "Original3Novworkflow build really failed; not replayed or retrospectively successful. Native publication guard only closes with same-workflow evidence, so the historical alert remains visible pending attribution of the independently proved current route. No generic success/counter override; no catalogue extension or recollection for green status.",
+  "latestActualPublication": {
+    "sha": "77bd0158205833dddb6a129db9f4304ec0e139bb",
+    "dataSha": "fd5cbf64986cc171d207d59fe0e5af3dc2582e99",
+    "lane": "validated-data",
+    "builtAt": "2026-11-17T01:09:07.603Z"
+  },
+  "fourScopesStillExactlyPublished": true,
+  "laterConsumerFinancialContinuity": "latest-auto-recovery-financial-consumer-continuity-proof.json"
+}

@@ -1,0 +1,239 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "IE00BMVB5K07",
+          "instrument": "IE00BMVB5K07",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5M21",
+          "instrument": "IE00BMVB5M21",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5P51",
+          "instrument": "IE00BMVB5P51",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5R75",
+          "instrument": "IE00BMVB5R75",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_lifestrategy",
+      "reportStem": "lifestrategy",
+      "declaredAt": "2026-11-16T17:00:11.010162+00:00",
+      "nonce": "4a5ef5ae-2fcf-425e-9ab8-0b541cd2eddf",
+      "codeSha": "7252f64b6a13f19352f6c53fa6020d9043b9559c",
+      "durablePlan": true,
+      "runId": "43912751299",
+      "attempt": "1",
+      "sha256": "26976348e1905764f4462216a75bd3b4325757a10a1f5d97343bbfb3663d3fb9"
+    },
+    "scope": {
+      "kind": "collect_lifestrategy",
+      "mode": "full",
+      "expectedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "requestedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "items": [
+        {
+          "id": "IE00BMVB5K07",
+          "instrument": "IE00BMVB5K07",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5M21",
+          "instrument": "IE00BMVB5M21",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5P51",
+          "instrument": "IE00BMVB5P51",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5R75",
+          "instrument": "IE00BMVB5R75",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification",
+            "exact held-fund identities and original NAV weights"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-16T17:00:11.010162+00:00",
+      "planSha256": "26976348e1905764f4462216a75bd3b4325757a10a1f5d97343bbfb3663d3fb9",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "runId": "43912751299",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "4a5ef5ae-2fcf-425e-9ab8-0b541cd2eddf"
+    },
+    "outcomes": [
+      {
+        "id": "IE00BMVB5K07",
+        "instrument": "IE00BMVB5K07",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification",
+          "exact held-fund identities and original NAV weights"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification, exact held-fund identities and original NAV weights",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "IE00BMVB5M21",
+        "instrument": "IE00BMVB5M21",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification",
+          "exact held-fund identities and original NAV weights"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification, exact held-fund identities and original NAV weights",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "IE00BMVB5P51",
+        "instrument": "IE00BMVB5P51",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification",
+          "exact held-fund identities and original NAV weights"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification, exact held-fund identities and original NAV weights",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "IE00BMVB5R75",
+        "instrument": "IE00BMVB5R75",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification",
+          "exact held-fund identities and original NAV weights"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification, exact held-fund identities and original NAV weights",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

@@ -1,3 +1,28 @@
+# Performances annuelles2026 — préparation maintenue
+
+Relevé de clôture `2026-11-17T02:38:15.222429+00:00`. Code servi `77bd0158205833dddb6a129db9f4304ec0e139bb`, contexte données `fd5cbf64986cc171d207d59fe0e5af3dc2582e99`, voie `validated-data`, construction `2026-11-17T01:09:07.603Z`. Le contexte données n'est pas assimilé à une publication de chaque fichier : `preuves/continuation-20261116/final-public-byte-proof.json` rapproche les empreintes réellement servies et les reçus par périmètre.
+
+Les721 configurations source du tableau existant sont conservées, avec méthodes, bornes, workflows et consommateurs. Les correctifs L&G des quatre parts et le texte portefeuille dynamique restent fusionnés ; les tests de passage d'année passent. Aucun rendement annuel2026 définitif n'est créé pendant cette intervention.
+
+| Niveau de preuve | État |
+|---|---|
+| Raccordement actuel | Sources qualifiées disponibles, alias NAV/cotation distincts, registres et consommateurs conservés ; les refus fournisseurs individuels restent documentés. |
+| Changement d'année | Tests isolés de bornes, fenêtres communes, conversions absentes, calcul géométrique, sélection/texte et archives ; aucune date de production modifiée. |
+| Fin2026 / janvier2027 | Futur : derniers jours de séance, distributions/splits et changes nécessaires, observations définitives des fournisseurs puis publication et PNG2026 restent à observer. |
+
+Le premier passage mensuel complet nominal est le2janvier2027à06:15UTC ; la reprise quotidienne06:45 peut vérifier les périodes manquantes avant ou après selon disponibilité. Les passages du4/8/16janvier et les reprises bornées existantes complètent les fournisseurs retardataires. Fériés, dernières séances propres aux places et délais de NAV restent appliqués par les producteurs. Une performanceYTD ne devient jamais une année complète et un actif récent ne reçoit pas artificiellement une année antérieure à son lancement.
+
+Les refus historiques et fournisseurs ne sont pas supprimés pour remplir le tableau. Ces721 configurations ne sont ni721 actifs uniques ni721 performances2026 déjà récupérées.
+
+Même suivi [#881](https://github.com/madmax91310/shinny-potato/issues/881), mêmes matrices et identités. 35271 couples donnée/usage conservés, dont 35 259 initiaux ; ce ne sont pas autant de champs financièrement certifiés. Les 1 218 identités initiales sont toutes réconciliées, sans transformer une absence en résolution. L'export public complet contient11437 diagnostics au relevé, catégories dans `denominateurs.json` ; qualifications, attentes, traces historiques et pannes ne sont pas additionnées comme des erreurs financières. Radar arrêté, Portefeuilles IA et Analyse d'entreprise non restaurés, aucune publication sur X.
+
+
+---
+
+# Archive du bilan précédent — état daté, pas le statut courant
+
+Les preuves de cette version antérieure restent dans le [commit d2c4c9f9](https://github.com/madmax91310/shinny-potato/tree/d2c4c9f9f87ec83c947bf5f6275e8fa804572fac/reports/corrections-audit-2026-11-13-2014/livraison-2026-11-15). Les tableaux ci-dessus et les fichiers courants décrivent le nouveau relevé.
+
 # Préparation des performances annuelles 2026 — 16 novembre 2026
 
 Les deux tableaux séparés décrivent les raccordements : `preparation-annuelle-2026-series-configurees.csv` contient 721 configurations existantes, et `preparation-annuelle-2026-familles.csv` indique sources, méthodes, bornes, workflows, consommateurs et observations encore nécessaires. Il ne s’agit pas de 721 historiques financièrement certifiés.

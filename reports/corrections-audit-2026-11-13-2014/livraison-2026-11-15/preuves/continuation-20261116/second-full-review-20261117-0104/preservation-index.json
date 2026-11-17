@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-17T02:04:52.450540+00:00",
+  "monitorAt": "2026-11-17T01:04:57.627463+00:00",
+  "oldFullSnapshotPreserved": [
+    {
+      "path": "final-review-browser/automation-status-raw.json",
+      "gzip": "second-full-review-20261117-0104/automation-status-raw.json.gz",
+      "originalSha256": "85ef79b5e31184d7b037e827b24b23e2a1d2df40c15e3671d2a694752061bcad",
+      "originalBytes": 49468805
+    },
+    {
+      "path": "final-review-browser/donnees-a-revoir-complet.json",
+      "gzip": "second-full-review-20261117-0104/donnees-a-revoir-complet.json.gz",
+      "originalSha256": "61e7cdab673f44801a514c69c12175d728545c8bc2539687381eae4c2cfbb1db",
+      "originalBytes": 413420887
+    },
+    {
+      "path": "final-export/final-current-issues.json",
+      "gzip": "second-full-review-20261117-0104/final-current-issues.json.gz",
+      "originalSha256": "a9c462e3fb147eef05044a4e1f0950301298f02246085afc0b1e43bb15f7abfe",
+      "originalBytes": 232720066
+    },
+    {
+      "path": "final-export/final-monitor-reconciliation-view.json",
+      "gzip": "second-full-review-20261117-0104/final-monitor-reconciliation-view.json.gz",
+      "originalSha256": "5a517fbb717a899ebe5991919cab4ee18da087367cffb05687f219f93dfdcdd8",
+      "originalBytes": 89591833
+    },
+    {
+      "path": "final-export/final-cause-keys.json",
+      "gzip": "second-full-review-20261117-0104/final-cause-keys.json.gz",
+      "originalSha256": "7f2db6bd450e3eab483ab54408a38bcbb1dceafe00de1a6340ba7971fe35ac74",
+      "originalBytes": 5096204
+    }
+  ],
+  "reason": "Final monitor observation now follows the automatic ETF recovery; previous full snapshot preserved, derived drafts regenerated. No source recollection."
+}

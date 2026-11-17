@@ -1,0 +1,182 @@
+{
+  "case": "Same exact validated-site artifact14276501472, only derived current consumer unidentified weight annotation changes through native helper",
+  "before": {
+    "diagnostic": {
+      "code": "retained-source-failure",
+      "reason": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-11-13')"
+    },
+    "tools": [
+      "dca-profiles"
+    ],
+    "automationConfigured": true,
+    "id": "IE000NDWFGA5",
+    "name": "Global X Uranium UCITS ETF USD Acc",
+    "type": "instrument",
+    "field": "completeHoldings",
+    "label": "Positions intégrales",
+    "state": "missing",
+    "present": false,
+    "checkedAt": null,
+    "asOf": null,
+    "sourceUrl": null,
+    "reason": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-11-13')",
+    "observationState": "missing",
+    "actionState": "collection-error",
+    "requiresAction": true,
+    "priority": 2,
+    "lastAttemptAt": "2026-11-16T21:39:49.064683+00:00",
+    "lastSuccessAt": "2026-11-12T19:04:54.703969+00:00",
+    "configuredSourceUrls": [
+      "https://globalxetfs.eu/funds/urnu/"
+    ],
+    "nextAction": "Réparer la lecture de la source ou qualifier une source de secours ; ne pas renouveler la date de la valeur conservée.",
+    "consumerQualification": {
+      "kind": "actual-dca-full-overlap-v1",
+      "stage": "consumer-validation",
+      "sourceContacted": false,
+      "expectedAssetIds": [
+        "IE000NDWFGA5"
+      ],
+      "outcomes": [
+        {
+          "asset": "IE000NDWFGA5",
+          "status": "evaluated",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "Certaines positions n’ont pas d’identifiant qualifié."
+          ],
+          "sourceCoverage": 99.81899999999992,
+          "identifiedCoverage": 99.81499999999993,
+          "unidentifiedCoverage": 0.004,
+          "residualWeight": 0.18100000000008265,
+          "asOf": "2026-11-13",
+          "sourceCheckedAt": "2026-11-16T21:39:49.064683+00:00",
+          "sourceSha256": "b3256cfd1c69ef6aeef6c7ea05ddc18fc26b30dc8c7bd92ea30334c8a42b4d63",
+          "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv"
+        }
+      ],
+      "priorActionState": "collection-error"
+    },
+    "sourceAccess": {
+      "prerequisite": "source-and-field-qualification-required",
+      "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
+      "lastAccessAttemptAt": "2026-11-16T21:41:25.987717+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "changed-unqualified",
+      "finalUrl": "https://globalxetfs.eu/funds/urnu",
+      "sha256": "da3f98b8f78b30995bcd43adb7341149e95e95930062fb443e4416b128a9f9f4",
+      "bytes": 423742,
+      "lastAccessibleAt": "2026-11-16T21:41:25.987717+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/urnu/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    }
+  },
+  "after": {
+    "diagnostic": {
+      "code": "retained-source-failure",
+      "reason": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-11-13')"
+    },
+    "tools": [
+      "dca-profiles"
+    ],
+    "automationConfigured": true,
+    "id": "IE000NDWFGA5",
+    "name": "Global X Uranium UCITS ETF USD Acc",
+    "type": "instrument",
+    "field": "completeHoldings",
+    "label": "Positions intégrales",
+    "state": "missing",
+    "present": false,
+    "checkedAt": null,
+    "asOf": null,
+    "sourceUrl": null,
+    "reason": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-11-13')",
+    "observationState": "missing",
+    "actionState": "collection-error",
+    "requiresAction": true,
+    "priority": 2,
+    "lastAttemptAt": "2026-11-16T21:39:49.064683+00:00",
+    "lastSuccessAt": "2026-11-12T19:04:54.703969+00:00",
+    "configuredSourceUrls": [
+      "https://globalxetfs.eu/funds/urnu/"
+    ],
+    "nextAction": "Réparer la lecture de la source ou qualifier une source de secours ; ne pas renouveler la date de la valeur conservée.",
+    "consumerQualification": {
+      "kind": "actual-dca-full-overlap-v1",
+      "stage": "consumer-validation",
+      "sourceContacted": false,
+      "expectedAssetIds": [
+        "IE000NDWFGA5"
+      ],
+      "outcomes": [
+        {
+          "asset": "IE000NDWFGA5",
+          "status": "evaluated",
+          "valid": true,
+          "complete": false,
+          "reasons": [
+            "Liste partielle ; seules les positions publiées sont comparées.",
+            "Certaines positions n’ont pas d’identifiant qualifié."
+          ],
+          "sourceCoverage": 99.81899999999992,
+          "identifiedCoverage": 99.81499999999993,
+          "unidentifiedCoverage": 0.004,
+          "residualWeight": 0.18100000000008265,
+          "asOf": "2026-11-13",
+          "sourceCheckedAt": "2026-11-16T21:39:49.064683+00:00",
+          "sourceSha256": "b3256cfd1c69ef6aeef6c7ea05ddc18fc26b30dc8c7bd92ea30334c8a42b4d63",
+          "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv"
+        }
+      ],
+      "priorActionState": "collection-error"
+    },
+    "sourceAccess": {
+      "prerequisite": "source-and-field-qualification-required",
+      "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
+      "lastAccessAttemptAt": "2026-11-16T21:41:25.987717+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "changed-unqualified",
+      "finalUrl": "https://globalxetfs.eu/funds/urnu",
+      "sha256": "da3f98b8f78b30995bcd43adb7341149e95e95930062fb443e4416b128a9f9f4",
+      "bytes": 423742,
+      "lastAccessibleAt": "2026-11-16T21:41:25.987717+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/urnu/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    },
+    "unidentifiedWeightPct": 0.004,
+    "unidentifiedWeightEvidence": {
+      "stage": "consumer-validation",
+      "sourceContacted": false,
+      "asOf": "2026-11-13",
+      "sourceCheckedAt": "2026-11-16T21:39:49.064683+00:00",
+      "sha256": "b3256cfd1c69ef6aeef6c7ea05ddc18fc26b30dc8c7bd92ea30334c8a42b4d63",
+      "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv",
+      "assetIds": [
+        "IE000NDWFGA5"
+      ]
+    }
+  },
+  "financialValuesAltered": false,
+  "sourceSuccessRenewed": false,
+  "fullBookAdmitted": false,
+  "sourceFailureRetained": true,
+  "isolatedBrowserBefore": "Exact current artifact14276501472 reproduces missing warning atline65; first mismatch with an older local bundle was discarded as invalid reproduction context",
+  "isolatedBrowserAfter": "Same exact artifact, only native helper annotation transferred; full existing inventory recipe desktop/mobile passed,7 ETF calendar consumers retained",
+  "browserPassedAt": "2026-11-16T22:49:08.938322+00:00"
+}

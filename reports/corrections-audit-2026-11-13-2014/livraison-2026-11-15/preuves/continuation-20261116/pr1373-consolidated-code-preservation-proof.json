@@ -1,0 +1,95 @@
+{
+  "at": "2026-11-16T20:26:48.584596+00:00",
+  "consolidatedPR": 1373,
+  "head": "cbb07fbaaa64c181a10781bad4f1591cc685b92a",
+  "dependencies": [
+    {
+      "pr": 1370,
+      "head": "ef30e1056827b04cfec6c32ac3676f058701e898",
+      "ancestor": true,
+      "exactFiles": [
+        {
+          "path": "scripts/fixtures/official-documents/ftse-engd-20261030.txt",
+          "blob": "395d417762340607f2bd171b363faec5b5401872"
+        },
+        {
+          "path": "scripts/fixtures/official-documents/ftse-hdiv-20261030.txt",
+          "blob": "ed64b38841f5f328cd9a5b6422fef05ca816d514"
+        },
+        {
+          "path": "scripts/fixtures/official-documents/ftse-infra-20261030.txt",
+          "blob": "98bec0681e1e72cd67ea7277024e3b63ae7a0a37"
+        },
+        {
+          "path": "scripts/fixtures/official-documents/ftse-primary-country-20261116-proofs.json",
+          "blob": "aeae331b5a455a53d068b85176da1862dd12b01f"
+        }
+      ],
+      "status": "consolidated, not yet delivered"
+    },
+    {
+      "pr": 1372,
+      "head": "9c2689e90591a2f075cd822543948634f916680c",
+      "ancestor": true,
+      "exactFiles": [
+        {
+          "path": "scripts/collect_qualified_exposures.py",
+          "blob": "81ed94fad1a591affba324815f2df4def3aecdce"
+        },
+        {
+          "path": "scripts/fixtures/ishares-stale-country-20261116/IE0008UEVOE0.json.gz",
+          "blob": "30526ddbf5b472be365500af86dcc0af9d2ca858"
+        },
+        {
+          "path": "scripts/fixtures/physical-holdings/hsbc-capital-settlement-20261116-proof.json",
+          "blob": "bc7d109d48f6127a36f9f6c6c07e384396229089"
+        },
+        {
+          "path": "scripts/fixtures/physical-holdings/hsbc-euro-stoxx-20261110.xls.gz",
+          "blob": "b923503a1c7543a0a2d94662c689294fa0c42273"
+        },
+        {
+          "path": "scripts/hsbc_holdings.py",
+          "blob": "c57b6330e708eb70d2a6afc39cfc85fdc0ebf376"
+        },
+        {
+          "path": "scripts/qualified-exposure-sources.json",
+          "blob": "7fd79c6428cdc60afee184b85ac83757d914e89c"
+        },
+        {
+          "path": "scripts/qualified_physical_allocation.py",
+          "blob": "25f0091469d593dab93e880641898031725249b1"
+        },
+        {
+          "path": "scripts/test_hsbc_jpm_holdings.py",
+          "blob": "0a46c700177f22277de288745edaef84711fe4f9"
+        },
+        {
+          "path": "scripts/test_ibonds_country_recovery.py",
+          "blob": "f83a1e9239b564a092518ac761ed9d9eed20ae13"
+        },
+        {
+          "path": "scripts/test_qualified_physical_allocation.py",
+          "blob": "7c6ff80aff65d09a1ae3f957972b477225180799"
+        }
+      ],
+      "status": "consolidated, not yet delivered"
+    },
+    {
+      "pr": 1375,
+      "head": "c39a794dfaaa1f73a13c39ca9c2b9b220c62902e",
+      "ancestor": true,
+      "exactFiles": [
+        {
+          "path": "scripts/market_reader_revalidation.py",
+          "blob": "ad08fb7c445a4c84cc9b799c80a86a4392e1f26a"
+        },
+        {
+          "path": "scripts/test_market_reader_revalidation.py",
+          "blob": "58ffb4c4776647fc1c8fc3b00704eba2b4c66120"
+        }
+      ],
+      "status": "consolidated, not yet delivered"
+    }
+  ]
+}
