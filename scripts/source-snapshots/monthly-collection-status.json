@@ -2270,7 +2270,7 @@
     },
     "etfDE000A27Z304": {
       "status": "failed",
-      "checkedAt": "2026-11-16T21:21:44.651869+00:00",
+      "checkedAt": "2026-11-17T00:07:33.451272+00:00",
       "reason": "HTTP Error 400: Bad Request"
     },
     "etfGB00BLD4ZL17": {
@@ -4710,9 +4710,11 @@
       "responseSha256": "bd04686f5e1077d1aeb12c1a1d99a6e02d9322b88797783a48a986e41a318447"
     },
     "etc_wti_crude_oilNav": {
-      "status": "failed",
-      "checkedAt": "2026-11-16T22:07:42.636051+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-17T00:07:33.451272+00:00",
+      "periodEnd": "2026-10",
+      "periodStart": "2019-12",
+      "responseSha256": "3c882197a874473f636da4a6a5c829e8767e6cb8936bbdf3d4dbcdfe6d85789f"
     },
     "etc_coffeeNav": {
       "status": "validated",
@@ -4743,9 +4745,11 @@
       "responseSha256": "971e5334c7df18cdf3a7f03662a9b773c6f6be6ccdf8b719d1a141ce079c1f80"
     },
     "etfIE00BDVPNG13Nav": {
-      "status": "failed",
-      "checkedAt": "2026-11-16T22:07:42.636051+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-17T00:07:33.451272+00:00",
+      "periodEnd": "2026-10",
+      "periodStart": "2018-12",
+      "responseSha256": "2d8cf93dcd50902bd582d493cd82783f2468b6aeabbffc9acc5e57ec95aff42e"
     },
     "etfCloudWisdomtreeNav": {
       "status": "validated",
@@ -4769,9 +4773,11 @@
       "responseSha256": "4a8a0b7d58f6e64fc6531dba1bd245a0fb57285006e89ca7d4a2989cd69924f8"
     },
     "etc_wheatNav": {
-      "status": "failed",
-      "checkedAt": "2026-11-16T22:07:42.636051+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-17T00:07:33.451272+00:00",
+      "periodEnd": "2026-10",
+      "periodStart": "2021-12",
+      "responseSha256": "5fa7045811d030579455b213581a23a31d4373451fdae3720943edc8d4dfe183"
     },
     "etfFR0013412269": {
       "status": "validated",

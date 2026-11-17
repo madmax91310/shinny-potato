@@ -212163,7 +212163,7 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-10",
+    "checkedAt": "2026-11-17",
     "periodEnd": "2026-10",
     "sourceUrls": [
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
@@ -212193,7 +212193,7 @@
       "unitQualification": "historical-reference-only"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-11-06",
+    "lastOfficialValuation": "2026-11-12",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "controlledInstrument": "GB00B15KXV33",
@@ -212219,11 +212219,11 @@
       "requestedStart": "2019-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1708,
-      "sourceSnapshotDate": "2026-11-06",
+      "dailyObservations": 1712,
+      "sourceSnapshotDate": "2026-11-12",
       "issuerProductInception": "2006-09-22",
       "issuerChartInception": "2006-09-22",
-      "tablePublicationDate": "2026-11-06",
+      "tablePublicationDate": "2026-11-13",
       "closedTableCalendarChecks": [
         {
           "year": 2020,
@@ -212287,6 +212287,33 @@
         }
       ],
       "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
       "excludedPreWindowObservations": 2470,
       "suppliedExactSecurityStart": "2019-12-01",
       "scaleProof": {
@@ -212322,14 +212349,14 @@
         }
       ],
       "sourceRuntime": {
-        "runId": "42774587390",
+        "runId": "43981587026",
         "attempt": "1",
-        "event": "workflow_dispatch",
-        "codeRevision": "8fb458ec5194f94ef1ad05abf150bc9c100e3e6a",
+        "event": "push",
+        "codeRevision": "77bd0158205833dddb6a129db9f4304ec0e139bb",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
-      "calendarRegistryPerformanceHash": "7205294ad62d3cafb2f7c2819b665b956e9e50b5a35faf7dd5931b1eefe6f7cb",
+      "calendarRegistryPerformanceHash": "7a99a767216e70935f7c195106416d2238e1dde8adc5dd07ef2c3311cbc1f5b4",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
         "sha256": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
@@ -212425,11 +212452,11 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "386519b50db6420cb83d1184bc1b8f37844b29ea080441c56490ee8af01470b8",
+    "responseSha256": "3c882197a874473f636da4a6a5c829e8767e6cb8936bbdf3d4dbcdfe6d85789f",
     "rawSourceHashes": {
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "6a0a0c8f9775964c78f2ee9121b02a41f21af015dee53411a26e35342beadc6f",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "b94ceafdcfea6a60e482000f4474495bb55ba5aaca9c31185712188219d62daa"
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "93ed1edcde289657319925f6fc18e105c65ab1d6091e974b589a8f84d7b9c83f",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "0ed8f19d7bee748c0ecb4c8b334d2228488b6c4b22de23ba7817dce41d1dc14e"
     }
   },
   "etc_coffeeNav": {
@@ -215260,7 +215287,7 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-08",
+    "checkedAt": "2026-11-17",
     "periodEnd": "2026-10",
     "sourceUrls": [
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
@@ -215290,7 +215317,7 @@
       "unitQualification": "historical-reference-only"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-11-05",
+    "lastOfficialValuation": "2026-11-13",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "controlledInstrument": "IE00BDVPNG13",
@@ -215316,11 +215343,11 @@
       "requestedStart": "2018-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1954,
-      "sourceSnapshotDate": "2026-11-05",
+      "dailyObservations": 1960,
+      "sourceSnapshotDate": "2026-11-13",
       "issuerProductInception": "2018-11-30",
       "issuerChartInception": "2018-12-05",
-      "tablePublicationDate": "2026-11-05",
+      "tablePublicationDate": "2026-11-13",
       "closedTableCalendarChecks": [
         {
           "year": 2019,
@@ -215394,6 +215421,33 @@
         }
       ],
       "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
       "excludedPreWindowObservations": 1,
       "suppliedExactSecurityStart": "2018-12-01",
       "scaleProof": {
@@ -215431,14 +215485,14 @@
         }
       ],
       "sourceRuntime": {
-        "runId": "42484207942",
+        "runId": "43981587026",
         "attempt": "1",
-        "event": "schedule",
-        "codeRevision": "cd377f5e8eaa836032ab1399f807acd24bb00804",
+        "event": "push",
+        "codeRevision": "77bd0158205833dddb6a129db9f4304ec0e139bb",
         "kind": "github"
       },
       "calendarRegistry": "src/data/exposure-etf-expansion-records.json",
-      "calendarRegistryPerformanceHash": "98cc3fa161b52578466e5a94c7e00b22fe3a04788603e108157613a7d6205f50",
+      "calendarRegistryPerformanceHash": "2497b70f2d405a17dbdfa54511eb690d17909b80effc66f256ed0b54fd48ba52",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
         "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
@@ -215542,11 +215596,11 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "90f64bc4d9506ff5aeef7cea617e43cc8641f6f997ada405bdd386b4c16d2c95",
+    "responseSha256": "2d8cf93dcd50902bd582d493cd82783f2468b6aeabbffc9acc5e57ec95aff42e",
     "rawSourceHashes": {
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k": "ab7a28c053bbdf192ab2a59ac74da77dde20ea551c7c763d2fea10298cc42821",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular": "65384d485db88ec22f0df5ec55781d78dec2cf386abe72c05e7e82b153bb4bdc"
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k": "bdc352516b8a430f5b7a8b18c285d1a78046b4089be12c2d5fb1f36e1fbf53c6",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular": "b697ef89eafaf2381f5cd8ee85018ee85d6665ac0f936c08fe4e43f8ad8cc9c1"
     }
   },
   "etfCloudWisdomtreeNav": {
@@ -218056,7 +218110,7 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-10",
+    "checkedAt": "2026-11-17",
     "periodEnd": "2026-10",
     "sourceUrls": [
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
@@ -218086,7 +218140,7 @@
       "unitQualification": "historical-reference-only"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-11-06",
+    "lastOfficialValuation": "2026-11-13",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "controlledInstrument": "JE00BN7KB664",
@@ -218112,11 +218166,11 @@
       "requestedStart": "2021-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1213,
-      "sourceSnapshotDate": "2026-11-06",
+      "dailyObservations": 1218,
+      "sourceSnapshotDate": "2026-11-13",
       "issuerProductInception": "2006-09-22",
       "issuerChartInception": "2006-09-22",
-      "tablePublicationDate": "2026-11-06",
+      "tablePublicationDate": "2026-11-13",
       "closedTableCalendarChecks": [
         {
           "year": 2022,
@@ -218160,6 +218214,33 @@
         }
       ],
       "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
+      "unusedRollingWindows": [
+        {
+          "periodEnd": "2022-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2023-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2024-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2025-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        },
+        {
+          "periodEnd": "2026-10-31",
+          "window": "yearOverYear",
+          "usedForCalendarQualification": false
+        }
+      ],
       "excludedPreWindowObservations": 3790,
       "suppliedExactSecurityStart": "2021-12-01",
       "scaleProof": {
@@ -218197,14 +218278,14 @@
         }
       ],
       "sourceRuntime": {
-        "runId": "42774587390",
+        "runId": "43981587026",
         "attempt": "1",
-        "event": "workflow_dispatch",
-        "codeRevision": "8fb458ec5194f94ef1ad05abf150bc9c100e3e6a",
+        "event": "push",
+        "codeRevision": "77bd0158205833dddb6a129db9f4304ec0e139bb",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
-      "calendarRegistryPerformanceHash": "134f4ce956abba04a43982958a8e8b829446ba812ff7d05b4e2307f1dca224e4",
+      "calendarRegistryPerformanceHash": "cde8c9e319cc12875d38893c9e766b335472b6af8d7fef733faeba78b7748a52",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
         "sha256": "4ab8c90ccbd9723fcbe4ad1f1a47bed5f43b5b53e7d82caac4a90a58932555ad",
@@ -218278,11 +218359,11 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "d9c113c44dcbb0b3490b72d8d8c6f2e7a92a4878d84d18563bd95d2af14b7abb",
+    "responseSha256": "5fa7045811d030579455b213581a23a31d4373451fdae3720943edc8d4dfe183",
     "rawSourceHashes": {
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664": "4ab8c90ccbd9723fcbe4ad1f1a47bed5f43b5b53e7d82caac4a90a58932555ad",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k": "d4994254847ce5e0604c4af5c46f7b4cfd9bae8ba1ee76db6fbec0fd1920667f",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular": "3027dde3751e8653fbb08026da0c48b7301e8e5ef7b778ac6aeea2d4d1f6e410"
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k": "b3001afd9b9633188053caaeb223e1222a1fb6a7dc9eaf55d15b9664e9c7a58b",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular": "294441cb17ea6eeb1614aba3a2e39bf3ad2ea985c73800387cb858b5de69817c"
     }
   },
   "etfFR0013412269": {
