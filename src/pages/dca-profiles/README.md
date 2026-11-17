@@ -69,7 +69,7 @@ ainsi que les cas limites historiques (620 rendus), avec contrôle des textes et
 
 ## DCA à huit positions et suivi Publié (1er novembre 2026)
 
-`MAX_POSITIONS = 8` est le contrat DCA, même en mode sans identité. Le moteur partagé prend une limite explicite : `MAX_EXPOSURE_POSITIONS = 50` pour Actifs & expositions, le stockage et le transport de récupération. Ces deux derniers acceptent les anciens portefeuilles trop longs intégralement ; l'éditeur explique le blocage de publication et laisse retirer des lignes. Aucune troncature. La limite des 50 sauvegardes nommées reste indépendante. Les poids et versements ne sont pas recalculés à la migration.
+Les anciennes limites de huit et cinquante positions ont été supprimées. Le moteur accepte un nombre de lignes sans plafond produit (`MAX_EXPOSURE_POSITIONS = Infinity`), dans les deux parcours, le stockage et le transport. La limite des 50 sauvegardes nommées reste indépendante. Les poids et versements ne sont pas recalculés à la migration.
 
 L'éditeur DCA présente allocation et versements en deux listes, liées au même tableau. L'ordre visuel se fige au focus du groupe et se recalcule à sa sortie ou avec Entrée. Les clés d'actifs et l'ordre canonique des données sont conservés ; les égalités restent stables. Les positions détenues sans flux restent dans l'allocation, les zéros mensuels restent éditables mais ne sont pas publiés. Le texte personnalisé reste conservé lors de l'édition (le premier descriptif historique de ce README est remplacé par ce comportement).
 
@@ -94,7 +94,7 @@ Les formats de stockage et de transport historiques restent compatibles ; les
 identifiants manuels sont conservés lors des copies, sauvegardes et restaurations.
 
 Tous les supports entrent dans l’allocation détenue et les totaux. Les limites
-restent 8 positions DCA et 50 en analyse/transport, sans troncature. Un poids nul
+de nombre de positions ont été supprimées dans les deux parcours, sans troncature. Un poids nul
 avec un versement positif est accepté en DCA ; une position détenue sans versement
 reste dans l’allocation, mais pas dans la liste des versements exportée.
 
@@ -147,24 +147,32 @@ Validation : `node scripts/test-subscriber-profiles.mjs` (inclus dans `test:dca`
 après build. La recette couvre 1440, 390 et 320 px et figure dans les contrôles CI
 navigateur. Les captures sont dans `test-artifacts/subscriber-profiles/`.
 
-### Export de plusieurs images
+### Export de plusieurs images et nombre de positions
 
-Dans « Personnaliser l’image », « Plusieurs images : un donut par image » autorise
-jusqu’à 50 positions dans le parcours DCA et les profils d’abonnés. Avec le choix
-« Répartition + géographie + secteurs », trois PNG sont préparés et téléchargeables
-individuellement depuis les boutons d’aperçu. La répartition garde toutes les lignes
-sur une seule image de hauteur variable, sans regrouper les petites positions.
-Les versements nuls sont masqués ; les positions détenues restent affichées.
-Les donuts géographiques et sectoriels conservent leur périmètre explicite. Le top
-10 optionnel est une image supplémentaire. Le recouvrement conserve son image.
-Le choix est conservé dans les brouillons, sauvegardes et fichiers de portefeuille.
-Désactiver ce mode sur un DCA de plus de huit lignes bloque la publication sans
-supprimer de positions. Aucun changement aux anciens exports par défaut.
+Les deux parcours acceptent les positions sans plafond de nombre, sans option à
+activer. Le choix « Vue complète et donuts individuels » prépare la vue complète,
+la répartition de tous les actifs, les pays et les secteurs. Chaque PNG est
+sélectionnable et téléchargeable séparément. Le top entreprises optionnel et
+l’image de recouvrement conservent leur fonctionnement.
 
-Validation : `node scripts/test-dca-image-series.mjs` et
-`CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-image-series.mjs`.
-Le budget de code de la route passe de 806 à 809 ko (mesuré : 807,9 ko) ; le moteur
-d’images multiples est chargé à la demande.
+La répartition individuelle conserve tous les actifs détenus et garde le rendu de #1366 : noms semi-gras, tirets et pourcentages internes. La vue complète et les vues de versements adaptent aussi leur résolution au même budget.
+Pour un très grand portefeuille, sa résolution est réduite afin de respecter les
+capacités du canevas (16 000 pixels par côté, 32 mégapixels au maximum), sans
+retirer ni regrouper de ligne. La lisibilité d’une image unique dépend donc de la
+taille réelle du portefeuille. Les limites de mémoire et de stockage du navigateur,
+ainsi que la limite existante de 1 Mo des fichiers importés et exportés, restent applicables. Les 50 sauvegardes nommées restent une limite distincte.
+Les périmètres géographiques et sectoriels restent explicites.
 
-Le sélecteur DCA permet directement 50 positions : l’ajout ou la modification
-d’une allocation de plus de huit lignes active automatiquement les images séparées.
+Les brouillons et sauvegardes conservent les longs textes sans seuil de 20 000
+caractères. La répartition égale adapte sa précision au-delà de 10 000 positions,
+pour ne pas créer de poids nuls. Les anciens portefeuilles gardent leurs données.
+
+Validation : `npm run test:dca`,
+`node scripts/playwright-unlimited-positions.mjs`,
+`node scripts/playwright-unlimited-rendering.mjs`
+et `node scripts/playwright-dca-image-series.mjs` après build.
+Les contrats couvrent 51, 200, 1 000 et 20 001 lignes ; la recette navigateur couvre
+l’ajout d’une 201e ligne, les sauvegardes, les textes longs, les deux parcours,
+le mobile à 1440/390/320 px et le PNG à 1 000 libellés. Les tests de rendu rouvrent les PNG des quatre volumes, y compris la vue complète, les versements et le panneau entreprises. La sérialisation se fait image par image pour libérer les canevas avant le rendu suivant.
+
+Une image unique de milliers de positions peut devenir illisible malgré la conservation de ses lignes ; aucune garantie de lisibilité mobile n’est déduite du seul comptage des libellés.

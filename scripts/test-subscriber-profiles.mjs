@@ -71,9 +71,9 @@ assert.equal(readSavedState(drafts).items.length,2)
 const generic=savedRecord({...partial,id:'named-work',title:'À reprendre',profile:{...unfinished,name:''}})
 writeSaved(drafts,[...readSavedState(drafts).items,generic])
 assert.equal(readSavedState(drafts).rejected.length,0)
-for(const patch of [{lines:[null]},{lines:[{...unfinished.lines[0],asset:'unknown'}]},{name:'x'.repeat(46)},{lines:Array(51).fill(unfinished.lines[0])},{lines:[{...unfinished.lines[0],amount:'150'}]}]){
+for(const patch of [{lines:[null]},{lines:[{...unfinished.lines[0],asset:'unknown'}]},{name:'x'.repeat(46)},{lines:[{...unfinished.lines[0],amount:'150'}]}]){
  assert.equal(!!validSaved({...partial,profile:{...partial.profile,...patch}}),false)
 }
 for(const query of [equityReference.name,equityReference.tickers[0],equityReference.isin])assert(searchAssets(query,'equity').includes(equityAsset))
 assert.equal(references[equityAsset].kind,'equity');assert.equal(completed.profile.lines[0].isin,equityReference.isin)
-console.log('Profils abonnés : identité propre, création sans scénario, mises à jour, recherche, héritage, fichiers, protection des conflits/corruptions/quotas et limite commune validés.')
+console.log('Profils abonnés : identité propre, création sans scénario, mises à jour, recherche, héritage, fichiers, protection des conflits/corruptions/quotas et sauvegardes sans plafond de positions validés.')

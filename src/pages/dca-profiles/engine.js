@@ -3,9 +3,9 @@ import { references, exposureRecords } from './records.js'
 import { ASSETS } from './data.js'
 import { publishedExposure } from './exposure.js'
 export { references }
-export const MAX_POSITIONS=8
-// Actifs & expositions and lossless recovery retain their existing capacity.
-export const MAX_EXPOSURE_POSITIONS=50
+// No product limit on positions; explicit finite limits remain available to callers.
+export const MAX_EXPOSURE_POSITIONS=Infinity
+export const MAX_POSITIONS=MAX_EXPOSURE_POSITIONS
 export const profilePositionLimit = () => MAX_EXPOSURE_POSITIONS
 export const PROFILE_SCOPES = ['Portefeuille investi','PEA + CTO','PEA','CTO','Ensemble des placements']
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`
@@ -23,7 +23,7 @@ export function validateProfile(profile, maxPositions=profilePositionLimit(profi
   const errors=[]
   if ((!profile.imageOnly && !profile.name?.trim()) || (profile.name||'').length>45) errors.push('Indique un pseudonyme de 1 à 45 caractères.')
   if (!PROFILE_SCOPES.includes(profile.scope)) errors.push('Choisis un périmètre dans la liste.')
-  if (!Array.isArray(profile.lines) || profile.lines.length<1 || profile.lines.length>maxPositions) return [...errors,`Le portefeuille doit contenir entre 1 et ${maxPositions} positions. ${profile.lines?.length>maxPositions?'Toutes les lignes sont conservées : retire des positions pour débloquer la publication.':''}`.trim()]
+  if (!Array.isArray(profile.lines) || profile.lines.length<1 || profile.lines.length>maxPositions) return [...errors,`${Number.isFinite(maxPositions)?`Le portefeuille doit contenir entre 1 et ${maxPositions} positions.`:'Le portefeuille doit contenir au moins une position.'} ${profile.lines?.length>maxPositions?'Toutes les lignes sont conservées : retire des positions pour débloquer la publication.':''}`.trim()]
   if(profile.lines.some(l=>!(isManualLine(l)?validManualIdentity(l):Object.hasOwn(ASSETS,l.asset)) || !Number.isFinite(l.weight)||l.weight<0||l.weight>100||(!profile.imageOnly&&(!Number.isFinite(l.amount)||l.amount<0||l.amount>1000000)))) errors.push('Vérifie les actifs, les poids et les versements : uniquement des nombres positifs ou nuls.')
   if(profile.lines.some(l=>isManualLine(l)&&(typeof l.label!=='string'||!l.label.trim()||l.label.length>250))) errors.push('Indique un nom de placement de 1 à 250 caractères.')
   if(profile.lines.some(l=>l.weight===0 && (profile.imageOnly||l.amount===0))) errors.push('Supprime les positions sans poids ni versement.')

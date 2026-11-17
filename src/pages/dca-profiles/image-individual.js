@@ -1,5 +1,7 @@
 import { integerPercentages, exposurePercentage } from './image.js'
 import { radialDonutLayout, shortDonutName, individualColor, holdingPercentage, INDIVIDUAL_LABEL_FONT } from './donut-layout.js'
+import { fitImageCanvas } from './image-canvas.js'
+import { polygonIndex } from './image-collisions.js'
 
 const NAVY='#071d36',IVORY='#fff4df'
 // Separating-axis collision test uses the rotated text rectangle, not its much
@@ -28,8 +30,8 @@ export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={})
  const canvas=document.createElement('canvas'),probe=canvas.getContext('2d')
  probe.font=`600 ${INDIVIDUAL_LABEL_FONT}px Arial`
  const plan=radialDonutLayout(imageRows(rows,allocation),value=>probe.measureText(value).width)
- const scale=Math.min(1,16000/plan.width,16000/plan.height,Math.sqrt(32_000_000/(plan.width*plan.height)))
- canvas.width=Math.floor(plan.width*scale);canvas.height=Math.floor(plan.height*scale)
+ const fitted=fitImageCanvas(plan.width,plan.height),{scale}=fitted
+ canvas.width=fitted.width;canvas.height=fitted.height
  const ctx=canvas.getContext('2d');ctx.scale(scale,scale);ctx.fillStyle=NAVY;ctx.fillRect(0,0,plan.width,plan.height)
  text(ctx,'Épargnant Libre',plan.cx,78,46,'center',true)
  text(ctx,title,plan.cx,155,52,'center',true)
@@ -43,7 +45,7 @@ export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={})
  }
  // Percentages stay inside the annulus, including tiny holdings. Closely spaced
  // labels use an internal callout so their text never covers neighbouring values.
- const placed=[],radius=(plan.outer+plan.inner)/2
+ const placed=polygonIndex(intersects),radius=(plan.outer+plan.inner)/2
  for(const label of [...plan.labels].sort((a,b)=>b.weight-a.weight)){
   const size=label.weight<5?32:40,rotation=label.weight<5?label.angle+(Math.cos(label.angle)<0?Math.PI:0):0
   ctx.font=`700 ${size}px Arial`
@@ -55,11 +57,11 @@ export function renderIndividualDonut(title,rows,{allocation=false,scope=''}={})
    return {x,y,points}
   }
   let at=label.angle,box=boxAt(at)
-  const overlaps=b=>placed.some(p=>intersects(b.points,p.points))
+  const overlaps=b=>placed.overlaps(b.points)
   for(let step=1;overlaps(box)&&step<720;step++){
    at=label.angle+(step%2?1:-1)*Math.ceil(step/2)*.012;box=boxAt(at)
   }
-  placed.push(box)
+  placed.add(box.points)
   const shifted=Math.abs(at-label.angle)>.001
   if(shifted){
    ctx.strokeStyle=label.color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(plan.cx+(plan.outer-12)*Math.cos(label.angle),plan.cy+(plan.outer-12)*Math.sin(label.angle));ctx.lineTo(box.x,box.y);ctx.stroke()

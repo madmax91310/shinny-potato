@@ -5,7 +5,7 @@ export const holdingColor = i => ['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b
 export function balancedDonutRows(rows) {
  const sorted=rows.filter(row=>row.weight>0).map((row,index)=>({...row,index})).sort((a,b)=>b.weight-a.weight||a.index-b.index)
  const result=[]
- while(sorted.length){result.push(sorted.shift());if(sorted.length)result.push(sorted.pop())}
+ for(let left=0,right=sorted.length-1;left<=right;left++,right--){result.push(sorted[left]);if(left<right)result.push(sorted[right])}
  return result
 }
 export function wrapDonutLabel(measure,value,width) {

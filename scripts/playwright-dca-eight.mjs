@@ -36,7 +36,7 @@ for(const width of [1440,390]){
   await holdings.locator('input[type=number]').first().waitFor()
   assert.deepEqual(await values(holdings),[30,20,15,10,8,7,6,4])
   assert.deepEqual(await values(flows),[500,400,300,200,150,100,50,0])
-  await page.getByText('8 / 50 positions',{exact:false}).waitFor()
+  await page.getByText('8 positions',{exact:false}).waitFor()
   const options=page.getByRole('group',{name:'Ajouter un actif',exact:true}).locator('[data-option]');assert(await options.count()>0);assert(await options.first().isEnabled())
   await page.getByRole('searchbox',{name:'Rechercher : Ajouter un actif',exact:true}).fill('Ethereum')
   await page.getByRole('group',{name:'Ajouter un actif',exact:true}).locator('[data-option][data-value=eth]').click()
@@ -146,7 +146,7 @@ for(const width of [1440,390]){
   const fifty={lines:equalWeights(Object.entries(references).slice(0,50).map(([asset,r])=>({asset,label:r.name,isin:r.isin,weight:0,amount:0}))),field:'all',exposureLimit:4}
   await page.evaluate(fifty=>localStorage.setItem('epargnant-publication:v1:simple-exposure-draft',JSON.stringify(fifty)),fifty)
   await page.reload()
-  await page.getByText('50 / 50 positions',{exact:false}).waitFor()
+  await page.getByText('50 positions',{exact:false}).waitFor()
   await page.locator('.dca-simple-preview img').filter({visible:true}).waitFor()
   assert.deepEqual(errors,[])
   console.log(`DCA ${width}px: 8 positions, stable independent editing orders/focus, legacy nine-line saves/imports/draft without loss, exact downloaded PNG, local publication history, exposure fifty-line regression OK.`)

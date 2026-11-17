@@ -3,10 +3,10 @@ import {validateProfile,profilePositionLimit} from '../src/pages/dca-profiles/en
 import {newManualLine} from '../src/pages/dca-profiles/placements.js'
 import {exportPortfolio,importPortfolio} from '../src/pages/dca-profiles/portable-portfolios.js'
 const profile={id:'subscriber:series',name:'Élodie',mode:'participant',scope:'Portefeuille investi',multiImage:true,lines:Array.from({length:50},(_,i)=>newManualLine({label:`Fonds euros épargne ${i}`,category:'Fonds en euros',weight:2,amount:i?0:100}))}
-assert.equal(profilePositionLimit(profile),50)
+assert.equal(profilePositionLimit(profile),Infinity)
 assert.deepEqual(validateProfile(profile),[])
 assert.deepEqual(validateProfile({...profile,multiImage:false}),[])
-assert.ok(validateProfile({...profile,lines:[...profile.lines,newManualLine()]}).some(e=>e.includes('50 positions')))
+assert.deepEqual(validateProfile({...profile,lines:[...profile.lines,newManualLine({label:'Position sans flux',amount:1})]}),[])
 const record={id:'series',title:'Élodie',profile,draft:'Mon texte',field:'all'}
 const restored=importPortfolio(exportPortfolio(record))
 assert.equal(restored.profile.multiImage,true)

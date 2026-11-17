@@ -1,4 +1,5 @@
 import { shortDonutName, holdingColor, holdingPercentage } from './donut-layout.js'
+import { fitImageCanvas } from './image-canvas.js'
 import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
 import { profilePositionLimit, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
@@ -223,8 +224,9 @@ export async function renderDcaImage(input,field='countries',maxPositions=profil
  const flowHeight=!p.imageOnly&&['countries','sectors'].includes(field)&&flowCount>8?560+flowCount*112:1067
  const baseHeight=dense?.totalHeight??(['all','overlap'].includes(field)?1000:p.imageOnly?960:flowHeight)
  const includeCompanies=p.showCompanies===true&&field!=='overlap'
- const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=baseHeight+(includeCompanies?300:0);const ctx=canvas.getContext('2d')
- const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,canvas.height)
+ const logicalHeight=baseHeight+(includeCompanies?300:0),fitted=fitImageCanvas(1600,logicalHeight)
+ const canvas=document.createElement('canvas');canvas.width=fitted.width;canvas.height=fitted.height;const ctx=canvas.getContext('2d');ctx.scale(fitted.scale,fitted.scale)
+ const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,logicalHeight)
  const finish=async()=>{if(includeCompanies)await companiesPanel(ctx,p,baseHeight);return canvas}
  if(field==='overlap'){await overlapPortfolio(ctx,p);return canvas}
  if(field==='all'){if(dense)densePortfolio(ctx,p,a,dense);else fullPortfolio(ctx,p,a);return finish()}

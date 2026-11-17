@@ -46,7 +46,7 @@ export function restoreSavedProfile(profile){
   amount:line.amount===null?NaN:profile.imageOnly&&line.amount===undefined?0:line.amount}))}
 }
 export function validSaved(record){
- try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors','both','all','overlap'].includes(record.field)&&(record.status==='draft'?validDraftProfile(record.profile):!validateProfile(record.profile,MAX_EXPOSURE_POSITIONS).length)}catch{return false}
+ try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&['countries','sectors','both','all','overlap'].includes(record.field)&&(record.status==='draft'?validDraftProfile(record.profile):!validateProfile(record.profile,MAX_EXPOSURE_POSITIONS).length)}catch{return false}
 }
 export function readSavedState(storage,{recoverInvalidRoot=false}={}){
  const raw=storage.getItem(SAVED_KEY)

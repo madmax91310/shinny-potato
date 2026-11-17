@@ -1,4 +1,5 @@
 [
+  "node scripts/playwright-unlimited-positions.mjs && node scripts/playwright-unlimited-rendering.mjs",
   "node scripts/playwright-public-portfolios.mjs",
   "node scripts/playwright-dca-export-choices.mjs",
   "node scripts/playwright-dca-individual-style.mjs",
