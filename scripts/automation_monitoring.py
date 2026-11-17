@@ -158,7 +158,8 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             add(f'checks:{workflow}', {**base, 'kind': 'checks', 'field': 'Validation des données',
                 'failedSteps': validation_failures, 'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in validation_failures) or 'Validation en échec ; consulter le journal.'})
         other_failures = [f for f in row.get('failures', []) if f['step'] not in validation_steps
-                          and f['step'] not in config.get('collectionSteps', [])
+                          and (f['step'] not in config.get('collectionSteps', [])
+                               or f['step'] in config.get('jobOnlyCollectionSteps', []))
                           and f['job'] not in ('report-failures', 'report-validation-failures')
                           and not f['job'].startswith('deploy /')]
         if config.get('controlOnly')and validation_failed:other_failures=[]
@@ -169,9 +170,12 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             checks_only = (not publishing and row.get('publicationStatus') == 'success' and row.get('failures')
                            and all(f['job'].startswith('deploy /') for f in row['failures']))
             kind = 'publication' if publishing else 'checks' if checks_only else 'collection'
+            # The aggregate report-failures job is skipped after recovery. It
+            # cannot be the recovery gate for an independently evidenced source.
+            incident_failures = other_failures if kind == 'collection' and other_failures else row.get('failures', [])
             add(f"{'workflow' if kind == 'collection' else kind}:{workflow}", {**base, 'kind': kind,
                 'field': {'publication': 'Publication', 'checks': 'Contrôle après publication'}.get(kind, 'Exécution du collecteur'),
-                'failedSteps': row.get('failures', []), 'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
+                'failedSteps': incident_failures, 'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in incident_failures) or 'Exécution en échec ; consulter le journal.'})
     for pending in state.get('inFlightRuns',{}).values():
         workflow=pending['workflow'];run=pending['run'];config=registry.get(workflow)
         if not config:continue
@@ -333,12 +337,30 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             published_source=timestamp(workflow.get('sourcePhaseCompletedAt'))
             if not proof or failed and(not checked or checked<failed):return None
             if source_bound and(not published_source or published_source<source_bound):return None
-            if row.get('attemptedDataIds')and not set(row['attemptedDataIds'])<=set(workflow.get('validatedDataIds',[])):return None
+            recorded = set(workflow.get('validatedDataIds', []))
+            if workflow.get('recordingStatus') == 'success' and workflow.get('validationStatus') == 'success':
+                recorded.update(workflow.get('recordedObservationIds', []))
+            if row.get('attemptedDataIds')and not set(row['attemptedDataIds'])<=recorded:return None
             return proof
         if key.startswith(('workflow:', 'checks:')):
             failed_steps = row.get('failedSteps', [])
             if not failed_steps or any(workflow.get('stepResults', {}).get(f['job'] + '\n' + f['step']) != 'success' for f in failed_steps):return None
-            if row.get('attemptedDataIds') and not set(row['attemptedDataIds'])<=set(workflow.get('validatedDataIds',[])):return None
+            # A later REST conclusion cannot repair a continued source failure:
+            # require the durable outcome from that exact later attempt as well.
+            currency_steps = registry.get(row.get('workflow'), {}).get('jobOnlyCollectionSteps', [])
+            receipt = workflow.get('currencyStepOutcomes') or {}
+            for failed_step in failed_steps:
+                if failed_step['step'] in currency_steps:
+                    identifier = failed_step['step'].removeprefix('Collect observations: ')
+                    if (receipt.get('runId') != workflow.get('runId')
+                            or receipt.get('attempt') != workflow.get('attempt', 1)
+                            or receipt.get('steps', {}).get(identifier) != 'success'):
+                        return None
+            recorded = set(workflow.get('validatedDataIds', []))
+            if (all(f['step'] == 'Commit validated observations' for f in failed_steps)
+                    and workflow.get('recordingStatus') == 'success' and workflow.get('validationStatus') == 'success'):
+                recorded.update(workflow.get('recordedObservationIds', []))
+            if row.get('attemptedDataIds') and not set(row['attemptedDataIds'])<=recorded:return None
             bound=timestamp(row.get('completedAt'))
             checked=timestamp(workflow.get('completedAt'))
             if bound and (not checked or checked<bound):return None

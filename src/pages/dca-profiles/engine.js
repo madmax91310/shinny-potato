@@ -3,9 +3,9 @@ import { references, exposureRecords } from './records.js'
 import { ASSETS } from './data.js'
 import { publishedExposure } from './exposure.js'
 export { references }
-export const MAX_POSITIONS=8
 // No product limit on positions; explicit finite limits remain available to callers.
 export const MAX_EXPOSURE_POSITIONS=Infinity
+export const MAX_POSITIONS=MAX_EXPOSURE_POSITIONS
 export const profilePositionLimit = () => MAX_EXPOSURE_POSITIONS
 export const PROFILE_SCOPES = ['Portefeuille investi','PEA + CTO','PEA','CTO','Ensemble des placements']
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`

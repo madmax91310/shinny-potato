@@ -3,8 +3,8 @@ import copy
 import argparse, datetime as dt, hashlib, json, re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from collect_etf_pilot import product_data_url, parse_share_with_dated_holdings, source_date, replication_characteristics
-from collect_etf_holdings import parse_holdings, collect_holdings
+from collect_etf_pilot import product_data_url, parse_share_with_dated_holdings, source_date, replication_characteristics, read_blackrock_response, partial_holdings_response
+from collect_etf_holdings import parse_holdings, collect_holdings, independent_holdings
 from data_automation import get_text, UTC, write_json_atomic
 from apply_etf_collection import merge_collection
 ROOT=Path(__file__).resolve().parents[1]
@@ -25,12 +25,14 @@ def collect_one(config,now):
  try:return _collect_one(config,now,audit)
  except Exception as error:
   if audit.get('primaryAllocationChecks'):error.primaryAllocationChecks=audit['primaryAllocationChecks']
+  if audit.get('sourceAttempts'):error.sourceAttempts=[*audit['sourceAttempts'],*getattr(error,'sourceAttempts',[])]
   raise
 
 def _collect_one(config,now,audit):
  share={**config,'currency':config.get('currency','USD'),'collectHoldings':True,'requireFullHistory':False}
  url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings%2CfundamentalsAndRisk')
- raw=get_text(url,('application/json',),20000000);body=json.loads(raw)
+ body,raw,attempts,url=read_blackrock_response(url,share,get_text)
+ if attempts:audit['sourceAttempts']=attempts
  components=body['componentsByNameMap']
  facts=components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
  v=lambda key:facts[key]['value']
@@ -50,13 +52,23 @@ def _collect_one(config,now,audit):
  if config.get('compositionFromHoldings'):parse_body['componentsByNameMap'].pop('exposureBreakdowns',None)
  result=parse_share_with_dated_holdings(parse_body,share,now,fetch=get_text)
  if not result.get('performance',{}).get('years'):raise ValueError('No complete annual NAV total return yet')
- holdings,countries=parse_holdings(body,share,now) if isinstance(body,dict) else collect_holdings(components['holdings'],share,now)
+ try:
+  holdings,countries=parse_holdings(body,share,now) if isinstance(body,dict) else collect_holdings(components['holdings'],share,now)
+ except (ValueError,KeyError,TypeError):
+  if (not isinstance(body,dict) or config.get('compositionFromHoldings')
+      or not partial_holdings_response(body,share['isin'],share['productId'],share['currency'])):
+   raise
+  holdings,countries,field_attempts=independent_holdings(share,now,get_text)
+  attempts.extend(field_attempts);audit['sourceAttempts']=attempts
  result['holdings']=holdings
  if config.get('compositionFromHoldings'):
   result['sectors']=holdings_sectors(body,holdings['asOf'])
   result['countries']=countries
  if allocation_evidence:result.update(allocation_evidence)
- if not result['countries'].get('rows'):result['countries']=countries
+ if not result['countries'].get('rows'):
+  result['countries']=countries
+  for error in result.get('collectionErrors',[]):
+   if error.get('field')=='countries-primary':error['fallbackQualified']=True
  if any(not result[field].get('rows') for field in ['holdings','countries','sectors']):raise ValueError('Incomplete issuer composition')
  page_url=url
  name=body.get('fundName')
@@ -88,6 +100,7 @@ def _collect_one(config,now,audit):
   result['metrics'][field]={'value':value,'label':label,'unit':unit,'asOf':source_date(point['asOfDate'],now),'checkedAt':now.date().isoformat(),'sourceUrl':url,'method':point.get('infoBubble',''),'scope':'Fund portfolio' if field!='twelveMonTrlYld' else 'Exact share, trailing 12 months'}
  if config.get('currencyHedge') is True and 'Hedged' not in result['index']:raise ValueError('Hedge benchmark changed')
  result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
+ if attempts:result['sourceAttempts']=attempts
  return result
 
 def retain_listing_evidence(archive, records, required_ids=None):
@@ -143,7 +156,7 @@ def main():
  if args.only:configs=[c for c in configs if c['id']in args.only]
  def one(c):
   try:return {'record':collect_one(c,now)}
-  except Exception as e:return {'id':c['id'],'isin':c['isin'],'error':str(e),**({'primaryAllocationChecks':e.primaryAllocationChecks}if hasattr(e,'primaryAllocationChecks')else{})}
+  except Exception as e:return {'id':c['id'],'isin':c['isin'],'error':str(e),**({'primaryAllocationChecks':e.primaryAllocationChecks}if hasattr(e,'primaryAllocationChecks')else{}),**({'sourceAttempts':e.sourceAttempts}if hasattr(e,'sourceAttempts')else{})}
  with ThreadPoolExecutor(max_workers=4)as pool:rows=list(pool.map(one,configs))
  report={'checkedAt':now.isoformat(),'records':[x['record']for x in rows if 'record'in x],'excluded':[x for x in rows if 'record'not in x]}
  if args.apply:
@@ -170,7 +183,7 @@ def main():
   write_json_atomic(ROOT/'src/data/automated-etf.json',current)
  active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
  for row in report['excluded']:row['active']=row['id']in active
- if any(c.get('allocationFallback') for c in configs):
+ if any(c.get('allocationFallback') or c.get('isolateAllocationFailures') for c in configs):
   from qualified_physical_allocation import contract_results
   report['contractResults']=contract_results(configs,report)
  write_json_atomic(args.output,report)

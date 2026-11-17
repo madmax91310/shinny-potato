@@ -1,5 +1,13 @@
+import './test-budget-studio.mjs'
+import './audit-budget-studio.mjs'
+import './test-budget-chantier4.mjs'
 import './test-budget-social-image.mjs'
+import './test-budget-new-profiles.mjs'
+import './test-budget-qualified-profiles.mjs'
+import './test-budget-complementary-profiles.mjs'
+import './test-budget-roadmap.mjs'
 import './test-budget-audit-20261113.mjs'
+import './test-budget-editorial-copy.mjs'
 import './test-budget-presentation.mjs'
 import './test-budget-completeness.mjs'
 import assert from 'node:assert/strict'
@@ -116,7 +124,9 @@ assert.match(buildBudgetText(futureApprentice), /budget prévu/i)
 assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')).expenses,1775, 'Detailed editorial expenses preserve the combined envelopes')
 
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /pendant deux ans/)
-assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /50\/30\/20/)
+const mathieuCopy = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30'))
+assert.match(mathieuCopy, /deux crédits/)
+assert.match(mathieuCopy, /cuisine/)
 
 const apprentice = BUDGET_PROFILES.find(p => p.id === 'reddit-alternant-20-2025-09-03')
 assert(apprentice.completion.forecast)
@@ -150,9 +160,9 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 
 // Prepared budgets preserve source statements and may show a deficit; the independent new ledgers are tested separately.
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
-  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id)
+  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id) || p
   if (source.kind==='prepared') assert.equal(analyzeBudget(source).balance, source.provenance?.expectedBalance ?? 0, p.id)
-  assert.match(sourceReply(p), /^Source : /)
+  assert.match(sourceReply(p), /^Source(?: d’inspiration)? : /)
   assert.match(buildBudgetText(p), /^Budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method || p.completion && BUDGET_COMPLETENESS[p.id].conclusion)
@@ -244,7 +254,7 @@ const belgianReference = bankProfile('reference-indexo-belgique-2026-11')
 assert.equal(belgianReference.publishedAt, null, 'An update date is not an established original publication date')
 assert.equal(belgianReference.provenance.sourceUpdatedAt, '2026-10-31')
 const lille = bankProfile('reference-couple-lille-budget-2026-01')
-assert.match(buildBudgetText(lille), /Salaire d’Hugo/)
+assert.match(buildBudgetText(lille), /Salaire net d’Hugo/)
 assert.match(buildBudgetText(lille), /32 ans et infirmière de 30 ans/)
 assert.equal(BUDGET_PROFILES.filter(p => p.source.url === lille.source.url).length, 2, 'Two distinct reference cases share an article, not an identity or ledger')
 const familyReference = bankProfile('reference-famille-lyon-2026')

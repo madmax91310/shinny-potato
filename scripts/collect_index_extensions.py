@@ -1,5 +1,6 @@
 """Exact dated index exposures and Nasdaq's explicit total-return calendar table."""
 import datetime as dt
+import json
 import re
 from issuer_documents import download, pdf_text, proof, document_date, bounded_return
 from data_automation import reject
@@ -53,7 +54,50 @@ def amundi_composition(body, config, now, url):
             'provenance': 'Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus.'}
 
 
+def amundi_api_composition(config, now, api_fetch=None):
+    """Issuer INDEX fields, never the physical fund or synthetic basket."""
+    from collect_amundi_etf import API, fetch_api, breakdown
+    expected = config['compositionApiIndex']
+    isin = config['compositionIsin']
+    fields = ['ISIN', 'BENCHMARK_NAME', 'FUND_REPLICATION_METHODOLOGY',
+              'INDEX_BREAKDOWNS_AS_OF_DATE', 'BENCHMARK_NUMBER_OF_COMPONENTS']
+    payload = {'productIds': [isin],
+        'context': {'countryCode': 'FRA', 'languageCode': 'fr', 'userProfileName': 'INSTIT'},
+        'characteristics': fields,
+        'breakDown': {'aggregationFields': ['INDEX_TOP10', 'INDEX_COUNTRIES', 'INDEX_SECTORS']}}
+    body = (api_fetch or fetch_api)(payload)
+    products = body['products']
+    if len(products) != 1:
+        reject('Missing or duplicate exact Amundi index product')
+    product = products[0]
+    facts = product['characteristics']
+    replication = {'Physique': 'Direct(Physical)', 'Synthétique': 'Indirect(Swap Based)'}[config.get('compositionReplication', 'Synthétique')]
+    if (product['productId'] != isin or facts.get('ISIN') != isin
+            or facts.get('BENCHMARK_NAME') != expected
+            or facts.get('FUND_REPLICATION_METHODOLOGY') != replication):
+        reject('Amundi exact index identity or replication changed')
+    stamp = document_date(facts['INDEX_BREAKDOWNS_AS_OF_DATE'], now)
+    count = facts.get('BENCHMARK_NUMBER_OF_COMPONENTS')
+    if type(count) is not int or not 1 <= count <= 10000:
+        reject('Missing exact Amundi index constituent count')
+    rows = {}
+    for field, key in [('countries', 'INDEX_COUNTRIES'), ('sectors', 'INDEX_SECTORS'), ('holdings', 'INDEX_TOP10')]:
+        allocation = breakdown(product['breakDowns'], key, stamp, now, field == 'holdings')
+        if not allocation or field == 'holdings' and len(allocation['rows']) != 10:
+            reject('Incomplete Amundi native index field: ' + key)
+        rows[field] = [[r['name'], r['weightPct']] for r in allocation['rows']]
+    return {'index': config['name'], 'asOf': stamp, 'constituents': count, **rows,
+        'source': {'url': API, 'checkedAt': now.date().isoformat(),
+                   'sha256': proof(json.dumps(body, sort_keys=True).encode()),
+                   'label': 'Composition de l’indice publiée par Amundi',
+                   'productId': isin, 'controlledFields': fields + payload['breakDown']['aggregationFields']},
+        'provenance': 'Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées.'}
+
+
 def collect_amundi_composition(config, now, fetch=download):
+    if config.get('compositionApiIndex'):
+        # Invalid identity/weights fail closed; an older PDF cannot hide them.
+        return amundi_api_composition(config, now)
     from collect_amundi_index_exposure import collect_monthly_document
     def parse(body, url):
         facts = amundi_composition(body, config, now, url)

@@ -1,5 +1,6 @@
+import { validManualIdentity } from './placements.js'
 import { ASSETS } from './data.js'
-import { validateProfile, MAX_EXPOSURE_POSITIONS, references } from './engine.js'
+import { validateProfile, MAX_EXPOSURE_POSITIONS, PROFILE_SCOPES, references } from './engine.js'
 const legacyAliases={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco'}
 export const profileSelection = profile => profile?.selection === 'controversial' ? 'controversial' : 'classic'
 export function migrateProfile(profile){return profile&&Array.isArray(profile.lines)?{...profile,selection:profileSelection(profile),lines:profile.lines.map(line=>({...line,asset:legacyAliases[line.asset]||line.asset}))}:profile}
@@ -16,8 +17,36 @@ export function filterProfiles(profiles,filters,used=[]){return profiles.filter(
  && (!filters.kind || p.lines.some(l=>assetKind(l.asset)===filters.kind))
  && (!filters.unused || !used.includes(p.id))
 })}
+// Storage validation accepts partial inputs; publication keeps validateProfile's stricter rules.
+export function validDraftProfile(profile){
+ try{
+  return profile && typeof profile.id==='string' && profile.id.length>0 && profile.id.length<=100
+   && typeof profile.name==='string' && profile.name.length<=45 && PROFILE_SCOPES.includes(profile.scope)
+   && ['name','job','family','location','emoji'].every(key=>profile[key]===undefined || typeof profile[key]==='string' && profile[key].length<=250)
+   && ['age','income','monthly'].every(key=>profile[key]===undefined || profile[key]===null || Number.isFinite(profile[key]) && profile[key]>=0)
+   && Array.isArray(profile.lines) && profile.lines.length<=MAX_EXPOSURE_POSITIONS
+   && profile.lines.every(line=>line && (Object.hasOwn(ASSETS,line.asset) || validManualIdentity(line))
+    && typeof line.label==='string' && line.label.length<=250
+    && (line.emoji===undefined || typeof line.emoji==='string' && line.emoji.length<=30)
+    && (line.isin===undefined || typeof line.isin==='string' && line.isin.length<=12)
+    && (line.weight===null || Number.isFinite(line.weight) || Number.isNaN(line.weight))
+    && (line.amount===null || Number.isFinite(line.amount) || Number.isNaN(line.amount) || profile.imageOnly && line.amount===undefined))
+ }catch{return false}
+}
+export function savedRecord(record){
+ if(!validDraftProfile(record.profile))throw Error('Le brouillon contient des données illisibles.')
+ const {status:_status,...item}=record
+ // JSON null preserves an empty numeric input across reloads; it must never become zero.
+ const profile=JSON.parse(JSON.stringify({...item.profile,approved:false}))
+ return {...item,profile,...(validateProfile(restoreSavedProfile(profile),MAX_EXPOSURE_POSITIONS).length?{status:'draft'}:{})}
+}
+export function restoreSavedProfile(profile){
+ return {...profile,approved:false,lines:profile.lines.map(line=>({...line,
+  weight:line.weight===null?NaN:line.weight,
+  amount:line.amount===null?NaN:profile.imageOnly&&line.amount===undefined?0:line.amount}))}
+}
 export function validSaved(record){
- try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&['countries','sectors','both','all','overlap'].includes(record.field)&&!validateProfile(record.profile,MAX_EXPOSURE_POSITIONS).length}catch{return false}
+ try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&['countries','sectors','both','all','overlap'].includes(record.field)&&(record.status==='draft'?validDraftProfile(record.profile):!validateProfile(record.profile,MAX_EXPOSURE_POSITIONS).length)}catch{return false}
 }
 export function readSavedState(storage,{recoverInvalidRoot=false}={}){
  const raw=storage.getItem(SAVED_KEY)

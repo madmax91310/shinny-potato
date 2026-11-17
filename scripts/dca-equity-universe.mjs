@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import profiles from '../src/data/equity-candidates.json' with {type:'json'}
 import { ASSETS } from '../src/data/market-history.js'
 import { COMPANY_HISTORY } from '../src/data/company-history.js'
-export const EQUITY_ALIASES={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco','air-liquide':'airliquide',totalenergies:'total','waste-management':'wasteManagement','bnp-paribas':'bnp','coca-cola':'cocacola',google:'alphabet','home-depot':'hd',mcdonalds:'mcd',abbvie:'abbv','thermo-fisher':'tmo',oracle:'orcl',qualcomm:'qcom','texas-instruments':'txn',micron:'mu','applied-materials':'amat',exxonmobil:'xom',chevron:'cvx',conocophillips:'cop'}
+export const EQUITY_ALIASES={stockUS58506Q1094:'medpace','novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco','air-liquide':'airliquide',totalenergies:'total','waste-management':'wasteManagement','bnp-paribas':'bnp','coca-cola':'cocacola',google:'alphabet','home-depot':'hd',mcdonalds:'mcd',abbvie:'abbv','thermo-fisher':'tmo',oracle:'orcl',qualcomm:'qcom','texas-instruments':'txn',micron:'mu','applied-materials':'amat',exxonmobil:'xom',chevron:'cvx',conocophillips:'cop'}
 export function equityUniverse({includeUnqualified=false}={}){
  const rows={}
  const put=(id,r)=>{id=EQUITY_ALIASES[id]||id;rows[id]={...rows[id],...r,id,aliases:Object.keys(EQUITY_ALIASES).filter(k=>EQUITY_ALIASES[k]===id)}}
@@ -17,6 +17,11 @@ export function equityUniverse({includeUnqualified=false}={}){
  const classified=JSON.parse(readFileSync(new URL('../src/data/dca-security-classifications.json',import.meta.url)))
  const unclassifiedCandidates=new Set(candidates.filter(c=>!classified[c.isin]).map(c=>c.isin))
  for(const [id,isin]of Object.entries(ids))if(!unclassifiedCandidates.has(isin))put(id,{isin})
+ // Requested DCA identity, checked 2026-11-15: Fidelity's security reference and SEC N-PORT.
+ // https://digital.fidelity.com/prgw/digital/research/quote/dashboard/summary?symbol=MEDP
+ // https://www.sec.gov/Archives/edgar/data/1936157/000193615726000484/primary_doc.xml
+ // Identity only: no country/sector or historical performance is inferred here.
+ put('medpace',{isin:'US58506Q1094',name:'Medpace Holdings',tickers:['MEDP'],currency:'USD',sourceUrl:'https://digital.fidelity.com/prgw/digital/research/quote/dashboard/summary?symbol=MEDP'})
  // Curated international identities keep their published label and expected listing before and after qualification.
  for(const r of [...JSON.parse(readFileSync(new URL('../src/data/global-equities.json',import.meta.url))),...candidates.filter(c=>!unclassifiedCandidates.has(c.isin))])put(r.id,{name:r.label,isin:r.isin,currency:r.currency,...(r.symbol?{tickers:[...new Set([...(rows[r.id]?.tickers||[]),r.symbol])]}:{})})
  // Issuer harmonised the NYSE ordinary-share listing on 2 February 2026; the ADR programme closed.

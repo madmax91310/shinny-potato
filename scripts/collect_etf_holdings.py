@@ -1,9 +1,42 @@
 """Official BlackRock product-page holdings; no search, keys or manual downloads."""
 import math
 import datetime as dt
-from urllib.parse import urlencode, urlsplit
-from data_automation import get_json, number, reject
-from collect_etf_pilot import source_date
+import hashlib
+import json
+from urllib.parse import urlencode, urlsplit, parse_qsl
+from data_automation import get_json, get_text, number, reject
+from collect_etf_pilot import source_date, product_data_url
+
+
+def independent_holdings(share, now, fetch=get_text):
+    """One exact-share holdings request, independent of listing/risk bundles.
+
+    It supplies only the positions and their geography, with their OWN source,
+    bytes and date. It is not a replacement for prices, NAV or primary tables.
+    """
+    route = urlsplit(product_data_url(share))
+    query = dict(parse_qsl(route.query))
+    query['component'] = 'keyFundFacts,holdings.all'
+    url = route._replace(query=urlencode(query)).geturl()
+    attempt = {'field': 'holdings', 'url': url, 'status': 'failed'}
+    try:
+        raw = fetch(url, ('application/json',), 25_000_000)
+        attempt['sha256'] = hashlib.sha256(raw.encode()).hexdigest()
+        body = json.loads(raw, parse_constant=lambda value: reject('Invalid JSON number: ' + value))
+        facts = body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        if (facts['isin']['value'] != share['isin'] or facts['productStructure']['value'] != 'Physical'
+                or facts['assetClass']['value'] != share.get('fundAssetClass', share.get('holdingsAssetClass', 'Equity'))):
+            reject('Independent holdings require the exact physical share and asset class')
+        holdings, countries = parse_holdings(body, share, now)
+        for observation in (holdings, countries):
+            observation.update(sourceUrl=url, sha256=attempt['sha256'], basis='fund')
+        attempt.update(status='validated', asOf=holdings['asOf'])
+        return holdings, countries, [attempt]
+    except Exception as error:
+        attempt['reason'] = str(error)
+        error.sourceAttempts = [attempt]
+        error.sourceUrl = url
+        raise
 
 
 def holdings_url(component, share):

@@ -3,6 +3,8 @@ import argparse
 import copy
 import datetime as dt
 import json
+import os
+from pathlib import Path
 import re
 import subprocess
 
@@ -128,6 +130,21 @@ DCA_EXPOSURE_VIEWS = {
 # This saved INSEE source receipt is not read by actor, anniversary or monthly
 # acquisition. The active inflation-monthly.js remains a protected input.
 INFLATION_RECEIPT = 'scripts/source-snapshots/inflation-automated.json'
+# Scheduled run43727084478 acquired and validated its observations, then a
+# concurrent exposure publication changed these exact downstream DCA views.
+# Anniversary/INSEE acquisition does not read them. The shared issuer registry
+# is different: its consumed calendars/identities still pass the strict
+# calendar_inputs_unchanged check below. Rebuild and financial validation of
+# the combined tree remain mandatory; no directory or neighbouring file is
+# admitted, and newer exposure outputs are preserved rather than replayed.
+PUBLICATION_EXPOSURE_VIEWS = {
+    'src/pages/dca-profiles/catalog.json',
+    'src/pages/dca-profiles/exposures-extra-1.json',
+    'src/pages/dca-profiles/exposures-extra-2.json',
+    'src/pages/dca-profiles/exposures.json',
+    'src/pages/dca-profiles/holdings.json',
+    *(f'src/pages/dca-profiles/holdings-{i}.json' for i in (0, 2, 9, 11, 13, 16, 18)),
+}
 ALLOWED = {
     # Actual recording refusal41370892678: these ten exposure outputs are
     # not read by collect_presentation_actors or its source helpers. They are
@@ -135,6 +152,8 @@ ALLOWED = {
     # Exact paths only: actor data, source code, freshness policy and any
     # other projection remain protected and require fresh acquisition.
     'actors': {INFLATION_RECEIPT,
+               # Run43735485058: SCPI producer output is not actor acquisition input.
+               'src/data/automated-scpi.json',
                'src/data/exposure-etf-expansion-records.json',
                'src/pages/dca-profiles/catalog.json',
                'src/pages/dca-profiles/exposures-extra-0.json',
@@ -151,14 +170,29 @@ ALLOWED = {
     'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     # Run41115036012: actor/publication observations do not feed SCPI acquisition.
     # Exact outputs only; combined-tree build, audits and non-mutation still required.
-    'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {'src/data/exposure-etf-expansion-records.json', 'src/data/automated-presentation-actors.json', 'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
+    'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {
+                         # Run43734835160: economic observations do not feed SCPI acquisition.
+                         # Keep the newer registry and require combined-tree financial validation.
+                         'src/data/automated-economic.json',
+                         # Scheduled43726539441: independent non-bond outputs,
+                         # never read by SCPI acquisition or its source helpers.
+                         # Preserve them and rerun the combined financial build.
+                         'scripts/source-snapshots/non-bond-monthly-active.json',
+                         'src/data/non-bond-etf-records.json',
+                         'src/data/non-bond-levels.json',
+                         'src/data/non-bond-monthly-records.json',
+                         'src/data/non-bond-qualified-records.json',
+                         'src/data/exposure-etf-expansion-records.json', 'src/data/automated-presentation-actors.json', 'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
                          'src/data/anniversary-index-history.json',
                          'src/data/purchasing-power-observations.json',
                          'scripts/source-snapshots/anniversary-indices.json'},
     # Actual refusal40893319635: actor presentations are not an acquisition
     # input for INSEE observations or exact anniversary levels. Their latest
     # version must still survive the mandatory combined-tree build/audits.
-    'publication': {INFLATION_RECEIPT} | INDEPENDENT | {'src/data/automated-scpi.json',
+    'publication': {INFLATION_RECEIPT} | INDEPENDENT | PUBLICATION_EXPOSURE_VIEWS | {
+                                  # Independent macro registry; source collectors read INSEE directly.
+                                  'src/data/automated-economic.json','src/data/automated-scpi.json',
+                                  'src/data/exposure-etf-expansion-records.json',
                                   'src/data/automated-presentation-actors.json',
                                   # Race41410676250: acquisition reads neither
                                   # these exact derived reports nor the other
@@ -378,6 +412,12 @@ def subscriber_test_addition_only(base, upstream, path):
     return canonical(left) == canonical(right)
 
 
+class StaleCollectionInputs(ValueError):
+    def __init__(self, paths):
+        self.paths = paths
+        super().__init__('Collection inputs may have changed; recollect from master: ' + ', '.join(paths))
+
+
 def check(kind, base, upstream):
     paths = subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
@@ -407,7 +447,7 @@ def check(kind, base, upstream):
                 blocked.append(path)  # Unknown acquisition dependencies fail closed.
     blocked.sort()
     if blocked:
-        raise ValueError('Collection inputs may have changed; recollect from master: ' + ', '.join(blocked))
+        raise StaleCollectionInputs(blocked)
     return sorted(p for p in paths if p)
 
 
@@ -417,5 +457,22 @@ if __name__ == '__main__':
     p.add_argument('--base', required=True)
     p.add_argument('--upstream', default='HEAD^')
     a = p.parse_args()
-    print('Qualified upstream changes; financial revalidation still required:', check(a.kind, a.base, a.upstream))
+    try:
+        paths = check(a.kind, a.base, a.upstream)
+    except StaleCollectionInputs as error:
+        target = os.environ.get('VALIDATED_DATA_REFUSAL_FILE')
+        nonce = os.environ.get('VALIDATED_DATA_REFUSAL_NONCE')
+        if target and nonce:
+            # Opt-in machine result. Other callers retain the existing exception.
+            payload = {'schemaVersion': 1, 'reason': 'stale-collection-inputs',
+                       'kind': a.kind, 'base': subprocess.check_output(
+                           ['git', 'rev-parse', a.base], text=True).strip(),
+                       'upstream': subprocess.check_output(
+                           ['git', 'rev-parse', a.upstream], text=True).strip(),
+                       'nonce': nonce, 'paths': error.paths}
+            Path(target).write_text(json.dumps(payload) + '\n')
+            print(str(error), file=__import__('sys').stderr)
+            raise SystemExit(75)
+        raise ValueError(str(error)) from None
+    print('Qualified upstream changes; financial revalidation still required:', paths)
 

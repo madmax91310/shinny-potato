@@ -47,6 +47,59 @@ class Documents(unittest.TestCase):
         self.assertEqual({2021,2022,2023,2024,2025},{y for y,_ in returns if y>=2021})
         with self.assertRaises(ValueError):ftse_returns(text,{**config,'returnVariant':'NET'},NOW)
         with self.assertRaises(ValueError):ftse_returns(text,{**config,'returnCurrency':'EUR'},NOW)
+    def test_ftse_comparison_country_is_not_a_primary_weight(self):
+        text = self.text('ftse-engd-20261030.txt')
+        config = self.config('ftse-epra-nareit-developed-dividend-plus')
+        now = dt.datetime(2026, 11, 16, tzinfo=UTC)
+        facts = ftse_composition(text, config, now)
+        self.assertEqual(facts['constituents'], 320)
+        self.assertEqual(len(facts['countries']), 22)
+        self.assertFalse(any('Greece' in name for name, _ in facts['countries']))
+        self.assertAlmostEqual(sum(weight for _, weight in facts['countries']), 100.01)
+        self.assertEqual(dict(facts['countries'])['🇺🇸 États-Unis'], 66.86)
+        q = facts['countryTableQualification']
+        self.assertEqual(q['constituentCount'], 320)
+        self.assertEqual(q['excludedComparisonRows'], [{'country':'Greece',
+            'primaryCells':['-','-','-'], 'comparisonCells':['1','577','0.03']}])
+        self.assertEqual(facts, ftse_composition(text, config, now))
+        import re
+        greece = next(line for line in text.splitlines() if line.strip().startswith('Greece'))
+        zero = re.sub(r'\s+-', '   0', greece, count=2)
+        zero = re.sub(r'\s+-', '   0.00', zero, count=1)
+        explicit = ftse_composition(text.replace(greece, zero), config, now)
+        self.assertIn(['Greece', 0.0], explicit['countries'])
+        self.assertEqual(explicit['countryTableQualification']['excludedComparisonRows'], [])
+        changed_comparison = ftse_composition(text.replace(greece, greece.replace('0.03','99.99')), config, now)
+        self.assertEqual(changed_comparison['countries'], facts['countries'])
+        with self.assertRaises(ValueError):
+            ftse_composition(text.replace('No. of Cons', 'Unknown count'), config, now)
+        # Missing primary values never borrow a comparison weight or become zero.
+        import re
+        greece = next(line for line in text.splitlines() if line.strip().startswith('Greece'))
+        for replacement in [re.sub(r'\s+-', '   1', greece, count=1),
+                            re.sub(r'\s+0\.03\s*$', '', greece),
+                            re.sub(r'\s+-', '   0', greece, count=3)]:
+            with self.assertRaises(ValueError):
+                ftse_composition(text.replace(greece, replacement), config, now)
+        with self.assertRaises(ValueError):
+            ftse_composition(text.replace('Totals                                 320',
+                                          'Totals                                 321'), config, now)
+
+    def test_ftse_wrapped_and_weight_only_country_columns(self):
+        now = dt.datetime(2026, 11, 16, tzinfo=UTC)
+        for file, index, count, countries, usa in [
+                ('ftse-infra-20261030.txt','ftse-global-core-infrastructure',277,32,64.73),
+                ('ftse-hdiv-20261030.txt','ftse-all-world-high-dividend-yield',2467,49,40.52)]:
+            with self.subTest(index=index):
+                text = self.text(file)
+                facts = ftse_composition(text, self.config(index), now)
+                self.assertEqual(facts['constituents'], count)
+                self.assertEqual(len(facts['countries']), countries)
+                self.assertEqual(dict(facts['countries'])['🇺🇸 États-Unis'], usa)
+                self.assertEqual(facts['countryTableQualification']['constituentCount'], count)
+                self.assertEqual(facts['countryTableQualification']['excludedComparisonRows'], [])
+                if 'hdiv' in file:self.assertIn(['Vietnam',0.0], facts['countries'])
+
     def test_document_redirect_keeps_issuer_cookie(self):
         class Issuer(BaseHTTPRequestHandler):
             def do_GET(self):

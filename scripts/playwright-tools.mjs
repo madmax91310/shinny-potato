@@ -1099,60 +1099,28 @@ async function testHouseholds(page) {
 }
 
 async function testInvestorIntroductions(page) {
-  const { INVESTORS, dateFR } = await import('../src/pages/investor-portfolio/data.js');
+  const { INVESTORS, buildTweet, normalizePortfolio } = await import('../src/pages/investor-portfolio/data.js');
   const { investorIntroduction } = await import('../src/data/investor-profiles.js');
-  // Exercise every shipped filing before using editorial fixtures. The actual
-  // local payloads include large paginated portfolios and disclosed options.
   await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
-  let snapshotsOk = true;
+  let ok = true;
   for (const [slug] of INVESTORS) {
     const payload = JSON.parse(await readFile(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8'));
     await choose(page.getByLabel('Choisir un investisseur'), slug);
-    await page.waitForFunction(intro => document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
+    await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro, investorIntroduction(slug));
     const actual = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
-    snapshotsOk &&= actual.includes(dateFR(payload.data.snapshot.periodEnd)) && !/NaN|undefined/.test(actual);
-    snapshotsOk &&= actual.includes('Les options du relevé sont exclues') === payload.data.snapshot.holdings.some(row => row.putCall);
-    const credit = await page.locator('.ip-credit').innerText();
-    snapshotsOk &&= credit.includes(payload.data.identity.dataProvider);
-  }
-  // Données de test contrôlées pour isoler les champs éditoriaux du réseau tiers.
-  await page.route('**/data/investors/*.json', async route => {
-    const slug = new URL(route.request().url()).pathname.split('/').at(-1).replace('.json', '');
-    const displayName = INVESTORS.find(([id]) => id === slug)?.[1];
-    await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [{ issuerName: 'Sortie de test', ticker: 'EXIT' }] }, holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6, isNew: true }, { issuerName: 'Hausse de test', ticker: 'UP', weight: .2, sharesChangePct: 18 }, { issuerName: 'Baisse de test', ticker: 'DOWN', weight: .1, sharesChangePct: -12 }, { issuerName: 'Autre position', ticker: 'OTHER', weight: .1 }] } } } });
-  });
-  await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__investorCopiedText = text; } },
-  }));
-  let ok = snapshotsOk;
-  for (const [slug] of INVESTORS) {
-    await choose(page.getByLabel('Choisir un investisseur'), slug);
-    await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
-    ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(slug);
-    const tweet = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
-    ok &&= tweet.startsWith('📊 ') && tweet.includes('🔍 Ce qui distingue ce portefeuille') && !/\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet)
-      && ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '💬 '].every(label => tweet.includes(label))
-      && !tweet.includes('📄 Positions issues')
-      && !/place-t-il|undefined|NaN|\\\\n/.test(tweet);
-    if (!['li-lu', 'gates-trust', 'klarman'].includes(slug)) {
-      ok &&= ['🔄 Quelques mouvements depuis le T1 2026', '🆕 Nouvelle ligne', 'nombre d’actions +18 %', 'nombre d’actions −12 %', '🚪 Ligne sortie'].every(label => tweet.includes(label));
-    }
-    await page.getByRole('button', { name: /Copier le tweet|Copié/ }).click();
-    ok &&= (await page.evaluate(() => window.__investorCopiedText)) === tweet;
+    ok &&= actual === buildTweet(normalizePortfolio(payload));
+    ok &&= !/NaN|undefined/.test(actual);
+    ok &&= (await page.locator('.ip-credit').innerText()).includes(payload.data.identity.dataProvider);
   }
   await page.getByLabel('Présentation de l’investisseur (modifiable)', { exact: true }).fill('Ma présentation personnalisée.');
-  ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('Ma présentation personnalisée.');
   ok &&= (await page.locator('.ip-bio').innerText()) === 'Ma présentation personnalisée.';
+  // The new short post intentionally omits biographies; the app retains the editable context.
+  ok &&= !(await page.locator('#ip-draft').inputValue()).includes('Ma présentation personnalisée.');
   await page.getByRole('button', { name: 'Rétablir la présentation' }).click();
-  ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction(INVESTORS.at(-1)[0]));
-  await choose(page.getByLabel('Choisir un investisseur'), 'cathie-wood');
-  await page.waitForFunction(() => document.querySelector('#ip-intro')?.value.startsWith('Cathie Wood'));
-  ok &&= !(await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction(INVESTORS.at(-1)[0]));
+  ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(INVESTORS.at(-1)[0]);
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
-  await page.unroute('**/data/investors/*.json');
   const incomplete = JSON.parse(await readFile(new URL('../public/data/investors/tepper.json', import.meta.url), 'utf8'));
   incomplete.data.snapshot.holdings = [{ issuerName: 'Relevé partiel', ticker: 'PART', weight: .1 }];
   await page.route('**/data/investors/tepper.json', route => route.fulfill({ json: incomplete }));
@@ -1160,7 +1128,7 @@ async function testInvestorIntroductions(page) {
   await page.getByRole('alert').filter({ hasText: 'Le relevé 13F est incomplet.' }).waitFor();
   ok &&= await page.getByLabel('Tweet modifiable', { exact: true }).count() === 0;
   await page.unroute('**/data/investors/tepper.json');
-  record('Portefeuille d’investisseur', ok, `${INVESTORS.length} présentations et tweets synchronisés, modification, réinitialisation, changement de profil, mobile et rejet des relevés incomplets`);
+  record('Portefeuille d’investisseur', ok, `${INVESTORS.length} textes courts synchronisés aux données ; présentation dans l’application, mobile et rejet des relevés incomplets`);
 }
 
 async function testDataReuse(page) {
@@ -1344,6 +1312,8 @@ try {
   await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, ibkrCount);
   reviewChecks.search = (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount;
   await page.reload({ waitUntil: 'networkidle' });
+  // Network idle does not guarantee that the deferred route finished rendering.
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, ibkrCount);
   reviewChecks.reload = (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount;
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil', exact: true }).fill('');
   const reserveCount = buildReview().items.filter(item => item.category === 'reserve').length;

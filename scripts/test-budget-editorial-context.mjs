@@ -1,7 +1,8 @@
+// This dated audit protects the original source-backed collection. The live bank, including new editorial characters, is checked by test-budget-profiles and test-budget-new-profiles.
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_REFERENCE_PROFILES as BUDGET_PROFILES, BUDGET_REFERENCE_PUBLICATION_CONTEXT as BUDGET_PUBLICATION_CONTEXT, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { budgetTransfers } from '../src/pages/budget-profiles/presentation.js'
 import { analyzeBudget, budgetExpenseSections, budgetPublicIncomeRows, buildBudgetText, euro, hasSeparateBudgetCapacity, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 const before = JSON.parse(readFileSync(new URL('./fixtures/budget-editorial/before-2026-11-02.json', import.meta.url)))
@@ -67,7 +68,7 @@ for (const profile of BUDGET_PROFILES) {
 const participant = { ...BUDGET_PROFILES[0], kind: 'participant', context: 'Mon propre récit', question: 'Ma propre question ?' }
 assert.equal(publicationContextFor(participant), null, 'Even an inherited bank identity cannot apply the bank narrative to a personal contribution')
 assert.deepEqual(budgetPublicIncomeRows(participant).map(({label:_label,...row})=>row), participant.income.map(({label:_label,...row})=>row), 'Personal resource amounts stay untouched when their public salary label is simplified')
-assert.equal(budgetPublicIncomeRows(participant)[0].label, 'Salaire')
+assert.equal(budgetPublicIncomeRows(participant)[0].label, participant.income[0].label)
 const customLabel = { ...participant, income: [{ label: 'constructor', amount: 1000 }] }
 assert.deepEqual(budgetPublicIncomeRows(customLabel), customLabel.income)
 assert(buildBudgetText(participant).includes('Mon propre récit'))

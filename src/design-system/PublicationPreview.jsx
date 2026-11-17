@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import ImageZoom from './ImageZoom'
+import { downloadImage } from './downloadImage.js'
 
 // Keep editors mounted so switching views never discards a draft or canvas.
 export default function PublicationPreview({ children, renderImage, imageContent, imageAlt = 'Visuel prêt à publier', imageFilename = 'publication.png', imageDisabled = false, tab: controlledTab, onTabChange }) {
@@ -46,7 +47,7 @@ export default function PublicationPreview({ children, renderImage, imageContent
   const ready = image.status === 'ready' && image.owner === renderImage && !imageDisabled
   async function downloadPreview() {
     if (!ready) return
-    try { const { downloadImage } = await import('./downloadImage.js'); downloadImage(image.url, imageFilename) }
+    try { downloadImage(image.url, imageFilename) }
     catch { setZoomError('Impossible de télécharger cette image. Réessaie.') }
   }
   function select(next) { setLocalTab(next); onTabChange?.(next) }

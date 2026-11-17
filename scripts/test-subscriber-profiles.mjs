@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import {newSubscriberProfile,subscriberId,subscriberSignature,saveSubscriberProfile,removeSubscriberProfile,filterSubscriberProfiles} from '../src/pages/dca-profiles/subscriber-profiles.js'
-import {SAVED_KEY,readSavedState,writeSaved} from '../src/pages/dca-profiles/management.js'
+import {SAVED_KEY,readSavedState,writeSaved,savedRecord,restoreSavedProfile,searchAssets,validSaved} from '../src/pages/dca-profiles/management.js'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
-import {prepareProfile} from '../src/pages/dca-profiles/engine.js'
+import {prepareProfile,validateProfile,publicationReady,references} from '../src/pages/dca-profiles/engine.js'
 import {newManualLine} from '../src/pages/dca-profiles/placements.js'
 import {exportPortfolio,importPortfolio} from '../src/pages/dca-profiles/portable-portfolios.js'
 const memory=()=>{const map=new Map();return{map,getItem:key=>map.get(key)??null,setItem:(key,value)=>map.set(key,value)}}
@@ -27,6 +27,7 @@ const exposure={...prepared,id:'anonymous',title:'Allocation sans identité',pro
 const legacy={...prepared,id:'legacy',title:'Participation historique',profile:{...prepared.profile,mode:'participant'}}
 writeSaved(storage,[...readSavedState(storage).items,prepared,exposure,legacy])
 assert.equal(filterSubscriberProfiles(readSavedState(storage).items).length,3)
+assert.equal(filterSubscriberProfiles(readSavedState(storage).items,'',true).length,4,'Saved DCA tab also includes named prepared profiles, excluding exposure-only saves')
 assert.equal(subscriberId(legacy),'subscriber:legacy');assert.notEqual(subscriberId(legacy),legacy.profile.id)
 const migrated=saveSubscriberProfile(storage,{...legacy,profile:{...legacy.profile,id:subscriberId(legacy)}},{id:legacy.id,source:JSON.stringify(legacy)})
 assert.equal(migrated.profile.id,'subscriber:legacy');assert.equal(migrated.id,legacy.id);assert.equal(migrated.title,legacy.title,'Keep an existing custom save title')
@@ -44,6 +45,35 @@ assert.throws(()=>saveSubscriberProfile(quota,input,null),/quota/);assert.equal(
 const full=memory()
 writeSaved(full,Array.from({length:50},(_,i)=>({...prepared,id:`existing-${i}`})))
 assert.throws(()=>saveSubscriberProfile(full,input,null),/50/);assert.equal(readSavedState(full).items.length,50)
-assert.throws(()=>saveSubscriberProfile(storage,{...input,profile:{...profile,name:''}},null),/pseudonyme/)
-assert.throws(()=>saveSubscriberProfile(storage,{...input,profile:{...profile,lines:[]}},null),/Corrige/)
-console.log('Profils abonnés : identité propre, création sans scénario, mises à jour, recherche, héritage, fichiers, protection des conflits/corruptions/quotas et limite commune validés.')
+const drafts=memory()
+const unnamed=saveSubscriberProfile(drafts,{profile:newSubscriberProfile(),draft:'À finir',field:'all'},null)
+assert.equal(unnamed.title,'Brouillon sans pseudonyme');assert.equal(unnamed.status,'draft')
+assert.equal(readSavedState(drafts).items.length,1)
+// A live qualification may legitimately withdraw a specific equity. The fixture
+// tests draft transport and name/ticker/ISIN search, not perpetual admission of it.
+const representativeEquity=Object.entries(references).find(([,r])=>r.kind==='equity'&&r.isin&&r.name&&r.tickers?.length)
+assert(representativeEquity,'At least one qualified equity is required for the subscriber fixture')
+const [equityAsset,equityReference]=representativeEquity
+const unfinished={...profile,name:'Profil en cours',lines:[{asset:equityAsset,label:equityReference.name,isin:equityReference.isin,weight:40,amount:NaN}]}
+const partial=saveSubscriberProfile(drafts,{profile:unfinished,draft:'Texte encore en préparation',field:'sectors'},null)
+assert.equal(partial.status,'draft');assert.equal(partial.profile.lines[0].amount,null)
+const reread=readSavedState(drafts).items.find(row=>row.id===partial.id)
+assert.equal(reread.profile.lines[0].weight,40);assert.equal(reread.draft,'Texte encore en préparation')
+const restored=restoreSavedProfile(reread.profile)
+assert(Number.isNaN(restored.lines[0].amount))
+assert(validateProfile(restored).length);assert.equal(publicationReady(restored),false)
+const portable=importPortfolio(exportPortfolio(partial))
+assert.equal(portable.status,'draft');assert(Number.isNaN(restoreSavedProfile(portable.profile).lines[0].amount))
+const completed=saveSubscriberProfile(drafts,{...partial,profile:{...restored,lines:restored.lines.map(line=>({...line,weight:100,amount:150}))}},{id:partial.id,source:JSON.stringify(reread)})
+assert.equal(completed.id,partial.id);assert.equal(completed.status,undefined)
+assert.deepEqual(validateProfile(completed.profile),[])
+assert.equal(readSavedState(drafts).items.length,2)
+const generic=savedRecord({...partial,id:'named-work',title:'À reprendre',profile:{...unfinished,name:''}})
+writeSaved(drafts,[...readSavedState(drafts).items,generic])
+assert.equal(readSavedState(drafts).rejected.length,0)
+for(const patch of [{lines:[null]},{lines:[{...unfinished.lines[0],asset:'unknown'}]},{name:'x'.repeat(46)},{lines:[{...unfinished.lines[0],amount:'150'}]}]){
+ assert.equal(!!validSaved({...partial,profile:{...partial.profile,...patch}}),false)
+}
+for(const query of [equityReference.name,equityReference.tickers[0],equityReference.isin])assert(searchAssets(query,'equity').includes(equityAsset))
+assert.equal(references[equityAsset].kind,'equity');assert.equal(completed.profile.lines[0].isin,equityReference.isin)
+console.log('Profils abonnés : identité propre, création sans scénario, mises à jour, recherche, héritage, fichiers, protection des conflits/corruptions/quotas et sauvegardes sans plafond de positions validés.')

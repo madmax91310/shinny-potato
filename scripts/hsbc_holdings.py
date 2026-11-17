@@ -11,7 +11,7 @@ ISIN='IE00B4K6B022'
 NAME='HSBC EURO STOXX 50 UCITS ETF'
 ROOT='https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/'
 HEADERS=['ISIN','CUSIP','SecurityName','NumberOfShare','MarketValue','Country','LocalCurrencyCode','Weighting']
-CONTROL={'Capital Cash Ctrl','Capital Cash Ctrl Class B','Class Ffx Control','Class Ffx Control Class S',
+CONTROL={'Eur Settlement For Capital Events','Capital Cash Ctrl','Capital Cash Ctrl Class B','Class Ffx Control','Class Ffx Control Class S',
          'Eur Overseas Dividend Income Receivable',
          'Futures Liability','Capital Cash Ctrl Class J','Capital Cash Ctrl Class S',
          'Accrued Mgment Chg Capital Crystalised','Accrued Mgment Chg Capital B','Accrued Mgment Chg Capital J'}

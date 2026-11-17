@@ -1,5 +1,6 @@
 import { budgetRowSymbol, budgetPublicBasis, budgetSalaryLabel, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext, budgetQualification } from './presentation.js'
 import { budgetFinancialReference } from './completion.js'
+import { validAnnualProvision, provisionLabel } from './row-input.js'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
@@ -17,7 +18,7 @@ export function validBudget(profile) {
     ['job', 'location', 'household', 'period', 'incomeBasis', 'incomeNote'].every(key => safeText(profile[key], 250)) &&
     ['declared', 'planned', 'participant', 'prepared'].includes(profile.kind) && typeof profile.approximate === 'boolean' &&
     ['income', 'expenses', 'savings'].every(key => Array.isArray(profile[key]) && profile[key].length <= MAX_BUDGET_LINES &&
-      profile[key].every(row => row && safeText(row.label, 90) && (row.amount === null || validAmount(row.amount)))) &&
+      profile[key].every(row => row && safeText(row.label, 90) && (row.amount === null || validAmount(row.amount)) && validAnnualProvision(row) && (key === 'expenses' || row.annualProvision === undefined))) &&
     (profile.capacity === null || validAmount(profile.capacity)) &&
     ['context', 'caveat', 'hook', 'question'].every(key => safeText(profile[key], 3000)) &&
     (profile.source === null || typeof profile.source === 'object' && ['publisher', 'title', 'url'].every(key => safeText(profile.source[key], 1500)) && /^https:\/\//.test(profile.source.url)) &&
@@ -87,11 +88,11 @@ export function budgetPublicPresentation(profile) {
 
 export function budgetPublicIncomeRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.incomeLabels || {}
-  return profile.income.map(row => ({ ...row, label: budgetSalaryLabel((Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, '')) }))
+  return profile.income.map(row => ({ ...row, label: budgetSalaryLabel((Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, ''), row.label) }))
 }
 export function budgetPublicExpenseRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.expenseLabels || {}
-  return profile.expenses.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
+  return profile.expenses.map(row => ({ ...row, label: provisionLabel({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }) }))
 }
 export function budgetPublicSavingsRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.savingsLabels || {}
@@ -131,6 +132,8 @@ export function buildBudgetText(profile) {
   const transfers = budgetTransfers(profile, transfersHeading)
   return [
     budgetHeading(profile),
+    // Start with the already reviewed situation, once, before the ledger.
+    context?.paragraphs[0]?.text,
     presentation,
     [`💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, textBasis, incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     expenses,
@@ -140,7 +143,7 @@ export function buildBudgetText(profile) {
     `💳 ${a.balance < 0 ? (a.savings > 0 ? 'Manque après versements' : 'Déficit mensuel') : (p.balanceLabel === 'Reste disponible après versements' ? (a.savings === 0 ? 'Reste disponible' : transfers.after) : p.balanceLabel)} : ${money(Math.abs(a.balance))} / mois`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     ...(context ? [
-      ...context.paragraphs.map(paragraph => paragraph.text),
+      ...context.paragraphs.slice(1).map(paragraph => paragraph.text),
       context.questions.map(question => `💬 ${question.text}`).join('\n'),
       budgetGeneralQuestion({ ...profile, name: p.name }, context.budgetQuestion),
     ] : [
@@ -158,7 +161,7 @@ export function budgetImageExpenses(profile, mode = 'detailed') {
   if (mode !== 'summary') return rows
   const groups = new Map(), result = []
   for (const [i, row] of profile.expenses.entries()) {
-    if (!row.category || row.category === 'other' || /^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label)) { result.push(rows[i]); continue }
+    if (row.annualProvision || !row.category || row.category === 'other' || /^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label)) { result.push(rows[i]); continue }
     let group = groups.get(row.category)
     if (!group) {
       group = { label: EXPENSE_CATEGORIES.find(c => c.id === row.category)?.label || row.category, amount: 0, category: row.category, members: [] }
@@ -191,6 +194,7 @@ export function refreshBudgetDraft(record) {
 
 export function sourceReply(profile) {
   if (!profile.source) return ''
+  if (profile.provenance?.nature === 'editorial-character') return `Source d’inspiration : ${profile.source.publisher}\n${profile.source.url}`
   return `Source : ${profile.source.publisher}\n${profile.source.url}`
 }
 

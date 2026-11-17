@@ -2,11 +2,11 @@
 
 Route `/presentation-scpi` : Iroko Zen, Remake Live, CORUM Origin, CORUM XL, CORUM Eurion, Transitions Europe (Arkéa REIM) ActivImmo (Alderan) et Épargne Pierre (ATLAND Voisin). La publication est un texte long, modifiable avant copie, avec hook, principaux pays/secteurs, accès, distributions, frais, lecture de l’exposition et CTA. Les répartitions complètes et les documents sont consultables dans les réglages.
 
-## Visuel personnalisé en relief
+## Visuel éditorial SCPI
 
-Les onglets Texte et Image partagent les mêmes observations. Le visuel associe un logo officiel en relief, une couleur propre à chaque marque et trois chiffres clés adaptés au contrat ou à la SCPI. Le décor est distinct pour l’immobilier et l’assurance vie ; les chiffres et leurs qualifications sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG de 1 600 × 1 000 pixels. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
+Les onglets Texte et Image partagent les mêmes observations. Le visuel SCPI utilise une illustration d’immobilier d’entreprise, un petit logo officiel plat et trois chiffres : dernière distribution annuelle publiée, prix d’une part et poids du premier secteur. Les chiffres et libellés sont dessinés par le code. La signature Épargnant Libre est centrée ; aucune accroche « Je te fais les présentations » n’est ajoutée à l’image. Le décor est une illustration, pas une photographie du patrimoine détenu. Les assurances-vie et acteurs conservent leur rendu existant. « Télécharger l’image » exporte exactement cet aperçu en PNG de 1 600 × 1 000 pixels. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
 
-Les conditions des taux et les dates restent explicites ; le texte et les réglages conservent les données détaillées et les sources. Un chargement du logo ou du décor en échec interrompt l’export et permet de réessayer.
+L’année de distribution et la mention brut de fiscalité étrangère restent visibles. Les dates de contrôle et de prix sont conservées dans les réglages et les sources, sans pied d’image supplémentaire. Le texte présente un angle propre à la SCPI, ses répartitions, ses conditions et un avis éditorial modifiable. Les dates nécessaires à une condition temporaire ou à une division de parts restent explicites ; les dates techniques de collecte sont retirées du texte à copier. Un chargement du logo ou du décor en échec interrompt l’export et permet de réessayer.
 
 ## Source unique
 

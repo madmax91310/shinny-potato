@@ -10,6 +10,73 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUAL_WRITERS = set()
 
 class WorkflowContracts(unittest.TestCase):
+    def test_ecb_delay_does_not_skip_independent_msci_eur_returns(self):
+        import subprocess
+        workflow = (ROOT/'.github/workflows/collect-etf-pilot.yml').read_text()
+        steps = workflow.split('      - ')
+        commands = []
+        for step_id, script in [('fx','collect_annual_fx.py'),
+                                ('performance_currency','collect_performance_currency.py')]:
+            step = next(s for s in steps if '\n        id: '+step_id+'\n' in s)
+            self.assertIn('continue-on-error: true',step)
+            command = step.split('        run: ',1)[1].strip()
+            self.assertEqual(command, 'python scripts/'+script+' --apply')
+            self.assertIn("steps."+step_id+".outcome == 'failure'",workflow.split('    steps:',1)[0])
+            self.assertIn('Collect observations: '+step_id,REGISTRY['collect-etf-pilot.yml']['collectionSteps'])
+            commands.append(command)
+        # Each real command has a separate job step. A failed ECB attempt must
+        # remain failed while the independent native-EUR source is still tried.
+        statuses = []
+        for command in commands:
+            run = subprocess.run(['bash','-euc',
+                'python(){ case "$1" in *collect_annual_fx.py) return 1;; *) printf "%s" "$1";; esac; }; '+command],
+                capture_output=True,text=True)
+            statuses.append(run.returncode)
+        self.assertEqual(statuses,[1,0])
+        self.assertEqual(run.stdout,'scripts/collect_performance_currency.py')
+
+    def test_both_currency_steps_report_their_failure_independently(self):
+        from publish_automation_status import update_status
+        config=REGISTRY['collect-etf-pilot.yml']
+        for failed_step in ['Collect observations: fx','Collect observations: performance_currency']:
+            run={'id':1,'path':'.github/workflows/collect-etf-pilot.yml','head_branch':'master','event':'schedule','status':'completed','conclusion':'failure','updated_at':'2026-11-15T09:00:00Z','html_url':'https://github.com/test/repo/actions/runs/1'}
+            jobs=[{'name':config['collectionJob'],'conclusion':'success','steps':[
+                {'name':name,'conclusion':'failure' if name==failed_step else 'success'} for name in config['collectionSteps']]}]
+            row=update_status({},run,jobs,[])['workflows']['collect-etf-pilot.yml']
+            self.assertEqual(row['collectionStatus'],'failure')
+            self.assertIn(failed_step,[x['step']for x in row['failures']])
+            from automation_monitoring import evaluate_monitoring
+            row['dataFailures']['etf-additional-observation-OTHER']={'cause':'Other source still blocked'}
+            state={'workflows':{'collect-etf-pilot.yml':row}}
+            context={'schemaVersion':1,'alerts':[],'entities':[]}
+            incidents=evaluate_monitoring(state,context,{'collect-etf-pilot.yml':config},run['updated_at'],{'errors':[]})['active']
+            self.assertIn(failed_step,incidents['workflow:collect-etf-pilot.yml']['cause'])
+
+    def test_currency_outcome_receipt_is_archived_with_exact_github_outcomes(self):
+        import os
+        import subprocess
+        import tempfile
+        workflow=(ROOT/'.github/workflows/collect-etf-pilot.yml').read_text()
+        step=next(s for s in workflow.split('      - ')if s.startswith('name: Record currency collection outcomes\n'))
+        self.assertIn('if: always()',step)
+        self.assertIn('ECB_OUTCOME: ${{ steps.fx.outcome }}',step)
+        self.assertIn('MSCI_OUTCOME: ${{ steps.performance_currency.outcome }}',step)
+        self.assertIn('${{ runner.temp }}/currency-collection-outcomes.json',workflow)
+        code=step.split("python - <<'PY'\n",1)[1].rsplit('          PY',1)[0]
+        import textwrap
+        from publish_automation_status import read_report,REPORT_CONTRACTS
+        self.assertTrue(any(r['name']=='currency-collection-outcomes.json' and r['steps']==['Record currency collection outcomes']
+                            for r in REPORT_CONTRACTS['collect-etf-pilot.yml']['reports']))
+        with tempfile.TemporaryDirectory()as directory:
+            env={**os.environ,'RUNNER_TEMP':directory,'GITHUB_RUN_ID':'123','GITHUB_RUN_ATTEMPT':'2','GITHUB_SHA':'a'*40,
+                 'ECB_OUTCOME':'failure','MSCI_OUTCOME':'success'}
+            subprocess.run(['python','-c',textwrap.dedent(code)],env=env,check=True)
+            report=read_report(Path(directory)/'currency-collection-outcomes.json','collect-etf-pilot.yml')
+            self.assertEqual(report['_jobOutcomes']['steps'],{'fx':'failure','performance_currency':'success'})
+            self.assertEqual(report['_jobOutcomes']['attempt'],2)
+            self.assertEqual(report['successes'],[],'Execution receipt cannot qualify financial observations')
+
+
     def test_python_installations_use_pinned_installer_and_shared_constraints(self):
         for path in (ROOT/'.github/workflows').glob('*.yml'):
             text = path.read_text()
@@ -126,6 +193,26 @@ class WorkflowContracts(unittest.TestCase):
                 self.assertNotIn('commit-validated-data.sh',workflow)
                 self.assertNotIn('actions/deploy-pages@',workflow)
                 continue  # Rehearsal is monitored, but must never publish synthetic data.
+            if config.get('publicationBranch'):
+                # A separately published public feed does not commit financial
+                # observations to master. Preserve every existing financial
+                # writer assertion below and require this writer's own lease.
+                self.assertEqual(filename, 'refresh-public-portfolios.yml')
+                self.assertEqual(config['publicationBranch'], 'public-portfolio-data')
+                self.assertEqual(config['publicationPath'], 'public/data/public-portfolios-feed.json')
+                workflow = (ROOT/'.github/workflows'/filename).read_text()
+                publisher = (ROOT/'scripts/refresh-public-portfolio-feed.mjs').read_text()
+                self.assertIn("export const BRANCH = 'public-portfolio-data'", publisher)
+                self.assertIn("export const FILE = 'public/data/public-portfolios-feed.json'", publisher)
+                self.assertIn('validateFeed(feed)', publisher)
+                self.assertIn("(current?.sha || '') !== expectedSha", publisher)
+                self.assertIn('sha: expectedSha', publisher)
+                self.assertNotIn("method: 'PATCH'", publisher)
+                self.assertNotIn('commit-validated-data.sh', workflow)
+                self.assertNotIn('actions/deploy-pages@', workflow)
+                for name in config['collectionSteps'] + config['validationSteps']:
+                    self.assertIn('name: ' + name + '\n', workflow)
+                continue
             if filename == 'update-editorial-radar.yml':
                 continue  # Dedicated status branch, no data commit to master.
             workflow = (ROOT/'.github/workflows'/filename).read_text()
@@ -209,7 +296,7 @@ class WorkflowContracts(unittest.TestCase):
             committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
             self.assertTrue(set(committed)<=set(paths),(filename,set(committed)-set(paths)))
             for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
-        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and not c.get('controlOnly') and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
+        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and not c.get('controlOnly') and not c.get('publicationBranch') and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
 
     def test_full_gate_can_adopt_newer_data_without_a_code_or_data_rollback(self):
         workflow=(ROOT/'.github/workflows/deploy-pages.yml').read_text()
@@ -267,7 +354,15 @@ class WorkflowContracts(unittest.TestCase):
             self.assertTrue(group.endswith("|| 'production' }}"))
             self.assertIn('cancel-in-progress: false', before_steps)
             self.assertIn('queue: max', before_steps)
-            self.assertIn("ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}", job)
+            if filename == 'update-exposure-expansion.yml':
+                self.assertIn("ref: ${{ github.ref == 'refs/heads/master' && 'master' || github.ref }}", job)
+                commit = job.split('      - name: Commit validated observations', 1)[1]
+                self.assertIn("if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'", commit.split('        env:', 1)[0])
+                deploy = workflow.split('  deploy:', 1)[1]
+                self.assertIn("if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'", deploy)
+                self.assertIn('EXPOSURE_ISINS: ${{ inputs.isins }}', before_steps)
+            else:
+                self.assertIn("ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}", job)
         self.assertEqual(len(set(groups)), 1, 'Dependent production writes must serialize; PR checks remain independent')
 
     def test_production_collectors_queue_instead_of_replacing_pending_runs(self):

@@ -1,0 +1,11 @@
+{
+  "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
+  "sha256": "0c98e9502b20f7dd0623ceba47c0abdcd6ff18984659e4616100186230b1d751",
+  "bytes": 1301706,
+  "checkedAt": "2026-11-16T11:00:42.213907+00:00",
+  "result": "failed",
+  "error": "'Jersey'",
+  "originalFailureRun": 43832800491,
+  "originalFailureArtifact": 14208499801,
+  "scope": "Official exact-share response; source bytes immutable. Jersey row at published zero retained, never used as missing-value substitute."
+}

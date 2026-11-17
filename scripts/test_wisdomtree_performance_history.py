@@ -201,6 +201,77 @@ class OrdinaryBrowserTransport(unittest.TestCase):
 
 if __name__=='__main__':unittest.main()
 
+class CanonicalRouteRecovery(unittest.TestCase):
+ def test_real_qualification_entrypoint_provisions_pdf_and_browser_before_source(self):
+  workflow=(ROOT/'.github/workflows/verify-remainder-nav.yml').read_text()
+  source=workflow.index('name: Collect exact shares, verify identity, income, currency and annual bounds')
+  for dependency in ['bash scripts/ensure-ci-runtime.sh poppler','run: npm ci','bash scripts/ensure-ci-runtime.sh chromium']:
+   self.assertLess(workflow.index(dependency),source,'The observed pdftotext failure must not recur as a supplier incident')
+
+ def sources(self):
+  return [s for s in configurations()if s.get('wisdomPerformancePathStyle')=='issuer-widget']
+
+ def test_three_exact_registered_shares_keep_actual_canonical_sources_after_primary403(self):
+  from unittest.mock import patch
+  import urllib.error
+  from wisdomtree_performance_history import acquire,urls,canonical_alternative_urls,resolved_performance_urls
+  selected=self.sources();self.assertEqual({s['wisdomTicker']for s in selected},{'CRUD','WTAI','WEAT'})
+  for s in selected:
+   primary=urls(s);alternative=canonical_alternative_urls(s)
+   def fetch(url,**kwargs):
+    if url in primary:raise urllib.error.HTTPError(url,403,'denied',None,None)
+    self.assertIn(url,alternative);self.assertEqual(kwargs['max_bytes'],8_000_000)
+    return json.dumps({'actualSource':url}).encode()
+   with self.subTest(id=s['id']),patch('wisdomtree_performance_history.download',side_effect=fetch)as download,patch('wisdomtree_performance_history.subprocess.run')as browser:
+    bodies,proof=acquire(s)
+   browser.assert_not_called();self.assertEqual(download.call_count,3)
+   self.assertEqual(resolved_performance_urls(s,bodies,proof),alternative)
+   self.assertEqual(list(bodies),alternative);self.assertEqual(proof['configuredSourceUrls'],primary)
+   self.assertEqual(proof['actualNavTransport'],'public-widget-http-canonical-alternative')
+   self.assertEqual(proof['accessAttempts'][0]['status'],'unavailable')
+   self.assertEqual(proof['accessAttempts'][0]['url'],primary[0])
+   self.assertTrue(all(json.loads(bodies[u])['actualSource']==u for u in alternative))
+
+ def test_partial_primary_pair_is_discarded_and_both_canonical_responses_reacquired(self):
+  from unittest.mock import patch
+  import urllib.error
+  from wisdomtree_performance_history import acquire,urls,canonical_alternative_urls
+  s=self.sources()[0];primary=urls(s);alternative=canonical_alternative_urls(s)
+  def fetch(url,**kwargs):
+   if url==primary[0]:return b'old-primary-graph'
+   if url==primary[1]:raise urllib.error.HTTPError(url,403,'denied',None,None)
+   return ('new-canonical-'+url).encode()
+  with patch('wisdomtree_performance_history.download',side_effect=fetch)as download,patch('wisdomtree_performance_history.subprocess.run')as browser:
+   bodies,proof=acquire(s)
+  self.assertEqual([c.args[0]for c in download.call_args_list],primary+alternative)
+  self.assertNotIn(b'old-primary-graph',bodies.values());self.assertEqual(list(bodies),alternative);browser.assert_not_called()
+
+ def test_no_extra_route_for_other_shares_or_changed_exact_identity(self):
+  from wisdomtree_performance_history import canonical_alternative_urls
+  s=self.sources()[0]
+  for key,value in [('isin','GB0000000000'),('navCurrency','EUR'),('wisdomListingId',-1),('sourceUrl','https://example.invalid'),('factsheetUrl','https://example.invalid')]:
+   with self.subTest(key=key),self.assertRaises(ValueError):canonical_alternative_urls({**s,key:value})
+  self.assertIsNone(canonical_alternative_urls(next(s for s in configurations()if s.get('wisdomTicker')=='COCO')))
+
+ def test_non403_or_invalid_success_never_enters_alternative_or_browser(self):
+  from unittest.mock import patch
+  import urllib.error
+  from wisdomtree_performance_history import acquire,urls
+  s=self.sources()[0]
+  for status in [401,404,429,500,503]:
+   with patch('wisdomtree_performance_history.download',side_effect=urllib.error.HTTPError(urls(s)[0],status,'failed',None,None))as download,patch('wisdomtree_performance_history.subprocess.run')as browser,self.assertRaises(urllib.error.HTTPError):acquire(s)
+   self.assertEqual(download.call_count,1);browser.assert_not_called()
+  with patch('wisdomtree_performance_history.download',return_value=b'<html>challenge</html>')as download,patch('wisdomtree_performance_history.subprocess.run')as browser:
+   bodies,proof=acquire(s)
+   with self.assertRaises(json.JSONDecodeError):json.loads(next(iter(bodies.values())))
+  self.assertEqual(download.call_count,2);self.assertNotIn('resolvedSourceUrls',proof);browser.assert_not_called()
+
+ def test_missing_mixed_or_out_of_scope_response_urls_are_refused(self):
+  from wisdomtree_performance_history import urls,canonical_alternative_urls,resolved_performance_urls
+  s=self.sources()[0];primary=urls(s);alternative=canonical_alternative_urls(s)
+  for actual,keys in [(alternative,alternative[:1]),([primary[0],alternative[1]],[primary[0],alternative[1]]),(['https://example.invalid']*2,['https://example.invalid'])]:
+   with self.subTest(actual=actual),self.assertRaises(ValueError):resolved_performance_urls(s,dict.fromkeys(keys,b'[]'),{'resolvedSourceUrls':actual})
+
 class DocumentedWidgetPath(unittest.TestCase):
  def test_only_the_wti_existing_share_changes_to_the_actual_issuer_widget_path(self):
   from wisdomtree_performance_history import urls
@@ -273,3 +344,51 @@ class CurrentCanonicalIssuerWidgets(unittest.TestCase):
     self.assertEqual(len(e['controlledFields']),17)
     for patch in [{'isin':'JE00BN7KB334'},{'navCurrency':'EUR'},{'wisdomClassId':1},{'wisdomTicker':'NGAS'}]:
      with self.assertRaises(ValueError):urls({**ordinary[e['id']],**patch})
+
+class RollingTableWindows(unittest.TestCase):
+ def current(self):
+  source=next(s for s in configurations()if s['id']=='etc_wheatNav')
+  graph=json.loads(gzip.decompress((FIX/'WEAT-20261116-graph.gz').read_bytes()))
+  table=json.loads(gzip.decompress((FIX/'WEAT-20261116-tabular.gz').read_bytes()))
+  return source,graph,table,anchor_for(source),dt.datetime(2026,11,16,17,tzinfo=dt.timezone.utc)
+ def test_real_response_qualifies_closed_calendars_without_using_rolling_returns(self):
+  source,graph,table,anchor,now=self.current()
+  points,proof=parse(graph,table,source,anchor,now)
+  self.assertEqual(max(points),'2026-11-13')
+  self.assertEqual(len(points),1218)
+  self.assertEqual(len(proof['unusedRollingWindows']),5)
+  self.assertTrue(all(r['usedForCalendarQualification'] is False for r in proof['unusedRollingWindows']))
+  self.assertEqual([r['year']for r in proof['closedTableCalendarChecks']],[2022,2023,2024,2025])
+  self.assertFalse(proof['scaleProof']['anchorIsFreshSourceCheck'])
+  self.assertEqual(proof['scaleProof']['anchor'],anchor)
+  altered=copy.deepcopy(table)
+  for row in altered:
+   if row.get('wtTypeID')==1 and row.get('windowTag')=='rolling12':row['windowRoR']=77
+  other,checks=parse(graph,altered,source,anchor,now)
+  self.assertEqual(other,points,'Unused rolling values cannot change historical levels')
+  self.assertEqual(checks['closedTableCalendarChecks'],proof['closedTableCalendarChecks'])
+  self.assertEqual(parse(graph,table,source,anchor,now),(points,proof),'Repeated parsing stays idempotent')
+ def test_every_rolling_row_still_requires_exact_identity_and_convention(self):
+  source,graph,table,anchor,now=self.current()
+  for field,value in [('entityID','GB0000000000'),('entityGroup','idxBmk'),('currency','EUR'),
+   ('entityListingID',1),('wtListingID',1),('ticker','OTHER LN'),('entityName','Other fund'),
+   ('levelTypeID',1),('levelType','Price'),('checkDiff',.01),('checkDiffSumEntityGroup',0),('checkDiffSumDataSet',0)]:
+   rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='rolling12')[field]=value
+   with self.subTest(field=field),self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)
+ def test_unknown_malformed_duplicate_or_future_rolling_windows_remain_refused(self):
+  source,graph,table,anchor,now=self.current()
+  for patch in [{'windowTag':'rolling24'},{'rorWindow':'calYE'},{'dt':'2026-10-30'},
+                {'dt':'2026-11-30'},{'windowRoR':None},{'windowRoR':True},{'windowRoR':float('nan')}]:
+   rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='rolling12').update(patch)
+   with self.subTest(patch=patch),self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)
+  rolling=next(r for r in table if r.get('wtTypeID')==1 and r.get('windowTag')=='rolling12')
+  with self.assertRaises(ValueError):parse(graph,table+[rolling],source,anchor,now)
+ def test_closed_calendar_checks_are_never_replaced_by_rolling_or_current_year(self):
+  source,graph,table,anchor,now=self.current()
+  without_closed=[r for r in table if not(r.get('wtTypeID')==1 and r.get('windowTag')=='calYearEnd')]
+  with self.assertRaisesRegex(ValueError,'No independently matched completed table calendar'):
+   parse(graph,without_closed,source,anchor,now)
+  rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='calYearEnd')['dt']='2026-12-31'
+  with self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)
+  rows=copy.deepcopy(table);next(r for r in rows if r.get('wtTypeID')==1 and r.get('windowTag')=='calYearEnd' and r['dt']=='2023-12-31')['windowRoR']+=.05
+  with self.assertRaises(ValueError):parse(graph,rows,source,anchor,now)

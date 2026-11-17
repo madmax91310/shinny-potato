@@ -20,8 +20,13 @@ export function useImageExport(profile, field, enabled, maxPositions=profilePosi
         const [input, selectedField, storedMaximum] = JSON.parse(key)
         const maximum=storedMaximum??Infinity
         const pages = await Promise.race([
-          import('./image-series.js').then(module=>module.renderImageSeries(input,selectedField,maximum))
-            .then(pages=>Promise.all(pages.map(async ({canvas,...page})=>({...page,blob:await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(new Error('PNG indisponible')),'image/png'))})))), timeout,
+          import('./image-series.js').then(module=>module.renderImageSeries(input,selectedField,maximum,async ({canvas,...page})=>{
+            try{
+              if(!active)throw Error('Export remplacé')
+              const blob=await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(new Error('PNG indisponible')),'image/png'))
+              return {...page,blob}
+            }finally{canvas.width=canvas.height=1}
+          })), timeout,
         ])
         if (!active) return
         const images=pages.map(({blob,...page})=>{const url=URL.createObjectURL(blob);urls.push(url);return {...page,url}})
@@ -41,7 +46,8 @@ export function useImageExport(profile, field, enabled, maxPositions=profilePosi
       const link = document.createElement('a')
       const page=current.images[index]
       if(!page)throw new Error('Image indisponible.')
-      link.href = page.url; link.download = current.images.length>1?filename.replace(/\.png$/i,`-${page.id}.png`):filename
+      const name=String(profile.name||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')
+      link.href = page.url; link.download = filename.replace(/\.png$/i,`${name?'-'+name:''}-${page.id}.png`)
       document.body.append(link)
       try { startPublicationDownload(link) } finally { link.remove() }
     },

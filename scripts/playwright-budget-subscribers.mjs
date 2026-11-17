@@ -23,7 +23,7 @@ async function addRow(page, title, label, amount, category) {
   await group.getByRole('button', { name: 'Ajouter un poste', exact: true }).click()
   await page.getByLabel(`${title} · poste ${index}`, { exact: true }).fill(label)
   await page.getByLabel(`${title} · montant ${index}`, { exact: true }).fill(String(amount))
-  if (category) await group.locator('select').nth(index - 1).selectOption(category)
+  if (category) await group.locator('.budget-category select').nth(index - 1).selectOption(category)
 }
 async function capture(page, id) {
   const p = (await active(page)).profile
@@ -46,9 +46,10 @@ async function capture(page, id) {
     writeFileSync(`${output}/${id}-${mode}.png`, bytes)
     const drawn = await page.evaluate(() => window.subscriberCanvasText)
     assert.equal(drawn[0].text, 'LE BUDGET DE')
-    for (const t of drawn) assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height && !t.text.includes('…'), JSON.stringify(t))
+    for (const t of drawn) assert(t.left >= 30 && t.right <= 1050 && t.y >= 0 && t.y + t.size <= t.height && !t.text.includes('…'), JSON.stringify(t))
     for (let i = 0; i < drawn.length; i++) for (const b of drawn.slice(i + 1)) {
       const a = drawn[i]
+    if(a.page!==b.page)continue
       assert(!(Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1 && Math.min(a.y + a.size, b.y + b.size) - Math.max(a.y, b.y) > 2), JSON.stringify([a, b]))
     }
     const rendered = normalize(drawn.map(t => t.text).join(' '))
@@ -72,8 +73,10 @@ async function context(width, workspace) {
   await c.addInitScript(() => {
     const original = CanvasRenderingContext2D.prototype.fillText; window.subscriberCanvasText = []
     CanvasRenderingContext2D.prototype.fillText = function(text, x, y, ...args) {
-      if (text === 'LE BUDGET DE') window.subscriberCanvasText = []
-      if (this.canvas.width === 1200) { const width = this.measureText(text).width, left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0); window.subscriberCanvasText.push({ text: String(text), left, right: left + width, y, size: parseFloat(this.font.match(/[\d.]+px/)?.[0]), height: this.canvas.height }) }
+      if(text==='LE BUDGET DE') {
+        if(!window.budgetCaptureActive){window.subscriberCanvasText=[];window.budgetCaptureActive=true;window.budgetCapturePage=0;queueMicrotask(()=>{window.budgetCaptureActive=false})}window.budgetCapturePage++
+      }
+      if (this.canvas.width === 1080) { const width = this.measureText(text).width, left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0); window.subscriberCanvasText.push({ page: window.budgetCapturePage, text: String(text), left, right: left + width, y, size: parseFloat(this.font.match(/[\d.]+px/)?.[0]), height: this.canvas.height }) }
       return original.call(this, text, x, y, ...args)
     }
   })
@@ -98,7 +101,7 @@ try {
     await addRow(page, 'Revenus', 'Allocations familiales', 200)
     await page.getByLabel('Dépenses · poste 1', { exact: true }).fill('Loyer et charges')
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('1000')
-    await page.getByRole('group', { name: 'Dépenses', exact: true }).locator('select').first().selectOption('housing')
+    await page.getByRole('group', { name: 'Dépenses', exact: true }).locator('.budget-category select').first().selectOption('housing')
     await addRow(page, 'Dépenses', 'Alimentation et hygiène', 400.25, 'food')
     await addRow(page, 'Dépenses', 'Repas au travail', 100, 'food')
     await page.getByText('Épargne et projets', { exact: true }).click()
@@ -140,7 +143,7 @@ try {
     await picker.locator(`[data-value="${firstId}"]`).click(); await expect(questions).toHaveValue(q)
     await page.reload(); await expect(questions).toHaveValue(q); await expect(picker.locator('[data-option]')).toHaveCount(2)
     await page.getByRole('button', { name: 'Profils', exact: true }).click()
-    await expect(page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator('[data-option]')).toHaveCount(70)
+    await expect(page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator('[data-option]')).toHaveCount(BUDGET_PROFILES.length)
     await picker.locator(`[data-value="${firstId}"]`).click(); await expect(questions).toHaveValue(q)
     await text.fill('Ma version personnelle à conserver.')
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('1210')
@@ -150,13 +153,13 @@ try {
     await page.getByRole('button', { name: 'Rétablir le texte', exact: true }).click()
     await expect.poll(() => text.inputValue()).toContain('Quelle priorité choisiriez-vous maintenant ?')
     await page.getByLabel('À publier prochainement', { exact: true }).check()
-    await page.getByLabel('Profil publié', { exact: true }).click(); await page.getByLabel('Date de publication sur X', { exact: true }).fill('2026-11-01')
+    await page.getByLabel('Profil publié', { exact: true }).click(); await page.getByLabel('Date de publication', { exact: true }).fill('2026-11-01')
     await page.getByRole('button', { name: 'Confirmer la publication', exact: true }).click()
     await expect(page.getByLabel('La personne a validé les informations à publier.', { exact: true })).not.toBeChecked()
     await page.getByText('Brouillons et transfert entre appareils', { exact: true }).click()
     const download = page.waitForEvent('download'); await page.getByRole('button', { name: 'Exporter les brouillons et statuts', exact: true }).click()
     const backup = JSON.parse(readFileSync(await (await download).path(), 'utf8'))
-    assert.equal(backup.version, 4); assert.equal(backup.workspace.publicationDates[firstId], '2026-11-01')
+    assert.equal(backup.version, 5); assert.equal(backup.workspace.publicationDates[firstId], '2026-11-01')
     assert.equal(backup.workspace.drafts.filter(d => d.profile.kind === 'participant').length, 2)
     const incoming = structuredClone(backup), incomingDraft = incoming.workspace.drafts.find(d => d.profile.id === firstId)
     incomingDraft.profile.question = 'Question de mon autre appareil ?'
@@ -173,7 +176,7 @@ try {
     await page.getByRole('button', { name: 'Profils', exact: true }).click()
     await page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator(`[data-value="${bankProfile.id}"]`).click()
     await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
-    await expect(page.getByLabel('Revenus · poste 1', { exact: true })).toHaveValue('Salaire')
+    await expect(page.getByLabel('Revenus · poste 1', { exact: true })).toHaveValue('Salaire net après impôt')
     for (const [i, row] of budgetPublicExpenseRows(bankProfile).entries()) {
       await expect(page.getByLabel(`Dépenses · poste ${i + 1}`, { exact: true })).toHaveValue(row.label)
       await expect(page.getByLabel(`Dépenses · montant ${i + 1}`, { exact: true })).toHaveValue(String(row.amount))

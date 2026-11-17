@@ -47,6 +47,10 @@ for(const engine of ['chromium','firefox','webkit']){
   await expect(page.getByRole('status').filter({hasText:'Copie impossible. Sélectionne le texte.'})).toBeVisible()
   await expect(editor).toHaveValue(edited)
   const imageButton=page.getByRole('button',{name:'Télécharger le PNG',exact:true})
+  // PNG encoding may exceed the generic 5 s assertion on a busy CI runner.
+  // Observe the actual selected-page lifecycle; still require an enabled export.
+  await expect(page.getByRole('region',{name:'Image du budget',exact:true}))
+    .toHaveAttribute('aria-busy','false',{timeout:30_000})
   await expect(imageButton).toBeEnabled()
   const initialUrls=await page.evaluate(()=>[...window.__activeExports])
   for(let n=0;n<3;n++)await png(page,()=>imageButton.click(),`${engine}-budget-${n}`)
@@ -56,7 +60,7 @@ for(const engine of ['chromium','firefox','webkit']){
    const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click()
    const download=await pending;assert.equal(await download.failure(),null)
    const data=JSON.parse(await readFile(await download.path(),'utf8'))
-   assert.equal(data.version,4);assert.equal(data.workspace.version,4);assert.deepEqual(data.workspace.published,[]);assert.deepEqual(data.workspace.publicationDates,{});assert.equal(data.workspace.drafts.find(d=>d.profile.id===BUDGET_PROFILES[0].id).text,text)
+   assert.equal(data.version,5);assert.equal(data.workspace.version,5);assert.deepEqual(data.workspace.scheduledDates,{});assert.deepEqual(data.workspace.published,[]);assert.deepEqual(data.workspace.publicationDates,{});assert.equal(data.workspace.drafts.find(d=>d.profile.id===BUDGET_PROFILES[0].id).text,text)
    await download.saveAs(`${dir}/${engine}-budget.json`)
    await expect.poll(()=>page.evaluate(()=>[...window.__activeExports])).toEqual(initialUrls)
   }

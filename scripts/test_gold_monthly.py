@@ -120,3 +120,24 @@ class GoldRefreshTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class LatePublicationSchedule(unittest.TestCase):
+    def test_late_month_has_bounded_retries_after_initial_release_window(self):
+        import re
+        workflow = TARGET.parents[2] / '.github/workflows/update-gold-monthly.yml'
+        schedules = re.findall(r"cron: '([^']+)'", workflow.read_text())
+        days = set()
+        for schedule in schedules:
+            minute, hour, day, month, weekday = schedule.split()
+            self.assertEqual((month, weekday), ('*', '*'))
+            for part in day.split(','):
+                if '-' in part:
+                    first, last = map(int, part.split('-'))
+                    days.update(range(first, last + 1))
+                else:
+                    days.add(int(part))
+        self.assertTrue(set(range(3, 11)).issubset(days))
+        self.assertTrue(any(11 <= day <= 17 for day in days))
+        self.assertTrue(any(18 <= day <= 24 for day in days))
+        self.assertTrue(any(25 <= day <= 31 for day in days))
+        self.assertLessEqual(len(days), 15, 'No daily full-month collection required')

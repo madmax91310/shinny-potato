@@ -100,7 +100,7 @@ for(const width of [1440,390,320])for(const dca of [false,true]){
   await page.screenshot({path:`${artifacts}/mixed-${width}-${dca}.png`,fullPage:true})
   assert.deepEqual(errors,[])
   // The existing limits also apply to manual rows, without truncating recovery.
-  const count=dca?8:50,full=Array.from({length:count},(_,i)=>newManualLine({label:`Épargne ${i}`,category:'Liquidités',weight:100/count,amount:0}))
+  const count=50,full=Array.from({length:count},(_,i)=>newManualLine({label:`Épargne ${i}`,category:'Liquidités',weight:100/count,amount:0}))
   await page.evaluate(({key,dca,profile,full})=>localStorage.setItem(key,JSON.stringify(dca?{profile:{...profile,lines:full},draft:'',field:'all'}:{lines:full,field:'all',exposureLimit:4})),{key,dca,profile,full})
   await page.reload()
   await editor.getByRole('button',{name:'Ajouter un placement manuellement',exact:true}).waitFor()

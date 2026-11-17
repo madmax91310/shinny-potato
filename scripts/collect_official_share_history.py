@@ -257,23 +257,21 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         years=record['performance']['years'];credit='State Street'
         calendar_proof={'incomeTreatment':'Accumulation','sourceNavUrl':url}
     elif kind=='21shares':
-        from collect_product_calendars import abtc_calendar, issuer_json
+        from collect_product_calendars import acquire_abtc_calendar
         base=source['sourceUrl'].rsplit('/api/',1)[0]
         if base not in ('https://api.primary.21shares.com','https://api.secondary.21shares.com'):
             raise ValueError('Unqualified 21Shares official API origin')
-        endpoints=[base+'/api/'+name+'/ABTC' for name in
-                   ('product_details','product_valuation_history','product_performance_metrics')]
         # Reuse the exact-share monthly oracle, including the documented 14:1
         # split guard. Never add another split/dividend adjustment to this NAV.
-        product,history,metrics=[issuer_json(document(url)) for url in endpoints]
-        performance=abtc_calendar(product,history,metrics,
-            {'isin':isin,'currency':native},now,endpoints[1])
+        performance,(product,history,metrics),endpoints=acquire_abtc_calendar(
+            {'isin':isin,'currency':native,'calendarApiBase':base},now,document)
         nav={row['valuation_date']:row['nav_per_share'] for row in history['data']}
         years=performance['years'];credit='21Shares'
         calendar_proof={'shareInception':product['data']['inception_date'],
             'incomeTreatment':'Issuer exact ETP NAV; monthly published returns checked',
             'splitAdjustment':'14:1 on 2021-04-12 already reflected; no additional adjustment',
             'validationSources':endpoints,'monthlyOracle':performance['method'],
+            **({'sourceAttempts':performance['sourceAttempts']}if performance.get('sourceAttempts')else{}),
             'controlledInstrument':isin,'requestedStart':source['periodStart']+'-01',
             'controlledCalendarYears':sorted(years),
             'controlledFields':['product_details.details.isin','product_details.ticker',
@@ -284,7 +282,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
                 'product_performance_metrics.performance_monthly','product_performance_metrics.performance_details'],
             'historicFxQualification':'Existing validated monthly ECB observations; not a new historic ECB source consultation'}
     elif kind=='wisdomtree' and source.get('navHistoryTransport')=='official-dataspan-nav-tr':
-        from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for,acquire
+        from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for,acquire,resolved_performance_urls
         from collect_public_issuer import wisdomtree_factsheet
         graph_url,table_url=performance_urls(source)
         # Reacquire and fully qualify the exact official product PDF before any
@@ -298,6 +296,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         transport={}
         if document_fetch is download:
             bodies,transport=acquire(source,qualified_identity=identity_binding)
+            graph_url,table_url=resolved_performance_urls(source,bodies,transport)
             graph,table=[json.loads(document(url,supplied=bodies[url]))for url in (graph_url,table_url)]
         else:
             graph,table=[json.loads(document(url))for url in (graph_url,table_url)]

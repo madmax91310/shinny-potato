@@ -21,13 +21,16 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
   const [feedback, setFeedback] = useState('')
   const [editing, setEditing] = useState(null)
   const [order, setOrder] = useState([])
+  const byAsset = new Map(lines.map(line=>[line.asset,line]))
+  const indices = new Map(lines.map((line,index)=>[line,index]))
+  const orderedAssets = new Set(order)
   function rows(field) {
     const sorted = [...lines].sort((a,b) => (Number.isFinite(b[field])?b[field]:0)-(Number.isFinite(a[field])?a[field]:0))
     if (!ordered) return lines
     if (editing !== field) return sorted
     // Keep keyed controls stationary until focus leaves this entire input group.
-    const known = order.map(asset=>lines.find(line=>line.asset===asset)).filter(Boolean)
-    return [...known,...sorted.filter(line=>!order.includes(line.asset))]
+    const known = order.map(asset=>byAsset.get(asset)).filter(Boolean)
+    return [...known,...sorted.filter(line=>!orderedAssets.has(line.asset))]
   }
   function groupEvents(field) { return {
     onFocusCapture: () => { if(editing!==field) { setOrder(rows(field).map(line=>line.asset)); setEditing(field) } },
@@ -37,7 +40,7 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
 
   function apply(action) { try { onChange(action()); setFeedback('Répartition mise à jour. Les versements sont conservés.') } catch(error) { setFeedback(error.message) } }
   const total = lines.reduce((sum, line) => sum + (Number.isFinite(line.weight) ? line.weight : 0), 0)
-  const options = searchAssets('', '').filter(key => !lines.some(line => line.asset === key)).map(key => ({
+  const options = searchAssets('', '').filter(key => !byAsset.has(key)).map(key => ({
     id:key, label:catalog[key]?.name || ASSETS[key][1], isin:references[key]?.isin,
     search:[...(references[key]?.aliases || []), ...(references[key]?.tickers || [])].join(' '),
     group:references[key]?.category || (references[key]?.kind === 'equity' ? 'Actions' : exposureGroup({name:catalog[key]?.name || ASSETS[key][1]})),
@@ -71,7 +74,7 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
     {manualDraft&&<form className="dca-manual-form" onSubmit={commitManual}>
       <h3>{manualTarget?'Remplacer par un placement manuel':'Placement manuel'}</h3>
       <ManualPlacementFields line={manualDraft} onChange={patch=>setManualDraft({...manualDraft,...patch})}/>
-      <div className="dca-fields"><label>Poids actuel (%)<input required type="number" min="0" max="100" step="0.01" value={manualDraft.weight} onChange={e=>setManualDraft({...manualDraft,weight:e.target.value===''?'':Number(e.target.value)})}/></label>
+      <div className="dca-fields"><label>Poids actuel (%)<input required type="number" min="0" max="100" step="any" value={manualDraft.weight} onChange={e=>setManualDraft({...manualDraft,weight:e.target.value===''?'':Number(e.target.value)})}/></label>
       {dca&&<label>Versement mensuel (€/mois, facultatif)<input type="number" min="0" max="1000000" step="0.01" value={manualDraft.amount} onChange={e=>setManualDraft({...manualDraft,amount:Number(e.target.value)})}/></label>}</div>
       <p className="dca-note">Le poids détenu et le versement sont indépendants. Aucun ISIN requis. Pour une assurance-vie, saisis ses supports une seule fois, sans ajouter le contrat en plus.</p>
       <button type="submit">{manualTarget?'Remplacer le placement':'Ajouter ce placement'}</button><button type="button" onClick={()=>setManualDraft(null)}>Annuler la saisie manuelle</button>
@@ -82,10 +85,10 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
     {ordered&&<p className="dca-note">Allocation par poids décroissants ; versements par montants décroissants. Le classement se met à jour en quittant le groupe ou avec Entrée.</p>}
     <section aria-label="Allocation actuelle" {...groupEvents("weight")}>
     {ordered&&<h3>Allocation actuelle</h3>}
-    {rows("weight").map(line => {const index=lines.indexOf(line);return <div key={line.asset} className="dca-position">
+    {rows("weight").map(line => {const index=indices.get(line);return <div key={line.asset} className="dca-position">
      <div className={'dca-simple-line'}>
       <div><strong>{line.label}</strong><small>{line.isin}</small><button type="button" className="dca-change-asset" aria-label={`Changer l’actif position ${index+1}`} aria-expanded={changing===line.asset} onClick={()=>setChanging(changing===line.asset?null:line.asset)}>{changing===line.asset?'Annuler':'Changer l’actif'}</button></div>
-      <label><span className="sr-only">Poids position {index+1}</span><input aria-label={`Poids position ${index+1}`} type="number" min="0" max="100" step="0.01" value={Number.isFinite(line.weight) ? line.weight : ''} onChange={e => edit(line.asset, {weight:e.target.value === '' ? NaN : Number(e.target.value)})} /><span>%</span></label>
+      <label><span className="sr-only">Poids position {index+1}</span><input aria-label={`Poids position ${index+1}`} type="number" min="0" max="100" step="any" value={Number.isFinite(line.weight) ? line.weight : ''} onChange={e => edit(line.asset, {weight:e.target.value === '' ? NaN : Number(e.target.value)})} /><span>%</span></label>
 
       <button aria-label={`Retirer ${line.label}`} onClick={() => {setEditing(null);onChange(lines.filter((_,i) => i !== index))}}>×</button>
      </div>
@@ -99,7 +102,7 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
     </div>})}
     </section>
     {dca&&<section aria-label="Versements mensuels" {...groupEvents("amount")}><h3>Versements mensuels</h3>
-      {rows("amount").map(line=>{const index=lines.indexOf(line);return <div className="dca-simple-line dca-flow-line" key={line.asset}>
+      {rows("amount").map(line=>{const index=indices.get(line);return <div className="dca-simple-line dca-flow-line" key={line.asset}>
         <div><strong>{line.label}</strong><small>{line.isin}</small></div>
         <label><input aria-label={`DCA position ${index+1}`} type="number" min="0" max="1000000" step="0.01" value={Number.isFinite(line.amount)?line.amount:""} onChange={e=>edit(line.asset,{amount:e.target.value===""?NaN:Number(e.target.value)})}/><span>€/mois</span></label>
       </div>})}

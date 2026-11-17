@@ -134,11 +134,27 @@ export function inboxDiagnostic(row){
  return row.signals.map(r=>[`Incident : ${r.id}`,`Actif : ${r.name} · ${r.asset??r.dataId??'identifiant non documenté'}`,`Champ : ${r.field}`,`Classe : ${ISSUE_KINDS[r.kind]}`,`Étape : ${r.stage}`,`Chantier responsable : ${reviewOwner(r)}`,`Impact qualifié : ${r.impactState??'à qualifier'}`,`Contrat consommateur : ${JSON.stringify(r.consumerContract??null)}`,`Cause : ${r.cause??'Non documentée'}`,`Impact : ${r.impact??'Le signal concerne ce champ et ses usages déclarés ; les autres capacités restent distinctes.'}`,`Outils déclarant ce champ : ${r.tools.join(', ')||'Non documentés'}`,`Périmètre du collecteur : ${(r.collectorTools??[]).join(', ')||'Non documenté'}`,`Dernière donnée valide : ${r.lastValidValue!=null?JSON.stringify(r.lastValidValue):'Valeur non fournie par ce rapport ; consulter la donnée liée'} · période ${r.asOf??'Non documentée'}`,`Dernier contrôle réussi : ${r.lastSuccessAt??'Non documenté'}`,`Contrôle enregistré (ne prouve pas un succès) : ${r.checkedAt??'Non documenté'}`,`Dernière tentative : ${r.attemptedAt??'Non documentée'}`,`Fin de l’exécution rapportée : ${r.completedAt??'Non documentée'}`,`Reprise : ${r.recovery?.status??'Intervention / contrôle du producteur nécessaire'}`,`Condition de qualification : ${r.qualificationBlock??'Voir la cause ciblée'}`,`Preuve pour clôturer : ${closureRequirement(r)}`,`Action : ${r.action??'Consulter la source et l’exécution ; aucune résolution sans preuve.'}`,`Sources : ${r.sourceUrls.join(' ; ')||'Non documentées'}`,`Exécution : ${r.runUrl??'Non documentée'}`,`Preuve du rapport : ${JSON.stringify(r.evidence??r.resolutionEvidence??null)}`,`Champs du groupe : ${JSON.stringify(r.members??[])}`,`Historique des tentatives : ${JSON.stringify(r.observations??[])}`].join('\n')).join('\n\n')
 }
 
-export const MONITOR_RUNS_URL='https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/automation-status.yml/runs?branch=master&status=completed&per_page=10'
+export const MONITOR_RUNS_URL='https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/automation-status.yml/runs?branch=master&status=completed&per_page=100'
 export function monitorExecutionHealth(payload){
  if(!Array.isArray(payload?.workflow_runs))return 'Contrôle indépendant du moniteur invalide ou indisponible.'
- const runs=payload.workflow_runs.filter(r=>r.head_branch==='master'&&['schedule','workflow_run','workflow_dispatch','push'].includes(r.event)&&r.status==='completed'&&!['skipped','cancelled','neutral'].includes(r.conclusion)).sort((a,b)=>b.id-a.id)
+ const runs=meaningfulMonitorRuns(payload.workflow_runs)
  if(!runs.length)return 'Aucune exécution du moniteur démontrée par le contrôle indépendant.'
  const r=runs[0]
  return r.conclusion==='success'?null:`Dernière exécution de la surveillance en échec (${r.conclusion}) : ${r.html_url}. Le dernier bilan connu ne prouve pas son rétablissement.`
+}
+
+function meaningfulMonitorRuns(runs){
+ return runs.filter(r=>r.head_branch==='master'&&['schedule','workflow_run','workflow_dispatch','push'].includes(r.event)&&r.status==='completed'&&!['skipped','cancelled','neutral'].includes(r.conclusion)).sort((a,b)=>b.id-a.id)
+}
+// Busy PR activity produces skipped workflow_run entries. Read past those
+// entries, with a bounded request count and the caller's overall deadline.
+export async function fetchMonitorExecutionHealth({fetchImpl=fetch,signal}={}){
+ for(let page=1;page<=3;page++){
+  const response=await fetchImpl(MONITOR_RUNS_URL+(page>1?'&page='+page:''),{cache:'no-store',signal})
+  if(!response.ok)throw Error('HTTP '+response.status)
+  const payload=await response.json()
+  if(!Array.isArray(payload?.workflow_runs))return monitorExecutionHealth(payload)
+  if(meaningfulMonitorRuns(payload.workflow_runs).length||payload.workflow_runs.length<100)return monitorExecutionHealth(payload)
+ }
+ return 'Les 300 dernières exécutions sont sans bilan exploitable ; le fonctionnement du moniteur reste à vérifier.'
 }

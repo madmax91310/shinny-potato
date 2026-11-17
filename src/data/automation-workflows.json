@@ -181,7 +181,12 @@
       "Collect observations: additional",
       "Collect observations: presentation_performance",
       "Collect observations: fx",
+      "Collect observations: performance_currency",
       "Collect observations: indices"
+    ],
+    "jobOnlyCollectionSteps": [
+      "Collect observations: fx",
+      "Collect observations: performance_currency"
     ],
     "validationSteps": [
       "Validate ETF observations and consumers",
@@ -681,6 +686,28 @@
     "validationSteps": [
       "Validate flow publication contracts",
       "Report blocked flow collection"
+    ]
+  },
+  "refresh-public-portfolios.yml": {
+    "name": "Allocations de portefeuilles publics · Getquin",
+    "workflowName": "Refresh public portfolio allocations",
+    "collectionJob": "collect",
+    "maxAgeHours": 192,
+    "publishes": true,
+    "publicationBranch": "public-portfolio-data",
+    "publicationPath": "public/data/public-portfolios-feed.json",
+    "tools": [
+      "Portefeuilles publics"
+    ],
+    "paths": [
+      "/portefeuilles-publics"
+    ],
+    "collectionSteps": [
+      "Read public allocations and publish isolated feed"
+    ],
+    "validationSteps": [
+      "Test public portfolio collector",
+      "Test public portfolio feed contracts"
     ]
   }
 }

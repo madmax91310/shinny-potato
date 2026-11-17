@@ -38,7 +38,11 @@ if(physical){
  const shards=new Map()
  for(const [isin,target]of Object.entries(targets).filter(([,r])=>r.catalog!==false&&(r.parser?.endsWith('-complete')||r.parser==='lifestrategy-lookthrough'))){
   const source=raw[isin]
-  assert(source?.complete&&source.checkedAt&&source.sha256&&source.rows.length>10,`Missing qualified physical source ${isin}`)
+  const partial=isin==='IE000NDWFGA5'&&source?.sourcePartial===true&&source.complete===false
+    &&source.scope==='known-published-security-nav-weights'
+    &&source.partialSourceProof?.kind==='partial-unvalued-source-positions'
+    &&source.unvaluedPositions?.length>0
+  assert((source?.complete===true||partial)&&source.checkedAt&&source.sha256&&source.rows.length>10,`Missing qualified physical source ${isin}`)
   const asset=Object.keys(catalog).find(key=>catalog[key].isin===isin)
   assert(asset&&manifest[asset]!==undefined,`Missing physical portfolio in DCA ${isin}`)
   const shard=manifest[asset]
@@ -46,7 +50,18 @@ if(physical){
   const projected=shards.get(shard)[asset]
   assert.equal(projected.asOf,source.asOf,`${isin}: published date differs`)
   assert.equal(projected.rows.length,source.rows.length,`${isin}: truncated physical portfolio`)
-  assert.equal(projected.complete,true,`${isin}: full source lost its scope`)
+  assert.equal(projected.complete,!partial,`${isin}: published completeness differs from its qualified scope`)
+  if(partial){
+   assert.equal(projected.sourcePartial,true)
+   assert.equal(projected.scope,source.scope)
+   assert.deepEqual(projected.unvaluedPositions,source.unvaluedPositions,'Unknown FX values must survive publication')
+   assert.deepEqual(projected.partialSourceProof,source.partialSourceProof,'Every raw source row must remain traceable')
+   assert(source.unvaluedPositions.every(p=>p.weightPct===null&&p.marketValue===null),'Unknown valuation must never become zero')
+   const check=sharedPositions([{asset,isin,weight:50},lines[0]],references,new Date(),
+     {[asset]:source,[lines[0].asset]:raw[lines[0].isin]})
+   assert(check.qualification.some(q=>q.isin===isin&&!q.complete),'A partial source cannot become complete in the engine')
+   assert(check.pairs.every(p=>p.full===false&&p.overlap===null),'A partial source cannot authorize full overlap')
+  }
   assert(Math.abs(projected.rows.reduce((sum,r)=>sum+r.weightPct,0)-source.rows.reduce((sum,r)=>sum+r.weightPct,0))<1e-8,`${isin}: NAV weights changed`)
   if(target.parser==='lifestrategy-lookthrough'){
    assert.equal(projected.scope,'equity-lookthrough')

@@ -2,58 +2,58 @@
   "IE00BFMXYX26": {
     "name": "Vanguard FTSE Japan UCITS ETF",
     "isin": "IE00BFMXYX26",
-    "checkedAt": "2026-11-14",
+    "checkedAt": "2026-11-16",
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Japan_UCITS_ETF_USD_Accumulating_9674_FR_INT_EN.pdf",
-    "documentSha256": "6da812281b3595e7b222f14fa97ba761629b9e32a7321efeff7e8cb32d593995",
+    "documentSha256": "b7999f61fed5c7cd32b0a1a150350e2f8db2ece0561a0a3022897ecba0ac1cd7",
     "countries": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "method": "FTSE Country of Risk",
-      "sha256": "4572ea9d48ee85808702b35bb1af6162bebf1b70621ed978dd140681b34196f5",
+      "sha256": "d0f35b1df6dd247e6f22450cd5b61062856b0a6fefc61b0a3bbbf6fd0edfa2e2",
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 99.97918
+          "weightPct": 100
         },
         {
           "name": "Other",
-          "weightPct": 0.02082
+          "weightPct": 0
         }
       ]
     },
     "sectors": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Japan_UCITS_ETF_USD_Accumulating_9674_FR_INT_EN.pdf",
       "rows": [
         {
           "name": "Industrials",
-          "weightPct": 26.8
+          "weightPct": 26.9
         },
         {
           "name": "Basic Materials",
           "weightPct": 4.4
         },
         {
-          "name": "Financials",
-          "weightPct": 18.1
-        },
-        {
-          "name": "Consumer Staples",
-          "weightPct": 4.3
-        },
-        {
           "name": "Consumer Discretionary",
-          "weightPct": 16.8
+          "weightPct": 17.9
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 3.9
+        },
+        {
+          "name": "Financials",
+          "weightPct": 17.7
         },
         {
           "name": "Real Estate",
-          "weightPct": 2.3
+          "weightPct": 2.4
         },
         {
           "name": "Technology",
-          "weightPct": 15.9
+          "weightPct": 14.7
         },
         {
           "name": "Utilities",
@@ -61,15 +61,15 @@
         },
         {
           "name": "Health Care",
-          "weightPct": 4.9
+          "weightPct": 5.5
         },
         {
           "name": "Energy",
           "weightPct": 0.9
         },
         {
-          "name": "Telecommunications",
-          "weightPct": 4.5
+          "name": "Consumer Staples",
+          "weightPct": 4.6
         }
       ]
     },
@@ -78,27 +78,27 @@
   "IE00BKX55R35": {
     "name": "Vanguard FTSE North America UCITS ETF",
     "isin": "IE00BKX55R35",
-    "checkedAt": "2026-11-14",
+    "checkedAt": "2026-11-16",
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Distributing_9523_FR_INT_EN.pdf",
-    "documentSha256": "eb620e3c64507a218e9766d40715b995cc4c2ec5bd29ae8be4fa70ede09a805c",
+    "documentSha256": "d19d3524401ade258eab153428eb78331872db4748dc87e758104ccb3bc61f6e",
     "countries": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "method": "FTSE Country of Risk",
-      "sha256": "80e8cc7fdff6ae4991542ddb94dfdeadc325fbcf50a19834d2edf5bee501b790",
+      "sha256": "3d3d2178f4c8e306147de4b89a0758eb83bce26b135a4239fd07ce2595015dcc",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 95.4762
+          "weightPct": 95.26027
         },
         {
           "name": "Canada",
-          "weightPct": 4.46218
+          "weightPct": 4.67303
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.06162
+          "weightPct": 0.0667
         },
         {
           "name": "Other",
@@ -107,37 +107,37 @@
       ]
     },
     "sectors": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Distributing_9523_FR_INT_EN.pdf",
       "rows": [
         {
           "name": "Technology",
-          "weightPct": 44.7
+          "weightPct": 41.1
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 3.2
+          "weightPct": 3.6
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 11.3
-        },
-        {
-          "name": "Telecommunications",
-          "weightPct": 2.1
-        },
-        {
-          "name": "Financials",
-          "weightPct": 10.5
+          "weightPct": 11.8
         },
         {
           "name": "Utilities",
-          "weightPct": 2.1
+          "weightPct": 2.3
+        },
+        {
+          "name": "Financials",
+          "weightPct": 11.1
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 2.0
         },
         {
           "name": "Industrials",
-          "weightPct": 10.3
+          "weightPct": 10.8
         },
         {
           "name": "Basic Materials",
@@ -145,15 +145,15 @@
         },
         {
           "name": "Health Care",
-          "weightPct": 8.3
+          "weightPct": 9.1
         },
         {
           "name": "Real Estate",
-          "weightPct": 1.5
+          "weightPct": 1.6
         },
         {
           "name": "Energy",
-          "weightPct": 4.0
+          "weightPct": 4.6
         }
       ]
     },
@@ -162,90 +162,94 @@
   "IE00BK5BQZ41": {
     "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
     "isin": "IE00BK5BQZ41",
-    "checkedAt": "2026-11-14",
+    "checkedAt": "2026-11-16",
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Asia_Pacific_ex_Japan_UCITS_ETF_USD_Accumulating_9676_FR_INT_EN.pdf",
-    "documentSha256": "7ded01352f2cd5a7218fd09ae968a96c495c4da55200ac5265adceefeacf4289",
+    "documentSha256": "8b443d7872f8c9497d9470c443ce86f6cd0e28d14783cfaa3fd9e1af8f27d350",
     "countries": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "method": "FTSE Country of Risk",
-      "sha256": "c1932882de5859ab9c270f6d36e0df9660208455ef38411dd4c7abe1936005af",
+      "sha256": "a75371496f204523afec48f6c0bcb757204f9d7c5adda245e7265448e8f06387",
       "rows": [
         {
           "name": "Korea",
-          "weightPct": 51.90297
+          "weightPct": 47.60147
         },
         {
           "name": "Australia",
-          "weightPct": 30.49863
+          "weightPct": 34.14063
         },
         {
           "name": "Hong Kong",
-          "weightPct": 9.17959
+          "weightPct": 9.59833
         },
         {
           "name": "Singapore",
-          "weightPct": 7.47058
+          "weightPct": 7.63628
         },
         {
           "name": "New Zealand",
-          "weightPct": 0.94648
+          "weightPct": 1.02083
         },
         {
           "name": "Other",
-          "weightPct": 0.00175
+          "weightPct": 0.00208
+        },
+        {
+          "name": "Japan",
+          "weightPct": 0.00038
         }
       ]
     },
     "sectors": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Asia_Pacific_ex_Japan_UCITS_ETF_USD_Accumulating_9676_FR_INT_EN.pdf",
       "rows": [
         {
           "name": "Financials",
-          "weightPct": 23.3
+          "weightPct": 25.6
         },
         {
           "name": "Real Estate",
-          "weightPct": 4.0
+          "weightPct": 4.4
         },
         {
           "name": "Telecommunications",
-          "weightPct": 20.4
+          "weightPct": 19.1
         },
         {
           "name": "Health Care",
-          "weightPct": 3.2
+          "weightPct": 3.6
         },
         {
           "name": "Technology",
-          "weightPct": 19.7
+          "weightPct": 17.3
         },
         {
           "name": "Energy",
-          "weightPct": 2.6
-        },
-        {
-          "name": "Industrials",
-          "weightPct": 8.6
-        },
-        {
-          "name": "Consumer Staples",
-          "weightPct": 2.3
+          "weightPct": 2.7
         },
         {
           "name": "Basic Materials",
           "weightPct": 8.6
         },
         {
+          "name": "Consumer Staples",
+          "weightPct": 2.5
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 8.5
+        },
+        {
           "name": "Utilities",
-          "weightPct": 1.8
+          "weightPct": 2.1
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 5.4
+          "weightPct": 5.5
         }
       ]
     },
@@ -254,27 +258,27 @@
   "IE00BK5BQW10": {
     "name": "Vanguard FTSE North America UCITS ETF (USD) Accumulating",
     "isin": "IE00BK5BQW10",
-    "checkedAt": "2026-11-14",
+    "checkedAt": "2026-11-16",
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Accumulating_9680_FR_INT_EN.pdf",
-    "documentSha256": "9e3e2e1d4abcf36c7a3132e1b57df1ae1b446022bcde5b05e86e00813f9e519c",
+    "documentSha256": "07576d51eaad5533c3a0056b5c8e8c54fa88c3a3cea5241e5786975b31f32a27",
     "countries": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "method": "FTSE Country of Risk",
-      "sha256": "935c2cc76060a557e951b0f7036d2e57670ad38d978823ebb9d3dc0171f59bc2",
+      "sha256": "73aeb6d83c112a39e5f1ec46400199881181c708ec23b82939bbf1a3aafeb25d",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 95.4762
+          "weightPct": 95.26027
         },
         {
           "name": "Canada",
-          "weightPct": 4.46218
+          "weightPct": 4.67303
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.06162
+          "weightPct": 0.0667
         },
         {
           "name": "Other",
@@ -283,37 +287,37 @@
       ]
     },
     "sectors": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://fund-docs.vanguard.com/FTSE_North_America_UCITS_ETF_USD_Accumulating_9680_FR_INT_EN.pdf",
       "rows": [
         {
           "name": "Technology",
-          "weightPct": 44.7
+          "weightPct": 41.1
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 3.2
+          "weightPct": 3.6
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 11.3
-        },
-        {
-          "name": "Telecommunications",
-          "weightPct": 2.1
-        },
-        {
-          "name": "Financials",
-          "weightPct": 10.5
+          "weightPct": 11.8
         },
         {
           "name": "Utilities",
-          "weightPct": 2.1
+          "weightPct": 2.3
+        },
+        {
+          "name": "Financials",
+          "weightPct": 11.1
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 2.0
         },
         {
           "name": "Industrials",
-          "weightPct": 10.3
+          "weightPct": 10.8
         },
         {
           "name": "Basic Materials",
@@ -321,15 +325,15 @@
         },
         {
           "name": "Health Care",
-          "weightPct": 8.3
+          "weightPct": 9.1
         },
         {
           "name": "Real Estate",
-          "weightPct": 1.5
+          "weightPct": 1.6
         },
         {
           "name": "Energy",
-          "weightPct": 4.0
+          "weightPct": 4.6
         }
       ]
     },

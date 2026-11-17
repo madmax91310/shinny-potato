@@ -43,7 +43,12 @@ class FourIssuerRecovery(unittest.TestCase):
                                       ('IE000RDRMSD1','sectors',-.1),
                                       ('IE00B3F81R35','sectors',-.01)]:
             body = json.loads((FIX/(isin+'.json')).read_text())
-            share = next(s for s in PILOT if s['isin']==isin)
+            share = copy.deepcopy(next(s for s in PILOT if s['isin']==isin))
+            # This historical allocation-only capture predates the explicit
+            # structure evidence. Do not invent that field in the raw fixture:
+            # current production and fallback scope are checked separately in
+            # test_partial_allocation_recovery against complete real responses.
+            share.pop('expectedStructure', None)
             result = parse_share(body, share, NOW)
             rows = result[field]['rows']
             self.assertEqual(next(r['weightPct'] for r in rows if r['name']=='Cash and/or Derivatives'), expected)
@@ -101,6 +106,18 @@ class FourIssuerRecovery(unittest.TestCase):
         with patch('collect_remaining_documents.download',return_value=b'%PDF-bad'),patch('collect_remaining_documents.pdf_text',return_value='wrong ISIN'),patch('collect_remaining_documents.coinshares_widget_facts') as fallback:
             with self.assertRaises(ValueError):collect_one(s,NOW)
             fallback.assert_not_called()
+
+    def test_identified_stale_pdf_uses_independent_api_but_future_or_wrong_identity_does_not(self):
+        s=next(s for s in EXTRA if s['isin']=='GB00BLD4ZL17')
+        template='ISIN {isin}\nBase Currency USD\nFactsheet Data as of {date}\nManagement Fee 0.15% p.a.'
+        facts={**s,'productId':s['isin'],'characteristics':{'terPct':.15,'asOf':'2026-10-09'},'unavailable':[]}
+        for date,isin,allowed in [('01 January 2026',s['isin'],True),('01 January 2027',s['isin'],False),('01 January 2026','GB00BLD4ZM24',False)]:
+            with patch('collect_remaining_documents.download',return_value=b'%PDF'),patch('collect_remaining_documents.pdf_text',return_value=template.format(date=date,isin=isin)),patch('collect_remaining_documents.coinshares_widget_facts',return_value=copy.deepcopy(facts))as fallback,patch('collect_coinshares_aum.collect',return_value={'amount':1}),patch('collect_product_calendars.collect_coinshares_calendar',return_value={'years':{'2025':1}}):
+                if allowed:
+                    r=collect_one(s,NOW);self.assertEqual(r['characteristics']['asOf'],'2026-10-09');self.assertIn('stale',r['sourceAttempts'][0]['reason']);fallback.assert_called_once()
+                else:
+                    with self.assertRaises(ValueError):collect_one(s,NOW)
+                    fallback.assert_not_called()
 
     def test_failed_fields_preserve_values_and_dates_and_remain_visible(self):
         s=next(s for s in EXTRA if s['isin']=='GB00BLD4ZL17')

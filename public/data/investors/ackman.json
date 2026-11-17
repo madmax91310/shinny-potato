@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-11-14T21:11:13.017185+00:00",
+  "as_of": "2026-11-15T16:41:26.765479+00:00",
   "data": {
     "identity": {
       "slug": "ackman",
       "displayName": "Bill Ackman",
-      "entityName": "Pershing Square Capital Management",
+      "entityName": "PERSHING SQUARE INC.",
       "role": "Founder & CEO · concentrated activist investor",
       "archetype": "hedge_fund",
       "sourceId": "0002026053",
@@ -14,7 +14,12 @@
       "photoUrl": "/avatars/ackman.jpg",
       "photoCredit": "Senate Democrats · CC BY 2.0 (Wikimedia)",
       "infoText": "Founder and CEO of Pershing Square Capital Management (founded 2004). Runs one of the most concentrated activist books on Wall Street — typically 10–15 positions. Known for the Herbalife short (eventually closed at a loss), the FNMA/FMCC preferreds bet, and ahead-of-the-news public letters. Since Q2 2026 the 13F is filed by the public parent, Pershing Square Inc. (NYSE: PS), which consolidates the fund’s book with the parent’s own direct holdings.",
-      "dataProvider": "Tracefour"
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://tracefour.com/trackers/ackman",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0002026053",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
@@ -24,228 +29,348 @@
       "holdingsCount": 14,
       "holdings": [
         {
-          "ticker": "UBER",
           "issuerName": "UBER TECHNOLOGIES INC",
-          "valueUsd": 2476978592,
-          "weight": 0.1272484170490431,
-          "deltaWeightPp": -2.9882054053465614,
+          "shareClass": "COM",
+          "cusip": "90353T100",
+          "securityId": "90353T100",
+          "ticker": "",
           "putCall": null,
+          "value": 2476978592,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2476978592,
+              "issuerName": "UBER TECHNOLOGIES INC",
+              "shares": "34326200",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 72.77181744493251,
-          "currentPriceUsd": 69.69000244140625,
-          "returnPct": -4.234901795407698,
-          "lastTxLabel": "Added 15%",
-          "sharesChangePct": 14.57813139263957
+          "sharesChangePct": null,
+          "weight": 0.1272484170490431
         },
         {
-          "ticker": "BN",
           "issuerName": "BROOKFIELD CORP",
-          "valueUsd": 2448117792,
-          "weight": 0.12576576753134835,
-          "deltaWeightPp": -5.0396780501478275,
+          "shareClass": "CL A LTD VT SH",
+          "cusip": "11271J107",
+          "securityId": "11271J107",
+          "ticker": "",
           "putCall": null,
+          "value": 2448117792,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2448117792,
+              "issuerName": "BROOKFIELD CORP",
+              "shares": "57481047",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 34.243312125960244,
-          "currentPriceUsd": 40.970001220703125,
-          "returnPct": 19.64380393461793,
-          "lastTxLabel": "Trimmed 4%",
-          "sharesChangePct": -3.7123360945121586
+          "sharesChangePct": null,
+          "weight": 0.12576576753134835
         },
         {
-          "ticker": "MSFT",
-          "issuerName": "Microsoft Corp",
-          "valueUsd": 2315234425,
-          "weight": 0.1189392256478176,
-          "deltaWeightPp": -3.3673016625802035,
+          "issuerName": "MICROSOFT CORP",
+          "shareClass": "COM",
+          "cusip": "594918104",
+          "securityId": "594918104",
+          "ticker": "",
           "putCall": null,
+          "value": 2315234425,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2315234425,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "6206730",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 370.4237776113588,
-          "currentPriceUsd": 523.8800048828125,
-          "returnPct": 41.42720757857421,
-          "lastTxLabel": "Added 10%",
-          "sharesChangePct": 9.774396462164123
+          "sharesChangePct": null,
+          "weight": 0.1189392256478176
         },
         {
-          "ticker": "AMZN",
-          "issuerName": "Amazon.com Inc",
-          "valueUsd": 2041109677,
-          "weight": 0.10485677036555255,
-          "deltaWeightPp": -6.905688962248904,
+          "issuerName": "AMAZON COM INC",
+          "shareClass": "COM",
+          "cusip": "023135106",
+          "securityId": "023135106",
+          "ticker": "",
           "putCall": null,
+          "value": 2041109677,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2041109677,
+              "issuerName": "AMAZON COM INC",
+              "shares": "8563857",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 221.376549810053,
-          "currentPriceUsd": 266.6600036621094,
-          "returnPct": 20.45539777854104,
-          "lastTxLabel": "Trimmed 25%",
-          "sharesChangePct": -25.21942710173899
+          "sharesChangePct": null,
+          "weight": 0.10485677036555255
         },
         {
-          "ticker": "HHH",
           "issuerName": "HOWARD HUGHES HOLDINGS INC",
-          "valueUsd": 1991144055,
-          "weight": 0.10228991479122272,
-          "deltaWeightPp": 1.5330931752547863,
+          "shareClass": "COM",
+          "cusip": "44267T102",
+          "securityId": "44267T102",
+          "ticker": "",
           "putCall": null,
+          "value": 1991144055,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1347734055,
+              "issuerName": "HOWARD HUGHES HOLDINGS INC",
+              "shares": "18852064",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            },
+            {
+              "value": 643410000,
+              "issuerName": "HOWARD HUGHES HOLDINGS INC",
+              "shares": "9000000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4, 6"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 71.73625553446108,
-          "currentPriceUsd": 83.0199966430664,
-          "returnPct": 15.729481591333938,
-          "lastTxLabel": "Added 48%",
-          "sharesChangePct": 47.74013073581757
+          "sharesChangePct": null,
+          "weight": 0.10228991479122272
         },
         {
-          "ticker": "QSR",
-          "issuerName": "RESTAURANT BRANDS INTERN",
-          "valueUsd": 1872301303,
-          "weight": 0.09618467346269693,
-          "deltaWeightPp": -2.584132939283447,
+          "issuerName": "RESTAURANT BRANDS INTL INC",
+          "shareClass": "COM",
+          "cusip": "76131D103",
+          "securityId": "76131D103",
+          "ticker": "",
           "putCall": null,
+          "value": 1872301303,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1872301303,
+              "issuerName": "RESTAURANT BRANDS INTL INC",
+              "shares": "25821284",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 65.19184626997745,
-          "currentPriceUsd": 75.41000366210938,
-          "returnPct": 15.673980684356925,
-          "lastTxLabel": "Added 14%",
-          "sharesChangePct": 14.023993217543648
+          "sharesChangePct": null,
+          "weight": 0.09618467346269693
         },
         {
-          "ticker": "META",
-          "issuerName": "Meta Platforms Inc",
-          "valueUsd": 1800309764,
-          "weight": 0.0924862929404504,
-          "deltaWeightPp": -1.8518892845898223,
+          "issuerName": "META PLATFORMS INC",
+          "shareClass": "CL A",
+          "cusip": "30303M102",
+          "securityId": "30303M102",
+          "ticker": "",
           "putCall": null,
+          "value": 1800309764,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1800309764,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "3196062",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 643.9444331937055,
-          "currentPriceUsd": 641.6900024414062,
-          "returnPct": -0.3500970947319493,
-          "lastTxLabel": "Added 20%",
-          "sharesChangePct": 20.113827817386927
+          "sharesChangePct": null,
+          "weight": 0.0924862929404504
         },
         {
-          "ticker": "V",
-          "issuerName": "VISA INC-CLASS A SHARES",
-          "valueUsd": 1122065552,
-          "weight": 0.057643237522684555,
-          "deltaWeightPp": null,
+          "issuerName": "VISA INC",
+          "shareClass": "COM CL A",
+          "cusip": "92826C839",
+          "securityId": "92826C839",
+          "ticker": "",
           "putCall": null,
-          "isNew": true,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 343.0899963378906,
-          "currentPriceUsd": 425.760009765625,
-          "returnPct": 24.095722495597684,
-          "lastTxLabel": "New",
-          "sharesChangePct": null
+          "value": 1122065552,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1122065552,
+              "issuerName": "VISA INC",
+              "shares": "3270470",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.057643237522684555
         },
         {
-          "ticker": "MA",
-          "issuerName": "Mastercard Inc",
-          "valueUsd": 1091218186,
-          "weight": 0.05605853327602288,
-          "deltaWeightPp": null,
+          "issuerName": "MASTERCARD INCORPORATED",
+          "shareClass": "CL A",
+          "cusip": "57636Q104",
+          "securityId": "57636Q104",
+          "ticker": "",
           "putCall": null,
-          "isNew": true,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 513.5999755859375,
-          "currentPriceUsd": 661.1900024414062,
-          "returnPct": 28.736377311367956,
-          "lastTxLabel": "New",
-          "sharesChangePct": null
+          "value": 1091218186,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1091218186,
+              "issuerName": "MASTERCARD INCORPORATED",
+              "shares": "2124646",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.05605853327602288
         },
         {
-          "ticker": "SPGI",
           "issuerName": "S&P GLOBAL INC",
-          "valueUsd": 1056088305,
-          "weight": 0.05425382581395239,
-          "deltaWeightPp": null,
+          "shareClass": "COM",
+          "cusip": "78409V104",
+          "securityId": "78409V104",
+          "ticker": "",
           "putCall": null,
-          "isNew": true,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 407.260009765625,
-          "currentPriceUsd": 473.5899963378906,
-          "returnPct": 16.28688920634216,
-          "lastTxLabel": "New",
-          "sharesChangePct": null
+          "value": 1056088305,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1056088305,
+              "issuerName": "S&P GLOBAL INC",
+              "shares": "2593155",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.05425382581395239
         },
         {
-          "ticker": "NFLX",
-          "issuerName": "Netflix Inc",
-          "valueUsd": 934016601,
-          "weight": 0.047982705364769535,
-          "deltaWeightPp": null,
+          "issuerName": "NETFLIX INC.",
+          "shareClass": "COM",
+          "cusip": "64110L106",
+          "securityId": "64110L106",
+          "ticker": "",
           "putCall": null,
-          "isNew": true,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 37.45899963378906,
-          "currentPriceUsd": 62.150001525878906,
-          "returnPct": 65.91473913739509,
-          "lastTxLabel": "Trimmed 58%",
-          "sharesChangePct": null
+          "value": 934016601,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 934016601,
+              "issuerName": "NETFLIX INC.",
+              "shares": "13081465",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.047982705364769535
         },
         {
-          "ticker": "PSUS",
           "issuerName": "PERSHING SQUARE USA LTD",
-          "valueUsd": 149520000,
-          "weight": 0.007681206199610515,
-          "deltaWeightPp": null,
+          "shareClass": "COM SHS",
+          "cusip": "71531T105",
+          "securityId": "71531T105",
+          "ticker": "",
           "putCall": null,
-          "isNew": true,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 37.380001068115234,
-          "currentPriceUsd": 36.939998626708984,
-          "returnPct": -1.17710655118618,
-          "lastTxLabel": "New",
-          "sharesChangePct": null
-        },
-        {
-          "ticker": "SEG",
-          "issuerName": "SEAPORT ENTERTAINMENT GROUP",
-          "valueUsd": 133632548,
-          "weight": 0.006865029134345571,
-          "deltaWeightPp": -0.1003458144897244,
-          "putCall": null,
+          "value": 149520000,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 149520000,
+              "issuerName": "PERSHING SQUARE USA LTD",
+              "shares": "4000000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3, 4, 5"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 27.729015509650157,
-          "currentPriceUsd": 20.5,
-          "returnPct": -26.07022058584929,
-          "lastTxLabel": "Held",
-          "sharesChangePct": 0
+          "sharesChangePct": null,
+          "weight": 0.007681206199610515
         },
         {
-          "ticker": "HTZ",
+          "issuerName": "SEAPORT ENTMT GROUP INC",
+          "shareClass": "COMMON STOCK",
+          "cusip": "812215200",
+          "securityId": "812215200",
+          "ticker": "",
+          "putCall": null,
+          "value": 133632548,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 133632548,
+              "issuerName": "SEAPORT ENTMT GROUP INC",
+              "shares": "5023780",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.006865029134345571
+        },
+        {
           "issuerName": "HERTZ GLOBAL HLDGS INC",
-          "valueUsd": 33955972,
-          "weight": 0.0017444009004828856,
-          "deltaWeightPp": -0.33788351168223946,
+          "shareClass": "COM NEW",
+          "cusip": "42806J700",
+          "securityId": "42806J700",
+          "ticker": "",
           "putCall": null,
+          "value": 33955972,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 33955972,
+              "issuerName": "HERTZ GLOBAL HLDGS INC",
+              "shares": "14991599",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1, 2, 3, 4"
+            }
+          ],
           "isNew": false,
-          "asOfDate": "2026-08-14",
-          "asOfLabel": "Disclosed Aug 14, 2026",
-          "avgBuyPriceUsd": 3.752149766506285,
-          "currentPriceUsd": 1.5,
-          "returnPct": -60.02291770467666,
-          "lastTxLabel": "Trimmed 2%",
-          "sharesChangePct": -1.637201763360413
+          "sharesChangePct": null,
+          "weight": 0.0017444009004828856
         }
       ],
       "quarterChanges": {
@@ -264,9 +389,29 @@
             "putCall": null
           }
         ]
-      }
+      },
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm",
+      "publicationSource": "https://tracefour.com/trackers/ackman",
+      "reportedCoverTotal": 19465692772,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 19465692772,
+      "providerHoldingsCount": 14,
+      "providerTotalDifference": 0,
+      "declaredTotal": 19465692772,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/primary_doc.xml"
+      ],
+      "originalRowCount": 15,
+      "primaryVerified": true,
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées."
     },
-    "sourceUrl": "https://tracefour.com/trackers/ackman",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm",
+    "discoverySourceUrl": "https://tracefour.com/trackers/ackman",
     "filingHistory": []
   }
 }

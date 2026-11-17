@@ -155,12 +155,12 @@ la répartition de tous les actifs, les pays et les secteurs. Chaque PNG est
 sélectionnable et téléchargeable séparément. Le top entreprises optionnel et
 l’image de recouvrement conservent leur fonctionnement.
 
-La répartition individuelle conserve tous les actifs détenus et adapte sa hauteur.
+La répartition individuelle conserve tous les actifs détenus et garde le rendu de #1366 : noms semi-gras, tirets et pourcentages internes. La vue complète et les vues de versements adaptent aussi leur résolution au même budget.
 Pour un très grand portefeuille, sa résolution est réduite afin de respecter les
-capacités du canevas (16 000 pixels en hauteur, 32 mégapixels au maximum), sans
+capacités du canevas (16 000 pixels par côté, 32 mégapixels au maximum), sans
 retirer ni regrouper de ligne. La lisibilité d’une image unique dépend donc de la
 taille réelle du portefeuille. Les limites de mémoire et de stockage du navigateur,
-ainsi que la limite existante de taille des fichiers importés, restent applicables.
+ainsi que la limite existante de 1 Mo des fichiers importés et exportés, restent applicables. Les 50 sauvegardes nommées restent une limite distincte.
 Les périmètres géographiques et sectoriels restent explicites.
 
 Les brouillons et sauvegardes conservent les longs textes sans seuil de 20 000
@@ -168,8 +168,11 @@ caractères. La répartition égale adapte sa précision au-delà de 10 000 posi
 pour ne pas créer de poids nuls. Les anciens portefeuilles gardent leurs données.
 
 Validation : `npm run test:dca`,
-`CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-unlimited-positions.mjs`
+`node scripts/playwright-unlimited-positions.mjs`,
+`node scripts/playwright-unlimited-rendering.mjs`
 et `node scripts/playwright-dca-image-series.mjs` après build.
 Les contrats couvrent 51, 200, 1 000 et 20 001 lignes ; la recette navigateur couvre
 l’ajout d’une 201e ligne, les sauvegardes, les textes longs, les deux parcours,
-le mobile et le PNG à 1 000 libellés.
+le mobile à 1440/390/320 px et le PNG à 1 000 libellés. Les tests de rendu rouvrent les PNG des quatre volumes, y compris la vue complète, les versements et le panneau entreprises. La sérialisation se fait image par image pour libérer les canevas avant le rendu suivant.
+
+Une image unique de milliers de positions peut devenir illisible malgré la conservation de ses lignes ; aucune garantie de lisibilité mobile n’est déduite du seul comptage des libellés.

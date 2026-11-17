@@ -1,3 +1,90 @@
+## 16 novembre — LifeStrategy, photographies de sous-jacents compatibles
+
+Même suivi #881, branche `fix/lifestrategy-compatible-retained-snapshots-20261116`.
+Ce lot possède uniquement la conservation bornée des huit dépendances exactes,
+leur sélection datée dans la dérivation, les tests et les déclencheurs LifeStrategy.
+Les preuves déjà qualifiées de septembre sont récupérables au commit41311ee9,
+avec leurs horloges du14novembre : aucune nouvelle consultation fournisseur
+ni remplacement de la part North America W10 par R35. Livres courants inchangés,
+transparisation des poches actions uniquement, recouvrement intégral toujours refusé.
+Dépendances coordonnées : #1363 possède le build, #1364 la qualification partielle
+Uranium et le même producteur ; leurs changements doivent être intégrés sans écrasement.
+#1359/#1361, #1253 et #1061 gardent leurs périmètres. Les autres familles financières
+et l'interface de supervision ne sont pas modifiées. Pas de réactivation Radar/IA.
+## 16 novembre — sous-ensemble Uranium, refus intégral maintenu
+
+Même suivi #881 : `fix/uranium-explicit-partial-holdings-20261116` possède
+collect_physical_holdings, l'admission partielle typée du producteur complet,
+son horloge séparée, la projection conservatrice et leurs recettes/fixture.
+Le contrôle PR exerce seulement IE000NDWFGA5, en lecture seule. Les70positions
+publiées restent tracées ;59poids actions publiés peuvent être renouvelés.
+Aucun poids FX inventé, aucune couverture intégrale ni recouvrement admis.
+#1253 possède toujours S&P ; #1359/#1361 et le calendrier ne sont pas modifiés.
+Aucune date de réussite complète renouvelée sur cette erreur partielle.
+Les données financières sont générées uniquement par le producteur ordinaire.
+## 16 novembre — calendrier statique partagé, validation financière
+
+Même suivi #881, #1363 reprend uniquement l'extraction statique déjà préparée
+dans #1365 : editorial-calendar.js et editorial-week.json, octets identiques.
+Les choix, notes, ordre et fonction publicationLabel sont comparés sur22routes.
+Aucun second plugin Vite, aucun changement éditorial ni hausse de budget.
+Refus ETF43896218366 :892261/892000 ; après01391687, un autre snapshot local
+refuse investisseurs725098/725000. Le calendrier statique supprime cette
+construction répétée. #1368 conserve le contrôle hebdomadaire actualisé.
+#1365 garde ses sources eToro et son interface ; #1359/#1361 sont préservées.
+Le correctif d'enregistrement #1360 a enregistré la reprise ETF43903822568,
+avec résultats individuels partiels conservés ; publication encore à vérifier.
+L'ancienne projection candidate non fusionnée est retirée, pas cumulée.
+
+## 16 novembre — neuf historiques NAV WisdomTree, périodes glissantes
+
+Même suivi #881, `fix/wisdomtree-rolling-table-windows-20261116` possède seulement
+wisdomtree_performance_history, sa régression/fixture réelle et ses déclencheurs.
+Cron43898359717 : neuf refus du même format rolling12/yearOverYear ajouté par
+le fournisseur. Tous les contrôles d'identité/devise/NAV(TR) restent stricts ;
+ces fenêtres ne deviennent pas des années civiles ni des rendements utilisés.
+Pas de changement de seuil ou de valeur. Reprise ordinaire ciblée sur les neuf
+identifiants existants, préservation des autres sources et des73/79fenêtres.
+#1365 a livré le calendrier partagé (#1363 fermée) ; #1364 Uranium ; #1367 LifeStrategy ;
+#1359/#1361/#1365 gardent leurs interfaces, #1253 sa source S&P. Aucun fichier
+Radar, source de frais ou catalogue supplémentaire. La preuve GitHub/publie reste
+requise après la recette locale ; ne pas confondre cette panne avec les 403 natifs
+sur les livres complets WisdomTree, qui restent distincts.
+
+## 16 novembre — enregistrement après archivage des preuves de portefeuilles publics
+
+Même suivi #881, branche `fix/automation-recording-and-composition-20261116` :
+ce lot possède seulement l’adaptateur market_reader_revalidation, sa régression,
+la fixture du bloc public-portfolio-proof et les déclencheurs/tests des workflows
+mensuel et ETF. Refus réels43873059998/43873059993 après acquisition/validation.
+Ajout ou retrait des sept lignes exactes d’archivage seulement ; graphes des cinq
+entrées d’acquisition aux deux commits, garde source et revalidation financière
+complète inchangés. #1358 conserve la propriété du regroupement Pages ; aucune
+modification du workflow deploy-pages. #1356/#1359 (investisseurs), #1253 (S&P),
+#1061 (PEA) et #1298 sont préservées. Une reprise après fusion doit recollecter
+sur master courant ; les sorties non enregistrées ne sont pas republiées.
+
+## 15 novembre — reprise bornée des origines officielles ABTC
+
+### 16 novembre — contrat des tentatives 13F, même suivi #881
+
+Base 53ff24bc, après #1344/#1348 ; #1349 possède uniquement la reprise SCPI.
+Ce complément possède le conditionnement des rapports 13F, sa recette et le
+classement technique minimal d'une copie historique dans publish_automation_status.py.
+Le run réel 43823335908 contient une copie attempt-1 strictement identique au
+rapport enregistré, avec plan préalable vérifié. Elle ne représente ni un second
+contrôle fournisseur ni une troisième panne financière. La reconnaissance exige
+le nom exact, les octets identiques et le plan valide ; toute autre omission ou
+différence reste une erreur. Les deux conflits d'unités financiers demeurent.
+Les futures tentatives sont conservées dans un artefact de support distinct ;
+le rapport courant garde son nom et son plan, y compris après interruption.
+Aucun collecteur, seuil financier, interface ou contrat partagé n'est assoupli.
+La relecture historique doit viser le run d'origine ; un succès ultérieur ne
+certifie pas rétrospectivement une tentative antérieure. Aucun fichier des PR
+#1351/#1298/#1253/#1061 n'est pris en charge.
+
+Branche `fix/abtc-qualified-origin-failover-20261115`, même suivi #881 : helper calendrier partagé, consommateur NAV mensuel, régressions ABTC et leurs trois commandes CI. Les PR #1298, #1253 et #1061 ne sont pas modifiées. Incident réel du producteur ETF43715089091 : historique secondaire HTTP410 ; page officielle déclare primaire et secondaire, bundle primaire qualifié localement. Le secondaire fonctionne à nouveau au contrôle suivant : panne intermittente, pas indisponibilité générale. Après erreur de transport uniquement, une tentative sur l'autre origine reprend les trois documents ensemble et applique les contrôles financiers existants. Aucune bascule sur erreur financière, aucun mélange de documents/cache, aucun double ajustement. Échec primaire conservé séparément ; collecte réelle GitHub et publication restent à vérifier. Les preuves du lot précédent bc4b7a73/données84597a39 sont conservées.
+
 ## Suite du même lot #881 — manifeste des nouveaux fichiers de données
 
 ## 14 novembre — enregistrement pendant les évolutions Budget
@@ -29,6 +116,18 @@ Complément Automatisation2novembre — `fix/monthly-budget-editorial-recording-
 Incident distinct de supervision41496122214 : le dernier état publié009d1e5 du2novembre17:46 est conservé. encode_status refuse la taille compacte au-delà de256MiB ; journal : état affiché285928687octets,1465périmètres. Analyse locale du dernier état lisible :71538proofChecks métadonnées ; tous les1443périmètres sont encore référencés, y compris dans1241archives valides. Aucun périmètre orphelin supprimable démontré, aucun seuil relevé. Responsabilité du transport/lecteur : chantier Donnéesàrevoir, incident remonté dans#881 ; cette branche ne modifie aucun de ses fichiers. Ne pas confondre réparation de données publiées et rétablissement du moniteur.
 
 Complément1novembre — `fix/market-private-service-recording-20261101` possède uniquement observation_rebase_guard.py et ses tests. Refus réel41338564974 : README, test API et worker de la banque privée après#1120. Audit des consommateurs : service CRUD indépendant consommant le catalogue public de tweets ; aucun import, lecture, commande npm ou appel de ses endpoints dans acquisition Python, exports de référence JS ou admission de candidats. Six fichiers précis sont qualifiés (incluant client/test/CI privé#1124), aucun répertoire ni autre producteur. Le recalage prépare toujours les projections et exige la revalidation financière complète du dernier arbre ; cours, changes, configuration, collecteurs, moteur et fichiers voisins restent protégés.75rejeux Git et contrôles de dépendances passent. Aucune modification des fichiers privés ou des PR#1122/#1123/#1124. La branche conditionnelle en production n’est pas prétendue exercée par les tests isolés.
+
+### 16 novembre — exposition EXSA et territoire Jersey, même suivi #881
+
+Base da07e8b8, dernier run 43832800491 : DE0002635307 refusé avec KeyError
+Jersey dans la traduction des pays du livre physique allemand. La réponse
+courante exacte reproduit le défaut sur JENKINS TOPCO PLC, poids publié 0 %.
+Le territoire reste explicitement Jersey ; aucune ligne ni poids supprimé,
+aucun inconnu remplacé par zéro, aucun panier ou indice substitué. La collecte
+et les contrôles existants sont réutilisés. Le top10 reste un top10 de fonds.
+Ce lot possède seulement collect_ishares_german.py, la régression et sa fixture.
+Les PR #1349/#1352 possèdent séparément les reprises SCPI et les rapports13F ;
+#1351/#1253/#1061/#1298 restent indépendantes. Aucun seuil ni maquette changé.
 
 ## Métadonnées ciblées de couverture — 2 novembre 2026
 
@@ -633,3 +732,301 @@ Même lot : le producteur GitHub43617819119 rétablit WDEF mais révèle le mêm
 
 
 14 novembre — même suivi #881, branche `fix/investor-concurrent-readers-20261114`, après #1286. Le cron13F43625726669 puis sa reprise43626949024 ont acquis et validé les28gérants, mais refusé respectivement `anniversary-levels.json` et trois fichiers DCA changés concurremment. Ce lot possède seulement `validate-investor-publication.py`, sa recette dans `test_investor_refresh.py` et cette note. Les quatre chemins exacts ne sont pas lus par le collecteur13F ni son plan scellés ; leurs empreintes restent obligatoires avant et après. Conservation des octets concurrents, revalidation complète des28observations et audit des vrais consommateurs avant chaque écriture. Aucun répertoire, voisin, source, plan ou donnée13F supplémentaire admis ; aucune fenêtre30minutes ni seuil financier modifié. Les scénarios à deux auteurs imposent le refus en cas d'échec du nouvel audit ou d'entrée non qualifiée. #1287 expositions et les travaux DCA/Budget restent indépendants et préservés. Le nouvel exercice ordinaire postfusion ne sera pas présenté comme un cron ; le cron réellement observé reste échoué à l'enregistrement tant qu'aucune preuve ultérieure ne clôture cette étape.
+
+15 novembre — suite #881 : `fix/exposure-independent-13f-20261115` possède uniquement le validateur d’enregistrement des expositions et ses tests. Refus réel43640391298 : journal de coordination et deux fichiers de validation/tests13F changés après acquisition. Ajout de ces trois chemins exacts à la qualification locale, sans étendre le garde ETF partagé. Tout autre changement, notamment dépendances/collecteurs/configurations, reste refusé ; empreinte du collecteur vérifiée aux deux commits, revalidation financière complète et octets concurrents préservés. Aucune observation publiée depuis un vieux reçu.
+
+15 novembre — suite #881, branche `fix/annual-readiness-20261115`, master67f33ca7. PR concurrentes1294/1289 Budget et1253 S&P préservées. Ce premier correctif possède uniquement le calendrier du producteur or et sa régression : reprises espacées les14/18/22/26/30 après la fenêtre3–10 existante. Une publication de décembre retardée au-delà du10janvier ne doit pas attendre février. Aucun changement de source, de validation, de date, de valeur ou de publication ; succès ordinaire futur à observer, jamais déduit du test isolé.
+
+Même correctif : le producteur Bitcoin dédié n'avait aucune tentative après le8. Ajout des mêmes reprises espacées14/18/22/26/30, à son horaire06:40 et sous son verrou existant. Aucun remplacement de convention ni modification de l'observation ; la reprise manuelle/planifiée reste distinguée.
+
+15 novembre — dépendance de publication du même suivi #881, branche `fix/budget-png-readiness-20261115` : propriété limitée à `scripts/playwright-budget-profiles.mjs` et cette note, après #1312 fusionnée. Le run production #1306 43711791374 échoue en mobile sur l’attente implicite de 5 s du bouton PNG ; reproduction locale sur master dd9ce9ce. Diagnostic sans changement applicatif : le rendu reste explicitement en préparation à 5 s puis devient disponible après 7 112 ms, et les 38 profils passent ensuite leurs contrôles de PNG exact, libellés, montants, clipboard et stockage. Attendre explicitement `aria-busy=false` (borne 30 s pour la tâche asynchrone), puis conserver l’assertion bouton activé et tous les contrôles financiers/visuels. Aucun changement du moteur, des maquettes, des valeurs ou des seuils financiers ; le test doit toujours échouer si le rendu ne termine pas ou termine en erreur. Les travaux Budget et la validation protégée ne sont ni annulés ni réécrits.
+
+### 15 novembre 2026 — reprise bornée des livres iShares vides
+
+Automatisation des données possède cette correction dans le suivi unique #881 :
+`collect_etf_pilot.py`, `collect_dca_complete_holdings.py`,
+`collect_qualified_exposures.py`, leurs trois recettes de régression et le
+raccord de déclenchement `update-qualified-exposures.yml`. Aucun lecteur/réducteur
+ni fichier des PR #1061/#1253 n'est modifié.
+
+Les observations ordinaires 43731952399 et 43736125412 montrent des composants
+présents dont la date et les colonnes sont entièrement nulles. La reprise
+existante du livre complet ne reconnaissait que le composant absent. Les trois
+producteurs partagent désormais une seconde acquisition de la même réponse
+entière, après deux secondes et contrôle de l'identité ISIN/produit/devise.
+Les tentatives et leurs empreintes sont conservées ; les contrôles financiers
+restent obligatoires. Deux réponses nulles ne deviennent pas un succès.
+
+Pour les livres complets seulement, une troisième requête bornée peut demander
+la dernière date explicitement publiée dans `holdings.dateList`, au seul endpoint
+`component=holdings.all`. L'API refuse les dates sur les requêtes combinées
+avec listings/exposureBreakdowns : aucune répétition de cette voie refusée.
+Le produit, la devise et la date retournés doivent correspondre. Seuls l'ISIN,
+la structure physique et la classe du fonds sont repris du document d'identité,
+avec URL/empreinte distinctes. Toutes les positions, valeurs, devises, pondérations
+et ventilations dérivées proviennent d'un seul livre daté ; aucune NAV ni table
+d'exposition d'une autre photographie n'est empruntée. Une période déjà demandée
+n'est jamais remplacée. Les protections de stockage refusent les livres plus
+anciens que les dernières valeurs qualifiées ; les dates ne sont pas renouvelées
+artificiellement. Identité erronée, incohérence financière ou structure modifiée
+restent des refus. Aucun poids absent à zéro ni renormalisation.
+
+Preuve locale réelle : produit 308873/USD, livre du 30 octobre, 128 lignes,
+poids bruts 100 %. Cela ne prouve ni l'accès GitHub ni la publication. Les prochains
+producteurs ordinaires doivent encore établir les résultats individuels,
+l'enregistrement et la consommation. Les incidents primaires restent distincts
+des voies alternatives qualifiées. Aucun cache ni cron anticipé.
+
+### 15 novembre — positions indépendantes du lot cotations/métriques
+
+Complément du même chantier #881, après #1336/#1338. Propriété : collecteurs
+`collect_etf_holdings.py`, `collect_etf_pilot.py`, `collect_qualified_exposures.py`
+et leurs recettes issuer/qualification. Aucun lecteur de supervision ni maquette.
+
+Après deux réponses de positions entièrement nulles, une seule requête physique
+ciblée `keyFundFacts,holdings.all` peut fournir le champ positions, sa date et
+ses propres URL/empreinte. Part, produit, devise, structure physique, classe,
+poids, totalité du livre et fraîcheur sont contrôlés. Une contradiction financière
+sur un livre rempli ne déclenche pas cette voie. Les cotations, métriques,
+performances et tables primaires gardent leur réponse et leur preuve d'origine.
+Une table primaire invalide n'est pas clôturée par cette récupération de positions.
+Les observations partielles/grosses ou dates régressives restent refusées.
+
+Le top 10 reste un top 10 de titres du fonds, jamais un livre complet ni un indice
+exact. Aucun poids à zéro ou renormalisation ; aucun catalogue ajouté. Les succès
+source de ce complément doivent encore être exercés via les producteurs ordinaires
+et rapprochés des observations réellement enregistrées/publiées, sans confondre
+lecture locale, push/manuelle et cron. Preuve locale : même part IE00BJ5JP212,
+USD, 128 lignes au 13 novembre dans l'endpoint ciblé, contrairement au lot contenant
+les listings. La fixture réelle et son empreinte sont conservées.
+
+### 15 novembre — panne effective du transport des périmètres du moniteur
+
+Même suivi #881. Le contrôle public après publication ec04332e/d4c6df5c révèle
+l’incident 43758760061 : acquisition/réduction effectuées, puis refus de l’état
+(293 991 982 octets affichés, 3 008 périmètres) à l’encodage borné. Le dernier
+moniteur public du 15 novembre à 20:33:15 reste conservé. Les nouveaux producteurs
+ETF/expositions sont publiés ; leur succès ne signifie pas que le moniteur les
+a ingérés.
+
+Aucune PR concurrente ouverte ne possède les fichiers concernés au relevé.
+Cette intervention prend en charge uniquement le codec de ces périmètres,
+son appel final par le producteur, le lecteur commun, une capacité publique
+séparée et leurs régressions. Pas de réducteur, d’interface, de calendrier,
+de contrat de résultat, de mécanisme de reprise ou de seuil financier modifié.
+La limite de transport de 256 MiB est conservée. Les périmètres sont compressés
+individuellement sans perte, bornés et vérifiés par leur SHA-256 existant ; aucun
+incident, identifiant, run ou tentative n’est retiré. Le producteur ne doit
+émettre ce format qu’après constat de la capacité du lecteur réellement publié.
+L’ancien fichier de capacités reste inchangé pour les anciens producteurs.
+Le prochain enregistrement ordinaire et son ingestion publique restent à prouver.
+
+Le décodeur du nouveau format est différé jusqu’à la présence de son marqueur ; les vérifications bornées UTF-8/gzip/SHA-256 sont communes avec le format historique. Les budgets de route et de chunk restent inchangés. Rejeu navigateur et écriture GitHub restent des preuves distinctes des égalités Python/Node.
+
+### 16 novembre — fenêtre annuelle L&G après le bilan 8211204f
+
+Même suivi #881, branche `fix/rolling-landg-calendar-20261116`, départ master
+8895d8e4 après #1337 et les dernières observations ETF. Propriété limitée à
+`collect_lg_api.py` et sa recette déjà exécutée par le producteur ordinaire
+`test_new_issuer_sources.py`. Les PR #1298/#1253/#1061 restent indépendantes.
+La condition de disponibilité six ans était figée sur 2020–2025 ; un rejeu
+isolé d'une réponse 2021–2026 la reproduit comme fausse lacune. La fenêtre suit
+maintenant la dernière année civile explicitement publiée par la source, avec
+les mêmes six années consécutives requises. Trou, lancement partiel et année
+inachevée restent refusés ; un fournisseur encore étiqueté 2025 en janvier 2027
+ne produit jamais 2026. Les observations historiques ne sont pas prolongées.
+Quatre parts L&G existantes sont concernées, sans ajout au catalogue. Aucun
+chiffre vivant, seuil, contrat de supervision, mécanisme de reprise ou maquette
+modifié. Les essais 2027 ne modifient que des objets isolés en mémoire. Une
+recette verte ne prouve pas l'acquisition réelle fin 2026 ni un futur cron.
+
+Complément du même lot, priorité aux pannes actives : l'observation ordinaire
+43781619011 contient six refus complets, devenus actifs au passage du 15 au
+16 novembre. Pays au 1er octobre (46 jours) contre positions et autres champs
+récents. Réponses exactes des six produits relues ; l'ancien parseur refuse
+chaque fiche à cause de ce seul champ. Configuration `etf-pilot.json` : activation
+du mécanisme existant d'isolation pour IE00B1FZS350, IE00B3F81R35, IE00B4WXJJ64,
+IE00B66F4759, IE00BF3N7094 et IE00BFZPF546. Aucun seuil, parseur ni mécanisme
+partagé de supervision modifié. Identité, devise et conventions restent strictes.
+Le producteur ordinaire peut alors exécuter son secours déjà qualifié : pays de
+risque de toutes les positions publiées du 13 novembre, cash et inconnus compris,
+poids d'origine. Méthode explicite différente de la table primaire. Le refus
+primaire demeure dans `collectionErrors`, même si le secours fonctionne. Sans
+secours admissible, dernières valeurs et dates conservées ; les performances et
+autres champs valides continuent. Le top 10 ne devient pas un livre intégral.
+Rejeu isolé des six réponses réelles jusqu'au merge de stockage réussi et
+idempotent ; fixture brute publique et tests du seuil 45/46, identité, devise de
+rendement, conservation des dates et panne double. Acquisition GitHub, publication
+et consommation restent à démontrer après la fusion du lot. Les crons du 16 ne
+sont pas annoncés réussis à partir de leur seule échéance nominale.
+
+### 16 novembre — trois émetteurs complémentaires, même cause #881
+
+Après fusion #1341 (a9ad4b4d), les rapports existants contiennent aussi trois
+refus identiques dans le groupe complémentaire : IE00B2NPKV68, IE00BFM6T814 et
+IE00B3F81K65. Réponses exactes relues, cause reproduite et passage par le merger
+complémentaire validé pour les trois. La branche
+`fix/additional-ishares-stale-geography-20261116` possède uniquement leurs trois
+options dans `additional-etf-sources.json`, leur fixture et la suite de tests
+`test_partial_allocation_recovery.py`. L'adaptateur ordinaire transmet déjà les
+options et conserve les `collectionErrors` ; aucun nouveau mécanisme nécessaire.
+L'isolation existante permet la ventilation de risque du 13 novembre et les
+champs indépendants ; erreur primaire du 1er octobre maintenue. Tests de panne
+double avec dates anciennes conservées, identité erronée et absence d'admission
+du top10 au recouvrement complet. Aucun seuil changé, aucune part ajoutée.
+#1341 est fusionné et exécuté sur master ; ses observations sont enregistrées,
+mais leur publication reste à vérifier. Le second lot sera fusionné après cette
+preuve d'enregistrement, pour préserver les gardes d'entrées. #1344 possède le
+traitement 13F Fundsmith et ses reprises ; aucun de ses fichiers n'est modifié
+ici. #1342, #1343 et la présentation SCPI #1345 restent indépendantes et leurs
+changements sont préservés. Les succès locaux ne sont pas des preuves de cron.
+
+Complément de qualification physique du même lot : les neuf réponses officielles
+acquises indiquent explicitement `productStructure=Physical`. Le secours par
+positions ne peut jamais devenir une exposition à un panier de substitution.
+Le contrat `expectedStructure=Physical` existant est donc explicité pour les neuf
+parts (deux l'avaient déjà), sans nouveau parseur ni assouplissement. Reproduction
+isolée d'un passage déclaré en synthétique avant le correctif : le collecteur
+acceptait encore cette voie pour les anciennes parts sans contrat explicite.
+Après correction, changement de structure refusé avant la géographie et avant
+l'enregistrement ; valeurs actuelles physiques inchangées. Régression dans les
+deux adaptateurs, aucune donnée synthétique de test écrite en production.
+
+
+16 novembre — même suivi #881, reprise SCPI bornée après refus d’entrées périmées. `fix/scpi-bounded-recording-recovery-20261116` possède uniquement `scripts/commit-scpi-observations.py`, sa régression et `update-scpi.yml`. Refus réel43821522698/job133145447013, basee8fe62ca→3cf07118 : quatorze lecteurs/revues Budget inconnus du garde. La reprise manuelle43822403080 a enregistré092f9cea et les huit fiches sont consommées publiquement ; elle ne corrige pas l’absence de reprise automatique.
+
+Le garde commun et ses exemptions restent inchangés. Après ce seul refus explicite, un nouveau master est acquis dans un worktree privé, les SCPI sont recollectées par leur producteur ordinaire et tous les contrôles financiers sont rejoués avant de rappeler l’enregistreur isolé, sur son seul chemin SCPI. Trois tentatives maximum, délais2/4s ; aucun force-push ou résolution de conflit financier. Un changement des dépendances ou du contrat de validation exige un nouveau workflow ordinaire depuis master, plutôt qu’une exécution sur l’ancien environnement. Les échecs financiers/authentification sans refus d’entrées ne déclenchent pas cette reprise. Les tentatives, plans préalables, SHAs de code et résultats partiels restent distincts dans l’artefact ; une panne ne renouvelle pas les anciennes preuves financières.
+
+Le lot annuel#1347 ne touche que son test de texte ; les PR#1298/#1253/#1061 et les correctionsETF#1341/#1346 sont préservées. Aucun collecteur commun, maquette, condition financière ou seuil n’est modifié ; aucun automatismeIA ou Radar réactivé. Recette isolée avec vraiGit/garde/enregistreur et source contrôlée ; collecte et publication ordinaires après fusion restent à démontrer séparément.
+
+## 16 novembre — livre Invesco Equal Weight, route publique exacte
+
+Même suivi #881, `fix/invesco-exact-uk-public-book-20261116` possède uniquement
+les routes du collecteur physique Invesco, la qualification de son compte exact,
+la capture publique et ses régressions. La route FR Nasdaq Equal Weight renvoie
+le29octobre contre un livre valide du12novembre : refus de régression maintenu.
+La page publique UK, son mandat physique, la part IE000L2SA8K5/USD/Acc non couverte,
+le widget exact, le recensement102 et les poids originaux du13novembre qualifient
+une voie indépendante.101titres et résidu Cash/Derivatives0,0318%, sans normalisation.
+Anciennes preuves FR et autres parts préservées ; aucun indice natif substitué.
+Page anonyme sans attestation ni contournement ; mention public UK conservée,
+licence de réutilisation non vérifiée. Tests locaux et capture réelle ne prouvent
+ni l'accès GitHub ni l'enregistrement/publication, à observer via le producteur.
+#1370 garde FTSE, #1372 HSBC/iBonds, #1253 S&P ; aucun fichier de leurs correctifs
+n'est repris. Aucune réactivation Radar/IA, aucun changement de maquette.
+
+Complément du même correctif : la part All-World distribuante IE0000QLH0G6
+présente aussi cette régression FR, observée au run43941254251. Sa page UK
+confirme échantillonnage physique et2089positions au13novembre ;2064poids
+actions positifs originaux et cash0,0671%, aucune transparisation d'indice.
+Seules ces deux parts qualifiées utilisent UK. L'autre part conserve FR.
+Le premier producteur post#1367,43938748488, est arrêté par une recette qui
+exige encore complete=true pour Uranium. La recette vérifie désormais son
+unique sous-ensemble typé, les lignes FX inconnues conservées et le refus du
+recouvrement intégral ; les autres sources restent exigées complètes.
+Aucune donnée ni seuil financier changé pour obtenir la réussite de cette recette.
+
+## 16 novembre — compte HSBC et pays iBonds, erreurs individuelles préservées
+
+Même suivi #881, `fix/hsbc-ibonds-source-recovery-20261116` possède
+hsbc_holdings, la configuration exacte IE0008UEVOE0, la sortie partielle du
+collecteur qualifié et ses recettes. Le cron43918913412 révèle ces deux causes.
+HSBC : compte Eur Settlement For Capital Events explicitement valorisé197827EUR
+au10novembre, poids0,00787%, ISINvide ; classé compte séparé, jamais entreprise
+ni dividende. Cinquante titres et tous leurs poids natifs, réconciliation NAV et
+refus des comptes inconnus conservés. iBonds : table pays du1octobre périmée,
+structure physique EUR/FixedIncome et livre du13novembre qualifiés séparément.
+L’isolation existante permet pays de risque, cash signé et autres champs valides,
+sans renormalisation. L’échec pays primaire reste explicite dans le contrat du
+producteur, y compris --only ; aucune attribution de réussite globale/cache.
+Les identités primaires Defence et le lecteur de supervision ne sont pas modifiés.
+#1370 conserve les colonnes FTSE ; #1369 les NAV WisdomTree ; #1367 est fusionnée
+pour Uranium/LifeStrategy. Sources CopperMiners sans valeur/poids et Invesco
+régressant au29octobre restent distinctes, dernières observations conservées.
+Recettes isolées21+9 et rejeu natif ciblé réussis ; collecte GitHub, enregistrement
+et publication des deux voies encore à vérifier. Radar/IA/maquettes préservés.
+
+## 16 novembre — pays FTSE, colonne exacte de l’indice principal
+
+Même suivi #881, `fix/ftse-primary-country-column-20261116` possède seulement
+collect_index_documents, sa recette et trois extractions PDF réelles. ENGD
+au30octobre : la ligne Grèce n’a ni titre, ni capitalisation, ni poids dans
+Dividend+ ;0,03% appartient uniquement à l’indice comparé. L’ancien parseur
+avalait les tirets dans le libellé et empruntait ce poids. Lecture des colonnes
+explicites, rapprochement des effectifs320 et trace de la ligne de comparaison ;
+aucun poids absent changé en zéro ni renormalisation. Zéros publiés conservés,
+champs principaux manquants refusés. Les dispositions avec capitalisations,
+entêtes sur deux lignes et tableaux de poids/comparaisons restent qualifiées.
+Six réponses officielles relues, pays/sectors/positions et effectifs comparés ;
+seul le pays de comparaison erroné est retiré du périmètre de l’indice principal.
+Les anciennes preuves/historiques restent conservés. #1367 possède Uranium et
+LifeStrategy ; #1369 les NAV WisdomTree ; leurs fichiers ne sont pas modifiés.
+Aucun workflow Radar ou IA réactivé, aucun seuil ni maquette changé. Une collecte
+GitHub ordinaire, son enregistrement et la consommation publique restent à prouver.
+## 16 novembre — reçu documentaire indépendant pendant l'enregistrement ETF
+
+Même suivi #881, `fix/independent-studio-practical-recording-20261116` possède
+uniquement l'adaptateur market_reader_revalidation et sa recette. Le refus réel
+43941239960 se produit après validation, quand automated-practical-sheets.json
+avance de dec5f1e3 à b05a01de. Les deux graphes d'acquisition ETF aux deux commits
+ne consomment pas ce fichier précis. Il rejoint les lecteurs revalidables de
+l'adaptateur ETF seulement ; la version récente est préservée, les projections
+et tous les contrôles financiers rejoués. Garde commun, autres producteurs,
+code de collecte et fichiers voisins restent protégés. Le refus mensuel sur
+les nouveaux lecteurs Budget est distinct : il demande une acquisition depuis
+le nouveau master, pas une exemption générale des configurations CI.
+41recettes d'adaptateur réussies ; enregistrement GitHub après fusion encore
+à démontrer. #1370 FTSE, #1372 HSBC/iBonds et #1373 Invesco gardent leurs fichiers.
+
+## 16 novembre — top10 Invesco depuis les livres exacts déjà qualifiés
+
+Même suivi #881, `fix/invesco-shared-presentation-topten-20261116` possède
+uniquement native-fund-details, son lecteur de présentation et leurs régressions.
+Dépendance #1373 fusionnée612ab5e5. Les trois parts physiques déjà inscrites dans
+le contrat Invesco commun alimentent le top10 des présentations depuis leur livre
+qualifié, au lieu de garder un ancien top10 attribué à l'indice interne de l'API.
+Réconciliation NAV et recensement exacts, compte/part/page/métadonnées, identités,
+poids natifs, source et dates préservés ; sociétés regroupées par le moteur commun.
+Contrat distinct du livre WisdomTree, sans en affaiblir l'admission cash seul.
+La projection reste fonds/top10/incomplète : aucune admission d'indice exact ni
+recouvrement intégral par ce top10, aucune transformation d'un livre partiel.
+Les livres GitHub du13novembre sont reconstruits en fixture depuis leurs captures
+brutes et résumé natif14267936785 ; aucune valeur ni horloge nouvelle fabriquée.
+Recettes de refus et d'idempotence, lecture commune Présentation ETF et build local
+réussis ; CI sur le commit final et publication/PNG publics restent à vérifier.
+Aucun changement de collecte, seuil, maquette, Radar/IA ou catalogue.
+
+Complément CI : six écarts reproduits pour les trois présentations Invesco
+avec le même site construit et une ancienne projection Node ; les six
+disparaissent après transfert de la projection exacte du build. L'artefact
+validated-generated-data inclut donc native-fund-details.json, consommé par
+les partitions navigateur et tweet existantes. Aucune attente financière,
+aucune donnée et aucun seuil modifiés ; contrôle de régression dans la recette
+native déjà exécutée par la CI. Ce correctif de transport ne prouve pas une
+nouvelle collecte ni une publication publique.
+
+## 16 novembre — complément du même lot1378, sources NAV et qualification partielle
+
+Le producteur43959903558 enregistre six NAV ; trois accès sans slash
+(WTI, Artificial Intelligence, Wheat) échouent en403. La variante canonique du
+même endpoint officiel répond et passe la qualification financière locale pour
+les trois parts. Secours HTTP borné après403 uniquement, graphe/table réacquis
+ensemble ; anciennes tentatives et URL réellement capturées conservées, aucun
+repli après donnée invalide. La preuve GitHub et l'enregistrement ordinaire de
+ces trois voies restent à obtenir ; aucune réparation fournisseur annoncée
+sur le seul contrôle local. Le suivi reste881 et cette PR, pas un second chantier.
+
+L'artefact CI14276501472 montre aussi que la qualification effective Uranium
+contient0,004% d'identités inconnues mais que le résumé ne les transmet pas
+quand le livre complet manque. Propagation minimale de cette information déjà
+validée, avec date/hash de la photographie et accord des alias ; statut d'échec,
+dates source et blocage intégral inchangés. Le lecteur existant affiche cette
+limite sans changement d'interface. Fixture de la vraie connexion CI et cas de
+dates contradictoires, alias, idempotence et absence d'observation vérifiés.
+
+La première qualification GitHub ciblée43973548020 n'a pas atteint le
+fournisseur : pdftotext était absent du point d'entrée manuel existant. Ses
+dépendances PDF et navigateur ordinaires sont désormais préparées explicitement.
+La recette fournisseur PR déjà provisionnée cible les trois seules routes
+réparées, au lieu de recollecter quatre témoins concluants sans nécessité.
+Ces échecs d'environnement ne sont ni des refus financiers ni des403 fournisseur.

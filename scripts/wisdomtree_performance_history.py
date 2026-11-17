@@ -9,6 +9,7 @@ import datetime as dt
 import hashlib
 import json
 import math
+import calendar
 import base64
 import subprocess
 import urllib.error
@@ -28,15 +29,23 @@ def acquire(source, *, qualified_identity=None):
     endpoints=urls(source)
     headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
              'Accept':'application/json','Origin':'https://www.wisdomtree.com','Referer':source['sourceUrl']}
-    bodies={};attempts=[]
-    try:
-        for url in endpoints:
-            bodies[url]=download(url,headers=headers,max_bytes=8_000_000)
-            attempts.append({'url':url,'transport':'public-widget-http','status':'received'})
-        return bodies,{'actualNavTransport':'public-widget-http','accessAttempts':attempts}
-    except urllib.error.HTTPError as error:
-        if error.code!=403:raise
-        attempts.append({'url':url,'transport':'public-widget-http','status':'unavailable','error':'HTTP403'})
+    attempts=[]
+    alternative=canonical_alternative_urls(source)
+    for candidate in [endpoints,*([alternative] if alternative else [])]:
+        # Reacquire BOTH responses on one exact route; never combine a graph
+        # from a refused primary attempt with another route's calendar table.
+        bodies={}
+        try:
+            for url in candidate:
+                bodies[url]=download(url,headers=headers,max_bytes=8_000_000)
+                attempts.append({'url':url,'transport':'public-widget-http','status':'received'})
+            return bodies,{'actualNavTransport':'public-widget-http'if candidate==endpoints else'public-widget-http-canonical-alternative','accessAttempts':attempts,
+                           **({'configuredSourceUrls':endpoints,'resolvedSourceUrls':candidate,
+                               'routeQualification':'Same official endpoint, exact entity and modes; canonical slash after HTTP403'}
+                              if candidate!=endpoints else {})}
+        except urllib.error.HTTPError as error:
+            if error.code!=403:raise
+            attempts.append({'url':url,'transport':'public-widget-http','status':'unavailable','error':'HTTP403'})
     process=subprocess.run(['node',str(Path(__file__).with_name('download-wisdomtree-performance.mjs')),source['id']],
                            capture_output=True,timeout=100,input=json.dumps(qualified_identity).encode() if qualified_identity else b'')
     if process.returncode:raise ValueError('Ordinary public browser performance failed: '+process.stderr.decode(errors='replace')[-1200:])
@@ -141,10 +150,22 @@ def parse(graph, table, source, anchor, now):
                 or row.get('ticker') != ticker+' LN' or row.get('entityName') != name
                 or row.get('currency') != currency or row.get('levelTypeID') != 2
                 or row.get('levelType') != 'NAV (TR)'
-                or row.get('windowTag') not in ('calYearEnd','monthEnd')
+                or row.get('windowTag') not in ('calYearEnd','monthEnd','rolling12')
                 or any(row.get(k) != (0 if row['windowTag']=='calYearEnd' else None)
                        for k in ('checkDiff', 'checkDiffSumEntityGroup', 'checkDiffSumDataSet'))):
             raise ValueError('Official performance share/currency/convention conflict')
+        if row['windowTag'] == 'rolling12':
+            # New official widget rows are rolling twelve-month windows, never
+            # calendar years. Keep every identity/convention/diagnostic gate;
+            # validate the published shape without using its return in a price
+            # series, a monthly calculation or a closed-calendar corroboration.
+            end = dt.date.fromisoformat(row['dt'])
+            value = row.get('windowRoR')
+            if (row.get('rorWindow') != 'yearOverYear'
+                    or end.day != calendar.monthrange(end.year, end.month)[1]
+                    or end > dt.date.fromisoformat(row['cobDate'])
+                    or type(value) not in (int, float) or not math.isfinite(value)):
+                raise ValueError('Unqualified rolling twelve-month table window')
     fund = []
     for row in graph:
         if type(row.get('wtTypeID')) is not int or row['wtTypeID'] not in (1, 2, 3):
@@ -219,6 +240,7 @@ def parse(graph, table, source, anchor, now):
         'issuerChartInception': source.get('wisdomChartInception', source['wisdomInception']),
         'tablePublicationDate': next(iter(table_dates)), 'closedTableCalendarChecks': closed_checks,
         'snapshotQualification': 'Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used',
+        'unusedRollingWindows': [{'periodEnd':r['dt'],'window':r['rorWindow'],'usedForCalendarQualification':False} for r in products if r['windowTag']=='rolling12'],
         'excludedPreWindowObservations':excluded,'suppliedExactSecurityStart':source['periodStart']+'-01',
         'scaleProof': {'anchor': anchor, 'sourcePerformanceLevel': points[anchor['date']], 'factor': scale,
             'method': 'Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim',
@@ -238,3 +260,28 @@ def urls(source):
     if style not in ('canonical','issuer-widget'):raise ValueError('Unqualified issuer performance path style')
     path='historical_performance' + ('/' if style=='canonical' else '')
     return [ORIGIN+path+'?entity='+ticker+'&mode='+mode for mode in ('gro10k', 'tabular')]
+
+
+def canonical_alternative_urls(source):
+    """Only the three exact shares with a registered no-slash widget route.
+
+    Their canonical endpoint is already accepted as a same-product redirect by
+    the ordinary public browser. It can also be requested after a primary403.
+    HTTP success still has to pass the unchanged exact-share financial parser.
+    """
+    primary=urls(source)
+    registered=PATH_STYLES.get(source.get('id'))
+    if not registered or registered.get('wisdomPerformancePathStyle')!='issuer-widget':return None
+    for key in ('isin','wisdomTicker','wisdomClassId','wisdomListingId','navCurrency','sourceUrl','factsheetUrl'):
+        if source.get(key)!=registered.get(key):raise ValueError('Canonical alternative identity differs from the registered exact product')
+    canonical=[u.replace('/historical_performance?','/historical_performance/?')for u in primary]
+    return canonical if canonical!=primary else None
+
+
+def resolved_performance_urls(source,bodies,transport):
+    """Capture the actual acquired route, never an invented logical URL."""
+    primary=urls(source);alternative=canonical_alternative_urls(source)
+    actual=transport.get('resolvedSourceUrls',primary)
+    if actual not in [primary,*([alternative]if alternative else [])]or list(bodies)!=actual:
+        raise ValueError('Performance response URLs differ from one complete qualified source route')
+    return actual

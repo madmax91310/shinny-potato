@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import './test-holdings-consumer-qualification.mjs'
 import {workflowInfo,peaInventory,buildDataAutomationInventory} from './data-automation-inventory.mjs'
 const workflow=workflowInfo('.github/workflows/test.yml',`name: Test
 on:

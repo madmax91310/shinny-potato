@@ -51,6 +51,9 @@ try {
   assert.equal(euroReturn(world, 2026), null, 'Missing verified FX blocks the future EUR return');
   CALENDAR_FX_YEARS[2026] = { asOf: '2026-12-31', rates: { EUR: 1, USD: 1.2 } }; // In-memory completed ECB year.
   assert(Number.isFinite(euroReturn(world, 2026)));
+  CALENDAR_FX_YEARS[2026].asOf = '2026-12-30';
+  assert.equal(euroReturn(world, 2026), null, 'A recent December fixing cannot certify the annual conversion');
+  CALENDAR_FX_YEARS[2026].asOf = '2026-12-31';
   const { buildCustomDuel, buildTweet } = await import('../src/pages/portfolio-duels/lib.js');
   const complement = CATALOG.find(item => item.id === 'msci_em');
   const savedCalendar = complement.calendarReturns;

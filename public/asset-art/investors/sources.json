@@ -6,7 +6,66 @@
     "author": "Senate Democrats",
     "description": "Valeant Pharmaceuticals' Business Model: the Repercussions for Patients and the Health Care System",
     "source": "https://commons.wikimedia.org/wiki/File%3ABill_Ackman_%2826410186110%29_%28cropped%29.jpg",
-    "file": "investors/ackman.webp"
+    "file": "investors/ackman.webp",
+    "excludePolygons": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          160,
+          0
+        ],
+        [
+          160,
+          320
+        ],
+        [
+          60,
+          400
+        ],
+        [
+          0,
+          530
+        ]
+      ],
+      [
+        [
+          468,
+          265
+        ],
+        [
+          593,
+          265
+        ],
+        [
+          593,
+          425
+        ],
+        [
+          570,
+          425
+        ],
+        [
+          570,
+          380
+        ],
+        [
+          450,
+          330
+        ],
+        [
+          450,
+          310
+        ],
+        [
+          460,
+          290
+        ]
+      ]
+    ],
+    "maskNote": "Masque de sujet vérifié sur la photo source 593 × 549 : retrait des personnes en arrière-plan, visage et proportions de Bill Ackman conservés."
   },
   "cathie-wood": {
     "title": "File:Cathie Wood.jpg",
@@ -33,7 +92,17 @@
     "author": "European Commission - Photographer: Lukasz Kobus",
     "description": "Maroš Šefcovic, Executive Vice-President of the European Commission in charge of the European Green Deal, Interinstitutional Relations and Foresight, and Iliana Ivanova, European Commissioner for Innovation, Research, Culture, Education and Youth, receive Bill Gates, Founder of Gates Ventures, Co-Chair of the Bill &amp; Melinda Gates Foundation and Chair of Breakthrough Energy Ventures.",
     "source": "https://commons.wikimedia.org/wiki/File%3ABill_Gates_-_2023_-_P062021-967902_%28cropped%29.jpg",
-    "file": "investors/gates-trust.webp"
+    "file": "investors/gates-trust.webp",
+    "person": "Bill Gates",
+    "illustration": {
+      "nature": "historical-association",
+      "person": "Bill Gates",
+      "entity": "Gates Foundation Trust",
+      "caption": "Bill Gates · trustee",
+      "associationSource": "https://www.gatesfoundation.org/about/financials/foundation-trust",
+      "associationDate": "2026-11-17",
+      "note": "Bill Gates · trustee. Portrait d’illustration ; les positions sont celles de Gates Foundation Trust, jamais son patrimoine personnel."
+    }
   },
   "klarman": {
     "title": "File:Seth Klarman at 147th Preakness Stakes.jpg",
@@ -66,15 +135,40 @@
     "author": "International Trade Administration",
     "license": "Domaine public",
     "source": "https://commons.wikimedia.org/wiki/File%3AWarren_Buffett_at_the_2015_SelectUSA_Investment_Summit.jpg",
-    "file": "investors/berkshire.webp"
+    "file": "investors/berkshire.webp",
+    "person": "Warren Buffett",
+    "sourceSha1": "799f3ebe35e5ddbf84c5b384824066a39cd9746d",
+    "illustration": {
+      "person": "Warren Buffett",
+      "entity": "Berkshire Hathaway",
+      "nature": "historical-association",
+      "associationSource": "https://www.berkshirehathaway.com/letters/2024ltr.pdf",
+      "associationDate": "2025-02-22",
+      "note": "Portrait d’illustration de l’association historique de Warren Buffett à Berkshire Hathaway. Les positions sont celles déclarées par l’entreprise, pas ses avoirs personnels."
+    }
   },
   "li-lu": {
-    "title": "Li Lu · Himalaya Capital",
-    "url": "https://cdn.prod.website-files.com/5ef3c7300432b4eb48659917/68fa5947d6184e3b91deb2a7_Li_Lu0062_edit1_RELEASE2v2.jpg",
-    "author": "Himalaya Capital",
-    "license": "Source officielle",
-    "source": "https://www.himcap.com/",
-    "file": "investors/li-lu.webp"
+    "person": "Li Lu",
+    "title": "File:LiLuJI1.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/LiLuJI1.jpg",
+    "author": "Joi (Joichi Ito)",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:LiLuJI1.jpg",
+    "file": "investors/li-lu-commons-original.jpg",
+    "sourceSha1": "20a3d656f76e3b075e90650f199a49a0bbe3892b",
+    "sourceSha256": "06b149033ed8f7c0943535ffb513fe44ff6c4fa61b2294a79acc94a2e7e9ea9e",
+    "identitySource": "https://commons.wikimedia.org/wiki/File:LiLuJI1.jpg",
+    "identityVerified": true,
+    "checkedAt": "2026-11-17",
+    "crop": [
+      1500,
+      650,
+      2650,
+      2634
+    ],
+    "cropForSha1": "20a3d656f76e3b075e90650f199a49a0bbe3892b",
+    "cropNote": "Cadrage photographique revu : personne seule, proportions conservées. Pabrai à gauche de Guy Spier ; Li Lu au premier plan, exclusion du bras et de la personne en arrière-plan."
   },
   "aschenbrenner": {
     "title": "Leopold Aschenbrenner · The Rhine Group",
@@ -101,12 +195,27 @@
     "file": "investors/terry-smith.webp"
   },
   "pabrai": {
-    "title": "Mohnish Pabrai · Chai with Pabrai",
-    "url": "https://cdn.prod.website-files.com/6913ba09c594c4cd77f9d47f/691c3c499915d5878e9e12f0_20251009-mp-profile-picture-vf_orig.jpg",
-    "source": "https://www.chaiwithpabrai.com/",
-    "author": "Chai with Pabrai",
-    "license": "Source officielle",
-    "file": "investors/pabrai.webp"
+    "person": "Mohnish Pabrai",
+    "title": "File:Guy Spier with Mohnish Pabrai.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Guy_Spier_with_Mohnish_Pabrai.jpg",
+    "author": "AbrahamAumann",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Guy_Spier_with_Mohnish_Pabrai.jpg",
+    "file": "investors/pabrai-commons-original.jpg",
+    "sourceSha1": "7c053ee35fe3da25e27e424c0eed33bfd9b43c9c",
+    "sourceSha256": "c9ecc6c4aa03c7ade26547fadfefea8799b55f7d74cef680f8dd3dcabe6fffb0",
+    "identitySource": "https://commons.wikimedia.org/wiki/File:Guy_Spier_with_Mohnish_Pabrai.jpg",
+    "identityVerified": true,
+    "checkedAt": "2026-11-17",
+    "crop": [
+      130,
+      480,
+      740,
+      1250
+    ],
+    "cropForSha1": "7c053ee35fe3da25e27e424c0eed33bfd9b43c9c",
+    "cropNote": "Cadrage photographique revu : personne seule, proportions conservées. Pabrai à gauche de Guy Spier ; Li Lu au premier plan, exclusion du bras et de la personne en arrière-plan."
   },
   "hohn": {
     "title": "Christopher Hohn · CIFF",
@@ -114,7 +223,14 @@
     "source": "https://ciff.org/finance-and-governance/",
     "author": "CIFF",
     "license": "Source officielle",
-    "file": "investors/hohn.webp"
+    "file": "investors/hohn.webp",
+    "person": "Christopher Hohn",
+    "commonsPortrait": {
+      "wikidataId": "Q1086748",
+      "title": "Chris Hohn GFSS 2023.jpg",
+      "identitySource": "https://ciff.org/finance-and-governance/",
+      "reviewedAt": "2026-11-16"
+    }
   },
   "baker-bros": {
     "title": "Felix Baker · cofondateur de Baker Bros. Advisors",
@@ -131,7 +247,14 @@
     "author": "Carl Icahn",
     "license": "Source officielle",
     "focusX": 0.78,
-    "file": "investors/icahn.webp"
+    "file": "investors/icahn.webp",
+    "person": "Carl Icahn",
+    "commonsPortrait": {
+      "wikidataId": "Q981479",
+      "title": "Carl Icahn, 1980s.jpg",
+      "identitySource": "https://carlicahn.com/about/",
+      "reviewedAt": "2026-11-16"
+    }
   },
   "laffont": {
     "title": "Philippe Laffont · Coatue",
@@ -142,12 +265,28 @@
     "file": "investors/laffont.webp"
   },
   "renaissance": {
-    "title": "Jim Simons · fondateur de Renaissance (1938–2024)",
-    "url": "https://simonsfoundation.imgix.net/wp-content/uploads/2024/05/09150139/JimSimons_05_Bea-de-Ghea_Rectangle-scaled.jpg?auto=format&w=800&q=90",
-    "source": "https://www.simonsfoundation.org/2024/05/10/simons-foundation-co-founder-mathematician-and-investor-jim-simons-dies-at-86/",
-    "author": "© Béatrice de Géa / Simons Foundation",
-    "license": "Source officielle",
-    "file": "investors/renaissance.webp"
+    "person": "Jim Simons",
+    "title": "File:Jim Simons at MSRI.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Jim_Simons_at_MSRI.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Jim_Simons_at_MSRI.jpg",
+    "author": "Gleuschk",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "file": "investors/renaissance-commons-original.jpg",
+    "identitySource": "https://commons.wikimedia.org/wiki/File:Jim_Simons_at_MSRI.jpg",
+    "identityVerified": true,
+    "checkedAt": "2026-11-17",
+    "sourceSha1": "be1809caf0f0eed9d52e99f5c51cf09992dd6dfe",
+    "sourceSha256": "e816c8a67c77c2d442487263b966560f846fa48e4aa7ea35e3829a9b0b504015",
+    "illustration": {
+      "nature": "historical-association",
+      "person": "Jim Simons",
+      "entity": "Renaissance Technologies",
+      "caption": "Jim Simons · fondateur (1938–2024)",
+      "associationSource": "https://www.simonsfoundation.org/news/simons-foundation-co-founder-mathematician-and-investor-jim-simons-dies-at-86/",
+      "associationDate": "2024-05-10",
+      "note": "Jim Simons · fondateur (1938–2024). Portrait d’illustration ; les positions sont celles de Renaissance Technologies, jamais son patrimoine personnel."
+    }
   },
   "einhorn": {
     "title": "David Einhorn · Cornell University",
@@ -171,7 +310,21 @@
     "source": "https://milkeninstitute.org/events/global-conference-2026/speakers/brad-gerstner",
     "author": "Milken Institute",
     "license": "Source officielle",
-    "file": "investors/gerstner.png"
+    "file": "investors/gerstner.png",
+    "person": "Brad Gerstner",
+    "commonsPortrait": {
+      "wikidataId": "Q115446687",
+      "title": "Brad Gerstner at the White House 2025 (54581192563).jpg",
+      "identitySource": "https://milkeninstitute.org/events/global-conference-2026/speakers/brad-gerstner",
+      "reviewedAt": "2026-11-16",
+      "crop": [
+        90,
+        20,
+        370,
+        390
+      ],
+      "cropForSha1": "d15238e9f36f39e5ce42db61cd9fb37759d5ef02"
+    }
   },
   "gayner": {
     "title": "Tom Gayner · Markel Group",
@@ -212,7 +365,14 @@
     "source": "https://bostoninvestmentconference.com/speakers",
     "author": "Boston Investment Conference",
     "license": "Source officielle",
-    "file": "investors/marks.jpg"
+    "file": "investors/marks.jpg",
+    "person": "Howard Marks",
+    "commonsPortrait": {
+      "wikidataId": "Q15109625",
+      "title": "Howard Marks 2.17.12 (cropped).jpg",
+      "identitySource": "https://bostoninvestmentconference.com/speakers",
+      "reviewedAt": "2026-11-16"
+    }
   },
   "watsa": {
     "title": "Prem Watsa · C. R. Selvakumar (செல்வா)",

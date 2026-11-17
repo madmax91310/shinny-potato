@@ -33,6 +33,7 @@ try {
   const records=await page.evaluate(async()=>{
     const {ALL_PROFILES: PROFILES, ASSETS}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
     const {prepareProfile, references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
+    const {shortDonutName}=await import('/shinny-potato/src/pages/dca-profiles/donut-layout.js')
     const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
     const {newManualLine,SAVINGS}=await import('/shinny-potato/src/pages/dca-profiles/placements.js')
     const original=CanvasRenderingContext2D.prototype.fillText
@@ -72,8 +73,8 @@ try {
       if(labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Brand: '+profile.id)
       // Allocation images show held assets; monthly cards show actual contributions.
       const expectedLines=field==='all'?profile.lines.filter(line=>line.weight>0):field==='both'?[]:profile.lines.filter(line=>line.amount>0)
-      for(const line of expectedLines)if(expectedLines.length<=8&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id+' / '+field+' / '+line.label)
-      if(profile.id==='eight-lines'&&['countries','sectors'].includes(field)&&labels.includes(profile.lines[0].label))throw Error('Zero contribution shown as a monthly investment')
+      for(const line of expectedLines)if(!labels.join(' ').includes(shortDonutName(line.label)))throw Error('Allocation missing: '+profile.id+' / '+field+' / '+line.label)
+      if(profile.id==='eight-lines'&&['countries','sectors'].includes(field)&&labels.includes(shortDonutName(profile.lines[0].label)))throw Error('Zero contribution shown as a monthly investment')
       output.push({id:profile.id+'-'+field,labels:[...labels],png:['mixed-savings','all-savings','julien','alexandre','patrick','arthur','laurent','helene','long-1','long-2','long-4','long-8','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
     }
     for(const field of ['countries','sectors','both','all']){
@@ -110,7 +111,7 @@ try {
   const download=page.waitForEvent('download');await downloadButton.click()
   const participantId=await page.evaluate(()=>JSON.parse(localStorage.getItem('el-dca-draft-v1')).profile.id)
   assert.match(participantId,/^subscriber:[0-9a-f-]{36}$/,'Participants have their own stable identity')
-  assert.equal((await download).suggestedFilename(),`dca-${participantId.replaceAll(':','_')}-complete.png`)
+  assert.equal((await download).suggestedFilename(),`dca-${participantId.replaceAll(':','_')}-test-participation-complete.png`)
   await page.getByRole('link',{name:'Ouvrir l’image',exact:true}).waitFor()
   await page.getByLabel('Poids position 1',{exact:true}).fill('90')
   assert(await downloadButton.isDisabled())
@@ -146,6 +147,8 @@ try {
   await page.getByRole('button',{name:'Profils préparés',exact:true}).click()
   await page.locator('.dca-prepared > summary').click()
   await page.getByRole('button',{name:'Marquer publié',exact:true}).click()
+ await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click()
+ await page.getByRole('button',{name:'Retirer le statut publié',exact:true}).waitFor()
   await page.locator('.dca-filters summary').click()
   await page.getByRole('group',{name:'Budget mensuel',exact:true}).locator('[data-option][data-value="small"]').click()
   await page.getByRole('group',{name:'Contient au moins',exact:true}).locator('[data-option][data-value="equity"]').click()

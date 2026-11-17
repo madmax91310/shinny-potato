@@ -10,6 +10,9 @@ on:
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'
+      - 'scripts/market_reader_revalidation.py'
+      - 'scripts/test_market_reader_revalidation.py'
+      - 'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
@@ -103,6 +106,9 @@ on:
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'
+      - 'scripts/market_reader_revalidation.py'
+      - 'scripts/test_market_reader_revalidation.py'
+      - 'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
@@ -216,7 +222,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.presentation_performance.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' }}
+      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.presentation_performance.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' || steps.performance_currency.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -243,6 +249,7 @@ jobs:
           if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
       - run: python -m unittest discover -s scripts -p 'test_etf_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+      - run: python -m unittest discover -s scripts -p 'test_market_reader_revalidation.py'
       - run: node scripts/test-comparison-automation.mjs
       - run: node scripts/test-vaneck-document.mjs
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
@@ -262,6 +269,7 @@ jobs:
       - run: node scripts/test-presentation-etf.mjs
       - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
       - run: python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+      - run: python -m unittest discover -s scripts -p 'test_abtc_secondary_origin.py'
       - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
       - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
@@ -315,9 +323,29 @@ jobs:
       - name: "Collect observations: fx"
         id: fx
         continue-on-error: true
+        run: python scripts/collect_annual_fx.py --apply
+      - name: "Collect observations: performance_currency"
+        id: performance_currency
+        continue-on-error: true
+        run: python scripts/collect_performance_currency.py --apply
+      - name: Record currency collection outcomes
+        if: always()
+        env:
+          ECB_OUTCOME: ${{ steps.fx.outcome }}
+          MSCI_OUTCOME: ${{ steps.performance_currency.outcome }}
         run: |
-          python scripts/collect_annual_fx.py --apply
-          python scripts/collect_performance_currency.py --apply
+          python - <<'PY'
+          import datetime, json, os, pathlib
+          report = {
+              'schemaVersion': 1, 'workflow': 'collect-etf-pilot.yml',
+              'runId': int(os.environ['GITHUB_RUN_ID']),
+              'attempt': int(os.environ['GITHUB_RUN_ATTEMPT']),
+              'headSha': os.environ['GITHUB_SHA'],
+              'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'steps': {'fx': os.environ['ECB_OUTCOME'], 'performance_currency': os.environ['MSCI_OUTCOME']},
+          }
+          pathlib.Path(os.environ['RUNNER_TEMP'], 'currency-collection-outcomes.json').write_text(json.dumps(report))
+          PY
       - name: "Collect observations: indices"
         id: indices
         continue-on-error: true
@@ -337,6 +365,7 @@ jobs:
             ${{ runner.temp }}/additional-observation.json
             ${{ runner.temp }}/presentation-performance.json
             ${{ runner.temp }}/index-observation.json
+            ${{ runner.temp }}/currency-collection-outcomes.json
             ${{ runner.temp }}/**/*.contract-plan.json
           if-no-files-found: ignore
           retention-days: 35

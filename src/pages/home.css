@@ -76,3 +76,12 @@
  .home-today { position:absolute; bottom:0; left:0; right:0; margin:0; }
 }
 @media(prefers-reduced-motion:reduce) { .home-tool-entry { transition:none; } }
+
+/* Selections are scoped to calendar entries; tool pages and evenings keep their colors. */
+.home-calendar .home-tool-entry--midday-selected { background:#dcfce7; border-color:#15803d; }
+.home-calendar .home-tool-entry--midday-selected:hover { background:#bbf7d0; border-color:#166534; }
+.home-calendar .home-tool-entry--midday-selected .workspace-tool-card { color:#14532d; }
+.home-calendar .home-tool-entry--midday-selected .workspace-publication-day { color:#166534; }
+.home-midday-badge { display:block; width:fit-content; margin-top:5px; color:#14532d; font-size:11px; font-weight:750; line-height:1.5; }
+.home-midday-note--selected { padding:10px 12px; border:1px solid #15803d; border-radius:10px; background:#dcfce7; color:#14532d; }
+.home-midday-note--selected .home-midday-badge { margin:0 0 3px; }

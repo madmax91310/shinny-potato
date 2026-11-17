@@ -28,3 +28,24 @@
 .budget-audit-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
 .budget-audit-table th, .budget-audit-table td { padding: .35rem .2rem; text-align: left; overflow-wrap: anywhere; }
 .budget-audit-table td { text-align: right; font-variant-numeric: tabular-nums; }
+
+.budget-profiles-scope .budget-image-pages{display:flex;flex-wrap:wrap;gap:8px;margin-block:12px}
+.budget-profiles-scope .budget-image-pages button{min-height:44px}
+.budget-profiles-scope .budget-image-pages [aria-pressed=true]{outline:2px solid #267863;outline-offset:2px}
+.budget-profiles-scope .budget-image-count{font-weight:600}
+
+.budget-publication-selection ul { list-style: none; padding: 0; display: grid; gap: .7rem; }
+.budget-publication-selection .budget-check { align-items: flex-start; }
+.budget-publication-selection span { min-width: 0; }
+
+.budget-row-options { grid-column: 1 / -1; min-width: 0; }
+.budget-row-options label { display: grid; gap: .35rem; margin: .7rem 0; }
+.budget-row-order, .budget-queue-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.budget-queue ol { padding-left: 1.3rem; }
+.budget-queue li { padding: .8rem 0; overflow-wrap: anywhere; }
+.budget-queue input { max-width: 100%; }
+.budget-import-text, .budget-provenance { white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; }
+.budget-review-image { display: block; width: 100%; max-width: 390px; height: auto; margin: 1rem auto; }
+
+.budget-review-totals>div { display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-bottom:1px solid #ccd4dc; }
+.budget-profiles-scope .budget-row-order button { font-size:.9rem; padding:.4rem .7rem; }

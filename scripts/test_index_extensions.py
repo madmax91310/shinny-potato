@@ -15,6 +15,10 @@ F=Path(__file__).parent/'fixtures/official-documents/index-extensions'
 CONFIG=json.loads((Path(__file__).parent/'index-automation.json').read_text())['indices']
 NOW=dt.datetime(2026,10,6,tzinfo=UTC)
 def cfg(id):return next(c for c in CONFIG if c['id']==id)
+def collect_pdf_composition(config, now, fetch):
+    # Keep the legacy PDF route covered for the other unchanged indices.
+    return collect_amundi_composition({**config, 'compositionApiIndex': None}, now, fetch)
+
 def amundi_facts(id):
     """Parse a frozen August 2026 observation compatible with the test clock."""
     c=cfg(id);fixture=json.loads((F/(id+'.json')).read_text())
@@ -69,10 +73,10 @@ class IndexExtensions(unittest.TestCase):
             if not url.endswith('20260831'):raise urllib.error.HTTPError(url,404,'not published',{},None)
             return b'%PDF'
         with patch('collect_index_extensions.amundi_composition',return_value={'asOf':'2026-08-31'}) as parse:
-            self.assertEqual(collect_amundi_composition(c,NOW,fetch)['asOf'],'2026-08-31')
+            self.assertEqual(collect_pdf_composition(c,NOW,fetch)['asOf'],'2026-08-31')
             self.assertIn('20260831',parse.call_args.args[-1])
         with patch('collect_index_extensions.amundi_composition',return_value={'asOf':'2026-07-31'}):
-            with self.assertRaises(ValueError):collect_amundi_composition(c,NOW,fetch)
+            with self.assertRaises(ValueError):collect_pdf_composition(c,NOW,fetch)
     def test_live_official_edition_uses_published_date_and_provenance(self):
         from collect_amundi_index_exposure import collect_one as exposure
         c=cfg('topix')
@@ -84,7 +88,7 @@ class IndexExtensions(unittest.TestCase):
             def parse(body, config, now, url):
                 return {'asOf':stamp,'source':{'url':url}}
             with patch('collect_index_extensions.amundi_composition',side_effect=parse):
-                result=collect_amundi_composition(c,NOW,fetch)
+                result=collect_pdf_composition(c,NOW,fetch)
             self.assertEqual(result['asOf'],stamp)
             self.assertEqual(len(calls),1)
             self.assertTrue(calls[0].endswith('/INSTITUTIONNEL/ETF'))
@@ -98,13 +102,13 @@ class IndexExtensions(unittest.TestCase):
                 calls.append(url)
                 return b'%PDF-proof'
             with patch('collect_index_extensions.amundi_composition',return_value={'asOf':stamp}):
-                with self.assertRaises(ValueError):collect_amundi_composition(cfg('topix'),NOW,fetch)
+                with self.assertRaises(ValueError):collect_pdf_composition(cfg('topix'),NOW,fetch)
             self.assertEqual(len(calls),1)
         with patch('collect_index_extensions.amundi_composition',side_effect=ValueError('wrong index')):
             with self.assertRaisesRegex(ValueError,'wrong index'):
-                collect_amundi_composition(cfg('topix'),NOW,lambda url:b'%PDF-proof')
+                collect_pdf_composition(cfg('topix'),NOW,lambda url:b'%PDF-proof')
     def test_all_missing_editions_preserve_last_validated_observation(self):
-        c=cfg('topix');calls=[]
+        c={**cfg('topix'),'compositionApiIndex':None};calls=[]
         def fetch(url):
             calls.append(url)
             raise urllib.error.HTTPError(url,404,'not published',{},None)
@@ -152,5 +156,54 @@ class IndexExtensions(unittest.TestCase):
             r=ubs_collect(c,NOW);self.assertIn('www.swissfunddata.ch',r['sourceUrl'])
         with patch('collect_remaining_documents.download',side_effect=TimeoutError('host unavailable')):
             with self.assertRaisesRegex(ValueError,'host unavailable'):ubs_collect(c,NOW)
+class AmundiNativeIndex(unittest.TestCase):
+    now = dt.datetime(2026,11,15,tzinfo=UTC)
+
+    def source(self, id):
+        body=json.loads((Path(__file__).parent/'fixtures/amundi-native-index/2026-11-15.json').read_text())
+        return {'products':[p for p in body['products'] if p['productId']==cfg(id)['compositionIsin']]}
+
+    def test_exact_native_fields_and_ordinary_dispatch(self):
+        from refresh_index_sources import validate_composition
+        for id,count in [('stoxx600',600),('topix',1668)]:
+            body=self.source(id)
+            with patch('collect_amundi_etf.fetch_api',return_value=body) as api:
+                result=collect_amundi_composition(cfg(id),self.now,lambda url:self.fail('PDF used'))
+            validate_composition(result,cfg(id),self.now)
+            self.assertEqual(result['constituents'],count)
+            self.assertEqual(result['asOf'],'2026-11-11')
+            self.assertEqual(len(result['holdings']),10)
+            self.assertEqual(api.call_args.args[0]['productIds'],[cfg(id)['compositionIsin']])
+            for field,key in [('countries','INDEX_COUNTRIES'),('sectors','INDEX_SECTORS'),('holdings','INDEX_TOP10')]:
+                native=next(x for x in body['products'][0]['breakDowns'] if x['aggregationField']==key)
+                expected=sorted([[r['aggregationName'],round(r['adjustedWeight']*100,6)] for r in native['breakDownData']])
+                self.assertEqual(sorted(result[field]),expected)  # no normalization, raw weight is not adjustedWeight
+
+    def test_wrong_identity_count_dates_and_partial_fields_rejected(self):
+        from collect_index_extensions import amundi_api_composition
+        mutations=[lambda p:p.update(productId='WRONG'),
+            lambda p:p['characteristics'].update(ISIN='WRONG'),
+            lambda p:p['characteristics'].update(BENCHMARK_NAME='Other index'),
+            lambda p:p['characteristics'].update(FUND_REPLICATION_METHODOLOGY='Direct(Physical)'),
+            lambda p:p['characteristics'].update(BENCHMARK_NUMBER_OF_COMPONENTS=True),
+            lambda p:p['characteristics'].update(INDEX_BREAKDOWNS_AS_OF_DATE='2026-12-01'),
+            lambda p:p['characteristics'].update(INDEX_BREAKDOWNS_AS_OF_DATE='2026-01-01'),
+            lambda p:p['breakDowns'][0]['breakDownData'].pop(),
+            lambda p:p['breakDowns'][0]['breakDownData'][0].update(adjustedWeight=None),
+            lambda p:p.update(breakDowns=[])]
+        for mutate in mutations:
+            body=self.source('topix');mutate(body['products'][0])
+            with self.assertRaises((ValueError,TypeError)):
+                amundi_api_composition(cfg('topix'),self.now,lambda payload:body)
+
+    def test_failure_preserves_previous_observation(self):
+        with patch('collect_amundi_etf.fetch_api',side_effect=TimeoutError('source unavailable')):
+            with self.assertRaises(TimeoutError):
+                collect_amundi_composition(cfg('topix'),self.now,lambda url:self.fail('Silently rescued by PDF'))
+            result=refresh_index(cfg('topix'),self.now,lambda url:(_ for _ in ()).throw(TimeoutError('offline')))
+        previous={'topix':{'facts':{'asOf':'2026-10-31','constituents':1668},'factsHistory':{}}}
+        self.assertNotIn('facts',result)
+        self.assertEqual(merge_records(previous,[result]),previous)
+
 if __name__=='__main__':unittest.main()
 

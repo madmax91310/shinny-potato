@@ -24,6 +24,62 @@ URL = PROVENANCE['sourceUrl']
 
 
 class QualifiedPhysicalAllocation(unittest.TestCase):
+    def test_hypothetical_valid_primary_keeps_its_proof_and_independent_holdings_date(self):
+        from urllib.parse import parse_qs,urlsplit
+        body=self.null_book()
+        exposure=body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']
+        for node in [exposure['geography']['subContainersByNameMap']['countries'],exposure['sector']]:
+            # Isolated hypothetical primary recovery, not a provider claim.
+            node['dataPointsByNameMap']['fund']['value'][0]+=1.26
+        primary=json.dumps(body)
+        def fetch(url,*args):
+            return RAW if parse_qs(urlsplit(url).query)['component']==['keyFundFacts,holdings.all'] else primary
+        with patch.object(collector,'get_text',side_effect=fetch) as source:
+            record=collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,3)
+        self.assertEqual(record['pageSha256'],hashlib.sha256(primary.encode()).hexdigest())
+        self.assertEqual(record['holdings']['sha256'],hashlib.sha256(RAW.encode()).hexdigest())
+        self.assertNotEqual(record['holdings']['sourceUrl'],URL)
+        self.assertEqual(record['holdings']['asOf'],'2026-11-11')
+        self.assertTrue(all(x['status']=='succeeded'for x in record['primaryAllocationChecks']))
+        self.assertEqual(record['sourceAttempts'][-1]['field'],'holdings')
+
+    def test_bad_primary_is_not_closed_by_an_unrelated_holdings_recovery(self):
+        with patch.object(collector,'get_text',return_value=json.dumps(self.null_book())):
+            with patch.object(collector,'independent_holdings') as alternative:
+                with self.assertRaises(ValueError):collector.collect_one(CONFIG,NOW)
+        alternative.assert_not_called()
+
+    def null_book(self):
+        body=copy.deepcopy(BODY)
+        points=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        for key in ('asOfDate','issueName','holdingPercent','isin','countryOfRisk','assetClass'):
+            points[key]['value']=None
+        return body
+
+    def test_shared_acquisition_recovers_whole_qualified_response_and_keeps_primary_incidents(self):
+        responses=[json.dumps(self.null_book()),RAW]
+        with patch.object(collector,'get_text',side_effect=responses) as source:
+            record=collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,2)
+        self.assertEqual(source.call_args_list[0],source.call_args_list[1])
+        self.assertEqual(record['pageSha256'],hashlib.sha256(RAW.encode()).hexdigest())
+        self.assertEqual([x['status']for x in record['sourceAttempts']],['empty-holdings-snapshot','validated'])
+        self.assertTrue(all(x['status']=='failed'for x in record['primaryAllocationChecks']))
+        self.assertFalse(record['compositionQualification']['normalizationApplied'])
+
+    def test_persistent_null_book_keeps_both_failed_attempts(self):
+        with patch.object(collector,'get_text',return_value=json.dumps(self.null_book())) as source:
+            with self.assertRaises(ValueError) as caught:collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,2)
+        self.assertEqual([x['status']for x in caught.exception.sourceAttempts],['empty-holdings-snapshot']*2)
+
+    def test_wrong_partial_share_identity_never_retries(self):
+        body=self.null_book();body['productId']=999
+        with patch.object(collector,'get_text',return_value=json.dumps(body)) as source:
+            with self.assertRaises(ValueError):collector.collect_one(CONFIG,NOW)
+        self.assertEqual(source.call_count,1)
+
     def prepare(self, body=BODY, config=SHARE):
         return fallback.prepare(body, config, NOW, URL, RAW if body is BODY else json.dumps(body), {})
 
@@ -207,5 +263,8 @@ class QualifiedPhysicalAllocation(unittest.TestCase):
         self.assertEqual(len(caught.exception.primaryAllocationChecks), 2)
         self.assertTrue(all(r['status'] == 'failed' for r in caught.exception.primaryAllocationChecks))
 
+
+# The same producer handles the exact physical iBonds field recovery.
+from test_ibonds_country_recovery import IBondsCountryRecovery
 
 if __name__ == '__main__': unittest.main()

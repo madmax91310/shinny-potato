@@ -34,7 +34,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-acwi-imi-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "1052f9a0909756cf8238eb5049ffbd280ba3299aa7cc043103b162ef81429eb9",
         "label": "Rendements calendaires officiels automatisés · MSCI ACWI IMI"
       },
@@ -164,7 +164,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-acwi-imi-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI ACWI IMI",
         "sha256": "1052f9a0909756cf8238eb5049ffbd280ba3299aa7cc043103b162ef81429eb9"
       },
@@ -550,7 +550,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-momentum-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "46026d80f8c4598e82aaf120db5078e39b088ae762974e46a391e6dc2636278b",
         "label": "Rendements calendaires officiels automatisés · MSCI World Momentum"
       },
@@ -680,7 +680,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-momentum-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Momentum",
         "sha256": "46026d80f8c4598e82aaf120db5078e39b088ae762974e46a391e6dc2636278b"
       },
@@ -1066,7 +1066,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/c0db0a48-01f2-4ba9-ad01-226fd5678111",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "180f318e4ce37a440f874a40ea571db411d1b3b3876ace24d314f01a50aac74b",
         "label": "Rendements calendaires officiels automatisés · MSCI Emerging Markets"
       },
@@ -1196,7 +1196,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/c0db0a48-01f2-4ba9-ad01-226fd5678111",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI Emerging Markets",
         "sha256": "180f318e4ce37a440f874a40ea571db411d1b3b3876ace24d314f01a50aac74b"
       },
@@ -1839,9 +1839,19 @@
           1.12
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 4200,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · FTSE All-World",
         "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961"
       },
@@ -1881,7 +1891,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961",
         "label": "Rendements calendaires officiels automatisés · FTSE All-World"
       },
@@ -2703,7 +2713,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-small-cap-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Small Cap",
         "sha256": "9f7864b81d931153271a8b4e66aa1572608151500a57ec4544280e2eec1b926e"
       },
@@ -2743,7 +2753,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-small-cap-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "9f7864b81d931153271a8b4e66aa1572608151500a57ec4544280e2eec1b926e",
         "label": "Rendements calendaires officiels automatisés · MSCI World Small Cap"
       },
@@ -3133,7 +3143,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "5d53b27a884608f6180af13b6c7bc9dd1ac3b7d70ddeaa381d7797f9b1dbd4bb",
         "label": "Rendements calendaires officiels automatisés · MSCI World ex USA"
       },
@@ -3263,7 +3273,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World ex USA",
         "sha256": "5d53b27a884608f6180af13b6c7bc9dd1ac3b7d70ddeaa381d7797f9b1dbd4bb"
       },
@@ -3649,7 +3659,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "d5e4d5d8fd966e35434f1176429ab308b91f5e7c64fac1f64b5c54919515a055",
         "label": "Rendements calendaires officiels automatisés · MSCI EM ex-Egypt ESG Broad CTB Select"
       },
@@ -3779,7 +3789,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI EM ex-Egypt ESG Broad CTB Select",
         "sha256": "d5e4d5d8fd966e35434f1176429ab308b91f5e7c64fac1f64b5c54919515a055"
       },
@@ -4165,7 +4175,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/40ed8526-20a0-ef81-fc55-ee99f1315c5c",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "cc71638a37ee41456bfb6060082d8a9ec8728cf25bbd339196d520c3abc93f76",
         "label": "Rendements calendaires officiels automatisés · MSCI EM Asia Screened Select ex Thermal Coal"
       },
@@ -4295,7 +4305,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/40ed8526-20a0-ef81-fc55-ee99f1315c5c",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI EM Asia Screened Select ex Thermal Coal",
         "sha256": "cc71638a37ee41456bfb6060082d8a9ec8728cf25bbd339196d520c3abc93f76"
       },
@@ -4681,7 +4691,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "2b87ca0aecd3fa268eee8810314ac114051bf51e2095d27bf3668cca368d2437",
         "label": "Rendements calendaires officiels automatisés · MSCI ACWI"
       },
@@ -4811,7 +4821,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI ACWI",
         "sha256": "2b87ca0aecd3fa268eee8810314ac114051bf51e2095d27bf3668cca368d2437"
       },
@@ -5283,7 +5293,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World",
         "sha256": "f69623d967c6b7e46becd8d2d7e196ca744a2b34a636fc90f67330a8a775aa0b"
       },
@@ -5323,7 +5333,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "f69623d967c6b7e46becd8d2d7e196ca744a2b34a636fc90f67330a8a775aa0b",
         "label": "Rendements calendaires officiels automatisés · MSCI World"
       },
@@ -5713,7 +5723,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "bc9cf7eef4f7a3e38c2d8d5a15453d99703b206b1b7fcb82e17459b1c943bb7e",
         "label": "Rendements calendaires officiels automatisés · MSCI Europe"
       },
@@ -5843,7 +5853,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI Europe",
         "sha256": "bc9cf7eef4f7a3e38c2d8d5a15453d99703b206b1b7fcb82e17459b1c943bb7e"
       },
@@ -6229,7 +6239,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-usa-index-gross.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "3a59f1db943fbfcb8dbed74a78e989b41296ebb0feeba1f6ac5fc15b1b9964de",
         "label": "Rendements calendaires officiels automatisés · MSCI USA"
       },
@@ -6339,7 +6349,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-usa-index-gross.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI USA",
         "sha256": "3a59f1db943fbfcb8dbed74a78e989b41296ebb0feeba1f6ac5fc15b1b9964de"
       },
@@ -6685,7 +6695,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "c69dc98a2b86f5413bcdf4956d4c01298e29b45e456b2876f26c61120942bdfa",
         "label": "Rendements calendaires officiels automatisés · MSCI World Enhanced Value"
       },
@@ -6815,7 +6825,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Enhanced Value",
         "sha256": "c69dc98a2b86f5413bcdf4956d4c01298e29b45e456b2876f26c61120942bdfa"
       },
@@ -7201,7 +7211,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "5d05f19fd5924b20cd3a9f281b187ab0108eae91edddf4a8f4b9b95882a0ec66",
         "label": "Rendements calendaires officiels automatisés · MSCI World Sector Neutral Quality"
       },
@@ -7331,7 +7341,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Sector Neutral Quality",
         "sha256": "5d05f19fd5924b20cd3a9f281b187ab0108eae91edddf4a8f4b9b95882a0ec66"
       },
@@ -7717,7 +7727,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-growth-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "fc1ac0fba0fc79820fba558bba0517e8416f18f23da6e19fecc2ae7b129f30b6",
         "label": "Rendements calendaires officiels automatisés · MSCI World Growth"
       },
@@ -7847,7 +7857,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-growth-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Growth",
         "sha256": "fc1ac0fba0fc79820fba558bba0517e8416f18f23da6e19fecc2ae7b129f30b6"
       },
@@ -8233,7 +8243,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-high-dividend-yield-advanced-select-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "6377fda1fd20c85d8f02b89b475072001960bbb5c5530690ab72e8c0532569dd",
         "label": "Rendements calendaires officiels automatisés · MSCI World High Dividend Yield Advanced Select"
       },
@@ -8363,7 +8373,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-high-dividend-yield-advanced-select-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World High Dividend Yield Advanced Select",
         "sha256": "6377fda1fd20c85d8f02b89b475072001960bbb5c5530690ab72e8c0532569dd"
       },
@@ -8749,7 +8759,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-china-a-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "d8b94b8c38f0a38e7c0eca7378971d668eb1a81af3333c95173f468040f99dd9",
         "label": "Rendements calendaires officiels automatisés · MSCI China A"
       },
@@ -8859,7 +8869,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-china-a-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI China A",
         "sha256": "d8b94b8c38f0a38e7c0eca7378971d668eb1a81af3333c95173f468040f99dd9"
       },
@@ -9205,7 +9215,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-japan-imi-jpy-gross.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "4e23a8198dbef84cee9aaddb05886418aba424baca5c3125ea730fd4ccff97a7",
         "label": "Rendements calendaires officiels automatisés · MSCI Japan IMI"
       },
@@ -9315,7 +9325,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-japan-imi-jpy-gross.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI Japan IMI",
         "sha256": "4e23a8198dbef84cee9aaddb05886418aba424baca5c3125ea730fd4ccff97a7"
       },
@@ -9747,7 +9757,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-minimum-volatility-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Minimum Volatility (USD)",
         "sha256": "1061814f820ff2ef0dcc060e67d762ccffbf07b5bac6d98bad13be4620cf6976"
       },
@@ -10041,7 +10051,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-minimum-volatility-index-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "9d81cd0fab6aee5345317c2d28908b4ae5f78834a0ad44df8af26e89fbe2b9a8",
         "label": "Rendements calendaires officiels automatisés · MSCI World Minimum Volatility (USD)"
       },
@@ -10243,7 +10253,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-india-index-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · Inde seule",
         "sha256": "c5b6d22fd5345045a54053c68a421e042bfb158de03c2e1bca1c8b96853671ea"
       },
@@ -10283,7 +10293,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-india-index-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "c5b6d22fd5345045a54053c68a421e042bfb158de03c2e1bca1c8b96853671ea",
         "label": "Rendements calendaires officiels automatisés · Inde seule"
       },
@@ -10719,7 +10729,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-ex-china-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI EM ex-China",
         "sha256": "491541b130dd5667565903664d02f9bc7143850301dd9816342a215549c17ad7"
       },
@@ -10759,7 +10769,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-ex-china-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "491541b130dd5667565903664d02f9bc7143850301dd9816342a215549c17ad7",
         "label": "Rendements calendaires officiels automatisés · MSCI EM ex-China"
       },
@@ -11235,7 +11245,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-em-emea-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI Emerging EMEA ESG Transition",
         "sha256": "c415ab09c804f5bd42bb068b8973456dbbc8871a0a08ed84aee47343fab9fcf2",
         "sourceUrls": [
@@ -11280,7 +11290,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-em-emea-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "c415ab09c804f5bd42bb068b8973456dbbc8871a0a08ed84aee47343fab9fcf2",
         "label": "Rendements calendaires officiels automatisés · MSCI Emerging EMEA ESG Transition",
         "sourceUrls": [
@@ -11686,10 +11696,6 @@
           1.35
         ],
         [
-          "Greece                                    -                       -          -",
-          0.03
-        ],
-        [
           "Hong Kong",
           3.66
         ],
@@ -11838,9 +11844,33 @@
           1.89
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 320,
+        "excludedComparisonRows": [
+          {
+            "country": "Greece",
+            "primaryCells": [
+              "-",
+              "-",
+              "-"
+            ],
+            "comparisonCells": [
+              "1",
+              "577",
+              "0.03"
+            ]
+          }
+        ]
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · FTSE EPRA Nareit Developed Dividend+",
         "sha256": "cf683af0469de89505295f3e13448324b6d386ff21718e79489744599fe60f74"
       },
@@ -12463,7 +12493,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "cf683af0469de89505295f3e13448324b6d386ff21718e79489744599fe60f74",
         "label": "Rendements calendaires officiels automatisés · FTSE EPRA Nareit Developed Dividend+"
       },
@@ -12812,9 +12842,19 @@
           2.4
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 277,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · FTSE Global Core Infrastructure",
         "sha256": "bbd7d8a5cb28d7e2eeb6b6f6c5fd209e45339b1e893c6566dea2c8bc9ab281cc"
       },
@@ -13278,7 +13318,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "bbd7d8a5cb28d7e2eeb6b6f6c5fd209e45339b1e893c6566dea2c8bc9ab281cc",
         "label": "Rendements calendaires officiels automatisés · FTSE Global Core Infrastructure"
       },
@@ -13567,9 +13607,19 @@
           0.79
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Net MCap (USDm)",
+          "Wgt %"
+        ],
+        "constituentCount": 2298,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · FTSE EM",
         "sha256": "31348a97128e094748540de0f7ac28c7f9592fd17c686675c7dc4e4c4d5ad4da"
       },
@@ -14196,7 +14246,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "31348a97128e094748540de0f7ac28c7f9592fd17c686675c7dc4e4c4d5ad4da",
         "label": "Rendements calendaires officiels automatisés · FTSE EM"
       },
@@ -14633,9 +14683,18 @@
           0.83
         ]
       ],
+      "countryTableQualification": {
+        "columns": [
+          "Country/Market",
+          "No. of Cons",
+          "Wgt %"
+        ],
+        "constituentCount": 2467,
+        "excludedComparisonRows": []
+      },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · FTSE All-World High Dividend Yield",
         "sha256": "8f09a713400c4c3bf5f088b1dc5425a4e391b90f172d36a569149d069805e81d"
       },
@@ -15275,7 +15334,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "8f09a713400c4c3bf5f088b1dc5425a4e391b90f172d36a569149d069805e81d",
         "label": "Rendements calendaires officiels automatisés · FTSE All-World High Dividend Yield"
       },
@@ -15458,7 +15517,7 @@
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?IsManual=False&issueName=XIN0&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · FTSE China 50",
         "sha256": "3c354b5ec52434f244a76243504995493e9501f73189dfd8ae01a6a48974b54f"
       },
@@ -15761,7 +15820,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=XIN0&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "3c354b5ec52434f244a76243504995493e9501f73189dfd8ae01a6a48974b54f",
         "label": "Rendements calendaires officiels automatisés · FTSE China 50"
       },
@@ -15941,7 +16000,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=D41432&isManual=False",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "7f8744e7431c01cfa4e1a6f4c12371f345eb221dbc2d24cf072965b7038a02ec",
         "label": "Rendements calendaires officiels automatisés · Russell 2000"
       },
@@ -16185,7 +16244,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "acc84a803d787890649c23dfe4ba6d97a5677323d550c4a6ca4727270ef6cdf1",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -16547,7 +16606,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=D41430&isManual=False",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "681e5cf724ca4fe288df5c7c57f1b953f05dfc240108fc693439f0b3fc7ec152",
         "label": "Rendements calendaires officiels automatisés · Russell 1000"
       },
@@ -16731,7 +16790,7 @@
       "holdings": [],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "f137eb024d3f95f901fb5ca0719ffb11b5d348bd6b8b82a951928c3f55a67943",
         "label": "Fiche officielle FTSE Russell"
       },
@@ -16961,7 +17020,7 @@
       "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
       "source": {
         "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
         "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000"
       }
@@ -17145,14 +17204,14 @@
       },
       "holdingsSource": {
         "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
         "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000",
         "asOf": "2026-06-30"
       },
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssueByDate?IssueName=US1000USD&IssueDate=20260630&IsManual=id",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "ed4349fbe1714f43c4924d70fcbdecc139c00d37745a232084d3805b1f10dc93",
         "label": "FTSE Russell · fiche archivée à la date des positions trimestrielles",
         "archiveUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/GetIssueListByCode?issueName=US1000USD",
@@ -17422,7 +17481,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-china-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI China",
         "sha256": "ade3f18dc7aade5f8acb2bd93292f9d719b501121344d6e78e857b1bb9123beb"
       },
@@ -17676,7 +17735,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-china-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "ade3f18dc7aade5f8acb2bd93292f9d719b501121344d6e78e857b1bb9123beb",
         "label": "Rendements calendaires officiels automatisés · MSCI China"
       },
@@ -17890,7 +17949,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/099bb74e-4808-420f-b8b6-28efd0993ea6",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI Emerging Markets Latin America",
         "sha256": "15bb7a8979789d9118d1814b52821e64e010db6a8e70c2aa9cc7d1f0a2c28a0e"
       },
@@ -18168,7 +18227,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/099bb74e-4808-420f-b8b6-28efd0993ea6",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "15bb7a8979789d9118d1814b52821e64e010db6a8e70c2aa9cc7d1f0a2c28a0e",
         "label": "Rendements calendaires officiels automatisés · MSCI Emerging Markets Latin America"
       },
@@ -18390,7 +18449,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI EM IMI",
         "sha256": "26dd9ba3d87abd120e5bc4f715ef0c3c84f37b279a252c97ad84816654159a32"
       },
@@ -18684,7 +18743,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "26dd9ba3d87abd120e5bc4f715ef0c3c84f37b279a252c97ad84816654159a32",
         "label": "Rendements calendaires officiels automatisés · MSCI EM IMI"
       },
@@ -18825,7 +18884,7 @@
           "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
         ],
         "checkedAt": "2026-11-08",
-        "sha256": "a2a5074e8e6ee8806477ad58117808cc9d56965df6cb97a454e726b36863a6a4",
+        "sha256": "3047e7e4b7b75cb563deb1d81b4a9229e7678cdce8903a539d4e9456ec1bba3d",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
@@ -19032,7 +19091,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "7de261160601a39d67da1f73732aa449547d1fcd25680d63efe754a467ce2610",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -19547,7 +19606,7 @@
           "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1mo&events=div%2Csplits"
         ],
         "checkedAt": "2026-11-08",
-        "sha256": "a2a5074e8e6ee8806477ad58117808cc9d56965df6cb97a454e726b36863a6a4",
+        "sha256": "3047e7e4b7b75cb563deb1d81b4a9229e7678cdce8903a539d4e9456ec1bba3d",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
@@ -19741,8 +19800,8 @@
       ],
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
-        "checkedAt": "2026-11-14",
-        "sha256": "7ba2ede9ae023ff87c2ddf289a618b67e81d9b4440c938b1fc4a5fc5442d25aa",
+        "checkedAt": "2026-11-17",
+        "sha256": "67ae8d884cbc2a9f41600417611c7d1078cd93d06bd8b3c53f775e706ee24675",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -19957,8 +20016,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
-        "checkedAt": "2026-11-14",
-        "sha256": "5f271f34a3142a26f5d688c0b1a318cca85284573babcfe42aab3a38ad132ef7",
+        "checkedAt": "2026-11-17",
+        "sha256": "41b9e702ab0819d94bc407bb220704562e570627cb7e46cc56042e2bc7d877c6",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -20052,7 +20111,7 @@
   },
   "stoxx600": {
     "returns": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -20085,14 +20144,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
-        "checkedAt": "2026-11-14",
-        "sha256": "fb00a3a1c0863b42ebb6b4b51b58cd86e651078f0016fc929ab928f6e06d61d9",
+        "checkedAt": "2026-11-17",
+        "sha256": "7d9b5f70fefef7dd4a7cecd297dfe678188d285a075cfd26009142ed10ac4100",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
         "kind": "indice",
         "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
-        "date": "2026-11-13"
+        "date": "2026-11-16"
       }
     },
     "returnsHistory": {
@@ -21371,177 +21430,228 @@
           "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
           "date": "2026-11-13"
         }
+      },
+      "2026-11-16": {
+        "asOf": "2026-11-16",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.8
+          ],
+          [
+            2024,
+            8.79
+          ],
+          [
+            2023,
+            15.8
+          ],
+          [
+            2022,
+            -10.64
+          ],
+          [
+            2021,
+            24.91
+          ],
+          [
+            2020,
+            -1.99
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-11-16",
+          "sha256": "37abc8e20f94b3c533b35538fc19e67ff1795567078d455f084e122db2d94851",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-16"
+        }
       }
     },
     "facts": {
       "index": "STOXX Europe 600",
-      "asOf": "2026-09-30",
+      "asOf": "2026-11-13",
       "constituents": 600,
       "countries": [
         [
-          "Royaume-Uni",
-          22.87
+          "United Kingdom",
+          23.154067
         ],
         [
           "France",
-          14.76
+          14.764658
         ],
         [
-          "Suisse",
-          13.51
+          "Switzerland",
+          14.395287
         ],
         [
-          "Allemagne",
-          13.1
+          "Germany",
+          13.182868
         ],
         [
-          "Pays-Bas",
-          8.36
+          "Netherlands",
+          7.400152
         ],
         [
-          "Espagne",
-          6.03
+          "Spain",
+          5.886514
         ],
         [
-          "Italie",
-          5.74
+          "Italy",
+          5.485332
         ],
         [
-          "Suède",
-          4.76
+          "Sweden",
+          4.830992
         ],
         [
-          "Danemark",
-          2.55
+          "Denmark",
+          2.721407
         ],
         [
-          "Finlande",
-          1.97
+          "Belgium",
+          1.962348
         ],
         [
-          "Belgique",
-          1.84
+          "Finland",
+          1.828938
         ],
         [
-          "Norvège",
-          1.24
+          "Norway",
+          1.249863
         ],
         [
-          "Pologne",
-          1.02
+          "Poland",
+          1.001061
         ],
         [
-          "Irlande",
-          0.72
+          "Ireland",
+          0.716356
         ],
         [
-          "Autriche",
-          0.67
+          "Austria",
+          0.608966
         ],
         [
-          "Grèce",
-          0.54
+          "Greece",
+          0.50122
         ],
         [
-          "Autres pays",
-          0.32
+          "Portugal",
+          0.309971
         ]
       ],
       "sectors": [
         [
-          "Finance",
-          26.39
+          "Financials",
+          25.49972
         ],
         [
-          "Industrie",
-          18.95
+          "Industrials",
+          18.151545
         ],
         [
-          "Santé",
-          12.02
+          "Health Care",
+          13.40224
         ],
         [
-          "Technologies de l'info.",
-          9.12
+          "Consumer Staples",
+          8.518229
         ],
         [
-          "Conso non Cyclique",
-          7.61
+          "Information Technology",
+          8.048902
         ],
         [
-          "Conso Cyclique",
-          6.31
+          "Consumer Discretionary",
+          6.422386
         ],
         [
-          "Énergie",
-          5.7
+          "Energy",
+          5.72344
         ],
         [
-          "Matériaux",
-          5.57
+          "Materials",
+          5.468416
         ],
         [
-          "Services publics",
-          4.65
+          "Utilities",
+          5.010973
         ],
         [
-          "Services de communication",
-          2.69
-        ],
-        [
-          "Immobilier",
-          1.0
+          "Others",
+          3.754148
         ]
       ],
       "holdings": [
         [
           "ASML HOLDING NV",
-          4.69
+          3.767957
         ],
         [
-          "HSBC HOLDING PLC GBP",
-          2.28
+          "ROCHE HOLDING AG - GENUSSS CHF",
+          2.230602
         ],
         [
-          "ROCHE HLDG AG-GENUSS CHF",
-          1.96
+          "HSBC HOLDINGS PLC",
+          2.02158
         ],
         [
           "NOVARTIS AG-REG",
-          1.83
-        ],
-        [
-          "SHELL PLC EUR",
-          1.76
+          1.993907
         ],
         [
           "ASTRAZENECA GBP",
-          1.69
+          1.885235
+        ],
+        [
+          "SHELL PLC EUR",
+          1.797984
         ],
         [
           "NESTLE SA-REG",
-          1.57
-        ],
-        [
-          "SIEMENS AG-REG",
-          1.56
-        ],
-        [
-          "BANCO SANTANDER SA MADRID",
-          1.42
+          1.773111
         ],
         [
           "SAP SE / XETRA",
-          1.41
+          1.5576
+        ],
+        [
+          "SIEMENS AG-REG",
+          1.486986
+        ],
+        [
+          "TOTALENERGIES SE PARIS",
+          1.35943
         ]
       ],
       "source": {
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-14",
-        "sha256": "028873f212d58aa3ce25622ff1deb4e3bb44ef52fa4fffeac561bf0194a3aee1",
-        "label": "Composition de l’indice publiée par Amundi"
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-17",
+        "sha256": "9a3aa4225cf8b8720c06ad843df51deb4037265acaa586c1106fb81443c97ca4",
+        "label": "Composition de l’indice publiée par Amundi",
+        "productId": "LU0908500753",
+        "controlledFields": [
+          "ISIN",
+          "BENCHMARK_NAME",
+          "FUND_REPLICATION_METHODOLOGY",
+          "INDEX_BREAKDOWNS_AS_OF_DATE",
+          "BENCHMARK_NUMBER_OF_COMPONENTS",
+          "INDEX_TOP10",
+          "INDEX_COUNTRIES",
+          "INDEX_SECTORS"
+        ]
       },
-      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
     },
     "factsHistory": {
       "2026-08-31": {
@@ -21879,12 +21989,366 @@
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "2026-11-11": {
+        "index": "STOXX Europe 600",
+        "asOf": "2026-11-11",
+        "constituents": 600,
+        "countries": [
+          [
+            "United Kingdom",
+            22.998466
+          ],
+          [
+            "France",
+            14.725988
+          ],
+          [
+            "Switzerland",
+            14.377214
+          ],
+          [
+            "Germany",
+            13.171644
+          ],
+          [
+            "Netherlands",
+            7.602493
+          ],
+          [
+            "Spain",
+            5.889188
+          ],
+          [
+            "Italy",
+            5.502122
+          ],
+          [
+            "Sweden",
+            4.858283
+          ],
+          [
+            "Denmark",
+            2.704585
+          ],
+          [
+            "Belgium",
+            1.955071
+          ],
+          [
+            "Finland",
+            1.836292
+          ],
+          [
+            "Norway",
+            1.246637
+          ],
+          [
+            "Poland",
+            0.980447
+          ],
+          [
+            "Ireland",
+            0.719549
+          ],
+          [
+            "Austria",
+            0.6188
+          ],
+          [
+            "Greece",
+            0.505504
+          ],
+          [
+            "Portugal",
+            0.307719
+          ]
+        ],
+        "sectors": [
+          [
+            "Financials",
+            25.470106
+          ],
+          [
+            "Industrials",
+            18.249837
+          ],
+          [
+            "Health Care",
+            13.335174
+          ],
+          [
+            "Consumer Staples",
+            8.380706
+          ],
+          [
+            "Information Technology",
+            8.28383
+          ],
+          [
+            "Consumer Discretionary",
+            6.486631
+          ],
+          [
+            "Energy",
+            5.609687
+          ],
+          [
+            "Materials",
+            5.532503
+          ],
+          [
+            "Utilities",
+            4.924736
+          ],
+          [
+            "Others",
+            3.726791
+          ]
+        ],
+        "holdings": [
+          [
+            "ASML HOLDING NV",
+            3.956553
+          ],
+          [
+            "ROCHE HOLDING AG - GENUSSS CHF",
+            2.219903
+          ],
+          [
+            "HSBC HOLDINGS PLC",
+            2.022994
+          ],
+          [
+            "NOVARTIS AG-REG",
+            1.978493
+          ],
+          [
+            "ASTRAZENECA GBP",
+            1.873291
+          ],
+          [
+            "SHELL PLC EUR",
+            1.77482
+          ],
+          [
+            "NESTLE SA-REG",
+            1.740236
+          ],
+          [
+            "SAP SE / XETRA",
+            1.541561
+          ],
+          [
+            "SIEMENS AG-REG",
+            1.476324
+          ],
+          [
+            "TOTALENERGIES SE PARIS",
+            1.314987
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-15",
+          "sha256": "9306e568b07c64a55da7132c2812046d087d2f3dfdb62322ff8b2d99a1d2b184",
+          "label": "Composition de l’indice publiée par Amundi",
+          "productId": "LU0908500753",
+          "controlledFields": [
+            "ISIN",
+            "BENCHMARK_NAME",
+            "FUND_REPLICATION_METHODOLOGY",
+            "INDEX_BREAKDOWNS_AS_OF_DATE",
+            "BENCHMARK_NUMBER_OF_COMPONENTS",
+            "INDEX_TOP10",
+            "INDEX_COUNTRIES",
+            "INDEX_SECTORS"
+          ]
+        },
+        "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
+      },
+      "2026-11-13": {
+        "index": "STOXX Europe 600",
+        "asOf": "2026-11-13",
+        "constituents": 600,
+        "countries": [
+          [
+            "United Kingdom",
+            23.154067
+          ],
+          [
+            "France",
+            14.764658
+          ],
+          [
+            "Switzerland",
+            14.395287
+          ],
+          [
+            "Germany",
+            13.182868
+          ],
+          [
+            "Netherlands",
+            7.400152
+          ],
+          [
+            "Spain",
+            5.886514
+          ],
+          [
+            "Italy",
+            5.485332
+          ],
+          [
+            "Sweden",
+            4.830992
+          ],
+          [
+            "Denmark",
+            2.721407
+          ],
+          [
+            "Belgium",
+            1.962348
+          ],
+          [
+            "Finland",
+            1.828938
+          ],
+          [
+            "Norway",
+            1.249863
+          ],
+          [
+            "Poland",
+            1.001061
+          ],
+          [
+            "Ireland",
+            0.716356
+          ],
+          [
+            "Austria",
+            0.608966
+          ],
+          [
+            "Greece",
+            0.50122
+          ],
+          [
+            "Portugal",
+            0.309971
+          ]
+        ],
+        "sectors": [
+          [
+            "Financials",
+            25.49972
+          ],
+          [
+            "Industrials",
+            18.151545
+          ],
+          [
+            "Health Care",
+            13.40224
+          ],
+          [
+            "Consumer Staples",
+            8.518229
+          ],
+          [
+            "Information Technology",
+            8.048902
+          ],
+          [
+            "Consumer Discretionary",
+            6.422386
+          ],
+          [
+            "Energy",
+            5.72344
+          ],
+          [
+            "Materials",
+            5.468416
+          ],
+          [
+            "Utilities",
+            5.010973
+          ],
+          [
+            "Others",
+            3.754148
+          ]
+        ],
+        "holdings": [
+          [
+            "ASML HOLDING NV",
+            3.767957
+          ],
+          [
+            "ROCHE HOLDING AG - GENUSSS CHF",
+            2.230602
+          ],
+          [
+            "HSBC HOLDINGS PLC",
+            2.02158
+          ],
+          [
+            "NOVARTIS AG-REG",
+            1.993907
+          ],
+          [
+            "ASTRAZENECA GBP",
+            1.885235
+          ],
+          [
+            "SHELL PLC EUR",
+            1.797984
+          ],
+          [
+            "NESTLE SA-REG",
+            1.773111
+          ],
+          [
+            "SAP SE / XETRA",
+            1.5576
+          ],
+          [
+            "SIEMENS AG-REG",
+            1.486986
+          ],
+          [
+            "TOTALENERGIES SE PARIS",
+            1.35943
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-17",
+          "sha256": "9a3aa4225cf8b8720c06ad843df51deb4037265acaa586c1106fb81443c97ca4",
+          "label": "Composition de l’indice publiée par Amundi",
+          "productId": "LU0908500753",
+          "controlledFields": [
+            "ISIN",
+            "BENCHMARK_NAME",
+            "FUND_REPLICATION_METHODOLOGY",
+            "INDEX_BREAKDOWNS_AS_OF_DATE",
+            "BENCHMARK_NUMBER_OF_COMPONENTS",
+            "INDEX_TOP10",
+            "INDEX_COUNTRIES",
+            "INDEX_SECTORS"
+          ]
+        },
+        "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
       }
     }
   },
   "eurostoxx50": {
     "returns": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -21917,14 +22381,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sx5t/",
-        "checkedAt": "2026-11-14",
-        "sha256": "ce6dafd0f524ff7e3e124540d160d6e61ad1edaaa1f3a49e59a89bb559220ba1",
+        "checkedAt": "2026-11-17",
+        "sha256": "7fe0a8cacc30c0ba2bf8f9165fa7d0473d224d25947db5e4ed65f28f8a496696",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
         "kind": "indice",
         "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
-        "date": "2026-11-13"
+        "date": "2026-11-16"
       }
     },
     "returnsHistory": {
@@ -23071,6 +23535,50 @@
           "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
           "date": "2026-11-13"
         }
+      },
+      "2026-11-16": {
+        "asOf": "2026-11-16",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            21.2
+          ],
+          [
+            2024,
+            11.01
+          ],
+          [
+            2023,
+            22.23
+          ],
+          [
+            2022,
+            -9.49
+          ],
+          [
+            2021,
+            23.34
+          ],
+          [
+            2020,
+            -3.21
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5t/",
+          "checkedAt": "2026-11-16",
+          "sha256": "8550f338ac7115d02d8217ef10e081c44d668f73948be7c5664b7076b1e707bc",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-16"
+        }
       }
     },
     "facts": {
@@ -23193,7 +23701,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "d69fbcbc24ce0e623e883ddd97d04834dd6c8c2b2801f00269a9b2c9d7d1c5ce",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -23707,8 +24215,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
-        "checkedAt": "2026-11-14",
-        "sha256": "ba98498f43c9330fb7506f79c4cd427b2608e3cae1156f5648c382a344978088",
+        "checkedAt": "2026-11-17",
+        "sha256": "706372b19506b5fb6714fa9c266069355072ed308f0aa652f1c99e10a0c55429",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -23973,10 +24481,10 @@
       ],
       "source": {
         "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1",
-        "checkedAt": "2026-11-14",
-        "sha256": "1bc2075708852fe5168c93cbfbe1bd7736fc420f2409f9dee104c3abba873d84",
+        "checkedAt": "2026-11-17",
+        "sha256": "5d394db65feff98b07f46ca7695be7b00b60a9edcab76971b1e008bfbd10603d",
         "label": "Données publiques numériques S&P DJI",
-        "retrievedAt": "2026-11-14T07:22:14.974015+00:00",
+        "retrievedAt": "2026-11-17T07:18:58.529914+00:00",
         "transport": "official-response-handoff",
         "primaryAccessError": "HTTP Error 403: Forbidden"
       },
@@ -24341,8 +24849,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
-        "checkedAt": "2026-11-14",
-        "sha256": "db2926553d6b1589f25fd517a71963ae772f7f6f108e5baf1baed466ffb08ec6",
+        "checkedAt": "2026-11-17",
+        "sha256": "4d05e6d3cba360c363c9a6fb268f886b4887b8c3f2e6361d3a6db3efa46abcd0",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -24571,10 +25079,10 @@
       ],
       "source": {
         "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1",
-        "checkedAt": "2026-11-14",
-        "sha256": "42e7dd6e209a1b1c2f24b2d6d5de1bfdda599d03f48045381f049ba128b80a99",
+        "checkedAt": "2026-11-17",
+        "sha256": "f0710cf5dcc7ffc6f749f6dfdd1f44df42c247bde10ca96ff4924c4576389485",
         "label": "Données publiques numériques S&P DJI",
-        "retrievedAt": "2026-11-14T07:22:14.974015+00:00",
+        "retrievedAt": "2026-11-17T07:18:58.529914+00:00",
         "transport": "official-response-handoff",
         "primaryAccessError": "HTTP Error 403: Forbidden"
       },
@@ -24847,8 +25355,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
-        "checkedAt": "2026-11-14",
-        "sha256": "ec09735f626c88df33f7eef94fd85b5d0d50de45f3852f2466048b0bcca256fe",
+        "checkedAt": "2026-11-17",
+        "sha256": "ec96f094f78b1612aef32e2c984640fac416aa5ac475527185cca6f33f170e3c",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
@@ -24901,109 +25409,116 @@
     },
     "facts": {
       "index": "TOPIX",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-13",
       "constituents": 1668,
       "countries": [
         [
-          "Japon",
+          "Japan",
           100.0
         ]
       ],
       "sectors": [
         [
-          "Industrie",
-          25.79
+          "Industrials",
+          25.793055
         ],
         [
-          "Finance",
-          18.41
+          "Financials",
+          18.801162
         ],
         [
-          "Technologies de l'info.",
-          15.29
+          "Consumer Discretionary",
+          15.673742
         ],
         [
-          "Conso Cyclique",
-          14.84
+          "Information Technology",
+          14.041909
         ],
         [
-          "Services de communication",
-          6.16
+          "Communication Services",
+          6.041979
         ],
         [
-          "Santé",
-          5.5
+          "Health Care",
+          5.616048
         ],
         [
-          "Matériaux",
-          5.12
+          "Materials",
+          5.081819
         ],
         [
-          "Conso non Cyclique",
-          4.89
+          "Consumer Staples",
+          4.908395
         ],
         [
-          "Immobilier",
-          1.73
+          "Others",
+          2.216826
         ],
         [
-          "Services publics",
-          1.26
-        ],
-        [
-          "Énergie",
-          1.01
+          "Real Estate",
+          1.825066
         ]
       ],
       "holdings": [
         [
-          "MITSUBISHI UFJ FIN",
-          3.77
+          "MITSUBISHI UFJ FINANCIAL GROUP",
+          3.819362
         ],
         [
           "TOYOTA MOTOR CORP",
-          2.65
-        ],
-        [
-          "RECRUIT HOLDINGS CO LTD",
-          2.6
-        ],
-        [
-          "SUMITOMO MITSUI FINAN",
-          2.42
+          2.970019
         ],
         [
           "SONY GROUP CORP (JT)",
-          2.33
+          2.576644
+        ],
+        [
+          "SUMITOMO MITSUI FINANCIAL GROUP",
+          2.470505
+        ],
+        [
+          "RECRUIT HOLDINGS CO LTD",
+          2.394694
         ],
         [
           "HITACHI LTD",
-          2.28
-        ],
-        [
-          "ADVANTEST",
-          2.01
+          2.233161
         ],
         [
           "MIZUHO FINANCIAL GROUP INC",
-          1.87
+          1.944018
         ],
         [
-          "TOKYO ELECTRON LTD",
-          1.76
+          "ADVANTEST CORP  Y50",
+          1.778675
         ],
         [
-          "TOKIO MARINE HOLDINGS INC",
-          1.55
+          "TOKYO ELECTRON  JPY50",
+          1.757541
+        ],
+        [
+          "MITSUBISHI CORPORATION",
+          1.724709
         ]
       ],
       "source": {
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-14",
-        "sha256": "862830f3f905f4f1e50f99f57ed6295f8679f0b2385099865ea3ab2c7d1ec932",
-        "label": "Composition de l’indice publiée par Amundi"
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-17",
+        "sha256": "771850581d63094f0157045a53b59ee5691d30ea92fa003fd78b7e75e300920e",
+        "label": "Composition de l’indice publiée par Amundi",
+        "productId": "FR0013411980",
+        "controlledFields": [
+          "ISIN",
+          "BENCHMARK_NAME",
+          "FUND_REPLICATION_METHODOLOGY",
+          "INDEX_BREAKDOWNS_AS_OF_DATE",
+          "BENCHMARK_NUMBER_OF_COMPONENTS",
+          "INDEX_TOP10",
+          "INDEX_COUNTRIES",
+          "INDEX_SECTORS"
+        ]
       },
-      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
     },
     "factsHistory": {
       "2026-08-31": {
@@ -25323,6 +25838,232 @@
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "2026-11-11": {
+        "index": "TOPIX",
+        "asOf": "2026-11-11",
+        "constituents": 1668,
+        "countries": [
+          [
+            "Japan",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrials",
+            25.860039
+          ],
+          [
+            "Financials",
+            18.915208
+          ],
+          [
+            "Consumer Discretionary",
+            15.586814
+          ],
+          [
+            "Information Technology",
+            14.303556
+          ],
+          [
+            "Communication Services",
+            6.005921
+          ],
+          [
+            "Health Care",
+            5.536386
+          ],
+          [
+            "Materials",
+            5.081196
+          ],
+          [
+            "Consumer Staples",
+            4.765791
+          ],
+          [
+            "Others",
+            2.177791
+          ],
+          [
+            "Real Estate",
+            1.767299
+          ]
+        ],
+        "holdings": [
+          [
+            "MITSUBISHI UFJ FINANCIAL GROUP",
+            3.860968
+          ],
+          [
+            "TOYOTA MOTOR CORP",
+            2.994043
+          ],
+          [
+            "SONY GROUP CORP (JT)",
+            2.493785
+          ],
+          [
+            "SUMITOMO MITSUI FINANCIAL GROUP",
+            2.491026
+          ],
+          [
+            "RECRUIT HOLDINGS CO LTD",
+            2.421952
+          ],
+          [
+            "HITACHI LTD",
+            2.234665
+          ],
+          [
+            "MIZUHO FINANCIAL GROUP INC",
+            1.982868
+          ],
+          [
+            "ADVANTEST CORP  Y50",
+            1.832567
+          ],
+          [
+            "TOKYO ELECTRON  JPY50",
+            1.72777
+          ],
+          [
+            "MITSUBISHI CORPORATION",
+            1.684603
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-15",
+          "sha256": "53e57cd5ed1c07fd8f848f81d8e838065a688ca9b73a6a3a9a92c4ce60d4a4db",
+          "label": "Composition de l’indice publiée par Amundi",
+          "productId": "FR0013411980",
+          "controlledFields": [
+            "ISIN",
+            "BENCHMARK_NAME",
+            "FUND_REPLICATION_METHODOLOGY",
+            "INDEX_BREAKDOWNS_AS_OF_DATE",
+            "BENCHMARK_NUMBER_OF_COMPONENTS",
+            "INDEX_TOP10",
+            "INDEX_COUNTRIES",
+            "INDEX_SECTORS"
+          ]
+        },
+        "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
+      },
+      "2026-11-13": {
+        "index": "TOPIX",
+        "asOf": "2026-11-13",
+        "constituents": 1668,
+        "countries": [
+          [
+            "Japan",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrials",
+            25.793055
+          ],
+          [
+            "Financials",
+            18.801162
+          ],
+          [
+            "Consumer Discretionary",
+            15.673742
+          ],
+          [
+            "Information Technology",
+            14.041909
+          ],
+          [
+            "Communication Services",
+            6.041979
+          ],
+          [
+            "Health Care",
+            5.616048
+          ],
+          [
+            "Materials",
+            5.081819
+          ],
+          [
+            "Consumer Staples",
+            4.908395
+          ],
+          [
+            "Others",
+            2.216826
+          ],
+          [
+            "Real Estate",
+            1.825066
+          ]
+        ],
+        "holdings": [
+          [
+            "MITSUBISHI UFJ FINANCIAL GROUP",
+            3.819362
+          ],
+          [
+            "TOYOTA MOTOR CORP",
+            2.970019
+          ],
+          [
+            "SONY GROUP CORP (JT)",
+            2.576644
+          ],
+          [
+            "SUMITOMO MITSUI FINANCIAL GROUP",
+            2.470505
+          ],
+          [
+            "RECRUIT HOLDINGS CO LTD",
+            2.394694
+          ],
+          [
+            "HITACHI LTD",
+            2.233161
+          ],
+          [
+            "MIZUHO FINANCIAL GROUP INC",
+            1.944018
+          ],
+          [
+            "ADVANTEST CORP  Y50",
+            1.778675
+          ],
+          [
+            "TOKYO ELECTRON  JPY50",
+            1.757541
+          ],
+          [
+            "MITSUBISHI CORPORATION",
+            1.724709
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-17",
+          "sha256": "771850581d63094f0157045a53b59ee5691d30ea92fa003fd78b7e75e300920e",
+          "label": "Composition de l’indice publiée par Amundi",
+          "productId": "FR0013411980",
+          "controlledFields": [
+            "ISIN",
+            "BENCHMARK_NAME",
+            "FUND_REPLICATION_METHODOLOGY",
+            "INDEX_BREAKDOWNS_AS_OF_DATE",
+            "BENCHMARK_NUMBER_OF_COMPONENTS",
+            "INDEX_TOP10",
+            "INDEX_COUNTRIES",
+            "INDEX_SECTORS"
+          ]
+        },
+        "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
       }
     }
   },
@@ -25439,7 +26180,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI Latin America Selection 20/35 Capped",
         "sha256": "a37a39b2085141daf0d1aa4b12fd5814d847becc25fd191a0701e307bd5e9801",
         "sourceUrls": [
@@ -25727,7 +26468,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "a37a39b2085141daf0d1aa4b12fd5814d847becc25fd191a0701e307bd5e9801",
         "label": "Rendements calendaires officiels automatisés · MSCI Latin America Selection 20/35 Capped",
         "sourceUrls": [
@@ -25873,7 +26614,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "4f19efab1edf62dd144b0aaee1110105458eadf8992a2a983fa9d1d9a708d928",
         "label": "Rendements calendaires officiels automatisés · Or physique"
       },
@@ -26053,7 +26794,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "e4fbfaa009b8f73e5b7b088454b465e3c9a2edb21d513a3089da7489269b23b5",
         "label": "Rendements calendaires officiels automatisés · Argent physique"
       },
@@ -26315,7 +27056,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "344252ef30f07899b3476d50e09c5ec88b9f508bf28e83004566a6ef796cd15c",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -26723,7 +27464,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "840c3056add22c4e1ec250ebf60691e670785af329cd39f43c63f7d2fee42adf",
         "label": "Rendements calendaires officiels automatisés · NASDAQ-100 Notional Net Total Return"
       },
@@ -26881,7 +27622,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "d7767737635eb583bb7a755c59ed2ec61bad5ccdad27f68105d07dce70d8fe25",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -27241,7 +27982,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.invesco.com/content/dam/invesco/us/en/product-documents/etf/fact-sheet/rsp-invesco-s-p-500-equal-weight-etf-fact-sheet.pdf.coredownload.inline.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "65a76c60bbedad724b838b6fd42ea6d421b7c2f15d066416fba4e8cd88bb943c",
         "label": "Rendements calendaires officiels automatisés · S&P 500 Equal Weight"
       },
@@ -27423,7 +28164,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-industrials-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Industrials",
         "sha256": "ab8acfd33bcf2579acd182a3cc058f3a0f2d9f516bd7abdab4e0bea4ef66815d"
       },
@@ -27637,7 +28378,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-industrials-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "ab8acfd33bcf2579acd182a3cc058f3a0f2d9f516bd7abdab4e0bea4ef66815d",
         "label": "Rendements calendaires officiels automatisés · MSCI World Industrials"
       },
@@ -27819,7 +28560,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-staples-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Consumer Staples",
         "sha256": "0121bfb20a247115868a629fe5f4fc1a2718a4fceedefd6303b42fee2f7393e8"
       },
@@ -28033,7 +28774,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-staples-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "0121bfb20a247115868a629fe5f4fc1a2718a4fceedefd6303b42fee2f7393e8",
         "label": "Rendements calendaires officiels automatisés · MSCI World Consumer Staples"
       },
@@ -28215,7 +28956,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Materials",
         "sha256": "f2adb68c547a57f6d3ad78ee686e31f5b5ae20b86e25a98371734cebe0630eee"
       },
@@ -28429,7 +29170,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "f2adb68c547a57f6d3ad78ee686e31f5b5ae20b86e25a98371734cebe0630eee",
         "label": "Rendements calendaires officiels automatisés · MSCI World Materials"
       },
@@ -28611,7 +29352,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Utilities",
         "sha256": "3c87f3fdc09feab28bf4cdfe36a9db3df66a6f35f3ad1237e3c43f4bf95e72b0"
       },
@@ -28825,7 +29566,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "3c87f3fdc09feab28bf4cdfe36a9db3df66a6f35f3ad1237e3c43f4bf95e72b0",
         "label": "Rendements calendaires officiels automatisés · MSCI World Utilities"
       },
@@ -29043,7 +29784,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-islamic-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Islamic",
         "sha256": "69be145c99b2dae18bcbf0d3a98a3a99a2730d22256ac3ebd4e153b0093b43df"
       },
@@ -29329,7 +30070,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-islamic-index.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "69be145c99b2dae18bcbf0d3a98a3a99a2730d22256ac3ebd4e153b0093b43df",
         "label": "Rendements calendaires officiels automatisés · MSCI World Islamic"
       },
@@ -29511,7 +30252,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Health Care",
         "sha256": "f7a6bbe6e1ff517f5fe13b3498e88c4e95724c2e54647fd98ebc42e9c8c9911e"
       },
@@ -29725,7 +30466,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "f7a6bbe6e1ff517f5fe13b3498e88c4e95724c2e54647fd98ebc42e9c8c9911e",
         "label": "Rendements calendaires officiels automatisés · MSCI World Health Care"
       },
@@ -29907,7 +30648,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Financials",
         "sha256": "5998de605c3823fa88aa22b1355e4fb6b854c692fce86280a9f6a5a4e02f6b4c"
       },
@@ -30121,7 +30862,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "5998de605c3823fa88aa22b1355e4fb6b854c692fce86280a9f6a5a4e02f6b4c",
         "label": "Rendements calendaires officiels automatisés · MSCI World Financials"
       },
@@ -30303,7 +31044,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Energy",
         "sha256": "8af3fa6a5c5a1634aac2911a14c90a00d1433470d9ff15e8cb856f58f241e5f6"
       },
@@ -30517,7 +31258,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "8af3fa6a5c5a1634aac2911a14c90a00d1433470d9ff15e8cb856f58f241e5f6",
         "label": "Rendements calendaires officiels automatisés · MSCI World Energy"
       },
@@ -30699,7 +31440,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-discretionary-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Consumer Discretionary",
         "sha256": "fa162a12450beca62e1d85219c8cf72b5b56b3db68831e5a189bd8883f60f735"
       },
@@ -30913,7 +31654,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-discretionary-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "fa162a12450beca62e1d85219c8cf72b5b56b3db68831e5a189bd8883f60f735",
         "label": "Rendements calendaires officiels automatisés · MSCI World Consumer Discretionary"
       },
@@ -31095,7 +31836,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-telecommunication-services-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "label": "Composition officielle automatisée · MSCI World Communication Services",
         "sha256": "638487d2ecf72d153c6f6901faa2312240f615891cfb7afc42a42b4059bce0dd"
       },
@@ -31309,7 +32050,7 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-world-telecommunication-services-index-usd-net.pdf",
-        "checkedAt": "2026-11-14",
+        "checkedAt": "2026-11-17",
         "sha256": "638487d2ecf72d153c6f6901faa2312240f615891cfb7afc42a42b4059bce0dd",
         "label": "Rendements calendaires officiels automatisés · MSCI World Communication Services"
       },

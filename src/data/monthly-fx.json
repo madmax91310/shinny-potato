@@ -1,8 +1,8 @@
 {
   "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-  "checkedAt": "2026-11-11",
+  "checkedAt": "2026-11-16",
   "convention": "Units of currency per EUR, final ECB reference observation in each completed month",
-  "sha256": "f1c07100aa0ce85dd1287f1ed43706067f2ada7bf17271963b53b84a116bd4fb",
+  "sha256": "d5f8e484e854e6bf9eb426c6446c3967c651938de0813d23e55733ad63962a04",
   "months": {
     "1999-01": {
       "asOf": "1999-01-29",
@@ -12739,9 +12739,9 @@
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-      "checkedAt": "2026-11-11",
-      "sha256": "1f9fd18709b09d082b29d01621f52672426eca108a4f74224fa8f190a5f801b2",
-      "secondarySha256": "f1c07100aa0ce85dd1287f1ed43706067f2ada7bf17271963b53b84a116bd4fb",
+      "checkedAt": "2026-11-16",
+      "sha256": "c424bcdfe0947e48d9bc3937fd3a9e82bf144e5ac6454ae95a68346196394c77",
+      "secondarySha256": "d5f8e484e854e6bf9eb426c6446c3967c651938de0813d23e55733ad63962a04",
       "sourceSeries": "H10/H10/RXI_N.B.TA",
       "sourceDiscoveryUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
       "sourceFormat": "Official complete H.10 SDMX XML ZIP",
@@ -26148,7 +26148,7 @@
       },
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-11",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-16",
           "error": "The read operation timed out"
         },
         {
@@ -26158,7 +26158,7 @@
         {
           "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
           "status": "downloaded",
-          "sha256": "1f9fd18709b09d082b29d01621f52672426eca108a4f74224fa8f190a5f801b2"
+          "sha256": "c424bcdfe0947e48d9bc3937fd3a9e82bf144e5ac6454ae95a68346196394c77"
         }
       ]
     }

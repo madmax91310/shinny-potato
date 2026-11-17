@@ -13,7 +13,8 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-26.04
-    timeout-minutes: 20
+    # Initial acquisition plus two fully validated recollections.
+    timeout-minutes: 40
     concurrency:
       group: scpi-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
@@ -22,7 +23,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      failed: ${{ steps.collect.outcome == 'failure' }}
+      failed: ${{ steps.commit.outputs.collection_failed || steps.collect.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -38,6 +39,7 @@ jobs:
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0 Pillow==13.0.0
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
+      - run: python -m unittest discover -s scripts -p 'test_scpi_recording.py'
       - run: python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
       - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
@@ -55,14 +57,6 @@ jobs:
         run: npm run audit:data-catalog
       - name: "Validate observations: npm run build"
         run: npm run build
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: scpi-observations
-          path: |
-            ${{ runner.temp }}/scpi-observation.json
-            ${{ runner.temp }}/**/*.contract-plan.json
-          retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
@@ -73,7 +67,22 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated official SCPI presentations' src/data/automated-scpi.json
+          python scripts/commit-scpi-observations.py --report "$RUNNER_TEMP/scpi-observation.json" -- bash scripts/commit-validated-data.sh 'Refresh validated official SCPI presentations' src/data/automated-scpi.json
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: scpi-observations
+          path: |
+            ${{ runner.temp }}/scpi-observation.json
+            ${{ runner.temp }}/scpi-observation.contract-plan.json
+          retention-days: 35
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        with:
+          name: scpi-recording-attempts
+          path: ${{ runner.temp }}/scpi-recording-attempts/
+          if-no-files-found: ignore
+          retention-days: 35
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

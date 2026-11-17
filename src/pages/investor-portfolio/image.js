@@ -1,7 +1,10 @@
+import {pngCredits} from './png-credits.js'
 import { modelNatureLabel } from '../../data/investor-models.js'
-import { ATTRIBUTION, dateFR, holdingName, percentage } from './data.js'
+import { holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
-import { investorPortrait } from './portrait.js'
+import { publicationPlan, editorialSeries, weightLabel, portfolioOwner, cash, POSTER } from './publication.js'
+import { loadPortfolioFont, posterFont } from './type.js'
+import { portfolioPortrait, positionLogo } from './media.js'
 
 const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'
 function text(ctx, value, x, y, width, size, color = INK, serif = false) {
@@ -20,44 +23,165 @@ function glass(ctx, x, y, w, h, radius = 24) {
   ctx.shadowBlur = 0; ctx.strokeStyle = 'rgba(215,241,255,.45)'; ctx.lineWidth = 1
   ctx.beginPath(); ctx.roundRect(x+7,y+7,w-14,h-14,Math.max(4,radius-5)); ctx.stroke(); ctx.restore()
 }
-export async function renderPortfolioImage(portfolio) {
-  if (portfolio?.kind === 'model') return renderModelImage(portfolio)
-  if (!portfolio) throw new Error('Charge un portefeuille avant de créer le visuel.')
-  const { identity, snapshot, holdings } = portfolio
-  const portrait = investorPortrait(identity.slug)
-  const [photo, , studio] = await Promise.all([loadArtImage(portrait.file), loadEditorialFont(),loadArtImage('approved/investor-glass.webp')])
-  const canvas = document.createElement('canvas'); canvas.width=W; canvas.height=H
-  const ctx = canvas.getContext('2d'); if(!ctx) throw new Error('Impossible de créer le visuel.')
-  ctx.drawImage(studio,0,0,W,H)
-  ctx.save(); ctx.beginPath(); ctx.moveTo(115,115);ctx.lineTo(610,172);ctx.lineTo(610,932);ctx.lineTo(100,958);ctx.closePath();ctx.clip()
-  const scale=Math.max(515/photo.width,850/photo.height)
-  const photoX = Math.max(100 + 515 - photo.width * scale, Math.min(100, 100 + 515 / 2 - photo.width * scale * (portrait.focusX ?? .5)))
-  ctx.drawImage(photo,photoX,110+(850-photo.height*scale)/2,photo.width*scale,photo.height*scale)
-  const tint=ctx.createLinearGradient(0,127,0,971); tint.addColorStop(0,'rgba(30,102,180,.05)'); tint.addColorStop(.65,'transparent'); tint.addColorStop(1,'rgba(2,12,28,.65)'); ctx.fillStyle=tint; ctx.fillRect(100,110,515,850); ctx.restore()
+const prepared=new WeakMap()
+export function transparentLogo(image) {
+  if(!image)return null
+  if(prepared.has(image))return prepared.get(image)
+  const scale=Math.min(/\.svg(?:\?|$)/.test(image.src || '')?Infinity:1,640/image.width,640/image.height),c=document.createElement('canvas')
+  c.width=Math.round(image.width*scale);c.height=Math.round(image.height*scale)
+  const x=c.getContext('2d');x.drawImage(image,0,0,c.width,c.height)
+  const pixels=x.getImageData(0,0,c.width,c.height),d=pixels.data
+  let border=0,white=0,gray=0,ink=0
+  for(let y=0;y<c.height;y++)for(let xx=0;xx<c.width;xx++) {
+    const i=(y*c.width+xx)*4
+    if(!xx||!y||xx===c.width-1||y===c.height-1){border++;if(d[i]>242&&d[i+1]>242&&d[i+2]>242&&d[i+3]>240)white++}
+    if(d[i+3]>32&&Math.min(d[i],d[i+1],d[i+2])<230){ink++;if(Math.max(d[i],d[i+1],d[i+2])-Math.min(d[i],d[i+1],d[i+2])<24)gray++}
+  }
+  const grayOnly=ink>0&&gray/ink>.96
+  if(white/border>.85) {
+    // Remove an opaque website matte, not the brand's white lettering.
+    // Monochrome wordmarks also have transparent letter counters.
+    const seen=new Uint8Array(c.width*c.height),queue=[]
+    const add=(xx,y)=>{if(xx<0||y<0||xx>=c.width||y>=c.height)return;const n=y*c.width+xx,i=n*4;if(!seen[n]&&Math.min(d[i],d[i+1],d[i+2])>242){seen[n]=1;queue.push(n)}}
+    if(grayOnly){for(let i=0;i<d.length;i+=4)if(Math.min(d[i],d[i+1],d[i+2])>242)d[i+3]=0}
+    else {for(let xx=0;xx<c.width;xx++){add(xx,0);add(xx,c.height-1)}for(let y=0;y<c.height;y++){add(0,y);add(c.width-1,y)}
+      for(let q=0;q<queue.length;q++){const n=queue[q],xx=n%c.width,y=Math.floor(n/c.width);d[n*4+3]=0;add(xx-1,y);add(xx+1,y);add(xx,y-1);add(xx,y+1)}}
+    x.putImageData(pixels,0,0)
+  }
+  let l=c.width,t=c.height,r=0,b=0
+  const alpha=x.getImageData(0,0,c.width,c.height).data,colors=new Map();let opaque=0,transparent=0
+  for(let i=0;i<alpha.length;i+=4){if(alpha[i+3]<32)transparent++;if(alpha[i+3]>220){opaque++;const key=[alpha[i],alpha[i+1],alpha[i+2]].map(v=>Math.round(v/24)).join(',');colors.set(key,(colors.get(key)||0)+1)}}
+  const mono=opaque>0&&transparent>c.width*c.height*.02&&Math.max(...colors.values())/opaque>.94
+  for(let y=0;y<c.height;y++)for(let xx=0;xx<c.width;xx++)if(alpha[(y*c.width+xx)*4+3]>24){l=Math.min(l,xx);r=Math.max(r,xx);t=Math.min(t,y);b=Math.max(b,y)}
+  const result=document.createElement('canvas');result.width=Math.max(1,r-l+1);result.height=Math.max(1,b-t+1)
+  result.getContext('2d').drawImage(c,l,t,result.width,result.height,0,0,result.width,result.height)
+  const rgba=result.getContext('2d').getImageData(0,0,result.width,result.height).data,points=[]
+  for(let y=0;y<result.height;y+=6)for(let xx=0;xx<result.width;xx+=6)if(rgba[(y*result.width+xx)*4+3]>40)points.push([xx-result.width/2,y-result.height/2])
+  const value={image:result,mono,points};prepared.set(image,value);c.width=c.height=1;return value
+}
+const lightness=color=>{const v=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return v[0]*.2126+v[1]*.7152+v[2]*.0722}
 
-  text(ctx,portrait.person,650,164,875,74,GOLD,true)
-  // Person and declaring entity are independently named, including Gates Trust.
-  text(ctx,identity.entityName || identity.displayName,650,220,875,43,CYAN,true)
-  text(ctx,`Positions au ${dateFR(snapshot.periodEnd)}`,650,258,875,34,INK)
-  const top=holdings.slice(0,5)
-  const rows=[...top.map(row=>[holdingName(row),percentage(row.weight)]),['Autres positions',percentage(Math.max(0,1-top.reduce((sum,row)=>sum+row.weight,0)))]]
-  rows.forEach(([name,weight],i)=>{
-    const y=270+i*107
-    glass(ctx,630,y,900,92,13)
-    ctx.save(); ctx.shadowColor='#33ccff'; ctx.shadowBlur=16; ctx.fillStyle='#68e3ff'; ctx.fillRect(631,y+12,4,68); ctx.restore()
-    text(ctx,name,650,y+62,645,47,INK,true)
-    ctx.textAlign='right'; text(ctx,weight,1504,y+62,170,46,CYAN,true); ctx.textAlign='left'
+// One code-generated PNG is used unchanged by the preview and every download.
+export async function renderPortfolioImage(portfolio) {
+  if(portfolio?.kind==='model')return renderModelImage(portfolio)
+  if(!portfolio)throw Error('Charge un portefeuille avant de créer le visuel.')
+  const plan=publicationPlan(portfolio),owner=portfolioOwner(portfolio)
+  const [,portrait,logos]=await Promise.all([loadPortfolioFont(),portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait),Promise.all(plan.entries.map(positionLogo))])
+  const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350
+  const ctx=canvas.getContext('2d');if(!ctx)throw Error('Impossible de créer le visuel.')
+  const bg='#d7d7d7',ink='#080808',green='#006d26'
+  ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350)
+  function label(value,x,y,size=36,color=ink,align='center',weight=850) {
+    ctx.font=posterFont(size,weight);ctx.fillStyle=color;ctx.textAlign=align;ctx.fillText(value,x,y)
+  }
+  let titleSize=94;ctx.font=posterFont(titleSize,900)
+  while(ctx.measureText(owner).width>1000&&titleSize>60){titleSize-=2;ctx.font=posterFont(titleSize,900)}
+  const title=[];let line=''
+  for(const word of owner.split(/\s+/)){if(line&&ctx.measureText(line+' '+word).width>1000){title.push(line);line=''}line=line?line+' '+word:word}if(line)title.push(line)
+  title.forEach((line,i)=>label(line,540,(title.length>1?82:108)+i*65,titleSize,'#008c30','center',900))
+  const date=new Date(portfolio.snapshot.periodEnd+'T12:00:00Z')
+  label(`Portefeuille · T${Math.ceil((date.getUTCMonth()+1)/3)} ${date.getUTCFullYear()}`,540,title.length>1?218:190,title.length>1?48:55,ink,'center',900)
+  const {cx,cy,outer,inner,badgeRadius:br}=POSTER
+  plan.entries.forEach((e,i)=>{
+    ctx.beginPath();ctx.arc(cx,cy,outer,e.start,e.end);ctx.arc(cx,cy,inner,e.end,e.start,true);ctx.closePath();ctx.fillStyle=e.color;ctx.fill()
+    const prior=plan.entries[(i+plan.entries.length-1)%plan.entries.length]
+    if(e.weight>=.003&&prior.weight>=.003){ctx.strokeStyle=bg;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.start)*inner,cy+Math.sin(e.start)*inner);ctx.lineTo(cx+Math.cos(e.start)*outer,cy+Math.sin(e.start)*outer);ctx.stroke()}
   })
-  text(ctx,`${holdings.length} lignes · poids hors options`,650,938,900,34,CYAN)
-  ctx.fillStyle='rgba(2,10,25,.78)';ctx.fillRect(0,1008,W,H-1008)
-  text(ctx,portrait.person,40,1035,490,26,GOLD,true)
-  ctx.textAlign='right'; text(ctx,'Épargnant Libre',1530,1035,700,27,GOLD,true); ctx.textAlign='left'
-  // Keep the signature inside the page for long names and metadata.
-  // Tracefour's compilation is CC BY 4.0. SEC/FolioFact provenance remains
-  // available in the tool; portrait credits travel with every exported PNG.
-  if (!['SEC', 'FolioFact'].includes(identity.dataProvider)) text(ctx,ATTRIBUTION,35,1072,700,16,INK)
-  text(ctx,`Photo : ${portrait.author} · ${portrait.license}`,770,1072,780,15,INK)
-  return canvas.toDataURL('image/png')
+  const occupied=new Uint8Array(1080*1350)
+  if(portrait.image) {
+    const image=portrait.image,k=Math.min(600/image.width,530/image.height)
+    const left=cx-image.width*k/2,top=cy+inner+40-image.height*k
+    const mask=document.createElement('canvas');mask.width=1080;mask.height=1350
+    const m=mask.getContext('2d');m.beginPath();m.arc(cx,cy,inner+20,0,Math.PI*2);m.rect(0,0,1080,cy+60);m.clip();m.drawImage(image,left,top,image.width*k,image.height*k)
+    ctx.drawImage(mask,0,0)
+    const pixels=m.getImageData(0,0,1080,1350).data
+    for(let i=0;i<occupied.length;i++)if(pixels[i*4+3]>12)occupied[i]=1
+    mask.width=mask.height=1
+  } else {
+    const words=owner.split(/\s+/),lines=[];let current=''
+    ctx.font=posterFont(40,800)
+    for(const word of words){if(current&&ctx.measureText(current+' '+word).width>330){lines.push(current);current=''}current=current?current+' '+word:word}if(current)lines.push(current)
+    lines.forEach((line,i)=>label(line,cx,cy+(i-(lines.length-1)/2)*48-30,40,ink,'center',800))
+    const series=editorialSeries(portfolio)
+    if(series.coverage<.5){label(`Les ${series.topCount} premières`,cx,cy+100,27,ink);label(`${weightLabel(series.coverage)} du portefeuille`,cx,cy+136,27,ink)}
+  }
+  for(const e of plan.entries)for(let y=Math.floor(e.badge.y-br-5);y<=e.badge.y+br+5;y++)for(let x=Math.floor(e.badge.x-br-5);x<=e.badge.x+br+5;x++)if(Math.hypot(x-e.badge.x,y-e.badge.y)<br+5)occupied[y*1080+x]=1
+  // Reserve validated leader routes before placing any external logo.
+  for(const e of plan.entries)for(let i=1;i<(e.leader?.length || 0);i++){
+    const a=e.leader[i-1],b=e.leader[i],steps=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y))
+    for(let n=0;n<=steps;n++){const x=Math.round(a.x+(b.x-a.x)*n/Math.max(1,steps)),y=Math.round(a.y+(b.y-a.y)*n/Math.max(1,steps));for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++)if(x+dx>=0&&x+dx<1080&&y+dy>=0&&y+dy<1350)occupied[(y+dy)*1080+x+dx]=1}
+  }
+  const routeOccupied=(x,y,w,h)=>{for(let yy=Math.floor(y);yy<y+h;yy+=2)for(let xx=Math.floor(x);xx<x+w;xx+=2)if(occupied[yy*1080+xx])return true;return false}
+  const extraLogos=[]
+  plan.entries.forEach((e,i)=>{
+    const logo=transparentLogo(logos[i].image)
+    if(logo&&!e.other) {
+      const image=logo.image,ratio=image.width/image.height
+      let placement=null
+      for(const width of [270,240,220,200,190,175,160,145,130,115,100,85,70,60]) {
+        const k=Math.min(width/image.width,150/image.height)
+        if(image.width*k<56||image.height*k<26)continue
+        logoSearch: for(const r of [270,286,305,325])for(const turn of [0,-.05,.05,-.1,.1])for(const radial of ratio>2.6?[true,false]:[false]) {
+          let a=radial?e.mid+turn:0;if(radial&&Math.cos(a)<0)a+=Math.PI
+          const c=Math.cos(a),sn=Math.sin(a),x=cx+Math.cos(e.mid+turn)*r,y=cy+Math.sin(e.mid+turn)*r
+          const fits=logo.points.every(([px,py])=>{
+            const xx=x+(px*c-py*sn)*k,yy=y+(px*sn+py*c)*k,d=Math.hypot(xx-cx,yy-cy)
+            const da=Math.abs(Math.atan2(Math.sin(Math.atan2(yy-cy,xx-cx)-e.mid),Math.cos(Math.atan2(yy-cy,xx-cx)-e.mid)))
+            return d>inner+8&&d<outer-6&&da<e.weight*Math.PI-.006&&!occupied[Math.round(yy)*1080+Math.round(xx)]
+          })
+          if(fits){placement={x,y,a,k};break logoSearch}
+        }
+        if(placement)break
+      }
+      let external=false
+      if(!placement) {
+        const k=Math.min(112/image.width,68/image.height),w=image.width*k,h=image.height*k
+        if(w>=56&&h>=26)externalSearch: for(const x of [e.box.x-w-12,e.box.x+e.box.width+12,e.box.x+(e.box.width-w)/2])for(const y of [e.box.y,e.box.y-h-10,e.box.y+e.box.height+10]) {
+          const overlaps=b=>x<b.x+b.width+7&&x+w+7>b.x&&y<b.y+b.height+7&&y+h+7>b.y
+          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps)||routeOccupied(x,y,w,h))continue
+          if(Math.hypot(cx-Math.max(x,Math.min(cx,x+w)),cy-Math.max(y,Math.min(cy,y+h)))<outer+6)continue
+          placement={x:x+w/2,y:y+h/2,a:0,k};extraLogos.push({x,y,width:w,height:h});external=true;break externalSearch
+        }
+      }
+      if(placement) {
+        const {x,y,a,k}=placement,paint=document.createElement('canvas');paint.width=image.width;paint.height=image.height
+        const p=paint.getContext('2d');p.drawImage(image,0,0)
+        if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=!external&&lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
+        ctx.save();ctx.translate(x,y);ctx.rotate(a)
+        if(!logo.mono&&!external){ctx.shadowColor='rgba(255,255,255,.65)';ctx.shadowBlur=3}
+        ctx.drawImage(paint,-image.width*k/2,-image.height*k/2,image.width*k,image.height*k);ctx.restore();paint.width=paint.height=1
+        const c=Math.cos(a),sn=Math.sin(a)
+        for(const [px,py] of logo.points){const xx=Math.round(x+(px*c-py*sn)*k),yy=Math.round(y+(px*sn+py*c)*k);for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++)if(xx+dx>=0&&xx+dx<1080&&yy+dy>=0&&yy+dy<1350)occupied[(yy+dy)*1080+xx+dx]=1}
+      }
+    }
+  })
+  // Draw all sector associations beneath every badge, so later lines cannot cross a percentage.
+  plan.entries.forEach(e=>{const {badge}=e
+    // Only ambiguous displaced associations receive a short connector.
+    if(Math.abs(Math.atan2(Math.sin(e.badgeAngle-e.mid),Math.cos(e.badgeAngle-e.mid)))>.015) {
+      ctx.strokeStyle=e.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.mid)*(outer-2),cy+Math.sin(e.mid)*(outer-2));ctx.lineTo(badge.x,badge.y);ctx.stroke()
+    }
+  })
+  plan.entries.forEach(e=>{
+    const {badge,box}=e
+    const leader=e.leader
+    if(leader){ctx.strokeStyle='#5c5c5c';ctx.lineWidth=1.5;ctx.beginPath();leader.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke()}
+    ctx.fillStyle=e.color;ctx.beginPath();ctx.arc(badge.x,badge.y,br,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#161616';ctx.lineWidth=2.5;ctx.stroke()
+    const pct=percentage(e.weight).replace(/\s/g,'')
+    let size=32;ctx.font=posterFont(size,900);while(ctx.measureText(pct).width>br*1.72&&size>25){size--;ctx.font=posterFont(size,900)}
+    label(pct,badge.x,badge.y+size*.35,size,lightness(e.color)<.179?'#fff':ink,'center',900)
+    box.lines.forEach((line,j)=>label(line,box.x+box.width/2,box.y+34+j*40,36,green,'center',850))
+  })
+  label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
+  const coverage=editorialSeries(portfolio)
+  if(portrait.image&&coverage.coverage<.5){ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(cx-166,cy+110,332,42,12);ctx.fill();label(`${coverage.topCount} premières · ${weightLabel(coverage.coverage)}`,cx,cy+140,27,ink)}
+  if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-240,cy+155,480,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
+  if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
+  const series=editorialSeries(portfolio)
+  label(`Épargnant libre${series.pages.length>1?` · 1/${series.pages.length}`:''}`,540,1343,27,ink,'center',750)
+  const photo=portrait.image?Object.fromEntries(['person','title','source','url','author','license','licenseUrl','adaptation','sourceDigest','illustration'].map(key=>[key,portrait[key]])):null
+  if(photo&&!photo.licenseUrl){const match=photo.license.match(/^CC BY(-SA)? ([0-9.]+)/);if(match)photo.licenseUrl=`https://creativecommons.org/licenses/by${match[1]?'-sa':''}/${match[2]}/`}
+  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
 }
 
 

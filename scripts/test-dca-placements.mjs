@@ -10,7 +10,10 @@ import { buildTweetText } from '../src/pages/dca-profiles/lib.js'
 import { allocationRows } from '../src/pages/dca-profiles/image.js'
 const now=new Date('2026-11-14'),asOf='2026-11-13'
 const observation={asOf,sourceUrl:'https://example.com/fixture',basis:'fund',compatibility:'fixture',rows:[{name:'France',weightPct:100}]}
-const refs={...references,world:{...references.world,countries:observation,sectors:observation}}
+// This placement fixture models a wholly invested equity fund. A newly
+// collected live cash sleeve must not change these synthetic observations.
+const equitySleeve={asOf,sourceUrl:observation.sourceUrl,weightPct:100}
+const refs={...references,world:{...references.world,equitySleeve,countries:observation,sectors:observation}}
 const euro=newManualLine({label:'Fonds euros Mutavie',category:'Fonds en euros',weight:25,amount:100})
 const second=newManualLine({label:'Fonds euros Mutavie',category:'Fonds en euros',weight:.01})
 const unknown=newManualLine({label:'Actions privées — Élodie',category:'Actions',weight:0,amount:50})
@@ -32,6 +35,14 @@ for(const field of ['countries','sectors']){
  const e=publishedExposure(lines,refs,field,now),v=exposureView(e)
  assert.equal(e.coverage,49.99);assert.equal(e.neutralWeight,50.01)
  assert(Math.abs(v.rows[0].weight-100)<1e-9)
+ // A real cash balance remains outside the equity donut; apply the sleeve
+ // exactly once and preserve the original total portfolio denominator.
+ const cashPct=.51203
+ const cashRefs={...refs,world:{...refs.world,equitySleeve:{...equitySleeve,weightPct:100-cashPct}}}
+ const cash=publishedExposure(lines,cashRefs,field,now)
+ assert(Math.abs(cash.coverage-49.99*(100-cashPct)/100)<1e-9)
+ assert(Math.abs(cash.neutralWeight-(50.01+49.99*cashPct/100))<1e-9)
+ assert(Math.abs(cash.coverage+cash.neutralWeight-100)<1e-9)
  const withUnknown=lines.map(l=>l.asset===unknown.asset?{...l,weight:10}:l.asset==='world'?{...l,weight:39.99}:l)
  const u=publishedExposure(withUnknown,refs,field,now),d=exposureDisplay(u),uv=exposureView(u)
  assert(Math.abs(d.missing-10)<1e-9);assert.equal(u.excluded[0].reason,'Composition inconnue (placement manuel)')

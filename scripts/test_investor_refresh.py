@@ -105,6 +105,70 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(set(module.MANAGERS), {'morfit', 'dorsey', 'vinall', 'marks', 'watsa', 'gavin-baker', 'einhorn', 'halvorsen', 'gerstner', 'gayner', 'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
                          'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'})
 
+    def test_original_sec_classes_exact_totals_and_amendments(self):
+        primary = '<edgarSubmission><periodOfReport>06-30-2026</periodOfReport><filingManager><name>EXACT FILER INC</name></filingManager><credentials><cik>0000000001</cik></credentials><tableValueTotal>100</tableValueTotal><tableEntryTotal>3</tableEntryTotal><isAmendment>false</isAmendment></edgarSubmission>'
+        table = '<informationTable>' + ''.join('<infoTable><nameOfIssuer>Same issuer</nameOfIssuer><titleOfClass>' + cls + '</titleOfClass><cusip>000000001</cusip><value>' + str(value) + '</value></infoTable>' for cls, value in [('A', 60), ('A', 20), ('B', 20)]) + '</informationTable>'
+        directory = {'directory': {'item': [{'name': 'primary.xml'}, {'name': 'table.xml'}]}}
+        original = portfolio('2026-06-30')
+        original['data']['snapshot'].update(filingUrl='https://www.sec.gov/Archives/edgar/data/1/2/', declaredTotal=100)
+        for kind in ['good', 'rounding', 'provider-conflict', 'primary-authoritative', 'total', 'count', 'date', 'additional']:
+            data = copy.deepcopy(original)
+            cover = primary
+            if kind == 'rounding': cover = cover.replace('Total>100', 'Total>101')
+            if kind == 'provider-conflict': data['data']['snapshot']['declaredTotal'] = 100000
+            if kind == 'primary-authoritative':
+                data['data']['snapshot']['declaredTotal'] = 125
+                data['data']['identity']['entityName'] = 'Exact Filer Inc'
+            if kind == 'total': cover = cover.replace('Total>100', 'Total>110')
+            if kind == 'count': cover = cover.replace('Total>3', 'Total>4')
+            if kind == 'date': cover = cover.replace('06-30-2026', '03-31-2026')
+            if kind == 'additional': cover = cover.replace('<isAmendment>false', '<amendmentType>NEW HOLDINGS</amendmentType><isAmendment>true')
+            with patch.object(module, 'get_json', side_effect=[directory, cover, table]):
+                if kind not in ('good', 'rounding', 'primary-authoritative'):
+                    with self.assertRaises(ValueError): module.enrich_sec_positions(data)
+                else:
+                    module.enrich_sec_positions(data)
+                    module.validate_portfolio(data, 'li-lu')
+                    self.assertEqual(data['data']['identity']['entityName'], 'EXACT FILER INC')
+                    rows = data['data']['snapshot']['holdings']
+                    self.assertEqual([(r['shareClass'], r['value']) for r in rows], [('A', 80), ('B', 20)])
+                    self.assertEqual(len(rows[0]['sourceRows']), 2)
+                    if kind == 'primary-authoritative':
+                        self.assertEqual(data['data']['snapshot']['sourceReconciliation']['providerTotal'],125)
+                        self.assertIn('fournisseur',data['data']['snapshot']['reconciliationWarning'])
+                    self.assertTrue(data['data']['snapshot']['primaryVerified'])
+                    self.assertEqual(data['data']['snapshot']['declaredTotal'], 100)
+                    self.assertEqual(data['data']['snapshot']['reconciliationDifference'], -1 if kind == 'rounding' else 0)
+
+    def test_monetary_units_and_reconciliation(self):
+        data = portfolio('2026-06-30', .6)
+        snap = data['data']['snapshot']
+        snap.update(declaredTotal=100, currency='USD', valueUnit=1, valueUnitSource='https://foliofact.com/openapi.yaml#/components/schemas/PortfolioRow')
+        for row in snap['holdings']:
+            row.update(value=row['weight'] * 100, currency='USD', unit=1, shareClass='COM')
+        module.validate_portfolio(data, 'li-lu')
+        for field, value in [('declaredTotal', 100000), ('valueUnit', 1000), ('currency', 'EUR')]:
+            bad = copy.deepcopy(data)
+            bad['data']['snapshot'][field] = value
+            with self.assertRaises(ValueError):
+                module.validate_portfolio(bad, 'li-lu')
+        bad = copy.deepcopy(data)
+        bad['data']['snapshot']['holdings'][0]['value'] = 61
+        with self.assertRaises(ValueError):
+            module.validate_portfolio(bad, 'li-lu')
+
+    def test_publication_metadata_has_matching_quarter_and_sec_source(self):
+        data = portfolio('2026-06-30')
+        data['data']['snapshot']['declaredTotal'] = 100
+        page = '<a href="/funds/example/quarters/2026-06-30">Q2</a><dt>Filed</dt><dd class="date">2026-08-14</dd><a href="https://www.sec.gov/Archives/edgar/data/1/2/">13F</a>'
+        with patch.object(module, 'get_json', return_value=page):
+            module.enrich_filing_metadata(data)
+        self.assertEqual(data['data']['snapshot']['filedAt'], '2026-08-14')
+        self.assertEqual(data['data']['snapshot']['filingUrl'], 'https://www.sec.gov/Archives/edgar/data/1/2/')
+        with patch.object(module, 'get_json', return_value=page.replace('2026-06-30', '2026-03-31')):
+            with self.assertRaises(ValueError):
+                module.enrich_filing_metadata(data)
+
     def test_options_keep_declared_weight_denominator(self):
         rows = [{'security': {'name': str(i), 'ticker': str(i)}, 'position_type': kind,
                  'value': value, 'change': 'hold'} for i, (kind, value) in enumerate([
@@ -199,7 +263,12 @@ class RefreshTests(unittest.TestCase):
             self.assertTrue(all(row['positionsCollectedAt'] == 'checked-now' for row in reviews))
             with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
                 module.refresh(directory, lambda *args: (_ for _ in ()).throw(RuntimeError('offline')))
-            self.assertEqual(reviews, json.loads((directory / 'review-metadata.json').read_text()))
+            failed_reviews = json.loads((directory / 'review-metadata.json').read_text())
+            for old, new in zip(reviews, failed_reviews):
+                self.assertEqual(new['lastAttemptStatus'], 'failed')
+                self.assertEqual(new['lastError'], 'offline')
+                for key in ('as_of', 'lastSuccessfulPollAt', 'positionsCollectedAt', 'data'):
+                    self.assertEqual(old[key], new[key])
 
     def test_older_report_cannot_overwrite(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -440,6 +509,61 @@ class PublicationTests(unittest.TestCase):
              'public/data/investors'], cwd=self.root, env=env,
             capture_output=True, text=True)
 
+    def test_concurrent_dca_change_recollects_and_records_without_overwrite(self):
+        spec = importlib.util.spec_from_file_location('investor_recording', self.source / 'commit-investor-observations.py')
+        recording = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(recording)
+        self.advance('src/data/dca-security-classifications.json')
+        actual_run = self.subprocess.run
+        acquisitions = []
+
+        def controlled_acquisition(args, **kwargs):
+            if args[:2] == ['python3', 'scripts/update-investor-13f.py']:
+                checkout = pathlib.Path(kwargs['cwd'])
+                self.assertEqual(pathlib.Path(args[-1]).name, self.report_path.name,
+                                 'A retry keeps the registered producer report stem')
+                acquisitions.append(checkout)
+                self.assertTrue(pathlib.Path(kwargs['env']['INVESTOR_HTTP_CACHE']).is_absolute())
+                self.assertFalse(str(kwargs['env']['INVESTOR_HTTP_CACHE']).startswith(str(checkout)))
+                self.assertNotEqual(checkout, self.root)
+                self.assertIn('independent', (checkout / 'src/data/dca-security-classifications.json').read_text())
+                reviews = json.loads((checkout / 'public/data/investors/review-metadata.json').read_text())
+                now = module.dt.datetime.now(module.dt.timezone.utc).isoformat()
+                for review in reviews:
+                    review['lastSuccessfulPollAt'] = now
+                (checkout / 'public/data/investors/review-metadata.json').write_text(json.dumps(reviews))
+                report = copy.deepcopy(self.report)
+                report['checkedAt'] = now
+                pathlib.Path(args[-1]).write_text(json.dumps(report))
+                return self.subprocess.CompletedProcess(args, 0)
+            if args[:2] == ['python3', 'scripts/refresh-investor-media.py']:
+                return self.subprocess.CompletedProcess(args, 0)
+            return actual_run(args, **kwargs)
+
+        before = self.git('status', '--porcelain')
+        with patch.object(recording.subprocess, 'run', side_effect=controlled_acquisition):
+            result = recording.publish(self.root, self.report_path)
+        self.assertEqual(len(acquisitions), 1)
+        self.assertEqual(result['changed'], 'true')
+        self.assertEqual(result['collection_failed'], 'false')
+        first = self.report_path.parent / 'investor-recording-attempts/attempt-1' / self.report_path.name
+        self.assertEqual(json.loads(first.read_text()), self.report)
+        self.assertEqual(before, self.git('status', '--porcelain'))
+        self.git('fetch', '-q', 'origin', 'master')
+        self.assertIn('independent', self.git('show', 'origin/master:src/data/dca-security-classifications.json'))
+        reviews = json.loads(self.git('show', 'origin/master:public/data/investors/review-metadata.json'))
+        self.assertTrue(all(r['positionsCollectedAt'] == self.old_clock and r['lastSuccessfulPollAt'] >= self.fresh_clock for r in reviews))
+
+    def test_financial_failure_without_upstream_change_is_not_retried(self):
+        import os
+        spec = importlib.util.spec_from_file_location('investor_recording', self.source / 'commit-investor-observations.py')
+        recording = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(recording)
+        with patch.dict(os.environ, {'FORCE_AUDIT_FAILURE': '1'}):
+            with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
+                recording.publish(self.root, self.report_path)
+        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], self.base)
+
     def test_reviewed_source_fingerprints_are_current(self):
         import hashlib
         for path, digest in self.publication.ACQUISITION_SHA256.items():
@@ -609,6 +733,112 @@ class PublicationTests(unittest.TestCase):
         path.write_text(json.dumps(payload))
         with self.assertRaises(ValueError):
             self.publication.audit(self.root, self.report, self.base, self.now)
+
+
+class RecordingReportContractTests(unittest.TestCase):
+    """Replay the real 43823335908 archive; never recollect its suppliers."""
+    source = pathlib.Path(__file__).resolve().parent
+    workflow = 'update-investor-13f.yml'
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = pathlib.Path(self.tmp.name)
+        fixture = self.source / 'fixtures/investor-recording-20261116'
+        for name in ('investor-observations.json', 'investor-observations.contract-plan.json'):
+            (self.root / name).write_bytes((fixture / name).read_bytes())
+        self.primary = self.root / 'investor-observations.json'
+        self.duplicate = self.root / 'investor-observations-attempt-1.json'
+        self.duplicate.write_bytes(self.primary.read_bytes())
+        spec = importlib.util.spec_from_file_location('investor_recording_reports', self.source / 'commit-investor-observations.py')
+        self.recording = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.recording)
+
+    def jobs(self):
+        from publish_automation_status import REPORT_CONTRACTS
+        return [{'name': 'update', 'conclusion': 'success',
+                 'started_at': '2026-11-16T07:22:02Z', 'completed_at': '2026-11-16T07:36:00Z',
+                 'steps': [{'name': REPORT_CONTRACTS[self.workflow]['reports'][0]['steps'][0], 'conclusion': 'failure'}]},
+                {'name': 'deploy / publish', 'conclusion': 'success', 'steps': []}]
+
+    def reports(self):
+        from publish_automation_status import artifact_reports
+        return artifact_reports('isolated/replay', self.workflow, self.jobs(),
+                                [{'id': 14205289418, 'name': 'investor-observations'}], self.root,
+                                download=lambda *args: None)
+
+    def test_real_duplicate_is_support_and_both_financial_failures_remain(self):
+        rows = self.reports()
+        errors = [e for r in rows for e in r.get('errors', [])]
+        self.assertEqual({e['id'] for e in errors}, {'investor:druckenmiller', 'investor:klarman'})
+        support = next(s for r in rows for s in r.get('successes', [])
+                       if s['id'] == 'report-read:investor-observations-attempt-1')
+        self.assertFalse(support['sourceAttempted'])
+        self.assertFalse(support['evidence']['sourceControl'])
+        self.assertEqual(support['evidence']['sha256'], 'f26fa89c1e4449e750cb92d480eec3c2b903e355eadf2ce9d871b3528cfa2cc6')
+
+    def test_changed_bytes_unknown_name_and_missing_plan_stay_errors(self):
+        for defect in ('bytes', 'name', 'plan'):
+            with self.subTest(defect=defect):
+                self.duplicate.write_bytes(self.primary.read_bytes())
+                path = self.duplicate
+                if defect == 'bytes': path.write_bytes(path.read_bytes() + b'\n')
+                elif defect == 'name':
+                    path = self.root / 'investor-observations-attempt-9.json'
+                    self.duplicate.rename(path)
+                else:
+                    plan = self.root / 'investor-observations.contract-plan.json'
+                    saved = plan.read_bytes(); plan.unlink()
+                errors = [e for r in self.reports() for e in r.get('errors', [])]
+                self.assertTrue(any(e['id'] == 'report-read:' + path.stem for e in errors))
+                if defect == 'name': path.rename(self.duplicate)
+                elif defect == 'plan': plan.write_bytes(saved)
+
+    def test_same_old_artifact_can_repair_only_its_technical_proof(self):
+        from publish_automation_status import update_status, merge_proof_retry
+        run = {'id': 43823335908, 'run_attempt': 1, 'path': '.github/workflows/' + self.workflow,
+               'head_branch': 'master', 'event': 'workflow_dispatch', 'status': 'completed',
+               'conclusion': 'failure', 'run_started_at': '2026-11-16T07:22:02Z',
+               'updated_at': '2026-11-16T09:00:00Z',
+               'html_url': 'https://github.com/madmax91310/shinny-potato/actions/runs/43823335908'}
+        with patch('publish_automation_status.duplicate_investor_attempt', return_value=None):
+            before = update_status({}, run, self.jobs(), self.reports())
+        key = 'report-read:investor-observations-attempt-1:run:43823335908:attempt:1'
+        self.assertIn(key, before['workflows'][self.workflow]['proofFailures'])
+        checks = {k: v.get('checkedAt') for k, v in before['workflows'][self.workflow]['sourceChecks'].items()}
+        after = merge_proof_retry(before, run, self.reports())
+        row = after['workflows'][self.workflow]
+        self.assertNotIn(key, row['proofFailures'])
+        self.assertFalse(row['proofChecks'][key]['evidence']['sourceControl'])
+        self.assertEqual(set(row['dataFailures']), {'investor:druckenmiller', 'investor:klarman'})
+        self.assertEqual({k: v.get('checkedAt') for k, v in row['sourceChecks'].items()}, checks)
+        self.assertNotIn('investor-observations-attempt-1.json', row.get('reportQualifications', {}))
+
+    def test_current_report_and_plan_are_copied_without_rewriting_their_scope(self):
+        source = self.root / 'investor-recording-attempts/attempt-2/investor-observations.json'
+        source.parent.mkdir(parents=True)
+        source.write_bytes(self.primary.read_bytes())
+        plan = source.with_name('investor-observations.contract-plan.json')
+        original_plan = self.root / plan.name
+        plan.write_bytes(original_plan.read_bytes())
+        self.primary.write_text('old report'); original_plan.write_text('old plan')
+        self.recording.copy_report_evidence(source, self.primary)
+        self.assertEqual(self.primary.read_bytes(), source.read_bytes())
+        self.assertEqual(original_plan.read_bytes(), plan.read_bytes())
+        self.assertEqual(json.loads(self.primary.read_text())['resultContract']['inputPlan']['reportStem'], 'investor-observations')
+        source.unlink()
+        self.recording.copy_report_evidence(source, self.primary)
+        self.assertFalse(self.primary.exists())
+        self.assertEqual(original_plan.read_bytes(), plan.read_bytes())
+
+    def test_workflow_separates_current_reports_from_attempt_support(self):
+        text = (self.source.parent / '.github/workflows/update-investor-13f.yml').read_text()
+        for artifact in text.split('name: investor-observations')[1:]:
+            current = artifact.split('- uses:', 1)[0]
+            self.assertIn('/investor-observations.json', current)
+            self.assertIn('/investor-observations.contract-plan.json', current)
+            self.assertNotIn('*.json', current)
+        self.assertIn('name: investor-recording-attempts', text)
 
 
 if __name__ == '__main__':

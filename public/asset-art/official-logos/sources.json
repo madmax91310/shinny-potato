@@ -81,7 +81,17 @@
     "source": "https://static.xx.fbcdn.net/rsrc.php/y9/r/tL_v571NdZ0.svg",
     "notes": "Unmodified official corporate SVG linked by homepage Organization schema.",
     "retrieved": "2026-10-24",
-    "sha256": "7a0430c375fc8563eafa7636869b5b132e6da4461711a81d384bc0044a20d039"
+    "sha256": "7a0430c375fc8563eafa7636869b5b132e6da4461711a81d384bc0044a20d039",
+    "investorVariant": {
+      "file": "index-logos/meta-symbol.svg",
+      "page": "https://about.meta.com/brand/resources/meta/logo/",
+      "source": "https://static.xx.fbcdn.net/rsrc.php/y9/r/tL_v571NdZ0.svg",
+      "sha256": "e68a923ba044d2bba845f54e008609fafeaffd1b7bc919515955a209c9cd7d82",
+      "derivedFrom": "official-logos/meta.svg",
+      "sourceSha256": "7a0430c375fc8563eafa7636869b5b132e6da4461711a81d384bc0044a20d039",
+      "notes": "Symbole Meta seul, extrait du SVG officiel existant : quatre chemins du mot Meta retirés ; chemins, dégradés et proportions du symbole intégral conservés. Variante compacte pour les secteurs étroits ; aucun nouveau dessin.",
+      "terms": "Marque Meta ; conditions officielles : https://about.meta.com/brand/resources/meta/logo/"
+    }
   },
   "airliquide": {
     "file": "official-logos/airliquide.svg",
@@ -1062,5 +1072,14 @@
     "retrieved": "2026-10-24",
     "sourceSha256": "9c9aa51b5e9e061f395adf6adbad9388eae0d3c91ad73f46f15594677b0382bf",
     "sha256": "d6e64afcdb01412fa590c662a80ff44ca7bfdb611d84d89579e861f620bd6a6f"
+  },
+  "american-express": {
+    "file": "official-logos/american-express.svg",
+    "page": "https://www.americanexpress.com/en-us/company/",
+    "source": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg",
+    "notes": "Official blue box from issuer navigation. Unmodified logo for identification; trademark remains with American Express.",
+    "retrieved": "2026-11-15",
+    "sha256": "028f643755987211bf2f3add6c62ae1870a888cf2f4fe3040a4fac7dce2543ab",
+    "support": "light"
   }
 }

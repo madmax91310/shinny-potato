@@ -23,7 +23,7 @@ from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, ti
 from github_automation_transport import request_json, unseen_completed_runs
 from automation_history_coverage import recover_skipped_history_gaps
 from automation_legacy_phases import CONTRACTS as LEGACY_PHASE_CONTRACTS, qualify_legacy_phases
-from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives,decode_status,reader_ready,pack_proof_checks
+from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives,decode_status,reader_ready,pack_proof_checks,pack_scope_archives,scope_reader_ready
 from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
@@ -375,6 +375,15 @@ def read_report(path, workflow, planned=None):
     report = json.loads(path.read_text())
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
+    if path.name == 'currency-collection-outcomes.json':
+        validate_currency_outcomes(report)
+        if workflow != report['workflow']:
+            raise ValueError('Currency outcomes belong to another workflow')
+        return {'successes': [], 'errors': [], '_jobOutcomes': report,
+                '_reportEvidence': {'file': path.name, 'schema': 'step-outcomes',
+                    'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                    'reportedAt': report['checkedAt'],
+                    'scope': {'runId': report['runId'], 'attempt': report['attempt']}}}
     plan_verified=False
     if planned is not None:
         from producer_report_contract import validate_contract,finish
@@ -467,7 +476,33 @@ def normalize_attempt_report(raw,run):
     if (scope.get('runId') is not None and str(scope['runId'])!=str(run['id'])
             or scope.get('attempt') is not None and str(scope['attempt'])!=str(run.get('run_attempt',1))):
         return report_error('report-contract:attempt','Le manifeste amont ne correspond pas à cette exécution/tentative ; aucun contrôle source individuel déduit.')
+    if '_jobOutcomes' in report:
+        receipt = report['_jobOutcomes']
+        validate_currency_outcomes(receipt)
+        evidence = report.get('_reportEvidence') or {}
+        checked = timestamp(receipt['checkedAt'])
+        if (receipt['runId'] != run['id'] or receipt['attempt'] != run.get('run_attempt', 1)
+                or receipt['workflow'] != run['path'].split('/')[-1]
+                or receipt['headSha'] != run.get('head_sha')
+                or not evidence.get('artifactId') or not re.fullmatch(r'[a-f0-9]{64}', evidence.get('sha256', ''))
+                or not timestamp(run.get('run_started_at')) or checked < timestamp(run['run_started_at'])
+                or not timestamp(run.get('updated_at')) or checked > timestamp(run['updated_at'])):
+            return report_error('report-contract:currency-outcomes', 'Reçu BCE/MSCI hors de cette tentative ; aucun résultat déduit.')
     return report
+
+
+def validate_currency_outcomes(receipt):
+    """Job outcomes are execution evidence, never field/source qualification."""
+    if (receipt.get('schemaVersion') != 1 or receipt.get('workflow') != 'collect-etf-pilot.yml'
+            or type(receipt.get('runId')) is not int or receipt['runId'] <= 0
+            or type(receipt.get('attempt')) is not int or receipt['attempt'] <= 0
+            or not re.fullmatch(r'[a-f0-9]{40}', receipt.get('headSha', ''))
+            or not timestamp(receipt.get('checkedAt'))
+            or timestamp(receipt['checkedAt']) > dt.datetime.now(dt.timezone.utc)
+            or not isinstance(receipt.get('steps'), dict)
+            or set(receipt['steps']) != {'fx', 'performance_currency'}
+            or any(v not in ('success', 'failure', 'cancelled', 'skipped') for v in receipt['steps'].values())):
+        raise ValueError('Invalid BCE/MSCI step outcome receipt')
 
 
 def technical_proof(identifier):
@@ -560,8 +595,8 @@ def merge_proof_retry(state, run, reports):
                 for key in list(failures):
                     if ':run:' not in key and identifier.startswith(key+':run:') and failures[key].get('runUrl') == run['html_url']:
                         failures.pop(key)
-                        checks[key] = {'runUrl':run['html_url'], 'evidence':evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
-                checks[identifier] = {'runUrl':run['html_url'], 'evidence':evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
+                        checks[key] = {'runUrl':run['html_url'], 'evidence':success.get('evidence') or evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
+                checks[identifier] = {'runUrl':run['html_url'], 'evidence':success.get('evidence') or evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
             else:
                 failure=row.get('dataFailures',{}).get(identifier,{})
                 failed_at=timestamp(failure.get('sourcePhaseCompletedAt') or failure.get('completedAt'))
@@ -613,6 +648,43 @@ def merge_proof_retry(state, run, reports):
     return refresh_scope_proofs(result,run,reports)
 
 
+def duplicate_investor_attempt(path, workflow, paths, sidecars, artifacts):
+    """Requalify only the known byte-identical first 13F report copy.
+
+    It is technical support evidence, never a second supplier control. A
+    different payload, unknown name or unverified input plan remains an error.
+    """
+    if workflow != 'update-investor-13f.yml' or path.name != 'investor-observations-attempt-1.json':
+        return None
+    primary = [p for p in paths if p.name == 'investor-observations.json']
+    if len(primary) != 1 or sum(p.name == path.name for p in paths) != 1:
+        return None
+    primary = primary[0]
+    plan = sidecars.get(primary.name)
+    if not plan or plan.stat().st_size > 8_000_000 or path.stat().st_size != primary.stat().st_size:
+        return None
+    try:
+        planned = json.loads(plan.read_text())
+        observed = read_report_safely(primary, workflow, planned)
+        evidence = observed.get('_reportEvidence') or {}
+        if evidence.get('producerContract') != 'producer-results-v1' or not evidence.get('scopePlanVerified'):
+            return None
+        # The successful bounded primary reader establishes the same size limit.
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != evidence.get('sha256'):
+            return None
+        proof = {'file': path.name, 'schema': 'duplicate-attempt-support', 'sha256': digest,
+                 'artifactId': max(a.get('id', 0) for a in artifacts),
+                 'duplicateOf': primary.name, 'planSha256': planned['resultContract']['inputPlan']['sha256'],
+                 'sourceControl': False,
+                 'reason': 'Exact duplicate of the registered report with its verified predeclared plan; support evidence only.'}
+        return {'successes': [{'id': 'report-read:' + path.stem, 'sourceAttempted': False,
+                               'phase': 'reporting', 'evidence': proof}],
+                'errors': []}
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
 def artifact_reports(repo, workflow, jobs, artifacts, directory, download=download_status_artifact):
     """The contract is conditional on executed steps, never on unattempted fields."""
     contract = REPORT_CONTRACTS[workflow]
@@ -659,6 +731,10 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
             if path.name in contract.get('supportFiles',[]):
                 continue  # Explicitly declared inputs/snapshots, never observation reports.
             if path.name not in names:
+                duplicate = duplicate_investor_attempt(path, workflow, paths, sidecars, available)
+                if duplicate:
+                    reports.append(duplicate)
+                    continue
                 reports.append(report_error('report-read:' + path.stem, 'Rapport hors contrat : ' + path.name))
                 continue
             planned=None
@@ -830,6 +906,21 @@ def update_status(state, run, jobs, reports=None):
         for kind in ('successes', 'errors'):
             report[kind] = [{**r, 'id': bind_attempt(r['id'], run)} for r in report.get(kind, [])]
     reports = normalized
+    # REST exposes conclusion=success after continue-on-error. Restore only
+    # the independently archived outcome from the exact run/attempt/commit.
+    currency_outcomes = [r['_jobOutcomes'] for r in reports if '_jobOutcomes' in r]
+    if len(currency_outcomes) > 1:
+        reports.append(report_error('report-contract:currency-outcomes', 'Plusieurs reçus BCE/MSCI ; résultats non qualifiés.'))
+        currency_outcomes = []
+    jobs = copy.deepcopy(jobs)
+    if currency_outcomes:
+        for job in jobs:
+            if job.get('name') != REGISTRY[workflow]['collectionJob']:
+                continue
+            for step in job.get('steps', []):
+                for identifier, outcome in currency_outcomes[0]['steps'].items():
+                    if step.get('name') == 'Collect observations: ' + identifier and step.get('conclusion') == 'success':
+                        step['conclusion'] = outcome
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
     # A completed-run API response can temporarily omit every job. Re-read the
@@ -837,7 +928,13 @@ def update_status(state, run, jobs, reports=None):
     # confuse this repair of job evidence with a new supplier consultation.
     first_job_evidence = (not previous.get('stepResults') and
                           any(job.get('steps') for job in jobs))
-    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence:
+    # Re-read immutable receipts once when introducing recording-specific
+    # coverage. The original run/check dates remain unchanged.
+    first_recording_scope = ('recordedObservationIds' not in previous and any(
+        r.get('_reportEvidence', {}).get('schema') == 'shares'
+        and r.get('_reportEvidence', {}).get('scopePlanVerified') for r in reports))
+    first_currency_outcomes = bool(currency_outcomes) and not previous.get('currencyStepOutcomes')
+    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence and not first_recording_scope and not first_currency_outcomes:
         return merge_proof_retry(result,run,reports)
     if stamp < old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
@@ -950,7 +1047,11 @@ def update_status(state, run, jobs, reports=None):
             retired_failures[identifier]={**data_failures.pop(identifier),'retiredAt':run['updated_at'],'retirementReason':RETIREMENT_REASON}
     failures = []
     for job in jobs:
-        if job.get('conclusion') not in ('failure', 'timed_out'):
+        job_only_steps = REGISTRY[workflow].get('jobOnlyCollectionSteps', [])
+        continued_source_failure = (job.get('name') == REGISTRY[workflow]['collectionJob'] and any(
+            step.get('name') in job_only_steps and step.get('conclusion') in ('failure','timed_out','cancelled')
+            for step in job.get('steps', [])))
+        if job.get('conclusion') not in ('failure', 'timed_out') and not continued_source_failure:
             continue
         named = [a.get('title', '')[len('Échec '):] + ' — ' + str(a.get('message', ''))[:200]
                  for a in job.get('annotations', []) if str(a.get('title', '')).startswith('Échec ')]
@@ -1025,11 +1126,25 @@ def update_status(state, run, jobs, reports=None):
         'lastPublicationSuccessAt': published_at if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures,'retiredDataFailures':retired_failures,
         'stepResults': {j['name']+'\n'+step['name']:step.get('conclusion') for j in jobs for step in (j.get('steps')or[])},
+        'currencyStepOutcomes': currency_outcomes[0] if currency_outcomes else None,
         'publicationEvidence': {'runUrl':run['html_url'],'checkedAt':published_at,'kind':'explicit-public-artifact-check'} if publication_status=='success' else None,
         'attemptedDataIds':sorted({r['id']for p in reports for r in p.get('successes',[])if not technical_proof(r['id'])}),
         'validatedDataIds':sorted({r['id']for p in reports for r in p.get('successes',[])if not technical_proof(r['id'])
             and source_checks.get(r['id'],{}).get('runId')==run['id']and source_checks.get(r['id'],{}).get('attempt')==run.get('run_attempt',1)
             and(timestamp(source_checks[r['id']].get('checkedAt'))or source_checks[r['id']].get('verifiedInAttempt'))})if validation_status=='success'and recording_status=='success'else[],
+        # A composite observation can be validated and recorded while an older
+        # failure of one supplier branch still lacks its own recovery proof.
+        # This scope proves recording only; it must never renew sourceChecks or
+        # close dataFailures. Require the independent input plan and artifact.
+        'recordedObservationIds': sorted({item['id'] for report in reports
+            if not report.get('_scopeWarning')
+            and (evidence := report.get('_reportEvidence', {})).get('schema') == 'shares'
+            and evidence.get('scopePlanVerified') and evidence.get('artifactId') and evidence.get('sha256')
+            and timestamp(evidence.get('sourcePhaseCompletedAt'))
+            for item in report.get('successes', [])
+            if not technical_proof(item['id']) and item.get('sourceAttempted') is True
+            and item['id'] in (evidence.get('scope') or {}).get('requestedIds', [])
+            }) if validation_status == 'success' and recording_status == 'success' else [],
         'legacyReportCoverage':[r['_legacyReportCoverage']for r in reports if r.get('_legacyReportCoverage')],
         'reportQualifications': qualifications, 'reportQualificationHistory':qualification_history, 'validationChecks':validation_checks, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
     entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks, reportResultHistory=result_history)
@@ -1529,7 +1644,9 @@ def main():
     # registry before a writer emits it. No change to the 256 MiB envelope.
     if compressed and reader_ready(repo, proof_checks=True):
         state = pack_proof_checks(state)
-    print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',{})))+' périmètres de preuve uniques ; aucun incident retiré.')
+    if compressed and scope_reader_ready(repo):
+        state = pack_scope_archives(state)
+    print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',state.get('reportScopeArchives',{}))))+' périmètres de preuve uniques ; aucun incident retiré.')
     encoded = encode_status(state, compressed=compressed)
     print('Transport du moniteur : '+('gzip vérifié, lecteur public disponible' if compressed else 'JSON historique, nouveau lecteur public non démontré'))
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}

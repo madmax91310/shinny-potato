@@ -55,6 +55,108 @@ class ReaderRevalidation(unittest.TestCase):
         self.git('commit', '-qm', 'isolated upstream change')
         return self.git('rev-parse', 'HEAD')
 
+    def budget_new_profiles_snapshots(self):
+        fixture=json.loads((ROOT/'scripts/fixtures/budget-new-profiles-recording-race-20261115.json').read_text())
+        self.base=self.commit({path:value['before'] for path,value in fixture['inputs'].items()})
+        updates={path:value['after'] for path,value in fixture['inputs'].items()}
+        updates.update({path:'independent downstream Budget reader\n' for path in fixture['newlyReviewedReaders']})
+        return fixture,self.commit(updates)
+
+    def test_actual_budget_browser_addition_preserves_every_gate_and_source_protection(self):
+        fixture,end=self.budget_new_profiles_snapshots()
+        expected=set(fixture['newlyReviewedReaders'])|set(fixture['inputs'])
+        for kind,operation in [('market',reader.check),('etf',reader.check_etf)]:
+            original=set(shared.ALLOWED[kind])
+            with self.assertRaises(ValueError):shared.check(kind,self.base,end)
+            result=operation(self.base,end)
+            self.assertEqual(set(result['qualifiedPublicationReaders']),expected)
+            self.assertTrue(result['financialRevalidationRequired'])
+            self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+            self.assertEqual(shared.ALLOWED[kind],original)
+
+    def test_budget_test_append_cannot_remove_reorder_or_replace_any_existing_gate(self):
+        fixture,_=self.budget_new_profiles_snapshots()
+        before=json.loads(fixture['inputs'][reader.BROWSER_LIST]['before'])
+        bad=[before[1:]+[reader.BUDGET_BROWSER],list(reversed(before))+[reader.BUDGET_BROWSER],
+             before+['node scripts/unreviewed.mjs'],before+[reader.BUDGET_BROWSER,reader.BUDGET_BROWSER]]
+        for values in bad:
+            end=self.commit({reader.BROWSER_LIST:json.dumps(values)})
+            for operation in [reader.check,reader.check_etf]:
+                with self.subTest(values=values[-2:]),self.assertRaisesRegex(ValueError,'Protected.*configuration'):
+                    operation(self.base,end)
+
+    def test_budget_artifact_step_does_not_allow_other_workflow_edits(self):
+        fixture,_=self.budget_new_profiles_snapshots()
+        after=fixture['inputs'][reader.DEPLOY_WORKFLOW]['after']
+        for changed in [after.replace(reader.BROWSER_ANCHOR,reader.BROWSER_ANCHOR.replace('4','3'),1),
+                        after.replace('retention-days: 14','retention-days: 30'),
+                        after.replace('contents: read','contents: write',1)]:
+            end=self.commit({reader.DEPLOY_WORKFLOW:changed})
+            for operation in [reader.check,reader.check_etf]:
+                with self.assertRaisesRegex(ValueError,'Protected publication workflow'):
+                    operation(self.base,end)
+
+    def test_actual_public_portfolio_proof_step_can_be_added_or_removed(self):
+        fixture = json.loads((ROOT/'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json').read_text())
+        initial = self.base
+        for before, after in [('before', 'after'), ('after', 'before')]:
+            self.git('reset', '--hard', initial)
+            base = self.commit({reader.DEPLOY_WORKFLOW: fixture[before]})
+            end = self.commit({reader.DEPLOY_WORKFLOW: fixture[after]})
+            for kind, operation in [('market', reader.check), ('etf', reader.check_etf)]:
+                allowed = set(shared.ALLOWED[kind])
+                with self.assertRaises(ValueError):
+                    shared.check(kind, base, end)
+                proof = operation(base, end)
+                self.assertEqual(proof['qualifiedPublicationReaders'], [reader.DEPLOY_WORKFLOW])
+                self.assertTrue(proof['financialRevalidationRequired'])
+                self.assertFalse(proof['sourceControlsRenewedByThisAdapter'])
+                self.assertEqual(shared.ALLOWED[kind], allowed)
+
+    def test_public_portfolio_proof_is_not_a_general_workflow_exemption(self):
+        fixture = json.loads((ROOT/'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json').read_text())
+        base = self.commit({reader.DEPLOY_WORKFLOW: fixture['after']})
+        for changed in [fixture['before'].replace('contents: read', 'contents: write', 1),
+                        fixture['before'].replace('matrix.shard }} 6', 'matrix.shard }} 5', 1),
+                        fixture['before'].replace('test-artifacts/public-portfolios', 'src/data'),
+                        fixture['before'].replace('retention-days: 7', 'retention-days: 8'),
+                        fixture['before'].replace('name: public-portfolio-proof-', 'name: unreviewed-'),
+                        fixture['before'].replace('actions/upload-artifact@v7.0.1', 'actions/upload-artifact@v7.0.2', 1)]:
+            self.assertNotEqual(changed, fixture['before'])
+            end = self.commit({reader.DEPLOY_WORKFLOW: changed})
+            for operation in [reader.check, reader.check_etf]:
+                with self.assertRaisesRegex(ValueError, 'Protected publication workflow'):
+                    operation(base, end)
+
+    def test_public_proof_step_stays_guarded_if_acquisition_reads_workflow(self):
+        fixture = json.loads((ROOT/'scripts/fixtures/public-portfolio-artifact-recording-race-20261116.json').read_text())
+        for entry, operation in [(reader.BASELINE, reader.check), (reader.ETF_BASELINE, reader.check_etf)]:
+            base = self.commit({reader.DEPLOY_WORKFLOW: fixture['after'],
+                                entry: "import '../.github/workflows/deploy-pages.yml';\n"})
+            end = self.commit({reader.DEPLOY_WORKFLOW: fixture['before']})
+            with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
+                operation(base, end)
+
+    def test_new_budget_reader_is_rejected_if_acquisition_imports_it(self):
+        path='src/pages/budget-profiles/editorial-profiles-2026-11-15.json'
+        fixture,_=self.budget_new_profiles_snapshots()
+        before={p:value['before'] for p,value in fixture['inputs'].items()}
+        before.update({reader.BASELINE:"import '../"+path+"';\n",path:'[]'})
+        self.base=self.commit(before)
+        after={p:value['after'] for p,value in fixture['inputs'].items()}
+        after[path]='[1]'
+        end=self.commit(after)
+        with self.assertRaisesRegex(ValueError,'acquisition dependency'):reader.check(self.base,end)
+
+    def test_budget_archive_does_not_allow_a_changed_collector_or_unknown_neighbour(self):
+        _,clean=self.budget_new_profiles_snapshots()
+        for path in ['scripts/refresh_monthly_history.py','src/pages/budget-profiles/unreviewed-input.json']:
+            self.git('reset','--hard',clean)
+            end=self.commit({path:'unqualified change\n'})
+            for operation in [reader.check,reader.check_etf]:
+                with self.assertRaisesRegex(ValueError,'Collection inputs may have changed'):
+                    operation(self.base,end)
+
     def test_actual_budget_scope_readers_require_checked_adapter_for_both_producers(self):
         fixture=json.loads((ROOT/'scripts/fixtures/budget-scope-recording-race-20261114.json').read_text())
         paths=set(fixture['newlyBlockedReaders'])
@@ -266,6 +368,24 @@ class ReaderRevalidation(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
                     reader.check_etf(self.base, changed)
                 self.base = self.commit({entry: 'export const restored = true;\n'})
+
+    def test_practical_output_race_is_independent_but_its_producer_and_dependencies_are_not(self):
+        path='src/data/automated-practical-sheets.json'
+        base=self.base
+        end=self.commit({path:'{"checkedAt":"2026-11-16","values":{"example":1}}'})
+        result=reader.check_etf(base,end)
+        self.assertEqual(result['qualifiedPublicationReaders'],[path])
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        for entry in reader.ETF_ACQUISITION_ENTRIES:
+            base=self.commit({entry:"import '../"+path+"';\n"})
+            end=self.commit({path:json.dumps({'values':{'example':2},'isolatedEntry':entry})})
+            with self.assertRaisesRegex(ValueError,'acquisition dependency'):reader.check_etf(base,end)
+            self.commit({entry:'export const restored = [];\n'})
+        for protected in ['scripts/collect_practical_sheets.py','src/data/automated-practical-sheets-extra.json']:
+            base=self.git('rev-parse','HEAD')
+            end=self.commit({protected:'changed protected neighbour\n'})
+            with self.assertRaises(ValueError):reader.check_etf(base,end)
 
     def test_etf_live_inflation_and_neighbouring_source_files_stay_protected(self):
         for path in ['src/data/inflation-monthly.js', 'scripts/collect_inflation.py',

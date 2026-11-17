@@ -15,16 +15,16 @@ for (const record of SCPI) {
   assert(text.includes('brut de fiscalité étrangère'))
   assert.equal(record.annual.years.length, 3)
   assert(text.includes(String(record.annual.years.at(-1).year)))
-  assert(text.length < 1600, record.id)
+  assert(text.length < 2800, record.id)
   assert(searchData(record.name).some(row => row.id === `scpi:${record.id}`))
   assert(DATA_CATALOG.find(row => row.id === `scpi:${record.id}`).fields.length >= 4)
 }
 const iroko=SCPI.find(row=>row.id==='iroko-zen')
 assert.match(iroko.snapshot.asOf,/^\d{4}-(?:03-31|06-30|09-30|12-31)$/)
-assert(buildTweet(iroko).includes(`Au ${dateLabel(iroko.snapshot.asOf)}`))
+assert(!buildTweet(iroko).includes(dateLabel(iroko.snapshot.asOf)))
 assert(!buildTweet(iroko).includes('date des graphiques non précisée'))
 const undatedIroko=structuredClone(iroko);undatedIroko.snapshot.asOf=null
-assert(buildTweet(undatedIroko).includes('date des graphiques non précisée'))
+assert(!buildTweet(undatedIroko).includes('date des graphiques non précisée'))
 assert(allocation([{label:'A',value:20},{label:'B',value:30},{label:'C',value:40},{label:'D',value:10}]).endsWith('autres 10 %'))
 const changed = structuredClone(SCPI.find(row => row.id === 'remake-live'))
 changed.snapshot.countries = [{ label: 'France', value: 60 }, { label: 'Allemagne', value: 40 }]
@@ -50,7 +50,7 @@ for (const record of SCPI) {
   next.portfolio.buildings.value=321
   next.portfolio.occupancy.value=91.25
   const text=buildTweet(next).replace(/[\u00a0\u202f]/g,' ')
-  for (const expected of ['Au 30/09/2026','France 60 %','3 333 €','777,77 €','8,88 %','Taux de distribution 2026 : 5,03 %','91,25 %']) assert(text.includes(expected),`${record.id}: ${expected}`)
+  for (const expected of ['France 60 %','3 333 €','777,77 €','8,88 %','En 2026, le taux de distribution s’est établi à 5,03 %','91,25 %']) assert(text.includes(expected),`${record.id}: ${expected}`)
   if (next.conditions.managementZones) assert(text.includes('11,11 % TTC en zone euro et 14,44 % TTC hors zone euro'))
   else assert(text.includes('13,37 %'))
   assert(portfolioText(next).includes('321'))
@@ -70,3 +70,17 @@ waiting.annual.publication = {latestPublishedYear:2025,expectedYear:2026,awaitin
 assert(buildTweet(waiting).includes('Dernier exercice publié : 2025'))
 assert(buildTweet(waiting).includes('Les chiffres 2026 restent en attente'))
 assert(!buildTweet(waiting).includes('2026 :'))
+
+// Observations drive the editorial angle; concentration is not frozen to a brand.
+const origin = structuredClone(SCPI.find(r => r.id === 'corum-origin'))
+origin.snapshot.sectors = [{label:'Commerces',value:80},{label:'Bureaux',value:20}]
+assert(buildTweet(origin).startsWith('CORUM Origin détient'))
+assert(buildTweet(origin).includes('« Commerces » représente à lui seul 80 %'))
+assert(!buildTweet(origin).includes('60 %'))
+for(const r of SCPI) {
+  const copy=buildTweet(r)
+  assert(copy.includes('Je te fais les présentations 👇'))
+  assert(copy.includes('💭 Personnellement'))
+  assert(!copy.includes(dateLabel(r.checkedAt)))
+  assert(!copy.includes(`Prix de la part : ${r.price.value} € au`))
+}

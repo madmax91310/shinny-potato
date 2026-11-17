@@ -1,11 +1,13 @@
 import TOOL_SUMMARIES from './data/tool-summaries.json' with {type: 'json'}
 import ETF_FLOW_TOOL from './data/etf-flows-tool.json' with {type: 'json'}
-import { publicationLabel } from './data/editorial-calendar.js'
+import PUBLICATION_LABELS from './data/editorial-publication-labels.json' with {type:'json'}
+const publicationLabel=path=>Object.hasOwn(PUBLICATION_LABELS,path)?PUBLICATION_LABELS[path]:''
 import { INVESTORS } from './data/investor-roster.js'
 // Registre central des outils : source unique pour le dashboard, la nav et les routes.
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  { to: '/portefeuilles-publics', title: 'Portefeuilles publics', icon: '🔎', accent: '#65d5b0', description: 'Réserve de portefeuilles publics, relevés vérifiés, tweets et images du portefeuille de la semaine.', status: 'disponible' },
   ETF_FLOW_TOOL,
   { to: '/comparateur-indices', title: 'Comparateur d’indices',
     icon: '📐', accent: '#38bdf8',
@@ -161,7 +163,7 @@ export const TOOLS = [
 // Les mêmes groupes alimentent l’accueil et la navigation.
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/comparateur-indices', '/classements-performances', '/comparatif-courtiers', '/calculateur-investissement'] },
-  { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/le-budget-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
+  { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/le-budget-de', '/portefeuilles-publics', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
   { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/flux-etf', '/idees-classements', '/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })).filter(tool => !tool.hidden) }))
@@ -178,7 +180,7 @@ export const WEEKLY_ORDER = [
   '/classements-performances',
   '/duels-portefeuilles', '/fiches-etf',
   '/presentations',
-  '/portefeuilles-investisseurs', '/faits-marquants-marches',
+  '/portefeuilles-investisseurs', '/portefeuilles-publics', '/faits-marquants-marches',
   '/il-y-a-x-ans', '/pouvoir-achat',
   '/le-dca-de', '/le-budget-de', '/comparatif-courtiers',
   '/hey-grok', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',

@@ -4,15 +4,19 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
+import { analyzeBudget, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
 import { budgetFinancialReference, staleBudgetText } from './completion.js'
-import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, WORKSPACE_KEY } from './storage.js'
-import PublicationStatus from './PublicationStatus.jsx'
+import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, peekWorkspace, WORKSPACE_KEY } from './workspace.js'
+import { publicationLabel } from '../../lib/publication-date.js'
 import { useBudgetImage } from './useBudgetImage.js'
 import '../dca-profiles/dca-profiles.css'
 import './budget-profiles.css'
 
 const profiles = [...BUDGET_PROFILES].sort(compareBudgetRecency)
+const PublicationStatus = lazy(() => import('./PublicationStatus.jsx'))
+const PreparationPanel = lazy(() => import('./PreparationPanel.jsx'))
+const PublicationQueue = lazy(() => import('./PublicationQueue.jsx'))
+const PublicationSelection = lazy(() => import('./PublicationSelection.jsx'))
 const BackupPanel = lazy(() => import('./BackupPanel.jsx'))
 const SourceEvidencePanel = lazy(() => import('./SourceEvidencePanel.jsx'))
 const ParticipantEditor = lazy(() => import('./ParticipantEditor.jsx'))
@@ -30,10 +34,11 @@ export default function App() {
   const [publishedInitial] = useState(loadPublished), [published, setPublished] = useState(publishedInitial.value)
   const [publicationDates, setPublicationDates] = useState(publishedInitial.dates)
   const [queuedInitial] = useState(loadQueued), [queued, setQueued] = useState(queuedInitial.value)
+  const [scheduledDates, setScheduledDates] = useState(queuedInitial.dates)
   const [saved, setSaved] = useState(loadSavedDrafts)
   const [subscriberOpen, setSubscriberOpen] = useState(initial.value.profile.kind === 'participant')
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
-  const [imageMode, setImageMode] = useState('social'), [backupOpen, setBackupOpen] = useState(false)
+  const [imageMode, setImageMode] = useState('overview'), [backupOpen, setBackupOpen] = useState(false)
   const [evidenceOpen, setEvidenceOpen] = useState(false)
   const [hidePublished, setHidePublished] = useState(false)
   const [unused, setUnused] = useState(false), [query, setQuery] = useState(''), [feedback, setFeedback] = useState('')
@@ -46,7 +51,7 @@ export default function App() {
     if (!saveDraft(record)) setFeedback('Brouillon en mémoire : le stockage est indisponible, illisible ou modifié dans un autre onglet. Les données précédentes sont conservées.')
   }, [record])
   useEffect(() => {
-    const changed = event => { if (event.key === WORKSPACE_KEY) setFeedback('Les données ont changé dans un autre onglet. Recharge la page après avoir conservé ton texte en cours.') }
+    const changed = event => { if (event.key === WORKSPACE_KEY || event.key === null) { const latest=peekWorkspace(); if(latest.readable){setPublished(latest.value.published);setPublicationDates(latest.value.publicationDates);setUsed(latest.value.used);setQueued(latest.value.queued);setScheduledDates(latest.value.scheduledDates)} setFeedback('Les données ont changé dans un autre onglet. Recharge la page après avoir conservé ton texte en cours.') } }
     window.addEventListener('storage', changed); return () => window.removeEventListener('storage', changed)
   }, [])
   const a = analyzeBudget(profile), image = useBudgetImage(profile, !a.errors.length, imageMode)
@@ -64,12 +69,12 @@ export default function App() {
     if (!pool.length) { seen.current = new Set([profile.id]); pool = filtered.filter(p => p.id !== profile.id) }
     choose(pool[Math.floor(Math.random() * pool.length)])
   }
-  function adapt() {
-    const p = { ...structuredClone(profile), id: `participation-${crypto.randomUUID()}`, name: budgetDisplayName(profile), kind: 'participant', source: null, publishedAt: null, checkedAt: null,
-      income: budgetPublicIncomeRows(profile), expenses: budgetPublicExpenseRows(profile), savings: budgetPublicSavingsRows(profile),
-      incomeNote: '', context: '', caveat: '', hook: '', question: '' }
-    setSubscriberOpen(true); choose(p)
+  async function adapt() {
+    const { duplicateBudget } = await import('./manual.js')
+    const next = duplicateBudget(record, `participation-${crypto.randomUUID()}`)
+    setSubscriberOpen(true); setApproved(false); setRecord(next); setFeedback('Copie créée avec un nouvel identifiant. Vérifie la présentation et les lignes avant de publier.')
   }
+
   function createSubscriber() { setSubscriberOpen(true); choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` }) }
   function toggleUsed() {
     const next = used.includes(profile.id) ? used.filter(id => id !== profile.id) : [...used, profile.id]
@@ -82,14 +87,23 @@ export default function App() {
     if (savePublished(next, dates)) { setPublished(next); setPublicationDates(dates); setFeedback(checked ? 'Publication déclarée enregistrée.' : 'Statut publié retiré.'); return true }
     setFeedback('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.'); return false
   }
+  function changeQueue(ids, dates = scheduledDates) {
+    const nextDates = Object.fromEntries(Object.entries(dates).filter(([id]) => ids.includes(id)))
+    if (saveQueued(ids, nextDates)) { setQueued(ids); setScheduledDates(nextDates); setFeedback('File et dates prévues enregistrées.'); return true }
+    setFeedback('La file n’a pas été enregistrée : le stockage est inaccessible ou a changé dans un autre onglet. Les données précédentes sont conservées.'); return false
+  }
   function markQueued(checked) {
-    const next = checked ? [...new Set([...queued, profile.id])] : queued.filter(id => id !== profile.id)
-    if (saveQueued(next)) { setQueued(next); setFeedback('Statut à publier prochainement mis à jour.') }
-    else setFeedback('Le statut n’a pas pu être enregistré. Les données précédentes sont conservées.')
+    changeQueue(checked ? [...new Set([...queued, profile.id])] : queued.filter(id => id !== profile.id))
+  }
+  function addPublicationSelection(ids) {
+    const selected = ids.filter(id => profiles.some(p => p.id === id) && !published.includes(id))
+    const next = [...new Set([...queued, ...selected])]
+    if (saveQueued(next)) { setQueued(next); setFeedback(`${selected.length} profil(s) ajouté(s) à la file. Aucun statut publié n’a changé.`); return true }
+    setFeedback('La sélection n’a pas été enregistrée : le stockage est inaccessible ou a changé dans un autre onglet. Recharge après avoir sauvegardé ton texte.'); return false
   }
   function restored() {
     memoryDrafts.current = new Map(loadSavedDrafts().map(d => [d.profile.id, d]))
-    setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setPublicationDates(loadPublished().dates); setQueued(loadQueued().value); setSaved(loadSavedDrafts())
+    setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setPublicationDates(loadPublished().dates); setQueued(loadQueued().value); setScheduledDates(loadQueued().dates); setSaved(loadSavedDrafts())
   }
   function filter(key, title, options) {
     return <label>{title}<ChoicePicker aria-label={title} value={filters[key]} onChange={e => setFilters({ ...filters, [key]: e.target.value })}><option value="">Tous</option>{options.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</ChoicePicker></label>
@@ -98,13 +112,18 @@ export default function App() {
   return <div className="dca-profiles-scope dca-simple budget-profiles-scope">
     <PageHeader title="Le budget de…" subtitle="Choisis un profil ou prépare une participation, puis récupère le texte et l’image."/>
     {(!initial.readable || !usageInitial.readable || !publishedInitial.readable || !queuedInitial.readable) && <p role="alert">Un ancien enregistrement local est illisible. Il est conservé sans modification.</p>}
+    <Suspense fallback={<p>Chargement du suivi…</p>}><PublicationStatus checkbox key={profile.id} lockName={WORKSPACE_KEY} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/></Suspense>
     <details className="dca-simple-card" onToggle={e => { if (e.currentTarget.open) setBackupOpen(true) }}><summary>Brouillons et transfert entre appareils</summary>
-      {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''}</option>)}</ChoicePicker></label>}
+      {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''} · {published.includes(d.profile.id)?publicationLabel(publicationDates[d.profile.id]):'Non publié'}</option>)}</ChoicePicker></label>}
       {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
     </details>
+    <details className="dca-simple-card"><summary>Préparer les prochaines publications</summary>
+      <Suspense fallback={<p>Chargement de la sélection…</p>}><PublicationSelection used={used} published={published} publicationDates={publicationDates} queued={queued} onAdd={addPublicationSelection}/></Suspense>
+    </details>
+    <details className="dca-simple-card"><summary>Ma file de publication · {queued.length} profil(s)</summary><Suspense fallback={<p>Chargement…</p>}><PublicationQueue profiles={[...profiles, ...saved.filter(d => d.profile.kind === 'participant').map(d => d.profile)]} queued={queued} scheduledDates={scheduledDates} published={published} publicationDates={publicationDates} onChange={changeQueue} onChoose={choose}/></Suspense></details>
     <details className="dca-simple-card budget-subscribers" open={subscriberOpen} onToggle={e => setSubscriberOpen(e.currentTarget.open)}>
       <summary>Mes profils d’abonnés</summary>
-      {subscriberOpen && <Suspense fallback={<p>Chargement des profils…</p>}><SubscriberProfiles drafts={saved} activeId={profile.id} onCreate={createSubscriber} onChoose={choose}/></Suspense>}
+      {subscriberOpen && <Suspense fallback={<p>Chargement des profils…</p>}><SubscriberProfiles drafts={saved} activeId={profile.id} onCreate={createSubscriber} onChoose={choose} published={published} publicationDates={publicationDates}/></Suspense>}
     </details>
     <div className="dca-simple-grid">
       <section className="dca-simple-card" aria-label="Composer le budget">
@@ -122,7 +141,7 @@ export default function App() {
           <label className="budget-check"><input type="checkbox" checked={hidePublished} onChange={e => setHidePublished(e.target.checked)}/>Masquer les profils publiés</label>
           <p className="dca-note">{filtered.length} profil{filtered.length > 1 ? 's' : ''} · {profiles.filter(p => published.includes(p.id)).length} publié(s) · triés par période du budget</p>
           {filtered.length ? <ChoicePicker aria-label="Choisir un profil" value={profile.id} onChange={e => choose(filtered.find(p => p.id === e.target.value))}>
-            {filtered.map(p => <option key={p.id} value={p.id}>{budgetDisplayName(p)} · {euro(analyzeBudget(p).income, p.currency)} · {p.period}{published.includes(p.id) ? ' · publié' : ''}{used.includes(p.id) ? ' · utilisé' : ''}{queued.includes(p.id) ? ' · à publier prochainement' : ''}</option>)}
+            {filtered.map(p => <option key={p.id} value={p.id}>{budgetDisplayName(p)} · {euro(analyzeBudget(p).income, p.currency)} · {p.period}{published.includes(p.id) ? ` · ${publicationLabel(publicationDates[p.id])}` : ' · Non publié'}{used.includes(p.id) ? ' · utilisé' : ''}{queued.includes(p.id) ? ' · à publier prochainement' : ''}</option>)}
           </ChoicePicker> : <p role="status">Aucun profil ne correspond. Le budget ouvert reste affiché.</p>}
           <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p => p.id !== profile.id)} onClick={random}>Autre profil aléatoire</Button><Button variant="secondary" onClick={toggleUsed}>{used.includes(profile.id) ? 'Marquer non utilisé' : 'Marquer utilisé'}</Button></div>
           <h2>{budgetDisplayName(profile)}</h2>
@@ -134,6 +153,7 @@ export default function App() {
 
           <Button variant="secondary" onClick={adapt}>Adapter ce budget</Button>
         </>}
+        {!prepared && <Button variant="secondary" onClick={adapt}>Dupliquer ce profil</Button>}
         {!prepared && <Suspense fallback={<p>Chargement de la participation…</p>}><ParticipantEditor profile={profile} edit={edit}/></Suspense>}
         {!!a.errors.length && <div className="dca-errors" role="alert">{a.errors.map(error => <p key={error}>{error}</p>)}</div>}
         {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Reste disponible après versements</dt><dd>{money(a.balance)}</dd></div>}</dl>}
@@ -143,19 +163,22 @@ export default function App() {
       </section>
       <div className="dca-publication-column">
         <section className="dca-simple-card dca-simple-preview" aria-label="Image du budget" aria-busy={image.busy}>
-          <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="social">Une image pour X · 4:5</option><option value="detailed">Détaillée · tous les libellés</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">Le format 4:5 rassemble le budget en une image avec des libellés courts. La version détaillée conserve les libellés complets ; la synthèse regroupe les catégories. Les montants restent identiques.</p>
-          {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} : revenus, dépenses et reste avant épargne`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : 'Préparation de l’image…'}</p>}
-          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${image.format}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
+          <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="overview">Image principale X · 1 080 × 1 350</option><option value="social">X · 1 080 × 1 350</option><option value="detailed">Détaillée · tous les libellés</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">L’image principale résume les totaux. Le détail X conserve tous les postes et projets au ratio 4:5. Si le budget nécessite plusieurs images, la première affiche les totaux du budget et les postes continuent sur les suivantes. Toutes les versions sont paginées en 1 080 × 1 350 pixels.</p>
+          {image.count > 0 && <p className="budget-image-count" role="status">{`${image.count} image${image.count > 1 ? 's' : ''} · 1 080 × 1 350 px`}{image.count > 1 && ` · Image ${image.index + 1} sur ${image.count}`}</p>}
+
+          {image.count > 1 && <nav className="budget-image-pages" aria-label="Images du budget">{Array.from({ length: image.count }, (_, i) => <Button key={i} variant="secondary" aria-pressed={image.index === i} onClick={() => image.select(i)}>Image {i + 1} sur {image.count}</Button>)}</nav>}
+          {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} · image ${image.index + 1} sur ${image.count} : revenus, dépenses et reste disponible`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : image.error ? 'Aucune image disponible.' : 'Préparation de l’image…'}</p>}
+          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${image.format}${image.count > 1 ? `-${String(image.index + 1).padStart(2, '0')}-sur-${String(image.count).padStart(2, '0')}` : ''}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
             {image.url && <a href={image.url} target="_blank" rel="noreferrer">Ouvrir l’image</a>}
-            {image.error && imageMode === 'social' && <Button variant="secondary" onClick={() => setImageMode('detailed')}>Afficher tous les détails</Button>}
+            {image.error && ['social', 'overview'].includes(imageMode) && <Button variant="secondary" onClick={() => setImageMode('detailed')}>Afficher tous les détails</Button>}
             {image.error && <Button variant="secondary" onClick={image.retry}>Réessayer l’image</Button>}
-          </div><p role="status">{image.error || image.notice || (image.busy ? 'Préparation de l’image…' : '')}</p>
+          </div><p role="status">{image.error || (image.busy ? 'Préparation de l’image…' : '')}</p>
         </section>
+        <details className="dca-simple-card"><summary>Vérifier et télécharger la publication</summary><Suspense fallback={<p>Chargement…</p>}><PreparationPanel record={record} image={image} onFeedback={setFeedback}/></Suspense></details>
         <section className="dca-simple-card dca-text-card">
           <label htmlFor="budget-draft">Texte prêt à publier</label><textarea id="budget-draft" maxLength={20000} value={text} onChange={e => { setApproved(false); setRecord({ ...record, text: e.target.value, edited: true }) }}/>
           {staleBudgetText(record) && <div className="dca-errors" role="alert"><p>Les montants du budget ont changé. Votre texte personnalisé est conservé, mais il peut encore afficher les anciens chiffres. « Rétablir le texte » le régénère volontairement.</p><Button variant="secondary" onClick={() => setRecord({ ...record, textFinance: budgetFinancialReference(profile) })}>J’ai vérifié les montants de mon texte</Button></div>}
           <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false, textFinance: budgetFinancialReference(profile) }) }}>Rétablir le texte</Button></div>
-          <PublicationStatus key={profile.id} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/>
           <label className="budget-check"><input type="checkbox" checked={queued.includes(profile.id)} onChange={e => markQueued(e.target.checked)}/>À publier prochainement</label><p className="dca-note">Trois statuts indépendants, enregistrés manuellement dans ce navigateur.</p>
           {edited && <p className="dca-note">{prepared ? 'Texte personnalisé conservé. « Rétablir le texte » reprend les chiffres du budget.' : 'Texte personnalisé conservé. « Rétablir le texte » réactive la mise à jour depuis les lignes et garde vos questions.'}</p>}
           {!prepared && <label className="budget-check"><input type="checkbox" checked={approved} onChange={e => setApproved(e.target.checked)}/>La personne a validé les informations à publier.</label>}

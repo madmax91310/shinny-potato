@@ -149,7 +149,9 @@
       "distribution": "Distributing",
       "requireFullHistory": false,
       "collectHoldings": true,
-      "provider": "iShares"
+      "provider": "iShares",
+      "isolateAllocationFailures": true,
+      "expectedStructure": "Physical"
     },
     {
       "isin": "IE00B3F81R35",
@@ -162,7 +164,9 @@
       "collectHoldings": true,
       "collectSectors": true,
       "provider": "iShares",
-      "holdingsAssetClass": "Fixed Income"
+      "holdingsAssetClass": "Fixed Income",
+      "isolateAllocationFailures": true,
+      "expectedStructure": "Physical"
     },
     {
       "isin": "IE00B43HR379",
@@ -197,7 +201,9 @@
       "collectHoldings": true,
       "collectSectors": true,
       "provider": "iShares",
-      "holdingsAssetClass": "Fixed Income"
+      "holdingsAssetClass": "Fixed Income",
+      "isolateAllocationFailures": true,
+      "expectedStructure": "Physical"
     },
     {
       "isin": "IE00B53SZB19",
@@ -221,7 +227,9 @@
       "collectHoldings": true,
       "collectSectors": true,
       "provider": "iShares",
-      "holdingsAssetClass": "Fixed Income"
+      "holdingsAssetClass": "Fixed Income",
+      "isolateAllocationFailures": true,
+      "expectedStructure": "Physical"
     },
     {
       "isin": "IE00B6R52259",
@@ -258,7 +266,9 @@
       "collectHoldings": true,
       "collectSectors": true,
       "provider": "iShares",
-      "holdingsAssetClass": "Fixed Income"
+      "holdingsAssetClass": "Fixed Income",
+      "isolateAllocationFailures": true,
+      "expectedStructure": "Physical"
     },
     {
       "isin": "IE00BFZPF546",
@@ -271,7 +281,9 @@
       "collectHoldings": true,
       "collectSectors": true,
       "provider": "iShares",
-      "holdingsAssetClass": "Fixed Income"
+      "holdingsAssetClass": "Fixed Income",
+      "isolateAllocationFailures": true,
+      "expectedStructure": "Physical"
     },
     {
       "isin": "IE00BJ5JNY98",

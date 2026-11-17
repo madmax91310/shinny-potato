@@ -30,13 +30,13 @@ try {
   // Keep the explicit approved schedule as well as comparing all registry notes,
   // titles and exact hrefs in the shared check.
   assert.deepEqual(snapshot, [
-    [0,'morning',[]], [0,'midday',['/performance-depuis','/presentations','/idees-classements']], [0,'evening',['/tweets-factsheets','/generateur-portefeuilles']],
+    [0,'morning',[]], [0,'midday',['/performance-depuis','/presentations','/france-100-menages','/idees-classements']], [0,'evening',['/tweets-factsheets','/generateur-portefeuilles']],
     [1,'morning',[]], [1,'midday',['/classements-performances','/fiche-lexique','/idees-classements']], [1,'evening',['/le-dca-de','/le-budget-de']],
-    [2,'morning',[]], [2,'midday',['/calculateur-investissement','/france-100-menages','/idees-classements']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
-    [3,'morning',[]], [3,'midday',['/classements-performances','/comparateur-indices','/idees-classements']], [3,'evening',['/banque-tweets']],
+    [2,'morning',[]], [2,'midday',['/calculateur-investissement','/france-100-menages','/portefeuilles-publics','/idees-classements']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
+    [3,'morning',[]], [3,'midday',['/classements-performances','/comparateur-indices','/calculateur-investissement','/performance-depuis','/idees-classements']], [3,'evening',['/banque-tweets']],
     [4,'morning',[]], [4,'midday',['/fiches-etf','/comparatif-etf','/idees-classements']], [4,'evening',['/le-budget-de']],
     [5,'morning',[]], [5,'midday',['/idees-classements']], [5,'evening',[]],
-    [6,'morning',['/banque-tweets']], [6,'midday',['/portefeuilles-investisseurs','/il-y-a-x-ans','/idees-classements']], [6,'evening',['/fiches-pratiques','/faits-marquants-marches','/il-y-a-x-ans']],
+    [6,'morning',[]], [6,'midday',['/portefeuilles-investisseurs','/il-y-a-x-ans','/idees-classements']], [6,'evening',['/banque-tweets','/fiches-pratiques','/faits-marquants-marches','/il-y-a-x-ans']],
   ])
   assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
@@ -76,7 +76,7 @@ try {
   await page.goto(base+'/', {waitUntil:'networkidle'})
   await page.getByRole('button', {name:'Calendrier',exact:true}).click()
   await page.getByRole('tab', {name:/^Dimanche/}).click()
-  await page.locator('.workspace-tool-card[href*="category=Question%20dimanche"]').click()
+  await page.locator('[data-day="6"] [data-period="evening"] .workspace-tool-card[href*="category=Question%20dimanche"]').click()
   assert.equal(new URL(page.url()).searchParams.get('category'), 'Question dimanche')
   for (const reload of [false, true]) {
     if (reload) await page.reload({waitUntil:'networkidle'})
