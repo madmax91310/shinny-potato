@@ -7,6 +7,29 @@ import re
 import datetime as dt
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
+from data_automation import ResponseFormatError
+
+XTB_TARIFF = 'https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf'
+XTB_CATALOGUE = 'https://www.xtb.com/fr/informations-legales'
+
+
+def xtb_tariff_url(url):
+    """Only the French tariff route and its official rotating CDN document."""
+    try:
+        parsed = urlparse(url)
+        if (parsed.scheme != 'https' or parsed.username or parsed.password
+                or parsed.port not in (None, 443) or parsed.query or parsed.fragment):
+            return False
+        if parsed.hostname in ('www.xtb.com', 'xtb.com'):
+            pattern = r'/fr/fichiers/table-des-frais-et-commissions_\d{6}\.pdf'
+        elif parsed.hostname == 'xas-new-cdn.xtb.com':
+            pattern = (r'/file/\d{4}/\d{2}/[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}'
+                       r'/table-des-frais-et-commissions-\d{6}\.pdf')
+        else:
+            return False
+        return bool(re.fullmatch(pattern, parsed.path, re.I))
+    except ValueError:
+        return False
 
 # Labels are the links inspected on the official catalogues, not guessed years.
 CATALOGUES = {
@@ -27,9 +50,10 @@ CATALOGUES = {
   'page': 'https://www.home.saxo/fr-fr/rates-and-conditions/pricing-overview',
   'label': r'^Brochure tarifaire$', 'hosts': ('www.home.saxo',),
   'path': r'/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale[^/]*\.pdf$'},
- 'https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf': {
-  'page': 'https://www.xtb.com/fr/informations-legales', 'label': r'^TABLE DES FRAIS ET COMMISSIONS$',
-  'hosts': ('www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com'), 'path': r'/[^?]*\.pdf$'},
+ XTB_TARIFF: {
+  'page': XTB_CATALOGUE, 'label': r'^TABLE DES FRAIS ET COMMISSIONS$',
+  'hosts': ('www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com'),
+  'path': r'/[^?]*\.pdf$', 'accessibleLabel': True, 'urlValidator': xtb_tariff_url},
  'https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf': {
   'page': 'https://www.credit-agricole.fr/ca-paris/particulier/informations/tarif.html',
   'label': r'^télécharger en pdf$', 'hosts': ('ca-paris.credit-agricole.fr',),
@@ -54,6 +78,13 @@ def official_link(html, config, today=None):
     links = set()
     for a in BeautifulSoup(html, 'html.parser').find_all('a', href=True):
         label = re.sub(r'\s+', ' ', a.get_text(' ', strip=True)).strip()
+        if config.get('accessibleLabel'):
+            accessible = re.sub(r'\s+', ' ', a.get('aria-label', '')).strip()
+            if label and accessible and label.casefold() != accessible.casefold():
+                if any(re.fullmatch(config['label'], value, re.I) for value in (label, accessible)):
+                    raise ValueError('Libellés du catalogue contradictoires')
+            if not label:
+                label = accessible
         if not re.fullmatch(config['label'], label, re.I):
             continue
         target = urljoin(config['page'], a['href'])
@@ -63,6 +94,7 @@ def official_link(html, config, today=None):
             continue
         if (parsed.scheme != 'https' or parsed.hostname not in config['hosts']
                 or parsed.username or parsed.password
+                or (config.get('urlValidator') and not config['urlValidator'](target))
                 or not re.fullmatch(config['path'], parsed.path, re.I)):
             raise ValueError('Lien du catalogue hors périmètre officiel : ' + target)
         links.add(target)
@@ -117,6 +149,8 @@ class DocumentResolver:
                 target = official_link(html, config, self.today)
                 try:
                     text = self.fetch(target)
+                    if config.get('urlValidator') and not config['urlValidator'](getattr(text, 'source_url', target)):
+                        raise ValueError('Source finale hors périmètre officiel')
                     self.report[canonical] = {'sourceUrl': getattr(text,'source_url',target), 'discoveryUrl': config['page'], 'mode': 'catalogue'}
                     return SourceDocument(text, getattr(text,'source_url',target), config['page'])
                 except Exception as error:
@@ -128,13 +162,20 @@ class DocumentResolver:
             parsed = urlparse(previous)
             if (parsed.scheme != 'https' or parsed.hostname not in config['hosts']
                     or parsed.username or parsed.password
+                    or (config.get('urlValidator') and not config['urlValidator'](previous))
                     or not re.fullmatch(config['path'], parsed.path, re.I)):
                 raise ValueError('Dernière source qualifiée hors périmètre officiel')
         for candidate in dict.fromkeys((*([previous] if previous else []), url, *ALTERNATIVES.get(canonical, ()))):
             try:
                 text = self.fetch(candidate)
-                self.report[canonical] = {'sourceUrl': getattr(text,'source_url',candidate), 'mode': 'fallback' if errors or candidate != url else 'direct', 'catalogueErrors': errors}
-                return SourceDocument(text, getattr(text,'source_url',candidate))
             except Exception as error:
+                if config and config.get('urlValidator') and isinstance(error, ResponseFormatError):
+                    # Invalid provenance/content is not a transient outage.
+                    raise
                 errors.append(candidate + ': ' + str(error))
+                continue
+            if config and config.get('urlValidator') and not config['urlValidator'](getattr(text, 'source_url', candidate)):
+                raise ValueError('Source finale hors périmètre officiel')
+            self.report[canonical] = {'sourceUrl': getattr(text,'source_url',candidate), 'mode': 'fallback' if errors or candidate != url else 'direct', 'catalogueErrors': errors}
+            return SourceDocument(text, getattr(text,'source_url',candidate))
         raise ValueError('; '.join(errors))

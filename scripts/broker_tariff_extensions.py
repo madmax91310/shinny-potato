@@ -88,8 +88,10 @@ def parse(name,s,today,previous=None):
   if not m:raise ValueError('Sortie PEA absente')
   fields['sortant']=item({'perLine':num(m[1]),'maximum':num(m[2])},f'{m[1]} € par ligne, maximum {m[2]} €.',meta,'Transfert sortant PEA/PEA-PME')
  elif name=='xtb':
-  d=re.search(r'En date du (\d{2})/(\d{2})/(\d{4})',s);date='-'.join([d[3],d[2],d[1]]) if d else None
-  if not date:raise ValueError('Date XTB absente')
+  dates=re.findall(r'En date du (\d{2})/(\d{2})/(\d{4})',s)
+  if len(dates)!=1:raise ValueError('Date XTB absente ou ambiguë')
+  day,month,year=dates[0]
+  date=dt.date(int(year),int(month),int(day)).isoformat()
   block=s.split('2. Instruments des marchés organisés (OMI)')[1].split('3.')[0];require(block,'Actions, ETF','mois calendaire','tous les comptes','minimum 0 EUR5)','minimum 0 EUR','minimum 10 EUR')
   threshold=get(r'dépassement de ([\d ]+) EUR',block)
   rate=get(r'([\d.]+)%, minimum 10 EUR, minimum 0 EUR5\)',block)
