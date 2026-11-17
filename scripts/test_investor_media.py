@@ -31,6 +31,27 @@ class MediaTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'Photo différente'):
                     reviewed_cutout(image,spec,b'changed photograph')
 
+    def test_followup_contours_keep_real_subjects(self):
+        import json
+        from PIL import Image
+        from investor_portrait_masks import reviewed_cutout
+        root=Path(__file__).resolve().parents[1]
+        cases=[
+            ('renaissance','public/asset-art/investors/renaissance-commons-original.jpg',[(1400,600),(1800,920),(1300,1800)],[(1900,450),(710,1200)]),
+            ('gerstner','public/data/investors/media/original-gerstner-d15238e9f36f39e5.image',[(250,180),(280,375),(277,340)],[(380,200),(390,150)]),
+            ('cathie-wood-ark','public/asset-art/investors/cathie-wood-ark-original.jpg',[(700,400),(800,600),(700,1200)],[(100,700),(1000,450)])
+        ]
+        for slug,path,subject,background in cases:
+            with self.subTest(slug=slug):
+                content=(root/path).read_bytes();image=Image.open(io.BytesIO(content)).convert('RGBA')
+                spec=json.loads((root/f'public/asset-art/investors/{slug}-mask.json').read_text())
+                cutout=reviewed_cutout(image,spec,content)
+                self.assertEqual(cutout.convert('RGB').tobytes(),image.convert('RGB').tobytes())
+                for point in subject:self.assertGreaterEqual(cutout.getpixel(point)[3],250)
+                for point in background:self.assertEqual(cutout.getpixel(point)[3],0)
+                with self.assertRaisesRegex(ValueError,'Photo différente'):
+                    reviewed_cutout(image,spec,b'changed source')
+
     def fixture(self, license='CC BY 2.0'):
         content=b'verified image bytes'
         source={'person':'Verified Investor','commonsPortrait':{'wikidataId':'Q123','title':'Verified Investor.jpg','identitySource':'https://official.example/team/investor'}}

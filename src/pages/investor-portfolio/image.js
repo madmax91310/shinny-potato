@@ -82,6 +82,9 @@ export async function renderPortfolioImage(portfolio) {
   const date=new Date(portfolio.snapshot.periodEnd+'T12:00:00Z')
   label(`Portefeuille · T${Math.ceil((date.getUTCMonth()+1)/3)} ${date.getUTCFullYear()}`,540,title.length>1?186:151,title.length>1?36:40,ink,'center',900)
   label('Principales positions',540,title.length>1?223:192,28,ink,'center',750)
+  const shown=plan.entries.filter(e=>!e.other),shownWeight=shown.reduce((sum,e)=>sum+e.value,0)/plan.total
+  const coverageText=`${shown.length} positions affichées · ${weightLabel(shownWeight)}`
+  ctx.font=posterFont(26,850);const coverageWidth=Math.ceil(ctx.measureText(coverageText).width)+28
   const {cx,cy,outer,inner,badgeRadius:br}=POSTER
   plan.entries.forEach((e,i)=>{
     ctx.beginPath();ctx.arc(cx,cy,outer,e.start,e.end);ctx.arc(cx,cy,inner,e.end,e.start,true);ctx.closePath();ctx.fillStyle=e.color;ctx.fill()
@@ -92,7 +95,7 @@ export async function renderPortfolioImage(portfolio) {
   ctx.font=posterFont(24,750)
   const captionWidth=portrait.illustration?.caption?Math.ceil(ctx.measureText(portrait.illustration.caption).width/2)*2+24:0
   if(portrait.image) {
-    const image=portrait.image,k=Math.min(600/image.width,530/image.height)
+    const image=portrait.image,k=Math.min(600/image.width,530/image.height,portrait.maxPublicationScale || Infinity)
     const left=cx-image.width*k/2,top=cy+inner+40-image.height*k,half=Math.min(280,image.width*k*.46)
     const mask=document.createElement('canvas');mask.width=1080;mask.height=1350
     const m=mask.getContext('2d');m.beginPath();m.moveTo(cx,cy+inner+20);m.bezierCurveTo(cx-200,cy+inner+20,cx-half,cy+70,cx-half,cy-70);m.lineTo(cx-300,350);m.lineTo(cx+300,350);m.lineTo(cx+half,cy-70);m.bezierCurveTo(cx+half,cy+70,cx+200,cy+inner+20,cx,cy+inner+20);m.closePath();m.clip();m.drawImage(image,left,top,image.width*k,image.height*k)
@@ -105,12 +108,12 @@ export async function renderPortfolioImage(portfolio) {
     ctx.font=posterFont(40,800)
     for(const word of words){if(current&&ctx.measureText(current+' '+word).width>330){lines.push(current);current=''}current=current?current+' '+word:word}if(current)lines.push(current)
     lines.forEach((line,i)=>label(line,cx,cy+(i-(lines.length-1)/2)*48-30,40,ink,'center',800))
-    if(series.coverage<.5){label(`Les ${series.topCount} premières`,cx,cy+100,27,ink);label(`${weightLabel(series.coverage)} du portefeuille`,cx,cy+136,27,ink)}
+    if(series.coverage<.5){label(`${shown.length} positions affichées`,cx,cy+100,26,ink);label(`${weightLabel(shownWeight)} du portefeuille`,cx,cy+136,26,ink)}
   }
   for(const e of plan.entries)for(let y=Math.floor(e.badge.y-br-5);y<=e.badge.y+br+5;y++)for(let x=Math.floor(e.badge.x-br-5);x<=e.badge.x+br+5;x++)if(Math.hypot(x-e.badge.x,y-e.badge.y)<br+5)occupied[y*1080+x]=1
   if(portrait.image){
     const bands=[]
-    if(series.coverage<.5)bands.push([cx-170,cy+106,340,50])
+    if(series.coverage<.5)bands.push([cx-coverageWidth/2-4,cy+106,coverageWidth+8,50])
     if(portrait.illustration?.caption)bands.push([cx-captionWidth/2-4,cy+151,captionWidth+8,42])
     for(const [x,y,w,h] of bands)for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)occupied[yy*1080+xx]=1
   }
@@ -120,17 +123,18 @@ export async function renderPortfolioImage(portfolio) {
     for(let n=0;n<=steps;n++){const x=Math.round(a.x+(b.x-a.x)*n/Math.max(1,steps)),y=Math.round(a.y+(b.y-a.y)*n/Math.max(1,steps));for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++)if(x+dx>=0&&x+dx<1080&&y+dy>=0&&y+dy<1350)occupied[(y+dy)*1080+x+dx]=1}
   }
   const routeOccupied=(x,y,w,h)=>{for(let yy=Math.floor(y);yy<y+h;yy+=2)for(let xx=Math.floor(x);xx<x+w;xx+=2)if(occupied[yy*1080+xx])return true;return false}
-  const extraLogos=[]
+  const extraLogos=[],logoReport=[]
   plan.entries.forEach((e,i)=>{
+    const audit={label:e.label,id:logos[i].identity?.id || null,status:logos[i].image?'placement-rejected':logos[i].identity?'load-failed':'unavailable'};if(!e.other)logoReport.push(audit)
     const logo=transparentLogo(logos[i].image)
     if(logo&&!e.other) {
       const image=logo.image,ratio=image.width/image.height
       let placement=null
-      for(const width of [270,240,220,200,190,175,160,145,130,115,100,85,70,60]) {
+      for(const width of [...(ratio>8?[390,360,330,300]:[]),270,240,220,200,190,175,160,145,130,115,100,85,70,60]) {
         const k=Math.min(width/image.width,150/image.height)
-        if(image.width*k<56||image.height*k<26)continue
-        logoSearch: for(const r of [245,270,295,320,345])for(const turn of [0,-.08,.08,-.16,.16,-.24,.24,-.32,.32])for(const radial of ratio>2.6?[true,false]:[false]) {
-          let a=radial?e.mid+turn:0;if(radial&&Math.cos(a)<0)a+=Math.PI
+        if(image.width*k<56||image.height*k<(ratio>8?18:26))continue
+        logoSearch: for(const r of [245,270,295,320,345,360])for(const turn of [0,-.08,.08,-.16,.16,-.24,.24,-.32,.32,-e.weight*2,e.weight*2,-e.weight*2.6,e.weight*2.6])for(const direction of ratio>2.6?[0,1,2]:[0]) {
+          let a=direction?e.mid+turn+(direction===2?Math.PI/2:0):0;if(direction&&Math.cos(a)<0)a+=Math.PI
           const c=Math.cos(a),sn=Math.sin(a),x=cx+Math.cos(e.mid+turn)*r,y=cy+Math.sin(e.mid+turn)*r
           const fits=logo.points.every(([px,py])=>{
             const xx=x+(px*c-py*sn)*k,yy=y+(px*sn+py*c)*k,d=Math.hypot(xx-cx,yy-cy)
@@ -152,6 +156,7 @@ export async function renderPortfolioImage(portfolio) {
         }
       }
       if(placement) {
+        audit.status=external?'label':'sector';audit.placement=placement
         const {x,y,a,k}=placement,paint=document.createElement('canvas');paint.width=image.width;paint.height=image.height
         const p=paint.getContext('2d');p.drawImage(image,0,0)
         if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=!external&&lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
@@ -181,28 +186,29 @@ export async function renderPortfolioImage(portfolio) {
     box.lines.forEach((line,j)=>label(line,box.x+box.width/2,box.y+34+j*40,36,green,'center',850))
   })
   const amounts=[]
-  for(const e of plan.entries){
+  // The six largest named positions get first use of free label space; the aggregate follows.
+  for(const e of [...shown].sort((a,b)=>b.value-a.value).slice(0,6).concat(plan.entries.filter(e=>e.other))){
     const value=cash(e.value,plan.currency),size=27;ctx.font=posterFont(size,650)
     const width=ctx.measureText(value).width+8,box=e.box
-    const candidates=[{x:box.x+(box.width-width)/2,y:box.y+box.height+8},{x:box.x+(box.width-width)/2,y:box.y-39}]
+    const candidates=[0,-36,36,-72,72].map(dx=>Math.max(20,Math.min(1060-width,box.x+(box.width-width)/2+dx))).flatMap(x=>[8,24,40,-39,-55].map(dy=>({x,y:box.y+(dy>0?box.height:0)+dy})))
     const overlap=(a,b)=>a.x<b.x+b.width+5&&a.x+a.width+5>b.x&&a.y<b.y+b.height+5&&a.y+a.height+5>b.y
     for(const at of candidates){
       const b={...at,width,height:31}
       if(b.x<20||b.x+width>1060||b.y<202||b.y+31>1244||amounts.some(a=>overlap(a,b))||plan.entries.some(r=>overlap(b,r.box)||Math.hypot(r.badge.x-Math.max(b.x,Math.min(r.badge.x,b.x+width)),r.badge.y-Math.max(b.y,Math.min(r.badge.y,b.y+31)))<br+8))continue
       if(Math.hypot(cx-Math.max(b.x,Math.min(cx,b.x+width)),cy-Math.max(b.y,Math.min(cy,b.y+31)))<outer+6)continue
       if(routeOccupied(b.x,b.y,width,31))continue
-      label(value,b.x+width/2,b.y+25,size,ink,'center',650);amounts.push(b);break
+      label(value,b.x+width/2,b.y+25,size,ink,'center',650);amounts.push({...b,label:e.label,value:e.value});break
     }
   }
   label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
   const coverage=series
-  if(portrait.image&&coverage.coverage<.5){ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(cx-166,cy+110,332,42,12);ctx.fill();label(`${coverage.topCount} premières · ${weightLabel(coverage.coverage)}`,cx,cy+140,27,ink)}
+  if(portrait.image&&coverage.coverage<.5){ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(cx-coverageWidth/2,cy+110,coverageWidth,42,12);ctx.fill();label(coverageText,cx,cy+140,26,ink)}
   if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-captionWidth/2,cy+155,captionWidth,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
   if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
   label(`Épargnant libre${series.pages.length>1?` · 1/${series.pages.length}`:''}`,540,1343,27,ink,'center',750)
   const photo=portrait.image?Object.fromEntries(['person','title','source','url','author','license','licenseUrl','adaptation','sourceDigest','illustration'].map(key=>[key,portrait[key]])):null
   if(photo&&!photo.licenseUrl){const match=photo.license.match(/^CC BY(-SA)? ([0-9.]+)/);if(match)photo.licenseUrl=`https://creativecommons.org/licenses/by${match[1]?'-sa':''}/${match[2]}/`}
-  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
+  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,visual:{displayed:{count:shown.length,weight:shownWeight},logos:logoReport,amounts},positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
 }
 
 

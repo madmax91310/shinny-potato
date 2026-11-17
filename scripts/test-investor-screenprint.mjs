@@ -20,7 +20,7 @@ try {
   for(const [id,payload] of cases){
     const result=await page.evaluate(async({payload,id})=>{
       const {normalizePortfolio,buildTweet}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
-      const {publicationPlan}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+      const {publicationPlan,editorialSeries,weightLabel}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
       const {renderPortfolioImage}=await import('/shinny-potato/src/pages/investor-portfolio/image.js')
       const portfolio=normalizePortfolio(payload)
       if(portfolio.problem){let refused=false;try{await renderPortfolioImage(portfolio)}catch{refused=true}if(!refused)throw Error('Incomplete filing rendered');return {id,status:'incomplete',reason:portfolio.problem}}
@@ -39,6 +39,11 @@ try {
       const img=new Image();img.src=png;await img.decode()
       if(img.width!==1080||img.height!==1350)throw Error('Dimensions')
       const plan=publicationPlan(portfolio),tweet=buildTweet(portfolio)
+      const named=plan.entries.filter(r=>!r.other),coverage=named.reduce((sum,r)=>sum+r.value,0)/plan.total
+      if(editorialSeries(portfolio).coverage<.5){
+        if(!boxes.some(b=>b.text.includes(`${named.length} positions affichées`)) || !boxes.some(b=>b.text.includes(weightLabel(coverage))))throw Error('Main coverage must describe the actually named positions')
+        if(boxes.some(b=>/premières/.test(b.text)))throw Error('Editorial coverage leaked into main image')
+      }
       for(const r of plan.entries)if(!tweet.includes(r.label))throw Error('Text/image mismatch')
       return {id,status:'ready',png,entries:plan.entries.map(r=>({label:r.label,value:r.value,weight:r.weight,other:r.other||false})),total:plan.total,boxes}
     },{payload,id})
