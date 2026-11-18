@@ -19,7 +19,7 @@ for (const p of BUDGET_PROFILES) {
   assert.equal(review.baseline, audit.baseline)
   assert.equal(review.sourceConsultedAgain, false)
   assert.equal(review.monthlyAmountsChanged, false)
-  assert.deepEqual(context.evidence.at(-1).polishReview.notes, review.notes)
+  assert.deepEqual(context.evidence.findLast(item => item.polishReview).polishReview.notes, review.notes)
   assert.equal(budgetFinancialReference(budgetBeforePelCorrection(p)), expected.financialReference, `${p.id}: preserve historical rows except the documented PEL correction`)
   const cents = key => p[key].reduce((sum, row) => sum + Math.round(row.amount * 100), 0)
   const income = cents('income'), expenses = cents('expenses'), savings = cents('savings'), balance = income - expenses - savings

@@ -25,7 +25,7 @@ for (const p of BUDGET_PROFILES) {
   assert(r.scopeReview.scope.length>60 && r.scopeReview.definitions)
   assert.equal(r.scopeReview.sourceConsultedAgain,false)
   assert.equal(r.scopeReview.monthlyAmountsChanged,false)
-  assert.equal(c.evidence.at(-1).scopeReview.scope,r.scopeReview.scope)
+  assert.equal(c.evidence.findLast(item => item.scopeReview).scopeReview.scope,r.scopeReview.scope)
   const rows=budgetPublicExpenseRows(p)
   assert.deepEqual(rows.map(({label:_label,...row})=>row),p.expenses.map(({label:_label,...row})=>row))
   assert.deepEqual(budgetExpenseSections(p).flatMap(s=>s.rows).map(row=>[row.label,row.amount]).sort(),rows.map(row=>[row.label,row.amount]).sort())

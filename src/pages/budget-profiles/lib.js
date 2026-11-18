@@ -154,8 +154,8 @@ export function budgetHeading(profile) {
 
 export function budgetCashIncome(profile) {
   const cash = budgetPublicIncomeRows(profile).filter(row => !row.inKind)
-  const netSalary = cash.length === 1 && /^salaire\b.*\bnets?\b/i.test(cash[0].label) ? cash[0] : null
-  return { cash, netSalary }
+  const salary = cash.length === 1 && /^salaire\b[^,]*$/i.test(cash[0].label) ? cash[0] : null
+  return { cash, salary, netSalary: salary && /\bnets?\b/i.test(salary.label) ? salary : null }
 }
 
 export function buildBudgetText(profile) {
@@ -175,12 +175,12 @@ export function buildBudgetText(profile) {
   const publicIncome = budgetPublicIncomeRows(profile)
   const publicBasis = budgetPublicBasis(profile, p.basis)
   const textBasis = publicBasis !== p.basis ? publicBasis : context?.budget?.textBasis ?? (p.basis === 'Montants mensuels' || publicIncome.length === 1 && publicIncome[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : budgetPublicBasis(profile, p.basis))
-  const { cash, netSalary } = budgetCashIncome(profile)
+  const { cash, salary } = budgetCashIncome(profile)
   const benefits = publicIncome.filter(row => row.inKind).map(row =>
     /^titres-restaurant$/i.test(row.label) ? `Titres-restaurant : ${money(row.amount)} / mois, hors revenus encaissés.`
       : `${row.label} : ${money(row.amount)} / mois (avantage en nature).`)
   const incomeRows = cash.map(row => `• ${budgetRowSymbol(row, 'income').emoji} ${row.label} : ${money(row.amount)}`).join('\n')
-  const incomeHeading = netSalary?.label || 'Revenus mensuels'
+  const incomeHeading = context?.budget?.imageIncomeLabel || salary?.label || 'Revenus mensuels'
   const incomeLine = `💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)} / mois`
   const transfersHeading = context?.budget?.transfersHeading || 'Versements'
   const transfers = budgetTransfers(profile, transfersHeading)
@@ -193,20 +193,18 @@ export function buildBudgetText(profile) {
   const questions = context
     ? (context.questions.length ? context.questions.map(question => question.text) : [budgetGeneralQuestion({ ...profile, name: p.name }, context.budgetQuestion)])
     : p.question.split(/\r?\n/)
-  const adaptation = profile.id === NOEMIE_ID ? '' : budgetAdaptation(profile)
-  const adaptationNote = budgetCompletions[profile.id] && profile.kind !== 'participant' ? 'Dépenses ventilées à titre éditorial.' : ''
   return [
     `💰 ${budgetHeading(profile)}`,
-    [presentation, [adaptation, adaptationNote].filter(Boolean).join(' · ')].filter(Boolean).join('\n'),
-    [incomeLine, textBasis, !netSalary && incomeRows, p.incomeNote].filter(Boolean).join('\n'),
+    presentation,
+    [incomeLine, textBasis, !salary && incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     benefits.join('\n'),
     expenses,
     `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
     `👉 ${a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${money(Math.abs(a.available))} / mois${share(Math.abs(a.available), a.income)}`,
-    transferRows && `${transfers.emoji} ${transferLabel} : ${money(a.savings)} / mois\n${transferRows}`,
+    transferRows ? `${transfers.emoji} ${transferLabel} : ${money(a.savings)} / mois\n${transferRows}` : `🧾 Versements retenus : ${money(0)} / mois`,
     `💳 ${a.balance < 0 ? 'Déficit après versements' : 'Reste après versements'} : ${money(Math.abs(a.balance))} / mois`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
-    ...(context ? context.paragraphs.map(({ text }) => text.replace('Les dépenses présentées sont sa part du budget du couple ; le logement est payé.', 'Il règle les dépenses présentées sur sa pension. Le logement est payé.')) : [
+    ...(context ? context.paragraphs.map(({ text }) => text) : [
       e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
       p.story,
     ]),
@@ -290,10 +288,17 @@ export function refreshBudgetDraft(record) {
   if (!record.edited) return { ...record, profile, text: buildBudgetText(profile), textFinance: currentFinance, textCorrections: undefined }
   const corrections = Array.isArray(record.textCorrections) ? record.textCorrections.filter(change =>
     change && ['label', 'before', 'after'].every(key => typeof change[key] === 'string')) : []
+  const previousBadge = profile.id === NOEMIE_ID ? '' : budgetAdaptation(profile)
+  const generatedBadge = [previousBadge, previousBadge === 'Budget reconstitué' && 'Dépenses ventilées à titre éditorial.'].filter(Boolean).join(' · ')
+  const text = generatedBadge ? record.text.split(/(\r?\n)/).map((line, index, lines) => {
+    if (line !== generatedBadge) return line
+    if (index + 1 < lines.length) lines[index + 1] = ''
+    return ''
+  }).join('') : record.text
   const previousFinance = record.textFinance ?? budgetFinancialReference(record.profile)
   const revision = profile.kind !== 'participant' && profile.id === NOEMIE_ID && previousFinance !== currentFinance
-    ? reviseNoemieDraft(record, profile, previousFinance) : null
-  return { ...record, profile, text: revision?.text ?? record.text,
+    ? reviseNoemieDraft({ ...record, text }, profile, previousFinance) : null
+  return { ...record, profile, text: revision?.text ?? text,
     textFinance: revision && !revision.unresolved ? currentFinance : previousFinance,
     textCorrections: corrections.length || revision?.changes.length ? [...corrections, ...(revision?.changes || [])] : undefined,
   }

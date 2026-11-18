@@ -1,3 +1,4 @@
+import publicationReview from './publication-review-1390.json' with { type: 'json' }
 import noemieReference from './noemie-reference.json' with { type: 'json' }
 import { budgetCompletions } from './budget-completions.js'
 import studioEditorialProfiles from './editorial-profiles-studio-2026-11-16.json' with { type: 'json' }
@@ -101,3 +102,22 @@ export const BUDGET_RELIABLE_PUBLICATION_CONTEXT = Object.fromEntries(sourceProf
 export const BUDGET_REFERENCE_PUBLICATION_CONTEXT = Object.fromEntries(sourceProfiles.map(p => [p.id, createEditorialContext(BUDGET_RELIABLE_PUBLICATION_CONTEXT[p.id], editorialLives[p.id])]))
 export const BUDGET_PUBLICATION_CONTEXT = { ...BUDGET_REFERENCE_PUBLICATION_CONTEXT,
   ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.publication])) }
+
+
+// The profile-keyed review adds explicit evidence to the generated copy without
+// changing the historical survey or assigning assumptions to a participant.
+export const BUDGET_PUBLICATION_REVIEW = publicationReview
+for (const [id, changes] of Object.entries(publicationReview)) {
+  const base = BUDGET_PUBLICATION_CONTEXT[id]
+  const context = { ...base, budget: { ...base.budget }, evidence: [...base.evidence],
+    paragraphs: [...base.paragraphs], questions: [...base.questions] }
+  for (const { field, index, after, basis, reason } of changes) {
+    const entry = context.evidence.push({ basis: basis === 'assumption' ? 'editorial-preparation' : 'verified-repository-record', reviewKind: basis, note: reason }) - 1
+    if (index === null) context.budget[field] = after
+    else {
+      const old = context[field][index]
+      context[field][index] = { ...old, text: after, evidence: [...(old?.evidence || []), entry], ...(field === 'questions' && { origin: 'editorial', adaptedFrom: old?.origin === 'expressed' ? [old] : old?.adaptedFrom }) }
+    }
+  }
+  BUDGET_PUBLICATION_CONTEXT[id] = context
+}

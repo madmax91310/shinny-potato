@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict'
-import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS } from '../src/pages/budget-profiles/data.js'
-import { budgetCompletions } from '../src/pages/budget-profiles/budget-completions.js'
-import { analyzeBudget, blankBudget, budgetExpenseColumns, budgetTransferLabel, buildBudgetText, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
+import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_PUBLICATION_REVIEW } from '../src/pages/budget-profiles/data.js'
+import { analyzeBudget, blankBudget, budgetExpenseColumns, budgetTransferLabel, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { planSocialBudget, SOCIAL_SIZE, SOCIAL_BODY_SIZE } from '../src/pages/budget-profiles/socialImage.js'
 import { duplicateBudget } from '../src/pages/budget-profiles/manual.js'
 import { staleBudgetText, budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
@@ -37,7 +36,7 @@ for (const profile of [...BUDGET_PROFILES, dense]) {
   assert(text.includes(plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'), profile.id)
   assert((text.match(/^💬 /gm) || []).length <= 2, profile.id)
   assert.doesNotMatch(text, /(?:sa|leur) part du budget|mensuel · sa part|—/i, profile.id)
-  if (budgetCompletions[profile.id]) assert(text.includes('Budget reconstitué'), profile.id)
+  assert.doesNotMatch(text, /budget reconstitué|budget fictif|exemple de budget|profil adapté/i, profile.id)
 }
 
 assert.equal(planSocialBudget(dense).totals.income, 8000)
@@ -91,3 +90,25 @@ const labelled = refreshBudgetDraft({ ...personal, text: 'Salaire net : 4 400 �
 assert(!staleBudgetText(labelled))
 const personalCopy = refreshBudgetDraft({ ...personal, profile: { ...BUDGET_NOEMIE_PREVIOUS, kind: 'participant' } })
 assert.equal(personalCopy.text, personal.text)
+
+
+for (const [id, changes] of Object.entries(BUDGET_PUBLICATION_REVIEW)) {
+  const profile = BUDGET_PROFILES.find(item => item.id === id)
+  const context = publicationContextFor(profile)
+  for (const change of changes) {
+    assert.notEqual(change.before, change.after)
+    const current = change.index === null ? context.budget[change.field] : context[change.field][change.index].text
+    assert.equal(current, change.after, id)
+    assert(buildBudgetText(profile).includes(current), id)
+    if (change.basis === 'assumption') {
+      assert.equal(profile.provenance.nature, 'editorial-character', id)
+      assert(context[change.field][change.index].evidence.some(index => context.evidence[index].reviewKind === 'assumption'))
+    }
+  }
+}
+const julieAndAlex = BUDGET_PROFILES.find(item => item.id === 'reddit-couple-nord-2026-07-09')
+const gifts = planSocialBudget(julieAndAlex).expenses[1][0].rows.find(row => row.label === 'Cadeaux, remplac.')
+assert.deepEqual(gifts.members.map(row => [row.label, row.amount]), [['Provision cadeaux et remplacements', 80]])
+assert.match(buildBudgetText(julieAndAlex), /Provision cadeaux et remplacements : 80\s€/)
+const personalJulie = { profile: julieAndAlex, edited: true, text: 'Mon introduction.\nBudget reconstitué · Dépenses ventilées à titre éditorial.\nMon texte à 80 €.' }
+assert.equal(refreshBudgetDraft(personalJulie).text, 'Mon introduction.\nMon texte à 80 €.')

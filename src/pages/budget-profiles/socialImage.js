@@ -1,6 +1,7 @@
 import { analyzeBudget, budgetCashIncome, budgetExpenseColumns, budgetPublicPresentation, budgetPublicSavingsRows,
-  budgetTransferLabel, budgetTransferStatus, euro } from './lib.js'
-import { budgetProfileHousehold, budgetQualification } from './presentation.js'
+  budgetTransferLabel, budgetTransferStatus, euro, publicationContextFor } from './lib.js'
+import { budgetProfileHousehold, budgetRowSymbol } from './presentation.js'
+import socialLabels from './social-labels.json' with { type: 'json' }
 
 export const SOCIAL_SIZE = { width: 1080, height: 1350 }
 export const SOCIAL_BODY_SIZE = 31
@@ -66,6 +67,7 @@ function mentionsRow(question, row) {
 
 function shortLabel(row) {
   if (row.imageLabel) return row.imageLabel
+  if (Object.hasOwn(socialLabels, row.label)) return socialLabels[row.label]
   const compact = compactLabels.find(([pattern]) => pattern.test(row.label))
   if (compact) return row.label.replace(...compact)
 
@@ -98,6 +100,7 @@ export function planSocialBudget(profile) {
   ]
   const transferRows = groupRows(savings.map((row, index) => ({ ...row, status: budgetTransferStatus(profile, profile.savings[index]) })), 4, 'Autres versements', question)
   return { totals, presentation, expenses, transferRows,
+    incomeLabel: publicationContextFor(profile)?.budget?.imageIncomeLabel,
     netSalary: budgetCashIncome(profile).netSalary, showAllocation: totals.income > 0 && totals.balance >= 0 }
 }
 
@@ -167,13 +170,16 @@ function drawIdentity(ctx, profile, presentation) {
     .replace(/ · sans enfant/i, ' sans enfant')
     .replace(/un enfant de (\d+) ans pendant les vacances/i, '1 enfant')
     .replace(/deux enfants de (\d+) et (\d+) ans/i, '2 enfants ($1 et $2 ans)')
+    .replace('trois enfants de 5, 8 et 11 ans · relais familial après l’école', '3 enfants · relais familial')
+    .replace('Sylvie, 62 ans · couple marié · maison payée · enfants indépendants', 'Sylvie, 62 ans · maison payée · couple')
   const compactJob = job?.includes(' · ') ? job
     .replace(/(?:^| · )[^:·]+ : /g, part => part.startsWith(' · ') ? ' · ' : '')
     .replace(/assistante administrative/i, 'assistante admin.')
     .replace(/technicien de maintenance/i, 'technicien maintenance')
     .replace(/agente d’entretien à temps partiel/i, 'agente d’entretien (temps partiel)')
+    .replace('Assistante dentaire et préparateur de commandes · tous deux à 60 %', 'Assistante dentaire et préparateur · 60 %')
     .replace(/préparateur de commandes/i, 'préparateur commandes') : job
-  const context = [location?.replace(/^Agglomération lilloise$/i, 'Région lilloise'), household, budgetQualification(profile)].filter(Boolean).join(' · ')
+  const context = [location?.replace(/^Agglomération lilloise$/i, 'Région lilloise'), household].filter(Boolean).join(' · ')
   if (compactJob) draw(ctx, compactJob, 540, 140, { size: 35, weight: 650, align: 'center', max: width })
   if (context) draw(ctx, context, 540, job ? 193 : 158, { size: 31, color: colors.muted, align: 'center', max: width })
 }
@@ -181,7 +187,7 @@ function drawIdentity(ctx, profile, presentation) {
 function drawIncome(ctx, profile, plan, money) {
   const { totals, netSalary, showAllocation } = plan
   box(ctx, margin, 250, width, 207, colors.green, 30)
-  draw(ctx, netSalary ? 'SALAIRE NET MENSUEL' : 'REVENUS MENSUELS', 540, showAllocation ? 271 : 290,
+  draw(ctx, plan.incomeLabel?.toUpperCase() || (netSalary ? 'SALAIRE NET MENSUEL' : 'REVENUS MENSUELS'), 540, showAllocation ? 271 : 290,
     { size: 25, weight: 750, color: colors.mint, align: 'center' })
   drawAmount(ctx, (profile.approximate ? '≈ ' : '') + money(totals.income), 540, showAllocation ? 305 : 325, width - 60,
     { size: 78, color: colors.white, align: 'center' })
@@ -217,6 +223,22 @@ function drawTotals(ctx, plan, money) {
   })
 }
 
+const labelBySymbol = {
+  housing: 'Logement', energy: 'Énergie', food: 'Alimentation', transport: 'Transport',
+  education: 'École', child: 'Enfants', bills: 'Factures', health: 'Santé', clothing: 'Vêtements',
+  insurance: 'Assurance', childcare: 'Garde', care: 'Entretien', tax: 'Impôts', gift: 'Cadeaux',
+  dining: 'Repas', leisure: 'Loisirs', investment: 'Placement', savings: 'Épargne', debt: 'Crédit',
+}
+function detailLabel(ctx, row, room, index, transfer) {
+  for (const size of [SOCIAL_BODY_SIZE, 29, 27]) {
+    type(ctx, size)
+    if (ctx.measureText(row.label).width <= room) return { text: row.label, size }
+  }
+  const { kind } = budgetRowSymbol(row.members[0], transfer ? 'savings' : 'expenses')
+  const name = labelBySymbol[kind] || (transfer ? 'Versement' : 'Dépense')
+  return { text: `${name} · ${index + 1}`, size: 27 }
+}
+
 function detailCard(ctx, x, y, height, title, total, rows, background, money) {
   box(ctx, x, y, column, height, background)
   draw(ctx, title, x + column / 2, y + 20, { size: 28, weight: 750, align: 'center' })
@@ -229,7 +251,8 @@ function detailCard(ctx, x, y, height, title, total, rows, background, money) {
     const amount = money(row.amount)
     type(ctx, SOCIAL_BODY_SIZE, 650)
     const room = column - 58 - ctx.measureText(amount).width
-    draw(ctx, row.label, x + 23, yy, { max: room })
+    const label = detailLabel(ctx, row, room, index, total === undefined)
+    draw(ctx, label.text, x + 23, yy, { size: label.size })
     draw(ctx, amount, x + column - 23, yy, { align: 'right', weight: 650 })
   }
 }

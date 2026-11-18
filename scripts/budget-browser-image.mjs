@@ -7,7 +7,11 @@ import { planSocialBudget } from '../src/pages/budget-profiles/socialImage.js'
 export function captureBudgetCanvas() {
   const rectangle = CanvasRenderingContext2D.prototype.fillRect
   CanvasRenderingContext2D.prototype.fillRect = function (x, y, width, height) {
-    if (x === 0 && y === 0 && width === 1080 && height === 1350 && this.canvas.width === 1080) window.budgetCanvasText = []
+    if (x === 0 && y === 0 && width === 1080 && height === 1350 && this.canvas.width === 1080) {
+      window.budgetCanvasText = []
+      window.budgetBarDrawn = false
+    }
+    if (this.canvas.width === 1080 && y === 413 && height === 20 && width > 0) window.budgetBarDrawn = true
     return rectangle.call(this, x, y, width, height)
   }
   const fill = CanvasRenderingContext2D.prototype.fillText
@@ -25,7 +29,7 @@ export function captureBudgetCanvas() {
 export function assertBudgetCanvas(drawn, profile) {
   const { totals, expenses, presentation } = planSocialBudget(profile)
   assert(drawn.length > 0, profile.id)
-  assert(!drawn.some(line => /le budget de|(?:sa|leur) part du budget/i.test(line.text)), profile.id)
+  assert(!drawn.some(line => /le budget de|budget (?:fictif|reconstitué)|exemple de budget|profil adapté|(?:sa|leur) part du budget/i.test(line.text)), profile.id)
   assert(drawn.some(line => line.text.startsWith(presentation.name.slice(0, 12))), profile.id)
   assert(drawn.some(line => line.text === 'ÉPARGNANT LIBRE'), profile.id)
   const money = amount => euro(amount, profile.currency)
@@ -69,7 +73,9 @@ export async function verifyBudgetPng(page, profile) {
   assert.deepEqual(bytes, Buffer.from(preview, 'base64'), 'Le téléchargement reprend les octets de l’aperçu')
   assert.equal(bytes.toString('ascii', 1, 4), 'PNG')
   assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], [1080, 1350])
-  const drawn = await page.evaluate(() => window.budgetCanvasText)
+  const { drawn, bar } = await page.evaluate(() => ({ drawn: window.budgetCanvasText, bar: window.budgetBarDrawn }))
+  assert.equal(bar, planSocialBudget(profile).showAllocation, `${profile.id}: barre de répartition`)
+  assert(!drawn.some(line => line.y >= 742 && line.y < 1155 && line.text.includes('…')), `${profile.id}: poste tronqué`)
   assertBudgetCanvas(drawn, profile)
   return bytes
 }

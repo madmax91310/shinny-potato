@@ -18,7 +18,7 @@ for (const p of BUDGET_PROFILES) {
   assert.equal(review.monthlyAmountsChanged, false)
   assert(review.note.length > 40)
   assert(c.questions.length + Number(Boolean(c.budgetQuestion)) <= 2)
-  assert.deepEqual(c.evidence.at(-1).narrativeReview.limits, review.limits)
+  assert.deepEqual(c.evidence.findLast(item => item.narrativeReview).narrativeReview.limits, review.limits)
   const custom = { profile: p, text: 'Mon brouillon personnalisé\nMes chiffres et mes questions.', edited: true, textFinance: baseline.beforeFinance[p.id] }
   const refreshed = refreshBudgetDraft(custom)
   assert.equal(refreshed.text, custom.text)
