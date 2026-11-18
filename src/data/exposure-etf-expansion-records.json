@@ -5,75 +5,75 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 626125602.6050999,
+      "amount": 616884218.3676001,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Health Care",
-          "weightPct": 20.827447,
+          "weightPct": 20.74227,
           "label": "Health Care"
         },
         {
           "name": "Financials",
-          "weightPct": 19.769668,
+          "weightPct": 19.971106,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 13.351144,
+          "weightPct": 13.328994,
           "label": "Industrials"
         },
         {
           "name": "Information Technology",
-          "weightPct": 12.629439,
+          "weightPct": 12.476044,
           "label": "Information Technology"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 9.6716,
+          "weightPct": 9.738331,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Energy",
-          "weightPct": 6.34266,
+          "weightPct": 6.212237,
           "label": "Energy"
         },
         {
           "name": "Real Estate",
-          "weightPct": 5.878035,
+          "weightPct": 5.964103,
           "label": "Immobilier"
         },
         {
           "name": "Others",
-          "weightPct": 4.646279,
+          "weightPct": 4.688365,
           "label": "Autres"
         },
         {
           "name": "Materials",
-          "weightPct": 3.898679,
+          "weightPct": 3.850853,
           "label": "Materials"
         },
         {
           "name": "Utilities",
-          "weightPct": 2.985051,
+          "weightPct": 3.027697,
           "label": "Utilities"
         }
       ],
       "sourceComponent": "INDEX_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
@@ -83,74 +83,74 @@
         }
       ],
       "sourceComponent": "INDEX_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "GLAUKOS CORP",
-          "weightPct": 0.48151,
+          "weightPct": 0.488189,
           "isin": "US3773221029"
         },
         {
           "name": "JFROG LTD",
-          "weightPct": 0.421439,
+          "weightPct": 0.414936,
           "isin": "IL0011684185"
         },
         {
           "name": "BRIGHTSPRING HEALTH SERVICES",
-          "weightPct": 0.406627,
+          "weightPct": 0.414611,
           "isin": "US10950A1060"
         },
         {
           "name": "UMB FINANCIAL CORP",
-          "weightPct": 0.336035,
+          "weightPct": 0.343244,
           "isin": "US9027881088"
         },
         {
           "name": "MOOG INC-CL A",
-          "weightPct": 0.330516,
+          "weightPct": 0.326376,
           "isin": "US6153942023"
         },
         {
+          "name": "RYMAN HOSPITALITY PROP",
+          "weightPct": 0.323092,
+          "isin": "US78377T1079"
+        },
+        {
           "name": "TG THERAPEUTICS INC",
-          "weightPct": 0.319085,
+          "weightPct": 0.315814,
           "isin": "US88322Q1085"
         },
         {
           "name": "JACKSON FINANCIAL INC-A",
-          "weightPct": 0.3124,
+          "weightPct": 0.314709,
           "isin": "US46817M1071"
         },
         {
-          "name": "RYMAN HOSPITALITY PROP",
-          "weightPct": 0.311701,
-          "isin": "US78377T1079"
-        },
-        {
           "name": "CARETRUST REIT INC",
-          "weightPct": 0.311177,
+          "weightPct": 0.310921,
           "isin": "US14174T1079"
         },
         {
-          "name": "VAXCYTE INC",
-          "weightPct": 0.298249,
-          "isin": "US92243G1085"
+          "name": "HEALTHEQUITY INC",
+          "weightPct": 0.303565,
+          "isin": "US42226A1079"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.35,
       "index": "Russell 2000 Net 30% Total Ret",
       "distribution": "Capitalisation",
       "replicationMethod": "Indirect(Swap Based)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -165,27 +165,27 @@
         "2024": 18.57,
         "2025": -1.04
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -197,164 +197,164 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 28765248.7642,
+      "amount": 28509617.354399998,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Real Estate",
-          "weightPct": 99.827653,
+          "weightPct": 99.827494,
           "label": "Immobilier"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 0.172347,
+          "weightPct": 0.172506,
           "label": "Consumer Discretionary"
         }
       ],
       "sourceComponent": "INDEX_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 32.589572
+          "weightPct": 32.551924
         },
         {
           "name": "France",
-          "weightPct": 14.741754
+          "weightPct": 14.854674
         },
         {
           "name": "Switzerland",
-          "weightPct": 14.002698
+          "weightPct": 14.01845
         },
         {
           "name": "Sweden",
-          "weightPct": 13.052244
+          "weightPct": 13.017523
         },
         {
           "name": "Germany",
-          "weightPct": 10.606474
+          "weightPct": 10.617112
         },
         {
           "name": "Belgium",
-          "weightPct": 8.414001
+          "weightPct": 8.3938
         },
         {
           "name": "Spain",
-          "weightPct": 3.517423
+          "weightPct": 3.477675
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.022103
+          "weightPct": 1.018492
         },
         {
           "name": "Finland",
-          "weightPct": 0.626692
+          "weightPct": 0.622612
         },
         {
           "name": "Norway",
-          "weightPct": 0.413944
+          "weightPct": 0.412505
         },
         {
           "name": "Ireland",
-          "weightPct": 0.360258
+          "weightPct": 0.36046
         },
         {
           "name": "Austria",
-          "weightPct": 0.270277
+          "weightPct": 0.268744
         },
         {
           "name": "Greece",
-          "weightPct": 0.26585
+          "weightPct": 0.262294
         },
         {
           "name": "Italy",
-          "weightPct": 0.116708
+          "weightPct": 0.123736
         }
       ],
       "sourceComponent": "INDEX_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "SEGRO PLC",
-          "weightPct": 7.518653,
+          "weightPct": 7.53402,
           "isin": "GB00B5ZN1N88"
         },
         {
           "name": "VONOVIA SE",
-          "weightPct": 6.193794,
+          "weightPct": 6.210343,
           "isin": "DE000A1ML7J1"
         },
         {
           "name": "SWISS PRIME SITE",
-          "weightPct": 5.922787,
+          "weightPct": 5.921647,
           "isin": "CH0008038389"
         },
         {
           "name": "UNIBAIL-RODAMCO-WESTFIELD /PARIS",
-          "weightPct": 5.516212,
+          "weightPct": 5.554992,
           "isin": "FR0013326246"
         },
         {
           "name": "KLEPIERRE",
-          "weightPct": 4.212608,
+          "weightPct": 4.273957,
           "isin": "FR0000121964"
         },
         {
           "name": "PSP SWISS PROPERTY",
-          "weightPct": 3.841251,
+          "weightPct": 3.845509,
           "isin": "CH0018294154"
         },
         {
           "name": "LAND SECURITIES GROUP PLC",
-          "weightPct": 3.517007,
+          "weightPct": 3.511205,
           "isin": "GB00BYW0PQ60"
         },
         {
           "name": "AEDIFICA",
-          "weightPct": 3.108874,
+          "weightPct": 3.11309,
           "isin": "BE0003851681"
         },
         {
           "name": "BRITISH LAND CO  ORD 25P",
-          "weightPct": 2.70357,
+          "weightPct": 2.70407,
           "isin": "GB0001367019"
         },
         {
           "name": "LONDONMETRIC PROPERTY PLC",
-          "weightPct": 2.648017,
+          "weightPct": 2.647841,
           "isin": "GB00B4WFW713"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.4,
       "index": "FTSE EPRA/NAREIT Developed Europe Net Return Index",
       "distribution": "Capitalisation",
       "replicationMethod": "Indirect(Swap Based)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -369,27 +369,27 @@
         "2024": -3.82,
         "2025": 5.54
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -401,19 +401,19 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 230619763.5685,
+      "amount": 231634025.2332,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.25,
       "index": "Solactive ESTR Overnight Total Return Index",
       "distribution": "Capitalisation",
       "replicationMethod": "Indirect(Swap Based)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -428,27 +428,27 @@
         "2024": 2.31,
         "2025": 2.26
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -460,223 +460,223 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 34447256.2647,
+      "amount": 33703744.761099994,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Industrials",
-          "weightPct": 33.108034,
+          "weightPct": 33.140539,
           "label": "Industrials"
         },
         {
           "name": "Information Technology",
-          "weightPct": 21.16059,
+          "weightPct": 20.98118,
           "label": "Information Technology"
         },
         {
           "name": "Health Care",
-          "weightPct": 12.400647,
+          "weightPct": 12.566097,
           "label": "Health Care"
         },
         {
           "name": "Financials",
-          "weightPct": 9.533102,
+          "weightPct": 9.535889,
           "label": "Financials"
         },
         {
           "name": "Utilities",
-          "weightPct": 6.483668,
+          "weightPct": 6.402982,
           "label": "Utilities"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 6.027974,
+          "weightPct": 6.089998,
           "label": "Consumer Staples"
         },
         {
           "name": "Energy",
-          "weightPct": 4.473908,
+          "weightPct": 4.452002,
           "label": "Energy"
         },
         {
           "name": "Materials",
-          "weightPct": 3.920314,
+          "weightPct": 3.926607,
           "label": "Materials"
         },
         {
           "name": "Communication Services",
-          "weightPct": 2.891763,
+          "weightPct": 2.904706,
           "label": "Communication"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "France",
-          "weightPct": 29.317367
+          "weightPct": 29.388029
         },
         {
           "name": "Germany",
-          "weightPct": 24.166678
+          "weightPct": 24.234682
         },
         {
           "name": "Netherlands",
-          "weightPct": 9.672718
+          "weightPct": 9.515934
         },
         {
           "name": "Denmark",
-          "weightPct": 9.157675
+          "weightPct": 9.218004
         },
         {
           "name": "Spain",
-          "weightPct": 9.111177
+          "weightPct": 9.092877
         },
         {
           "name": "Italy",
-          "weightPct": 4.594419
+          "weightPct": 4.601219
         },
         {
           "name": "Norway",
-          "weightPct": 4.403933
+          "weightPct": 4.37999
         },
         {
           "name": "Sweden",
-          "weightPct": 3.400892
+          "weightPct": 3.399728
         },
         {
           "name": "Belgium",
-          "weightPct": 2.438502
+          "weightPct": 2.437611
         },
         {
           "name": "Finland",
-          "weightPct": 1.854477
+          "weightPct": 1.848298
         },
         {
           "name": "Austria",
-          "weightPct": 0.811206
+          "weightPct": 0.811149
         },
         {
           "name": "Portugal",
-          "weightPct": 0.544256
+          "weightPct": 0.545502
         },
         {
           "name": "Ireland",
-          "weightPct": 0.310601
+          "weightPct": 0.311992
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.193877
+          "weightPct": 0.19385
         },
         {
           "name": "Switzerland",
-          "weightPct": 0.022222
+          "weightPct": 0.021136
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "SAP SE / XETRA",
-          "weightPct": 9.075501,
+          "weightPct": 9.110191,
           "isin": "DE0007164600"
         },
         {
           "name": "ASML HOLDING NV",
-          "weightPct": 7.003791,
+          "weightPct": 6.86151,
           "isin": "NL0010273215"
         },
         {
           "name": "BAYER AG-REG",
-          "weightPct": 4.116952,
+          "weightPct": 4.168463,
           "isin": "DE000BAY0017"
         },
         {
           "name": "DSV A/S (DKK)",
-          "weightPct": 3.520142,
+          "weightPct": 3.506848,
           "isin": "DK0060079531"
         },
         {
           "name": "DANONE",
-          "weightPct": 3.359621,
+          "weightPct": 3.414665,
           "isin": "FR0000120644"
         },
         {
-          "name": "AIRBUS SE PARIS",
-          "weightPct": 3.274959,
-          "isin": "NL0000235190"
-        },
-        {
           "name": "SCHNEIDER ELECT SE",
-          "weightPct": 3.273108,
+          "weightPct": 3.260607,
           "isin": "FR0000121972"
         },
         {
+          "name": "AIRBUS SE PARIS",
+          "weightPct": 3.248237,
+          "isin": "NL0000235190"
+        },
+        {
           "name": "TOTALENERGIES SE PARIS",
-          "weightPct": 3.15708,
+          "weightPct": 3.161788,
           "isin": "FR0000120271"
         },
         {
           "name": "IBERDROLA SA",
-          "weightPct": 2.811183,
+          "weightPct": 2.755817,
           "isin": "ES0144580Y14"
         },
         {
           "name": "SAFRAN SA",
-          "weightPct": 2.56531,
+          "weightPct": 2.603506,
           "isin": "FR0000073272"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.4,
       "index": "Euronext European Strategic Autonomy NR",
       "distribution": "Capitalisation",
       "replicationMethod": "Direct(Physical)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -688,15 +688,15 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 6184270480.877399,
+      "amount": 6070327039.7013,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
@@ -707,128 +707,128 @@
         }
       ],
       "sourceComponent": "FUND_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Spain",
-          "weightPct": 29.238491
+          "weightPct": 29.220752
         },
         {
           "name": "Italy",
-          "weightPct": 23.634652
+          "weightPct": 23.63178
         },
         {
           "name": "France",
-          "weightPct": 13.106195
+          "weightPct": 13.095293
         },
         {
           "name": "Netherlands",
-          "weightPct": 8.929726
+          "weightPct": 8.894006
         },
         {
           "name": "Germany",
-          "weightPct": 6.22603
+          "weightPct": 6.189831
         },
         {
           "name": "Finland",
-          "weightPct": 4.571788
+          "weightPct": 4.560237
         },
         {
           "name": "Austria",
-          "weightPct": 4.390666
+          "weightPct": 4.430333
         },
         {
           "name": "Greece",
-          "weightPct": 3.476015
+          "weightPct": 3.520787
         },
         {
           "name": "Ireland",
-          "weightPct": 3.317167
+          "weightPct": 3.331907
         },
         {
           "name": "Belgium",
-          "weightPct": 2.316119
+          "weightPct": 2.333225
         },
         {
           "name": "Portugal",
-          "weightPct": 0.793152
+          "weightPct": 0.791849
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "BANCO SANTANDER SA MADRID",
-          "weightPct": 13.033562,
+          "weightPct": 12.95395,
           "isin": "ES0113900J37"
         },
         {
           "name": "BANCO BILBAO VIZCAYA ARGENTA",
-          "weightPct": 10.293742,
+          "weightPct": 10.276515,
           "isin": "ES0113211835"
         },
         {
           "name": "UNICREDIT SPA",
-          "weightPct": 9.874048,
+          "weightPct": 9.83298,
           "isin": "IT0005239360"
         },
         {
           "name": "BNP PARIBAS",
-          "weightPct": 7.765313,
+          "weightPct": 7.754932,
           "isin": "FR0000131104"
         },
         {
           "name": "INTESA SANPAOLO",
-          "weightPct": 7.628543,
+          "weightPct": 7.646993,
           "isin": "IT0000072618"
         },
         {
           "name": "ING GROEP NV",
-          "weightPct": 6.77222,
+          "weightPct": 6.721797,
           "isin": "NL0011821202"
         },
         {
           "name": "DEUTSCHE BANK AG NAMEN",
-          "weightPct": 4.960283,
+          "weightPct": 4.920041,
           "isin": "DE0005140008"
         },
         {
           "name": "NORDEA BANK ABP",
-          "weightPct": 4.561524,
+          "weightPct": 4.541665,
           "isin": "FI4000297767"
         },
         {
           "name": "SOCIETE GENERALE",
-          "weightPct": 3.942086,
+          "weightPct": 3.916324,
           "isin": "FR0000130809"
         },
         {
           "name": "CAIXABANK SA",
-          "weightPct": 3.406136,
+          "weightPct": 3.427096,
           "isin": "ES0140609019"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.3,
       "index": "EURO STOXX Banks Net Return EUR",
       "distribution": "Capitalisation",
       "replicationMethod": "Direct(Physical)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -843,27 +843,27 @@
         "2024": 31.24,
         "2025": 89.81
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -875,176 +875,176 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 4690608865.7175,
+      "amount": 4589924321.8752,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Financials",
-          "weightPct": 27.600856,
+          "weightPct": 27.667797,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 19.352459,
+          "weightPct": 19.288057,
           "label": "Industrials"
         },
         {
           "name": "Information Technology",
-          "weightPct": 15.922725,
+          "weightPct": 15.774142,
           "label": "Information Technology"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 8.418604,
+          "weightPct": 8.465408,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Utilities",
-          "weightPct": 6.012315,
+          "weightPct": 5.92872,
           "label": "Utilities"
         },
         {
           "name": "Health Care",
-          "weightPct": 5.832907,
+          "weightPct": 5.910258,
           "label": "Health Care"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 5.800692,
+          "weightPct": 5.836484,
           "label": "Consumer Staples"
         },
         {
           "name": "Energy",
-          "weightPct": 5.268799,
+          "weightPct": 5.284362,
           "label": "Energy"
         },
         {
           "name": "Materials",
-          "weightPct": 3.769208,
+          "weightPct": 3.780495,
           "label": "Materials"
         },
         {
           "name": "Others",
-          "weightPct": 2.021435,
+          "weightPct": 2.064277,
           "label": "Autres"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "France",
-          "weightPct": 32.339644
+          "weightPct": 32.511685
         },
         {
           "name": "Germany",
-          "weightPct": 29.47488
+          "weightPct": 29.476381
         },
         {
           "name": "Netherlands",
-          "weightPct": 13.116765
+          "weightPct": 12.951551
         },
         {
           "name": "Spain",
-          "weightPct": 11.218887
+          "weightPct": 11.198992
         },
         {
           "name": "Italy",
-          "weightPct": 8.742878
+          "weightPct": 8.74025
         },
         {
           "name": "Belgium",
-          "weightPct": 2.961489
+          "weightPct": 2.978343
         },
         {
           "name": "Finland",
-          "weightPct": 2.145457
+          "weightPct": 2.142798
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "ASML HOLDING NV",
-          "weightPct": 8.862749,
+          "weightPct": 8.701635,
           "isin": "NL0010273215"
         },
         {
           "name": "SAP SE / XETRA",
-          "weightPct": 4.685533,
+          "weightPct": 4.712624,
           "isin": "DE0007164600"
         },
         {
           "name": "SIEMENS AG-REG",
-          "weightPct": 4.473117,
+          "weightPct": 4.389707,
           "isin": "DE0007236101"
         },
         {
           "name": "TOTALENERGIES SE PARIS",
-          "weightPct": 4.089403,
+          "weightPct": 4.103496,
           "isin": "FR0000120271"
         },
         {
           "name": "ALLIANZ SE-REG",
-          "weightPct": 3.959672,
+          "weightPct": 3.966803,
           "isin": "DE0008404005"
         },
         {
           "name": "BANCO SANTANDER SA MADRID",
-          "weightPct": 3.633069,
+          "weightPct": 3.63252,
           "isin": "ES0113900J37"
         },
         {
           "name": "IBERDROLA SA",
-          "weightPct": 3.205868,
+          "weightPct": 3.148953,
           "isin": "ES0144580Y14"
         },
         {
           "name": "SCHNEIDER ELECT SE",
-          "weightPct": 3.072476,
+          "weightPct": 3.066841,
           "isin": "FR0000121972"
         },
         {
           "name": "BANCO BILBAO VIZCAYA ARGENTA",
-          "weightPct": 2.869362,
+          "weightPct": 2.881729,
           "isin": "ES0113211835"
         },
         {
           "name": "UNICREDIT SPA",
-          "weightPct": 2.752484,
+          "weightPct": 2.757465,
           "isin": "IT0005239360"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.2,
       "index": "EURO STOXX 50 Net Return EUR",
       "distribution": "Capitalisation",
       "replicationMethod": "Direct(Physical)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -1059,27 +1059,27 @@
         "2024": 11.5,
         "2025": 21.64
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -1091,216 +1091,216 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1841324680.773,
+      "amount": 1807171100.0154,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Financials",
-          "weightPct": 29.09927,
+          "weightPct": 29.09443,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 16.093896,
+          "weightPct": 16.027096,
           "label": "Industrials"
         },
         {
           "name": "Health Care",
-          "weightPct": 14.751872,
+          "weightPct": 14.92124,
           "label": "Health Care"
         },
         {
           "name": "Information Technology",
-          "weightPct": 9.446321,
+          "weightPct": 9.319367,
           "label": "Information Technology"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 8.071307,
+          "weightPct": 8.141082,
           "label": "Consumer Staples"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 7.392034,
+          "weightPct": 7.421909,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Materials",
-          "weightPct": 5.273535,
+          "weightPct": 5.240062,
           "label": "Materials"
         },
         {
           "name": "Utilities",
-          "weightPct": 5.205401,
+          "weightPct": 5.147895,
           "label": "Utilities"
         },
         {
           "name": "Communication Services",
-          "weightPct": 3.183681,
+          "weightPct": 3.203192,
           "label": "Communication"
         },
         {
           "name": "Others",
-          "weightPct": 1.482684,
+          "weightPct": 1.483726,
           "label": "Autres"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 19.993826
+          "weightPct": 20.012547
         },
         {
           "name": "Switzerland",
-          "weightPct": 16.268411
+          "weightPct": 16.413407
         },
         {
           "name": "Germany",
-          "weightPct": 14.335993
+          "weightPct": 14.28746
         },
         {
           "name": "France",
-          "weightPct": 13.459167
+          "weightPct": 13.47319
         },
         {
           "name": "Netherlands",
-          "weightPct": 8.661741
+          "weightPct": 8.54893
         },
         {
           "name": "Spain",
-          "weightPct": 6.538384
+          "weightPct": 6.528997
         },
         {
           "name": "Italy",
-          "weightPct": 5.532746
+          "weightPct": 5.509802
         },
         {
           "name": "Sweden",
-          "weightPct": 5.244574
+          "weightPct": 5.233444
         },
         {
           "name": "Denmark",
-          "weightPct": 2.997749
+          "weightPct": 3.021278
         },
         {
           "name": "Finland",
-          "weightPct": 1.985226
+          "weightPct": 1.979091
         },
         {
           "name": "Belgium",
-          "weightPct": 1.504748
+          "weightPct": 1.505395
         },
         {
           "name": "Norway",
-          "weightPct": 1.006225
+          "weightPct": 1.003555
         },
         {
           "name": "Ireland",
-          "weightPct": 0.673732
+          "weightPct": 0.679113
         },
         {
           "name": "Austria",
-          "weightPct": 0.64178
+          "weightPct": 0.643662
         },
         {
           "name": "Poland",
-          "weightPct": 0.487137
+          "weightPct": 0.489096
         },
         {
           "name": "Greece",
-          "weightPct": 0.363123
+          "weightPct": 0.366369
         },
         {
           "name": "Portugal",
-          "weightPct": 0.305439
+          "weightPct": 0.304663
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "ASML HOLDING NV",
-          "weightPct": 4.511298,
+          "weightPct": 4.414549,
           "isin": "NL0010273215"
         },
         {
           "name": "ROCHE HOLDING AG - GENUSSS CHF",
-          "weightPct": 2.670626,
+          "weightPct": 2.710245,
           "isin": "CH1499059983"
         },
         {
-          "name": "HSBC HOLDINGS PLC",
-          "weightPct": 2.420381,
-          "isin": "GB0005405286"
-        },
-        {
           "name": "NOVARTIS AG-REG",
-          "weightPct": 2.387249,
+          "weightPct": 2.425813,
           "isin": "CH0012005267"
         },
         {
+          "name": "HSBC HOLDINGS PLC",
+          "weightPct": 2.411848,
+          "isin": "GB0005405286"
+        },
+        {
           "name": "ASTRAZENECA GBP",
-          "weightPct": 2.257141,
+          "weightPct": 2.269951,
           "isin": "GB0009895292"
         },
         {
           "name": "NESTLE SA-REG",
-          "weightPct": 2.122896,
+          "weightPct": 2.139891,
           "isin": "CH0038863350"
         },
         {
           "name": "SAP SE / XETRA",
-          "weightPct": 1.864866,
+          "weightPct": 1.869406,
           "isin": "DE0007164600"
         },
         {
           "name": "SIEMENS AG-REG",
-          "weightPct": 1.78033,
+          "weightPct": 1.741318,
           "isin": "DE0007236101"
         },
         {
           "name": "ALLIANZ SE-REG",
-          "weightPct": 1.575976,
+          "weightPct": 1.573561,
           "isin": "DE0008404005"
         },
         {
           "name": "BANCO SANTANDER SA MADRID",
-          "weightPct": 1.445983,
+          "weightPct": 1.440954,
           "isin": "ES0113900J37"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.18,
       "index": "STOXX Europe 600 ESG+",
       "distribution": "Capitalisation",
       "replicationMethod": "Direct(Physical)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -1315,27 +1315,27 @@
         "2024": 8.94,
         "2025": 18.68
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -1347,332 +1347,332 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 3951626194.6559997,
+      "amount": 3905812419.8928,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 29.607698,
+          "weightPct": 29.077996,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 17.171876,
+          "weightPct": 17.357038,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 9.959378,
+          "weightPct": 9.992284,
           "label": "Industrials"
         },
         {
           "name": "Health Care",
-          "weightPct": 9.543054,
+          "weightPct": 9.686337,
           "label": "Health Care"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 9.055428,
+          "weightPct": 9.083995,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Communication Services",
-          "weightPct": 7.756475,
+          "weightPct": 7.727533,
           "label": "Communication"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 5.187186,
+          "weightPct": 5.302056,
           "label": "Consumer Staples"
         },
         {
           "name": "Others",
-          "weightPct": 4.21536,
+          "weightPct": 4.275664,
           "label": "Autres"
         },
         {
           "name": "Energy",
-          "weightPct": 4.149678,
+          "weightPct": 4.152446,
           "label": "Energy"
         },
         {
           "name": "Materials",
-          "weightPct": 3.353868,
+          "weightPct": 3.344651,
           "label": "Materials"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 63.046557
+          "weightPct": 62.911472
         },
         {
           "name": "Japan",
-          "weightPct": 5.674517
-        },
-        {
-          "name": "Taiwan",
-          "weightPct": 3.213061
+          "weightPct": 5.718781
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.145368
+          "weightPct": 3.183097
         },
         {
           "name": "Canada",
-          "weightPct": 3.105224
+          "weightPct": 3.117065
+        },
+        {
+          "name": "Taiwan",
+          "weightPct": 3.054708
         },
         {
           "name": "China",
-          "weightPct": 2.378125
+          "weightPct": 2.419399
         },
         {
           "name": "France",
-          "weightPct": 2.069607
+          "weightPct": 2.09401
         },
         {
           "name": "South Korea",
-          "weightPct": 2.043276
+          "weightPct": 1.99062
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.933656
+          "weightPct": 1.976301
         },
         {
           "name": "Germany",
-          "weightPct": 1.843749
+          "weightPct": 1.864491
         },
         {
           "name": "India",
-          "weightPct": 1.589924
+          "weightPct": 1.624284
         },
         {
           "name": "Australia",
-          "weightPct": 1.560236
+          "weightPct": 1.578787
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.052974
+          "weightPct": 1.050804
         },
         {
           "name": "Sweden",
-          "weightPct": 0.854598
+          "weightPct": 0.867889
         },
         {
           "name": "Spain",
-          "weightPct": 0.790665
+          "weightPct": 0.797365
         },
         {
           "name": "Italy",
-          "weightPct": 0.691629
+          "weightPct": 0.698142
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.455814
+          "weightPct": 0.463335
         },
         {
           "name": "Brazil",
-          "weightPct": 0.440551
+          "weightPct": 0.429471
         },
         {
           "name": "Singapore",
-          "weightPct": 0.375075
+          "weightPct": 0.376883
         },
         {
           "name": "Denmark",
-          "weightPct": 0.367616
+          "weightPct": 0.375696
         },
         {
           "name": "Israel",
-          "weightPct": 0.329478
+          "weightPct": 0.328345
         },
         {
           "name": "South Africa",
-          "weightPct": 0.307006
+          "weightPct": 0.30799
         },
         {
           "name": "Saudi Arabia",
-          "weightPct": 0.292169
+          "weightPct": 0.29474
         },
         {
           "name": "Finland",
-          "weightPct": 0.245102
+          "weightPct": 0.246676
         },
         {
           "name": "Belgium",
-          "weightPct": 0.233772
+          "weightPct": 0.237023
         },
         {
           "name": "Mexico",
-          "weightPct": 0.231135
+          "weightPct": 0.234184
         },
         {
           "name": "Thailand",
-          "weightPct": 0.199413
+          "weightPct": 0.20263
         },
         {
           "name": "Norway",
-          "weightPct": 0.193533
+          "weightPct": 0.194056
         },
         {
           "name": "UAE",
-          "weightPct": 0.166734
+          "weightPct": 0.169398
         },
         {
           "name": "Poland",
-          "weightPct": 0.149472
+          "weightPct": 0.152437
         },
         {
           "name": "Malaysia",
-          "weightPct": 0.149217
+          "weightPct": 0.151772
         },
         {
           "name": "Ireland",
-          "weightPct": 0.121169
+          "weightPct": 0.123361
         },
         {
           "name": "Austria",
-          "weightPct": 0.099793
+          "weightPct": 0.102546
         },
         {
           "name": "Greece",
-          "weightPct": 0.080051
+          "weightPct": 0.081428
         },
         {
           "name": "Turkey",
-          "weightPct": 0.079701
+          "weightPct": 0.081008
         },
         {
           "name": "Indonesia",
-          "weightPct": 0.072024
+          "weightPct": 0.072842
         },
         {
           "name": "Kuwait",
-          "weightPct": 0.070883
+          "weightPct": 0.072123
         },
         {
           "name": "New Zealand",
-          "weightPct": 0.065654
+          "weightPct": 0.068746
         },
         {
           "name": "Qatar",
-          "weightPct": 0.059933
+          "weightPct": 0.06144
         },
         {
           "name": "Chile",
-          "weightPct": 0.053515
+          "weightPct": 0.05342
         },
         {
           "name": "Portugal",
-          "weightPct": 0.043521
+          "weightPct": 0.045403
         },
         {
           "name": "Hungary",
-          "weightPct": 0.038595
-        },
-        {
-          "name": "Philippines",
-          "weightPct": 0.030444
+          "weightPct": 0.039486
         },
         {
           "name": "Colombia",
-          "weightPct": 0.030143
+          "weightPct": 0.030508
+        },
+        {
+          "name": "Philippines",
+          "weightPct": 0.030082
         },
         {
           "name": "Czech Republic",
-          "weightPct": 0.015705
+          "weightPct": 0.016015
         },
         {
           "name": "Egypt",
-          "weightPct": 0.009615
+          "weightPct": 0.009745
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "APPLE INC",
-          "weightPct": 5.126268,
+          "weightPct": 5.083702,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT CORP",
-          "weightPct": 3.84382,
+          "weightPct": 3.806348,
           "isin": "US5949181045"
         },
         {
           "name": "NVIDIA CORP",
-          "weightPct": 3.776472,
+          "weightPct": 3.626317,
           "isin": "US67066G1040"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 2.57309,
+          "weightPct": 2.490863,
           "isin": "US0231351067"
         },
         {
           "name": "ALPHABET INC CL A",
-          "weightPct": 1.722313,
+          "weightPct": 1.654635,
           "isin": "US02079K3059"
         },
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFAC",
-          "weightPct": 1.715942,
+          "weightPct": 1.615791,
           "isin": "TW0002330008"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 1.627013,
+          "weightPct": 1.565544,
           "isin": "US11135F1012"
         },
         {
           "name": "ALPHABET INC CL C",
-          "weightPct": 1.507393,
+          "weightPct": 1.451554,
           "isin": "US02079K1079"
         },
         {
           "name": "META PLATFORMS INC-CLASS A",
-          "weightPct": 1.41702,
+          "weightPct": 1.385359,
           "isin": "US30303M1027"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.270575,
+          "weightPct": 1.238295,
           "isin": "US88160R1014"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.07,
       "index": "Solactive GBS Global Markets Large & Mid Cap USD Index NTR",
       "distribution": "Capitalisation",
       "replicationMethod": "Direct(Physical)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -1682,27 +1682,27 @@
       "years": {
         "2025": 22.79
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -1714,332 +1714,332 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 5970007186.308001,
+      "amount": 6237830712.304199,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 29.607698,
+          "weightPct": 29.077996,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 17.171876,
+          "weightPct": 17.357038,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 9.959378,
+          "weightPct": 9.992284,
           "label": "Industrials"
         },
         {
           "name": "Health Care",
-          "weightPct": 9.543054,
+          "weightPct": 9.686337,
           "label": "Health Care"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 9.055428,
+          "weightPct": 9.083995,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Communication Services",
-          "weightPct": 7.756475,
+          "weightPct": 7.727533,
           "label": "Communication"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 5.187186,
+          "weightPct": 5.302056,
           "label": "Consumer Staples"
         },
         {
           "name": "Others",
-          "weightPct": 4.21536,
+          "weightPct": 4.275664,
           "label": "Autres"
         },
         {
           "name": "Energy",
-          "weightPct": 4.149678,
+          "weightPct": 4.152446,
           "label": "Energy"
         },
         {
           "name": "Materials",
-          "weightPct": 3.353868,
+          "weightPct": 3.344651,
           "label": "Materials"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 63.046557
+          "weightPct": 62.911472
         },
         {
           "name": "Japan",
-          "weightPct": 5.674517
-        },
-        {
-          "name": "Taiwan",
-          "weightPct": 3.213061
+          "weightPct": 5.718781
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.145368
+          "weightPct": 3.183097
         },
         {
           "name": "Canada",
-          "weightPct": 3.105224
+          "weightPct": 3.117065
+        },
+        {
+          "name": "Taiwan",
+          "weightPct": 3.054708
         },
         {
           "name": "China",
-          "weightPct": 2.378125
+          "weightPct": 2.419399
         },
         {
           "name": "France",
-          "weightPct": 2.069607
+          "weightPct": 2.09401
         },
         {
           "name": "South Korea",
-          "weightPct": 2.043276
+          "weightPct": 1.99062
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.933656
+          "weightPct": 1.976301
         },
         {
           "name": "Germany",
-          "weightPct": 1.843749
+          "weightPct": 1.864491
         },
         {
           "name": "India",
-          "weightPct": 1.589924
+          "weightPct": 1.624284
         },
         {
           "name": "Australia",
-          "weightPct": 1.560236
+          "weightPct": 1.578787
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.052974
+          "weightPct": 1.050804
         },
         {
           "name": "Sweden",
-          "weightPct": 0.854598
+          "weightPct": 0.867889
         },
         {
           "name": "Spain",
-          "weightPct": 0.790665
+          "weightPct": 0.797365
         },
         {
           "name": "Italy",
-          "weightPct": 0.691629
+          "weightPct": 0.698142
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.455814
+          "weightPct": 0.463335
         },
         {
           "name": "Brazil",
-          "weightPct": 0.440551
+          "weightPct": 0.429471
         },
         {
           "name": "Singapore",
-          "weightPct": 0.375075
+          "weightPct": 0.376883
         },
         {
           "name": "Denmark",
-          "weightPct": 0.367616
+          "weightPct": 0.375696
         },
         {
           "name": "Israel",
-          "weightPct": 0.329478
+          "weightPct": 0.328345
         },
         {
           "name": "South Africa",
-          "weightPct": 0.307006
+          "weightPct": 0.30799
         },
         {
           "name": "Saudi Arabia",
-          "weightPct": 0.292169
+          "weightPct": 0.29474
         },
         {
           "name": "Finland",
-          "weightPct": 0.245102
+          "weightPct": 0.246676
         },
         {
           "name": "Belgium",
-          "weightPct": 0.233772
+          "weightPct": 0.237023
         },
         {
           "name": "Mexico",
-          "weightPct": 0.231135
+          "weightPct": 0.234184
         },
         {
           "name": "Thailand",
-          "weightPct": 0.199413
+          "weightPct": 0.20263
         },
         {
           "name": "Norway",
-          "weightPct": 0.193533
+          "weightPct": 0.194056
         },
         {
           "name": "UAE",
-          "weightPct": 0.166734
+          "weightPct": 0.169398
         },
         {
           "name": "Poland",
-          "weightPct": 0.149472
+          "weightPct": 0.152437
         },
         {
           "name": "Malaysia",
-          "weightPct": 0.149217
+          "weightPct": 0.151772
         },
         {
           "name": "Ireland",
-          "weightPct": 0.121169
+          "weightPct": 0.123361
         },
         {
           "name": "Austria",
-          "weightPct": 0.099793
+          "weightPct": 0.102546
         },
         {
           "name": "Greece",
-          "weightPct": 0.080051
+          "weightPct": 0.081428
         },
         {
           "name": "Turkey",
-          "weightPct": 0.079701
+          "weightPct": 0.081008
         },
         {
           "name": "Indonesia",
-          "weightPct": 0.072024
+          "weightPct": 0.072842
         },
         {
           "name": "Kuwait",
-          "weightPct": 0.070883
+          "weightPct": 0.072123
         },
         {
           "name": "New Zealand",
-          "weightPct": 0.065654
+          "weightPct": 0.068746
         },
         {
           "name": "Qatar",
-          "weightPct": 0.059933
+          "weightPct": 0.06144
         },
         {
           "name": "Chile",
-          "weightPct": 0.053515
+          "weightPct": 0.05342
         },
         {
           "name": "Portugal",
-          "weightPct": 0.043521
+          "weightPct": 0.045403
         },
         {
           "name": "Hungary",
-          "weightPct": 0.038595
-        },
-        {
-          "name": "Philippines",
-          "weightPct": 0.030444
+          "weightPct": 0.039486
         },
         {
           "name": "Colombia",
-          "weightPct": 0.030143
+          "weightPct": 0.030508
+        },
+        {
+          "name": "Philippines",
+          "weightPct": 0.030082
         },
         {
           "name": "Czech Republic",
-          "weightPct": 0.015705
+          "weightPct": 0.016015
         },
         {
           "name": "Egypt",
-          "weightPct": 0.009615
+          "weightPct": 0.009745
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "APPLE INC",
-          "weightPct": 5.126268,
+          "weightPct": 5.083702,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT CORP",
-          "weightPct": 3.84382,
+          "weightPct": 3.806348,
           "isin": "US5949181045"
         },
         {
           "name": "NVIDIA CORP",
-          "weightPct": 3.776472,
+          "weightPct": 3.626317,
           "isin": "US67066G1040"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 2.57309,
+          "weightPct": 2.490863,
           "isin": "US0231351067"
         },
         {
           "name": "ALPHABET INC CL A",
-          "weightPct": 1.722313,
+          "weightPct": 1.654635,
           "isin": "US02079K3059"
         },
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFAC",
-          "weightPct": 1.715942,
+          "weightPct": 1.615791,
           "isin": "TW0002330008"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 1.627013,
+          "weightPct": 1.565544,
           "isin": "US11135F1012"
         },
         {
           "name": "ALPHABET INC CL C",
-          "weightPct": 1.507393,
+          "weightPct": 1.451554,
           "isin": "US02079K1079"
         },
         {
           "name": "META PLATFORMS INC-CLASS A",
-          "weightPct": 1.41702,
+          "weightPct": 1.385359,
           "isin": "US30303M1027"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.270575,
+          "weightPct": 1.238295,
           "isin": "US88160R1014"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.07,
       "index": "Solactive GBS Global Markets Large & Mid Cap USD Index NTR",
       "distribution": "Distribution",
       "replicationMethod": "Direct(Physical)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -2049,27 +2049,27 @@
       "years": {
         "2025": 22.79
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -2086,19 +2086,19 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
-      "sha256": "f06801a7cd416ba68e80be316ba4abf6f4221c6fceacea1c73c38cc77c5c03d4",
+      "sha256": "ef29757856b0bdbbbeb7de898773a60e5cc165476486ae8322d8b56e73f436db",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "10.40 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/holdings",
-      "sha256": "519705a18a87a0447ce7d172f4bda03d63b123a3ede4b0c0057da6c0723dfaea",
+      "sha256": "ff0a35200f92a88c253a0b7f7979e286006303678e2c97c5045e8dfc3b366de4",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -2163,14 +2163,14 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/holdings",
-      "sha256": "519705a18a87a0447ce7d172f4bda03d63b123a3ede4b0c0057da6c0723dfaea",
+      "sha256": "ff0a35200f92a88c253a0b7f7979e286006303678e2c97c5045e8dfc3b366de4",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -2215,27 +2215,27 @@
           "weightPct": 0.036001
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/holdings",
-      "sha256": "519705a18a87a0447ce7d172f4bda03d63b123a3ede4b0c0057da6c0723dfaea",
+      "sha256": "ff0a35200f92a88c253a0b7f7979e286006303678e2c97c5045e8dfc3b366de4",
       "rows": [
         {
-          "name": "ASML Holding NV",
+          "name": "ASML HOLDING",
           "isin": "NL0010273215",
           "weightPct": 8.73329683
         },
         {
-          "name": "SAP SE",
+          "name": "SAP",
           "isin": "DE0007164600",
           "weightPct": 4.72977245
         },
         {
-          "name": "Siemens AG",
+          "name": "SIEMENS N AG",
           "isin": "DE0007236101",
           "weightPct": 4.40567907
         },
@@ -2275,8 +2275,8 @@
           "weightPct": 2.76737804
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.09,
@@ -2285,7 +2285,7 @@
       "domicile": "Luxembourg",
       "replicationMethod": "Direct Replication (physically)",
       "inceptionDate": "2008-08-29",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -2304,37 +2304,37 @@
         "2024": 11.54,
         "2025": 21.78
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
         "asOf": null
       }
@@ -2351,19 +2351,19 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
-      "sha256": "4b767e5301a81751bf5d10425cddb3bc1732f154e5d92f3a6ffdc8cd7eb7519c",
+      "sha256": "e610cd22ea866cbb326bdc2cd58374d5dab9ea0af026c70e34e276662d06941e",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "4.99 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
-      "sha256": "d04a072750c0913019009ce0d2e6e5ba818fa67003ad8a3d649e52aadd488e01",
+      "sha256": "d91fddcd770a7d35e8b2ae039741df51dc1e28cfeecd14b04073dc8a0d6001f5",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -2433,14 +2433,14 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
-      "sha256": "d04a072750c0913019009ce0d2e6e5ba818fa67003ad8a3d649e52aadd488e01",
+      "sha256": "d91fddcd770a7d35e8b2ae039741df51dc1e28cfeecd14b04073dc8a0d6001f5",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -2450,7 +2450,7 @@
         },
         {
           "name": "Switzerland",
-          "weightPct": 15.069714
+          "weightPct": 14.873028
         },
         {
           "name": "France",
@@ -2529,6 +2529,10 @@
           "weightPct": 0.209892
         },
         {
+          "name": "Singapore",
+          "weightPct": 0.196687
+        },
+        {
           "name": "Jersey",
           "weightPct": 0.118031
         },
@@ -2577,27 +2581,27 @@
           "weightPct": 0.0
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/holdings",
-      "sha256": "d04a072750c0913019009ce0d2e6e5ba818fa67003ad8a3d649e52aadd488e01",
+      "sha256": "d91fddcd770a7d35e8b2ae039741df51dc1e28cfeecd14b04073dc8a0d6001f5",
       "rows": [
         {
-          "name": "ASML Holding NV",
+          "name": "ASML HOLDING",
           "isin": "NL0010273215",
           "weightPct": 3.67596517
         },
         {
-          "name": "Roche Holding AG",
+          "name": "ROCHE PS PAR AG",
           "isin": "CH1499059983",
           "weightPct": 2.25678664
         },
         {
-          "name": "Novartis AG",
+          "name": "NOVARTIS AG",
           "isin": "CH0012005267",
           "weightPct": 2.0199389
         },
@@ -2607,7 +2611,7 @@
           "weightPct": 2.00897943
         },
         {
-          "name": "AstraZeneca PLC",
+          "name": "ASTRAZENECA PLC",
           "isin": "GB0009895292",
           "weightPct": 1.89078169
         },
@@ -2617,17 +2621,17 @@
           "weightPct": 1.79009545
         },
         {
-          "name": "Nestle SA",
+          "name": "NESTLE SA",
           "isin": "CH0038863350",
           "weightPct": 1.78185238
         },
         {
-          "name": "SAP SE",
+          "name": "SAP",
           "isin": "DE0007164600",
           "weightPct": 1.55666525
         },
         {
-          "name": "Siemens AG",
+          "name": "SIEMENS N AG",
           "isin": "DE0007236101",
           "weightPct": 1.44999453
         },
@@ -2637,8 +2641,8 @@
           "weightPct": 1.35589018
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.2,
@@ -2647,7 +2651,7 @@
       "domicile": "Luxembourg",
       "replicationMethod": "Direct Replication (physically)",
       "inceptionDate": "2009-01-20",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -2666,37 +2670,37 @@
         "2024": 8.97,
         "2025": 20.02
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
         "asOf": null
       }
@@ -2708,12 +2712,12 @@
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
-      "amount": 5631549437.03,
+      "amount": 5510708501.06,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
@@ -2775,7 +2779,7 @@
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countries": {
@@ -2815,7 +2819,7 @@
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countriesRisk": {
@@ -2869,7 +2873,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "holdings": {
@@ -2928,7 +2932,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "characteristics": {
@@ -2943,7 +2947,7 @@
         "fundMethodologyTypeCode": "Replicated"
       },
       "productStructure": "Physical",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-24"
     },
     "performance": {
@@ -2962,47 +2966,47 @@
         "2024": 11.53,
         "2025": 21.77
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
@@ -3016,7 +3020,7 @@
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "scope": "Fund portfolio",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "modifiedAt": "2026-11-17"
       }
     }
@@ -3027,12 +3031,12 @@
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
-      "amount": 581078578.63,
+      "amount": 569563062.3,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
@@ -3094,7 +3098,7 @@
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countries": {
@@ -3142,7 +3146,7 @@
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countriesRisk": {
@@ -3204,7 +3208,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "holdings": {
@@ -3263,7 +3267,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "characteristics": {
@@ -3278,7 +3282,7 @@
         "fundMethodologyTypeCode": "Replicated"
       },
       "productStructure": "Physical",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-24"
     },
     "performance": {
@@ -3297,47 +3301,47 @@
         "2024": 8.07,
         "2025": 17.3
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
@@ -3351,7 +3355,7 @@
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "scope": "Fund portfolio",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "modifiedAt": "2026-11-17"
       }
     }
@@ -3362,12 +3366,12 @@
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
-      "amount": 11092166663.06,
+      "amount": 10893030529.35,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
@@ -3434,7 +3438,7 @@
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countries": {
@@ -3494,7 +3498,7 @@
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countriesRisk": {
@@ -3584,7 +3588,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "holdings": {
@@ -3643,7 +3647,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "characteristics": {
@@ -3658,7 +3662,7 @@
         "fundMethodologyTypeCode": "Optimised"
       },
       "productStructure": "Physical",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-24"
     },
     "performance": {
@@ -3677,47 +3681,47 @@
         "2024": 8.87,
         "2025": 19.67
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
@@ -3731,7 +3735,7 @@
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "scope": "Fund portfolio",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "modifiedAt": "2026-11-17"
       }
     }
@@ -3746,7 +3750,7 @@
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "sectors": {
@@ -3810,7 +3814,7 @@
           "label": "Industrials"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "countries": {
@@ -3829,7 +3833,7 @@
           "weightPct": 0
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "holdings": {
@@ -3878,14 +3882,14 @@
           "weightPct": 1.5
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "terPct": 0.07,
       "index": "S&P 500",
       "distribution": "Distributing",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -3902,22 +3906,22 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "c274f0683b132cb50555484ca26e97f49d56169f12a514dccd5ce35d54f799c7",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Distributing_9503_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Distributing_9503_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Distributing_9503_EU_INT_UK_EN.pdf",
         "asOf": null
       }
@@ -3929,12 +3933,12 @@
     "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
     "provider": "State Street",
     "aum": {
-      "amount": 394916945.13,
+      "amount": 387915525.01,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
@@ -3996,7 +4000,7 @@
         }
       ],
       "basis": "fund",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countries": {
@@ -4064,7 +4068,7 @@
         }
       ],
       "basis": "fund",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "holdings": {
@@ -4124,7 +4128,7 @@
         }
       ],
       "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "characteristics": {
@@ -4132,7 +4136,7 @@
       "index": "MSCI Europe Index",
       "distribution": "Accumulation",
       "inceptionDate": "2014-12-05",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -4151,27 +4155,27 @@
         "2024": 8.81,
         "2025": 19.51
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
         "asOf": null
       }
@@ -4183,12 +4187,12 @@
     "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 20701216214.41,
+      "amount": 20456308345.52,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
@@ -4250,7 +4254,7 @@
         }
       ],
       "basis": "fund",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countries": {
@@ -4350,7 +4354,7 @@
         }
       ],
       "basis": "fund",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "holdings": {
@@ -4410,7 +4414,7 @@
         }
       ],
       "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "characteristics": {
@@ -4418,7 +4422,7 @@
       "index": "MSCI World Index",
       "distribution": "Accumulation",
       "inceptionDate": "2019-02-28",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -4433,27 +4437,27 @@
         "2024": 18.91,
         "2025": 21.24
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
         "asOf": null
       }
@@ -4469,7 +4473,7 @@
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     },
     "sectors": {
@@ -4530,7 +4534,7 @@
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
       "method": "Published allocation of the exact physical ETF factsheet",
       "sha256": "c3dadbcdce00875f8aa53b874262cf4f1bbe65cc2be5b94d446953ebd6e1639e",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     },
     "countries": {
@@ -4581,14 +4585,14 @@
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
       "method": "Published allocation of the exact physical ETF factsheet",
       "sha256": "c3dadbcdce00875f8aa53b874262cf4f1bbe65cc2be5b94d446953ebd6e1639e",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     },
     "characteristics": {
       "terPct": 0.15,
       "index": "FTSE All-World",
       "distribution": "Accumulating",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -4599,22 +4603,22 @@
         "2025": 22.53,
         "2024": 17.6
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
         "asOf": null
       }
@@ -4667,7 +4671,7 @@
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
       "method": "Ten leading holdings published for the exact physical ETF share; not complete holdings",
       "sha256": "c3dadbcdce00875f8aa53b874262cf4f1bbe65cc2be5b94d446953ebd6e1639e",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     }
   },
@@ -4681,7 +4685,7 @@
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     },
     "sectors": {
@@ -4742,7 +4746,7 @@
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
       "method": "Published allocation of the exact physical ETF factsheet",
       "sha256": "60fec2a7bb56410a63b6cccaa410b440e5b1fecc9fc1680ee8d5d2c097ba649c",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     },
     "countries": {
@@ -4793,14 +4797,14 @@
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
       "method": "Published allocation of the exact physical ETF factsheet",
       "sha256": "60fec2a7bb56410a63b6cccaa410b440e5b1fecc9fc1680ee8d5d2c097ba649c",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     },
     "characteristics": {
       "terPct": 0.15,
       "index": "FTSE All-World",
       "distribution": "Distributing",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -4811,22 +4815,22 @@
         "2025": 22.53,
         "2024": 17.6
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
         "asOf": null
       }
@@ -4879,7 +4883,7 @@
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
       "method": "Ten leading holdings published for the exact physical ETF share; not complete holdings",
       "sha256": "60fec2a7bb56410a63b6cccaa410b440e5b1fecc9fc1680ee8d5d2c097ba649c",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-13"
     }
   },
@@ -4892,19 +4896,19 @@
       "amount": 1191869056.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-11-16",
+      "asOf": "2026-11-17",
       "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
       "controlledListingIds": [
         "2120247"
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "858d8b156312e106d6d96c14090b09b9db4690abfe56d5dc7ff41c6ab5b404ef",
+      "sha256": "59b5f18e560722911d84a7f895fcc6e7321035105c217b45214458d858812277",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "rows": [
@@ -4943,7 +4947,7 @@
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countries": {
@@ -4986,7 +4990,7 @@
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "holdings": {
@@ -5043,7 +5047,7 @@
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "characteristics": {
@@ -5051,7 +5055,7 @@
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "terPct": 0.4,
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-26"
     },
     "performance": {
@@ -5070,12 +5074,12 @@
       "asOf": "2026-09-30",
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-26"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
         "asOf": "2026-09-30"
       }
@@ -5090,19 +5094,19 @@
       "amount": 140050640.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-11-16",
+      "asOf": "2026-11-17",
       "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
       "controlledListingIds": [
         "2952678"
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "858d8b156312e106d6d96c14090b09b9db4690abfe56d5dc7ff41c6ab5b404ef",
+      "sha256": "59b5f18e560722911d84a7f895fcc6e7321035105c217b45214458d858812277",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "rows": [
@@ -5146,7 +5150,7 @@
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "countries": {
@@ -5233,7 +5237,7 @@
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "holdings": {
@@ -5290,7 +5294,7 @@
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "identityAsOf": "2026-09-30",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-17"
     },
     "characteristics": {
@@ -5298,7 +5302,7 @@
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "sha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "terPct": 0.4,
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-26"
     },
     "performance": {
@@ -5315,12 +5319,12 @@
       "asOf": "2026-09-30",
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "sha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-26"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
         "asOf": "2026-09-30"
       }
@@ -5337,9 +5341,9 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "e3c6e674d0670ad8a10c2f0be0cc1e3b489ddf325d9f75462f8659056be1feb0",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c20084d5c5fa4b57035bdb462bb1f84920cbde3a3ac927bf71bb981cbf601400",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "rows": [
@@ -5382,9 +5386,9 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "e3c6e674d0670ad8a10c2f0be0cc1e3b489ddf325d9f75462f8659056be1feb0",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c20084d5c5fa4b57035bdb462bb1f84920cbde3a3ac927bf71bb981cbf601400",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "rows": [
@@ -5436,9 +5440,9 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "e3c6e674d0670ad8a10c2f0be0cc1e3b489ddf325d9f75462f8659056be1feb0",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c20084d5c5fa4b57035bdb462bb1f84920cbde3a3ac927bf71bb981cbf601400",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "rows": [
@@ -5486,18 +5490,18 @@
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "e3c6e674d0670ad8a10c2f0be0cc1e3b489ddf325d9f75462f8659056be1feb0",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c20084d5c5fa4b57035bdb462bb1f84920cbde3a3ac927bf71bb981cbf601400",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "asOf": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "e3c6e674d0670ad8a10c2f0be0cc1e3b489ddf325d9f75462f8659056be1feb0",
+      "sha256": "c20084d5c5fa4b57035bdb462bb1f84920cbde3a3ac927bf71bb981cbf601400",
       "terPct": 0.5,
       "index": "Indxx Global Robotics & Artificial Intelligence Thematic v2 Index",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "performance": {
       "currency": "USD",
@@ -5532,7 +5536,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "e3c6e674d0670ad8a10c2f0be0cc1e3b489ddf325d9f75462f8659056be1feb0",
+      "sha256": "c20084d5c5fa4b57035bdb462bb1f84920cbde3a3ac927bf71bb981cbf601400",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5550,22 +5554,22 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-          "sha256": "e3c6e674d0670ad8a10c2f0be0cc1e3b489ddf325d9f75462f8659056be1feb0",
-          "checkedAt": "2026-11-17",
+          "sha256": "c20084d5c5fa4b57035bdb462bb1f84920cbde3a3ac927bf71bb981cbf601400",
+          "checkedAt": "2026-11-18",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
       },
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://globalxetfs.eu/funds/botz/",
         "asOf": "2026-11-16"
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://globalxetfs.eu/funds/botz/",
         "asOf": "2026-11-16"
       }
@@ -5582,9 +5586,9 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "dcaa9b1af4580f433ceaa6a3cfaa79c58940282ed3ff3c554616b5f3f5b355c9",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "58f9e7b77fd87967337a214a05b273da10da467b97bb06122b2415567c05048a",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "rows": [
@@ -5617,9 +5621,9 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "dcaa9b1af4580f433ceaa6a3cfaa79c58940282ed3ff3c554616b5f3f5b355c9",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "58f9e7b77fd87967337a214a05b273da10da467b97bb06122b2415567c05048a",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "rows": [
@@ -5671,9 +5675,9 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "dcaa9b1af4580f433ceaa6a3cfaa79c58940282ed3ff3c554616b5f3f5b355c9",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "58f9e7b77fd87967337a214a05b273da10da467b97bb06122b2415567c05048a",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "rows": [
@@ -5721,18 +5725,18 @@
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "dcaa9b1af4580f433ceaa6a3cfaa79c58940282ed3ff3c554616b5f3f5b355c9",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "58f9e7b77fd87967337a214a05b273da10da467b97bb06122b2415567c05048a",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "asOf": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "dcaa9b1af4580f433ceaa6a3cfaa79c58940282ed3ff3c554616b5f3f5b355c9",
+      "sha256": "58f9e7b77fd87967337a214a05b273da10da467b97bb06122b2415567c05048a",
       "terPct": 0.65,
       "index": "Solactive Global Uranium & Nuclear Components Total Return v2 Index",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "performance": {
       "currency": "USD",
@@ -5767,7 +5771,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "dcaa9b1af4580f433ceaa6a3cfaa79c58940282ed3ff3c554616b5f3f5b355c9",
+      "sha256": "58f9e7b77fd87967337a214a05b273da10da467b97bb06122b2415567c05048a",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5785,22 +5789,22 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-          "sha256": "dcaa9b1af4580f433ceaa6a3cfaa79c58940282ed3ff3c554616b5f3f5b355c9",
-          "checkedAt": "2026-11-17",
+          "sha256": "58f9e7b77fd87967337a214a05b273da10da467b97bb06122b2415567c05048a",
+          "checkedAt": "2026-11-18",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
       },
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
         "asOf": "2026-11-16"
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
         "asOf": "2026-11-16"
       }
@@ -5817,9 +5821,9 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "1fc0850ab20a3692978ecb2c58ae6deccfc26e9dea836ba8010577dd334f884b",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c086a472fa847b9fccf9f0565acd3274080f6423dee979b980bc61a27af9e957",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "rows": [
@@ -5837,9 +5841,9 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "1fc0850ab20a3692978ecb2c58ae6deccfc26e9dea836ba8010577dd334f884b",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c086a472fa847b9fccf9f0565acd3274080f6423dee979b980bc61a27af9e957",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "rows": [
@@ -5867,9 +5871,9 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "1fc0850ab20a3692978ecb2c58ae6deccfc26e9dea836ba8010577dd334f884b",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c086a472fa847b9fccf9f0565acd3274080f6423dee979b980bc61a27af9e957",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "rows": [
@@ -5917,18 +5921,18 @@
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "1fc0850ab20a3692978ecb2c58ae6deccfc26e9dea836ba8010577dd334f884b",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "c086a472fa847b9fccf9f0565acd3274080f6423dee979b980bc61a27af9e957",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "asOf": "2026-11-16",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "1fc0850ab20a3692978ecb2c58ae6deccfc26e9dea836ba8010577dd334f884b",
+      "sha256": "c086a472fa847b9fccf9f0565acd3274080f6423dee979b980bc61a27af9e957",
       "terPct": 0.5,
       "index": "Indxx Cybersecurity v2 Index",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "performance": {
       "currency": "USD",
@@ -5963,7 +5967,7 @@
       ],
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "1fc0850ab20a3692978ecb2c58ae6deccfc26e9dea836ba8010577dd334f884b",
+      "sha256": "c086a472fa847b9fccf9f0565acd3274080f6423dee979b980bc61a27af9e957",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5981,22 +5985,22 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-          "sha256": "1fc0850ab20a3692978ecb2c58ae6deccfc26e9dea836ba8010577dd334f884b",
-          "checkedAt": "2026-11-17",
+          "sha256": "c086a472fa847b9fccf9f0565acd3274080f6423dee979b980bc61a27af9e957",
+          "checkedAt": "2026-11-18",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
       },
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://globalxetfs.eu/funds/bug/",
         "asOf": "2026-11-16"
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://globalxetfs.eu/funds/bug/",
         "asOf": "2026-11-16"
       }
@@ -6013,19 +6017,19 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
-      "sha256": "7fc93169b092f10c34bdc1af953973407b3ef0a4f228aa649f42f4dfa61078f8",
+      "sha256": "3591ab1eef7c7eeadcf39ceab9aa49c43ac61fc7d2b55f71b304f6a2ec7c9501",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "7.48 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/holdings",
-      "sha256": "9d7ac4d3d2a14b92932f271301eec914a97b74239dc454d1d86e02f03b6b791d",
+      "sha256": "757e3f775c5fac14480c72c04ef3a7ef86f379a66f4ae1cd96292650115baa94",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -6095,14 +6099,14 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/holdings",
-      "sha256": "9d7ac4d3d2a14b92932f271301eec914a97b74239dc454d1d86e02f03b6b791d",
+      "sha256": "757e3f775c5fac14480c72c04ef3a7ef86f379a66f4ae1cd96292650115baa94",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -6112,7 +6116,7 @@
         },
         {
           "name": "Switzerland",
-          "weightPct": 15.832557
+          "weightPct": 15.626564
         },
         {
           "name": "France",
@@ -6136,7 +6140,7 @@
         },
         {
           "name": "Sweden",
-          "weightPct": 4.70427
+          "weightPct": 4.760838
         },
         {
           "name": "Denmark",
@@ -6160,7 +6164,7 @@
         },
         {
           "name": "Luxembourg",
-          "weightPct": 1.038752
+          "weightPct": 0.982183
         },
         {
           "name": "Norway",
@@ -6181,6 +6185,10 @@
         {
           "name": "Hong Kong",
           "weightPct": 0.230469
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.205993
         },
         {
           "name": "Chile",
@@ -6207,22 +6215,22 @@
           "weightPct": 0.0
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/holdings",
-      "sha256": "9d7ac4d3d2a14b92932f271301eec914a97b74239dc454d1d86e02f03b6b791d",
+      "sha256": "757e3f775c5fac14480c72c04ef3a7ef86f379a66f4ae1cd96292650115baa94",
       "rows": [
         {
-          "name": "ASML Holding NV",
+          "name": "ASML HOLDING",
           "isin": "NL0010273215",
           "weightPct": 4.02235216
         },
         {
-          "name": "Roche Holding AG",
+          "name": "ROCHE PS PAR AG",
           "isin": "CH1499059983",
           "weightPct": 2.46828883
         },
@@ -6232,7 +6240,7 @@
           "weightPct": 2.19835413
         },
         {
-          "name": "Novartis AG",
+          "name": "NOVARTIS AG",
           "isin": "CH0012005267",
           "weightPct": 2.13411611
         },
@@ -6242,22 +6250,22 @@
           "weightPct": 2.0380035
         },
         {
-          "name": "AstraZeneca PLC",
+          "name": "ASTRAZENECA PLC",
           "isin": "GB0009895292",
           "weightPct": 2.0162055
         },
         {
-          "name": "Nestle SA",
+          "name": "NESTLE SA",
           "isin": "CH0038863350",
           "weightPct": 1.94888237
         },
         {
-          "name": "SAP SE",
+          "name": "SAP",
           "isin": "DE0007164600",
           "weightPct": 1.71466259
         },
         {
-          "name": "Siemens AG",
+          "name": "SIEMENS N AG",
           "isin": "DE0007236101",
           "weightPct": 1.56291195
         },
@@ -6267,8 +6275,8 @@
           "weightPct": 1.4349733
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.12,
@@ -6277,7 +6285,7 @@
       "domicile": "Luxembourg",
       "replicationMethod": "Direct Replication (physically)",
       "inceptionDate": "2007-01-10",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -6296,37 +6304,37 @@
         "2024": 2.02,
         "2025": 35.77
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
         "asOf": null
       }
@@ -6342,7 +6350,7 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "sectors": {
@@ -6406,7 +6414,7 @@
           "label": "Consumer Discretionary"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "countries": {
@@ -6493,7 +6501,7 @@
           "weightPct": 0
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "holdings": {
@@ -6542,14 +6550,14 @@
           "weightPct": 1.3
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "terPct": 0.1,
       "index": "FTSE Developed Europe",
       "distribution": "Accumulating",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -6566,22 +6574,22 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "bf6f60064f5e8246f8c0b33f399004f6bf47289ec8a373c55dcf4190708dd56f",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Accumulating_9681_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Accumulating_9681_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Accumulating_9681_EU_INT_UK_EN.pdf",
         "asOf": null
       }
@@ -6597,7 +6605,7 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "sectors": {
@@ -6661,7 +6669,7 @@
           "label": "Consumer Discretionary"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "countries": {
@@ -6748,7 +6756,7 @@
           "weightPct": 0
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "holdings": {
@@ -6797,14 +6805,14 @@
           "weightPct": 1.3
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "terPct": 0.1,
       "index": "FTSE Developed Europe",
       "distribution": "Distributing",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -6821,22 +6829,22 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "8e276c1143856f4d43c71f6b19d0bb6886251a7ba5964f1ce2942f19f852dd38",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Distributing_9520_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Distributing_9520_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Distributing_9520_EU_INT_UK_EN.pdf",
         "asOf": null
       }
@@ -6852,7 +6860,7 @@
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "sectors": {
@@ -6916,7 +6924,7 @@
           "label": "Energy"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "countries": {
@@ -7131,7 +7139,7 @@
           "weightPct": 0
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "holdings": {
@@ -7180,14 +7188,14 @@
           "weightPct": 1.1
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "terPct": 0.14,
       "index": "FTSE All-World",
       "distribution": "Distributing",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -7204,22 +7212,22 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "88af430f6c5d6ead09c68eabd314babd50b2f315dc9007169d323dee8d3d1f7b",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Distributing_9505_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Distributing_9505_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Distributing_9505_EU_INT_UK_EN.pdf",
         "asOf": null
       }
@@ -7235,7 +7243,7 @@
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "sectors": {
@@ -7299,7 +7307,7 @@
           "label": "Energy"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "countries": {
@@ -7418,7 +7426,7 @@
           "weightPct": 0.01432
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "holdings": {
@@ -7467,14 +7475,14 @@
           "weightPct": 1.1
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "terPct": 0.12,
       "index": "FTSE Developed World",
       "distribution": "Accumulating",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -7491,22 +7499,22 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "9b7bd27b16e712420916e6f2282189353b9a3eca82d412ac453b1817e2ea12d6",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_World_UCITS_ETF_USD_Accumulating_9675_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_World_UCITS_ETF_USD_Accumulating_9675_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_World_UCITS_ETF_USD_Accumulating_9675_EU_INT_UK_EN.pdf",
         "asOf": null
       }
@@ -7522,7 +7530,7 @@
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "sectors": {
@@ -7586,7 +7594,7 @@
           "label": "Industrials"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "countries": {
@@ -7605,7 +7613,7 @@
           "weightPct": 0
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "holdings": {
@@ -7654,14 +7662,14 @@
           "weightPct": 1.5
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristics": {
       "terPct": 0.07,
       "index": "S&P 500",
       "distribution": "Accumulating",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "performance": {
@@ -7678,22 +7686,22 @@
       },
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "sha256": "0d38be7d551f9fd93f191f81087e2bcd6a6aba28d4a3a1f42c77b719619201e5",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Accumulating_9694_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Accumulating_9694_EU_INT_UK_EN.pdf",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Accumulating_9694_EU_INT_UK_EN.pdf",
         "asOf": null
       }
@@ -7709,7 +7717,7 @@
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-31",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-04"
     },
     "sectors": {
@@ -7731,7 +7739,7 @@
           "label": "Other/Cash"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-04"
     },
     "countries": {
@@ -7764,7 +7772,7 @@
           "weightPct": 0.03
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-04"
     },
     "holdings": {
@@ -7813,7 +7821,7 @@
           "weightPct": 3.82
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-04"
     },
     "characteristics": {
@@ -7824,9 +7832,9 @@
       "replicationMethod": "Physical (Full replication)",
       "asOf": "2026-10-31",
       "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
-      "sha256": "33421dfe564da2e3c600f9ef8552fcdb87622f841be57e7d3698a58a9808e295",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "sha256": "0ebe33906a1ba84c2344f82443b928cf327afd1c0e291249c5d9ec08091d99f2",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "performance": {
       "currency": "USD",
@@ -7839,12 +7847,12 @@
         "2024": 23.2,
         "2025": 50.1
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
         "asOf": "2026-10-31"
       },
@@ -7854,17 +7862,17 @@
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
         "asOf": "2026-10-31"
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
         "asOf": "2026-10-31"
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
         "asOf": "2026-10-31"
       }
@@ -7881,25 +7889,25 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
-      "sha256": "2687c6c35472629a37812e9260f8a113dfdce7cbfd4b66a6a36eca48fc49c004",
+      "sha256": "439fd39a9c46f0e4a9c700ed91573bf2796f8d7ec25b15dc2a8c12a197eec752",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "23.14 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/holdings",
-      "sha256": "cd54ba4d9987421b6fd52479b4dd6171e28bd950d043ca5ca7d8ef51595f25f3",
+      "sha256": "0bdf78405f9e3c933ede959ce70fc72d78a7b3c7fc095d4d94cc5f6420f4c7ee",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 27.96717,
+          "weightPct": 27.859379,
           "label": "Information Technology"
         },
         {
@@ -7909,7 +7917,7 @@
         },
         {
           "name": "Industrials",
-          "weightPct": 10.79708,
+          "weightPct": 10.820339,
           "label": "Industrials"
         },
         {
@@ -7924,7 +7932,7 @@
         },
         {
           "name": "Communication Services",
-          "weightPct": 7.346555,
+          "weightPct": 7.454345,
           "label": "Communication"
         },
         {
@@ -7939,7 +7947,7 @@
         },
         {
           "name": "Materials",
-          "weightPct": 3.19025,
+          "weightPct": 3.166991,
           "label": "Materials"
         },
         {
@@ -7963,36 +7971,36 @@
           "label": "Non classé"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/holdings",
-      "sha256": "cd54ba4d9987421b6fd52479b4dd6171e28bd950d043ca5ca7d8ef51595f25f3",
+      "sha256": "0bdf78405f9e3c933ede959ce70fc72d78a7b3c7fc095d4d94cc5f6420f4c7ee",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 70.457372
+          "weightPct": 71.680127
         },
         {
           "name": "Japan",
           "weightPct": 5.59218
         },
         {
-          "name": "United Kingdom",
-          "weightPct": 3.402067
+          "name": "Canada",
+          "weightPct": 3.296827
         },
         {
-          "name": "Canada",
-          "weightPct": 3.31156
+          "name": "United Kingdom",
+          "weightPct": 3.067599
         },
         {
           "name": "Switzerland",
-          "weightPct": 2.714751
+          "weightPct": 2.456989
         },
         {
           "name": "France",
@@ -8003,16 +8011,12 @@
           "weightPct": 2.14083
         },
         {
-          "name": "Australia",
-          "weightPct": 1.676154
-        },
-        {
           "name": "Netherlands",
           "weightPct": 1.670382
         },
         {
-          "name": "Ireland",
-          "weightPct": 1.051866
+          "name": "Australia",
+          "weightPct": 1.649062
         },
         {
           "name": "Spain",
@@ -8024,15 +8028,19 @@
         },
         {
           "name": "Sweden",
-          "weightPct": 0.741534
+          "weightPct": 0.750209
         },
         {
-          "name": "Singapore",
-          "weightPct": 0.512403
+          "name": "Ireland",
+          "weightPct": 0.582283
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.417873
+          "weightPct": 0.439318
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.420161
         },
         {
           "name": "Denmark",
@@ -8056,11 +8064,15 @@
         },
         {
           "name": "Luxembourg",
-          "weightPct": 0.16285
+          "weightPct": 0.154175
         },
         {
           "name": "Norway",
           "weightPct": 0.149651
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.147898
         },
         {
           "name": "China",
@@ -8071,18 +8083,6 @@
           "weightPct": 0.089483
         },
         {
-          "name": "Uruguay",
-          "weightPct": 0.075312
-        },
-        {
-          "name": "Brazil",
-          "weightPct": 0.072587
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.063053
-        },
-        {
           "name": "New Zealand",
           "weightPct": 0.055331
         },
@@ -8091,16 +8091,16 @@
           "weightPct": 0.046603
         },
         {
+          "name": "Chile",
+          "weightPct": 0.030415
+        },
+        {
           "name": "Cayman Islands",
-          "weightPct": 0.035463
+          "weightPct": 0.022959
         },
         {
           "name": "Zambia",
           "weightPct": 0.016801
-        },
-        {
-          "name": "Chile",
-          "weightPct": 0.015682
         },
         {
           "name": "Macao",
@@ -8111,72 +8111,76 @@
           "weightPct": 0.012646
         },
         {
+          "name": "Thailand",
+          "weightPct": 0.012504
+        },
+        {
           "name": "Korea, Republic of",
           "weightPct": 0.006163
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/holdings",
-      "sha256": "cd54ba4d9987421b6fd52479b4dd6171e28bd950d043ca5ca7d8ef51595f25f3",
+      "sha256": "0bdf78405f9e3c933ede959ce70fc72d78a7b3c7fc095d4d94cc5f6420f4c7ee",
       "rows": [
         {
-          "name": "Apple Inc",
+          "name": "APPLE",
           "isin": "US0378331005",
           "weightPct": 5.87280293
         },
         {
-          "name": "Microsoft Corp",
+          "name": "MICROSOFT",
           "isin": "US5949181045",
           "weightPct": 4.14316368
         },
         {
-          "name": "NVIDIA Corp",
+          "name": "NVIDIA",
           "isin": "US67066G1040",
           "weightPct": 4.06855482
         },
         {
-          "name": "Amazon.com Inc",
+          "name": "AMAZON COM INC",
           "isin": "US0231351067",
           "weightPct": 2.82914699
         },
         {
-          "name": "Alphabet Inc (US02079K3059)",
+          "name": "ALPHABET CLASS A",
           "isin": "US02079K3059",
           "weightPct": 1.88770913
         },
         {
-          "name": "Broadcom Inc",
+          "name": "BROADCOM INC",
           "isin": "US11135F1012",
           "weightPct": 1.70750567
         },
         {
-          "name": "Meta Platforms Inc",
+          "name": "META PLATFORMS CLASS A",
           "isin": "US30303M1027",
           "weightPct": 1.558765
         },
         {
-          "name": "Alphabet Inc (US02079K1079)",
+          "name": "ALPHABET CLASS C",
           "isin": "US02079K1079",
           "weightPct": 1.49095751
         },
         {
-          "name": "Eli Lilly and Co",
+          "name": "ELI LILLY",
           "isin": "US5324571083",
           "weightPct": 1.29860145
         },
         {
-          "name": "Tesla Inc",
+          "name": "TESLA INC",
           "isin": "US88160R1014",
           "weightPct": 1.23107745
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.12,
@@ -8185,7 +8189,7 @@
       "domicile": "Ireland",
       "replicationMethod": "Direct Replication (physically)",
       "inceptionDate": "2014-07-22",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -8204,37 +8208,37 @@
         "2024": 18.69,
         "2025": 21.17
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
         "asOf": null
       }
@@ -8251,25 +8255,25 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
-      "sha256": "02a0c03c0e6e4dfbcac0553356135350cabea3f7f9dc4337c2dc9dea85aa3451",
+      "sha256": "eb481200cbdd55ebe6c1972b4af6cd0784e5184765ad6a237505590c09ad6407",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "23.14 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
-      "sha256": "4e3a2850ecc9c89f2314265cbfbd117043f34c025997e0e6147b591544c2ca87",
+      "sha256": "e3a7eb1c0098c84152c47fb080e34a76f82f31beb2543eafa41103eb99d03508",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 27.96717,
+          "weightPct": 27.859379,
           "label": "Information Technology"
         },
         {
@@ -8279,7 +8283,7 @@
         },
         {
           "name": "Industrials",
-          "weightPct": 10.79708,
+          "weightPct": 10.820339,
           "label": "Industrials"
         },
         {
@@ -8294,7 +8298,7 @@
         },
         {
           "name": "Communication Services",
-          "weightPct": 7.346555,
+          "weightPct": 7.454345,
           "label": "Communication"
         },
         {
@@ -8309,7 +8313,7 @@
         },
         {
           "name": "Materials",
-          "weightPct": 3.19025,
+          "weightPct": 3.166991,
           "label": "Materials"
         },
         {
@@ -8333,36 +8337,36 @@
           "label": "Non classé"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
-      "sha256": "4e3a2850ecc9c89f2314265cbfbd117043f34c025997e0e6147b591544c2ca87",
+      "sha256": "e3a7eb1c0098c84152c47fb080e34a76f82f31beb2543eafa41103eb99d03508",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 70.457372
+          "weightPct": 71.680127
         },
         {
           "name": "Japan",
           "weightPct": 5.59218
         },
         {
-          "name": "United Kingdom",
-          "weightPct": 3.402067
+          "name": "Canada",
+          "weightPct": 3.296827
         },
         {
-          "name": "Canada",
-          "weightPct": 3.31156
+          "name": "United Kingdom",
+          "weightPct": 3.067599
         },
         {
           "name": "Switzerland",
-          "weightPct": 2.714751
+          "weightPct": 2.456989
         },
         {
           "name": "France",
@@ -8373,16 +8377,12 @@
           "weightPct": 2.14083
         },
         {
-          "name": "Australia",
-          "weightPct": 1.676154
-        },
-        {
           "name": "Netherlands",
           "weightPct": 1.670382
         },
         {
-          "name": "Ireland",
-          "weightPct": 1.051866
+          "name": "Australia",
+          "weightPct": 1.649062
         },
         {
           "name": "Spain",
@@ -8394,15 +8394,19 @@
         },
         {
           "name": "Sweden",
-          "weightPct": 0.741534
+          "weightPct": 0.750209
         },
         {
-          "name": "Singapore",
-          "weightPct": 0.512403
+          "name": "Ireland",
+          "weightPct": 0.582283
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.417873
+          "weightPct": 0.439318
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.420161
         },
         {
           "name": "Denmark",
@@ -8426,11 +8430,15 @@
         },
         {
           "name": "Luxembourg",
-          "weightPct": 0.16285
+          "weightPct": 0.154175
         },
         {
           "name": "Norway",
           "weightPct": 0.149651
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.147898
         },
         {
           "name": "China",
@@ -8441,18 +8449,6 @@
           "weightPct": 0.089483
         },
         {
-          "name": "Uruguay",
-          "weightPct": 0.075312
-        },
-        {
-          "name": "Brazil",
-          "weightPct": 0.072587
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.063053
-        },
-        {
           "name": "New Zealand",
           "weightPct": 0.055331
         },
@@ -8461,16 +8457,16 @@
           "weightPct": 0.046603
         },
         {
+          "name": "Chile",
+          "weightPct": 0.030415
+        },
+        {
           "name": "Cayman Islands",
-          "weightPct": 0.035463
+          "weightPct": 0.022959
         },
         {
           "name": "Zambia",
           "weightPct": 0.016801
-        },
-        {
-          "name": "Chile",
-          "weightPct": 0.015682
         },
         {
           "name": "Macao",
@@ -8481,72 +8477,76 @@
           "weightPct": 0.012646
         },
         {
+          "name": "Thailand",
+          "weightPct": 0.012504
+        },
+        {
           "name": "Korea, Republic of",
           "weightPct": 0.006163
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "asOf": "2026-11-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
-      "sha256": "4e3a2850ecc9c89f2314265cbfbd117043f34c025997e0e6147b591544c2ca87",
+      "sha256": "e3a7eb1c0098c84152c47fb080e34a76f82f31beb2543eafa41103eb99d03508",
       "rows": [
         {
-          "name": "Apple Inc",
+          "name": "APPLE",
           "isin": "US0378331005",
           "weightPct": 5.87280293
         },
         {
-          "name": "Microsoft Corp",
+          "name": "MICROSOFT",
           "isin": "US5949181045",
           "weightPct": 4.14316368
         },
         {
-          "name": "NVIDIA Corp",
+          "name": "NVIDIA",
           "isin": "US67066G1040",
           "weightPct": 4.06855482
         },
         {
-          "name": "Amazon.com Inc",
+          "name": "AMAZON COM INC",
           "isin": "US0231351067",
           "weightPct": 2.82914699
         },
         {
-          "name": "Alphabet Inc (US02079K3059)",
+          "name": "ALPHABET CLASS A",
           "isin": "US02079K3059",
           "weightPct": 1.88770913
         },
         {
-          "name": "Broadcom Inc",
+          "name": "BROADCOM INC",
           "isin": "US11135F1012",
           "weightPct": 1.70750567
         },
         {
-          "name": "Meta Platforms Inc",
+          "name": "META PLATFORMS CLASS A",
           "isin": "US30303M1027",
           "weightPct": 1.558765
         },
         {
-          "name": "Alphabet Inc (US02079K1079)",
+          "name": "ALPHABET CLASS C",
           "isin": "US02079K1079",
           "weightPct": 1.49095751
         },
         {
-          "name": "Eli Lilly and Co",
+          "name": "ELI LILLY",
           "isin": "US5324571083",
           "weightPct": 1.29860145
         },
         {
-          "name": "Tesla Inc",
+          "name": "TESLA INC",
           "isin": "US88160R1014",
           "weightPct": 1.23107745
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.12,
@@ -8555,7 +8555,7 @@
       "domicile": "Ireland",
       "replicationMethod": "Direct Replication (physically)",
       "inceptionDate": "2015-02-23",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -8574,37 +8574,37 @@
         "2024": 18.77,
         "2025": 21.21
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
         "asOf": null
       }
@@ -8621,13 +8621,13 @@
       "scope": "fund",
       "asOf": "2026-11-16",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
-      "sha256": "a33496ae7aa4951223e3cf6b9b0ec1d2ec7cebf81cc15b0bd837cb4e3a3a7cec",
+      "sha256": "a50bb4373ca19802df978b9ee84bac0002d59271b3945319040f5d17bb69416e",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "747.94 M GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
       "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-10-30",
@@ -8693,7 +8693,7 @@
           "label": "Immobilier"
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-04"
     },
     "countries": {
@@ -8729,7 +8729,7 @@
           "weightPct": 20.88
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-04"
     },
     "holdings": {
@@ -8781,7 +8781,7 @@
           "weightPct": 1.13
         }
       ],
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-11-04"
     },
     "characteristics": {
@@ -8791,7 +8791,7 @@
       "domicile": "Luxembourg",
       "replicationMethod": "Hybrid Replication",
       "inceptionDate": "2024-12-11",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-22"
     },
     "performance": {
@@ -8801,37 +8801,37 @@
       "years": {
         "2025": 22.63
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
         "asOf": null
       }
@@ -8843,12 +8843,12 @@
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
     "provider": "iShares",
     "aum": {
-      "amount": 9839990087.31,
+      "amount": 9668099689.03,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-16"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
       "asOf": "2026-11-16",
@@ -8917,10 +8917,10 @@
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "712912d362b8c85062f23c192346b28f851d9ad3de655108a34288296e9c7c2c",
+      "sha256": "f4af731b5276f1ec6012086e2c62e464e43e01ec7cc7ada1bf0abef2b4de3459",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
       "asOf": "2026-11-16",
@@ -8985,10 +8985,10 @@
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "712912d362b8c85062f23c192346b28f851d9ad3de655108a34288296e9c7c2c",
+      "sha256": "f4af731b5276f1ec6012086e2c62e464e43e01ec7cc7ada1bf0abef2b4de3459",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countriesRisk": {
       "asOf": "2026-11-16",
@@ -9077,10 +9077,10 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "712912d362b8c85062f23c192346b28f851d9ad3de655108a34288296e9c7c2c",
+      "sha256": "f4af731b5276f1ec6012086e2c62e464e43e01ec7cc7ada1bf0abef2b4de3459",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
       "asOf": "2026-11-16",
@@ -9138,10 +9138,10 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
-      "sha256": "712912d362b8c85062f23c192346b28f851d9ad3de655108a34288296e9c7c2c",
+      "sha256": "f4af731b5276f1ec6012086e2c62e464e43e01ec7cc7ada1bf0abef2b4de3459",
       "translation": "Explicit German-to-English labels; published weights unchanged",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.2,
@@ -9155,7 +9155,7 @@
         "fundMethodologyTypeCode": "Replikation"
       },
       "productStructure": "Physisch",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-24"
     },
     "performance": {
@@ -9174,47 +9174,47 @@
         "2024": 8.96,
         "2025": 20.02
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-16"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "replicationMethodRaw": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       },
       "productStructure": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
         "asOf": null
       }
@@ -9226,184 +9226,184 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 447731406.87650007,
+      "amount": 444171577.35459995,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "sectors": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 72.195676,
+          "weightPct": 72.09794,
           "label": "Information Technology"
         },
         {
           "name": "Communication Services",
-          "weightPct": 15.149742,
+          "weightPct": 15.025279,
           "label": "Communication"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 5.173827,
+          "weightPct": 5.209719,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Health Care",
-          "weightPct": 3.26794,
+          "weightPct": 3.326442,
           "label": "Health Care"
         },
         {
           "name": "Industrials",
-          "weightPct": 1.323208,
+          "weightPct": 1.366782,
           "label": "Industrials"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 1.065569,
+          "weightPct": 1.106359,
           "label": "Consumer Staples"
         },
         {
           "name": "Materials",
-          "weightPct": 0.848513,
+          "weightPct": 0.871249,
           "label": "Materials"
         },
         {
           "name": "Utilities",
-          "weightPct": 0.593172,
+          "weightPct": 0.609548,
           "label": "Utilities"
         },
         {
           "name": "Energy",
-          "weightPct": 0.207545,
+          "weightPct": 0.207667,
           "label": "Energy"
         },
         {
           "name": "Others",
-          "weightPct": 0.174809,
+          "weightPct": 0.179015,
           "label": "Autres"
         }
       ],
       "sourceComponent": "INDEX_SECTORS",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "countries": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 98.104718
+          "weightPct": 98.096313
         },
         {
           "name": "Ireland",
-          "weightPct": 1.508534
+          "weightPct": 1.514561
         },
         {
           "name": "Netherlands",
-          "weightPct": 0.225242
+          "weightPct": 0.222869
         },
         {
           "name": "Singapore",
-          "weightPct": 0.161506
+          "weightPct": 0.166257
         }
       ],
       "sourceComponent": "INDEX_COUNTRIES",
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "holdings": {
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-16",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "NVIDIA CORP",
-          "weightPct": 16.454156,
+          "weightPct": 16.279372,
           "isin": "US67066G1040"
         },
         {
           "name": "APPLE INC",
-          "weightPct": 15.925091,
+          "weightPct": 16.272049,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT CORP",
-          "weightPct": 13.895363,
+          "weightPct": 14.177351,
           "isin": "US5949181045"
         },
         {
           "name": "ALPHABET INC CL A",
-          "weightPct": 7.92519,
+          "weightPct": 7.844787,
           "isin": "US02079K3059"
         },
         {
           "name": "ALPHABET INC CL C",
-          "weightPct": 6.913295,
+          "weightPct": 6.859194,
           "isin": "US02079K1079"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 4.723328,
+          "weightPct": 4.743082,
           "isin": "US88160R1014"
         },
         {
           "name": "MICRON TECHNOLOGY INC",
-          "weightPct": 4.558957,
+          "weightPct": 4.345997,
           "isin": "US5951121038"
         },
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 4.347013,
+          "weightPct": 4.235535,
           "isin": "US0079031078"
         },
         {
           "name": "INTEL CORP",
-          "weightPct": 2.000926,
+          "weightPct": 1.919736,
           "isin": "US4581401001"
         },
         {
           "name": "CISCO SYSTEMS INC",
-          "weightPct": 1.622952,
+          "weightPct": 1.655105,
           "isin": "US17275R1023"
         }
       ],
-      "checkedAt": "2026-11-17",
-      "modifiedAt": "2026-11-17"
+      "checkedAt": "2026-11-18",
+      "modifiedAt": "2026-11-18"
     },
     "characteristics": {
       "terPct": 0.3,
       "index": "Solactive ISS ESG US Tech 100 Index",
       "distribution": "Capitalisation and/or distribution",
       "replicationMethod": "Indirect(Swap Based)",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-29"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-17",
+        "checkedAt": "2026-11-18",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "asOf": null
       }
@@ -9420,7 +9420,7 @@
         "2024": 38.07,
         "2025": 10.12
       },
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "modifiedAt": "2026-10-29"
     }
   }
