@@ -4,19 +4,19 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 
 | Champ ETF/ETP | Présent | Contrôle récent | Contrôle en retard | Publication ancienne |
 |---|---:|---:|---:|---:|
-| Positions intégrales | 202/284 | 202 | 0 | 0 |
-| Frais | 280/284 | 280 | 0 | 0 |
-| Encours | 280/284 | 280 | 0 | 0 |
-| Performances annuelles | 260/284 | 260 | 0 | 0 |
-| Historique mensuel | 280/284 | 280 | 0 | 0 |
-| Pays | 255/284 | 255 | 0 | 0 |
-| Secteurs | 255/284 | 255 | 0 | 0 |
-| Principales positions | 256/284 | 256 | 0 | 0 |
-| Distribution | 280/284 | 256 | 24 | 0 |
-| Domicile | 280/284 | 280 | 0 | 0 |
-| Réplication | 280/284 | 280 | 0 | 0 |
-| Cotations | 280/284 | 280 | 0 | 0 |
-| Éligibilité PEA | 257/284 | 251 | 6 | 0 |
-| Couverture de change | 280/284 | 139 | 141 | 0 |
+| Positions intégrales | 202/285 | 202 | 0 | 0 |
+| Frais | 281/285 | 281 | 0 | 0 |
+| Encours | 281/285 | 281 | 0 | 0 |
+| Performances annuelles | 260/285 | 260 | 0 | 0 |
+| Historique mensuel | 280/285 | 280 | 0 | 0 |
+| Pays | 256/285 | 256 | 0 | 0 |
+| Secteurs | 256/285 | 256 | 0 | 0 |
+| Principales positions | 257/285 | 257 | 0 | 0 |
+| Distribution | 281/285 | 257 | 24 | 0 |
+| Domicile | 281/285 | 281 | 0 | 0 |
+| Réplication | 280/285 | 280 | 0 | 0 |
+| Cotations | 281/285 | 281 | 0 | 0 |
+| Éligibilité PEA | 258/285 | 252 | 6 | 0 |
+| Couverture de change | 280/285 | 139 | 141 | 0 |
 
 Le rapport JSON détaillé est publié à `data/asset-field-coverage.json` et accessible depuis Données à revoir. Il contient chaque actif, champ, source, date de contrôle, date de publication et motif de lacune.
