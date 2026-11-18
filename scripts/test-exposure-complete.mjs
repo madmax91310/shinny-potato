@@ -16,6 +16,19 @@ assert.equal(selectDcaHoldings(completeSample,newerComplete,selectionDate),newer
 assert.equal(selectDcaHoldings(undefined,newerTopTen,selectionDate),newerTopTen)
 assert.equal(selectDcaHoldings(completeSample,{...newerComplete,asOf:'2027-01-01'},selectionDate),completeSample)
 assert.equal(selectDcaHoldings(completeSample,{...newerComplete,asOf:'2026-02-30'},selectionDate),completeSample)
+const partialBook={...completeSample,complete:false,sourcePartial:true,basis:'fund',
+ scope:'known-published-security-nav-weights',
+ partialSourceProof:{kind:'partial-unvalued-source-positions'},
+ unvaluedPositions:[{marketValue:null,weightPct:null}],
+ rows:[{name:'Known position 1'},{name:'Known position 2'}]}
+assert.equal(selectDcaHoldings(partialBook,newerTopTen,selectionDate),partialBook)
+assert.equal(selectDcaHoldings(partialBook,{...newerTopTen,complete:undefined},selectionDate),partialBook)
+assert.equal(selectDcaHoldings(partialBook,newerComplete,selectionDate),newerComplete)
+assert.equal(selectDcaHoldings({...partialBook,asOf:'2026-01-01'},newerTopTen,selectionDate),newerTopTen)
+assert.equal(selectDcaHoldings({...partialBook,partialSourceProof:null},newerTopTen,selectionDate),newerTopTen)
+assert.equal(selectDcaHoldings({...partialBook,unvaluedPositions:[{marketValue:0,weightPct:0}]},newerTopTen,selectionDate),newerTopTen)
+const widerRecent={...newerTopTen,rows:[...partialBook.rows,{name:'Known position 3'}]}
+assert.equal(selectDcaHoldings(partialBook,widerRecent,selectionDate),widerRecent)
 const universe=equityUniverse()
 for(const [asset,r] of Object.entries(universe)){
  assert.equal(references[asset].kind,'equity')
