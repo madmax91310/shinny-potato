@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS } from '../src/pages/budget-profiles/data.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 const base=process.env.BUDGET_PUBLIC_BASE||'http://127.0.0.1:4498/shinny-potato'
 const server=process.env.BUDGET_PUBLIC_BASE?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4498','--strictPort'],{stdio:'ignore'})
@@ -165,6 +165,30 @@ try{
   assert.deepEqual((await state()).published,fixture.published)
   assert.deepEqual(errors,[])
   receipts.push({width,legacyVersion:4,currentVersion:5,annualAmount:120,monthlyProvision:10,manualQuestionsPreserved:true,customDraftsPreserved:true,zipFiles:files.map(f=>f.name),exactPng:true,singleImageZip:true,queueImportConflicts:true,publishedUnchanged:true})
+  await ctx.close()
+ }
+ if (widths.includes(390)) {
+  const previous = BUDGET_NOEMIE_PREVIOUS
+  const personalized = 'Mon introduction.\n💰 Salaire net : 4 400 € / mois\n🧾 Total des dépenses : 2 600 € / mois\nJe vise un autre objectif à 7 200 €.'
+  const scheduledDates = { [previous.id]: '2026-12-13' }
+  const legacy = { version: 5, drafts: [{ profile: previous, text: personalized, textFinance: budgetFinancialReference(previous), edited: true }],
+    activeId: previous.id, published: [previous.id], publicationDates: { [previous.id]: '2026-10-12' }, used: [], queued: [previous.id], scheduledDates }
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, permissions: ['clipboard-read','clipboard-write'] })
+  await ctx.addInitScript(({ key, legacy }) => { if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(legacy)) }, { key, legacy })
+  const page = await ctx.newPage()
+  await page.goto(base + '/le-budget-de')
+  const field = page.getByLabel('Texte prêt à publier')
+  const expected = personalized.replace('4 400 €', '3\u202f500\u00a0€').replace('2 600 €', '2\u202f670\u00a0€')
+  await expect(field).toHaveValue(expected)
+  await expect(page.getByText(/4 400 €.*3\s500/)).toBeVisible()
+  await expect(page.getByText(/Les montants du budget ont changé/)).toBeVisible()
+  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
+  assert.equal(await page.evaluate(() => navigator.clipboard.readText()), expected)
+  await page.reload()
+  await expect(field).toHaveValue(expected)
+  const restored = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), key)
+  for (const field of ['activeId', 'published', 'publicationDates', 'queued', 'scheduledDates']) assert.deepEqual(restored[field], legacy[field])
+  assert.equal(restored.drafts[0].textCorrections.length, 2)
   await ctx.close()
  }
  writeFileSync(`${out}/receipt-${widths.join('-')}.json`,JSON.stringify(receipts,null,2)+'\n')

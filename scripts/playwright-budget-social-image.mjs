@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
+import { expect } from 'playwright/test'
+import { buildBudgetText } from '../src/pages/budget-profiles/lib.js'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { captureBudgetCanvas, verifyBudgetPng } from './budget-browser-image.mjs'
 import { waitPreview } from './wait-preview.mjs'
@@ -21,13 +23,18 @@ let browser
 try {
   if (server) await waitPreview(server, base)
   browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) })
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, acceptDownloads: true })
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, acceptDownloads: true, permissions: ['clipboard-read', 'clipboard-write'] })
   await page.addInitScript(captureBudgetCanvas)
   await page.goto(base + '/le-budget-de')
   const pick = page.getByRole('group', { name: 'Choisir un profil', exact: true })
   for (const profile of roster) {
     await pick.locator(`[data-value="${profile.id}"]`).click()
     writeFileSync(`${output}/${profile.id}.png`, await verifyBudgetPng(page, profile))
+    const draft = page.getByLabel('Texte prêt à publier')
+    const expected = buildBudgetText(profile)
+    await expect(draft).toHaveValue(expected)
+    await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
+    assert.equal(await page.evaluate(() => navigator.clipboard.readText()), expected, profile.id)
   }
   console.log(`${roster.length} profils à 390 px, PNG téléchargés identiques aux aperçus, textes et montants contrôlés.`)
 } finally {

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import audit from '../docs/budget-chantier4-2026-11-15/matrice.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_REFERENCE_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_REFERENCE_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetPublicIncomeRows, budgetPublicPresentation, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetPublicBasis, budgetSalaryLabel } from '../src/pages/budget-profiles/presentation.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
@@ -15,11 +15,12 @@ const auditedProfiles = BUDGET_PROFILES.filter(p=>auditedIds.has(p.id))
 assert.deepEqual(auditedProfiles.map(p=>p.id),audit.profiles.map(p=>p.id))
 for (const [i,p] of auditedProfiles.entries()) {
  const expected=audit.profiles[i],text=buildBudgetText(p),context=publicationContextFor(p),view=budgetPublicPresentation(p)
- const cents=k=>p[k].reduce((s,r)=>s+Math.round(r.amount*100),0)
+ const historical = p.id === BUDGET_NOEMIE_PREVIOUS.id ? BUDGET_NOEMIE_PREVIOUS : p
+ const cents=k=>historical[k].reduce((s,r)=>s+Math.round(r.amount*100),0)
  const [income,expenses,savings]=['income','expenses','savings'].map(cents)
  assert.deepEqual({income,expenses,savings,available:income-expenses,balance:income-expenses-savings},expected.expectedCents,p.id)
- assert.equal(Math.round(analyzeBudget(p).expenseShare),expected.expensePercent,p.id)
- assert.equal(hash(['income','expenses','savings'].map(k=>(BUDGET_REFERENCE_PROFILES.find(profile=>profile.id===p.id) || p)[k])),expected.monthlyLedgerHash,p.id)
+ assert.equal(Math.round(analyzeBudget(historical).expenseShare),expected.expensePercent,p.id)
+ assert.equal(hash(['income','expenses','savings'].map(k=>(BUDGET_REFERENCE_PROFILES.find(profile=>profile.id===p.id) || historical)[k])),expected.monthlyLedgerHash,p.id)
  assert.equal(hash(p.source),expected.sourceHash,p.id)
  assert(!forbidden.test(text),p.id)
  const opening=context.paragraphs[0].text
@@ -34,7 +35,7 @@ for (const [i,p] of auditedProfiles.entries()) {
  }
  const qualifier=view.basis.match(/(?:avant|après) impôts?/i)?.[0]
  if(qualifier)assert(budgetPublicBasis(p,view.basis).includes(qualifier),p.id)
- const old=budgetBeforeChantier4(p),custom={profile:old,text:'Mon texte\n\n123 € — ma question ?',edited:true,textFinance:budgetFinancialReference(old)}
+ const old=budgetBeforeChantier4(historical),custom={profile:old,text:'Mon texte\n\n123 € — ma question ?',edited:true,textFinance:budgetFinancialReference(old)}
  const refreshed=refreshBudgetDraft(custom)
  assert.equal(refreshed.text,custom.text)
  assert.equal(staleBudgetText(refreshed),budgetFinancialReference(old)!==budgetFinancialReference(p))

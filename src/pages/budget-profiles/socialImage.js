@@ -1,307 +1,267 @@
-import {
-  analyzeBudget, budgetAdaptation, budgetExpenseSections, budgetPublicIncomeRows,
-  budgetPublicPresentation, budgetTransferLabel, budgetTransferStatus, euro,
-} from './lib.js'
-import { budgetPublicBasis, budgetQualification, budgetRowSymbol } from './presentation.js'
-import { budgetCompletions } from './budget-completions.js'
+import { analyzeBudget, budgetCashIncome, budgetExpenseColumns, budgetPublicPresentation, budgetPublicSavingsRows,
+  budgetTransferLabel, budgetTransferStatus, euro } from './lib.js'
+import { budgetProfileHousehold, budgetQualification } from './presentation.js'
 
 export const SOCIAL_SIZE = { width: 1080, height: 1350 }
-export const SOCIAL_BODY_SIZE = 40
-const colors = { ink: '#10182f', background: '#1c2127', cream: '#fff8e5', muted: '#c8ced9',
-  income: '#dbd1ff', expense: '#ffc4ae', savings: '#c5f4cb', balance: '#f6e9c4', deficit: '#ffaaa8' }
-const width = 1000
-const margin = 40
-const collator = new Intl.Collator('fr')
-const cents = n => Math.round(n * 100)
-const sum = rows => rows.reduce((total, row) => total + cents(row.amount), 0) / 100
-const compactLabels = {
-  housing: 'Logement', energy: 'Énergie et eau', insurance: 'Assurances', education: 'École et études', cantine: 'Cantine',
-  health: 'Santé', tax: 'Impôts', bills: 'Télécoms', transport: 'Transports', food: 'Courses',
-  pets: 'Animaux', childcare: 'Garde d’enfants', care: 'Hygiène', child: 'Activités enfants',
-  debt: 'Crédits', clothing: 'Vêtements', gift: 'Cadeaux', dining: 'Restaurants', media: 'Streaming',
-  music: 'Musique', digital: 'Équipement', leisure: 'Loisirs', hair: 'Coiffure',
-}
-const groupTitles = { fixed: 'Contraintes', flexible: 'Non contraintes', mixed: 'Mixtes et autres' }
+export const SOCIAL_BODY_SIZE = 31
 
-function shortLabel(label) {
-  return label.replace(/^(?:Sa |Leur )?Part (?:personnelle )?(?:du |de la |de l[’']|des |d[’'])?/i, '')
-    .replace(/ \(\d[^)]*\b(?:CHF|EUR|€)[^)]*\)/gu, '')
-    .replace(/^Provision (?:mensuelle )?(?:pour )?/i, '')
+const colors = {
+  cream: '#f4f1e8', ink: '#102d28', muted: '#4d6255', green: '#153d34',
+  salmon: '#fa987d', mint: '#a6e5ca', gold: '#f4cc77', white: '#fcfaf1',
+  fixed: '#fbe9e1', flexible: '#fdf0d4', savings: '#e3f1e2', capacity: '#e4ecd9',
+}
+const width = 980
+const margin = 50
+const gap = 20
+const column = (width - gap) / 2
+const detailsY = 635
+const detailsHeight = 520
+const sum = rows => rows.reduce((total, row) => total + Math.round(row.amount * 100), 0) / 100
+
+// Keep the user's main rows. Aggregate the smaller ones only within the same
+// public category and retain the original rows for reconciliation with the text.
+function groupRows(rows, maximum, otherLabel = 'Autres postes', question = '') {
+  const sorted = rows.toSorted((a, b) => b.amount - a.amount)
+  const keep = sorted.length <= maximum ? sorted : sorted.slice(0, maximum - 1)
+  if (keep.length > 2 && keep.length < sorted.length) {
+    const relevant = sorted.find(row => mentionsRow(question, row))
+    if (relevant && !keep.includes(relevant)) keep[keep.length - 1] = relevant
+  }
+  const result = keep.map(row => ({ label: shortLabel(row), amount: row.amount, members: [row] }))
+  if (keep.length !== sorted.length) {
+    const rest = sorted.filter(row => !keep.includes(row))
+    result.push({ label: otherLabel, amount: sum(rest), members: rest })
+  }
+  return result
+}
+
+const compactLabels = [
+  [/^Crédit à la consommation$/i, 'Crédit conso'],
+  [/^Cantine des deux enfants$/i, 'Cantine'],
+  [/^Centre de loisirs du mercredi$/i, 'Loisirs du mercredi'],
+  [/^Loyer et charges locatives$/i, 'Loyer et charges'],
+  [/^Courses, hygiène et trois chats$/i, 'Courses, hygiène, chats'],
+  [/^Transports du quotidien$/i, 'Transports'],
+  [/^Assurances habitation et auto$/i, 'Assur. logement et auto'],
+  [/^Cadeaux et remplacements$/i, 'Cadeaux et achats'],
+  [/^Provision trajets familiaux$/i, 'Trajets famille'],
+  [/^Loyer, eau et chauffage$/i, 'Loyer et charges'],
+  [/^Assurance maladie LAMal.*$/i, 'Assurance LAMal'],
+  [/^Alimentation et boissons sans alcool$/i, 'Alim. et boissons'],
+  [/^Téléphone, internet, télévision et redevance$/i, 'Télécoms + TV'],
+  [/^Coiffeur, loisirs et argent de poche · adulte (.+)$/i, 'Loisirs et soins $1'],
+  [/^Loisirs communs, école et camps$/i, 'École et loisirs'],
+  [/^Assurances habitation et santé$/i, 'Assur. logement et santé'],
+  [/^Abonnement de transport$/i, 'Abonnement transport'],
+  [/^Livret A · précaution prévue$/i, 'Livret A · précaution'],
+  [/^Enveloppe vacances prévue$/i, 'Vacances'],
+  [/^Enveloppe rentrée scolaire prévue$/i, 'Rentrée scolaire'],
+  [/^Épargne de sécurité prévue$/i, 'Épargne de sécurité'],
+]
+const normalizeMatch = text => text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+function mentionsRow(question, row) {
+  const label = normalizeMatch(row.label.replace(/^Provision /i, ''))
+  return label.length > 5 && question.includes(label)
+}
+
+function shortLabel(row) {
+  if (row.imageLabel) return row.imageLabel
+  const compact = compactLabels.find(([pattern]) => pattern.test(row.label))
+  if (compact) return row.label.replace(...compact)
+
+  return row.label.replace(/^(?:(?:Sa|Leur) )?Part (?:personnelle )?(?:du |de la |de l[’']|des |d[’'])?/i, '')
+    .replace(/^Carburant, entretien et assurance auto$/i, 'Frais auto')
+    .replace(/^(?:Courses|Alimentation)(?: alimentaires)? payées sur (?:le|son) compte$/i, 'Courses')
+    .replace(/^Assurance habitation$/i, 'Assur. habitation')
+    .replace(/^Provisions?(?: mensuelles?)? (?:pour )?(?=.{18,})/i, '')
     .replace(/(?:Box )?internet et (?:forfaits? )?(?:téléphones?|mobiles?)/i, 'Télécoms')
     .replace(/téléphones? et internet/i, 'Télécoms')
-    .replace(/^(?:Alimentation|Courses alimentaires)(?=\b)/i, 'Courses')
-    .replace(/^Essence, train, assurances et abonnements$/i, 'Transport et divers')
-    .replace(/^Transports, assurances, téléphone et abonnements$/i, 'Transport et divers')
-    .replace(/^Santé, coiffeur, cantine et divers$/i, 'Santé et divers')
-    .replace(/^Courses et (carburant|restaurants)$/i, (_, kind) => `Courses + ${kind === 'carburant' ? 'auto' : 'repas'}`)
-    .replace(/^Assurance habitation$/i, 'Assur. logement')
-    .replace(/^Restaurants et sorties$/i, 'Sorties + repas')
-    .replace(/^(?:Vacances et cadeaux|Cadeaux et vacances)$/i, 'Congés + cadeaux')
-    .replace(/^Frais professionnels non remboursés$/i, 'Frais de travail')
-    .replace(/^Assurance automobile, essence et téléphone$/i, 'Auto + téléphone')
-    .replace(/^Équipement et imprévus$/i, 'Achats et imprévus')
-    .replace(/^(?:Entretien et (?:petits )?équipements?|Entretien et réparations|Équipement et réparations)$/i, 'Achats et entretien')
-    .replace(/^Remplacement des appareils$/i, 'Appareils')
-    .replace(/^Argent de poche (?:de l’enfant|des enfants)$/i, 'Argent de poche')
-    .replace(/^Coiffeur, loisirs et argent de poche.*$/i, 'Loisirs et soins')
-    .replace(/^Téléphone, santé et assurances personnelles$/i, 'Santé + factures')
-    .replace(/^École et activités (?:de son enfant|des enfants)$/i, 'École et activités')
-    .replace(/^Dépenses des enfants$/i, 'Enfants')
-    .replace(/^Garderie, repas et activités$/i, 'Garde et activités')
-    .replace(/^Dépenses annuelles$/i, 'Frais annuels')
-    .replace(/^Mobile, assurances et abonnements personnels$/i, 'Assur. + forfaits')
-    .replace(/^Télécoms, abonnements, sport$/i, 'Télécoms + loisirs')
-    .replace(/^Équipement et dépenses occasionnelles$/i, 'Achats divers')
-    .replace(/^Rentrée et équipements$/i, 'Rentrée et achats')
-    .replace(/^Imprévus et remplacements$/i, 'Achats et imprévus')
-    .replace(/^Entretien et appareils$/i, 'Entretien et achats')
-    .replace(/^Téléphone et abonnements$/i, 'Télécoms + abos')
-    .replace(/^Garde, cantine et enfant$/i, 'Garde et cantine')
+    .replace(/^(?:Remboursement du |Mensualité du )crédit /i, 'Crédit ')
+    .replace(/^(?:Sa |Son |Leur )(?=\p{L})/iu, '')
     .replace(/^[\p{L}]/u, letter => letter.toLocaleUpperCase('fr')).trim()
-}
-
-function groupExpenses(section, limit) {
-  let rows = section.rows.map((row, index) => {
-    const kind = /^assurances? habitation et auto/i.test(row.label) ? 'insurance' :
-      /^cantine/i.test(row.label) ? 'cantine' : budgetRowSymbol(row).kind
-    return { ...row, label: shortLabel(row.label), kind, members: [index] }
-  })
-  if (rows.length > limit) {
-    const byLabel = new Map()
-    for (const row of rows) {
-      const label = row.annualProvision || row.periodicity === 'annual-provision' || /^provision/i.test(section.rows[row.members[0]].label)
-        ? 'Provisions' : section.id === 'mixed' ? row.label : (compactLabels[row.kind] || row.label)
-      byLabel.set(label, [...(byLabel.get(label) || []), row])
-    }
-    rows = [...byLabel.entries()].map(([label, items]) => items.length === 1 ? items[0] :
-      { label, amount: sum(items), members: items.flatMap(row => row.members) })
-  }
-  rows.sort((a, b) => b.amount - a.amount || collator.compare(a.label, b.label))
-  if (rows.length > limit) {
-    const small = rows.splice(limit - 1)
-    rows.push({ label: 'Autres postes', amount: sum(small), members: small.flatMap(row => row.members) })
-  }
-  return rows
 }
 
 export function planSocialBudget(profile) {
   const totals = analyzeBudget(profile)
-  if (totals.errors.length) throw new Error(totals.errors.join(' '))
   const presentation = budgetPublicPresentation(profile)
-  const groups = budgetExpenseSections(profile)
-  const single = groups.length === 1
-  const columns = single ? [groups] : [
-    groups.filter(group => group.id === 'fixed'),
-    groups.filter(group => group.id !== 'fixed'),
-  ].filter(column => column.length)
-  const expenses = columns.map(column => column.map(section => {
-    const limit = column.length === 1 ? 7 : (section.id === 'mixed' ? 2 : 4)
-    return { id: section.id, amount: sum(section.rows), rows: groupExpenses(section, limit) }
-  }))
-  const publishedHighlight = profile.kind === 'participant' ? null : budgetCompletions[profile.id]?.highlight
-  const finance = profile.kind === 'participant' ? [] : profile.editorialCreation?.finance || []
-  const stock = finance.find(item => item.type === 'financial-stock' && /sécurité|précaution|liquid|réserve|livret/i.test(item.label))
-  const project = finance.find(item => item.type === 'project' && Number.isFinite(item.targetAmount))
-  const highlight = publishedHighlight || stock || (project && { label: project.label, amount: project.targetAmount, target: true })
-  const income = budgetPublicIncomeRows(profile)
-  const perks = income.filter(row => row.inKind)
-  const transfers = new Map()
-  for (const row of profile.savings) {
-    const status = budgetTransferStatus(profile, row)
-    transfers.set(status, (transfers.get(status) || 0) + cents(row.amount))
+  const question = normalizeMatch(presentation.question || '')
+  if (totals.errors.length) throw new Error(totals.errors.join(' '))
+  const [left, right] = budgetExpenseColumns(profile)
+  const fixed = left.rows.filter(row => !row.mixed), mixed = left.rows.filter(row => row.mixed)
+  const savings = budgetPublicSavingsRows(profile)
+  const flexibleLimit = savings.length ? 3 : 8
+  const fixedRows = groupRows(fixed, mixed.length ? 7 : 8, 'Autres postes', question)
+  if (mixed.length) fixedRows.push(...groupRows(mixed, 1, 'Autres frais mixtes'))
+  const expenses = [
+    [{ ...left, title: mixed.length && fixed.length ? 'Frais contraints et mixtes' : left.title, rows: fixedRows }],
+    [{ ...right, rows: groupRows(right.rows, flexibleLimit, 'Autres postes', question) }],
+  ]
+  const transferRows = groupRows(savings.map((row, index) => ({ ...row, status: budgetTransferStatus(profile, profile.savings[index]) })), 4, 'Autres versements', question)
+  return { totals, presentation, expenses, transferRows,
+    netSalary: budgetCashIncome(profile).netSalary, showAllocation: totals.income > 0 && totals.balance >= 0 }
+}
+
+let budgetFont
+function loadBudgetFont() {
+  if (!budgetFont) {
+    const url = `${import.meta.env.BASE_URL}asset-art/investor-type/inter-latin.woff2`
+    budgetFont = new FontFace('Budget Inter', `url("${url}")`, { weight: '100 900' }).load()
+      .then(face => document.fonts.add(face)).catch(() => {})
   }
-  return { totals, presentation, expenses, highlight, income: income.filter(row => !row.inKind), perks, transfers }
+  return budgetFont
 }
 
-function type(ctx, size, weight) {
-  ctx.font = `${weight} ${size}px Arial, sans-serif`
+function type(ctx, size, weight = 500) {
+  ctx.font = `${weight} ${size}px "Budget Inter", Arial, sans-serif`
 }
 
-function fit(ctx, value, maxWidth) {
-  if (ctx.measureText(value).width <= maxWidth) return value
-  const words = value.trim().split(/\s+/)
-  while (words.length > 1 && ctx.measureText(words.join(' ')).width > maxWidth) words.pop()
-  const phrase = words.join(' ').replace(/(?:\s+(?:·|et|de|du|des|à|au|en)|[,:])$/i, '')
-  if (ctx.measureText(phrase).width <= maxWidth) return phrase
-  const letters = [...phrase]
-  while (letters.length && ctx.measureText(letters.join('') + '…').width > maxWidth) letters.pop()
-  return letters.join('') + '…'
+function fit(ctx, text, max) {
+  if (ctx.measureText(text).width <= max) return text
+  const words = text.trim().split(/\s+/)
+  while (words.length > 1 && ctx.measureText(words.join(' ') + '…').width > max) words.pop()
+  const prefix = [...words.join(' ').replace(/[·,:]$/, '').trim()]
+  while (prefix.length && ctx.measureText(prefix.join('') + '…').width > max) prefix.pop()
+  return prefix.join('') + '…'
 }
 
-function draw(ctx, value, x, y, { size = SOCIAL_BODY_SIZE, color = colors.ink, weight = 600, align = 'left', maxWidth } = {}) {
+function draw(ctx, text, x, y, { size = SOCIAL_BODY_SIZE, weight = 500, color = colors.ink, align = 'left', max } = {}) {
   type(ctx, size, weight)
   ctx.fillStyle = color
-  ctx.textAlign = align
   ctx.textBaseline = 'top'
-  ctx.fillText(maxWidth === undefined ? value : fit(ctx, value, maxWidth), x, y)
+  ctx.textAlign = align
+  ctx.fillText(max === undefined ? text : fit(ctx, text, max), x, y)
 }
 
-function panel(ctx, x, y, w, h, color) {
+function drawAmount(ctx, text, x, y, max, options) {
+  const weight = options.weight || 800
+  let size = options.size
+  type(ctx, size, weight)
+  while (ctx.measureText(text).width > max && size > 27) type(ctx, --size, weight)
+  draw(ctx, text, x, y + (options.size - size) / 2, { ...options, weight, size })
+}
+
+function box(ctx, x, y, w, h, color, radius = 24) {
   ctx.fillStyle = color
   ctx.beginPath()
-  ctx.roundRect(x, y, w, h, 22)
+  ctx.roundRect(x, y, w, h, radius)
   ctx.fill()
 }
 
 function drawIdentity(ctx, profile, presentation) {
-  const { name, job, household } = presentation
+  const { name, job, location } = presentation
   const age = profile.age && !/ ans\b| et /i.test(name) ? `, ${profile.age} ans` : ''
-  const tag = [budgetAdaptation(profile), budgetQualification(profile)].filter(Boolean).join(' · ')
-  draw(ctx, 'LE BUDGET DE', margin, 32, { size: 32, color: colors.cream, weight: 800 })
-  if (tag) draw(ctx, tag, 1040, 34, { size: 32, color: colors.muted, align: 'right' })
-  type(ctx, 64, 800)
-  const singleLine = ctx.measureText(name + age).width <= width
-  if (singleLine) {
-    draw(ctx, name + age, margin, 83, { size: 64, color: colors.cream, weight: 800 })
-  } else {
-    type(ctx, 48, 800)
-    const words = name.trim().split(/\s+/)
-    const first = []
+  type(ctx, 78, 800)
+  const long = ctx.measureText(name + age).width > width
+  if (long) {
+    type(ctx, 47, 800)
+    const words = name.trim().split(/\s+/), first = []
     while (words.length > 1 && ctx.measureText([...first, words[0]].join(' ')).width <= width) first.push(words.shift())
-    if (first.length) {
-      draw(ctx, first.join(' '), margin, 80, { size: 48, color: colors.cream, weight: 800 })
-      const second = fit(ctx, words.join(' '), width - ctx.measureText(age).width)
-      draw(ctx, second + age, margin, 132, { size: 48, color: colors.cream, weight: 800 })
-    } else {
-      const shortened = fit(ctx, name, width - ctx.measureText(age).width)
-      draw(ctx, shortened + age, margin, 80, { size: 48, color: colors.cream, weight: 800 })
-    }
-  }
-  const occupations = job.replace(/(?:^| · )[\p{L}’-]+\s*:\s*/gu, match => match.startsWith(' · ') ? ' · ' : '')
-    .replace(/assistante administrative/gi, 'Assistante admin.').replace(/préparateur de commandes/gi, 'Préparateur logistique')
-    .replace(/ · budget prévu/i, '').replace(/ · (?:première|deuxième|troisième) année/i, '')
-  const family = household.replace(/\b(un|deux|trois) enfants?(?: de [\d, et]+ ans)?/gi,
-    (_, count) => ({ un: '1 enfant', deux: '2 enfants', trois: '3 enfants' })[count.toLowerCase()])
-    .replace(/ · sa part du logement et ses dépenses.*| · sa part du budget du couple/i, ' · Sa part')
-    .replace(/ · factures réglées sur son compte/i, '').replace(/ · installation dans son logement/i, '')
-  const contextTop = singleLine ? 165 : 188
-  if (occupations) draw(ctx, occupations, margin, contextTop, { color: colors.muted, maxWidth: width })
-  if (family) draw(ctx, family, margin, occupations ? (singleLine ? 217 : 232) : contextTop, { color: colors.muted, maxWidth: width })
-}
+    if (first.length) draw(ctx, first.join(' '), 540, 25, { size: 47, weight: 800, align: 'center' })
+    type(ctx, 47, 800)
+    draw(ctx, fit(ctx, words.join(' '), width - ctx.measureText(age).width) + age,
+      540, first.length ? 79 : 52, { size: 47, weight: 800, align: 'center' })
+  } else draw(ctx, name + age, 540, 47, { size: 78, weight: 800, align: 'center' })
 
-function incomeLabel(label) {
-  if (/salaire|rémunération/i.test(label)) return /net/.test(label.toLowerCase()) ? 'Salaire net' : 'Salaire'
-  if (/CAF|Mobili.jeune|\bAPL\b/i.test(label)) return 'Aides logement'
-  if (/allocation/i.test(label)) return 'Allocations'
-  if (/aide/i.test(label)) return 'Aides'
-  if (/prime|pécule/i.test(label)) return 'Primes'
-  if (/pension/i.test(label)) return 'Pension'
-  if (/chômage/i.test(label)) return 'Chômage'
-  return shortLabel(label)
+  const household = budgetProfileHousehold(presentation.household)
+    .replace(/^Couple de (\d+) et (\d+) ans/, '$1 et $2 ans')
+    .replace(/ · sans enfant/i, ' sans enfant')
+    .replace(/un enfant de (\d+) ans pendant les vacances/i, '1 enfant')
+    .replace(/deux enfants de (\d+) et (\d+) ans/i, '2 enfants ($1 et $2 ans)')
+  const compactJob = job?.includes(' · ') ? job
+    .replace(/(?:^| · )[^:·]+ : /g, part => part.startsWith(' · ') ? ' · ' : '')
+    .replace(/assistante administrative/i, 'assistante admin.')
+    .replace(/technicien de maintenance/i, 'technicien maintenance')
+    .replace(/agente d’entretien à temps partiel/i, 'agente d’entretien (temps partiel)')
+    .replace(/préparateur de commandes/i, 'préparateur commandes') : job
+  const context = [location?.replace(/^Agglomération lilloise$/i, 'Région lilloise'), household, budgetQualification(profile)].filter(Boolean).join(' · ')
+  if (compactJob) draw(ctx, compactJob, 540, 140, { size: 35, weight: 650, align: 'center', max: width })
+  if (context) draw(ctx, context, 540, job ? 193 : 158, { size: 31, color: colors.muted, align: 'center', max: width })
 }
 
 function drawIncome(ctx, profile, plan, money) {
-  const { totals, income, perks, presentation } = plan
-  const basis = budgetPublicBasis(profile, presentation.basis)
-  const average = /moyen|liss[ée]/i.test([basis, presentation.incomeNote, ...income.map(row => row.label)].join(' '))
-  const heading = perks.length ? 'Revenus disponibles' : average ? 'Revenus moyens' : 'Revenus mensuels'
-  panel(ctx, margin, 278, width, 164, colors.income)
-  draw(ctx, heading, 62, 301, { weight: 800 })
-  draw(ctx, money(totals.income), 1018, 293, { size: 54, weight: 800, align: 'right' })
-  if (income.length > 1) {
-    const second = income.length === 2 ? income[1] : { label: 'Autres revenus', amount: sum(income.slice(1)) }
-    for (const [index, row] of [income[0], second].entries()) {
-      const x = 62 + index * 498
-      const amount = money(row.amount)
-      type(ctx, 38, 700)
-      const maxWidth = 458 - ctx.measureText(amount).width - 14
-      draw(ctx, incomeLabel(row.label), x, 358, { size: 38, maxWidth })
-      draw(ctx, amount, x + 458, 358, { size: 38, weight: 700, align: 'right' })
-    }
-  } else {
-    const detail = (/^Montants mensuels$/i.test(basis) ? income[0]?.label || '' : basis).split(' · ')[0]
-    draw(ctx, detail, 62, 358, { size: 38, maxWidth: 952 })
+  const { totals, netSalary, showAllocation } = plan
+  box(ctx, margin, 250, width, 207, colors.green, 30)
+  draw(ctx, netSalary ? 'SALAIRE NET MENSUEL' : 'REVENUS MENSUELS', 540, showAllocation ? 271 : 290,
+    { size: 25, weight: 750, color: colors.mint, align: 'center' })
+  drawAmount(ctx, (profile.approximate ? '≈ ' : '') + money(totals.income), 540, showAllocation ? 305 : 325, width - 60,
+    { size: 78, color: colors.white, align: 'center' })
+  if (!showAllocation) return
+  const x = margin + 28, y = 413, w = width - 56, h = 20
+  ctx.save()
+  ctx.beginPath()
+  ctx.roundRect(x, y, w, h, h / 2)
+  ctx.clip()
+  let cursor = x
+  for (const [amount, color] of [[totals.expenses, colors.salmon], [totals.savings, colors.mint], [totals.balance, colors.gold]]) {
+    const segment = amount / totals.income * w
+    ctx.fillStyle = color
+    ctx.fillRect(cursor, y, segment, h)
+    cursor += segment
   }
-  if (perks.length) draw(ctx, `Avantages hors total : ${money(sum(perks))}`, 62, 400, { size: 34 })
+  ctx.restore()
 }
 
-function drawExpenses(ctx, plan, money, number) {
-  const { totals, expenses } = plan
-  panel(ctx, margin, 460, width, 506, colors.expense)
-  draw(ctx, 'Dépenses mensuelles', 62, 479, { weight: 800 })
-  draw(ctx, money(totals.expenses), 1018, 473, { size: 50, weight: 800, align: 'right' })
-  const columnWidth = expenses.length === 1 ? 956 : 458
-  for (const [index, column] of expenses.entries()) {
-    const x = 62 + index * 498
-    let y = 549
-    for (const { id, amount, rows } of column) {
-      draw(ctx, groupTitles[id], x, y, { size: 36, weight: 800 })
-      const subtotal = number(amount)
-      if (rows.length > 1 && ctx.measureText(groupTitles[id]).width + ctx.measureText(subtotal).width + 12 <= columnWidth) {
-        draw(ctx, subtotal, x + columnWidth, y, { size: 36, weight: 800, align: 'right' })
-      }
-      y += 49
-      for (const row of rows) {
-        const value = number(row.amount)
-        type(ctx, SOCIAL_BODY_SIZE, 700)
-        const maxWidth = columnWidth - ctx.measureText(value).width - 16
-        const kindLabel = id === 'mixed' ? 'Poste mixte' : compactLabels[row.kind]
-        const label = ctx.measureText(row.label).width > maxWidth && kindLabel ? kindLabel : row.label
-        draw(ctx, maxWidth < 130 ? 'Divers' : label, x, y, { maxWidth })
-        draw(ctx, value, x + columnWidth, y, { weight: 700, align: 'right' })
-        y += 47
-      }
-      y += 9
-    }
-  }
-}
-
-function drawSaving(ctx, profile, plan, money, number) {
-  const { totals: a, transfers, highlight } = plan
-  const metrics = [[a.available < 0 ? (profile.savings.length ? 'Déficit avant' : 'Déficit') : 'Capacité d’épargne', a.available, a.available < 0 ? colors.deficit : colors.savings]]
-  if (profile.savings.length) metrics.push([budgetTransferLabel(profile), a.savings, colors.savings],
-    [a.balance < 0 ? 'Déficit' : 'Solde', a.balance, a.balance < 0 ? colors.deficit : colors.balance])
-  const mixed = transfers.size > 1
-  const gap = 14
-  const cardWidth = (width - gap * (metrics.length - 1)) / metrics.length
-  metrics.forEach(([label, value, color], index) => {
-    const x = margin + index * (cardWidth + gap)
-    panel(ctx, x, 986, cardWidth, 176, color)
-    const transferCard = index === 1
-    draw(ctx, transferCard ? 'Versements' : label, x + 16, 1006, { size: 32, weight: 800 })
-    draw(ctx, number(value), x + 16, 1051, { size: 42, weight: 800 })
-    if (transferCard && label !== 'Versements mixtes') {
-      const qualifier = label === 'Versements' ? 'Au budget' : label.replace('Versements ', '')
-      draw(ctx, qualifier[0].toUpperCase() + qualifier.slice(1), x + 16, 1113, { size: 32 })
-    }
-    if (index === 2) draw(ctx, 'Après versements', x + 16, 1113, { size: 32 })
+function drawTotals(ctx, plan, money) {
+  const { totals: a } = plan
+  const card = (width - 2 * 15) / 3
+  const data = [
+    ['Dépenses', a.expenses, colors.salmon],
+    ['Versements', a.savings, colors.mint],
+    [a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
+  ]
+  data.forEach(([label, amount, color], index) => {
+    const x = margin + index * (card + 15), center = x + card / 2
+    box(ctx, x, 480, card, 130, color)
+    drawAmount(ctx, money(amount), center, 491, card - 22, { size: 47, align: 'center' })
+    draw(ctx, label, center, 555, { align: 'center', size: 29, weight: 600 })
   })
-  if (mixed) {
-    const statusLabels = { paid: 'Effectués', planned: 'Prévus', budgeted: 'Au budget' }
-    let x = margin
-    for (const [status, amount] of transfers) {
-      draw(ctx, statusLabels[status], x, 1179, { size: 34, color: colors.muted })
-      draw(ctx, number(amount / 100), x, 1218, { size: 38, color: colors.cream })
-      x += (width + gap) / transfers.size
-    }
-  } else if (highlight) {
-    const label = highlight.label.split(' : ')[0]
-    const amount = money(highlight.amount, highlight.currency)
-    type(ctx, 40, 600)
-    const space = width - ctx.measureText(amount).width - 18
-    const subject = fit(ctx, `${highlight.target ? 'Objectif · ' : ''}${label}`, space)
-    draw(ctx, `${subject} : ${amount}`, margin, 1208, { color: colors.cream })
-  }
+}
 
+function detailCard(ctx, x, y, height, title, total, rows, background, money) {
+  box(ctx, x, y, column, height, background)
+  draw(ctx, title, x + column / 2, y + 20, { size: 28, weight: 750, align: 'center' })
+  if (total !== undefined) drawAmount(ctx, money(total), x + column / 2, y + 59, column - 45, { size: 32, align: 'center' })
+  if (!rows.length) return
+  const start = total === undefined ? 80 : 107
+  const step = Math.min(total === undefined ? 46 : 51, (height - start - 13) / rows.length)
+  for (const [index, row] of rows.entries()) {
+    const yy = y + start + step * index
+    const amount = money(row.amount)
+    type(ctx, SOCIAL_BODY_SIZE, 650)
+    const room = column - 58 - ctx.measureText(amount).width
+    draw(ctx, row.label, x + 23, yy, { max: room })
+    draw(ctx, amount, x + column - 23, yy, { align: 'right', weight: 650 })
+  }
 }
 
 export async function renderSocialBudgetImage(profile) {
-  if (document.fonts?.ready) await document.fonts.ready
+  await loadBudgetFont()
   const plan = planSocialBudget(profile)
   const canvas = document.createElement('canvas')
   Object.assign(canvas, SOCIAL_SIZE)
   const ctx = canvas.getContext('2d')
-  const currency = profile.currency || 'EUR'
-  const symbol = currency === 'CHF' ? 'CHF' : '€'
-  const money = (n, unit = currency) => euro(n, unit)
-  const number = n => money(n).replace(/\s*(?:€|CHF)$/, '')
-  ctx.fillStyle = colors.background
+  const money = value => euro(value, profile.currency)
+  ctx.fillStyle = colors.cream
   ctx.fillRect(0, 0, SOCIAL_SIZE.width, SOCIAL_SIZE.height)
   drawIdentity(ctx, profile, plan.presentation)
   drawIncome(ctx, profile, plan, money)
-  drawExpenses(ctx, plan, money, number)
-  drawSaving(ctx, profile, plan, money, number)
-  draw(ctx, `${profile.approximate ? 'Budget mensuel indicatif' : 'Budget mensuel'} en ${symbol} · Épargnant Libre`, 540, 1300,
-    { size: 34, color: colors.cream, align: 'center' })
+  drawTotals(ctx, plan, money)
+
+  const [[fixed], [flexible]] = plan.expenses
+  const x = margin + column + gap
+  detailCard(ctx, margin, detailsY, detailsHeight, fixed.title,
+    fixed.amount, fixed.rows, colors.fixed, money)
+  const flexibleHeight = plan.transferRows.length ? Math.max(156, 110 + 37 * flexible.rows.length) : detailsHeight
+  detailCard(ctx, x, detailsY, flexibleHeight, flexible.title, flexible.amount, flexible.rows, colors.flexible, money)
+  if (plan.transferRows.length) {
+    detailCard(ctx, x, detailsY + flexibleHeight + 18, detailsHeight - flexibleHeight - 18, budgetTransferLabel(profile),
+      undefined, plan.transferRows, colors.savings, money)
+  }
+
+  box(ctx, margin, 1180, width, 85, colors.capacity)
+  draw(ctx, plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne',
+    margin + 28, 1202, { size: 35, weight: 750 })
+  drawAmount(ctx, money(plan.totals.available), width + margin - 28, 1195, 410, { size: 43, align: 'right' })
+  draw(ctx, 'ÉPARGNANT LIBRE', 540, 1302, { size: 23, weight: 800, color: colors.green, align: 'center' })
   return canvas
 }

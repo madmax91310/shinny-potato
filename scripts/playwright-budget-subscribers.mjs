@@ -35,7 +35,7 @@ async function capture(page, id) {
   const bytes = await verifyBudgetPng(page, p)
   writeFileSync(`${output}/${id}.png`, bytes)
   const drawn = await page.evaluate(() => window.budgetCanvasText)
-  if (balance < 0) assert(drawn.some(line => /Déficit/.test(line.text)))
+  if (balance < 0) assert(drawn.some(line => line.text === 'Reste négatif'))
   assert(!drawn.some(line => line.text.includes('Quelle priorité choisiriez-vous')), 'Les questions restent dans le texte')
   await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
   assert.equal(await page.evaluate(() => navigator.clipboard.readText()), text)

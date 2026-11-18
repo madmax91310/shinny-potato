@@ -1,3 +1,4 @@
+import noemieReference from './noemie-reference.json' with { type: 'json' }
 import { budgetCompletions } from './budget-completions.js'
 import studioEditorialProfiles from './editorial-profiles-studio-2026-11-16.json' with { type: 'json' }
 import roadmapEditorialProfiles from './editorial-profiles-roadmap-2026-11-16.json' with { type: 'json' }
@@ -49,13 +50,22 @@ export const BUDGET_RELIABLE_PROFILES = BUDGET_ORIGINAL_PROFILES.map(profile => 
 // Prior audit snapshots retain exactly their original scope. New characters do
 // not become source photographs or inherit a fictitious historical review.
 export const BUDGET_REFERENCE_PROFILES = BUDGET_RELIABLE_PROFILES.map(p => createEditorialProfile(p, editorialLives[p.id]))
-export const BUDGET_NEW_EDITORIAL_PROFILES = newEditorialProfiles.map(entry => entry.profile)
+export const NOEMIE_ID = noemieReference.profile.id
+export const BUDGET_NOEMIE_PREVIOUS_ENTRY = newEditorialProfiles.find(entry => entry.profile.id === NOEMIE_ID)
+export const BUDGET_NOEMIE_PREVIOUS = BUDGET_NOEMIE_PREVIOUS_ENTRY.profile
+const recentEditorialProfiles = newEditorialProfiles.map(entry => entry.profile.id !== NOEMIE_ID ? entry : {
+  ...entry, ...noemieReference, profile: { ...entry.profile, ...noemieReference.profile },
+  display: { ...entry.display, ...noemieReference.display },
+  publication: { ...entry.publication, ...noemieReference.publication },
+  creation: { ...entry.creation, ...noemieReference.creation },
+})
+export const BUDGET_NEW_EDITORIAL_PROFILES = recentEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_QUALIFIED_EDITORIAL_PROFILES = qualifiedEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES = complementaryEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_ROADMAP_EDITORIAL_PROFILES = roadmapEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_STUDIO_EDITORIAL_PROFILES = studioEditorialProfiles.map(entry => entry.profile)
 export const BUDGET_PUBLICATION_SELECTION = publicationSelection
-const currentEditorialProfiles = [...newEditorialProfiles, ...qualifiedEditorialProfiles, ...complementaryEditorialProfiles, ...roadmapEditorialProfiles, ...studioEditorialProfiles]
+const currentEditorialProfiles = [...recentEditorialProfiles, ...qualifiedEditorialProfiles, ...complementaryEditorialProfiles, ...roadmapEditorialProfiles, ...studioEditorialProfiles]
 export const BUDGET_EDITORIAL_CREATIONS = { ...editorialLives, ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.creation])) }
 export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES, ...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, ...BUDGET_ROADMAP_EDITORIAL_PROFILES, ...BUDGET_STUDIO_EDITORIAL_PROFILES].map(profile => {
   const review = budgetCompletions[profile.id]
