@@ -2,7 +2,7 @@ import {pngCredits} from './png-credits.js'
 import { modelNatureLabel } from '../../data/investor-models.js'
 import { holdingName, percentage } from './data.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
-import { publicationPlan, editorialSeries, weightLabel, portfolioOwner, cash, POSTER } from './publication.js'
+import { publicationPlan, portfolioOwner, cash, POSTER } from './publication.js'
 import { loadPortfolioFont, posterFont } from './type.js'
 import { portfolioPortrait, positionLogo } from './media.js'
 
@@ -65,7 +65,7 @@ const lightness=color=>{const v=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/2
 export async function renderPortfolioImage(portfolio) {
   if(portfolio?.kind==='model')return renderModelImage(portfolio)
   if(!portfolio)throw Error('Charge un portefeuille avant de créer le visuel.')
-  const plan=publicationPlan(portfolio),owner=portfolioOwner(portfolio),series=editorialSeries(portfolio)
+  const plan=publicationPlan(portfolio),owner=portfolioOwner(portfolio)
   const [,portrait,logos]=await Promise.all([loadPortfolioFont(),portfolioPortrait({...portfolio.identity,displayName:owner},portfolio.media?.portrait),Promise.all(plan.entries.map(positionLogo))])
   const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350
   const ctx=canvas.getContext('2d');if(!ctx)throw Error('Impossible de créer le visuel.')
@@ -81,10 +81,7 @@ export async function renderPortfolioImage(portfolio) {
   title.forEach((line,i)=>label(line,540,(title.length>1?72:98)+i*65,titleSize,'#008c30','center',900))
   const date=new Date(portfolio.snapshot.periodEnd+'T12:00:00Z')
   label(`Portefeuille · T${Math.ceil((date.getUTCMonth()+1)/3)} ${date.getUTCFullYear()}`,540,title.length>1?186:151,title.length>1?36:40,ink,'center',900)
-  label('Principales positions',540,title.length>1?223:192,28,ink,'center',750)
   const shown=plan.entries.filter(e=>!e.other),shownWeight=shown.reduce((sum,e)=>sum+e.value,0)/plan.total
-  const coverageText=`${shown.length} positions affichées · ${weightLabel(shownWeight)}`
-  ctx.font=posterFont(26,850);const coverageWidth=Math.ceil(ctx.measureText(coverageText).width)+28
   const {cx,cy,outer,inner,badgeRadius:br}=POSTER
   plan.entries.forEach((e,i)=>{
     ctx.beginPath();ctx.arc(cx,cy,outer,e.start,e.end);ctx.arc(cx,cy,inner,e.end,e.start,true);ctx.closePath();ctx.fillStyle=e.color;ctx.fill()
@@ -92,8 +89,6 @@ export async function renderPortfolioImage(portfolio) {
     if(e.weight>=.003&&prior.weight>=.003){ctx.strokeStyle=bg;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.start)*inner,cy+Math.sin(e.start)*inner);ctx.lineTo(cx+Math.cos(e.start)*outer,cy+Math.sin(e.start)*outer);ctx.stroke()}
   })
   const occupied=new Uint8Array(1080*1350)
-  ctx.font=posterFont(24,750)
-  const captionWidth=portrait.illustration?.caption?Math.ceil(ctx.measureText(portrait.illustration.caption).width/2)*2+24:0
   if(portrait.image) {
     const image=portrait.image,k=Math.min(600/image.width,530/image.height,portrait.maxPublicationScale || Infinity)
     const left=cx-image.width*k/2,top=cy+inner+40-image.height*k,half=Math.min(280,image.width*k*.46)
@@ -108,22 +103,9 @@ export async function renderPortfolioImage(portfolio) {
     ctx.font=posterFont(40,800)
     for(const word of words){if(current&&ctx.measureText(current+' '+word).width>330){lines.push(current);current=''}current=current?current+' '+word:word}if(current)lines.push(current)
     lines.forEach((line,i)=>label(line,cx,cy+(i-(lines.length-1)/2)*48-30,40,ink,'center',800))
-    if(series.coverage<.5){label(`${shown.length} positions affichées`,cx,cy+100,26,ink);label(`${weightLabel(shownWeight)} du portefeuille`,cx,cy+136,26,ink)}
   }
   for(const e of plan.entries)for(let y=Math.floor(e.badge.y-br-5);y<=e.badge.y+br+5;y++)for(let x=Math.floor(e.badge.x-br-5);x<=e.badge.x+br+5;x++)if(Math.hypot(x-e.badge.x,y-e.badge.y)<br+5)occupied[y*1080+x]=1
-  if(portrait.image){
-    const bands=[]
-    if(series.coverage<.5)bands.push([cx-coverageWidth/2-4,cy+106,coverageWidth+8,50])
-    if(portrait.illustration?.caption)bands.push([cx-captionWidth/2-4,cy+151,captionWidth+8,42])
-    for(const [x,y,w,h] of bands)for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)occupied[yy*1080+xx]=1
-  }
-  // Reserve validated leader routes before placing any external logo.
-  for(const e of plan.entries)for(let i=1;i<(e.leader?.length || 0);i++){
-    const a=e.leader[i-1],b=e.leader[i],steps=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y))
-    for(let n=0;n<=steps;n++){const x=Math.round(a.x+(b.x-a.x)*n/Math.max(1,steps)),y=Math.round(a.y+(b.y-a.y)*n/Math.max(1,steps));for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++)if(x+dx>=0&&x+dx<1080&&y+dy>=0&&y+dy<1350)occupied[(y+dy)*1080+x+dx]=1}
-  }
-  const routeOccupied=(x,y,w,h)=>{for(let yy=Math.floor(y);yy<y+h;yy+=2)for(let xx=Math.floor(x);xx<x+w;xx+=2)if(occupied[yy*1080+xx])return true;return false}
-  const extraLogos=[],logoReport=[]
+  const logoReport=[]
   plan.entries.forEach((e,i)=>{
     const audit={label:e.label,id:logos[i].identity?.id || null,status:logos[i].image?'placement-rejected':logos[i].identity?'load-failed':'unavailable'};if(!e.other)logoReport.push(audit)
     const logo=transparentLogo(logos[i].image)
@@ -145,36 +127,20 @@ export async function renderPortfolioImage(portfolio) {
         }
         if(placement)break
       }
-      let external=false
-      if(!placement) {
-        const k=Math.min(112/image.width,68/image.height),w=image.width*k,h=image.height*k
-        if(w>=56&&h>=26)externalSearch: for(const x of [e.box.x-w-12,e.box.x+e.box.width+12,e.box.x+(e.box.width-w)/2])for(const y of [e.box.y,e.box.y-h-10,e.box.y+e.box.height+10]) {
-          const overlaps=b=>x<b.x+b.width+7&&x+w+7>b.x&&y<b.y+b.height+7&&y+h+7>b.y
-          if(x<20||x+w>1060||y<230||y+h>1244||plan.entries.some(o=>overlaps(o.box)||Math.hypot(o.badge.x-Math.max(x,Math.min(o.badge.x,x+w)),o.badge.y-Math.max(y,Math.min(o.badge.y,y+h)))<br+6)||extraLogos.some(overlaps)||routeOccupied(x,y,w,h))continue
-          if(Math.hypot(cx-Math.max(x,Math.min(cx,x+w)),cy-Math.max(y,Math.min(cy,y+h)))<outer+6)continue
-          placement={x:x+w/2,y:y+h/2,a:0,k};extraLogos.push({x,y,width:w,height:h});external=true;break externalSearch
-        }
-      }
       if(placement) {
-        audit.status=external?'label':'sector';audit.placement=placement
+        audit.status='sector';audit.placement=placement
         const {x,y,a,k}=placement,paint=document.createElement('canvas');paint.width=image.width;paint.height=image.height
         const p=paint.getContext('2d');p.drawImage(image,0,0)
-        if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=!external&&lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
+        if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
         ctx.save();ctx.translate(x,y);ctx.rotate(a)
-        if(!logo.mono&&!external){ctx.shadowColor='rgba(255,255,255,.65)';ctx.shadowBlur=3}
+        if(!logo.mono){ctx.shadowColor='rgba(255,255,255,.65)';ctx.shadowBlur=3}
         ctx.drawImage(paint,-image.width*k/2,-image.height*k/2,image.width*k,image.height*k);ctx.restore();paint.width=paint.height=1
         const c=Math.cos(a),sn=Math.sin(a)
         for(const [px,py] of logo.points){const xx=Math.round(x+(px*c-py*sn)*k),yy=Math.round(y+(px*sn+py*c)*k);for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++)if(xx+dx>=0&&xx+dx<1080&&yy+dy>=0&&yy+dy<1350)occupied[(yy+dy)*1080+xx+dx]=1}
       }
     }
   })
-  // Draw all sector associations beneath every badge, so later lines cannot cross a percentage.
-  plan.entries.forEach(e=>{const {badge}=e
-    // Only ambiguous displaced associations receive a short connector.
-    if(Math.abs(Math.atan2(Math.sin(e.badgeAngle-e.mid),Math.cos(e.badgeAngle-e.mid)))>.015) {
-      ctx.strokeStyle=e.color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.mid)*(outer-2),cy+Math.sin(e.mid)*(outer-2));ctx.lineTo(badge.x,badge.y);ctx.stroke()
-    }
-  })
+  // Distinct sector/badge colors retain the association without spokes across other parts.
   plan.entries.forEach(e=>{
     const {badge,box}=e
     const leader=e.leader
@@ -183,32 +149,18 @@ export async function renderPortfolioImage(portfolio) {
     const pct=percentage(e.weight).replace(/\s/g,'')
     let size=32;ctx.font=posterFont(size,900);while(ctx.measureText(pct).width>br*1.72&&size>25){size--;ctx.font=posterFont(size,900)}
     label(pct,badge.x,badge.y+size*.35,size,lightness(e.color)<.179?'#fff':ink,'center',900)
-    box.lines.forEach((line,j)=>label(line,box.x+box.width/2,box.y+34+j*40,36,green,'center',850))
+    box.lines.forEach((line,j)=>label(line,box.x+box.width/2,box.y+POSTER.labelSize*.86+j*POSTER.lineHeight,POSTER.labelSize,green,'center',850))
   })
-  const amounts=[]
-  // The six largest named positions get first use of free label space; the aggregate follows.
-  for(const e of [...shown].sort((a,b)=>b.value-a.value).slice(0,6).concat(plan.entries.filter(e=>e.other))){
-    const value=cash(e.value,plan.currency),size=27;ctx.font=posterFont(size,650)
-    const width=ctx.measureText(value).width+8,box=e.box
-    const candidates=[0,-36,36,-72,72].map(dx=>Math.max(20,Math.min(1060-width,box.x+(box.width-width)/2+dx))).flatMap(x=>[8,24,40,-39,-55].map(dy=>({x,y:box.y+(dy>0?box.height:0)+dy})))
-    const overlap=(a,b)=>a.x<b.x+b.width+5&&a.x+a.width+5>b.x&&a.y<b.y+b.height+5&&a.y+a.height+5>b.y
-    for(const at of candidates){
-      const b={...at,width,height:31}
-      if(b.x<20||b.x+width>1060||b.y<202||b.y+31>1244||amounts.some(a=>overlap(a,b))||plan.entries.some(r=>overlap(b,r.box)||Math.hypot(r.badge.x-Math.max(b.x,Math.min(r.badge.x,b.x+width)),r.badge.y-Math.max(b.y,Math.min(r.badge.y,b.y+31)))<br+8))continue
-      if(Math.hypot(cx-Math.max(b.x,Math.min(cx,b.x+width)),cy-Math.max(b.y,Math.min(cy,b.y+31)))<outer+6)continue
-      if(routeOccupied(b.x,b.y,width,31))continue
-      label(value,b.x+width/2,b.y+25,size,ink,'center',650);amounts.push({...b,label:e.label,value:e.value});break
-    }
-  }
-  label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,1284,39,ink,'center',850)
-  const coverage=series
-  if(portrait.image&&coverage.coverage<.5){ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(cx-coverageWidth/2,cy+110,coverageWidth,42,12);ctx.fill();label(coverageText,cx,cy+140,26,ink)}
-  if(portrait.image&&portrait.illustration?.caption){ctx.fillStyle=bg;ctx.fillRect(cx-captionWidth/2,cy+155,captionWidth,34);label(portrait.illustration.caption,cx,cy+181,24,ink,'center',750)}
-  if(portrait.image&&/^CC BY/.test(portrait.license))label(`Photo : ${portrait.author} · ${portrait.license} · détourée`,540,1309,22,'#343434','center',550)
-  label(`Épargnant libre${series.pages.length>1?` · 1/${series.pages.length}`:''}`,540,1343,27,ink,'center',750)
+  // A standalone PNG keeps a single visible attribution when the photo requires it.
+  // Full source, license URL, adaptation and historical association remain in iTXt/JSON/UI.
+  const credit=portrait.image&&/^CC BY/.test(portrait.license)
+    ? `Photo : ${portrait.author==='European Commission - Photographer: Lukasz Kobus'?'Commission européenne / Lukasz Kobus':portrait.author} · ${portrait.license}` : null
+  label(`Valeur déclarée : ${cash(plan.total,plan.currency)}`,540,credit?1252:1272,39,ink,'center',850)
+  if(credit)label(credit,540,1296,28,'#343434','center',550)
+  label('Épargnant libre',540,1336,30,ink,'center',750)
   const photo=portrait.image?Object.fromEntries(['person','title','source','url','author','license','licenseUrl','adaptation','sourceDigest','illustration'].map(key=>[key,portrait[key]])):null
   if(photo&&!photo.licenseUrl){const match=photo.license.match(/^CC BY(-SA)? ([0-9.]+)/);if(match)photo.licenseUrl=`https://creativecommons.org/licenses/by${match[1]?'-sa':''}/${match[2]}/`}
-  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,visual:{displayed:{count:shown.length,weight:shownWeight},logos:logoReport,amounts},positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
+  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,visual:{displayed:{count:shown.length,weight:shownWeight},logos:logoReport,amounts:[],credit},positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
 }
 
 

@@ -20,7 +20,9 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
     assert(Math.abs((entry.end-entry.start)/(2*Math.PI)-entry.weight)<1e-12)
     const b=entry.box
     const ex=Math.max(b.x,Math.min(entry.badge.x,b.x+b.width)),ey=Math.max(b.y,Math.min(entry.badge.y,b.y+b.height))
-    assert(Math.hypot(ex-entry.badge.x,ey-entry.badge.y)-entry.badge.radius<24 || entry.leader?.length>=2,'A displaced label must retain an unambiguous route')
+    assert(!needsLeader(entry,plan.entries) || entry.leader?.length===2,'Only necessary short straight leaders')
+    if(entry.leader)assert(Math.hypot(entry.leader[1].x-entry.leader[0].x,entry.leader[1].y-entry.leader[0].y)<=66)
+    assert(!entry.box.lines.some(line=>line.length===1),'No orphan class letter')
     assert(b.x>=20 && b.x+b.width<=1060 && b.y>=POSTER.top && b.y+b.height<=POSTER.bottom)
     assert.equal(entry.badge.radius,POSTER.badgeRadius)
     for(const next of plan.entries)if(next!==entry){
@@ -70,6 +72,8 @@ assert.equal(cash(78300000,'USD'),'78,3\u00a0M\u00a0$US') // Same explicit preci
 assert.equal(shortPosition({displayLabel:'Alphabet (02079K305)',shareClass:'CAP STK CL A',cusip:'02079K305'}),'Alphabet A')
 assert.equal(shortPosition({displayLabel:'Berkshire Hathaway (084670108)',shareClass:'CL A',cusip:'084670108'}),'Berkshire A')
 assert.equal(shortPosition({displayLabel:'Uber Technologies Inc'}),'Uber')
+assert.equal(shortPosition({issuerName:'MASTERCARD INCORPORATED'}),'MASTERCARD')
+assert.equal(shortPosition({issuerName:'Space Exploration Technologies'}),'SpaceX')
 const colorPortfolio=normalizePortfolio(sample([10,9,8,7,6,5,4,3,2,1]))
 const allColors=colorPositions(colorPortfolio.holdings),colorPlan=publicationPlan(colorPortfolio)
 assert.equal(new Set(allColors.map(r=>r.color)).size,allColors.length)
@@ -80,15 +84,14 @@ assert.equal(positionColor({displayLabel:'Cerebras Systems Inc',cusip:'15675D103
 const rgb=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16))
 assert(Math.hypot(...rgb(nearGreens[0].color).map((v,i)=>v-rgb(nearGreens[1].color)[i]))>=95,'Near greens need a contrasting replacement')
 
-// Actual principal portfolios keep named positions without a fixed eight-line cap.
+// Actual principal portfolios preserve descending selection as disclosures change.
 const {readFileSync}=await import('node:fs')
 for(const slug of ['berkshire','tepper']) {
   const p=normalizePortfolio(JSON.parse(readFileSync(`public/data/investors/${slug}.json`,'utf8')))
   if(p.problem){assert.throws(()=>publicationPlan(p));continue}
   const plan=publicationPlan(p)
-  // Pin this density regression to the reviewed filings, not future disclosures.
-  const reviewedTotal={berkshire:299253556246,tepper:7471257999}[slug]
-  if(p.snapshot.periodEnd==='2026-06-30' && plan.total===reviewedTotal)assert(plan.entries.filter(e=>!e.other).length>=9)
+  const named=plan.entries.filter(e=>!e.other)
+  assert.deepEqual(named.map(e=>e.value),[...p.holdings].sort((a,b)=>b.value-a.value).slice(0,named.length).map(e=>e.value))
   assert(plan.entries.every(e=>!['M','C','OP'].includes(e.label)))
   assert.equal(publicationPlan(p),plan,'Reuse the deterministic layout')
   p.holdings[0].value+=1
@@ -108,18 +111,16 @@ for(const issuerName of ['MOODYS CORP','CHUBB LIMITED','OCCIDENTAL PETE CORP','V
 }
 
 // Regression: the old straight Moody's leader crossed Chubb's two text lines.
-const {leaderPath}=await import('../src/pages/investor-portfolio/leader-layout.js')
+import {leaderPath,needsLeader} from '../src/pages/investor-portfolio/leader-layout.js'
 const moody={badge:{x:164,y:584,radius:50},box:{x:20,y:332,width:181,height:80}}
 const chubb={badge:{x:141,y:692,radius:50},box:{x:20,y:440,width:150,height:80}}
 const route=leaderPath(moody,[moody,chubb],POSTER)
-assert(route?.length>=3,'Route around the intervening name')
-for(let i=1;i<route.length;i++) {
-  const a=route[i-1],b=route[i]
-  // Exact intersection with the vertical span occupied by the intervening text.
-  const lo=Math.max(0,Math.min((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
-  const hi=Math.min(1,Math.max((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
-  if(lo<hi)for(const t of [lo,(lo+hi)/2,hi])assert(a.x+(b.x-a.x)*t<20 || a.x+(b.x-a.x)*t>170)
-}
+assert.equal(route,null,'A long detour must trigger a simpler composition, not an elbow leader')
+const nearby={badge:{x:940,y:700,radius:50},box:{x:1035,y:680,width:40,height:44}}
+const shortRoute=leaderPath(nearby,[nearby],POSTER)
+assert.equal(shortRoute?.length,2)
+assert(Math.hypot(shortRoute[1].x-shortRoute[0].x,shortRoute[1].y-shortRoute[0].y)<=66)
+assert.equal(leaderPath({...nearby,box:{...nearby.box,x:1005}},[{...nearby,box:{...nearby.box,x:1005}}],POSTER),null)
 
 assert.equal(shortPosition({displayLabel:'TSMC',issuerName:'TAIWAN SEMICONDUCTOR'}),'TSMC')
 assert.equal(shortPosition({displayLabel:'Liberty Live Group I (53033H101)',issuerName:'LIBERTY LIVE GROUP INC',cusip:'53033H101',shareClass:'COM SER A'}),'Liberty Live A')

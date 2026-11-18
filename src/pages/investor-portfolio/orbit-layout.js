@@ -1,8 +1,8 @@
-import {leaderPath} from './leader-layout.js'
+import {leaderPath,needsLeader} from './leader-layout.js'
 import widths from './type-metrics.json' with {type:'json'}
-export const POSTER={cx:540,cy:720,outer:380,inner:185,badgeRadius:50,badgeOrbit:400,top:202,bottom:1244}
+export const POSTER={cx:540,cy:700,outer:380,inner:185,badgeRadius:50,badgeOrbit:400,top:190,bottom:1208,labelSize:40,lineHeight:44,connectorLimit:66}
 export const measure=(s,size)=>[...String(s)].reduce((n,c)=>n+(widths[c]??.7),0)*size+4
-export function wordLines(value,width,size=36) {
+export function wordLines(value,width,size=POSTER.labelSize) {
   const lines=[];let line=''
   for(const word of String(value).split(/\s+/)) {
     if(measure(word,size)>width)return null
@@ -10,13 +10,13 @@ export function wordLines(value,width,size=36) {
     line=line?line+' '+word:word
   }
   if(line)lines.push(line)
-  return lines.length<=2?lines:null
+  return lines.length<=2&&!lines.some(line=>line.length===1)?lines:null
 }
 const clash=(a,b,gap=20)=>a.x<b.x+b.width+gap&&a.x+a.width+gap>b.x&&a.y<b.y+b.height+gap&&a.y+a.height+gap>b.y
 const clamp=(n,a,b)=>Math.max(a,Math.min(n,b))
 const delta=a=>Math.atan2(Math.sin(a),Math.cos(a))
 function circleClash(box,x,y,r){return Math.hypot(x-clamp(x,box.x,box.x+box.width),y-clamp(y,box.y,box.y+box.height))<r}
-export function arrangeOrbit(rows,start,_currency,top=POSTER.top) {
+export function arrangeOrbit(rows,start,top=POSTER.top) {
   const {cx,cy,outer,badgeRadius:br,badgeOrbit:r}=POSTER
   let angle=start
   const entries=rows.map(row=>{const e={...row,start:angle,end:angle+row.weight*Math.PI*2,mid:angle+row.weight*Math.PI};angle=e.end;return e})
@@ -39,17 +39,17 @@ export function arrangeOrbit(rows,start,_currency,top=POSTER.top) {
   if(order.length>1 && order[0].badgeAngle+2*Math.PI-order.at(-1).badgeAngle<min)return null
   const candidates=entries.map(e=>{
     const result=[]
-    for(const width of [220,180,150,260,130]) {
-      const lines=wordLines(e.label,width)
+    for(const width of [220,180,150,260,300,320,130]) {
+      const lines=wordLines(e.visualLabel || e.label,width)
       if(!lines)continue
-      const w=Math.max(...lines.map(s=>measure(s,36))),h=lines.length*40
+      const w=Math.max(...lines.map(s=>measure(s,POSTER.labelSize))),h=lines.length*POSTER.lineHeight
       for(const turn of [0,-.12,.12,-.24,.24,-.38,.38,-.55,.55])for(const extra of [0,25,50,80]) {
         const a=e.badgeAngle+turn,c=Math.cos(a),s=Math.sin(a)
         const reach=r+br+9+Math.abs(c)*w/2+Math.abs(s)*h/2+extra
         const box={x:clamp(cx+c*reach-w/2,20,1060-w),y:clamp(cy+s*reach-h/2,top,POSTER.bottom-h),width:w,height:h,lines}
         const px=clamp(e.badge.x,box.x,box.x+w),py=clamp(e.badge.y,box.y,box.y+h)
         const distance=Math.hypot(px-e.badge.x,py-e.badge.y)-br
-        if(distance<7||distance>170||circleClash(box,cx,cy,outer+5)||entries.some(o=>circleClash(box,o.badge.x,o.badge.y,br+3)))continue
+        if(distance<7||distance>72||circleClash(box,cx,cy,outer+5)||entries.some(o=>circleClash(box,o.badge.x,o.badge.y,br+3)))continue
         box.angle=e.mid+delta(Math.atan2(box.y+h/2-cy,box.x+w/2-cx)-e.mid)
         box.score=distance+Math.abs(turn)*50+extra*.1+(width===260?5:0)
         result.push(box)
@@ -63,7 +63,15 @@ export function arrangeOrbit(rows,start,_currency,top=POSTER.top) {
   // their preferred radial position. Labels never turn into lateral columns.
   let attempts=0
   function place(remaining) {
-    if(!remaining.length)return true
+    if(!remaining.length){
+      const routes=[]
+      for(const entry of entries){
+        entry.leader=leaderPath(entry,entries,POSTER,routes)
+        if(needsLeader(entry,entries)&&!entry.leader)return false
+        if(entry.leader)routes.push(entry.leader)
+      }
+      return true
+    }
     if(++attempts>6500)return false
     let index,choices
     for(const i of remaining) {
@@ -79,12 +87,5 @@ export function arrangeOrbit(rows,start,_currency,top=POSTER.top) {
     return false
   }
   if(!place(entries.map((_,i)=>i)))return null
-  const routes=[]
-  for(const e of entries){
-    const b=e.box,end={x:clamp(e.badge.x,b.x,b.x+b.width),y:clamp(e.badge.y,b.y,b.y+b.height)}
-    e.leader=leaderPath(e,entries,POSTER,[],routes)
-    if(Math.hypot(end.x-e.badge.x,end.y-e.badge.y)-e.badge.radius>=24&&!e.leader)return null
-    if(e.leader)routes.push(e.leader)
-  }
   return {entries}
 }
