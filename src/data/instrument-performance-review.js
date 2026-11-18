@@ -2,6 +2,14 @@
 // Les séries déjà communes sont référencées par instrument-returns.js sans duplication.
 // Preuves, empreintes et périodes conservées dans le relevé etf-completeness.
 export const REVIEWED_PERFORMANCE_META = Object.freeze({
+  // Vanguard factsheet: no performance published before one year after launch.
+  IE000VAHT5T0: {
+    currency: 'USD', values: [null, null, null, null, null, null],
+    availability: 'not-yet-published', inceptionDate: '2026-08-18',
+    source: 'https://fund-docs.vanguard.com/FTSE_Global_All-Cap_UCITS_ETF_USD_Acc_E161_EU_INT_UK_EN.pdf',
+    checkedAt: '2026-11-18',
+    note: 'Part lancée le 18 août 2026. Aucune année civile complète ; Vanguard publiera les performances après un an.',
+  },
   "FR0013411998": {
     "currency": "EUR",
     "source": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF",
