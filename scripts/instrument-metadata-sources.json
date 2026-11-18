@@ -7361,18 +7361,6 @@
       "listings": [
         {
           "ticker": "XDWM",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "XDWM.MI",
-          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM IM | EUR | XDWM.MI",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-18",
-          "sha256": "3021e536c8e355d4d2cac43a560c2a683b7af82cb4b0718864c36f121df5cedf",
-          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
-        },
-        {
-          "ticker": "XDWM",
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
@@ -7394,6 +7382,18 @@
           "checkedAt": "2026-11-18",
           "sha256": "3021e536c8e355d4d2cac43a560c2a683b7af82cb4b0718864c36f121df5cedf",
           "evidenceId": "IE00BM67HS53-XLON-XDWM-USD"
+        },
+        {
+          "ticker": "XDWM",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDWM.MI",
+          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM IM | EUR | XDWM.MI",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-18",
+          "sha256": "3021e536c8e355d4d2cac43a560c2a683b7af82cb4b0718864c36f121df5cedf",
+          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
         },
         {
           "ticker": "XSMW",
@@ -10674,10 +10674,10 @@
         "checkedAt": "2026-11-18"
       },
       "urls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
         "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98/",
-        "https://www.justetf.com/fr/etf-profile.html?isin=IE0002Y8CX98",
-        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98"
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE0002Y8CX98"
       ]
     },
     {
@@ -11566,18 +11566,6 @@
       "listings": [
         {
           "ticker": "XDWU",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "XDWU.MI",
-          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU IM | EUR | XDWU.MI",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-18",
-          "sha256": "6d55503f9cb5154ce0c9d13ca497245574185bf3a7ae2b98131bcec6bae6dc1a",
-          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR"
-        },
-        {
-          "ticker": "XDWU",
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
@@ -11587,6 +11575,18 @@
           "checkedAt": "2026-11-18",
           "sha256": "6d55503f9cb5154ce0c9d13ca497245574185bf3a7ae2b98131bcec6bae6dc1a",
           "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR"
+        },
+        {
+          "ticker": "XDWU",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDWU.MI",
+          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU IM | EUR | XDWU.MI",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-18",
+          "sha256": "6d55503f9cb5154ce0c9d13ca497245574185bf3a7ae2b98131bcec6bae6dc1a",
+          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR"
         },
         {
           "ticker": "XDWU",
