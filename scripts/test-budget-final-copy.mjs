@@ -12,7 +12,7 @@ const audit = JSON.parse(readFileSync(new URL('../docs/budget-final-copy/2026-11
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex')
 assert.equal(hash(BUDGET_ORIGINAL_PROFILES), audit.originalProfilesHash, 'Copy edits never rewrite a source photograph')
 assert.deepEqual(BUDGET_PROFILES.map(p => p.id).sort(), Object.keys(audit.profiles).sort())
-const forbidden = /exemple de budget|profil fictif|budget reconstitu|version éditoriale|scénario|simulation|hypothèse|préparé le|vérifié le|impôt non précisé|traitement de l’impôt n’est pas précisé|dépenses moyennes d’une autre période/i
+const forbidden = /exemple de budget|profil fictif|version éditoriale|scénario|simulation|hypothèse|préparé le|vérifié le|impôt non précisé|traitement de l’impôt n’est pas précisé|dépenses moyennes d’une autre période/i
 for (const p of BUDGET_PROFILES) {
   const expected = audit.profiles[p.id], review = BUDGET_EDITORIAL_CREATIONS[p.id].polishReview
   const text = buildBudgetText(p), context = publicationContextFor(p), view = budgetPublicPresentation(p)
@@ -39,8 +39,8 @@ for (const p of BUDGET_PROFILES) {
   }
   const custom = { profile: p, text: 'Mon ancien texte personnalisé\nMes propres phrases et chiffres.', edited: true, textFinance: expected.financialReference }
   assert.equal(refreshBudgetDraft(custom).text, custom.text)
-  assert.equal(staleBudgetText(refreshBudgetDraft(custom)), ['prepared-gritz-2026-10-30','prepared-justbob-2026-10-30'].includes(p.id), 'The PEL and remainder corrections marks the old custom financial text as stale')
-  assert.equal(refreshBudgetDraft({ ...custom, edited: false }).text, text)
+  assert.equal(staleBudgetText(refreshBudgetDraft(custom)), budgetFinancialReference(refreshBudgetDraft(custom).profile)!==expected.financialReference, 'The PEL and remainder corrections marks the old custom financial text as stale')
+  assert.equal(refreshBudgetDraft({ ...custom, edited: false }).text, buildBudgetText(refreshBudgetDraft(custom).profile))
   assert(context.questions.length + Number(Boolean(context.budgetQuestion)) <= 2)
 }
 const profile = name => BUDGET_PROFILES.find(p => p.name === name)

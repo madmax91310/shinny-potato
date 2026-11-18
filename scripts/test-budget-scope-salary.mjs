@@ -45,8 +45,8 @@ for (const p of BUDGET_PROFILES) {
   if(fiscalBasis)assert(budgetPublicBasis(p,view.basis).includes(fiscalBasis))
   for(const q of expected.expressed)assert(c.questions.some(now=>now.text===q&&now.origin==='expressed'||now.origin==='editorial'&&now.adaptedFrom?.some(old=>old.text===q&&old.origin==='expressed')),'A source question keeps its origin or an explicit editorial adaptation')
   const custom={profile:p,text:'Mon texte personnalisé, avec mes chiffres et mes questions.',edited:true,textFinance:budgetFinancialReference(p)}
-  assert.equal(refreshBudgetDraft(custom).text,custom.text);assert.equal(staleBudgetText(refreshBudgetDraft(custom)),false)
-  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,text)
+  assert.equal(refreshBudgetDraft(custom).text,custom.text);assert.equal(staleBudgetText(refreshBudgetDraft(custom)),budgetFinancialReference(p)!==budgetFinancialReference(refreshBudgetDraft(custom).profile))
+  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,buildBudgetText(refreshBudgetDraft(custom).profile))
 }
 for(const input of ['Salaire net après impôt','Salaire net après prélèvement à la source','Salaire net de Julie','Salaire de Nathan après impôt','Salaire net moyen avec astreintes','Salaire net d’alternance prévu','Salaire net hors primes',"Salaire net d’impôt",'Salaire brut','Pension nette après impôt','Indemnités chômage'])assert.equal(budgetSalaryLabel(input),input)
 

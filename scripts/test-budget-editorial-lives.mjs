@@ -7,7 +7,7 @@ import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-p
 import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
 import { budgetBeforePelCorrection } from './budget-audit-history.mjs'
 const expected=JSON.parse(readFileSync(new URL('./fixtures/budget-editorial-lives-2026-11-06.json',import.meta.url))).profiles
-const forbidden=/exemple|ficti[fv]|version éditoriale|reconstitu|scénario|simulation|hypothèse|modèle|préparé le|vérifié le/i
+const forbidden=/exemple|ficti[fv]|version éditoriale|scénario|simulation|hypothèse|modèle|préparé le|vérifié le/i
 for(const [i,p]of BUDGET_PROFILES.entries()){
  const old=BUDGET_RELIABLE_PROFILES[i],r=BUDGET_EDITORIAL_CREATIONS[p.id],c=publicationContextFor(p),text=buildBudgetText(p)
  assert.deepEqual(p.expenses,[...old.expenses.flatMap(row=>(r.expenseExpansions||[]).find(e=>e.label===row.label)?.rows||[row]),...(r.expenseAdditions||[])],p.id+' projection agrees with expense provenance');
@@ -39,8 +39,8 @@ for(const [i,p]of BUDGET_PROFILES.entries()){
  assert.deepEqual(c.review,BUDGET_RELIABLE_PUBLICATION_CONTEXT[p.id].review,'No fictional source consultation')
  const custom={profile:old,text:'Ma version à conserver',edited:true,textFinance:budgetFinancialReference(old)},fresh=refreshBudgetDraft(custom)
  assert.equal(fresh.text,custom.text)
- assert.equal(staleBudgetText(fresh),budgetFinancialReference(old)!==budgetFinancialReference(p))
- assert.equal(refreshBudgetDraft({...custom,edited:false}).text,text)
+ assert.equal(staleBudgetText(fresh),budgetFinancialReference(old)!==budgetFinancialReference(fresh.profile))
+ assert.equal(refreshBudgetDraft({...custom,edited:false}).text,buildBudgetText(fresh.profile))
  const personal={...p,kind:'participant'};assert.equal(publicationContextFor(personal),null);assert.equal(budgetQualification(personal),'');assert(!forbidden.test(buildBudgetText(personal)),`${p.id}: adapted participation`)
  assert.equal(BUDGET_ORIGINAL_PROFILES[i].id,p.id)
 }

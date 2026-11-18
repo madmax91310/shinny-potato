@@ -1,3 +1,4 @@
+import { budgetCompletions } from './budget-completions.js'
 import Button from '../../design-system/Button'
 import { BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT, BUDGET_COMPLETENESS, BUDGET_EDITORIAL_CREATIONS } from './data.js'
 import { analyzeBudget, dateLabel, euro, publicationContextFor, sourceReply } from './lib.js'
@@ -24,6 +25,7 @@ export default function SourceEvidencePanel({ profile, onCopy }) {
     <Button variant="secondary" onClick={() => onCopy(sourceReply(profile))}>Copier la source pour une réponse</Button>
   </>
   return <>
+    {budgetCompletions[profile.id] && <p><strong>Ventilation éditoriale du 18 novembre 2026.</strong> {budgetCompletions[profile.id].note}</p>}
     {creation && <details open><summary>Créations éditoriales et provenance</summary>
       <p>Personnage éditorial, pas un témoignage reçu. Les créations ne viennent pas de la personne source.</p>
       <p>Revue du {dateLabel(creation.reviewedAt)}.</p>

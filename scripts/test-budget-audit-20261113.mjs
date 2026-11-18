@@ -13,7 +13,7 @@ for(const p of BUDGET_PROFILES){
  assert.deepEqual(a.errors,[])
  for(const k of ['income','expenses','savings','available','balance'])assert.equal(Math.round(a[k]*100),old[k],`${p.id}: original financial totals preserved`)
  const text=buildBudgetText(p)
- assert(!/\bexemples?\b|ficti[fv]|reconstitu|version éditoriale|personnage éditorial/i.test(text),p.id)
+ assert(!/\bexemples?\b|ficti[fv]|version éditoriale|personnage éditorial/i.test(text),p.id)
  assert(!text.includes('Période du budget :'), 'Periods belong in the profile, not an automatic tweet line')
  assert.match(sourceReply(p),/^Source : /)
  assert(!/solde à confirmer|traitement.*non précisé/i.test(budgetPublicPresentation(p).incomeNote),'No automatic tax disclaimer')

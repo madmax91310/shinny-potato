@@ -5,6 +5,8 @@ import { blankBudget, budgetDisplayName, budgetPublicPresentation, budgetPublicI
 import { budgetFinancialReference } from './completion.js'
 
 const copyRow = row => ({ label: row.label, amount: row.amount,
+  ...(row.inKind && { inKind: true }), ...(row.transferStatus && { transferStatus: row.transferStatus }),
+  ...(row.constraint && { constraint: row.constraint }),
   ...(row.category && { category: EXPENSE_CATEGORIES.some(c => c.id === row.category) ? row.category : 'other' }),
 })
 const copyExpenseRow = row => ({ ...copyRow(row),

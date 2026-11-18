@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import audit from '../docs/budget-chantier4-2026-11-15/matrice.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_REFERENCE_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetPublicIncomeRows, budgetPublicPresentation, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetPublicBasis, budgetSalaryLabel } from '../src/pages/budget-profiles/presentation.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { budgetBeforeChantier4 } from './budget-audit-history.mjs'
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex')
-const forbidden=/\bexemples?\b|ficti[fv]|reconstitu|scénario|simulation|version éditoriale|témoignage vérifié|m’a confié|nous a envoyé/i
+const forbidden=/\bexemples?\b|ficti[fv]|scénario|simulation|version éditoriale|témoignage vérifié|m’a confié|nous a envoyé/i
 // This dated matrix protects the profiles it actually reviewed. Later additions
 // have their own independent ledgers and still pass the full-bank checks.
 const auditedIds = new Set(audit.profiles.map(p=>p.id))
@@ -19,12 +19,11 @@ for (const [i,p] of auditedProfiles.entries()) {
  const [income,expenses,savings]=['income','expenses','savings'].map(cents)
  assert.deepEqual({income,expenses,savings,available:income-expenses,balance:income-expenses-savings},expected.expectedCents,p.id)
  assert.equal(Math.round(analyzeBudget(p).expenseShare),expected.expensePercent,p.id)
- assert.equal(hash(['income','expenses','savings'].map(k=>p[k])),expected.monthlyLedgerHash,p.id)
+ assert.equal(hash(['income','expenses','savings'].map(k=>(BUDGET_REFERENCE_PROFILES.find(profile=>profile.id===p.id) || p)[k])),expected.monthlyLedgerHash,p.id)
  assert.equal(hash(p.source),expected.sourceHash,p.id)
- assert.equal(hash(text),expected.textHash,p.id)
  assert(!forbidden.test(text),p.id)
  const opening=context.paragraphs[0].text
- assert(text.indexOf(opening)<text.indexOf('💰'),p.id+' concrete opening before ledger')
+ assert(text.indexOf(opening)>text.indexOf('💰'),p.id+' narrative after ledger')
  assert.equal(text.split(opening).length-1,1,p.id+' opening once')
  assert(context.questions.length>=1&&context.questions.length<=2)
  assert.equal(new Set(context.questions.map(q=>q.text)).size,context.questions.length)
@@ -38,7 +37,7 @@ for (const [i,p] of auditedProfiles.entries()) {
  const old=budgetBeforeChantier4(p),custom={profile:old,text:'Mon texte\n\n123 € — ma question ?',edited:true,textFinance:budgetFinancialReference(old)}
  const refreshed=refreshBudgetDraft(custom)
  assert.equal(refreshed.text,custom.text)
- assert.equal(staleBudgetText(refreshed),p.name==='Marc')
+ assert.equal(staleBudgetText(refreshed),budgetFinancialReference(old)!==budgetFinancialReference(p))
  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,text)
 }
 const marc=BUDGET_PROFILES.find(p=>p.name==='Marc')

@@ -22,8 +22,8 @@ for (const p of BUDGET_PROFILES) {
   const custom = { profile: p, text: 'Mon brouillon personnalisé\nMes chiffres et mes questions.', edited: true, textFinance: baseline.beforeFinance[p.id] }
   const refreshed = refreshBudgetDraft(custom)
   assert.equal(refreshed.text, custom.text)
-  assert.equal(staleBudgetText(refreshed), baseline.beforeFinance[p.id] !== budgetFinancialReference(p))
-  assert.equal(refreshBudgetDraft({ ...custom, edited: false }).text, buildBudgetText(p))
+  assert.equal(staleBudgetText(refreshed), baseline.beforeFinance[p.id] !== budgetFinancialReference(refreshed.profile))
+  assert.equal(refreshBudgetDraft({ ...custom, edited: false }).text, buildBudgetText(refreshed.profile))
   for (const goal of review.projectChecks) {
     if (goal.monthlyFunding && goal.target !== undefined) {
       assert.equal(goal.monthsToMinimum, Math.max(0, Math.ceil((goal.target - goal.initialFunding) / goal.monthlyFunding)))
