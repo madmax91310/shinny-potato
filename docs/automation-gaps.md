@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Présent / applicable | Non applicable | En attente | Non publié | À résoudre |
 |---|---:|---:|---:|---:|---:|
-| Frais | 280/283 | 0 | 0 | 0 | 3 |
-| Encours | 280/283 | 0 | 0 | 0 | 3 |
-| Calendrier annuel | 260/283 | 0 | 13 | 6 | 4 |
-| Pays | 251/260 | 23 | 0 | 5 | 4 |
-| Secteurs | 251/260 | 23 | 0 | 5 | 4 |
-| Positions pondérées | 256/260 | 23 | 0 | 0 | 4 |
+| Frais | 281/284 | 0 | 0 | 0 | 3 |
+| Encours | 281/284 | 0 | 0 | 0 | 3 |
+| Calendrier annuel | 260/284 | 0 | 13 | 6 | 5 |
+| Pays | 252/261 | 23 | 0 | 5 | 4 |
+| Secteurs | 252/261 | 23 | 0 | 5 | 4 |
+| Positions pondérées | 257/261 | 23 | 0 | 0 | 4 |
 
 ## Premiers calendriers des 13 parts récentes
 
@@ -99,6 +99,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Global X Copper Miners UCITS ETF USD Acc (IE0003Z9E2Y3) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
+| instrument | Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating (IE000VAHT5T0) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -151,7 +152,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Calendrier annuel | À qualifier | La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Pays | À qualifier | Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Secteurs | À qualifier | Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée. |
-| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Positions pondérées | Source contradictoire | Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA. |
+| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Positions pondérées | Source contradictoire | Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -196,7 +197,7 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 
 | Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
 |---|---|---|---|---|
-| Lucya Cardif | Fonds général | Plafond en euros | 2026-11-17 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-11-17 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-11-17 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
-| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-11-17 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Fonds général | Plafond en euros | 2026-11-18 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-11-18 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-11-18 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
+| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-11-18 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |

@@ -2,9 +2,9 @@
   "fieldCoverage": {
     "ter": {
       "label": "Frais",
-      "present": 280,
-      "total": 283,
-      "applicable": 283,
+      "present": 281,
+      "total": 284,
+      "applicable": 284,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -12,9 +12,9 @@
     },
     "aum": {
       "label": "Encours",
-      "present": 280,
-      "total": 283,
-      "applicable": 283,
+      "present": 281,
+      "total": 284,
+      "applicable": 284,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -23,18 +23,18 @@
     "performance": {
       "label": "Calendrier annuel",
       "present": 260,
-      "total": 283,
-      "applicable": 283,
+      "total": 284,
+      "applicable": 284,
       "notApplicable": 0,
       "waiting": 13,
       "notPublished": 6,
-      "unresolved": 4
+      "unresolved": 5
     },
     "countries": {
       "label": "Pays",
-      "present": 251,
-      "total": 283,
-      "applicable": 260,
+      "present": 252,
+      "total": 284,
+      "applicable": 261,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
@@ -42,9 +42,9 @@
     },
     "sectors": {
       "label": "Secteurs",
-      "present": 251,
-      "total": 283,
-      "applicable": 260,
+      "present": 252,
+      "total": 284,
+      "applicable": 261,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
@@ -52,9 +52,9 @@
     },
     "holdings": {
       "label": "Positions pondérées",
-      "present": 256,
-      "total": 283,
-      "applicable": 260,
+      "present": 257,
+      "total": 284,
+      "applicable": 261,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 0,
@@ -252,7 +252,7 @@
       "fund": "Fonds général",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrls": [
         "https://lucya.com/assurance-vie/lucya-cardif/",
         "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
@@ -267,7 +267,7 @@
       "fund": "Euro Private Strategies",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrls": [
         "https://lucya.com/assurance-vie/lucya-cardif/",
         "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
@@ -281,7 +281,7 @@
       "fund": "Actif général SwissLife",
       "field": "maxAllocation",
       "status": "not-published",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrls": [
         "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
         "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
@@ -295,7 +295,7 @@
       "fund": "Actif général SwissLife",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrls": [
         "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
         "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
@@ -335,11 +335,11 @@
       "name": "Linxea Zen",
       "fund": "Apicil Euroflex",
       "status": "unlimited",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "d52d2987765395a9b84e87722a319c2b7a1aeb25de56f4973f98e793b24323a9",
+      "sha256": "a93646e15c3e719c1e907c855327973366140b37dcc432e42ac122fdd13db00d",
       "active": true
     },
     {
@@ -347,11 +347,11 @@
       "name": "Linxea Zen",
       "fund": "Apicil Euro Garanti",
       "status": "unlimited",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "d52d2987765395a9b84e87722a319c2b7a1aeb25de56f4973f98e793b24323a9",
+      "sha256": "a93646e15c3e719c1e907c855327973366140b37dcc432e42ac122fdd13db00d",
       "active": true
     },
     {
@@ -386,11 +386,11 @@
       "name": "Linxea Avenir 2+",
       "fund": "Suravenir Opportunités 2",
       "status": "unlimited",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "830268d8ee5bff81badb54c9e953266d146e1ea62cc1ef83440d7180687f128b",
+      "sha256": "327e575ea52d728708bca0afc4294ae6f4ba5ba1b43ffb51f70a20c0017b0a0c",
       "active": true
     },
     {
@@ -398,28 +398,28 @@
       "name": "Linxea Avenir 2+",
       "fund": "Suravenir Rendement 2",
       "status": "unlimited",
-      "checkedAt": "2026-11-17",
+      "checkedAt": "2026-11-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
       "scope": "Souscriptions, versements complémentaires et programmés",
       "minimumUnits": 30,
-      "sha256": "830268d8ee5bff81badb54c9e953266d146e1ea62cc1ef83440d7180687f128b",
+      "sha256": "327e575ea52d728708bca0afc4294ae6f4ba5ba1b43ffb51f70a20c0017b0a0c",
       "active": true
     }
   ],
   "checkedAt": "2026-11-18",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 283,
+  "instruments": 284,
   "covered": {
-    "ter": 280,
-    "aum": 280,
+    "ter": 281,
+    "aum": 281,
     "performance": 260,
-    "countries": 251,
-    "sectors": 251,
-    "holdings": 256
+    "countries": 252,
+    "sectors": 252,
+    "holdings": 257
   },
   "summary": {
-    "instrument:unqualified": 21,
+    "instrument:unqualified": 22,
     "instrument:not-applicable": 69,
     "instrument:waiting-first-year": 13,
     "instrument:not-published": 16,
@@ -1096,7 +1096,7 @@
       "asOf": "2026-11-16",
       "checkedAt": "2026-11-18",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "26e2a9829cd58417d121c5adfb17cdc0ab662f17325189f256f98fb7328d2a7d",
+      "sha256": "6e58cfd76400f8b264331d07ea59cee52f1c50e0dfdc305f3e94d8bb679b2d2c",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1231,6 +1231,17 @@
       "status": "not-published",
       "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/"
+    },
+    {
+      "type": "instrument",
+      "id": "IE000VAHT5T0",
+      "name": "Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Global_All-Cap_UCITS_ETF_USD_Acc_E161_EU_INT_UK_EN.pdf"
     },
     {
       "type": "instrument",
@@ -1832,7 +1843,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-11-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "fc1b4b588cef2fe789767d862c41bb752a69e048998fc205373ac573e3798163",
+      "sha256": "112fcff7ab4a1e8cd249d8d1b7fcc288a7b3044e24e6cf88197ccd9df89e1b8b",
       "evidence": []
     },
     {
@@ -1846,7 +1857,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-11-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "fc1b4b588cef2fe789767d862c41bb752a69e048998fc205373ac573e3798163",
+      "sha256": "112fcff7ab4a1e8cd249d8d1b7fcc288a7b3044e24e6cf88197ccd9df89e1b8b",
       "evidence": []
     },
     {
@@ -1860,7 +1871,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-11-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "fc1b4b588cef2fe789767d862c41bb752a69e048998fc205373ac573e3798163",
+      "sha256": "112fcff7ab4a1e8cd249d8d1b7fcc288a7b3044e24e6cf88197ccd9df89e1b8b",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1898,10 +1909,10 @@
       "label": "Positions pondérées",
       "configured": true,
       "status": "source-conflict",
-      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.",
+      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA.",
       "checkedAt": "2026-11-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "fc1b4b588cef2fe789767d862c41bb752a69e048998fc205373ac573e3798163",
+      "sha256": "112fcff7ab4a1e8cd249d8d1b7fcc288a7b3044e24e6cf88197ccd9df89e1b8b",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 06 Nov 2026",
@@ -1927,6 +1938,16 @@
         "AMD",
         "Advanced Micro Devices Inc",
         "3.20",
+        "Country Supplement - Austria",
+        "Country Supplement - Denmark",
+        "Country Supplement - English (PL)",
+        "Country Supplement - Germany",
+        "Country Supplement - Luxembourg",
+        "Country Supplement - Polish",
+        "Country Supplement - Switzerland",
+        "Country Supplement - UK",
+        "German Consolidated Prospectus",
+        "Additional Documents",
         "TSLA",
         "Tesla Inc",
         "3.10",
