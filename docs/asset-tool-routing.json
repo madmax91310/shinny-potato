@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-18T08:47:53.399Z",
+  "checkedAt": "2026-11-18T16:24:19.919Z",
   "summary": {
     "instruments": 697,
     "sheets": 280,
@@ -10,16 +10,16 @@
     "dca": 696,
     "fullExposure": 604,
     "outsideExposure": 53,
-    "automaticHistories": 306,
-    "historyCandidates": 1,
+    "automaticHistories": 307,
+    "historyCandidates": 0,
     "unused": 0,
     "blockers": {
       "no-listing": 1,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
       "qualification-pending": 0,
-      "collection-pending": 1,
-      "history-short": 30
+      "collection-pending": 0,
+      "history-short": 31
     }
   },
   "errors": [],
@@ -7043,14 +7043,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.9998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-12",
@@ -7101,7 +7101,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-18T07:01:14.916909+00:00"
+        "checkedAt": "2026-11-18T09:31:14.082119+00:00"
       },
       "dca": true,
       "countries": {
@@ -7331,17 +7331,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999700000002,
+        "coverage": 99.99999800000002,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999799999998,
+        "coverage": 99.99999500000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -7615,7 +7615,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-18T07:01:14.916909+00:00"
+        "checkedAt": "2026-11-18T09:31:14.082119+00:00"
       },
       "dca": true,
       "countries": {
@@ -7902,7 +7902,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-18T07:01:14.916909+00:00"
+        "checkedAt": "2026-11-18T09:31:14.082119+00:00"
       },
       "dca": true,
       "countries": {
@@ -7969,22 +7969,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999,
+        "coverage": 99.99998699999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.999989,
+        "coverage": 99.99999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 23.910779410000004,
+        "identifiedCoverage": 24.045063610000003,
         "automatic": true
       },
       "monthly": [
@@ -8098,7 +8098,7 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
         "identifiedCoverage": 0,
         "automatic": true
@@ -8288,7 +8288,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-18T07:01:14.916909+00:00"
+        "checkedAt": "2026-11-18T09:31:14.082119+00:00"
       },
       "dca": true,
       "countries": {
@@ -8451,8 +8451,8 @@
       "annualPerformance": false,
       "compositionOnly": false,
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle",
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
         "field": "monthly",
         "tools": [
           "portfolio-generator",
@@ -8460,7 +8460,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-11-18T07:01:14.916909+00:00"
+        "checkedAt": "2026-11-18T16:04:34.430290+00:00"
       },
       "dca": true,
       "countries": {
@@ -8483,8 +8483,19 @@
         "identifiedCoverage": 0,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE000VAHT5T0",
+          "automatic": true,
+          "first": "2026-09",
+          "last": "2026-10",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": false
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -8517,14 +8528,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.9998,
+        "coverage": 99.99990000000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-12",
@@ -8571,17 +8582,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.999947,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99994499999997,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -8840,9 +8851,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 41.37086,
+        "identifiedCoverage": 41.35956,
         "automatic": false
       },
       "monthly": [
@@ -9042,9 +9053,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 79.61547,
+        "identifiedCoverage": 79.61486000000001,
         "automatic": false
       },
       "monthly": [
@@ -9085,9 +9096,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 14.67279,
+        "identifiedCoverage": 14.66311,
         "automatic": false
       },
       "monthly": [
@@ -9297,9 +9308,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 84.70389,
+        "identifiedCoverage": 84.6824,
         "automatic": false
       },
       "monthly": [
@@ -9350,9 +9361,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 29.86885,
+        "identifiedCoverage": 29.84557,
         "automatic": false
       },
       "monthly": [
@@ -9393,9 +9404,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 31.791120000000003,
+        "identifiedCoverage": 31.7505,
         "automatic": false
       },
       "monthly": [
@@ -9734,7 +9745,7 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
         "identifiedCoverage": 6.037680000000001,
         "automatic": false
@@ -9934,9 +9945,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 4.60027,
+        "identifiedCoverage": 4.604189999999999,
         "automatic": false
       },
       "monthly": [
@@ -9989,9 +10000,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 0.7585000000000001,
+        "identifiedCoverage": 0.7581300000000001,
         "automatic": false
       },
       "monthly": [
@@ -10032,9 +10043,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 44.16459,
+        "identifiedCoverage": 44.16130999999999,
         "automatic": false
       },
       "monthly": [
@@ -10124,9 +10135,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 1.2018019999999998,
+        "identifiedCoverage": 1.2016689999999999,
         "automatic": false
       },
       "monthly": [
@@ -10358,17 +10369,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.993195,
+        "coverage": 99.993147,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.998919,
+        "coverage": 99.998893,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -10603,17 +10614,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.998559,
+        "coverage": 99.998556,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999899999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -10703,17 +10714,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999900000003,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -11320,9 +11331,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 7.6937999999999995,
+        "identifiedCoverage": 7.6408,
         "automatic": false
       },
       "monthly": [
@@ -11850,14 +11861,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -12001,9 +12012,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 3.9401199999999994,
+        "identifiedCoverage": 3.9365500000000004,
         "automatic": false
       },
       "monthly": [
@@ -12137,17 +12148,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999299999999,
+        "coverage": 99.999996,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999200000002,
+        "coverage": 99.99999699999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -12475,17 +12486,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999900000003,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -12810,9 +12821,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 3.55364,
+        "identifiedCoverage": 3.5514,
         "automatic": false
       },
       "monthly": [
@@ -12940,14 +12951,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99980000000001,
+        "coverage": 99.99970000000002,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-12",
@@ -13054,9 +13065,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 3.9401199999999994,
+        "identifiedCoverage": 3.9365500000000004,
         "automatic": false
       },
       "monthly": [
@@ -13149,9 +13160,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 22.57408,
+        "identifiedCoverage": 22.563879999999997,
         "automatic": false
       },
       "monthly": [
@@ -13319,14 +13330,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999800000002,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -13372,9 +13383,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 13.394549999999999,
+        "identifiedCoverage": 13.407880000000004,
         "automatic": false
       },
       "monthly": [
@@ -13555,17 +13566,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999999999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999899999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -13604,17 +13615,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999299999999,
+        "coverage": 99.99999400000003,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.999994,
+        "coverage": 99.99999300000002,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -13653,17 +13664,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999999999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -14256,14 +14267,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99980000000001,
+        "coverage": 99.9998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-12",
@@ -14312,17 +14323,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999299999999,
+        "coverage": 99.99999400000003,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.999994,
+        "coverage": 99.99999300000002,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -14769,9 +14780,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 7.8397,
+        "identifiedCoverage": 7.844759999999999,
         "automatic": false
       },
       "monthly": [
@@ -14852,14 +14863,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99970000000002,
+        "coverage": 99.99960000000002,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-12",
@@ -15045,17 +15056,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999999999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -15183,17 +15194,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999700000001,
+        "coverage": 99.99999699999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999800000002,
+        "coverage": 99.99999799999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -15232,17 +15243,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999799999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999900000003,
+        "coverage": 99.99999999999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -15281,17 +15292,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999700000004,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -15330,17 +15341,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -15379,17 +15390,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999999999999,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-11-16"
-      },
-      "sectors": {
-        "status": "available",
         "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99999800000002,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -16306,9 +16317,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 57.87359000000001,
+        "identifiedCoverage": 57.888470000000005,
         "automatic": false
       },
       "monthly": [
@@ -16359,9 +16370,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 38.47595999999999,
+        "identifiedCoverage": 38.48736999999999,
         "automatic": false
       },
       "monthly": [
@@ -16503,17 +16514,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999500000006,
+        "coverage": 99.99999500000004,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 99.999995,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -16603,9 +16614,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 44.26931999999999,
+        "identifiedCoverage": 44.261070000000004,
         "automatic": false
       },
       "monthly": [
@@ -16700,17 +16711,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999799999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -17102,9 +17113,9 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
-        "identifiedCoverage": 8.926049999999998,
+        "identifiedCoverage": 8.90379,
         "automatic": false
       },
       "monthly": [
@@ -17243,14 +17254,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99940000000002,
+        "coverage": 99.99939999999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-12",
@@ -17296,7 +17307,7 @@
         "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "complete": false,
         "identifiedCoverage": 0,
         "automatic": false
@@ -20265,17 +20276,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999800000002,
+        "coverage": 99.99999700000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999700000002,
+        "coverage": 99.99999600000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -20354,17 +20365,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999700000002,
+        "coverage": 99.99999699999996,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999800000002,
+        "coverage": 99.99999700000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -20403,17 +20414,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999999999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.999999,
+        "coverage": 99.99999799999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -21203,14 +21214,14 @@
         "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
@@ -21362,14 +21373,14 @@
         "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-17"
       },
       "holdings": {
         "asOf": "2026-11-13",
