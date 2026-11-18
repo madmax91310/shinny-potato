@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-15T16:41:26.765479+00:00",
+  "as_of": "2026-11-18T07:36:05.630803+00:00",
   "data": {
     "identity": {
       "slug": "ackman",
@@ -10,24 +10,48 @@
       "sourceId": "0002026053",
       "benchmarkTicker": "SPY",
       "sortOrder": 40,
-      "notes": "Q2 2026 13F (filed 2026-08-14 by parent Pershing Square Inc.): $19.5B in 15 rows. Q1 2026 13F: $13.7B in 11 positions — Pershing Square runs one of the most concentrated activist books on Wall Street. Famous big bets include the Herbalife short, the FNMA/FMCC preferreds, and a major stake in Fannie Mae bonds. Public letters often precede activist campaigns.",
+      "notes": "Q3 2026 13F (filed 2026-11-16 by parent Pershing Square Inc.): $30.80B across 16 positions. Largest: Pershing Square Inc. (PS) $10.31B, Uber $2.35B, Amazon $2.12B, Microsoft $2.08B, Meta $2.05B. New in Q3: Intercontinental Exchange $1.01B and Alcon $954M (CINS H01301128, unlinked until the 2026-11-17 resolver fix); Hertz exited. The 184.3M-share PS stake first appeared in a 13F-HR/A NEW HOLDINGS amendment for Q2 filed the same day, which lifted Q2 from $19.47B to $25.52B. Famous big bets include the Herbalife short, the FNMA/FMCC preferreds, and a major stake in Fannie Mae bonds. Public letters often precede activist campaigns.",
       "photoUrl": "/avatars/ackman.jpg",
       "photoCredit": "Senate Democrats · CC BY 2.0 (Wikimedia)",
-      "infoText": "Founder and CEO of Pershing Square Capital Management (founded 2004). Runs one of the most concentrated activist books on Wall Street — typically 10–15 positions. Known for the Herbalife short (eventually closed at a loss), the FNMA/FMCC preferreds bet, and ahead-of-the-news public letters. Since Q2 2026 the 13F is filed by the public parent, Pershing Square Inc. (NYSE: PS), which consolidates the fund’s book with the parent’s own direct holdings.",
+      "infoText": "Founder and CEO of Pershing Square Capital Management (founded 2004). Runs one of the most concentrated activist books on Wall Street, typically 10–15 positions. Known for the Herbalife short (eventually closed at a loss), the FNMA/FMCC preferreds bet, and ahead-of-the-news public letters. Since Q2 2026 the 13F is filed by the public parent, Pershing Square Inc. (NYSE: PS). Its largest line as of September 30 2026 is a 184.3M-share stake in Pershing Square Inc. itself, $10.3B of a $30.8B book.",
       "dataProvider": "SEC",
       "personVerified": true,
       "personSource": "https://tracefour.com/trackers/ackman",
-      "personPeriod": "2026-06-30",
+      "personPeriod": "2026-09-30",
       "declaringCik": "0002026053",
-      "entitySource": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm"
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126005427/0001172661-26-005427-index.htm"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
-      "filedAt": "2026-08-14",
-      "periodLabel": "Q2 2026",
-      "totalValueUsd": 19465692772,
-      "holdingsCount": 14,
+      "periodEnd": "2026-09-30",
+      "filedAt": "2026-11-16",
+      "periodLabel": "Q3 2026",
+      "totalValueUsd": 30796550126,
+      "holdingsCount": 16,
       "holdings": [
+        {
+          "issuerName": "PERSHING SQUARE INC",
+          "shareClass": "COM",
+          "cusip": "71531U102",
+          "securityId": "71531U102",
+          "ticker": "",
+          "putCall": null,
+          "value": 10309165762,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10309165762,
+              "issuerName": "PERSHING SQUARE INC",
+              "shares": "184289699",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3,4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.33475066914382995
+        },
         {
           "issuerName": "UBER TECHNOLOGIES INC",
           "shareClass": "COM",
@@ -35,70 +59,22 @@
           "securityId": "90353T100",
           "ticker": "",
           "putCall": null,
-          "value": 2476978592,
+          "value": 2347719794,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2476978592,
+              "value": 2347719794,
               "issuerName": "UBER TECHNOLOGIES INC",
-              "shares": "34326200",
+              "shares": "34268279",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
+              "otherManager": "1,2,3,4"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.1272484170490431
-        },
-        {
-          "issuerName": "BROOKFIELD CORP",
-          "shareClass": "CL A LTD VT SH",
-          "cusip": "11271J107",
-          "securityId": "11271J107",
-          "ticker": "",
-          "putCall": null,
-          "value": 2448117792,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 2448117792,
-              "issuerName": "BROOKFIELD CORP",
-              "shares": "57481047",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.12576576753134835
-        },
-        {
-          "issuerName": "MICROSOFT CORP",
-          "shareClass": "COM",
-          "cusip": "594918104",
-          "securityId": "594918104",
-          "ticker": "",
-          "putCall": null,
-          "value": 2315234425,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 2315234425,
-              "issuerName": "MICROSOFT CORP",
-              "shares": "6206730",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.1189392256478176
+          "weight": 0.07623320743377475
         },
         {
           "issuerName": "AMAZON COM INC",
@@ -107,78 +83,46 @@
           "securityId": "023135106",
           "ticker": "",
           "putCall": null,
-          "value": 2041109677,
+          "value": 2119214838,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2041109677,
+              "value": 2119214838,
               "issuerName": "AMAZON COM INC",
-              "shares": "8563857",
+              "shares": "8505779",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
+              "otherManager": "1,2,3,4"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.10485677036555255
+          "weight": 0.06881338426965078
         },
         {
-          "issuerName": "HOWARD HUGHES HOLDINGS INC",
+          "issuerName": "MICROSOFT CORP",
           "shareClass": "COM",
-          "cusip": "44267T102",
-          "securityId": "44267T102",
+          "cusip": "594918104",
+          "securityId": "594918104",
           "ticker": "",
           "putCall": null,
-          "value": 1991144055,
+          "value": 2084825149,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1347734055,
-              "issuerName": "HOWARD HUGHES HOLDINGS INC",
-              "shares": "18852064",
+              "value": 2084825149,
+              "issuerName": "MICROSOFT CORP",
+              "shares": "4064779",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
-            },
-            {
-              "value": 643410000,
-              "issuerName": "HOWARD HUGHES HOLDINGS INC",
-              "shares": "9000000",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4, 6"
+              "otherManager": "1,2,3,4"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.10228991479122272
-        },
-        {
-          "issuerName": "RESTAURANT BRANDS INTL INC",
-          "shareClass": "COM",
-          "cusip": "76131D103",
-          "securityId": "76131D103",
-          "ticker": "",
-          "putCall": null,
-          "value": 1872301303,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1872301303,
-              "issuerName": "RESTAURANT BRANDS INTL INC",
-              "shares": "25821284",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.09618467346269693
+          "weight": 0.06769671084813768
         },
         {
           "issuerName": "META PLATFORMS INC",
@@ -187,94 +131,102 @@
           "securityId": "30303M102",
           "ticker": "",
           "putCall": null,
-          "value": 1800309764,
+          "value": 2054651769,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1800309764,
+              "value": 2054651769,
               "issuerName": "META PLATFORMS INC",
-              "shares": "3196062",
+              "shares": "2833299",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
+              "otherManager": "1,2,3,4"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0924862929404504
+          "weight": 0.06671694591094343
         },
         {
-          "issuerName": "VISA INC",
-          "shareClass": "COM CL A",
-          "cusip": "92826C839",
-          "securityId": "92826C839",
-          "ticker": "",
-          "putCall": null,
-          "value": 1122065552,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1122065552,
-              "issuerName": "VISA INC",
-              "shares": "3270470",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.057643237522684555
-        },
-        {
-          "issuerName": "MASTERCARD INCORPORATED",
-          "shareClass": "CL A",
-          "cusip": "57636Q104",
-          "securityId": "57636Q104",
-          "ticker": "",
-          "putCall": null,
-          "value": 1091218186,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1091218186,
-              "issuerName": "MASTERCARD INCORPORATED",
-              "shares": "2124646",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.05605853327602288
-        },
-        {
-          "issuerName": "S&P GLOBAL INC",
+          "issuerName": "HOWARD HUGHES HOLDINGS INC",
           "shareClass": "COM",
-          "cusip": "78409V104",
-          "securityId": "78409V104",
+          "cusip": "44267T102",
+          "securityId": "44267T102",
           "ticker": "",
           "putCall": null,
-          "value": 1056088305,
+          "value": 2050468952,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1056088305,
-              "issuerName": "S&P GLOBAL INC",
-              "shares": "2593155",
+              "value": 1387888952,
+              "issuerName": "HOWARD HUGHES HOLDINGS INC",
+              "shares": "18852064",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
+              "otherManager": "1,2,3,4"
+            },
+            {
+              "value": 662580000,
+              "issuerName": "HOWARD HUGHES HOLDINGS INC",
+              "shares": "9000000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2,3,4,6"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.05425382581395239
+          "weight": 0.0665811249510344
+        },
+        {
+          "issuerName": "BROOKFIELD CORP",
+          "shareClass": "CL A LTD VT SH",
+          "cusip": "11271J107",
+          "securityId": "11271J107",
+          "ticker": "",
+          "putCall": null,
+          "value": 1871531870,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1871531870,
+              "issuerName": "BROOKFIELD CORP",
+              "shares": "51331099",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2,3,4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.06077082862667654
+        },
+        {
+          "issuerName": "RESTAURANT BRANDS INTL INC",
+          "shareClass": "COM",
+          "cusip": "76131D103",
+          "securityId": "76131D103",
+          "ticker": "",
+          "putCall": null,
+          "value": 1564263175,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1564263175,
+              "issuerName": "RESTAURANT BRANDS INTL INC",
+              "shares": "22007079",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "3,4,5"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.050793454740872754
         },
         {
           "issuerName": "NETFLIX INC.",
@@ -283,22 +235,142 @@
           "securityId": "64110L106",
           "ticker": "",
           "putCall": null,
-          "value": 934016601,
+          "value": 1072418728,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 934016601,
+              "value": 1072418728,
               "issuerName": "NETFLIX INC.",
-              "shares": "13081465",
+              "shares": "15412744",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
+              "otherManager": "1,2,3,4"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.047982705364769535
+          "weight": 0.03482269032123212
+        },
+        {
+          "issuerName": "MASTERCARD INCORPORATED",
+          "shareClass": "CL A",
+          "cusip": "57636Q104",
+          "securityId": "57636Q104",
+          "ticker": "",
+          "putCall": null,
+          "value": 1041406426,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1041406426,
+              "issuerName": "MASTERCARD INCORPORATED",
+              "shares": "1888419",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2,3,4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.03381568460555561
+        },
+        {
+          "issuerName": "VISA INC",
+          "shareClass": "COM CL A",
+          "cusip": "92826C839",
+          "securityId": "92826C839",
+          "ticker": "",
+          "putCall": null,
+          "value": 1031535818,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1031535818,
+              "issuerName": "VISA INC",
+              "shares": "2870720",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2,3,4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.033495174419849234
+        },
+        {
+          "issuerName": "S&P GLOBAL INC",
+          "shareClass": "COM",
+          "cusip": "78409V104",
+          "securityId": "78409V104",
+          "ticker": "",
+          "putCall": null,
+          "value": 1022921853,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1022921853,
+              "issuerName": "S&P GLOBAL INC",
+              "shares": "2593155",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2,3,4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.03321546890203127
+        },
+        {
+          "issuerName": "INTERCONTINENTAL EXCHANGE IN",
+          "shareClass": "COM",
+          "cusip": "45866F104",
+          "securityId": "45866F104",
+          "ticker": "",
+          "putCall": null,
+          "value": 1008855725,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 1008855725,
+              "issuerName": "INTERCONTINENTAL EXCHANGE IN",
+              "shares": "6635899",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2,3,4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.03275872527514935
+        },
+        {
+          "issuerName": "ALCON AG",
+          "shareClass": "ORD SHS",
+          "cusip": "H01301128",
+          "securityId": "H01301128",
+          "ticker": "",
+          "putCall": null,
+          "value": 954175943,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 954175943,
+              "issuerName": "ALCON AG",
+              "shares": "14736308",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "1,2,3,4"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.030983208804106814
         },
         {
           "issuerName": "PERSHING SQUARE USA LTD",
@@ -307,22 +379,22 @@
           "securityId": "71531T105",
           "ticker": "",
           "putCall": null,
-          "value": 149520000,
+          "value": 148400000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 149520000,
+              "value": 148400000,
               "issuerName": "PERSHING SQUARE USA LTD",
               "shares": "4000000",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "3, 4, 5"
+              "otherManager": "1,2,3,4"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.007681206199610515
+          "weight": 0.004818721557864147
         },
         {
           "issuerName": "SEAPORT ENTMT GROUP INC",
@@ -331,87 +403,63 @@
           "securityId": "812215200",
           "ticker": "",
           "putCall": null,
-          "value": 133632548,
+          "value": 114994324,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 133632548,
+              "value": 114994324,
               "issuerName": "SEAPORT ENTMT GROUP INC",
               "shares": "5023780",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
+              "otherManager": "1,2,3,4"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.006865029134345571
-        },
-        {
-          "issuerName": "HERTZ GLOBAL HLDGS INC",
-          "shareClass": "COM NEW",
-          "cusip": "42806J700",
-          "securityId": "42806J700",
-          "ticker": "",
-          "putCall": null,
-          "value": 33955972,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 33955972,
-              "issuerName": "HERTZ GLOBAL HLDGS INC",
-              "shares": "14991599",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "1, 2, 3, 4"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0017444009004828856
+          "weight": 0.0037340001892912024
         }
       ],
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
+        "priorPeriodLabel": "Q2 2026",
         "exits": [
           {
-            "ticker": "GOOG",
-            "issuerName": "Alphabet Inc Cl C",
-            "priorValueUsd": 89421720,
-            "putCall": null
-          },
-          {
-            "ticker": "GOOGL",
-            "issuerName": "Alphabet Inc Cl A",
-            "priorValueUsd": 9310043,
+            "ticker": "HTZ",
+            "issuerName": "HERTZ GLOBAL HLDGS INC",
+            "priorValueUsd": 33955972,
             "putCall": null
           }
         ]
       },
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126005427/0001172661-26-005427-index.htm",
       "publicationSource": "https://tracefour.com/trackers/ackman",
-      "reportedCoverTotal": 19465692772,
+      "reportedCoverTotal": 30796550126,
       "reconciliationDifference": 0,
-      "providerDeclaredTotal": 19465692772,
-      "providerHoldingsCount": 14,
+      "providerDeclaredTotal": 30796550126,
+      "providerHoldingsCount": 16,
       "providerTotalDifference": 0,
-      "declaredTotal": 19465692772,
+      "declaredTotal": 30796550126,
       "currency": "USD",
       "valueUnit": 1,
       "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
       "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
       "sourceDocuments": [
-        "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/infotable.xml",
-        "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/primary_doc.xml"
+        "https://www.sec.gov/Archives/edgar/data/2026053/000117266126005427/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/2026053/000117266126005427/primary_doc.xml"
       ],
-      "originalRowCount": 15,
+      "originalRowCount": 17,
       "primaryVerified": true,
       "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées."
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126005427/0001172661-26-005427-index.htm",
     "discoverySourceUrl": "https://tracefour.com/trackers/ackman",
-    "filingHistory": []
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2026053/000117266126003790/0001172661-26-003790-index.htm",
+        "snapshotUrl": "data/investors/archive/ackman/2026-06-30.json"
+      }
+    ]
   }
 }
