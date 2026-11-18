@@ -1,51 +1,56 @@
 import assert from 'node:assert/strict'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, buildBudgetText } from '../src/pages/budget-profiles/lib.js'
-import { planSocialBudget, socialBudgetLabel, SOCIAL_SIZE, SOCIAL_BODY_SIZE } from '../src/pages/budget-profiles/socialImage.js'
-// Flow/ledger unit checks only. Actual measurements, glyph bounds, downloaded
-// images and every phone capture are checked by playwright-budget-social-image.
-const ctx={font:'',measureText(value){return{width:[...String(value)].length*Number(this.font.match(/([\d.]+)px/)[1])*.5}}}
-assert.deepEqual(SOCIAL_SIZE,{width:1080,height:1350});assert(SOCIAL_BODY_SIZE>=36)
-for(const p of BUDGET_PROFILES){
- const before=JSON.stringify(p),text=buildBudgetText(p),plan=planSocialBudget(ctx,p)
- assert.equal(JSON.stringify(p),before);assert.equal(buildBudgetText(p),text);assert.deepEqual(plan.a,analyzeBudget(p))
- const rows=plan.pages.flatMap(page=>page.columns.flatMap(c=>c.cards.flatMap(card=>card.rows)))
- const expected=plan.sections.flatMap(s=>s.rows)
- for(const r of expected){const parts=rows.filter(x=>x.id===r.id||x.id.startsWith(r.id+':part:'));assert(parts.length,p.id+' '+r.id);assert.equal(parts.map(r=>r.label).join(' ').replace(/\s/g,''),r.label.replace(/\s/g,''));if(r.amount!==undefined)assert.deepEqual(parts.filter(r=>r.amount!==undefined).map(r=>r.amount),[r.amount])}
- for(const page of plan.pages)assert(plan.header+page.height<=(page.kind==='primary'?1050:1186),p.id)
- if(!plan.single)assert.equal(plan.pages[0].kind,'primary')
+import { budgetCompletions } from '../src/pages/budget-profiles/budget-completions.js'
+import { analyzeBudget, blankBudget, budgetExpenseSections, budgetTransferLabel, buildBudgetText } from '../src/pages/budget-profiles/lib.js'
+import { planSocialBudget, SOCIAL_SIZE, SOCIAL_BODY_SIZE } from '../src/pages/budget-profiles/socialImage.js'
+import { duplicateBudget } from '../src/pages/budget-profiles/manual.js'
+import { staleBudgetText, budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
+
+assert.deepEqual(SOCIAL_SIZE, { width: 1080, height: 1350 })
+assert.equal(SOCIAL_BODY_SIZE, 40)
+
+const cents = value => Math.round(value * 100)
+const sum = rows => rows.reduce((total, row) => total + cents(row.amount), 0)
+const row = (label, amount, extra) => ({ label, amount, ...extra })
+const dense = { ...blankBudget(), name: 'Budget manuel', currency: 'CHF',
+  income: [row('Salaire', 8000), row('Titres-restaurant', 100, { inKind: true })],
+  expenses: Array.from({ length: 24 }, (_, i) => row(`Poste ${i}`, 120.13 + i, { constraint: ['fixed', 'flexible', 'mixed'][i % 3] })),
+  savings: [row('Livret', 1200, { transferStatus: 'paid' }), row('ETF', 2000, { transferStatus: 'planned' })],
 }
-const emilie=BUDGET_PROFILES.find(p=>p.name==='Émilie'),p=planSocialBudget(ctx,emilie)
-assert.deepEqual([p.a.income,p.a.expenses,p.a.savings,p.a.balance],[2300,1735,500,65])
-assert.equal(p.sections.find(s=>s.id==='expenses').rows.length,11)
-const highlights=p.sections.find(s=>s.id==='projects').rows.map(r=>r.label).join(' ')
-assert(/2 000 € → 20 000 €/.test(highlights));assert(/5 000 €/.test(highlights))
-assert(socialBudgetLabel('Part des courses').includes('Part'),'Never turn a contribution into the full household expense')
-const dense={...structuredClone(emilie),kind:'participant',id:'dense-social-fixture',context:'Projet de 2 000 € avec une réserve séparée.'}
-for(const key of ['income','expenses','savings'])dense[key]=Array.from({length:24},(_,i)=>({label:`Poste ${i+1} avec tous les détails utiles, conservés sans aucune ellipse`,amount:i+1}))
-const plan=planSocialBudget(ctx,dense);assert(plan.pages.length>1)
-const originalDocument=globalThis.document,originalPath=globalThis.Path2D
-try{
- const drawContext={...ctx,fillText(){},fillRect(){},beginPath(){},roundRect(){},fill(){},save(){},translate(){},scale(){},stroke(){},restore(){}}
- globalThis.Path2D=class{};globalThis.document={createElement(){return{width:0,height:0,getContext:()=>drawContext}}}
- const {renderBudgetImages,renderBudgetImage}=await import('../src/pages/budget-profiles/image.js')
- for(const profile of [...BUDGET_PROFILES,dense,{...dense,mainImage:'complete'}]) {
-  const before=JSON.stringify(profile)
-  // Approximate metrics exercise the explicit refusal path. Real-font fit for
-  // every complete main image is mandatory in the browser/download recipe.
-  if(profile.mainImage==='complete'&&profile.kind!=='participant'&&!planSocialBudget(ctx,profile,'main').single){
-   await assert.rejects(()=>renderBudgetImages(profile,'overview'),/plusieurs pages/)
-   assert.equal(JSON.stringify(profile),before)
-   continue
+
+for (const profile of [...BUDGET_PROFILES, dense]) {
+  const before = JSON.stringify(profile)
+  const plan = planSocialBudget(profile)
+  const sections = budgetExpenseSections(profile)
+  assert.equal(sum(plan.expenses.flat()), cents(plan.totals.expenses), profile.id)
+  for (const group of plan.expenses.flat()) {
+    const source = sections.find(section => section.id === group.id).rows
+    assert.deepEqual(group.rows.flatMap(row => row.members).sort((a, b) => a - b), source.map((_, i) => i), profile.id)
+    assert.equal(sum(group.rows), sum(source))
+    for (const row of group.rows) assert.equal(cents(row.amount), sum(row.members.map(i => source[i])))
   }
-  const overview=await renderBudgetImages(profile,'overview')
-  assert.equal(overview.length,1);assert.deepEqual([overview[0].width,overview[0].height],[1080,1350])
-  assert.deepEqual(overview[0].budgetTotals,analyzeBudget(profile));assert.equal(JSON.stringify(profile),before)
- }
- const pages=await renderBudgetImages(dense,'social');assert.equal(pages.length,plan.pages.length)
- for(const [i,c]of pages.entries()){assert.deepEqual([c.width,c.height],[1080,1350]);assert.equal(c.budgetFormat,'social');assert.equal(c.budgetPage,i+1);assert.equal(c.budgetPageCount,pages.length)}
- const first=await renderBudgetImage(dense);assert.equal(first.width,1080);assert(first.budgetPages.length>1)
- for(const mode of ['detailed','summary']){const c=await renderBudgetImage(emilie,mode);assert.equal(c.width,1080);assert.equal(c.height,1350);assert(c.budgetPages.length>1)}
- await assert.rejects(()=>renderBudgetImages({...emilie,expenses:[{label:'Invalid',amount:-1}]}),/invalides/)
-}finally{globalThis.document=originalDocument;globalThis.Path2D=originalPath}
-console.log('Budget X: bounded 1080×1350 pages, stable readable type, every source row once, exact ledgers, planned projects/reserves, 72-row drafts, explicit legacy formats; no long-image fallback.')
+  assert.equal(JSON.stringify(profile), before)
+  const text = buildBudgetText(profile)
+  assert(text.includes(plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'), profile.id)
+  assert((text.match(/^💬 /gm) || []).length <= 2, profile.id)
+  if (budgetCompletions[profile.id]) assert(text.includes('Budget reconstitué'), profile.id)
+}
+
+assert.equal(planSocialBudget(dense).totals.income, 8000)
+assert.equal(planSocialBudget(dense).perks[0].amount, 100)
+assert.equal(budgetTransferLabel(dense), 'Versements mixtes')
+assert.match(buildBudgetText(dense), /avantage hors total disponible/)
+assert.match(buildBudgetText(dense), /Livret \(effectué\)/)
+assert.match(buildBudgetText(dense), /ETF \(prévu\)/)
+assert.equal(analyzeBudget(dense).balance, 1640.88)
+assert(staleBudgetText({ edited: true, profile: dense, textFinance: budgetFinancialReference({ ...dense, income: [dense.income[0], row('Titres-restaurant', 100)] }) }))
+assert.throws(() => planSocialBudget({ ...dense, expenses: [] }), /Ajoute les dépenses/)
+
+const noCash = { ...dense, income: [row('Titres-restaurant', 100, { inKind: true })] }
+assert.equal(planSocialBudget(noCash).totals.income, 0)
+assert.doesNotMatch(buildBudgetText(noCash), /Infinity|NaN/)
+assert.match(buildBudgetText(noCash), /Déficit avant versements/)
+const duplicate = duplicateBudget({ profile: dense, edited: false }, 'copie-budget').profile
+assert.deepEqual(analyzeBudget(duplicate), analyzeBudget(dense))
+assert.deepEqual(duplicate.expenses.map(row => row.constraint), dense.expenses.map(row => row.constraint))
+assert.deepEqual(duplicate.savings.map(row => row.transferStatus), dense.savings.map(row => row.transferStatus))

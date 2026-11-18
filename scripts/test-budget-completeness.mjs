@@ -52,7 +52,7 @@ for (const [i,p] of BUDGET_RELIABLE_PROFILES.entries()) {
     }
   }
   const personal={profile:structuredClone(original),text:'Mon texte personnel avec mes anciens chiffres.',edited:true}
-  const refreshed=refreshBudgetDraft(personal), current=BUDGET_PROFILES.find(x=>x.id===p.id)
+  const refreshed=refreshBudgetDraft(personal), current=refreshed.profile
   assert.equal(refreshed.text,personal.text)
   assert.equal(staleBudgetText(refreshed),budgetFinancialReference(original)!==budgetFinancialReference(current))
   assert.equal(staleBudgetText(refreshBudgetDraft(refreshed)),staleBudgetText(refreshed),'Warning survives repeated reloads')

@@ -1,5 +1,7 @@
 import { budgetRowSymbol, budgetPublicBasis, budgetSalaryLabel, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext, budgetQualification } from './presentation.js'
 import { budgetFinancialReference } from './completion.js'
+import { expenseGroup } from './expense-groups.js'
+import { budgetCompletions } from './budget-completions.js'
 import { validAnnualProvision, provisionLabel } from './row-input.js'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_CATEGORIES } from './data.js'
 
@@ -18,7 +20,10 @@ export function validBudget(profile) {
     ['job', 'location', 'household', 'period', 'incomeBasis', 'incomeNote'].every(key => safeText(profile[key], 250)) &&
     ['declared', 'planned', 'participant', 'prepared'].includes(profile.kind) && typeof profile.approximate === 'boolean' &&
     ['income', 'expenses', 'savings'].every(key => Array.isArray(profile[key]) && profile[key].length <= MAX_BUDGET_LINES &&
-      profile[key].every(row => row && safeText(row.label, 90) && (row.amount === null || validAmount(row.amount)) && validAnnualProvision(row) && (key === 'expenses' || row.annualProvision === undefined))) &&
+      profile[key].every(row => row && safeText(row.label, 90) && (row.amount === null || validAmount(row.amount)) && validAnnualProvision(row) && (key === 'expenses' || row.annualProvision === undefined) &&
+        (row.constraint === undefined || key === 'expenses' && ['fixed', 'flexible', 'mixed'].includes(row.constraint)) &&
+        (row.inKind === undefined || key === 'income' && typeof row.inKind === 'boolean') &&
+        (row.transferStatus === undefined || key === 'savings' && ['paid', 'planned'].includes(row.transferStatus)))) &&
     (profile.capacity === null || validAmount(profile.capacity)) &&
     ['context', 'caveat', 'hook', 'question'].every(key => safeText(profile[key], 3000)) &&
     (profile.source === null || typeof profile.source === 'object' && ['publisher', 'title', 'url'].every(key => safeText(profile.source[key], 1500)) && /^https:\/\//.test(profile.source.url)) &&
@@ -40,9 +45,9 @@ export function analyzeBudget(profile) {
   for (const [key, label] of [['income', 'revenus'], ['expenses', 'dépenses'], ['savings', 'versements d’épargne']]) {
     if (profile[key].some(row => !row.label.trim() || !validAmount(row.amount))) errors.push(`Complète les ${label} : libellé et montant positif ou nul.`)
   }
-  const total = key => profile[key].reduce((sum, row) => sum + (validAmount(row.amount) ? cents(row.amount) : 0), 0)
+  const total = key => profile[key].reduce((sum, row) => sum + (!row.inKind && validAmount(row.amount) ? cents(row.amount) : 0), 0)
   const income = total('income'), expenses = total('expenses'), savings = total('savings')
-  if (income <= 0) errors.push('Le total des revenus doit être supérieur à zéro.')
+  if (!profile.income.length) errors.push('Indique les revenus du budget, y compris s’ils sont nuls.')
   if (!profile.expenses.length) errors.push('Ajoute les dépenses du budget.')
   const available = income - expenses, balance = available - savings
   return { errors, income: income / 100, expenses: expenses / 100, savings: savings / 100, available: available / 100, balance: balance / 100,
@@ -52,22 +57,46 @@ export function analyzeBudget(profile) {
 export const editorialFor = profile => profile.kind === 'participant' ? null : BUDGET_EDITORIAL[profile.id]
 export const publicationContextFor = profile => profile.kind === 'participant' ? null : BUDGET_PUBLICATION_CONTEXT[profile.id]
 export const budgetDisplayName = profile => editorialFor(profile)?.alias || profile.name
-const share = (amount, income) => `${Math.round(cents(amount) * 100 / cents(income))} %`
+const share = (amount, income) => income > 0 ? ` (${Math.round(cents(amount) * 100 / cents(income))} %)` : ''
 const rowTotal = rows => rows.reduce((sum, row) => sum + cents(row.amount), 0) / 100
 
-// Never infer constraints from the broad categories: restaurants and groceries,
-// for example, both use "food". Mixed or edited rows keep the unsplit version.
 export function budgetExpenseSections(profile) {
   const e = editorialFor(profile)
-  const rows = budgetPublicExpenseRows(profile)
-  if (!e?.essential?.length || !e?.discretionary?.length ||
-      !profile.expenses.every(row => Number(e.essential.includes(row.label)) + Number(e.discretionary.includes(row.label)) === 1)) {
-    return [{ title: 'Dépenses', emoji: '🧾', rows }]
-  }
-  return [
-    { title: 'Dépenses contraintes', emoji: '🏠', rows: rows.filter((_, i) => e.essential.includes(profile.expenses[i].label)) },
-    { title: 'Dépenses non contraintes', emoji: '🎉', rows: rows.filter((_, i) => e.discretionary.includes(profile.expenses[i].label)) },
-  ]
+  const groups = { fixed: { title: 'Dépenses contraintes', emoji: '🏠', rows: [] },
+    flexible: { title: 'Dépenses non contraintes', emoji: '🎉', rows: [] },
+    mixed: { title: 'Dépenses mixtes / non ventilées', emoji: '🧾', rows: [] } }
+  budgetPublicExpenseRows(profile).forEach((row, index) => {
+    const label = profile.expenses[index].label
+    const explicit = row.constraint || (e?.essential?.includes(label) ? 'fixed' : e?.discretionary?.includes(label) ? 'flexible' : null)
+    groups[explicit || expenseGroup(row)].rows.push(row)
+  })
+  return Object.entries(groups).filter(([, group]) => group.rows.length).map(([id, group]) => ({ id, ...group }))
+}
+
+export function budgetAdaptation(profile) {
+  if (budgetCompletions[profile.id] && profile.kind !== 'participant') return 'Budget reconstitué'
+  if (profile.provenance?.nature === 'editorial-character' || profile.kind !== 'participant' && profile.editorialCreation) return 'Profil adapté'
+  return ''
+}
+
+const reviewedPaidTransfers = new Set([
+  'editorial-studio-alternance-allocation-2026-11-16',
+  'editorial-complementary-38357-2026-11-16',
+  'editorial-cedric-intermittent-2026-11-15',
+  'prepared-lot2-12-2026-10-30',
+])
+
+export function budgetTransferStatus(profile, row) {
+  if (row.transferStatus) return row.transferStatus
+  if (profile.kind === 'planned' || profile.completion?.forecast || profile.kind !== 'participant' &&
+      (profile.id === 'editorial-studio-alternance-demenagement-2026-11-16' || /\b(?:prévues?|prévus?|envisagés?|envisagées?|pas encore versé)\b/i.test(row.label))) return 'planned'
+  return profile.kind === 'declared' || profile.kind !== 'participant' && reviewedPaidTransfers.has(profile.id) ? 'paid' : 'budgeted'
+}
+
+export function budgetTransferLabel(profile) {
+  const statuses = new Set(profile.savings.map(row => budgetTransferStatus(profile, row)))
+  return statuses.size > 1 ? 'Versements mixtes' :
+    statuses.has('planned') ? 'Versements prévus' : statuses.has('paid') ? 'Versements effectués' : 'Versements'
 }
 
 export function budgetPublicPresentation(profile) {
@@ -120,37 +149,41 @@ export function buildBudgetText(profile) {
   const expenses = sections.map(section => {
     const total = rowTotal(section.rows)
     const rows = section.rows.map(row => `• ${budgetRowSymbol(row).emoji} ${row.label} : ${money(row.amount)}`).join('\n')
-    return `${section.emoji} ${section.title} : ${money(total)} (${share(total, a.income)})\n${rows}`
+    return `${section.emoji} ${section.title} : ${money(total)}${share(total, a.income)}\n${rows}`
   }).join('\n\n')
   const publicIncome = budgetPublicIncomeRows(profile)
   const publicBasis = budgetPublicBasis(profile, p.basis)
   const textBasis = publicBasis !== p.basis ? publicBasis : context?.budget?.textBasis ?? (p.basis === 'Montants mensuels' || publicIncome.length === 1 && publicIncome[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : budgetPublicBasis(profile, p.basis))
   const incomeHeading = publicIncome.every(row => /salaire/i.test(row.label)) ? `Revenus mensuels${publicIncome.some(row => /moyen/i.test(row.label)) ? ' moyens' : ''}` : 'Ressources mensuelles'
-  const incomeRows = publicIncome.map(row => `• ${budgetRowSymbol(row, 'income').emoji} ${row.label} : ${money(row.amount)}`).join('\n')
-  const savings = budgetPublicSavingsRows(profile).map(row => `• ${budgetRowSymbol(row, 'savings').emoji} ${row.label} : ${money(row.amount)}`).join('\n')
+  const incomeRows = publicIncome.map(row => `• ${budgetRowSymbol(row, 'income').emoji} ${row.label} : ${money(row.amount)}${row.inKind ? ' (avantage hors total disponible)' : ''}`).join('\n')
   const transfersHeading = context?.budget?.transfersHeading || 'Versements'
   const transfers = budgetTransfers(profile, transfersHeading)
+  const transferLabel = budgetTransferLabel(profile)
+  const transferRows = budgetPublicSavingsRows(profile).map((row, index) => {
+    const status = budgetTransferStatus(profile, profile.savings[index])
+    const suffix = transferLabel === 'Versements mixtes' && status !== 'budgeted' ? (status === 'planned' ? ' (prévu)' : ' (effectué)') : ''
+    return `• ${budgetRowSymbol(row, 'savings').emoji} ${row.label}${suffix} : ${money(row.amount)}`
+  }).join('\n')
+  const questions = context
+    ? (context.questions.length ? context.questions.map(question => question.text) : [budgetGeneralQuestion({ ...profile, name: p.name }, context.budgetQuestion)])
+    : p.question.split(/\r?\n/)
+  const adaptation = budgetAdaptation(profile)
+  const adaptationNote = budgetCompletions[profile.id] && profile.kind !== 'participant' ? 'Dépenses ventilées à titre éditorial.' : ''
   return [
     budgetHeading(profile),
-    // Start with the already reviewed situation, once, before the ledger.
-    context?.paragraphs[0]?.text,
-    presentation,
-    [`💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, textBasis, incomeRows, p.incomeNote].filter(Boolean).join('\n'),
+    [presentation, [adaptation, adaptationNote].filter(Boolean).join(' · ')].filter(Boolean).join('\n'),
+    [`💰 ${incomeHeading}${publicIncome.some(row => row.inKind) ? ' disponibles' : ''} : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, textBasis, incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     expenses,
     sections.length > 1 && `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
-    a.savings > 0 && `👉 ${a.available < 0 ? transfers.before.replace('Reste', 'Déficit') : transfers.before} : ${money(Math.abs(a.available))} / mois (${share(a.available, a.income)})`,
-    savings && `${transfers.emoji} ${transfers.heading} : ${money(a.savings)} / mois${transfers.single ? '' : `\n${savings}`}`,
-    `💳 ${a.balance < 0 ? (a.savings > 0 ? 'Manque après versements' : 'Déficit mensuel') : (p.balanceLabel === 'Reste disponible après versements' ? (a.savings === 0 ? 'Reste disponible' : transfers.after) : p.balanceLabel)} : ${money(Math.abs(a.balance))} / mois`,
+    `👉 ${a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${money(Math.abs(a.available))} / mois${share(Math.abs(a.available), a.income)}`,
+    transferRows && `${transfers.emoji} ${transferLabel} : ${money(a.savings)} / mois\n${transferRows}`,
+    a.savings > 0 && `💳 ${a.balance < 0 ? 'Déficit après versements' : 'Reste après versements'} : ${money(Math.abs(a.balance))} / mois`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
-    ...(context ? [
-      ...context.paragraphs.slice(1).map(paragraph => paragraph.text),
-      context.questions.map(question => `💬 ${question.text}`).join('\n'),
-      budgetGeneralQuestion({ ...profile, name: p.name }, context.budgetQuestion),
-    ] : [
+    ...(context ? context.paragraphs.map(paragraph => paragraph.text) : [
       e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
       p.story,
-      p.question && p.question.split(/\r?\n/).map(line => line.trim()).filter(Boolean).map(line => line.startsWith('💬') ? line : `💬 ${line}`).join('\n'),
     ]),
+    questions.map(line => line.trim()).filter(Boolean).slice(0, 2).map(line => line.startsWith('💬') ? line : `💬 ${line}`).join('\n'),
   ].filter(Boolean).join('\n\n')
 }
 

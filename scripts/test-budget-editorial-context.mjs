@@ -3,7 +3,6 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { BUDGET_REFERENCE_PROFILES as BUDGET_PROFILES, BUDGET_REFERENCE_PUBLICATION_CONTEXT as BUDGET_PUBLICATION_CONTEXT, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
-import { budgetTransfers } from '../src/pages/budget-profiles/presentation.js'
 import { analyzeBudget, budgetExpenseSections, budgetPublicIncomeRows, buildBudgetText, euro, hasSeparateBudgetCapacity, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 const before = JSON.parse(readFileSync(new URL('./fixtures/budget-editorial/before-2026-11-02.json', import.meta.url)))
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex')
@@ -32,9 +31,9 @@ for (const profile of BUDGET_PROFILES) {
   assert(!/prévu|exemple|20\d{2}/i.test(text.split('\n')[0]), 'Public headings stay neutral and undated')
   const a = analyzeBudget(profile), sections = budgetExpenseSections(profile)
   assert.equal((text.match(/Total des dépenses :/g) || []).length, sections.length > 1 ? 1 : 0, 'A general total is useful only for split expenses')
-  if (a.savings === 0) assert(!/avant versements|après versements/.test(text), 'No pair of identical before/after remainders when nothing is transferred')
+  if (a.savings === 0) assert(!/après versements/.test(text), 'No pair of identical before/after remainders when nothing is transferred')
   else {
-    assert(text.includes(`${budgetTransfers(profile, c.budget?.transfersHeading).before} : ${euro(a.available, profile.currency)}`))
+    assert(text.includes(`${a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${euro(Math.abs(a.available), profile.currency)}`))
     assert(text.includes(euro(Math.abs(a.balance), profile.currency)))
   }
   assert(!text.includes('Épargne, investissements et autres affectations'))
@@ -62,7 +61,7 @@ for (const profile of BUDGET_PROFILES) {
     assert(c.questions.every(q => q.origin === 'editorial'))
   }
   const auto = { profile: structuredClone(profile), text: 'Ancien texte automatique', edited: false }
-  assert.equal(refreshBudgetDraft(auto).text, text)
+  assert.equal(refreshBudgetDraft(auto).text, buildBudgetText(refreshBudgetDraft(auto).profile))
   assert.equal(refreshBudgetDraft({ ...auto, text: 'Mon texte personnel\nAvec mes questions.', edited: true }).text, 'Mon texte personnel\nAvec mes questions.')
 }
 const participant = { ...BUDGET_PROFILES[0], kind: 'participant', context: 'Mon propre récit', question: 'Ma propre question ?' }

@@ -1,10 +1,11 @@
+import { captureBudgetCanvas, verifyBudgetPng } from './budget-browser-image.mjs'
 import assert from 'node:assert/strict'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { blankBudget, buildBudgetText, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetImageExpenses, euro, MAX_BUDGET_LINES } from '../src/pages/budget-profiles/lib.js'
+import { blankBudget, buildBudgetText, budgetPublicExpenseRows, euro, MAX_BUDGET_LINES } from '../src/pages/budget-profiles/lib.js'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
@@ -14,7 +15,6 @@ const output = process.env.BUDGET_ARTIFACTS || 'test-artifacts/budget-subscriber
 mkdirSync(output, { recursive: true })
 const browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) })
 const results = []
-const normalize = value => value.replace(/\s+/g, ' ').trim()
 const active = page => page.evaluate(key => { const w = JSON.parse(localStorage.getItem(key)); return w.drafts.find(d => d.profile.id === w.activeId) }, WORKSPACE_KEY)
 const upload = (page, backup) => page.getByLabel('Restaurer une sauvegarde', { exact: true }).setInputFiles({ name: 'profils-abonnes.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(backup)) })
 async function addRow(page, title, label, amount, category) {
@@ -32,54 +32,20 @@ async function capture(page, id) {
   await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(p))
   const text = await page.getByLabel('Texte prêt à publier').inputValue()
   assert(text.includes(euro(Math.abs(balance) / 100, p.currency)))
-  const img = page.getByRole('region', { name: 'Image du budget', exact: true }).locator('img')
-  for (const mode of ['detailed', 'summary']) {
-    await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator(`[data-value="${mode}"]`).click()
-    await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
-    const encoded = await page.evaluate(async url => {
-      const blob = await (await fetch(url)).blob()
-      return new Promise(resolve => { const r = new FileReader(); r.onload = () => resolve(r.result.split(',')[1]); r.readAsDataURL(blob) })
-    }, await img.getAttribute('src'))
-    const bytes = Buffer.from(encoded, 'base64')
-    const download = page.waitForEvent('download'); await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
-    assert.deepEqual(readFileSync(await (await download).path()), bytes, 'Download equals selected preview')
-    writeFileSync(`${output}/${id}-${mode}.png`, bytes)
-    const drawn = await page.evaluate(() => window.subscriberCanvasText)
-    assert.equal(drawn[0].text, 'LE BUDGET DE')
-    for (const t of drawn) assert(t.left >= 30 && t.right <= 1050 && t.y >= 0 && t.y + t.size <= t.height && !t.text.includes('…'), JSON.stringify(t))
-    for (let i = 0; i < drawn.length; i++) for (const b of drawn.slice(i + 1)) {
-      const a = drawn[i]
-    if(a.page!==b.page)continue
-      assert(!(Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1 && Math.min(a.y + a.size, b.y + b.size) - Math.max(a.y, b.y) > 2), JSON.stringify([a, b]))
-    }
-    const rendered = normalize(drawn.map(t => t.text).join(' '))
-    assert(rendered.includes(normalize(euro(Math.abs(balance) / 100, p.currency))))
-    for (const row of [...budgetPublicIncomeRows(p), ...budgetImageExpenses(p, mode), ...p.savings]) {
-      assert(rendered.replace(/\s/g, '').includes(row.label.replace(/\s/g, '')), `${id}: ${row.label}`)
-      assert(rendered.includes(normalize(euro(row.amount, p.currency))))
-    }
-    assert.equal(budgetImageExpenses(p, mode).reduce((s, r) => s + Math.round(r.amount * 100), 0), cents('expenses'))
-    if (balance < 0) assert(/MANQUE|DÉFICIT/.test(rendered))
-    assert(!rendered.includes('Quelle priorité choisiriez-vous'), 'Questions stay out of images')
-  }
+  const bytes = await verifyBudgetPng(page, p)
+  writeFileSync(`${output}/${id}.png`, bytes)
+  const drawn = await page.evaluate(() => window.budgetCanvasText)
+  if (balance < 0) assert(drawn.some(line => /Déficit/.test(line.text)))
+  assert(!drawn.some(line => line.text.includes('Quelle priorité choisiriez-vous')), 'Les questions restent dans le texte')
   await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
   assert.equal(await page.evaluate(() => navigator.clipboard.readText()), text)
   const close = page.getByRole('button', { name: 'Fermer la confirmation', exact: true }); if (await close.count()) await close.click()
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
-  results.push({ id, incomeCents: cents('income'), expensesCents: cents('expenses'), transfersCents: cents('savings'), balanceCents: balance, rows: p.income.length + p.expenses.length + p.savings.length, bothModesAndCopy: true })
+  results.push({ id, incomeCents: cents('income'), expensesCents: cents('expenses'), transfersCents: cents('savings'), balanceCents: balance, rows: p.income.length + p.expenses.length + p.savings.length, pngAndCopy: true })
 }
 async function context(width, workspace) {
   const c = await browser.newContext({ viewport: { width, height: 950 }, permissions: ['clipboard-read', 'clipboard-write'] })
-  await c.addInitScript(() => {
-    const original = CanvasRenderingContext2D.prototype.fillText; window.subscriberCanvasText = []
-    CanvasRenderingContext2D.prototype.fillText = function(text, x, y, ...args) {
-      if(text==='LE BUDGET DE') {
-        if(!window.budgetCaptureActive){window.subscriberCanvasText=[];window.budgetCaptureActive=true;window.budgetCapturePage=0;queueMicrotask(()=>{window.budgetCaptureActive=false})}window.budgetCapturePage++
-      }
-      if (this.canvas.width === 1080) { const width = this.measureText(text).width, left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0); window.subscriberCanvasText.push({ page: window.budgetCapturePage, text: String(text), left, right: left + width, y, size: parseFloat(this.font.match(/[\d.]+px/)?.[0]), height: this.canvas.height }) }
-      return original.call(this, text, x, y, ...args)
-    }
-  })
+  await c.addInitScript(captureBudgetCanvas)
   if (workspace) await c.addInitScript(({ key, value }) => { if (!localStorage.getItem(key)) localStorage.setItem(key, value) }, { key: WORKSPACE_KEY, value: typeof workspace === 'string' ? workspace : JSON.stringify(workspace) })
   return c
 }
@@ -105,7 +71,7 @@ try {
     await addRow(page, 'Dépenses', 'Alimentation et hygiène', 400.25, 'food')
     await addRow(page, 'Dépenses', 'Repas au travail', 100, 'food')
     await page.getByText('Épargne et projets', { exact: true }).click()
-    await addRow(page, 'Épargne prévue', 'Livret de précaution', 200)
+    await addRow(page, 'Versements', 'Livret de précaution', 200)
     const q = 'Quelle priorité choisiriez-vous pour ce foyer ?\nQuels achats préparez-vous chaque mois ?'
     await questions.fill(q)
     await expect.poll(async () => (await active(page)).profile.question).toBe(q)
@@ -195,7 +161,7 @@ try {
     const lp = await lc.newPage(); await lp.goto(base + '/le-budget-de')
     for (const title of ['Revenus', 'Dépenses']) await expect(lp.getByRole('group', { name: title, exact: true }).getByRole('button', { name: 'Ajouter un poste', exact: true })).toBeDisabled()
     await lp.getByText('Épargne et projets', { exact: true }).click()
-    await expect(lp.getByRole('group', { name: 'Épargne prévue', exact: true }).getByRole('button', { name: 'Ajouter un poste', exact: true })).toBeDisabled()
+    await expect(lp.getByRole('group', { name: 'Versements', exact: true }).getByRole('button', { name: 'Ajouter un poste', exact: true })).toBeDisabled()
     await capture(lp, `${width}-long-deficit`); await lc.close()
   }
   const broken = await context(390, '{damaged-subscriber-storage'), page = await broken.newPage()
@@ -204,5 +170,5 @@ try {
   assert.equal(await page.evaluate(key => localStorage.getItem(key), WORKSPACE_KEY), '{damaged-subscriber-storage')
   await expect(page.getByRole('status').filter({ hasText: 'Brouillon en mémoire' })).toBeVisible(); await broken.close()
   writeFileSync(`${output}/browser-results.json`, JSON.stringify(results, null, 2))
-  console.log('Subscriber browser: creation, multiple saved profiles, manual questions, add/remove lines, EUR/CHF, 72 rows/deficits, both PNG modes, exact copy, custom preservation, dated statuses, backup conflicts and corrupt storage passed at 1440/390/320 px.')
+  console.log('Subscriber browser: creation, multiple saved profiles, manual questions, add/remove lines, EUR/CHF, 72 rows/deficits, single PNG, exact copy, custom preservation, dated statuses, backup conflicts and corrupt storage passed at 1440/390/320 px.')
 } finally { await browser.close(); server?.kill() }

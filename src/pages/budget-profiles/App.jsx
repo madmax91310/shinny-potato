@@ -38,7 +38,7 @@ export default function App() {
   const [saved, setSaved] = useState(loadSavedDrafts)
   const [subscriberOpen, setSubscriberOpen] = useState(initial.value.profile.kind === 'participant')
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
-  const [imageMode, setImageMode] = useState('overview'), [backupOpen, setBackupOpen] = useState(false)
+  const [backupOpen, setBackupOpen] = useState(false)
   const [evidenceOpen, setEvidenceOpen] = useState(false)
   const [hidePublished, setHidePublished] = useState(false)
   const [unused, setUnused] = useState(false), [query, setQuery] = useState(''), [feedback, setFeedback] = useState('')
@@ -54,7 +54,7 @@ export default function App() {
     const changed = event => { if (event.key === WORKSPACE_KEY || event.key === null) { const latest=peekWorkspace(); if(latest.readable){setPublished(latest.value.published);setPublicationDates(latest.value.publicationDates);setUsed(latest.value.used);setQueued(latest.value.queued);setScheduledDates(latest.value.scheduledDates)} setFeedback('Les données ont changé dans un autre onglet. Recharge la page après avoir conservé ton texte en cours.') } }
     window.addEventListener('storage', changed); return () => window.removeEventListener('storage', changed)
   }, [])
-  const a = analyzeBudget(profile), image = useBudgetImage(profile, !a.errors.length, imageMode)
+  const a = analyzeBudget(profile), image = useBudgetImage(profile, !a.errors.length)
   const prepared = profile.kind !== 'participant'
   const filtered = profiles.filter(p => matchesBudgetFilters(p, filters) && (!unused || !used.includes(p.id)) && (!hidePublished || !published.includes(p.id)) &&
     `${budgetDisplayName(p)} ${p.name} ${p.job} ${p.household} ${p.period} ${p.source.publisher} ${analyzeBudget(p).income}`.toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr').trim()))
@@ -163,14 +163,11 @@ export default function App() {
       </section>
       <div className="dca-publication-column">
         <section className="dca-simple-card dca-simple-preview" aria-label="Image du budget" aria-busy={image.busy}>
-          <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="overview">Image principale X · 1 080 × 1 350</option><option value="social">X · 1 080 × 1 350</option><option value="detailed">Détaillée · tous les libellés</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">L’image principale résume les totaux. Le détail X conserve tous les postes et projets au ratio 4:5. Si le budget nécessite plusieurs images, la première affiche les totaux du budget et les postes continuent sur les suivantes. Toutes les versions sont paginées en 1 080 × 1 350 pixels.</p>
-          {image.count > 0 && <p className="budget-image-count" role="status">{`${image.count} image${image.count > 1 ? 's' : ''} · 1 080 × 1 350 px`}{image.count > 1 && ` · Image ${image.index + 1} sur ${image.count}`}</p>}
-
-          {image.count > 1 && <nav className="budget-image-pages" aria-label="Images du budget">{Array.from({ length: image.count }, (_, i) => <Button key={i} variant="secondary" aria-pressed={image.index === i} onClick={() => image.select(i)}>Image {i + 1} sur {image.count}</Button>)}</nav>}
-          {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} · image ${image.index + 1} sur ${image.count} : revenus, dépenses et reste disponible`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : image.error ? 'Aucune image disponible.' : 'Préparation de l’image…'}</p>}
-          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${image.format}${image.count > 1 ? `-${String(image.index + 1).padStart(2, '0')}-sur-${String(image.count).padStart(2, '0')}` : ''}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
+          <h2>Image pour X</h2>
+          {image.url && <p className="budget-image-count" role="status">1 image · 1 080 × 1 350 px</p>}
+          {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} · revenus, dépenses et capacité d’épargne`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : image.error ? 'Aucune image disponible.' : 'Préparation de l’image…'}</p>}
+          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
             {image.url && <a href={image.url} target="_blank" rel="noreferrer">Ouvrir l’image</a>}
-            {image.error && ['social', 'overview'].includes(imageMode) && <Button variant="secondary" onClick={() => setImageMode('detailed')}>Afficher tous les détails</Button>}
             {image.error && <Button variant="secondary" onClick={image.retry}>Réessayer l’image</Button>}
           </div><p role="status">{image.error || (image.busy ? 'Préparation de l’image…' : '')}</p>
         </section>

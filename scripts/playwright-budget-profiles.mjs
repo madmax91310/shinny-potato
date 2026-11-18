@@ -1,13 +1,12 @@
-import { checkBudgetOverview, captureOverviewText } from './check-budget-overview.mjs'
-import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
+import { captureBudgetCanvas, verifyBudgetPng } from "./budget-browser-image.mjs"
 import assert from 'node:assert/strict'
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetPublicExpenseRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 // PNG encoding is asynchronous and can exceed Playwright's default 5 s
@@ -17,60 +16,6 @@ async function waitBudgetImage(page) {
   await expect(page.getByRole('region', { name: 'Image du budget' }))
     .toHaveAttribute('aria-busy', 'false', { timeout: 30_000 })
   await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
-}
-
-async function previewPng(page, url) {
-  const encoded = await page.evaluate(async imageUrl => {
-    const blob = await (await fetch(imageUrl)).blob()
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = () => resolve(reader.result.split(',')[1])
-      reader.onerror = reject
-      reader.readAsDataURL(blob)
-    })
-  }, url)
-  return Buffer.from(encoded, 'base64')
-}
-
-function captureCanvasText() {
-      const original = CanvasRenderingContext2D.prototype.fillText
-      window.budgetCanvasText = []
-      CanvasRenderingContext2D.prototype.fillText = function (text, x, y, ...args) {
-        if (text === 'LE BUDGET DE') {
-          if (!window.budgetCaptureActive) { window.budgetCanvasText = []; window.budgetCaptureActive=true; window.budgetCapturePage=0; queueMicrotask(()=>{window.budgetCaptureActive=false}) }
-          window.budgetCapturePage++
-        }
-        if (this.canvas.width === 1080) {
-          const width = this.measureText(text).width
-          const left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0)
-          window.budgetCanvasText.push({ page: window.budgetCapturePage, text, left, right: left + width, y, size: parseFloat(this.font.match(/[\d.]+px/)?.[0]), height: this.canvas.height })
-        }
-        return original.call(this, text, x, y, ...args)
-      }
-}
-
-
-function assertPublicBudgetHeader(drawn, profile) {
-  assert.equal(drawn[0].text, 'LE BUDGET DE')
-  assert(!drawn.some(item => /Période :|Période du budget/i.test(item.text)), 'No systematic period added to the image')
-  assert(!/\bexemples?\b|ficti[fv]|reconstitu|version éditoriale|personnage éditorial|solde à confirmer/i.test(drawn.map(item=>item.text).join(' ')), 'Both image modes use neutral public copy')
-  assert(!/Salaire[^\n]*déclaré|Versement PEA au budget/i.test(drawn.map(item=>item.text).join('\n')), 'Public row labels use natural copy')
-  if (profile.id === 'mustachian-ingenieur-28-2025-08-16') assert(!drawn.some(item => /CAPACITÉ ANNONCÉE/.test(item.text)), 'The rounded source capacity is not a second image total')
-  const index = drawn.findIndex(item => item.text === 'REVENUS')
-  assert(index > 0)
-  const header = drawn.slice(0, index)
-  const qualifier = budgetQualification(profile)
-  if (qualifier) assert(header.map(item => item.text).join(' ').replace(/\s+/g, ' ').toLocaleLowerCase('fr').includes(qualifier.toLocaleLowerCase('fr')), `${profile.id}: expected ${qualifier}; header ${JSON.stringify(header)}`)
-  const bottom = Math.max(...header.map(item => item.y + item.size))
-  assert(drawn[index].y - bottom <= 125, 'Removing the period leaves no empty date slot')
-}
-
-function assertNoCanvasTextOverlap(drawn, label) {
-  for (let i = 0; i < drawn.length; i++) for (const b of drawn.slice(i + 1)) {
-    const a = drawn[i]
-    if(a.page!==b.page)continue
-    assert(!(Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1 && Math.min(a.y + a.size, b.y + b.size) - Math.max(a.y, b.y) > 2), `${label}: overlapping text ${JSON.stringify([a, b])}`)
-  }
 }
 
 // CI partitions by viewport and disjoint profile subsets; direct runs retain the full roster.
@@ -90,8 +35,7 @@ try {
   const errors = [], results = []
   for (const width of widths) {
     const context = await browser.newContext({ viewport: { width, height: 950 }, permissions: ['clipboard-read', 'clipboard-write'], reducedMotion: 'reduce' })
-    await context.addInitScript(captureCanvasText)
-    await context.addInitScript(captureOverviewText)
+    await context.addInitScript(captureBudgetCanvas)
     const page = await context.newPage()
     page.on('pageerror', e => errors.push(e.message))
     await page.goto(base + '/'); await expect(page.locator('.workspace-tool-card[href$="/le-budget-de"]')).toBeVisible()
@@ -99,40 +43,11 @@ try {
     await expect(page.getByRole('heading', { name: 'Le budget de…', exact: true, level: 1 })).toBeVisible()
     assert.equal(await page.locator('select').count(), 0, 'Default budget uses the shared button selectors')
     const picker = page.getByRole('group', { name: 'Choisir un profil' })
-    await checkBudgetOverview(page, roster, output, width)
     for (const profile of roster) {
-      await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
       await picker.locator(`[data-value="${profile.id}"]`).click()
-      const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
       await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(profile))
-      await waitBudgetImage(page)
-      await expect(image).toHaveAttribute('alt', new RegExp(profile.name))
-      const blobUrl = await image.getAttribute('src')
-      const previewBytes = await previewPng(page, blobUrl)
-      const downloadPromise = page.waitForEvent('download')
-      await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
-      const download = await downloadPromise
-      assert.deepEqual(readFileSync(await download.path()), Buffer.from(previewBytes), 'The downloaded PNG must equal the visible preview byte for byte')
-      assert((await image.evaluate(img => img.naturalWidth)) === 1080)
-      const drawn = await page.evaluate(() => window.budgetCanvasText)
-      assert(drawn.length > 0, 'Inspect the real canvas text, not only its PNG dimensions')
-      assertPublicBudgetHeader(drawn, profile)
-      assertNoCanvasTextOverlap(drawn, profile.id)
-      if (profile.approximate) assert(drawn.some(t => t.text.startsWith('≈ ')), 'Approximate amounts stay qualified in the main figure, without a disclaimer line')
-      for (const t of drawn) {
-        assert(t.left >= 30 && t.right <= 1050 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
-        assert(!t.text.includes('…'), `${profile.id}: no truncated content`)
-        assert(!/prénoms? fictifs?|scénario mensuel préparé|du scénario|retenu pour l’exemple|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
-      }
-      const normalize = text => text.replace(/\s+/g, ' ').trim()
-      const imageText = normalize(drawn.map(t => t.text).join(' '))
-      assert(imageText.includes(budgetDisplayName(profile)))
-      for (const row of [...budgetPublicIncomeRows(profile), ...budgetPublicExpenseRows(profile), ...budgetPublicSavingsRows(profile)]) {
-        assert(imageText.replace(/\s/g, '').includes(row.label.replace(/\s/g, '')), `${profile.id}: missing complete label ${row.label}`)
-        assert(imageText.includes(normalize(euro(row.amount, profile.currency))), `${profile.id}: missing amount ${row.amount}`)
-      }
-      assert(imageText.includes(normalize(euro(Math.abs(analyzeBudget(profile).balance), profile.currency))))
-      writeFileSync(`${output}/${width}-${profile.id}-export.png`, Buffer.from(previewBytes))
+      const previewBytes = await verifyBudgetPng(page, profile)
+      writeFileSync(`${output}/${width}-${profile.id}-export.png`, previewBytes)
       await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), buildBudgetText(profile))
       const sourceDetails = page.getByText('Source et vérification du profil', { exact: true }).locator('..')
@@ -144,23 +59,6 @@ try {
       await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
       assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).published, WORKSPACE_KEY), [], 'Copying and exporting never declare publication')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
-      // Verify the optional summary from the actual render, then its selected download.
-      await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="summary"]').click()
-      await waitBudgetImage(page)
-      const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
-      assertPublicBudgetHeader(summaryDrawn, profile)
-      assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
-      const summaryText = normalize(summaryDrawn.map(t => t.text).join(' '))
-      for (const row of [...budgetPublicIncomeRows(profile), ...budgetImageExpenses(profile, 'summary'), ...budgetPublicSavingsRows(profile)]) {
-        assert(summaryText.replace(/\s/g, '').includes(row.label.replace(/\s/g, '')), `${profile.id}: missing summary label ${row.label}`)
-        assert(summaryText.includes(normalize(euro(row.amount, profile.currency))))
-      }
-      for (const t of summaryDrawn) assert(t.left >= 30 && t.right <= 1050 && t.y >= 0 && t.y + t.size <= t.height, `Summary bounds: ${JSON.stringify(t)}`)
-      const summaryBytes = await previewPng(page, await image.getAttribute('src'))
-      const summaryDownload = page.waitForEvent('download'); await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
-      assert.deepEqual(readFileSync(await (await summaryDownload).path()), Buffer.from(summaryBytes))
-      writeFileSync(`${output}/${width}-${profile.id}-summary.png`, Buffer.from(summaryBytes))
-      await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(profile))
       const a = analyzeBudget(profile)
       await expect(page.locator('.budget-totals')).toContainText(euro(a.available, profile.currency))
       await page.screenshot({ path: `${output}/${width}-${profile.id}.png`, fullPage: true })
@@ -242,33 +140,18 @@ try {
   for (const deficit of [false, true]) {
     const fixture = structuredClone(extreme)
     fixture.currency = deficit ? 'CHF' : 'EUR'
-    if (deficit) fixture.income.forEach(row => { row.amount = 1 })
+    fixture.income[23].inKind = true
+    fixture.income[0].amount -= 0.02
+    const expenseKinds = ['fixed', 'flexible', 'mixed']
+    fixture.expenses.forEach((row, index) => { row.constraint = expenseKinds[index % 3] })
+    fixture.savings[0].transferStatus = 'paid'
+    fixture.savings[1].transferStatus = 'planned'
+    if (deficit) fixture.income.forEach(row => { row.amount = 0 })
     const context = await browser.newContext({ viewport: { width: 390, height: 950 } })
-    await context.addInitScript(captureCanvasText)
-    await context.addInitScript(captureOverviewText)
+    await context.addInitScript(captureBudgetCanvas)
     await context.addInitScript(({ key, fixture }) => localStorage.setItem(key, JSON.stringify({ profile: fixture, text: '', edited: false })), { key: DRAFT_KEY, fixture })
     const page = await context.newPage(); await page.goto(base + '/le-budget-de')
-    await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
-    const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
-    await waitBudgetImage(page)
-    const dimensions = await image.evaluate(img => [img.naturalWidth, img.naturalHeight])
-    assert(dimensions[1] < 16384, 'The maximum valid editor budget fits a supported canvas')
-    const drawn = await page.evaluate(() => window.budgetCanvasText)
-    assertNoCanvasTextOverlap(drawn, 'Editor limit')
-    for (const t of drawn) assert(t.left >= 30 && t.right <= 1050 && t.y >= 0 && t.y + t.size <= t.height, `Editor limit: ${JSON.stringify(t)}`)
-    const compact = text => text.replace(/\s/g, '')
-    const imageText = compact(drawn.map(t => t.text).join(''))
-    for (const row of [...budgetPublicIncomeRows(fixture), ...budgetPublicExpenseRows(fixture), ...budgetPublicSavingsRows(fixture)]) {
-      assert(imageText.includes(compact(row.label)), `Editor limit: complete long label ${row.label}`)
-      assert(imageText.includes(compact(euro(row.amount, fixture.currency))))
-    }
-    assert(imageText.includes(compact(euro(Math.abs(analyzeBudget(fixture).balance), fixture.currency))))
-    if (deficit) assert(imageText.includes(compact('Déficit après versements')))
-    const downloadPromise = page.waitForEvent('download')
-    await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
-    const download = await downloadPromise
-    const bytes = await previewPng(page, await image.getAttribute('src'))
-    assert.deepEqual(readFileSync(await download.path()), Buffer.from(bytes))
+    const bytes = await verifyBudgetPng(page, fixture)
     writeFileSync(`${output}/editor-limit-${deficit ? 'deficit' : 'balanced'}.png`, Buffer.from(bytes))
     await context.close()
   }
