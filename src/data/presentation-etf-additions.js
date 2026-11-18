@@ -322,5 +322,35 @@ export const PRESENTATION_ETF_ADDITIONS = [
     "whatToKnow": "Les versements sont variables et le capital peut baisser. La vente d’options peut limiter la participation à certaines hausses ; un revenu élevé ne garantit pas une bonne performance totale.",
     "verdict": "Le gérant choisit des actions mondiales et ajoute une stratégie de vente d’options.",
     "question": "Tu préfères recevoir un revenu mensuel ou laisser les revenus investis dans un ETF mondial classique ?"
-  }
+  },
+{
+  "id": "ftse-global-all-cap-vanguard",
+  "isin": "IE000VAHT5T0",
+  "name": "Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating",
+  "category": "Cœur de portefeuille",
+  "ter": "0,07",
+  "source": "https://www.vanguard.co.uk/professional/product/etf/equity/E161/vanguard-ftse-global-all-cap-ucits-etf-usd-acc",
+  "benchmark": "FTSE Global All Cap Index",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Sampled)",
+  "domicile": "Irlande",
+  "listing": {
+    "ticker": "VGLA",
+    "exchange": "Xetra",
+    "mic": "XETR",
+    "currency": "EUR",
+    "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/E161/vanguard-ftse-global-all-cap-ucits-etf-usd-acc",
+    "checkedAt": "2026-11-18",
+    "evidenceId": "IE000VAHT5T0-XETR-VGLA-EUR"
+  },
+  "reviewedAt": "18/11/2026",
+  "characteristicsCheckedAt": "2026-11-18",
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique par échantillonnage",
+  "hook": "Les petites entreprises ont aussi leur place dans un ETF mondial. Voici ce que le Vanguard FTSE Global All-Cap ajoute à un All-World 👇",
+  "whatIs": "Tu suis les grandes, moyennes et petites entreprises des pays développés et émergents à travers le FTSE Global All Cap. Le fonds achète un échantillon représentatif des actions de cet indice et réinvestit les dividendes.",
+  "whyInteresting": "Tu réunis les trois tailles d’entreprises dans une seule ligne mondiale. Les petites capitalisations complètent la couverture des grands et moyens groupes du FTSE All-World, sans avoir à gérer un deuxième ETF.",
+  "whatToKnow": "Les poids suivent les capitalisations boursières : les grands groupes conservent donc une place importante. La cotation en euros ne couvre pas le risque de change. Lancée en août 2026, cette part ne dispose pas encore d’une année civile complète de performance.",
+  "question": "Tu choisirais un ETF mondial qui inclut aussi les petites entreprises ?"
+}
 ];

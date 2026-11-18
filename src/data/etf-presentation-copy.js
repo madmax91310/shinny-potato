@@ -773,3 +773,11 @@ for (const [id,emphasis] of multiAsset) REVIEWED_EXPOSURE_COPY[id] = {
   whyInteresting:`La ligne confie à Vanguard l’ajustement de la répartition entre fonds actions et obligations. ${emphasis} Elle évite de gérer soi-même ces mouvements entre plusieurs fonds.`,
   whatToKnow:'Une hausse des taux peut faire baisser les obligations au moment où les actions reculent aussi. Le rééquilibrage ne garantit donc pas une protection. La couverture vers l’euro concerne la poche obligataire, pas l’ensemble des monnaies du portefeuille.',
 }
+
+REVIEWED_EXPOSURE_COPY["ftse-global-all-cap-vanguard"] = {
+  "hook": "Les petites entreprises ont aussi leur place dans un ETF mondial. Voici ce que le Vanguard FTSE Global All-Cap ajoute à un All-World 👇",
+  "whatIs": "Tu suis les grandes, moyennes et petites entreprises des pays développés et émergents à travers le FTSE Global All Cap. Le fonds achète un échantillon représentatif des actions de cet indice et réinvestit les dividendes.",
+  "whyInteresting": "Tu réunis les trois tailles d’entreprises dans une seule ligne mondiale. Les petites capitalisations complètent la couverture des grands et moyens groupes du FTSE All-World, sans avoir à gérer un deuxième ETF.",
+  "whatToKnow": "Les poids suivent les capitalisations boursières : les grands groupes conservent donc une place importante. La cotation en euros ne couvre pas le risque de change. Lancée en août 2026, cette part ne dispose pas encore d’une année civile complète de performance.",
+  "question": "Tu choisirais un ETF mondial qui inclut aussi les petites entreprises ?"
+}

@@ -14,7 +14,7 @@ function assertManualConvention(asset) {
 }
 const config = [...JSON.parse(readFileSync(new URL('./additional-etf-sources.json', import.meta.url))).instruments, ...JSON.parse(readFileSync(new URL('./etf-pilot.json', import.meta.url))).instruments.map(s => ({...s, enabled:true, required:true}))];
 const marketCalendars=JSON.parse(readFileSync(new URL('../src/data/monthly-duel-returns.json',import.meta.url)));
-assert.equal(PRESENTATION_ETF_ADDITIONS.length, 11);
+assert.equal(PRESENTATION_ETF_ADDITIONS.length, 12);
 for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>!r.reviewedAt)) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
@@ -66,7 +66,7 @@ for (const r of PRESENTATION_ETF_EXPANSION) {
 console.log('Five PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');
 
 // New cards retain actual short histories and explicitly unavailable country data.
-for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
+for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt==='15/10/2026')) {
  const card=ETFS.find(c=>c.isin===r.isin),record=AUTOMATED_ETF[r.isin];
  assert.equal(card.presentationOnly, !r.portfolioEnabled);
  assert(card.listing && getETFArt(card.id));
@@ -88,3 +88,20 @@ for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
  }
 }
 console.log('Four additional cards: issuer facts, exact listings and short/missing histories preserved.');
+
+// The newly launched All-Cap share must never inherit an older World history.
+const allCap = ETFS.find(r=>r.isin==='IE000VAHT5T0');
+assert.equal(ETFS.filter(r=>r.isin===allCap.isin).length,1);
+assert.equal(allCap.listing.ticker,'VGLA');
+assert.equal(allCap.listing.currency,'EUR');
+assert.equal(allCap.pea,false);
+assert.equal(allCap.presentationOnly,true);
+assert(getETFArt(allCap.id));
+assert.match(allCap.whatIs,/petites.*développés et émergents/);
+assert.match(allCap.whatToKnow,/août 2026/);
+assert.equal(getAnnualPerformance(allCap),null);
+assert(!ASSETS.some(a=>a.isin===allCap.isin));
+assert(config.some(s=>s.isin===allCap.isin&&s.parser==='vanguard'&&s.enabled));
+assert.equal(AUTOMATED_ETF[allCap.isin].aum.scope,'share-class');
+assert.equal(AUTOMATED_ETF[allCap.isin].currency,'USD');
+console.log('Vanguard All-Cap: exact share, EUR listing/USD share, automated source and no borrowed history verified.');
