@@ -1,6 +1,6 @@
 # Synthèses investisseurs allégées — 18 novembre 2026
 
-Départ sur master `f7de1cee`, puis intégration de la PR concurrente #1384 (`3df1bab3`) avant compilation finale. Le site servait encore le code #1380 (`5bca0be7`) avec des données plus récentes. Les cinq PNG publics puis les cinq PNG de master ont été réellement téléchargés et ouverts avant modification. Aucune nouvelle capture jointe n’a été retrouvée dans les fichiers accessibles ; aucune comparaison avec cette pièce jointe n’est revendiquée.
+Départ sur master `f7de1cee`, puis intégration des PR concurrentes #1384 et #1385 avant compilation finale. Le site servait encore le code #1380 (`5bca0be7`) avec des données plus récentes. Les cinq PNG publics puis les cinq PNG de master ont été réellement téléchargés et ouverts avant modification. Aucune nouvelle capture jointe n’a été retrouvée dans les fichiers accessibles ; aucune comparaison avec cette pièce jointe n’est revendiquée.
 
 ## Composition
 
@@ -30,4 +30,6 @@ Compilation complète réussie, budget inchangé : 724,8/725 kB. Tests de calcul
 
 Les cinq PNG finaux ont été ouverts en natif et à 390 px. Les 26 synthèses admissibles ont été balayées sur planches, puis les compléments Renaissance et Berkshire ouverts individuellement. Les 26 PNG de synthèse téléchargés depuis la compilation sont identiques à ceux du rendu instrumenté. Preuves : `reports/investor-simple-summary-2026-11-18/` (avant/après, fichiers PNG, planches, métadonnées et contrôles indépendants).
 
-Les contrôles CI, la fusion et la version réellement servie seront consignés dans la PR après constat. Aucun autre outil, collecteur ou budget n’est modifié. Aucune publication sur X.
+Le premier portail CI a détecté un champ historique `verdict` manquant dans la nouvelle fiche Vanguard de #1384. Ce seul champ est complété par la première phrase déjà présente dans son intérêt éditorial, sans nouvelle donnée. Le texte publié, les faits et le PNG de cette fiche restent identiques : `vanguard-contract-compatibility.json` en conserve la preuve. Le contrôle n’est pas affaibli. L’alerte séparée de collecte anniversaire conserve ses deux échecs de source et ses dernières observations validées.
+
+Les contrôles CI, la fusion et la version réellement servie seront consignés dans la PR après constat. Les rendus des autres outils, les données financières, les collecteurs et les budgets restent inchangés. Aucune publication sur X.
