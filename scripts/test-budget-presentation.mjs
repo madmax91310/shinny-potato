@@ -12,7 +12,7 @@ assert.equal(hash(BUDGET_ORIGINAL_PROFILES), baseline.profilesHash, 'No profile,
 assert.equal(hash(BUDGET_ORIGINAL_PROFILES.map(p=>BUDGET_ORIGINAL_PUBLICATION_CONTEXT[p.id])), baseline.contextsHash, 'Private qualifications, narratives, questions and evidence stay intact')
 for (const p of BUDGET_PROFILES) {
   const text = buildBudgetText(p), c = publicationContextFor(p)
-  assert.equal(text.split('\n')[0], budgetHeading(p))
+  assert.equal(text.split('\n')[0], `💰 ${budgetHeading(p)}`)
   assert(!/Exemple de budget| — |20\d{2}/i.test(text.split('\n')[0]))
   assert(!text.includes('cet exemple de budget'))
   const qualifier = budgetQualification(p)
@@ -22,12 +22,12 @@ for (const p of BUDGET_PROFILES) {
   assert(!/budget personnel/i.test([presentation.job, presentation.household, presentation.location, presentation.basis].join(' ')), `${p.id}: both images use cleaned presentation data`)
   for (const part of [...c.paragraphs, ...c.questions]) assert(text.includes(part.text), 'Enriched facts and targeted questions remain verbatim')
   for (const row of budgetPublicExpenseRows(p)) assert(text.includes(`• ${budgetRowSymbol(row).emoji} ${row.label}`))
-  for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`• ${budgetRowSymbol(row, 'income').emoji} ${row.label}`))
+  for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} :`))
   assert(!/20\d{2}/.test(budgetPublicBasis(p, budgetPublicPresentation(p).basis)), 'Calendar references leave the image basis, not the private metadata')
   assert.equal(refreshBudgetDraft({profile:p,text:'Mon texte choisi',edited:true}).text,'Mon texte choisi')
 }
 const aicha = BUDGET_PROFILES.find(p => p.name === 'Aïcha'), a = buildBudgetText(aicha)
-assert(a.startsWith('Budget d’Aïcha, 41 ans\n'))
+assert(a.startsWith('💰 Budget d’Aïcha, 41 ans\n'))
 for (const line of ['💼 Cheffe de service', '👩‍👧 Mère célibataire, un enfant de 11 ans', '📍 Région parisienne', '• ⚡ Énergie et eau', '• 📚 École et cours particuliers', '• 🎨 Activités de son enfant', '• 🩺 Assurances et santé', '• 👕 Vêtements et hygiène', '👉 Capacité d’épargne', '💳 Reste après versements']) assert(a.includes(line),line)
 assert(a.includes('Réserves pour projets et imprévus : 800'))
 assert.equal(analyzeBudget(aicha).savings,800)

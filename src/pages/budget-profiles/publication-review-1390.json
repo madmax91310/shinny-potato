@@ -1,0 +1,182 @@
+{
+  "reddit-couple-nord-2026-07-09": [
+    {
+      "field": "questions",
+      "index": 1,
+      "before": "Qu’est-ce qui vous a aidé à sortir durablement du découvert sans devoir reprendre sur le livret ?",
+      "after": "Avec les 150 € déjà prévus pour les trajets familiaux, vous garderiez la réserve intacte les mois où ces trajets coûtent plus cher, ou vous ajusteriez la provision ?",
+      "basis": "documented",
+      "reason": "La ligne de 150 € donne à la deuxième question un choix propre à ce foyer."
+    }
+  ],
+  "finary-alternant-19-2025-09-27": [
+    {
+      "field": "incomeNote",
+      "index": null,
+      "before": "Le bonus de 150 € est compté ici, mais on ne sait pas s’il revient chaque mois.",
+      "after": "Les 1 071 € de salaire et d’APL sont distincts du bonus de 150 €, dont la fréquence reste inconnue. Le total correspond au mois avec bonus.",
+      "basis": "correction",
+      "reason": "770 € de salaire plus 301 € d’APL. Les 1 221 € ne constituent pas un revenu mensuel récurrent établi."
+    },
+    {
+      "field": "paragraphs",
+      "index": 2,
+      "before": "Sans le bonus, les dépenses dépasseraient déjà les ressources habituelles d’environ 5 €, avant tout versement.",
+      "after": "Sans le bonus, il manquerait 4,99 € avant versements, ou 124,99 € en maintenant les 120 € de virements.",
+      "basis": "correction",
+      "reason": "Calcul sur les ressources habituelles de 1 071 € et 1 075,99 € de dépenses. Les versements restent ceux du relevé."
+    },
+    {
+      "field": "imageIncomeLabel",
+      "index": null,
+      "before": "",
+      "after": "Revenus du mois avec bonus",
+      "basis": "documented",
+      "reason": "Le bandeau qualifie le mois observé avec un bonus de 150 €."
+    }
+  ],
+  "mustachian-ingenieur-28-2025-08-16": [
+    {
+      "field": "paragraphs",
+      "index": 1,
+      "before": "Les 7 393 CHF de revenus moyens comprennent notamment un héritage et des ventes. Les 3 749 CHF restants servent aussi aux placements, dont les versements annuels au troisième pilier. Leur montant dépend donc des recettes de chaque année.",
+      "after": "Les 7 393 CHF sont une moyenne de la période observée qui comprend le salaire, des dividendes, des ventes et un héritage. Les 3 749 CHF restants servent aussi aux placements et au troisième pilier. Le montant disponible sur le seul salaire reste inconnu.",
+      "basis": "documented",
+      "reason": "Le revenu est une moyenne composite du relevé. Le salaire séparé et les versements annuels ne sont pas chiffrables à partir des lignes."
+    },
+    {
+      "field": "imageIncomeLabel",
+      "index": null,
+      "before": "",
+      "after": "Moyenne avec recettes exceptionnelles",
+      "basis": "documented",
+      "reason": "Le bandeau indique la moyenne observée, impossible à ramener au seul salaire."
+    }
+  ],
+  "prepared-lot2-07-2026-10-30": [
+    {
+      "field": "questions",
+      "index": 1,
+      "before": "Quels postes avez-vous dû revoir au passage de deux revenus d’activité à la retraite ?",
+      "after": "Tant qu’ils ne connaissent pas la future pension d’Alain, garderiez-vous le budget voyages actuel ou le réduiriez-vous ?",
+      "basis": "correction",
+      "reason": "Le foyer vit déjà avec une pension et un salaire. La question précédente supposait deux revenus d’activité."
+    }
+  ],
+  "reference-famille-lyon-2026": [
+    {
+      "field": "paragraphs",
+      "index": 0,
+      "before": "Mélina et Loïc ont 2 200 € pour les imprévus et 500 € à part pour leurs enfants de 7 et 10 ans. Ils voudraient atteindre 6 000 € de sécurité dans deux ans.",
+      "after": "Mélina et Loïc ont 2 200 € pour les imprévus et 500 € à part pour leurs enfants de 7 et 10 ans. À 200 € par mois, leur réserve atteindrait 6 000 € en environ dix-neuf mois, hors retraits et intérêts.",
+      "basis": "documented",
+      "reason": "6 000 moins 2 200 = 3 800 €. Le virement prévu de 200 € figure dans le budget."
+    }
+  ],
+  "editorial-delphine-garde-alternee-2026-11-15": [
+    {
+      "field": "questions",
+      "index": 1,
+      "before": "Après une séparation, quels postes de dépenses vous ont le plus surpris ?",
+      "after": "Avec 50 € de marge, garderiez-vous le virement de 50 € vers le PEA ou accéléreriez-vous d’abord la réserve de 1 200 € ?",
+      "basis": "documented",
+      "reason": "Le choix part de la marge, du virement et du stock déjà documentés."
+    }
+  ],
+  "editorial-qualified-37535-2026-11-15": [
+    {
+      "field": "paragraphs",
+      "index": 2,
+      "before": "",
+      "after": "S’il ouvre un livret séparé pour le restaurant, douze versements de 500 € y réuniraient 6 000 € hors intérêts, sans utiliser son LEP.",
+      "basis": "assumption",
+      "reason": "Support liquide et distinct de la précaution. Le point de départ illustratif ne devient ni un apport déjà acquis ni une date d’ouverture."
+    },
+    {
+      "field": "questions",
+      "index": 0,
+      "before": "Pour ceux qui ont ouvert un restaurant, quels frais aviez-vous sous-estimés au départ ?",
+      "after": "Si vous réserviez les 500 € mensuels au restaurant, vous constitueriez d’abord l’apport ou vous chiffreriez le local et le matériel avant de fixer un objectif ?",
+      "basis": "documented",
+      "reason": "Le montant vient de la ligne projet. Les coûts du restaurant restent inconnus."
+    }
+  ],
+  "editorial-qualified-39814-2026-11-15": [
+    {
+      "field": "paragraphs",
+      "index": 2,
+      "before": "",
+      "after": "Pour fixer un repère, trois mois des dépenses actuelles représentent environ 4 800 €. Ce serait une réserve à garder hors de l’apport, à distinguer de l’argent destiné aux travaux.",
+      "basis": "assumption",
+      "reason": "1 585 € × 3 mois = 4 755 €, arrondis. C’est un seuil illustratif, le montant réel de la réserve demeure inconnu."
+    }
+  ],
+  "editorial-qualified-36724-2026-11-15": [
+    {
+      "field": "paragraphs",
+      "index": 0,
+      "before": "Ces montants représentent la part de Françoise dans le budget du foyer. Son logement est payé. Son PEA vaut environ 60 000 €, mais près de 47 000 € y restent en espèces ; son assurance-vie contient 2 000 €.",
+      "after": "Le logement de Françoise est payé. Elle règle les dépenses ci-dessus sur son salaire. Son PEA vaut environ 60 000 €, dont près de 47 000 € encore en espèces ; son assurance-vie contient 2 000 €.",
+      "basis": "documented",
+      "reason": "Formulation concrète du périmètre individuel et conservation du patrimoine documenté."
+    }
+  ],
+  "editorial-qualified-39547-2026-11-15": [
+    {
+      "field": "paragraphs",
+      "index": 0,
+      "before": "Étienne dispose d’une pension de 3 000 € par mois. Les dépenses présentées sont sa part du budget du couple ; le logement est payé.",
+      "after": "Le logement est payé. Étienne règle les dépenses ci-dessus avec sa pension de 3 000 € par mois.",
+      "basis": "documented",
+      "reason": "Conservation du financement sur sa pension sans présenter des dépenses individuelles comme celles du couple."
+    }
+  ],
+  "editorial-qualified-26933-2026-11-15": [
+    {
+      "field": "paragraphs",
+      "index": 0,
+      "before": "Les montants représentent la part d’Esteban dans le budget du couple. Son salaire est présenté avant impôt, avec une provision mensuelle correspondant aux quelque 4 000 € annuels qu’il paie.",
+      "after": "Esteban règle ses propres dépenses depuis son salaire avant impôt. Il a déjà prévu 333,33 € par mois pour les quelque 4 000 € d’impôt qu’il paie chaque année.",
+      "basis": "documented",
+      "reason": "Le prélèvement n’est pas inclus dans le salaire et la provision fiscale de 333,33 € est déjà comptée une fois."
+    }
+  ],
+  "editorial-complementary-solo-2026-11-16": [
+    {
+      "field": "paragraphs",
+      "index": 1,
+      "before": "Même sans sorties ni restaurants, les dépenses dépassent les ressources régulières. Djamila garde pourtant un versement de 20 € sur son assurance-vie. Le financement de ce manque reste à trouver.",
+      "after": "Il manque déjà 830 € avant placements. En maintenant les 20 € versés sur l’assurance-vie, le manque atteint 850 €. Même sans sorties ni restaurants, les dépenses dépassent les rentrées régulières. Le financement du déficit reste à trouver.",
+      "basis": "documented",
+      "reason": "Les deux soldes contrôlés correspondent au relevé hors pension alimentaire irrégulière."
+    }
+  ],
+  "editorial-roadmap-befire-first-home-2026-11-16": [
+    {
+      "field": "paragraphs",
+      "index": 0,
+      "before": "Iris participe aux frais du logement de son compagnon. Sa voiture et le carburant sont pris en charge par son employeur ; ses courses sont ici sa part payée en argent, en plus des chèques-repas.",
+      "after": "Iris participe aux frais du logement de son compagnon. Son employeur prend en charge la voiture et le carburant. La ligne des courses correspond à ce qu’elle paie sur son compte, en plus des achats couverts par les chèques-repas.",
+      "basis": "documented",
+      "reason": "Préserve le périmètre individuel. Les chèques-repas ne majorent ni le salaire disponible ni les courses débitées."
+    }
+  ],
+  "editorial-roadmap-lux-one-income-2026-11-16": [
+    {
+      "field": "paragraphs",
+      "index": 2,
+      "before": "",
+      "after": "Comme point de départ, ils pourraient viser trois mois de dépenses, soit environ 9 400 €. En mettant les 400 € mensuels sur un compte d’épargne, il faudrait près de deux ans si la réserve partait de zéro.",
+      "basis": "assumption",
+      "reason": "3 120 € × 3 = 9 360 €, puis 9 360 € ÷ 400 € = 23,4 mois, hors intérêts et retraits. Le stock de départ n’est pas documenté."
+    },
+    {
+      "field": "questions",
+      "index": 0,
+      "before": "À deux au Luxembourg sur un seul salaire, quels frais aviez-vous sous-estimés au départ ?",
+      "after": "Avec un seul salaire et 330 € de marge, vous verseriez les 400 € prévus sur un compte de réserve ou vous en garderiez une partie disponible sur le compte courant ?",
+      "basis": "documented",
+      "reason": "La question mobilise les deux flux documentés sur ce salaire unique."
+    }
+  ]
+}

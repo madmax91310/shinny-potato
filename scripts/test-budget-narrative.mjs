@@ -18,7 +18,7 @@ for (const p of BUDGET_PROFILES) {
   assert.equal(review.monthlyAmountsChanged, false)
   assert(review.note.length > 40)
   assert(c.questions.length + Number(Boolean(c.budgetQuestion)) <= 2)
-  assert.deepEqual(c.evidence.at(-1).narrativeReview.limits, review.limits)
+  assert.deepEqual(c.evidence.findLast(item => item.narrativeReview).narrativeReview.limits, review.limits)
   const custom = { profile: p, text: 'Mon brouillon personnalisé\nMes chiffres et mes questions.', edited: true, textFinance: baseline.beforeFinance[p.id] }
   const refreshed = refreshBudgetDraft(custom)
   assert.equal(refreshed.text, custom.text)
@@ -49,7 +49,8 @@ for (const [salary, key] of [[3200, 'lowMonth'], [3350, 'averageMonth'], [3500, 
 }
 assert(story('Aïcha').includes('20 €'))
 const pauline = byName('Pauline'), pt = buildBudgetText(pauline)
-assert(pt.indexOf('sa part du budget du foyer') < pt.indexOf('💰 Revenus'))
+assert.doesNotMatch(pt, /sa part du budget du foyer/i)
+assert.match(pt, /Pauline paie 45 % du crédit/)
 assert.equal(analyzeBudget(pauline).available * 24, facts('Pauline').maximum24MonthFundingWithoutStock)
 assert(facts('Pauline').maximum24MonthFundingWithoutStock < 2500)
 

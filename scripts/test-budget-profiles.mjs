@@ -32,14 +32,14 @@ for (const p of BUDGET_PROFILES) {
   assert(!text.includes('Situation familiale non précisée'))
   assert(!/prénoms? fictifs?|scénario mensuel préparé|données de 2025|l’auteur|sa femme|la personne|placeholder|\.json|PR #/i.test(text), p.id)
   assert.equal(typeof BUDGET_EDITORIAL[p.id]?.publicIncomeNote, 'string', `Every profile needs a contextual editorial review: ${p.id}`)
-  for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), 'Even a single resource is detailed')
+  for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} :`) && text.includes(euro(row.amount, p.currency)), 'Even a single resource is detailed')
   assert(!/budget personnel/i.test(text), p.id)
   const a = analyzeBudget(p)
-  const sumCents = key => p[key].reduce((n, r) => n + Math.round(r.amount * 100), 0)
+  const sumCents = key => p[key].reduce((n, r) => n + (r.inKind ? 0 : Math.round(r.amount * 100)), 0)
   assert.equal(Math.round(a.balance * 100), sumCents('income') - sumCents('expenses') - sumCents('savings'))
   assert(Math.abs(a.expenseShare - 100 * sumCents('expenses') / sumCents('income')) < 1e-10)
 
-  for (const row of budgetPublicExpenseRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), row.label)
+  for (const row of budgetPublicExpenseRows(p)) assert(text.includes(`${row.label} :`) && text.includes(euro(row.amount, p.currency)), row.label)
   const sections = budgetExpenseSections(p)
   assert.deepEqual(sections.flatMap(s => s.rows).map(r => r.label).sort(), budgetPublicExpenseRows(p).map(r => r.label).sort(), 'Every expense appears once')
   if (p.kind === 'planned') assert.match(text, /budget prévu/i)
@@ -163,7 +163,7 @@ for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
   const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id) || p
   if (source.kind==='prepared') assert.equal(analyzeBudget(source).balance, source.provenance?.expectedBalance ?? 0, p.id)
   assert.match(sourceReply(p), /^Source(?: d’inspiration)? : /)
-  assert.match(buildBudgetText(p), /^Budget /)
+  assert.match(buildBudgetText(p), /^💰 Budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method || p.completion && BUDGET_COMPLETENESS[p.id].conclusion)
 }

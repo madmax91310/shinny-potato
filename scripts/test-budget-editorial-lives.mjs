@@ -1,7 +1,7 @@
 // This dated audit protects the original source-backed collection. The live bank, including new editorial characters, is checked by test-budget-profiles and test-budget-new-profiles.
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { BUDGET_REFERENCE_PROFILES as BUDGET_PROFILES, BUDGET_RELIABLE_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_EDITORIAL_CREATIONS, BUDGET_RELIABLE_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_REFERENCE_PROFILES as BUDGET_PROFILES, BUDGET_RELIABLE_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_EDITORIAL_CREATIONS, BUDGET_RELIABLE_PUBLICATION_CONTEXT, BUDGET_REFERENCE_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetPublicPresentation, budgetImageExpenses, publicationContextFor, refreshBudgetDraft, budgetPublicIncomeRows } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
@@ -9,7 +9,7 @@ import { budgetBeforePelCorrection } from './budget-audit-history.mjs'
 const expected=JSON.parse(readFileSync(new URL('./fixtures/budget-editorial-lives-2026-11-06.json',import.meta.url))).profiles
 const forbidden=/exemple|ficti[fv]|version éditoriale|scénario|simulation|hypothèse|modèle|préparé le|vérifié le/i
 for(const [i,p]of BUDGET_PROFILES.entries()){
- const old=BUDGET_RELIABLE_PROFILES[i],r=BUDGET_EDITORIAL_CREATIONS[p.id],c=publicationContextFor(p),text=buildBudgetText(p)
+ const old=BUDGET_RELIABLE_PROFILES[i],r=BUDGET_EDITORIAL_CREATIONS[p.id],c=BUDGET_REFERENCE_PUBLICATION_CONTEXT[p.id],text=buildBudgetText(p)
  assert.deepEqual(p.expenses,[...old.expenses.flatMap(row=>(r.expenseExpansions||[]).find(e=>e.label===row.label)?.rows||[row]),...(r.expenseAdditions||[])],p.id+' projection agrees with expense provenance');
  assert.equal(p.context,r.paragraphs.join('\n\n'));assert.equal(p.question,r.questions.join('\n'));
  assert.deepEqual(p.editorialCreation.finance,r.created.filter(e=>['financial-stock','project'].includes(e.type)));
@@ -17,7 +17,7 @@ for(const [i,p]of BUDGET_PROFILES.entries()){
  assert.equal(c.editorialCreation,r)
  assert.deepEqual(c.paragraphs.map(e=>e.text),r.paragraphs,'Publication and editorial audit must agree')
  assert.deepEqual(c.questions.map(e=>e.text),r.questions,'Questions and their reviewed provenance must agree')
- assert.deepEqual(c.evidence.at(-1).created,r.created,'The evidence panel must retain the current creation inventory')
+ assert.deepEqual(c.evidence.findLast(item => item.created).created,r.created,'The evidence panel must retain the current creation inventory')
  assert(!forbidden.test(text),p.id)
  assert(!/abonné|m’a confié|nous a envoyé|témoignage/.test(text),p.id)
  const view=budgetPublicPresentation(p)

@@ -1,0 +1,293 @@
+{
+  "profile": {
+    "household": "En couple · sans enfant",
+    "approximate": false,
+    "incomeNote": "",
+    "context": "Noémie a déjà 10 000 € de réserve, 9 500 € sur un ETF World et 1 000 € en Bitcoin et Ethereum.\n\n🚗 Il lui reste environ 10 000 € à rembourser sur son crédit auto. Avec une mensualité de 500 €, elle estime qu’il lui reste environ 21 mois. Elle a déjà mis 2 400 € de côté pour sa prochaine voiture et continue de verser 200 € par mois sur ce compte pour éviter de reprendre un crédit.",
+    "question": "Noémie aimerait passer à temps partiel dans 25 ans. Avec ce qu’elle met de côté aujourd’hui, vous trouvez ça faisable ?\nQuand son crédit auto sera remboursé, Noémie n’aura plus cette mensualité de 500 €. À sa place, vous utiliseriez cet argent pour ouvrir une assurance-vie ou pour renforcer son ETF World ?",
+    "provenance": {
+      "nature": "editorial-character",
+      "checkedAt": "2026-11-15",
+      "source": {
+        "url": "https://community.finary.com/t/presentation-profil-24-ans-luxembourg-en-informatique-demande-de-remarques/10985",
+        "title": "24 ans : travail au Luxembourg et résidence en Belgique",
+        "publisher": "Finary",
+        "sourceDate": "2023-12-20"
+      },
+      "sourceFacts": [
+        "24 ans, emploi au Luxembourg, résidence principale achetée en couple en Belgique ; salaire 4 400 €, titres-restaurant 200 €, bonus annuel variable ; stocks 10 000 €, 3 000 €, 6 500 € ; versements 450/267/200/300/100 ; crédit auto à 4 %."
+      ],
+      "createdFields": [
+        "Référence éditoriale fournie par l’utilisateur le 18 novembre 2026. Montants individuels encaissés ou payés. Les titres-restaurant sont hors salaire et les courses correspondent au montant payé sur le compte. Le délai du crédit est une estimation fournie, avec un capital arrondi et sans échéancier. La source Finary documente une inspiration antérieure."
+      ],
+      "defaultOrigin": "editorial-created unless explicitly listed in sourceFacts",
+      "originalSourcePreserved": true,
+      "questionsOrigin": "editorial adaptations of the documented dilemmas; no verbatim quotation or subscriber testimony",
+      "limitations": "The source is an inspiration, not evidence for the complete budget below. No current personal circumstances or tax eligibility have been verified.",
+      "method": "Personnage éditorial autorisé, inspiré de la source publique citée ; aucun budget complet ni complément attribué comme témoignage réel.",
+      "coverage": {
+        "housing": "personal-share",
+        "food": "cash-after-meal-vouchers",
+        "transport": "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte.",
+        "health": "listed",
+        "insurance": "grouped",
+        "tax": "source-net-no-new-tax-claim",
+        "annualCosts": "grouped",
+        "dependents": "not_applicable",
+        "professionalCosts": "not_applicable",
+        "bonus": "excluded-from-monthly-income"
+      },
+      "fiscalBasis": "Les revenus disponibles créés s’entendent après prélèvements personnels. Pour Noémie, la qualification nette de la source est conservée sans affirmation fiscale supplémentaire.",
+      "expectedIncome": 3500,
+      "expectedExpenses": 2670,
+      "expectedTransfers": 750,
+      "expectedBalance": 80,
+      "publicationReference": "Référence éditoriale fournie par l’utilisateur le 18 novembre 2026. Montants individuels encaissés ou payés. Les titres-restaurant sont hors salaire et les courses correspondent au montant payé sur le compte. Le délai du crédit est une estimation fournie, avec un capital arrondi et sans échéancier. La source Finary documente une inspiration antérieure.",
+      "priorScenario": "2026-11-15"
+    },
+    "editorialCreation": {
+      "reviewedAt": "2026-11-15",
+      "baseline": "new-bank-2026-11-15",
+      "finance": [
+        {
+          "type": "financial-stock",
+          "label": "Réserve de sécurité",
+          "amount": 10000
+        },
+        {
+          "type": "financial-stock",
+          "label": "ETF World",
+          "amount": 9500
+        },
+        {
+          "type": "financial-stock",
+          "label": "Bitcoin et Ethereum",
+          "amount": 1000
+        },
+        {
+          "type": "financial-stock",
+          "label": "Épargne prochaine voiture",
+          "amount": 2400
+        },
+        {
+          "type": "debt-estimate",
+          "label": "Crédit auto",
+          "amount": 10000,
+          "monthlyPayment": 500,
+          "remainingMonths": 21
+        }
+      ]
+    },
+    "income": [
+      {
+        "label": "Salaire net",
+        "amount": 3500
+      },
+      {
+        "label": "Titres-restaurant",
+        "amount": 200,
+        "inKind": true
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Crédit immobilier",
+        "amount": 1000,
+        "category": "housing",
+        "constraint": "fixed"
+      },
+      {
+        "label": "Crédit auto",
+        "amount": 500,
+        "category": "credit",
+        "constraint": "fixed"
+      },
+      {
+        "label": "Carburant, entretien et assurance auto",
+        "amount": 260,
+        "category": "transport",
+        "constraint": "fixed",
+        "imageLabel": "Frais auto"
+      },
+      {
+        "label": "Courses payées sur son compte",
+        "amount": 200,
+        "category": "food",
+        "constraint": "fixed",
+        "imageLabel": "Courses"
+      },
+      {
+        "label": "Impôts locaux et assurances du logement",
+        "amount": 170,
+        "category": "housing",
+        "constraint": "fixed",
+        "imageLabel": "Impôts et assurances"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 130,
+        "category": "bills",
+        "constraint": "fixed"
+      },
+      {
+        "label": "Santé et complémentaire",
+        "amount": 50,
+        "category": "health",
+        "constraint": "fixed",
+        "imageLabel": "Santé"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 40,
+        "category": "bills",
+        "constraint": "fixed",
+        "imageLabel": "Télécoms"
+      },
+      {
+        "label": "Sorties et loisirs",
+        "amount": 140,
+        "category": "leisure",
+        "constraint": "flexible"
+      },
+      {
+        "label": "Vacances",
+        "amount": 100,
+        "category": "leisure",
+        "constraint": "flexible"
+      },
+      {
+        "label": "Vêtements et cadeaux",
+        "amount": 80,
+        "category": "other",
+        "constraint": "flexible"
+      }
+    ],
+    "savings": [
+      {
+        "label": "ETF World",
+        "amount": 400
+      },
+      {
+        "label": "Réserve de sécurité",
+        "amount": 100
+      },
+      {
+        "label": "Compte d’épargne pour la prochaine voiture",
+        "amount": 200,
+        "imageLabel": "Compte épargne auto"
+      },
+      {
+        "label": "Bitcoin et Ethereum",
+        "amount": 50
+      }
+    ],
+    "id": "editorial-noemie-frontaliere-2026-11-15"
+  },
+  "display": {
+    "publicHousehold": "En couple · sans enfant",
+    "publicIncomeNote": ""
+  },
+  "publication": {
+    "budget": {
+      "basis": "Montants mensuels",
+      "incomeNote": "",
+      "household": "En couple · sans enfant",
+      "transfersHeading": "Épargne et investissements"
+    },
+    "paragraphs": [
+      {
+        "text": "Noémie a déjà 10 000 € de réserve, 9 500 € sur un ETF World et 1 000 € en Bitcoin et Ethereum.",
+        "evidence": [
+          2
+        ]
+      },
+      {
+        "text": "🚗 Il lui reste environ 10 000 € à rembourser sur son crédit auto. Avec une mensualité de 500 €, elle estime qu’il lui reste environ 21 mois. Elle a déjà mis 2 400 € de côté pour sa prochaine voiture et continue de verser 200 € par mois sur ce compte pour éviter de reprendre un crédit.",
+        "evidence": [
+          2
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "text": "Noémie aimerait passer à temps partiel dans 25 ans. Avec ce qu’elle met de côté aujourd’hui, vous trouvez ça faisable ?",
+        "evidence": [
+          2
+        ],
+        "origin": "editorial"
+      },
+      {
+        "text": "Quand son crédit auto sera remboursé, Noémie n’aura plus cette mensualité de 500 €. À sa place, vous utiliseriez cet argent pour ouvrir une assurance-vie ou pour renforcer son ETF World ?",
+        "evidence": [
+          2
+        ],
+        "origin": "editorial"
+      }
+    ],
+    "evidence": [
+      {
+        "basis": "source-inspiration",
+        "url": "https://community.finary.com/t/presentation-profil-24-ans-luxembourg-en-informatique-demande-de-remarques/10985",
+        "publishedAt": "2023-12-20",
+        "checkedAt": "2026-11-15",
+        "facts": [
+          "24 ans, emploi au Luxembourg, résidence principale achetée en couple en Belgique ; salaire 4 400 €, titres-restaurant 200 €, bonus annuel variable ; stocks 10 000 €, 3 000 €, 6 500 € ; versements 450/267/200/300/100 ; crédit auto à 4 %."
+        ]
+      },
+      {
+        "basis": "editorial-preparation",
+        "reviewedAt": "2026-11-15",
+        "created": [
+          "Identité féminine ; tous les montants de dépenses, y compris mensualités et part du foyer ; prise en charge alimentaire exacte ; salaire disponible conservé sans affirmation fiscale supplémentaire. Les 267 € ne sont pas présentés comme un plafond fiscal actuel. Aucun PEA français ni Livret A n’est attribué à une résidente belge.",
+          "260 €/mois : carburant 150 €, assurance 60 €, entretien provisionné 50 € ; mensualité de crédit distincte."
+        ],
+        "note": "Personnage créé : les compléments ne sont pas attribués à la source."
+      },
+      {
+        "basis": "editorial-preparation",
+        "note": "Référence éditoriale fournie par l’utilisateur le 18 novembre 2026. Montants individuels encaissés ou payés. Les titres-restaurant sont hors salaire et les courses correspondent au montant payé sur le compte. Le délai du crédit est une estimation fournie, avec un capital arrondi et sans échéancier. La source Finary documente une inspiration antérieure."
+      }
+    ]
+  },
+  "creation": {
+    "created": [
+      "Référence éditoriale fournie par l’utilisateur le 18 novembre 2026. Montants individuels encaissés ou payés. Les titres-restaurant sont hors salaire et les courses correspondent au montant payé sur le compte. Le délai du crédit est une estimation fournie, avec un capital arrondi et sans échéancier. La source Finary documente une inspiration antérieure."
+    ],
+    "finance": [
+      {
+        "type": "financial-stock",
+        "label": "Réserve de sécurité",
+        "amount": 10000
+      },
+      {
+        "type": "financial-stock",
+        "label": "ETF World",
+        "amount": 9500
+      },
+      {
+        "type": "financial-stock",
+        "label": "Bitcoin et Ethereum",
+        "amount": 1000
+      },
+      {
+        "type": "financial-stock",
+        "label": "Épargne prochaine voiture",
+        "amount": 2400
+      },
+      {
+        "type": "debt-estimate",
+        "label": "Crédit auto",
+        "amount": 10000,
+        "monthlyPayment": 500,
+        "remainingMonths": 21
+      }
+    ]
+  },
+  "expectedCents": {
+    "income": 350000,
+    "expenses": 267000,
+    "savings": 75000,
+    "available": 83000,
+    "balance": 8000
+  }
+}
