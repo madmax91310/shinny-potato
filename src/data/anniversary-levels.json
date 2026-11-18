@@ -11929,5 +11929,22 @@
     "ticker": "MEDP",
     "listingEvidenceId": "US58506Q1094:NASDAQ:MEDP:USD",
     "checkedAt": "2026-11-18T00:58:05.647585+00:00"
+  },
+  "etfIE000VAHT5T0": {
+    "value": 4.267000198364258,
+    "asOf": "2026-11-17",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "VGLA.DE",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/VGLA.DE?period1=1793664000&period2=1794960000&interval=1d&events=splits",
+    "sha256": "c1b7b8e0e3bf63f89c3fce222ea85a6feee169e141155c2c2fc3efc1d31e2dd1",
+    "method": "Dernière séance terminée ; cours brut",
+    "maxAgeDays": 7,
+    "isin": "IE000VAHT5T0",
+    "ticker": "VGLA",
+    "mic": "XETR",
+    "listingEvidenceId": "IE000VAHT5T0-XETR-VGLA-EUR"
   }
 }

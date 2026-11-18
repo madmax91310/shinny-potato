@@ -95,8 +95,8 @@
       "method": "Capitalisation flottante, avec plafonnement ; cumul calculé sur les poids publiés arrondis par la source",
       "methodologyUrl": "https://live.euronext.com/en/product/indices/FR0003500008-XPAR",
       "refresh": {
-        "checkedAt": "2026-11-18T06:56:22.193079+00:00",
-        "lastSuccessAt": "2026-11-18T06:56:22.193079+00:00",
+        "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+        "lastSuccessAt": "2026-11-18T16:00:40.501043+00:00",
         "status": "validated",
         "asOf": "2026-10-31"
       },
@@ -732,8 +732,8 @@
       "method": "Pondération par le prix des actions (price weighted), pas par capitalisation ; cumul calculé sur les poids publiés arrondis par la source",
       "methodologyUrl": "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-industrial-average/",
       "refresh": {
-        "checkedAt": "2026-11-18T06:56:22.193079+00:00",
-        "lastSuccessAt": "2026-11-18T06:56:22.193079+00:00",
+        "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+        "lastSuccessAt": "2026-11-18T16:00:40.501043+00:00",
         "status": "validated",
         "asOf": "2026-10-31"
       },
@@ -1333,8 +1333,8 @@
       "method": "Capitalisation flottante, avec plafonnement ; cumul calculé sur les poids publiés arrondis par la source",
       "methodologyUrl": "https://www.stoxx.com/index-details?symbol=DAX",
       "refresh": {
-        "checkedAt": "2026-11-18T06:56:22.193079+00:00",
-        "lastSuccessAt": "2026-11-18T06:56:22.193079+00:00",
+        "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+        "lastSuccessAt": "2026-11-18T16:00:40.501043+00:00",
         "status": "validated",
         "asOf": "2026-10-31"
       },
@@ -5542,7 +5542,7 @@
       "identitySourceUrl": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
       "identityCheckedAt": "2026-10-01",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-17",
+      "observedIdentityCheckedAt": "2026-11-18",
       "productStructure": "Physical",
       "replicationMethodology": "Replicated",
       "approximation": true,
@@ -10892,7 +10892,7 @@
       "identitySourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZ825",
       "identityCheckedAt": "2026-09-29",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-17",
+      "observedIdentityCheckedAt": "2026-11-18",
       "productStructure": "Physical",
       "replicationMethodology": "Optimised",
       "approximation": true,
@@ -20993,7 +20993,7 @@
       "identitySourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZ601",
       "identityCheckedAt": "2026-09-29",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-17",
+      "observedIdentityCheckedAt": "2026-11-18",
       "productStructure": "Physical",
       "replicationMethodology": "Optimised",
       "approximation": true,
@@ -26210,7 +26210,7 @@
       "identitySourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZB59",
       "identityCheckedAt": "2026-09-29",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-17",
+      "observedIdentityCheckedAt": "2026-11-18",
       "productStructure": "Physical",
       "replicationMethodology": "Replicated",
       "approximation": true,
@@ -121241,7 +121241,7 @@
         {
           "id": "KR7005930003",
           "name": "Samsung Electronics",
-          "weightPct": 40.55,
+          "weightPct": 40.24,
           "securities": [
             "KR7005930003",
             "KR7005931001"
@@ -121250,7 +121250,7 @@
         {
           "id": "KR7000660001",
           "name": "SK HYNIX",
-          "weightPct": 23.91,
+          "weightPct": 24.13,
           "securities": [
             "KR7000660001"
           ]
@@ -121258,7 +121258,7 @@
         {
           "id": "KR7402340004",
           "name": "SK SQUARE",
-          "weightPct": 2.46,
+          "weightPct": 2.5,
           "securities": [
             "KR7402340004"
           ]
@@ -121266,23 +121266,15 @@
         {
           "id": "KR7105560007",
           "name": "KB FINANCIAL GROUP",
-          "weightPct": 2.11,
+          "weightPct": 2.1,
           "securities": [
             "KR7105560007"
           ]
         },
         {
-          "id": "KR7009150004",
-          "name": "SAMSUNG ELECTRO MECHANICS",
-          "weightPct": 1.7,
-          "securities": [
-            "KR7009150004"
-          ]
-        },
-        {
           "id": "KR7005380001",
           "name": "Hyundai Motor",
-          "weightPct": 1.6800000000000002,
+          "weightPct": 1.69,
           "securities": [
             "KR7005380001",
             "KR7005382007",
@@ -121290,9 +121282,17 @@
           ]
         },
         {
+          "id": "KR7009150004",
+          "name": "SAMSUNG ELECTRO MECHANICS",
+          "weightPct": 1.69,
+          "securities": [
+            "KR7009150004"
+          ]
+        },
+        {
           "id": "KR7055550008",
           "name": "SHINHAN FINANCIAL GROUP",
-          "weightPct": 1.46,
+          "weightPct": 1.45,
           "securities": [
             "KR7055550008"
           ]
@@ -121300,7 +121300,7 @@
         {
           "id": "KR7086790003",
           "name": "HANA FINANCIAL GROUP",
-          "weightPct": 1.31,
+          "weightPct": 1.33,
           "securities": [
             "KR7086790003"
           ]
@@ -121308,7 +121308,7 @@
         {
           "id": "KR7068270008",
           "name": "CELLTRION",
-          "weightPct": 1.25,
+          "weightPct": 1.28,
           "securities": [
             "KR7068270008"
           ]
@@ -121316,131 +121316,131 @@
         {
           "id": "KR7006400006",
           "name": "SAMSUNG SDI LTD",
-          "weightPct": 1.08,
+          "weightPct": 1.07,
           "securities": [
             "KR7006400006"
           ]
         }
       ],
-      "topWeight": 77.50999999999999,
-      "otherWeight": 22.49000000000001,
-      "identifiedWeight": 99.70000000000007,
-      "asOf": "2026-11-16",
-      "checkedAt": "2026-11-18T06:56:22.193079+00:00",
-      "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.16",
+      "topWeight": 77.47999999999999,
+      "otherWeight": 22.52000000000001,
+      "identifiedWeight": 99.68,
+      "asOf": "2026-11-17",
+      "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+      "sourceUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
       "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
       "sourceProductCode": "KRX 332940",
       "sourceBasis": "physical-creation-basket",
-      "sha256": "965aa6f6d3d6f029e0e9c028f2f137b5db9ac8e8b0b9632e033f5ee510c9086f",
+      "sha256": "513ea47aa54ca3629b9d64aae1247413acebbbc471fa6311348708bf02c7bdd3",
       "approximation": true,
       "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé.",
       "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
       "identityCheckedAt": "2026-11-18",
       "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "classificationAsOf": "2026-11-16",
+      "classificationAsOf": "2026-11-17",
       "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
       "refresh": {
-        "checkedAt": "2026-11-18T06:56:22.193079+00:00",
-        "lastSuccessAt": "2026-11-18T06:56:22.193079+00:00",
+        "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+        "lastSuccessAt": "2026-11-18T16:00:40.501043+00:00",
         "status": "validated",
-        "asOf": "2026-11-16"
+        "asOf": "2026-11-17"
       },
       "visualFacts": {
-        "asOf": "2026-11-16",
+        "asOf": "2026-11-17",
         "countries": [
           [
             "Corée du Sud",
-            99.70000000000007
+            99.68
           ]
         ],
         "sectors": [
           [
             "💻 Technologie",
-            67.99000000000001
+            67.88999999999999
           ],
           [
             "🏭 Industrie",
-            11.440000000000001
+            11.419999999999998
           ],
           [
             "🏦 Finance",
-            8.49
+            8.500000000000002
           ],
           [
             "🛍️ Consommation cyclique",
-            4.0600000000000005
+            4.07
           ],
           [
             "🏥 Santé",
-            2.4000000000000004
+            2.46
           ],
           [
             "📡 Communication",
-            2.0700000000000003
+            2.0999999999999996
           ],
           [
             "🛒 Consommation de base",
-            1.21
+            1.23
           ],
           [
             "🪨 Matériaux",
-            1.1400000000000001
+            1.13
           ],
           [
             "⚡ Énergie",
-            0.63
+            0.62
           ],
           [
             "💡 Services publics",
-            0.27
+            0.26
           ]
         ],
         "holdings": [
           [
             "Samsung Electronics",
-            40.55
+            40.24
           ],
           [
             "SK HYNIX",
-            23.91
+            24.13
           ],
           [
             "SK SQUARE",
-            2.46
+            2.5
           ],
           [
             "KB FINANCIAL GROUP",
-            2.11
-          ],
-          [
-            "SAMSUNG ELECTRO MECHANICS",
-            1.7
+            2.1
           ],
           [
             "Hyundai Motor",
-            1.6800000000000002
+            1.69
+          ],
+          [
+            "SAMSUNG ELECTRO MECHANICS",
+            1.69
           ],
           [
             "SHINHAN FINANCIAL GROUP",
-            1.46
+            1.45
           ],
           [
             "HANA FINANCIAL GROUP",
-            1.31
+            1.33
           ],
           [
             "CELLTRION",
-            1.25
+            1.28
           ],
           [
             "SAMSUNG SDI LTD",
-            1.08
+            1.07
           ]
         ],
         "source": {
-          "url": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.16",
-          "checkedAt": "2026-11-18T06:56:22.193079+00:00",
-          "sha256": "965aa6f6d3d6f029e0e9c028f2f137b5db9ac8e8b0b9632e033f5ee510c9086f"
+          "url": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+          "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+          "sha256": "513ea47aa54ca3629b9d64aae1247413acebbbc471fa6311348708bf02c7bdd3"
         },
         "constituents": null,
         "targetConstituents": null
@@ -124817,6 +124817,217 @@
             "url": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
             "checkedAt": "2026-11-17T16:27:25.299151+00:00",
             "sha256": "2fb704b1127efc338ccf65dd8651edecf145d8f1f0ebd222b5838b637b70822c"
+          },
+          "constituents": null,
+          "targetConstituents": null
+        }
+      },
+      "2026-11-17": {
+        "available": true,
+        "top": [
+          {
+            "id": "KR7005930003",
+            "name": "Samsung Electronics",
+            "weightPct": 40.24,
+            "securities": [
+              "KR7005930003",
+              "KR7005931001"
+            ]
+          },
+          {
+            "id": "KR7000660001",
+            "name": "SK HYNIX",
+            "weightPct": 24.13,
+            "securities": [
+              "KR7000660001"
+            ]
+          },
+          {
+            "id": "KR7402340004",
+            "name": "SK SQUARE",
+            "weightPct": 2.5,
+            "securities": [
+              "KR7402340004"
+            ]
+          },
+          {
+            "id": "KR7105560007",
+            "name": "KB FINANCIAL GROUP",
+            "weightPct": 2.1,
+            "securities": [
+              "KR7105560007"
+            ]
+          },
+          {
+            "id": "KR7005380001",
+            "name": "Hyundai Motor",
+            "weightPct": 1.69,
+            "securities": [
+              "KR7005380001",
+              "KR7005382007",
+              "KR7005381009"
+            ]
+          },
+          {
+            "id": "KR7009150004",
+            "name": "SAMSUNG ELECTRO MECHANICS",
+            "weightPct": 1.69,
+            "securities": [
+              "KR7009150004"
+            ]
+          },
+          {
+            "id": "KR7055550008",
+            "name": "SHINHAN FINANCIAL GROUP",
+            "weightPct": 1.45,
+            "securities": [
+              "KR7055550008"
+            ]
+          },
+          {
+            "id": "KR7086790003",
+            "name": "HANA FINANCIAL GROUP",
+            "weightPct": 1.33,
+            "securities": [
+              "KR7086790003"
+            ]
+          },
+          {
+            "id": "KR7068270008",
+            "name": "CELLTRION",
+            "weightPct": 1.28,
+            "securities": [
+              "KR7068270008"
+            ]
+          },
+          {
+            "id": "KR7006400006",
+            "name": "SAMSUNG SDI LTD",
+            "weightPct": 1.07,
+            "securities": [
+              "KR7006400006"
+            ]
+          }
+        ],
+        "topWeight": 77.47999999999999,
+        "otherWeight": 22.52000000000001,
+        "identifiedWeight": 99.68,
+        "asOf": "2026-11-17",
+        "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+        "sourceUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+        "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
+        "sourceProductCode": "KRX 332940",
+        "sourceBasis": "physical-creation-basket",
+        "sha256": "513ea47aa54ca3629b9d64aae1247413acebbbc471fa6311348708bf02c7bdd3",
+        "approximation": true,
+        "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé.",
+        "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
+        "identityCheckedAt": "2026-11-18",
+        "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "classificationAsOf": "2026-11-17",
+        "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
+        "refresh": {
+          "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+          "lastSuccessAt": "2026-11-18T16:00:40.501043+00:00",
+          "status": "validated",
+          "asOf": "2026-11-17"
+        },
+        "visualFacts": {
+          "asOf": "2026-11-17",
+          "countries": [
+            [
+              "Corée du Sud",
+              99.68
+            ]
+          ],
+          "sectors": [
+            [
+              "💻 Technologie",
+              67.88999999999999
+            ],
+            [
+              "🏭 Industrie",
+              11.419999999999998
+            ],
+            [
+              "🏦 Finance",
+              8.500000000000002
+            ],
+            [
+              "🛍️ Consommation cyclique",
+              4.07
+            ],
+            [
+              "🏥 Santé",
+              2.46
+            ],
+            [
+              "📡 Communication",
+              2.0999999999999996
+            ],
+            [
+              "🛒 Consommation de base",
+              1.23
+            ],
+            [
+              "🪨 Matériaux",
+              1.13
+            ],
+            [
+              "⚡ Énergie",
+              0.62
+            ],
+            [
+              "💡 Services publics",
+              0.26
+            ]
+          ],
+          "holdings": [
+            [
+              "Samsung Electronics",
+              40.24
+            ],
+            [
+              "SK HYNIX",
+              24.13
+            ],
+            [
+              "SK SQUARE",
+              2.5
+            ],
+            [
+              "KB FINANCIAL GROUP",
+              2.1
+            ],
+            [
+              "Hyundai Motor",
+              1.69
+            ],
+            [
+              "SAMSUNG ELECTRO MECHANICS",
+              1.69
+            ],
+            [
+              "SHINHAN FINANCIAL GROUP",
+              1.45
+            ],
+            [
+              "HANA FINANCIAL GROUP",
+              1.33
+            ],
+            [
+              "CELLTRION",
+              1.28
+            ],
+            [
+              "SAMSUNG SDI LTD",
+              1.07
+            ]
+          ],
+          "source": {
+            "url": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+            "checkedAt": "2026-11-18T16:00:40.501043+00:00",
+            "sha256": "513ea47aa54ca3629b9d64aae1247413acebbbc471fa6311348708bf02c7bdd3"
           },
           "constituents": null,
           "targetConstituents": null
@@ -132543,7 +132754,7 @@
       "identitySourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF4RFH31",
       "identityCheckedAt": "2026-09-29",
       "observedIdentitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "observedIdentityCheckedAt": "2026-11-17",
+      "observedIdentityCheckedAt": "2026-11-18",
       "productStructure": "Physical",
       "replicationMethodology": "Optimised",
       "approximation": true,

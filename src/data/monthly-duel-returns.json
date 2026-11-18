@@ -8709,6 +8709,31 @@
     "responseSha256": "449d2eeb97f1acc02db52cfb280188988dafe10c5d73822e5b13b6b47dddc98a",
     "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
+  "IE000VAHT5T0": {
+    "isin": "IE000VAHT5T0",
+    "currency": "EUR",
+    "years": {},
+    "calendarReturns": {},
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/VGLA.DE?period1=1788220800&period2=1793491200&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/VGLA.DE?period1=1788220800&period2=1793491200&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/VGLA.DE?period1=1788220800&period2=1793491200&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-11-18",
+    "listingEvidenceId": "IE000VAHT5T0-XETR-VGLA-EUR",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "2a39e55ab564bc8bf2f850782f1912e28d37221d40459e14b3698f87e786cb34",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
   "IE000L2SA8K5": {
     "isin": "IE000L2SA8K5",
     "currency": "USD",

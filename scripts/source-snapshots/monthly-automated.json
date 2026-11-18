@@ -634228,5 +634228,47 @@
     "checkedAt": "2026-11-15",
     "periodEnd": "2026-10",
     "responseSha256": "ce16eb9f63e3ab0d9282f4a8a0c965c20c6df53286251bc4ec5a6c0184872718"
+  },
+  "etfIE000VAHT5T0": {
+    "id": "etfIE000VAHT5T0",
+    "label": "Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating",
+    "isin": "IE000VAHT5T0",
+    "ticker": "VGLA",
+    "mic": "XETR",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "VGLA.DE",
+    "field": "adjclose",
+    "precision": 6,
+    "consumerScope": "catalog",
+    "listingEvidenceId": "IE000VAHT5T0-XETR-VGLA-EUR",
+    "instrumentType": "ETF",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "collectAnniversary": true,
+    "yahooInstrumentType": "ETF",
+    "periodStart": "2026-09",
+    "verifyMonthlyDisagreements": true,
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/VGLA.DE?period1=1788220800&period2=1793491200&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/VGLA.DE?period1=1788220800&period2=1793491200&interval=1mo&events=div%2Csplits"
+    ],
+    "timezone": "Europe/Berlin",
+    "proofRows": [
+      {
+        "date": "2026-09-30",
+        "close": 4.370500087738037,
+        "monthlyClose": 4.370500087738037,
+        "value": 4.370500087738037
+      },
+      {
+        "date": "2026-10-30",
+        "close": 4.35699987411499,
+        "monthlyClose": 4.35699987411499,
+        "value": 4.35699987411499
+      }
+    ],
+    "checkedAt": "2026-11-18",
+    "periodEnd": "2026-10",
+    "responseSha256": "2a39e55ab564bc8bf2f850782f1912e28d37221d40459e14b3698f87e786cb34"
   }
 }
