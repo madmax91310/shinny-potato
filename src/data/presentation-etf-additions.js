@@ -351,6 +351,7 @@ export const PRESENTATION_ETF_ADDITIONS = [
   "whatIs": "Tu suis les grandes, moyennes et petites entreprises des pays développés et émergents à travers le FTSE Global All Cap. Le fonds achète un échantillon représentatif des actions de cet indice et réinvestit les dividendes.",
   "whyInteresting": "Tu réunis les trois tailles d’entreprises dans une seule ligne mondiale. Les petites capitalisations complètent la couverture des grands et moyens groupes du FTSE All-World, sans avoir à gérer un deuxième ETF.",
   "whatToKnow": "Les poids suivent les capitalisations boursières : les grands groupes conservent donc une place importante. La cotation en euros ne couvre pas le risque de change. Lancée en août 2026, cette part ne dispose pas encore d’une année civile complète de performance.",
+  "verdict": "Tu réunis les trois tailles d’entreprises dans une seule ligne mondiale.",
   "question": "Tu choisirais un ETF mondial qui inclut aussi les petites entreprises ?"
 }
 ];
