@@ -101,7 +101,7 @@ export function planSocialBudget(profile) {
   const transferRows = groupRows(savings.map((row, index) => ({ ...row, status: budgetTransferStatus(profile, profile.savings[index]) })), 4, 'Autres versements', question)
   return { totals, presentation, expenses, transferRows,
     incomeLabel: publicationContextFor(profile)?.budget?.imageIncomeLabel,
-    netSalary: budgetCashIncome(profile).netSalary, showAllocation: totals.income > 0 && totals.balance >= 0 }
+    netSalary: budgetCashIncome(profile).netSalary, showAllocation: !presentation.averageBeforeInvestments && totals.income > 0 && totals.balance >= 0 }
 }
 
 let budgetFont
@@ -209,16 +209,17 @@ function drawIncome(ctx, profile, plan, money) {
 
 function drawTotals(ctx, plan, money) {
   const { totals: a } = plan
+  const average = plan.presentation.averageBeforeInvestments
   const card = (width - 2 * 15) / 3
   const data = [
     ['Dépenses', a.expenses, colors.salmon],
     ['Versements', a.savings, colors.mint],
-    [a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
+    [average ? 'Solde moyen' : a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
   ]
   data.forEach(([label, amount, color], index) => {
     const x = margin + index * (card + 15), center = x + card / 2
     box(ctx, x, 480, card, 130, color)
-    drawAmount(ctx, money(amount), center, 491, card - 22, { size: 47, align: 'center' })
+    drawAmount(ctx, average && index === 1 ? 'Non isolés' : money(amount), center, 491, card - 22, { size: 47, align: 'center' })
     draw(ctx, label, center, 555, { align: 'center', size: 29, weight: 600 })
   })
 }
@@ -282,7 +283,7 @@ export async function renderSocialBudgetImage(profile) {
   }
 
   box(ctx, margin, 1180, width, 85, colors.capacity)
-  draw(ctx, plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne',
+  draw(ctx, plan.presentation.averageBeforeInvestments ? 'Solde moyen avant placements' : plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne',
     margin + 28, 1202, { size: 35, weight: 750 })
   drawAmount(ctx, money(plan.totals.available), width + margin - 28, 1195, 410, { size: 43, align: 'right' })
   draw(ctx, 'ÉPARGNANT LIBRE', 540, 1302, { size: 23, weight: 800, color: colors.green, align: 'center' })

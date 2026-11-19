@@ -1,3 +1,4 @@
+import publicationClosure from './publication-closure-2026-11-19.json' with { type: 'json' }
 import publicationReview from './publication-review-1390.json' with { type: 'json' }
 import noemieReference from './noemie-reference.json' with { type: 'json' }
 import { budgetCompletions } from './budget-completions.js'
@@ -120,4 +121,23 @@ for (const [id, changes] of Object.entries(publicationReview)) {
     }
   }
   BUDGET_PUBLICATION_CONTEXT[id] = context
+}
+
+
+export const BUDGET_BEFORE_CLOSURE = { ...BUDGET_PUBLICATION_CONTEXT }
+export const BUDGET_PUBLICATION_CLOSURE = publicationClosure
+for (const [id, { budget, paragraphs, questions, scenario, reason }] of Object.entries(publicationClosure)) {
+  const base = BUDGET_PUBLICATION_CONTEXT[id]
+  const evidence = [...base.evidence, { basis: scenario ? 'editorial-preparation' : 'verified-repository-record', note: reason, scenario }]
+  const reference = [evidence.length - 1]
+  BUDGET_PUBLICATION_CONTEXT[id] = {
+    ...base,
+    budget: { ...base.budget, ...budget },
+    evidence,
+    paragraphs: base.paragraphs.map((old, index) => Object.hasOwn(paragraphs || {}, index)
+      ? { ...old, text: paragraphs[index], evidence: [...old.evidence, ...reference] } : old),
+    questions: questions.map(text => ({ text, origin: 'editorial', evidence: reference,
+      adaptedFrom: base.questions.flatMap(question => question.origin === 'expressed' ? [question] : question.adaptedFrom || []) })),
+    scenario,
+  }
 }

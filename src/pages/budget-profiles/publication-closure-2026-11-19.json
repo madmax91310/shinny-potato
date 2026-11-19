@@ -1,0 +1,93 @@
+{
+  "finary-alternant-19-2025-09-27": {
+    "budget": {
+      "headingSuffix": " · mois avec bonus",
+      "periodUnit": "",
+      "imageIncomeLabel": "Revenus de septembre 2025 · bonus inclus",
+      "incomeNote": "Le salaire et l’APL totalisent 1 071 €. Le bonus de 150 € est inclus pour ce mois de septembre 2025. Sa fréquence est inconnue."
+    },
+    "questions": [
+      "Si le bonus de 150 € n’arrive pas le mois suivant, suspendriez-vous les 120 € de versements ou réduiriez-vous d’abord les dépenses ?"
+    ],
+    "limits": "Fréquence du bonus non disponible. Les 1 221 € sont le total du mois de septembre 2025 avec bonus, sans extrapolation.",
+    "reason": "Le relevé de septembre 2025 distingue 770 € de salaire, 301 € d’APL et 150 € de bonus. Le cas sans bonus compare 1 071 € à 1 075,99 € de dépenses et 120 € de versements."
+  },
+  "mustachian-ingenieur-28-2025-08-16": {
+    "budget": {
+      "imageIncomeLabel": "Moyenne 2025 · héritage et ventes inclus",
+      "averageBeforeInvestments": true,
+      "textBasis": "Moyenne mensuelle de la période documentée en 2025."
+    },
+    "paragraphs": {
+      "1": "Le relevé publié en août 2025 donne une moyenne de 7 393 CHF qui comprend salaire, dividendes, ventes et héritage. Après les dépenses, il reste en moyenne 3 749 CHF avant placements. Les données ne permettent d’isoler ni le salaire ni les versements réguliers."
+    },
+    "questions": [
+      "Pour préparer un passage à temps partiel, vous fixeriez vos virements sur le revenu courant une fois isolé, ou vous investiriez aussi une partie des recettes exceptionnelles au cas par cas ?"
+    ],
+    "limits": "Salaire et versements réguliers non isolables. Les dates exactes de début et de fin de la moyenne 2025 ne sont pas précisées.",
+    "reason": "La base du relevé est « Moyennes 2025 · revenus exceptionnels inclus ». 7 393 CHF moins 3 644 CHF donne 3 749 CHF avant placements. L’absence de ventilation ne correspond pas à zéro versement."
+  },
+  "reddit-famille-bourges-2026-07-12": {
+    "budget": {
+      "imageIncomeLabel": "Revenus du budget de juillet 2026",
+      "expenseLabels": {
+        "Regroupement de crédits": "Crédits regroupés en juillet"
+      }
+    },
+    "paragraphs": {
+      "0": "Élise et Karim veulent retrouver une marge après des mois à découvert. Leur budget de juillet 2026 retient 922,03 € de crédits déjà regroupés, dont certains frais de santé financés à crédit.",
+      "1": "Si le couple revoit le regroupement de ses crédits, la nouvelle mensualité dépendra de l’échéancier proposé. Elle n’est pas connue. Les 291,98 € de marge présentés sont ceux du budget de juillet."
+    },
+    "questions": [
+      "Avant de revoir le regroupement, vous demanderiez plusieurs échéanciers pour comparer mensualité et coût total, ou garderiez-vous les échéances actuelles le temps de retrouver une marge ?"
+    ],
+    "limits": "Nouvelle mensualité et échéancier absents. Les 922,03 € restent la ligne documentée.",
+    "reason": "Le tableau de juillet contient déjà une ligne de crédits regroupés de 922,03 €. Aucun nouvel échéancier ni gain mensuel ne peut être établi à partir du relevé."
+  },
+  "editorial-complementary-solo-2026-11-16": {
+    "budget": {
+      "imageIncomeLabel": "Revenus hors pension alimentaire"
+    },
+    "paragraphs": {
+      "1": "Il manque 830 € avant placements et 850 € si elle maintient le versement de 20 € sur son assurance-vie."
+    },
+    "scenario": {
+      "type": "reserve",
+      "startingReserve": 2550,
+      "months": 3,
+      "monthlyPension": 0
+    },
+    "questions": [
+      "Avec trois mois de répit, commenceriez-vous par suspendre les 20 € versés sur l’assurance-vie et vérifier les aides liées à la pension, ou chercheriez-vous d’abord à réduire les frais de voiture ?"
+    ],
+    "limits": "Montant réel de la réserve inconnu. Le livret de 2 550 € et trois mois sans pension sont des hypothèses explicites.",
+    "reason": "Le témoignage indique une pension de 0 à 300 € selon les mois. Un livret disponible de 2 550 € couvrirait exactement trois déficits de 850 €, à dépenses et versement constants. Aucun retrait n’est ajouté aux revenus."
+  },
+  "editorial-studio-alternance-demenagement-2026-11-16": {
+    "budget": {
+      "imageIncomeLabel": "Salaire net actuel",
+      "incomeLabels": {
+        "Salaire": "Salaire net actuel"
+      }
+    },
+    "paragraphs": {
+      "1": "Son prêt étudiant était de 15 000 € au départ. Le capital encore dû, le taux et la mensualité future ne sont pas connus. Le budget affiché correspond à son logement actuel, avant remboursement."
+    },
+    "scenario": {
+      "type": "student-loan",
+      "currentRent": 450,
+      "rentOptions": [
+        550,
+        700
+      ],
+      "assumedPrincipal": 15000,
+      "months": 60,
+      "annualRate": 0.03
+    },
+    "questions": [
+      "Pour déménager avant le début des remboursements, vous viseriez un loyer de 550 € en réduisant temporairement le virement au livret, ou vous attendriez de connaître les échéances du prêt ?"
+    ],
+    "limits": "Capital restant, durée et taux contractuels inconnus. Le scénario suppose 15 000 € à amortir sur cinq ans à 3 % hors frais et assurance.",
+    "reason": "15 000 € est le capital initial documenté et sert ici d’hypothèse prudente de capital au début du remboursement. Avec 60 mensualités et 3 % nominal annuel, l’échéance calculée est 269,53 €, arrondie à 270 € pour le budget. Le loyer actuel est de 450 € et la recherche va de 550 à 700 €."
+  }
+}
