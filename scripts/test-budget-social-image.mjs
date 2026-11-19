@@ -1,7 +1,7 @@
 import { projectBudgetScenario } from '../src/pages/budget-profiles/closure-scenarios.js'
 import assert from 'node:assert/strict'
-import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_PUBLICATION_REVIEW, BUDGET_BEFORE_CLOSURE, BUDGET_PUBLICATION_CLOSURE } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, blankBudget, budgetExpenseColumns, budgetTransferLabel, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
+import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_PUBLICATION_REVIEW, BUDGET_BEFORE_CLOSURE, BUDGET_PUBLICATION_CLOSURE, BUDGET_BEFORE_COHERENCE } from '../src/pages/budget-profiles/data.js'
+import { analyzeBudget, blankBudget, budgetExpenseColumns, budgetTransferLabel, budgetTransferPlan, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { planSocialBudget, SOCIAL_SIZE, SOCIAL_BODY_SIZE } from '../src/pages/budget-profiles/socialImage.js'
 import { duplicateBudget } from '../src/pages/budget-profiles/manual.js'
 import { staleBudgetText, budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
@@ -37,14 +37,14 @@ for (const profile of [...BUDGET_PROFILES, dense]) {
   assert(text.includes(plan.presentation.averageBeforeInvestments ? 'Solde moyen avant placements' : plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'), profile.id)
   assert((text.match(/^💬 /gm) || []).length <= 2, profile.id)
   assert.doesNotMatch(text, /(?:sa|leur) part du budget|mensuel · sa part|—/i, profile.id)
-  assert.doesNotMatch(text, /budget reconstitué|budget fictif|exemple de budget|profil adapté/i, profile.id)
+  assert.doesNotMatch(text, /Versements mixtes|prévu(?:e|s)? \(prévu|effectué(?:e|s)? \(effectué|provision prévue|budget reconstitué|budget fictif|exemple de budget|profil adapté/i, profile.id)
 }
 
 assert.equal(planSocialBudget(dense).totals.income, 8000)
-assert.equal(budgetTransferLabel(dense), 'Versements mixtes')
+assert.equal(budgetTransferLabel(dense), 'Plan d’épargne')
 assert.match(buildBudgetText(dense), /hors revenus encaissés/)
-assert.match(buildBudgetText(dense), /Livret \(effectué\)/)
-assert.match(buildBudgetText(dense), /ETF \(prévu\)/)
+assert.match(buildBudgetText(dense), /Livret : 1\s200\sCHF déjà versés/)
+assert.match(buildBudgetText(dense), /ETF : 2\s000\sCHF prévus/)
 assert.equal(analyzeBudget(dense).balance, 1640.88)
 assert(staleBudgetText({ edited: true, profile: dense, textFinance: budgetFinancialReference({ ...dense, income: [dense.income[0], row('Titres-restaurant', 100)] }) }))
 assert.throws(() => planSocialBudget({ ...dense, expenses: [] }), /Ajoute les dépenses/)
@@ -122,8 +122,8 @@ for (const profile of closed) {
   const context = publicationContextFor(profile)
   assert.equal(context.questions.length, 1)
   assert(context.questions[0].text.endsWith('?'))
-  assert.equal(context.evidence.at(-1).scenario, context.scenario)
-  assert.equal(context.evidence.at(-1).basis, context.scenario ? 'editorial-preparation' : 'verified-repository-record')
+  if (context.scenario) assert(context.evidence.some(entry => entry.scenario === context.scenario && entry.basis === 'editorial-preparation'))
+  else assert(context.evidence.some(entry => entry.basis === 'verified-repository-record'))
   const text = 'Brouillon personnalisé à conserver, même après la clôture'
   const old = { profile, text, edited: true, textFinance: budgetFinancialReference(profile) }
   assert.equal(refreshBudgetDraft(old).text, text)
@@ -148,3 +148,35 @@ assert.equal(davidProjection.monthlyPayment, 270)
 assert.deepEqual(davidProjection.rents, [{ rent: 550, beforeLoan: 160, afterLoan: -110 }, { rent: 700, beforeLoan: 10, afterLoan: -260 }])
 assert.match(buildBudgetText(david), /il lui manquerait 110\s€/)
 assert.match(buildBudgetText(david), /il lui manquerait 260\s€/)
+
+
+const adrien = BUDGET_PROFILES.find(profile => profile.id === 'finary-cyber-24-2026-08-27')
+const adrienBefore = BUDGET_BEFORE_COHERENCE.find(profile => profile.id === adrien.id)
+const adrienPlan = planSocialBudget(adrien)
+assert.deepEqual(budgetExpenseColumns(adrien).map(section => section.amount), [990, 230])
+assert.equal(adrienPlan.totals.expenses, 1220)
+assert.equal(adrienPlan.totals.available, 1580)
+assert.equal(adrienPlan.totals.savings, 1450)
+assert.equal(adrienPlan.totals.balance, 130)
+assert.deepEqual(adrienPlan.plan.rows.map(row => [row.label, row.amount, row.status]), [
+  ['Prêt étudiant', 450, 'paid'], ['Réserve de sécurité', 500, 'planned'], ['Futur PEA', 500, 'planned'],
+])
+assert(adrienPlan.expenses[1][0].rows.some(row => row.label === 'Vêtements et cadeaux' && row.amount === 90))
+assert.deepEqual(adrienPlan.transferRows.map(row => row.label), ['Prêt étudiant · mis de côté', 'Réserve prévue', 'Futur PEA'])
+assert.match(buildBudgetText(adrien), /Reste si le plan est suivi : 130\s€/)
+assert.match(buildBudgetText(adrien), /450 € par mois sur un livret/)
+assert.doesNotMatch(buildBudgetText(adrien), /trois ans|16[\s ]200/)
+const previousAdrien = { profile: adrienBefore, text: 'Texte personnel à 160 €', edited: true, textFinance: budgetFinancialReference(adrienBefore) }
+assert.equal(refreshBudgetDraft(previousAdrien).text, previousAdrien.text)
+assert(staleBudgetText(refreshBudgetDraft(previousAdrien)))
+
+const plannedDeficit = { ...dense, savings: [row('Livret prévu (prévu)', 8000, { transferStatus: 'planned' })] }
+assert.equal(budgetTransferPlan(plannedDeficit).label, 'Versements prévus')
+assert.match(buildBudgetText(plannedDeficit), /Déficit si le plan est suivi : -[0-9]/)
+assert.doesNotMatch(buildBudgetText(plannedDeficit), /prévu \(prévu\)/)
+assert.equal(planSocialBudget(plannedDeficit).showAllocation, false)
+
+const adrienCopy = duplicateBudget({ profile: adrien, edited: false }, 'participation-adrien-test')
+assert.deepEqual(adrienCopy.profile.savings.map(row => row.transferStatus), ['paid', 'planned', 'planned'])
+assert.match(adrienCopy.text, /Livret pour le prêt étudiant : 450\s€ déjà versés/)
+assert.match(adrienCopy.text, /Reste si le plan est suivi : 130\s€/)

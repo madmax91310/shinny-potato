@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import audit from '../docs/budget-chantier4-2026-11-15/matrice.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_REFERENCE_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_BEFORE_COHERENCE, BUDGET_REFERENCE_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetPublicIncomeRows, budgetPublicPresentation, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetPublicBasis, budgetSalaryLabel } from '../src/pages/budget-profiles/presentation.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
@@ -15,7 +15,7 @@ const auditedProfiles = BUDGET_PROFILES.filter(p=>auditedIds.has(p.id))
 assert.deepEqual(auditedProfiles.map(p=>p.id),audit.profiles.map(p=>p.id))
 for (const [i,p] of auditedProfiles.entries()) {
  const expected=audit.profiles[i],text=buildBudgetText(p),context=publicationContextFor(p),view=budgetPublicPresentation(p)
- const historical = p.id === BUDGET_NOEMIE_PREVIOUS.id ? BUDGET_NOEMIE_PREVIOUS : p
+ const historical = p.id === BUDGET_NOEMIE_PREVIOUS.id ? BUDGET_NOEMIE_PREVIOUS : BUDGET_BEFORE_COHERENCE.find(profile => profile.id === p.id)
  const cents=k=>historical[k].reduce((s,r)=>s+Math.round(r.amount*100),0)
  const [income,expenses,savings]=['income','expenses','savings'].map(cents)
  assert.deepEqual({income,expenses,savings,available:income-expenses,balance:income-expenses-savings},expected.expectedCents,p.id)

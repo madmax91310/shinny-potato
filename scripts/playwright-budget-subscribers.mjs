@@ -35,7 +35,7 @@ async function capture(page, id) {
   const bytes = await verifyBudgetPng(page, p)
   writeFileSync(`${output}/${id}.png`, bytes)
   const drawn = await page.evaluate(() => window.budgetCanvasText)
-  if (balance < 0) assert(drawn.some(line => line.text === 'Reste négatif'))
+  if (balance < 0) assert(drawn.some(line => ['Reste négatif', 'Déficit prévu'].includes(line.text)))
   assert(!drawn.some(line => line.text.includes('Quelle priorité choisiriez-vous')), 'Les questions restent dans le texte')
   await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
   assert.equal(await page.evaluate(() => navigator.clipboard.readText()), text)
@@ -156,7 +156,10 @@ try {
 
     const long = { ...blankBudget(), id: 'participation-long-test', currency: 'CHF', name: 'Anaëlle-Charlotte et Jean-Baptiste de la longue famille Martin', question: 'Quelle priorité choisiriez-vous pour réduire les versements ?',
       ...Object.fromEntries(['income', 'expenses', 'savings'].map(key => [key, Array.from({ length: MAX_BUDGET_LINES }, (_, i) => ({ label: `${i + 1} ${key} ` + 'A'.repeat(70), amount: key === 'income' ? 100 : 80, category: 'other' }))])) }
+    Object.assign(long.savings[0], { label: 'Livret prévu (prévu)', transferStatus: 'planned' })
     const record = { profile: long, text: buildBudgetText(long), edited: false }
+    assert.match(record.text, /Déficit si le plan est suivi : -/)
+    assert.doesNotMatch(record.text, /prévu \(prévu\)/)
     const lc = await context(width, { version: 4, drafts: [record], activeId: long.id, used: [], queued: [], published: [], publicationDates: {} })
     const lp = await lc.newPage(); await lp.goto(base + '/le-budget-de')
     for (const title of ['Revenus', 'Dépenses']) await expect(lp.getByRole('group', { name: title, exact: true }).getByRole('button', { name: 'Ajouter un poste', exact: true })).toBeDisabled()

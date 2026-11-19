@@ -1,3 +1,4 @@
+import coherenceReview from './coherence-review-2026-11-19.json' with { type: 'json' }
 import publicationClosure from './publication-closure-2026-11-19.json' with { type: 'json' }
 import publicationReview from './publication-review-1390.json' with { type: 'json' }
 import noemieReference from './noemie-reference.json' with { type: 'json' }
@@ -69,12 +70,20 @@ export const BUDGET_STUDIO_EDITORIAL_PROFILES = studioEditorialProfiles.map(entr
 export const BUDGET_PUBLICATION_SELECTION = publicationSelection
 const currentEditorialProfiles = [...recentEditorialProfiles, ...qualifiedEditorialProfiles, ...complementaryEditorialProfiles, ...roadmapEditorialProfiles, ...studioEditorialProfiles]
 export const BUDGET_EDITORIAL_CREATIONS = { ...editorialLives, ...Object.fromEntries(currentEditorialProfiles.map(entry => [entry.profile.id, entry.creation])) }
-export const BUDGET_PROFILES = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES, ...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, ...BUDGET_ROADMAP_EDITORIAL_PROFILES, ...BUDGET_STUDIO_EDITORIAL_PROFILES].map(profile => {
+export const BUDGET_BEFORE_COHERENCE = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_QUALIFIED_EDITORIAL_PROFILES, ...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, ...BUDGET_ROADMAP_EDITORIAL_PROFILES, ...BUDGET_STUDIO_EDITORIAL_PROFILES].map(profile => {
   const review = budgetCompletions[profile.id]
   if (!review) return profile
   return { ...profile, approximate: true,
     expenses: profile.expenses.flatMap(row => row.label === review.replace ? review.rows : [row]),
   }
+})
+
+export const BUDGET_COHERENCE_REVIEW = coherenceReview
+export const BUDGET_PROFILES = BUDGET_BEFORE_COHERENCE.map(profile => {
+  const amounts = coherenceReview[profile.id]?.amounts
+  return amounts ? { ...profile,
+    expenses: profile.expenses.map(row => Object.hasOwn(amounts, row.label) ? { ...row, amount: amounts[row.label] } : row),
+  } : profile
 })
 
 export const EXPENSE_CATEGORIES = [
@@ -139,5 +148,19 @@ for (const [id, { budget, paragraphs, questions, scenario, reason }] of Object.e
     questions: questions.map(text => ({ text, origin: 'editorial', evidence: reference,
       adaptedFrom: base.questions.flatMap(question => question.origin === 'expressed' ? [question] : question.adaptedFrom || []) })),
     scenario,
+  }
+}
+
+
+for (const [id, { budget, paragraphs, questions, reason }] of Object.entries(coherenceReview)) {
+  const base = BUDGET_PUBLICATION_CONTEXT[id]
+  const evidence = [...base.evidence, { basis: 'editorial-preparation', note: reason }]
+  const reference = [evidence.length - 1]
+  BUDGET_PUBLICATION_CONTEXT[id] = {
+    ...base, evidence,
+    budget: { ...base.budget, ...budget, expenseLabels: { ...base.budget.expenseLabels, ...budget?.expenseLabels } },
+    paragraphs: paragraphs ? paragraphs.map(text => ({ text, evidence: reference })) : base.paragraphs,
+    questions: questions ? questions.map(text => ({ text, origin: 'editorial', evidence: reference,
+      adaptedFrom: base.questions.flatMap(question => question.origin === 'expressed' ? [question] : question.adaptedFrom || []) })) : base.questions,
   }
 }

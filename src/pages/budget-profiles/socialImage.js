@@ -1,5 +1,5 @@
-import { analyzeBudget, budgetCashIncome, budgetExpenseColumns, budgetPublicPresentation, budgetPublicSavingsRows,
-  budgetTransferLabel, budgetTransferStatus, euro, publicationContextFor } from './lib.js'
+import { analyzeBudget, budgetCashIncome, budgetExpenseColumns, budgetPublicPresentation,
+  budgetTransferPlan, cleanTransferLabel, euro, publicationContextFor } from './lib.js'
 import { budgetProfileHousehold, budgetRowSymbol } from './presentation.js'
 import socialLabels from './social-labels.json' with { type: 'json' }
 
@@ -21,19 +21,30 @@ const sum = rows => rows.reduce((total, row) => total + Math.round(row.amount * 
 
 // Keep the user's main rows. Aggregate the smaller ones only within the same
 // public category and retain the original rows for reconciliation with the text.
-function groupRows(rows, maximum, otherLabel = 'Autres postes', question = '') {
-  const sorted = rows.toSorted((a, b) => b.amount - a.amount)
+function groupRows(rows, maximum, otherLabel = 'Autres postes', question = '', label = shortLabel) {
+  const prepared = rows.map(row => ({ label: label(row), amount: row.amount, members: [row], order: row.order }))
+  if (prepared.length > maximum && otherLabel === 'Autres postes') {
+    const clothes = prepared.find(row => row.members[0].label === 'Vêtements')
+    const gifts = prepared.find(row => /^(?:Provision )?cadeaux$/iu.test(row.members[0].label))
+    if (clothes && gifts) {
+      prepared.splice(prepared.indexOf(clothes), 1)
+      prepared.splice(prepared.indexOf(gifts), 1)
+      prepared.push({ label: 'Vêtements et cadeaux', amount: sum([clothes, gifts]), members: [...clothes.members, ...gifts.members] })
+    }
+  }
+  const sorted = prepared.toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0) || b.amount - a.amount)
   const keep = sorted.length <= maximum ? sorted : sorted.slice(0, maximum - 1)
   if (keep.length > 2 && keep.length < sorted.length) {
-    const relevant = sorted.find(row => mentionsRow(question, row))
+    const relevant = sorted.find(row => row.members.some(member => mentionsRow(question, member)))
     if (relevant && !keep.includes(relevant)) keep[keep.length - 1] = relevant
   }
-  const result = keep.map(row => ({ label: shortLabel(row), amount: row.amount, members: [row] }))
   if (keep.length !== sorted.length) {
     const rest = sorted.filter(row => !keep.includes(row))
-    result.push({ label: otherLabel, amount: sum(rest), members: rest })
+    const pair = rest.map(row => row.label).join(' et ')
+    const name = otherLabel === 'Autres postes' && rest.length === 2 && pair.length <= 22 ? pair : otherLabel
+    keep.push({ label: name, amount: sum(rest), members: rest.flatMap(row => row.members) })
   }
-  return result
+  return keep
 }
 
 const compactLabels = [
@@ -90,16 +101,21 @@ export function planSocialBudget(profile) {
   if (totals.errors.length) throw new Error(totals.errors.join(' '))
   const [left, right] = budgetExpenseColumns(profile)
   const fixed = left.rows.filter(row => !row.mixed), mixed = left.rows.filter(row => row.mixed)
-  const savings = budgetPublicSavingsRows(profile)
-  const flexibleLimit = savings.length ? 3 : 8
+  const plan = budgetTransferPlan(profile)
+  const flexibleLimit = plan.rows.length ? 3 : 8
   const fixedRows = groupRows(fixed, mixed.length ? 7 : 8, 'Autres postes', question)
   if (mixed.length) fixedRows.push(...groupRows(mixed, 1, 'Autres frais mixtes'))
   const expenses = [
     [{ ...left, title: mixed.length && fixed.length ? 'Frais contraints et mixtes' : left.title, rows: fixedRows }],
     [{ ...right, rows: groupRows(right.rows, flexibleLimit, 'Autres postes', question) }],
   ]
-  const transferRows = groupRows(savings.map((row, index) => ({ ...row, status: budgetTransferStatus(profile, profile.savings[index]) })), 4, 'Autres versements', question)
-  return { totals, presentation, expenses, transferRows,
+  const transferRows = groupRows(plan.rows, 4, plan.mixed ? 'Autres du plan' : 'Autres versements', question, row => {
+    if (row.imageLabel) return row.imageLabel
+    const label = cleanTransferLabel(shortLabel(row), plan.planned)
+    const status = plan.distinct && { planned: 'prévu', paid: 'versé', budgeted: 'budget' }[row.status]
+    return status ? `${label} · ${status}` : label
+  })
+  return { totals, presentation, expenses, transferRows, plan,
     incomeLabel: publicationContextFor(profile)?.budget?.imageIncomeLabel,
     netSalary: budgetCashIncome(profile).netSalary, showAllocation: !presentation.averageBeforeInvestments && totals.income > 0 && totals.balance >= 0 }
 }
@@ -213,8 +229,8 @@ function drawTotals(ctx, plan, money) {
   const card = (width - 2 * 15) / 3
   const data = [
     ['Dépenses', a.expenses, colors.salmon],
-    ['Versements', a.savings, colors.mint],
-    [average ? 'Solde moyen' : a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
+    [plan.plan.planned ? plan.plan.label : 'Versements', a.savings, colors.mint],
+    [average ? 'Solde moyen' : plan.plan.planned ? (a.balance < 0 ? 'Déficit prévu' : 'Reste prévu') : a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
   ]
   data.forEach(([label, amount, color], index) => {
     const x = margin + index * (card + 15), center = x + card / 2
@@ -236,8 +252,12 @@ function detailLabel(ctx, row, room, index, transfer) {
     if (ctx.measureText(row.label).width <= room) return { text: row.label, size }
   }
   const { kind } = budgetRowSymbol(row.members[0], transfer ? 'savings' : 'expenses')
+  const status = transfer && row.label.match(/ · (prévu|versé|budget)$/u)?.[1]
   const name = labelBySymbol[kind] || (transfer ? 'Versement' : 'Dépense')
-  return { text: `${name} · ${index + 1}`, size: 27 }
+  const number = index + 1
+  const fallback = `${name} ${number}${status ? ' · ' + status : ''}`
+  const compact = status ? `${status[0].toUpperCase() + status.slice(1)} ${number}` : `Poste ${number}`
+  return { text: ctx.measureText(fallback).width <= room ? fallback : compact, size: 27 }
 }
 
 function detailCard(ctx, x, y, height, title, total, rows, background, money) {
@@ -278,7 +298,7 @@ export async function renderSocialBudgetImage(profile) {
   const flexibleHeight = plan.transferRows.length ? Math.max(156, 110 + 37 * flexible.rows.length) : detailsHeight
   detailCard(ctx, x, detailsY, flexibleHeight, flexible.title, flexible.amount, flexible.rows, colors.flexible, money)
   if (plan.transferRows.length) {
-    detailCard(ctx, x, detailsY + flexibleHeight + 18, detailsHeight - flexibleHeight - 18, budgetTransferLabel(profile),
+    detailCard(ctx, x, detailsY + flexibleHeight + 18, detailsHeight - flexibleHeight - 18, plan.plan.label,
       undefined, plan.transferRows, colors.savings, money)
   }
 

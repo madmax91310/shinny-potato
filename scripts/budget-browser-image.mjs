@@ -27,7 +27,7 @@ export function captureBudgetCanvas() {
 }
 
 export function assertBudgetCanvas(drawn, profile) {
-  const { totals, expenses, presentation } = planSocialBudget(profile)
+  const { totals, expenses, presentation, plan } = planSocialBudget(profile)
   assert(drawn.length > 0, profile.id)
   assert(!drawn.some(line => /le budget de|budget (?:fictif|reconstitué)|exemple de budget|profil adapté|(?:sa|leur) part du budget/i.test(line.text)), profile.id)
   assert(drawn.some(line => line.text.startsWith(presentation.name.slice(0, 12))), profile.id)
@@ -46,7 +46,14 @@ export function assertBudgetCanvas(drawn, profile) {
   for (const row of [...expenses.flatMap(column => column.flatMap(group => group.rows)), ...planSocialBudget(profile).transferRows]) {
     assert(ledger.some(line => line.text === money(row.amount)), `${profile.id}: poste ${row.label} ${row.amount}`)
   }
-  if (totals.balance < 0) assert(drawn.some(line => line.text === 'Reste négatif'), profile.id)
+  if (plan.mixed) assert(drawn.some(line => line.y === 555 && line.text === 'Plan d’épargne'), profile.id)
+  if (profile.id === 'finary-cyber-24-2026-08-27') for (const label of ['Vêtements et cadeaux', 'Prêt étudiant · mis de côté', 'Réserve prévue', 'Futur PEA']) {
+    assert(ledger.some(line => line.text === label), `${profile.id}: ${label}`)
+  }
+  if (plan.planned) {
+    const label = totals.balance < 0 ? 'Déficit prévu' : 'Reste prévu'
+    assert(drawn.some(line => line.text === label), profile.id)
+  } else if (totals.balance < 0) assert(drawn.some(line => line.text === 'Reste négatif'), profile.id)
   for (const [index, a] of drawn.entries()) {
     assert(a.left >= 30 && a.right <= 1050 && a.y + a.size <= 1350 && a.size >= 23, `${profile.id}: ${JSON.stringify(a)}`)
     for (const b of drawn.slice(index + 1)) {
