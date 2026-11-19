@@ -13,7 +13,7 @@ import './test-budget-completeness.mjs'
 import assert from 'node:assert/strict'
 import './test-budget-editorial-context.mjs'
 import { createHash } from 'node:crypto'
-import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_COMPLETENESS } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_BEFORE_COHERENCE, BUDGET_COMPLETENESS } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicPresentation, buildBudgetText, compareBudgetRecency, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 
@@ -160,7 +160,7 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 
 // Prepared budgets preserve source statements and may show a deficit; the independent new ledgers are tested separately.
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
-  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id) || p
+  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id) || BUDGET_BEFORE_COHERENCE.find(q=>q.id===p.id)
   if (source.kind==='prepared') assert.equal(analyzeBudget(source).balance, source.provenance?.expectedBalance ?? 0, p.id)
   assert.match(sourceReply(p), /^Source(?: d’inspiration)? : /)
   assert.match(buildBudgetText(p), /^💰 Budget /)

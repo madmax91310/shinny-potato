@@ -5,13 +5,13 @@ import entries from '../src/pages/budget-profiles/editorial-profiles-complementa
 import preserved from '../docs/budget-complementary-bank-2026-11-16/existing-profiles-preserved.json' with { type: 'json' }
 import candidates from '../docs/budget-complementary-bank-2026-11-16/candidates.json' with { type: 'json' }
 import priorAuthors from '../docs/budget-qualified-bank-2026-11-15/source-author-check.json' with { type: 'json' }
-import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_REFERENCE_PROFILES, BUDGET_PUBLICATION_CONTEXT, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_ROADMAP_EDITORIAL_PROFILES, BUDGET_STUDIO_EDITORIAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_NEW_EDITORIAL_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_REFERENCE_PROFILES, BUDGET_PUBLICATION_CONTEXT, BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES, BUDGET_ROADMAP_EDITORIAL_PROFILES, BUDGET_STUDIO_EDITORIAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, budgetImageExpenses, validBudget, refreshBudgetDraft, matchesBudgetFilters } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 import { parseBudgetBackup, validWorkspace, loadWorkspace, previewBudgetImport, restoreBudgetBackup, WORKSPACE_KEY, budgetStorageSnapshot } from '../src/pages/budget-profiles/storage.js'
 const stable = v => Array.isArray(v) ? v.map(stable) : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map(k => [k, stable(v[k])])) : v
 for (const record of preserved) {
-  const p=record.id===BUDGET_NOEMIE_PREVIOUS.id ? BUDGET_NOEMIE_PREVIOUS : BUDGET_REFERENCE_PROFILES.find(p=>p.id===record.id) || BUDGET_PROFILES.find(p=>p.id===record.id)
+  const p=record.id===BUDGET_NOEMIE_PREVIOUS.id ? BUDGET_NOEMIE_PREVIOUS : [...BUDGET_REFERENCE_PROFILES, ...BUDGET_NEW_EDITORIAL_PROFILES, ...BUDGET_PROFILES].find(p=>p.id===record.id)
   assert(p)
   assert.equal(createHash('sha256').update(JSON.stringify(stable(p))).digest('hex'),record.sha256,`${p.name}: existing complete object preserved`)
 }
@@ -46,7 +46,7 @@ for(const [index,e] of entries.entries()){
   for(const mode of ['detailed','summary'])assert.equal(budgetImageExpenses(p,mode).reduce((s,r)=>s+Math.round(r.amount*100),0),expenses)
   const custom={profile:p,text:'Mon texte personnel.',edited:true,textFinance:budgetFinancialReference(p)}
   assert.equal(refreshBudgetDraft(custom).text,custom.text)
-  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,text)
+  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,buildBudgetText(BUDGET_PROFILES.find(profile => profile.id === p.id)))
   assert(matchesBudgetFilters(p,{country:p.country||'unknown',family:p.family||'unknown',housing:p.housing,income:'EUR:0:10000'}))
   assert(!matchesBudgetFilters(p,{income:'CHF:0:10000'}))
 }

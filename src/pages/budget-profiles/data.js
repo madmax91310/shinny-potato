@@ -1,3 +1,4 @@
+import plausibilityReview from './plausibility-review-2026-11-19.json' with { type: 'json' }
 import coherenceReview from './coherence-review-2026-11-19.json' with { type: 'json' }
 import publicationClosure from './publication-closure-2026-11-19.json' with { type: 'json' }
 import publicationReview from './publication-review-1390.json' with { type: 'json' }
@@ -79,8 +80,9 @@ export const BUDGET_BEFORE_COHERENCE = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_
 })
 
 export const BUDGET_COHERENCE_REVIEW = coherenceReview
+export const BUDGET_PLAUSIBILITY_REVIEW = plausibilityReview
 export const BUDGET_PROFILES = BUDGET_BEFORE_COHERENCE.map(profile => {
-  const amounts = coherenceReview[profile.id]?.amounts
+  const amounts = plausibilityReview[profile.id]?.amounts ?? coherenceReview[profile.id]?.amounts
   return amounts ? { ...profile,
     expenses: profile.expenses.map(row => Object.hasOwn(amounts, row.label) ? { ...row, amount: amounts[row.label] } : row),
   } : profile
@@ -162,5 +164,21 @@ for (const [id, { budget, paragraphs, questions, reason }] of Object.entries(coh
     paragraphs: paragraphs ? paragraphs.map(text => ({ text, evidence: reference })) : base.paragraphs,
     questions: questions ? questions.map(text => ({ text, origin: 'editorial', evidence: reference,
       adaptedFrom: base.questions.flatMap(question => question.origin === 'expressed' ? [question] : question.adaptedFrom || []) })) : base.questions,
+  }
+}
+
+for (const [id, { basis, expenseLabels, paragraphs, append, scenario, reason }] of Object.entries(plausibilityReview)) {
+  const base = BUDGET_PUBLICATION_CONTEXT[id]
+  const reference = [base.evidence.length]
+  const updatedScenario = scenario ? { ...base.scenario, ...scenario } : base.scenario
+  const copy = base.paragraphs.map((entry, index) => Object.hasOwn(paragraphs || {}, index)
+    ? { text: paragraphs[index], evidence: reference } : entry)
+  if (append) copy.push({ text: append, evidence: reference })
+  BUDGET_PUBLICATION_CONTEXT[id] = {
+    ...base,
+    paragraphs: copy,
+    evidence: [...base.evidence, { basis, note: reason, ...(scenario && { scenario: updatedScenario }) }],
+    budget: { ...base.budget, expenseLabels: { ...base.budget.expenseLabels, ...expenseLabels } },
+    scenario: updatedScenario,
   }
 }
