@@ -115,8 +115,9 @@ export function planSocialBudget(profile) {
     const status = plan.distinct && { planned: 'prévu', paid: 'versé', budgeted: 'budget' }[row.status]
     return status ? `${label} · ${status}` : label
   })
+  const budget = publicationContextFor(profile)?.budget
   return { totals, presentation, expenses, transferRows, plan,
-    incomeLabel: publicationContextFor(profile)?.budget?.imageIncomeLabel,
+    incomeLabel: budget?.imageCaption || budget?.imageIncomeLabel,
     netSalary: budgetCashIncome(profile).netSalary, showAllocation: !presentation.averageBeforeInvestments && totals.income > 0 && totals.balance >= 0 }
 }
 
@@ -230,7 +231,7 @@ function drawTotals(ctx, plan, money) {
   const data = [
     ['Dépenses', a.expenses, colors.salmon],
     [plan.plan.planned ? plan.plan.label : 'Versements', a.savings, colors.mint],
-    [average ? 'Solde moyen' : plan.plan.planned ? (a.balance < 0 ? 'Déficit prévu' : 'Reste prévu') : a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
+    [average ? 'Solde moyen' : (plan.plan.planned || plan.presentation.projected) ? (a.balance < 0 ? 'Déficit prévu' : 'Reste prévu') : a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
   ]
   data.forEach(([label, amount, color], index) => {
     const x = margin + index * (card + 15), center = x + card / 2

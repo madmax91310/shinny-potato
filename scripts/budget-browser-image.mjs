@@ -50,7 +50,7 @@ export function assertBudgetCanvas(drawn, profile) {
   if (profile.id === 'finary-cyber-24-2026-08-27') for (const label of ['Vêtements et cadeaux', 'Prêt étudiant · mis de côté', 'Réserve prévue', 'Futur PEA']) {
     assert(ledger.some(line => line.text === label), `${profile.id}: ${label}`)
   }
-  if (plan.planned) {
+  if (plan.planned || presentation.projected) {
     const label = totals.balance < 0 ? 'Déficit prévu' : 'Reste prévu'
     assert(drawn.some(line => line.text === label), profile.id)
   } else if (totals.balance < 0) assert(drawn.some(line => line.text === 'Reste négatif'), profile.id)

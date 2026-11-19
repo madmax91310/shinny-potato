@@ -148,6 +148,7 @@ export function budgetPublicPresentation(profile) {
   return {
     name: budgetDisplayName(profile),
     averageBeforeInvestments: !!copy?.averageBeforeInvestments,
+    projected: !!copy?.projected,
     balanceLabel: copy?.balanceLabel ?? e?.balanceLabel ?? 'Reste disponible après versements',
     job: e?.publicJob ?? profile.job,
     household: budgetPublicContext(copy?.household ?? e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household)),
@@ -236,7 +237,7 @@ export function buildBudgetText(profile) {
     `🧾 Total des dépenses : ${money(a.expenses)}${periodUnit}`,
     `👉 ${average ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${money(Math.abs(a.available))}${periodUnit}${share(Math.abs(a.available), a.income)}`,
     average ? '🧾 Versements vers les placements : montants non isolés.' : transferRows ? `${plan.mixed ? '💰 Son plan d’épargne' : transfers.emoji + ' ' + plan.label} : ${money(a.savings)}${periodUnit}\n${transferRows}` : `🧾 Versements retenus : ${money(0)}${periodUnit}`,
-    !average && `💳 ${budgetRemainingLabel(a.balance, plan.planned)} : ${money(plan.planned ? a.balance : Math.abs(a.balance))}${periodUnit}`,
+    !average && `💳 ${budgetRemainingLabel(a.balance, plan.planned || p.projected)} : ${money(plan.planned || p.projected ? a.balance : Math.abs(a.balance))}${periodUnit}`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     ...(context ? context.paragraphs.map(({ text }) => text) : [
       e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
