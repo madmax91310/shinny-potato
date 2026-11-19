@@ -10,12 +10,20 @@ import { captureBudgetCanvas, verifyBudgetPng } from './budget-browser-image.mjs
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 const batch=process.env.BUDGET_BATCH || 'all'
 assert(['all','previous','qualified','complementary','roadmap','studio'].includes(batch),'Invalid budget batch')
-const availableProfiles = {previous:initialEditorialProfiles,qualified:BUDGET_QUALIFIED_EDITORIAL_PROFILES,complementary:BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,roadmap:BUDGET_ROADMAP_EDITORIAL_PROFILES, BUDGET_STUDIO_EDITORIAL_PROFILES,studio:BUDGET_STUDIO_EDITORIAL_PROFILES,all:[...initialEditorialProfiles,...BUDGET_QUALIFIED_EDITORIAL_PROFILES,...BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,...BUDGET_ROADMAP_EDITORIAL_PROFILES,...BUDGET_STUDIO_EDITORIAL_PROFILES]}[batch]
+const batches = {
+  previous: initialEditorialProfiles,
+  qualified: BUDGET_QUALIFIED_EDITORIAL_PROFILES,
+  complementary: BUDGET_COMPLEMENTARY_EDITORIAL_PROFILES,
+  roadmap: BUDGET_ROADMAP_EDITORIAL_PROFILES,
+  studio: BUDGET_STUDIO_EDITORIAL_PROFILES,
+}
+const availableIds = new Set((batch === 'all' ? Object.values(batches).flat() : batches[batch]).map(profile => profile.id))
 const [part,parts]=(process.env.BUDGET_PART || '0/1').split('/').map(Number)
-assert(Number.isInteger(part)&&Number.isInteger(parts)&&parts>0&&part>=0&&part<parts,'Invalid budget partition')
-const partitionedProfiles=availableProfiles.filter((_,index)=>index%parts===part)
-const BUDGET_NEW_EDITORIAL_PROFILES = process.env.BUDGET_PROFILE_ID ? partitionedProfiles.filter(p=>p.id===process.env.BUDGET_PROFILE_ID) : partitionedProfiles
-assert(BUDGET_NEW_EDITORIAL_PROFILES.length,'Requested budget profile was not found')
+assert(Number.isInteger(part)&&Number.isInteger(parts)&&parts>0&&part<parts&&part>=0,'Invalid budget partition')
+const availableProfiles = BUDGET_PROFILES.filter(profile => availableIds.has(profile.id))
+const selectedId = process.env.BUDGET_PROFILE_ID
+const profiles = availableProfiles.filter((profile, index) => index % parts === part && (!selectedId || profile.id === selectedId))
+assert(profiles.length,'Requested budget profile was not found')
 const root=process.env.BUDGET_PUBLIC_BASE || 'http://127.0.0.1:4493/shinny-potato'
 const output=process.env.BUDGET_ARTIFACTS || `test-artifacts/budget-new-profiles-${batch}-${part}-of-${parts}`
 const widths=process.argv.length>2?process.argv.slice(2).map(Number):[1440,390,320]
@@ -41,7 +49,7 @@ try {
     page.on('pageerror',e=>errors.push(e.message))
     await page.goto(root+'/le-budget-de')
     const picker=page.getByRole('group',{name:'Choisir un profil',exact:true})
-    for(const p of BUDGET_NEW_EDITORIAL_PROFILES) {
+    for(const p of profiles) {
       if(['complementary','roadmap','studio'].includes(batch)) {
         const income=analyzeBudget(p).income
         const [min,max]=[[0,1500],[1500,2500],[2500,4000],[4000,7000],[7000,Infinity]].find(([lo,hi])=>income>=lo&&income<hi)
@@ -74,7 +82,7 @@ try {
       assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),sourceReply(p))
       await details.locator('summary').first().click()
     }
-    const last=BUDGET_NEW_EDITORIAL_PROFILES.at(-1)
+    const last=profiles.at(-1)
     await page.getByLabel('Texte prêt à publier').fill('Mon texte personnel avec mes propres questions.')
     await page.reload()
     await expect(page.getByLabel('Texte prêt à publier')).toHaveValue('Mon texte personnel avec mes propres questions.')
@@ -90,5 +98,5 @@ try {
     await context.close()
   }
   writeFileSync(`${output}/results${process.argv.length>2?'-'+widths.join('-'):''}.json`,JSON.stringify(results,null,2)+'\n')
-  console.log(`${BUDGET_NEW_EDITORIAL_PROFILES.length} profiles, ${results.length} exact PNGs, single 4:5 PNGs, grouped expense amounts, no overlaps, copies, source provenance and personal drafts verified at ${widths.join('/')}.`)
+  console.log(`${profiles.length} profiles, ${results.length} exact PNGs, single 4:5 PNGs, grouped expense amounts, no overlaps, copies, source provenance and personal drafts verified at ${widths.join('/')}.`)
 } finally {await browser?.close();server?.kill()}
