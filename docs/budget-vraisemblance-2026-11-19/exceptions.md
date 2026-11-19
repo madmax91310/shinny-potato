@@ -47,11 +47,11 @@
 - **Aude et Rémy** · Métiers et dates d’extinction du CDD inconnus ; pas de revenu long terme ni extrapolation du reste.
 - **Léna et Gaëtan** · Prix de 490 € pour le loyer entier sans commune, surface ni bail ne peut être comparé au marché.
 - **Baptiste** · Aucun comparatif précis du revenu faute d’activité déterminée.
-- **Corentin** · Financement et statut précis du studio non établis ; prêt étudiant maintenu sans reclassement immobilier.
+- **Corentin** · Durée restante et capital du prêt étudiant inconnus, réserve de précaution non chiffrée avant le projet locatif. Aucun crédit immobilier distinct déclaré.
 - **Étienne** · Le montant est conservé ; retraite de base/complémentaire et répartition des charges du couple inconnues.
 - **Esteban** · Les 60 € de frais auto personnels ne permettent pas de déterminer kilométrage, qui règle assurance et entretien.
-- **Séverine** · Revenu réellement disponible après frais et prélèvements non précisé.
+- **Séverine** · Le pont des frais et prélèvements aboutit à 4 565 € plutôt qu’aux 4 500 € arrondis ; détail partiel des charges pro. La marge de 1 € reste indicative.
 - **Ingrid et Joël** · Comparaison par métier impossible ; allocations non présumées.
-- **Iris** · Pays de l’emploi, statut fiscal et périmètre du transport non confirmés.
-- **Laurent et Eva** · Activité, base fiscale et trajets du foyer non décrits au-delà d’une provision.
+- **Iris** · Pays de l’emploi et traitement fiscal exact non précisés ; métier et primes non chiffrés.
+- **Laurent et Eva** · Métier, retenues et temps de travail inconnus ; déplacements ponctuels retenus en scénario.
 - **Maël** · Part des deux aides et année de contrat non précisées ; courses et carburant trop agrégés pour conclure au coût de chacun.
