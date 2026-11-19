@@ -339,7 +339,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "a93646e15c3e719c1e907c855327973366140b37dcc432e42ac122fdd13db00d",
+      "sha256": "73679b9e001d983959ca9970bf89e5fa2710e83295fed13e70770b8a324bb012",
       "active": true
     },
     {
@@ -351,7 +351,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "a93646e15c3e719c1e907c855327973366140b37dcc432e42ac122fdd13db00d",
+      "sha256": "73679b9e001d983959ca9970bf89e5fa2710e83295fed13e70770b8a324bb012",
       "active": true
     },
     {
@@ -390,7 +390,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "327e575ea52d728708bca0afc4294ae6f4ba5ba1b43ffb51f70a20c0017b0a0c",
+      "sha256": "b583a99f2b45b7ba5cc6a9913e0798b4735c690848de79650645da7123993762",
       "active": true
     },
     {
@@ -403,11 +403,11 @@
       "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
       "scope": "Souscriptions, versements complémentaires et programmés",
       "minimumUnits": 30,
-      "sha256": "327e575ea52d728708bca0afc4294ae6f4ba5ba1b43ffb51f70a20c0017b0a0c",
+      "sha256": "b583a99f2b45b7ba5cc6a9913e0798b4735c690848de79650645da7123993762",
       "active": true
     }
   ],
-  "checkedAt": "2026-11-18",
+  "checkedAt": "2026-11-19",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 284,
   "covered": {
@@ -1093,10 +1093,10 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "asOf": "2026-11-17",
-      "checkedAt": "2026-11-18",
+      "asOf": "2026-11-18",
+      "checkedAt": "2026-11-19",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "c392a38be69f1d16ce024a458abb9f12fbf47eab079eb6f34b9e8cf4ef278963",
+      "sha256": "dfe145cd61154f310fd1797d92728d93f36d6738b93912328f39f1c573cd7950",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1156,7 +1156,7 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-11-18",
+      "checkedAt": "2026-11-19",
       "asOf": "2026-10-31",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "3746ae8969ce086505485cc7c74176db1a1227baef6dd4dcc7038987140d77a7",
@@ -1841,9 +1841,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-11-18",
+      "checkedAt": "2026-11-19",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6a0bff63e43c861a00e3ddd6a2614d4b52d4d3cd1817d9830a835791f0c96495",
+      "sha256": "628d9cbebc89d868bdccd19ac5c852c87d2944ba003e7a1868c49a37eb785631",
       "evidence": []
     },
     {
@@ -1855,9 +1855,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-11-18",
+      "checkedAt": "2026-11-19",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6a0bff63e43c861a00e3ddd6a2614d4b52d4d3cd1817d9830a835791f0c96495",
+      "sha256": "628d9cbebc89d868bdccd19ac5c852c87d2944ba003e7a1868c49a37eb785631",
       "evidence": []
     },
     {
@@ -1869,9 +1869,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-11-18",
+      "checkedAt": "2026-11-19",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6a0bff63e43c861a00e3ddd6a2614d4b52d4d3cd1817d9830a835791f0c96495",
+      "sha256": "628d9cbebc89d868bdccd19ac5c852c87d2944ba003e7a1868c49a37eb785631",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1910,9 +1910,9 @@
       "configured": true,
       "status": "source-conflict",
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA.",
-      "checkedAt": "2026-11-18",
+      "checkedAt": "2026-11-19",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6a0bff63e43c861a00e3ddd6a2614d4b52d4d3cd1817d9830a835791f0c96495",
+      "sha256": "628d9cbebc89d868bdccd19ac5c852c87d2944ba003e7a1868c49a37eb785631",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 13 Nov 2026",
