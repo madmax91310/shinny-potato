@@ -30,3 +30,5 @@ Les brouillons personnalisés, les dates et les statuts de publication sont pré
 ## Contrôles
 
 Les 101 textes copiés correspondent aux textes affichés. Les 101 téléchargements contiennent chacun un PNG de 1 080 × 1 350 identique à son aperçu. Les postes regroupés ont été rapprochés de leurs lignes et les douze déficits sont préservés. La [planche à 390 px](apercus-390.jpg) montre Adrien avant et après, Noémie, Mélina et Loïc, Romain en CHF et Quentin avec ses versements réalisés.
+
+Le cas manuel à la limite des montants, avec un versement de 1 000 000 CHF, garde un libellé d’état court dans l’espace réservé. La recette contrôle l’absence de chevauchement entre ce libellé et le montant.

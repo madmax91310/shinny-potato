@@ -252,9 +252,12 @@ function detailLabel(ctx, row, room, index, transfer) {
     if (ctx.measureText(row.label).width <= room) return { text: row.label, size }
   }
   const { kind } = budgetRowSymbol(row.members[0], transfer ? 'savings' : 'expenses')
-  const status = transfer && row.label.match(/ · (prévu|versé|budget)$/u)?.[0]
+  const status = transfer && row.label.match(/ · (prévu|versé|budget)$/u)?.[1]
   const name = labelBySymbol[kind] || (transfer ? 'Versement' : 'Dépense')
-  return { text: `${name} ${index + 1}${status || ''}`, size: 27 }
+  const number = index + 1
+  const fallback = `${name} ${number}${status ? ' · ' + status : ''}`
+  const compact = status ? `${status[0].toUpperCase() + status.slice(1)} ${number}` : `Poste ${number}`
+  return { text: ctx.measureText(fallback).width <= room ? fallback : compact, size: 27 }
 }
 
 function detailCard(ctx, x, y, height, title, total, rows, background, money) {
