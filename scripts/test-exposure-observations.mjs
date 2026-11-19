@@ -4,6 +4,7 @@ import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { getInstrumentFacts } from '../src/data/instrument-facts.js'
 import { presentationComposition } from '../src/pages/etf-sheets/presentationDetails.js'
+import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js'
 import { buildText } from '../src/pages/etf-sheets/lib.js'
 import { QUALIFIED_ETF_COMPARISONS } from '../src/data/qualified-etf-comparisons.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
@@ -26,7 +27,11 @@ for(const etf of ETFS){
  const text=buildText(etf)
  for(const section of ['🔍 Ce que tu achètes','✅ Pourquoi s’y intéresser ?','⚠️ Le point de vigilance','💬']) assert.equal(text.split(section).length,2)
  assert.ok(!/undefined|NaN/.test(text))
- const observation=presentationComposition(AUTOMATED_ETF[etf.isin],getInstrumentFacts(etf.isin));if(observation)assert.ok(text.includes(observation))
+ const record=AUTOMATED_ETF[etf.isin],facts=getInstrumentFacts(etf.isin)
+ const observation=presentationComposition(record,facts)
+ const postComposition=presentationComposition(record,facts,{forPost:true})
+ if(observation) assert.ok(getPresentationCopy(etf).whatIs.includes(observation))
+ if(postComposition) assert.ok(text.includes(postComposition))
 }
 for(const id of ['etf-pe','etf-volatility','sector-theme','em-small']) {const sheet=buildSheet(id);assert.equal(sheet.blocked,false);assert.ok(buildTweet(sheet).includes('🔖 Sauvegarde ce tweet'))}
 for(const id of ['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares']) {const asset=ASSETS.find(a=>a.id===id);assert.ok(asset);assert.equal(asset.manualOnly,false);assert.equal(asset.r.length,6);assert.ok(asset.r.every(Number.isFinite))}

@@ -61,7 +61,7 @@ for(const identity of IDENTITIES){
  assert.deepEqual(getManualDuelArt(identity),art)
  assert(DUEL_ASSETS.some(a=>a.isin===isin),`${isin}: manual duel admission`)
  const text=buildText(etf)
- assert(text.includes(isin)&&text.includes(listing.ticker)&&text.includes(ETF_TER_BY_ISIN[isin]))
+ assert(text.includes(isin)&&text.includes(listing.ticker)&&text.includes(ETF_TER_BY_ISIN[isin].replace(/(\d)\s*%/g,'$1 %')))
  assert(text.includes('Ce que tu achètes')&&text.includes('Le point de vigilance'))
  assert(!/\b(?:undefined|NaN|null)\b/.test(text))
  assert(buildFactRows(etf).some(r=>r.text.includes(isin)))
