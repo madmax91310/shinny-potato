@@ -33,7 +33,13 @@ export function assertBudgetCanvas(drawn, profile) {
   assert(drawn.some(line => line.text.startsWith(presentation.name.slice(0, 12))), profile.id)
   assert(drawn.some(line => line.text === 'ÉPARGNANT LIBRE'), profile.id)
   const money = amount => euro(amount, profile.currency)
-  for (const amount of [totals.income, totals.expenses, totals.savings, totals.available, totals.balance]) {
+  const amounts = [totals.income, totals.expenses, totals.available, totals.balance]
+  if (presentation.averageBeforeInvestments) {
+    for (const label of ['Solde moyen', 'Solde moyen avant placements', 'Non isolés']) {
+      assert(drawn.some(line => line.text === label), profile.id)
+    }
+  } else amounts.push(totals.savings)
+  for (const amount of amounts) {
     assert(drawn.some(line => line.text === money(amount) || line.text === `≈ ${money(amount)}`), `${profile.id}: total ${amount}`)
   }
   const ledger = drawn.filter(line => line.y > 712 && line.y < 1155)

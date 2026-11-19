@@ -32,7 +32,7 @@ for (const profile of BUDGET_PROFILES) {
   const a = analyzeBudget(profile)
   assert.equal((text.match(/Total des dépenses :/g) || []).length, 1)
   {
-    assert(text.includes(`${a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${euro(Math.abs(a.available), profile.currency)}`))
+    assert(text.includes(`${c.budget.averageBeforeInvestments ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${euro(Math.abs(a.available), profile.currency)}`))
     assert(text.includes(euro(Math.abs(a.balance), profile.currency)))
   }
   assert(!text.includes('Épargne, investissements et autres affectations'))

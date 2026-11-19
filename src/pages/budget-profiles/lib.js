@@ -1,3 +1,4 @@
+import { budgetScenarioText } from './closure-scenarios.js'
 import { budgetRowSymbol, budgetPublicBasis, budgetSalaryLabel, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext, budgetQualification } from './presentation.js'
 import { budgetFinancialReference } from './completion.js'
 import { reconcileBudgetDraftLines } from './draft-reconciliation.js'
@@ -117,6 +118,7 @@ export function budgetPublicPresentation(profile) {
   const copy = publicationContextFor(profile)?.budget
   return {
     name: budgetDisplayName(profile),
+    averageBeforeInvestments: !!copy?.averageBeforeInvestments,
     balanceLabel: copy?.balanceLabel ?? e?.balanceLabel ?? 'Reste disponible après versements',
     job: e?.publicJob ?? profile.job,
     household: budgetPublicContext(copy?.household ?? e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household)),
@@ -149,7 +151,8 @@ export const hasSeparateBudgetCapacity = (profile, a = analyzeBudget(profile)) =
 export const budgetPossessive = name => /^(?:[aàâäeéèêëiîïoôöuùûüyœ]|h(?:ugo|adrien))/i.test(name) ? `d’${name}` : `de ${name}`
 export function budgetHeading(profile) {
   const name = budgetDisplayName(profile)
-  return `Budget ${budgetPossessive(name)}${profile.age && !name.includes(' et ') && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''}`
+  const suffix = publicationContextFor(profile)?.budget?.headingSuffix || ''
+  return `Budget ${budgetPossessive(name)}${profile.age && !name.includes(' et ') && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''}${suffix}`
 }
 
 export function budgetCashIncome(profile) {
@@ -174,14 +177,16 @@ export function buildBudgetText(profile) {
   }).join('\n\n')
   const publicIncome = budgetPublicIncomeRows(profile)
   const publicBasis = budgetPublicBasis(profile, p.basis)
-  const textBasis = publicBasis !== p.basis ? publicBasis : context?.budget?.textBasis ?? (p.basis === 'Montants mensuels' || publicIncome.length === 1 && publicIncome[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : budgetPublicBasis(profile, p.basis))
+  const average = p.averageBeforeInvestments
+  const textBasis = average ? context.budget.textBasis : publicBasis !== p.basis ? publicBasis : context?.budget?.textBasis ?? (p.basis === 'Montants mensuels' || publicIncome.length === 1 && publicIncome[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : budgetPublicBasis(profile, p.basis))
   const { cash, salary } = budgetCashIncome(profile)
   const benefits = publicIncome.filter(row => row.inKind).map(row =>
     /^titres-restaurant$/i.test(row.label) ? `Titres-restaurant : ${money(row.amount)} / mois, hors revenus encaissés.`
       : `${row.label} : ${money(row.amount)} / mois (avantage en nature).`)
   const incomeRows = cash.map(row => `• ${budgetRowSymbol(row, 'income').emoji} ${row.label} : ${money(row.amount)}`).join('\n')
   const incomeHeading = context?.budget?.imageIncomeLabel || salary?.label || 'Revenus mensuels'
-  const incomeLine = `💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)} / mois`
+  const periodUnit = context?.budget?.periodUnit ?? ' / mois'
+  const incomeLine = `💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)}${periodUnit}`
   const transfersHeading = context?.budget?.transfersHeading || 'Versements'
   const transfers = budgetTransfers(profile, transfersHeading)
   const transferLabel = budgetTransferLabel(profile)
@@ -199,15 +204,16 @@ export function buildBudgetText(profile) {
     [incomeLine, textBasis, !salary && incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     benefits.join('\n'),
     expenses,
-    `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
-    `👉 ${a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${money(Math.abs(a.available))} / mois${share(Math.abs(a.available), a.income)}`,
-    transferRows ? `${transfers.emoji} ${transferLabel} : ${money(a.savings)} / mois\n${transferRows}` : `🧾 Versements retenus : ${money(0)} / mois`,
-    `💳 ${a.balance < 0 ? 'Déficit après versements' : 'Reste après versements'} : ${money(Math.abs(a.balance))} / mois`,
+    `🧾 Total des dépenses : ${money(a.expenses)}${periodUnit}`,
+    `👉 ${average ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${money(Math.abs(a.available))}${periodUnit}${share(Math.abs(a.available), a.income)}`,
+    average ? '🧾 Versements vers les placements : montants non isolés.' : transferRows ? `${transfers.emoji} ${transferLabel} : ${money(a.savings)}${periodUnit}\n${transferRows}` : `🧾 Versements retenus : ${money(0)}${periodUnit}`,
+    !average && `💳 ${a.balance < 0 ? 'Déficit après versements' : 'Reste après versements'} : ${money(Math.abs(a.balance))}${periodUnit}`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     ...(context ? context.paragraphs.map(({ text }) => text) : [
       e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
       p.story,
     ]),
+    context?.scenario && budgetScenarioText(context.scenario, a, money),
     questions.map(line => line.trim()).filter(Boolean).slice(0, 2).map(line => line.startsWith('💬') ? line : `💬 ${line}`).join('\n'),
   ].filter(Boolean).join('\n\n').replace(/\s*—\s*/g, ', ')
 }

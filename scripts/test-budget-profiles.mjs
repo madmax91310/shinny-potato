@@ -110,7 +110,7 @@ for (const [id, income, expenses, savings, balance] of [
 }
 const swiss = BUDGET_PROFILES.find(p => p.currency === 'CHF')
 assert.equal(swiss.capacity, 3750, 'The source rounded average savings must not become a fabricated transfer or be silently changed')
-assert.match(buildBudgetText(swiss), /revenus exceptionnels inclus/)
+assert.match(buildBudgetText(swiss), /héritage et ventes inclus/)
 assert.match(buildBudgetText(swiss), /3 749|3\u202f749/)
 assert(!buildBudgetText(swiss).includes('€'), 'No euro label on the Swiss budget')
 assert.equal(euro(100, 'CHF'), '100 CHF')

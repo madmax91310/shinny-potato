@@ -37,7 +37,7 @@ const records=BUDGET_PROFILES.map(p=>{
    const amount=rowCents(group.rows)
    assert(text.includes(`${group.title} : ${euro(Number(amount)/100,p.currency)} (${percentage(amount)} %)`),p.id)
  }
- assert(text.includes(`/ mois (${percentage(income>=expenses?income-expenses:expenses-income)} %)`),p.id)
+ assert(text.includes(`${context.budget.periodUnit ?? ' / mois'} (${percentage(income>=expenses?income-expenses:expenses-income)} %)`),p.id)
  assert.equal(rowCents(image.expenses.flatMap(column=>column.flatMap(group=>group.rows))),expenses)
  assert(!/exemple de budget|profil fictif|version éditoriale|simulation|scénario|hypothèse|préparé le|vérifié le/i.test(text),p.id)
  assert(!/20\d\d/.test(text.split('\n')[0]));assert(context.questions.length>=1&&context.questions.length<=2);assert.equal(context.budgetQuestion,'')

@@ -1,5 +1,6 @@
+import { projectBudgetScenario } from '../src/pages/budget-profiles/closure-scenarios.js'
 import assert from 'node:assert/strict'
-import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_PUBLICATION_REVIEW } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS, BUDGET_PUBLICATION_REVIEW, BUDGET_BEFORE_CLOSURE, BUDGET_PUBLICATION_CLOSURE } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, blankBudget, budgetExpenseColumns, budgetTransferLabel, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { planSocialBudget, SOCIAL_SIZE, SOCIAL_BODY_SIZE } from '../src/pages/budget-profiles/socialImage.js'
 import { duplicateBudget } from '../src/pages/budget-profiles/manual.js'
@@ -30,10 +31,10 @@ for (const profile of [...BUDGET_PROFILES, dense]) {
     for (const row of group.rows) assert.equal(cents(row.amount), sum(row.members))
   }
   assert.equal(sum(plan.transferRows), cents(plan.totals.savings))
-  assert.equal(plan.showAllocation, plan.totals.income > 0 && plan.totals.balance >= 0)
+  assert.equal(plan.showAllocation, !plan.presentation.averageBeforeInvestments && plan.totals.income > 0 && plan.totals.balance >= 0)
   assert.equal(JSON.stringify(profile), before)
   const text = buildBudgetText(profile)
-  assert(text.includes(plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'), profile.id)
+  assert(text.includes(plan.presentation.averageBeforeInvestments ? 'Solde moyen avant placements' : plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'), profile.id)
   assert((text.match(/^💬 /gm) || []).length <= 2, profile.id)
   assert.doesNotMatch(text, /(?:sa|leur) part du budget|mensuel · sa part|—/i, profile.id)
   assert.doesNotMatch(text, /budget reconstitué|budget fictif|exemple de budget|profil adapté/i, profile.id)
@@ -94,12 +95,12 @@ assert.equal(personalCopy.text, personal.text)
 
 for (const [id, changes] of Object.entries(BUDGET_PUBLICATION_REVIEW)) {
   const profile = BUDGET_PROFILES.find(item => item.id === id)
-  const context = publicationContextFor(profile)
+  const context = BUDGET_BEFORE_CLOSURE[id]
   for (const change of changes) {
     assert.notEqual(change.before, change.after)
     const current = change.index === null ? context.budget[change.field] : context[change.field][change.index].text
     assert.equal(current, change.after, id)
-    assert(buildBudgetText(profile).includes(current), id)
+    if (!BUDGET_PUBLICATION_CLOSURE[id]) assert(buildBudgetText(profile).includes(current), id)
     if (change.basis === 'assumption') {
       assert.equal(profile.provenance.nature, 'editorial-character', id)
       assert(context[change.field][change.index].evidence.some(index => context.evidence[index].reviewKind === 'assumption'))
@@ -112,3 +113,38 @@ assert.deepEqual(gifts.members.map(row => [row.label, row.amount]), [['Provision
 assert.match(buildBudgetText(julieAndAlex), /Provision cadeaux et remplacements : 80\s€/)
 const personalJulie = { profile: julieAndAlex, edited: true, text: 'Mon introduction.\nBudget reconstitué · Dépenses ventilées à titre éditorial.\nMon texte à 80 €.' }
 assert.equal(refreshBudgetDraft(personalJulie).text, 'Mon introduction.\nMon texte à 80 €.')
+
+
+const closed = Object.keys(BUDGET_PUBLICATION_CLOSURE).map(id => BUDGET_PROFILES.find(profile => profile.id === id))
+assert.equal(closed.length, 5)
+assert.equal(BUDGET_PROFILES.filter(profile => analyzeBudget(profile).balance < 0).length, 12)
+for (const profile of closed) {
+  const context = publicationContextFor(profile)
+  assert.equal(context.questions.length, 1)
+  assert(context.questions[0].text.endsWith('?'))
+  assert.equal(context.evidence.at(-1).scenario, context.scenario)
+  assert.equal(context.evidence.at(-1).basis, context.scenario ? 'editorial-preparation' : 'verified-repository-record')
+  const text = 'Brouillon personnalisé à conserver, même après la clôture'
+  const old = { profile, text, edited: true, textFinance: budgetFinancialReference(profile) }
+  assert.equal(refreshBudgetDraft(old).text, text)
+}
+const [hugo, romain, elise, djamila, david] = closed
+assert.match(buildBudgetText(hugo), /^💰 Budget d’Hugo, 19 ans · mois avec bonus/)
+assert.doesNotMatch(buildBudgetText(hugo), /1\s221\s€ \/ mois/)
+assert.match(buildBudgetText(hugo), /il manquerait 4,99 € avant versements, ou 124,99 €/)
+assert.match(buildBudgetText(romain), /Solde moyen avant placements : 3\s749\sCHF/)
+assert.doesNotMatch(buildBudgetText(romain), /Capacité d’épargne|Versements retenus : 0/)
+assert.equal(planSocialBudget(romain).showAllocation, false)
+assert.equal(romain.currency, 'CHF')
+assert.match(buildBudgetText(elise), /Crédits regroupés en juillet : 922,03\s€/)
+assert.match(buildBudgetText(elise), /Les 291,98 € de marge présentés sont ceux du budget de juillet/)
+assert.equal(analyzeBudget(djamila).balance, -850)
+assert.equal(publicationContextFor(djamila).scenario.monthlyPension, 0)
+assert.deepEqual(projectBudgetScenario(publicationContextFor(djamila).scenario, analyzeBudget(djamila)), { monthlyWithdrawal: 850, remainingReserve: 0 })
+assert.equal(analyzeBudget(david).balance, 260)
+const davidProjection = projectBudgetScenario(publicationContextFor(david).scenario, analyzeBudget(david))
+assert.equal(Math.round(davidProjection.payment * 100), 26953)
+assert.equal(davidProjection.monthlyPayment, 270)
+assert.deepEqual(davidProjection.rents, [{ rent: 550, beforeLoan: 160, afterLoan: -110 }, { rent: 700, beforeLoan: 10, afterLoan: -260 }])
+assert.match(buildBudgetText(david), /il lui manquerait 110\s€/)
+assert.match(buildBudgetText(david), /il lui manquerait 260\s€/)
