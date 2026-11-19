@@ -19,14 +19,22 @@ export const holdingName = name => {
 }
 
 // Les titres du panier de substitution ne décrivent pas l'exposition d'un swap.
-export function presentationComposition(record, facts) {
+function qualifiedComposition(record, facts) {
   const observation = record?.holdings
   const usable = observation && (['index','tracked-index'].includes(observation.basis) || (!synthetic(facts) && observation.basis === 'fund'))
-  const c = usable ? holdingConcentration(record) : null
-  if (!c) return ''
-  const scope = c.basis === 'index' ? 'de l’indice suivi' : 'du fonds'
-  const positions = c.top.map(row => `${holdingName(row.name)} (${pct(row.weightPct)})`).join(', ')
-  return `Au ${date(c.asOf)}, ${positions} forment les trois premières lignes publiées ${scope}. Elles représentent ensemble ${pct(c.weight)}.`
+  return usable ? holdingConcentration(record) : null
+}
+
+export function presentationComposition(record, facts, { forPost = false } = {}) {
+  const composition = qualifiedComposition(record, facts)
+  if (!composition || (forPost && composition.weight < 50)) return ''
+  const scope = composition.basis === 'index' ? 'de l’indice suivi' : 'du fonds'
+  if (forPost) {
+    const [first, second, third] = composition.top.map(row => holdingName(row.name))
+    return `À eux trois, ${first}, ${second} et ${third} représentent ${pct(composition.weight)} ${scope}.`
+  }
+  const positions = composition.top.map(row => `${holdingName(row.name)} (${pct(row.weightPct)})`).join(', ')
+  return `Au ${date(composition.asOf)}, ${positions} forment les trois premières lignes publiées ${scope}. Elles représentent ensemble ${pct(composition.weight)}.`
 }
 
 export function presentationCountries(record, facts) {
@@ -61,7 +69,8 @@ export function completePresentation(copy) {
   const riskMetric = Number.isFinite(duration?.value) && duration.value >= 0 && dated(duration.asOf) && duration.sourceUrl
     ? `Duration effective : ${duration.value.toLocaleString('fr-FR',{maximumFractionDigits:2})} ans au ${date(duration.asOf)}. Elle mesure la sensibilité aux taux, pas une durée minimale de détention.` : ''
   const swapFee = record?.characteristics?.annualSwapRatePct
-  return {...copy,presentationCompleted:true,riskMetric,whatIs:paragraphs.filter(Boolean).join('\n\n'),positions,
+  return {...copy,presentationCompleted:true,riskMetric,description,whatIs:paragraphs.filter(Boolean).join('\n\n'),positions,
+    postComposition:presentationComposition(record,facts,{forPost:true}),
     aum:copy.aum,domicile:facts.domicile??null,replicationMethod:facts.replicationMethod??null,location:location || (copy.location ? frenchLocation(copy.location) : null),
     shareCurrency:record?.currency ?? null,currencyHedge:hedge,
     feeLabel:Number.isFinite(swapFee)?'Frais de gestion annuels':'Frais annuels',
