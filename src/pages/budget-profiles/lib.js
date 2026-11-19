@@ -101,16 +101,45 @@ const reviewedPaidTransfers = new Set([
 ])
 
 export function budgetTransferStatus(profile, row) {
-  if (row.transferStatus) return row.transferStatus
-  if (profile.kind === 'planned' || profile.completion?.forecast || profile.kind !== 'participant' &&
-      (profile.id === 'editorial-studio-alternance-demenagement-2026-11-16' || /\b(?:prévues?|prévus?|envisagés?|envisagées?|pas encore versé)\b/i.test(row.label))) return 'planned'
-  return profile.kind === 'declared' || profile.kind !== 'participant' && reviewedPaidTransfers.has(profile.id) ? 'paid' : 'budgeted'
+  const reviewed = publicationContextFor(profile)?.budget?.transferDetails?.[row.label]?.status
+  if (reviewed || row.transferStatus) return reviewed || row.transferStatus
+  if (profile.kind === 'planned' || profile.completion?.forecast || ['source-projected', 'editorial-allocation'].includes(row.origin) ||
+      (profile.kind !== 'participant' && profile.id === 'editorial-studio-alternance-demenagement-2026-11-16') ||
+      /(?<![\p{L}])(?:prévues?|prévus?|envisagés?|envisagées?|pas encore versé)(?![\p{L}])/iu.test(row.label)) return 'planned'
+  return profile.kind === 'declared' || (profile.kind !== 'participant' && reviewedPaidTransfers.has(profile.id)) ? 'paid' : 'budgeted'
+}
+
+export function budgetTransferPlan(profile) {
+  const details = publicationContextFor(profile)?.budget?.transferDetails || {}
+  const rows = budgetPublicSavingsRows(profile).map((row, index) => {
+    const original = profile.savings[index]
+    return { ...row, ...(Object.hasOwn(details, original.label) && details[original.label]), status: budgetTransferStatus(profile, original) }
+  })
+    .toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  const statuses = new Set(rows.filter(row => row.amount > 0).map(row => row.status))
+  const planned = statuses.has('planned')
+  const distinct = statuses.size > 1
+  const mixed = planned && distinct
+  return { rows, planned, mixed, distinct, label: mixed ? 'Plan d’épargne' : planned ? 'Versements prévus' :
+    statuses.size === 1 && statuses.has('paid') ? 'Versements effectués' : 'Versements' }
 }
 
 export function budgetTransferLabel(profile) {
-  const statuses = new Set(profile.savings.map(row => budgetTransferStatus(profile, row)))
-  return statuses.size > 1 ? 'Versements mixtes' :
-    statuses.has('planned') ? 'Versements prévus' : statuses.has('paid') ? 'Versements effectués' : 'Versements'
+  return budgetTransferPlan(profile).label
+}
+
+export function cleanTransferLabel(label, planned) {
+  const clean = label.replace(/\s*\((?:prévus?|prévues?|effectués?|effectuées?)\)/giu, '')
+    .replace(/\b(provisions?) prévues?\b/giu, '$1')
+  if (!planned) return clean.trim()
+  const goal = clean.replace(/,?\s+pas encore versé[es]*/giu, '')
+    .replace(/\s+(?:prévus?|prévues?|envisagés?|envisagées?)(?![\p{L}])/giu, '').trim()
+  return goal || 'Épargne'
+}
+
+export function budgetRemainingLabel(balance, planned) {
+  if (planned) return balance < 0 ? 'Déficit si le plan est suivi' : 'Reste si le plan est suivi'
+  return balance < 0 ? 'Déficit après versements' : 'Reste après versements'
 }
 
 export function budgetPublicPresentation(profile) {
@@ -189,11 +218,11 @@ export function buildBudgetText(profile) {
   const incomeLine = `💰 ${incomeHeading} : ${profile.approximate ? 'environ ' : ''}${money(a.income)}${periodUnit}`
   const transfersHeading = context?.budget?.transfersHeading || 'Versements'
   const transfers = budgetTransfers(profile, transfersHeading)
-  const transferLabel = budgetTransferLabel(profile)
-  const transferRows = budgetPublicSavingsRows(profile).map((row, index) => {
-    const status = budgetTransferStatus(profile, profile.savings[index])
-    const suffix = transferLabel === 'Versements mixtes' && status !== 'budgeted' ? (status === 'planned' ? ' (prévu)' : ' (effectué)') : ''
-    return `• ${budgetRowSymbol(row, 'savings').emoji} ${row.label}${suffix} : ${money(row.amount)}`
+  const plan = budgetTransferPlan(profile)
+  const transferRows = plan.rows.map(row => {
+    const label = cleanTransferLabel(row.label, plan.planned)
+    const statement = row.statement || (plan.distinct && { planned: 'prévus par mois', paid: 'déjà versés par mois', budgeted: 'inscrits au budget' }[row.status])
+    return `• ${row.emoji || budgetRowSymbol(row, 'savings').emoji} ${label} : ${money(row.amount)}${statement ? ' ' + statement : ''}`
   }).join('\n')
   const questions = context
     ? (context.questions.length ? context.questions.map(question => question.text) : [budgetGeneralQuestion({ ...profile, name: p.name }, context.budgetQuestion)])
@@ -206,8 +235,8 @@ export function buildBudgetText(profile) {
     expenses,
     `🧾 Total des dépenses : ${money(a.expenses)}${periodUnit}`,
     `👉 ${average ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${money(Math.abs(a.available))}${periodUnit}${share(Math.abs(a.available), a.income)}`,
-    average ? '🧾 Versements vers les placements : montants non isolés.' : transferRows ? `${transfers.emoji} ${transferLabel} : ${money(a.savings)}${periodUnit}\n${transferRows}` : `🧾 Versements retenus : ${money(0)}${periodUnit}`,
-    !average && `💳 ${a.balance < 0 ? 'Déficit après versements' : 'Reste après versements'} : ${money(Math.abs(a.balance))}${periodUnit}`,
+    average ? '🧾 Versements vers les placements : montants non isolés.' : transferRows ? `${plan.mixed ? '💰 Son plan d’épargne' : transfers.emoji + ' ' + plan.label} : ${money(a.savings)}${periodUnit}\n${transferRows}` : `🧾 Versements retenus : ${money(0)}${periodUnit}`,
+    !average && `💳 ${budgetRemainingLabel(a.balance, plan.planned)} : ${money(plan.planned ? a.balance : Math.abs(a.balance))}${periodUnit}`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     ...(context ? context.paragraphs.map(({ text }) => text) : [
       e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,

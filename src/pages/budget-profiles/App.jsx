@@ -4,7 +4,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
+import { analyzeBudget, budgetRemainingLabel, budgetTransferPlan, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
 import { budgetFinancialReference, staleBudgetText } from './completion.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, peekWorkspace, WORKSPACE_KEY } from './workspace.js'
 import { publicationLabel } from '../../lib/publication-date.js'
@@ -156,7 +156,7 @@ export default function App() {
         {!prepared && <Button variant="secondary" onClick={adapt}>Dupliquer ce profil</Button>}
         {!prepared && <Suspense fallback={<p>Chargement de la participation…</p>}><ParticipantEditor profile={profile} edit={edit}/></Suspense>}
         {!!a.errors.length && <div className="dca-errors" role="alert">{a.errors.map(error => <p key={error}>{error}</p>)}</div>}
-        {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{budgetPublicPresentation(profile).averageBeforeInvestments ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Reste disponible après versements</dt><dd>{money(a.balance)}</dd></div>}</dl>}
+        {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{budgetPublicPresentation(profile).averageBeforeInvestments ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>{budgetTransferPlan(profile).planned ? budgetRemainingLabel(a.balance, true) : 'Reste disponible après versements'}</dt><dd>{money(a.balance)}</dd></div>}</dl>}
         {profile.source && <details className="dca-evidence" onToggle={e => { if (e.currentTarget.open) setEvidenceOpen(true) }}><summary>Source et vérification du profil</summary>
           {evidenceOpen && <Suspense fallback={<p>Chargement de la vérification…</p>}><SourceEvidencePanel profile={profile} onCopy={copy}/></Suspense>}
         </details>}
