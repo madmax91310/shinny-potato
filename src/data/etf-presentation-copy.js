@@ -774,6 +774,15 @@ for (const [id,emphasis] of multiAsset) REVIEWED_EXPOSURE_COPY[id] = {
   whatToKnow:'Une hausse des taux peut faire baisser les obligations au moment où les actions reculent aussi. Le rééquilibrage ne garantit donc pas une protection. La couverture vers l’euro concerne la poche obligataire, pas l’ensemble des monnaies du portefeuille.',
 }
 
+REVIEWED_EXPOSURE_COPY['pea-us-tech-screened'] = {
+  hook: '💻 PUST et PANX donnent tous les deux accès aux grandes valeurs du Nasdaq dans un PEA. Qu’est-ce qui change avec le PANX ? 👇',
+  whatIs: 'Le PANX suit le Solactive ISS ESG US Tech 100 par swap. L’indice part des grandes entreprises non financières cotées au Nasdaq et applique des critères environnementaux, sociaux et de gouvernance.',
+  whyInteresting: 'Si tu cherches une exposition aux grandes valeurs du Nasdaq dans ton PEA, le PANX te permet de choisir un indice avec des critères ESG. Compare les premières lignes et leurs poids avec ceux du Nasdaq-100 pour voir ce que cette sélection change.',
+  whatToKnow: 'Les filtres peuvent changer la composition et la performance par rapport au Nasdaq-100. Plusieurs grandes valeurs peuvent déjà peser lourd dans ton ETF World ou ton PUST. La réplication par swap ajoute un risque de contrepartie.',
+  verdict: 'Une exposition aux grandes valeurs non financières du Nasdaq avec des critères ESG, accessible dans le PEA.',
+  question: 'Avant de choisir entre PANX et PUST, quels écarts de composition regarderais-tu ?',
+}
+
 REVIEWED_EXPOSURE_COPY["ftse-global-all-cap-vanguard"] = {
   "hook": "Les petites entreprises ont aussi leur place dans un ETF mondial. Voici ce que le Vanguard FTSE Global All-Cap ajoute à un All-World 👇",
   "whatIs": "Tu suis les grandes, moyennes et petites entreprises des pays développés et émergents à travers le FTSE Global All Cap. Le fonds achète un échantillon représentatif des actions de cet indice et réinvestit les dividendes.",
