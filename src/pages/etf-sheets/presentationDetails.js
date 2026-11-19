@@ -2,6 +2,7 @@ import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { getInstrumentFacts } from '../../data/instrument-facts.js'
 import { frenchCharacteristic, frenchLocation } from '../../data/french-characteristics.js'
 import { holdingConcentration } from '../../data/exposure-observations.js'
+import { multiAssetAllocationLines } from '../../data/lifestrategy.js'
 
 const date = value => value.split('-').reverse().join('/')
 const dated = value => /^\d{4}-\d{2}-\d{2}$/.test(value ?? '')
@@ -57,7 +58,8 @@ export function completePresentation(copy) {
     ? `Indice suivi : ${benchmark}.\n\n` : ''
   const description = synthetic(facts) ? copy.whatIs.replace(/Tu détiens /g, 'Tu t’exposes à ') : copy.whatIs
   const swap = synthetic(facts) && !/swap|contrat d’échange/i.test(description) ? 'Le fonds utilise un swap : il échange tout ou partie de la performance de son panier de titres contre celle de l’indice. Ce panier de substitution peut donc contenir d’autres entreprises que l’indice suivi.' : ''
-  const paragraphs = [intro+description, swap, presentationCountries(record,facts), presentationComposition(record,facts)]
+  const allocation = multiAssetAllocationLines(copy.isin).join('\n')
+  const paragraphs = [intro+description, swap, presentationCountries(record,facts), presentationComposition(record,facts), allocation]
   const count = record?.metrics?.numHoldings
   const positions = Number.isInteger(count?.value) && count.value > 0 && dated(count.asOf) && count.sourceUrl && (!facts.positionsAsOf || count.asOf>=facts.positionsAsOf)
     ? `${count.value.toLocaleString('fr-FR')} positions hors liquidités et dérivés au ${date(count.asOf)}`
