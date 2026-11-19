@@ -1,6 +1,6 @@
 # Raccordements par actif et par outil
 
-Généré le 2026-11-18 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
+Généré le 2026-11-19 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
@@ -186,7 +186,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares iBonds Dec 2029 Term € Corp UCITS ETF | IE000SNLFDR7 | Oui | Oui | missing | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | iShares Global Aerospace & Defence UCITS ETF | IE000U9ODG19 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Global X Silver Miners UCITS ETF USD Accumulating | IE000UL6CLP7 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating | IE000VAHT5T0 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
+| Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating | IE000VAHT5T0 | Oui | — | missing | Oui / Oui | Complète | — / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | WisdomTree Quantum Computing UCITS ETF | IE000W8WMSL2 | Oui | Oui | missing | Oui / Oui | Complète | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
 | VanEck Space Innovators UCITS ETF | IE000YU9K6K2 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
