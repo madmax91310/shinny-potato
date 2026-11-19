@@ -50,7 +50,7 @@ for(const [i,entry] of entries.entries()) {
   assert.match(sourceReply(p),/^Source d’inspiration : /)
   const custom={profile:p,text:'Mon texte personnel conservé',edited:true,textFinance:budgetFinancialReference(p)}
   assert(validDraft(custom));assert.equal(refreshBudgetDraft(custom).text,custom.text)
-  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,text)
+  assert.equal(refreshBudgetDraft({...custom,edited:false}).text,buildBudgetText(BUDGET_PROFILES.find(profile => profile.id === p.id)))
   const workspace={version:5,scheduledDates:{},drafts:[custom],activeId:p.id,used:[p.id],published:[p.id],queued:[p.id],publicationDates:{[p.id]:'2026-11-15'}}
   assert(validWorkspace(workspace));assert.deepEqual(parseBudgetBackup(JSON.stringify({format:'le-budget-de',version:5,readable:true,workspace})),workspace)
   for(const f of entry.creation.finance.filter(f=>f.type==='project')) assert.equal(f.initialFunding+f.monthlyFunding*f.horizonMonths,f.targetAmount)
@@ -58,15 +58,18 @@ for(const [i,entry] of entries.entries()) {
 
 // A yearly average must be funded over the actual sequence of receipts.
 for(const [name,high,nHigh,low,nLow,reserve,expectedDraw] of [
-  ['Morgane',5760,4,720,8,12000,11440],
+  ['Morgane',5760,4,720,8,12000,11920],
   ['Lison et Dorian',4700,6,0,6,14000,12540],
 ]) {
-  const p=BUDGET_NEW_EDITORIAL_PROFILES.find(p=>p.name===name),a=analyzeBudget(p)
+  const p=BUDGET_PROFILES.find(p=>p.name===name),a=analyzeBudget(p)
   assert.equal(high*nHigh+low*nLow,a.income*12)
   assert.equal((a.expenses+a.savings-low)*nLow,expectedDraw)
   assert(reserve>=expectedDraw)
   assert.equal(high*nHigh+low*nLow-(a.expenses+a.savings)*12,a.balance*12)
 }
+const morgane = BUDGET_PROFILES.find(profile => profile.name === 'Morgane')
+assert.equal(analyzeBudget(morgane).balance, 190)
+assert.match(buildBudgetText(morgane), /60 € pour les révisions, les pneus et le contrôle technique/)
 const cedric=analyzeBudget(BUDGET_NEW_EDITORIAL_PROFILES.find(p=>p.name==='Cédric'))
 assert.equal(cedric.expenses-350+800+120+20+250,1840,'Future food and home insurance replace the parents’ contribution')
 assert.equal(2000-1840-cedric.savings,-840)
