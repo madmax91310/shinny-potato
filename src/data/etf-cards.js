@@ -8,6 +8,7 @@ import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_EXPANSION } from './presentation-etf-expansion.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
+import { REVIEWED_EXPOSURE_COPY } from './etf-presentation-copy.js';
 // Revue des 48 fiches le 02/10/2026 : sources et limites dans scripts/source-snapshots/etf-review-2026-10-02.json.
 import { getPreferredInstrumentListing } from './instrument-listings.js';
 import { getInstrumentAum } from './instrument-aum.js';
@@ -1970,5 +1971,24 @@ export const ETFS = [
     whatToKnow: "La conviction porte sur les sociétés financières. Une belle perspective économique ne garantit pas un bon résultat en Bourse : les attentes peuvent déjà être dans les prix, et la sélection reste concentrée.",
     verdict: "Une sélection d’entreprises sur un thème : les sociétés financières.",
     question: "Pour cette exposition, tu regardes d’abord les entreprises ou actifs suivis, les frais ou les risques ?",
+  },
+  {
+    id: 'pea-us-tech-screened',
+    category: 'Sectoriels classiques',
+    ...REVIEWED_EXPOSURE_COPY['pea-us-tech-screened'],
+    isin: 'FR0013412269',
+    name: getInstrumentName('FR0013412269', 'sheet'),
+    listing: getPreferredInstrumentListing('FR0013412269'),
+    isNew: true,
+    presentationOnly: true,
+    ter: formatEtfTer('FR0013412269', 'sheet'),
+    positions: getInstrumentPositions('FR0013412269'),
+    aum: getInstrumentAum('FR0013412269', 'sheet'),
+    distribution: getInstrumentDistribution('FR0013412269'),
+    pea: getInstrumentPea('FR0013412269'),
+    cto: true,
+    location: getInstrumentLocation('FR0013412269'),
+    source: getInstrumentFacts('FR0013412269').characteristicsSource.url,
+    lastVerified: getInstrumentFacts('FR0013412269').reviewedAt,
   },
 ];
