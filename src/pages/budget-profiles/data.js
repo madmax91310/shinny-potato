@@ -1,3 +1,4 @@
+import scopeReview from './scope-review-2026-11-19.json' with { type: 'json' }
 import plausibilityReview from './plausibility-review-2026-11-19.json' with { type: 'json' }
 import coherenceReview from './coherence-review-2026-11-19.json' with { type: 'json' }
 import publicationClosure from './publication-closure-2026-11-19.json' with { type: 'json' }
@@ -81,11 +82,24 @@ export const BUDGET_BEFORE_COHERENCE = [...BUDGET_REFERENCE_PROFILES, ...BUDGET_
 
 export const BUDGET_COHERENCE_REVIEW = coherenceReview
 export const BUDGET_PLAUSIBILITY_REVIEW = plausibilityReview
-export const BUDGET_PROFILES = BUDGET_BEFORE_COHERENCE.map(profile => {
+export const BUDGET_BEFORE_SCOPE = BUDGET_BEFORE_COHERENCE.map(profile => {
   const amounts = plausibilityReview[profile.id]?.amounts ?? coherenceReview[profile.id]?.amounts
   return amounts ? { ...profile,
     expenses: profile.expenses.map(row => Object.hasOwn(amounts, row.label) ? { ...row, amount: amounts[row.label] } : row),
   } : profile
+})
+
+export const BUDGET_SCOPE_REVIEW = scopeReview
+export const BUDGET_PROFILES = BUDGET_BEFORE_SCOPE.map(profile => {
+  const review = scopeReview[profile.id]
+  if (!review) return profile
+  const { incomeExclude, housing, additionalExpenses, expenseAmounts } = review
+  return { ...profile,
+    ...(incomeExclude && { income: profile.income.filter(row => row.label !== incomeExclude) }),
+    ...(housing && { housing }),
+    ...(additionalExpenses && { expenses: [...profile.expenses, ...additionalExpenses] }),
+    ...(expenseAmounts && { expenses: profile.expenses.map(row => Object.hasOwn(expenseAmounts, row.label) ? { ...row, amount: expenseAmounts[row.label] } : row) }),
+  }
 })
 
 export const EXPENSE_CATEGORIES = [
@@ -180,5 +194,20 @@ for (const [id, { basis, expenseLabels, paragraphs, append, scenario, reason }] 
     evidence: [...base.evidence, { basis, note: reason, ...(scenario && { scenario: updatedScenario }) }],
     budget: { ...base.budget, expenseLabels: { ...base.budget.expenseLabels, ...expenseLabels } },
     scenario: updatedScenario,
+  }
+}
+
+
+for (const [id, { budget, paragraphs, questions, projected, household, assumption, reason }] of Object.entries(scopeReview)) {
+  const base = BUDGET_PUBLICATION_CONTEXT[id]
+  const references = [base.evidence.length]
+  BUDGET_PUBLICATION_CONTEXT[id] = {
+    ...base,
+    evidence: [...base.evidence, { basis: assumption ? 'editorial-preparation' : 'verified-repository-record', note: reason }],
+    paragraphs: base.paragraphs.map((entry, index) => Object.hasOwn(paragraphs || {}, index)
+      ? { text: paragraphs[index], evidence: references } : entry),
+    questions: questions ? base.questions.map((entry, index) => ({ ...entry, text: questions[index] ?? entry.text, evidence: [...entry.evidence, ...references] })) : base.questions,
+    budget: { ...base.budget, ...budget, ...(household && { household }), ...(projected && { projected }),
+      expenseLabels: { ...base.budget.expenseLabels, ...budget?.expenseLabels } },
   }
 }
