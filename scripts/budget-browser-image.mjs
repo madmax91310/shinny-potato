@@ -42,7 +42,9 @@ export function assertBudgetCanvas(drawn, profile) {
   for (const amount of amounts) {
     assert(drawn.some(line => line.text === money(amount) || line.text === `≈ ${money(amount)}`), `${profile.id}: total ${amount}`)
   }
-  assert(drawn.some(line => line.text === balanceText && line.y === 491), `${profile.id}: reste affiché`)
+  // Le montant est recentré verticalement quand la police est réduite.
+  assert(drawn.some(line => line.text === balanceText && line.y - (47 - line.size) / 2 === 491),
+    `${profile.id}: reste affiché`)
   const ledger = drawn.filter(line => line.y > 712 && line.y < 1155)
   for (const row of [...expenses.flatMap(column => column.flatMap(group => group.rows)), ...planSocialBudget(profile).transferRows]) {
     assert(ledger.some(line => line.text === money(row.amount)), `${profile.id}: poste ${row.label} ${row.amount}`)
