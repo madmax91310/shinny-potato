@@ -29,7 +29,7 @@ export function buildText(sourceEtf) {
     `🆔 ISIN : ${etf.isin}`,
     `💸 ${etf.feeLabel} : ${percentSpacing(etf.ter)}`,
     etf.swapFee && `💸 Frais de swap : ${percentSpacing(etf.swapFee)}`,
-    etf.distribution && `🔄 ${etf.distribution}`,
+    etf.distribution && !commodities.length && `🔄 ${etf.distribution}`,
     `🏦 ${accountLabel(etf)}`,
     etf.currencyHedge === 'Couverture de change' && `💱 ${etf.currencyHedge}`,
   ].filter(Boolean).join('\n')
@@ -39,9 +39,10 @@ export function buildText(sourceEtf) {
     facts,
     performance,
     commodities.join('\n'),
-    ['🔍 Ce que tu achètes', etf.description, etf.postComposition].filter(Boolean).join('\n'),
+    `🔍 Ce que tu achètes\n${etf.postWhatIs}`,
     `✅ Pourquoi s’y intéresser ?\n${etf.whyInteresting}`,
     `⚠️ Le point de vigilance\n${etf.whatToKnow}`,
+    etf.closing,
     `💬 ${etf.question}`,
     'Pas un conseil financier.',
   ].filter(Boolean).join('\n\n')

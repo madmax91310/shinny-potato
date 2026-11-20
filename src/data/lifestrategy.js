@@ -25,10 +25,11 @@ export const LIFESTRATEGY_FACTS = Object.fromEntries(Object.values(records).map(
   positionsLabel: `${r.holdings.rows.length} fonds sous-jacents (${r.holdings.asOf.split('-').reverse().join('/')})`,
   characteristicsSource: { url: r.characteristics.sourceUrl, checkedAt: r.checkedAt.slice(0,10) },
 }]))
-export function multiAssetAllocationLines(isin) {
+export function multiAssetAllocationLines(isin, { includeDate = true } = {}) {
   const r = records[isin]
   if (!r) return []
-  return [`⚖️ Allocation du fonds au ${r.assetAllocation.asOf.split('-').reverse().join('/')}`,
+  const date = includeDate ? ` au ${r.assetAllocation.asOf.split('-').reverse().join('/')}` : ''
+  return [`⚖️ Allocation du fonds${date}`,
     ...r.assetAllocation.rows.map(p => `${p.name} : ${p.weightPct.toLocaleString('fr-FR')} %`)]
 }
 
