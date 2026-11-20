@@ -57,7 +57,7 @@ const detailed = BUDGET_PROFILES.find(p => p.id === 'finary-alternant-19-2025-09
 assert.equal(budgetExpenseSections(detailed).length, 2)
 assert.equal(budgetExpenseSections({ ...detailed, expenses: [...detailed.expenses, { label: 'Poste non ventilé', amount: 10 }] }).find(section => section.id === 'mixed').rows.at(-1).amount, 10)
 assert(buildBudgetText(detailed).includes(`Capacité d’épargne : ${euro(analyzeBudget(detailed).available)}`))
-assert(buildBudgetText(detailed).includes(`Reste après versements : ${euro(analyzeBudget(detailed).balance)}`))
+assert(buildBudgetText(detailed).includes(`Déficit après versements : ${euro(4.99)}`))
 assert(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30').expenses.some(row => row.label === 'Impôts' && row.amount === 260), 'Simplifying the wage keeps the tax expense')
 assert(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21').expenses.some(r=>/vacances/i.test(r.label)), 'Previously unfinanced holidays now have an explicit provision')
 const techText = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'reddit-tech-26-2026-02-06'))

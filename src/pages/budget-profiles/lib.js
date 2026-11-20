@@ -58,6 +58,11 @@ export function analyzeBudget(profile) {
 
 export const editorialFor = profile => profile.kind === 'participant' ? null : BUDGET_EDITORIAL[profile.id]
 export const publicationContextFor = profile => profile.kind === 'participant' ? null : BUDGET_PUBLICATION_CONTEXT[profile.id]
+export function budgetBalanceText(profile, balance) {
+  const approximate = publicationContextFor(profile)?.budget?.approximateBalance
+  if (approximate && Math.abs(balance) < 5) return `≈ ${euro(0, profile.currency)}`
+  return euro(balance, profile.currency)
+}
 export const budgetDisplayName = profile => editorialFor(profile)?.alias || profile.name
 const share = (amount, income) => income > 0 ? ` (${Math.round(cents(amount) * 100 / cents(income))} %)` : ''
 const rowTotal = rows => rows.reduce((sum, row) => sum + cents(row.amount), 0) / 100
@@ -160,17 +165,23 @@ export function budgetPublicPresentation(profile) {
   }
 }
 
+function publicBudgetRows(profile, section) {
+  const key = section === 'expenses' ? 'expenseLabels' : `${section}Labels`
+  const labels = publicationContextFor(profile)?.budget?.[key]
+  return profile[section].map(row => labels && Object.hasOwn(labels, row.label) ? { ...row, label: labels[row.label] } : row)
+}
+
 export function budgetPublicIncomeRows(profile) {
-  const labels = publicationContextFor(profile)?.budget?.incomeLabels || {}
-  return profile.income.map(row => ({ ...row, label: budgetSalaryLabel((Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, ''), row.label) }))
+  return publicBudgetRows(profile, 'income').map((row, index) => ({
+    ...row,
+    label: budgetSalaryLabel(row.label.replace(/ au budget personnel$/i, ''), profile.income[index].label),
+  }))
 }
 export function budgetPublicExpenseRows(profile) {
-  const labels = publicationContextFor(profile)?.budget?.expenseLabels || {}
-  return profile.expenses.map(row => ({ ...row, label: provisionLabel({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }) }))
+  return publicBudgetRows(profile, 'expenses').map(row => ({ ...row, label: provisionLabel(row) }))
 }
 export function budgetPublicSavingsRows(profile) {
-  const labels = publicationContextFor(profile)?.budget?.savingsLabels || {}
-  return profile.savings.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
+  return publicBudgetRows(profile, 'savings')
 }
 
 // A reported capacity is useful when it differs from the calculated remainder.
@@ -237,7 +248,7 @@ export function buildBudgetText(profile) {
     `🧾 Total des dépenses : ${money(a.expenses)}${periodUnit}`,
     `👉 ${average ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne'} : ${money(Math.abs(a.available))}${periodUnit}${share(Math.abs(a.available), a.income)}`,
     average ? '🧾 Versements vers les placements : montants non isolés.' : transferRows ? `${plan.mixed ? '💰 Son plan d’épargne' : transfers.emoji + ' ' + plan.label} : ${money(a.savings)}${periodUnit}\n${transferRows}` : `🧾 Versements retenus : ${money(0)}${periodUnit}`,
-    !average && `💳 ${budgetRemainingLabel(a.balance, plan.planned || p.projected)} : ${money(plan.planned || p.projected ? a.balance : Math.abs(a.balance))}${periodUnit}`,
+    !average && `💳 ${budgetRemainingLabel(a.balance, plan.planned || p.projected)} : ${budgetBalanceText(profile, plan.planned || p.projected ? a.balance : Math.abs(a.balance))}${periodUnit}`,
     hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     ...(context ? context.paragraphs.map(({ text }) => text) : [
       e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
