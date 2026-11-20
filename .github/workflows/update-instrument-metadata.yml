@@ -216,7 +216,9 @@ jobs:
       - run: node scripts/test-metadata-notes.mjs
       - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-full-auto-routing.mjs
-      - run: npx playwright install --with-deps chromium
+      - name: Prepare Chromium for browser checks
+        timeout-minutes: 10
+        run: bash scripts/ensure-ci-runtime.sh chromium
       - run: node scripts/playwright-full-auto-routing.mjs
       - run: node scripts/test-asset-field-ui.mjs
       - run: node scripts/playwright-metadata-completion.mjs
