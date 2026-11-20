@@ -12,11 +12,11 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Pays | 256/285 | 256 | 0 | 0 |
 | Secteurs | 256/285 | 256 | 0 | 0 |
 | Principales positions | 257/285 | 257 | 0 | 0 |
-| Distribution | 281/285 | 257 | 24 | 0 |
+| Distribution | 281/285 | 281 | 0 | 0 |
 | Domicile | 281/285 | 281 | 0 | 0 |
-| Réplication | 280/285 | 280 | 0 | 0 |
+| Réplication | 281/285 | 281 | 0 | 0 |
 | Cotations | 281/285 | 281 | 0 | 0 |
-| Éligibilité PEA | 258/285 | 252 | 6 | 0 |
-| Couverture de change | 280/285 | 139 | 141 | 0 |
+| Éligibilité PEA | 258/285 | 258 | 0 | 0 |
+| Couverture de change | 281/285 | 281 | 0 | 0 |
 
 Le rapport JSON détaillé est publié à `data/asset-field-coverage.json` et accessible depuis Données à revoir. Il contient chaque actif, champ, source, date de contrôle, date de publication et motif de lacune.
