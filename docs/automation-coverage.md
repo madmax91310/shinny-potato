@@ -1,4 +1,4 @@
-# Automatisation des données — état du 2026-11-19
+# Automatisation des données — état du 2026-11-20
 
 Inventaire courant par champ et motif : [détail des lacunes](automation-gaps.md), avec [version JSON](automation-gaps.json).
 
@@ -12,7 +12,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Parts ETF mensuelles raccordées | 307 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 281/284 instruments, au moins un champ | Quotidienne |
 | Actions individuelles (secteur et pays) | 411/411 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-11-13 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
-| Comparatif ETF | 277/277 parts raccordées dans 156 blocs ; 259 calendriers actifs, 20 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Comparatif ETF | 278/278 parts raccordées dans 156 blocs ; 260 calendriers actifs, 20 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
