@@ -28,13 +28,14 @@ function qualifiedComposition(record, facts) {
 
 export function presentationComposition(record, facts, { forPost = false } = {}) {
   const composition = qualifiedComposition(record, facts)
-  if (!composition || (forPost && composition.weight < 50)) return ''
+  if (!composition) return ''
   const scope = composition.basis === 'index' ? 'de l’indice suivi' : 'du fonds'
-  if (forPost) {
-    const [first, second, third] = composition.top.map(row => holdingName(row.name))
-    return `À eux trois, ${first}, ${second} et ${third} représentent ${pct(composition.weight)} ${scope}.`
-  }
   const positions = composition.top.map(row => `${holdingName(row.name)} (${pct(row.weightPct)})`).join(', ')
+  if (forPost) {
+    // Les libellés obligataires peuvent contenir une date d’échéance.
+    if (/\b(?:\d{4}-\d{2}-\d{2}|\d{2}\/\d{2}\/\d{4})\b/.test(positions)) return ''
+    return `Les trois premières lignes publiées ${scope} sont ${positions}, soit ${pct(composition.weight)} au total.`
+  }
   return `Au ${date(composition.asOf)}, ${positions} forment les trois premières lignes publiées ${scope}. Elles représentent ensemble ${pct(composition.weight)}.`
 }
 
@@ -59,7 +60,13 @@ export function completePresentation(copy) {
   const description = synthetic(facts) ? copy.whatIs.replace(/Tu détiens /g, 'Tu t’exposes à ') : copy.whatIs
   const swap = synthetic(facts) && !/swap|contrat d’échange/i.test(description) ? 'Le fonds utilise un swap : il échange tout ou partie de la performance de son panier de titres contre celle de l’indice. Ce panier de substitution peut donc contenir d’autres entreprises que l’indice suivi.' : ''
   const allocation = multiAssetAllocationLines(copy.isin).join('\n')
-  const paragraphs = [intro+description, swap, presentationCountries(record,facts), presentationComposition(record,facts), allocation]
+  const composition = presentationComposition(record, facts)
+  const paragraphs = [intro+description, swap, presentationCountries(record,facts), composition, allocation]
+  const postAllocation = multiAssetAllocationLines(copy.isin, { includeDate: false }).join('\n')
+  const holdingsSource = record?.holdings?.sourceUrl ?? record?.sourceUrl
+  const postComposition = holdingsSource && copy.category !== 'Obligataires'
+    ? presentationComposition(record, facts, { forPost: true }) : ''
+  const postExplanation = [intro+description, swap, postComposition, postAllocation]
   const count = record?.metrics?.numHoldings
   const positions = Number.isInteger(count?.value) && count.value > 0 && dated(count.asOf) && count.sourceUrl && (!facts.positionsAsOf || count.asOf>=facts.positionsAsOf)
     ? `${count.value.toLocaleString('fr-FR')} positions hors liquidités et dérivés au ${date(count.asOf)}`
@@ -71,8 +78,8 @@ export function completePresentation(copy) {
   const riskMetric = Number.isFinite(duration?.value) && duration.value >= 0 && dated(duration.asOf) && duration.sourceUrl
     ? `Duration effective : ${duration.value.toLocaleString('fr-FR',{maximumFractionDigits:2})} ans au ${date(duration.asOf)}. Elle mesure la sensibilité aux taux, pas une durée minimale de détention.` : ''
   const swapFee = record?.characteristics?.annualSwapRatePct
-  return {...copy,presentationCompleted:true,riskMetric,description,whatIs:paragraphs.filter(Boolean).join('\n\n'),positions,
-    postComposition:presentationComposition(record,facts,{forPost:true}),
+  return {...copy,presentationCompleted:true,riskMetric,whatIs:paragraphs.filter(Boolean).join('\n\n'),positions,
+    postWhatIs:postExplanation.filter(Boolean).join('\n\n'),
     aum:copy.aum,domicile:facts.domicile??null,replicationMethod:facts.replicationMethod??null,location:location || (copy.location ? frenchLocation(copy.location) : null),
     shareCurrency:record?.currency ?? null,currencyHedge:hedge,
     feeLabel:Number.isFinite(swapFee)?'Frais de gestion annuels':'Frais annuels',

@@ -31,7 +31,8 @@ for(const etf of ETFS){
  const observation=presentationComposition(record,facts)
  const postComposition=presentationComposition(record,facts,{forPost:true})
  if(observation) assert.ok(getPresentationCopy(etf).whatIs.includes(observation))
- if(postComposition) assert.ok(text.includes(postComposition))
+ const hasHoldingSource = record?.holdings?.sourceUrl ?? record?.sourceUrl
+ if(postComposition) assert.equal(text.includes(postComposition), Boolean(hasHoldingSource) && etf.category !== 'Obligataires', etf.id)
 }
 for(const id of ['etf-pe','etf-volatility','sector-theme','em-small']) {const sheet=buildSheet(id);assert.equal(sheet.blocked,false);assert.ok(buildTweet(sheet).includes('🔖 Sauvegarde ce tweet'))}
 for(const id of ['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares']) {const asset=ASSETS.find(a=>a.id===id);assert.ok(asset);assert.equal(asset.manualOnly,false);assert.equal(asset.r.length,6);assert.ok(asset.r.every(Number.isFinite))}
