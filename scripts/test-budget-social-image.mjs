@@ -117,7 +117,7 @@ assert.equal(refreshBudgetDraft(personalJulie).text, 'Mon introduction.\nMon tex
 
 const closed = Object.keys(BUDGET_PUBLICATION_CLOSURE).map(id => BUDGET_PROFILES.find(profile => profile.id === id))
 assert.equal(closed.length, 5)
-assert.equal(BUDGET_PROFILES.filter(profile => analyzeBudget(profile).balance < 0).length, 11)
+assert.equal(BUDGET_PROFILES.filter(profile => analyzeBudget(profile).balance < 0).length, 13)
 for (const profile of closed) {
   const context = publicationContextFor(profile)
   assert.equal(context.questions.length, 1)
@@ -131,7 +131,7 @@ for (const profile of closed) {
 const [hugo, romain, elise, djamila, david] = closed
 assert.match(buildBudgetText(hugo), /^💰 Budget d’Hugo, 19 ans · mois avec bonus/)
 assert.doesNotMatch(buildBudgetText(hugo), /1\s221\s€ \/ mois/)
-assert.match(buildBudgetText(hugo), /il manquerait 4,99 € avant versements, ou 124,99 €/)
+assert.match(buildBudgetText(hugo), /il manquerait 4,99 € avant versements, ou 154,99 €/)
 assert.match(buildBudgetText(romain), /Solde moyen avant placements : 3\s749\sCHF/)
 assert.doesNotMatch(buildBudgetText(romain), /Capacité d’épargne|Versements retenus : 0/)
 assert.equal(planSocialBudget(romain).showAllocation, false)
@@ -159,12 +159,12 @@ assert.equal(adrienPlan.totals.available, 1580)
 assert.equal(adrienPlan.totals.savings, 1450)
 assert.equal(adrienPlan.totals.balance, 130)
 assert.deepEqual(adrienPlan.plan.rows.map(row => [row.label, row.amount, row.status]), [
-  ['Prêt étudiant', 450, 'paid'], ['Réserve de sécurité', 500, 'planned'], ['Futur PEA', 500, 'planned'],
+  ['Provision pour le prêt étudiant', 450, 'planned'], ['Réserve de sécurité', 500, 'planned'], ['Futur PEA', 500, 'planned'],
 ])
 assert(adrienPlan.expenses[1][0].rows.some(row => row.label === 'Vêtements et cadeaux' && row.amount === 90))
-assert.deepEqual(adrienPlan.transferRows.map(row => row.label), ['Prêt étudiant · mis de côté', 'Réserve prévue', 'Futur PEA'])
+assert.deepEqual(adrienPlan.transferRows.map(row => row.label), ['Provision prêt étudiant', 'Réserve prévue', 'Futur PEA'])
 assert.match(buildBudgetText(adrien), /Reste si le plan est suivi : 130\s€/)
-assert.match(buildBudgetText(adrien), /450 € par mois sur un livret/)
+assert.match(buildBudgetText(adrien), /450 € de côté pour préparer le remboursement/)
 assert.doesNotMatch(buildBudgetText(adrien), /trois ans|16[\s ]200/)
 const previousAdrien = { profile: adrienBefore, text: 'Texte personnel à 160 €', edited: true, textFinance: budgetFinancialReference(adrienBefore) }
 assert.equal(refreshBudgetDraft(previousAdrien).text, previousAdrien.text)
@@ -177,14 +177,14 @@ assert.doesNotMatch(buildBudgetText(plannedDeficit), /prévu \(prévu\)/)
 assert.equal(planSocialBudget(plannedDeficit).showAllocation, false)
 
 const adrienCopy = duplicateBudget({ profile: adrien, edited: false }, 'participation-adrien-test')
-assert.deepEqual(adrienCopy.profile.savings.map(row => row.transferStatus), ['paid', 'planned', 'planned'])
-assert.match(adrienCopy.text, /Livret pour le prêt étudiant : 450\s€ déjà versés/)
+assert.deepEqual(adrienCopy.profile.savings.map(row => row.transferStatus), ['planned', 'planned', 'planned'])
+assert.match(adrienCopy.text, /Livret pour le prêt étudiant : 450\s€/)
 assert.match(adrienCopy.text, /Reste si le plan est suivi : 130\s€/)
 
 const publicProfile = name => BUDGET_PROFILES.find(profile => profile.name === name)
 const apollineScope = publicProfile('Apolline')
 assert.equal(analyzeBudget(apollineScope).balance, 24.78)
-assert.match(buildBudgetText(apollineScope), /Si elle reçoit cette aide, le reste prévu passe de 24,78 à 124,78 €/)
+assert.match(buildBudgetText(apollineScope), /compter sa contribution et le montant d’aide réellement versé/)
 assert.equal(planSocialBudget(apollineScope).incomeLabel, 'Alternance prévue · Hors aide')
 const patriceScope = publicProfile('Patrice')
 assert.equal(analyzeBudget(patriceScope).balance, -170)
@@ -198,3 +198,10 @@ assert.equal(analyzeBudget(zoeScope).balance, 219.03)
 assert.equal(planSocialBudget(zoeScope).incomeLabel, 'Mois de stage · Octobre 2025')
 assert.match(buildBudgetText(zoeScope), /Loyer CROUS après APL : 287/)
 assert.match(buildBudgetText(zoeScope), /Courses alimentaires : 130/)
+
+assert.equal(analyzeBudget(publicProfile('Mathieu')).balance, -40)
+assert.equal(analyzeBudget(hugo).balance, -4.99)
+assert.equal(analyzeBudget(publicProfile('Séverine')).balance, 1)
+assert.match(planSocialBudget(publicProfile('Séverine')).balanceText, /^≈ 0\s€$/)
+assert.match(buildBudgetText(publicProfile('Séverine')), /≈ 0\s€/)
+assert.equal(planSocialBudget(publicProfile('Marc')).showAllocation, false)

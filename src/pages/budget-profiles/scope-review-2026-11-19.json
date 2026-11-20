@@ -1,12 +1,24 @@
 {
   "finary-ingenieur-aero-2025-11-30": {
     "budget": {
-      "incomeNote": "Le relevé indique 60 € de charges sans détail. La présence de l’électricité ou du chauffage dans ce montant reste inconnue. Le reste reflète les seules lignes chiffrées.",
+      "incomeNote": "Le budget retient 60 € de charges. Si l’énergie est facturée à part et coûte 70 € de plus par mois, il lui manquerait 110 € après son PEA.",
       "expenseLabels": {
         "Charges": "Charges du relevé"
-      }
+      },
+      "imageCaption": "Salaire avant impôt · dépenses recensées",
+      "omitReportedCapacity": true
     },
-    "reason": "Le message original indique seulement « Charges : 60 € ». Aucun détail ne confirme que l’énergie est comprise ou séparée."
+    "reason": "Le témoignage chiffre le versement au PEA à 408 €. Le message original indique seulement « Charges : 60 € ». Aucun détail ne confirme que l’énergie est comprise ou séparée.",
+    "paragraphs": {
+      "1": "Il prévoit de rafraîchir sa cuisine pour 2 500 € dans dix-huit mois. Avec 408 € prévus au PEA dans le relevé, les dépenses recensées laissent déjà un manque de 40 €."
+    },
+    "rows": {
+      "savings": {
+        "Versement PEA au budget": {
+          "amount": 408
+        }
+      }
+    }
   },
   "finary-fonctionnaire-30-2025-05-21": {
     "budget": {
@@ -20,7 +32,10 @@
       "imageCaption": "Salaires du couple",
       "incomeNote": "Le total des salaires couvre les deux revenus du couple. Les 810 € de soutien aux deux mères sont inclus dans ses dépenses."
     },
-    "reason": "Le relevé donne 5 050 € de salaires pour le couple, sans détail par personne. Les aides au logement des deux mères sont déjà dans les dépenses."
+    "reason": "Le relevé donne 5 050 € de salaires pour le couple, sans détail par personne. Les aides au logement des deux mères sont déjà dans les dépenses.",
+    "paragraphs": {
+      "1": "Leurs enveloppes personnelles couvrent vêtements, cadeaux et petits équipements. Les sorties communes ont leur ligne. Une fois le téléphone payé, les 130 € en moins porteraient la marge à 541 € si le reste du budget suit le même rythme."
+    }
   },
   "finary-cyber-24-2026-08-27": {
     "budget": {
@@ -28,23 +43,58 @@
       "expenseLabels": {
         "Loyer": "Loyer déclaré",
         "Transports": "Enveloppe de mobilité"
+      },
+      "transferDetails": {
+        "Livret · échéances du prêt étudiant": {
+          "label": "Provision pour le prêt étudiant",
+          "imageLabel": "Provision prêt étudiant",
+          "status": "planned",
+          "statement": "prévus par mois",
+          "emoji": "🎓",
+          "order": 1,
+          "manualLabel": "Livret pour le prêt étudiant"
+        },
+        "Livret · précaution prévue": {
+          "label": "Réserve de sécurité",
+          "imageLabel": "Réserve prévue",
+          "status": "planned",
+          "statement": "prévus par mois",
+          "emoji": "🛟",
+          "order": 2
+        },
+        "PEA · premier versement prévu": {
+          "label": "Futur PEA",
+          "imageLabel": "Futur PEA",
+          "status": "planned",
+          "statement": "par mois s’il décide de l’ouvrir",
+          "emoji": "📈",
+          "order": 3
+        }
       }
     },
     "paragraphs": {
-      "2": "Adrien se déplace sans voiture. Les 40 € sont une enveloppe retenue pour la fiche. Le prix complet du trajet frontalier et le nombre de jours sur place restent inconnus."
+      "2": "Adrien se déplace sans voiture. Il compte 40 € dans son enveloppe de mobilité.",
+      "1": "🎓 Son prêt étudiant de 15 000 € est encore en différé. Dans ce plan, il mettrait 450 € de côté pour préparer le remboursement."
     },
-    "reason": "Le témoignage confirme qu’il se déplace sans voiture. Les 40 € constituent une enveloppe de préparation, sans tarif ni fréquence documentés pour le trajet transfrontalier. Les 450 € sont déjà mis de côté pour le prêt."
+    "reason": "Le témoignage indique un prêt étudiant en différé. Les 450 € sont une provision de l’adaptation et relèvent du plan. Le coût complet du trajet frontalier reste inconnu.",
+    "rows": {
+      "savings": {
+        "Livret · échéances du prêt étudiant": {
+          "transferStatus": "planned"
+        }
+      }
+    }
   },
   "finary-ingenieur-21-2025-03-08": {
     "budget": {
       "imageCaption": "Ressources de mars 2025",
-      "incomeNote": "Les cours particuliers et l’aide parentale font partie du relevé de mars. Leur durée reste inconnue."
+      "incomeNote": "Les cours particuliers et l’aide familiale font partie de ce budget de mars. Avec le salaire seul et le même loyer net d’APL, il resterait 743 € avant le PEA envisagé."
     },
     "reason": "Budget de mars 2025 avec aide parentale et cours particuliers. La durée de ces deux ressources reste inconnue."
   },
   "finary-locataire-25-2025-11-08": {
     "budget": {
-      "imageCaption": "Salaire net après impôt",
+      "imageCaption": "Salaire net après impôt · nov. 2025",
       "expenseLabels": {
         "Part personnelle du loyer et charges": "Participation au logement"
       }
@@ -53,43 +103,45 @@
   },
   "finary-frontalier-37-2025-06-30": {
     "budget": {
-      "imageCaption": "Revenu du travail · Juin 2025",
-      "incomeNote": "Le montant professionnel est celui du relevé de juin. Les frais de transport affichés sont personnels et distincts de l’usage de sa voiture de fonction."
+      "imageCaption": "Revenu net après impôt · juin 2025",
+      "incomeNote": "Le crédit immobilier est de 1 320 €. Les 2 000 € d’autres dépenses personnelles ont été répartis par poste dans cette fiche. Il dispose d’une voiture de fonction et d’une carte essence."
     },
     "reason": "Les 6 700 € sont le revenu professionnel retenu dans le relevé de juin 2025. Le véhicule de fonction évite d’imputer un trajet en voiture personnelle."
   },
   "finary-bois-18-2025-10-16": {
     "budget": {
-      "imageCaption": "Budget d’installation prévu"
+      "imageCaption": "Budget d’installation prévu",
+      "incomeNote": "Le loyer et les courses sont estimés pour l’installation. Leurs fourchettes donneraient entre 537 et 837 € de marge avec le même salaire."
     },
     "projected": true,
     "reason": "Le budget d’installation est un scénario avec salaire prévu et milieu des fourchettes, sans loyer signé."
   },
   "prepared-carl78-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire net · Août 2025",
+      "imageCaption": "Salaire net · part personnelle",
       "expenseLabels": {
         "Part du loyer": "Participation au loyer"
-      }
+      },
+      "incomeNote": "Les 150 € de courses correspondent à ses achats. Les restaurants et les sorties sont dans une enveloppe à part de 180 €."
     },
     "reason": "Les courses et sorties sont deux enveloppes du relevé d’août. La part des repas au restaurant dans les sorties n’est pas détaillée."
   },
   "prepared-theoo-2026-10-30": {
     "budget": {
       "imageCaption": "Ressources de mai 2026",
-      "incomeNote": "L’aide Mobili-Jeune figure dans le budget de mai. Sans ce versement, les mêmes sorties d’argent laisseraient un manque de 100 €."
+      "incomeNote": "Ces revenus avaient été annoncés jusqu’en septembre 2026. Sans les 100 € de Mobili-Jeune, il resterait 100 € à répartir entre le PEA et le livret."
     },
     "reason": "L’aide Mobili-Jeune figure dans le mois retenu. Sa reconduction n’est pas établie. Sans elle, les mêmes sorties d’argent laisseraient un manque de 100 €."
   },
   "prepared-gritz-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire net · Février 2026"
+      "imageCaption": "Salaire net · fév. 2026"
     },
     "reason": "L’enveloppe de 532 € couvre vacances, sorties et vêtements. Chaque poste est compris dans la somme du mois mais sans ventilation séparée."
   },
   "prepared-tom281-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire après impôt",
+      "imageCaption": "Salaire après impôt · déc. 2025",
       "incomeNote": "Les 525 € arrondissent le loyer de 525,18 € du graphique d’origine. La surface, les conditions du bail et un éventuel partage restent inconnus.",
       "expenseLabels": {
         "Loyer": "Loyer du relevé",
@@ -103,15 +155,19 @@
   },
   "prepared-alessgiu-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire net · Février 2026"
+      "imageCaption": "Salaire net · Belgique"
     },
     "reason": "Les 2 300 € nets et les 750 € de loyer sont ceux du relevé belge de février. La commune et le contrat de travail ne sont pas précisés."
   },
   "prepared-xiaolongbao641-2026-10-30": {
     "budget": {
-      "imageCaption": "Revenus moyens du couple"
+      "imageCaption": "Revenus du couple · estimation centrale",
+      "incomeNote": "Le couple annonce entre 8 200 et 8 500 € nets. Les 8 350 € de la fiche sont le milieu de cette fourchette."
     },
-    "reason": "La moyenne du couple mêle deux rémunérations frontalières. Avec 8 200 € de revenus et des sorties identiques, le manque serait de 150 €."
+    "reason": "La moyenne du couple mêle deux rémunérations frontalières. Avec 8 200 € de revenus et des sorties identiques, le manque serait de 150 €.",
+    "paragraphs": {
+      "1": "Ils estiment pouvoir investir autour de 4 500 € par mois. Avec un revenu de 8 200 €, il leur resterait 4 350 € à répartir. Ils aimeraient pouvoir réduire leur activité et ajustent la répartition au fil des versements."
+    }
   },
   "prepared-abar4-2026-10-30": {
     "budget": {
@@ -123,14 +179,18 @@
   "prepared-justbob-2026-10-30": {
     "budget": {
       "imageCaption": "Revenus moyens 2025 · Variable inclus",
-      "incomeNote": "Il s’agit d’une moyenne de 2025 avec rémunérations variables. Le revenu fixe ne peut pas être isolé."
+      "incomeNote": "Il s’agit d’une moyenne de 2025 avec rémunérations variables. Le revenu fixe ne peut pas être isolé.",
+      "averageBeforeInvestments": true,
+      "omitReportedCapacity": true,
+      "textBasis": "Moyennes de 2025, rémunération variable comprise.",
+      "periodUnit": ""
     },
     "reason": "Le montant moyen inclut des rémunérations variables. L’opération des yeux est ponctuelle et lissée sur l’année. Il faut isoler le fixe pour établir un mois ordinaire."
   },
   "prepared-lot2-01-2026-10-30": {
     "budget": {
       "imageCaption": "Indemnités · Octobre 2026",
-      "incomeNote": "Les indemnités indiquées correspondent au budget d’octobre. Le versement destiné à l’activité dépend de leur maintien."
+      "incomeNote": "Ses indemnités couvrent le budget d’octobre. Leur fin était annoncée pour mars 2027. Une fois ces droits terminés, il lui faudrait 1 755 € de ressources par mois pour couvrir ses dépenses personnelles à ce niveau."
     },
     "reason": "Les indemnités financent cette phase du lancement. Les 645 € destinés à l’activité dépendent du maintien des indemnités."
   },
@@ -142,7 +202,8 @@
   },
   "prepared-lot2-04-2026-10-30": {
     "budget": {
-      "imageCaption": "Indemnités · Août 2026"
+      "imageCaption": "Indemnités · Août 2026",
+      "incomeNote": "Août, avant la fin de son allocation chômage en septembre. Son activité ne rapportait pas encore."
     },
     "reason": "Le relevé d’août est celui des derniers mois indemnisés. Les revenus futurs de l’activité et du conjoint restent hors budget."
   },
@@ -154,14 +215,14 @@
   },
   "prepared-lot2-06-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire net · Juillet 2026"
+      "imageCaption": "Salaire net · juillet 2026"
     },
     "reason": "La rémunération nette est le chiffre du relevé de juillet. L’impôt prélevé et le niveau exact du poste ne sont pas ventilés."
   },
   "prepared-lot2-08-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire net après impôt",
-      "incomeNote": "Les 900 € correspondent au paiement d’Émilie. Le loyer total et la répartition du bail restent inconnus.",
+      "imageCaption": "Salaire net · part personnelle",
+      "incomeNote": "Les 900 € correspondent à sa part du logement. Une fois ses dépenses couvertes, elle dispose de 565 €, dont 500 € prévus pour son apport.",
       "expenseLabels": {
         "Part du loyer et des charges": "Participation au logement hors énergie et eau"
       }
@@ -170,7 +231,8 @@
   },
   "prepared-lot2-09-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire de base · Hors primes"
+      "imageCaption": "Salaire de base · Hors primes",
+      "incomeNote": "Le budget part de son salaire de base. Les primes et indemnités liées aux jours travaillés sont à part."
     },
     "reason": "Le seul revenu chiffré est le fixe de 1 400 €. Les primes de vol ne financent pas le budget affiché."
   },
@@ -183,17 +245,23 @@
         "Alimentation": "Courses alimentaires"
       }
     },
-    "expenseAmounts": {
-      "Logement, charges et assurance estimés": 287,
-      "Alimentation": 130
-    },
     "paragraphs": {
       "0": "Ce mois de stage laisse environ 219 € d’après les dépenses recensées et provisionnées. Sans les 659 € du stage, à dépenses et aides identiques, il manquerait environ 440 € pour le mois."
     },
     "questions": {
       "0": "Quelle somme mettriez-vous de côté pendant les mois de stage pour absorber les périodes sans indemnité ?"
     },
-    "reason": "L’article documente un logement CROUS à 287 € après APL et 30 € de courses par semaine. Les courses sont ramenées à 130 € sur un mois moyen. Les 100 € parentaux restent une recette distincte."
+    "reason": "L’article documente un logement CROUS à 287 € après APL et 30 € de courses par semaine. Les courses sont ramenées à 130 € sur un mois moyen. Les 100 € parentaux restent une recette distincte.",
+    "rows": {
+      "expenses": {
+        "Logement, charges et assurance estimés": {
+          "amount": 287
+        },
+        "Alimentation": {
+          "amount": 130
+        }
+      }
+    }
   },
   "prepared-lot2-14-2026-10-30": {
     "budget": {
@@ -203,7 +271,8 @@
   },
   "prepared-lot2-15-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaire 2026 · Dépenses 2025"
+      "imageCaption": "Salaire 2026 · Dépenses 2025",
+      "projected": true
     },
     "reason": "Le salaire date de 2026 tandis que les dépenses sont des moyennes de 2025. Le reste dépend de la reconduction des dépenses."
   },
@@ -215,26 +284,27 @@
   },
   "prepared-lot2-17-2026-10-30": {
     "budget": {
-      "imageCaption": "Salaires nets après impôt"
+      "imageCaption": "Salaires après impôt · janvier 2026"
     },
     "reason": "Les deux salaires après impôt sont ceux du budget de janvier 2026. Leur futur déménagement et la location restent des projets."
   },
   "prepared-lot2-18-2026-10-30": {
     "budget": {
-      "imageCaption": "Revenus nets moyens du foyer"
+      "imageCaption": "Revenus nets · estimation centrale",
+      "incomeNote": "Le foyer situe ses revenus entre 90 000 et 95 000 € nets par an. Le budget prend pour repère le milieu de cette fourchette, soit 92 500 € sur l’année."
     },
     "reason": "Les 7 708,33 € sont une moyenne annualisée du foyer et aucun salaire individuel ne peut en être déduit. Les 50 000 € attendus restent hors du budget."
   },
   "prepared-lot2-20-2026-10-30": {
     "budget": {
       "imageCaption": "Revenus · Locatif net inclus",
-      "incomeNote": "Les revenus locatifs sont nets de charges, de crédits et d’impôt. Les 400 € viennent de l’excédent annoncé. La trésorerie des trois biens reste distincte des dépenses de leur résidence."
+      "incomeNote": "Dans leur relevé, les revenus locatifs sont nets de charges, de crédits et d’impôt. Sur leurs seuls salaires, il leur resterait 2 200 € avant épargne et placements."
     },
     "reason": "Les 400 € correspondent à l’excédent locatif annoncé après charges, emprunts et impôt. Aucune charge locative n’est comptée une seconde fois."
   },
   "budget-conseil-apprenties_majeures-2025-2026": {
     "budget": {
-      "imageCaption": "Budget type · Apprentissage"
+      "imageCaption": "Budget type · apprentissage en Suisse"
     },
     "projected": true,
     "reason": "Le montant est celui du scénario Budget-conseil pour un jeune adulte en apprentissage. Le permis et la participation sont des projets chiffrés séparément."
@@ -248,7 +318,7 @@
   },
   "finary-installation-projet-2026-02-21": {
     "budget": {
-      "imageCaption": "Installation · Projection",
+      "imageCaption": "Installation · dépenses prévues",
       "incomeNote": "Le logement a déjà été acheté. Les 600 € ventilent son budget d’installation. La mensualité de financement du logement reste inconnue.",
       "expenseLabels": {
         "Loyer": "Enveloppe de logement"
@@ -265,9 +335,9 @@
     "incomeExclude": "Aide Mobili-Jeune prévue",
     "household": "Loyer pris en charge par ses parents",
     "paragraphs": {
-      "2": "L’aide Mobili-Jeune envisagée est de 100 €. Le budget de base l’écarte tant qu’un loyer restant à sa charge n’est pas établi. Si elle reçoit cette aide, le reste prévu passe de 24,78 à 124,78 €."
+      "2": "Ses parents règlent le logement dans ce budget. Si elle paie plus tard une part du loyer et obtient Mobili-Jeune, il faudra compter sa contribution et le montant d’aide réellement versé."
     },
-    "reason": "L’aide prévue n’est pas dans le scénario de base. Le dossier Action Logement dépend d’un loyer restant à charge, alors que ses parents paient le logement."
+    "reason": "Le scénario de base écarte l’aide. Une quote-part de loyer à sa charge et l’aide calculée après les autres aides au logement sont nécessaires pour chiffrer une variante complète."
   },
   "finary-ingenieur-colocation-projet-2026-08-18": {
     "budget": {
@@ -316,31 +386,35 @@
   },
   "editorial-qualified-31536-2026-11-15": {
     "budget": {
-      "imageCaption": "Salaire et pension militaire"
+      "imageCaption": "Salaire et pension · total"
     },
     "reason": "Le total de 5 500 € inclut salaire et retraite militaire. Les dépenses de propriétaire sans crédit et la projection de placements sont séparées."
   },
   "editorial-qualified-40616-2026-11-15": {
     "budget": {
-      "imageCaption": "Alternance et pension reçue"
+      "imageCaption": "Alternance et pension reçue",
+      "incomeNote": "Avec son salaire seul et les mêmes dépenses, il lui resterait 200 € avant tout versement."
     },
     "reason": "Le montant d’alternance de novembre est approximatif. La pension de 400 € est distincte. La durée du contrat et le minimum conventionnel restent inconnus."
   },
   "editorial-qualified-38815-2026-11-15": {
     "budget": {
-      "imageCaption": "Revenus · CDD et CDI à 80 %"
+      "imageCaption": "Revenus · CDD et CDI à 80 %",
+      "incomeNote": "Ce budget d’août inclut les deux salaires et les SCPI. Sans le CDD, les dépenses dépasseraient les ressources de 1 300 €, avant le versement prévu pour la maison."
     },
     "reason": "Le salaire du CDD appartient au budget d’août. Le changement d’emploi et le crédit de construction ne sont que des scénarios."
   },
   "editorial-qualified-36821-2026-11-15": {
     "budget": {
-      "imageCaption": "Salaires nets du couple"
+      "imageCaption": "Salaires du couple · bail actuel"
     },
     "reason": "Les 490 € sont le montant de loyer trouvé dans le relevé, avec énergie, eau et assurance supplémentaires. Aucune comparaison au marché sans commune et surface."
   },
   "editorial-qualified-36268-2026-11-15": {
     "budget": {
-      "incomeNote": "Le budget prévoit un loyer à Bordeaux. Le montant réel n’est pas indiqué."
+      "incomeNote": "Le budget prévoit un loyer à Bordeaux. Le montant réel n’est pas indiqué.",
+      "imageCaption": "Revenus retenus à Bordeaux",
+      "projected": true
     },
     "projected": true,
     "reason": "Le relevé indique le net, mais laisse sa nature inconnue. L’enveloppe de logement à Bordeaux est un choix de scénario."
@@ -353,13 +427,13 @@
   },
   "editorial-qualified-39547-2026-11-15": {
     "budget": {
-      "imageCaption": "Pension nette · Charges personnelles"
+      "imageCaption": "Pension nette · part personnelle"
     },
     "reason": "La pension annoncée est distincte des charges retenues à son compte. Aucun complément futur de la vente n’est réalisé."
   },
   "editorial-qualified-26933-2026-11-15": {
     "budget": {
-      "imageCaption": "Salaire avant impôt",
+      "imageCaption": "Salaire avant impôt · part personnelle",
       "incomeNote": "Son employeur fournit la voiture. Les 60 € sont une estimation de ses frais personnels, distincte des frais couverts par l’entreprise.",
       "expenseLabels": {
         "Frais de voiture à sa charge": "Frais auto personnels"
@@ -369,31 +443,36 @@
   },
   "editorial-complementary-freelance-2026-11-16": {
     "budget": {
-      "imageCaption": "Virement personnel moyen"
+      "imageCaption": "Disponible personnel estimé",
+      "approximateBalance": true
     },
-    "reason": "Les 4 500 € sont le virement arrondi réellement retenu sur le compte personnel. La marge d’un euro donne un ordre de grandeur et ne constitue pas une prévision exacte."
+    "reason": "Le virement personnel est annoncé autour de 4 500 €. Le rapprochement des agrégats professionnels donne 4 565 €, avec un détail incomplet. Le solde exact de 1 € reste le résultat du modèle, présenté comme approximatif.",
+    "paragraphs": {
+      "1": "Elle vise une réserve d’environ 19 000 €, soit six mois de dépenses. Elle détient aussi une assurance-vie, un PEA et un PER. Avec près de 3 200 € de dépenses et environ 1 300 € mis de côté, son budget est quasiment à l’équilibre."
+    }
   },
   "editorial-complementary-belgium-2026-11-16": {
     "budget": {
-      "imageCaption": "Salaires nets · Hors avantages"
+      "imageCaption": "Salaires du foyer · hors aides"
     },
     "reason": "Budget de référence bruxellois sur les deux seuls salaires. Allocations, pécule, chèques-repas et prime de fin d’année sont hors scénario de base."
   },
   "editorial-roadmap-befire-first-home-2026-11-16": {
     "budget": {
-      "imageCaption": "Salaire net · Hors primes"
+      "imageCaption": "Salaire encaissé · avantages à part"
     },
     "reason": "Les titres-restaurant et les primes restent hors de la paie. L’employeur fournit la voiture et le carburant. Le pays n’est pas inféré."
   },
   "editorial-roadmap-lux-one-income-2026-11-16": {
     "budget": {
-      "imageCaption": "Un salaire net · Luxembourg"
+      "imageCaption": "Budget sur un seul salaire"
     },
     "reason": "Le relevé de Walferdange donne environ 50 m² et 1 600 € de loyer. Les charges de 220 € sont la provision séparée du scénario."
   },
   "editorial-studio-alternance-allocation-2026-11-16": {
     "budget": {
-      "imageCaption": "Alternance et aides · Avril 2026"
+      "imageCaption": "Salaire et aides d’avril 2026",
+      "incomeNote": "Les 220 € sont le total des aides d’avril. Avec son salaire seul, il lui resterait 220 € à répartir après les dépenses."
     },
     "reason": "Les 220 € sont un total d’aides dans le relevé. L’enveloppe courses et carburant de 250 € reste groupée, avec assurance auto et mobile pris en charge par les parents."
   },
@@ -402,5 +481,33 @@
       "imageCaption": "Moyenne annuelle · Activité saisonnière"
     },
     "reason": "Les 12 000 € couvrent 11 920 € de dépenses et versements sur huit mois creux. La réserve d’urgence de 6 000 € reste distincte."
+  },
+  "finary-alternant-19-2025-09-27": {
+    "reason": "Le témoignage chiffre le CTO à 100 € et le livret à 50 €. La fréquence constatée du bonus reste inconnue.",
+    "budget": {
+      "omitReportedCapacity": true
+    },
+    "paragraphs": {
+      "2": "Sans le bonus, il manquerait 4,99 € avant versements, ou 154,99 € en maintenant les 150 € affectés au CTO et au livret."
+    },
+    "rows": {
+      "savings": {
+        "Versement sur le CTO": {
+          "amount": 100
+        }
+      }
+    }
+  },
+  "mustachian-ingenieur-28-2025-08-16": {
+    "reason": "Précisions éditoriales sur le périmètre et la période du budget.",
+    "paragraphs": {
+      "1": "Ses entrées ont atteint 7 393 CHF par mois en moyenne sur la période, aidées par une vente de cartes, des dividendes et un héritage. Son budget tablait sur 6 700 CHF. Avec ses dépenses de la période, cette base aurait laissé 3 056 CHF avant placements."
+    }
+  },
+  "reddit-famille-bourges-2026-07-12": {
+    "reason": "Précisions éditoriales sur le périmètre et la période du budget.",
+    "paragraphs": {
+      "1": "Les 291,98 € de marge présentés sont ceux du budget de juillet. Ils s’attendent à une baisse de 150 € à la fin du prêt auto. À dépenses et revenus identiques, leur marge atteindrait alors 441,98 €."
+    }
   }
 }

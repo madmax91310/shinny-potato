@@ -93,13 +93,15 @@ export const BUDGET_SCOPE_REVIEW = scopeReview
 export const BUDGET_PROFILES = BUDGET_BEFORE_SCOPE.map(profile => {
   const review = scopeReview[profile.id]
   if (!review) return profile
-  const { incomeExclude, housing, additionalExpenses, expenseAmounts } = review
-  return { ...profile,
-    ...(incomeExclude && { income: profile.income.filter(row => row.label !== incomeExclude) }),
-    ...(housing && { housing }),
-    ...(additionalExpenses && { expenses: [...profile.expenses, ...additionalExpenses] }),
-    ...(expenseAmounts && { expenses: profile.expenses.map(row => Object.hasOwn(expenseAmounts, row.label) ? { ...row, amount: expenseAmounts[row.label] } : row) }),
+  const { incomeExclude, housing, additionalExpenses, rows } = review
+  const result = { ...profile }
+  if (housing) result.housing = housing
+  if (incomeExclude) result.income = profile.income.filter(row => row.label !== incomeExclude)
+  for (const [key, changes] of Object.entries(rows ?? {})) {
+    result[key] = profile[key].map(row => Object.hasOwn(changes, row.label) ? { ...row, ...changes[row.label] } : row)
   }
+  if (additionalExpenses) result.expenses = [...result.expenses, ...additionalExpenses]
+  return result
 })
 
 export const EXPENSE_CATEGORIES = [

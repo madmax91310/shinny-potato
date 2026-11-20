@@ -1,4 +1,4 @@
-import { analyzeBudget, budgetCashIncome, budgetExpenseColumns, budgetPublicPresentation,
+import { analyzeBudget, budgetBalanceText, budgetCashIncome, budgetExpenseColumns, budgetPublicPresentation,
   budgetTransferPlan, cleanTransferLabel, euro, publicationContextFor } from './lib.js'
 import { budgetProfileHousehold, budgetRowSymbol } from './presentation.js'
 import socialLabels from './social-labels.json' with { type: 'json' }
@@ -116,7 +116,7 @@ export function planSocialBudget(profile) {
     return status ? `${label} · ${status}` : label
   })
   const budget = publicationContextFor(profile)?.budget
-  return { totals, presentation, expenses, transferRows, plan,
+  return { totals, presentation, expenses, transferRows, plan, balanceText: budgetBalanceText(profile, totals.balance),
     incomeLabel: budget?.imageCaption || budget?.imageIncomeLabel,
     netSalary: budgetCashIncome(profile).netSalary, showAllocation: !presentation.averageBeforeInvestments && totals.income > 0 && totals.balance >= 0 }
 }
@@ -236,7 +236,7 @@ function drawTotals(ctx, plan, money) {
   data.forEach(([label, amount, color], index) => {
     const x = margin + index * (card + 15), center = x + card / 2
     box(ctx, x, 480, card, 130, color)
-    drawAmount(ctx, average && index === 1 ? 'Non isolés' : money(amount), center, 491, card - 22, { size: 47, align: 'center' })
+    drawAmount(ctx, average && index === 1 ? 'Non isolés' : index === 2 ? plan.balanceText : money(amount), center, 491, card - 22, { size: 47, align: 'center' })
     draw(ctx, label, center, 555, { align: 'center', size: 29, weight: 600 })
   })
 }
