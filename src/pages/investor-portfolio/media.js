@@ -3,15 +3,33 @@ export { companyInitials } from '../factsheet-tweets/companyLogos.js'
 import registry from '../factsheet-tweets/companyLogoRegistry.json' with { type: 'json' }
 import aliases from '../factsheet-tweets/companyLogoAliases.json' with { type: 'json' }
 import investorLogos from '../../../public/asset-art/investor-logos/sources.json' with { type: 'json' }
+import entities from '../../../public/asset-art/investor-logos/entities.json' with { type: 'json' }
 import official from '../../../public/asset-art/official-logos/sources.json' with { type: 'json' }
 import additional from '../../../public/asset-art/index-logos/sources.json' with { type: 'json' }
 import { loadArtImage } from '../../lib/art-resources.js'
 import { investorPortrait } from './portrait.js'
 
+const entityMarks = {
+  'cathie-wood': entities['ark-invest'],
+  berkshire: additional.berkshire,
+}
+
+export async function entityLogo(slug) {
+  const credit = entityMarks[slug]
+  if (!credit) return { image: null, credit: null }
+  const image = await loadArtImage(credit.file).catch(() => null)
+  return { image, credit: image ? credit : null }
+}
+
 // Exact reviewed aliases only. No fuzzy names or globally ambiguous tickers.
 export function logoIdentity(row) {
   const local=Object.entries(investorLogos).find(([,v])=>v.cusips.includes(row.cusip) || v.aliases.includes(row.issuerName))
   if(local)return {id:local[0],...local[1]}
+  const reviewed = {
+    '19260Q107': 'coinbase',
+    '88025U109': '10x-genomics',
+  }[row.cusip]
+  if (reviewed) return { id: reviewed, ...(additional[reviewed] || official[reviewed]) }
   const matches = Object.entries(aliases).filter(([,v]) => v.aliases.includes(row.issuerName) || (row.isin && v.securities?.includes(row.isin)) || (row.cusip && v.securities?.some(isin => /^(US|CA)/.test(isin) && isin.slice(2,11) === row.cusip)))
   if (matches.length !== 1) return null
   const id = matches[0][0], source = additional[id] || official[id], logo = registry.companies[id]?.file ? registry.companies[id] : source
@@ -65,5 +83,5 @@ export function portraitCredits(portfolio) {
   return {...investorPortrait(portfolio.identity.slug), ...(portfolio.media?.portrait || mediaCache.get(portfolio.identity.slug) || {})}
 }
 export function mediaCredits(portfolio) {
-  return {portrait:portraitCredits(portfolio),logos:portfolio.holdings.map(logoIdentity).filter(Boolean)}
+  return {portrait:portraitCredits(portfolio),entityLogo:entityMarks[portfolio.identity.slug] || null,logos:portfolio.holdings.map(logoIdentity).filter(Boolean)}
 }
