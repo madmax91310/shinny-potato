@@ -48,7 +48,7 @@ export function colorPositions(rows) {
 }
 export const posterCash=(value,currency)=>cash(value,currency).replace(/\s*\$US/,' $')
 export function shortPosition(row) {
-  const issuerNames={'SPACE EXPLORATION TECHN CORP':'SpaceX','Space Exploration Technologies':'SpaceX','Twist Bioscience Corp':'Twist','Tempus AI Inc':'Tempus','10X Genomics Inc':'10x Genomics','SHARONAI HLDGS INC':'SharonAI','Circle Internet Group Inc':'Circle','CRISPR Therapeutics AG':'CRISPR','Coinbase Global Inc':'Coinbase','Robinhood Markets Inc':'Robinhood'}
+  const issuerNames={'SPACE EXPLORATION TECHN CORP':'SpaceX','Space Exploration Technologies':'SpaceX','Twist Bioscience Corp':'Twist','Tempus AI Inc':'Tempus','10X Genomics Inc':'10x Genomics','SHARONAI HOLDINGS INC':'SharonAI','Circle Internet Group Inc':'Circle','CRISPR Therapeutics AG':'CRISPR','Coinbase Global Inc':'Coinbase','Robinhood Markets Inc':'Robinhood'}
   const distinct=/ \([A-Z0-9*@#]{9}\)$/.test(row.displayLabel || '')
   let base=String(shortNames[row.cusip] || issuerNames[row.issuerName] || (distinct?row.issuerName:null) || row.displayLabel || row.issuerName || '')
   if(distinct && !shortNames[row.cusip] && !issuerNames[row.issuerName] && base===base.toUpperCase())base=base.toLocaleLowerCase('fr-FR').replace(/\b\p{L}/gu,c=>c.toLocaleUpperCase('fr-FR'))
@@ -59,7 +59,8 @@ export function shortPosition(row) {
     const cls=row.shareClass?.match(/(?:CL|CLASS|SER|SERIES)\s+([A-Z])\b/i)?.[1]
     if (cls) name = `${name} ${cls}`
   }
-  if(row.cusip==='464286772' && row.shareClass==='MSCI STH KOR ETF')name='iShares Corée'
+  if (row.cusip === '464286772' && row.shareClass === 'MSCI STH KOR ETF') name = 'iShares Corée'
+  if (row.cusip === '464287523' && row.shareClass === 'ISHARES SEMICDTR') name = 'iShares Semi'
   if(name.length>23 && row.ticker)name=row.ticker
   return name || row.issuerName
 }

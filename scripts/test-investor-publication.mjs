@@ -104,6 +104,18 @@ for(const issuerName of ['MOODYS CORP','CHUBB LIMITED','OCCIDENTAL PETE CORP','V
   assert.equal(createHash('sha256').update(readFileSync(`public/asset-art/${source.file}`)).digest('hex'),source.sha256)
 }
 
+const marks = JSON.parse(readFileSync('public/asset-art/investor-logos/sources.json'))
+const registeredCusips = new Set()
+for (const [id, mark] of Object.entries(marks)) {
+  assert.equal(createHash('sha256').update(readFileSync(`public/asset-art/${mark.file}`)).digest('hex'), mark.sha256)
+  for (const cusip of mark.cusips) {
+    assert.match(cusip, /^[A-Z0-9*@#]{9}$/)
+    assert(!registeredCusips.has(cusip), `Multiple investor marks for ${cusip}`)
+    registeredCusips.add(cusip)
+    assert.equal(logoIdentity({ cusip }).id, id)
+  }
+}
+
 assert.equal(shortPosition({displayLabel:'TSMC',issuerName:'TAIWAN SEMICONDUCTOR'}),'TSMC')
 assert.equal(shortPosition({displayLabel:'Liberty Live Group I (53033H101)',issuerName:'LIBERTY LIVE GROUP INC',cusip:'53033H101',shareClass:'COM SER A'}),'Liberty Live A')
 
