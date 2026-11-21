@@ -104,7 +104,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-20",
+        "checkedAt": "2026-11-21",
         "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -333,8 +333,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-20T15:45:06.106833+00:00",
-      "lastSuccessAt": "2026-11-20T15:45:06.106833+00:00",
+      "checkedAt": "2026-11-21T14:55:39.540790+00:00",
+      "lastSuccessAt": "2026-11-21T14:55:39.540790+00:00",
       "status": "validated",
       "asOf": "2026-10-31"
     }
@@ -432,7 +432,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-20",
+        "checkedAt": "2026-11-21",
         "sha256": "e1a6dca38e29f01db0d752a30b8fa45b118db01074f6bd6b22eabbf6405980a5",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -637,8 +637,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-20T15:45:06.106833+00:00",
-      "lastSuccessAt": "2026-11-20T15:45:06.106833+00:00",
+      "checkedAt": "2026-11-21T14:55:39.540790+00:00",
+      "lastSuccessAt": "2026-11-21T14:55:39.540790+00:00",
       "status": "validated",
       "asOf": "2026-10-31"
     }
@@ -740,7 +740,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-20",
+        "checkedAt": "2026-11-21",
         "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -953,8 +953,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-20T15:45:06.106833+00:00",
-      "lastSuccessAt": "2026-11-20T15:45:06.106833+00:00",
+      "checkedAt": "2026-11-21T14:55:39.540790+00:00",
+      "lastSuccessAt": "2026-11-21T14:55:39.540790+00:00",
       "status": "validated",
       "asOf": "2026-10-31"
     }
@@ -1056,7 +1056,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
-        "checkedAt": "2026-11-20",
+        "checkedAt": "2026-11-21",
         "label": "Composition officielle automatisée · MSCI Korea",
         "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb"
       },
@@ -1269,14 +1269,14 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-20T15:45:06.106833+00:00",
-      "lastSuccessAt": "2026-11-20T15:45:06.106833+00:00",
+      "checkedAt": "2026-11-21T14:55:39.540790+00:00",
+      "lastSuccessAt": "2026-11-21T14:55:39.540790+00:00",
       "status": "validated",
       "asOf": "2026-10-30"
     },
     "companyFund": {
       "asOf": "2026-11-19",
-      "checkedAt": "2026-11-20T15:45:06.106833+00:00",
+      "checkedAt": "2026-11-21T14:55:39.540790+00:00",
       "basis": "physical-creation-basket",
       "complete": true,
       "rows": [
@@ -1773,17 +1773,27 @@
           0.25
         ]
       ],
-      "sourceUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
-      "sha256": "9641db3add0995aa3b391bb4070d5b79913a7759d7509fb0db604cc715a6c9ca",
+      "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.19",
+      "sha256": "81b970a3727b6989275846894c39d15ba54b57e80226441a23444d2c11b9b73f",
+      "datedBasketProof": {
+        "requestedAsOf": "2026-11-19",
+        "serverFileName": "HANARO MSCI KOREA TR_PDF_2026.11.19.xlsx",
+        "fragmentUrl": "https://www.hanaroetf.com/api/v1/fund/CEBA1E927AC1478B/get-fund-holdings-list?baseDate=2026.11.19",
+        "fragmentSha256": "6b2d0e6d78a327e0a3d3c0e3b02f56e77144c1645422c839be853aa42c5625a1",
+        "latestPublisherAsOf": "2026-11-20",
+        "publicationPageUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+        "method": "Same-date physical basket explicitly confirmed by issuer download filename and every HTML/Excel position; latest mismatched basket excluded"
+      },
+      "cashWeightPct": 0.26,
       "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
       "sourceProductCode": "KRX 332940",
       "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
-      "identityCheckedAt": "2026-11-20",
+      "identityCheckedAt": "2026-11-21",
       "identitySha256": "4838bb201f9e4d201ddcddfbff97958f0171bc39bf8686a69ad08cd82ca1d0b7",
       "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "classificationSha256": "7860d5828c1d3560296e671943b5aef661cf8296f7959b9a928cf570a7219c11",
+      "classificationSha256": "26a62dd89206fe92faa9c9e7e53e88e23ef173140b5a1bbdf871e373b86b7fb4",
       "classificationAsOf": "2026-11-19",
-      "classificationCheckedAt": "2026-11-20T15:45:06.106833+00:00",
+      "classificationCheckedAt": "2026-11-21T14:55:39.540790+00:00",
       "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
       "method": "Approximation par le panier physique de souscription publié par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut différer des positions comptables du fonds. Poids conservés sans renormalisation ; liquidités dans le reste. Noms, pays et secteurs raccordés par ISIN depuis le fichier iShares du même jour. Aucun poids du MSCI Korea 20/35 n’est utilisé."
     },
@@ -11547,8 +11557,8 @@
       }
     },
     "companyStatus": {
-      "checkedAt": "2026-11-20T15:45:06.106833+00:00",
-      "lastSuccessAt": "2026-11-20T15:45:06.106833+00:00",
+      "checkedAt": "2026-11-21T14:55:39.540790+00:00",
+      "lastSuccessAt": "2026-11-21T14:55:39.540790+00:00",
       "status": "validated",
       "asOf": "2026-11-19"
     }
