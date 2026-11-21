@@ -46,12 +46,12 @@ export function colorPositions(rows) {
 }
 export const posterCash=(value,currency)=>cash(value,currency).replace(/\s*\$US/,' $')
 export function shortPosition(row) {
-  const issuerNames={'SPACE EXPLORATION TECHN CORP':'SpaceX'}
+  const issuerNames={'SPACE EXPLORATION TECHN CORP':'SpaceX','Space Exploration Technologies':'SpaceX'}
   const distinct=/ \([A-Z0-9*@#]{9}\)$/.test(row.displayLabel || '')
   let base=String(shortNames[row.cusip] || issuerNames[row.issuerName] || (distinct?row.issuerName:null) || row.displayLabel || row.issuerName || '')
   if(distinct && !shortNames[row.cusip] && !issuerNames[row.issuerName] && base===base.toUpperCase())base=base.toLocaleLowerCase('fr-FR').replace(/\b\p{L}/gu,c=>c.toLocaleUpperCase('fr-FR'))
   let name=base.replace(/ \([A-Z0-9*@#]{9}\)$/,'')
-    .replace(/\b(?:Technologies|Corporation|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co|Del|New|Plc)\b\.?/gi,'').replace(/Occidental Pete/i,'Occidental').replace(/Moodys/i,'Moody’s').replace(/Berkshire Hathaway/i,'Berkshire').replace(/^[,\s]+|[,&\s]+$/g,'').replace(/\s+/g,' ').trim()
+    .replace(/\b(?:Technologies|Corporation|Incorporated|International|Limited|Holdings|Hldgs?|Group|Corp|Inc|Ltd|Co|Del|New|Plc)\b\.?/gi,'').replace(/Occidental Pete/i,'Occidental').replace(/Moodys/i,'Moody’s').replace(/Berkshire Hathaway/i,'Berkshire').replace(/^[,\s]+|[,&\s]+$/g,'').replace(/\s+/g,' ').trim()
   // Preserve an explicit class discriminator; never merge securities to save space.
   if(distinct) {
     const cls=row.shareClass?.match(/(?:CL|CLASS|SER|SERIES)\s+([A-Z])\b/i)?.[1]
@@ -73,20 +73,23 @@ export function publicationPlan(portfolio) {
   if (!(total > 0)) throw new Error('Total des positions absent.')
   const sorted = colorPositions([...holdings].sort((a,b) => b.value - a.value))
   let best
-  const capacity=Math.floor(2*Math.PI*POSTER.badgeOrbit/(POSTER.badgeRadius*2+7))
-  // Capacity comes from the uniform circle badges and the available perimeter.
-  // Every admissible position remains in the data and the detailed exports.
+  // Editorial spacing budget: each badge and one large name share the collar.
+  // This adapts to measured names, rather than imposing a limit on holdings/exports.
+  const nameWidths=sorted.slice(0,12).map(r=>Math.min(220,measure(shortPosition(r),POSTER.labelSize))).sort((a,b)=>a-b)
+  const nameSpace=nameWidths[Math.floor(nameWidths.length/2)]*.65 // names may occupy two generous lines
+  const slots=Math.floor(2*Math.PI*POSTER.badgeOrbit/(POSTER.badgeRadius*2+nameSpace+16))
+  const capacity=sorted.length>slots?slots-1:slots
   for(let n=Math.min(sorted.length,capacity);n>=1&&!best;n--) {
-    const selected=sorted.slice(0,n).map(r=>({...r,label:shortPosition(r),weight:r.value/total}))
+    const selected=sorted.slice(0,n).map(r=>({...r,label:shortPosition(r),visualLabel:shortPosition(r),weight:r.value/total}))
     const rest=sorted.slice(n)
-    if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:`Autres · ${rest.length} positions`,other:true,ticker:'',currency:portfolio.snapshot.currency,unit:1,count:rest.length,value,weight:value/total,color:'#f4d539'})}
+    if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:`Autres · ${rest.length} positions`,visualLabel:'Autres',other:true,ticker:'',currency:portfolio.snapshot.currency,unit:1,count:rest.length,value,weight:value/total,color:'#f4d539'})}
     if(new Set(selected.map(r=>r.color)).size!==selected.length)continue
     let layout=null
     const other=selected.find(r=>r.other)
     const base=other?-Math.PI/2-Math.PI*2*(1-other.weight)-Math.PI*other.weight:-80*Math.PI/180
     const rotations=[base,...Array.from({length:16},(_,i)=>base+(i%2?1:-1)*Math.ceil((i+1)/2)*Math.PI/36),...Array.from({length:36},(_,i)=>(-80+i*10)*Math.PI/180)]
     for(const rotation of rotations) {
-      const candidate=arrangeOrbit(selected,rotation,portfolio.snapshot.currency,measure(portfolioOwner(portfolio),60)>980?260:202)
+      const candidate=arrangeOrbit(selected,rotation,measure(portfolioOwner(portfolio),60)>980?230:POSTER.top)
       if(candidate){layout=candidate;break}
     }
     if(layout)best={entries:layout.entries,total,currency:portfolio.snapshot.currency,hiddenCount:rest.length}

@@ -40,10 +40,12 @@ try {
       if(img.width!==1080||img.height!==1350)throw Error('Dimensions')
       const plan=publicationPlan(portfolio),tweet=buildTweet(portfolio)
       const named=plan.entries.filter(r=>!r.other),coverage=named.reduce((sum,r)=>sum+r.value,0)/plan.total
-      if(editorialSeries(portfolio).coverage<.5){
-        if(!boxes.some(b=>b.text.includes(`${named.length} positions affichées`)) || !boxes.some(b=>b.text.includes(weightLabel(coverage))))throw Error('Main coverage must describe the actually named positions')
-        if(boxes.some(b=>/premières/.test(b.text)))throw Error('Editorial coverage leaked into main image')
-      }
+      if(boxes.some(b=>/Principales positions|premières|positions affichées|^Autres ·|^Épargnant libre ·/.test(b.text)))throw Error('Technical annotation leaked into summary')
+      if(!boxes.some(b=>/^Portefeuille · T[1-4] \d{4}$/.test(b.text)))throw Error('Actual quarter absent')
+      if(boxes.some(b=>/\$US|€/.test(b.text)&&!b.text.startsWith('Valeur déclarée :')))throw Error('Individual monetary amount leaked into summary')
+      if(plan.hiddenCount&&!boxes.some(b=>b.text==='Autres'))throw Error('Simple Other label absent')
+      if(!boxes.some(b=>b.text==='Épargnant libre'))throw Error('Simple signature absent')
+      for(const entry of named)if(entry.box.lines.some(line=>line.length===1))throw Error('Isolated letter')
       for(const r of plan.entries)if(!tweet.includes(r.label))throw Error('Text/image mismatch')
       return {id,status:'ready',png,entries:plan.entries.map(r=>({label:r.label,value:r.value,weight:r.weight,other:r.other||false})),total:plan.total,boxes}
     },{payload,id})
