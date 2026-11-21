@@ -144,10 +144,11 @@ export async function renderPortfolioImage(portfolio) {
     const logo=transparentLogo(logos[i].image)
     if(logo&&!e.other) {
       const image=logo.image,ratio=image.width/image.height
+      const compact = ratio >= .5 && ratio <= 2.5
       let placement=null
-      for(const width of [...(ratio>8?[390,360,330,300]:[]),270,240,220,200,190,175,160,145,130,115,100,85,70,60,52,46]) {
+      for(const width of [...(ratio>8?[390,360,330,300]:[]),270,240,220,200,190,175,160,145,130,115,100,85,70,60,52,46,...(compact?[39,34,30]:[])]) {
         const k=Math.min(width/image.width,150/image.height)
-        if(image.width*k<46||image.height*k<(ratio>8?15:23))continue
+        if(image.width*k<(compact?30:46)||image.height*k<(ratio>8?15:compact?19:23))continue
         logoSearch: for(const r of [245,270,295,320,345,360])for(const turn of [0,-.08,.08,-.16,.16,-.24,.24,-.32,.32,-e.weight*2,e.weight*2,-e.weight*2.6,e.weight*2.6])for(const direction of [0,1,2]) {
           let a=direction?e.mid+turn+(direction===2?Math.PI/2:0):0;if(direction&&Math.cos(a)<0)a+=Math.PI
           const c=Math.cos(a),sn=Math.sin(a),x=cx+Math.cos(e.mid+turn)*r,y=cy+Math.sin(e.mid+turn)*r
