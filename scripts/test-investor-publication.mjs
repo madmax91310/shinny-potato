@@ -19,14 +19,11 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
     assert.equal(entry.weight,entry.value/plan.total)
     assert(Math.abs((entry.end-entry.start)/(2*Math.PI)-entry.weight)<1e-12)
     const b=entry.box
-    const ex=Math.max(b.x,Math.min(entry.badge.x,b.x+b.width)),ey=Math.max(b.y,Math.min(entry.badge.y,b.y+b.height))
-    assert(Math.hypot(ex-entry.badge.x,ey-entry.badge.y)-entry.badge.radius<24 || entry.leader?.length>=2,'A displaced label must retain an unambiguous route')
     assert(b.x>=20 && b.x+b.width<=1060 && b.y>=POSTER.top && b.y+b.height<=POSTER.bottom)
-    assert.equal(entry.badge.radius,POSTER.badgeRadius)
+    if (entry.leader) assert.deepEqual(entry.leader[0], entry.anchor)
     for(const next of plan.entries)if(next!==entry){
       const c=next.box
       assert(b.x+b.width<=c.x || c.x+c.width<=b.x || b.y+b.height<=c.y || c.y+c.height<=b.y,'Label collision')
-      assert(Math.hypot(entry.badge.x-next.badge.x,entry.badge.y-next.badge.y)>=2*POSTER.badgeRadius,'Badge collision')
     }
   }
   const tweet=buildTweet(portfolio)
@@ -107,39 +104,39 @@ for(const issuerName of ['MOODYS CORP','CHUBB LIMITED','OCCIDENTAL PETE CORP','V
   assert.equal(createHash('sha256').update(readFileSync(`public/asset-art/${source.file}`)).digest('hex'),source.sha256)
 }
 
-// Regression: the old straight Moody's leader crossed Chubb's two text lines.
-const {leaderPath}=await import('../src/pages/investor-portfolio/leader-layout.js')
-const moody={badge:{x:164,y:584,radius:50},box:{x:20,y:332,width:181,height:80}}
-const chubb={badge:{x:141,y:692,radius:50},box:{x:20,y:440,width:150,height:80}}
-const route=leaderPath(moody,[moody,chubb],POSTER)
-assert(route?.length>=3,'Route around the intervening name')
-for(let i=1;i<route.length;i++) {
-  const a=route[i-1],b=route[i]
-  // Exact intersection with the vertical span occupied by the intervening text.
-  const lo=Math.max(0,Math.min((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
-  const hi=Math.min(1,Math.max((440-a.y)/(b.y-a.y),(520-a.y)/(b.y-a.y)))
-  if(lo<hi)for(const t of [lo,(lo+hi)/2,hi])assert(a.x+(b.x-a.x)*t<20 || a.x+(b.x-a.x)*t>170)
+const marks = JSON.parse(readFileSync('public/asset-art/investor-logos/sources.json'))
+const registeredCusips = new Set()
+for (const [id, mark] of Object.entries(marks)) {
+  assert.equal(createHash('sha256').update(readFileSync(`public/asset-art/${mark.file}`)).digest('hex'), mark.sha256)
+  for (const cusip of mark.cusips) {
+    assert.match(cusip, /^[A-Z0-9*@#]{9}$/)
+    assert(!registeredCusips.has(cusip), `Multiple investor marks for ${cusip}`)
+    registeredCusips.add(cusip)
+    assert.equal(logoIdentity({ cusip }).id, id)
+  }
 }
 
 assert.equal(shortPosition({displayLabel:'TSMC',issuerName:'TAIWAN SEMICONDUCTOR'}),'TSMC')
 assert.equal(shortPosition({displayLabel:'Liberty Live Group I (53033H101)',issuerName:'LIBERTY LIVE GROUP INC',cusip:'53033H101',shareClass:'COM SER A'}),'Liberty Live A')
 
-// The editorial selection remains contiguous and finite, independently of archive size.
-const {editorialSeries}=await import('../src/pages/investor-portfolio/publication.js')
+// Qualify every live portfolio and reconcile the single editorial image.
 const {INVESTORS}=await import('../src/pages/investor-portfolio/data.js')
-for(const [slug] of INVESTORS){
-  const p=normalizePortfolio(JSON.parse(readFileSync(`public/data/investors/${slug}.json`)))
-  if(p.problem){assert.throws(()=>editorialSeries(p));continue}
-  const series=editorialSeries(p),rows=[...p.holdings].sort((a,b)=>b.value-a.value)
-  assert(series.pages.length>=1&&series.pages.length<=4)
-  assert.equal(series.coverage,rows.slice(0,series.topCount).reduce((s,r)=>s+r.value,0)/p.total)
-  const named=series.main.entries.filter(r=>!r.other),next=series.pages.slice(1).flatMap(page=>page.rows)
-  assert.deepEqual([...named,...next].map(r=>r.cusip),rows.slice(0,series.coveredCount).map(r=>r.cusip))
-  assert.equal(series.main.hiddenCount,rows.length-named.length)
-  if(series.main.hiddenCount)assert.equal(series.main.entries.find(r=>r.other).label,`Autres · ${series.main.hiddenCount} positions`)
-  assert(next.every(r=>r.value/p.total>0))
+for (const [slug] of INVESTORS) {
+  const p = normalizePortfolio(JSON.parse(readFileSync(`public/data/investors/${slug}.json`)))
+  if (p.problem) {
+    assert.throws(() => publicationPlan(p))
+    continue
+  }
+  const plan = publicationPlan(p)
+  const sorted = [...p.holdings].sort((a,b) => b.value - a.value)
+  const named = plan.entries.filter(row => !row.other)
+  const other = plan.entries.find(row => row.other)
+  assert.deepEqual(named.map(row => row.cusip), sorted.slice(0, named.length).map(row => row.cusip))
+  assert.equal(plan.total, p.total)
+  assert.equal(plan.hiddenCount, sorted.length - named.length)
+  assert.equal(other?.value || 0, sorted.slice(named.length).reduce((sum, row) => sum + row.value, 0))
+  if (other) assert.equal(other.label, 'Autres')
 }
-
 // Standalone PNGs retain machine-readable credits, with valid framing and CRC.
 const {pngCredits}=await import('../src/pages/investor-portfolio/png-credits.js')
 const png='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGBgAAAABQABpfZFQAAAAABJRU5ErkJggg=='
