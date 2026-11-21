@@ -21,10 +21,16 @@ export async function entityLogo(slug) {
   return { image, credit: image ? credit : null }
 }
 
+const investorMarksByCusip = new Map(Object.entries(investorLogos).flatMap(([id, mark]) =>
+  mark.cusips.map(cusip => [cusip, { id, ...mark }])
+))
+
 // Exact reviewed aliases only. No fuzzy names or globally ambiguous tickers.
 export function logoIdentity(row) {
-  const local=Object.entries(investorLogos).find(([,v])=>v.cusips.includes(row.cusip) || v.aliases.includes(row.issuerName))
-  if(local)return {id:local[0],...local[1]}
+  const exact = investorMarksByCusip.get(row.cusip)
+  if (exact) return exact
+  const local = Object.entries(investorLogos).find(([, mark]) => mark.aliases.includes(row.issuerName))
+  if (local) return { id: local[0], ...local[1] }
   const reviewed = {
     '19260Q107': 'coinbase',
     '88025U109': '10x-genomics',

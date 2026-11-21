@@ -63,3 +63,11 @@ La vérification primaire de T3 2026 a été relancée pour les deux profils. Le
 
 - Duquesne Family Office LLC, CIK 1536411, dépôt du 16 novembre 2026. La table primaire totalise 4 470 867 USD et le fournisseur indique 4 470 867 000 USD. [Déclaration SEC](https://www.sec.gov/Archives/edgar/data/1536411/000153641126000011/)
 - Baupost Group LLC/MA, CIK 1061768, dépôt du 13 novembre 2026. La table primaire totalise 5 045 853 USD et le fournisseur indique 5 045 853 000 USD. [Déclaration SEC](https://www.sec.gov/Archives/edgar/data/1061768/000106176826000015/)
+
+## Complément de contrôle des marques et des portraits
+
+L’inspection des portraits à taille native a conduit à reprendre deux contours sur les photographies déjà qualifiées. Le nouveau masque de Carl Icahn conserve la veste laissée transparente par le détourage automatique. Le nouveau masque de Prem Watsa écarte le microphone, en conservant le reste du sujet. Chaque masque est lié par empreinte au fichier source. Les originaux et les dérivés antérieurs restent disponibles.
+
+Le registre a été étendu avec des marques relevées sur les sites des émetteurs et avec des ressources officielles déjà présentes dans le dépôt. Chaque nouvelle association repose sur le CUSIP exact. La revue visuelle a écarté les ressources génériques ou correspondant à une filiale ou à un partenaire. Les secteurs trop fins regroupent ou présentent leurs marques selon la place disponible. La présence d’un logo reste subordonnée à l’identification de l’émetteur et à la lisibilité du PNG.
+
+Le workflow quotidien de collecte 13F reste la source automatique des 28 profils. Il publie les observations qualifiées et conserve le dernier relevé en cas d’échec. Les deux conflits d’unité sont signalés séparément. [Workflow 13F](https://github.com/madmax91310/shinny-potato/actions/workflows/update-investor-13f.yml)
