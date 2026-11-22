@@ -1,185 +1,276 @@
+import { getAsset } from '../../data/portfolio-assets.js'
 import { dataLabels } from './compact.js'
-import { performanceYears, computeYearlyPerf } from './performance.js'
-import { annualizedReturn, formatPerformance as percent } from './performance.js'
+import { annualizedReturn, computeYearlyPerf, formatPerformance, performanceYears } from './performance.js'
 export { annualizedReturn } from './performance.js'
 
-const PALETTE = ['#e3bf7a', '#afc9df', '#68c3aa', '#9dabc9', '#c28c78', '#9eb778', '#bd8eaf', '#79adba', '#cbab8f', '#a7aaa5']
-const WHITE = '#f5f2e9'
-const MUTED = '#a8b3b8'
+const WIDTH = 1080
+const MARGIN = 52
+const PAPER = '#f8f2e7'
+const INK = '#1c2635'
+const CREAM = '#fff2dc'
+const GOLD = '#f4d18d'
+const POSITIVE = '#85e5ae'
+const NEGATIVE = '#ff958e'
+const PALETTE = ['#244ca0', '#216962', '#c58e2b', '#654682', '#a84636', '#586e38', '#81554c', '#42748a', '#835a16', '#58354d']
+const TAU = Math.PI * 2
 const weightLabel = value => `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
+const isIndicative = asset => dataLabels(asset).includes('Historique reconstitué') || ['fonds_euros', 'scpi'].includes(asset.id)
 
-
-function mix(hex, target, amount) {
-  const rgb = hex.match(/\w\w/g).map(value => parseInt(value, 16))
-  return `rgb(${rgb.map(value => Math.round(value + (target - value) * amount)).join(',')})`
+function font(ctx, size, weight = 700) {
+  ctx.font = `${weight} ${size}px Arial, sans-serif`
 }
 
-function metal(ctx, x, y, width, height, color) {
-  const gradient = ctx.createLinearGradient(x, y, x + width, y + height)
-  for (const [at, target, amount] of [[0, 0, .42], [.2, 255, .18], [.39, 255, .62], [.47, 255, .28], [.64, 0, .12], [.86, 255, .25], [1, 0, .32]]) {
-    gradient.addColorStop(at, mix(color, target, amount))
-  }
-  return gradient
-}
-
-function label(ctx, value, x, y, size, color = WHITE, align = 'left', bold = true, font = 'Arial, sans-serif') {
-  ctx.font = `${bold ? '700' : '400'} ${size}px ${font}`
+function label(ctx, text, x, y, size, color, align = 'center', weight = 700) {
+  font(ctx, size, weight)
   ctx.textAlign = align
+  ctx.textBaseline = 'middle'
   ctx.fillStyle = color
-  ctx.fillText(value, x, y)
+  ctx.fillText(text, x, y)
 }
 
-function fitSize(ctx, text, width, initial = 44) {
-  let size = initial
-  ctx.font = `700 ${size}px Arial, sans-serif`
-  while (size > 16 && ctx.measureText(text).width > width) {
-    size--
-    ctx.font = `700 ${size}px Arial, sans-serif`
-  }
+function fitSize(ctx, text, width, max, weight = 700) {
+  let size = max
+  font(ctx, size, weight)
+  while (size > 12 && ctx.measureText(text).width > width) font(ctx, --size, weight)
   return size
 }
 
-function wrap(ctx, name, width, size) {
-  ctx.font = `700 ${size}px Arial, sans-serif`
-  const lines = ['']
-  for (const word of name.split(/\s+/)) {
-    const last = lines.length - 1
-    const candidate = `${lines[last]} ${word}`.trim()
-    if (lines[last] && ctx.measureText(candidate).width > width) lines.push(word)
-    else lines[last] = candidate
+function wrap(ctx, text, width, size) {
+  font(ctx, size)
+  const lines = []
+  let line = ''
+  for (const word of text.trim().split(/\s+/)) {
+    const next = line ? `${line} ${word}` : word
+    if (line && ctx.measureText(next).width > width) {
+      lines.push(line)
+      line = ''
+    }
+    if (ctx.measureText(word).width > width) {
+      for (const character of word) {
+        if (line && ctx.measureText(line + character).width > width) {
+          lines.push(line)
+          line = ''
+        }
+        line += character
+      }
+    } else {
+      line = line ? `${line} ${word}` : word
+    }
   }
+  if (line) lines.push(line)
   return lines
 }
 
-function rule(ctx, x, y, width) {
-  const gradient = ctx.createLinearGradient(x, y, x + width, y)
-  gradient.addColorStop(0, '#655840')
-  gradient.addColorStop(.48, '#c2aa7c')
-  gradient.addColorStop(1, '#484034')
-  ctx.fillStyle = gradient
-  ctx.fillRect(x, y, width, 1)
+function tint(hex, target, amount) {
+  const rgb = hex.match(/[a-f0-9]{2}/gi).map(part => parseInt(part, 16))
+  return `rgb(${rgb.map(value => Math.round(value + (target - value) * amount)).join(',')})`
 }
 
-function ringArc(ctx, x, y, radius, start, end, width, color) {
-  ctx.beginPath()
-  ctx.arc(x, y, radius, start, end)
-  ctx.strokeStyle = color
-  ctx.lineWidth = width
-  ctx.stroke()
-}
-
-function donut(ctx, selection, cx, cy) {
-  const radius = 229, thickness = 110
+function makeSegments(selection) {
   const total = selection.reduce((sum, asset) => sum + asset.pct, 0)
-  ctx.save()
-  ctx.shadowColor = '#000'
-  ctx.shadowBlur = 26
-  ctx.shadowOffsetY = 12
-  ringArc(ctx, cx, cy, radius, 0, Math.PI * 2, thickness, '#111a1b')
-  ctx.restore()
-  for (let depth = 28; depth >= 0; depth--) {
-    let angle = -Math.PI / 2
-    selection.forEach((asset, index) => {
-      const end = angle + asset.pct / total * Math.PI * 2
-      const gap = Math.min(.006, (end - angle) / 8)
-      const color = PALETTE[index % PALETTE.length]
-      const side = ctx.createLinearGradient(cx - radius, cy, cx + radius, cy)
-      side.addColorStop(0, mix(color, 0, .75))
-      side.addColorStop(.25, color)
-      side.addColorStop(.4, mix(color, 0, .6))
-      side.addColorStop(1, mix(color, 0, .8))
-      ringArc(ctx, cx, cy + depth, radius, angle + gap, end - gap, thickness,
-        depth ? side : metal(ctx, cx - radius, cy - radius, radius * 2, radius * 2, color))
-      if (!depth) {
-        ringArc(ctx, cx, cy, radius + thickness / 2 - 2, angle + gap, end - gap, 2, mix(color, 255, .7))
-        ringArc(ctx, cx, cy, radius - thickness / 2 + 2, angle + gap, end - gap, 2, mix(color, 0, .48))
-      }
-      angle = end
-    })
-  }
-  label(ctx, String(selection.length), cx, cy + 7, 99, WHITE, 'center', false, 'Georgia, serif')
-  label(ctx, selection.length === 1 ? 'ACTIF' : 'ACTIFS', cx, cy + 52, 23, MUTED, 'center', false)
+  let start = -65 * Math.PI / 180
+  return selection.map((asset, index) => {
+    const sweep = asset.pct / total * TAU
+    const end = start + sweep
+    const gap = selection.length === 1 ? 0 : Math.min(.015, sweep / 8)
+    const segment = {
+      asset, start: start + gap, end: end - gap,
+      middle: (start + end) / 2, color: PALETTE[index % PALETTE.length],
+      textColor: index % PALETTE.length === 2 ? '#282119' : '#fff9ed',
+      name: asset.name + (isIndicative(asset) ? ' *' : ''),
+      weight: weightLabel(asset.pct),
+    }
+    start = end
+    return segment
+  })
 }
 
-// Draw every chart from the actual portfolio. Material effects never change angles,
-// bar scales, returns or names. More holdings expand the legend instead of clipping it.
-export function renderPortfolioImage(portfolio, background) {
-  const selection = portfolio.selection.filter(asset => asset.pct > 0).slice().sort((a, b) => b.pct - a.pct)
+function point(cx, cy, radius, angle) {
+  return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)]
+}
+
+function ringPath(ctx, segment, cx, cy, inner, outer) {
+  ctx.beginPath()
+  ctx.arc(cx, cy, outer, segment.start, segment.end)
+  ctx.arc(cx, cy, inner, segment.end, segment.start, true)
+  ctx.closePath()
+}
+
+function weightPosition(ctx, segment, cx, cy, inner, outer) {
+  const middleRadius = (inner + outer) / 2
+  const halfAngle = (segment.end - segment.start) / 2
+  for (const radius of [middleRadius, middleRadius + 21, middleRadius - 19]) {
+    const [x, y] = point(cx, cy, radius, segment.middle)
+    for (let size = Math.min(58, Math.round(35 + segment.asset.pct)); size >= 26; size -= 2) {
+      font(ctx, size)
+      const width = ctx.measureText(segment.weight).width
+      const corners = [-1, 1].flatMap(dx => [-1, 1].map(dy => [x - cx + dx * (width / 2 + 4), y - cy + dy * (size * .38 + 4)]))
+      if (corners.every(([px, py]) => {
+        const radius = Math.hypot(px, py)
+        const angle = Math.atan2(py, px) - segment.middle
+        return radius > inner + 4 && radius < outer - 4 &&
+          Math.abs(Math.atan2(Math.sin(angle), Math.cos(angle))) < halfAngle
+      })) return { x, y, size }
+    }
+  }
+  return null
+}
+
+function drawDonut(ctx, segments, cx, cy, inner, outer) {
+  for (const segment of segments) {
+    ringPath(ctx, segment, cx, cy + 8, inner, outer)
+    ctx.fillStyle = tint(segment.color, 0, .33)
+    ctx.fill()
+  }
+  for (const segment of segments) {
+    const material = ctx.createRadialGradient(cx, cy, inner, cx, cy, outer)
+    material.addColorStop(0, tint(segment.color, 0, .13))
+    material.addColorStop(.18, segment.color)
+    material.addColorStop(.93, tint(segment.color, 255, .07))
+    material.addColorStop(1, tint(segment.color, 255, .22))
+    ringPath(ctx, segment, cx, cy, inner, outer)
+    ctx.fillStyle = material
+    ctx.fill()
+    const position = segment.weightPosition
+    if (position) label(ctx, segment.weight, position.x, position.y, position.size, segment.textColor)
+  }
+}
+
+function calloutRows(ctx, segments, cx, cy, outer) {
+  const maxSize = segments.length >= 7 ? 27 : 30
+  return [-1, 1].map(side => {
+    const rows = segments.filter(segment => Math.sign(Math.cos(segment.middle)) === side)
+      .map(segment => {
+        const [x, y] = point(cx, cy, outer + 6, segment.middle)
+        const size = Math.max(22, Math.min(...segment.name.split(/\s+/).map(word => fitSize(ctx, word, 224, maxSize))))
+        const lines = wrap(ctx, segment.name, 224, size)
+        if (!segment.weightPosition) lines.push(segment.weight)
+        return { segment, lines, x, y, size, height: lines.length * (size + 5), center: y }
+      }).sort((a, b) => a.y - b.y)
+    return { side, rows }
+  })
+}
+
+function drawCallouts(ctx, sides) {
+  const top = 38, bottom = 678, gap = 20
+  for (const { side, rows } of sides) {
+    let edge = top
+    for (const row of rows) {
+      row.center = Math.max(row.y, edge + row.height / 2)
+      edge = row.center + row.height / 2 + gap
+    }
+    edge = bottom
+    for (const row of rows.slice().reverse()) {
+      row.center = Math.min(row.center, edge - row.height / 2)
+      edge = row.center - row.height / 2 - gap
+    }
+    for (const { segment, lines, size, x, y, center } of rows) {
+      const end = side < 0 ? 271 : 809
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      const elbow = side < 0 ? Math.max(end, x - 15) : Math.min(end, x + 15)
+      ctx.lineTo(elbow, center)
+      ctx.lineTo(end, center)
+      ctx.strokeStyle = segment.color
+      ctx.lineWidth = 2
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.arc(end, center, 3, 0, TAU)
+      ctx.fillStyle = segment.color
+      ctx.fill()
+      lines.forEach((line, i) => label(ctx, line, end + side * 13, center + (i - (lines.length - 1) / 2) * (size + 5), size, INK, side < 0 ? 'right' : 'left'))
+    }
+  }
+}
+
+function legendRows(ctx, segments) {
+  return segments.map(segment => {
+    const lines = wrap(ctx, segment.name, 294, 27)
+    return { segment, lines, height: Math.max(47, lines.length * 32 + 9) }
+  })
+}
+
+function drawLegend(ctx, rows, top) {
+  for (let i = 0; i < rows.length; i += 2) {
+    rows.slice(i, i + 2).forEach(({ segment, lines }, column) => {
+      const x = MARGIN + column * 493
+      ctx.fillStyle = segment.color
+      ctx.fillRect(x, top + 6, 8, 28)
+      lines.forEach((line, index) => label(ctx, line, x + 20, top + 20 + index * 32, 27, INK, 'left'))
+      label(ctx, segment.weight, x + 463, top + 21, 33, INK, 'right')
+    })
+    top += Math.max(rows[i].height, rows[i + 1]?.height ?? 0)
+  }
+}
+
+function drawPerformance(ctx, perf, top, height, indicative) {
+  const background = ctx.createLinearGradient(0, top, WIDTH, height)
+  background.addColorStop(0, '#1b2843')
+  background.addColorStop(1, '#131d32')
+  ctx.fillStyle = background
+  ctx.fillRect(0, top, WIDTH, height - top)
+  ctx.fillStyle = '#c6a66d'
+  ctx.fillRect(0, top, WIDTH, 2)
+  const years = performanceYears(perf)
+  const columns = 3, left = 38, width = 726
+  const rowCount = Math.max(1, Math.ceil(years.length / columns))
+  const divider = 782
+  ctx.fillStyle = '#576277'
+  ctx.fillRect(divider, top + 82, 1, rowCount * 174)
+  for (let row = 1; row < rowCount; row++) {
+    ctx.fillRect(left, top + 82 + row * 174, width, 1)
+  }
+  years.forEach((year, index) => {
+    const row = Math.floor(index / columns)
+    const count = Math.min(columns, years.length - row * columns)
+    const cellWidth = width / count
+    const x = left + (index % columns + .5) * cellWidth
+    const y = top + 103 + row * 174
+    const value = perf[year]
+    const text = Number.isFinite(value) ? formatPerformance(value) : 'n.d.'
+    const color = !Number.isFinite(value) || value === 0 ? CREAM : value > 0 ? POSITIVE : NEGATIVE
+    label(ctx, String(year), x, y, 33, CREAM)
+    label(ctx, text, x, y + 77, fitSize(ctx, text, cellWidth - 17, 72, 800), color, 'center', 800)
+  })
+  if (!years.length) label(ctx, 'Performances indisponibles', left + width / 2, top + 155, 33, CREAM)
+
+  const annual = annualizedReturn(perf)
+  const result = annual === null ? 'n.d.' : formatPerformance(annual)
+  const resultTop = top + 112 + (rowCount - 1) * 87
+  label(ctx, result, 925, resultTop, fitSize(ctx, result, 266, 96, 800), annual !== null && annual < 0 ? NEGATIVE : GOLD, 'center', 800)
+  label(ctx, 'Rendement annualisé', 925, resultTop + 75, 24, CREAM)
+  if (indicative) label(ctx, '* Historique indicatif', MARGIN, height - 120, 25, CREAM, 'left')
+  ctx.fillStyle = '#847359'
+  ctx.fillRect(MARGIN, height - 98, WIDTH - MARGIN * 2, 1)
+  label(ctx, 'Épargnant Libre', WIDTH / 2, height - 49, 30, CREAM)
+}
+
+export function renderPortfolioImage(portfolio) {
+  const selection = portfolio.selection.filter(asset => asset.pct > 0)
+    .map(asset => asset.calendarReturns || asset.r ? asset : { ...getAsset(asset.id), ...asset })
+    .sort((a, b) => b.pct - a.pct)
+  const segments = makeSegments(selection)
+  const perf = computeYearlyPerf(selection)
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
-  const nameWidth = 690, nameSize = 49
-  const isIndicative = asset => dataLabels(asset).includes('Historique reconstitué') || ['fonds_euros', 'scpi'].includes(asset.id)
-  const rows = selection.map(asset => ({ asset, lines: wrap(ctx, asset.name + (isIndicative(asset) ? ' *' : ''), nameWidth, nameSize) }))
-  rows.forEach(row => { row.height = Math.max(159, row.lines.length * 57 + 65) })
-  const legendHeight = rows.reduce((sum, row) => sum + row.height, 0)
-  const upperHeight = Math.max(664, legendHeight + 120)
-  const height = upperHeight + 576
-  canvas.width = 2700
-  canvas.height = Math.ceil(height * 1.5)
-  ctx.scale(1.5, 1.5)
-
-  const bg = ctx.createLinearGradient(0, 0, 1800, height)
-  bg.addColorStop(0, '#152b3a'); bg.addColorStop(1, '#060e19')
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, 1800, height)
-  if (background) ctx.drawImage(background, 0, 0, 1800, height)
-  ctx.fillStyle = 'rgba(3,11,21,.28)'; ctx.fillRect(0, 0, 1800, height)
-
-  const cy = upperHeight / 2
-  donut(ctx, selection, 365, cy - 12)
-  let rowY = (upperHeight - legendHeight) / 2
-  rows.forEach(({ asset, lines, height: rowHeight }, index) => {
-    const color = PALETTE[index % PALETTE.length]
-    const center = rowY + rowHeight / 2
-    ctx.fillStyle = metal(ctx, 750, center - 38, 7, 75, color)
-    ctx.beginPath(); ctx.roundRect(750, center - 38, 7, 75, 3); ctx.fill()
-    const first = center - (lines.length - 1) * 28.5 + 17
-    lines.forEach((line, lineIndex) => label(ctx, line, 792, first + lineIndex * 57, nameSize))
-    label(ctx, weightLabel(asset.pct), 1707, center + 20, 65, metal(ctx, 1510, center - 45, 200, 80, color), 'right', false, 'Georgia, serif')
-    if (index < rows.length - 1) rule(ctx, 785, rowY + rowHeight, 920)
-    rowY += rowHeight
-  })
-
-  rule(ctx, 70, upperHeight, 1660)
-  label(ctx, 'Performances annuelles simulées', 70, upperHeight + 61, 42, '#dbbf87', 'left', false, 'Georgia, serif')
-  const plotLeft = 80, plotWidth = 1240, plotTop = upperHeight + 137
-  const halfHeight = 135, baseline = plotTop + halfHeight
-  const perf = computeYearlyPerf(selection)
-  const YEARS = performanceYears(perf)
-  const finite = YEARS.map(year => perf[year]).filter(Number.isFinite)
-  const maxAbs = Math.max(1, ...finite.map(Math.abs))
-  rule(ctx, plotLeft, baseline, plotWidth)
-  YEARS.forEach((year, index) => {
-    const center = plotLeft + plotWidth * (index + .5) / YEARS.length
-    const value = perf[year]
-    const positive = value >= 0
-    const color = !Number.isFinite(value) || value === 0 ? MUTED : positive ? '#80dfb3' : '#efa28b'
-    if (Number.isFinite(value) && value !== 0) {
-      const barHeight = Math.abs(value) / maxAbs * halfHeight
-      const top = positive ? baseline - barHeight : baseline
-      const width = Math.min(96, plotWidth / YEARS.length * .55)
-      const material = ctx.createLinearGradient(center - width / 2, top, center + width / 2, top)
-      for (const [at, target, amount] of [[0, 0, .35], [.12, 255, .3], [.3, 255, .12], [.58, 0, .14], [.86, 255, .14], [1, 0, .4]]) material.addColorStop(at, mix(color, target, amount))
-      ctx.fillStyle = material; ctx.fillRect(center - width / 2, top, width, barHeight)
-      ctx.strokeStyle = mix(color, 255, .25); ctx.lineWidth = 1
-      ctx.strokeRect(center - width / 2, top, width, barHeight)
-      ctx.fillStyle = mix(color, 255, .6)
-      ctx.fillRect(center - width / 2 + 1, positive ? top : top + barHeight - 2, width - 2, 2)
-    }
-    const text = Number.isFinite(value) ? percent(value) : 'n.d.'
-    const size = fitSize(ctx, text, plotWidth / YEARS.length - 12, 36)
-    const offset = Number.isFinite(value) ? Math.abs(value) / maxAbs * halfHeight : 0
-    label(ctx, text, center, positive || !Number.isFinite(value) ? baseline - offset - 16 : baseline + offset + 38, size, color, 'center')
-    label(ctx, String(year), center, upperHeight + 482, 40, '#e8d7b3', 'center', false)
-  })
-  ctx.fillStyle = '#75654e'; ctx.fillRect(1390, upperHeight + 106, 1, 334)
-  const annualized = annualizedReturn(perf)
-  const result = annualized === null ? 'n.d.' : percent(annualized)
-  const resultColor = annualized === null ? MUTED : annualized < 0 ? '#efa28b' : '#dfbd7b'
-  label(ctx, result, 1570, upperHeight + 266, fitSize(ctx, result, 280, 77), metal(ctx, 1430, upperHeight + 200, 280, 90, resultColor), 'center', false, 'Georgia, serif')
-  label(ctx, 'Annualisé', 1570, upperHeight + 157, 48, WHITE, 'center', false, 'Georgia, serif')
-  label(ctx, `${YEARS[0]}–${YEARS.at(-1)}`, 1570, upperHeight + 316, 40, MUTED, 'center', false)
-  rule(ctx, 70, height - 88, 1660)
-  if (selection.some(isIndicative)) label(ctx, '* historique indicatif', 70, height - 52, 27, MUTED, 'left', false)
-  label(ctx, 'Épargnant Libre', 1730, height - 18, 24, '#dfc390', 'right', false)
+  // The standard layout fits 4:5. A dense allocation grows vertically to keep each name legible.
+  const cx = WIDTH / 2, cy = 372, inner = 126, outer = 259
+  segments.forEach(segment => { segment.weightPosition = weightPosition(ctx, segment, cx, cy, inner, outer) })
+  const sides = calloutRows(ctx, segments, cx, cy, outer)
+  const compact = segments.length <= 8 && sides.every(({ rows }) => rows.reduce((sum, row) => sum + row.height + 20, 0) <= 660)
+  const rows = compact ? [] : legendRows(ctx, segments)
+  let upper = 718
+  if (rows.length) {
+    upper = Math.max(718, 650 + rows.reduce((sum, row, index) => index % 2 ? sum : sum + Math.max(row.height, rows[index + 1]?.height ?? 0), 0))
+  }
+  const extraPerformanceRows = Math.max(0, Math.ceil(performanceYears(perf).length / 3) - 2)
+  canvas.width = WIDTH
+  canvas.height = upper + 632 + extraPerformanceRows * 174
+  ctx.fillStyle = PAPER
+  ctx.fillRect(0, 0, WIDTH, upper)
+  drawDonut(ctx, segments, cx, cy, inner, outer)
+  if (compact) drawCallouts(ctx, sides)
+  else drawLegend(ctx, rows, 627)
+  drawPerformance(ctx, perf, upper, canvas.height, selection.some(isIndicative))
   return canvas
 }

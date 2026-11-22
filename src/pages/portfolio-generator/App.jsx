@@ -14,7 +14,7 @@ import { instrumentOption } from '../../data/asset-selection.js'
 import ReplacementPanel from './ReplacementPanel'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import SettingsDetails from '../../design-system/SettingsDetails'
-import { useMemo, useState, useRef, useCallback, useEffect } from 'react'
+import { useMemo, useState, useRef, useCallback } from 'react'
 import {
   generatePortfolio,
   replacePortfolioAsset,
@@ -29,7 +29,6 @@ import {
 import {ensurePortfolioAssets} from '../../data/portfolio-asset-loader.js'
 import { CATEGORIES, ASSETS, getAsset } from '../../data/portfolio-assets.js'
 import { renderPortfolioImage } from './canvasImage.js'
-import { loadPortfolioBackground } from './background.js'
 import { getLengthStatus } from '../../lib/publication-length.js'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -390,23 +389,20 @@ function GeneratorWorkspace({search}) {
   const current = mode === 'manual' && manualEditing ? null
     : history.findLast(portfolio => portfolio.mode === (mode === 'models' ? 'preset' : mode === 'auto' ? 'auto' : 'manual'))
   const tweetText = useMemo(() => current ? renderTweetText(current) : '', [current])
-  const [background, setBackground] = useState(null)
-  const [imageError, setImageError] = useState('')
   const [imageAttempt, setImageAttempt] = useState(0)
-  useEffect(() => {
-    let active = true
-    setImageError('')
-    loadPortfolioBackground().then(image => { if (active) setBackground(image) })
-      .catch(error => { if (active) setImageError(error.message) })
-    return () => { active = false }
-  }, [imageAttempt])
-  const imageDataUrl = useMemo(() => current && background ? renderPortfolioImage(current, background).toDataURL('image/png') : '', [current, background])
-  const prepareImage = useMemo(() => {
-    // A retry creates a fresh preview request as well as reloading the download.
+  const { imageDataUrl, imageError } = useMemo(() => {
+    // A retry rebuilds the same image for both the preview and the download.
     void imageAttempt
-    if (!current) return undefined
-    return async () => imageDataUrl || renderPortfolioImage(current, await loadPortfolioBackground()).toDataURL('image/png')
-  }, [current, imageDataUrl, imageAttempt])
+    if (!current) return {}
+    try {
+      const url = renderPortfolioImage(current).toDataURL('image/png')
+      if (!url.startsWith('data:image/png;base64,')) throw new Error('Export PNG indisponible')
+      return { imageDataUrl: url }
+    } catch {
+      return { imageError: 'Impossible de préparer le visuel.' }
+    }
+  }, [current, imageAttempt])
+  const prepareImage = useMemo(() => imageDataUrl ? async () => imageDataUrl : undefined, [imageDataUrl])
 
   const handleGenerate = useCallback(
     (riskOverride, profileOverride) => {
