@@ -187,7 +187,7 @@ Couverture : une donnée active peut être conservée malgré un accès désorma
 | Linxea Zen | Apicil Euroflex | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
 | Linxea Zen | Apicil Euro Garanti | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
 | Linxea Vie | Netissima | Sans limite de montant | Souscriptions, versements libres et programmés | 2026-12-31 |
-| Linxea Vie | Eurossima | Fixé par l’assureur, entre 0 et 50000 € l’année de souscription puis entre 0 et 25000 €/an | Versements initiaux, libres et programmés ; année civile | Non publiée |
+| Linxea Vie | Vertessima | Sans limite de montant | Souscriptions, versements libres et programmés | 2026-12-31 |
 | Linxea Avenir 2+ | Suravenir Opportunités 2 | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
 | Linxea Avenir 2+ | Suravenir Rendement 2 | Sans limite de montant, minimum 30 % UC | Souscriptions, versements complémentaires et programmés | Non publiée |
 
