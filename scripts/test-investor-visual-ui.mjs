@@ -1,5 +1,7 @@
 // Real UI downloads for every available investor, against a built or public site.
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
+import { logoIdentity } from '../src/pages/investor-portfolio/media.js'
 import { chromium } from 'playwright'
 import { mkdir,readFile,writeFile } from 'node:fs/promises'
 import { choose } from './card-selection.mjs'
@@ -96,7 +98,18 @@ try {
           assert(overlapX<=2 || overlapY<=2,`${slug}: collision ${box.text} / ${previous.text}`)
         }
       }
-      report.layout={letters:boxes,entries:plan.entries.map(({label,cusip,shareClass,value,weight,other})=>({label,cusip,shareClass,value,weight,other:!!other}))}
+      const entries=[]
+      for (const row of plan.entries) {
+        const identity=logoIdentity(row)
+        const asset=identity?.investorVariant ?? identity
+        if (asset) {
+          const bytes=await readFile(new URL(`../public/asset-art/${asset.file}`,import.meta.url))
+          assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256,`${slug}: empreinte du logo ${row.label}`)
+        }
+        entries.push({label:row.label,cusip:row.cusip,shareClass:row.shareClass,value:row.value,weight:row.weight,other:!!row.other,
+          expectedLogo:asset ? {id:identity.id,source:asset.source,file:asset.file,sha256:asset.sha256} : null})
+      }
+      report.layout={letters:boxes,entries}
     }
     results.push({...report,status:'ready',total:portfolio.total,previewEqualsDownload:true})
    }

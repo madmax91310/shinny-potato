@@ -56,7 +56,8 @@ export function transparentLogo(image) {
   const result=document.createElement('canvas');result.width=Math.max(1,r-l+1);result.height=Math.max(1,b-t+1)
   result.getContext('2d').drawImage(c,l,t,result.width,result.height,0,0,result.width,result.height)
   const rgba=result.getContext('2d').getImageData(0,0,result.width,result.height).data,points=[]
-  for(let y=0;y<result.height;y+=6)for(let xx=0;xx<result.width;xx+=6)if(rgba[(y*result.width+xx)*4+3]>40)points.push([xx-result.width/2,y-result.height/2])
+  const stride = Math.max(1, Math.min(6, Math.floor(Math.min(result.width, result.height) / 16)))
+  for(let y=0;y<result.height;y+=stride)for(let xx=0;xx<result.width;xx+=stride)if(rgba[(y*result.width+xx)*4+3]>40)points.push([xx-result.width/2,y-result.height/2])
   const value={image:result,mono,points};prepared.set(image,value);c.width=c.height=1;return value
 }
 const lightness=color=>{const v=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return v[0]*.2126+v[1]*.7152+v[2]*.0722}
@@ -104,6 +105,7 @@ export async function renderPortfolioImage(portfolio) {
     if(e.weight>=.003&&prior.weight>=.003){ctx.strokeStyle=bg;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx+Math.cos(e.start)*inner,cy+Math.sin(e.start)*inner);ctx.lineTo(cx+Math.cos(e.start)*outer,cy+Math.sin(e.start)*outer);ctx.stroke()}
   })
   const occupied = new Uint8Array(canvas.width * canvas.height)
+  let portraitMask
   if (portrait.image) {
     const image = portrait.image
     const scale = Math.min(455 / image.width, 415 / image.height, portrait.maxPublicationScale || Infinity)
@@ -123,7 +125,7 @@ export async function renderPortfolioImage(portfolio) {
     m.closePath()
     m.clip()
     m.drawImage(image, left, top, image.width * scale, image.height * scale)
-    ctx.drawImage(mask, 0, 0)
+    portraitMask = mask
     const pixels = m.getImageData(0, 0, canvas.width, canvas.height).data
     for (let i = 0; i < occupied.length; i++) if (pixels[i * 4 + 3] > 12) occupied[i] = 1
   } else {
@@ -176,7 +178,15 @@ export async function renderPortfolioImage(portfolio) {
         const {x,y,a,k}=placement,paint=document.createElement('canvas');paint.width=image.width;paint.height=image.height
         const p=paint.getContext('2d');p.drawImage(image,0,0)
         if(logo.mono){p.globalCompositeOperation='source-in';p.fillStyle=!external&&lightness(e.color)<.179?'#fff':'#111';p.fillRect(0,0,paint.width,paint.height)}
-        ctx.save();ctx.translate(x,y);ctx.rotate(a)
+        ctx.save()
+        if (!external) {
+          ctx.beginPath()
+          ctx.arc(cx, cy, outer, e.start, e.end)
+          ctx.arc(cx, cy, inner, e.end, e.start, true)
+          ctx.closePath()
+          ctx.clip()
+        }
+        ctx.translate(x,y);ctx.rotate(a)
         if(!logo.mono&&!external){ctx.shadowColor='rgba(255,255,255,.80)';ctx.shadowBlur=3}
         ctx.drawImage(paint,-image.width*k/2,-image.height*k/2,image.width*k,image.height*k);ctx.restore();paint.width=paint.height=1
         const c=Math.cos(a),sn=Math.sin(a)
@@ -184,6 +194,7 @@ export async function renderPortfolioImage(portfolio) {
       }
     }
   })
+  if (portraitMask) ctx.drawImage(portraitMask, 0, 0)
   for (const entry of plan.entries) {
     if (entry.leader) {
       ctx.strokeStyle = '#5b5b5b'

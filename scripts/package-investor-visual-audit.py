@@ -49,7 +49,12 @@ def main():
                 assert [(r['label'], r['value'], r['weight']) for r in row['layout']['entries']] == [
                     (r['label'], r['value'], r['weight']) for r in details['positions']], row['slug']
                 assert bool(details['portrait']) != row.get('monogram', False), row['slug']
+            by_label = {entry['label']: entry for entry in row.get('layout', {}).get('entries', [])}
             for logo in details['visual']['logos']:
+                if by_label:
+                    expected = by_label[logo['label']]['expectedLogo']
+                    assert logo['id'] == (expected['id'] if expected else None), logo
+                    assert logo['source'] == (expected['source'] if expected else None), logo
                 if logo['status'] == 'load-failed':
                     raise ValueError(f"{row['slug']}: échec de chargement du logo {logo['id']}")
                 if logo['status'] in ('label', 'sector'):
