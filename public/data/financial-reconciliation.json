@@ -246,13 +246,15 @@
         "windows": [
           {
             "id": "etfEqualWeight",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-06",
             "end": "2026-10",
             "sourceUrls": [
               "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-11-02&includeTax=false",
+              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-11-08&includeTax=false",
               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
@@ -325,6 +327,8 @@
         "windows": [
           {
             "id": "etcPalladium",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2011-05",
@@ -337,6 +341,25 @@
               "convention": "fund-nav-total-return",
               "start": "2024-12",
               "end": "2025-12"
+            }
+          },
+          {
+            "id": "etcPalladiumMarket",
+            "ticker": "IPDM",
+            "mic": "XLON",
+            "currency": "USD",
+            "convention": "adjusted",
+            "start": "2011-05",
+            "end": "2026-10",
+            "sourceUrls": [
+              "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1793491200&interval=1d&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1793491200&interval=1mo&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1440460800&period2=1441065600&interval=1d&events=div%2Csplits"
+            ],
+            "qualification": {
+              "qualified": false,
+              "code": "financial-window-unconfirmed",
+              "reason": "IPDM.L : rapprochement financier non résolu (2024-12 → 2025-12)."
             }
           }
         ],
@@ -402,6 +425,8 @@
         "windows": [
           {
             "id": "etf_world_communication",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2022-05",
@@ -479,6 +504,8 @@
         "windows": [
           {
             "id": "etf_clean_energy",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2008-02",
@@ -573,6 +600,8 @@
         "windows": [
           {
             "id": "etf_financials",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2021-05",
@@ -650,6 +679,8 @@
         "windows": [
           {
             "id": "etf_gold_miners",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2017-05",
@@ -734,6 +765,8 @@
         "windows": [
           {
             "id": "etf_gold_miners",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2017-05",
@@ -818,6 +851,8 @@
         "windows": [
           {
             "id": "etf_gold_miners",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2017-05",
@@ -902,6 +937,8 @@
         "windows": [
           {
             "id": "etfCloudWisdomtree",
+            "ticker": "WCLD",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2019-10",
@@ -918,14 +955,16 @@
           },
           {
             "id": "etfCloudWisdomtreeNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2019-09",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -997,6 +1036,8 @@
         "windows": [
           {
             "id": "etfCloudWisdomtree",
+            "ticker": "WCLD",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2019-10",
@@ -1013,14 +1054,16 @@
           },
           {
             "id": "etfCloudWisdomtreeNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2019-09",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -1092,6 +1135,8 @@
         "windows": [
           {
             "id": "etfLgArtificialIntelligence",
+            "ticker": "AIAI",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -1108,6 +1153,8 @@
           },
           {
             "id": "etfIE00BK5BCD43Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2019-07",
@@ -1187,6 +1234,8 @@
         "windows": [
           {
             "id": "etfUsaSmallValue",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2016-01",
@@ -1266,6 +1315,8 @@
         "windows": [
           {
             "id": "etfUsaSmallValue",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2016-01",
@@ -1345,6 +1396,8 @@
         "windows": [
           {
             "id": "etfUsaSmallValue",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2016-01",
@@ -1424,6 +1477,8 @@
         "windows": [
           {
             "id": "etfFR0013411998",
+            "ticker": "PTPXH",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2019-05",
@@ -1661,6 +1716,8 @@
         "windows": [
           {
             "id": "etfIE00B42NKQ00",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2015-12",
@@ -1738,6 +1795,8 @@
         "windows": [
           {
             "id": "etfCH0454664001",
+            "ticker": "ABTC",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2021-07",
@@ -1754,14 +1813,16 @@
           },
           {
             "id": "etfCH0454664001Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2019-03",
             "end": "2026-10",
             "sourceUrls": [
-              "https://api.primary.21shares.com/api/product_details/ABTC",
-              "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-              "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+              "https://api.secondary.21shares.com/api/product_details/ABTC",
+              "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+              "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC",
               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
@@ -1777,7 +1838,7 @@
           "currency": "USD",
           "year": 2024,
           "sourceUrls": [
-            "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
+            "https://api.secondary.21shares.com/api/product_valuation_history/ABTC"
           ]
         },
         "route": "etfCH0454664001Nav · EUR · fund-nav-total-return",
@@ -1834,6 +1895,8 @@
         "windows": [
           {
             "id": "etfCH0454664001",
+            "ticker": "ABTC",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2021-07",
@@ -1850,14 +1913,16 @@
           },
           {
             "id": "etfCH0454664001Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2019-03",
             "end": "2026-10",
             "sourceUrls": [
-              "https://api.primary.21shares.com/api/product_details/ABTC",
-              "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-              "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+              "https://api.secondary.21shares.com/api/product_details/ABTC",
+              "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+              "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC",
               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
@@ -1873,7 +1938,7 @@
           "currency": "USD",
           "year": 2025,
           "sourceUrls": [
-            "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
+            "https://api.secondary.21shares.com/api/product_valuation_history/ABTC"
           ]
         },
         "route": "etfCH0454664001Nav · EUR · fund-nav-total-return",
@@ -1930,6 +1995,8 @@
         "windows": [
           {
             "id": "etfIE00B4JNQZ49",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2016-01",
@@ -2008,6 +2075,8 @@
         "windows": [
           {
             "id": "etfFR0013412004",
+            "ticker": "PALAT",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2019-05",
@@ -2125,6 +2194,8 @@
         "windows": [
           {
             "id": "etfIE00BK5BCH80",
+            "ticker": "RENW",
+            "mic": "ETFP",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2020-12",
@@ -2141,6 +2212,8 @@
           },
           {
             "id": "etfIE00BK5BCH80Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2020-11",
@@ -2220,6 +2293,8 @@
         "windows": [
           {
             "id": "etfLU1737652823",
+            "ticker": "10AJ",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2018-02",
@@ -2236,6 +2311,8 @@
           },
           {
             "id": "etfLU1737652823Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2019-01",
@@ -2313,6 +2390,8 @@
         "windows": [
           {
             "id": "etfIE000M7V94E1",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2023-03",
@@ -2397,6 +2476,8 @@
         "windows": [
           {
             "id": "etfFR0010342592",
+            "ticker": "LQQ",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -2413,6 +2494,8 @@
           },
           {
             "id": "etfFR0010342592Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-05",
@@ -2490,6 +2573,8 @@
         "windows": [
           {
             "id": "etfFR0010342592",
+            "ticker": "LQQ",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -2506,6 +2591,8 @@
           },
           {
             "id": "etfFR0010342592Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-05",
@@ -2583,6 +2670,8 @@
         "windows": [
           {
             "id": "etfFR0010342592",
+            "ticker": "LQQ",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -2599,6 +2688,8 @@
           },
           {
             "id": "etfFR0010342592Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-05",
@@ -2676,6 +2767,8 @@
         "windows": [
           {
             "id": "etfIE000RDRMSD1",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2022-10",
@@ -2753,6 +2846,8 @@
         "windows": [
           {
             "id": "etfIE000RDRMSD1",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2022-10",
@@ -2830,6 +2925,8 @@
         "windows": [
           {
             "id": "etfIE00B43HR379",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2016-01",
@@ -2908,6 +3005,8 @@
         "windows": [
           {
             "id": "etfIE00B43HR379",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2016-01",
@@ -2986,6 +3085,8 @@
         "windows": [
           {
             "id": "etfIE00BYWQWR46",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2019-07",
@@ -3070,6 +3171,8 @@
         "windows": [
           {
             "id": "etfIE00B5W4TY14",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
@@ -3148,6 +3251,8 @@
         "windows": [
           {
             "id": "etfIE00B5W4TY14",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
@@ -3226,6 +3331,8 @@
         "windows": [
           {
             "id": "etfIE00BYXG2H39",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2017-11",
@@ -3303,6 +3410,8 @@
         "windows": [
           {
             "id": "etfIE00BYXG2H39",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2017-11",
@@ -3380,6 +3489,8 @@
         "windows": [
           {
             "id": "etfIE00BDFBTQ78",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-06",
@@ -3464,6 +3575,8 @@
         "windows": [
           {
             "id": "etfIE00BDFBTQ78",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-06",
@@ -3548,6 +3661,8 @@
         "windows": [
           {
             "id": "etfIE00BDFBTQ78",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-06",
@@ -3632,6 +3747,8 @@
         "windows": [
           {
             "id": "etfIE000YU9K6K2",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2022-10",
@@ -3716,6 +3833,8 @@
         "windows": [
           {
             "id": "etfFR0010755611",
+            "ticker": "CL2",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -3794,6 +3913,8 @@
         "windows": [
           {
             "id": "etfFR0010755611",
+            "ticker": "CL2",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -3872,6 +3993,8 @@
         "windows": [
           {
             "id": "etfFR0011871110",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
@@ -3949,6 +4072,8 @@
         "windows": [
           {
             "id": "etfFR0011871128",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
@@ -4026,6 +4151,8 @@
         "windows": [
           {
             "id": "etfDE000A27Z304",
+            "ticker": "BTCE",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2020-07",
@@ -4038,6 +4165,23 @@
               "qualified": false,
               "code": "financial-window-unconfirmed",
               "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12)."
+            }
+          },
+          {
+            "id": "etfDE000A27Z304Paris",
+            "ticker": "BTCE",
+            "mic": "XPAR",
+            "currency": "EUR",
+            "convention": "adjusted",
+            "start": "2021-06",
+            "end": "2026-10",
+            "sourceUrls": [
+              "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1d&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1mo&events=div%2Csplits"
+            ],
+            "qualification": {
+              "qualified": false,
+              "reason": "Bornes ou niveaux historiques absents."
             }
           }
         ],
@@ -4103,6 +4247,8 @@
         "windows": [
           {
             "id": "etfDE000A27Z304",
+            "ticker": "BTCE",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2020-07",
@@ -4116,6 +4262,25 @@
               "code": "financial-window-unconfirmed",
               "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
             }
+          },
+          {
+            "id": "etfDE000A27Z304Paris",
+            "ticker": "BTCE",
+            "mic": "XPAR",
+            "currency": "EUR",
+            "convention": "adjusted",
+            "start": "2021-06",
+            "end": "2026-10",
+            "sourceUrls": [
+              "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1d&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1mo&events=div%2Csplits"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "adjusted",
+              "start": "2022-12",
+              "end": "2023-12"
+            }
           }
         ],
         "annualNav": {
@@ -4126,9 +4291,9 @@
             "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
           ]
         },
-        "route": "annual-DE000A27Z304 · USD · calendrier annuel VL distinct",
+        "route": "etfDE000A27Z304Paris · XPAR · EUR · adjusted",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "Série mensuelle qualifiée pour 2023 via BTCE · XPAR · EUR. La divergence de cotation initiale reste suivie."
       },
       "sourceUrls": [
         "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
@@ -4180,6 +4345,8 @@
         "windows": [
           {
             "id": "etfDE000A27Z304",
+            "ticker": "BTCE",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2020-07",
@@ -4193,6 +4360,25 @@
               "code": "financial-window-unconfirmed",
               "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
             }
+          },
+          {
+            "id": "etfDE000A27Z304Paris",
+            "ticker": "BTCE",
+            "mic": "XPAR",
+            "currency": "EUR",
+            "convention": "adjusted",
+            "start": "2021-06",
+            "end": "2026-10",
+            "sourceUrls": [
+              "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1d&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.PA?period1=1622505600&period2=1793491200&interval=1mo&events=div%2Csplits"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "adjusted",
+              "start": "2023-12",
+              "end": "2024-12"
+            }
           }
         ],
         "annualNav": {
@@ -4203,9 +4389,9 @@
             "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
           ]
         },
-        "route": "annual-DE000A27Z304 · USD · calendrier annuel VL distinct",
+        "route": "etfDE000A27Z304Paris · XPAR · EUR · adjusted",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "Série mensuelle qualifiée pour 2024 via BTCE · XPAR · EUR. La divergence de cotation initiale reste suivie."
       },
       "sourceUrls": [
         "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
@@ -4257,6 +4443,8 @@
         "windows": [
           {
             "id": "etfFR0013416716",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2019-08",
@@ -4375,6 +4563,8 @@
         "windows": [
           {
             "id": "etfIE00B2QWCY14",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
@@ -4453,6 +4643,8 @@
         "windows": [
           {
             "id": "etfIE00B2QWCY14",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
@@ -4531,6 +4723,8 @@
         "windows": [
           {
             "id": "etfIE00B2QWCY14",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
@@ -4609,6 +4803,8 @@
         "windows": [
           {
             "id": "etfIE00BD1F4L37",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2016-11",
@@ -4686,6 +4882,8 @@
         "windows": [
           {
             "id": "etfIE00BQN1K562",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2015-03",
@@ -4763,6 +4961,8 @@
         "windows": [
           {
             "id": "etfIE00BQT3WG13",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2015-05",
@@ -4861,6 +5061,8 @@
         "windows": [
           {
             "id": "etfFR0007054358",
+            "ticker": "LYSX",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -4878,6 +5080,8 @@
           },
           {
             "id": "etfFR0007054358Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-10",
@@ -4955,6 +5159,8 @@
         "windows": [
           {
             "id": "etfGB00B15KXQ89",
+            "ticker": "COPA",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2015-01",
@@ -4971,14 +5177,16 @@
           },
           {
             "id": "etfGB00B15KXQ89Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -5050,6 +5258,8 @@
         "windows": [
           {
             "id": "etfGB00B15KXQ89",
+            "ticker": "COPA",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2015-01",
@@ -5066,14 +5276,16 @@
           },
           {
             "id": "etfGB00B15KXQ89Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -5145,6 +5357,8 @@
         "windows": [
           {
             "id": "etfIE00BDVPNG13",
+            "ticker": "WTAI",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2018-12",
@@ -5161,14 +5375,16 @@
           },
           {
             "id": "etfIE00BDVPNG13Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2018-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -5240,6 +5456,8 @@
         "windows": [
           {
             "id": "etfIE00BDVPNG13",
+            "ticker": "WTAI",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2018-12",
@@ -5256,14 +5474,16 @@
           },
           {
             "id": "etfIE00BDVPNG13Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2018-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -5335,6 +5555,8 @@
         "windows": [
           {
             "id": "etfLU2089238385",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2020-02",
@@ -5413,6 +5635,8 @@
         "windows": [
           {
             "id": "etfLU1875395870",
+            "ticker": "XDJE",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2018-12",
@@ -5429,13 +5653,15 @@
           },
           {
             "id": "etfLU1875395870Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2018-12",
             "end": "2026-10",
             "sourceUrls": [
               "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/pdpMetaTagsTealium",
-              "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/historicaldata/download?startDate=2018-11-06&endDate=2026-11-02&includeTax=false",
+              "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/historicaldata/download?startDate=2018-11-06&endDate=2026-11-08&includeTax=false",
               "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/performancechart"
             ],
             "qualification": {
@@ -5508,6 +5734,8 @@
         "windows": [
           {
             "id": "etfLU2196470426",
+            "ticker": "XNKY",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2020-12",
@@ -5524,13 +5752,15 @@
           },
           {
             "id": "etfLU2196470426Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2020-10",
             "end": "2026-10",
             "sourceUrls": [
               "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
-              "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-11-02&includeTax=false",
+              "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-11-08&includeTax=false",
               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
@@ -5603,6 +5833,8 @@
         "windows": [
           {
             "id": "etfFR0011550185",
+            "ticker": "ESE",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -5619,6 +5851,8 @@
           },
           {
             "id": "etfFR0011550185Nav",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2019-12",
@@ -5698,6 +5932,8 @@
         "windows": [
           {
             "id": "etfIE00B4K6B022",
+            "ticker": "50E",
+            "mic": "XPAR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
@@ -5712,6 +5948,33 @@
               "code": "financial-window-unconfirmed",
               "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
             }
+          },
+          {
+            "id": "etfIE00B4K6B022Nav",
+            "ticker": null,
+            "mic": null,
+            "currency": "EUR",
+            "convention": "fund-nav-total-return",
+            "start": "2023-12",
+            "end": "2026-10",
+            "sourceUrls": [
+              "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/presentation",
+              "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/fund-history",
+              "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/dividend-table",
+              "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/documents-table",
+              "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+              "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+              "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+              "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
+              "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/annual%20report",
+              "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/semi%20annual%20report"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2023-12",
+              "end": "2024-12"
+            }
           }
         ],
         "annualNav": {
@@ -5722,9 +5985,9 @@
             "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid"
           ]
         },
-        "route": "annual-IE00B4K6B022 · EUR · calendrier annuel VL distinct",
+        "route": "etfIE00B4K6B022Nav · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2024 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid"
@@ -5776,6 +6039,8 @@
         "windows": [
           {
             "id": "etfSmallValueEurope",
+            "ticker": null,
+            "mic": null,
             "currency": "EUR",
             "convention": "fund-nav-total-return",
             "start": "2016-01",
@@ -5854,14 +6119,16 @@
         "windows": [
           {
             "id": "etc_brent_crude_oilNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
-            "start": "2020-12",
+            "start": "2019-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -5872,6 +6139,8 @@
           },
           {
             "id": "etc_brent_crude_oil",
+            "ticker": "BRNT",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -5949,14 +6218,16 @@
         "windows": [
           {
             "id": "etc_brent_crude_oilNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
-            "start": "2020-12",
+            "start": "2019-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -5967,6 +6238,8 @@
           },
           {
             "id": "etc_brent_crude_oil",
+            "ticker": "BRNT",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6044,14 +6317,16 @@
         "windows": [
           {
             "id": "etc_brent_crude_oilNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
-            "start": "2020-12",
+            "start": "2019-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6062,6 +6337,8 @@
           },
           {
             "id": "etc_brent_crude_oil",
+            "ticker": "BRNT",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6139,14 +6416,16 @@
         "windows": [
           {
             "id": "etc_wti_crude_oilNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
-            "start": "2020-12",
+            "start": "2019-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6157,6 +6436,8 @@
           },
           {
             "id": "etc_wti_crude_oil",
+            "ticker": "CRUD",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6234,14 +6515,16 @@
         "windows": [
           {
             "id": "etc_wti_crude_oilNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
-            "start": "2020-12",
+            "start": "2019-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6252,6 +6535,8 @@
           },
           {
             "id": "etc_wti_crude_oil",
+            "ticker": "CRUD",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6329,14 +6614,16 @@
         "windows": [
           {
             "id": "etc_wti_crude_oilNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
-            "start": "2020-12",
+            "start": "2019-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6347,6 +6634,8 @@
           },
           {
             "id": "etc_wti_crude_oil",
+            "ticker": "CRUD",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6424,14 +6713,16 @@
         "windows": [
           {
             "id": "etc_natural_gasNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2021-12",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6442,6 +6733,8 @@
           },
           {
             "id": "etc_natural_gas",
+            "ticker": "NGAS",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6519,14 +6812,16 @@
         "windows": [
           {
             "id": "etc_coffeeNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2021-12",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6537,6 +6832,8 @@
           },
           {
             "id": "etc_coffee",
+            "ticker": "COFF",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6614,14 +6911,16 @@
         "windows": [
           {
             "id": "etc_coffeeNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2021-12",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6632,6 +6931,8 @@
           },
           {
             "id": "etc_coffee",
+            "ticker": "COFF",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6709,14 +7010,16 @@
         "windows": [
           {
             "id": "etc_coffeeNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2021-12",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6727,6 +7030,8 @@
           },
           {
             "id": "etc_coffee",
+            "ticker": "COFF",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6804,14 +7109,16 @@
         "windows": [
           {
             "id": "etc_cocoaNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6822,6 +7129,8 @@
           },
           {
             "id": "etc_cocoa",
+            "ticker": "COCO",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6899,14 +7208,16 @@
         "windows": [
           {
             "id": "etc_cocoaNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-10",
             "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -6917,6 +7228,8 @@
           },
           {
             "id": "etc_cocoa",
+            "ticker": "COCO",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -6994,14 +7307,16 @@
         "windows": [
           {
             "id": "etc_wheatNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2021-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -7012,6 +7327,8 @@
           },
           {
             "id": "etc_wheat",
+            "ticker": "WEAT",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -7089,14 +7406,16 @@
         "windows": [
           {
             "id": "etc_wheatNav",
+            "ticker": null,
+            "mic": null,
             "currency": "USD",
             "convention": "fund-nav-total-return",
             "start": "2021-12",
             "end": "2026-10",
             "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
               "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
+              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular"
             ],
             "qualification": {
               "qualified": true,
@@ -7107,6 +7426,8 @@
           },
           {
             "id": "etc_wheat",
+            "ticker": "WEAT",
+            "mic": "XLON",
             "currency": "USD",
             "convention": "adjusted",
             "start": "2020-01",
@@ -7184,6 +7505,8 @@
         "windows": [
           {
             "id": "etfEuropeRetail",
+            "ticker": "EXH8",
+            "mic": "XETR",
             "currency": "EUR",
             "convention": "adjusted",
             "start": "2015-01",
