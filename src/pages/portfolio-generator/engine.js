@@ -1,9 +1,8 @@
 import { assetKind, constructionIssues } from './controls.js';
 import { benchmarkKey } from '../../data/asset-selection.js';
-import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
+import { portfolioPostEditorial, portfolioPostName, portfolioPostRole, postWeight } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
-import { getInstrumentName } from '../../data/instruments.js';
-import { computeYearlyPerf, annualizedReturn, formatPerformance, performanceExcerpt, performanceYears, assetReturn, performanceNotes, hasCompleteAutomaticWindow } from './performance.js';
+import { computeYearlyPerf, annualizedReturn, performanceExcerpt, performanceYears, assetReturn, performanceNotes, hasCompleteAutomaticWindow } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
@@ -457,35 +456,27 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey, { lo
   };
 }
 
-export function renderTweetText(p) {
-  // Rebuild from the actual holdings as saved history can contain the old copy.
-  const perf = computeYearlyPerf(p.selection);
-  const years = performanceYears(perf);
+export function renderTweetText(portfolio) {
+  // Rebuild from the displayed holdings, including older snapshots with cached copy.
+  const rows = portfolio.selection.filter(row => row.pct > 0)
+    .map(row => row.calendarReturns || row.r ? row : { ...getAsset(row.id), ...row })
+    .sort((a, b) => b.pct - a.pct);
+  const perf = computeYearlyPerf(rows);
   const annualized = annualizedReturn(perf);
-  const editorial = portfolioPostEditorial(p.selection);
-  const holdings = p.selection.filter(s => s.pct > 0);
-  const question = holdings.length === 1
-    ? 'quel placement compose ce portefeuille ?'
-    : holdings.every(s => s.isin && /\bETF\b/.test(getInstrumentName(s.isin)))
-      ? 'quels ETF composent ce portefeuille ?'
-      : 'quels placements composent ce portefeuille ?';
-  const index = Number(p.hookId?.match(/-(\d+)$/)?.[1] ?? 0) % 3;
-  const questions = [question, 'de quoi se compose ce portefeuille ?', 'comment est réparti ce portefeuille ?'];
-  const hook = annualized === null
-    ? '📈 Quelles performances pour ce portefeuille ? 👀'
-    : `📈 ${formatPerformance(annualized)} par an sur la période ${years[0]}–${years.at(-1)} : ${questions[index]} 👀`;
-  const blocks = [`${hook}\n\n${editorial.hooks[index].split('\n\n')[0]}\n\nRépartition et performances simulées 👇`, '💼 La répartition'];
-  if (p.strategyLabel) blocks.splice(1, 0, `${p.strategyEmoji ?? '🌦️'} ${p.strategyLabel}`);
-  // Sort a copy: recipe slots and replacements still rely on the stored order.
-  const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
-  blocks.push(ordered.map(s => `${s.emoji} ${s.pct.toLocaleString('fr-FR')} % ${portfolioPostName(s)}`).join("\n"));
-  blocks.push(performanceExcerpt(perf));
-  const notes = performanceNotes(p.selection, { includeMethod: false });
+  const { hook, transition, remark } = portfolioPostEditorial(portfolio, rows, perf, annualized);
+  const blocks = [hook];
+  if (rows.length) {
+    blocks.push(transition, rows.map(row =>
+      `${row.emoji} ${postWeight(row.pct)} ${portfolioPostName(row)}\n${portfolioPostRole(row, rows)}`
+    ).join('\n\n'));
+  }
+
+  blocks.push(performanceExcerpt(perf, annualized));
+  const notes = performanceNotes(rows, { includeMethod: false, includeFxConversion: false, includeSourceCaveats: true });
   if (notes) blocks.push(notes);
-  blocks.push('Pas un conseil.');
-  blocks.push(`📌 ${p.strategyThesis ?? editorial.thesis}`);
-  blocks.push('💬 Que penses-tu de ce portefeuille ?');
-  return blocks.join("\n\n");
+  if (remark) blocks.push(`📌 ${remark}`);
+  blocks.push('💬 Que penses-tu de ce portefeuille ?', 'Pas un conseil financier.');
+  return blocks.join('\n\n');
 }
 
 export { fmtPct, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, PROFILES, isCompatible };

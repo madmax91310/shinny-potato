@@ -78,8 +78,8 @@ assert(!validAllocation([{pct:NaN}]));
 const texts=[];const prior=[];
 for(let i=0;i<3;i++){
  const p=buildManualPortfolio([{id:'msci_world',pct:70},{id:'or',pct:30}],'generaliste',prior);prior.push(p);texts.push(renderTweetText(p));
- assert.equal(texts[i].match(/Pas un conseil\./g)?.length,1);
+ assert.equal(texts[i].match(/Pas un conseil financier\./g)?.length,1);
  assert(!texts[i].includes('La pire année civile observée n’est pas une perte maximale'));
 }
-assert.equal(new Set(texts.map(text=>text.split('💼 La répartition')[0])).size,3,'Actual publication variants rotate');
+assert.equal(new Set(texts.map(text=>text.split('\n\n')[1])).size,3,'Actual publication variants rotate');
 console.log('Audit regression: six-year qualification, composition limits, exact share, total loss, decimals and three publication variants verified.');

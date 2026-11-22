@@ -12,6 +12,11 @@ try {
   for (const width of [390, 1280]) {
     const page = await browser.newPage({ viewport: { width, height: 900 } }), errors = []
     page.on('pageerror', error => errors.push(error.message))
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        value: { writeText: async text => { window.copiedTweet = text } },
+      })
+    })
     await page.goto(`${base}/generateur-portefeuilles`, { waitUntil: 'networkidle' })
     const settings = page.locator('.workspace-view-switch').getByRole('button', { name: 'Réglages', exact: true })
     if (await settings.isVisible()) await settings.click()
@@ -34,7 +39,11 @@ try {
           assert.deepEqual(await explanation.locator('a').evaluateAll(links => links.map(a => a.href)), family.sources.map(s => s.url))
           for (const row of preset.assets) assert.ok((await page.locator('.pg-model-roles').textContent()).includes(row.pct.toLocaleString('fr-FR')))
         }
-        assert.ok((await page.locator('.pg-tweet-body').textContent()).includes(preset.thesis))
+        const paragraphs = await page.locator('.pg-tweet-body p').allTextContents()
+        assert.ok(paragraphs[0].startsWith(family.emoji))
+        assert.equal(paragraphs.at(-1), 'Pas un conseil financier.')
+        await page.getByRole('button', { name: '📋 Copier le texte', exact: true }).click()
+        assert.equal(await page.evaluate(() => window.copiedTweet), paragraphs.join('\n\n'))
         const href = await page.locator('.pg-image-download').getAttribute('href')
         assert.ok(href.startsWith('data:image/png;base64,'))
         images.add(href)
@@ -88,7 +97,7 @@ try {
     await generate.click()
     await page.locator('.pg-tweet-card').waitFor({state:'attached'})
     assert.equal(await page.locator('.pg-alloc-list > li').count(),3)
-    assert.match(await page.locator('.pg-tweet-body').textContent(),/Pas un conseil\./)
+    assert.match(await page.locator('.pg-tweet-body').textContent(),/Pas un conseil financier\./)
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2), false)
     await page.screenshot({path:`test-artifacts/model-portfolios/decimal-manual-${width}.png`,fullPage:true})
     assert.deepEqual(errors, [])

@@ -39,10 +39,10 @@ add('oblig_global_agg_eur_hedged', 'On prête à des emprunteurs dans le monde, 
 add('sp500_equal_weight', 'On répartit autrement les entreprises du S&P 500, avec le même poids pour chacune à chaque rééquilibrage.')
 add('world_ex_usa', 'Cette ligne investit dans les pays développés hors États-Unis, pour choisir séparément la place américaine.')
 
-export function compactRole(asset, selection) {
+export function compactRole(asset, selection, { includeSingleLineIntro = true } = {}) {
   const kind = assetEditorial(asset).kind
   const kinds = new Set(selection.map(s => assetEditorial(s).kind))
-  if (selection.length === 1) return `Toute l’épargne sur cette ligne. ${roles[asset.id] ?? assetEditorial(asset).text.split(/(?<=\.)\s/)[0]}`
+  if (includeSingleLineIntro && selection.length === 1) return `Toute l’épargne sur cette ligne. ${roles[asset.id] ?? assetEditorial(asset).text.split(/(?<=\.)\s/)[0]}`
   if (kind === 'emerging' && kinds.has('world-all')) return 'On renforce les marchés émergents déjà présents dans l’indice mondial, plutôt que les ajouter pour la première fois.'
   if (kind === 'emerging' && kinds.has('world-developed')) return `Pour ajouter les marchés que le World ne couvre pas${asset.id === 'msci_em' ? ', y compris leurs petites entreprises' : ''}.`
   if (kind === 'us' && (kinds.has('world-developed') || kinds.has('world-all'))) return 'On renforce les grandes entreprises américaines déjà présentes dans le fonds mondial.'

@@ -25,8 +25,15 @@ for (const family of MODEL_FAMILIES) {
       assert.ok(Math.abs(expected - p.perf[year]) < 1e-10)
     }
     const text = renderTweetText(p)
-    assert.ok(text.includes(`${family.emoji} ${preset.label}`))
-    assert.ok(text.includes(preset.thesis), 'The explanation must be present in the copied post')
+    assert.ok(text.startsWith(family.emoji))
+    assert.ok(text.includes('Et voici ce que ce type de portefeuille aurait donné'))
+    assert.ok(text.endsWith('Pas un conseil financier.'))
+    assert.equal(text.split('\n').filter(line => /^\S+ \d+(?:,\d+)? % /.test(line)).length, p.selection.length)
+    if (family.id === 'all-weather' && preset.id === 'euro') {
+      assert.match(text, /Voici un exemple de portefeuille All Weather avec des obligations en euros/)
+      assert.match(text, /7,5 % Invesco Bloomberg Commodity\nUn panier de matières premières/)
+      assert.match(text, /En 2022|en 2022/)
+    }
     assert.deepEqual(getReplacementCandidates(p, p.selection[0].id), [])
     const manual = buildManualPortfolio(p.selection, 'generaliste', [p])
     assert.deepEqual(manual.perf, p.perf)
