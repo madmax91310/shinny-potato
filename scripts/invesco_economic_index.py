@@ -230,8 +230,13 @@ def return_weight_method(index_id,now,fetch):
     rule=CONTRACTS['indices'][index_id]['returnWeightContract'];raws=[];proofs=[]
     for config in rule['documents']:
         raw=fetch(config['sourceUrl'])
-        if digest(raw)!=config['sha256']:raise ValueError('Changed Russell return-weight methodology requires qualification')
-        raws.append(raw);proofs.append(dict(sourceUrl=config['sourceUrl'],sha256=digest(raw),version=config['version']))
+        observed_hash = digest(raw)
+        alternates = {item['sha256'] for item in config.get('reviewedAlternateDocuments', [])
+                      if item['reviewedOn'] <= now.date().isoformat()}
+        if observed_hash != config['sha256'] and observed_hash not in alternates:
+            raise ValueError('Changed Russell return-weight methodology requires qualification')
+        raws.append(raw)
+        proofs.append(dict(sourceUrl=config['sourceUrl'],sha256=observed_hash,version=config['version']))
     texts=[' '.join(pdf_text(raw).split())for raw in raws]
     if (not all(s in texts[0]for s in ['v7.4','November 2026','float-adjusted, market capitalization-weighted indexes','Net total return indexes based on specified withholding tax rates'])
             or not all(s in texts[1]for s in ['v1.2','September 2026','price, total and net returns','AEMV equals the index float-adjusted market value based on the primary exchange closing prices'])):
