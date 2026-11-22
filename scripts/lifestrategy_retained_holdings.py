@@ -98,7 +98,7 @@ def restore_dependencies(previous, parents, selected, now, root):
     Future month transitions use carry_snapshots. This immutable recovery only
     restores September observations already collected before this fix existed.
     """
-    from lifestrategy_portfolio import qualified_stored_portfolio
+    from lifestrategy_portfolio import paired_allocation, qualified_stored_portfolio
     from lifestrategy_holdings import FUNDS, fresh
     updated, proofs, failures = {}, [], {}
     books, recovery_error = None, None
@@ -106,7 +106,7 @@ def restore_dependencies(previous, parents, selected, now, root):
         record = parents[fund]
         try:
             parent = qualified_stored_portfolio(record, now)
-            if parent and fresh(parent, now) != fresh(record['assetAllocation'], now):
+            if parent and fresh(parent, now) != fresh(paired_allocation(record, parent)[0], now):
                 raise ValueError('Parent and allocation dates differ before retained dependency recovery')
         except Exception as error:
             failures[fund] = str(error)

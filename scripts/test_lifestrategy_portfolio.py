@@ -5,7 +5,7 @@ import gzip
 import json
 from pathlib import Path
 import unittest
-from lifestrategy_portfolio import parse_portfolio, qualified_stored_portfolio
+from lifestrategy_portfolio import paired_allocation, parse_portfolio, qualified_stored_portfolio
 from data_automation import UTC
 
 FIX = Path(__file__).parent/'fixtures/lifestrategy-nav'
@@ -65,6 +65,24 @@ class ExactLifeStrategyPortfolio(unittest.TestCase):
         self.assertEqual(r,original)
         r['underlyingHoldings']['rows'][0]['weightPct']+=.01
         with self.assertRaises(ValueError):qualified_stored_portfolio(r,NOW)
+    def test_actual_partial_run_keeps_the_september_companion_with_original_dates(self):
+        records = load('retained-parent-october-allocation-20261122')
+        now = dt.datetime(2026, 11, 22, tzinfo=UTC)
+        for isin, record in records.items():
+            with self.subTest(isin=isin):
+                old = copy.deepcopy(record)
+                parent = qualified_stored_portfolio(record, now)
+                allocation, old_pdf_hash = paired_allocation(record, parent)
+                self.assertEqual(allocation['asOf'], '2026-09-30')
+                self.assertEqual(allocation['checkedAt'], '2026-11-16')
+                self.assertEqual(parent['checkedAt'], '2026-11-16T19:24:45.991150+00:00')
+                self.assertNotEqual(old_pdf_hash, record['documentSha256'])
+                self.assertEqual(record, old)
+                record['underlyingHoldingsAllocation'] = {
+                    'holdingsSha256': 'a' * 64, 'allocation': allocation, 'documentSha256': old_pdf_hash}
+                with self.assertRaisesRegex(ValueError, 'same-date'):
+                    qualified_stored_portfolio(record, now)
+
     def test_source_format_change_and_wrong_published_allocation_rejected(self):
         body=load('9494');body['data']['borHoldings'][0]['holdings']['items'][0]['securityType']='NEW_TYPE'
         with self.assertRaises(ValueError):self.parse(body=body)
