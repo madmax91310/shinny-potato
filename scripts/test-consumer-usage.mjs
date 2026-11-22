@@ -28,6 +28,12 @@ assert(!report.fields.some(f=>f.type==='company'),'Retired company accounts must
 assert(!report.workflows.some(w=>w.path.endsWith('/update-company-analysis.yml')))
 assert(report.consumerUsage.tools.some(t=>t.path==='/france-100-menages'))
 assert(report.consumerUsage.tools.some(t=>t.path==='/portefeuilles-investisseurs'))
+for(const path of ['/comparateur-indices','/portefeuilles-publics','/flux-etf']) {
+ assert(report.consumerUsage.tools.some(tool=>tool.path===path&&tool.required>0),path)
+}
+assert.equal(report.consumerUsage.tools.find(tool=>tool.path==='/flux-etf').rows[0].state,'blocked')
+assert(report.consumerUsage.tools.find(tool=>tool.path==='/comparateur-indices').rows.some(row=>row.id==='IE00B5BMR087'))
+
 assert(report.consumerUsage.tools.flatMap(t=>t.rows).some(r=>r.id.startsWith('lexicon:')&&r.required),'Variable regulatory data remain required')
 assert(report.consumerUsage.tools.every(t=>!t.path.includes('analyse-entreprise')))
 console.log('Consumed fields: required observations, alias deduplication, unknown consumers, retired financial accounts, household/regulatory/13F coverage and incident roots passed.')

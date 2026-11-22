@@ -10,6 +10,7 @@ import {catalogCoverage} from './lib/catalog-coverage.mjs'
 import {assetAutomation,assetAutomationCsv} from './lib/asset-automation.mjs'
 import {consumerUsage} from './lib/consumer-usage.mjs'
 import {externalConsumerAssets} from './lib/external-consumer-assets.mjs'
+import {additionalToolConsumerAssets,indexComparatorFundConsumers} from './lib/new-tool-consumer-assets.mjs'
 import {connectConsumerFields} from './lib/consumer-field-evidence.mjs'
 import {collectObservationsSync} from './update-editorial-radar.mjs'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
@@ -188,8 +189,8 @@ export function buildDataAutomationInventory(){
   workflows,registries,fields,connections,backlog,datasets:registryFiles.filter(p=>p.endsWith('.json')).map(jsonDatasetInfo),coverage,pea}
  const certification=assetAutomation(report)
  report.summary.priorityMarkets=priorityMarkets
- report.assets=certification.assets;report.summary.assetAutomation=certification.summary
- const externalAssets=connectConsumerFields(externalConsumerAssets(workflows,report.generatedAt),{observations:collectObservationsSync().observations,connections,etfs:AUTOMATED_ETF,metadata})
+ report.assets=indexComparatorFundConsumers(certification.assets);report.summary.assetAutomation=certification.summary
+ const externalAssets=connectConsumerFields([...externalConsumerAssets(workflows,report.generatedAt),...additionalToolConsumerAssets(workflows,report.generatedAt)],{observations:collectObservationsSync().observations,connections,etfs:AUTOMATED_ETF,metadata})
  const allConsumerAssets=[...report.assets,...externalAssets].map(asset=>({...asset,fields:asset.fields.map(field=>({...field,consumers:[...(field.consumers??[]),{path:'/bibliotheque-donnees'}]}))}))
  report.consumerUsage={...consumerUsage(allConsumerAssets),externalAssets}
  report.summary.consumerUsage=report.consumerUsage.summary
