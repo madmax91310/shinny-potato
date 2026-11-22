@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {applyAutomatedCharacteristics} from '../src/data/automated-characteristics.js';
+import {getInstrumentFacts} from '../src/data/instrument-facts.js';
 const previous={domicile:'Ireland',replicationMethod:'Physical (Full replication)',location:'Irlande, réplication physique intégrale, couverture en euros',currencyHedge:'EUR'};
 const record=method=>({sourceUrl:'https://issuer.test',characteristics:{replicationMethod:method,checkedAt:'2026-10-16'}});
 for(const raw of ['Direct(Physical)','Direct Replication (physically)','Physical']) {
@@ -26,6 +27,12 @@ const newlyHedged=applyAutomatedCharacteristics({...previous,location:'Irlande, 
 assert.match(newlyHedged.location,/couverture de change/);assert.doesNotMatch(newlyHedged.location,/sans|euros/);
 console.log('Collected replication wording, generic/full distinction, hedge annotations and immutable source facts verified.');
 
+// The ETF producer resolves facts for the new Pinwheel share immediately after collecting it.
+const propertyFacts=getInstrumentFacts('IE00B1FZSF77');
+assert.match(propertyFacts.characteristicsSource.url,/iusp-ishares-us-property-yield-ucits-etf/);
+assert.equal(propertyFacts.incomePolicy,'distributing');
+assert.equal(propertyFacts.replicationMethod,'Physical (Full replication)');
+assert.notEqual(propertyFacts.benchmark,getInstrumentFacts('IE00B1FZS350').benchmark);
 
 // A previously listing-only owner ignored an explicit usable hedging source.
 import {restrictedMetadataRoute} from './lib/metadata-field-routing.mjs';

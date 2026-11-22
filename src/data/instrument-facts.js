@@ -663,6 +663,19 @@ const MANUAL_INSTRUMENT_FACTS = {
       "scope": "titres détenus"
     }
   },
+  IE00B1FZSF77: {
+    distribution: 'Distribuant',
+    location: 'Irlande, réplication physique intégrale',
+    benchmark: 'FTSE EPRA Nareit US Dividend+ Net of Tax Index (USD)',
+    incomePolicy: 'distributing',
+    replicationMethod: 'Physical (Full replication)',
+    domicile: 'Ireland',
+    instrumentType: 'ETF',
+    characteristicsSource: {
+      url: 'https://www.ishares.com/gls-download/literature/fact-sheet/iusp-ishares-us-property-yield-ucits-etf-fund-fact-sheet-en-gb.pdf',
+      checkedAt: '2026-11-22',
+    },
+  },
   "IE00B1FZS350": {
     "distribution": "Distribuant (trimestriel)",
     "location": "Irlande, réplication physique",
