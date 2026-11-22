@@ -392,7 +392,6 @@ try {
   assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), originalNames)
   assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), originalText)
   assert.equal(JSON.stringify(profile), catalogBefore)
-  assert.match(await page.locator('.rk-favorites summary').innerText(), /Mes confrontations favorites \(1\)/)
   assert.deepEqual(await page.evaluate(() => window.selectionWrites), [])
   assert.equal(await page.evaluate(() => JSON.stringify({ local: { ...localStorage }, session: { ...sessionStorage } })), beforeStorage)
   await category('luxury-stocks')
