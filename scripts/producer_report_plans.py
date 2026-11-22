@@ -122,6 +122,9 @@ def build_plan(producer, args, report_stem=None, module=None):
         for c in cfg('qualified-exposure-sources'):
             selected=not only or c['id']in only
             add(c['isin'],c['isin'],['countries','sectors','holdings','aum','identity'],selected,'Outside qualified-exposure selection'if not selected else None)
+            if c.get('isolateMissingYieldToWorst'):
+                add('qualified-yield:' + c['isin'], c['isin'], ['yieldToWorst'], selected,
+                    None if selected else 'Outside qualified-exposure selection')
             if c.get('allocationFallback')=='exact-defence-physical-book':
                 for field in ('countries','sectors'):
                     add('qualified-primary:'+c['isin']+':'+field,c['isin'],[field+'-primary'],selected,'Outside qualified-exposure selection'if not selected else None)

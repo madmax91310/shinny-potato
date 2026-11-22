@@ -122,9 +122,21 @@ def contract_results(configs, report):
             'qualifiedAlternativeAvailable': all(e.get('fallbackQualified') for e in partial)})
     observed = {r['isin']: r for r in [*report['records'], *report['excluded']]}
     for config in configs:
+        row = observed.get(config['isin'], {})
+        if config.get('isolateMissingYieldToWorst'):
+            identity = {'id': 'qualified-yield:' + config['isin'], 'field': 'yieldToWorst'}
+            metric = row.get('metrics', {}).get('yieldToWorst')
+            if row.get('yieldToWorstUnavailable'):
+                errors.append({**identity, 'sourceAttempted': True, 'phase': 'validation',
+                               'error': 'Issuer yieldToWorst absent. Last exact dated value retained. fxHedgedYield uses a distinct issuer method and was not substituted.'})
+            elif metric:
+                successes.append({**identity, 'sourceAttempted': True, 'checkedAt': metric['checkedAt'],
+                                  'asOf': metric['asOf'], 'sourceUrl': metric['sourceUrl']})
+            else:
+                inactive.append({**identity, 'sourceAttempted': False,
+                                 'reason': 'Exact issuer yield validation not reached: ' + row.get('error', 'No individual observation')})
         if config.get('allocationFallback') != MODE:
             continue
-        row = observed.get(config['isin'], {})
         checks = {r['field']: r for r in row.get('primaryAllocationChecks', [])}
         for field in ('countries', 'sectors'):
             check = checks.get(field + '-primary')
