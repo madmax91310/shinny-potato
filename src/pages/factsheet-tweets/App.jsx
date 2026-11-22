@@ -12,7 +12,7 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { SHEETS } from './data.js'
 import { buildFactsheetTweet } from './lib.js'
-import { getIndexConcentration } from '../../data/index-company-compositions.js'
+import { getIndexConcentration, retainedCompositionDate } from '../../data/index-company-compositions.js'
 import { renderCompositionImage, renderFactsheetImage } from './canvasImage.js'
 import { factsheetCurrencies, factsheetCurrency, factsheetInCurrency, factsheetVariants, factsheetInVariant } from './performanceCurrency.js'
 import './factsheet-tweets.css'
@@ -66,6 +66,10 @@ export default function App() {
     return () => { active = false }
   }, [selected, base, concentration, compositionAttempt])
   const dateLabel = value => value ? new Date(value).toLocaleDateString('fr-FR', { timeZone: 'UTC' }) : 'non documentée'
+  const retainedComposition = retainedCompositionDate(concentration)
+  const compositionStatus = retainedComposition && `Dernière composition validée au ${new Date(retainedComposition).toLocaleDateString('fr-FR', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  })} · mise à jour partielle`
 
 
   async function copy() {
@@ -117,6 +121,7 @@ export default function App() {
       </ChoicePicker></>}
       <div className="fs-meta">
         <span>📅 Composition : {sheet.snapshot}</span>
+        {compositionStatus && <p className="fs-composition-status">Top 10 · {compositionStatus}</p>}
         <span>Récupération de la fiche : {dateLabel(sheet.indexFacts?.source?.checkedAt)}</span>
         {!base.compositionOnly && <span>📈 Performances : {sheet.performance.kind === 'ETF' ? `ETF ${sheet.isin}` : 'indice'} · {sheet.performance.date}</span>}
       </div>
@@ -137,6 +142,7 @@ export default function App() {
     </section>
     <section id="fs-composition-panel" role="tabpanel" aria-labelledby="fs-composition-tab" hidden={section !== 'composition'} className="fs-panel fs-composition-panel" aria-label="Visuel de composition">
       <h2 className="sr-only">Composition top 10 · {sheet.index}</h2>
+      {compositionStatus && <p className="fs-composition-status">{compositionStatus}</p>}
 
       {concentration.available ? <>
         {readyComposition ? <img className="fs-composition-preview" src={compositionPreview.url} alt={`Composition ${sheet.index} : dix premières entreprises et autres entreprises`} />
@@ -153,6 +159,8 @@ export default function App() {
           <p>Composition : {dateLabel(concentration.asOf)} · Récupération : {dateLabel(concentration.checkedAt)}.</p>
           <p>{concentration.method}</p>
           <a href={concentration.sourceUrl} target="_blank" rel="noopener noreferrer">Source de la composition ↗</a>
+          {concentration.allocationSourceUrl && concentration.allocationSourceUrl !== concentration.sourceUrl &&
+            <> · <a href={concentration.allocationSourceUrl} target="_blank" rel="noopener noreferrer">Source des pays et secteurs ↗</a></>}
           {concentration.identitySourceUrl && <> · <a href={concentration.identitySourceUrl} target="_blank" rel="noopener noreferrer">Benchmark et réplication vérifiés ↗</a> (contrôle : {dateLabel(concentration.identityCheckedAt)})</>}
           {concentration.observedIdentitySourceUrl && <> · <a href={concentration.observedIdentitySourceUrl} target="_blank" rel="noopener noreferrer">Identité actualisée ↗</a> ({dateLabel(concentration.observedIdentityCheckedAt)})</>}
           {concentration.classificationSourceUrl && <> · <a href={concentration.classificationSourceUrl} target="_blank" rel="noopener noreferrer">Noms et classifications par ISIN ↗</a> ({dateLabel(concentration.classificationAsOf)})</>}

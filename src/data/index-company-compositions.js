@@ -9,6 +9,11 @@ export function getIndexConcentration(id, now = new Date()) {
   const stale = age(record.asOf) > rule.dataDays || age(record.checkedAt) > rule.checkDays
   return { ...record, status: stale ? 'stale' : 'available' }
 }
+
+export function retainedCompositionDate(composition) {
+  return composition.available && composition.retained && composition.refresh?.status === 'failed'
+    ? composition.asOf : null
+}
 // The historical tweet and its performance/currency conventions remain untouched.
 // Only the render model receives a coherent, explicitly qualified composition.
 export function compositionImageSheet(sheet, concentration) {

@@ -87,6 +87,13 @@ const unknownCurrency = { ...acwi, id: 'unknown', performance: { ...acwi.perform
 assert.equal(canUseEuros(unknownCurrency), false)
 assert.throws(() => factsheetInCurrency(unknownCurrency, 'EUR'))
 const { convertCalendarReturn } = await import('../src/data/calendar-fx.js')
+const nasdaq = SHEETS.find(s => s.id === 'nasdaq-pea')
+assert.equal(nasdaq.source.find(source => source.url === 'https://indexes.nasdaq.com/docs/FS_XNDX.pdf')?.label,
+  'Nasdaq-100 Total Return (XNDX)')
+assert.match(nasdaq.source[0].label, /Composition.*Amundi/)
+for (const [year, value] of factsheetInCurrency(nasdaq, 'EUR').returns) {
+  assert.equal(value, convertCalendarReturn(new Map(nasdaq.returns).get(year), year, 'USD', 'EUR'))
+}
 const converted = factsheetInCurrency({ ...acwi, id: 'conversion-test' }, 'EUR')
 for (const [year, value] of converted.returns) assert.equal(value, convertCalendarReturn(new Map(acwi.returns).get(year), year, 'USD', 'EUR'))
 assert.equal(converted.performance.detail, acwi.performance.detail.replace(/USD|dollars/g, 'EUR'))

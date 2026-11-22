@@ -178,6 +178,18 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
                for field,values in allocations.items()}}
     return record,securities
 
+def attach_composition(book, allocations, method, source_url, digest):
+    fields = ('countries', 'sectors')
+    if all(allocations.get(field, {}).get('asOf') == book['asOf'] and
+           allocations[field].get('rows') for field in fields):
+        book['compositionFacts'] = {
+            'asOf': book['asOf'], 'basis': 'fund', 'method': method,
+            **{field: {**allocations[field], 'sourceUrl': source_url, 'sha256': digest}
+               for field in fields},
+        }
+    return book
+
+
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--only',nargs='+');ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
     config={**json.loads((ROOT/'scripts/dca-complete-holdings-sources.json').read_text()),**json.loads((ROOT/'scripts/generated-holdings-sources.json').read_text())};now=dt.datetime.now(UTC)
@@ -186,6 +198,8 @@ def main():
         if set(args.only)-set(config):raise ValueError('Unknown complete holdings selection')
         config={k:v for k,v in config.items() if k in args.only}
     errors={};fresh={};evidence={};rejected={}
+    proxy_isins = {proxy['isin'] for proxy in json.loads(
+        Path(__file__).with_name('index-company-sources.json').read_text())['physicalProxies'].values()}
     identities={**json.loads((ROOT/'scripts/dca-equity-identities.json').read_text()),**json.loads((ROOT/'scripts/dca-equity-extra-identities.json').read_text())}
     wanted=set(identities.values())
     def one(item):
@@ -195,7 +209,7 @@ def main():
             if c.get('parser') in COLLECTORS:
                 return isin, (COLLECTORS[c['parser']](c, now), []), None
             if c.get('parser') == 'ssga':
-                from collect_ssga_etf import parse_page, parse_holdings, get_xlsx, Inputs
+                from collect_ssga_etf import allocation, parse_page, parse_holdings, get_xlsx, Inputs
                 from urllib.parse import urljoin
                 from bs4 import BeautifulSoup
                 page=get_text(c['sourceUrl'],('text/html',),6_000_000)
@@ -208,6 +222,15 @@ def main():
                 url=urljoin(c['sourceUrl'],path)
                 raw=get_xlsx(url)
                 h=parse_holdings(raw,c,now,complete=True);h.update(sourceUrl=url,sha256=hashlib.sha256(raw).hexdigest(),identitySourceUrl=c['sourceUrl'],identitySha256=page_hash,method='Complete physical equity securities published in the issuer workbook; cash excluded, no renormalisation')
+                if isin in proxy_isins:
+                    for field, component in [('countries', 'fund-geographical-breakdown'), ('sectors', 'fund-sector-breakdown')]:
+                        if field not in result and component in inputs.data:
+                            try:
+                                result[field] = allocation(inputs.data[component], now)
+                            except (KeyError, TypeError, ValueError):
+                                # An incomplete page breakdown must not discard the validated book.
+                                pass
+                    attach_composition(h, result, 'same-date-state-street-published-allocations', c['sourceUrl'], page_hash)
                 return isin,(h,[]),None
             if c.get('parser') == 'dws':
                 from collect_dws_etf import parse_product, parse_holdings
@@ -220,7 +243,11 @@ def main():
                 fund_isins={p['header']['value'] for table in body.get('tables',[]) for p in table.get('values',[])
                             if p.get('column_5',{}).get('value')=='Mutual Fund' or p.get('header',{}).get('value') in (LIQUIDITY_FUNDS.keys()|EQUITY_FUNDS.keys())}
                 qualifications={fund_isin:qualify_held_fund(fund_isin,now) for fund_isin in fund_isins}
-                return isin, (parse_holdings(body, c, now, url, complete=True,non_equity_funds=qualifications)['completeHoldings'], []), None
+                result = parse_holdings(body, c, now, url, complete=True, non_equity_funds=qualifications)
+                h = result['completeHoldings']
+                if isin in proxy_isins:
+                    attach_composition(h, result, 'same-dws-holdings-payload-allocations', url, h['sha256'])
+                return isin, (h, []), None
             return isin,collect_blackrock_complete({**c,'isin':isin},now),None
         except Exception as e:return isin,None,e
     direct={isin:c for isin,c in config.items() if c.get('parser')!='lifestrategy-lookthrough'}

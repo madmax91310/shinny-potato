@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { aggregateCompanies, calculateConcentration, roundedComposition, retainQualifiedComposition } from '../src/data/index-concentration-core.js'
-import { getIndexConcentration, compositionImageSheet } from '../src/data/index-company-compositions.js'
+import { getIndexConcentration, compositionImageSheet, retainedCompositionDate } from '../src/data/index-company-compositions.js'
 import identities from '../src/data/index-company-identities.json' with { type: 'json' }
 import records from '../src/data/index-company-compositions.json' with { type: 'json' }
 import observations from '../src/data/index-company-observations.json' with { type: 'json' }
@@ -75,6 +75,11 @@ assert.equal(retained.checkedAt,records.world.checkedAt)
 assert.equal(retained.topWeight,records.world.topWeight)
 assert.equal(retained.refresh.status,'failed')
 assert.equal(retainQualifiedComposition({available:false},null).available,false)
+assert.equal(retainedCompositionDate(retained), retained.asOf)
+const sameMonthlyComposition = { ...records.world, retained: false, refresh: { status: 'validated' } }
+assert.equal(retainedCompositionDate(retainQualifiedComposition(sameMonthlyComposition, retained)), null)
+const newerComposition = { ...sameMonthlyComposition, asOf: '2099-01-31' }
+assert.equal(retainedCompositionDate(retainQualifiedComposition(newerComposition, retained)), null)
 
 // Eleven security lines with two Alphabet classes still identify ten companies.
 const eleven=[{isin:'US02079K3059',name:'Alphabet A',weightPct:4},{isin:'US02079K1079',name:'Alphabet C',weightPct:3},...rows.slice(0,9).map((r,i)=>({...r,weightPct:2-i/10}))]

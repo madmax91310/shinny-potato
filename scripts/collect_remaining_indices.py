@@ -158,7 +158,7 @@ def collect_one(config, now, fetch=download):
             else: stamp, values = stoxx_returns(body, config, now)
             result['returns'] = {'asOf': stamp, 'currency': config['returnCurrency'], 'variant': config['returnVariant'], 'values': values,
                 'periodStart': f'{min(y for y, _ in values)}-01-01', 'periodEnd': f'{max(y for y, _ in values)}-12-31',
-                'source': {'url': config['returnSourceUrl'], 'checkedAt': now.date().isoformat(), 'sha256': proof(body), 'label': 'Rendements calendaires officiels automatisés · ' + config['name']},
+                'source': {'url': config['returnSourceUrl'], 'checkedAt': now.date().isoformat(), 'sha256': proof(body), 'label': config.get('returnSourceLabel', 'Rendements calendaires officiels automatisés · ' + config['name'])},
                 'performance': {'kind': config.get('kind','indice'), 'detail': config['performanceDetail'], 'date': stamp}}
         except Exception as e: result['errors'].append({'field': 'returns', 'reason': str(e), 'url': config['returnSourceUrl']})
     return result
