@@ -12,7 +12,7 @@ import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
 import { portraitCredits } from './media.js'
 import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
-import { publicationPlan, portfolioOwner, cash, reportedAmount } from './publication.js'
+import { publicationPlan, portfolioOwner, cash, reportedAmount, shortPosition } from './publication.js'
 import { draftBasis, editorialCopy, quarterLabel } from './editorial.js'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
 import './style.css'
@@ -196,6 +196,11 @@ export default function InvestorPortfolio() {
               <strong>À réviser</strong> · {saved ? 'Ton brouillon a été conservé.' : review.text ? `Le texte relu couvre ${quarterLabel(review.review.period)}.` : 'Aucun texte relu pour ce relevé.'}
               {review.facts && <p>Relevé disponible en {quarterLabel(review.facts.period)} · {cash(review.facts.total, 'USD')} hors options. Les trois premières lignes représentent {percentage(review.facts.topThree)}.
                 {' '}{review.facts.leading.map(row => `${holdingName(row)} (${percentage(row.weight)})`).join(', ')}.</p>}
+              {!!review.comparisons?.length && <ul aria-label="Comparaisons recalculées à relire">
+                {review.comparisons.map(({ rows, weight }, index) => <li key={index}>
+                  {rows.map(shortPosition).join(' + ')} · {percentage(weight)}
+                </li>)}
+              </ul>}
               <Button type="button" variant="secondary" disabled={!saved?.text.trim() || saved.text === review.text} onClick={() => saveDraft(draft, basis)}>Valider le texte pour ce relevé</Button>
             </div>}
             {storageFailed && <p className="ip-note" role="status">Le navigateur n’a pas enregistré cette modification.</p>}

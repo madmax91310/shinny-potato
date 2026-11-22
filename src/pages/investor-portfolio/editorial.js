@@ -35,6 +35,18 @@ function totalInWords(total) {
   return `${amount} ${scale === 1e9 ? 'milliard' : 'million'}${total / scale >= 2 ? 's' : ''} de dollars`
 }
 
+// An earlier angle survives a new quarter only as a comparison to review.
+// Match its securities by CUSIP and class, even if their ranks have changed.
+function updatedComparisons(portfolio, copy, review) {
+  const key = (cusip, shareClass) => JSON.stringify([cusip, shareClass])
+  const current = new Map(portfolio.holdings.map(row => [key(row.cusip, row.shareClass), row]))
+  return copy.picks.filter(group => group.length > 1).flatMap(group => {
+    const rows = group.map(rank => current.get(key(...review.rows[rank - 1])))
+    if (rows.some(row => !row)) return []
+    return [{ rows, weight: rows.reduce((sum, row) => sum + row.value, 0) / portfolio.total }]
+  }).slice(0, 3)
+}
+
 export function editorialCopy(portfolio) {
   const slug = portfolio.identity.slug
   const facts = financialFacts(portfolio)
@@ -49,12 +61,13 @@ export function editorialCopy(portfolio) {
     && review.rows.every((row, index) => row.every((value, field) => facts.rows[index]?.[field] === value))
   const weights = copy.picks.map(group => group.reduce((sum, rank) => sum + review.rows[rank - 1][2], 0) / review.total)
   const quarter = quarterLabel(review.period)
-  const context = `En ${quarter}, le 13F fait état de ${totalInWords(review.total)} de positions hors options`
+  const context = `Pour le ${quarter}, le 13F fait état de ${totalInWords(review.total)} de positions hors options`
   const render = template => template.replace(/\{(context|quarter|(?:shock|amount)?\d+)\}/g, (_, token) => {
     if (token === 'context') return context
     if (token === 'quarter') return quarter
     if (token.startsWith('amount')) return totalInWords(weights[Number(token.slice(6)) - 1] * review.total)
     return token.startsWith('shock') ? weightLabel(weights[Number(token.slice(5)) - 1] * .3) : weightLabel(weights[Number(token) - 1])
   })
-  return { status: current ? 'reviewed' : 'review', text: render(copy.text), short: render(copy.short), review, facts, weights }
+  return { status: current ? 'reviewed' : 'review', text: render(copy.text), short: render(copy.short), review, facts, weights,
+    comparisons: current ? [] : updatedComparisons(portfolio, copy, review) }
 }

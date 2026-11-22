@@ -48,6 +48,8 @@ try {
   await refresh.click()
   await page.getByText('À réviser', { exact: true }).waitFor()
   assert.equal(await draft.inputValue(), edit)
+  const comparisons = page.getByRole('list', { name: 'Comparaisons recalculées à relire' })
+  assert.match(await comparisons.innerText(), /Micron.*TSMC.*Nvidia/)
   assert.equal(await copy.isDisabled(), true)
   await draft.fill('Mon texte révisé pour le T2 2026.')
   await page.getByRole('button', { name: 'Valider le texte pour ce relevé' }).click()

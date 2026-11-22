@@ -28,7 +28,9 @@ for (const [slug] of INVESTORS) {
       const next = structuredClone(portfolio)
       next.snapshot.periodEnd = next.snapshot.periodEnd === '2026-09-30' ? '2026-06-30' : '2026-09-30'
       assert.notEqual(draftBasis(next), draftBasis(portfolio))
-      assert.equal(editorialCopy(next).status, 'review')
+      const updated = editorialCopy(next)
+      assert.equal(updated.status, 'review')
+      assert(updated.comparisons.every(({ rows, weight }) => rows.reduce((sum, row) => sum + row.value, 0) / next.total === weight))
       assert.equal(buildTweet(next), tweet, 'Le texte relu reste disponible pour la révision')
       const amended = structuredClone(portfolio)
       amended.holdings[0].value++
