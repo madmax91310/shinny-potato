@@ -148,7 +148,13 @@ export async function renderFactsheetImage(sheet) {
     : [sectorBand, definitions[0]].find(dominates)?.rows[0]
   const bands=definitions.map(band=>{
     const width=USABLE/Math.max(1,band.rows.length)
-    const cells=band.rows.map(row=>({...row, emphasized: row === focus, nameBlock:block(ctx,row.name,width-32,band.kind==='sector'?40:49,700),valueBlock:fit(ctx,row.value>0&&row.value<.005?'< 0,01 %':percent(row.value),width-28,row === focus ? 117 : 99,76,false)}))
+    const emphasizedBand = band.rows.includes(focus)
+    const cells=band.rows.map(row=>{
+      const emphasized = row === focus
+      const size = emphasized ? 112 : emphasizedBand ? 86 : 99
+      return {...row, emphasized, nameBlock:block(ctx,row.name,width-32,band.kind==='sector'?40:49,700),
+        valueBlock:fit(ctx,row.value>0&&row.value<.005?'< 0,01 %':percent(row.value),width-(emphasized ? 22 : 28),size,76,false)}
+    })
     const nameH=Math.max(61,...cells.map(cell=>cell.nameBlock.height)),valueH=Math.max(118,...cells.map(cell=>cell.valueBlock.height))
     return {...band,cells,width,nameH,valueH,height:Math.max(422,100+126+15+nameH+8+valueH+26)}
   })
