@@ -96,7 +96,8 @@ export function buildTweet(portfolio, intro = '') {
     `Portefeuille de ${portfolioOwner(portfolio)} :`,
     `Positions déclarées au ${dateFR(snapshot.periodEnd)} · hors options`,
     [...plan.entries].sort((a,b) => b.weight-a.weight).map(row => `${row.other ? '📦' : emojiFor(row.ticker || logoIdentity(row)?.id)} ${row.label} : ${percentage(row.weight)} · ${cash(row.value, plan.currency)}`).join('\n'),
-    ...(snapshot.reconciliationWarning ? ['Chiffres SEC ; le fournisseur affiche un autre total.'] : []),
+    ...(snapshot.coverReconciliation ? [`⚠️ Les lignes SEC totalisent ${cash(snapshot.coverReconciliation.informationTableTotal, snapshot.currency)}, la page de garde indique ${cash(snapshot.coverReconciliation.reportedCoverTotal, snapshot.currency)}. Poids calculés sur les lignes.`]
+      : snapshot.reconciliationWarning ? ['Chiffres SEC ; le fournisseur affiche un autre total.'] : []),
     'Quelle ligne aimerais-tu avoir dans ton portefeuille ? 👇',
   ].join('\n\n')
 }

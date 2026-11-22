@@ -120,12 +120,12 @@ export default function InvestorPortfolio() {
           <strong>{portfolio.identity.displayName} · {portfolio.identity.entityName}</strong>
           {model ? <><span>{modelNatureLabel(model)} · {model.publication}</span><span>{model.scope}</span><span>Source contrôlée le {dateFR(model.checkedAt)} · {model.locator}</span></> : <span>Positions au {dateFR(portfolio.snapshot.periodEnd)}{portfolio.snapshot.filedAt && ` · déposées le ${dateFR(portfolio.snapshot.filedAt)}`}</span>}
           <span>{portfolio.holdings.length} {model ? 'classes d’actifs · poids cibles' : 'positions accessibles · hors options'}</span>
-          {!model && <><span role="status">{portfolio.problem ? `Données incomplètes : ${portfolio.problem}` : 'Données prêtes · montants et total cohérents'}</span>
+          {!model && <><span role="status">{portfolio.problem ? `Données incomplètes : ${portfolio.problem}` : portfolio.snapshot.coverReconciliation ? 'Données prêtes · écart entre la page de garde et les lignes SEC signalé' : 'Données prêtes · montants et total cohérents'}</span>
           {portfolio.snapshot.reconciliationWarning && <span role="status">{portfolio.snapshot.reconciliationWarning}</span>}
           {portfolio.lastError && <span role="alert">Dernière actualisation en échec : {portfolio.lastError}. Dernier relevé conservé.</span>}
           <span>Dernière vérification : {portfolio.lastSuccessfulPollAt || portfolio.fetchedAt || 'inconnue'}</span>
           {!portfolio.snapshot.filedAt && <span>Date de publication non transmise par la source.</span>}
-          {portfolio.snapshot.reconciliationDifference !== undefined && portfolio.snapshot.reconciliationDifference !== 0 && <span>Écart d’arrondi de la déclaration : {portfolio.snapshot.reconciliationDifference} USD. Les poids utilisent la somme des lignes.</span>}
+          {portfolio.snapshot.reconciliationDifference !== undefined && portfolio.snapshot.reconciliationDifference !== 0 && <span>{portfolio.snapshot.coverReconciliation ? 'Écart entre la page de garde et la somme des lignes SEC' : 'Écart d’arrondi de la déclaration'} : {Math.abs(portfolio.snapshot.reconciliationDifference).toLocaleString('fr-FR')} $US. Les poids utilisent la somme des lignes.</span>}
           {portfolioOwner(portfolio)!==portfolio.identity.displayName && <span>Lien de gestion non confirmé pour cette période : publication au nom de l’entité déclarante.</span>}
           {portfolio.identity.declaringCik && <span>Déclarant SEC : CIK {portfolio.identity.declaringCik}</span>}
           {portfolio.snapshot.securityIdentityNote && <span>{portfolio.snapshot.securityIdentityNote}</span>}

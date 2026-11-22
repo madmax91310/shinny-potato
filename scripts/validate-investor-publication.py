@@ -36,6 +36,9 @@ INDEPENDENT = {
     'src/pages/dca-profiles/DcaApp.jsx',
     'src/pages/dca-profiles/README.md',
 }
+# 22 Nov: the acquisition change only recognizes the exact Altimeter Q3
+# cover/table discrepancy. It does not read the independent paths below and
+# keeps the same 28-manager acquisition plan; the fingerprint remains mandatory.
 # 12 Nov: LifeStrategy/Vanguard-only plan additions reviewed; actual 13F plans
 # before/after are identical for every manager. Acquisition and independent-input
 # exemptions are unchanged; all fingerprints remain mandatory.
@@ -44,7 +47,7 @@ INDEPENDENT = {
 # 13 Nov: targeted anniversary/gold selection leaves all 28 13F plans intact;
 # proof: fixtures/publication/xndx-official-20261113/13f-plan-before-after.json.
 ACQUISITION_SHA256 = {
-    'scripts/update-investor-13f.py': '8aa79e8f6d5768d4b93c59681e3a2f474fb209aac6a00be4f8e7d221f6ccd179',
+    'scripts/update-investor-13f.py': '9f13ba97470e7f4ace882a3d925e0a7e8ab622e171de9e36ffc8316122726f08',
     'scripts/producer_report_contract.py': '54ee3ffe6e80be3d6ba2529172928063c3c1706f85c9973fe485db266778b463',
     'scripts/producer_report_plans.py': '50b52581836c7e6eb08e45e84fe4ae956fcc774c90aa5f2b8e340b2125cb7fa3',
 }

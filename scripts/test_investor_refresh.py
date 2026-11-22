@@ -140,6 +140,122 @@ class RefreshTests(unittest.TestCase):
                     self.assertEqual(data['data']['snapshot']['declaredTotal'], 100)
                     self.assertEqual(data['data']['snapshot']['reconciliationDifference'], -1 if kind == 'rounding' else 0)
 
+    def test_altimeter_exception_is_limited_to_the_reviewed_official_filing(self):
+        rows = [('023135106', 'COM', None, 611005494),
+                ('042068205', 'SPONSORED ADS', None, 462659145),
+                ('15675D103', 'COM CL A', None, 1010646202),
+                ('21873S108', 'COM CL A', None, 416142793),
+                ('G4124C117', 'W EXP 12/1/202', None, 94554),
+                ('770700102', 'COM CL A', None, 101215238),
+                ('30303M102', 'CL A', None, 1231865441),
+                ('594918104', 'COM', None, 607084853),
+                ('595112103', 'COM', None, 277077715),
+                ('67066G104', 'COM', None, 2285186039),
+                ('92189F676', 'SEMICONDUCTR ETF', 'PUT', 511560000),
+                ('80004C200', 'COM', None, 43793031),
+                ('833445109', 'COM SHS', None, 654077450),
+                ('84615Q103', 'CLASS A COM STK', None, 159328979),
+                ('88160R101', 'COM', None, 679617266),
+                ('874039100', 'SPONSORED ADS', None, 653959770),
+                ('90353T100', 'COM', None, 603421693)]
+        self.assertEqual(sum(row[3] for row in rows), 10308735663)
+        folder = 'https://www.sec.gov/Archives/edgar/data/1541617/000154161726000010/'
+        directory = {'directory': {'item': [{'name': 'primary_doc.xml'}, {'name': 'q3202613f.xml'}]}}
+        def documents(cik='0001541617', period='09-30-2026', count=17,
+                      cover=10309080051, amended=False, row_values=rows):
+            primary = (f'<edgarSubmission><periodOfReport>{period}</periodOfReport>'
+                       f'<filingManager><name>Altimeter Capital Management, LP</name></filingManager>'
+                       f'<credentials><cik>{cik}</cik></credentials>'
+                       f'<tableValueTotal>{cover}</tableValueTotal><tableEntryTotal>{count}</tableEntryTotal>'
+                       f'<isAmendment>{str(amended).lower()}</isAmendment></edgarSubmission>')
+            table = '<informationTable>' + ''.join(
+                f'<infoTable><nameOfIssuer>Issuer {i}</nameOfIssuer><titleOfClass>{security[1]}</titleOfClass>'
+                f'<cusip>{security[0]}</cusip><value>{security[3]}</value>'
+                f'{"<putCall>" + security[2] + "</putCall>" if security[2] else ""}</infoTable>'
+                for i, security in enumerate(row_values, 1)) + '</informationTable>'
+            return [directory, primary, table]
+        def candidate(url=folder, provider=10309080051):
+            data = portfolio('2026-09-30', slug='gerstner')
+            data['data']['identity']['entityName'] = 'Altimeter Capital Management LP'
+            data['data']['snapshot'].update(filingUrl=url, declaredTotal=provider)
+            return data
+        with patch.object(module, 'get_json', side_effect=documents()):
+            accepted = candidate()
+            module.enrich_sec_positions(accepted)
+        snapshot = accepted['data']['snapshot']
+        module.validate_portfolio(accepted, 'gerstner')
+        self.assertEqual(snapshot['declaredTotal'], 10308735663)
+        self.assertEqual(snapshot['reportedCoverTotal'], 10309080051)
+        self.assertEqual(snapshot['reconciliationDifference'], -344388)
+        self.assertEqual(snapshot['coverReconciliation']['weightDenominator'], 'informationTableTotal')
+        self.assertIn('344 388', snapshot['reconciliationWarning'])
+        self.assertAlmostEqual(sum(row['weight'] for row in snapshot['holdings']), 1)
+        cases = [
+            ('cover changed', folder, 10309080051, {'cover': 10309080052}),
+            ('one row changed', folder, 10309080051, {'row_values': rows[:-1] + [(*rows[-1][:3], rows[-1][3] + 1)]}),
+            ('security changed', folder, 10309080051, {'row_values': rows[:-1] + [('90353T101', *rows[-1][1:])]}),
+            ('entry count changed', folder, 10309080051, {'count': 18}),
+            ('quarter changed', folder, 10309080051, {'period': '06-30-2026'}),
+            ('filer changed', folder, 10309080051, {'cik': '0001541618'}),
+            ('amended', folder, 10309080051, {'amended': True}),
+            ('different accession', folder.replace('000010/', '000012/'), 10309080051, {}),
+            ('provider factor 1000', folder, 10308735663000, {}),
+        ]
+        for label, url, provider, changes in cases:
+            with self.subTest(label=label), patch.object(module, 'get_json', side_effect=documents(**changes)), self.assertRaises(ValueError):
+                module.enrich_sec_positions(candidate(url, provider))
+
+    def test_baupost_and_duquesne_factor_1000_never_becomes_sec_dollars(self):
+        for slug, cik, cover, rows, count in [
+            ('druckenmiller', '1536411', 4470866, 4470867, 65),
+            ('klarman', '1061768', 5045853, 5045853, 21),
+        ]:
+            folder = f'https://www.sec.gov/Archives/edgar/data/{cik}/000{cik}26000015/'
+            directory = {'directory': {'item': [{'name': 'cover.xml'}, {'name': 'table.xml'}]}}
+            primary = (f'<edgarSubmission><periodOfReport>09-30-2026</periodOfReport>'
+                       f'<filingManager><name>{slug}</name></filingManager><credentials><cik>{cik}</cik></credentials>'
+                       f'<tableValueTotal>{cover}</tableValueTotal><tableEntryTotal>{count}</tableEntryTotal>'
+                       '<isAmendment>false</isAmendment></edgarSubmission>')
+            table = '<informationTable>' + ''.join(
+                f'<infoTable><nameOfIssuer>Issuer {i}</nameOfIssuer><titleOfClass>COM</titleOfClass>'
+                f'<cusip>{i:09d}</cusip><value>{rows - count + 1 if i == 1 else 1}</value></infoTable>'
+                for i in range(1, count + 1)) + '</informationTable>'
+            candidate = portfolio('2026-09-30', slug=slug)
+            candidate['data']['snapshot'].update(filingUrl=folder, declaredTotal=rows * 1000)
+            with self.subTest(slug=slug), patch.object(module, 'get_json', side_effect=[directory, primary, table]), self.assertRaisesRegex(ValueError, 'no inferred conversion'):
+                module.enrich_sec_positions(candidate)
+
+    def test_three_refusals_keep_each_last_qualified_quarter_and_archive(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = pathlib.Path(folder)
+            periods = {'gerstner': '2026-06-30', 'druckenmiller': '2026-06-30',
+                       'klarman': '2026-09-30'}
+            for slug in module.MANAGERS:
+                (directory / f'{slug}.json').write_text(json.dumps(
+                    portfolio(periods.get(slug, '2026-09-30'), slug=slug)))
+            archives = {}
+            for slug in periods:
+                archive = directory / 'archive' / slug / '2026-03-31.json'
+                archive.parent.mkdir(parents=True, exist_ok=True)
+                archive.write_text('qualified previous quarter')
+                archives[slug] = archive.read_bytes()
+            before = {slug: (directory / f'{slug}.json').read_bytes() for slug in periods}
+            def fetch(slug, *args):
+                if slug in periods:
+                    raise ValueError('SEC/provider unit conflict' if slug != 'gerstner'
+                                     else 'SEC information table does not reconcile')
+                return portfolio('2026-09-30', slug=slug)
+            with patch.object(module.time, 'sleep'), self.assertRaisesRegex(RuntimeError, '3 manager'):
+                module.refresh(directory, fetch)
+            reviews = {row['data']['identity']['slug']: row for row in json.loads(
+                (directory / 'review-metadata.json').read_text())}
+            for slug, period in periods.items():
+                self.assertEqual((directory / f'{slug}.json').read_bytes(), before[slug])
+                self.assertEqual((directory / 'archive' / slug / '2026-03-31.json').read_bytes(), archives[slug])
+                self.assertEqual(reviews[slug]['data']['snapshot']['periodEnd'], period)
+                self.assertEqual(reviews[slug]['lastAttemptStatus'], 'failed')
+                self.assertFalse((directory / 'archive' / slug / f'{period}.json').exists())
+
     def test_monetary_units_and_reconciliation(self):
         data = portfolio('2026-06-30', .6)
         snap = data['data']['snapshot']
