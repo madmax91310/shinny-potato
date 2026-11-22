@@ -124,6 +124,14 @@ class FieldCompletion(unittest.TestCase):
             self.assertEqual(result['holdings']['rows'][0]['weightPct'],first)
             self.assertEqual('countries' in result,isin=='FR0011550193')
 
+    def test_weekend_month_end_keeps_the_pdf_valuation_date(self):
+        from collect_bnp_etf import matches_advertised_date
+        for isin in ('FR0011550193','IE000QDFFK00'):
+            self.assertTrue(matches_advertised_date('2026-10-30','2026-10-31',isin))
+            self.assertFalse(matches_advertised_date('2026-10-29','2026-10-31',isin))
+            self.assertFalse(matches_advertised_date('2026-10-02','2026-10-03',isin))
+        self.assertFalse(matches_advertised_date('2026-10-30','2026-10-31','FR0011550185'))
+
     def test_bad_bnp_exposures_preserve_independent_fields_and_signal_failure(self):
         share=next(s for s in CONFIG if s['isin']=='IE000QDFFK00')
         text=(FIX/'bnp-easy-ii-nasdaq.txt').read_text().replace('58.52','18.52')

@@ -185,7 +185,7 @@ def qualify_subject(isin,now,fetch=download,*,attempts=None):
         result=parse(pdf_text(raw),config,now,stamp)
         expected=share.get('shareBenchmarkLabel','STOXX Europe 600 NR')
         if result['characteristics']['index']!=expected:raise ValueError('Wrong BNP economic benchmark')
-        return raw,url,stamp,dict(sourceUrl=discovery,sha256=digest(page))
+        return raw,url,result['characteristics']['asOf'],dict(sourceUrl=discovery,sha256=digest(page),advertisedAsOf=stamp)
     raise ValueError('Unqualified subject share')
 
 @lru_cache(maxsize=16)
@@ -275,5 +275,7 @@ def collect(share,now,fetch=download,capture=None):
     if len(subject_attempts)>1:record['shareSourceAttempts']=subject_attempts
     if discovery:
         record.update(shareDiscoverySourceUrl=discovery['sourceUrl'],shareDiscoverySha256=discovery['sha256'])
+        if 'advertisedAsOf' in discovery:
+            record['shareDocumentAdvertisedAsOf'] = discovery['advertisedAsOf']
         record['sourceUrls'].append(discovery['sourceUrl'])
     return record
