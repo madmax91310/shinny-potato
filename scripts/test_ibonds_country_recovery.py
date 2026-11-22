@@ -32,7 +32,7 @@ class IBondsCountryRecovery(unittest.TestCase):
   self.assertEqual(self.collect(BODY)['countries'],r['countries'])
  def test_primary_failure_remains_explicit_in_targeted_native_contract(self):
   r=self.collect(BODY);report={'records':[r],'excluded':[]};report['contractResults']=contract_results([CONFIG],report)
-  self.assertEqual(report['contractResults']['successes'],[])
+  self.assertEqual([row['id'] for row in report['contractResults']['successes']],['qualified-yield:'+CONFIG['isin']])
   error=report['contractResults']['errors'][0]
   self.assertEqual(error['id'],CONFIG['isin']);self.assertEqual(error['field'],'countries-primary')
   self.assertTrue(error['qualifiedAlternativeAvailable'])
@@ -41,7 +41,7 @@ class IBondsCountryRecovery(unittest.TestCase):
   plan['sha256']=hashlib.sha256(json.dumps(plan,sort_keys=True).encode()).hexdigest()
   contract=finish(report,plan)['resultContract'];validate_contract(contract)
   normalized=normalize_contract(contract)
-  self.assertEqual(normalized['successes'],[])
+  self.assertEqual([row['id'] for row in normalized['successes']],['qualified-yield:'+CONFIG['isin']])
   self.assertEqual([e['id']for e in normalized['errors']],[CONFIG['isin']])
   self.assertEqual(contract['issues'],[]);self.assertEqual(contract['unscopedFailures'],[])
   self.assertEqual({o['id']for o in contract['outcomes']if o['status']=='failed'},{CONFIG['isin']})
