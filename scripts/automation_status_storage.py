@@ -11,6 +11,8 @@ import hashlib
 import json
 import zlib
 
+from monitor_incident_history import expand_incident_history
+
 MAX_ARCHIVE_BYTES = 8 * 1024 * 1024
 
 
@@ -232,7 +234,7 @@ def pack_proof_checks(state):
 def decode_status(state):
     """Restore the bounded wire envelope; legacy reports remain unchanged."""
     if not isinstance(state, dict) or 'monitorStorage' not in state:
-        return expand_proof_checks(expand_scope_archives(state))
+        return expand_incident_history(expand_proof_checks(expand_scope_archives(state)))
     try:
         if (set(state) != {'schemaVersion', 'monitorStorage', 'decodedBytes', 'sha256', 'data'}
                 or state['schemaVersion'] != 2 or state['monitorStorage'] != STATUS_TRANSPORT
@@ -249,7 +251,7 @@ def decode_status(state):
         restored = json.loads(raw.decode('utf-8'))
         if not isinstance(restored, dict) or restored.get('schemaVersion') != 1 or 'monitorStorage' in restored:
             raise ValueError('Invalid or nested monitor state')
-        return expand_proof_checks(expand_scope_archives(restored))
+        return expand_incident_history(expand_proof_checks(expand_scope_archives(restored)))
     except (KeyError, TypeError, UnicodeError, zlib.error, ValueError) as error:
         raise ValueError('Transport du moniteur invalide ; aucune preuve réinitialisée') from error
 

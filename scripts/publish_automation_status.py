@@ -23,6 +23,7 @@ from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, ti
 from github_automation_transport import request_json, unseen_completed_runs
 from automation_history_coverage import recover_skipped_history_gaps
 from automation_legacy_phases import CONTRACTS as LEGACY_PHASE_CONTRACTS, qualify_legacy_phases
+from monitor_incident_history import incident_history_reader_ready, pack_incident_history
 from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives,decode_status,reader_ready,pack_proof_checks,pack_scope_archives,scope_reader_ready
 from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
@@ -1646,6 +1647,8 @@ def main():
         state = pack_proof_checks(state)
     if compressed and scope_reader_ready(repo):
         state = pack_scope_archives(state)
+    if compressed and incident_history_reader_ready(repo):
+        state = pack_incident_history(state)
     print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',state.get('reportScopeArchives',{}))))+' périmètres de preuve uniques ; aucun incident retiré.')
     encoded = encode_status(state, compressed=compressed)
     print('Transport du moniteur : '+('gzip vérifié, lecteur public disponible' if compressed else 'JSON historique, nouveau lecteur public non démontré'))
