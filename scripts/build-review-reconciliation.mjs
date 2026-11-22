@@ -42,15 +42,20 @@ const rows=original.cases.map(r=>{
 })
 for(const row of rows.filter(r=>r.open||r.residualOpen)){
  const start=`${row.year-1}-12`,end=`${row.year}-12`
- const windows=Object.values(ASSETS).filter(a=>a.isin===row.isin).map(a=>({id:a.id,currency:a.currency,convention:a.historyConvention??a.priceMethod,
+ const windows=Object.values(ASSETS).filter(a=>a.isin===row.isin).map(a=>({id:a.id,ticker:a.ticker??null,mic:a.mic??null,currency:a.currency,convention:a.historyConvention??a.priceMethod,
   start:a.points[0]?.date,end:a.points.at(-1)?.date,sourceUrls:a.sourceUrls??[],qualification:qualifyHistoryWindow(a,start,end)}))
  const nav=windows.filter(w=>w.convention==='fund-nav-total-return'&&w.qualification.qualified)
+ const other=windows.filter(w=>w.convention!=='fund-nav-total-return'&&w.qualification.qualified)
+ const routes=[...nav,...other].map(w=>[w.id,w.mic,w.currency,w.convention].filter(Boolean).join(' · '))
  const calendar=PERFORMANCE_FUND_CALENDARS[row.isin]
  const annualNav=Number.isFinite(calendar?.years[row.year])?{id:calendar.id,currency:calendar.currency,year:row.year,sourceUrls:calendar.sourceUrls}:null
+ const qualifiedUses=[]
+ if(nav.length)qualifiedUses.push(`NAV indépendante qualifiée pour ${row.year} (${nav.map(w=>w.currency).join(', ')}), sans attribuer la divergence de cotation initiale.`)
+ if(other.length)qualifiedUses.push(`Série mensuelle qualifiée pour ${row.year} via ${other.map(w=>[w.ticker??w.id,w.mic,w.currency].filter(Boolean).join(' · ')).join(', ')}. La divergence de cotation initiale reste suivie.`)
  row.currentConsumer={integrationArchive:row.currentConsumer,windows,annualNav,
-  route:nav.length?nav.map(w=>`${w.id} · ${w.currency} · ${w.convention}`).join(' ; '):annualNav?`${annualNav.id} · ${annualNav.currency} · calendrier annuel VL distinct`:'Fenêtre de cotation refusée ; aucun calcul admis sur cette période',
+  route:routes.length?routes.join(' ; '):annualNav?`${annualNav.id} · ${annualNav.currency} · calendrier annuel VL distinct`:'Fenêtre de cotation refusée ; aucun calcul admis sur cette période',
   proof:'Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.',
-  secured:nav.length?`NAV indépendante qualifiée pour ${row.year} (${nav.map(w=>w.currency).join(', ')}), sans attribuer la divergence de cotation initiale.`
+  secured:qualifiedUses.length?qualifiedUses.join(' ')
    :`Fenêtre de cotation contestée refusée pour ${row.year} ; dernières observations conservées.${annualNav?' Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite.':''}`}
 }
 if(rows.length!==new Set(rows.map(r=>r.id)).size)throw Error('Duplicate original financial case')

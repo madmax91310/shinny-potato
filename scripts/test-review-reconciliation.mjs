@@ -36,4 +36,21 @@ assert.equal(nikkei.currentConsumer.annualNav.id,'annual-LU2196470426')
 assert.equal(nikkei.currentConsumer.annualNav.currency,'JPY','Keep the real native table currency in the source proof')
 assert.equal(nikkei.currentConsumer.windows.find(w=>w.id==='etfLU2196470426').qualification.qualified,false,'Original contested quote remains refused')
 assert(nikkei.currentConsumer.windows.some(w=>w.id==='etfLU2196470426Nav'&&w.qualification.qualified),'The independent exact-share NAV restores the monthly window')
+for(const year of [2021,2023,2024]){
+ const bitwise=report.rows.find(r=>r.id===`DE000A27Z304/${year}`)
+ assert.equal(bitwise.open,true,'An independent Paris listing cannot explain the original Xetra divergence')
+ const {windows,route,secured}=bitwise.currentConsumer
+ const xetra=windows.find(w=>w.mic==='XETR')
+ const paris=windows.find(w=>w.mic==='XPAR')
+ assert.equal(xetra.qualification.qualified,false)
+ assert.equal(paris.qualification.qualified,year!==2021)
+ if(year===2021){
+  assert.doesNotMatch(route,/etfDE000A27Z304Paris/)
+  assert.match(secured,/Fenêtre de cotation contestée refusée/)
+ }else{
+  assert.match(route,/etfDE000A27Z304Paris · XPAR · EUR/)
+  assert.match(secured,/Série mensuelle qualifiée.*XPAR/)
+  assert.doesNotMatch(secured,/aucune cotation mensuelle/)
+ }
+}
 console.log('Every original alert, value and period survives; only integrated financial proof updates its status, with residuals preserved.')
