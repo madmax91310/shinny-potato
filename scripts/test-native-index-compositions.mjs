@@ -113,6 +113,12 @@ assert.equal(qualifiedNativeIndexComposition(russellNew,'LU1681038672',novemberN
 russellNew.coverageProof.returnWeightProof.documents=structuredClone(russellRule.documents)
 assert(qualifiedNativeIndexComposition(russellNew,'LU1681038672',novemberNow),'Current reviewed method qualifies the same unmodified equity-member weights')
 assert.deepEqual(russellNew.rows,russell.rows,'Method review must never alter, rescale or replace positions')
+const alternateMethod=structuredClone(russellNew)
+alternateMethod.coverageProof.returnWeightProof.documents[0].sha256=russellRule.documents[0].reviewedAlternateDocuments[0].sha256
+assert.equal(qualifiedNativeIndexComposition(alternateMethod,'LU1681038672',novemberNow),false)
+alternateMethod.checkedAt='2026-11-22T16:33:17Z'
+alternateMethod.coverageProof.returnWeightProof.checkedAt=alternateMethod.checkedAt
+assert.equal(qualifiedNativeIndexComposition(alternateMethod,'LU1681038672',new Date('2026-11-22T17:00:00Z')),true)
 const corruptMethod=structuredClone(russellNew);corruptMethod.coverageProof.returnWeightProof.documents[0].sha256='f'.repeat(64)
 assert.equal(qualifiedNativeIndexComposition(corruptMethod,'LU1681038672',novemberNow),false)
 assert(qualifiedNativeIndexComposition(russell,'LU1681038672',issuerNow),'Original immutable fixture remains qualified on its historical date')

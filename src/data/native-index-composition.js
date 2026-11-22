@@ -46,7 +46,9 @@ function qualifiedIssuerIndex(h,share,index,now){
  const returnQualified=!returnRule||(returnProof?.checkedAt===h.checkedAt&&returnProof.rule===returnRule.rule
   &&returnProof.originalWeightsUnchanged===true&&returnProof.targetReturnSeriesUnchanged===true
   &&Array.isArray(returnProof.documents)&&returnDocumentSets.some(docs=>Array.isArray(docs)&&returnProof.documents.length===docs.length
-   &&docs.every((doc,i)=>['sourceUrl','sha256','version'].every(key=>returnProof.documents[i]?.[key]===doc[key])))
+   &&docs.every((doc,i)=>['sourceUrl','version'].every(key=>returnProof.documents[i]?.[key]===doc[key])
+    && (doc.sha256===returnProof.documents[i]?.sha256 || doc.reviewedAlternateDocuments?.some(version=>
+     version.sha256===returnProof.documents[i]?.sha256 && control>=Date.parse(version.reviewedOn)))))
   &&p.targetBenchmark===share.targetBenchmark&&share.hedged===false)
  return returnQualified&&subjectScopeQualified&&currencyQualified&&h.methodCode===index.methodCode&&h.sourceUrl===index.weightSourceUrl&&hash(h.sha256)
   &&typeof h.method==='string'&&h.method.trim().length>0&&subjectSource&&hash(h.shareSha256)
