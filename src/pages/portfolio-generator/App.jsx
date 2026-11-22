@@ -348,8 +348,7 @@ function PerfChart({ perf }) {
   )
 }
 
-function TweetCard({ portfolio }) {
-  const text = useMemo(() => renderTweetText(portfolio), [portfolio])
+function TweetCard({ text }) {
   const paragraphs = text.split('\n\n')
 
   return (
@@ -390,6 +389,7 @@ function GeneratorWorkspace({search}) {
 
   const current = mode === 'manual' && manualEditing ? null
     : history.findLast(portfolio => portfolio.mode === (mode === 'models' ? 'preset' : mode === 'auto' ? 'auto' : 'manual'))
+  const tweetText = useMemo(() => current ? renderTweetText(current) : '', [current])
   const [background, setBackground] = useState(null)
   const [imageError, setImageError] = useState('')
   const [imageAttempt, setImageAttempt] = useState(0)
@@ -500,14 +500,13 @@ function GeneratorWorkspace({search}) {
   }, [manualSelection, manualProfile,manualLoading])
 
   const handleCopy = useCallback(async () => {
-    const text = renderTweetText(current)
     try {
-      await copyPublicationText(text)
+      await copyPublicationText(tweetText)
       setCopyState('done')
     } catch {
       const ta = textareaRef.current
       if (ta) {
-        ta.value = text
+        ta.value = tweetText
         ta.style.display = 'block'
         ta.focus()
         ta.select()
@@ -515,7 +514,7 @@ function GeneratorWorkspace({search}) {
       setCopyState('error')
     }
     window.setTimeout(() => setCopyState('idle'), 2200)
-  }, [current])
+  }, [tweetText])
 
   return (
     <div className="pg-scope">
@@ -540,7 +539,7 @@ function GeneratorWorkspace({search}) {
                 : <p role="status">Préparation du visuel…</p>}
         </>}>
         <section className="pg-tweet-col tool-preview">
-          {current ? <TweetCard portfolio={current} /> : <p role="status">Compose le portefeuille, puis génère le texte et son visuel.</p>}
+          {current ? <TweetCard text={tweetText} /> : <p role="status">Compose le portefeuille, puis génère le texte et son visuel.</p>}
 
           <textarea ref={textareaRef} className="pg-clipboard-fallback" readOnly />
         </section>
@@ -599,8 +598,8 @@ function GeneratorWorkspace({search}) {
                 {manualSelection.length} ligne{manualSelection.length > 1 ? 's' : ''} · profil {PROFILES.find((p) => p.id === manualProfile)?.label}
               </p>
               {current.mode === 'manual' && (
-                <p className={`pg-manual-length pg-manual-length-${getLengthStatus(renderTweetText(current).length).level}`}>
-                  {getLengthStatus(renderTweetText(current).length).label}
+                <p className={`pg-manual-length pg-manual-length-${getLengthStatus(tweetText.length).level}`}>
+                  {getLengthStatus(tweetText.length).label}
                 </p>
               )}
               <div className="pg-manual-result-actions">

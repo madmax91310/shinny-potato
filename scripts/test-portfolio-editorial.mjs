@@ -220,12 +220,18 @@ for (const asset of ASSETS) {
   const p = manual([{id:asset.id,pct:100}]);
   assert.ok(p.selection[0].shortRole.split(/\s+/).length <= 45, asset.id);
   assert.ok(p.hook.length <= 200, asset.id);
-  assert.match(renderTweetText(p), /^📈 /);
-  assert.match(renderTweetText(p), /performances simulées/);
-  assert.doesNotMatch(renderTweetText(p), /pas un conseil|ISIN|Simulation avec/);
+  const text = renderTweetText(p);
+  assert.match(text, /^Toute l’allocation passe par un seul placement/);
+  assert.match(text, /100 % [^\n]+\n[^\n]+\n\n📈/);
+  assert.match(text, /Pas un conseil financier\.$/);
 }
-// Saved portfolios from the previous generator also receive compact export copy.
-assert.doesNotMatch(renderTweetText({...example, hook:'🧩 Portefeuille Généraliste\nLongue accroche', selection:example.selection.map(s=>({id:s.id,isin:s.isin,name:s.name,pct:s.pct,emoji:s.emoji,cat:s.cat}))}), /Longue accroche|La logique/);
+const saved = JSON.parse(JSON.stringify({
+  ...example,
+  hook: 'Ancienne accroche',
+  perf: { 2020: 999 },
+  selection: example.selection.map(({ id, isin, name, pct, emoji, cat }) => ({ id, isin, name, pct, emoji, cat })),
+}));
+assert.equal(renderTweetText(saved), compactText);
 console.log('OK : publication compacte, chevauchements, titres courts et précision des données.');
 
 // Une note qui mentionne une simulation ne transforme pas une série officielle en proxy.
@@ -253,10 +259,10 @@ for (const [rows, hook, logic, question] of [
 ]) {
  const p=manual(rows);const text=renderTweetText(p);
  assert.match(p.hook,hook);assert.match(allocationAngle(p.selection).logic,logic);assert.match(p.cta,question);
- assert.match(text,/💼 La répartition/);assert.doesNotMatch(text,/🔎 Le choix derrière cette allocation/);assert.match(text,/💬 Que penses-tu de ce portefeuille \?/);
- assert.doesNotMatch(text,/\nPour /);
+ assert.match(text, /👇\n\n/);
+ assert.match(text, /💬 Que penses-tu de ce portefeuille \?\n\nPas un conseil financier\.$/);
  assert.deepEqual(p.perf,computeYearlyPerf(p.selection));
- const stale=renderTweetText({...p,hook:'🧩 Exemple de portefeuille : ancien texte',cta:'💬 Ancienne question',hookId:'ancien-0'});
+ const stale=renderTweetText({...p,hook:'🧩 Exemple de portefeuille : ancien texte',cta:'💬 Ancienne question'});
  assert.equal(stale,text);assert.doesNotMatch(stale,/ancien texte|Ancienne question/);
 }
 const moneyOnly=manual([{id:'monetaire_xeon',pct:80},{id:'msci_world',pct:20}]);
@@ -266,16 +272,15 @@ const cryptoOnly=manual([{id:'bitcoin',pct:60},{id:'ethereum',pct:40}]);
 assert.match(cryptoOnly.hook,/100 % en crypto/);
 assert.doesNotMatch(renderTweetText(cryptoOnly),/fonds euros|hors crypto/);
 console.log('OK : accroches chiffrées, agrégats, questions adaptées et anciens portefeuilles reconstruits.');
-assert.match(renderTweetText(optionsIncome), /actions à dividendes.*vente d’options.*obligations/);
-assert.match(renderTweetText(optionsIncome), /options.*hausse.*primes/s);
-assert.match(renderTweetText(indexMix), /déjà présents dans la base mondiale/);
+assert.match(renderTweetText(optionsIncome), /primes d’options.*partie de la hausse/);
+assert.match(renderTweetText(indexMix), /déjà présents dans son ETF ACWI/);
 for (const asset of ASSETS) assert.doesNotMatch(manual([{id:asset.id,pct:100}]).selection[0].shortRole,/ et limiter|ligne réunit.*une seule ligne/);
 
 // Le tweet reprend exactement les rendements de la composition, comme l’image.
 for (const p of [example, ...PROFILES.map(profile => manual(base, profile.id))]) {
   const text = renderTweetText(p);
   for (const year of YEARS) assert(text.includes(`${year} : ${formatPerformance(p.perf[year])}`));
-  assert(text.includes(`Performance annualisée (2020 à 2025) : ${formatPerformance(annualizedReturn(p.perf))} par an`));
+  assert(text.includes(`Sur la période, ça donne ${formatPerformance(annualizedReturn(p.perf))} par an en rendement annualisé.`));
   assert.doesNotMatch(text, /Simulation avec rééquilibrage annuel, sans conversion des devises\./);
 }
 const alternating = Object.fromEntries(YEARS.map((year, index) => [year, index % 2 ? -10 : 10]));
@@ -284,14 +289,17 @@ const incomplete = { ...alternating, 2021: null, 2020: 0 };
 const incompleteTweet = renderTweetText({ ...example, selection: [{ ...getAsset('fonds_euros'), pct: 100, calendarReturns: incomplete }] });
 assert(incompleteTweet.includes('2020 : +0,0 %'));
 assert(incompleteTweet.includes('2021 : non disponible'));
-assert(incompleteTweet.includes('Performance annualisée (2020 à 2025) : non disponible'));
+assert.match(incompleteTweet, /L’historique disponible ne permet pas de calculer un rendement annualisé/);
+assert.doesNotMatch(incompleteTweet, /Et voici ce que ce type de portefeuille aurait donné/);
 assert(!/NaN|undefined/.test(incompleteTweet));
-assert.equal(incompleteTweet.split('\n')[0], '📈 Quelles performances pour ce portefeuille ? 👀');
+const missing = renderTweetText({ ...example, selection: [{ ...getAsset('fonds_euros'), pct: 100, calendarReturns: {} }] });
+assert.match(missing, /L’historique disponible ne permet pas de calculer un rendement annualisé/);
+assert.doesNotMatch(missing, /2020 :|Et voici ce que ce type de portefeuille aurait donné/);
 for (const p of [example, worldEmerging, cryptoOnly]) {
   const text = renderTweetText({ ...p, perf: { 2020: 999 }, hook: 'ancienne accroche' });
   const actual = computeYearlyPerf(p.selection);
   const years = Object.keys(actual).sort();
-  assert(text.startsWith(`📈 ${formatPerformance(annualizedReturn(actual))} par an sur la période ${years[0]}–${years.at(-1)} : `));
+  assert(text.includes(`📈 Et voici ce que ce type de portefeuille aurait donné de ${years[0]} à ${years.at(-1)} 👇`));
   assert.doesNotMatch(text, /ancienne accroche|999/);
 }
 console.log('OK : performances annuelles et annualisée dans le tweet, capitalisation géométrique, zéro et historique incomplet.');
@@ -309,29 +317,25 @@ assert.deepEqual(renderTweetText({...unordered, hook:'Ancienne accroche'}).split
 console.log('OK : tri décroissant stable sans modifier les slots ni les performances.');
 
 
-// Public post contract: performance-based hooks, compact holdings, unchanged performance,
-// a thesis based on the actual composition and a single fixed closing question.
+// Public posts follow the holdings, then present the simulation and the closing lines.
 const validatedExample = manual([{id:'msci_world_ishares',pct:50},{id:'msci_em',pct:20},{id:'smallcap_monde',pct:15},{id:'or_ishares',pct:15}]);
 const validatedText = renderTweetText(validatedExample);
-assert.match(validatedText,/^📈 .* par an sur la période 2020–2025 : quels placements composent ce portefeuille/);
-assert.match(validatedText,/ont chacun une ligne dédiée/);
-assert.match(validatedText,/85 % d’actions/);
-assert.match(validatedText,/iShares Core MSCI World/);
-assert.doesNotMatch(validatedText,/ISIN|Simulation avec|en dollars/);
+assert.match(validatedText, /^Ce portefeuille complète son ETF World avec 20 % sur les marchés émergents/);
+assert.match(validatedText, /iShares Core MSCI World/);
+assert.doesNotMatch(validatedText, /ISIN|Simulation avec|taux BCE de fin d’année/);
 const imiSmall = manual([{id:'acwi_imi_spdr',pct:60},{id:'smallcap_monde',pct:40}]);
-assert.match(renderTweetText(imiSmall),/déjà présents dans la base mondiale/);
-assert.doesNotMatch(renderTweetText(imiSmall),/petites entreprises.*absentes/s);
-const mixedIncome = manual([{id:'high_dividend_dist',pct:40},{id:'foncieres_etf_dist',pct:25},{id:'scpi',pct:20},{id:'oblig_hy',pct:15}]);
-assert.match(renderTweetText(mixedIncome),/immobilier représente 45 %/);
-const postCases = [validatedExample, imiSmall, mixedIncome, metalsCrypto, leverage, majority, newExposures, themeMoney];
-for(const p of postCases) {
- const text=renderTweetText(p);
- assert(text.indexOf('La répartition')<text.indexOf('Performances annuelles'));
- assert(text.indexOf('Performances annuelles')<text.indexOf('📌'));
- assert(text.endsWith('💬 Que penses-tu de ce portefeuille ?'));
- assert.equal(text.split('Que penses-tu de ce portefeuille ?').length,2);
- assert.deepEqual(p.perf,computeYearlyPerf(p.selection));
- assert.equal(renderTweetText({...p,hook:'Obsolète',cta:'Ancien CTA'}),text);
+assert.match(renderTweetText(imiSmall), /petites entreprises des pays développés déjà présentes/);
+const worldSp500 = manual([{id:'msci_world_ishares',pct:65},{id:'sp500_ishares',pct:35}]);
+assert.match(renderTweetText(worldSp500), /^Avec un ETF World et du S&P 500 en plus/);
+const postCases = [validatedExample, imiSmall, worldSp500, metalsCrypto, leverage, majority, newExposures, themeMoney];
+for (const p of postCases) {
+  const text = renderTweetText(p);
+  assert(text.indexOf('👇') < text.indexOf('Et voici ce que'));
+  assert(text.indexOf('rendement annualisé.') < text.indexOf('Que penses-tu'));
+  assert(text.endsWith('💬 Que penses-tu de ce portefeuille ?\n\nPas un conseil financier.'));
+  assert.equal(text.split('Que penses-tu de ce portefeuille ?').length, 2);
+  assert.deepEqual(p.perf, computeYearlyPerf(p.selection));
+  assert.equal(renderTweetText({...p,hook:'Obsolète',cta:'Ancien CTA'}), text);
 }
 const zeroPost=renderTweetText(manual([{id:'msci_world',pct:100},{id:'bitcoin',pct:0}]));
 assert.doesNotMatch(zeroPost,/Bitcoin|crypto/);
@@ -340,12 +344,14 @@ console.log('OK : modèle public validé, noms sans ISIN, thèse après les perf
 // Personal voice keeps the performance blocks and follows actual holdings.
 const personalFour = manual([{id:'msci_world_ishares',pct:50},{id:'msci_em',pct:15},{id:'smallcap_monde',pct:15},{id:'oblig_global_agg_eur_hedged',pct:20}]);
 const personalText = renderTweetText(personalFour);
-assert.match(personalText, /80 % d’actions/);
-assert.match(personalText, /obligations représentent 20 %/);
+assert.match(personalText, /20 % .*Aggregate Bond/);
 assert.doesNotMatch(personalText, /pondérations rétablies chaque année|hors courtage et fiscalité/);
 for (const year of YEARS) assert(personalText.includes(`${year} : ${formatPerformance(personalFour.perf[year])}`));
-assert(personalText.indexOf('Performance annualisée') < personalText.indexOf('📌'));
+assert(personalText.indexOf('rendement annualisé.') < personalText.indexOf('📌'));
 const { performanceNotes } = await import('../src/pages/portfolio-generator/performance.js');
 assert.match(performanceNotes(personalFour.selection), /pondérations rétablies chaque année/);
-assert.match(personalText, /taux BCE de fin d’année/);
+assert.doesNotMatch(personalText, /taux BCE de fin d’année/);
+assert.match(performanceNotes(personalFour.selection), /taux BCE de fin d’année/);
+assert.match(renderTweetText(majority), /Historiques indicatifs/);
+assert.match(renderTweetText(moneyOnly), /Le fonds a changé d’indice/);
 console.log('OK : voix personnelle, performances conservées et méthode retirée uniquement du tweet.');
