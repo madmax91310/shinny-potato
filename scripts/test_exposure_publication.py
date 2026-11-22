@@ -249,3 +249,41 @@ class ExposurePublicationGit(unittest.TestCase):
   self.assertNotEqual(result.returncode,0);self.assertEqual(self.git(root,'ls-remote','origin','refs/heads/master').split()[0],remote_before)
 
 if __name__=='__main__':unittest.main()
+
+class MixedWisdomTreePublication(unittest.TestCase):
+ """The unmodified failed cron receipt must retain its allocation errors."""
+ flush=ExposurePublication.flush
+
+ def setUp(self):
+  self.tmp=tempfile.TemporaryDirectory()
+  self.addCleanup(self.tmp.cleanup)
+  self.root=Path(self.tmp.name)
+  fixture=ROOT/'scripts/fixtures/exposure-expansion-20261122.json.gz'
+  data=json.loads(gzip.decompress(fixture.read_bytes()))
+  self.baseline=data['baseline']
+  self.report=data['report']
+  self.started=data['started']
+  self.current=copy.deepcopy(self.baseline)
+  for row in self.report['shares']:
+   if row['status']=='validated':
+    self.current[row['isin']]=copy.deepcopy(row['record'])
+  write(self.root/'scripts/exposure-etf-expansion.json',json.loads((ROOT/'scripts/exposure-etf-expansion.json').read_text()))
+
+ def audit(self):
+  self.flush()
+  plan=self.report['resultContract']['inputPlan']
+  with patch.object(publication,'git_bytes',return_value=json.dumps(self.baseline).encode()):
+   return publication.audit(self.root,self.report,self.started,plan['codeSha'],
+    run_id='45039697993',attempt='1',now=dt.datetime(2026,11,22,16,tzinfo=dt.timezone.utc))
+
+ def test_mixed_report_accepts_only_independently_qualified_fields(self):
+  self.assertEqual(self.audit(),36)
+  outcome=next(row for row in self.report['resultContract']['outcomes'] if row['instrument']=='IE00BKLF1R75')
+  self.assertEqual(outcome['status'],'failed')
+
+ def test_retained_allocations_cannot_be_changed(self):
+  row=next(row for row in self.report['shares'] if row['isin']=='IE00BKLF1R75')
+  row['record']['sectors']['checkedAt']='2026-11-22'
+  self.current[row['isin']]=copy.deepcopy(row['record'])
+  with self.assertRaisesRegex(ValueError,'cache cannot certify'):
+   self.audit()
