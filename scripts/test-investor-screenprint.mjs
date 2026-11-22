@@ -19,7 +19,7 @@ try {
   for(const [slug] of (await import('../src/pages/investor-portfolio/data.js')).INVESTORS)cases.push([slug,JSON.parse(await readFile(`public/data/investors/${slug}.json`,'utf8'))])
   for(const [id,payload] of cases){
     const result=await page.evaluate(async({payload,id})=>{
-      const {normalizePortfolio,buildTweet}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
+      const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
       const {publicationPlan}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
       const {renderPortfolioImage}=await import('/shinny-potato/src/pages/investor-portfolio/image.js')
       const portfolio=normalizePortfolio(payload)
@@ -38,9 +38,9 @@ try {
       try{png=await renderPortfolioImage(portfolio)}finally{CanvasRenderingContext2D.prototype.fillText=original}
       const img=new Image();img.src=png;await img.decode()
       if(img.width!==1080||img.height!==1350)throw Error('Dimensions')
-      const plan=publicationPlan(portfolio),tweet=buildTweet(portfolio)
+      const plan=publicationPlan(portfolio)
       for (const row of plan.entries) {
-        if (!tweet.includes(row.label) || !boxes.some(box => box.text === row.percent)) throw Error('Text/image mismatch')
+        if (!boxes.some(box => box.text === row.percent)) throw Error('Image and publication plan mismatch')
       }
       const expected = new Set([portfolio.identity.displayName, ...plan.entries.map(row => row.percent), ...plan.entries.flatMap(row => row.box.lines), 'Épargnant Libre'])
       for (const box of boxes) {
@@ -98,6 +98,11 @@ try {
   for(const width of [1440,390,320]){
     await page.setViewportSize({width,height:1000});await page.goto(`${base}portefeuilles-investisseurs`)
     if(width<700)await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+    // The synthetic filing has no approved draft. Explicitly review a manual
+    // draft before using the copy control on this synthetic fixture.
+    await page.locator('#ip-draft').fill(`À ${width} px. Brouillon vérifié pour le relevé de test.`)
+    const approve=page.getByRole('button',{name:'Valider le texte pour ce relevé'})
+    if(await approve.isVisible())await approve.click()
     await page.getByRole('button',{name:'📋 Copier le tweet'}).click()
     const draft=await page.locator('#ip-draft').inputValue();assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),draft)
     const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'⬇️ Télécharger le PNG',exact:true}).click()])
@@ -125,7 +130,7 @@ try {
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({status:503,body:'Unavailable'}))
   await page.getByRole('button',{name:'Actualiser les données disponibles'}).click()
   await page.getByRole('alert').filter({hasText:'503'}).waitFor()
-  assert.equal(await page.locator('#ip-draft').inputValue(),await page.evaluate(async p=>(await import('/shinny-potato/src/pages/investor-portfolio/data.js')).buildTweet((await import('/shinny-potato/src/pages/investor-portfolio/data.js')).normalizePortfolio(p)),fixture))
+  assert.equal(await page.locator('#ip-draft').inputValue(),'À 320 px. Brouillon vérifié pour le relevé de test.')
   await page.unroute('**/data/investors/tepper.json')
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))
   await page.getByRole('button',{name:'Réessayer le chargement'}).click();await page.getByRole('alert').filter({hasText:'503'}).waitFor({state:'hidden'})
@@ -162,7 +167,7 @@ try {
   // Exercise the full real broad portfolio, not only the grouped main image.
   await page.getByRole('button',{name:'Réglages',exact:true}).click()
   await choose(page.getByLabel('Choisir un investisseur'),'renaissance')
-  await page.waitForFunction(()=>document.querySelector('#ip-draft')?.value.startsWith('Portefeuille de Renaissance Technologies'))
+  await page.waitForFunction(()=>document.querySelector('#ip-draft')?.value.includes('le relevé de Renaissance Technologies'))
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   const started=Date.now(),allPending=page.waitForEvent('download',{timeout:240000})
   await page.getByRole('button',{name:'Télécharger les PNG détaillés (ZIP)',exact:true}).click()

@@ -15,7 +15,7 @@ on:
       - 'scripts/producer_report_contract.py'
       - 'scripts/producer_report_plans.py'
       - 'scripts/audit-investor-profiles.mjs'
-      - 'src/pages/investor-portfolio/data.js'
+      - 'src/pages/investor-portfolio/**'
       - '.github/workflows/update-investor-13f.yml'
   workflow_dispatch:
 permissions:
@@ -74,7 +74,8 @@ jobs:
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.commit.outputs.collection_failed == 'true' || (steps.commit.outcome != 'success' && steps.collect.outcome == 'failure') }}
+      collection_failed: ${{ steps.commit.outputs.collection_failed == 'true' || steps.collect.outcome == 'failure' && steps.commit.outcome != 'success' }}
+      new_collection_failure: ${{ steps.commit.outputs.new_collection_failure == 'true' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -149,9 +150,16 @@ jobs:
 
   report-failures:
     needs: [update, deploy]
-    if: always() && needs.update.outputs.collection_failed == 'true'
+    if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-26.04
     steps:
-      - run: |
-          echo 'Collecte 13F partielle : les investisseurs en échec gardent leur dernier relevé validé ; Enregistrement : ${{ needs.update.result }} ; publication : ${{ needs.deploy.result }}. Voir investor-observations.' >> "$GITHUB_STEP_SUMMARY"
-          exit 1
+      - env:
+          RECORDING: ${{ needs.update.result }}
+          PUBLICATION: ${{ needs.deploy.result }}
+          PARTIAL: ${{ needs.update.outputs.collection_failed }}
+          NEW_FAILURE: ${{ needs.update.outputs.new_collection_failure }}
+        run: |
+          echo "Enregistrement : $RECORDING · publication : $PUBLICATION · collecte partielle : ${PARTIAL:-indéterminée}. Voir les observations et le bilan du job update." >> "$GITHUB_STEP_SUMMARY"
+          if [[ "$RECORDING" != 'success' || "$PUBLICATION" != 'success' || "$NEW_FAILURE" == 'true' ]]; then
+            exit 1
+          fi

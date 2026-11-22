@@ -1,0 +1,62 @@
+name: investor-visual-audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'src/pages/investor-portfolio/**'
+      - 'src/data/investor-*.js'
+      - 'public/asset-art/investor-logos/**'
+      - 'scripts/*investor*'
+      - '.github/workflows/investor-visual-audit.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: investor-visual-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chromium:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: python -m pip install -c scripts/python-constraints.txt pillow
+      - run: node scripts/test-investor-publication.mjs
+      - run: npm run build
+      - name: Download and inspect the real Chromium exports
+        env:
+          INVESTOR_POSTER_AUDIT: '1'
+          INVESTOR_VISUAL_OUT: test-artifacts/investor-audit-captures
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4310 --strictPort > "$RUNNER_TEMP/investor-vite.log" 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          curl --fail --silent --show-error --retry 20 --retry-connrefused --retry-delay 1 http://127.0.0.1:4310/shinny-potato/ -o /dev/null
+          node scripts/test-investor-visual-ui.mjs
+          INVESTOR_VISUAL_URL=http://127.0.0.1:4310/shinny-potato/ node scripts/test-investor-editorial-ui.mjs
+      - name: Package the captures and mobile contact sheets
+        if: always() && hashFiles('test-artifacts/investor-audit-captures/results.json') != ''
+        run: |
+          python scripts/package-investor-visual-audit.py test-artifacts/investor-audit-captures test-artifacts/investor-visual-audit
+          cat test-artifacts/investor-visual-audit/LISEZ-MOI.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investor-visual-audit
+          path: |
+            test-artifacts/investor-visual-audit/
+            test-artifacts/investor-audit-captures/results.json
+            ${{ runner.temp }}/investor-vite.log
+          retention-days: 35

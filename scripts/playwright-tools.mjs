@@ -1108,6 +1108,7 @@ async function testInvestorIntroductions(page) {
     const payload = JSON.parse(await readFile(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8'));
     await choose(page.getByLabel('Choisir un investisseur'), slug);
     await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro, investorIntroduction(slug));
+    await page.locator('.ip-meta').getByText(payload.data.identity.displayName+' · '+payload.data.identity.entityName, {exact:true}).waitFor();
     const actual = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
     ok &&= actual === buildTweet(normalizePortfolio(payload));
     ok &&= !/NaN|undefined/.test(actual);

@@ -94,7 +94,7 @@ export async function renderPortfolioImage(portfolio) {
   }
   let titleSize = 93
   do { ctx.font = posterFont(titleSize, 900); if (ctx.measureText(owner).width <= 984) break } while (--titleSize >= 32)
-  label(owner, 48, 172, titleSize, '#00852e', 'left', 900)
+  label(owner, 48, 172, titleSize, green, 'left', 900)
   const date = new Date(portfolio.snapshot.periodEnd + 'T12:00:00Z')
   label(`Portefeuille · T${Math.ceil((date.getUTCMonth() + 1) / 3)} ${date.getUTCFullYear()}`, 48, 250, 56, ink, 'left', 900)
   const { cx, cy, outer, inner, nameSize, percentSize } = POSTER
@@ -206,7 +206,7 @@ export async function renderPortfolioImage(portfolio) {
   const shownWeight = shown.reduce((sum, entry) => sum + entry.value, 0) / plan.total
   const photo=portrait.image?Object.fromEntries(['person','title','source','url','author','license','licenseUrl','adaptation','sourceDigest','illustration'].map(key=>[key,portrait[key]])):null
   if(photo&&!photo.licenseUrl){const match=photo.license.match(/^CC BY(-SA)? ([0-9.]+)/);if(match)photo.licenseUrl=`https://creativecommons.org/licenses/by${match[1]?'-sa':''}/${match[2]}/`}
-  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,entityLogo:entity.credit,visual:{displayed:{count:shown.length,weight:shownWeight},logos:logoReport},positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
+  return pngCredits(canvas.toDataURL('image/png'),{owner,periodEnd:portfolio.snapshot.periodEnd,filing:portfolio.snapshot.filingUrl,sourceWarning:portfolio.snapshot.reconciliationWarning,scope:'Positions déclarées hors options ; poids sur le portefeuille admissible complet.',portrait:photo,entityLogo:entity.credit,visual:{displayed:{count:shown.length,weight:shownWeight},logos:logoReport},positions:plan.entries.map(({label,value,weight,count})=>({label,value,weight,count})),total:plan.total,currency:plan.currency})
 }
 
 

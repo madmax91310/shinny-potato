@@ -2,7 +2,7 @@ import { mediaCredits } from './media.js'
 import { portfolioOwner } from './publication.js'
 export function detailedExport(portfolio) {
   return { schemaVersion: 1, identity: portfolio.identity, publicationName: portfolioOwner(portfolio), snapshot: portfolio.snapshot,
-    sourceUrl: portfolio.sourceUrl, discoverySourceUrl: portfolio.discoverySourceUrl, positionsCollectedAt: portfolio.fetchedAt, lastSuccessfulPollAt: portfolio.lastSuccessfulPollAt || null,
+    sourceUrl: portfolio.sourceUrl, discoverySourceUrl: portfolio.discoverySourceUrl, positionsCollectedAt: portfolio.positionsCollectedAt || portfolio.fetchedAt, lastAttemptAt: portfolio.lastAttemptAt || null, lastSuccessfulPollAt: portfolio.lastSuccessfulPollAt || null,
     scope: 'Positions longues déclarées hors options ; les options et leur dénominateur original sont conservés dans snapshot.',
     currency: portfolio.snapshot.currency || null, total: portfolio.total,
     status: portfolio.problem ? 'incomplete' : 'ready', problem: portfolio.problem, warnings: portfolio.snapshot.reconciliationWarning ? [portfolio.snapshot.reconciliationWarning] : [], lastError: portfolio.lastError || null,
