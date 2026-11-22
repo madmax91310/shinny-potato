@@ -53,4 +53,15 @@ for(const year of [2021,2023,2024]){
   assert.doesNotMatch(secured,/aucune cotation mensuelle/)
  }
 }
+const verifiedBounds=report.rows.filter(row=>row.boundaryVerification)
+assert.deepEqual(verifiedBounds.map(row=>row.id).sort(),['DE000A0H08P6/2019','DE000A27Z304/2021','FR0010755611/2021','FR0010755611/2024'])
+for(const row of verifiedBounds){
+ const evidence=row.boundaryVerification
+ assert.equal(row.open,true,'A market boundary review preserves the unresolved divergence')
+ assert.equal(row.resolutionEvidence,null)
+ assert.deepEqual([evidence.symbol,evidence.mic,evidence.currency,evidence.start,evidence.end],[row.original.marketSymbol,row.original.marketMic,row.original.marketCurrency,row.original.marketStartDate,row.original.marketEndDate])
+ assert(row.sourceUrls.includes(evidence.sourceUrl))
+ assert(row.missingPiece.includes(evidence.missing))
+ assert.equal(row.currentConsumer.windows.find(w=>w.mic===evidence.mic&&w.currency===evidence.currency&&w.convention==='adjusted')?.qualification.qualified,false)
+}
 console.log('Every original alert, value and period survives; only integrated financial proof updates its status, with residuals preserved.')
