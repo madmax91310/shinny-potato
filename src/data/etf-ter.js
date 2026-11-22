@@ -70,7 +70,6 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'IE000YU9K6K2': '0,55',
   'IE000YYE6WK5': '0,55',
   'IE00B02KXK85': '0,74',
-  'IE00B1FZSF77': '0,40', // iShares, part USD Dist, vérifié le 22/11/2026.
   'IE00B1FZS350': '0,59',
   'IE00B1XNHC34': '0,65',
   'IE00B3F81R35': '0,09',

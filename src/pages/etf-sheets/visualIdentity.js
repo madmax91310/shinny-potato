@@ -10,7 +10,7 @@ const groups = {
   europe: 'pea-europe-amundi euro-dividend-aristocrats eurostoxx50 support-cac40 support-eurostoxx50_ishares support-msci_europe support-smallcap_europe',
   asia: 'pea-inde-amundi pacific-ex-japan-ishares inde topix-pea-hedged support-actions_japon support-actions_coree support-actions_taiwan support-actions_asie_ex_japon',
   bonds: 'oblig_em_usd_ishares oblig_eur_long_ishares monetaire-eur obligations-etat-0-1 obligations-globales-eur obligations-inflation obligations-etat high-yield corp-bond-ig high-yield-acc em-local-bond support-oblig_corp_amundi support-oblig_corp_vanguard support-oblig_corp_spdr support-oblig_etat_eur_short support-oblig_hy_amundi support-oblig_etat_us',
-  property: 'immobilier-reit support-foncieres_etf support-foncieres_etf_dist support-immo_gpr',
+  property: 'us-property-ishares immobilier-reit support-foncieres_etf support-foncieres_etf_dist support-immo_gpr',
   chip: 'pea-tech-europe pea-us-tech-screened cloud-wisdomtree ia-big-data-xtrackers semiconducteurs technologie quantique ia blockchain support-tech_europe support-sect_tech',
   gaming: 'gaming_vaneck',
   health: 'world-healthcare-xtrackers pea-health-europe medical_innovation_ishares sante-biotech support-sect_sante',

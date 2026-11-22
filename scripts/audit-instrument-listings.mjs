@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { PRESENTATION_ETF_ADDITIONS } from '../src/data/presentation-etf-additions.js';
 import { REFRESHED_LISTING_EVIDENCE } from '../src/data/qualified-listings.js'
 import { NON_BOND_LISTING_EVIDENCE } from '../src/data/non-bond-expansion.js'
 import { LIFESTRATEGY_LISTING_EVIDENCE } from '../src/data/lifestrategy.js'
@@ -38,7 +39,10 @@ export function auditInstrumentListings() {
     }
     published[item.isin] = [...new Set([...(published[item.isin] ?? []), ...tickers])];
   }
-  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: currentListingEvidence(snapshot.evidence,[NON_BOND_LISTING_EVIDENCE, LIFESTRATEGY_LISTING_EVIDENCE, QUALIFIED_LISTING_EVIDENCE, ROUND3_LISTING_EVIDENCE, REFRESHED_LISTING_EVIDENCE],QUALIFIED_LISTINGS,INSTRUMENT_LISTINGS_BY_ISIN) })];
+  const presentationEvidence = Object.fromEntries(PRESENTATION_ETF_ADDITIONS.filter(row => row.listingExcerpt).map(({ isin, listing, listingExcerpt }) => [
+    listing.evidenceId, { isin, identityEvidence: isin, sourceUrl: listing.sourceUrl, checkedAt: listing.checkedAt, excerpt: listingExcerpt },
+  ]));
+  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: currentListingEvidence(snapshot.evidence,[NON_BOND_LISTING_EVIDENCE, LIFESTRATEGY_LISTING_EVIDENCE, QUALIFIED_LISTING_EVIDENCE, ROUND3_LISTING_EVIDENCE, presentationEvidence, REFRESHED_LISTING_EVIDENCE],QUALIFIED_LISTINGS,INSTRUMENT_LISTINGS_BY_ISIN) })];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 const errors = auditInstrumentListings();
