@@ -31,6 +31,8 @@ PRODUCTS['linxea-avenir-2-plus'] = {
     'funds': PRODUCTS['linxea-avenir-2']['funds'],
 }
 AVENIR_PLUS_FEES = 'https://www.linxea.com/document/contrat-linxea-avenir-2-plus-tableau-des-frais/'
+VIE_FUND_PAGE = BASE + 'linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/'
+VERTESSIMA_NOTICE = 'https://docs.data2report.lu/documents/GeneraliFR/kideu/GEF000000346_fr_FR.pdf'
 
 
 def contract_url(id_):
@@ -136,14 +138,9 @@ def parse_contract(html, id_, today):
             'supports': {'minimumCount': count, 'categories': supports, 'sourceUrl': contract_url(id_)}, 'euroFunds': []}
 
 
-def parse_fund(html, id_, name, label, url, today, contract_html=None):
-    text = plain(html)
-    if id_ == 'linxea-avenir-2-plus':
-        required(r'Fonctionnement des Fonds euros de Linxea Avenir 2 / Avenir 2\+', text)
-    # Restrict return parsing to the named fund card before its risk/method notes.
-    card = required(r'LE FONDS EUROS ' + re.escape(label) + r' (.*?)(?:Les rendements passés|Les performances passées|\(1\) Net de frais|\* Taux de)', text).group(1)
+def fund_returns(card, today):
     values = {}
-    pattern = r'([\d,.]+)\s*%\s*(?:à\s*([\d,.]+)\s*%\s*)?(?:Net\s*(?:\*|\(\d+\))?\s*)?en\s*(\d{4})(?:\s*(selon la part UC détenue))?'
+    pattern = r'([\d,.]+)\s*%\s*(?:à\s*([\d,.]+)\s*%\s*)?(?:Net\s*(?:\*|\(\d+\))?\s*)?en\s*(\d{4})(?:\s*(selon la part (?:UC|en unités de compte) détenue))?'
     for match in re.finditer(pattern, card, re.I):
         year = int(match[3])
         if year < today.year:
@@ -153,14 +150,24 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
                 row = {'year': year, 'returnMin': number(match[1]), 'returnMax': number(match[2]), 'condition': match[4]}
             if year in values and values[year] != row: raise ValueError('Conflicting historical rates')
             values[year] = row
-    completed_year(sorted(values)[-3:],today)
-    years = [values[year] for year in sorted(values)[-3:]]
+    return [values[year] for year in sorted(values)[-3:]]
+
+
+def parse_fund(html, id_, name, label, url, today, contract_html=None):
+    text = plain(html)
+    if id_ == 'linxea-avenir-2-plus':
+        required(r'Fonctionnement des Fonds euros de Linxea Avenir 2 / Avenir 2\+', text)
+    # Restrict return parsing to the named fund card before its risk/method notes.
+    card = required(r'LE FONDS EUROS ' + re.escape(label) + r' (.*?)(?:Les rendements passés|Les performances passées|\(1\) Net de frais|\* Taux de)', text).group(1)
+    years = fund_returns(card, today)
+    year = completed_year([r['year'] for r in years],today)
     max_allocation = number(required(r'Accessible à ([\d,.]+)\s*%', card).group(1)) if 'Accessible à' in card else None
     valid_until = None
     notes = None
     ceiling_evidence = None
     if id_ in ('linxea-zen', 'linxea-vie'):
-        body = required(r'Fonctionnement des Fonds euros de ' + re.escape(PRODUCTS[id_]['name']) + r'(.*)', text).group(1)
+        body = (text if id_ == 'linxea-vie' and label == 'Netissima' else
+                required(r'Fonctionnement des Fonds euros de ' + re.escape(PRODUCTS[id_]['name']) + r'(.*)', text)[1])
         body_label = name if id_ == 'linxea-zen' else label
         body = required(re.escape(body_label) + r' Stratégie d’investissement (.*?)(?:Documents applicables|Besoin de conseils)', body).group(1)
         required(r'Arbitrages', body)
@@ -250,10 +257,40 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
             'scope':'Souscriptions, versements complémentaires et programmés',
             **({'minimumUnits':quota} if label == 'Suravenir Rendement 2' else {}),
             'sha256':hashlib.sha256(html.encode()).hexdigest()}
-    return {'name': name, 'years': years, 'asOf': f'{max(values)}-12-31', 'guarantee': guarantee,
+    return {'name': name, 'years': years, 'asOf': f'{year}-12-31', 'guarantee': guarantee,
             'managementFeeMax': management, 'maxAllocation': max_allocation, 'ceiling': ceiling,
             **({'ceilingEvidence':ceiling_evidence} if ceiling_evidence else {}),
             'operations': operations, 'notes': notes, 'accessValidUntil': valid_until, 'sourceUrls': [url] + ([BASE+id_+'/'] if id_ == 'linxea-vie' and label == 'Netissima' else []), 'sourceUrl': url}
+
+
+def parse_vertessima(html, url, notice, today):
+    text, document = plain(html), re.sub(r'\s+', ' ', notice)
+    stamp = required(r'Option d.investissement sous-jacente Fonds Vertessima Publié le\s*:\s*(\d{2})/(\d{2})/(\d{4})', document)
+    doc_date = dt.date(int(stamp[3]), int(stamp[2]), int(stamp[1]))
+    required(r'Fonds en euros Objectifs Le fonds en euros Vertessima', document)
+    required(r'garantie en capital égale à la somme des montant[s]? nets investis, déduction faite de tous frais afférents au contrat', document)
+    required(r'Generali Vie', document)
+    if doc_date > today:
+        raise ValueError('Future Vertessima KID')
+    card = required(r'LE FONDS EUROS Vertessima (.*?)(?=LE FONDS EUROS Netissima)', text)[1]
+    years = fund_returns(card.split('(1) Net de frais', 1)[0], today)
+    body = required(r'Vertessima Stratégie d’investissement (.*?)Documents applicables', text)[1]
+    clause = required(r"ce fonds en euros est accessible sans limite de montant et sans conditions d['’]unités de compte jusqu['’]au (\d{2})/(\d{2})/(\d{4})", body)
+    until = dt.date(int(clause[3]), int(clause[2]), int(clause[1]))
+    if until < today:
+        raise ValueError('Expired Vertessima access conditions')
+    management = number(required(r'([\d,.]+)\s*% par an de frais de gestion', body)[1])
+    required(r'Arbitrages en sortie uniquement', body)
+    required(r'rachat total.*?Taux Minimum Garanti', body)
+    return {'name':'Vertessima', 'years':years, 'asOf':f"{years[-1]['year']}-12-31" if years else None,
+            'guarantee':None, 'managementFeeMax':management, 'maxAllocation':100, 'ceiling':None,
+            'ceilingEvidence':{'status':'unlimited','checkedAt':today.isoformat(), 'sourceUrl':url,
+                'statement':clause[0], 'scope':'Souscriptions, versements libres et programmés',
+                'validUntil':until.isoformat(), 'sha256':hashlib.sha256(html.encode()).hexdigest()},
+            'accessValidUntil':until.isoformat(), 'operations':'Versements libres ou programmés ; arbitrages en sortie uniquement.',
+            'sourceUrls':[url,VERTESSIMA_NOTICE], 'sourceUrl':url,
+            'fundEvidence':{'documentDate':doc_date.isoformat(), 'sourceUrl':VERTESSIMA_NOTICE,
+                            'sha256':hashlib.sha256(notice.encode()).hexdigest()}}
 
 
 def validate(record, today):
@@ -265,6 +302,12 @@ def validate(record, today):
         raise ValueError('Invalid access amount')
     if not finite(record['supports']['minimumCount'], 1, 10000) or not 1 <= len(record['euroFunds']) <= 5 or len({f['name'] for f in record['euroFunds']}) != len(record['euroFunds']):
         raise ValueError('Incomplete contract')
+    closure = record.get('eurossimaClosure')
+    if closure and (record['id'] != 'linxea-vie' or closure.get('sourceUrl') != VIE_FUND_PAGE
+            or not re.fullmatch(r'[a-f0-9]{64}',closure.get('sha256',''))
+            or dt.date.fromisoformat(closure.get('checkedAt','')) > today
+            or 'Non disponible aux nouvelles souscriptions' not in closure.get('statement','')):
+        raise ValueError('Invalid Eurossima closure evidence')
     for fund in record['euroFunds']:
         evidence = fund.get('ceilingEvidence')
         if evidence and (evidence.get('status') not in ('unlimited', 'insurer-defined') or fund.get('ceiling') is not None
@@ -281,6 +324,18 @@ def validate(record, today):
             if evidence['status'] == 'insurer-defined' and not all(finite(evidence.get(key),0,1_000_000_000) for key in ('openingYearUpperBound','followingYearUpperBound')):
                 raise ValueError('Invalid conditional ceiling bounds')
         years = fund['years']
+        publication_pending = (record['id'] == 'linxea-vie' and fund['name'] == 'Vertessima'
+                               and fund.get('fundEvidence') and not years and fund['asOf'] is None)
+        if publication_pending:
+            doc = fund['fundEvidence']
+            day = dt.date.fromisoformat(fund.get('firstFundEvidence',doc)['documentDate'])
+            if (not day <= today or (today.year > day.year and (today.year != day.year+1 or today.month > 6))
+                    or doc.get('sourceUrl') != VERTESSIMA_NOTICE or not re.fullmatch(r'[a-f0-9]{64}', doc.get('sha256',''))
+                    or not finite(fund.get('guarantee'),90,100) or not finite(fund.get('managementFeeMax'),0,5)
+                    or not finite(fund.get('maxAllocation'),0,100) or not evidence):
+                raise ValueError('Missing qualified Vertessima annual publication or fund evidence')
+            fund['publication'] = {'latestPublishedYear':None,'expectedYear':day.year,'awaitingPublication':True}
+            continue
         year = completed_year([y['year'] for y in years],today)
         if years != sorted(years,key=lambda y:y['year']) or fund['asOf'] != f'{year}-12-31':
             raise ValueError('Annual fund date/columns disagree')
@@ -301,6 +356,22 @@ def collect(id_, today):
     contract_html = fetch(contract_url(id_)).decode()
     record = parse_contract(contract_html, id_, today)
     cache = {}
+    if id_ == 'linxea-vie':
+        url = VIE_FUND_PAGE
+        html = cache[url] = fetch(url).decode()
+        text = plain(html)
+        if 'Le fonds en euros Eurossima Ce fonds en euros historique de Generali Vie' in text:
+            statement = required(r'Le fonds en euros Eurossima Ce fonds en euros historique de Generali Vie.{1,500}?\(Non disponible aux nouvelles souscriptions\)', text)[0]
+            links = {a['href'] for a in BeautifulSoup(html,'html.parser').select('a[href]')}
+            if VERTESSIMA_NOTICE not in links:
+                raise ValueError('Missing exact Vertessima notice link')
+            record['euroFunds'] = [parse_fund(html,id_,'Netissima','Netissima',url,today,contract_html),
+                parse_vertessima(html,url,pdf_text(fetch(VERTESSIMA_NOTICE), layout=False),today)]
+            record['eurossimaClosure'] = {'checkedAt':today.isoformat(),'sourceUrl':url,'statement':statement,
+                                          'sha256':hashlib.sha256(html.encode()).hexdigest()}
+            notice_url = vie_notice_url(contract_html)
+            qualify_vie_guarantees(record,pdf_text(fetch(notice_url), layout=False),notice_url)
+            return validate(record,today)
     for name,label,suffix in PRODUCTS[id_]['funds']:
         slug = PRODUCTS[id_].get('sourceSlug', id_)
         url = contract_url(id_)+'supports-disponibles-sur-'+slug+'/'+suffix
@@ -356,21 +427,39 @@ def refresh(previous, adapters, today):
     observations=[]
     for id_, adapter in adapters.items():
         try:
-            record=validate(adapter(today),today)
+            record=adapter(today)
             old=records.get(id_)
-            if old and {f['name'] for f in old['euroFunds']} != {f['name'] for f in record['euroFunds']}:
-                raise ValueError('Published fund catalogue changed; qualification required')
-            if old and any(f['asOf'] < next((o['asOf'] for o in old['euroFunds'] if o['name']==f['name']),f['asOf']) for f in record['euroFunds']):
-                raise ValueError('Source year regressed')
             if old:
+                before_by_name={f['name']:f for f in old['euroFunds']}
+                active_names={f['name'] for f in record['euroFunds']}
+                archive=old.get('archivedEuroFunds',[])
+                closure=record.get('eurossimaClosure')
+                if set(before_by_name) != active_names:
+                    if not (id_=='linxea-vie' and set(before_by_name)=={'Netissima','Eurossima'}
+                            and active_names=={'Netissima','Vertessima'} and closure
+                            and 'Non disponible aux nouvelles souscriptions' in closure.get('statement','')):
+                        raise ValueError('Published fund catalogue changed; qualification required')
+                    archive=[{**before_by_name['Eurossima'],'lastQualifiedAt':old['checkedAt']}]
+                if archive:
+                    if not closure:
+                        raise ValueError('Eurossima closure evidence disappeared')
+                    record['archivedEuroFunds']=archive
                 for fund in record['euroFunds']:
-                    before = next(o for o in old['euroFunds'] if o['name'] == fund['name'])
+                    before = before_by_name.get(fund['name'])
+                    if not before:
+                        continue
+                    if before['asOf'] and (not fund['asOf'] or fund['asOf'] < before['asOf']):
+                        raise ValueError('Source year regressed')
+                    if fund['name']=='Vertessima' and before.get('fundEvidence'):
+                        first = before.get('firstFundEvidence',before['fundEvidence'])
+                        if first != fund.get('fundEvidence'):
+                            fund['firstFundEvidence'] = first
                     if before.get('ceilingEvidence') and not fund.get('ceilingEvidence') and fund.get('ceiling') is None:
                         raise ValueError('Qualified unlimited ceiling disappeared: ' + fund['name'])
                     for field in ('guarantee', 'maxAllocation', 'ceiling', 'accessValidUntil'):
                         if before.get(field) is not None and fund.get(field) is None:
                             raise ValueError('Qualified fund condition disappeared: ' + fund['name'] + ' / ' + field)
-            records[id_]=record;observations.append({'id':id_,'name':record['name'],'status':'success'})
+            records[id_]=validate(record,today);observations.append({'id':id_,'name':record['name'],'status':'success'})
         except ContractSuperseded as error:
             if id_ not in records:
                 observations.append({'id':id_, 'status':'failure', 'reason':str(error)})
