@@ -65,6 +65,19 @@ try{
  await page.getByLabel('Durée des versements en mois',{exact:true}).fill('12')
  assert((await panel.innerText()).includes('Ce n’est pas une prévision'))
  await panel.getByRole('button',{name:'Portefeuille actuel',exact:true}).click()
+ // Exercise incompatible methods in the same dated cluster. Live issuer
+ // updates can move one observation into a separate date cluster.
+ const previousExposures=await page.evaluate(async()=>{
+  const {references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
+  const asOf=new Date().toISOString().slice(0,10)
+  return Object.fromEntries(['world','europe'].map((asset,index)=>{
+   const ref=references[asset],previous={countries:ref.countries,sectors:ref.sectors}
+   const basis=index?'index':'fund',sourceUrl=`https://example.test/${basis}`
+   ref.countries={asOf,basis,sourceUrl,compatibility:`country-${basis}`,rows:[{name:index?'France':'United States',weightPct:100}]}
+   ref.sectors={asOf,basis,sourceUrl,compatibility:`sector-${basis}`,rows:[{name:index?'Industrials':'Technology',weightPct:100}]}
+   return [asset,previous]
+  }))
+ })
  await panel.getByText('Comparer deux allocations',{exact:true}).click()
  await panel.getByRole('button',{name:'Garder cette allocation comme référence',exact:true}).click()
  await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
@@ -74,7 +87,11 @@ try{
  await panel.getByRole('button',{name:'Effacer la référence',exact:true}).waitFor()
  await panel.getByRole('button',{name:'Versements mensuels',exact:true}).click()
  assert.equal(await panel.locator('.dca-diff-table').count(),0,'Mixed source conventions are not certified as comparable')
- assert((await panel.getByText('Les dates ou les méthodes ne permettent pas de comparer ces ventilations.',{exact:true}).count())>0)
+ assert.equal(await panel.getByText('Les dates ou les méthodes ne permettent pas de comparer ces ventilations.',{exact:true}).count(),2)
+ await page.evaluate(async previous=>{
+  const {references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
+  for(const [asset,fields] of Object.entries(previous))Object.assign(references[asset],fields)
+ },previousExposures)
  await panel.getByRole('button',{name:'Portefeuille actuel',exact:true}).click()
  const images=await page.evaluate(async()=>{
   const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
