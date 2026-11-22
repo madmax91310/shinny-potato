@@ -107,6 +107,17 @@ export const INSTRUMENT_AUM_BY_ISIN = Object.freeze({
   "IE000YU9K6K2": Object.freeze({"sheet": "Fonds : 1 752,10 M$ au 31/08/2026", "source": {"url": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet", "checkedAt": "2026-10-02", "amount": 1752100000, "currency": "USD", "asOf": "2026-08-31", "scope": "Encours du fonds publié par l’émetteur"}}),
   "IE000YYE6WK5": Object.freeze({"sheet": "Fonds : 7 440,00 M$ au 31/08/2026", "source": {"url": "https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf", "checkedAt": "2026-10-02", "amount": 7440000000, "currency": "USD", "asOf": "2026-08-31", "scope": "Encours du fonds publié par l’émetteur"}}),
   "IE00B02KXK85": Object.freeze({ index: "724 M€ (relevé le 29/09/2026)", source: { url: "https://www.justetf.com/fr/etf-profile.html?isin=IE00B02KXK85", checkedAt: "2026-09-29", amountMillions: 724, currency: "EUR", asOf: null } }),
+  IE00B1FZSF77: Object.freeze({
+    sheet: 'Part : 606,92 M$ au 18/11/2026',
+    source: {
+      url: 'https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf',
+      checkedAt: '2026-11-22',
+      asOf: '2026-11-18',
+      amount: 606924412,
+      currency: 'USD',
+      scope: 'Actif net de la part USD distribuante',
+    },
+  }),
   "IE00B1FZS350": Object.freeze({"sheet": "Part : 1 062,77 M$ au 01/10/2026", "source": {"url": "https://www.ishares.com/uk/individual/en/products/251801/ishares-developed-markets-property-yield-ucits-etf", "checkedAt": "2026-10-02", "amount": 1062774752, "currency": "USD", "asOf": "2026-10-01", "scope": "Actif net de la part exacte, distinct de l’encours total du fonds"}}),
   "IE00B3F81R35": Object.freeze({"sheet": "Part : 8 606,04 M€ au 01/10/2026", "source": {"url": "https://www.ishares.com/uk/individual/en/products/251726/?siteEntryPassthrough=true&switchLocale=y", "checkedAt": "2026-10-02", "amount": 8606036988, "currency": "EUR", "asOf": "2026-10-01", "scope": "Actif net de la part exacte, distinct de l’encours total du fonds"}}),
   "IE00B3VVMM84": Object.freeze({ index: "3 204 M€ (relevé le 29/09/2026)", source: { url: "https://www.justetf.com/fr/etf-profile.html?isin=IE00B3VVMM84", checkedAt: "2026-09-29", amountMillions: 3204, currency: "EUR", asOf: null } }),
