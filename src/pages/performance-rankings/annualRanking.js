@@ -1,18 +1,19 @@
 import { annualColumns, rankRows } from './engine.js'
 import { COLORS } from './palette.js'
 
+// Eligibility for historical audits that certified the original full-year format.
 export function annualRankingError(result) {
   const columns = annualColumns(result)
   if (columns.some(column => column.partial)) return 'Le classement annuel exige des années civiles complètes. Choisis « Année par année » et les années communes indiquées ci-dessous ; la période libre contient une année partielle.'
-  if (columns.length > 7) return 'Le classement annuel présente au maximum 7 années pour garder les noms et les performances lisibles. Réduis la période ; la présentation actuelle reste disponible.'
+  if (columns.length > 7) return 'Le classement annuel présente au maximum 7 années pour garder les noms et les performances lisibles. Réduis la période.'
   if (columns.length === 1) return 'Le classement annuel exige au moins 2 années civiles complètes communes.'
   if (!columns.length) return 'Aucune année civile complète commune.'
   return ''
 }
 
 export function annualRankingColumns(result) {
-  const error = annualRankingError(result)
-  if (error) throw new Error(error)
+  const columns = annualColumns(result)
+  if (!columns.length) throw new Error('Aucune période à classer.')
   const names = result.assets.map(asset => asset.shortLabel ?? asset.label)
   const labels = result.assets.map((asset, i) => {
     const name = names[i]
@@ -20,7 +21,7 @@ export function annualRankingColumns(result) {
     const full = asset.label ?? name
     return result.assets.filter(other => other.label === full).length > 1 ? `${full} (${asset.isin ?? asset.id})` : full
   })
-  return annualColumns(result).map(column => {
+  return columns.map(column => {
     if (column.rows.length !== result.assets.length || new Set(column.rows.map(row => row.id)).size !== result.assets.length) throw new Error('Performance annuelle absente ou dupliquée.')
     return { ...column, rows: rankRows(column.rows.map(row => {
     const order = result.assets.findIndex(asset => asset.id === row.id)
@@ -30,8 +31,15 @@ export function annualRankingColumns(result) {
   })
 }
 
+// Split long histories into balanced tables with the same scale.
+export function annualRankingPanels(columns) {
+  const panelCount = Math.ceil(columns.length / 7)
+  const panelSize = Math.ceil(columns.length / panelCount)
+  return Array.from({ length: panelCount }, (_, i) => columns.slice(i * panelSize, (i + 1) * panelSize))
+}
+
 export function annualRankingLayout(assetCount, yearCount, nameHeight = 0) {
-  if (!Number.isInteger(assetCount) || assetCount < 2 || assetCount > 6 || !Number.isInteger(yearCount) || yearCount < 2 || yearCount > 7) throw new Error('Choisis 2 à 6 actifs et 2 à 7 années complètes.')
+  if (!Number.isInteger(assetCount) || assetCount < 2 || assetCount > 6 || !Number.isInteger(yearCount) || yearCount < 1 || yearCount > 7) throw new Error('Choisis 2 à 6 actifs et 1 à 7 périodes par tableau.')
   const margin = 36, rankWidth = 66, gap = 10
   const width = Math.max(1000, margin * 2 + rankWidth + yearCount * 236)
   const cellWidth = (width - margin * 2 - rankWidth) / yearCount

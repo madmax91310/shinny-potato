@@ -1,5 +1,5 @@
 import { COLORS } from './palette.js'
-import { annualImagePercent, annualRankingColumns, annualRankingLayout, contrastText } from './annualRanking.js'
+import { annualImagePercent, annualRankingColumns, annualRankingLayout, annualRankingPanels, contrastText } from './annualRanking.js'
 import { annualColumns, basisLabel, formatMonth, rebalanceLabel } from './engine.js'
 
 const INK = '#f5eddb', MUTED = '#acc0c9', GOLD = '#e7c879'
@@ -64,24 +64,11 @@ const imagePercent = value => Math.abs(value) > 0 && Math.abs(value) < .05
   ? annualImagePercent(value)
   : `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 export function renderRankingImage(result, _title, regularity, presentation = 'current') {
-  if (presentation === 'annual') return renderAnnualRankingImage(result)
+  if (presentation === 'annual') return renderAnnualRankingImage(result, regularity)
   const columns = annualColumns(result)
-  const descriptions = [
-    ...result.assets.filter(a => a.portfolio).map(a => `${a.shortLabel} : ${a.portfolio.lines.map(l => `${l.pct} % ${l.asset.shortLabel ?? l.asset.label}`).join(' + ')} · ${rebalanceLabel(a.portfolio.rebalance)}`),
-  ]
   const l = rankingImageLayout(result.assets.length, columns.length, Boolean(regularity))
   const measure = document.createElement('canvas').getContext('2d')
-  measure.font = '600 18px Arial, sans-serif'
-  const notes = []
-  for (const description of descriptions) {
-    let line = ''
-    for (const word of description.split(' ')) {
-      const next = line ? `${line} ${word}` : word
-      if (line && measure.measureText(next).width > l.width - 120) { notes.push(line); line = word } else line = next
-    }
-    if (line) notes.push(line)
-  }
-  if (result.assets.some(a => a.portfolio)) notes.push('Sans flux · frais des fonds inclus · hors courtage, coûts de rééquilibrage et fiscalité')
+  const notes = portfolioNotes(result, measure, l.width)
   const hasPartial = columns.some(c => c.partial)
   l.height += notes.length * 30 + (hasPartial ? 36 : 0)
   const { width, height, margin, labelWidth, cellWidth, rowHeight, tableY, headerHeight, tableBottom, transposed, gridRows } = l
@@ -132,56 +119,93 @@ export function renderRankingImage(result, _title, regularity, presentation = 'c
   }
   notes.forEach((note, i) => fit(ctx, note, width / 2, footerY + i * 30, 18, width - 96, MUTED, 'center'))
   footerY += notes.length * 30
-  if (regularity) {
-    footerY += 26
-    fit(ctx, `Première place sur ${regularity.count} périodes glissantes de ${regularity.months / 12} ans · égalités partagées`, width / 2, footerY, 21, width - 96, MUTED, 'center')
-    const w = (width - margin * 2) / regularity.stats.length
-    regularity.stats.forEach((s, i) => {
-      const x = margin + (i + .5) * w
-      fit(ctx, s.label, x, footerY + 35, 21, w - 16, COLORS[result.assets.findIndex(a => a.id === s.id)], 'center')
-      text(ctx, `${(100 * s.wins / regularity.count).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} %`, x, footerY + 69, 27, INK, 'center')
-    })
-  }
+  if (regularity) drawRegularity(ctx, result, regularity, width, margin, footerY + 26)
   return canvas
 }
 
-// The preview and the download call this same canvas renderer with the same result.
-export function renderAnnualRankingImage(result) {
+function portfolioNotes(result, measure, width) {
+  const descriptions = [
+    ...result.assets.filter(a => a.portfolio).map(a => `${a.shortLabel} : ${a.portfolio.lines.map(l => `${l.pct} % ${l.asset.shortLabel ?? l.asset.label}`).join(' + ')} · ${rebalanceLabel(a.portfolio.rebalance)}`),
+  ]
+  measure.font = '600 18px Arial, sans-serif'
+  const notes = []
+  for (const description of descriptions) {
+    let line = ''
+    for (const word of description.split(' ')) {
+      const next = line ? `${line} ${word}` : word
+      if (line && measure.measureText(next).width > width - 120) { notes.push(line); line = word } else line = next
+    }
+    if (line) notes.push(line)
+  }
+  if (result.assets.some(a => a.portfolio)) notes.push('Sans flux · frais des fonds inclus · hors courtage, coûts de rééquilibrage et fiscalité')
+  return notes
+}
+
+function drawRegularity(ctx, result, regularity, width, margin, footerY) {
+  fit(ctx, `Première place sur ${regularity.count} périodes glissantes de ${regularity.months / 12} ans · égalités partagées`, width / 2, footerY, 21, width - 96, MUTED, 'center')
+  const w = (width - margin * 2) / regularity.stats.length
+  regularity.stats.forEach((s, i) => {
+    const x = margin + (i + .5) * w
+    const order = result.assets.findIndex(asset => asset.id === s.id)
+    const color = result.assets[order]?.rankingColor ?? COLORS[order]
+    fit(ctx, s.label, x, footerY + 35, 21, w - 16, color, 'center')
+    text(ctx, `${(100 * s.wins / regularity.count).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} %`, x, footerY + 69, 27, INK, 'center')
+  })
+}
+
+// The preview and both downloads share this renderer.
+export function renderAnnualRankingImage(result, regularity) {
   const columns = annualRankingColumns(result)
+  const panels = annualRankingPanels(columns)
   const canvas = document.createElement('canvas')
   const measure = canvas.getContext('2d')
-  const initial = annualRankingLayout(result.assets.length, columns.length)
+  const count = result.assets.length
+  const initial = annualRankingLayout(count, panels[0].length)
   const nameHeight = Math.max(...columns.flatMap(column => column.rows.map(row => {
     const plan = annualNameLines(measure, row.label, initial.cellWidth - initial.gap - 24)
     return plan.rows.length * (plan.size + 3)
   })))
-  const l = annualRankingLayout(result.assets.length, columns.length, nameHeight)
-  canvas.width = l.width; canvas.height = l.height
+  const l = annualRankingLayout(count, panels[0].length, nameHeight)
+  const partialNotes = columns.filter(column => column.partial)
+    .map(column => `* ${column.label} · clôtures ${column.detail}`)
+  const notes = [...partialNotes, ...portfolioNotes(result, measure, l.width)]
+  const panelHeight = l.headerHeight + count * l.rowHeight + 24
+  canvas.width = l.width
+  canvas.height = l.height + panelHeight * (panels.length - 1) + notes.length * 30 + (regularity ? 106 : 0)
   const ctx = canvas.getContext('2d')
-  ctx.fillStyle = '#0b1c2b'; ctx.fillRect(0, 0, l.width, l.height)
+  ctx.fillStyle = '#0b1c2b'; ctx.fillRect(0, 0, l.width, canvas.height)
   text(ctx, 'Classement annuel', l.margin, 46, 38, INK, 'left', true, 700)
   text(ctx, columns.length === 1 ? columns[0].label : `${columns[0].label} — ${columns.at(-1).label}`, l.width - l.margin, 46, 28, GOLD, 'right')
   fit(ctx, `${result.coverage.currency} · ${basisLabel(result.coverage.basis)}`, l.margin, 98, 23, l.width - 2 * l.margin, MUTED, 'left', 400)
   ctx.strokeStyle = '#acc0c940'; ctx.beginPath(); ctx.moveTo(l.margin, 130); ctx.lineTo(l.width - l.margin, 130); ctx.stroke()
-  text(ctx, 'Rang', l.margin + l.rankWidth / 2 - 5, l.tableY + l.headerHeight / 2, 19, MUTED, 'center')
-  for (let rank = 0; rank < result.assets.length; rank++) {
-    text(ctx, String(rank + 1), l.margin + l.rankWidth / 2 - 5, l.tableY + l.headerHeight + (rank + .5) * l.rowHeight, 32, MUTED, 'center')
-  }
-  columns.forEach((column, col) => {
-    const x = l.margin + l.rankWidth + col * l.cellWidth
-    text(ctx, column.label, x + l.cellWidth / 2, l.tableY + l.headerHeight / 2, 30, INK, 'center', false, 700)
-    column.rows.forEach((row, index) => {
-      const y = l.tableY + l.headerHeight + index * l.rowHeight
-      const w = l.cellWidth - l.gap, h = l.rowHeight - l.gap
-      rounded(ctx, x + l.gap / 2, y + l.gap / 2, w, h, row.color, null, 10)
-      const color = contrastText(row.color), cx = x + l.cellWidth / 2
-      const lines = annualNameLines(ctx, row.label, w - 24)
-      lines.rows.forEach((line, i) => text(ctx, line, cx, y + 18 + lines.size / 2 + i * (lines.size + 3), lines.size, color, 'center', false, 700))
-      text(ctx, annualImagePercent(row.value), cx, y + l.rowHeight - 49, 43, color, 'center', false, 700)
-      if (row.tied) text(ctx, `${row.rank} ex æquo`, cx, y + l.rowHeight - 19, 17, color, 'center', false, 500)
+
+  panels.forEach((panel, panelIndex) => {
+    const tableY = l.tableY + panelIndex * panelHeight
+    const firstX = l.margin + l.rankWidth + (panels[0].length - panel.length) * l.cellWidth / 2
+    text(ctx, 'Rang', firstX - l.rankWidth / 2 - 5, tableY + l.headerHeight / 2, 19, MUTED, 'center')
+    for (let rank = 0; rank < count; rank++) {
+      text(ctx, String(rank + 1), firstX - l.rankWidth / 2 - 5, tableY + l.headerHeight + (rank + .5) * l.rowHeight, 32, MUTED, 'center')
+    }
+    panel.forEach((column, col) => {
+      const x = firstX + col * l.cellWidth
+      text(ctx, `${column.label}${column.partial ? '*' : ''}`, x + l.cellWidth / 2, tableY + l.headerHeight / 2, 30, INK, 'center', false, 700)
+      column.rows.forEach((row, index) => {
+        const y = tableY + l.headerHeight + index * l.rowHeight
+        const w = l.cellWidth - l.gap, h = l.rowHeight - l.gap
+        rounded(ctx, x + l.gap / 2, y + l.gap / 2, w, h, row.color, null, 10)
+        const color = contrastText(row.color), cx = x + l.cellWidth / 2
+        const lines = annualNameLines(ctx, row.label, w - 24)
+        lines.rows.forEach((line, i) => text(ctx, line, cx, y + 18 + lines.size / 2 + i * (lines.size + 3), lines.size, color, 'center', false, 700))
+        fit(ctx, annualImagePercent(row.value), cx, y + l.rowHeight - 49, 43, w - 24, color, 'center', 700)
+        if (row.tied) text(ctx, `${row.rank} ex æquo`, cx, y + l.rowHeight - 19, 17, color, 'center', false, 500)
+      })
     })
   })
-  text(ctx, 'Épargnant Libre', l.width - l.margin, l.height - 20, 20, MUTED, 'right', true, 400)
+
+  const notesY = l.height + panelHeight * (panels.length - 1) - 30
+  notes.forEach((note, i) => fit(ctx, note, l.margin, notesY + i * 30, 20, l.width - l.margin * 2, MUTED))
+  if (regularity) drawRegularity(ctx, result, regularity, l.width, l.margin, notesY + notes.length * 30 + 13)
+  text(ctx, 'Épargnant Libre', l.width - l.margin, canvas.height - 20, 20, MUTED, 'right', true, 400)
   return canvas
 }
 
@@ -197,6 +221,20 @@ export function annualNameLines(ctx, value, width) {
     if (line) rows.push(line)
     if (rows.length * (size + 3) <= 104 && rows.every(row => ctx.measureText(row).width <= width)) return { rows, size }
   }
-  throw new Error(`Nom trop long pour ce format : ${value}. Réduis le nombre d’années pour agrandir les cases.`)
+  // A custom portfolio name can contain an unbroken word. Keep every character
+  // and let the row grow once word wrapping at the minimum size is insufficient.
+  const size = 18
+  ctx.font = `700 ${size}px Arial, sans-serif`
+  const rows = []
+  let line = ''
+  for (const character of value) {
+    if (line && ctx.measureText(line + character).width > width) {
+      rows.push(line.trimEnd())
+      line = ''
+    }
+    if (line || character.trim()) line += character
+  }
+  if (line) rows.push(line.trimEnd())
+  return { rows, size }
 }
 
