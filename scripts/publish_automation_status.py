@@ -17,6 +17,7 @@ import subprocess
 import tempfile
 import urllib.error
 import urllib.request
+from functools import cache
 
 from automation_contracts import owns_failure, RETIREMENT_REASON
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp, restore_history
@@ -31,9 +32,14 @@ from automation_recovery import plan_recovery, persist_and_dispatch, recovery_re
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
 WORKFLOWS = {key: value['name'] for key, value in REGISTRY.items()}
 REPORT_ARTIFACTS = {key: value['artifact'] for key, value in REGISTRY.items() if value.get('artifact')}
-ACTIVE_QUALIFIED = {row['isin'] for row in json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/qualified-exposure-etfs.json').read_text()).values()}
 BRANCH = 'automation-status'
 PATH = 'automation-status.json'
+
+
+@cache
+def active_qualified_exposures():
+    path = pathlib.Path(__file__).resolve().parents[1] / 'src/data/qualified-exposure-etfs.json'
+    return {row['isin'] for row in json.loads(path.read_text()).values()}
 
 
 DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alimentation': 'Prix alimentaires', 'purchasing-energie': 'Prix de l’énergie', 'purchasing-irl': 'Indice des loyers', 'purchasing-smic': 'SMIC','livret-a': 'Taux du Livret A', 'fonds-euros': 'Moyenne des fonds euros', 'scpi': 'Rendement global des SCPI',
@@ -115,7 +121,8 @@ def _normalize_report(report):
         return combined
     if isinstance(report.get('records'), list) and ('failed' in report or 'excluded' in report):
         # Older artifacts lack the active flag; consult the production catalogue.
-        excluded = [{**row, 'active': row.get('active', row.get('isin') in ACTIVE_QUALIFIED)} for row in report.get('excluded', [])]
+        excluded = [{**row, 'active': row['active'] if 'active' in row else row.get('isin') in active_qualified_exposures()}
+                    for row in report.get('excluded', [])]
         failures = report.get('failed', []) + [row for row in excluded if row['active']]
         return {'successes': [{'id': row.get('isin', row.get('id'))} for row in report['records']],
                 'errors': [{'id': row.get('isin', row.get('id')), 'name': row.get('isin', row.get('id')),

@@ -2,6 +2,7 @@
 import pathlib
 import copy
 import gzip
+import hashlib
 from unittest.mock import patch
 import ast
 import re
@@ -47,6 +48,7 @@ PRIVATE_SERVICE_READERS = [
 SCPI_ETF_RACE = json.loads((ROOT/'scripts/fixtures/scpi-etf-recording-race-20261106.json').read_text())['changedPaths']
 ETF_BUDGET_RACE = json.loads((ROOT/'scripts/fixtures/etf-budget-recording-race-20261114.json').read_text())['changedPaths']
 SUBSCRIBER_RACE = json.loads((ROOT/'scripts/fixtures/subscriber-reader-recording-race-20261114.json').read_text())
+INSURANCE_EXPOSURE_RACE = json.loads((ROOT/'scripts/fixtures/insurance-exposure-recording-race-20261122.json').read_text())['changedPaths']
 
 ECONOMIC_PATH = 'src/data/automated-economic.json'
 
@@ -172,6 +174,7 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/dca-profiles/holdings.json',
                      *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS, *BUDGET_EDITORIAL_READERS,
                      *SCPI_ETF_RACE, *ETF_BUDGET_RACE, *SUBSCRIBER_RACE['changedPaths'], 'src/data/freshness-policy.json',
+                     *INSURANCE_EXPOSURE_RACE, 'scripts/collect_insurance.py', 'src/pages/dca-profiles/engine.js',
                      'src/pages/budget-profiles/data.js',
                      'src/pages/budget-profiles/lib.js',
                      'src/pages/budget-profiles/unqualified-context.json']:
@@ -524,6 +527,22 @@ else:
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:src/data/automated-insurance.json'), 'concurrent update')
+
+    def test_actual_insurance_exposure_race_preserves_both_writers(self):
+        for path in INSURANCE_EXPOSURE_RACE:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {shlex.quote(path)})" = "concurrent update"' for path in INSURANCE_EXPOSURE_RACE)
+        result = self.publish('insurance', validation)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+
+    def test_insurance_exposure_race_still_requires_revalidation(self):
+        self.assert_refused(INSURANCE_EXPOSURE_RACE[0], 'insurance', 'false')
+
+    def test_insurance_exposure_race_does_not_allow_other_paths(self):
+        for path in ('scripts/collect_insurance.py','src/data/automated-insurance.json','src/pages/dca-profiles/engine.js'):
+            with self.subTest(path=path):
+                self.assert_refused(path, 'insurance')
 
     def test_index_collection_can_revalidate_after_independent_scpi(self):
         self.f.advance_remote('src/data/automated-scpi.json')
@@ -938,7 +957,7 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
             for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]",text):pending.append(path.parent/relative)
         self.assertGreater(len(seen),1)
 
-    def python_graph(self, roots, forbidden, match_names=True):
+    def python_graph(self, roots, forbidden, match_names=True, boundaries=()):
         pending = [ROOT / 'scripts' / name for name in roots]
         seen = set()
         while pending:
@@ -956,7 +975,7 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
                 if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == '__import__' and node.args and isinstance(node.args[0], ast.Constant):names.append(node.args[0].value)
                 for name in filter(None, names):
                     local = ROOT / 'scripts' / (name.split('.')[0] + '.py')
-                    if local.is_file():pending.append(local)
+                    if local.is_file() and local.name not in boundaries:pending.append(local)
         self.assertGreater(len(seen), len(roots))
 
     def test_private_service_is_downstream_of_market_acquisition_and_baselines(self):
@@ -1065,6 +1084,30 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
 
     def test_scpi_acquisition_graph_does_not_read_actor_output(self):
         self.python_graph(['collect_scpi.py'],[ACTOR_OUTPUT])
+
+    def test_insurance_acquisition_graph_does_not_read_exposure_outputs(self):
+        # The reporting module imports adapters for all producers. Exercise its
+        # actual insurance path below instead of treating the other adapters
+        # as dependencies of this acquisition.
+        self.python_graph(['collect_insurance.py', 'collect_other_insurance.py'], INSURANCE_EXPOSURE_RACE,
+                          boundaries=('producer_report_contract.py',))
+        import io
+        from producer_report_contract import finish
+        from producer_report_plans import build_plan
+        forbidden={(ROOT/path).resolve() for path in INSURANCE_EXPOSURE_RACE}
+        open_file=io.open
+        def checked_open(file,*args,**kwargs):
+            if isinstance(file,(str,pathlib.Path)):
+                self.assertNotIn(pathlib.Path(file).resolve(),forbidden)
+            return open_file(file,*args,**kwargs)
+        with patch('io.open',side_effect=checked_open),patch('builtins.open',side_effect=checked_open):
+            plan=build_plan('collect_insurance',[],report_stem='insurance-observation')
+            plan.update(producer='collect_insurance',reportStem='insurance-observation',
+                        declaredAt='2026-11-22T12:00:00+00:00',nonce='test')
+            plan['sha256']=hashlib.sha256(json.dumps(plan,sort_keys=True).encode()).hexdigest()
+            observations=[{'id':item['id'],'status':'success'} for item in plan['items']]
+            result=finish({'observations':observations},plan)['resultContract']
+        self.assertTrue(any(row['id']=='linxea-vie' and row['status']=='succeeded' for row in result['outcomes']))
 
     def test_publication_collectors_do_not_read_actor_presentations(self):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
