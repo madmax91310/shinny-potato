@@ -2,9 +2,9 @@
   "fieldCoverage": {
     "ter": {
       "label": "Frais",
-      "present": 281,
-      "total": 284,
-      "applicable": 284,
+      "present": 282,
+      "total": 285,
+      "applicable": 285,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -12,9 +12,9 @@
     },
     "aum": {
       "label": "Encours",
-      "present": 281,
-      "total": 284,
-      "applicable": 284,
+      "present": 282,
+      "total": 285,
+      "applicable": 285,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -22,9 +22,9 @@
     },
     "performance": {
       "label": "Calendrier annuel",
-      "present": 260,
-      "total": 284,
-      "applicable": 284,
+      "present": 261,
+      "total": 285,
+      "applicable": 285,
       "notApplicable": 0,
       "waiting": 13,
       "notPublished": 6,
@@ -33,18 +33,18 @@
     "countries": {
       "label": "Pays",
       "present": 252,
-      "total": 284,
-      "applicable": 261,
+      "total": 285,
+      "applicable": 262,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
-      "unresolved": 4
+      "unresolved": 5
     },
     "sectors": {
       "label": "Secteurs",
-      "present": 252,
-      "total": 284,
-      "applicable": 261,
+      "present": 253,
+      "total": 285,
+      "applicable": 262,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
@@ -53,12 +53,12 @@
     "holdings": {
       "label": "Positions pondérées",
       "present": 257,
-      "total": 284,
-      "applicable": 261,
+      "total": 285,
+      "applicable": 262,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 4
+      "unresolved": 5
     }
   },
   "recentCalendars": [
@@ -408,17 +408,17 @@
   ],
   "checkedAt": "2026-11-22",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 284,
+  "instruments": 285,
   "covered": {
-    "ter": 281,
-    "aum": 281,
-    "performance": 260,
+    "ter": 282,
+    "aum": 282,
+    "performance": 261,
     "countries": 252,
-    "sectors": 252,
+    "sectors": 253,
     "holdings": 257
   },
   "summary": {
-    "instrument:unqualified": 22,
+    "instrument:unqualified": 24,
     "instrument:not-applicable": 69,
     "instrument:waiting-first-year": 13,
     "instrument:not-published": 16,
@@ -1095,7 +1095,7 @@
       "asOf": "2026-11-19",
       "checkedAt": "2026-11-22",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "2cee1d02abce9eb4fffb2b2db566fb5fe8b0682ae3957eb36fa1805185170f29",
+      "sha256": "37cb7c3ee04415223c5b4fb33d533e72c04b4c5b16bef005b74194de53ae5516",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1219,6 +1219,28 @@
       "status": "not-applicable",
       "reason": "Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258442&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00B1FZSF77",
+      "name": "iShares US Property Yield UCITS ETF USD (Dist)",
+      "field": "countries",
+      "label": "Pays",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00B1FZSF77",
+      "name": "iShares US Property Yield UCITS ETF USD (Dist)",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf"
     },
     {
       "type": "instrument",
@@ -1842,7 +1864,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-11-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "014713c365e424733720fa4231757514a378fcbed162459998cf1eeb20c1ddbd",
+      "sha256": "f3f2d8071ce89503fb25d2b2d22aa3fa3bde3e36bcc3211d9b29cb6a885aa135",
       "evidence": []
     },
     {
@@ -1856,7 +1878,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-11-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "014713c365e424733720fa4231757514a378fcbed162459998cf1eeb20c1ddbd",
+      "sha256": "f3f2d8071ce89503fb25d2b2d22aa3fa3bde3e36bcc3211d9b29cb6a885aa135",
       "evidence": []
     },
     {
@@ -1870,7 +1892,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-11-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "014713c365e424733720fa4231757514a378fcbed162459998cf1eeb20c1ddbd",
+      "sha256": "f3f2d8071ce89503fb25d2b2d22aa3fa3bde3e36bcc3211d9b29cb6a885aa135",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1911,7 +1933,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA.",
       "checkedAt": "2026-11-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "014713c365e424733720fa4231757514a378fcbed162459998cf1eeb20c1ddbd",
+      "sha256": "f3f2d8071ce89503fb25d2b2d22aa3fa3bde3e36bcc3211d9b29cb6a885aa135",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 13 Nov 2026",

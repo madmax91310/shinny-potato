@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Présent / applicable | Non applicable | En attente | Non publié | À résoudre |
 |---|---:|---:|---:|---:|---:|
-| Frais | 281/284 | 0 | 0 | 0 | 3 |
-| Encours | 281/284 | 0 | 0 | 0 | 3 |
-| Calendrier annuel | 260/284 | 0 | 13 | 6 | 5 |
-| Pays | 252/261 | 23 | 0 | 5 | 4 |
-| Secteurs | 252/261 | 23 | 0 | 5 | 4 |
-| Positions pondérées | 257/261 | 23 | 0 | 0 | 4 |
+| Frais | 282/285 | 0 | 0 | 0 | 3 |
+| Encours | 282/285 | 0 | 0 | 0 | 3 |
+| Calendrier annuel | 261/285 | 0 | 13 | 6 | 5 |
+| Pays | 252/262 | 23 | 0 | 5 | 5 |
+| Secteurs | 253/262 | 23 | 0 | 5 | 4 |
+| Positions pondérées | 257/262 | 23 | 0 | 0 | 5 |
 
 ## Premiers calendriers des 13 parts récentes
 
@@ -98,6 +98,8 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | iShares US Property Yield UCITS ETF USD (Dist) (IE00B1FZSF77) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares US Property Yield UCITS ETF USD (Dist) (IE00B1FZSF77) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Copper Miners UCITS ETF USD Acc (IE0003Z9E2Y3) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
 | instrument | Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating (IE000VAHT5T0) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
