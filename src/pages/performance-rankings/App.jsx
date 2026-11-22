@@ -7,7 +7,7 @@ import ToolWorkspace from '../../design-system/ToolWorkspace.jsx'
 import AssetPicker from '../../design-system/AssetPicker.jsx'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { copyPublicationText, notifyPublication, startPublicationDownload } from '../../design-system/publicationActions.js'
-import { ALL_CATEGORIES, ANNUAL_ASSETS, BENCHMARK_CATEGORIES, BENCHMARK_OPTIONS, COLORS, RANKING_ASSETS } from './data.js'
+import { ALL_CATEGORIES, ANNUAL_ASSETS, BENCHMARK_CATEGORIES, BENCHMARK_OPTIONS, RANKING_ASSETS } from './data.js'
 import { markBenchmark, randomSuggestion } from './suggestions.js'
 import { isStock, replaceBenchmark } from './selection.js'
 import SelectionGrid from './SelectionGrid.jsx'
@@ -18,28 +18,20 @@ import { convertAsset, buildPortfolio } from './series.js'
 import {selectionDates as defaultDates,qualifiedYearWindow} from './selection-windows.js'
 import PortfolioEditor from './PortfolioEditor.jsx'
 import { DEFAULT_PORTFOLIOS } from './portfolio-defaults.js'
-import { annualColumns, basisLabel, buildRanking, buildTweet, commonCoverage, formatPercent, monthIndex, rollingRegularity } from './engine.js'
-import { annualImagePercent, annualRankingColumns, annualRankingError, contrastText } from './annualRanking.js'
-import { renderRankingImage } from './image.js'
+import { basisLabel, buildRanking, buildTweet, commonCoverage, monthIndex, rollingRegularity } from './engine.js'
+import { annualImagePercent, annualRankingColumns, contrastText } from './annualRanking.js'
+import { renderAnnualRankingImage } from './image.js'
 import { publicationDraft, selectionFilename, workingColors } from './workingSelection.js'
 import './rankings.css'
 
 const CATEGORY = ALL_CATEGORIES.find(c => c.id === 'world')
 const SOURCES = { ...RANKING_ASSETS, ...ANNUAL_ASSETS }
 const ELIGIBLE = Object.values(RANKING_ASSETS).filter(a => !['monthly-average', 'price-index', 'futures-price'].includes(a.basis))
-// A category usable for a short custom period is not necessarily usable for annual images.
-const ANNUAL_CATEGORY_IDS = new Set(ALL_CATEGORIES.filter(c => {
-  try { return qualifiedYearWindow(commonCoverage(c.ids.map(id => convertAsset(SOURCES[id], c.currency ?? 'original', FX))).years,2).length >= 2 }
-  catch { return false }
-}).map(c => c.id))
-
-
 export default function App() {
   const [categoryId, setCategoryId] = useState(CATEGORY.id)
   const [ids, setIds] = useState(() => [...CATEGORY.ids])
   const [colors, setColors] = useState(() => workingColors(CATEGORY.ids))
   const [mode, setMode] = useState('years')
-  const [presentation, setPresentation] = useState('current')
   const [dates, setDates] = useState(() => defaultDates(CATEGORY.ids.map(id => SOURCES[id])))
   const [title, setTitle] = useState(CATEGORY.label)
   const [showRegularity, setShowRegularity] = useState(false)
@@ -69,7 +61,6 @@ export default function App() {
   }, [ids, currency, comparison, portfolios, benchmarkId, colors,mode,dates])
   const assets = prepared.assets
   const selectedAssets = ids.map(id => assets.find(a => a.id === id) ?? { ...SOURCES[id], rankingColor: colors[id] })
-  const categories = presentation === 'annual' ? ALL_CATEGORIES.filter(c => ANNUAL_CATEGORY_IDS.has(c.id) || c.id === categoryId) : ALL_CATEGORIES
   const computed = useMemo(() => {
     try {
       if (prepared.error) throw new Error(prepared.error)
@@ -84,9 +75,7 @@ export default function App() {
     }
   }, [assets, prepared.error, dates, mode, showRegularity, months])
   const { coverage, result, regularity, error } = computed
-  const imageColumns = result ? annualColumns(result) : []
-  const imageError = result && presentation === 'annual' ? annualRankingError(result) : ''
-  const rankedColumns = result && presentation === 'annual' && !imageError ? annualRankingColumns(result) : []
+  const rankedColumns = result ? annualRankingColumns(result) : []
   const generatedText = result ? buildTweet(result, title, regularity) : ''
   const snapshot = JSON.stringify({ ids, dates, currency, mode, title, comparison, portfolios, benchmarkId, generatedText })
   const { text, stale: staleText } = publicationDraft(generatedText, snapshot, draft)
@@ -95,8 +84,8 @@ export default function App() {
     await document.fonts.ready
     // Keep the renderer with the loaded tool: a deployment can remove old lazy
     // chunks while this tab stays open, including before the first download.
-    return renderRankingImage(result, title, regularity, presentation)
-  }, [result, title, regularity, presentation])
+    return renderAnnualRankingImage(result, regularity)
+  }, [result, regularity])
 
   function applyIds(next, nextCurrency = currency, resetPeriod = false) {
     setIds([...next]); setColors(previous => workingColors(next, previous)); setStatus('')
@@ -108,7 +97,7 @@ export default function App() {
       try {
         const nextDates = defaultDates(next.map(id => convertAsset(SOURCES[id], nextCurrency, FX)))
         setDates(nextDates)
-        if (nextDates.startYear === undefined) setMode('period')
+        setMode(nextDates.startYear === undefined ? 'period' : 'years')
       } catch { /* Error is shown in the editor. */ }
     }
   }
@@ -118,11 +107,10 @@ export default function App() {
     setCurrency(nextCurrency); setComparison('assets'); setBank(c.frequency ?? 'monthly')
     setCategoryId(id); applyIds(c.ids, nextCurrency, true); setColors(workingColors(c.ids)); setTitle(c.label); setSlot(0); setManual(false); setDraft(null); setShowRegularity(false)
     setBenchmarkId(c.benchmarkId ?? '')
-    if (c.frequency === 'annual' || presentation === 'annual') setMode('years')
   }
   function suggest() {
     try {
-      const suggestion = randomSuggestion(categoryId, Math.random, undefined, presentation === 'annual' ? 7 : 10)
+      const suggestion = randomSuggestion(categoryId)
       const c = suggestion.category
       setCategoryId(c.id); setIds([...c.ids]); setColors(workingColors(c.ids)); setDraft(null); setTitle(c.label); setBenchmarkId(c.benchmarkId ?? '')
       setCurrency(suggestion.currency); setDates(suggestion.dates); setMode(suggestion.mode)
@@ -132,12 +120,6 @@ export default function App() {
   }
   function changeBenchmark(nextId, selectedIds = ids, previousId = benchmarkId) {
     try {
-      if (presentation === 'annual') {
-        const next = selectedIds.map(id => id === previousId ? nextId : id)
-        if (new Set(next).size !== next.length) throw new Error('Chaque actif doit apparaître une seule fois.')
-        applyIds(next); setBenchmarkId(nextId)
-        return
-      }
       const next = replaceBenchmark({ ids: selectedIds, benchmarkId: previousId, currency, dates, mode }, nextId)
       setIds([...next.ids]); setColors(previous => workingColors(next.ids, previous)); setBenchmarkId(next.benchmarkId); setCurrency(next.currency); setDates(next.dates); setMode(next.mode)
       const label = BENCHMARK_OPTIONS.find(option => option.id === nextId).label
@@ -167,7 +149,7 @@ export default function App() {
     setBusy(true); setStatus('')
     try {
       const canvas = await renderImage()
-      const link = document.createElement('a'); link.href = canvas.toDataURL('image/png'); link.download = selectionFilename(result, presentation)
+      const link = document.createElement('a'); link.href = canvas.toDataURL('image/png'); link.download = selectionFilename(result, 'annual')
       document.body.append(link); startPublicationDownload(link); link.remove(); setStatus('Téléchargement lancé.')
     } catch (e) { setStatus(e.message); notifyPublication(e.message, 'error') }
     finally { setBusy(false) }
@@ -176,23 +158,20 @@ export default function App() {
   function dateField(name, value) { setDates(d => ({ ...d, [name]: value })); setStatus('') }
   return <div className="rankings-tool">
     <PageHeader title="Qui a vraiment gagné ?" subtitle="Classe des actifs par année ou sur une période commune. Les calculs utilisent les historiques mensuels ou les calendriers annuels officiels, sans interpolation. Les choix suivent la profondeur réelle des historiques." />
-    <ToolWorkspace imageFilename={result ? selectionFilename(result, presentation) : undefined} renderImage={renderImage} imageDisabled={!result || Boolean(imageError)} imageAlt={`${presentation === 'annual' ? 'Classement annuel' : 'Performances annuelles'} : ${title}`} actions={<>
+    <ToolWorkspace imageFilename={result ? selectionFilename(result, 'annual') : undefined} renderImage={renderImage} imageDisabled={!result} imageAlt={`Classement annuel : ${title}`} actions={<>
       <button type="button" onClick={copy} disabled={!result}>Copier le texte</button>
-      <button type="button" onClick={download} disabled={!result || Boolean(imageError) || busy}>{busy ? 'Préparation…' : 'Télécharger l’image'}</button>
+      <button type="button" onClick={download} disabled={!result || busy}>{busy ? 'Préparation…' : 'Télécharger l’image'}</button>
       <span role="status">{status}</span>
     </>}>
       <section className="tool-settings rk-settings" aria-label="Réglages du classement">
         <div className="rk-intro"><span>LES MARCHÉS EN PERSPECTIVE</span><h2>Un classement.<br />Plusieurs façons de le lire.</h2><p>Choisis un univers, puis la période qui t’intéresse.</p></div>
-        <fieldset className="rk-modes"><legend>Présentation de l’image</legend>
-          {[['current', 'Présentation actuelle'], ['annual', 'Classement annuel']].map(([value, label]) => <button type="button" key={value} aria-pressed={presentation === value} onClick={() => setPresentation(value)}>{label}</button>)}
-        </fieldset>
-        {presentation === 'annual' && <p className="rk-note">Une colonne par année, du meilleur au moins performant. Chaque actif garde sa couleur. Les rangs utilisent les valeurs non arrondies ; les égalités exactes sont signalées « ex æquo ». Jusqu’à 6 actifs et 7 années complètes. Le tweet conserve la synthèse annualisée sur la période.</p>}
+        <p className="rk-note">Dans le classement annuel, chaque colonne va de la meilleure à la moins bonne performance. Chaque actif garde sa couleur.</p>
         <div className="rk-inline rk-suggestions">
           <button type="button" onClick={suggest}>Sélection aléatoire</button>
           <button type="button" onClick={startBenchmark}>5 actions face à un ETF</button>
         </div>
-        {presentation === 'annual' && <p className="rk-note">Les ajustements restent temporaires et ne modifient pas le profil. <button type="button" className="rk-text-button" onClick={() => chooseCategory(categoryId)}>Réinitialiser le profil</button></p>}
-        <ComparisonPicker key={categoryId} categories={categories} sources={SOURCES} value={categoryId} onChange={chooseCategory} />
+        {comparison === 'assets' && ALL_CATEGORIES.some(c => c.id === categoryId) && <button type="button" className="rk-text-button" onClick={() => chooseCategory(categoryId)}>Réinitialiser le profil</button>}
+        <ComparisonPicker key={categoryId} categories={ALL_CATEGORIES} sources={SOURCES} value={categoryId} onChange={chooseCategory} />
         <fieldset className="rk-modes"><legend>Comparer</legend>{[['assets', 'Actifs'], ['portfolios', 'Portefeuilles']].map(([value, label]) => <button type="button" key={value} aria-pressed={comparison === value} onClick={() => {
           setComparison(value)
           if (value === 'portfolios') {
@@ -215,28 +194,28 @@ export default function App() {
         {assets.some(a => a.benchmark) && <label className="rk-field">ETF de référence<ChoicePicker aria-label="ETF de référence" value={benchmarkId} onChange={e => changeBenchmark(e.target.value)}>
           {BENCHMARK_OPTIONS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
         </ChoicePicker></label>}
-        <div className="rk-selected" aria-label="Actifs sélectionnés">{selectedAssets.map((a, i) => <div key={a.id} style={{ '--rk-color': presentation === 'annual' ? a.rankingColor : COLORS[i] }}>
+        <div className="rk-selected" aria-label="Actifs sélectionnés">{selectedAssets.map((a, i) => <div key={a.id} style={{ '--rk-color': a.rankingColor }}>
           <span className="rk-dot" /><span><strong>{selectionAssetLabel(a)}</strong><small>{a.currency} · {a.instrumentType === 'EQUITY' ? 'Action' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif'}</small></span>
-          {(manual || presentation === 'annual') && <><button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setManual(true); setSlot(i); setManualMode('single') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} disabled={presentation === 'annual' && ids.length <= 2} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button></>}
+          <button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setManual(true); setSlot(i); setManualMode('single') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} disabled={!manual && ids.length <= 2} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button>
         </div>)}</div>
-        {presentation === 'annual' && <button type="button" disabled={ids.length >= 6} onClick={() => { setManual(true); setSlot(ids.length); setManualMode('single') }}>Ajouter un actif au profil</button>}
+        <button type="button" disabled={ids.length >= 6} onClick={() => { setManual(true); setSlot(ids.length); setManualMode('single') }}>Ajouter un actif au profil</button>
         <button type="button" className="rk-text-button" aria-expanded={manual} onClick={() => setManual(!manual)}>{manual ? 'Fermer la sélection manuelle' : 'Personnaliser les actifs'}</button>
         {manual && <div className="rk-manual">
-          {presentation !== 'annual' && <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Historiques mensuels</option><option value="annual">Performances annuelles</option></ChoicePicker></label>}
-          <div className="rk-inline">{presentation !== 'annual' && <button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button>}<button type="button" disabled={ids.length >= 6} onClick={() => { setSlot(ids.length); setManualMode('single') }}>Ajouter un actif</button></div>
+          <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Historiques mensuels</option><option value="annual">Performances annuelles</option></ChoicePicker></label>
+          <div className="rk-inline"><button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button><button type="button" disabled={ids.length >= 6} onClick={() => { setSlot(ids.length); setManualMode('single') }}>Ajouter un actif</button></div>
           {bank === 'monthly' && <fieldset className="rk-modes"><legend>Sélection manuelle</legend>
             <button type="button" aria-pressed={manualMode === 'batch'} onClick={() => setManualMode('batch')}>Cocher les actifs</button>
             <button type="button" aria-pressed={manualMode === 'single'} onClick={() => setManualMode('single')}>Un par un</button>
           </fieldset>}
-          {bank === 'monthly' && manualMode === 'batch' ? <SelectionGrid minimum={presentation === 'annual' ? 2 : 0} ids={ids} currency={currency} assets={RANKING_ASSETS} onChange={next => {
+          {bank === 'monthly' && manualMode === 'batch' ? <SelectionGrid ids={ids} currency={currency} assets={RANKING_ASSETS} onChange={next => {
             setCurrency(next.currency); applyIds(next.ids, next.currency); setSlot(0); setTitle('Ma sélection')
           }} /> : <>
           <p>{slot >= ids.length ? 'Ajouter un actif' : `Remplacer l’actif ${slot + 1}`} · de 2 à 6 actifs</p>
-          <AssetPicker persistent={presentation !== 'annual'} label="Actif du classement" items={options} value={ids[slot] ?? ''} hideIdleResults clearSearchOnSelect onChange={id => {
+          <AssetPicker persistent label="Actif du classement" items={options} value={ids[slot] ?? ''} hideIdleResults clearSearchOnSelect onChange={id => {
             const next = [...ids]; next[Math.min(slot, ids.length)] = id; applyIds(next); setSlot(Math.min(next.length, 5)); setTitle('Ma sélection')
           }} />
           </>}
-          <p className="rk-note">Les indices nets et bruts restent distincts. Choisis EUR ou USD pour comparer des devises différentes. Les calendriers annuels sont séparés des cotations mensuelles. {presentation !== 'annual' && '« Nouvelle sélection » permet de repartir sur une autre base.'}</p>
+          <p className="rk-note">Les indices nets et bruts restent distincts. Choisis EUR ou USD pour comparer des devises différentes. Les calendriers annuels sont séparés des cotations mensuelles. « Nouvelle sélection » permet de repartir sur une autre base.</p>
         </div>}
         </>}
         <fieldset className="rk-modes"><legend>Temporalité</legend>{[['year', 'Une année'], ['years', 'Année par année'], ['period', 'Période libre']].map(([value, label]) => <button type="button" key={value} aria-pressed={mode === value} onClick={() => setMode(value)}>{label}</button>)}</fieldset>
@@ -248,22 +227,19 @@ export default function App() {
           {mode === 'years' && <label>Dernière année<ChoicePicker aria-label="Dernière année" value={dates.endYear ?? ''} onChange={e => dateField('endYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y} value={y}>{y}</option>)}</ChoicePicker></label>}
         </div>}
         {coverage && <p className="rk-coverage"><strong>{coverage.currency} · {basisLabel(coverage.basis)}</strong><br />Historique commun : {coverage.start} → {coverage.end}{coverage.years.length ? ` · ${coverage.years.length} années civiles complètes` : ' · aucune année civile complète'}</p>}
-        {presentation === 'annual' && coverage && coverage.years.length < 2 && <p className="rk-note" role="status">Historique insuffisant : au moins 2 années civiles complètes communes sont nécessaires. {coverage.years.length ? `Seule l’année ${coverage.years[0]} est disponible.` : 'Aucune année complète commune n’est disponible.'} Retire ou remplace un actif pour étendre la période.</p>}
         {error && <p className="rk-error" role="alert">{error}</p>}
-        {imageError && <p className="rk-error" role="alert">{imageError}</p>}
-        {(error || imageError) && qualifiedYearWindow(coverage?.years??[],presentation === 'annual'?2:1,7).length >= (presentation === 'annual' ? 2 : 1) && <div className="rk-note">
+        {error && qualifiedYearWindow(coverage?.years ?? [], 1, 7).length > 0 && <div className="rk-note">
           <p>Années civiles complètes communes disponibles : {coverage.years.join(', ')}. Aucun actif ni aucune année n’a été retiré.</p>
           <button type="button" className="rk-text-button" onClick={() => {
-            const years = qualifiedYearWindow(coverage.years,presentation === 'annual'?2:1,7)
+            const years = qualifiedYearWindow(coverage.years, 1, 7)
             if(!years.length)return
             setDates(d => ({ ...d, startYear: years[0], endYear: years.at(-1) })); setMode('years')
           }}>Utiliser la dernière période commune (7 années maximum)</button>
         </div>}
-        {(error || imageError) && assets.length > 0 && <ul className="rk-note">{assets.map(a => <li key={a.id}>{a.shortLabel ?? a.label} · {a.currency} · {basisLabel(a.basis)} · {a.frequency === 'annual' ? `années ${Object.keys(a.years).join(', ')}` : `${a.points[0]?.date ?? 'borne absente'} → ${a.points.at(-1)?.date ?? 'borne absente'}`}</li>)}</ul>}
+        {error && assets.length > 0 && <ul className="rk-note">{assets.map(a => <li key={a.id}>{a.shortLabel ?? a.label} · {a.currency} · {basisLabel(a.basis)} · {a.frequency === 'annual' ? `années ${Object.keys(a.years).join(', ')}` : `${a.points[0]?.date ?? 'borne absente'} → ${a.points.at(-1)?.date ?? 'borne absente'}`}</li>)}</ul>}
         <label className="rk-field">Univers du tweet<input maxLength={85} value={title} onChange={e => setTitle(e.target.value)} /></label>
-        {comparison === 'assets' && presentation !== 'annual' && <Favorites disabled={!result} selection={{ ids, currency, dates, mode, title, bank, categoryId, benchmarkId: assets.some(a => a.benchmark) ? benchmarkId : '' }} onRestore={restoreFavorite} />}
+        {comparison === 'assets' && <Favorites disabled={!result} selection={{ ids, currency, dates, mode, title, bank, categoryId, benchmarkId: assets.some(a => a.benchmark) ? benchmarkId : '' }} onRestore={restoreFavorite} />}
         <details className="rk-regularity"><summary>Ajouter la régularité historique</summary>
-          {presentation === 'annual' && <p>La régularité glissante s’affiche dans la présentation actuelle. Le classement annuel conserve uniquement les performances des années choisies.</p>}
           <label className="rk-check"><input type="checkbox" checked={showRegularity} onChange={e => setShowRegularity(e.target.checked)} /> Montrer la fréquence de première place</label>
           <label className="rk-field">Durée de chaque période<ChoicePicker aria-label="Durée de chaque période" value={months} onChange={e => setMonths(Number(e.target.value))}>{[12, 36, 60, 120].map(m => <option key={m} value={m}>{m / 12} an{m > 12 ? 's' : ''}</option>)}</ChoicePicker></label>
           {showRegularity && (regularity ? <p>{regularity.count} périodes mensuelles de départ, sur tout l’historique commun {regularity.start} → {regularity.end}.</p> : <p role="status">{coverage?.frequency === 'annual' ? 'Les périodes glissantes mensuelles exigent une série mensuelle.' : 'Recul insuffisant pour calculer au moins deux périodes.'} Cette mesure sera absente de l’export.</p>)}
@@ -277,11 +253,11 @@ export default function App() {
       <section className="tool-preview rk-preview">
         {result ? <>
           <h2>{title || 'Classement'}</h2>
-          {presentation === 'annual' ? rankedColumns.length > 0 && <div className="rk-table-scroll"><table className="rk-table rk-annual-table"><caption>Classement annuel · {coverage.currency} · valeurs affichées arrondies, rangs calculés avant arrondi</caption><thead><tr><th scope="col">Rang</th>{rankedColumns.map(c => <th scope="col" key={c.label}>{c.label}</th>)}</tr></thead><tbody>{assets.map((_, index) => <tr key={index}><th scope="row">{index + 1}</th>{rankedColumns.map(c => {
+          <div className="rk-table-scroll"><table className="rk-table rk-annual-table"><caption>Classement annuel · {coverage.currency} · valeurs affichées arrondies, rangs calculés avant arrondi</caption><thead><tr><th scope="col">Rang</th>{rankedColumns.map(c => <th scope="col" key={c.label} title={c.detail}>{c.label}{c.partial ? '*' : ''}</th>)}</tr></thead><tbody>{assets.map((_, index) => <tr key={index}><th scope="row">{index + 1}</th>{rankedColumns.map(c => {
             const row = c.rows[index]
             return <td key={c.label} data-asset={row.id} data-rank={row.rank} style={{ background: row.color, color: contrastText(row.color), '--rk-color': row.color }}><strong>{row.label}</strong><span>{annualImagePercent(row.value)}</span>{row.tied && <small>{row.rank} ex æquo</small>}</td>
-          })}</tr>)}</tbody></table></div> : <div className="rk-table-scroll"><table className="rk-table"><caption>Performances par année · {coverage.currency} · 🏆 Meilleure performance</caption><thead><tr><th scope="col">Actif</th>{imageColumns.map(c => <th key={c.label} scope="col" title={c.detail}>{c.label}{c.partial ? '*' : ''}</th>)}</tr></thead><tbody>{assets.map((asset, i) => <tr key={asset.id}><th scope="row">{asset.shortLabel}</th>{imageColumns.map(c => { const r = c.rows.find(r => r.id === asset.id); return <td key={c.label} style={{ '--rk-color': COLORS[i] }} className={`${r.rank === 1 ? 'rk-winner ' : ''}${r.value < 0 ? 'rk-negative' : 'rk-positive'}`}><span>{r.rank === 1 && <span aria-label="Meilleure performance">🏆 </span>}{formatPercent(r.value)}</span></td> })}</tr>)}</tbody></table></div>}
-          {imageColumns.filter(c => c.partial).map(c => <p className="rk-note" key={c.label}>* {c.label} : clôtures {c.detail} (période partielle).</p>)}
+          })}</tr>)}</tbody></table></div>
+          {rankedColumns.filter(c => c.partial).map(c => <p className="rk-note" key={c.label}>* {c.label} : clôtures {c.detail} (période partielle).</p>)}
           <label className="rk-field">Texte à publier<textarea aria-label="Texte à publier" rows={16} value={text} onChange={e => setDraft({ owner: draft?.owner ?? snapshot, value: e.target.value })} /></label>
           <p className="rk-note" role="status">{staleText ? 'La sélection, la période ou la devise a changé. Tes retouches sont conservées ; le texte doit être actualisé. L’image et les calculs suivent la sélection actuelle.' : 'Tu peux retoucher ce texte avant de le copier.'}</p>
           <button type="button" className="rk-text-button" onClick={() => setDraft(null)}>{staleText ? 'Actualiser le texte avec la sélection' : 'Rétablir le texte généré'}</button>

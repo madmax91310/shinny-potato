@@ -38,7 +38,6 @@ for(const width of [390,320]){
   await save(id,page.getByRole('button',{name:/Télécharger le PNG/}),img)
  }
  await page.goto(base+'classements-performances')
- await page.getByRole('button',{name:'Classement annuel',exact:true}).click()
  await page.getByRole('button',{name:'Aperçu',exact:true}).click()
  await page.getByRole('tab',{name:'Image',exact:true}).click()
  await save('ranking-annual',page.getByRole('button',{name:'Télécharger l’image',exact:true}),page.locator('.studio-preview img'))
