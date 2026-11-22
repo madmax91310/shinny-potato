@@ -1,0 +1,135 @@
+{
+  "sourceCheckedAt": "2026-11-22",
+  "legacyRecord": {
+    "id": "linxea-vie",
+    "name": "Linxea Vie",
+    "insurer": "Generali",
+    "distributor": "Linxea",
+    "checkedAt": "2026-11-02",
+    "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/",
+    "fees": {
+      "subscription": 0.0,
+      "arbitrage": 0.0,
+      "units": 0.6,
+      "etfTrade": 0.0,
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/",
+      "scope": "Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles."
+    },
+    "access": {
+      "initial": 300.0,
+      "free": 300.0,
+      "monthly": 50.0,
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/"
+    },
+    "supports": {
+      "minimumCount": 950,
+      "categories": [
+        "ETF",
+        "SCPI",
+        "private equity",
+        "actions en direct"
+      ],
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/"
+    },
+    "euroFunds": [
+      {
+        "name": "Netissima",
+        "years": [
+          {
+            "year": 2023,
+            "returnMin": 3.1,
+            "returnMax": 4.12,
+            "condition": "selon la part UC détenue"
+          },
+          {
+            "year": 2024,
+            "return": 3.0
+          },
+          {
+            "year": 2025,
+            "return": 3.0
+          }
+        ],
+        "asOf": "2025-12-31",
+        "guarantee": 99.25,
+        "managementFeeMax": 0.75,
+        "maxAllocation": 100.0,
+        "ceiling": null,
+        "ceilingEvidence": {
+          "status": "unlimited",
+          "checkedAt": "2026-11-02",
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+          "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026",
+          "validUntil": "2026-12-31",
+          "scope": "Souscriptions, versements libres et programmés",
+          "sha256": "0ac2a72189b88c7a3f5a100d0376a255431c28f165332549b0fc5f33a1d419ca"
+        },
+        "operations": "Versements sans quota d’unités de compte jusqu’au 31/12/2026 ; arbitrages éligibles.",
+        "notes": "Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.",
+        "accessValidUntil": "2026-12-31",
+        "sourceUrls": [
+          "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+          "https://www.linxea.com/assurance-vie/linxea-vie/",
+          "https://www.linxea.com/document/conditions-generales-linxea-vie/"
+        ],
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+        "guaranteeBasis": "Minimum annuel calculé à partir de la garantie contractuelle brute et de 0,75 % de frais maximaux ; hors garantie optionnelle décès. Le capital garanti se réduit chaque année des frais.",
+        "publication": {
+          "latestPublishedYear": 2025,
+          "expectedYear": 2025,
+          "awaitingPublication": false
+        }
+      },
+      {
+        "name": "Eurossima",
+        "years": [
+          {
+            "year": 2023,
+            "return": 2.0
+          },
+          {
+            "year": 2024,
+            "return": 1.7
+          },
+          {
+            "year": 2025,
+            "return": 1.67
+          }
+        ],
+        "asOf": "2025-12-31",
+        "guarantee": 99.25,
+        "managementFeeMax": 0.75,
+        "maxAllocation": 100.0,
+        "ceiling": null,
+        "ceilingEvidence": {
+          "status": "insurer-defined",
+          "checkedAt": "2026-11-02",
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+          "statement": "Le montant que vous pourrez investir à 100 % sur le fonds en euros Eurossima s’élèvera entre 0 et 50 000 euros l’année civile de votre souscription puis entre 0 et 25 000 euros par année civile les années suivantes, quel que soit le type d’investissement réalisé (versement initial, versement libre ou versement libre programmé). L’Assureur communiquera par tout moyen ce montant maximum d’investissement annuel sur le fonds en euros Eurossima.",
+          "scope": "Versements initiaux, libres et programmés ; année civile",
+          "openingYearUpperBound": 50000.0,
+          "followingYearUpperBound": 25000.0,
+          "sha256": "0ac2a72189b88c7a3f5a100d0376a255431c28f165332549b0fc5f33a1d419ca"
+        },
+        "operations": "Plafond annuel fixé par l’assureur, au plus 50000 € l’année de souscription et 25000 € les années suivantes ; versements et arbitrages éligibles.",
+        "notes": "Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.",
+        "accessValidUntil": null,
+        "sourceUrls": [
+          "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+          "https://www.linxea.com/document/conditions-generales-linxea-vie/"
+        ],
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+        "guaranteeBasis": "Minimum annuel calculé à partir de la garantie contractuelle brute et de 0,75 % de frais maximaux ; hors garantie optionnelle décès. Le capital garanti se réduit chaque année des frais.",
+        "publication": {
+          "latestPublishedYear": 2025,
+          "expectedYear": 2025,
+          "awaitingPublication": false
+        }
+      }
+    ]
+  },
+  "fundsHtml": "LE FONDS EUROS Vertessima Offre limitée 3 % Net (1) minimum garanti en 2026 et 2027 sous conditions* Vertessima : Le fonds en euro responsable. Conçu pour donner un impact concret à votre épargne, ce fonds en euros applique une règle d’exclusion stricte et sans compromis : 0% d'investissements dans les énergies fossiles (2) . En bref, vous investissez exclusivement dans des projets d'avenir et des infrastructures durables. Vertessima est disponible uniquement en assurance-vie. (1) Net de frais annuels de gestion, hors prélèvements fiscaux et sociaux et hors frais éventuels au titre des garanties décès souscrites, au mandat d’arbitrage et aux options de gestion du contrat. (2) Une énergie fossile est une ressource épuisable extraite du sous-sol, comme le pétrole, le gaz naturel ou le charbon. *Taux de participation aux bénéfices net de frais de gestion, hors prélèvements sociaux et fiscaux, attribué par l’assureur Generali Vie au titre des années 2026 et 2027 selon les modalités précisées dans la Note d’information valant Conditions générales. Ce taux est applicable pour toute nouvelle souscription, tout versement libre et versement libre programmé effectué jusqu’au 31/12/2026 inclus. Il faut entendre par souscription et versement réalisés jusqu’au 31/12/2026 inclus, les versements dont le dossier est reçu complet chez Generali Vie entre le 15/07/2026 et le 31/12/2026 inclus. Cette opération peut s’arrêter à tout moment. LE FONDS EUROS Netissima Accessible à 100% 3 % Net (1) en 2025 3 % net en 2024 3,10 % à 4,12 % net en 2023 selon la part en unités de compte détenue 1,53 % à 3,06 % net en 2022 selon la part en unités de compte détenue 0,95 % à 1,90 % net en 2021 selon la part en unités de compte détenue 1,10 % à 1,70 % net en 2020 selon la part en unités de compte détenue L’investissement sur les supports en unités de compte supporte un risque de perte en capital puisque leur valeur est sujette à fluctuation à la hausse comme à la baisse dépendante notamment de l’évolution des marchés financiers. L’assureur s’engage sur le nombre d’unités de compte et non sur leur valeur qu'il ne garantit pas. (1) Net de frais annuels de gestion, hors prélèvements fiscaux et sociaux et hors frais éventuels au titre des garanties décès souscrites, au mandat d’arbitrage et aux options de gestion du contrat. Investissez jusqu'à 100 % de votre épargne en fonds euros Vous pouvez investir jusqu'à 100 % sur les fonds en euros Vertessima et Netissima. Offre valable jusqu'au 31/12/2026. Le fonds en euros Vertessima est accessible uniquement par versement libre ou programmé . Il n'est pas accessible par arbitrage . Cette offre ne doit pas constituer un critère déterminant de votre décision d’investissement. Linxea diffuse régulièrement des offres au cours de l’année. Caractéristiques des Fonds euros de Linxea Vie A la fin de chaque année, les intérêts versés sont définitivement acquis et sécurisés grâce à l’effet cliquet . Vertessima Stratégie d’investissement Avec Vertessima, sécurisez votre capital investi tout en vous inscrivant dans une démarche engagée pour l’environnement. Ce fonds en euros applique une politique d’exclusion stricte des énergies fossiles. Conditions d’investissement Souscriptions – versements libres – versements libres programmés : ce fonds en euros est accessible sans limite de montant et sans conditions d'unités de compte jusqu'au 31/12/2026. Frais : 0,75 % par an de frais de gestion. Gestion Pilotée : ce fonds en euros n’est pas accessible en gestion pilotée. Rachat partiel : en cas de rachat partiel en cours d’année, le taux de rendement appliqué aux sommes issues du fonds en euros est égal à 100% du taux qui sera servi sur l’année, au prorata temporis. Vous toucherez la participation aux bénéfices que vous ayez ou non une somme investie sur le fonds en euros au moment de son versement. Rachat total : en cas de rachat total, le taux de rendement appliqué est le Taux Minimum Garanti. Selon ses besoins de liquidités, l’investisseur peut opter pour un rachat partiel en maintenant le solde minimum requis pour percevoir la participation aux bénéfices, avant d’effectuer un éventuel rachat total ultérieur. Opérations et options éligibles : Versements libres Versements libres programmés Rachats Arbitrages en sortie uniquement Documents applicables Documents d'informations spécifiques Netissima Stratégie d’investissement Avec Netissima, sécurisez votre capital tout en profitant d'un fonds en euros investi en grande partie dans l’immobilier pour dynamiser votre épargne. Conditions d’investissement Souscriptions – versements libres – versements libres programmés : ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026. Frais : 0,75 % par an de frais de gestion pour les contrats ouverts après 2017. Gestion Pilotée : ce fonds en euros est accessible en gestion pilotée. La proportion investie dépend de votre profil de risque. Rachat partiel : en cas de rachat partiel en cours d’année, le taux de rendement appliqué aux sommes issues du fonds en euros est égal à 100% du taux qui sera servi sur l’année, au prorata temporis. Vous toucherez la participation aux bénéfices que vous ayez ou non une somme investie sur le fonds en euros au moment de son versement. Rachat total : en cas de rachat total, le taux de rendement appliqué est le Taux Minimum Garanti. Selon ses besoins de liquidités, l’investisseur peut opter pour un rachat partiel en maintenant le solde minimum requis pour percevoir la participation aux bénéfices, avant d’effectuer un éventuel rachat total ultérieur. Opérations et options éligibles : Versements libres Versements libres programmés Rachats Arbitrages Documents applicables Dernier rapport de gestion Documents d'Informations spécifiques Le fonds en euros Eurossima Ce fonds en euros historique de Generali Vie s’appuie principalement sur des signatures obligataires de qualité, pour maximiser la création de valeur en fonction des opportunités de marché. Pour en savoir plus, consultez le dernier rapport de gestion . (Non disponible aux nouvelles souscriptions) Consulter le document d'informations spécifiques <a href=\"https://docs.data2report.lu/documents/GeneraliFR/kideu/GEF000000346_fr_FR.pdf\">Documents d’informations spécifiques</a>",
+  "contractHtml": "capital est garanti à hauteur de 99,25 %<a href=\"https://www.linxea.com/document/conditions-generales-linxea-vie/\">Conditions générales du contrat</a>",
+  "contractNotice": "Dispositions essentielles du contrat\n1. Linxea Vie est un contrat d’assurance vie de groupe.\nLes droits et obligations de l’Adhérent peuvent être modifiés par\ndes avenants à l'adhésion, conclus entre Generali Vie et Linxea\nSAS. L’Adhérent est préalablement informé de ces modifications.\n2. Les garanties de l'adhésion sont les suivantes :\n• \t\u0007Au terme, si l’Assuré est en vie : paiement d’un capital ou d’une\nrente à l’Assuré ;\n• \t\u0007En cas de décès de l’Assuré : paiement d’un capital ou d’une\nrente au(x) Bénéficiaire(s) désigné(s).\nCes garanties sont décrites à l’article « Objet du contrat » de\nla présente Notice d’information valant Conditions générales.\nLes sommes versées peuvent être libellées en euros et/ou en\nunités de compte, et/ou en engagements croissance donnant\nlieu à la constitution d’une provision de diversification, selon le\nchoix de l’Adhérent.\nPour la partie des droits exprimés en euros : le contrat comporte\nune garantie en capital qui est au moins égale aux sommes\nversées, nettes de frais (frais précisés au point 5 ci-après).\nPour la partie des droits donnant lieu à constitution d’une\nprovision de diversification : les sommes versées nettes de\nfrais sur le fonds croissance Générations Croiss@nce durable\nbénéficient d’une garantie partielle en capital à l’échéance à\nhauteur de 80 %. Les sommes versées, nettes de frais, au titre\nd’engagements croissance donnant lieu à la constitution d’une\nprovision pour diversification sont sujettes à des fluctuations à\nla hausse ou à la baisse dépendant de l’évolution des marchés\nfinanciers. La garantie partielle est attribuée à l’échéance de\nl’engagement croissance.\nPour la partie des droits exprimés en unités de compte :\nles montants investis sur les supports en unités de compte\nne sont pas garantis mais sont sujets à des fluctuations à la\nhausse ou à la baisse dépendant en particulier de l’évolution\ndes marchés financiers.\n3. Pour la partie des droits exprimés en euros sur le(s) fonds en\neuros Eurossima, Netissima et Vertessima, il n’est pas prévu de\nparticipation aux bénéfices contractuelle.\nLes conditions d’affectation des bénéfices techniques et\nfinanciers de chacun des fonds en euros sont indiquées à l’article\n« Attribution des bénéfices » de la présente Notice d’information\nvalant Conditions générales.\n4.\t\tLe contrat comporte une faculté de rachat. Les sommes sont\nversées par l’Assureur dans un délai de deux (2) mois. Les modalités\nde rachat sont indiquées aux articles « Règlement des capitaux »\net « Modalités de règlement et adresse de correspondance »\nde la présente Notice d’information valant Conditions générales.\nDes tableaux indiquant les valeurs de rachat et le montant\ncumulé des versements bruts de l’adhésion au terme des huit\n(8) premières années figurent à l’article « Montant cumulé des\nversements bruts et valeurs de rachat au terme des huit (8)\npremières années » de la présente Notice d’information valant\nConditions générales.\n5.\t\tLes frais applicables au titre du contrat sont les suivants :\n\t\t\n• Frais à l’entrée et sur versements :\n- Frais sur les versements initial, libre et libres programmés :\nnéant.\n\t\t\n• Frais en cours de vie du contrat :\n- Frais de gestion sur les supports représentatifs des unités\nde compte (dont les ETF) : 0,15 % maximum de la valeur\natteinte des supports en unités de compte (dont les ETF)\nde l'adhésion, prélevés trimestriellement par diminution du\nnombre d’unités de compte, soit 0,60 % maximum par an.\n\n-\n\nFrais de gestion sur les supports représentatifs des unités\nde compte (Actions) : 0,175 % maximum de la valeur\natteinte des supports en unités de compte (Actions)\nde l'adhésion, prélevés trimestriellement par diminution\ndu nombre d’unités de compte (Actions), soit 0,70 %\nmaximum par an.\n- Frais de gestion sur le(s) support(s) en euros :\n. \u00070,75 % maximum par an de la provision mathématique\nde l'adhésion libellée en euros sur le fonds en euros\nEurossima,\n. \u00070,75 % maximum par an de la provision mathématique\nde l'adhésion libellée en euros sur le fonds en euros\nNetissima.\n. \u00070,75 % maximum par an de la provision mathématique\nde l'adhésion libellée en euros sur le fonds en euros\nVertessima.\n- Frais de gestion sur le fonds croissance Générations\nCroiss@nce durable : 0,75 % maximum par an de l’épargne\natteinte sur l’(les) engagement(s) croissance présent(s) à\nl'adhésion et prélevés hebdomadairement sur la valeur\nde l’actif du fonds.\n- Frais de mandat au titre du mode gestion pilotée : 0,0975 %\nmaximum de la valeur atteinte des supports en unités\nde compte de l'adhésion prélevés trimestriellement par\ndiminution du nombre d’unités de compte affectées au\nprofil de gestion sélectionné, soit 0,39 % maximum par an.\n\t\t\n• \u0007Frais de sortie :\n- Indemnités en cas de désinvestissement par rachat (partiel\net total) sur les supports en unités de compte autres que\nceux visés au paragraphe « Indemnités de rachat » de\nl’article « Règlement des capitaux » : néant.\n- Indemnités en cas de désinvestissement par rachat\n(partiel et total) sur les supports en unités de compte\nvisés au paragraphe « Indemnités de rachat » de l’article\n« Règlement des capitaux » : indemnités de 20 % maximum\nprélevées par l’Assureur sur les sommes brutes désinvesties\ndu support dans les conditions prévues par l’article\nR132-5-3 du Code des assurances.\n\t\t\n• \u0007Autres frais :\n- Frais au titre des options sécurisation des plus-values,\nlimitation des moins-values et limitation des moins-values\nrelatives : 0,50 % maximum du montant transféré.\n- Frais prélevés sur le solde créditeur du compte de\nparticipation aux résultats spécifique du fonds croissance\nGénérations Croiss@nce durable établi chaque semaine :\n15 % maximum du montant dudit solde.\n- Frais d'arbitrage, en cas de changement de profil de\ngestion, en cas de changement de mode de gestion : néant.\nLes arbitrages au sein des profils de gestion sont effectués\nsans frais.\n\u0007Les supports représentatifs des unités de compte peuvent aussi\nsupporter des frais qui leur sont propres. Ceux-ci sont indiqués dans\nles documents d’informations clés ou document d’informations\nspécifiques et/ou tout autre document d’information financière\néquivalent prévu par la réglementation, des supports.\n6.\t\tLa durée de l'adhésion recommandée dépend notamment de\nla situation patrimoniale de l’Adhérent, de son attitude vis-à-vis\ndu risque, du régime fiscal en vigueur et des caractéristiques du\ncontrat choisi. L’Adhérent est invité à demander conseil auprès\nde son Assureur.\n7.\t\tL’Adhérent peut désigner le(s) Bénéficiaire(s) dans le Bulletin\nd’adhésion et ultérieurement par avenant à l’adhésion.\nLa désignation du (des) Bénéficiaire(s) peut être effectuée\nnotamment par acte sous seing privé ou par acte authentique.\nLes modalités de cette désignation ou modification sont\nindiquées à l’article « Désignation du (des) Bénéficiaire(s) et\nconséquences de l’acceptation du bénéfice de l’adhésion » de\nla présente Notice d’information valant Conditions générales.\n\nCet encadré a pour objet d’attirer l’attention de l’Adhérent sur certaines dispositions essentielles de la Notice. Il est important que\nl’Adhérent lise intégralement la Notice et pose toutes les questions qu’il estime nécessaires avant de signer le Bulletin d’adhésion.\n\n2/58\n\nPAC5421CGF - Octobre 2026 - Notice d’information - Linxea Vie\n\n\fSommaire",
+  "fundNotice": "Document d'Informations Spécifiques\n\nObjectif\nLe présent document contient des informations essentielles sur le produit d'investissement. Il ne s'agit pas d'un document à caractère commercial. Ces\ninformations vous sont fournies conformément à une obligation légale, afin de vous aider à comprendre en quoi consiste ce produit et quels risques, coûts,\ngains et pertes potentiels y sont associés, et de vous aider à le comparer à d'autres produits.\nOption d'investissement sous-jacente\nFonds Vertessima\nPublié le : 30/06/2026\n\nEn quoi consiste ce produit ?\nType\nFonds en euros\nObjectifs\nLe fonds en euros Vertessima permet de sécuriser l'épargne investie.\nIl comporte, à tout moment, une garantie en capital égale à la somme des montant nets investis, déduction faite de tous frais afférents au contrat.\nLes actifs composant le support sont sélectionnés par l'assureur : il s'agit principalement d'obligations, d'actions et de fonds immobiliers.\nLe rendement de ce support dépend :\n• du rendement des actifs le composant\n• et du niveau de participation aux bénéfices du contrat, dans le respect des conditions contractuelles.\nL'assureur détermine chaque année la participation aux bénéfices qui est versée au contrat.\nInvestisseurs de détail visés\nCe support est destiné à des investisseurs souhaitant se constituer une épargne disponible de manière permanente.\nIl s'adresse à des investisseurs ne souhaitant pas prendre de risque quelle que soit leur situation professionnelle et financière.\nCe support est destiné à des investisseurs dont les préférences en matière de durabilité intègrent l’exclusion du financement des activités liées à l’expansion\ndes énergies fossiles, au titre de la lutte contre le dérèglement climatique.\nL'investisseur peut être déjà détenteur ou non d'un contrat d'assurance vie, de capitalisation, ou d'un produit similaire.\n\nQuels sont les risques et qu’est-ce que cela pourrait me rapporter ?\nIndicateur de risque\n\n1\n\n2\n\n3\n\n4\n\nRisque le plus faible\n\n5\n\n6\n\n7\n\nRisque le plus élevé\n\n!\n\n!\n\nL'indicateur de risque part de l'hypothèse que vous conserviez le support durant la période recommandée de 1 ans.\n\nL'indicateur synthétique de risque permet d'apprécier le niveau de risque de ce support par rapport à d'autres. Il indique la probabilité que ce support enregistre\ndes pertes en cas de mouvements sur les marchés ou d'une impossibilité de notre part de vous payer.\nNous avons classé ce produit dans la classe de risque 1 sur 7, qui est la classe de risque la plus basse.\nAutrement dit, les pertes potentielles liées aux futurs résultats du produit se situent à un niveau très faible et, si la situation venait à se détériorer sur les\nmarchés, il est très peu probable que notre capacité à vous payer en soit affectée.\nVous avez le droit à la restitution de 100% de votre capital, déduction faite de tous frais afférents au produit. Quant à d'éventuels remboursements au-delà de\nce pourcentage et d'éventuels rendements supplémentaires, ils dépendent des performances futures des marchés et restent aléatoires.\nSi Generali Vie n'est pas en mesure de vous verser les sommes dues, vous pouvez perdre l'intégralité de votre investissement.\nToutefois, vous bénéficiez peut-être d'un système de protection des consommateurs (voir la section «Que se passe-t-il si nous ne sommes pas en mesure\nd'effectuer les versements?»). L'indicateur présenté ci-dessus ne tient pas compte de cette protection.\n\n"
+}

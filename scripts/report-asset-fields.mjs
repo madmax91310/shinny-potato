@@ -51,8 +51,8 @@ export function productFieldEvidence(value,record,field) {
  const checkedAt=value?.checkedAt??value?.source?.checkedAt??record.checkedAt;
  if(field==='euroFunds'&&Array.isArray(value)) {
   // The oldest current fund period governs; a newer fund cannot hide an older one.
-  const dates=value.map(observationDate);
-  return {checkedAt,asOf:dates.every(Boolean)?dates.sort()[0]:null};
+  const dates=value.filter(fund=>!(fund.fundEvidence&&fund.publication?.awaitingPublication&&fund.publication.latestPublishedYear===null&&fund.years?.length===0)).map(observationDate);
+  return {checkedAt,asOf:dates.length&&dates.every(Boolean)?dates.sort()[0]:null};
  }
  return {...value,checkedAt};
 }
