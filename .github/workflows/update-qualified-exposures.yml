@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '50 7 * * *'
   workflow_dispatch:
+    inputs:
+      coulisses_only:
+        description: Refresh the nine Coulisses des indices holdings sources
+        type: boolean
+        default: false
   push:
     branches: [master]
     paths:
@@ -90,6 +95,7 @@ on:
       - '.github/workflows/update-qualified-exposures.yml'
   pull_request:
     paths:
+      - 'scripts/check-coulisses-holdings.mjs'
       - 'scripts/native_source_evidence.py'
       - 'scripts/test_native_source_evidence.py'
       - 'scripts/collect_qualified_exposures.py'
@@ -216,7 +222,52 @@ jobs:
           name: uranium-known-positions-source-control
           path: ${{ runner.temp }}/uranium-known-source
           if-no-files-found: error
+  coulisses-holdings:
+    if: github.event_name == 'pull_request' || (github.ref == 'refs/heads/master' && inputs.coulisses_only == true)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('coulisses-holdings-{0}', github.ref) || 'production' }}
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+          persist-credentials: ${{ github.event_name != 'pull_request' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
+      - run: npm ci
+      - run: bash scripts/ensure-ci-runtime.sh poppler
+      - run: node scripts/check-coulisses-holdings.mjs "$RUNNER_TEMP/coulisses"
+      - run: node scripts/build-dca-exposures.mjs && npm run test:dca
+      - run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: coulisses-holdings-qualification
+          path: ${{ runner.temp }}/coulisses
+      - name: Commit validated holdings
+        id: commit
+        if: github.event_name == 'workflow_dispatch' && inputs.coulisses_only == true
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-producer-publication.sh holdings
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash scripts/commit-validated-data.sh 'Refresh Coulisses exact-share holdings' src/data/dca-complete-holdings.json src/data/dca-holdings-status.json src/data/dca-security-classifications.json
   refresh:
+    if: inputs.coulisses_only != true
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     concurrency:
@@ -352,8 +403,8 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' public/data/holdings-discovery.json src/data/security-identifier-observations.json public/data/pending-source-checks.json scripts/generated-holdings-sources.json scripts/instrument-metadata-sources.json src/data/qualified-listing-records.json src/data/exposure-sleeves.json src/data/vanguard-equity-underliers.json docs/exposure-coverage.json docs/exposure-coverage.md src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings*.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json src/data/dca-holdings-status.json
   deploy:
-    needs: refresh
-    if: github.event_name != 'pull_request'
+    needs: [refresh, coulisses-holdings]
+    if: always() && github.event_name != 'pull_request' && (inputs.coulisses_only == true && needs.coulisses-holdings.result == 'success' || inputs.coulisses_only != true && needs.refresh.result == 'success')
     permissions:
       contents: read
       pages: write
@@ -361,7 +412,7 @@ jobs:
       id-token: write
     uses: ./.github/workflows/publish-validated-data.yml
     with:
-      ref: ${{ needs.refresh.outputs.commit_sha }}
+      ref: ${{ needs.coulisses-holdings.outputs.commit_sha || needs.refresh.outputs.commit_sha }}
       producer: update-qualified-exposures.yml
 
   report-failures:
