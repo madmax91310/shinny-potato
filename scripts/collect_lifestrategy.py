@@ -132,6 +132,11 @@ def collect_one(config, now):
     try:
         body = fetch_query(PORTFOLIO_QUERY, {'portIds': [str(code)]}, 'LifeStrategyPortfolio')
         record['underlyingHoldings'] = parse_portfolio(body, config, record, now)
+        record['underlyingHoldingsAllocation'] = {
+            'holdingsSha256': record['underlyingHoldings']['sha256'],
+            'allocation': record['assetAllocation'],
+            'documentSha256': record['documentSha256'],
+        }
         record['underlyingHoldingsQualification'] = {'status': 'qualified',
             'sourceUrl': record['underlyingHoldings']['sourceUrl'],
             'checkedAt': now.isoformat(), 'asOf': record['underlyingHoldings']['asOf']}
@@ -169,7 +174,10 @@ def main():
         if r.get('underlyingHoldingsQualification', {}).get('status') == 'failed':
             report['failed'].append({'isin': r['isin'], 'field': 'underlyingHoldings',
                 'error': r['underlyingHoldingsQualification']['error']})
+            r.pop('underlyingHoldingsAllocation', None)
             if retained:
+                if prev.get('underlyingHoldingsAllocation'):
+                    r['underlyingHoldingsAllocation'] = prev['underlyingHoldingsAllocation']
                 r['underlyingHoldings'] = retained  # Its own dates and evidence remain unchanged.
             else:
                 r.pop('underlyingHoldings', None)
