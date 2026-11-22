@@ -1401,6 +1401,18 @@ export const ASSETS = [
     desc: ['un seul ETF pour les pays développés et émergents.', 'une exposition mondiale large en complément du MSCI World.', 'un cœur de portefeuille simple, qui reste exposé aux baisses des actions.'],
   },
   {
+    id: 'us-property-ishares',
+    isin: 'IE00B1FZSF77',
+    name: getInstrumentName('IE00B1FZSF77', 'portfolio'),
+    cat: 'immobilier',
+    emoji: '🏢',
+    manualOnly: true,
+    distributing: true,
+    r: getInstrumentReturnValues('IE00B1FZSF77'),
+    desc: ['Sociétés immobilières cotées américaines', 'Sélection sur le rendement en dividendes', 'Risque actions, taux et change dollar/euro'],
+    confidenceNote: 'Rendements NAV de la part exacte en USD, distributions réinvesties. Conversion en euros par le simulateur.',
+  },
+  {
     id: 'immo_ishares_yield', name: getInstrumentName("IE00B1FZS350", "portfolio"), cat: 'immobilier', emoji: '⚪', isin: 'IE00B1FZS350',
     r: getInstrumentReturnValues('IE00B1FZS350'),
     confidenceNote: 'Rendements NAV de la part iShares en dollars ; le résultat en euros dépend du change.',

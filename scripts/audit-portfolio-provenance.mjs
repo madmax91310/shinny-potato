@@ -24,7 +24,7 @@ const groups = {
   'Autre fonds ou historique mixte': `qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
-groups['Fonds confirmé chez l’émetteur'] += ' world-islamic ' + NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>r.id).join(' ');
+groups['Fonds confirmé chez l’émetteur'] += ' world-islamic us-property-ishares ' + NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>r.id).join(' ');
 // A qualified sheet only becomes a generator support once its six calendar years are published (portfolio-assets.js).
 const selectableQualified = QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite))
 groups['Fonds confirmé chez l’émetteur'] += ' europe-banks europe-insurance europe-construction ' + selectableQualified.map(r=>r.id).join(' ');
@@ -54,10 +54,10 @@ const byId = new Map(ASSETS.map(asset => [asset.id, asset]))
 const requiresNote = new Set(['Indice ou cours du sous-jacent', 'Autre fonds ou historique mixte', 'Hypothèse non liée à un titre précis'])
 // Les séries en USD ou d'origine partiellement incertaine doivent aussi expliquer leur limite
 // visible dans l'interface ; la liste est fermée pour éviter un ajout silencieux.
-const additionalNotes = new Set('nasdaq100_ishares sp500_ishares ftse_em_vanguard actions_coree actions_taiwan actions_japon actions_value oblig_etat_us sect_energie sect_tech sect_robotique sect_cybersecurite sect_financieres sect_sante smallcap_monde mp_large high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes strat_dividendes_dist'.split(' '))
+const additionalNotes = new Set('us-property-ishares nasdaq100_ishares sp500_ishares ftse_em_vanguard actions_coree actions_taiwan actions_japon actions_value oblig_etat_us sect_energie sect_tech sect_robotique sect_cybersecurite sect_financieres sect_sante smallcap_monde mp_large high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes strat_dividendes_dist'.split(' '))
 // Devise de la série effectivement utilisée, indépendamment de la place où la part se cote.
 // Les autres lignes restent « à documenter » tant qu'une fiche ne l'établit pas clairement.
-const usdReturns = new Set(`health_world_dws industry_world_dws em_small_ishares private_equity_ishares argent actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
+const usdReturns = new Set(`us-property-ishares health_world_dws industry_world_dws em_small_ishares private_equity_ishares argent actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
   ftse_em_vanguard or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
@@ -90,6 +90,7 @@ const issuerSources = {
   basic_resources_pea: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF',
   argent: VERIFIED_RETURNS.IE00B4NCWG09.source,
 ...Object.fromEntries(EXPOSURE_ADDITIONS.filter(r => !SIMULATION_PROXIES[r.isin]).map(r => [r.id, r.perfSource ?? r.source])),
+  'us-property-ishares': VERIFIED_RETURNS.IE00B1FZSF77.source,
   monetaire_xeon: VERIFIED_RETURNS.LU0290358497.source,
   oblig_0_1_ishares: VERIFIED_RETURNS.IE00B3FH7618.source,
   oblig_global_agg_eur_hedged: VERIFIED_RETURNS.IE00BDBRDM35.source,

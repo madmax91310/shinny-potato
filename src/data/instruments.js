@@ -89,6 +89,7 @@ export const INSTRUMENTS_BY_ISIN = Object.freeze({
   "IE00B0M62X26": Object.freeze({name: "iShares € Inflation Linked Govt Bond UCITS ETF"}),
   "IE00B0M63623": Object.freeze({name: "iShares MSCI Taiwan UCITS ETF"}),
   "IE00B14X4Q57": Object.freeze({name: "iShares € Govt Bond 1-3yr UCITS ETF"}),
+  "IE00B1FZSF77": Object.freeze({name: "iShares US Property Yield UCITS ETF USD (Dist)", instrumentType: "ETF", portfolioCategory: "immobilier"}),
   "IE00B1FZS350": Object.freeze({pea: false, name: "iShares Developed Markets Property Yield UCITS ETF USD (Dist)", labels: {"portfolio": "iShares Developed Markets Property Yield UCITS ETF"}}),
   "IE00B1XNHC34": Object.freeze({name: "iShares Global Clean Energy Transition UCITS ETF"}),
   "IE00B3F81R35": Object.freeze({pea: false, name: "iShares Core € Corp Bond UCITS ETF (Dist)", labels: {"portfolio": "iShares Core € Corp Bond UCITS ETF"}}),

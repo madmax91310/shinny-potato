@@ -63,6 +63,24 @@ const modelCopy = {
       'Voici une adaptation qui répartit les actions étrangères entre l’Europe, le Japon et le Pacifique hors Japon 👇',
     ],
   },
+  larry: {
+    euro: [
+      '🎯 Le Larry Portfolio met 70 % du capital en obligations. Côté actions, il fait la part belle aux petites entreprises décotées et aux émergents.',
+      'Voici un exemple avec des obligations d’État en euros 👇',
+    ],
+  },
+  merriman: {
+    ucits: [
+      '🇺🇸 Paul Merriman donne la moitié de son Four Fund Combo aux petites entreprises américaines. Il renforce aussi les sociétés qui se paient moins cher en Bourse.',
+      'Voici les quatre poches de ce portefeuille 100 % actions américaines 👇',
+    ],
+  },
+  pinwheel: {
+    euro: [
+      '🧭 Le Pinwheel Portfolio fait de la place à l’immobilier coté, au monétaire et à l’or aux côtés des actions et des obligations.',
+      'Voici un exemple qui utilise du monétaire et des obligations en euros 👇',
+    ],
+  },
   swensen: {
     'euro-regions': [
       '🏛️ Le portefeuille Swensen 2005 cherche la croissance à long terme avec des actions et de l’immobilier coté. Il garde aussi une poche d’obligations, dont une partie suit l’inflation.',

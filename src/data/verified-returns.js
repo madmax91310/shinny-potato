@@ -5,6 +5,17 @@ export const VERIFIED_RETURNS = {
   // Contrôle du 03/10/2026 : tableau BlackRock Total Return USD, recoupé sur la publication UK et sa version professionnels. Confiance élevée ; aucune conversion.
   IE00B4NCWG09: {"currency": "USD", "values": [46.2, -13.0, 3.5, -0.8, 21.3, 148.6], "source": "https://www.ishares.com/uk/individual/en/products/258443/"},
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { currency: r.currency, values: r.values, source: r.perfSource ?? r.source, ...(r.checkedAt ? { checkedAt: r.checkedAt, periodStart: '2020-01-01', periodEnd: '2025-12-31', basis: 'fund' } : {}) }])),
+  // BlackRock, fiche UK recoupée avec la fiche DE (22/11/2026). Série NAV USD de la part Dist.
+  IE00B1FZSF77: {
+    currency: 'USD',
+    values: [-11.05, 40.93, -24.51, 11.41, 7.05, 0.60],
+    basis: 'fund',
+    method: 'Rendements calendaires NAV USD, distributions réinvesties et frais du fonds inclus.',
+    periodStart: '2020-01-01',
+    periodEnd: '2025-12-31',
+    checkedAt: '2026-11-22',
+    source: 'https://www.ishares.com/gls-download/literature/fact-sheet/iusp-ishares-us-property-yield-ucits-etf-fund-fact-sheet-en-gb.pdf',
+  },
   "LU0290358497": {
   "currency": "EUR",
   "values": [
