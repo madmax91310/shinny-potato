@@ -91,6 +91,13 @@ for(const [isin,f]of Object.entries(physicalReferences)){
  assert.equal(qualifiedNativeIndexComposition({...h,approximation:false},isin,issuerNow),false)
  assert.equal(qualifiedNativeIndexComposition({...h,coverageProof:{...h.coverageProof,referenceOnlyForSubject:false}},isin,issuerNow),false)
 }
+const bnpIsin='IE000QDFFK00'
+const bnp=physicalReferences[bnpIsin].qualifiedRecord
+const octoberBnp={...bnp,shareAsOf:'2026-10-30',shareDocumentAdvertisedAsOf:'2026-10-31',
+ shareSourceUrl:contracts.shares[bnpIsin].shareDocumentPrefix+'2026-10-31',checkedAt:'2026-11-22T16:40:00Z'}
+const bnpReview=new Date('2026-11-22T18:00:00Z')
+assert(qualifiedNativeIndexComposition(projectDcaHoldings(octoberBnp,false,octoberBnp.sourceUrl),bnpIsin,bnpReview))
+assert.equal(qualifiedNativeIndexComposition({...octoberBnp,shareAsOf:'2026-10-29'},bnpIsin,bnpReview),false)
 console.log('UBS World/BNP Nasdaq: index reference only; missing physical fund holdings remain explicitly uncertified.')
 
 const russell=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/invesco-economic-index/russell-equity-reference.json.gz'))).qualifiedRecord
