@@ -217,7 +217,7 @@
         "checkedAt": "2026-11-22",
         "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/",
         "statement": "Linxea Avenir 2+ — Successeur de Linxea Avenir 2",
-        "sha256": "1adde23d79295236b0999ff992905efc9c3881dea6e09c9347a2cf6176b559b0"
+        "sha256": "4b3b5ed611f08dfa41c0f8e9d23d7805e1bc576ba03427f4050c5fd4f735f156"
       }
     },
     {
@@ -274,7 +274,7 @@
             "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
             "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
             "scope": "Souscriptions, versements complémentaires et programmés",
-            "sha256": "71c06dd49a8caf79ee950b1fca1c40f3c8c468abdd9c4dc8d891e2cc5d2e8539"
+            "sha256": "27968cf077617793af003b6ce80aa90479521ab525b4efb51bd5112c557b1bd1"
           },
           "operations": "Versements et arbitrages sans quota d’unités de compte ; 2 % de pénalité pour un arbitrage vers Apicil Euro Garanti.",
           "notes": "Un rachat total en cours d’année fait perdre la participation aux bénéfices de fin d’année. Le rendement 2025 inclut le complément versé à tous les clients, distinct des offres sous conditions de versement.",
@@ -312,7 +312,7 @@
             "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
             "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
             "scope": "Souscriptions, versements complémentaires et programmés",
-            "sha256": "71c06dd49a8caf79ee950b1fca1c40f3c8c468abdd9c4dc8d891e2cc5d2e8539"
+            "sha256": "27968cf077617793af003b6ce80aa90479521ab525b4efb51bd5112c557b1bd1"
           },
           "operations": "Versements et arbitrages sans quota d’unités de compte.",
           "notes": "Pour les contrats souscrits après le 26/10/2020, un rachat en cours d’année fait perdre la participation aux bénéfices sur la quote-part rachetée.",
@@ -334,7 +334,7 @@
       "name": "Linxea Vie",
       "insurer": "Generali",
       "distributor": "Linxea",
-      "checkedAt": "2026-11-02",
+      "checkedAt": "2026-11-22",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/",
       "fees": {
         "subscription": 0.0,
@@ -368,7 +368,7 @@
               "year": 2023,
               "returnMin": 3.1,
               "returnMax": 4.12,
-              "condition": "selon la part UC détenue"
+              "condition": "selon la part en unités de compte détenue"
             },
             {
               "year": 2024,
@@ -386,12 +386,12 @@
           "ceiling": null,
           "ceilingEvidence": {
             "status": "unlimited",
-            "checkedAt": "2026-11-02",
+            "checkedAt": "2026-11-22",
             "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
             "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026",
             "validUntil": "2026-12-31",
             "scope": "Souscriptions, versements libres et programmés",
-            "sha256": "0ac2a72189b88c7a3f5a100d0376a255431c28f165332549b0fc5f33a1d419ca"
+            "sha256": "c8a349e8e8e31d93decc7efb8beab480829a28092aa882cc85647b1ff738b64a"
           },
           "operations": "Versements sans quota d’unités de compte jusqu’au 31/12/2026 ; arbitrages éligibles.",
           "notes": "Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.",
@@ -409,6 +409,51 @@
             "awaitingPublication": false
           }
         },
+        {
+          "name": "Vertessima",
+          "years": [],
+          "asOf": null,
+          "guarantee": 99.25,
+          "managementFeeMax": 0.75,
+          "maxAllocation": 100,
+          "ceiling": null,
+          "ceilingEvidence": {
+            "status": "unlimited",
+            "checkedAt": "2026-11-22",
+            "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+            "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d'unités de compte jusqu'au 31/12/2026",
+            "scope": "Souscriptions, versements libres et programmés",
+            "validUntil": "2026-12-31",
+            "sha256": "c8a349e8e8e31d93decc7efb8beab480829a28092aa882cc85647b1ff738b64a"
+          },
+          "accessValidUntil": "2026-12-31",
+          "operations": "Versements libres ou programmés ; arbitrages en sortie uniquement.",
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+            "https://docs.data2report.lu/documents/GeneraliFR/kideu/GEF000000346_fr_FR.pdf",
+            "https://www.linxea.com/document/conditions-generales-linxea-vie/"
+          ],
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+          "fundEvidence": {
+            "documentDate": "2026-06-30",
+            "sourceUrl": "https://docs.data2report.lu/documents/GeneraliFR/kideu/GEF000000346_fr_FR.pdf",
+            "sha256": "867b4e60dc252ac3238d4a58c1d0eb427e02f879481a985e521b9cbb7e0f874f"
+          },
+          "guaranteeBasis": "Minimum annuel calculé à partir de la garantie contractuelle brute et de 0,75 % de frais maximaux ; hors garantie optionnelle décès. Le capital garanti se réduit chaque année des frais.",
+          "publication": {
+            "latestPublishedYear": null,
+            "expectedYear": 2026,
+            "awaitingPublication": true
+          }
+        }
+      ],
+      "eurossimaClosure": {
+        "checkedAt": "2026-11-22",
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+        "statement": "Le fonds en euros Eurossima Ce fonds en euros historique de Generali Vie s’appuie principalement sur des signatures obligataires de qualité, pour maximiser la création de valeur en fonction des opportunités de marché. Pour en savoir plus, consultez le dernier rapport de gestion . (Non disponible aux nouvelles souscriptions)",
+        "sha256": "c8a349e8e8e31d93decc7efb8beab480829a28092aa882cc85647b1ff738b64a"
+      },
+      "archivedEuroFunds": [
         {
           "name": "Eurossima",
           "years": [
@@ -453,7 +498,8 @@
             "latestPublishedYear": 2025,
             "expectedYear": 2025,
             "awaitingPublication": false
-          }
+          },
+          "lastQualifiedAt": "2026-11-02"
         }
       ]
     },
@@ -840,7 +886,7 @@
             "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
             "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
             "scope": "Souscriptions, versements complémentaires et programmés",
-            "sha256": "db67b2ef8c5bbfd66161ebbca141f867ab744728ec91bb460a897aa456a6b0c4"
+            "sha256": "c40d8613e06fab3d393f393710d1fc521ab6556d226c151ec7071a16c07c81e8"
           },
           "operations": "Versements uniquement à l’entrée ; arbitrages sortants possibles.",
           "notes": "Historique des fonds euros communs à Avenir 2 et Avenir 2+ ; ces rendements ne constituent pas un historique du nouveau contrat.",
@@ -883,7 +929,7 @@
             "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
             "scope": "Souscriptions, versements complémentaires et programmés",
             "minimumUnits": 30.0,
-            "sha256": "db67b2ef8c5bbfd66161ebbca141f867ab744728ec91bb460a897aa456a6b0c4"
+            "sha256": "c40d8613e06fab3d393f393710d1fc521ab6556d226c151ec7071a16c07c81e8"
           },
           "operations": "Au moins 30 % en unités de compte non garanties ; arbitrages possibles.",
           "notes": "Historique des fonds euros communs à Avenir 2 et Avenir 2+ ; ces rendements ne constituent pas un historique du nouveau contrat.",
