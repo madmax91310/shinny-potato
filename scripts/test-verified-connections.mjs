@@ -138,8 +138,9 @@ for(const a of newIndex) {
   assert(years.length)
   const end=years.findLast((year,i)=>i>0&&year===years[i-1]+1)
   const ranking=buildRanking(assets,{mode:'years',startYear:end?end-1:years.at(-1),endYear:end??years.at(-1)})
-  if(end){const columns=annualRankingColumns(ranking);assert.equal(columns.length,2);assert.equal(columns[0].rows.length,2)}
-  else assert.throws(()=>annualRankingColumns(ranking),/2 années/)
+  const columns=annualRankingColumns(ranking)
+  assert.equal(columns.length,end?2:1)
+  assert.equal(columns[0].rows.length,2)
 }
 const routingReport=JSON.parse(readFileSync('docs/asset-tool-routing.json'))
 const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))

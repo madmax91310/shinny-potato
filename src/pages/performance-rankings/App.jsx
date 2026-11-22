@@ -196,22 +196,22 @@ export default function App() {
         </ChoicePicker></label>}
         <div className="rk-selected" aria-label="Actifs sélectionnés">{selectedAssets.map((a, i) => <div key={a.id} style={{ '--rk-color': a.rankingColor }}>
           <span className="rk-dot" /><span><strong>{selectionAssetLabel(a)}</strong><small>{a.currency} · {a.instrumentType === 'EQUITY' ? 'Action' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif'}</small></span>
-          <button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setManual(true); setSlot(i); setManualMode('single') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} disabled={!manual && ids.length <= 2} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button>
+          <button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setManual(true); setSlot(i); setManualMode('profile') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} disabled={!manual && ids.length <= 2} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button>
         </div>)}</div>
-        <button type="button" disabled={ids.length >= 6} onClick={() => { setManual(true); setSlot(ids.length); setManualMode('single') }}>Ajouter un actif au profil</button>
+        <button type="button" disabled={ids.length >= 6} onClick={() => { setManual(true); setSlot(ids.length); setManualMode('profile') }}>Ajouter un actif au profil</button>
         <button type="button" className="rk-text-button" aria-expanded={manual} onClick={() => setManual(!manual)}>{manual ? 'Fermer la sélection manuelle' : 'Personnaliser les actifs'}</button>
         {manual && <div className="rk-manual">
           <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Historiques mensuels</option><option value="annual">Performances annuelles</option></ChoicePicker></label>
           <div className="rk-inline"><button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button><button type="button" disabled={ids.length >= 6} onClick={() => { setSlot(ids.length); setManualMode('single') }}>Ajouter un actif</button></div>
           {bank === 'monthly' && <fieldset className="rk-modes"><legend>Sélection manuelle</legend>
             <button type="button" aria-pressed={manualMode === 'batch'} onClick={() => setManualMode('batch')}>Cocher les actifs</button>
-            <button type="button" aria-pressed={manualMode === 'single'} onClick={() => setManualMode('single')}>Un par un</button>
+            <button type="button" aria-pressed={manualMode !== 'batch'} onClick={() => setManualMode('single')}>Un par un</button>
           </fieldset>}
           {bank === 'monthly' && manualMode === 'batch' ? <SelectionGrid ids={ids} currency={currency} assets={RANKING_ASSETS} onChange={next => {
             setCurrency(next.currency); applyIds(next.ids, next.currency); setSlot(0); setTitle('Ma sélection')
           }} /> : <>
           <p>{slot >= ids.length ? 'Ajouter un actif' : `Remplacer l’actif ${slot + 1}`} · de 2 à 6 actifs</p>
-          <AssetPicker persistent label="Actif du classement" items={options} value={ids[slot] ?? ''} hideIdleResults clearSearchOnSelect onChange={id => {
+          <AssetPicker persistent={manualMode !== 'profile'} label="Actif du classement" items={options} value={ids[slot] ?? ''} hideIdleResults clearSearchOnSelect onChange={id => {
             const next = [...ids]; next[Math.min(slot, ids.length)] = id; applyIds(next); setSlot(Math.min(next.length, 5)); setTitle('Ma sélection')
           }} />
           </>}
