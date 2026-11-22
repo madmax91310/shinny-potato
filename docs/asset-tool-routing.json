@@ -1,17 +1,17 @@
 {
-  "checkedAt": "2026-11-22T18:34:36.582Z",
+  "checkedAt": "2026-11-22T22:46:44.237Z",
   "summary": {
-    "instruments": 697,
-    "sheets": 281,
+    "instruments": 698,
+    "sheets": 282,
     "comparisons": 278,
     "practical": 39,
-    "duels": 661,
+    "duels": 662,
     "generatorAutomatic": 138,
-    "dca": 696,
+    "dca": 697,
     "fullExposure": 602,
     "outsideExposure": 53,
     "automaticHistories": 307,
-    "historyCandidates": 0,
+    "historyCandidates": 1,
     "unused": 0,
     "blockers": {
       "no-listing": 1,
@@ -4879,14 +4879,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-09-30"
+        "date": "2026-10-30"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-09-30"
+        "date": "2026-10-30"
       },
       "holdings": {
         "asOf": "2026-11-11",
@@ -7101,7 +7101,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T17:52:36.692406+00:00"
+        "checkedAt": "2026-11-22T19:02:08.720432+00:00"
       },
       "dca": true,
       "countries": {
@@ -7615,7 +7615,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T17:52:36.692406+00:00"
+        "checkedAt": "2026-11-22T19:02:08.720432+00:00"
       },
       "dca": true,
       "countries": {
@@ -7902,7 +7902,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T17:52:36.692406+00:00"
+        "checkedAt": "2026-11-22T19:02:08.720432+00:00"
       },
       "dca": true,
       "countries": {
@@ -8144,7 +8144,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-09-30"
+        "date": "2026-10-30"
       },
       "holdings": {
         "asOf": "2026-11-19",
@@ -8288,7 +8288,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T17:52:36.692406+00:00"
+        "checkedAt": "2026-11-22T19:02:08.720432+00:00"
       },
       "dca": true,
       "countries": {
@@ -9422,6 +9422,38 @@
         }
       ],
       "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B1FZSF77",
+      "name": "iShares US Property Yield UCITS ETF USD (Dist)",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "incomplete",
+        "coverage": 0,
+        "outside": 0,
+        "reason": "Ventilation absente"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-11-19"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
