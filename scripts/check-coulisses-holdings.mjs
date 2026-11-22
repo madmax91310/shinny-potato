@@ -26,6 +26,7 @@ const books = read(booksPath)
 const { observations, errors } = read(collection)
 assert.deepEqual(errors, [])
 assert.deepEqual(Object.keys(observations).sort(), [...shares].sort())
+assert.deepEqual(Object.keys(books).sort(), Object.keys(before).sort())
 for (const id of Object.keys(books)) {
   if (!shares.includes(id)) assert.deepEqual(books[id], before[id], id)
 }
@@ -53,7 +54,10 @@ const results = indices.map((id, index) => {
   } else {
     assert.notEqual(result.retained, true, id)
     assert.equal(result.asOf, book.asOf, id)
-    assert.equal(result.sha256, book.sha256, id)
+    assert.equal(result.sourceIsin, isin, id)
+    assert.equal(result.sourceUrl, book.sourceUrl, id)
+    assert.equal(result.checkedAt, book.checkedAt, id)
+    assert.equal(result.allocationSha256, allocations.countries.sha256, id)
   }
   return { id, isin, observed: book.asOf, validated: result.asOf, retained: Boolean(result.retained),
     reason: failures.find(row => row.sourceId === id)?.error ?? null, sha256: book.sha256 }
