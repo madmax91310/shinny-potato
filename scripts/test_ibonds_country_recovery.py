@@ -27,9 +27,16 @@ class IBondsCountryRecovery(unittest.TestCase):
   self.assertEqual(r['collectionErrors'][0]['field'],'countries-primary')
   self.assertEqual(r['sectors']['asOf'],'2026-11-13')
   self.assertTrue(r['performance']['years']);self.assertNotIn('2026',r['performance']['years'])
-  merged=merge_collection({'checkedAt':r['checkedAt'],'shares':[r]},json.loads((ROOT/'src/data/automated-etf.json').read_text()),{})
+  merged=merge_collection({'checkedAt':r['checkedAt'],'shares':[r]},{},{})
   self.assertEqual(merged[r['isin']]['countries']['rows'],r['countries']['rows'])
   self.assertEqual(self.collect(BODY)['countries'],r['countries'])
+  # Replay the older proof against a separately qualified newer photograph.
+  # The production registry must never be the baseline of this dated fixture.
+  previous=copy.deepcopy(merged)
+  countries=previous[r['isin']]['countries']
+  countries.update(asOf='2026-11-14',checkedAt='2026-11-15')
+  replay=merge_collection({'checkedAt':r['checkedAt'],'shares':[r]},previous,{})
+  self.assertEqual(replay[r['isin']]['countries'],countries)
  def test_primary_failure_remains_explicit_in_targeted_native_contract(self):
   r=self.collect(BODY);report={'records':[r],'excluded':[]};report['contractResults']=contract_results([CONFIG],report)
   self.assertEqual([row['id'] for row in report['contractResults']['successes']],['qualified-yield:'+CONFIG['isin']])
