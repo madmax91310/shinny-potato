@@ -10,12 +10,28 @@ import subprocess
 import tempfile
 import zipfile
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence, unseen_failed_workflow_runs
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence, unseen_failed_workflow_runs, remember_terminal_runs, TERMINAL_RUN_LIMIT
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 
 class EventCatchupTests(unittest.TestCase):
+ def test_deferred_attempts_survive_a_new_discovery_window(self):
+  state=self.state()
+  previous=copy.deepcopy(state['workflows'])
+  rows=[run(id=i,updated_at='2026-11-02T19:00:00Z',actor={'unused':'payload'}) for i in range(100,130)]
+  selected=remember_terminal_runs(state,[*reversed(rows),{**rows[-1], '_proofRetry':True}, run(20,head_branch='feature')])
+  self.assertEqual([r['id'] for _,r in selected],list(range(100,130)))
+  self.assertNotIn('actor', selected[-1][1])
+  self.assertEqual(state['workflows'],previous)
+  for key,_ in selected[:TERMINAL_RUN_LIMIT]:state['pendingTerminalRuns'].pop(key)
+  durable=json.loads(json.dumps(state))
+  next_batch=remember_terminal_runs(durable,[run(130),run(129,run_attempt=2),rows[-1]])
+  self.assertEqual([r['id'] for _,r in next_batch[:2]],[112,113])
+  self.assertTrue(durable['pendingTerminalRuns']['129:1']['_proofRetry'])
+  self.assertNotIn('_proofRetry',durable['pendingTerminalRuns']['129:2'])
+  self.assertEqual(durable['workflows'],previous)
+
  def state(self):
   return {'schemaVersion':1,'workflows':{
    'update-bitcoin-monthly.yml':{'status':'failure','runId':10,'attempt':1,
