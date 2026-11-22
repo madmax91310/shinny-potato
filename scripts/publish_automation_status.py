@@ -1390,7 +1390,8 @@ def unseen_failed_workflow_runs(state, workflows, api):
 TERMINAL_RUN_LIMIT = 12
 TERMINAL_RUN_FIELDS = ('id', 'run_attempt', 'path', 'event', 'status', 'conclusion',
                        'head_branch', 'head_sha', 'html_url', 'created_at', 'updated_at', 'run_started_at')
-TERMINAL_RUN_FLAGS = ('_phaseRetry', '_proofRetry', '_jobEvidenceRetry', '_inflightTerminal')
+TERMINAL_RUN_FLAGS = ('_phaseRetry', '_proofRetry', '_jobEvidenceRetry', '_inflightTerminal',
+                      '_eventTerminal', '_terminalReadRetry')
 
 
 def remember_terminal_runs(state, runs):
@@ -1406,6 +1407,16 @@ def remember_terminal_runs(state, runs):
             snapshot['head_repository'] = {'full_name': run['head_repository'].get('full_name')}
         pending[key] = {**pending.get(key, {}), **snapshot}
     return sorted(pending.items(), key=lambda item: (item[1]['id'], item[1].get('run_attempt', 1)))
+
+
+def terminal_run_mode(run, current):
+    stamp = (run['id'], run.get('run_attempt', 1))
+    current_stamp = (current.get('runId', 0), current.get('attempt', 1))
+    if run.get('_proofRetry'):
+        return 'proof'
+    if stamp < current_stamp:
+        return 'proof' if any(run.get(flag) for flag in ('_eventTerminal', '_inflightTerminal', '_terminalReadRetry')) else 'skip'
+    return 'current'
 
 
 def main():
@@ -1453,6 +1464,7 @@ def main():
         else:
             state.setdefault('observerErrors', {}).pop('availability:' + workflow, None)
     runs = []
+    trigger_key = None
     if args.backfill or args.monitor_only:
         for workflow in WORKFLOWS:
             candidates=completed_run_candidates(state,workflow,api)
@@ -1472,7 +1484,9 @@ def main():
                 runs.append(latest)
     elif not args.monitor_only:
         require_event = json.loads(args.event.read_text())
-        runs = [require_event['workflow_run']]
+        trigger = require_event['workflow_run']
+        trigger_key = f'{trigger["id"]}:{trigger.get("run_attempt", 1)}'
+        runs = [{**trigger, '_eventTerminal': True}]
         # The queue can contain hours of old events. Catch up known failures
         # from actual completed runs instead of waiting for a later cron/backfill.
         recovered_runs=unseen_failed_workflow_runs(state,WORKFLOWS,api)
@@ -1513,16 +1527,20 @@ def main():
             state.setdefault('observerErrors',{})['proof-retry:'+workflow]={'cause':'Relecture historique impossible : '+str(error)[:250]}
     state=recover_skipped_history_gaps(state,api,dt.datetime.now(dt.timezone.utc).isoformat())
     pending = remember_terminal_runs(state, runs)
+    # The exact native event gets a slot ahead of the listing backlog.
+    # An unreadable attempt goes to the back of the retry queue.
+    pending.sort(key=lambda item: (item[0] != trigger_key,
+                                  state.get('observerErrors', {}).get('terminal-run:'+item[0], {}).get('attemptedAt', '')))
     print(f'Exécutions terminales à examiner — {len(pending)}, jusqu’à {TERMINAL_RUN_LIMIT} par passage.', flush=True)
     publication_history = []
     for key,run in pending[:TERMINAL_RUN_LIMIT]:
         if time.monotonic() >= started+480:
             break  # Reserve time for public verification, serialization and the durable write.
-        state['pendingTerminalRuns'].pop(key)
         workflow = run['path'].split('/')[-1]
         try:
-            previous_run = state.get('workflows', {}).get(run['path'].split('/')[-1], {})
-            if run['id'] < previous_run.get('runId', 0) and not run.get('_proofRetry') and not run.get('_inflightTerminal'):
+            mode = terminal_run_mode(run, state.get('workflows', {}).get(workflow, {}))
+            if mode == 'skip':
+                state['pendingTerminalRuns'].pop(key)
                 continue
             jobs = []
             page = 1
@@ -1551,14 +1569,14 @@ def main():
                 state=qualify_legacy_phases(state,run,jobs,source_sha,dt.datetime.now(dt.timezone.utc).isoformat())
                 if not state['workflows'][workflow].get('legacyPhaseEvidence'):raise ValueError('Code ou étapes du contrat historique non confirmés')
                 state.setdefault('observerErrors',{}).pop('phase-proof:'+workflow,None)
-            if run.get('_proofRetry') or run['id']<previous_run.get('runId',0):
+            if mode == 'proof':
                 state = merge_proof_retry(state,run,reports)
                 state.setdefault('observerErrors',{}).pop('proof-retry:'+workflow,None)
                 state['observerErrors'].pop('terminal-run:'+key, None)
+                state['pendingTerminalRuns'].pop(key)
                 continue
             state = update_status(state, run, jobs, reports)
             workflow = run['path'].split('/')[-1]
-            state.setdefault('observerErrors', {}).pop('terminal-run:'+key, None)
             row = state.get('workflows', {}).get(workflow, {})
             if row.get('runId') == run['id']:
                 receipts = attempt_artifacts(api(f'/actions/runs/{run["id"]}/artifacts?per_page=100')['artifacts'], run)
@@ -1581,8 +1599,11 @@ def main():
             if row.get('publicationStatus') == 'success' and not qualified_receipt(row.get('publicationReceipt')):
                 row['publicationEvidenceError'] = 'Reçu de publication attendu absent ou non qualifié ; périmètre livré non démontré.'
             publication_history.append((run, jobs))
+            state['pendingTerminalRuns'].pop(key)
+            state.setdefault('observerErrors', {}).pop('terminal-run:'+key, None)
             state.setdefault('observerErrors', {}).pop(workflow, None)
         except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError,subprocess.SubprocessError) as error:
+            state['pendingTerminalRuns'][key]['_terminalReadRetry'] = True
             state.setdefault('observerErrors', {})[workflow] = {'cause': type(error).__name__ + ': ' + str(error)[:400], 'runUrl': run.get('html_url'), 'attemptedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
             state['observerErrors']['terminal-run:'+key] = state['observerErrors'][workflow]
     print(f'Vérification publique et écriture — {len(state["pendingTerminalRuns"])} exécutions différées.', flush=True)
