@@ -46,6 +46,10 @@ export async function decodeMonitorStorage(input) {
       const {expandScopeArchives} = await import('./monitor-scope-storage.js')
       state = await expandScopeArchives(state)
     }
+    if (state && (Object.hasOwn(state, 'incidentHistoryStorage') || Object.hasOwn(state, 'incidentHistoryArchives'))) {
+      const { expandIncidentHistory } = await import('./monitor-incident-history.js')
+      state = await expandIncidentHistory(state)
+    }
     return await expandProofChecks(state)
   } catch { throw Error('Transport du moniteur invalide ; dernières preuves conservées.') }
 }
