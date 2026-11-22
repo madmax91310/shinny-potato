@@ -595,6 +595,13 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
   "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
   "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
 },
+  IE00B1FZSF77: {
+    sourceUrls: ['https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf'],
+    checkedAt: '2026-11-22',
+    dateStatus: 'not-applicable',
+    scope: 'Part USD distribuante IE00B1FZSF77',
+    method: 'Identité et TER contrôlés sur la fiche de la part exacte publiée par iShares.',
+  },
   "IE00B1FZS350": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B1FZS350"
