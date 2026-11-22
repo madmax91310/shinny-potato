@@ -11,8 +11,11 @@ export function getIndexConcentration(id, now = new Date()) {
 }
 
 export function retainedCompositionDate(composition) {
-  return composition.available && composition.retained && composition.refresh?.status === 'failed'
-    ? composition.asOf : null
+  const { available, retained, refresh, asOf, checkedAt } = composition
+  if (!available || refresh?.status !== 'failed') return null
+  const retainedByCollector = refresh.asOf === asOf && refresh.lastSuccessAt === checkedAt &&
+    Date.parse(refresh.checkedAt) > Date.parse(checkedAt)
+  return retained || retainedByCollector ? asOf : null
 }
 // The historical tweet and its performance/currency conventions remain untouched.
 // Only the render model receives a coherent, explicitly qualified composition.
