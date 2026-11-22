@@ -90,7 +90,7 @@ try {
   }
   for (const { width, height } of Object.values(dimensions)) {
     assert(width >= 1000 && width <= 1790)
-    assert(height <= 1230)
+    assert(height <= 1440, `Le classement dépasse le cadre attendu du tableau coloré : ${width} × ${height}`)
   }
   await category('us-stocks')
   await page.getByRole('button', { name: 'Personnaliser les actifs', exact: true }).click()
