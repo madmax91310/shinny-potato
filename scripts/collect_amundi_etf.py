@@ -62,9 +62,13 @@ def breakdown(data, field, date, now, top=False):
     for point in candidates[0]['breakDownData']:
         # Amundi's own UI uses adjustedWeight; raw weight is zero for top ten.
         weight = number(point['adjustedWeight'], positive=False)
-        if weight > 1 or not isinstance(point['aggregationName'], str) or not point['aggregationName']:
+        name = point['aggregationName']
+        if field == 'FUND_SECTORS' and name == '':
+            # The API can publish a real weight without a sector classification.
+            name = 'Unassigned'
+        if weight > 1 or not isinstance(name, str) or not name.strip():
             reject('Invalid Amundi composition')
-        row = {'name': point['aggregationName'], 'weightPct': round(weight * 100, 6)}
+        row = {'name': name, 'weightPct': round(weight * 100, 6)}
         if top:
             row['isin'] = (point.get('additionalProperties') or {}).get('isin')
             if not row['isin']:

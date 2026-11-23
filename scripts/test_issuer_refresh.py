@@ -99,6 +99,30 @@ class IssuerRefreshTests(unittest.TestCase):
         self.assertEqual(r['aum']['amount'],123456789) # API amounts are units, despite historic indicator name.
         self.assertEqual(r['performance']['years']['2025'],10)
 
+    def test_amundi_preserves_the_weight_of_an_unlabelled_sector(self):
+        product, share = amundi()
+        breakdown = product['breakDowns'][1]['breakDownData']
+        weight = 6.807243e-7
+        breakdown[0]['adjustedWeight'] = 1 - weight
+        unassigned = {'aggregationName': '', 'weight': weight,
+                      'adjustedWeight': weight, 'additionalProperties': None}
+        breakdown.append(unassigned)
+        observation = parse_product(product, share, NOW)
+        registry = merge_collection({'checkedAt': NOW.isoformat(), 'shares': [observation]},
+                                    {}, {'TESTSHARE': {'currency': 'EUR'}})
+        rows = registry['TESTSHARE']['sectors']['rows']
+        self.assertEqual(rows[-1], {'name': 'Unassigned', 'label': 'Non classé', 'weightPct': 0.000068})
+        self.assertAlmostEqual(sum(row['weightPct'] for row in rows), 100)
+
+        for index in (0, 2):
+            invalid = copy.deepcopy(product)
+            invalid['breakDowns'][index]['breakDownData'][0]['aggregationName'] = ''
+            with self.assertRaisesRegex(ValueError, 'Invalid Amundi composition'):
+                parse_product(invalid, share, NOW)
+        breakdown.append(unassigned)
+        with self.assertRaisesRegex(ValueError, 'Duplicate Amundi composition row'):
+            parse_product(product, share, NOW)
+
     def test_synthetic_basket_never_becomes_tracked_exposure(self):
         p,s=amundi(False);r=parse_product(p,s,NOW)
         self.assertFalse(any(k in r for k in ('sectors','countries','holdings')))
