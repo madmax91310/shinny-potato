@@ -5,7 +5,7 @@ import { resolve } from 'node:path'
 import config from './index-company-sources.json' with { type: 'json' }
 
 const indices = [
-  'acwi', 'acwi-imi', 'sp500-equal-weight', 'world-ex-usa',
+  'acwi', 'acwi-imi', 'sp500-equal-weight', 'world-ex-usa', 'world-small-cap', 'msci-em-imi',
   'msci-world-health-care', 'msci-world-materials', 'msci-world-utilities',
   'msci-world-industrials', 'sp-euro-dividend-aristocrats',
 ]
@@ -58,6 +58,7 @@ const results = indices.map((id, index) => {
     assert.equal(result.sourceUrl, book.sourceUrl, id)
     assert.equal(result.checkedAt, book.checkedAt, id)
     assert.equal(result.allocationSha256, allocations.countries.sha256, id)
+    assert.equal(result.approximation, true, id)
   }
   return { id, isin, observed: book.asOf, validated: result.asOf, retained: Boolean(result.retained),
     reason: failures.find(row => row.sourceId === id)?.error ?? null, sha256: book.sha256 }
