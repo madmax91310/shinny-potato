@@ -70,7 +70,7 @@ export function qualifyPreferredManualNav(record, now = new Date()) {
     && new Date(Date.parse(evidence.publicationDate)).toJSON()?.slice(0, 10) === evidence.publicationDate
     && evidence.publicationDate >= evidence.referenceDate && Date.parse(evidence.publicationDate) <= Date.parse(record.checkedAt)
   if (record.currency!==route.currency || record.instrumentType!==route.instrumentType
-    || record.basis!=='fund-nav' || record.frequency!=='annual' || (source!==route.source && !officialBnp)
+    || record.basis!=='fund-nav' || record.frequency!=='annual' || (source!==route.source && !route.sourceAlternatives?.includes(source) && !officialBnp)
     || /proxy/i.test(record.method??'') || !/total return/i.test(record.method??'') || !/(?:net of (?:fund )?fees|net of ongoing charges|fund fees included)/i.test(record.method??'')
     || !currentAnnualEvidence(record.checkedAt,record.asOf,'etf.performance',now)) return null
   const years=closedCalendarYears(record.years,now)
