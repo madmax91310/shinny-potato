@@ -11,7 +11,7 @@ import os
 import pathlib
 import re
 import gzip
-from urllib.parse import urlencode, quote
+from urllib.parse import parse_qs, quote, urlencode, urlsplit
 import urllib.error
 from zoneinfo import ZoneInfo
 from issuer_documents import download
@@ -79,6 +79,30 @@ def yahoo_chart(body, config, interval):
     return rows, zone
 
 
+def _monthly_yahoo_response(config, url, fetch):
+    try:
+        return chart_response(url, fetch)
+    except urllib.error.HTTPError as error:
+        identity = tuple(config.get(key) for key in ('id', 'isin', 'symbol', 'mic', 'currency'))
+        if error.code != 400 or identity != ('etfDE000A27Z304', 'DE000A27Z304', 'BTCE.DE', 'XETR', 'EUR'):
+            raise
+        request = urlsplit(url)
+        query = parse_qs(request.query)
+        period1, period2 = query['period1'][0], query['period2'][0]
+        description = f"Data doesn't exist for startDate = {period1}, endDate = {period2}"
+        try:
+            failure = json.loads(error.read(4096))['chart']['error']
+        except (ValueError, TypeError, KeyError, OSError, http.client.HTTPException):
+            failure = None
+        if (isinstance(failure, dict) and failure.get('code') == 'Bad Request'
+                and failure.get('description') == description):
+            host = urlsplit(error.geturl() or url).hostname
+            interval = query['interval'][0]
+            raise ValueError(f'Yahoo Finance HTTP Error 400 for BTCE.DE (XETR, EUR) on {host}, '
+                             f'interval={interval}: {description}') from error
+        raise
+
+
 def collect_yahoo(config, now, fetch=get_json):
     from qualified_split_comparison import qualify as qualify_split, comparison_value
     split_notice=qualify_split(config,now)
@@ -89,7 +113,7 @@ def collect_yahoo(config, now, fetch=get_json):
         urls[interval] = 'https://query2.finance.yahoo.com/v8/finance/chart/' + quote(config['symbol'], safe='') + '?' + urlencode({
             'period1': int(start.timestamp()), 'period2': int(end.timestamp()),
             'interval': interval, 'events': 'div,splits'})
-        raw[interval], urls[interval] = chart_response(urls[interval], fetch)
+        raw[interval], urls[interval] = _monthly_yahoo_response(config, urls[interval], fetch)
     daily, zone = yahoo_chart(raw['1d'], config, '1d')
     monthly, monthly_zone = yahoo_chart(raw['1mo'], config, '1mo')
     from qualified_history_units import wood_quotes
@@ -186,7 +210,7 @@ def collect_yahoo(config, now, fetch=get_json):
             boundary=month_shift(dt.datetime.strptime(key,'%Y-%m').replace(tzinfo=UTC),1)
             url='https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
                 'period1':int((boundary-dt.timedelta(days=14 if key in sparse_ends else 7)).timestamp()),'period2':int(boundary.timestamp()),'interval':'1d','events':'div,splits'})
-            response,url=chart_response(url,fetch);rows,tz=yahoo_chart(response,config,'1d')
+            response,url=_monthly_yahoo_response(config,url,fetch);rows,tz=yahoo_chart(response,config,'1d')
             rows=[r for r in rows if r[0].strftime('%Y-%m')==key]
             compared=[comparison_value(a,b,rows[-1][0],split_notice,rel_tol=(1e-7 if i==0 else 1e-6)) for i,(a,b) in enumerate(zip(rows[-1][1:],final[key][1:]))] if rows else []
             if (tz!=zone or not rows or rows[-1][0]!=final[key][0]
