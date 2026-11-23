@@ -1,4 +1,4 @@
-# Automatisation des données — état du 2026-11-22
+# Automatisation des données — état du 2026-11-23
 
 Inventaire courant par champ et motif : [détail des lacunes](automation-gaps.md), avec [version JSON](automation-gaps.json).
 
