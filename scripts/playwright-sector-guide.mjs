@@ -74,7 +74,7 @@ try {
     await page.reload({ waitUntil: 'networkidle' })
     assert.equal(await textarea.inputValue(), guide.text)
     assert(await card.getByRole('button', { name: '📋 Copier', exact: true }).isDisabled())
-    assert(await card.getByText('À vérifier avant réutilisation', { exact: true }).isVisible())
+    assert.match(await card.locator('.tb-validity').innerText(), /À vérifier avant réutilisation/)
     assert.deepEqual(errors, [])
     await context.close()
   }
