@@ -11,6 +11,7 @@ const record = structuredClone(fixture)
 Object.assign(record,{id:'test-browser-archive',fixture:false,status:'validated',validatedAt:'2026-11-12T21:15:00Z'})
 Object.assign(record.universe,{basis:'europe-listed',label:'Contrat simulé de test',evidence:'Périmètre simulé uniquement pour le test, pas une preuve fournisseur.'})
 Object.assign(record.source,{rightsStatus:'licensed',rightsEvidence:'Autorisation simulée de test ; aucune autorisation ETF Express déduite.'})
+const weekly = JSON.parse(readFileSync(new URL('../src/data/etf-flows-weekly.json', import.meta.url))).editions[0]
 const base=process.env.ETF_FLOWS_PUBLIC_BASE ?? 'http://127.0.0.1:4401/shinny-potato'
 const server=process.env.ETF_FLOWS_PUBLIC_BASE ? null : spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4401','--strictPort'],{stdio:'ignore'})
 const out='test-artifacts/etf-flows'; mkdirSync(out,{recursive:true})
@@ -24,7 +25,18 @@ try {
   const page=await context.newPage(), errors=[];page.setDefaultTimeout(10000);page.on('pageerror',e=>errors.push(e.message))
   await page.goto(base+'/flux-etf',{waitUntil:'networkidle'})
   await expect(page.getByRole('heading',{level:1})).toContainText('Où va l’argent des ETF ?')
-  // Default flow is a plain manual editor; no technical import is mounted.
+  await expect(page.getByRole('link',{name:'Générer sur GitHub',exact:true})).toHaveAttribute('href', 'https://github.com/madmax91310/shinny-potato/actions/workflows/update-etf-flows.yml')
+  if (weekly) {
+    await expect(page.getByText('Dernière édition validée', {exact:false})).toBeVisible()
+    const text = weekly.post
+    assert.equal(await page.locator('.flows-weekly-text').first().textContent(), text)
+    await page.getByRole('button',{name:'Copier le post',exact:true}).first().click()
+    assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),text)
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Automatic post overflow')
+  } else {
+    await expect(page.getByText('La première édition est en attente de données vérifiées.')).toBeVisible()
+  }
+  // The manual editor remains accessible without mounting the qualified import.
   await expect(page.getByRole('textbox',{name:'Observation JSON'})).toHaveCount(0)
   assert.equal(await page.locator('select').count(),0)
   await expect(page.getByRole('link',{name:'Trackinsight · flux mondiaux ↗'})).toHaveCount(0)

@@ -98,11 +98,11 @@ try {
  }
 } finally {delete registry[manualId]}
 
-// A weekly qualification check cannot certify a source collection.
+// Historical qualification runs carry no collection evidence.
 {
  const id='update-etf-flows.yml'
- assert.equal(registry[id].validationOnly,true);assert.equal(registry[id].publishes,false)
- assert.deepEqual(registry[id].collectionSteps,[])
+ assert.equal(registry[id].publishes,true)
+ assert.deepEqual(registry[id].collectionSteps,['Collect and verify ETFIQ flows'])
  const row=automationOverview({schemaVersion:1,workflows:{[id]:{name:registry[id].name,status:'success',collectionStatus:'not-applicable',validationStatus:'success',completedAt:now.toISOString()}}},now).find(row=>row.id===id)
- assert.equal(row.state,'success');assert.equal(row.collectionStatus,'not-applicable');assert.equal(row.lastCollectionSuccessAt,undefined)
+ assert.equal(row.state,'unknown');assert.equal(row.collectionStatus,'not-applicable');assert.equal(row.lastCollectionSuccessAt,undefined)
 }
