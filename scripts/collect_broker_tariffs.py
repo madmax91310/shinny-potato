@@ -160,18 +160,50 @@ def collect(baseline,today,fetcher=fetch_content):
  baseline['profileCollection']={'checkedAt':today,'validated':profile_count,'failures':profile_failures}
  baseline['sourceResolution']={'checkedAt':today,'documents':resolver.report}
  return baseline,failures,validated
+def build_report(baseline, failures, validated, today, checked_at, report_stem):
+ prefix = report_stem + ':'
+ records = baseline['brokers']
+ sources = {name: records[name] for name in validated}
+ for name in ('bourso', 'fortuneo'):
+  if name in validated and name+':extras' not in failures:
+   sources[name+':extras'] = records[name]
+ for key, (broker, field, _) in SUPPLEMENT_SOURCES.items():
+  if key not in failures:
+   sources[key] = records[broker]['fields'][field]
+ for broker, record in records.items():
+  for field, value in record.get('profile', {}).items():
+   key = f'{broker}:profile:{field}'
+   if value.get('checkedAt') == today and key not in failures:
+    sources[key] = value
+ successes = []
+ for key, value in sorted(sources.items()):
+  if key in failures:
+   continue
+  row = {'id': prefix+key}
+  if value.get('sourceUrl'):
+   row.update(checkedAt=checked_at.isoformat(), sourceUrl=value['sourceUrl'])
+  if value.get('asOf'):
+   row['asOf'] = value['asOf']
+  successes.append(row)
+ return {
+  'observations': baseline, 'failures': failures, 'successfulSources': sorted(sources.keys() - failures.keys()),
+  'contractResults': {
+   'successes': successes,
+   'errors': [
+    {'id': prefix+key, 'name': records.get(key, {}).get('title', key), 'error': cause}
+    for key, cause in failures.items()
+   ],
+  },
+ }
+
+
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');parser.add_argument('--output',type=pathlib.Path,required=True);args=parser.parse_args()
  baseline=json.loads(DEST.read_text()) if DEST.exists() else {'schemaVersion':1,'brokers':{}}
  today=dt.datetime.now(dt.timezone.utc).date().isoformat()
  baseline,failures,validated=collect(baseline,today)
- successes=set(validated)
- successes.update(name+':extras' for name in ('bourso','fortuneo') if name in validated and name+':extras' not in failures)
- successes.update(key for key in SUPPLEMENT_SOURCES if key not in failures)
- for broker,record in baseline['brokers'].items():
-  successes.update(f'{broker}:profile:{field}' for field,value in record.get('profile',{}).items()
-                   if value.get('checkedAt')==today and f'{broker}:profile:{field}' not in failures)
- args.output.write_text(json.dumps({'observations':baseline,'failures':failures,'successfulSources':sorted(successes)},ensure_ascii=False,indent=2)+'\n')
+ report = build_report(baseline, failures, validated, today, dt.datetime.now(dt.timezone.utc), args.output.stem)
+ args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
  if args.apply:
   tmp=DEST.with_suffix('.tmp');tmp.write_text(json.dumps(baseline,ensure_ascii=False,indent=2)+'\n');tmp.replace(DEST)
  print(json.dumps({'validated':len(validated),'brokers':validated,'retained':len(baseline['brokers'])-len(validated),'failures':failures},ensure_ascii=False));return bool(failures)

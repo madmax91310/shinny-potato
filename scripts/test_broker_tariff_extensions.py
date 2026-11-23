@@ -1,5 +1,8 @@
 """Source qualification, fee scopes and last-good retention regression tests."""
 import copy
+import datetime as dt
+import hashlib
+import tempfile
 import json
 import pathlib
 import unittest
@@ -138,6 +141,38 @@ class BrokerTariffTests(unittest.TestCase):
   with self.assertRaises(ValueError):parse_supplement('tr_direct',fixture('tr_direct.txt').replace('2 €','3 €'),TODAY)
   self.assertIn('ne qualifie pas',results['tr_transfer_cto']['copy']['full'])
   with self.assertRaises(ValueError):parse_supplement('saxo_transfer',fixture('saxo_transfer.txt').replace('facturation','inconnu'),TODAY)
+ def test_current_broker_proofs_are_dated_and_retained_results_cannot_close_incidents(self):
+  from collect_broker_tariffs import build_report
+  from producer_report_contract import finish
+  from producer_report_plans import build_plan
+  from publish_automation_status import read_report
+  stamp = dt.datetime(2026, 11, 23, 10, tzinfo=dt.timezone.utc)
+  today = stamp.date().isoformat()
+  source = SOURCES['bourso']
+  tariff = {'sourceUrl': source, 'asOf': '2026-11-18'}
+  baseline = {'brokers': {'bourso': {**tariff, 'profile': {
+    'dca': {'sourceUrl': source, 'checkedAt': today},
+    'cash': {'sourceUrl': source, 'checkedAt': today},
+  }}}}
+  failures = {key: 'Read failed' for key in SUPPLEMENT_SOURCES}
+  failures.update({'bourso:profile:cash': 'Retained from an earlier attempt', 'bourso:extras': 'Fields not revalidated'})
+  report = build_report(baseline, failures, ['bourso'], today, stamp, 'broker-observation')
+  self.assertEqual(report['successfulSources'], ['bourso', 'bourso:profile:dca'])
+  plan = {**build_plan('collect_broker_tariffs', [], report_stem='broker-observation'), 'producer': 'collect_broker_tariffs',
+          'reportStem': 'broker-observation', 'declaredAt': (stamp - dt.timedelta(minutes=1)).isoformat(),
+          'nonce': 'isolated-test'}
+  plan['sha256'] = hashlib.sha256(json.dumps(plan, sort_keys=True).encode()).hexdigest()
+  with tempfile.TemporaryDirectory() as tmp:
+   path = pathlib.Path(tmp)/'broker-observation.json'
+   path.write_text(json.dumps(finish(report, plan)))
+   observed = read_report(path, 'update-regulatory-data.yml')
+  proof = {row['id']: row for row in observed['successes']}
+  self.assertTrue(proof['broker-observation:bourso']['verifiedInAttempt'])
+  self.assertEqual(proof['broker-observation:bourso']['asOf'], '2026-11-18')
+  self.assertEqual(proof['broker-observation:bourso:profile:dca']['checkedAt'], stamp.isoformat())
+  self.assertNotIn('broker-observation:bourso:profile:cash', proof)
+  self.assertIn('broker-observation:bourso:profile:cash', {row['id'] for row in observed['errors']})
+
  def test_source_failure_retains_independent_fields_and_recovers(self):
   baseline={'schemaVersion':1,'brokers':{'saxo':{'asOf':'2026-05-05','checkedAt':'2026-10-01','fields':{'offerPea':{'copy':{'full':'previous qualified offer'}}}}}}
   original=copy.deepcopy(baseline)
