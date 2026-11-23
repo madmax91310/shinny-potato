@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { loadExposureCatalog } from './records.js'
 import { references, pct } from './engine.js'
-import { exposureDisplay } from './exposure.js'
+import { exposureDisplay, MIN_VISIBLE_MISSING_EXPOSURE } from './exposure.js'
 import catalogue from './catalog.json' with {type:'json'}
 import { loadHoldingsState } from './holdings-loader.js'
 import { catalogCoverage, sharedPositions } from './verification.js'
@@ -22,7 +22,7 @@ export default function Verification({profile,analysis,onHoldingsChange}){
  <p className="dca-note">Les poids ci-dessous sont des parts du portefeuille entier. Une couverture partielle ne permet pas de conclure sur l’ensemble du portefeuille.</p>
  <div className="dca-fields">{['countries','sectors'].map(field=>{
   const e=analysis[field],d=exposureDisplay(e),lead=e.groups[0]?.rows[0]
-  return <div className="dca-check-card" key={field}><b>{field==='countries'?'Géographie':'Secteurs'}</b><p>{pct(d.coverage)} ventilés · {pct(d.missing)} non ventilés{e.neutralWeight>0&&` · ${pct(e.neutralWeight)} hors classification`}</p>{lead&&<p>Première exposition observée : {lead.name}, {pct(lead.weight)}.</p>}</div>
+  return <div className="dca-check-card" key={field}><b>{field==='countries'?'Géographie':'Secteurs'}</b><p>{pct(d.coverage)} ventilés{d.missing>=MIN_VISIBLE_MISSING_EXPOSURE&&` · ${pct(d.missing)} non ventilés`}{e.neutralWeight>0&&` · ${pct(e.neutralWeight)} hors classification`}</p>{lead&&<p>Première exposition observée : {lead.name}, {pct(lead.weight)}.</p>}</div>
  })}</div>
  <details><summary>Contribution de chaque actif aux pays et secteurs</summary>
  {['countries','sectors'].map(field=><div key={field}><h3>{field==='countries'?'Géographie':'Secteurs'}</h3>{analysis[field].groups.map((group,i)=><section key={group.classification+group.asOf}>

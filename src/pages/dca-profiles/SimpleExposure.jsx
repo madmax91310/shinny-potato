@@ -6,7 +6,7 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import { ASSETS } from './data.js'
 import { MAX_EXPOSURE_POSITIONS, analyzeProfile, references, pct } from './engine.js'
-import { exposureDisplay, exposureView } from './exposure.js'
+import { exposureDisplay, exposureView, MIN_VISIBLE_MISSING_EXPOSURE } from './exposure.js'
 import AllocationEditor, { newLine, confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
 import ImageOptions from './ImageOptions.jsx'
@@ -48,7 +48,7 @@ export default function SimpleExposure({isin}){
      <summary>Détails des données · pays {pct(exposureDisplay(analysis.countries).coverage)} · secteurs {pct(exposureDisplay(analysis.sectors).coverage)}</summary>
      <p>Synthèse indicative des répartitions publiées. Les méthodes des sources peuvent différer ; les ETF synthétiques utilisent une exposition d’indice documentée, sans leur panier de substitution. Les donuts sont rapportés au périmètre pays/secteurs indiqué. Les supports d’épargne, fonds en euros, métaux, cryptos et supports explicitement obligataires ou monétaires restent dans l’allocation, hors de ces donuts. Les données manquantes gardent leur poids dans les donuts ; elles ne sont pas redistribuées.</p>
      {['countries','sectors'].map(f=>{const e=analysis[f],d=exposureDisplay(e);return <div key={f}>
-      <strong>{f==='countries'?'Géographie':'Secteurs'} : {pct(d.coverage)} ventilés{e.neutralWeight>0?` · ${pct(e.neutralWeight)} hors classification`:''}{d.missing>0.01?` · ${pct(d.missing)} non ventilés`:''}</strong>
+      <strong>{f==='countries'?'Géographie':'Secteurs'} : {pct(d.coverage)} ventilés{e.neutralWeight>0?` · ${pct(e.neutralWeight)} hors classification`:''}{d.missing>=MIN_VISIBLE_MISSING_EXPOSURE?` · ${pct(d.missing)} non ventilés`:''}</strong>
       {d.omitted.map((o,i)=><p key={`${o.asset}-${i}`}>{o.label||o.asset} : {o.reason} ({pct(o.weight)}).</p>)}
       {e.groups[0]?.observations.map(o=><p key={o.asset}><a href={o.sourceUrl} target="_blank" rel="noreferrer">{o.label||o.asset}</a> · {o.asOf} · {o.basis==='index'?'exposition d’indice':o.basis==='equity'?'action':'fonds'}</p>)}
      </div>})}
@@ -61,7 +61,7 @@ export default function SimpleExposure({isin}){
       <h3>{f==='countries'?'Pays':'Secteurs'}</h3><p>{v.scope}</p>
       {v.eligible>0?<table><thead><tr><th>Exposition</th><th>Part du périmètre</th><th>Part du portefeuille</th></tr></thead><tbody>
        {v.rows.map(row=><tr key={row.name}><td>{row.name}</td><td>{pct(row.weight)}</td><td>{pct(row.portfolioWeight)}</td></tr>)}
-       {v.missing>0.001&&<tr><td>Non ventilé ici</td><td>{pct(v.missing)}</td><td>{pct(v.portfolioMissing)}</td></tr>}
+       {v.missing>=MIN_VISIBLE_MISSING_EXPOSURE&&<tr><td>Non ventilé ici</td><td>{pct(v.missing)}</td><td>{pct(v.portfolioMissing)}</td></tr>}
       </tbody></table>:<p>La géographie et les secteurs ne s’appliquent pas à ces actifs.</p>}
       {!!v.excludedAssets.length&&<p>Hors de ce donut : {v.excludedAssets.map(r=>`${r.name} (${pct(r.weight)} du portefeuille)`).join(', ')}.</p>}
      </section>})}
