@@ -126,6 +126,30 @@ class SourceIncidents(unittest.TestCase):
             else:sector['fund']['value'][1]=0
             with self.subTest(defect=defect),self.assertRaises((ValueError,KeyError)):parse_share(bad,share,NOW)
 
+    def test_stale_global_aggregate_country_table_does_not_reject_current_sectors(self):
+        config = json.loads((ROOT/'scripts/etf-pilot.json').read_text())['instruments']
+        share = next(s for s in config if s['isin'] == 'IE00BDBRDM35')
+        body = fixture('blackrock-251741')
+        body['productId'] = share['productId']
+        components = body['componentsByNameMap']
+        facts = components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        facts['isin']['value'] = share['isin']
+        facts['useOfProfitsCode']['value'] = share['distribution']
+        exposures = components['exposureBreakdowns']['containersByNameMap']
+        exposures['sector']['dataPointsByNameMap']['fund']['value'] = [99.8, .2]
+        countries = {'dataPointsByNameMap': {'type': {'value': ['France']}, 'fund': {'value': [100]},
+                                            'asOf': {'value': 20260901}}}
+        exposures['geography'] = {'subContainersByNameMap': {'countries': countries}}
+        strict = {**share, 'isolateAllocationFailures': False}
+        with self.assertRaisesRegex(ValueError, 'stale issuer snapshot'):
+            parse_share(body, strict, NOW)
+        actual = parse_share(body, share, NOW)
+        self.assertEqual(actual['sectors']['asOf'], '2026-10-30')
+        self.assertEqual(actual['sectors']['rows'][0]['weightPct'], 99.8)
+        self.assertEqual(actual['countries']['rows'], [])
+        self.assertEqual(actual['collectionErrors'][0]['field'], 'countries-primary')
+        self.assertFalse(actual['collectionErrors'][0]['fallbackQualified'])
+
     def test_equity_sector_above_100_needs_the_same_dated_signed_book(self):
         from collect_etf_pilot import allocation
         config = json.loads((ROOT/'scripts/etf-pilot.json').read_text())['instruments']
