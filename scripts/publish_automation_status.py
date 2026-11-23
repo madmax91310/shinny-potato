@@ -372,6 +372,56 @@ def report_files(directory, workflow=None):
     return paths
 
 
+def issuer_source_branch(report_stem, share, outcome):
+    """Project only supplier-specific evidence produced by the current fetch."""
+    url = share.get('sourceUrl')
+    if (outcome.get('sourceAttempted') is not True or outcome.get('sourceUrl') != url
+            or outcome.get('status') not in ('succeeded', 'unchanged-verified')
+            or not isinstance(url, str)):
+        return None
+    if report_stem == 'additional-observation' and share.get('provider') == 'BNP Paribas':
+        document = share.get('bnpDocument') or {}
+        if (share.get('status') == 'validated' and not share.get('collectionErrors')
+                and re.fullmatch(r'https://docfinder\.bnpparibas-am\.com/api/files/[a-f0-9-]+/\d+', url)
+                and document.get('sourceUrl') == url and timestamp(document.get('asOf'))
+                and re.fullmatch(r'[a-f0-9]{64}', document.get('sha256') or '')):
+            return {'branch': 'bnp-document', 'url': url, 'asOf': document['asOf'], 'sha256': document['sha256']}
+    if report_stem == 'ssga-observation' and share.get('provider') == 'State Street':
+        sectors = share.get('sectors') or {}
+        if (url.startswith('https://www.ssga.com/') and sectors.get('basis') == 'fund'
+                and timestamp(sectors.get('asOf')) and sectors.get('rows')):
+            return {'branch': 'ssga-native-sectors', 'url': url, 'asOf': sectors['asOf'],
+                    'labels': [row['name'] for row in sectors['rows'] if row.get('name')]}
+    return None
+
+
+def proves_issuer_source_recovery(success, evidence, failure, workflow):
+    """A composite success closes only a failure reproduced by a scoped branch."""
+    branch = success.get('issuerSourceBranch') or {}
+    if (workflow != 'collect-etf-pilot.yml' or success.get('sourceAttempted') is not True
+            or not evidence.get('scopePlanVerified') or not evidence.get('artifactId')
+            or not re.fullmatch(r'[a-f0-9]{64}', evidence.get('sha256') or '')
+            or success['id'] not in (evidence.get('scope') or {}).get('requestedIds', [])):
+        return False
+    checked = timestamp(evidence.get('reportedAt'))
+    start = timestamp(evidence.get('sourcePhaseStartedAt'))
+    end = timestamp(evidence.get('sourcePhaseCompletedAt'))
+    failed = timestamp(failure.get('sourcePhaseCompletedAt') or failure.get('completedAt'))
+    if not all((checked, start, end, failed)) or not start <= checked <= end or checked <= failed:
+        return False
+    if failure.get('sourceUrls') and branch.get('url') not in failure['sourceUrls']:
+        return False
+    cause = failure.get('cause', '')
+    if branch.get('branch') == 'bnp-document':
+        return (success['id'].startswith('etf-additional-observation-')
+                and failure.get('field') == 'Collecte ETF' and cause == 'HTTP Error 403: Forbidden')
+    if branch.get('branch') == 'ssga-native-sectors':
+        prefix = 'Unknown issuer sector: '
+        return (success['id'].startswith('etf-ssga-observation-') and cause.startswith(prefix)
+                and cause[len(prefix):] in branch['labels'])
+    return False
+
+
 def read_report(path, workflow, planned=None):
     # Issuer observations retain raw official components and full holdings.
     # Give that existing artifact a bounded larger envelope, then immediately
@@ -437,6 +487,16 @@ def read_report(path, workflow, planned=None):
             record=report['sources'].get(success['id'].removeprefix('practical:'),{})
             if record.get('lastSuccessfulCheckAt'):success['checkedAt']=record['lastSuccessfulCheckAt']
     outcomes = {r['id']:r for r in (individual or report).get('outcomes', [])}
+    if plan_verified and shape == 'shares' and path.stem in ('additional-observation', 'ssga-observation'):
+        shares = {share['isin']: share for share in report['shares']}
+        prefix = f'etf-{path.stem}-'
+        for success in result.get('successes', []):
+            identifier = success['id']
+            if not identifier.startswith(prefix) or identifier[len(prefix):] not in shares:
+                continue
+            proof = issuer_source_branch(path.stem, shares[identifier[len(prefix):]], outcomes.get(identifier, {}))
+            if proof:
+                success['issuerSourceBranch'] = proof
     for kind in ('successes', 'errors'):
         for row in result.get(kind, []):
             identifier = row['id']
@@ -608,7 +668,8 @@ def merge_proof_retry(state, run, reports):
             else:
                 failure=row.get('dataFailures',{}).get(identifier,{})
                 failed_at=timestamp(failure.get('sourcePhaseCompletedAt') or failure.get('completedAt'))
-                if failure and (evidence or{}).get('schema')=='shares':
+                if (failure and (evidence or {}).get('schema') == 'shares'
+                        and not proves_issuer_source_recovery(success, evidence, failure, workflow)):
                     failure['unverifiedRecovery']=True;failure['unverifiedReason']='Le rapport composite ne prouve pas le contrôle ciblé de la branche initialement en échec.';failure['recoveryEvidence']=evidence
                     continue
                 checked=timestamp(success.get('checkedAt') or (evidence or {}).get('reportedAt'))
@@ -622,6 +683,7 @@ def merge_proof_retry(state, run, reports):
                 row.setdefault('sourceChecks',{})[identifier]={'checkedAt':success.get('checkedAt')or(evidence or{}).get('reportedAt'),
                     'recordedAt':(evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],
                     'runUrl':run['html_url'],'evidence':evidence,'verifiedInAttempt':bool(success.get('verifiedInAttempt')),
+                    **({'issuerSourceBranch':success['issuerSourceBranch']} if 'issuerSourceBranch' in success else {}),
                     **{k:success[k]for k in ('asOf','responseSha256')if k in success}}
         for error in report.get('errors', []):
             identifier = bind_attempt(error['id'], run)
@@ -1021,7 +1083,8 @@ def update_status(state, run, jobs, reports=None):
             checked = timestamp(success.get('checkedAt') or (evidence or {}).get('reportedAt'))
             failed_at = timestamp(data_failures.get(success['id'], {}).get('completedAt'))
             old_failure=data_failures.get(success['id'],{})
-            if evidence and evidence.get('schema')=='shares'and old_failure:
+            if (evidence and evidence.get('schema') == 'shares' and old_failure
+                    and not proves_issuer_source_recovery(success, evidence, old_failure, workflow)):
                 old_failure['unverifiedRecovery']=True;old_failure['unverifiedReason']='Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec.'
                 old_failure['recoveryEvidence']=evidence
                 continue
@@ -1041,7 +1104,7 @@ def update_status(state, run, jobs, reports=None):
                 source_checks[success['id']] = {'checkedAt': success.get('checkedAt') or (evidence or {}).get('reportedAt'),
                     'recordedAt': (evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'], 'runUrl': run['html_url'], 'evidence': evidence,
                     'runId':run['id'],'attempt':run.get('run_attempt',1),
-                    **{k:success[k] for k in ('verifiedInAttempt','responseSha256','asOf') if k in success}}
+                    **{k:success[k] for k in ('verifiedInAttempt','responseSha256','asOf','issuerSourceBranch') if k in success}}
         for error in report.get('errors', []):
             id_ = error['id']
             if technical_proof(id_):

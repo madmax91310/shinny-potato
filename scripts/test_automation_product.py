@@ -9,7 +9,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from publish_automation_status import (REGISTRY, REPORT_CONTRACTS, artifact_reports, normalize_report,
-    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence, observe_running_workflows, include_configured_workflows, qualify_consumer_bindings)
+    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence, observe_running_workflows, include_configured_workflows, qualify_consumer_bindings, issuer_source_branch)
 from automation_monitoring import evaluate_monitoring, restore_history
 from automation_status_storage import pack_report_scopes,expand_report_scopes,encode_status
 from automation_monitor_self import observe_monitor_history
@@ -392,6 +392,52 @@ class ProductContracts(unittest.TestCase):
             failure=result['workflows'][w]['dataFailures']['share:sectors-primary']
             self.assertTrue(failure['unverifiedRecovery'])
             self.assertEqual(failure['cause'],'Empty primary branch')
+
+    def test_issuer_recovery_requires_the_actual_failed_branch_and_attempt(self):
+        w = 'collect-etf-pilot.yml'
+        bnp_url = 'https://docfinder.bnpparibas-am.com/api/files/1234-abcd/512'
+        ssga_url = 'https://www.ssga.com/fr/fr/intermediary/etfs/fund'
+        cases = (
+            ('additional-observation', 'FR0011550185', 'HTTP Error 403: Forbidden', {
+                'provider': 'BNP Paribas', 'sourceUrl': bnp_url, 'status': 'validated',
+                'bnpDocument': {'sourceUrl': bnp_url, 'asOf': '2026-09-30', 'sha256': 'd' * 64},
+            }),
+            ('ssga-observation', 'IE00B3T9LM79', 'Unknown issuer sector: Agence', {
+                'provider': 'State Street', 'sourceUrl': ssga_url,
+                'sectors': {'basis': 'fund', 'asOf': '2026-10-23', 'rows': [{'name': 'Agence', 'weightPct': 0.05}]},
+            }),
+        )
+        for stem, isin, cause, share in cases:
+            with self.subTest(stem=stem):
+                identifier = f'etf-{stem}-{isin}'
+                old = update_status({}, event(w), jobs(w), [{'errors': [
+                    {'id': identifier, 'error': cause, 'field': 'Collecte ETF', 'sourceUrls': [share['sourceUrl']]},
+                ]}])
+                outcome = {'status': 'succeeded', 'sourceAttempted': True, 'sourceUrl': share['sourceUrl']}
+                branch = issuer_source_branch(stem, share, outcome)
+                self.assertTrue(branch)
+                self.assertIsNone(issuer_source_branch(stem, share, {**outcome, 'sourceAttempted': False}))
+                self.assertIsNone(issuer_source_branch(stem, share, {**outcome, 'sourceUrl': 'https://example.org'}))
+                report = {'successes': [{'id': identifier, 'sourceAttempted': True, 'issuerSourceBranch': branch}],
+                          '_reportEvidence': {'schema': 'shares', 'file': f'{stem}.json', 'scopePlanVerified': True,
+                            'artifactId': 50, 'sha256': 'e' * 64, 'scope': {'requestedIds': [identifier]},
+                            'reportedAt': '2026-10-25T12:00:15Z', 'sourcePhaseStartedAt': '2026-10-25T12:00:00Z',
+                            'sourcePhaseCompletedAt': '2026-10-25T12:01:00Z'}}
+                now = {**event(w, 101), 'updated_at': '2026-10-25T12:13:00Z'}
+                for apply in (lambda state, raw: update_status(state, now, jobs(w), [raw]),
+                              lambda state, raw: merge_proof_retry(state, now, [raw])):
+                    actual = apply(old, report)['workflows'][w]
+                    self.assertNotIn(identifier, actual['dataFailures'])
+                    self.assertEqual(actual['sourceChecks'][identifier]['issuerSourceBranch'], branch)
+                    for changes in ({'scopePlanVerified': False}, {'artifactId': None}, {'scope': {'requestedIds': []}},
+                                    {'reportedAt': '2026-10-24T12:00:00Z'}):
+                        bad = {**report, '_reportEvidence': {**report['_reportEvidence'], **changes}}
+                        self.assertIn(identifier, apply(old, bad)['workflows'][w]['dataFailures'])
+                    for mismatch in ({**branch, 'url': 'https://other.example'},
+                                     {**branch, 'branch': 'fallback'},
+                                     {**branch, 'labels': ['Other']} if stem == 'ssga-observation' else {}):
+                        bad = {**report, 'successes': [{**report['successes'][0], 'issuerSourceBranch': mismatch}]}
+                        self.assertIn(identifier, apply(old, bad)['workflows'][w]['dataFailures'])
 
     def test_old_gold_workflow_did_not_promise_a_new_report(self):
         w='update-gold-monthly.yml';old=jobs(w)
