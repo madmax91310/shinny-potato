@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-23T07:07:53.732Z",
+  "checkedAt": "2026-11-23T17:37:10.788Z",
   "total": 704,
   "outside": 60,
-  "complete": 638,
+  "complete": 637,
   "gaps": [
     {
       "asset": "lifestrategy20",
@@ -113,6 +113,31 @@
       }
     },
     {
+      "asset": "IE000RDRMSD1",
+      "isin": "IE000RDRMSD1",
+      "name": "iShares Blockchain Technology UCITS ETF",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-11-20"
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      }
+    },
+    {
       "asset": "IE00B1FZSF77",
       "isin": "IE00B1FZSF77",
       "name": "iShares US Property Yield UCITS ETF USD (Dist)",
@@ -134,7 +159,7 @@
         "outside": false,
         "missing": 0,
         "reasons": [],
-        "asOf": "2026-11-19"
+        "asOf": "2026-11-20"
       }
     },
     {
@@ -149,7 +174,7 @@
         "outside": false,
         "missing": 0.7499999999999147,
         "reasons": [],
-        "asOf": "2026-11-19"
+        "asOf": "2026-11-20"
       },
       "sectors": {
         "coverage": 100,
