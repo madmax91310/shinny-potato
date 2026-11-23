@@ -2,7 +2,7 @@ import {useCallback,useEffect,useMemo,useState} from 'react'
 import {references,pct,euro} from './engine.js'
 import {loadHoldingsState} from './holdings-loader.js'
 import {portfolioAnalytics,analysisView,analyzedLines,selectConcentrationGroup,concentrationGroupKey,compareExposures} from './analytics.js'
-import {exposureDisplay} from './exposure.js'
+import {exposureDisplay, MIN_VISIBLE_MISSING_EXPOSURE} from './exposure.js'
 import Verification from './Verification.jsx'
 const titleScope=scope=>scope==='index'?'Indices suivis':scope==='equity'?'Titres en direct':'Positions publiées'
 const delta=n=>`${n>0?'+':''}${n.toLocaleString('fr-FR',{maximumFractionDigits:2})} pts`
@@ -30,7 +30,7 @@ export default function Analytics({profile,analysis,onViewChange,baseline,onBase
  {simulationError&&<p role="alert">{simulationError}</p>}
  {!lines.length&&!simulationError&&<p>Aucun versement mensuel à analyser.</p>}
  {!!lines.length&&<>
- <div className="dca-metrics">{['countries','sectors'].map(field=>{const x=result.exposures[field],d=exposureDisplay(x),lead=x.groups[0]?.rows[0];return <article key={field}><span>{field==='countries'?'Premier pays observé':'Premier secteur observé'}</span><strong>{lead?pct(lead.weight):'—'}</strong><b>{lead?.name||'Pas de ventilation'}</b><small>{pct(d.coverage)} ventilés · {pct(d.missing)} non ventilés{x.neutralWeight>0&&` · ${pct(x.neutralWeight)} hors classification`} · parts du portefeuille</small></article>})}<article><span>Titres identifiés</span><strong>{loading?'…':group?.identified||0}</strong><b>{group?titleScope(group.scope):'Analyse en cours de qualification'}</b><small>{loading?'Chargement des compositions…':`${pct(group?.coverage||0)} du portefeuille identifié`}</small></article></div>
+ <div className="dca-metrics">{['countries','sectors'].map(field=>{const x=result.exposures[field],d=exposureDisplay(x),lead=x.groups[0]?.rows[0];return <article key={field}><span>{field==='countries'?'Premier pays observé':'Premier secteur observé'}</span><strong>{lead?pct(lead.weight):'—'}</strong><b>{lead?.name||'Pas de ventilation'}</b><small>{pct(d.coverage)} ventilés{d.missing>=MIN_VISIBLE_MISSING_EXPOSURE&&` · ${pct(d.missing)} non ventilés`}{x.neutralWeight>0&&` · ${pct(x.neutralWeight)} hors classification`} · parts du portefeuille</small></article>})}<article><span>Titres identifiés</span><strong>{loading?'…':group?.identified||0}</strong><b>{group?titleScope(group.scope):'Analyse en cours de qualification'}</b><small>{loading?'Chargement des compositions…':`${pct(group?.coverage||0)} du portefeuille identifié`}</small></article></div>
  {loading&&<p role="status">Chargement de l’analyse des détentions…</p>}{state.error&&<p role="alert">{Object.keys(state.holdings).length?'Certaines compositions sont indisponibles ; les autres restent affichées.':'Les compositions n’ont pas pu être chargées.'} <button onClick={()=>setRetry(n=>n+1)}>Relancer l’analyse</button></p>}
  <details className="dca-analysis-detail"><summary>Concentration et poids cumulés</summary>
  <p>Chaque titre est rapproché par ISIN. Les ADR et classes d’actions restent distincts. Les chiffres portent sur l’allocation sélectionnée ci-dessus.</p>

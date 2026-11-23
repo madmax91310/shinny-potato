@@ -74,6 +74,8 @@ class BnpDocuments(unittest.TestCase):
                 discover(self.page(share, dates), share, NOW, self.country(share))
 
     def test_october_official_factsheets_use_the_observation_date(self):
+        from refresh_additional_etf import refresh
+
         now = dt.datetime(2026, 11, 22, tzinfo=dt.timezone.utc)
         expected = [
             ('2026-10-30', '2026-11-07', 9_092_430_000, 0.14, '2025-12-31', 'index', 37.45),
@@ -105,16 +107,34 @@ class BnpDocuments(unittest.TestCase):
                 self.assertEqual(result['holdings']['basis'], basis)
                 self.assertEqual(result['sectors']['basis'], basis)
                 self.assertEqual(result['sectors']['rows'][0]['weightPct'], leading_sector)
+                old = {}
+                if i != 1:
+                    published_countries = {**older_countries, 'asOf': '2026-10-31',
+                                           'sourceUrl': 'https://example.com/qualified'}
+                    old[share['isin']] = {'currency': share['currency'], 'productId': share['isin'],
+                                          'countries': published_countries}
+                merged, report = refresh({'instruments': [share]}, old, {}, now, lambda *_: result)
+                observation = report['shares'][0]
+                self.assertEqual(observation['status'], 'validated')
+                self.assertEqual(observation['collectionErrors'], [])
+                evidence = observation['bnpDocument']
+                self.assertEqual(evidence['sourceUrl'], self.document_url(1))
+                self.assertEqual(evidence['sha256'], result['aum']['sha256'])
+                self.assertEqual((evidence['asOf'], evidence['referenceDate'], evidence['publicationDate']),
+                                 ('2026-10-30', reference, publication))
+                self.assertEqual(evidence['aum'], {'amount': aum, 'currency': share['currency'], 'scope': 'fund'})
+                self.assertEqual(evidence['terPct'], fee)
+                self.assertEqual(evidence['basis'], {'holdings': basis, 'sectors': basis, 'performance': 'fund'})
+                self.assertEqual(evidence['publishedCountries']['basis'], 'index')
                 if i == 1:
+                    self.assertEqual(evidence['publishedCountries']['asOf'], '2026-10-30')
+                    self.assertEqual(evidence['publishedCountries']['sourceUrl'], self.document_url(1))
                     self.assertEqual(result['countries']['basis'], 'index')
                     self.assertEqual(result['countries']['rows'][0], {'name': 'United Kingdom', 'weightPct': 18.90})
                 else:
-                    published_countries = {**older_countries, 'asOf': '2026-10-31',
-                                           'sourceUrl': 'https://example.com/qualified'}
-                    old = {share['isin']: {'currency': share['currency'], 'productId': share['isin'],
-                                           'countries': published_countries}}
-                    merged = merge_collection({'checkedAt': now.isoformat(), 'shares': [result]}, old, {})
                     self.assertEqual(merged[share['isin']]['countries'], published_countries)
+                    self.assertEqual(evidence['publishedCountries']['asOf'], '2026-10-31')
+                    self.assertEqual(evidence['publishedCountries']['sourceUrl'], published_countries['sourceUrl'])
 
     def test_nasdaq_month_end_adjustment_requires_matching_product_date(self):
         share = SHARES[2]
@@ -126,6 +146,41 @@ class BnpDocuments(unittest.TestCase):
                 page = self.page(share, ((reference, '2026-11-04'),), product_date=corroboration)
                 with patch('collect_bnp_etf.pdf_text', return_value=text):
                     collect_one(share, now, {share['discoveryUrl']: page, self.document_url(1): b'%PDF-test'}.__getitem__)
+
+    def test_sunday_month_end_accepts_only_corroborated_shares(self):
+        now = dt.datetime(2027, 2, 5, tzinfo=dt.timezone.utc)
+        dates = (('2027-01-31', '2027-02-04'),)
+        for i, share in enumerate(SHARES):
+            with self.subTest(isin=share['isin']):
+                page = self.page(share, dates, product_date='2027-01-29')
+                result = discover(page, share, now, self.country(share))
+                self.assertEqual(result[3], '2027-01-29' if i else '2027-01-31')
+                malformed = self.page(share, (('2027-01-31', '2027-01-30'),))
+                with self.assertRaisesRegex(ValueError, 'publication predates'):
+                    discover(malformed, share, now, self.country(share))
+
+    def test_official_provenance_replaces_identical_mirror_bytes_and_keeps_newer_performance(self):
+        share = SHARES[1]
+        isin = share['isin']
+        with patch('collect_bnp_etf.pdf_text', return_value=self.text(1)):
+            incoming = collect_one(share, NOW, {share['discoveryUrl']: self.page(share),
+                                                self.document_url(1): b'%PDF-identical'}.__getitem__)
+        previous_facts = {**incoming['characteristics'], 'documentHost': 'Analizy',
+                          'documentAdvertisedAsOf': '2026-08-31',
+                          'sourceUrl': 'https://dokumenty.analizy.pl/fixture',
+                          'discoveryUrl': 'https://www.analizy.pl/fixture',
+                          'sourceLabel': 'Copie Analizy'}
+        del previous_facts['documentPublicationDate']
+        previous_performance = {**incoming['performance'], 'asOf': '2026-09-30'}
+        old = {isin: {'currency': 'EUR', 'productId': isin, 'characteristics': previous_facts,
+                      'performance': previous_performance}}
+        report = {'checkedAt': NOW.isoformat(), 'shares': [incoming]}
+        merged = merge_collection(report, old, {})[isin]
+        self.assertEqual(merged['characteristics']['documentHost'], 'BNP Paribas Asset Management')
+        self.assertEqual(merged['characteristics']['documentPublicationDate'], '2026-09-04')
+        self.assertEqual(merged['performance'], previous_performance)
+        previous_facts['sha256'] = '0' * 64
+        self.assertEqual(merge_collection(report, old, {})[isin]['characteristics'], previous_facts)
 
     def test_wrong_isin_currency_identity_and_date_rejected(self):
         for old, new in [('FR0011550185','FR0011550177'), ('Fund Factsheet EUR C','Fund Factsheet USD C'),

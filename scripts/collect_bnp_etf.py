@@ -61,6 +61,7 @@ def exposures(text, share, stamp):
 
 CATALOGUE_URL = r'https://api\.bnpparibas-am\.com/push/fundsheet/[A-Z_]+-FSE/[A-Z]{3}/([A-Z]{3})/'
 PDF_URL = r'https://docfinder\.bnpparibas-am\.com/api/files/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/[0-9]+'
+WEEKEND_REFERENCE_SHARES = {'FR0011550193', 'IE000QDFFK00'}
 DOCUMENT_TYPES = {'easy-fr': 'DOC_FACTSHEET', 'easy-ii': 'DOC_FACTSHEET_B2B'}
 
 
@@ -97,7 +98,7 @@ def discover(body, share, now, country):
     if publication < reference:
         reject('BNP catalogue publication predates its document reference')
     expected = reference
-    if share['isin'] == 'IE000QDFFK00':
+    if share['isin'] in WEEKEND_REFERENCE_SHARES:
         end = dt.date.fromisoformat(reference)
         if end.weekday() >= 5 and (end + dt.timedelta(days=1)).month != end.month:
             friday = (end - dt.timedelta(days=end.weekday() - 4)).isoformat()
@@ -177,7 +178,7 @@ def parse(text, share, now, expected_date):
     return result
 
 
-def collect_one(share, now, fetch=None):
+def load_factsheet(share, now, fetch=None):
     page = share['discoveryUrl']
     route = re.fullmatch(CATALOGUE_URL + re.escape(share['isin']), page)
     if not route:
@@ -188,18 +189,29 @@ def collect_one(share, now, fetch=None):
             return fetch(url)
         return download(url, url_validator=lambda candidate: candidate == url)
 
-    url, reference, publication, expected = discover(fetch_official(page), share, now, route[1])
+    catalogue = fetch_official(page)
+    url, reference, publication, expected = discover(catalogue, share, now, route[1])
     body = fetch_official(url)
     result = parse(pdf_text(body), share, now, expected)
+    evidence = dict(sourceUrl=page, sha256=proof(catalogue), advertisedAsOf=reference,
+                    publicationDate=publication)
+    if expected != reference:
+        evidence['catalogueReferenceDate'] = expected
+    return result, body, url, evidence
+
+
+def collect_one(share, now, fetch=None):
+    result, body, url, evidence = load_factsheet(share, now, fetch)
     result['sourceUrl'] = url
     digest = proof(body)
     for field in ('characteristics', 'aum', 'performance', 'countries', 'sectors', 'holdings'):
         if field not in result:
             continue
-        result[field].update(sourceUrl=url, discoveryUrl=page, sha256=digest,
+        result[field].update(sourceUrl=url, discoveryUrl=evidence['sourceUrl'], sha256=digest,
                              sourceLabel='Fiche BNP Paribas Asset Management',
                              publisher='BNP Paribas Asset Management', documentHost='BNP Paribas Asset Management',
-                             documentAdvertisedAsOf=reference, documentPublicationDate=publication)
+                             documentAdvertisedAsOf=evidence['advertisedAsOf'],
+                             documentPublicationDate=evidence['publicationDate'])
     if share.get('collectTrackedCountries'):
         from collect_tracked_exposure import collect_one as tracked_exposure
         try:

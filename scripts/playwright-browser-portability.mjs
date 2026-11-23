@@ -2,12 +2,78 @@
 import assert from 'node:assert/strict'
 import {readFile, mkdir} from 'node:fs/promises'
 import {expect} from 'playwright/test'
-import {staticBrowser,staticBase} from './static-browser.mjs'
+import {staticBrowser,staticBrowserContext,staticBase} from './static-browser.mjs'
 import {BUDGET_PROFILES} from '../src/pages/budget-profiles/data.js'
 import {DRAFT_KEY,WORKSPACE_KEY} from '../src/pages/budget-profiles/storage.js'
 const dir='test-artifacts/browser-portability'
 await mkdir(dir,{recursive:true})
 const custom='Brouillon synthétique — été & caractères < > « »\nDeuxième ligne.'
+const clipboardAttempts=3
+
+async function checkClipboard(browser,engine,attempt,denied){
+ const context=await staticBrowserContext(browser,390)
+ const page=await context.newPage()
+ const scenario=denied?'denied':'native'
+ const text=`${custom}\n${engine} · ${scenario} · ${attempt}`
+ const trace=`${dir}/${engine}-clipboard-${scenario}-${attempt}.zip`
+ await context.tracing.start({screenshots:true,snapshots:true})
+ try{
+  await page.addInitScript(({key,profile,text,denied})=>{
+   localStorage.setItem(key,JSON.stringify({profile,text,edited:true}))
+   if(!denied)return
+   const calls={write:[],fallback:[]}
+   window.__clipboardCalls=calls
+   Object.defineProperty(navigator,'clipboard',{
+    configurable:true,
+    value:{writeText:async text=>{
+     calls.write.push(text)
+     throw new DOMException('Denied','NotAllowedError')
+    }},
+   })
+   Object.defineProperty(document,'execCommand',{
+    configurable:true,
+    value:command=>{
+     calls.fallback.push(command)
+     return false
+    },
+   })
+  },{key:DRAFT_KEY,profile:BUDGET_PROFILES[0],text,denied})
+  await page.goto(staticBase+'le-budget-de')
+  const editor=page.getByLabel('Texte prêt à publier')
+  const status=page.locator('#workspace-main p[role=status][aria-live=polite]')
+  await expect(editor).toHaveValue(text)
+  await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
+  if(denied){
+   await expect.poll(()=>page.evaluate(()=>window.__clipboardCalls)).toEqual({write:[text],fallback:['copy']})
+   await expect(status).toHaveText('Copie impossible. Sélectionne le texte.')
+   await expect(editor).toHaveValue(text)
+  }else{
+   await expect(status).toHaveText('Texte copié.')
+   // Paste with a trusted key event into a field independent of the draft.
+   await page.evaluate(()=>{
+    const target=document.createElement('textarea')
+    target.id='clipboard-proof'
+    document.body.append(target)
+    target.focus()
+   })
+   await page.keyboard.press('Control+V')
+   await expect(page.locator('#clipboard-proof')).toHaveValue(text)
+  }
+  await context.tracing.stop()
+ }catch(error){
+  const diagnostic=await page.evaluate(()=>({
+   statuses:[...document.querySelectorAll('#workspace-main [role=status]')].map(node=>node.textContent),
+   calls:window.__clipboardCalls,
+   focused:document.activeElement?.tagName,
+  })).catch(()=>null)
+  console.error(`${engine} clipboard ${scenario} attempt ${attempt}:`,JSON.stringify(diagnostic))
+  await context.tracing.stop({path:trace}).catch(traceError=>console.error('Clipboard trace:',traceError))
+  throw error
+ }finally{
+  await context.close()
+ }
+}
+
 async function png(page,action,name){
  const pending=page.waitForEvent('download'); await action();const download=await pending
  assert.equal(await download.failure(),null)
@@ -22,6 +88,11 @@ for(const engine of ['chromium','firefox','webkit']){
  const {browser,context,page}=await staticBrowser(390,engine)
  const errors=[];page.on('pageerror',e=>errors.push(e.message))
  try{
+  for(let attempt=1;attempt<=clipboardAttempts;attempt++){
+   await checkClipboard(browser,engine,attempt,false)
+   await checkClipboard(browser,engine,attempt,true)
+  }
+  console.log(`${engine}: native and denied clipboard passed ${clipboardAttempts} times each`)
   await page.addInitScript(({key,profile,text})=>{
    if(!sessionStorage.getItem('seeded')){localStorage.setItem(key,JSON.stringify({profile,text,edited:true}));sessionStorage.setItem('seeded','1')}
    const active=new Set(),create=URL.createObjectURL.bind(URL),revoke=URL.revokeObjectURL.bind(URL)
@@ -34,18 +105,6 @@ for(const engine of ['chromium','firefox','webkit']){
   await expect(editor).toHaveValue(custom)
   const edited=custom+'\nDernière frappe.'
   await editor.fill(edited);await page.reload();await expect(editor).toHaveValue(edited)
-  // Exercise the native write path with a trusted click, then paste into an unrelated field.
-  await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
-  await expect(page.locator('#workspace-main p[role=status]').filter({hasText:'Texte copié.'})).toBeVisible()
-  await page.evaluate(()=>{const target=document.createElement('textarea');target.id='clipboard-proof';document.body.append(target);target.focus()})
-  await page.keyboard.press('Control+V')
-  await expect(page.locator('#clipboard-proof')).toHaveValue(edited)
-  await page.locator('#clipboard-proof').evaluate(node=>node.remove())
-  // Explicitly denied clipboard: manual recovery must preserve the draft and never claim success.
-  await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new DOMException('Denied','NotAllowedError')}}});document.execCommand=()=>false})
-  await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
-  await expect(page.getByRole('status').filter({hasText:'Copie impossible. Sélectionne le texte.'})).toBeVisible()
-  await expect(editor).toHaveValue(edited)
   const imageButton=page.getByRole('button',{name:'Télécharger le PNG',exact:true})
   // PNG encoding may exceed the generic 5 s assertion on a busy CI runner.
   // Observe the actual selected-page lifecycle; still require an enabled export.
@@ -111,6 +170,6 @@ for(const engine of ['chromium','firefox','webkit']){
    await png(page,()=>dialog.getByRole('button',{name:'⬇️ Télécharger',exact:true}).click(),`${engine}-etf`)
   }
   assert.deepEqual(errors,[])
-  console.log(`${engine}: PNG decoded, JSON read, legacy draft/reload, native clipboard paste and denied clipboard, quota/recovery, repeated exports and resource cleanup passed`)
+  console.log(`${engine}: PNG decoded, JSON read, legacy draft/reload, quota/recovery, repeated exports and resource cleanup passed`)
  }finally{await context.close();await browser.close()}
 }

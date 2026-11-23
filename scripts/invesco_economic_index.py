@@ -176,23 +176,26 @@ def qualify_subject(isin,now,fetch=download,*,attempts=None):
             raise ValueError('Wrong Amundi subject share or notional net benchmark')
         stamp=document_date(dates.pop(),now)
         return raw,url,stamp,None
-    if isin=='FR0011550193'or share.get('shareDocumentKind')=='bnp-index-factsheet':
-        from collect_bnp_etf import discover,parse
+    if share.get('shareDocumentKind')=='bnp-index-factsheet':
+        from collect_bnp_etf import load_factsheet
         instruments=json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']
         config=next(r for r in instruments if r['isin']==isin)
-        discovery=share['shareDocumentDiscoveryUrl'];page=fetch(discovery)
-        url,stamp=discover(page,config,now);raw=fetch(url)
-        result=parse(pdf_text(raw),config,now,stamp)
-        expected=share.get('shareBenchmarkLabel','STOXX Europe 600 NR')
-        if result['characteristics']['index']!=expected:raise ValueError('Wrong BNP economic benchmark')
-        return raw,url,result['characteristics']['asOf'],dict(sourceUrl=discovery,sha256=digest(page),advertisedAsOf=stamp)
+        if config['discoveryUrl']!=share['shareOfficialCatalogueUrl']:
+            raise ValueError('Wrong BNP official catalogue for economic benchmark')
+        result,raw,url,discovery=load_factsheet(config,now,None if fetch is download else fetch)
+        if result['characteristics']['index']!=share['shareBenchmarkLabel']:
+            raise ValueError('Wrong BNP economic benchmark')
+        return raw,url,result['characteristics']['asOf'],discovery
     raise ValueError('Unqualified subject share')
 
 @lru_cache(maxsize=16)
 def _acquire_index(index_id,now,fetch):
     index=CONTRACTS['indices'][index_id]
     try:
-        metadata=fetch(index['metadataSourceUrl'])
+        try:
+            metadata=fetch(index['metadataSourceUrl'])
+        except urllib.error.HTTPError as error:
+            raise ValueError(f"Invesco index metadata HTTP {error.code}: {index['metadataSourceUrl']}") from error
         result=subprocess.run(['node',str(ROOT/'scripts/capture-invesco-economic-index.mjs'),index_id],
                               capture_output=True,text=True,timeout=100,check=False)
         if result.returncode:raise ValueError('Public issuer economic-index capture: '+result.stderr[-1200:])
@@ -248,16 +251,19 @@ def collect(share,now,fetch=download,capture=None):
     isin=share['isin'];subject,index=contracts(isin)
     if share.get('currency')!=subject.get('shareCurrency','EUR'):raise ValueError('Wrong subject share currency')
     subject_attempts=[]
-    raw,url,stamp,discovery=qualify_subject(isin,now,fetch,attempts=subject_attempts)
+    try:
+        raw,url,stamp,discovery=qualify_subject(isin,now,fetch,attempts=subject_attempts)
+    except urllib.error.HTTPError as error:
+        raise ValueError(f'Subject benchmark HTTP {error.code}: {error.url}') from error
+    from collect_physical_holdings import source_proof
+    source_proof(share,'subject-benchmark',raw)
     policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.default']
     if (now.date()-dt.date.fromisoformat(stamp)).days>policy['dataDays']:raise ValueError('Subject benchmark proof is stale')
     if capture is None:
         metadata,capture=acquire_index(subject['indexId'],now,fetch)
     else:metadata=fetch(index['metadataSourceUrl'])
-    from collect_physical_holdings import source_proof
     source_proof(share,'economic-index-capture',capture)
     source_proof(share,'economic-index-metadata',metadata)
-    source_proof(share,'subject-benchmark',raw)
     record=parse_capture(capture,metadata,isin,now)
     if subject.get('referenceOnly'):
         record['approximation']=True
@@ -280,7 +286,10 @@ def collect(share,now,fetch=download,capture=None):
     if len(subject_attempts)>1:record['shareSourceAttempts']=subject_attempts
     if discovery:
         record.update(shareDiscoverySourceUrl=discovery['sourceUrl'],shareDiscoverySha256=discovery['sha256'])
-        if 'advertisedAsOf' in discovery:
-            record['shareDocumentAdvertisedAsOf'] = discovery['advertisedAsOf']
+        for field,key in (('shareDocumentAdvertisedAsOf','advertisedAsOf'),
+                          ('shareDocumentPublicationDate','publicationDate'),
+                          ('shareCatalogueReferenceDate','catalogueReferenceDate')):
+            if key in discovery:
+                record[field]=discovery[key]
         record['sourceUrls'].append(discovery['sourceUrl'])
     return record

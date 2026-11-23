@@ -9,6 +9,7 @@ for(const [i,p] of PROFILES.entries()){
  assert.equal(a.monthly,p.monthly)
  assert.equal(prepared.lines.reduce((s,l)=>s+l.weight,0),100)
  assert(buildTweetText(prepared).includes('💼'))
+ assert.doesNotMatch(buildTweetText(prepared),/écart d[’']arrondi/i)
  assert(!/NaN|undefined|profil fictif/.test(buildTweetText(prepared)))
  for(const field of ['countries','sectors'])assert(a[field].coverage>=0&&a[field].coverage<=100.001)
 }
@@ -16,7 +17,7 @@ const p={...prepareProfile(PROFILES[0]),lines:[{asset:'world',label:'World',weig
 assert.equal(analyzeProfile(p).changes[0].share,50)
 assert.equal(analyzeProfile(p).changes[0].delta,-30)
 // Physical funds retain cash outside equities; a short published country table
-// also retains its missing slice (World currently totals 99.99995%, not 100%).
+// retains its exact missing weight in the coverage calculations.
 const expectedCoverage = profile => profile.lines.reduce((sum, line) => {
  const ref=references[line.asset]
  const published=ref.countries.rows.reduce((total,row)=>total+row.weightPct,0)
@@ -71,6 +72,15 @@ const snapshot=(coverage,rows,asOf='2026-10-01')=>({coverage,rows,asOf,basis:'fu
 const partial=donutData({countries:{groups:[snapshot(60,[{name:'France',weight:30},{name:'Japon',weight:30}]),snapshot(40,[{name:'États-Unis',weight:40}],'2026-09-30')]}})
 assert.equal(partial.rows.find(r=>r.name==='Non ventilé ici').weight,40)
 assert(!partial.rows.some(r=>r.name==='États-Unis'))
+for(const field of ['countries','sectors']){
+ const exposure={groups:[snapshot(85.825,[{name:'A',weight:34.33},{name:'B',weight:51.495}])],neutralWeight:14.17}
+ const donut=donutData({[field]:exposure},field)
+ assert.deepEqual(donut.rows.map(row=>row.name),['A','B'])
+ assert(Math.abs(donut.rows.reduce((sum,row)=>sum+row.weight,0)-100)<1e-8)
+ assert.deepEqual(integerPercentages(donut.rows),[40,60])
+ assert.equal(donut.scope,'Périmètre pays/secteurs · 85,83 % du portefeuille')
+ assert(Math.abs(exposureDisplay(exposure).missing-0.005)<1e-8)
+}
 assert.equal(donutData({countries:{groups:[]}}).rows[0].weight,100)
 assert.equal(incomeLabel({job:'retraité',variable:false}),'Retraite')
 const karim={...p,name:'Karim',emoji:'👦',age:32,job:'informaticien',income:2500,lines:[

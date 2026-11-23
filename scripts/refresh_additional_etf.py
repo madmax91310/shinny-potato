@@ -81,6 +81,24 @@ def collect_one(share,now):
     return {'vanguard':vanguard,'vaneck':vaneck,'invesco':invesco,'amundi-index':amundi_index}[share['parser']](share,now)
 
 
+def bnp_document_evidence(result, published):
+    """Expose the PDF checks independently of previously published fields."""
+    aum = result['aum']
+    return {
+        'sourceUrl': aum['sourceUrl'],
+        'sha256': aum['sha256'],
+        'asOf': aum['asOf'],
+        'referenceDate': aum['documentAdvertisedAsOf'],
+        'publicationDate': aum['documentPublicationDate'],
+        'aum': {key: aum[key] for key in ('amount', 'currency', 'scope')},
+        'terPct': result['characteristics']['terPct'],
+        'basis': {field: result[field]['basis'] for field in ('holdings', 'sectors', 'performance')
+                  if field in result},
+        'publishedCountries': {key: published['countries'][key] for key in ('asOf', 'sourceUrl', 'basis')
+                               if key in published.get('countries', {})},
+    }
+
+
 def refresh(config,current,baseline,now=None,collect=collect_one):
     now=now or dt.datetime.now(UTC)
     def one(share):
@@ -97,10 +115,14 @@ def refresh(config,current,baseline,now=None,collect=collect_one):
                 result.setdefault('unavailable',[]).append('performance: existing simulation currency differs; history preserved')
                 result.pop('performance')
             merged=merge_collection({'checkedAt':now.isoformat(),'shares':[result]},current,baseline)
-            return {'isin':share['isin'],'provider':share['provider'],'status':'validated','record':merged[share['isin']],
-                    'unavailable':result.get('unavailable',[]),'sourceUrl':result.get('sourceUrl'),
-                    'collectionErrors':result.get('collectionErrors',[]),
-                    'sourceAttempts':result.get('sourceAttempts',[])}
+            record = merged[share['isin']]
+            observation = {'isin':share['isin'],'provider':share['provider'],'status':'validated','record':record,
+                           'unavailable':result.get('unavailable',[]),'sourceUrl':result.get('sourceUrl'),
+                           'collectionErrors':result.get('collectionErrors',[]),
+                           'sourceAttempts':result.get('sourceAttempts',[])}
+            if share.get('parser') == 'bnp-document':
+                observation['bnpDocument'] = bnp_document_evidence(result, record)
+            return observation
         except Exception as error:
             return {'isin':share['isin'],'provider':share['provider'],'status':'failed','reason':str(error),
                     'sourceUrl':share.get('sourceUrl',share.get('pageUrl')),
@@ -119,7 +141,14 @@ def main():
     write_json_atomic(args.output,report)
     if args.apply and merged!=json.loads(path.read_text()):write_json_atomic(path,merged)
     print(f"ETF extension: {sum(o['status']=='validated'for o in report['shares'])}/{len(report['shares'])} shares validated; all exceptions recorded.")
+    bnp_isins = {share['isin'] for share in config['instruments'] if share.get('parser') == 'bnp-document'}
     for observation in report['shares']:
+        if observation['isin'] in bnp_isins:
+            status = observation['status']
+            if observation.get('collectionErrors'):
+                status = 'partial'
+            details = observation.get('bnpDocument') or {'reason': observation.get('reason')}
+            print(f"BNP {observation['isin']} — {status} — {json.dumps(details, ensure_ascii=False, sort_keys=True)}")
         if observation.get('sourceAttempts'):
             print(source_attempts_text(observation))
         if observation['status'] == 'failed':

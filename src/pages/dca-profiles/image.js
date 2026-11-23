@@ -1,7 +1,7 @@
 import { shortDonutName, holdingColor, holdingPercentage } from './donut-layout.js'
 import { fitImageCanvas } from './image-canvas.js'
 import { exposureRecords } from './records.js'
-import { exposureView } from './exposure.js'
+import { exposureView, MIN_VISIBLE_MISSING_EXPOSURE } from './exposure.js'
 import { profilePositionLimit, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
 import { incomeLabel, sortHoldings, sortContributions } from './lib.js'
 import { portfolioAnalytics, analyzedLines, analysisView, selectConcentrationGroup } from './analytics.js'
@@ -26,7 +26,7 @@ export function integerPercentages(rows){
  return values
 }
 // Most-covered compatible synthesis, preserving the actual source date range.
-// Missing coverage keeps its true weight in grey; never renormalize known countries to 100%.
+// Keep meaningful missing coverage in grey. Close sub-precision gaps in the chart only.
 export function donutData(analysis,field='countries',limit=4){
  const view=exposureView(analysis[field]),{group}=view
  if(!view.eligible)return {...view,group:null,rows:[{name:'Sans objet',weight:100,color:'#57718e'}]}
@@ -36,8 +36,10 @@ export function donutData(analysis,field='countries',limit=4){
  const rows=named.slice(0,count).map((r,i)=>({...r,color:colors[i]}))
  const rest=known.reduce((s,r)=>s+r.weight,0)-rows.reduce((s,r)=>s+r.weight,0)
  if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:'#aec8df'})
- const missing=Math.max(0,100-rows.reduce((s,r)=>s+r.weight,0))
- if(missing>1e-9)rows.push({name:missing<.01?'Écart d’arrondi':'Non ventilé ici',weight:missing,color:'#57718e'})
+ const total=rows.reduce((s,r)=>s+r.weight,0)
+ const missing=Math.max(0,100-total)
+ if(missing>=MIN_VISIBLE_MISSING_EXPOSURE)rows.push({name:'Non ventilé ici',weight:missing,color:'#57718e'})
+ else if(missing>0)return {...view,group,rows:rows.map(row=>({...row,weight:100*row.weight/total}))}
  return {...view,group,rows}
 }
 function exposurePanel(ctx,a,field,x,y,width,limit,showScope=true){
@@ -47,7 +49,7 @@ function exposurePanel(ctx,a,field,x,y,width,limit,showScope=true){
  let angle=-Math.PI/2
  for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
  const percentages=integerPercentages(rows)
- const lead=rows.findIndex(r=>!['Non ventilé ici','Écart d’arrondi','Sans objet'].includes(r.name))
+ const lead=rows.findIndex(r=>!['Non ventilé ici','Sans objet'].includes(r.name))
  if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,percentages[lead]),cx,cy+5,270,52);centered(ctx,rows[lead].name,cx,cy+47,260,23,C.muted,400)}
  rows.forEach((row,i)=>{
   if(!showScope){
@@ -141,7 +143,7 @@ function fullPortfolio(ctx,p,a){
   text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',755,y+59,780,37,C.ivory,700,'DcaEditorial')
   text(ctx,donutData(a,field,p.exposureLimit).scope,755,y+87,780,19,C.muted,400)
   ring(ctx,rows,899,y+235,140,94)
-  const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
+  const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici'].includes(r.name))
   if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,rounded[lead]),899,y+231,173,41);centered(ctx,rows[lead].name,899,y+273,168,17,C.muted,400)}
   else centered(ctx,'Non ventilé',899,y+239,170,23,C.muted)
   const gap=rows.length>6?34:rows.length>5?37:49,legendSize=rows.length>6?24:27

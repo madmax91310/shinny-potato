@@ -106,9 +106,18 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             # A poll is only a conservative bound when the observation date is
             # unknown, never the date assigned to the data. A dated document may
             # fill null/absent fields without replacing any known value.
-            known_values_unchanged = (bool(old.get('characteristics'))
-                and all(characteristics.get(k) == v for k,v in old['characteristics'].items()
-                        if v is not None and k not in AUDIT_DATES | {'sha256','sourceUrl','asOf'}))
+            previous_facts = old.get('characteristics', {})
+            observed_facts = share.get('characteristics', {})
+            metadata_keys = AUDIT_DATES | {'sha256', 'sourceUrl', 'asOf'}
+            if (share.get('parser') == 'bnp-document'
+                    and previous_facts.get('documentHost') == 'Analizy'
+                    and observed_facts.get('documentHost') == 'BNP Paribas Asset Management'
+                    and observed_facts.get('sha256') and observed_facts['sha256'] == previous_facts.get('sha256')):
+                metadata_keys |= {'discoveryUrl', 'sourceLabel', 'documentHost',
+                                  'documentAdvertisedAsOf', 'documentPublicationDate'}
+            known_values_unchanged = bool(previous_facts) and all(
+                characteristics.get(k) == v for k, v in previous_facts.items()
+                if v is not None and k not in metadata_keys)
             date_bound = active_facts_date or old.get('characteristics', {}).get('checkedAt', '')
             if (checked >= old.get('characteristics', {}).get('checkedAt', '')
                     and (not facts_date or not date_bound or facts_date > date_bound
@@ -162,7 +171,9 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             record['fieldQualification'] = copy.deepcopy(share['fieldQualification'])
             record['qualificationCheckedAt'] = checked
         performance = share.get('performance')
-        if not performance:
+        previous_performance = old.get('performance', {})
+        if (not performance or (share.get('parser') == 'bnp-document' and performance.get('asOf')
+                and performance['asOf'] < (previous_performance.get('asOf') or ''))):
             next_records[isin] = record
             continue
         # Store complete annual observations by year; consumers select a common window.
@@ -192,7 +203,6 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             first_year = launch.year + ((launch.month, launch.day) != (1, 1))
             if any(int(year) < first_year for year in years):
                 reject('Recent share calendar includes a partial launch year or a predecessor history')
-        previous_performance = old.get('performance', {})
         launch_text = record.get('characteristics', {}).get('inceptionDate')
         launch = dt.date.fromisoformat(launch_text) if isinstance(launch_text, str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}', launch_text) else None
         if isinstance(launch_text, str) and re.fullmatch(r'\d{8}', launch_text):

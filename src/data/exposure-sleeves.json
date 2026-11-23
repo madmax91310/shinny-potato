@@ -278,21 +278,21 @@
   },
   "IE000UL6CLP7": {
     "sectors": {
-      "asOf": "2026-11-19",
+      "asOf": "2026-11-20",
       "checkedAt": "2026-11-23",
       "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
-      "sha256": "e74689bdde7263a93098c719c954e5bae2f607798a75d9d4d2a50d0d6bcebe24",
+      "sha256": "586e21317939bdc73e4597f0ba712f101654400839bf7042d5fcae030b80588f",
       "basis": "fund",
       "compatibility": "morningstar-equity-sectors",
       "classificationLabel": "Secteurs actions Morningstar",
       "weightBasis": "original-fund-nav-percentage",
       "normalizationApplied": false,
-      "sourceCoverage": 99.65,
+      "sourceCoverage": 99.93,
       "method": "Morningstar equity-sector percentages multiplied by the same dated published net stock allocation; non-equity NAV remains outside the classified rows; no renormalisation; exact UCITS share verified",
       "rows": [
         {
           "name": "Basic Materials",
-          "weightPct": 99.47063
+          "weightPct": 99.76011900000002
         },
         {
           "name": "Consumer Cyclical",
@@ -324,7 +324,7 @@
         },
         {
           "name": "Consumer Defensive",
-          "weightPct": 0.17937
+          "weightPct": 0.16988100000000003
         },
         {
           "name": "Healthcare",
@@ -339,7 +339,7 @@
   },
   "IE0003R87OG3": {
     "countries": {
-      "asOf": "2026-11-19",
+      "asOf": "2026-11-20",
       "holdingsAsOf": "2026-11-20",
       "checkedAt": "2026-11-23",
       "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
@@ -503,10 +503,6 @@
           "weightPct": 0.0
         },
         {
-          "isin": "DE0005759807",
-          "weightPct": 0.0
-        },
-        {
           "isin": "GB00B2NDK765",
           "weightPct": 0.0
         },
@@ -535,11 +531,11 @@
           "weightPct": 0.0
         },
         {
-          "isin": "IL0012125394",
+          "isin": "JP3126000003",
           "weightPct": 0.0
         },
         {
-          "isin": "JP3948400001",
+          "isin": "IL0012125394",
           "weightPct": 0.0
         },
         {
@@ -557,7 +553,7 @@
     "underlierEvidence": {
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
       "checkedAt": "2026-11-23",
-      "sha256": "4f32ea7bfb10cca14d7cdfd58f61df25207078963c859c325bc8354684fd1e11",
+      "sha256": "9210197117938c2561a2dafecaf295c9e4ddb5c8bc0da697f04fbb7a9c4c3e06",
       "underlier": "Nasdaq-100"
     }
   },

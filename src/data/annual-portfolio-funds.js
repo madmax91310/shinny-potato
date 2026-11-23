@@ -1,5 +1,6 @@
 import { AUTOMATED_ETF } from './automated-etf.js'
 import { MANUAL_SOURCE_ROUTES } from './portfolio-admissions.js'
+import { isBnpDocfinderUrl } from './bnp-document-evidence.js'
 import { getInstrumentName, INSTRUMENTS_BY_ISIN } from './instruments.js'
 import { QUALIFIED_FUND_CALENDARS, qualifiedFundCalendars, currentAnnualEvidence, closedCalendarYears } from './qualified-annual-calendars.js'
 import FX from './monthly-fx.json' with { type: 'json' }
@@ -60,8 +61,16 @@ export function qualifiedManualMechanism(isin, characteristics, now = new Date()
 }
 export function qualifyPreferredManualNav(record, now = new Date()) {
   const route=MANUAL_SOURCE_ROUTES[record?.isin]
-  if (!route || record.currency!==route.currency || record.instrumentType!==route.instrumentType
-    || record.basis!=='fund-nav' || record.frequency!=='annual' || record.sourceUrls?.[0]!==route.source
+  if (!route) return null
+  const source = record.sourceUrls?.[0], evidence = record.documentEvidence
+  const officialBnp = route.bnpCatalogueUrl && isBnpDocfinderUrl(source)
+    && evidence?.catalogueUrl === route.bnpCatalogueUrl && /^[a-f0-9]{64}$/.test(evidence.sha256 ?? '')
+    && evidence.referenceDate === record.asOf
+    && /^\d{4}-\d{2}-\d{2}$/.test(evidence.publicationDate ?? '')
+    && new Date(Date.parse(evidence.publicationDate)).toJSON()?.slice(0, 10) === evidence.publicationDate
+    && evidence.publicationDate >= evidence.referenceDate && Date.parse(evidence.publicationDate) <= Date.parse(record.checkedAt)
+  if (record.currency!==route.currency || record.instrumentType!==route.instrumentType
+    || record.basis!=='fund-nav' || record.frequency!=='annual' || (source!==route.source && !officialBnp)
     || /proxy/i.test(record.method??'') || !/total return/i.test(record.method??'') || !/(?:net of (?:fund )?fees|net of ongoing charges|fund fees included)/i.test(record.method??'')
     || !currentAnnualEvidence(record.checkedAt,record.asOf,'etf.performance',now)) return null
   const years=closedCalendarYears(record.years,now)

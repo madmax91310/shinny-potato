@@ -22,7 +22,7 @@ function text(ctx,value,x,y,size=56,align='left',serif=false,color=IVORY){
 function imageRows(rows,allocation){
  const rounded=allocation?null:integerPercentages(rows)
  return rows.map((row,i)=>{
-  const neutral=['Non ventilé ici','Écart d’arrondi','Sans objet','Autres expositions'].includes(row.name)
+  const neutral=['Non ventilé ici','Sans objet','Autres expositions'].includes(row.name)
   return {...row,color:allocation||neutral?row.color:individualColor(i),percentage:allocation?holdingPercentage(row.weight):exposurePercentage(row.weight,rounded[i])}
  }).filter(row=>row.weight>0)
 }
