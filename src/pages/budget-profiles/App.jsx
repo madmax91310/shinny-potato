@@ -6,6 +6,7 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES } from './data.js'
 import { analyzeBudget, budgetBalanceText, budgetRemainingLabel, budgetTransferPlan, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
 import { budgetFinancialReference, staleBudgetText } from './completion.js'
+import { duplicateBudget } from './manual.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, peekWorkspace, WORKSPACE_KEY } from './workspace.js'
 import { publicationLabel } from '../../lib/publication-date.js'
 import { useBudgetImage } from './useBudgetImage.js'
@@ -69,8 +70,7 @@ export default function App() {
     if (!pool.length) { seen.current = new Set([profile.id]); pool = filtered.filter(p => p.id !== profile.id) }
     choose(pool[Math.floor(Math.random() * pool.length)])
   }
-  async function adapt() {
-    const { duplicateBudget } = await import('./manual.js')
+  function adapt() {
     const next = duplicateBudget(record, `participation-${crypto.randomUUID()}`)
     setSubscriberOpen(true); setApproved(false); setRecord(next); setFeedback('Copie créée avec un nouvel identifiant. Vérifie la présentation et les lignes avant de publier.')
   }
