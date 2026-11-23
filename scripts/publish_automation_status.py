@@ -1372,8 +1372,8 @@ def completed_run_candidates(state, workflow, api):
     return candidates
 
 
-def unseen_failed_workflow_runs(state, workflows, api):
-    """An old event must not hide a newer terminal recovery of a failed source.
+def unseen_workflow_runs(state, workflows, api):
+    """Find completions even when GitHub coalesces their pending notifications.
 
     Only discover runs here. Their jobs, reports, source clocks and publication
     receipts still pass through the ordinary reducer below; no status is forced.
@@ -1381,7 +1381,6 @@ def unseen_failed_workflow_runs(state, workflows, api):
     runs=[]
     for workflow in workflows:
         previous=state.get('workflows',{}).get(workflow,{})
-        if previous.get('status')!='failure':continue
         candidates=completed_run_candidates(state,workflow,api)
         if candidates is not None:runs.extend(unseen_completed_runs(candidates,previous))
     return runs
@@ -1465,13 +1464,10 @@ def main():
             state.setdefault('observerErrors', {}).pop('availability:' + workflow, None)
     runs = []
     trigger_key = None
-    if args.backfill or args.monitor_only:
+    if args.backfill:
         for workflow in WORKFLOWS:
             candidates=completed_run_candidates(state,workflow,api)
             if candidates is None:continue
-            if args.monitor_only:
-                runs.extend(unseen_completed_runs(candidates, state.get('workflows', {}).get(workflow, {})))
-                continue
             candidates = [r for r in candidates if r['event'] in ('push', 'schedule', 'workflow_dispatch', 'workflow_run') and r['conclusion'] not in ('cancelled', 'skipped', 'neutral')]
             if candidates and workflow in REPORT_ARTIFACTS:
                 runs.extend(candidates)
@@ -1482,16 +1478,12 @@ def main():
                 if successful:
                     runs.append(max(successful, key=lambda r: r['id']))
                 runs.append(latest)
-    elif not args.monitor_only:
-        require_event = json.loads(args.event.read_text())
-        trigger = require_event['workflow_run']
-        trigger_key = f'{trigger["id"]}:{trigger.get("run_attempt", 1)}'
-        runs = [{**trigger, '_eventTerminal': True}]
-        # The queue can contain hours of old events. Catch up known failures
-        # from actual completed runs instead of waiting for a later cron/backfill.
-        recovered_runs=unseen_failed_workflow_runs(state,WORKFLOWS,api)
-        runs.extend(recovered_runs)
-        if recovered_runs:print(f'Rattrapage : {len(recovered_runs)} exécutions terminées non observées de workflows en échec ; preuves à vérifier par le réducteur ordinaire.')
+    else:
+        if args.event:
+            trigger = json.loads(args.event.read_text())['workflow_run']
+            trigger_key = f'{trigger["id"]}:{trigger.get("run_attempt", 1)}'
+            runs.append({**trigger, '_eventTerminal': True})
+        runs.extend(unseen_workflow_runs(state, WORKFLOWS, api))
     runs.extend(terminal_runs)
     for workflow,row in state.get('workflows',{}).items():
         if row.get('headSha')in LEGACY_PHASE_CONTRACTS and not row.get('legacyPhaseEvidence'):

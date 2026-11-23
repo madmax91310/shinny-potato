@@ -97,11 +97,11 @@ on:
 permissions:
   contents: read
 concurrency:
-  # PR validation is read-only and must not wait behind production publishers.
-  # Keep the production lock identical to protect already running writers.
-  group: ${{ github.event_name == 'pull_request' && format('automation-failure-status-pr-{0}', github.event.pull_request.number) || 'automation-failure-status' }}
+  # Every production run scans for missed completions. Keep the active writer
+  # and replace pending notifications under the existing production lock.
+  group: ${{ github.event_name == 'pull_request' && format('automation-failure-status-pr-{0}', github.event.pull_request.number) || (github.event_name == 'workflow_run' && (github.event.workflow_run.head_branch != 'master' || github.event.workflow_run.head_repository.full_name != github.repository || github.event.workflow_run.event == 'pull_request') && format('automation-failure-status-ignored-{0}', github.run_id)) || 'automation-failure-status' }}
   cancel-in-progress: false
-  queue: max
+  queue: single
 jobs:
   validate:
     if: github.event_name == 'pull_request'

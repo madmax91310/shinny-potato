@@ -13,6 +13,15 @@ INDEPENDENT = {
     'src/data/automated-broker-tariffs.json',
     'src/data/automated-regulatory.json',
 }
+# Commit 65af532: SCPI and actor acquisition do not read these exact metadata
+# producer files. Their consumers still validate the combined tree.
+PRESENTATION_METADATA_OUTPUTS = {
+    'docs/asset-field-coverage.md',
+    'public/data/asset-field-coverage.json',
+    'scripts/instrument-metadata-sources.json',
+    'src/data/automated-instrument-metadata.json',
+    'src/data/instrument-metadata-status.json',
+}
 # Gold is read by monthly projection builders, not by their network collectors.
 # Its new validated registry requires regeneration + financial checks; publication
 # observations do collect from it and must still recollect after any change.
@@ -171,7 +180,7 @@ ALLOWED = {
     # downstream inputs of the combined build, which must be revalidated.
     # Exact paths only: actor data, source code, freshness policy and any
     # other projection remain protected and require fresh acquisition.
-    'actors': {INFLATION_RECEIPT,
+    'actors': PRESENTATION_METADATA_OUTPUTS | {INFLATION_RECEIPT,
                # Run43735485058: SCPI producer output is not actor acquisition input.
                'src/data/automated-scpi.json',
                'src/data/exposure-etf-expansion-records.json',
@@ -190,7 +199,7 @@ ALLOWED = {
     'insurance': INSURANCE_EXPOSURE_OUTPUTS | {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     # Run41115036012: actor/publication observations do not feed SCPI acquisition.
     # Exact outputs only; combined-tree build, audits and non-mutation still required.
-    'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {
+    'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | PRESENTATION_METADATA_OUTPUTS | {
                          # Run43734835160: economic observations do not feed SCPI acquisition.
                          # Keep the newer registry and require combined-tree financial validation.
                          'src/data/automated-economic.json',
