@@ -40,12 +40,16 @@ for(const [path,generator]of Object.entries(derived)){
  assert(pipeline.includes('node '+generator),`${path}: generator must run in prebuild`)
  assert(readFileSync(generator,'utf8').includes('/'+path.split('/').at(-1)),`${path}: output must be declared by its generator`)
 }
-const raw=['src/data/automated-monthly.json','src/data/anniversary-levels.json','src/data/dca-complete-holdings.json','src/data/my-history-links.json']
+const raw=['src/data/automated-monthly.json','src/data/anniversary-levels.json','src/data/dca-complete-holdings.json','src/data/index-company-identities.json','src/data/my-history-links.json']
 assert.deepEqual(primaryDataPaths([...raw,...Object.keys(derived)]),raw)
 const producers=JSON.parse(readFileSync('scripts/validated-data-producers.json'))
 for(const producer of Object.keys(producers))assert(producerPaths(producer,'',producers).length>0)
+assert.equal(derived['src/data/native-fund-details.json'],'scripts/build-native-fund-details.mjs')
+assert(producers['collect-etf-pilot.yml'].includes('src/data/native-fund-details.json'))
+assert(!producerPaths('collect-etf-pilot.yml','',producers).includes('src/data/native-fund-details.json'))
+assert(producerPaths('collect-etf-pilot.yml','',producers).includes('src/data/automated-etf.json'))
 assert.throws(()=>producerPaths('only-derived.yml','',{'only-derived.yml':['src/data/equity-history-links.json']}))
-console.log('Only nine explicit reproducible projections are rebuilt; every other source stays mandatory, including future unknown JSON outputs.')
+console.log('Only explicit reproducible projections are rebuilt; every other source stays mandatory, including future unknown JSON outputs.')
 
 // Exercise the ordinary entry point in an isolated repository. Its expected
 // source files must exist before any public result, including early exits.
