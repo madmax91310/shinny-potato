@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 from issuer_documents import download, pdf_text
 from collect_regulatory_data import unique
 from broker_document_sources import DocumentResolver
+from broker_bourso_tariff_rows import discovery as discovery_rows
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEST = ROOT/'src/data/automated-broker-tariffs.json'
 SOURCES = {'bourso': 'https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf',
@@ -27,16 +28,18 @@ def parse(name, content, today, previous=None):
   block = content.split('Courtage Actions Euronext (Paris, Amsterdam, Bruxelles) et Horaires Etendus')
   if len(block)!=2:raise ValueError('Tableau Actions Euronext absent ou ambigu')
   block = block[1].split('Courtage ETF - ETN - ETC')[0]
-  if not all(label in block for label in ['DÉCOUVERTE','CLASSIC','TRADER','ULTIMATE']):raise ValueError('Colonnes du tableau modifiées')
-  amount = unique(r'^\s*([\d,]+)€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*$', '\n'.join(line for line in block.splitlines() if re.fullmatch(r'\s*[\d,]+€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*',line)))
-  lines=block.splitlines()
-  threshold_lines=[line for line in lines if re.match(r'^\s*jusqu’à [\d ]+ €\s+',line)]
-  if len(threshold_lines)!=1:raise ValueError('Seuil Découverte ambigu')
-  threshold=unique(r'^\s*jusqu’à ([\d ]+) €\s+',threshold_lines[0])
-  rate_lines=[line for line in lines if re.match(r'^\s*(?:par ordre\(1\)\s+)?puis [\d,]+% au-delà',line)]
-  if len(rate_lines)!=1:raise ValueError('Taux Découverte ambigu')
-  rate=unique(r'puis ([\d,]+)% au-delà',rate_lines[0].split('au-delà')[0]+'au-delà')
-  values={'minimum':amount,'threshold':threshold,'rate':rate}
+  values=discovery_rows(block)
+  if values is None:
+   if not all(label in block for label in ['DÉCOUVERTE','CLASSIC','TRADER','ULTIMATE']):raise ValueError('Colonnes du tableau modifiées')
+   amount = unique(r'^\s*([\d,]+)€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*$', '\n'.join(line for line in block.splitlines() if re.fullmatch(r'\s*[\d,]+€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*',line)))
+   lines=block.splitlines()
+   threshold_lines=[line for line in lines if re.match(r'^\s*jusqu’à [\d ]+ €\s+',line)]
+   if len(threshold_lines)!=1:raise ValueError('Seuil Découverte ambigu')
+   threshold=unique(r'^\s*jusqu’à ([\d ]+) €\s+',threshold_lines[0])
+   rate_lines=[line for line in lines if re.match(r'^\s*(?:par ordre\(1\)\s+)?puis [\d,]+% au-delà',line)]
+   if len(rate_lines)!=1:raise ValueError('Taux Découverte ambigu')
+   rate=unique(r'puis ([\d,]+)% au-delà',rate_lines[0].split('au-delà')[0]+'au-delà')
+   values={'minimum':amount,'threshold':threshold,'rate':rate}
   scope='Découverte ; actions Euronext Paris, Amsterdam, Bruxelles ; ordre en ligne'
  else:
   date=re.search(r'CONDITIONS TARIFAIRES AU (\d{1,2}) (\w+) (\d{4})',content,re.I)

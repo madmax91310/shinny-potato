@@ -24,6 +24,32 @@ class SaxoCurrentOfferTests(unittest.TestCase):
    with self.subTest(wrong=wrong[-100:]),self.assertRaises(ValueError):parse_supplement('saxo_offer',wrong,'2026-11-06')
 
 class BrokerTariffTests(unittest.TestCase):
+ def test_bourso_accessible_brochure_revalidates_the_same_scopes(self):
+  from collect_broker_tariffs import parse as parse_tariff
+  from broker_profiles import clean, statement
+  from broker_tariff_extensions import base_supplements
+  # Official PDF SHA-256 5114f969770e781b5d09c5576597ce438dc8dc1f08dd911facf459febfba5838.
+  # The fixture keeps the relevant Poppler pages at their original positions.
+  text=fixture('bourso-labelled-20261118.txt'); today='2026-11-23'
+  tariff=parse_tariff('bourso',text,today)
+  self.assertEqual((tariff['asOf'],tariff['checkedAt'],tariff['page']),('2026-11-18',today,35))
+  self.assertEqual(tariff['values'],{'minimum':1.99,'threshold':500,'rate':.60})
+  order=parse_supplement('bourso_minimum_order',text,today)[2]
+  self.assertEqual((order['values'],order['page']),({'etfEuronext':100},47))
+  self.assertIn('PEA (boursomarkets)',order['statement'])
+  fields=base_supplements('bourso',text,tariff)
+  self.assertEqual(fields['sortant']['values'],{'perLine':15,'maximum':150})
+  self.assertEqual(fields['change']['values'],{'fxPoints':.0025})
+  self.assertIn('10 €/fonds/mois',statement('bourso','dca',{'boursoTariff':clean(text)})[2])
+  with self.assertRaisesRegex(ValueError,'plafond PEA'):
+   parse_tariff('bourso',text.replace('plafonnés à 0,50 %','plafonnés à 0,60 %',1),today)
+  with self.assertRaisesRegex(ValueError,'Minimum ETF différent'):
+   parse_supplement('bourso_minimum_order',text.replace('Etendus\n\n100 €','Etendus\n\n125 €',1),today)
+  with self.assertRaisesRegex(ValueError,'Comptes du minimum ETF'):
+   parse_supplement('bourso_minimum_order',text.replace('\nPEA (boursomarkets)\n','\nCTO (boursomarkets)\n'),today)
+  with self.assertRaises(ValueError):
+   statement('bourso','dca',{'boursoTariff':clean(text.replace('Commission de négociation\n\ngratuit','Commission de négociation\n\n1 €'))})
+
  def test_bourso_etf_minimum_requires_matching_account_columns(self):
   from collect_broker_tariffs import parse as parse_tariff
   text=fixture('bourso.txt')

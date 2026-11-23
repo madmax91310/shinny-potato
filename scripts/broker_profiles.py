@@ -115,8 +115,14 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
         return proved(patterns[broker],True,{'tr':'IFU pour l’offre française après migration ; anciens comptes étrangers distincts.', 'ibkr':'IFU disponible pour le PEA ✅'}.get(broker,'IFU fourni selon les opérations à déclarer ; modalités dans la source officielle.'))
     if field=='dca':
         if broker=='bourso':
-            m=find(r'Plan d.Épargne \(Hors CTO Business\)(.{0,1300}?)\(1\)',text); block=m[1]
-            find(r'négociation\s+GRATUIT',block);v=amount(find(r'Minimum\s*:\s*([\d ,]+)€',block)[1]);find(r'Voir DIC',block)
+            labelled=r"Plan d['’]épargne \(hors CTO Business\) Droit d'entrée gratuit Commission de négociation gratuit Droit de garde gratuit Droit de sortie gratuit Frais de gestion voir DIC Montant d'investissement minimum par fonds par mois Minimum\s*:\s*([\d ,]+)\s*€"
+            rows=list(re.finditer(labelled,text,re.I))
+            if len(rows)>1:raise ValueError('Rubrique du plan d’épargne BoursoBank ambiguë')
+            if rows:
+                m=rows[0];v=amount(m[1])
+            else:
+                m=find(r'Plan d.Épargne \(Hors CTO Business\)(.{0,1300}?)\(1\)',text); block=m[1]
+                find(r'négociation\s+GRATUIT',block);v=amount(find(r'Minimum\s*:\s*([\d ,]+)€',block)[1]);find(r'Voir DIC',block)
             return True,'confirmé',f'Plan d’Épargne dès {fmt(v)} €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.',source,m[0]
         if broker=='caidf':
             v=amount(find(r'à partir de ([\d ,]+)\s*€\s*par mois',text)[1]);find(r'1 à 3 fonds',text)
