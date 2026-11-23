@@ -1,6 +1,7 @@
 """Synthetic regressions for market conventions, incomplete sources and preservation."""
 import copy
 import datetime as dt
+import io
 import json
 import pathlib
 import tempfile
@@ -14,6 +15,15 @@ from refresh_monthly_history import yahoo_chart, collect_yahoo, collect_msci, ms
 
 NOW=dt.datetime(2026,2,6,tzinfo=UTC)
 CONFIG={'id':'test','parser':'yahoo','symbol':'TEST','currency':'USD','field':'adjclose','precision':6,'periodStart':'2026-01','method':'adjusted'}
+BITWISE_XETRA={**CONFIG, 'id':'etfDE000A27Z304', 'isin':'DE000A27Z304', 'symbol':'BTCE.DE',
+               'mic':'XETR', 'currency':'EUR', 'periodStart':'2020-07', 'yahooInstrumentType':'EQUITY'}
+BITWISE_NOW=dt.datetime(2026,11,23,tzinfo=UTC)
+BITWISE_YAHOO_GAP="Data doesn't exist for startDate = 1593561600, endDate = 1793491200"
+
+
+def yahoo_bad_request(url, description):
+    body={'chart':{'result':None,'error':{'code':'Bad Request','description':description}}}
+    return urllib.error.HTTPError(url,400,'Bad Request',None,io.BytesIO(json.dumps(body).encode()))
 
 def chart(interval='1d',close=12,adjusted=10):
     date=dt.datetime(2026,1,30 if interval=='1d' else 1,16,tzinfo=UTC)
@@ -21,6 +31,78 @@ def chart(interval='1d',close=12,adjusted=10):
         'timestamp':[int(date.timestamp())],'indicators':{'quote':[{'close':[close]}],'adjclose':[{'adjclose':[adjusted]}]}}]}}
 
 class Monthly(unittest.TestCase):
+    def test_bitwise_xetra_reports_exact_yahoo_gap_without_a_fallback_on_400(self):
+        calls=[]
+
+        def fetch(url):
+            calls.append(url)
+            raise yahoo_bad_request(url,BITWISE_YAHOO_GAP)
+
+        with self.assertRaises(ValueError) as exc:
+            collect_yahoo(BITWISE_XETRA,BITWISE_NOW,fetch)
+        self.assertEqual(calls,['https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?'
+                                'period1=1593561600&period2=1793491200&interval=1d&events=div%2Csplits'])
+        self.assertEqual(str(exc.exception),'Yahoo Finance HTTP Error 400 for BTCE.DE (XETR, EUR) on '
+                         'query2.finance.yahoo.com, interval=1d: '+BITWISE_YAHOO_GAP)
+
+    def test_bitwise_diagnostic_reports_the_alternate_host_if_it_returns_a_gap(self):
+        def fetch(url):
+            if urlparse(url).hostname=='query2.finance.yahoo.com':
+                raise urllib.error.HTTPError(url,403,'Forbidden',None,None)
+            raise yahoo_bad_request(url,BITWISE_YAHOO_GAP)
+
+        with self.assertRaisesRegex(ValueError,r'query1\.finance\.yahoo\.com, interval=1d'):
+            collect_yahoo(BITWISE_XETRA,BITWISE_NOW,fetch)
+
+    def test_bitwise_diagnostic_preserves_other_bad_requests(self):
+        for config, description in [
+            (BITWISE_XETRA,'Invalid interval'),
+            (BITWISE_XETRA,BITWISE_YAHOO_GAP.replace('1593561600','1593561601')),
+            ({**BITWISE_XETRA,'id':'etfDE000A27Z304Paris','symbol':'BTCE.PA','mic':'XPAR'},BITWISE_YAHOO_GAP),
+        ]:
+            with self.subTest(series=config['id'], description=description):
+                def fetch(url):
+                    raise yahoo_bad_request(url,description)
+
+                with self.assertRaises(urllib.error.HTTPError) as exc:
+                    collect_yahoo(config,BITWISE_NOW,fetch)
+                self.assertEqual(str(exc.exception),'HTTP Error 400: Bad Request')
+
+    def test_bitwise_xetra_recent_only_response_cannot_replace_full_history(self):
+        def fetch(url):
+            interval=parse_qs(urlparse(url).query)['interval'][0]
+            body=chart(interval)
+            body['chart']['result'][0]['meta'].update(symbol='BTCE.DE',currency='EUR',
+                                                      exchangeTimezoneName='Europe/Berlin',instrumentType='EQUITY')
+            return body
+
+        with self.assertRaisesRegex(ValueError,'Incomplete/stale Yahoo history'):
+            collect_yahoo(BITWISE_XETRA,NOW,fetch)
+
+    def test_bitwise_gap_preserves_both_histories_and_other_series_can_update(self):
+        registry=json.loads((pathlib.Path(__file__).resolve().parents[1]
+                             / 'src/data/automated-etf-monthly.json').read_text())
+        paris='etfDE000A27Z304Paris'
+        xetra=BITWISE_XETRA['id']
+        current={key:registry[key] for key in (paris,xetra)}
+        baseline={CONFIG['id']:{'currency':'USD','points':[{'date':'2026-10','price':8}]}}
+
+        def fetch(url):
+            raise yahoo_bad_request(url,BITWISE_YAHOO_GAP)
+
+        def collect(source,now):
+            if source['id']==xetra:
+                return collect_yahoo(source,now,fetch)
+            return {**source,'points':[['2026-10',10]],'periodEnd':'2026-10',
+                    'checkedAt':now.isoformat(),'proofRows':[],'rawResponse':{}}
+
+        other={**CONFIG,'periodStart':'2026-10'}
+        merged,report=refresh({'series':[BITWISE_XETRA,other]},current,baseline,BITWISE_NOW,collect)
+        self.assertEqual([row['status'] for row in report['series']],['failed','validated'])
+        self.assertIn(BITWISE_YAHOO_GAP,report['series'][0]['reason'])
+        self.assertEqual({key:merged[key] for key in (paris,xetra)},current)
+        self.assertEqual(merged[other['id']]['points'],[['2026-10',10]])
+
     def test_candidate_suffix_never_fills_a_gap_or_relaxes_active_history(self):
         config={**CONFIG,'consumerScope':'catalog','periodStart':'2025-12'}
         def fetch(url):
