@@ -45,6 +45,7 @@ export default function App() {
   const memoryDrafts = useRef(new Map(loadSavedDrafts().map(d => [d.profile.id, d])))
   const seen = useRef(new Set([profile.id]))
   const [approved, setApproved] = useState(false)
+  const [adapting, setAdapting] = useState(false)
   useEffect(() => {
     memoryDrafts.current.set(record.profile.id, record)
     setSaved([...new Map([...loadSavedDrafts(), ...memoryDrafts.current.values()].map(d => [d.profile.id, d])).values()])
@@ -70,9 +71,16 @@ export default function App() {
     choose(pool[Math.floor(Math.random() * pool.length)])
   }
   async function adapt() {
-    const { duplicateBudget } = await import('./manual.js')
-    const next = duplicateBudget(record, `participation-${crypto.randomUUID()}`)
-    setSubscriberOpen(true); setApproved(false); setRecord(next); setFeedback('Copie créée avec un nouvel identifiant. Vérifie la présentation et les lignes avant de publier.')
+    setAdapting(true)
+    try {
+      const { duplicateBudget } = await import('./manual.js')
+      const next = duplicateBudget(record, `participation-${crypto.randomUUID()}`)
+      setSubscriberOpen(true); setApproved(false); setRecord(next); setFeedback('Copie créée avec un nouvel identifiant. Vérifie la présentation et les lignes avant de publier.')
+    } catch {
+      setFeedback('La copie a échoué. Le profil ouvert est conservé.')
+    } finally {
+      setAdapting(false)
+    }
   }
 
   function createSubscriber() { setSubscriberOpen(true); choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` }) }
@@ -112,7 +120,7 @@ export default function App() {
   return <div className="dca-profiles-scope dca-simple budget-profiles-scope">
     <PageHeader title="Le budget de…" subtitle="Choisis un profil ou prépare une participation, puis récupère le texte et l’image."/>
     {(!initial.readable || !usageInitial.readable || !publishedInitial.readable || !queuedInitial.readable) && <p role="alert">Un ancien enregistrement local est illisible. Il est conservé sans modification.</p>}
-    <Suspense fallback={<p>Chargement du suivi…</p>}><PublicationStatus checkbox key={profile.id} lockName={WORKSPACE_KEY} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/></Suspense>
+    <Suspense fallback={<p>Chargement du suivi…</p>}><PublicationStatus checkbox disabled={adapting} key={profile.id} lockName={WORKSPACE_KEY} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/></Suspense>
     <details className="dca-simple-card" onToggle={e => { if (e.currentTarget.open) setBackupOpen(true) }}><summary>Brouillons et transfert entre appareils</summary>
       {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''} · {published.includes(d.profile.id)?publicationLabel(publicationDates[d.profile.id]):'Non publié'}</option>)}</ChoicePicker></label>}
       {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
@@ -151,7 +159,7 @@ export default function App() {
 
           <dl className="budget-breakdown"><div><dt>Revenus mensuels</dt><dd>{money(a.income)}</dd></div>{budgetPublicExpenseRows(profile).map((row, i) => <div key={i}><dt>{row.label}</dt><dd>{money(row.amount)}</dd></div>)}</dl>
 
-          <Button variant="secondary" onClick={adapt}>Adapter ce budget</Button>
+          <Button variant="secondary" onClick={adapt} disabled={adapting}>Adapter ce budget</Button>
         </>}
         {!prepared && <Button variant="secondary" onClick={adapt}>Dupliquer ce profil</Button>}
         {!prepared && <Suspense fallback={<p>Chargement de la participation…</p>}><ParticipantEditor profile={profile} edit={edit}/></Suspense>}

@@ -296,6 +296,22 @@ else:
         self.assertEqual((self.f.root/'economic-validation-count').read_text(),'1')
         self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
 
+    def test_etf_recording_preserves_a_concurrent_control_only_economic_update(self):
+        after=economic_fixture('after')
+        result=self.economic_late_race(after,kind='etf')
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertEqual((self.f.root/'economic-validation-count').read_text(),'2')
+        self.assertEqual(json.loads(self.f.git(self.f.remote,'show','master:'+ECONOMIC_PATH)),after)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+
+    def test_etf_recording_refuses_a_concurrent_financial_economic_change(self):
+        after=economic_fixture('after')
+        after['savings']['2026-08-01']['rate']+=0.01
+        result=self.economic_late_race(after,kind='etf')
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn(ECONOMIC_PATH,result.stdout+result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
+
     def test_economic_qualification_does_not_extend_to_unexamined_producers(self):
         result=self.economic_late_race(economic_fixture('after'),kind='indices')
         self.assertNotEqual(result.returncode,0)

@@ -97,6 +97,7 @@ try {
     await page.getByLabel('Texte prêt à publier').fill('Mon brouillon personnel')
     await page.reload(); await expect(page.getByLabel('Texte prêt à publier')).toHaveValue('Mon brouillon personnel')
     await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
+    await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).activeId, WORKSPACE_KEY)).toMatch(/^participation-/)
     await expect(publication).not.toBeChecked()
     await publication.click()
     await page.getByRole('button', { name: 'Confirmer la publication', exact: true }).click()
