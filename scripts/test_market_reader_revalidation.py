@@ -83,6 +83,22 @@ class ReaderRevalidation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'publication reader is an acquisition dependency'):
             reader.check(linked, later)
 
+    def test_actual_altimeter_publication_is_independent_of_monthly_acquisition(self):
+        updated = self.commit({path: '{}\n' for path in reader.ALTIMETER_READERS})
+        with self.assertRaises(shared.StaleCollectionInputs):
+            shared.check('market', self.base, updated)
+        result = reader.check(self.base, updated)
+        self.assertEqual(result['qualifiedPublicationReaders'], sorted(reader.ALTIMETER_READERS))
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        conflicting = self.commit({reader.BASELINE:
+                                   "import '../public/data/investors/gerstner.json';\n"})
+        with self.assertRaisesRegex(ValueError, 'publication reader is an acquisition dependency'):
+            reader.check(self.base, conflicting)
+        unrelated = self.commit({'public/data/investors/archive/gerstner/unreviewed.json': '{}\n'})
+        with self.assertRaises(shared.StaleCollectionInputs):
+            reader.check(conflicting, unrelated)
+
     def test_actual_budget_browser_addition_preserves_every_gate_and_source_protection(self):
         fixture,end=self.budget_new_profiles_snapshots()
         expected=set(fixture['newlyReviewedReaders'])|set(fixture['inputs'])

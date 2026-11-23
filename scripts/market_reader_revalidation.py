@@ -76,6 +76,13 @@ ANNUAL_RANKING_READERS = {
     'src/pages/performance-rankings/data.js',
     'src/pages/performance-rankings/image.js',
 }
+# Monthly recording refusal 45203433445 during a concurrent SEC publication.
+# This verified Altimeter snapshot and its prior quarter are presentation
+# outputs. Other paths still require the existing acquisition checks.
+ALTIMETER_READERS = {
+    'public/data/investors/gerstner.json',
+    'public/data/investors/archive/gerstner/2026-06-30.json',
+}
 AUDIT_READER = 'scripts/test_audit_workflows.py'
 WORKFLOW = '.github/workflows/update-non-bond-expansion.yml'
 OLD_GROUP = "      group: non-bond-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}"
@@ -276,7 +283,7 @@ def check(base, upstream='HEAD^'):
     paths = set(filter(None, subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
         text=True).split('\0')))
-    readers = BUDGET_READERS | PUBLICATION_READERS | ANNUAL_RANKING_READERS
+    readers = BUDGET_READERS | PUBLICATION_READERS | ANNUAL_RANKING_READERS | ALTIMETER_READERS
     permitted = paths & (readers | {AUDIT_READER})
     if paths & readers:
         for ref in (base, upstream):
