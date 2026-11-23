@@ -24,7 +24,7 @@ Les agrégats proviennent de la somme des seuls fonds cotés avec des relevés c
 
 ## Recette du 16 au 20 novembre 2026
 
-Le [lancement GitHub Actions](https://github.com/madmax91310/shinny-potato/actions/runs/45143514465) a téléchargé l’édition et les cinq relevés, incluant le vendredi 20. Il rapporte 1 440 fonds vérifiés sur 5 131 dans l’univers de référence et 1 508 tickers écartés pour relevés quotidiens incomplets parmi les candidats vus. IVV et SGOV sont exclus car le relevé quotidien du jeudi manque malgré leur classement hebdomadaire complet. SOXL et XLE sont exclus car leur couverture s’arrête avant le vendredi.
+Le [lancement GitHub Actions](https://github.com/madmax91310/shinny-potato/actions/runs/45143976633) a téléchargé l’édition et les cinq relevés, incluant le vendredi 20. Il rapporte 1 440 fonds vérifiés sur 5 131 dans l’univers de référence et 1 508 tickers écartés pour relevés quotidiens incomplets parmi les candidats vus. IVV et SGOV sont exclus car le relevé quotidien du jeudi manque malgré leur classement hebdomadaire complet. SOXL et XLE sont exclus car leur couverture s’arrête avant le vendredi.
 
 | Bloc | Résultat |
 | --- | --- |

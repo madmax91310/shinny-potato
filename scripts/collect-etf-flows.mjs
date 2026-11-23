@@ -68,6 +68,7 @@ function checkWeekly(weekly, {monday, sessions, opens}) {
 }
 
 function dailyMap(daily, date, opens) {
+  requireData(daily, `Relevé ETFIQ manquant pour le ${date}.`)
   checkCite(daily.cite, date)
   const window = daily.window
   requireData(daily.schemaVersion === 1 && daily.asOf === date && daily.basis === 'daily' && window?.from === date

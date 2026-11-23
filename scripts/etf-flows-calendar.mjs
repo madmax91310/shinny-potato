@@ -10,7 +10,10 @@ export function shift(day, days) {
 
 export function lastWeekMonday(now = new Date()) {
   const today = new Intl.DateTimeFormat('sv-SE', {timeZone: 'Europe/Paris', dateStyle: 'short'}).format(now)
-  return shift(today, -((new Date(today).getUTCDay() + 6) % 7) - 7)
+  const weekday = new Date(today).getUTCDay()
+  const elapsed = (weekday + 6) % 7
+  // A Paris weekend starts after the last Friday close in New York.
+  return shift(today, -elapsed - ([0, 6].includes(weekday) ? 0 : 7))
 }
 
 export function tradingWeek(monday, html) {
