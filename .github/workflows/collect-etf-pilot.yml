@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/validate-etf-publication.sh'
       - 'scripts/test_etf_publication.py'
+      - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'
       - 'scripts/market_reader_revalidation.py'
@@ -103,6 +104,7 @@ on:
       - 'scripts/test_source_incidents.py'
       - 'scripts/fixtures/source-incidents-20261102/**'
       - 'scripts/validate-etf-publication.sh'
+      - 'scripts/test_etf_publication.py'
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'
@@ -350,8 +352,7 @@ jobs:
         id: indices
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
-      - run: node scripts/build-automation-targets.mjs
-      - run: node scripts/report-automation-coverage.mjs --write
+      - run: bash scripts/validate-etf-publication.sh project
       - name: Validate ETF observations and consumers
         run: bash scripts/validate-etf-publication.sh validate
       - uses: actions/upload-artifact@v7.0.1
@@ -376,12 +377,12 @@ jobs:
         env:
           VALIDATED_DATA_CHECK: bash scripts/validate-etf-publication.sh check
           VALIDATED_DATA_PREPARE: bash scripts/validate-etf-publication.sh prepare
-          VALIDATED_DATA_DERIVED_PATHS: '["docs/automation-coverage.md","docs/automation-gaps.md","docs/automation-gaps.json","docs/asset-field-coverage.md","public/data/asset-field-coverage.json","docs/app-inventory.md","scripts/instrument-metadata-sources.json","scripts/generated-holdings-sources.json"]'
+          VALIDATED_DATA_DERIVED_PATHS: '["src/data/native-fund-details.json","docs/automation-coverage.md","docs/automation-gaps.md","docs/automation-gaps.json","docs/asset-field-coverage.md","public/data/asset-field-coverage.json","docs/app-inventory.md","scripts/instrument-metadata-sources.json","scripts/generated-holdings-sources.json"]'
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json
+          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json src/data/native-fund-details.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
