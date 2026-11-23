@@ -98,6 +98,27 @@ def parse_lucya(html, notice, fees_text, notice_url, fees_url, today):
     return record
 
 
+def placement_trade_fee(text, notice, *, label, legacy, notice_label):
+    values = {
+        number(match) for match in re.findall(
+            r'Frais d’investissement ou de désinvestissement sur ' + label + r' ([\d,.]+)\s*%',
+            text,
+        )
+    }
+    if not values:
+        return number(required(legacy, text)[1])
+    if len(values) != 1:
+        raise ValueError(f'Conflicting Placement-direct operation fees: {label}')
+    contractual = number(required(
+        r'Frais d’investissement ou de désinvestissement sur ' + notice_label
+        + r' : ces frais s’appliquent à l’occasion de toute opération d’investissement ou de désinvestissement et représentent ([\d,.]+)\s*%',
+        notice,
+    )[1])
+    if values != {contractual}:
+        raise ValueError(f'Placement-direct tariff and notice disagree: {label}')
+    return contractual
+
+
 def parse_placement(html,notice,fees_text,notice_url,fees_url,today):
     record=identity(html,'placement-direct-vie',today);url=record['sourceUrl'];text=plain(html)
     notice=re.sub(r'\s+',' ',notice).replace('\x07','');fees_text=re.sub(r'\s+',' ',fees_text)
@@ -108,7 +129,10 @@ def parse_placement(html,notice,fees_text,notice_url,fees_url,today):
     units=number(required(r'Support unités de compte ([\d,.]+)\s*% pour les titres vifs / ([\d,.]+)\s*% Sinon',fees_text)[2])
     shares=number(required(r'Support unités de compte ([\d,.]+)\s*% pour les titres vifs',fees_text)[1])
     management=number(required(r'Support fonds en Euros ([\d,.]+)\s*%',fees_text)[1])
-    etf=number(required(r'désinvestissement sur les ETF supporte des frais de ([\d,.]+)\s*%',text)[1])
+    etf = placement_trade_fee(
+        text, notice, label=r'ETF', legacy=r'désinvestissement sur les ETF supporte des frais de ([\d,.]+)\s*%',
+        notice_label=r'les fonds indiciels \(« ETF »\) figurant à l’annexe IB',
+    )
     initial=number(required(r'Versement initial ([\d ]+)€ Versements libres',text)[1])
     free=number(required(r'Versements libres ([\d ]+)€ Versements programmés',text)[1])
     monthly=number(required(r'Versements programmés ([\d ]+)€/mois',text)[1])
@@ -118,7 +142,14 @@ def parse_placement(html,notice,fees_text,notice_url,fees_url,today):
     serialized=[s.string for s in soup.select('script') if s.string and s.string.startswith('window.__NUXT__=')]
     if len(serialized)!=1: raise ValueError('Missing official serialized returns')
     publication=nuxt_returns(serialized[0]);required(r'part.*unités de compte.*encours',publication['subtitle'])
-    required(r'moins de 250 000€.*plus de 250 000€',text)
+    if not re.search(r'moins de 250 000€.*plus de 250 000€', text):
+        # The closed SSR selector exposes the first tier; the rendered menu
+        # exposes both tiers in the same order as the contract's two arrays.
+        selectors = soup.select('.contract-section-fonds-euro--dropdown-container .dropdown-trigger button')
+        labels = [plain(str(button)) for button in selectors]
+        labels = [label for label in labels if not label.isdigit()]
+        if labels != ['moins de 250 000€']:
+            raise ValueError('Missing Placement-direct encours tier selector')
     years=[]
     for item in publication['data']:
         if item['year']>=today.year:continue
@@ -138,7 +169,10 @@ def parse_placement(html,notice,fees_text,notice_url,fees_url,today):
     advertised=number(required(r'Rendement net en '+str(published_year)+r' Jusqu’à ([\d,.]+)\s*%',text)[1])
     if advertised!=years[-1]['returnMax']:raise ValueError('Advertised maximum differs from published tiers')
     required(r'SwissLife.*limiter temporairement et sans préavis les possibi-? ?lités de sortie du fonds en euros',notice)
-    share_trade=number(required(r'sur les actions en direct supporte des frais de ([\d,.]+)\s*%',text)[1])
+    share_trade = placement_trade_fee(
+        text, notice, label=r'les actions en direct', legacy=r'sur les actions en direct supporte des frais de ([\d,.]+)\s*%',
+        notice_label=r'les unités de compte \(actions\) figurant aux annexes IB et IC',
+    )
     guarantee, options = placement_notice_conditions(notice, management)
 
     record.update(fees={'subscription':subscription,'arbitrage':arbitrage,'units':units,'etfTrade':etf,'sourceUrl':fees_url,'sourceUrls':[fees_url,notice_url,url],
