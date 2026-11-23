@@ -9,8 +9,62 @@ from data_automation import reject
 from issuer_documents import download,pdf_text,document_date,proof,validated_rows,bounded_return
 
 
+
+FRENCH_MONTHS = dict(zip(
+    ('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'),
+    ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
+    strict=True,
+))
+FRENCH_LABELS = {
+    'Devise de base': 'Base Currency',
+    'Date de lancement': 'Inception Date',
+    'Actif net': 'Net Assets',
+    'Frais courants réels': 'Total Expense Ratio',
+    'Structure du produit': 'Product Structure',
+    'Physique (réplication': 'Physical (Full',
+    'complète)': 'Replication)',
+    'Traitement des revenus': 'Income Treatment',
+    'Réinvestissement': 'Reinvestment',
+    'Distributeur': 'Distributing',
+    'Répartition par pays': 'Country Breakdown',
+    'Les 10 principales participations': 'Top 10 Holdings',
+    'SOUS-TOTAL - TOP 10': 'SUBTOTAL',
+    'Performances passées au': 'Past Performance as of',
+    'Les performances passées ne préfigurent pas': 'Past performance does not',
+    'Indice de référence': 'Benchmark',
+    'Données du fonds': 'Fund Data',
+}
+
+FRENCH_COUNTRIES = {
+    'Afrique du Sud': 'South Africa', 'Allemagne': 'Germany', 'Australie': 'Australia',
+    'Autre/Espèces': 'Other/Cash', 'Brésil': 'Brazil', 'Chine': 'China',
+    'Corée du Sud': 'South Korea', 'Espagne': 'Spain', 'États-Unis': 'United States',
+    'Finlande': 'Finland', 'Israël': 'Israel', 'Italie': 'Italy', 'Japon': 'Japan',
+    'Mexique': 'Mexico', 'Norvège': 'Norway', 'Pays-Bas': 'Netherlands',
+    'Région de Taïwan': 'Taiwan Region', 'Royaume-Uni': 'United Kingdom',
+    'Singapour': 'Singapore', 'Suède': 'Sweden', 'Suisse': 'Switzerland',
+}
+
+
+def french_text(text):
+    # Translate only labels and exact decimal separators from the official
+    # French template before applying the existing financial checks.
+    for label, target in FRENCH_LABELS.items():
+        text = text.replace(label, target)
+    text = re.sub(r'(Domicile[ \t]+)(Irlande|Pays-Bas)\b',
+                  lambda match: match[1] + {'Irlande': 'Ireland', 'Pays-Bas': 'Netherlands'}[match[2]], text)
+    text = re.sub(r'(?<=\d),(?=\d)', '.', text)
+    return re.sub(r'(\d{1,2} )(' + '|'.join(FRENCH_MONTHS) + r')(?= 20\d{2}\b)',
+                  lambda match: match[1] + FRENCH_MONTHS[match[2]], text)
+
+
+def french_document(text):
+    return 'Communication publicitaire' in text and 'Devise de base' in text
+
 def parse_calendar_performance(text,share,now):
     """Official fund row only; shared by factsheet and NAV consumers."""
+    if french_document(text):
+        text = french_text(text)
     if 'Past Performance as of'not in text:return None,{}
     block=text.split('Past Performance as of',1)[1].split('Past performance does not',1)[0]
     years=[];values=[]
@@ -51,6 +105,9 @@ def parse_calendar_performance(text,share,now):
 
 def parse_document(body,share,now):
     text=pdf_text(body)
+    french = french_document(text)
+    if french:
+        text = french_text(text)
     if share['isin']not in text:reject('Wrong VanEck UCITS share identity')
     stamp=document_date(re.search(r'\b\d{1,2} [A-Za-z]+ 20\d{2}\b',text)[0],now)
     if re.search(r'Base Currency\s+(USD|EUR|GBP)',text)[1]!=share['currency']:reject('VanEck base currency mismatch')
@@ -62,6 +119,11 @@ def parse_document(body,share,now):
     # not freshly observed characteristics and must not renew their evidence.
     from collect_instrument_metadata import parse_text
     metadata = parse_text(text, share['isin'])
+    left = pdf_text(body, (0,185))
+    if french:
+        left = french_text(left)
+        if re.search(r'^Product Structure[ \t]+Physical \(Full\s+Replication\)', left, re.M):
+            metadata['replicationMethod'] = 'Physical (Full replication)'
     observed = {'terPct':ter, **{key:metadata[key] for key in ('distribution','domicile','replicationMethod') if key in metadata},
                 'asOf':stamp, 'sourceUrl':share['sourceUrl'], 'sha256':proof(body)}
     result={**share,'productId':share['isin'],'terPct':ter,'index':share['benchmark'],'distribution':metadata.get('distribution'),
@@ -70,19 +132,36 @@ def parse_document(body,share,now):
         'documentSha256':proof(body),'unavailable':[]}
     for key in ('distribution','domicile','replicationMethod'):
         if key not in metadata:result['unavailable'].append(key+': explicit exact-share metadata missing from official document')
-    country=[];left=pdf_text(body,(0,185))
+    country=[]
     if 'Country Breakdown'in left:
-        block=left.split('Country Breakdown',1)[1].split('\f',1)[0]
+        pages = left.split('Country Breakdown', 1)[1].split('\f', 2)
+        block = pages[0]
+        if french and len(pages) > 1:
+            # The French page can carry its final published cash row over.
+            # Never infer the cash weight from a subtotal or another panel.
+            cash = re.match(r'[ \t]*Autre/Espèces[ \t]+\d+\.\d+%[ \t]*(?:\n|$)', pages[1])
+            if cash:
+                block += '\n' + cash[0]
         for line in block.splitlines():
             m=re.match(r'\s*([^\d%]+?)\s{2,}(\d+\.\d+)%\s*$',line)
-            if m:country.append({'name':m[1].strip(),'weightPct':float(m[2])})
+            if m:
+                label = m[1].strip()
+                country.append({'name':FRENCH_COUNTRIES.get(label,label) if french else label,'weightPct':float(m[2])})
         validated_rows(country)
         result['countries']={'asOf':stamp,'basis':'fund','sourceUrl':share['sourceUrl'],'rows':country}
     holdings=[];right=pdf_text(body,(190,410))
+    if french:
+        right = french_text(right)
     block=(right if 'Top 10 Holdings' in right else text).split('Top 10 Holdings',1)[1].split('SUBTOTAL',1)[0]
     for line in block.splitlines():
         m=re.match(r'\s*([^\d%]+?)\s{2,}(\d+\.\d+)%\s*$',line)
-        if m:holdings.append({'name':m[1].strip(),'weightPct':float(m[2])})
+        if m:
+            name = m[1].strip()
+            # The two language editions of TRET name this exact holding
+            # differently on the same date. Retain its canonical issuer label.
+            if french and share['isin'] == 'NL0009690239' and name == 'STOCKAGE PUBLIC':
+                name = 'PUBLIC STORAGE'
+            holdings.append({'name':name,'weightPct':float(m[2])})
     if len(holdings)!=10:reject('Incomplete VanEck holdings table')
     validated_rows(holdings,complete=False)
     result['holdings']={'asOf':stamp,'basis':'fund','sourceUrl':share['sourceUrl'],'rows':holdings}

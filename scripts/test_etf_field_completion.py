@@ -51,6 +51,40 @@ class FieldCompletion(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'identity'):
             download_document({'sourceUrl':primary,'fallbackUrls':[fallback]},lambda url: (_ for _ in ()).throw(ValueError('wrong identity')))
 
+    def test_vaneck_french_amounts_and_page_break_keep_the_same_weights(self):
+        from unittest.mock import patch
+        from collect_vaneck_etf import parse_document
+        share = next(item for item in CONFIG if item['isin'] == 'IE000YYE6WK5')
+        now = dt.datetime(2026, 11, 23, tzinfo=UTC)
+        top = 'Les 10 principales participations\n' + ''.join(f'{name}    6,00%\n' for name in
+            ('ALPHA', 'BETA', 'GAMMA', 'DELTA', 'EPSILON', 'ZETA', 'ETA', 'THETA', 'IOTA', 'KAPPA'))
+        pages = {
+            None: 'Communication publicitaire\nDétails du fonds    31 octobre 2026\nDevise de base    USD\n'
+                  'Actif net    USD 6736,3M\nFrais courants réels    0,55%\nDomicile    Irlande\n'
+                  'Structure du produit    Physique (réplication\n    complète)\n'
+                  'Traitement des revenus    Réinvestissement\nIE000YYE6WK5\n' + top,
+            (0,185): 'Répartition par pays\nÉtats-Unis    47,97%\nFrance    45,70%\n'
+                     'Pour tout terme technique inconnu\n\fAutre/Espèces    6,33%\n',
+            (190,410): top,
+        }
+        with patch('collect_vaneck_etf.pdf_text', side_effect=lambda body, crop=None:pages[crop]):
+            result = parse_document(b'%PDF-fixture', share, now)
+            self.assertEqual(result['aum']['asOf'], '2026-10-31')
+            self.assertAlmostEqual(result['aum']['amount'], 6_736_300_000)
+            self.assertEqual(result['characteristics']['distribution'], 'Accumulating')
+            self.assertEqual(result['characteristics']['replicationMethod'], 'Physical (Full replication)')
+            self.assertEqual(result['countries']['rows'], [
+                {'name':'United States','weightPct':47.97}, {'name':'France','weightPct':45.70},
+                {'name':'Other/Cash','weightPct':6.33}])
+            self.assertEqual(len(result['holdings']['rows']), 10)
+            self.assertNotIn('complete', result['holdings'])
+            pages[(0,185)] = pages[(0,185)].replace('Autre/Espèces    6,33%', '')
+            with self.assertRaisesRegex(ValueError, 'Truncated official composition'):
+                parse_document(b'%PDF-fixture', share, now)
+        other = {**share, 'isin':'IE00BQQP9F84'}
+        with patch('collect_vaneck_etf.pdf_text', return_value=pages[None]), self.assertRaisesRegex(ValueError, 'identity'):
+            parse_document(b'%PDF-fixture', other, now)
+
     def test_older_vaneck_document_never_redates_newer_financial_values(self):
         from apply_etf_collection import merge_collection
         isin='IE000YYE6WK5'
