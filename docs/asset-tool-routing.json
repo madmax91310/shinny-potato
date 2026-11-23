@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-23T08:18:12.033Z",
+  "checkedAt": "2026-11-23T09:16:11.263Z",
   "summary": {
     "instruments": 698,
     "sheets": 282,
@@ -10,8 +10,8 @@
     "dca": 697,
     "fullExposure": 600,
     "outsideExposure": 53,
-    "automaticHistories": 307,
-    "historyCandidates": 1,
+    "automaticHistories": 308,
+    "historyCandidates": 0,
     "unused": 0,
     "blockers": {
       "no-listing": 1,
@@ -9452,8 +9452,19 @@
         "date": "2026-11-19"
       },
       "holdings": null,
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00B1FZSF77",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-10",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {

@@ -205,7 +205,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares $ Treasury Bond 7-10yr UCITS ETF | IE00B1FZS798 | Oui | Oui | manual | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist) | IE00B1FZS913 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares $ TIPS UCITS ETF | IE00B1FZSC47 | Oui | Oui | manual | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
-| iShares US Property Yield UCITS ETF USD (Dist) | IE00B1FZSF77 | Oui | — | manual | Partiel / Oui | — | Oui / — / — | — |
+| iShares US Property Yield UCITS ETF USD (Dist) | IE00B1FZSF77 | Oui | — | manual | Partiel / Oui | — | Oui / Oui / Oui | — |
 | iShares Listed Private Equity UCITS ETF | IE00B1TXHL60 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Global Water UCITS ETF | IE00B1TXK627 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Global Clean Energy Transition UCITS ETF | IE00B1XNHC34 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
