@@ -5,7 +5,7 @@ import {join} from 'node:path'
 import {execFileSync} from 'node:child_process'
 import {gateDefinition,compatibleGate,gateReceipt,verifyGateReceipt,GATE_REFERENCE} from './pages-gate-definition.mjs'
 import {planSnapshot} from './resolve-pages-snapshot.mjs'
-import {codeDataSnapshot} from './prepare-code-data-refresh.mjs'
+import {codeDataCandidates} from './prepare-code-data-refresh.mjs'
 
 const root=mkdtempSync(join(tmpdir(),'pages-definition-'))
 const main='.github/workflows/deploy-pages.yml',child='.github/workflows/child.yml'
@@ -31,12 +31,12 @@ try{
  // master moves again after validation: a data prefix is publishable, a new
  // app or gate is not. The receipt still identifies the validated code.
  write('src/data/automated-scpi.json','{"value":3}\n');const laterData=save()
- assert.equal(codeDataSnapshot({code:current,head:laterData,ancestor,changed,allowed:options.allowed}),laterData)
+ assert.deepEqual(codeDataCandidates({code:current,head:laterData,ancestor,changed,allowed:options.allowed,history:()=>[laterData]}),[current,laterData])
  write(main,readFileSync(join(root,main),'utf8')+'      - run: node required-new-check.mjs\n');const newGate=save()
  assert(!compatibleGate(definition,newGate,git))
  assert.equal(planSnapshot({...options,master:newGate,info:{sha:definition}}).candidate,collected)
  assert.throws(()=>planSnapshot({...options,requested:newGate,master:newGate,info:{sha:definition}}),/executing gate definition/,'A collector can record data on code newer than the workflow that started it')
- assert.equal(codeDataSnapshot({code:current,head:newGate,ancestor,changed,allowed:options.allowed,history:()=>[laterData,newGate]}),laterData)
+ assert.deepEqual(codeDataCandidates({code:current,head:newGate,ancestor,changed,allowed:options.allowed,history:()=>[laterData,newGate]}),[current,laterData])
  verifyGateReceipt(receipt,current,git)
  assert.throws(()=>verifyGateReceipt(receipt,newGate,git),/exact fully validated code/)
  assert.throws(()=>verifyGateReceipt({...receipt,fingerprint:'forged'},current,git),/receipt changed/)
