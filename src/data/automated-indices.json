@@ -19801,7 +19801,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-23",
-        "sha256": "ea39d5a676be7eb6c0d86497c7635338b52999378889e48bc2174b763590214f",
+        "sha256": "d8e4e3a0b6193c093859e47c550d8e57efca9c1229cbf2945f4a3d5b82247605",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -20017,7 +20017,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-23",
-        "sha256": "385f2c30d75f7fbe5498415088553b20952b10434f19eaeeb1872dfc98128476",
+        "sha256": "9705f1d74a80b397669a07cff1e48ad66509c5a553a8e580e999fcb3137b1d41",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -20145,7 +20145,7 @@
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-11-23",
-        "sha256": "22d54e8022a011c3782abfb7f2c3fecc2a70a680be7e2c91c7b8cfcf8b243339",
+        "sha256": "bfb5b16b160ed6bc869cfe3a225b2bc3e24646075a612a8a8dfe5356e323b54b",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
@@ -21654,166 +21654,166 @@
     },
     "facts": {
       "index": "STOXX Europe 600",
-      "asOf": "2026-11-18",
+      "asOf": "2026-11-19",
       "constituents": 600,
       "countries": [
         [
           "United Kingdom",
-          23.112816
+          23.026254
         ],
         [
           "France",
-          14.830028
+          14.837335
         ],
         [
           "Switzerland",
-          14.617741
+          14.575911
         ],
         [
           "Germany",
-          13.094561
+          13.05542
         ],
         [
           "Netherlands",
-          7.264186
+          7.3807
         ],
         [
           "Spain",
-          5.862113
+          5.859578
         ],
         [
           "Italy",
-          5.471006
+          5.474031
         ],
         [
           "Sweden",
-          4.814735
+          4.851791
         ],
         [
           "Denmark",
-          2.741667
+          2.728769
         ],
         [
           "Belgium",
-          1.97145
+          1.95869
         ],
         [
           "Finland",
-          1.820223
+          1.83565
         ],
         [
           "Norway",
-          1.251479
+          1.252612
         ],
         [
           "Poland",
-          1.009175
+          1.006651
         ],
         [
           "Ireland",
-          0.728001
+          0.730202
         ],
         [
           "Austria",
-          0.601115
+          0.606595
         ],
         [
           "Greece",
-          0.501428
+          0.511626
         ],
         [
           "Portugal",
-          0.308274
+          0.308182
         ]
       ],
       "sectors": [
         [
           "Financials",
-          25.366469
+          25.417871
         ],
         [
           "Industrials",
-          18.203709
+          18.294291
         ],
         [
           "Health Care",
-          13.618175
+          13.472787
         ],
         [
           "Consumer Staples",
-          8.618084
+          8.510417
         ],
         [
           "Information Technology",
-          7.822496
+          7.937308
         ],
         [
           "Consumer Discretionary",
-          6.502856
+          6.518045
         ],
         [
           "Energy",
-          5.696135
+          5.7203
         ],
         [
           "Materials",
-          5.380378
+          5.386987
         ],
         [
           "Utilities",
-          4.988208
+          4.964497
         ],
         [
           "Others",
-          3.80349
+          3.777498
         ]
       ],
       "holdings": [
         [
           "ASML HOLDING NV",
-          3.659177
+          3.771667
         ],
         [
           "ROCHE HOLDING AG - GENUSSS CHF",
-          2.29221
-        ],
-        [
-          "NOVARTIS AG-REG",
-          2.016021
+          2.285257
         ],
         [
           "HSBC HOLDINGS PLC",
-          1.989174
+          1.980908
+        ],
+        [
+          "NOVARTIS AG-REG",
+          1.965554
         ],
         [
           "ASTRAZENECA GBP",
-          1.897583
+          1.859316
         ],
         [
           "SHELL PLC EUR",
-          1.794877
+          1.790233
         ],
         [
           "NESTLE SA-REG",
-          1.792738
+          1.772934
         ],
         [
           "SIEMENS AG-REG",
-          1.459853
+          1.477709
         ],
         [
           "SAP SE / XETRA",
-          1.459249
+          1.419736
         ],
         [
           "TOTALENERGIES SE PARIS",
-          1.361595
+          1.362414
         ]
       ],
       "source": {
         "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "checkedAt": "2026-11-23",
-        "sha256": "4fd4d27437d993be9a84823a98e29ae1addbab7032e8af3e9bba2170295815cb",
+        "sha256": "0ba8b4067d12f3a76931e75aca579ba0e9f2841e818c00c3bf2225e84dd9de98",
         "label": "Composition de l’indice publiée par Amundi",
         "productId": "LU0908500753",
         "controlledFields": [
@@ -23050,6 +23050,183 @@
           ]
         },
         "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
+      },
+      "2026-11-19": {
+        "index": "STOXX Europe 600",
+        "asOf": "2026-11-19",
+        "constituents": 600,
+        "countries": [
+          [
+            "United Kingdom",
+            23.026254
+          ],
+          [
+            "France",
+            14.837335
+          ],
+          [
+            "Switzerland",
+            14.575911
+          ],
+          [
+            "Germany",
+            13.05542
+          ],
+          [
+            "Netherlands",
+            7.3807
+          ],
+          [
+            "Spain",
+            5.859578
+          ],
+          [
+            "Italy",
+            5.474031
+          ],
+          [
+            "Sweden",
+            4.851791
+          ],
+          [
+            "Denmark",
+            2.728769
+          ],
+          [
+            "Belgium",
+            1.95869
+          ],
+          [
+            "Finland",
+            1.83565
+          ],
+          [
+            "Norway",
+            1.252612
+          ],
+          [
+            "Poland",
+            1.006651
+          ],
+          [
+            "Ireland",
+            0.730202
+          ],
+          [
+            "Austria",
+            0.606595
+          ],
+          [
+            "Greece",
+            0.511626
+          ],
+          [
+            "Portugal",
+            0.308182
+          ]
+        ],
+        "sectors": [
+          [
+            "Financials",
+            25.417871
+          ],
+          [
+            "Industrials",
+            18.294291
+          ],
+          [
+            "Health Care",
+            13.472787
+          ],
+          [
+            "Consumer Staples",
+            8.510417
+          ],
+          [
+            "Information Technology",
+            7.937308
+          ],
+          [
+            "Consumer Discretionary",
+            6.518045
+          ],
+          [
+            "Energy",
+            5.7203
+          ],
+          [
+            "Materials",
+            5.386987
+          ],
+          [
+            "Utilities",
+            4.964497
+          ],
+          [
+            "Others",
+            3.777498
+          ]
+        ],
+        "holdings": [
+          [
+            "ASML HOLDING NV",
+            3.771667
+          ],
+          [
+            "ROCHE HOLDING AG - GENUSSS CHF",
+            2.285257
+          ],
+          [
+            "HSBC HOLDINGS PLC",
+            1.980908
+          ],
+          [
+            "NOVARTIS AG-REG",
+            1.965554
+          ],
+          [
+            "ASTRAZENECA GBP",
+            1.859316
+          ],
+          [
+            "SHELL PLC EUR",
+            1.790233
+          ],
+          [
+            "NESTLE SA-REG",
+            1.772934
+          ],
+          [
+            "SIEMENS AG-REG",
+            1.477709
+          ],
+          [
+            "SAP SE / XETRA",
+            1.419736
+          ],
+          [
+            "TOTALENERGIES SE PARIS",
+            1.362414
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-23",
+          "sha256": "0ba8b4067d12f3a76931e75aca579ba0e9f2841e818c00c3bf2225e84dd9de98",
+          "label": "Composition de l’indice publiée par Amundi",
+          "productId": "LU0908500753",
+          "controlledFields": [
+            "ISIN",
+            "BENCHMARK_NAME",
+            "FUND_REPLICATION_METHODOLOGY",
+            "INDEX_BREAKDOWNS_AS_OF_DATE",
+            "BENCHMARK_NUMBER_OF_COMPONENTS",
+            "INDEX_TOP10",
+            "INDEX_COUNTRIES",
+            "INDEX_SECTORS"
+          ]
+        },
+        "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
       }
     }
   },
@@ -23089,7 +23266,7 @@
       "source": {
         "url": "https://stoxx.com/index/sx5t/",
         "checkedAt": "2026-11-23",
-        "sha256": "4ef59aa6ee7f8e2e5ccc45cc47096d5f6ebfa5dbdad4ee57e6874f814b8d6580",
+        "sha256": "f0b664215a1182facc4cd8c6fb5cb5cfdbab12bf8a35ec7931cf0c05fff89b18",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
@@ -25099,7 +25276,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-23",
-        "sha256": "b506a5795f4509981c4c981a6e2678ba05afda07ee37e37220ba518dbeca93f4",
+        "sha256": "6955d84845e53b76ddd0e7ce61c7d94b092c5152cd6ce12b604f704cafb5cc86",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -25733,7 +25910,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
         "checkedAt": "2026-11-23",
-        "sha256": "8d6e55f8029e041513935b4b3943707d726816afcaec97bf0dff749bb2437d1b",
+        "sha256": "744eacc6a472492a89e91c96d89abb9f824ada8e28e743449e284c0802f46801",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -26239,7 +26416,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-23",
-        "sha256": "dd9690ce931ced0c956c7fbdf83665020614d09b0bbd01128fe5e0589dea5112",
+        "sha256": "40fd4829faf38d1079b9d6592ca78026a26ee081ccf4b604f519ce19f3ee8596",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
@@ -26292,7 +26469,7 @@
     },
     "facts": {
       "index": "TOPIX",
-      "asOf": "2026-11-18",
+      "asOf": "2026-11-19",
       "constituents": 1668,
       "countries": [
         [
@@ -26303,91 +26480,91 @@
       "sectors": [
         [
           "Industrials",
-          25.651204
+          25.551513
         ],
         [
           "Financials",
-          18.554108
+          18.317591
         ],
         [
           "Consumer Discretionary",
-          15.948548
+          16.050363
         ],
         [
           "Information Technology",
-          13.675201
+          13.805072
         ],
         [
           "Communication Services",
-          6.239517
+          6.368285
         ],
         [
           "Health Care",
-          5.778553
+          5.827065
         ],
         [
           "Consumer Staples",
-          5.080805
+          5.066294
         ],
         [
           "Materials",
-          5.009988
+          4.967422
         ],
         [
           "Others",
-          2.219186
+          2.189643
         ],
         [
           "Real Estate",
-          1.842891
+          1.856754
         ]
       ],
       "holdings": [
         [
           "MITSUBISHI UFJ FINANCIAL GROUP",
-          3.683021
+          3.623288
         ],
         [
           "TOYOTA MOTOR CORP",
-          3.03715
+          3.026712
         ],
         [
           "SONY GROUP CORP (JT)",
-          2.587529
+          2.664245
         ],
         [
           "RECRUIT HOLDINGS CO LTD",
-          2.471833
+          2.505161
         ],
         [
           "SUMITOMO MITSUI FINANCIAL GROUP",
-          2.411168
+          2.39346
         ],
         [
           "HITACHI LTD",
-          2.260997
+          2.319443
         ],
         [
           "MIZUHO FINANCIAL GROUP INC",
-          1.955566
-        ],
-        [
-          "MITSUBISHI CORPORATION",
-          1.677419
+          1.914603
         ],
         [
           "TOKYO ELECTRON  JPY50",
-          1.66567
+          1.712499
+        ],
+        [
+          "MITSUBISHI CORPORATION",
+          1.629061
         ],
         [
           "ADVANTEST CORP  Y50",
-          1.628822
+          1.620483
         ]
       ],
       "source": {
         "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "checkedAt": "2026-11-23",
-        "sha256": "a2afa8775d4b1df66ab93696e02ddb4ab44f91a345d033a2ed17f08c8ed2b120",
+        "sha256": "289fbe7ca30666ef62f7e192e848776eeea776e74c2d8bd1aa4f56ff1eef200e",
         "label": "Composition de l’indice publiée par Amundi",
         "productId": "FR0013411980",
         "controlledFields": [
@@ -27272,6 +27449,119 @@
           "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-11-20",
           "sha256": "a2afa8775d4b1df66ab93696e02ddb4ab44f91a345d033a2ed17f08c8ed2b120",
+          "label": "Composition de l’indice publiée par Amundi",
+          "productId": "FR0013411980",
+          "controlledFields": [
+            "ISIN",
+            "BENCHMARK_NAME",
+            "FUND_REPLICATION_METHODOLOGY",
+            "INDEX_BREAKDOWNS_AS_OF_DATE",
+            "BENCHMARK_NUMBER_OF_COMPONENTS",
+            "INDEX_TOP10",
+            "INDEX_COUNTRIES",
+            "INDEX_SECTORS"
+          ]
+        },
+        "provenance": "Champs INDEX explicites de l’émetteur, poids adjustedWeight publiés ; aucun portefeuille de fonds ni panier de substitution. Nombre de titres, pas entreprises consolidées."
+      },
+      "2026-11-19": {
+        "index": "TOPIX",
+        "asOf": "2026-11-19",
+        "constituents": 1668,
+        "countries": [
+          [
+            "Japan",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrials",
+            25.551513
+          ],
+          [
+            "Financials",
+            18.317591
+          ],
+          [
+            "Consumer Discretionary",
+            16.050363
+          ],
+          [
+            "Information Technology",
+            13.805072
+          ],
+          [
+            "Communication Services",
+            6.368285
+          ],
+          [
+            "Health Care",
+            5.827065
+          ],
+          [
+            "Consumer Staples",
+            5.066294
+          ],
+          [
+            "Materials",
+            4.967422
+          ],
+          [
+            "Others",
+            2.189643
+          ],
+          [
+            "Real Estate",
+            1.856754
+          ]
+        ],
+        "holdings": [
+          [
+            "MITSUBISHI UFJ FINANCIAL GROUP",
+            3.623288
+          ],
+          [
+            "TOYOTA MOTOR CORP",
+            3.026712
+          ],
+          [
+            "SONY GROUP CORP (JT)",
+            2.664245
+          ],
+          [
+            "RECRUIT HOLDINGS CO LTD",
+            2.505161
+          ],
+          [
+            "SUMITOMO MITSUI FINANCIAL GROUP",
+            2.39346
+          ],
+          [
+            "HITACHI LTD",
+            2.319443
+          ],
+          [
+            "MIZUHO FINANCIAL GROUP INC",
+            1.914603
+          ],
+          [
+            "TOKYO ELECTRON  JPY50",
+            1.712499
+          ],
+          [
+            "MITSUBISHI CORPORATION",
+            1.629061
+          ],
+          [
+            "ADVANTEST CORP  Y50",
+            1.620483
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-23",
+          "sha256": "289fbe7ca30666ef62f7e192e848776eeea776e74c2d8bd1aa4f56ff1eef200e",
           "label": "Composition de l’indice publiée par Amundi",
           "productId": "FR0013411980",
           "controlledFields": [
