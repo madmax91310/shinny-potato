@@ -75,15 +75,21 @@ function dailyMap(daily, date, opens) {
     && daily.total?.funds > 0 && Number.isSafeInteger(daily.total.flowUsd),
   `Relevé ETFIQ partiel ou invalide pour le ${date}.`)
   const rows = new Map(), seen = new Set()
+  let publishedFunds = 0, publishedFlow = 0
   for (const row of daily.funds) {
     requireData(typeof row.ticker === 'string' && /^[A-Z0-9][A-Z0-9.-]*$/.test(row.ticker) && !seen.has(row.ticker),
       `Ticker invalide ou dupliqué le ${date}.`)
     seen.add(row.ticker)
-    if (row.status !== 'ok' || row.held !== false || row.basis !== 'daily' || row.navDate !== opens) continue
+    if (row.status !== 'ok') continue
+    requireData(row.held === false && row.basis === 'daily', `Statut quotidien contradictoire pour ${row.ticker} le ${date}.`)
     requireData(Number.isSafeInteger(row.flowUsd) && typeof row.name === 'string' && row.name.trim(),
       `Flux USD invalide pour ${row.ticker} le ${date}.`)
-    rows.set(row.ticker, row)
+    publishedFunds++
+    publishedFlow += row.flowUsd
+    if (row.navDate === opens) rows.set(row.ticker, row)
   }
+  requireData(publishedFunds === daily.total.funds && publishedFlow === daily.total.flowUsd,
+    `Le détail du relevé ETFIQ ne correspond pas au total du ${date}.`)
   requireData(rows.size > 0, `Aucun relevé de séance exploitable le ${date}.`)
   return rows
 }

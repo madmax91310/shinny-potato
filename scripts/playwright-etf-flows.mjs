@@ -3,7 +3,6 @@ import {readFileSync, mkdirSync} from 'node:fs'
 import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
 import {expect} from 'playwright/test'
-import {renderPost} from '../src/pages/etf-flows/weekly.js'
 import {waitPreview} from './wait-preview.mjs'
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/etf-flows/2026-10-12.json',import.meta.url)))
 const production = JSON.parse(readFileSync(new URL('../src/data/etf-flows.json',import.meta.url)))
@@ -29,7 +28,7 @@ try {
   await expect(page.getByRole('link',{name:'Générer sur GitHub',exact:true})).toHaveAttribute('href', 'https://github.com/madmax91310/shinny-potato/actions/workflows/update-etf-flows.yml')
   if (weekly) {
     await expect(page.getByText('Dernière édition validée', {exact:false})).toBeVisible()
-    const text = renderPost(weekly)
+    const text = weekly.post
     assert.equal(await page.locator('.flows-weekly-text').first().textContent(), text)
     await page.getByRole('button',{name:'Copier le post',exact:true}).first().click()
     assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),text)

@@ -25,13 +25,13 @@ async function updateWeekly(mode, reportPath, monday = lastWeekMonday()) {
   try {
     const existing = mode === '--collect' && registry.editions.find(edition => edition.monday === monday)
     const edition = existing || {...await collectEdition(monday), validatedAt: new Date().toISOString()}
-    const post = renderPost(edition)
+    if (!existing) edition.post = renderPost(edition)
     if (mode === '--collect' && !existing) {
       registry.editions.push(edition)
       registry.editions.sort((a, b) => a.monday > b.monday ? -1 : 1)
       save(registryPath, registry)
     }
-    report = {status: existing ? 'already-validated' : 'validated', edition, post}
+    report = {status: existing ? 'already-validated' : 'validated', edition}
     console.log(JSON.stringify(report, null, 2))
   } catch (error) {
     report = {status: 'unavailable', monday, reason: error.message, code: error.cause?.code}

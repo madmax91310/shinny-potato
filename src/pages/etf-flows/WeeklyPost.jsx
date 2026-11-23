@@ -2,7 +2,7 @@ import {useState} from 'react'
 import Button from '../../design-system/Button.jsx'
 import Card from '../../design-system/Card.jsx'
 import {copyPublicationText} from '../../design-system/publicationActions.js'
-import {dateRange, renderPost} from './weekly.js'
+import {dateRange} from './weekly.js'
 import registry from '../../data/etf-flows-weekly.json'
 
 const workflow = 'https://github.com/madmax91310/shinny-potato/actions/workflows/update-etf-flows.yml'
@@ -11,7 +11,7 @@ const number = new Intl.NumberFormat('fr-FR')
 
 function Post({edition}) {
   const [status, setStatus] = useState('')
-  const text = renderPost(edition)
+  const text = edition.post
 
   async function copy() {
     try {

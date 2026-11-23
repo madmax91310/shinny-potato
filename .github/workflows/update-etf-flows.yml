@@ -66,8 +66,8 @@ jobs:
     permissions:
       contents: write
     outputs:
-      publish: ${{ steps.record.outputs.publish }}
-      commit_sha: ${{ steps.record.outputs.commit_sha }}
+      publish: ${{ steps.commit.outputs.publish }}
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -89,10 +89,10 @@ jobs:
           node-version: 24
       - name: Collect and verify ETFIQ flows
         run: node scripts/update-etf-flows.mjs --collect "$RUNNER_TEMP/etf-flows-report.json"
-      - name: Validate flow publication contracts
+      - name: Validate collected observations
         run: node scripts/test-etf-flows-weekly.mjs
       - name: Commit validated observations
-        id: record
+        id: commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

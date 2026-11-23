@@ -33,7 +33,8 @@ for (const edition of registry.editions) {
     assert(rows.length && new Set(rows.map(row => row.id)).size === rows.length)
     assert(rows.every(row => row.label && Number.isSafeInteger(row.usd)))
   }
-  const post = renderPost(edition)
+  const post = edition.post
+  assert.equal(post, renderPost(edition))
   assert.match(post, /^📊 Flux nets des ETF du /)
   assert.match(post, /🌍 Par pays et par zone[\s\S]*🏭 Par secteur[\s\S]*💸 Top 5 des ETF cotés aux États-Unis[\s\S]*Sources · ETFIQ/)
 }
