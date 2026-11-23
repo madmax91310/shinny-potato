@@ -50,7 +50,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | portfolio | 8 |
 | reference | 11 |
 | scpi | 8 |
-| series | 783 |
+| series | 784 |
 
 ## Champs des instruments
 
