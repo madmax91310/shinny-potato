@@ -67,6 +67,28 @@ class LocalizedComplete(CompleteRealEstate):
             self.assertTrue(record['complete'])
             self.assertNotIn('compositionFacts', record)
 
+    def test_issuer_other_sector_keeps_the_original_unclassified_weight(self):
+        body = self.body()
+        facts = body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        facts['assetClass']['value'] = 'Equity'
+        points = body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        points['sectorName']['value'][0] = 'Other'
+        weight = points['holdingPercent']['value'][0]
+        record, securities = self.parse(body, 'Equity')
+        facts = record['compositionFacts']
+        self.assertEqual(facts['sectors']['asOf'], record['asOf'])
+        self.assertIn({'name': 'Non classé', 'weightPct': weight}, facts['sectors']['rows'])
+        self.assertEqual(securities[0]['sector'], 'Other')
+        for field in ('countries', 'sectors'):
+            self.assertEqual(sum(row['weightPct'] for row in facts[field]['rows']),
+                             sum(row['weightPct'] for row in record['rows']))
+        for field, value in [('countryOfRisk', 'Other'), ('sectorName', 'Unknown'), ('sectorName', None)]:
+            with self.subTest(field=field, value=value):
+                candidate = copy.deepcopy(body)
+                candidate['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap'][field]['value'][0] = value
+                invalid, _ = self.parse(candidate, 'Equity')
+                self.assertNotIn('compositionFacts', invalid)
+
     def german_fixture(self):
         raw = Path(__file__).with_name('fixtures').joinpath('stoxx600-complete-20261101.json.gz').read_bytes()
         self.assertEqual(hashlib.sha256(raw).hexdigest(), '8f658a6aa92e87e1c5b90a8e975ebe733b71dc2ba0e77138f82921c9dada9162')
