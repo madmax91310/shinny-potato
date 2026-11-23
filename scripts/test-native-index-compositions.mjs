@@ -98,6 +98,24 @@ const octoberBnp={...bnp,shareAsOf:'2026-10-30',shareDocumentAdvertisedAsOf:'202
 const bnpReview=new Date('2026-11-22T18:00:00Z')
 assert(qualifiedNativeIndexComposition(projectDcaHoldings(octoberBnp,false,octoberBnp.sourceUrl),bnpIsin,bnpReview))
 assert.equal(qualifiedNativeIndexComposition({...octoberBnp,shareAsOf:'2026-10-29'},bnpIsin,bnpReview),false)
+for(const [isin,base,reference,publication,productDate] of [
+ ['FR0011550193',issuerFixtures.FR0011550193.qualifiedRecord,'2026-10-30','2026-11-07',undefined],
+ [bnpIsin,octoberBnp,'2026-10-31','2026-10-31','2026-10-30'],
+]){
+ const official={...base,checkedAt:octoberBnp.checkedAt,shareAsOf:'2026-10-30',
+  shareSourceUrl:'https://docfinder.bnpparibas-am.com/api/files/11111111-2222-3333-4444-555555555555/512',
+  shareDiscoverySourceUrl:contracts.shares[isin].shareOfficialCatalogueUrl,
+  shareDocumentAdvertisedAsOf:reference,shareDocumentPublicationDate:publication,shareCatalogueReferenceDate:productDate}
+ const projected=projectDcaHoldings(official,isin!==bnpIsin,official.sourceUrl)
+ assert(qualifiedNativeIndexComposition(projected,isin,bnpReview),isin+' official BNP proof survives projection')
+ for(const patch of [
+  {shareDocumentAdvertisedAsOf:undefined},{shareDocumentPublicationDate:undefined},
+  {shareDocumentPublicationDate:'2026-10-29'},{shareDocumentPublicationDate:'2026-11-23'},
+  {shareSourceUrl:official.shareSourceUrl+'?override=1'},{shareSha256:null},{shareDiscoverySha256:null},
+  {shareDiscoverySourceUrl:contracts.shares[isin].shareDocumentDiscoveryUrl},
+  ...(productDate?[{shareCatalogueReferenceDate:undefined},{shareCatalogueReferenceDate:'2026-10-29'}]:[]),
+ ])assert.equal(qualifiedNativeIndexComposition({...projected,...patch},isin,bnpReview),false,JSON.stringify(patch))
+}
 console.log('UBS World/BNP Nasdaq: index reference only; missing physical fund holdings remain explicitly uncertified.')
 
 const russell=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/invesco-economic-index/russell-equity-reference.json.gz'))).qualifiedRecord

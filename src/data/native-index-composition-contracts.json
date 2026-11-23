@@ -178,6 +178,9 @@
     "FR0011550193": {
       "indexId": "stoxx600",
       "hedged": false,
+      "shareDocumentKind": "bnp-index-factsheet",
+      "shareBenchmarkLabel": "STOXX Europe 600 NR",
+      "shareOfficialCatalogueUrl": "https://api.bnpparibas-am.com/push/fundsheet/PV_LU-FSE/ENG/LUX/FR0011550193",
       "shareDocumentDiscoveryUrl": "https://www.analizy.pl/etf/FR0011550193/bnp-paribas-easy-stoxx-europe-600-ucits-etf-acc-eur",
       "shareDocumentPrefix": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/"
     },
@@ -256,6 +259,7 @@
       "indexId": "nasdaq100-notional-net",
       "hedged": false,
       "shareDocumentKind": "bnp-index-factsheet",
+      "shareOfficialCatalogueUrl": "https://api.bnpparibas-am.com/push/fundsheet/IP_IE-FSE/ENG/IRL/IE000QDFFK00",
       "shareDocumentDiscoveryUrl": "https://www.analizy.pl/etf/IE000QDFFK00/bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc",
       "shareDocumentPrefix": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/",
       "shareBenchmarkLabel": "NASDAQ-100 Notional Net Total Return Index",

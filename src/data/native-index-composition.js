@@ -41,10 +41,16 @@ function qualifiedIssuerIndex(h,share,index,now){
   && Number.isFinite(advertisedStamp)&&advertisedStamp<=control
   && new Date(advertisedStamp+86400000).getUTCDate()===1
   && new Date(advertisedStamp-weekendDelta*86400000).toISOString().slice(0,10)===h.shareAsOf)
+ const publicationStamp=day(h.shareDocumentPublicationDate)
+ const officialBnp=share.shareOfficialCatalogueUrl&&h.shareDiscoverySourceUrl===share.shareOfficialCatalogueUrl
+  &&/^https:\/\/docfinder\.bnpparibas-am\.com\/api\/files\/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}\/[0-9]+$/.test(h.shareSourceUrl||'')
+  &&day(h.shareDocumentAdvertisedAsOf)===advertisedStamp&&advertisedMatch
+  &&publicationStamp>=advertisedStamp&&publicationStamp<=control
+  &&(advertisedAsOf===h.shareAsOf||h.shareCatalogueReferenceDate===h.shareAsOf)
+ const legacyBnp=share.shareDocumentPrefix&&h.shareSourceUrl===share.shareDocumentPrefix+advertisedAsOf
+  &&h.shareDiscoverySourceUrl===share.shareDocumentDiscoveryUrl&&advertisedMatch
  const subjectSource=share.shareDocumentTemplates?share.shareDocumentTemplates.some(template=>h.shareSourceUrl===template.replace('{monthEnd}',h.shareAsOf?.replaceAll('-',''))):share.shareDocumentBase?h.shareSourceUrl===share.shareDocumentBase:
-  typeof h.shareSourceUrl==='string'&&h.shareSourceUrl.startsWith(share.shareDocumentPrefix)
-   &&advertisedMatch&&h.shareSourceUrl===share.shareDocumentPrefix+advertisedAsOf
-   &&h.shareDiscoverySourceUrl===share.shareDocumentDiscoveryUrl&&hash(h.shareDiscoverySha256)
+  (officialBnp||legacyBnp)&&hash(h.shareDiscoverySha256)
  const subjectScopeQualified=!share.referenceOnly||(h.approximation===true&&p?.referenceOnlyForSubject===true)
  const returnRule=index.returnWeightContract,returnProof=p?.returnWeightProof
  // Preserve genuine earlier source controls without allowing the producer to

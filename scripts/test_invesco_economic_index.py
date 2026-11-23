@@ -177,12 +177,46 @@ class PhysicalFundReferences(unittest.TestCase):
         with patch('invesco_economic_index.pdf_text',return_value=f['subjectText'].replace('MSCI World Total Return Net','MSCI World Total Return Gross')),self.assertRaises(ValueError):
             qualify_subject(isin,NOW,lambda *a,**kw:b'pdf')
 
-    def test_bnp_physical_share_uses_its_own_net_nasdaq_document(self):
-        isin='IE000QDFFK00';f=EXTRA[isin];url=f['qualifiedRecord']['shareSourceUrl']
-        with patch('invesco_economic_index.pdf_text',return_value=f['subjectText']),patch('collect_bnp_etf.discover',return_value=(url,'2026-09-30')):
-            self.assertEqual(qualify_subject(isin,NOW,lambda _:b'pdf')[2],'2026-09-30')
-        with patch('invesco_economic_index.pdf_text',return_value=f['subjectText'].replace(isin,'FR0011871110')),patch('collect_bnp_etf.discover',return_value=(url,'2026-09-30')),self.assertRaises(ValueError):
-            qualify_subject(isin,NOW,lambda _:b'pdf')
+    def test_bnp_official_subject_proof_reaches_complete_index_producer(self):
+        now = dt.datetime(2026, 11, 22, 18, tzinfo=dt.timezone.utc)
+        fixtures = Path(__file__).with_name('fixtures') / 'official-documents'
+        for isin, currency, case, product, country, reference, publication, doc_type in [
+            ('FR0011550193', 'EUR', FIX, 'easy-stoxx', 'LUX', '2026-10-30', '2026-11-07', 'DOC_FACTSHEET'),
+            ('IE000QDFFK00', 'USD', EXTRA, 'easy-ii-nasdaq', 'IRL', '2026-10-31', '2026-10-31', 'DOC_FACTSHEET_B2B'),
+        ]:
+            with self.subTest(isin=isin):
+                subject, index = contracts(isin)
+                catalogue_url = subject['shareOfficialCatalogueUrl']
+                url = 'https://docfinder.bnpparibas-am.com/api/files/11111111-2222-3333-4444-555555555555/512'
+                pdf = b'%PDF-BNP fixture'
+                catalogue = json.dumps({
+                    'fundshare_selection': {'isin': isin, 'currency': currency},
+                    'reference_date': '2026-10-30',
+                    'publications': {'ENG': {'documents': [dict(
+                        country=country, language='ENG', format='pdf', doc_type=doc_type,
+                        reference_date=reference, publication_date=publication, url=url)]}},
+                }).encode()
+                f = case[isin]
+                fetch = {catalogue_url: catalogue, url: pdf,
+                         index['metadataSourceUrl']: json.dumps(f['metadata']).encode()}.__getitem__
+                text = (fixtures / f'bnp-{product}-october-2026.txt').read_text()
+                config = {'isin': isin, 'currency': currency}
+                with patch('collect_bnp_etf.pdf_text', return_value=text):
+                    record = collect(config, now, fetch, f['capture'])
+                self.assertEqual(record['shareSourceUrl'], url)
+                self.assertEqual(record['shareSha256'], digest(pdf))
+                self.assertEqual(record['shareDiscoverySourceUrl'], catalogue_url)
+                self.assertEqual(record['shareDiscoverySha256'], digest(catalogue))
+                self.assertEqual(record['shareAsOf'], '2026-10-30')
+                self.assertEqual(record['shareDocumentAdvertisedAsOf'], reference)
+                self.assertEqual(record['shareDocumentPublicationDate'], publication)
+                self.assertEqual(record.get('shareCatalogueReferenceDate'),
+                                 '2026-10-30' if reference == '2026-10-31' else None)
+                self.assertEqual(record['basis'], 'index')
+                self.assertEqual(bool(record.get('approximation')), isin == 'IE000QDFFK00')
+                with patch('collect_bnp_etf.pdf_text', return_value=text.replace(isin, 'FR0011871110')):
+                    with self.assertRaisesRegex(ValueError, 'Wrong BNP exact ISIN'):
+                        qualify_subject(isin, now, fetch)
 
 
 RUSSELL=json.loads(gzip.decompress((Path(__file__).with_name('fixtures')/'invesco-economic-index/russell-equity-reference.json.gz').read_bytes()))
