@@ -142,6 +142,21 @@ class JpmIndependentSnapshots(unittest.TestCase):
                 parse(bad,now)
         fund['dailyHoldings']['data'].append(copy.deepcopy(cash))
         with self.assertRaisesRegex(ValueError,'top positions'):parse(body,now)
+    def test_presentation_derives_tenth_equity_only_from_the_same_validated_book(self):
+        from jpm_live_presentation import parse_top_ten
+        body=self.source();now=dt.datetime(2026,10,29,tzinfo=dt.timezone.utc)
+        fund=body['fundData']
+        cash=next(row for row in fund['dailyHoldingsAll']['data'] if row['securityType']=='Cash' and row['securityIsin'] is None)
+        fund['dailyHoldings']['data'][-1]=copy.deepcopy(cash)
+        result=parse_top_ten(fund,json.dumps(body).encode(),now)
+        self.assertEqual(result['asOf'],'2026-10-29')
+        self.assertEqual(result['sourceComponent'],'fundData.dailyHoldingsAll')
+        self.assertFalse(result['complete'])
+        expected=sorted((row for row in fund['dailyHoldingsAll']['data'] if row['securityType'] in ('Common Stock','Fund - Real Estate Investment Trust')),key=lambda row:-row['marketValuePercent'])[:10]
+        self.assertEqual([(r['isin'],r['weightPct']) for r in result['rows']],
+                         [(r['securityIsin'],r['marketValuePercent']) for r in expected])
+        fund['dailyHoldingsAll']['data'].pop()
+        with self.assertRaisesRegex(ValueError,'Truncated'):parse_top_ten(fund,json.dumps(body).encode(),now)
     def test_collection_preserves_separate_raw_clock(self):
         from unittest.mock import patch
         from jpm_holdings import collect,ISIN

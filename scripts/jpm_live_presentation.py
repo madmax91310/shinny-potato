@@ -8,7 +8,7 @@ import math
 import re
 
 from issuer_documents import download, document_date, proof, validated_rows
-from jpm_holdings import ISIN, URL, qualified_fund
+from jpm_holdings import ISIN, URL, parse as parse_complete_book, qualified_fund
 from collect_physical_holdings import checked_rows
 
 
@@ -63,6 +63,17 @@ def parse_top_ten(fund, body, now):
     top = observation['data']
     if not isinstance(top, list) or len(top) != 10:
         raise ValueError('Unqualified JPM ten direct equity positions')
+    # The publisher's ten largest positions can include cash. Only a dated,
+    # independently reconciled full book can then establish the tenth equity.
+    if any(row.get('securityType') == 'Cash' for row in top):
+        equities, book_date, _ = parse_complete_book({'fundData': fund}, now)
+        if book_date != stamp or len(equities) < 10:
+            raise ValueError('Missing qualified JPM equity ranking after retained cash')
+        rows = sorted(equities, key=lambda row: -row['weightPct'])[:10]
+        return {'sourceUrl': URL, 'sha256': proof(body), 'rows': validated_rows(rows, complete=False),
+                'asOf': stamp, 'basis': 'fund', 'complete': False,
+                'sourceComponent': 'fundData.dailyHoldingsAll',
+                'method': 'Ten largest direct equities/REITs from the reconciled same-date fund book; cash remains outside the equity ranking; original NAV weights, no renormalisation'}
     for row in top:
         weight = row.get('marketValuePercent')
         if (row.get('securityType') not in ['Common Stock', 'Fund - Real Estate Investment Trust']
