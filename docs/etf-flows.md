@@ -8,6 +8,8 @@ GitHub Actions démarre le lundi à 6 h, heure de Paris. Des passages de rattrap
 
 Le workflow compare les séances attendues au [calendrier NYSE](https://www.nyse.com/trade/hours-calendars). Les jours fériés sont retirés et les séances écourtées sont conservées. L’édition ETFIQ datée doit couvrir toutes les séances, de la première à la dernière, au-delà d’un simple contrôle du vendredi. Chaque JSON quotidien daté doit porter la bonne fenêtre, et le détail des lignes doit se réconcilier avec son total publié. Un fonds doit avoir un relevé quotidien exploitable à chaque séance avec la VL de la clôture précédente. Les absences, suspensions par ETFIQ, relevés groupés et dates de VL périmées sont écartés. Lorsqu’un fonds figure dans le classement hebdomadaire, ses bornes et sa somme USD doivent aussi coïncider. Les flux utilisent le champ net USD publié, sans retraitement des allers-retours signalés par ETFIQ. [Méthode des flux ETFIQ](https://etfiq.com/methodology/flows)
 
+Un passage qui retrouve une édition validée produit un rapport de conservation et contrôle sa présence dans Pages. L’étape de collecte est ignorée et la preuve source de l’édition garde sa date d’origine.
+
 | Bloc | Périmètre |
 | --- | --- |
 | Pays et zones | Fonds actions cotés aux États-Unis, classés par exposition principale par ETFIQ, avec une ligne par fonds. « États-Unis » additionne les segments de la famille `us-stocks`. Les styles et tailles des ensembles Monde et Actions internationales sont regroupés par zone. La catégorie résiduelle « pays unique ou région étroite » est écartée faute de zone nommée. Les fonds sectoriels, les stratégies spécialisées et les catégories non actions sont hors de ce bloc. |

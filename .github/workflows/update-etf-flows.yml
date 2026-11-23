@@ -91,8 +91,21 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
+      - name: Select weekly edition
+        id: plan
+        run: |
+          plan=$(node scripts/update-etf-flows.mjs --plan)
+          jq -er '"monday=\(.monday)", "collect=\(.collect)"' <<< "$plan" >> "$GITHUB_OUTPUT"
       - name: Collect and verify ETFIQ flows
-        run: node scripts/update-etf-flows.mjs --collect "$RUNNER_TEMP/etf-flows-report.json"
+        if: steps.plan.outputs.collect == 'true'
+        env:
+          MONDAY: ${{ steps.plan.outputs.monday }}
+        run: node scripts/update-etf-flows.mjs --collect "$RUNNER_TEMP/etf-flows-report.json" "$MONDAY"
+      - name: Report retained ETFIQ edition
+        if: steps.plan.outputs.collect == 'false'
+        env:
+          MONDAY: ${{ steps.plan.outputs.monday }}
+        run: node scripts/update-etf-flows.mjs --retained "$RUNNER_TEMP/etf-flows-report.json" "$MONDAY"
       - name: Validate collected observations
         run: node scripts/test-etf-flows-weekly.mjs
       - name: Commit validated observations

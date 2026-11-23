@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import {spawnSync} from 'node:child_process'
-import {copyFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync} from 'node:fs'
+import {copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {join} from 'node:path'
 
@@ -42,6 +42,27 @@ try {
   assert.equal(changed.status, 1)
   assert.match(changed.stderr, /acquire from current master/)
   assert.equal(changed.stdout, '')
+
+  const registry = JSON.parse(readFileSync(new URL('../src/data/etf-flows-weekly.json', import.meta.url)))
+  const [edition] = registry.editions
+  assert(edition, 'A retained edition is needed for the no-source regression')
+  const report = join(checkout, 'retained.json')
+  function runUpdate(...args) {
+    return spawnSync(process.execPath, [
+      '--import', 'data:text/javascript,globalThis.fetch=()=>{throw Error("unexpected source request")}',
+      'scripts/update-etf-flows.mjs', ...args,
+    ], {encoding: 'utf8'})
+  }
+  const plan = runUpdate('--plan', edition.monday)
+  assert.equal(plan.status, 0, plan.stderr)
+  assert.deepEqual(JSON.parse(plan.stdout), {monday: edition.monday, collect: false})
+  const retained = runUpdate('--retained', report, edition.monday)
+  assert.equal(retained.status, 0, retained.stderr)
+  assert.deepEqual(JSON.parse(readFileSync(report, 'utf8')), {status: 'already-validated', edition})
+  const missing = runUpdate('--retained', report, '2000-01-03')
+  assert.equal(missing.status, 1)
+  assert.match(missing.stderr, /validée introuvable/)
+  assert.equal(JSON.parse(readFileSync(report, 'utf8')).status, 'unavailable')
 } finally {
   rmSync(checkout, {recursive: true, force: true})
 }
