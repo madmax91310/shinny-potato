@@ -192,7 +192,10 @@ def qualify_subject(isin,now,fetch=download,*,attempts=None):
 def _acquire_index(index_id,now,fetch):
     index=CONTRACTS['indices'][index_id]
     try:
-        metadata=fetch(index['metadataSourceUrl'])
+        try:
+            metadata=fetch(index['metadataSourceUrl'])
+        except urllib.error.HTTPError as error:
+            raise ValueError(f"Invesco index metadata HTTP {error.code}: {index['metadataSourceUrl']}") from error
         result=subprocess.run(['node',str(ROOT/'scripts/capture-invesco-economic-index.mjs'),index_id],
                               capture_output=True,text=True,timeout=100,check=False)
         if result.returncode:raise ValueError('Public issuer economic-index capture: '+result.stderr[-1200:])
@@ -248,16 +251,19 @@ def collect(share,now,fetch=download,capture=None):
     isin=share['isin'];subject,index=contracts(isin)
     if share.get('currency')!=subject.get('shareCurrency','EUR'):raise ValueError('Wrong subject share currency')
     subject_attempts=[]
-    raw,url,stamp,discovery=qualify_subject(isin,now,fetch,attempts=subject_attempts)
+    try:
+        raw,url,stamp,discovery=qualify_subject(isin,now,fetch,attempts=subject_attempts)
+    except urllib.error.HTTPError as error:
+        raise ValueError(f'Subject benchmark HTTP {error.code}: {error.url}') from error
+    from collect_physical_holdings import source_proof
+    source_proof(share,'subject-benchmark',raw)
     policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.default']
     if (now.date()-dt.date.fromisoformat(stamp)).days>policy['dataDays']:raise ValueError('Subject benchmark proof is stale')
     if capture is None:
         metadata,capture=acquire_index(subject['indexId'],now,fetch)
     else:metadata=fetch(index['metadataSourceUrl'])
-    from collect_physical_holdings import source_proof
     source_proof(share,'economic-index-capture',capture)
     source_proof(share,'economic-index-metadata',metadata)
-    source_proof(share,'subject-benchmark',raw)
     record=parse_capture(capture,metadata,isin,now)
     if subject.get('referenceOnly'):
         record['approximation']=True

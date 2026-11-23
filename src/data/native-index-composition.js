@@ -2,6 +2,7 @@
 // benchmark proof. A physical ETF proxy cannot acquire this status by a label.
 import contracts from './native-index-composition-contracts.json' with {type:'json'}
 import freshness from './freshness-policy.json' with {type:'json'}
+import {isBnpDocfinderUrl} from './bnp-document-evidence.js'
 const hash=value=>/^[a-f0-9]{64}$/.test(value||'')
 const day=value=>{
  if(!/^\d{4}-\d{2}-\d{2}$/.test(value||''))return NaN
@@ -43,7 +44,7 @@ function qualifiedIssuerIndex(h,share,index,now){
   && new Date(advertisedStamp-weekendDelta*86400000).toISOString().slice(0,10)===h.shareAsOf)
  const publicationStamp=day(h.shareDocumentPublicationDate)
  const officialBnp=share.shareOfficialCatalogueUrl&&h.shareDiscoverySourceUrl===share.shareOfficialCatalogueUrl
-  &&/^https:\/\/docfinder\.bnpparibas-am\.com\/api\/files\/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}\/[0-9]+$/.test(h.shareSourceUrl||'')
+  &&isBnpDocfinderUrl(h.shareSourceUrl)
   &&day(h.shareDocumentAdvertisedAsOf)===advertisedStamp&&advertisedMatch
   &&publicationStamp>=advertisedStamp&&publicationStamp<=control
   &&(advertisedAsOf===h.shareAsOf||h.shareCatalogueReferenceDate===h.shareAsOf)

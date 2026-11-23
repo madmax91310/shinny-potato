@@ -28,5 +28,19 @@ for (const [isin, oldYears] of Object.entries(previous)) {
   }
   for (const method of ['calendar-year proxy total return, net of fund fees','calendar-year NAV total return, gross of fund fees']) assert.equal(qualifyPreferredManualNav({...source,method}),null)
 }
+const ese = QUALIFIED_FUND_CALENDARS.FR0011550185
+const legacy = qualifyPreferredManualNav({...ese, sourceUrls:['https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30'], documentEvidence:undefined})
+assert.equal(legacy.id,'manual-FR0011550185')
+const official = {...ese, asOf:'2026-10-30', checkedAt:'2026-11-23',
+  sourceUrls:['https://docfinder.bnpparibas-am.com/api/files/11111111-2222-3333-4444-555555555555/512'],
+  documentEvidence:{catalogueUrl:legacy.bnpCatalogueUrl, sha256:'a'.repeat(64), referenceDate:'2026-10-30', publicationDate:'2026-11-07'}}
+const review = new Date('2026-11-24T00:00:00Z')
+assert.equal(qualifyPreferredManualNav(official,review).id,legacy.id)
+for(const evidence of [undefined, {...official.documentEvidence,sha256:''},
+  {...official.documentEvidence,catalogueUrl:legacy.bnpCatalogueUrl.replace('FR0011550185','FR0011550193')},
+  {...official.documentEvidence,publicationDate:'2026-11-24'},
+  {...official.documentEvidence,publicationDate:'2026-10-29'},
+])assert.equal(qualifyPreferredManualNav({...official,documentEvidence:evidence},review),null)
+assert.equal(qualifyPreferredManualNav({...official,sourceUrls:[official.sourceUrls[0]+'?id=changed']},review),null)
 assert.equal(restored,8, 'Eight additional existing-part/year windows in each of the two tools')
 console.log('Five existing shares: eight annual windows restored in manual portfolios and Duels, no new instruments/Auto roles; exact source, currency and convention retained')

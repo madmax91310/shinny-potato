@@ -3,6 +3,7 @@ import INDICES from './automated-indices.json' with { type: 'json' }
 import { currentEvidence as currentAnnualEvidence } from './evidence-freshness.js'
 export { currentAnnualEvidence }
 import { ETFS } from './etf-cards.js'
+import { isBnpDocfinderUrl } from './bnp-document-evidence.js'
 import { INSTRUMENTS_BY_ISIN }from './instruments.js'
 
 export function closedCalendarYears(values, now = new Date()) {
@@ -22,7 +23,11 @@ export function qualifyFundCalendar(isin, record, identity, now = new Date(), {n
     || !Object.keys(years).length || !currentAnnualEvidence(performance.checkedAt, asOf, 'etf.performance', now)) return null
   return { id: `annual-${isin}`, isin, label: identity.name, shortLabel: identity.name, instrumentType: identity.instrumentType ?? INSTRUMENTS_BY_ISIN[isin]?.instrumentType ?? (identity.name.match(/\bET[CNP]\b/)?.[0] ?? 'ETF'),
     frequency: 'annual', basis: 'fund-nav', currency: performance.currency, years, pea: identity.pea === true,
-    group: `Calendriers annuels · ${identity.category ?? 'ETF'}`, sourceUrls: [source], checkedAt: performance.checkedAt, asOf, method: performance.method }
+    group: `Calendriers annuels · ${identity.category ?? 'ETF'}`, sourceUrls: [source], checkedAt: performance.checkedAt, asOf, method: performance.method,
+    ...(isBnpDocfinderUrl(source) ? { documentEvidence: {
+      catalogueUrl: performance.discoveryUrl, sha256: performance.sha256,
+      referenceDate: performance.documentAdvertisedAsOf, publicationDate: performance.documentPublicationDate,
+    } } : {}) }
 }
 export function qualifyIndexCalendar(id, record, now = new Date()) {
   const series = record?.returns, source = series?.source
