@@ -48,7 +48,7 @@ def collect_one(share,now):
     if share['parser'] in ('globalx-physical', 'jpm-document'):
         from collect_presentation_etf import collect_one as presentation
         return presentation(share, now)
-    if share['parser'] == 'bnp-document-mirror':
+    if share['parser'] == 'bnp-document':
         from collect_bnp_etf import collect_one as bnp
         return bnp(share, now)
     if share['parser'] in ('coinshares-document', 'ubs-document'):

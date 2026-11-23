@@ -3,12 +3,179 @@ import copy
 import pathlib
 import unittest
 from unittest.mock import patch
-from broker_document_sources import CATALOGUES, DocumentResolver, official_link
+from broker_document_sources import (CATALOGUES, DocumentResolver, SourceDocument,
+                                     XTB_TARIFF, XTB_CATALOGUE, official_link, xtb_tariff_url)
 from collect_broker_tariffs import collect, fetch_content, SOURCES
 from broker_profiles import parse
 
 FIXTURES = pathlib.Path(__file__).parent / 'fixtures/broker-tariffs'
 TODAY = '2026-10-08'
+
+XTB_CDN = ('https://xas-new-cdn.xtb.com/file/0104/60/'
+           '9eed09f6-8ad0-4895-bb8f-93dc9d02029f/table-des-frais-et-commissions-052026.pdf')
+
+
+class XtbDocumentTests(unittest.TestCase):
+    def test_icon_accessible_name_and_legacy_text_both_find_exact_tariff(self):
+        config = CATALOGUES[XTB_TARIFF]
+        actual = (FIXTURES/'xtb-catalogue.html').read_text()
+        self.assertEqual(official_link(actual, config, TODAY), XTB_TARIFF)
+        self.assertEqual(official_link(f'<a href="{XTB_TARIFF}">TABLE DES FRAIS ET COMMISSIONS</a>', config), XTB_TARIFF)
+        self.assertEqual(official_link(actual + actual, config), XTB_TARIFF)
+        # A nearby heading is not enough to qualify an unnamed download link.
+        with self.assertRaises(ValueError):
+            official_link(actual.replace('aria-label=', 'data-label='), config)
+        # Accessible-name discovery is deliberately scoped to XTB.
+        with self.assertRaises(ValueError):
+            official_link('<a href="/files/tarifs_fortuneo.pdf" aria-label="Conditions tarifaires en vigueur"></a>', CATALOGUES[SOURCES['fortuneo']])
+
+    def test_contradictory_names_and_distinct_documents_are_rejected(self):
+        config = CATALOGUES[XTB_TARIFF]
+        for text, label in [('Table des frais et commissions', 'Archives'),
+                            ('Archives', 'Table des frais et commissions')]:
+            with self.subTest(text=text), self.assertRaisesRegex(ValueError, 'contradictoires'):
+                official_link(f'<a href="{XTB_TARIFF}" aria-label="{label}">{text}</a>', config)
+        with self.assertRaisesRegex(ValueError, 'ambiguë'):
+            official_link(f'<a href="{XTB_TARIFF}">Table des frais et commissions</a>'
+                          f'<a href="{XTB_CDN}">Table des frais et commissions</a>', config)
+
+    def test_french_tariff_url_boundaries(self):
+        for good in (XTB_TARIFF, XTB_CDN, XTB_CDN.replace('052026', '112026'),
+                     XTB_TARIFF.replace('www.xtb.com', 'xtb.com:443')):
+            with self.subTest(url=good): self.assertTrue(xtb_tariff_url(good))
+        bad = [XTB_CDN.replace('https:', 'http:'), XTB_CDN.replace('xtb.com', 'xtb.com.evil.test'),
+               XTB_CDN.replace('xas-new-cdn.xtb.com', 'user@xas-new-cdn.xtb.com'),
+               XTB_CDN.replace('xas-new-cdn.xtb.com', 'xas-new-cdn.xtb.com:8443'),
+               XTB_CDN.replace('xas-new-cdn.xtb.com', 'xas-new-cdn.xtb.com:bad'),
+               XTB_CDN.replace('table-des-frais-et-commissions', 'informations-generales'),
+               XTB_TARIFF.replace('/fr/', '/en/'), XTB_CDN+'?login=1', XTB_CDN+'#archive',
+               XTB_CDN.replace('/file/', '/file/../file/'), XTB_CDN.replace('/file/', '/%66ile/'),
+               'https://[invalid/']
+        for url in bad:
+            with self.subTest(url=url):
+                self.assertFalse(xtb_tariff_url(url))
+                with self.assertRaises(ValueError):
+                    official_link(f'<a href="{url}" aria-label="Table des frais et commissions"></a>', CATALOGUES[XTB_TARIFF])
+
+    def test_download_receives_guard_for_each_redirect_and_final_url(self):
+        def download(url, **kwargs):
+            guard = kwargs['url_validator']
+            self.assertTrue(guard(XTB_TARIFF))
+            self.assertTrue(guard(XTB_CDN))
+            self.assertFalse(guard('https://example.com/table-des-frais-et-commissions-052026.pdf'))
+            self.assertFalse(guard(XTB_CDN.replace('table-des-frais-et-commissions', 'other')))
+            return b'%PDF-proof', XTB_CDN
+        with patch('collect_broker_tariffs.download', side_effect=download), patch('collect_broker_tariffs.pdf_text', return_value='proof'):
+            self.assertEqual(fetch_content(XTB_TARIFF).source_url, XTB_CDN)
+        with patch('collect_broker_tariffs.download', return_value=(b'<html></html>', XTB_CATALOGUE)) as fetch:
+            fetch_content(XTB_CATALOGUE)
+            guard = fetch.call_args.kwargs['url_validator']
+            self.assertTrue(guard(XTB_CATALOGUE))
+            self.assertFalse(guard('https://example.com/fr/informations-legales'))
+
+    def test_resolver_records_actual_source_and_rejects_wrong_final_source(self):
+        html = (FIXTURES/'xtb-catalogue.html').read_text()
+        for final in (XTB_CDN, 'https://example.com/tariff.pdf'):
+            def fetch(url):
+                return html if url == XTB_CATALOGUE else SourceDocument('proof', final)
+            resolver = DocumentResolver(fetch, TODAY)
+            if final == XTB_CDN:
+                result = resolver(XTB_TARIFF)
+                self.assertEqual((result.source_url, result.discovery_url), (XTB_CDN, XTB_CATALOGUE))
+                self.assertEqual(resolver.report[XTB_TARIFF]['mode'], 'catalogue')
+            else:
+                with self.assertRaisesRegex(ValueError, 'Source finale'): resolver(XTB_TARIFF)
+
+    def test_unique_valid_date_and_no_regression(self):
+        from broker_tariff_extensions import parse as tariff
+        text = (FIXTURES/'xtb.txt').read_text()
+        previous = {'asOf': '2026-09-30'}
+        self.assertEqual(tariff('xtb', text, '2026-11-17', previous)['asOf'], '2026-09-30')
+        for altered in [text.replace('En date du', 'Date'),
+                        text.replace('30/09/2026', '31/09/2026'),
+                        text.replace('30/09/2026', '30/09/2025'),
+                        text.replace('30/09/2026', '30/09/2027'),
+                        text+'\nEn date du 30/09/2026', text+'\nEn date du 01/10/2026']:
+            with self.subTest(text=altered[-60:]), self.assertRaises(ValueError):
+                tariff('xtb', altered, '2026-11-17', previous)
+
+    def test_catalogue_outage_does_not_allow_bad_previous_or_final_provenance(self):
+        from data_automation import ResponseFormatError
+        calls = []
+        def fetch(url):
+            calls.append(url)
+            if url == XTB_CATALOGUE: raise ConnectionResetError('offline catalogue')
+            return SourceDocument('proof', 'https://example.com/tariff.pdf')
+        for previous in (XTB_CDN, XTB_CDN+'?login=1'):
+            calls.clear()
+            with self.subTest(previous=previous), self.assertRaises(ValueError):
+                DocumentResolver(fetch, TODAY, {XTB_TARIFF: previous})(XTB_TARIFF)
+            self.assertNotIn(XTB_TARIFF, calls)
+        def rejected_redirect(url):
+            calls.append(url)
+            if url == XTB_CATALOGUE: raise ConnectionResetError('offline catalogue')
+            raise ResponseFormatError('Redirect outside official broker scope')
+        calls.clear()
+        with self.assertRaises(ResponseFormatError):
+            DocumentResolver(rejected_redirect, TODAY, {XTB_TARIFF: XTB_CDN})(XTB_TARIFF)
+        self.assertNotIn(XTB_TARIFF, calls)
+
+    def test_current_document_failure_never_uses_previous_pdf(self):
+        from broker_tariff_extensions import parse as tariff
+        previous = tariff('xtb', (FIXTURES/'xtb.txt').read_text(), TODAY)
+        previous['sourceUrl'] = XTB_CDN
+        current = XTB_TARIFF.replace('052026', '112026')
+        html = f'<a href="{current}" aria-label="Table des frais et commissions"></a>'
+        for mode in ('offline', 'changed', 'missing', 'ambiguous', 'older'):
+            calls = []
+            def fetch(url):
+                calls.append(url)
+                if url == XTB_CATALOGUE:
+                    if mode == 'missing': return '<html></html>'
+                    if mode == 'ambiguous': return html + f'<a href="{XTB_TARIFF}">Table des frais et commissions</a>'
+                    return html
+                if url == current:
+                    if mode == 'changed': return SourceDocument('Unrelated product', XTB_CDN)
+                    if mode == 'older': return SourceDocument((FIXTURES/'xtb.txt').read_text().replace('30/09/2026', '30/09/2025'), XTB_CDN)
+                    raise ValueError('HTTP 503')
+                raise ValueError('Unrelated source')
+            result, failures, valid = collect({'brokers': {'xtb': copy.deepcopy(previous)}}, '2026-11-17', fetch)
+            with self.subTest(mode=mode):
+                self.assertNotIn('xtb', valid)
+                self.assertIn('xtb', failures)
+                self.assertEqual(result['brokers']['xtb'], previous)
+                self.assertNotIn(XTB_CDN, calls)
+                self.assertNotIn(XTB_TARIFF, calls)
+
+    def test_xtb_success_does_not_hide_bourso_network_or_bd_cash_failure(self):
+        from broker_profiles import SOURCES as profiles
+        previous_cash = {'checkedAt': '2026-11-09', 'copy': {'full': 'Previous qualified cash observation'}}
+        previous_bourso = {'checkedAt': '2026-11-09', 'copy': {'full': 'Previous qualified tariff'}}
+        baseline = {'brokers': {'bourso': copy.deepcopy(previous_bourso),
+                                'bd': {'profile': {'cash': copy.deepcopy(previous_cash)}}}}
+        def fetch(url):
+            if url == XTB_CATALOGUE: return (FIXTURES/'xtb-catalogue.html').read_text()
+            if url == XTB_TARIFF: return SourceDocument((FIXTURES/'xtb.txt').read_text(), XTB_CDN)
+            if url == SOURCES['bd']: return (FIXTURES/'bd-synthetic.txt').read_text()
+            if url == CATALOGUES[profiles['bdContract']['url']]['page']:
+                return (f'<a href="{profiles["bdContract"]["url"]}">Conditions Générales courantes</a>'
+                        f'<a href="{SOURCES["bd"]}">Tarification 0,99 €</a>')
+            if url in (profiles['bdPea']['url'], profiles['bdCto']['url'],
+                       profiles['bdTariffPage']['url'], profiles['bdContract']['url']):
+                return '<html><body>PEA et compte titres. Aucune clause relative aux espèces.</body></html>'
+            raise ConnectionResetError('Connection reset by peer')
+        result, failures, valid = collect(baseline, '2026-11-17', fetch)
+        self.assertIn('xtb', valid)
+        self.assertNotIn('xtb', failures)
+        self.assertEqual(result['brokers']['xtb']['checkedAt'], '2026-11-17')
+        self.assertEqual(result['brokers']['xtb']['sourceUrl'], XTB_CDN)
+        for field in ('change', 'garde', 'sortant'):
+            self.assertEqual(result['brokers']['xtb']['fields'][field]['discoveryUrl'], XTB_CATALOGUE)
+        self.assertIn('Connection reset', failures['bourso'])
+        self.assertIn('Clause officielle absente', failures['bd:profile:cash'])
+        self.assertEqual(result['brokers']['bourso'], previous_bourso)
+        self.assertEqual(result['brokers']['bd']['profile']['cash'], previous_cash)
+
 
 class DocumentSourcesTests(unittest.TestCase):
     def test_cto_column_continuation_preserves_physical_page(self):

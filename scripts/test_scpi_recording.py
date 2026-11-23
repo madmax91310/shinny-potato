@@ -156,6 +156,22 @@ class ScpiRecording(unittest.TestCase):
         self.git('fetch', '-q', 'origin', 'master')
         self.assertEqual(json.loads(self.git('show', 'origin/master:src/data/automated-scpi.json'))['b'], self.old['b'])
 
+    def test_metadata_registry_drift_still_requires_combined_financial_validation(self):
+        metadata_path = 'scripts/instrument-metadata-sources.json'
+        upstream = self.advance({metadata_path: '{"instruments":[]}'})
+        valid_observation = self.file.read_text()
+        self.file.write_text(valid_observation.replace('"value": 11', '"value": 99'))
+        with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
+            module.publish(self.root, self.source_report)
+        self.assertEqual(self.git('ls-remote', 'origin', 'refs/heads/master').split()[0], upstream)
+
+        self.file.write_text(valid_observation)
+        result = module.publish(self.root, self.source_report)
+        self.assertEqual((result['changed'], result['collection_failed']), ('true', 'false'))
+        self.git('fetch', '-q', 'origin', 'master')
+        self.assertEqual(self.git('show', f'origin/master:{metadata_path}'), '{"instruments":[]}')
+        self.assertEqual(self.git('show', 'origin/master:src/data/automated-scpi.json'), valid_observation)
+
     def test_financial_failure_without_an_input_refusal_is_not_retried(self):
         bad = copy.deepcopy(self.old); bad['a']['value'] = 99
         self.file.write_text(json.dumps(bad))

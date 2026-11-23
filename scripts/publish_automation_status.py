@@ -1372,8 +1372,8 @@ def completed_run_candidates(state, workflow, api):
     return candidates
 
 
-def unseen_failed_workflow_runs(state, workflows, api):
-    """An old event must not hide a newer terminal recovery of a failed source.
+def unseen_workflow_runs(state, workflows, api):
+    """Find completions even when GitHub coalesces their pending notifications.
 
     Only discover runs here. Their jobs, reports, source clocks and publication
     receipts still pass through the ordinary reducer below; no status is forced.
@@ -1381,7 +1381,6 @@ def unseen_failed_workflow_runs(state, workflows, api):
     runs=[]
     for workflow in workflows:
         previous=state.get('workflows',{}).get(workflow,{})
-        if previous.get('status')!='failure':continue
         candidates=completed_run_candidates(state,workflow,api)
         if candidates is not None:runs.extend(unseen_completed_runs(candidates,previous))
     return runs
@@ -1391,7 +1390,7 @@ TERMINAL_RUN_LIMIT = 12
 TERMINAL_RUN_FIELDS = ('id', 'run_attempt', 'path', 'event', 'status', 'conclusion',
                        'head_branch', 'head_sha', 'html_url', 'created_at', 'updated_at', 'run_started_at')
 TERMINAL_RUN_FLAGS = ('_phaseRetry', '_proofRetry', '_jobEvidenceRetry', '_inflightTerminal',
-                      '_eventTerminal', '_terminalReadRetry')
+                      '_eventTerminal', '_terminalReadRetry', '_historyAfterRecovery')
 
 
 def remember_terminal_runs(state, runs):
@@ -1409,13 +1408,55 @@ def remember_terminal_runs(state, runs):
     return sorted(pending.items(), key=lambda item: (item[1]['id'], item[1].get('run_attempt', 1)))
 
 
+def prioritize_terminal_runs(state, pending, trigger_key):
+    """Give recent recoveries a bounded share of the queue without losing older proofs."""
+    workflows = state.get('workflows', {})
+    errors = state.get('observerErrors', {})
+    newest_success = {}
+    # remember_terminal_runs returns attempts in ascending order.
+    for key, run in pending:
+        workflow = run['path'].split('/')[-1]
+        current = workflows.get(workflow, {})
+        stamp = (run['id'], run.get('run_attempt', 1))
+        frontier = (current.get('runId', 0), current.get('attempt', 1))
+        if (current.get('status') == 'failure' and run.get('conclusion') == 'success'
+                and stamp > frontier and 'terminal-run:' + key not in errors
+                and run.get('event') in ('schedule', 'push', 'workflow_dispatch', 'workflow_run')):
+            newest_success[workflow] = (key, stamp)
+    expedited = dict(sorted(newest_success.items(), key=lambda item: (
+        workflows[item[0]].get('completedAt') or '', item[1][1],
+    ))[:TERMINAL_RUN_LIMIT // 3])
+    fast_keys = {entry[0] for entry in expedited.values()}
+    ahead = {**expedited}
+    if trigger_key:
+        for key, run in pending:
+            if key == trigger_key:
+                workflow = run['path'].split('/')[-1]
+                stamp = (run['id'], run.get('run_attempt', 1))
+                if workflow not in ahead or stamp > ahead[workflow][1]:
+                    ahead[workflow] = (key, stamp)
+                break
+    for _, run in pending:
+        workflow = run['path'].split('/')[-1]
+        ahead_attempt = ahead.get(workflow)
+        current = workflows.get(workflow, {})
+        frontier = (current.get('runId', 0), current.get('attempt', 1))
+        if ahead_attempt and frontier < (run['id'], run.get('run_attempt', 1)) < ahead_attempt[1]:
+            run['_historyAfterRecovery'] = True
+    return sorted(pending, key=lambda item: (
+        item[0] != trigger_key,
+        item[0] not in fast_keys,
+        errors.get('terminal-run:' + item[0], {}).get('attemptedAt', ''),
+    ))
+
+
 def terminal_run_mode(run, current):
     stamp = (run['id'], run.get('run_attempt', 1))
     current_stamp = (current.get('runId', 0), current.get('attempt', 1))
     if run.get('_proofRetry'):
         return 'proof'
     if stamp < current_stamp:
-        return 'proof' if any(run.get(flag) for flag in ('_eventTerminal', '_inflightTerminal', '_terminalReadRetry')) else 'skip'
+        return 'proof' if any(run.get(flag) for flag in ('_eventTerminal', '_inflightTerminal', '_terminalReadRetry', '_historyAfterRecovery')) else 'skip'
     return 'current'
 
 
@@ -1465,13 +1506,10 @@ def main():
             state.setdefault('observerErrors', {}).pop('availability:' + workflow, None)
     runs = []
     trigger_key = None
-    if args.backfill or args.monitor_only:
+    if args.backfill:
         for workflow in WORKFLOWS:
             candidates=completed_run_candidates(state,workflow,api)
             if candidates is None:continue
-            if args.monitor_only:
-                runs.extend(unseen_completed_runs(candidates, state.get('workflows', {}).get(workflow, {})))
-                continue
             candidates = [r for r in candidates if r['event'] in ('push', 'schedule', 'workflow_dispatch', 'workflow_run') and r['conclusion'] not in ('cancelled', 'skipped', 'neutral')]
             if candidates and workflow in REPORT_ARTIFACTS:
                 runs.extend(candidates)
@@ -1482,16 +1520,15 @@ def main():
                 if successful:
                     runs.append(max(successful, key=lambda r: r['id']))
                 runs.append(latest)
-    elif not args.monitor_only:
-        require_event = json.loads(args.event.read_text())
-        trigger = require_event['workflow_run']
-        trigger_key = f'{trigger["id"]}:{trigger.get("run_attempt", 1)}'
-        runs = [{**trigger, '_eventTerminal': True}]
-        # The queue can contain hours of old events. Catch up known failures
-        # from actual completed runs instead of waiting for a later cron/backfill.
-        recovered_runs=unseen_failed_workflow_runs(state,WORKFLOWS,api)
-        runs.extend(recovered_runs)
-        if recovered_runs:print(f'Rattrapage : {len(recovered_runs)} exécutions terminées non observées de workflows en échec ; preuves à vérifier par le réducteur ordinaire.')
+    else:
+        if args.event:
+            trigger = json.loads(args.event.read_text())['workflow_run']
+            trigger_key = f'{trigger["id"]}:{trigger.get("run_attempt", 1)}'
+            runs.append({**trigger, '_eventTerminal': True})
+        observed = WORKFLOWS if args.monitor_only else [
+            workflow for workflow in WORKFLOWS if state.get('workflows', {}).get(workflow, {}).get('status') == 'failure'
+        ]
+        runs.extend(unseen_workflow_runs(state, observed, api))
     runs.extend(terminal_runs)
     for workflow,row in state.get('workflows',{}).items():
         if row.get('headSha')in LEGACY_PHASE_CONTRACTS and not row.get('legacyPhaseEvidence'):
@@ -1526,11 +1563,7 @@ def main():
         except (urllib.error.URLError,ValueError,KeyError) as error:
             state.setdefault('observerErrors',{})['proof-retry:'+workflow]={'cause':'Relecture historique impossible : '+str(error)[:250]}
     state=recover_skipped_history_gaps(state,api,dt.datetime.now(dt.timezone.utc).isoformat())
-    pending = remember_terminal_runs(state, runs)
-    # The exact native event gets a slot ahead of the listing backlog.
-    # An unreadable attempt goes to the back of the retry queue.
-    pending.sort(key=lambda item: (item[0] != trigger_key,
-                                  state.get('observerErrors', {}).get('terminal-run:'+item[0], {}).get('attemptedAt', '')))
+    pending = prioritize_terminal_runs(state, remember_terminal_runs(state, runs), trigger_key)
     print(f'Exécutions terminales à examiner — {len(pending)}, jusqu’à {TERMINAL_RUN_LIMIT} par passage.', flush=True)
     publication_history = []
     for key,run in pending[:TERMINAL_RUN_LIMIT]:

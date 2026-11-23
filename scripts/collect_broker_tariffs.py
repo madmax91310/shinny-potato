@@ -64,11 +64,15 @@ def fetch_content(url):
  from broker_public_faq import PREFIX, read_answer
  from broker_profile_discovery import POLICIES,allowed
  from broker_profile_tr import HOST as TR_SUPPORT_HOST, article_id, same_article, validate_article
- from broker_document_sources import SourceDocument
+ from broker_document_sources import SourceDocument, XTB_CATALOGUE, xtb_tariff_url
  if url.startswith(PREFIX):
   return SourceDocument(read_answer(url),url)
  owners=[broker for broker in POLICIES if allowed(broker,url)]
  validator=(lambda target:any(allowed(broker,target) for broker in owners)) if owners else None
+ if url == XTB_CATALOGUE:
+  validator=lambda target:target == XTB_CATALOGUE
+ elif xtb_tariff_url(url):
+  validator=xtb_tariff_url
  tr_article=urllib.parse.urlparse(url).hostname==TR_SUPPORT_HOST
  if tr_article:
   # An official domain alone cannot establish article, country or fee identity.

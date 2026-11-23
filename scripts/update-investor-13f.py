@@ -54,6 +54,19 @@ _last_request_at = 0
 MAX_RATE_LIMIT_RETRIES = 3
 MAX_RETRY_AFTER_SECONDS = 300
 
+# This one signed Q3 filing has a cover/table discrepancy. Its 17 dollar-valued
+# rows are individually usable, but the cover must remain visible as a separate
+# conflicting figure. Never infer a reporting unit or relax other filings.
+REVIEWED_COVER_DISCREPANCIES = {
+    'https://www.sec.gov/Archives/edgar/data/1541617/000154161726000010/': {
+        'cik': '1541617', 'period': '2026-09-30', 'entries': 17,
+        'cover': 10309080051, 'rows': 10308735663,
+        # SHA-256 of sorted [CUSIP, class, option, value] rows serialized as
+        # compact JSON. Pinned to the 17 official information-table entries.
+        'rowsSha256': '855a972c8d566d4419d0035f12514ca04dfc3de8cad883045dae1ecda4950b9c',
+    },
+}
+
 
 def current_date():
     return dt.datetime.now(dt.timezone.utc).date()
@@ -375,6 +388,7 @@ def enrich_sec_positions(portfolio):
     if primary.findtext('.//isAmendment', '').lower() == 'true' and primary.findtext('.//amendmentType', '').upper() != 'RESTATEMENT':
         raise ValueError('Additional-holdings amendment requires a consolidated filing')
     groups = {}
+    exact_rows = []
     for row in tables:
         issuer = row.findtext('nameOfIssuer', '').strip()
         share_class = row.findtext('titleOfClass', '').strip()
@@ -383,6 +397,7 @@ def enrich_sec_positions(portfolio):
         value = int(row.findtext('value', '-1'))
         if not issuer or not share_class or not re.fullmatch(r'[A-Z0-9*@#]{9}', cusip) or option not in (None, 'PUT', 'CALL') or value < 0:
             raise ValueError('Invalid SEC information-table security')
+        exact_rows.append((cusip, share_class, option, value))
         if value == 0:
             continue
         key = (cusip, share_class, option)
@@ -397,8 +412,15 @@ def enrich_sec_positions(portfolio):
                                        'investmentDiscretion': row.findtext('investmentDiscretion'),
                                        'otherManager': row.findtext('otherManager')})
     row_total = sum(row['value'] for row in groups.values())
+    cover_discrepancy = None
     if abs(row_total - total) > .5 * count:
-        raise ValueError('SEC information table does not reconcile with declared total')
+        reviewed = REVIEWED_COVER_DISCREPANCIES.get(folder)
+        if not reviewed or (str(int(cik)), period, count, total, row_total) != (
+                reviewed['cik'], reviewed['period'], reviewed['entries'],
+                reviewed['cover'], reviewed['rows']) or primary.findtext('.//isAmendment', '').lower() == 'true' or hashlib.sha256(
+                    json.dumps(sorted(exact_rows, key=lambda r: (r[0], r[1], r[2] or '', r[3])), separators=(',', ':')).encode()).hexdigest() != reviewed['rowsSha256']:
+            raise ValueError('SEC information table does not reconcile with declared total')
+        cover_discrepancy = total - row_total
     provider_total = snapshot.get('declaredTotal', snapshot.get('totalValueUsd'))
     if provider_total is not None and abs(row_total - provider_total) > .5 * count:
         # Never repair a possible reporting-unit error by guessing a multiplier.
@@ -415,9 +437,21 @@ def enrich_sec_positions(portfolio):
         snapshot['sourceReconciliation'] = {'status': 'primary-authoritative',
             'primaryTotal': row_total, 'providerTotal': provider_total,
             'providerPeriodEnd': snapshot['periodEnd'], 'providerSource': data['sourceUrl'],
-            'primarySource': original, 'reason': 'Complete primary table, explicit USD units, cover total and entry count verified.'}
+            'primarySource': original, 'reason': ('Complete primary table and entry count verified; '
+                'official cover differs and is recorded separately.' if cover_discrepancy is not None else
+                'Complete primary table, explicit USD units, cover total and entry count verified.')}
     snapshot['reportedCoverTotal'] = total
     snapshot['reconciliationDifference'] = row_total - total
+    if cover_discrepancy is not None:
+        warning = (f'La déclaration SEC présente {row_total:,} $US dans ses {count} lignes, '
+                   f'contre {total:,} $US sur sa page de garde (écart : {cover_discrepancy:,} $US). '
+                   'Les poids utilisent la somme des lignes ; voir la déclaration originale.').replace(',', ' ')
+        snapshot['reconciliationWarning'] = (snapshot.get('reconciliationWarning', '') + ' ' + warning).strip()
+        snapshot['coverReconciliation'] = {
+            'status': 'reviewed-official-discrepancy', 'filingUrl': original,
+            'reportedCoverTotal': total, 'informationTableTotal': row_total,
+            'difference': cover_discrepancy, 'weightDenominator': 'informationTableTotal',
+        }
     total = row_total
     for row in groups.values():
         row['weight'] = row['value'] / total

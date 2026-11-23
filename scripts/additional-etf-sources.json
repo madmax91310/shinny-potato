@@ -1115,9 +1115,8 @@
       "layout": "easy-fr",
       "documentName": "BNP PARIBAS EASY S&P 500 UCITS ETF",
       "expectedIndex": "S&P 500 Composite (NR)",
-      "mirrorCode": "E_SBNPEF002_C_EUR",
-      "parser": "bnp-document-mirror",
-      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur",
+      "parser": "bnp-document",
+      "discoveryUrl": "https://api.bnpparibas-am.com/push/fundsheet/PV_FR-FSE/FRE/FRA/FR0011550185",
       "collectTrackedCountries": true
     },
     {
@@ -1129,9 +1128,8 @@
       "layout": "easy-fr",
       "documentName": "BNP PARIBAS EASY STOXX EUROPE 600 UCITS ETF",
       "expectedIndex": "STOXX Europe 600 NR",
-      "mirrorCode": "E_SBNPEF003_A_EUR",
-      "parser": "bnp-document-mirror",
-      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550193/bnp-paribas-easy-stoxx-europe-600-ucits-etf-acc-eur"
+      "parser": "bnp-document",
+      "discoveryUrl": "https://api.bnpparibas-am.com/push/fundsheet/PV_LU-FSE/ENG/LUX/FR0011550193"
     },
     {
       "isin": "IE000QDFFK00",
@@ -1143,9 +1141,8 @@
       "documentName": "BNP PARIBAS EASY II Nasdaq 100 UCITS ETF USD",
       "expectedIndex": "NASDAQ-100 Notional Net Total Return Index",
       "collectTrackedCountries": true,
-      "mirrorCode": "E_AXAIC001_A_USD",
-      "parser": "bnp-document-mirror",
-      "discoveryUrl": "https://www.analizy.pl/etf/IE000QDFFK00/bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc"
+      "parser": "bnp-document",
+      "discoveryUrl": "https://api.bnpparibas-am.com/push/fundsheet/IP_IE-FSE/ENG/IRL/IE000QDFFK00"
     },
     {
       "isin": "FR0007056841",
