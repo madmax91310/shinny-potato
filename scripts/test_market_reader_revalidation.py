@@ -62,6 +62,27 @@ class ReaderRevalidation(unittest.TestCase):
         updates.update({path:'independent downstream Budget reader\n' for path in fixture['newlyReviewedReaders']})
         return fixture,self.commit(updates)
 
+    def test_annual_ranking_reader_race_revalidates_without_reacquiring(self):
+        updated = self.commit({path: 'export const presentation = {};\n'
+                               for path in reader.ANNUAL_RANKING_READERS})
+        with self.assertRaises(shared.StaleCollectionInputs):
+            shared.check('market', self.base, updated)
+        result = reader.check(self.base, updated)
+        self.assertEqual(result['qualifiedPublicationReaders'],
+                         sorted(reader.ANNUAL_RANKING_READERS))
+        self.assertTrue(result['financialRevalidationRequired'])
+        self.assertFalse(result['sourceControlsRenewedByThisAdapter'])
+        linked = self.commit({reader.BASELINE:
+                             "import '../src/pages/performance-rankings/data.js';\n",
+                             'src/pages/performance-rankings/data.js':
+                             'export const presentation = {order: 1};\n'})
+        with self.assertRaisesRegex(ValueError, 'publication reader is an acquisition dependency'):
+            reader.check(self.base, linked)
+        later = self.commit({'src/pages/performance-rankings/data.js':
+                             'export const presentation = {order: 2};\n'})
+        with self.assertRaisesRegex(ValueError, 'publication reader is an acquisition dependency'):
+            reader.check(linked, later)
+
     def test_actual_budget_browser_addition_preserves_every_gate_and_source_protection(self):
         fixture,end=self.budget_new_profiles_snapshots()
         expected=set(fixture['newlyReviewedReaders'])|set(fixture['inputs'])

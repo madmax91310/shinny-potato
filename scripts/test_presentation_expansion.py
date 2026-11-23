@@ -116,9 +116,9 @@ N 0 900
         values=[{'year':y,'rows':[[['Part d’UC ≥ 60 %',3.25],['Part d’UC 40 à 60 %',2.4],['Part d’UC < 40 %',1.9]],[['Part d’UC ≥ 60 %',3.45],['Part d’UC 40 à 60 %',2.6],['Part d’UC < 40 %',2.1]]]} for y in [2023,2024,2025]]
         pub=json.dumps({'subtitle':'selon la part d’unités de compte et les encours','data':values},ensure_ascii=False)
         return '<h1>Placement-direct Vie</h1><p>SwissLife Assurance et Patrimoine Versement initial 500€ Versements libres 50€ Versements programmés 50€/mois plus de 1300 supports d’investissement 300 actions en direct moins de 250 000€ plus de 250 000€ Rendement net en 2025 Jusqu’à 3,45 % Le désinvestissement sur les ETF supporte des frais de 0,10 % Une opération sur les actions en direct supporte des frais de 0,45 %</p><script>window.__NUXT__=(function(a){x.rendement='+pub+';return x}(null));</script>'
-    def placement(self,html=None):
+    def placement(self,html=None,notice_extra=""):
         fees='Placement-direct Vie Frais sur versement 0 % Frais d’arbitrage libre Proportionnels ou forfaitaires 0 % Support unités de compte 0,8 % pour les titres vifs / 0,5 % Sinon Support fonds en Euros 0,6 %'
-        return parse_placement(html or self.placement_html(),'Placement-direct Vie SwissLife peut limiter temporairement et sans préavis les possibilités de sortie du fonds en euros. Les droits exprimés en euros comportent une garantie en capital égale aux sommes versées, nettes des prélèvements effectués au titre des frais de souscription et de gestion ; sur le fonds en euros : 0,60 % de l’épargne sur base annuelle. Garantie plancher décès ; option « allocation déléguée », les frais sont majorés de 0,40 % sur base annuelle de l’épargne en unités de compte concernée par l’option ; option « allocation opportunités 100 % Trackers », les frais sont majorés de 0,70 % sur base annuelle de l’épargne en unités de compte concernée par l’option.',fees,URL,URL,TODAY)
+        return parse_placement(html or self.placement_html(),'Placement-direct Vie SwissLife peut limiter temporairement et sans préavis les possibilités de sortie du fonds en euros. Les droits exprimés en euros comportent une garantie en capital égale aux sommes versées, nettes des prélèvements effectués au titre des frais de souscription et de gestion ; sur le fonds en euros : 0,60 % de l’épargne sur base annuelle. Garantie plancher décès ; option « allocation déléguée », les frais sont majorés de 0,40 % sur base annuelle de l’épargne en unités de compte concernée par l’option ; option « allocation opportunités 100 % Trackers », les frais sont majorés de 0,70 % sur base annuelle de l’épargne en unités de compte concernée par l’option.'+notice_extra,fees,URL,URL,TODAY)
     def test_one_fund_and_conditional_rates(self):
         r=validate_insurance(self.placement(),TODAY);f=r['euroFunds'][0]
         self.assertEqual(len(r['euroFunds']),1)
@@ -135,6 +135,34 @@ N 0 900
         for old,new in [('nettes de frais','brutes de frais'),('plancher décès','nouvelle garantie'),('0,60 %','0,75 %')]:
             with self.subTest(old=old),self.assertRaises(ValueError):
                 placement_notice_conditions(text.replace(old,new),.6)
+
+    def test_current_placement_website_tariffs_match_contractual_notice(self):
+        etf_row = 'Frais d’investissement ou de désinvestissement sur ETF 0,05 %'
+        share_row = 'Frais d’investissement ou de désinvestissement sur les actions en direct 0,45 %'
+        selector = ('<div class="contract-section-fonds-euro--dropdown-container">'
+                    '<div class="dropdown-trigger"><button>moins de 250 000€</button></div>'
+                    '<div class="dropdown-trigger"><button>2025</button></div></div>')
+        html = self.placement_html().replace('moins de 250 000€ plus de 250 000€ ', '')
+        html = html.replace('Le désinvestissement sur les ETF supporte des frais de 0,10 % '
+                            'Une opération sur les actions en direct supporte des frais de 0,45 %',
+                            f'{etf_row} {share_row} {etf_row}').replace('</p>', f'</p>{selector}')
+        notice = (
+            ' Frais d’investissement ou de désinvestissement sur les fonds indiciels (« ETF ») figurant à l’annexe IB : '
+            'ces frais s’appliquent à l’occasion de toute opération d’investissement ou de désinvestissement '
+            'et représentent 0,05 % du montant de l’opération.'
+            ' Frais d’investissement ou de désinvestissement sur les unités de compte (actions) figurant aux annexes IB et IC : '
+            'ces frais s’appliquent à l’occasion de toute opération d’investissement ou de désinvestissement '
+            'et représentent 0,45 % du montant de l’opération.'
+        )
+        record = self.placement(html, notice)
+        self.assertEqual(record['fees']['etfTrade'], 0.05)
+        self.assertEqual(record['euroFunds'][0]['asOf'], '2025-12-31')
+        with self.assertRaisesRegex(ValueError, 'tariff and notice disagree'):
+            self.placement(html, notice.replace('0,05 %', '0,08 %'))
+        with self.assertRaisesRegex(ValueError, 'Conflicting Placement-direct operation fees'):
+            self.placement(html.replace(etf_row, etf_row + ' ' + etf_row.replace('0,05', '0,08'), 1), notice)
+        with self.assertRaisesRegex(ValueError, 'Missing Placement-direct encours tier selector'):
+            self.placement(html.replace('250 000€', '350 000€'), notice)
 
     def test_hero_maximum_must_match_barème(self):
         with self.assertRaises(ValueError):self.placement(self.placement_html().replace('Jusqu’à 3,45','Jusqu’à 9'))

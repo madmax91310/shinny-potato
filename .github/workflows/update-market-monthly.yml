@@ -335,13 +335,17 @@ jobs:
           elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/collect_ranking_sources.py --apply --output "$RUNNER_TEMP/ranking-collection-status.json" "${args[@]}"
       - name: Qualify missing equity histories
-        if: github.event_name != 'pull_request' && inputs.listings_only != true && inputs.series == ''
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        env:
+          MONTHLY_REQUESTED_SERIES: ${{ inputs.series }}
         run: |
           node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit 12 --apply
           node scripts/build-equity-history-links.mjs
       - name: Qualify missing exact-share monthly histories
-        if: github.event_name != 'pull_request' && inputs.listings_only != true && inputs.series == ''
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        env:
+          MONTHLY_REQUESTED_SERIES: ${{ inputs.series }}
         run: |
           node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit 12 --apply

@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import twitter from 'twitter-text'
-import PageHeader from '../../design-system/PageHeader.jsx'
 import Card from '../../design-system/Card.jsx'
 import Button from '../../design-system/Button.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace.jsx'
@@ -66,7 +65,6 @@ export default function App() {
     try { await copyPublicationText(text); setMessage('Tweet copié. Aucune publication sur X effectuée.') } catch (error) { setMessage(error.message) }
   }
   return <div className="etf-flows">
-    <PageHeader title="Où va l’argent des ETF ?" subtitle="Ouvre une source, colle ses chiffres et prépare ton récap de la semaine." />
     <ToolWorkspace view={view} onViewChange={setView} renderImage={renderImage} imageDisabled={!canImage} imageAlt="Sélection de flux nets des ETF, période et périmètre indiqués" imageFilename={`flux-etf-${o?.end ?? 'indisponible'}${archive ? '-archives' : ''}.png`} actions={<Button disabled={!canCopy} onClick={copy}>Copier le tweet</Button>}>
       <div className="tool-settings">
         <PasteImport onImport={importRecord} />

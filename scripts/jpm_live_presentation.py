@@ -8,7 +8,7 @@ import math
 import re
 
 from issuer_documents import download, document_date, proof, validated_rows
-from jpm_holdings import ISIN, URL, qualified_fund
+from jpm_holdings import ISIN, URL, parse as parse_complete_book, qualified_fund
 from collect_physical_holdings import checked_rows
 
 
@@ -63,6 +63,17 @@ def parse_top_ten(fund, body, now):
     top = observation['data']
     if not isinstance(top, list) or len(top) != 10:
         raise ValueError('Unqualified JPM ten direct equity positions')
+    # The publisher's ten largest positions can include cash. Only a dated,
+    # independently reconciled full book can then establish the tenth equity.
+    if any(row.get('securityType') == 'Cash' for row in top):
+        equities, book_date, _ = parse_complete_book({'fundData': fund}, now)
+        if book_date != stamp or len(equities) < 10:
+            raise ValueError('Missing qualified JPM equity ranking after retained cash')
+        rows = sorted(equities, key=lambda row: -row['weightPct'])[:10]
+        return {'sourceUrl': URL, 'sha256': proof(body), 'rows': validated_rows(rows, complete=False),
+                'asOf': stamp, 'basis': 'fund', 'complete': False,
+                'sourceComponent': 'fundData.dailyHoldingsAll',
+                'method': 'Ten largest direct equities/REITs from the reconciled same-date fund book; cash remains outside the equity ranking; original NAV weights, no renormalisation'}
     for row in top:
         weight = row.get('marketValuePercent')
         if (row.get('securityType') not in ['Common Stock', 'Fund - Real Estate Investment Trust']
@@ -120,12 +131,20 @@ def collect(share, now, document, fetch=download, calendar_fetch=None):
             attempts.append({'url': URL, 'status': 'failed' if error else 'validated', 'fields': [field],
                              **({'reason': error['reason']} if error else {})})
         if calendar_fetch is not None and not result.get('performance'):
-            from jpm_calendar import HISTORY_URL, parse as parse_calendar
-            try:
-                result['performance'] = parse_calendar(calendar_fetch(HISTORY_URL, max_bytes=6_000_000), identity_body, share, now)
-                attempts.append({'url': HISTORY_URL, 'status': 'validated', 'fields': ['performance']})
-            except Exception as error:
-                result.setdefault('collectionErrors', []).append({'field': 'performance-current-source', 'url': HISTORY_URL, 'reason': str(error)})
-                attempts.append({'url': HISTORY_URL, 'status': 'failed', 'fields': ['performance'], 'reason': str(error)})
+            from jpm_calendar import HISTORY_ROLES, parse as parse_calendar
+            errors = []
+            for url in HISTORY_ROLES:
+                try:
+                    result['performance'] = parse_calendar(
+                        calendar_fetch(url, max_bytes=6_000_000), identity_body, share, now, source_url=url)
+                except Exception as error:
+                    errors.append({'field': 'performance-current-source', 'url': url, 'reason': str(error)})
+                    attempts.append({'url': url, 'status': 'failed', 'fields': ['performance'], 'reason': str(error)})
+                    continue
+                attempts.append({'url': url, 'status': 'validated', 'fields': ['performance']})
+                break
+            for error in errors:
+                result.setdefault('collectionErrors', []).append(
+                    {**error, **({'qualifiedAlternativeAvailable': True} if result.get('performance') else {})})
     result.setdefault('sourceAttempts', []).extend(attempts)
     return result

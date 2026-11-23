@@ -66,6 +66,10 @@ export function buildCandidates(){
 }
 if(process.argv[1]===new URL(import.meta.url).pathname){
  const {candidates,skipped}=buildCandidates()
- if(skipped.length)process.stderr.write(JSON.stringify(skipped,null,1)+'\n')
- process.stdout.write(JSON.stringify(candidates))
+ const requested=process.env.MONTHLY_REQUESTED_SERIES || null
+ const requestedIds=new Set(requested?.split(/[\s,]+/).filter(Boolean))
+ const selected=candidates.filter(candidate=>!requested||requestedIds.has(candidate.id))
+ const unavailable=skipped.filter(candidate=>!requested||requestedIds.has(candidate.id))
+ if(unavailable.length)process.stderr.write(JSON.stringify(unavailable,null,1)+'\n')
+ process.stdout.write(JSON.stringify(selected))
 }

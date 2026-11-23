@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 from issuer_documents import download, pdf_text
 from collect_regulatory_data import unique
 from broker_document_sources import DocumentResolver
+from broker_bourso_tariff_rows import discovery as discovery_rows
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEST = ROOT/'src/data/automated-broker-tariffs.json'
 SOURCES = {'bourso': 'https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf',
@@ -27,16 +28,18 @@ def parse(name, content, today, previous=None):
   block = content.split('Courtage Actions Euronext (Paris, Amsterdam, Bruxelles) et Horaires Etendus')
   if len(block)!=2:raise ValueError('Tableau Actions Euronext absent ou ambigu')
   block = block[1].split('Courtage ETF - ETN - ETC')[0]
-  if not all(label in block for label in ['DÉCOUVERTE','CLASSIC','TRADER','ULTIMATE']):raise ValueError('Colonnes du tableau modifiées')
-  amount = unique(r'^\s*([\d,]+)€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*$', '\n'.join(line for line in block.splitlines() if re.fullmatch(r'\s*[\d,]+€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*',line)))
-  lines=block.splitlines()
-  threshold_lines=[line for line in lines if re.match(r'^\s*jusqu’à [\d ]+ €\s+',line)]
-  if len(threshold_lines)!=1:raise ValueError('Seuil Découverte ambigu')
-  threshold=unique(r'^\s*jusqu’à ([\d ]+) €\s+',threshold_lines[0])
-  rate_lines=[line for line in lines if re.match(r'^\s*(?:par ordre\(1\)\s+)?puis [\d,]+% au-delà',line)]
-  if len(rate_lines)!=1:raise ValueError('Taux Découverte ambigu')
-  rate=unique(r'puis ([\d,]+)% au-delà',rate_lines[0].split('au-delà')[0]+'au-delà')
-  values={'minimum':amount,'threshold':threshold,'rate':rate}
+  values=discovery_rows(block)
+  if values is None:
+   if not all(label in block for label in ['DÉCOUVERTE','CLASSIC','TRADER','ULTIMATE']):raise ValueError('Colonnes du tableau modifiées')
+   amount = unique(r'^\s*([\d,]+)€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*$', '\n'.join(line for line in block.splitlines() if re.fullmatch(r'\s*[\d,]+€\s+[\d,]+€\s+[\d,]+€\s+[\d,]+€\s*',line)))
+   lines=block.splitlines()
+   threshold_lines=[line for line in lines if re.match(r'^\s*jusqu’à [\d ]+ €\s+',line)]
+   if len(threshold_lines)!=1:raise ValueError('Seuil Découverte ambigu')
+   threshold=unique(r'^\s*jusqu’à ([\d ]+) €\s+',threshold_lines[0])
+   rate_lines=[line for line in lines if re.match(r'^\s*(?:par ordre\(1\)\s+)?puis [\d,]+% au-delà',line)]
+   if len(rate_lines)!=1:raise ValueError('Taux Découverte ambigu')
+   rate=unique(r'puis ([\d,]+)% au-delà',rate_lines[0].split('au-delà')[0]+'au-delà')
+   values={'minimum':amount,'threshold':threshold,'rate':rate}
   scope='Découverte ; actions Euronext Paris, Amsterdam, Bruxelles ; ordre en ligne'
  else:
   date=re.search(r'CONDITIONS TARIFAIRES AU (\d{1,2}) (\w+) (\d{4})',content,re.I)
@@ -157,18 +160,50 @@ def collect(baseline,today,fetcher=fetch_content):
  baseline['profileCollection']={'checkedAt':today,'validated':profile_count,'failures':profile_failures}
  baseline['sourceResolution']={'checkedAt':today,'documents':resolver.report}
  return baseline,failures,validated
+def build_report(baseline, failures, validated, today, checked_at, report_stem):
+ prefix = report_stem + ':'
+ records = baseline['brokers']
+ sources = {name: records[name] for name in validated}
+ for name in ('bourso', 'fortuneo'):
+  if name in validated and name+':extras' not in failures:
+   sources[name+':extras'] = records[name]
+ for key, (broker, field, _) in SUPPLEMENT_SOURCES.items():
+  if key not in failures:
+   sources[key] = records[broker]['fields'][field]
+ for broker, record in records.items():
+  for field, value in record.get('profile', {}).items():
+   key = f'{broker}:profile:{field}'
+   if value.get('checkedAt') == today and key not in failures:
+    sources[key] = value
+ successes = []
+ for key, value in sorted(sources.items()):
+  if key in failures:
+   continue
+  row = {'id': prefix+key}
+  if value.get('sourceUrl'):
+   row.update(checkedAt=checked_at.isoformat(), sourceUrl=value['sourceUrl'])
+  if value.get('asOf'):
+   row['asOf'] = value['asOf']
+  successes.append(row)
+ return {
+  'observations': baseline, 'failures': failures, 'successfulSources': sorted(sources.keys() - failures.keys()),
+  'contractResults': {
+   'successes': successes,
+   'errors': [
+    {'id': prefix+key, 'name': records.get(key, {}).get('title', key), 'error': cause}
+    for key, cause in failures.items()
+   ],
+  },
+ }
+
+
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');parser.add_argument('--output',type=pathlib.Path,required=True);args=parser.parse_args()
  baseline=json.loads(DEST.read_text()) if DEST.exists() else {'schemaVersion':1,'brokers':{}}
  today=dt.datetime.now(dt.timezone.utc).date().isoformat()
  baseline,failures,validated=collect(baseline,today)
- successes=set(validated)
- successes.update(name+':extras' for name in ('bourso','fortuneo') if name in validated and name+':extras' not in failures)
- successes.update(key for key in SUPPLEMENT_SOURCES if key not in failures)
- for broker,record in baseline['brokers'].items():
-  successes.update(f'{broker}:profile:{field}' for field,value in record.get('profile',{}).items()
-                   if value.get('checkedAt')==today and f'{broker}:profile:{field}' not in failures)
- args.output.write_text(json.dumps({'observations':baseline,'failures':failures,'successfulSources':sorted(successes)},ensure_ascii=False,indent=2)+'\n')
+ report = build_report(baseline, failures, validated, today, dt.datetime.now(dt.timezone.utc), args.output.stem)
+ args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
  if args.apply:
   tmp=DEST.with_suffix('.tmp');tmp.write_text(json.dumps(baseline,ensure_ascii=False,indent=2)+'\n');tmp.replace(DEST)
  print(json.dumps({'validated':len(validated),'brokers':validated,'retained':len(baseline['brokers'])-len(validated),'failures':failures},ensure_ascii=False));return bool(failures)

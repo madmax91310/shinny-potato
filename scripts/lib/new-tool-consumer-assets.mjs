@@ -2,6 +2,7 @@ import { FAMILIES } from '../../src/data/index-comparisons.js'
 import { getIndexComparisonPerformance } from '../../src/data/index-comparison-performance.js'
 import { getIndexComparisonComposition } from '../../src/data/index-comparison-composition.js'
 import POLICY from '../../src/data/freshness-policy.json' with { type: 'json' }
+import WEEKLY_FLOWS from '../../src/data/etf-flows-weekly.json' with { type: 'json' }
 import FLOWS from '../../src/data/etf-flows.json' with { type: 'json' }
 import PORTFOLIOS from '../../src/pages/public-portfolios/catalogue.json' with { type: 'json' }
 import BUNDLED_PORTFOLIOS from '../../src/pages/public-portfolios/initial-feed.json' with { type: 'json' }
@@ -53,10 +54,21 @@ export function additionalToolConsumerAssets(workflows, now) {
     fields: [{ key: 'net-flows', label: 'Flux nets et périmètre de la publication', kind: 'live', state: 'blocked',
       registry: 'src/data/etf-flows.json', checkedAt: null, asOf: null,
       sourceUrls: [FLOWS.collection.latestCandidate?.url, FLOWS.collection.reviewUrl].filter(Boolean),
-      consumers: route('/flux-etf'), workflows: producers('update-etf-flows.yml'),
+      consumers: route('/flux-etf'), workflows: [],
       reason: FLOWS.collection.reason,
       nextAction: 'Qualifier les droits de réutilisation, la définition de l’univers européen et l’accès à une source récurrente.' }] }
-  return [...indices, ...portfolios, flows]
+  const latest = WEEKLY_FLOWS.editions[0]
+  const automatedFlows = { id: 'etf-flows:weekly-us-listed', name: 'Flux nets hebdomadaires des fonds cotés aux États-Unis', type: 'series',
+    fields: [{ key: 'net-flows', label: 'Flux nets des fonds, pays et secteurs', kind: 'live',
+      state: latest ? 'scheduled-evidence' : 'blocked', registry: 'src/data/etf-flows-weekly.json',
+      checkedAt: latest?.validatedAt ?? null, asOf: latest?.sessions.at(-1) ?? null,
+      periodStart: latest?.sessions[0] ?? null, periodEnd: latest?.sessions.at(-1) ?? null,
+      sourceUrls: latest ? [latest.sources.weekly, ...latest.sources.daily, latest.sources.taxonomy] : [],
+      currency: 'USD', scope: 'Univers américain ETFIQ avec relevés vérifiés à chaque séance',
+      method: 'Somme des créations et rachats nets quotidiens, classés par exposition ETFIQ pour les pays et secteurs.',
+      freshnessPolicyKey: 'etf.weeklyFlows', consumers: route('/flux-etf'), workflows: producers('update-etf-flows.yml'),
+      reason: latest ? null : 'Première édition ETFIQ en attente de validation.' }] }
+  return [...indices, ...portfolios, flows, automatedFlows]
 }
 
 export function indexComparatorFundConsumers(assets) {

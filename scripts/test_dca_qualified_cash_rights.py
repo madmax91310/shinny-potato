@@ -170,6 +170,11 @@ class QualifiedAkeroCashRight(unittest.TestCase):
     def test_input_immutable_idempotent_and_consumer_fixture_matches(self):
         body=self.fixture();before=copy.deepcopy(body);one=self.parsed(body);self.assertEqual(one,self.parsed(body));self.assertEqual(body,before)
         fixture=json.loads(gzip.decompress((FIXTURES/'IE00BF4RFH31-qualified.json.gz').read_bytes()))
+        composition = one.pop('compositionFacts')
+        self.assertEqual(composition['asOf'], one['asOf'])
+        self.assertIn({'name': 'Non classé', 'weightPct': 0.00587}, composition['sectors']['rows'])
+        self.assertAlmostEqual(sum(row['weightPct'] for row in composition['sectors']['rows']),
+                               one['navReconciliation']['selectedWeightPct'])
         self.assertEqual(one,fixture['record']);self.assertEqual(len(fixture['previous']['rows']),len(one['rows'])+1)
         old=[row for row in fixture['previous']['rows']if row['name']!='AKERO THERAPEUTICS CVR']
         self.assertEqual(old,one['rows'])

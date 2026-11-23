@@ -422,4 +422,33 @@ class JpmLiveCalendar(unittest.TestCase):
         self.assertEqual(after['IE0003UVYC20']['performance'],before['IE0003UVYC20']['performance'])
         self.assertTrue(any(e['field']=='performance-current-source' for e in failed['collectionErrors']))
 
+    def test_mismatched_public_context_uses_verified_explicit_institutional_route(self):
+        import gzip
+        import hashlib
+        from jpm_calendar import HISTORY_URL, INSTITUTIONAL_HISTORY_URL, parse
+        from jpm_live_presentation import collect
+        history=gzip.decompress((self.fixture/'gb-institutional-2026-11-23.json.gz').read_bytes())
+        identity=gzip.decompress((self.fixture/'product-2026-11-23.json.gz').read_bytes())
+        self.assertEqual(hashlib.sha256(history).hexdigest(),
+                         '51f1613189f508101bd46c96f68c0ad80b0425232d63731c9537ca78557eb530')
+        self.assertEqual(hashlib.sha256(identity).hexdigest(),
+                         '765e4913779c1ccea798d5469a2e448a91b79197eaa5e81afe7bf1ae11657ea2')
+        now=dt.datetime(2026,11,23,tzinfo=UTC)
+        config=share('IE0003UVYC20')
+        with self.assertRaisesRegex(ValueError,'historical-data context'):
+            parse(history,identity,config,now)
+        def unavailable_document():
+            raise ValueError('PDF stale')
+        result=collect(config,now,document=unavailable_document,fetch=lambda *a,**k:identity,
+                       calendar_fetch=lambda *a,**k:history)
+        perf=result['performance']
+        self.assertEqual(perf['sourceUrl'],INSTITUTIONAL_HISTORY_URL)
+        self.assertEqual(perf['identityNavAsOf'],'2026-11-20')
+        self.assertEqual(perf['years'],{'2024':8.08,'2025':12.35})
+        self.assertEqual([(a['url'],a['status']) for a in result['sourceAttempts']
+                          if a['url'] in (HISTORY_URL,INSTITUTIONAL_HISTORY_URL)],
+                         [(HISTORY_URL,'failed'),(INSTITUTIONAL_HISTORY_URL,'validated')])
+        self.assertTrue(any(e['url']==HISTORY_URL and e['qualifiedAlternativeAvailable']
+                            for e in result['collectionErrors'] if e['field']=='performance-current-source'))
+
 if __name__ == '__main__': unittest.main()
