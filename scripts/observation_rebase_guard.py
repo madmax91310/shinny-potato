@@ -459,7 +459,8 @@ def check(kind, base, upstream):
                     blocked.append(path)
             except (KeyError, TypeError, ValueError, subprocess.CalledProcessError):
                 blocked.append(path)
-        elif kind == 'market' and path == MARKET_ECONOMIC_REGISTRY:
+        elif kind in ('market', 'etf') and path == MARKET_ECONOMIC_REGISTRY:
+            # ETF run 45255544881 only overlapped a renewed savings-source hash.
             try:
                 if not economic_values_unchanged(base, upstream):
                     blocked.append(path)
