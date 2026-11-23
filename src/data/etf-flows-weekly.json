@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "editions": [
+    {
+      "monday": "2026-11-16",
+      "sessions": [
+        "2026-11-16",
+        "2026-11-17",
+        "2026-11-18",
+        "2026-11-19",
+        "2026-11-20"
+      ],
+      "currency": "USD",
+      "sources": {
+        "weekly": "https://etfiq.com/flows/weekly/2026-11-20/",
+        "daily": [
+          "https://etfiq.com/data/flows/daily/2026-11-16.json",
+          "https://etfiq.com/data/flows/daily/2026-11-17.json",
+          "https://etfiq.com/data/flows/daily/2026-11-18.json",
+          "https://etfiq.com/data/flows/daily/2026-11-19.json",
+          "https://etfiq.com/data/flows/daily/2026-11-20.json"
+        ],
+        "taxonomy": "https://etfiq.com/data/categories.json",
+        "taxonomyDate": "2026-11-20"
+      },
+      "coverage": {
+        "universe": 5131,
+        "verifiedFunds": 1440,
+        "partialDaily": 1508,
+        "weeklyMismatch": 0,
+        "dailyFunds": [
+          2414,
+          2326,
+          2338,
+          2459,
+          2051
+        ],
+        "geographyFunds": 426,
+        "sectorFunds": 71
+      },
+      "groups": {
+        "geography": [
+          {
+            "id": "US",
+            "label": "États-Unis",
+            "usd": 2797687016,
+            "fundCount": 251
+          },
+          {
+            "id": "asia-ex-japan",
+            "label": "Asie-Pacifique hors Japon",
+            "usd": -49028969,
+            "fundCount": 8
+          },
+          {
+            "id": "china-region",
+            "label": "Chine et région",
+            "usd": 36448588,
+            "fundCount": 12
+          },
+          {
+            "id": "emerging-markets",
+            "label": "Marchés émergents",
+            "usd": -129636640,
+            "fundCount": 28
+          },
+          {
+            "id": "europe",
+            "label": "Europe",
+            "usd": 749974129,
+            "fundCount": 32
+          },
+          {
+            "id": "india",
+            "label": "Inde",
+            "usd": -2633052,
+            "fundCount": 5
+          },
+          {
+            "id": "international",
+            "label": "Actions internationales",
+            "usd": -123986193,
+            "fundCount": 52
+          },
+          {
+            "id": "japan",
+            "label": "Japon",
+            "usd": 189807817,
+            "fundCount": 6
+          },
+          {
+            "id": "latin-america",
+            "label": "Amérique latine",
+            "usd": -78082467,
+            "fundCount": 5
+          },
+          {
+            "id": "world",
+            "label": "Monde",
+            "usd": 736005726,
+            "fundCount": 27
+          }
+        ],
+        "sectors": [
+          {
+            "id": "sector-communications",
+            "label": "Communications",
+            "usd": -1447225,
+            "fundCount": 1
+          },
+          {
+            "id": "sector-consumer-cyclical",
+            "label": "Consommation cyclique",
+            "usd": -238858623,
+            "fundCount": 3
+          },
+          {
+            "id": "sector-consumer-defensive",
+            "label": "Consommation défensive",
+            "usd": -5681105,
+            "fundCount": 6
+          },
+          {
+            "id": "sector-energy",
+            "label": "Énergie",
+            "usd": -4727263,
+            "fundCount": 11
+          },
+          {
+            "id": "sector-financial",
+            "label": "Finance",
+            "usd": -80867189,
+            "fundCount": 12
+          },
+          {
+            "id": "sector-health",
+            "label": "Santé",
+            "usd": 163748558,
+            "fundCount": 7
+          },
+          {
+            "id": "sector-industrials",
+            "label": "Industrie",
+            "usd": 16376079,
+            "fundCount": 4
+          },
+          {
+            "id": "sector-materials",
+            "label": "Matériaux",
+            "usd": 5062672,
+            "fundCount": 3
+          },
+          {
+            "id": "sector-real-estate",
+            "label": "Immobilier américain",
+            "usd": -6056829,
+            "fundCount": 6
+          },
+          {
+            "id": "sector-real-estate-global",
+            "label": "Immobilier mondial",
+            "usd": -1956500,
+            "fundCount": 2
+          },
+          {
+            "id": "sector-technology",
+            "label": "Technologie",
+            "usd": -352516783,
+            "fundCount": 12
+          },
+          {
+            "id": "sector-utilities",
+            "label": "Services aux collectivités",
+            "usd": 28754336,
+            "fundCount": 4
+          }
+        ],
+        "funds": [
+          {
+            "id": "TCAF",
+            "label": "Actions à appréciation du capital",
+            "usd": 2488542000
+          },
+          {
+            "id": "TLT",
+            "label": "Bons du Trésor américain à 20 ans et plus",
+            "usd": 1019741952
+          },
+          {
+            "id": "FNOV",
+            "label": "Actions américaines avec protection partielle (novembre)",
+            "usd": 974710000
+          },
+          {
+            "id": "BAI",
+            "label": "Intelligence artificielle et technologie",
+            "usd": 871118660
+          },
+          {
+            "id": "DYNF",
+            "label": "Actions américaines à rotation factorielle",
+            "usd": 705170647
+          },
+          {
+            "id": "SOXX",
+            "label": "Semi-conducteurs",
+            "usd": -3733353698
+          },
+          {
+            "id": "QQQ",
+            "label": "Nasdaq-100",
+            "usd": -3239392426
+          },
+          {
+            "id": "GLD",
+            "label": "Or physique",
+            "usd": -1197076897
+          },
+          {
+            "id": "IDEF",
+            "label": "Industrie de la défense",
+            "usd": -1105285521
+          },
+          {
+            "id": "HYG",
+            "label": "Obligations d’entreprises à haut rendement",
+            "usd": -996988371
+          }
+        ]
+      },
+      "evidence": {
+        "calendar": "https://www.nyse.com/trade/hours-calendars",
+        "license": "https://etfiq.com/license/",
+        "sha256": {
+          "https://etfiq.com/data/categories.json": "196b691d5e311a3915be0a472351bd8ace5186132bf0fd057709316703e2aedd",
+          "https://etfiq.com/data/flows/daily/2026-11-16.json": "f19f8677a9cf8039dea469eea7ce3d8745e461ffeb2aadf5743ac65e23d7fae9",
+          "https://etfiq.com/data/flows/daily/2026-11-17.json": "cf04bdfd9a121054422239342097ff754ddd9ea2dcfa9dc2b62fe8fce2dddcf1",
+          "https://etfiq.com/data/flows/daily/2026-11-18.json": "fcb9597430b62ed54d9631cc9b36f30dd6c4d71eec140524adc8beab8c7f0cb9",
+          "https://etfiq.com/data/flows/daily/2026-11-19.json": "c3c1422edfbf2267522dcef5af7287f6fe6e2c02b8fac5fb6e230263fc6a3810",
+          "https://etfiq.com/data/flows/daily/2026-11-20.json": "827cf9ccc47beee522c22608c33bc53bf47774adafa69164b960b290276455d5",
+          "https://etfiq.com/data/flows/weekly/2026-11-20.json": "dc272ddc68134a8d8c11dd9e0235b685929bdbfc2b442ba452ae6fd15b0512e8",
+          "https://www.nyse.com/trade/hours-calendars": "8f213c85de7fc30cf98625535e225f7103f2fe0ae4a910640301ee8023e3ee57"
+        }
+      },
+      "validatedAt": "2026-11-23T09:01:09.266Z"
+    }
+  ]
+}

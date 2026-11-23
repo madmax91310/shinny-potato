@@ -1,13 +1,51 @@
 import {readFileSync, writeFileSync, renameSync, mkdirSync} from 'node:fs'
 import {dirname} from 'node:path'
+import {collectEdition} from './collect-etf-flows.mjs'
+import {lastWeekMonday} from './etf-flows-calendar.mjs'
+import {renderPost} from '../src/pages/etf-flows/weekly.js'
 import {addObservation, latestObservation, publicationGate, validateObservation} from '../src/lib/etf-flows.js'
 const path = 'src/data/etf-flows.json'
 const data = JSON.parse(readFileSync(path, 'utf8'))
 if (data.schemaVersion !== 1 || !Array.isArray(data.observations)) throw Error('Registre invalide ; aucune écriture.')
 data.observations.reduce((all, o) => addObservation(all, o), [])
 const args = process.argv.slice(2)
-if (args.length && !(['--import','--report'].includes(args[0]) && args.length === 2)) throw Error('Usage: node scripts/update-etf-flows.mjs [--import fichier.json | --report rapport.json]')
-if (args[0] === '--import') {
+const registryPath = 'src/data/etf-flows-weekly.json'
+
+function save(file, value) {
+  mkdirSync(dirname(file), {recursive: true})
+  const temp = file + '.tmp'
+  writeFileSync(temp, JSON.stringify(value, null, 2) + '\n')
+  renameSync(temp, file)
+}
+
+async function updateWeekly(mode, reportPath, monday = lastWeekMonday()) {
+  const registry = JSON.parse(readFileSync(registryPath, 'utf8'))
+  if (registry.schemaVersion !== 1 || !Array.isArray(registry.editions)) throw Error('Registre automatique invalide.')
+  let report
+  try {
+    const existing = mode === '--collect' && registry.editions.find(edition => edition.monday === monday)
+    const edition = existing || {...await collectEdition(monday), validatedAt: new Date().toISOString()}
+    const post = renderPost(edition)
+    if (mode === '--collect' && !existing) {
+      registry.editions.push(edition)
+      registry.editions.sort((a, b) => a.monday > b.monday ? -1 : 1)
+      save(registryPath, registry)
+    }
+    report = {status: existing ? 'already-validated' : 'validated', edition, post}
+    console.log(JSON.stringify(report, null, 2))
+  } catch (error) {
+    report = {status: 'unavailable', monday, reason: error.message, code: error.cause?.code}
+    throw error
+  } finally {
+    save(reportPath, report)
+  }
+}
+
+if (['--collect', '--preview'].includes(args[0]) && [2, 3].includes(args.length)) {
+  await updateWeekly(...args)
+} else if (args.length && !(['--import','--report'].includes(args[0]) && args.length === 2)) {
+  throw Error('Usage: node scripts/update-etf-flows.mjs [--collect|--preview rapport.json [lundi] | --import fichier.json | --report rapport.json]')
+} else if (args[0] === '--import') {
   // No inferred dates, zero filling, destructive correction or automatic revalidation.
   const observation = JSON.parse(readFileSync(args[1], 'utf8'))
   data.observations = addObservation(data.observations, observation)

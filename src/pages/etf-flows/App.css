@@ -7,3 +7,8 @@
 
 .flows-page{padding-bottom:180px}.flows-page>.flows-advanced{scroll-margin-bottom:180px}
 @media(min-width:1100px){.flows-manual .workspace-tool-columns{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}.flows-manual .flows-manual-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.flows-manual-line>.flows-inline,.flows-manual-line>.workspace-button{grid-column:1/-1}.flows-manual-line>.workspace-button{justify-self:start}}
+
+.flows-weekly-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.flows-weekly-actions p{margin:0}
+.flows-copy-status{margin-inline-start:8px}
+.flows-weekly-text{max-height:32rem;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.5;padding:16px;margin:16px 0 0;border:1px solid #d9d8ce;border-radius:12px}

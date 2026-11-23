@@ -1,12 +1,19 @@
-name: ETF flows qualification (automatic collection blocked)
+name: Update weekly ETF flows
 on:
   schedule:
-    - cron: '35 9 * * 1'
+    - cron: '0 6 * * 1'
+      timezone: Europe/Paris
+    - cron: '23 10,15,20 * * 1-3'
+      timezone: Europe/Paris
   workflow_dispatch:
+    inputs:
+      week:
+        description: 'Lundi AAAA-MM-JJ pour une recette sans publication (facultatif)'
+        type: string
   pull_request:
     paths:
       - 'src/lib/etf-flows.js'
-      - 'src/data/etf-flows.json'
+      - 'src/data/etf-flows*.json'
       - 'src/pages/etf-flows/**'
       - 'scripts/*etf-flows*'
       - 'scripts/fixtures/etf-flows/**'
@@ -14,11 +21,12 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: etf-flows-qualification-${{ github.ref }}
+  group: etf-flows-${{ github.ref }}
   cancel-in-progress: false
   queue: max
 jobs:
   qualification:
+    if: github.event_name == 'pull_request' || github.ref != 'refs/heads/master' || inputs.week
     runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
@@ -28,24 +36,88 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             src/lib/etf-flows.js
-            src/data/etf-flows.json
+            src/data/etf-flows*.json
             src/data/freshness-policy.json
-            scripts/update-etf-flows.mjs
-            scripts/test-etf-flows.mjs
+            src/pages/etf-flows/weekly.js
+            scripts/*etf-flows*.mjs
             scripts/fixtures/etf-flows
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
       - name: Validate flow publication contracts
-        run: node scripts/test-etf-flows.mjs
-      - name: Report blocked flow collection
-        run: node scripts/update-etf-flows.mjs --report report/etf-flows.json
-      - name: Explain unavailable collection
         run: |
-          echo '### Nouvelle édition indisponible' >> "$GITHUB_STEP_SUMMARY"
-          echo 'Collecte automatique bloquée : droits de réutilisation et univers européen non qualifiés. Aucun chiffre collecté, aucune validation renouvelée. Voir le rapport et docs/etf-flows.md.' >> "$GITHUB_STEP_SUMMARY"
+          node scripts/test-etf-flows.mjs
+          node scripts/test-etf-flows-weekly.mjs
+      - name: Collect and verify ETFIQ flows
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          WEEK: ${{ inputs.week }}
+        run: node scripts/update-etf-flows.mjs --preview "$RUNNER_TEMP/etf-flows-report.json" ${WEEK:+"$WEEK"}
       - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.event_name == 'workflow_dispatch'
         with:
-          name: etf-flows-qualification
-          path: report/etf-flows.json
+          name: etf-flows-report
+          path: ${{ runner.temp }}/etf-flows-report.json
           retention-days: 35
+  collect:
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && !inputs.week
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      publish: ${{ steps.record.outputs.publish }}
+      commit_sha: ${{ steps.record.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: master
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/lib/etf-flows.js
+            src/data/etf-flows*.json
+            src/data/freshness-policy.json
+            src/pages/etf-flows/weekly.js
+            scripts/*etf-flows*.mjs
+            scripts/fixtures/etf-flows
+            scripts/commit-validated-data.sh
+            scripts/data_publication.py
+            .github/workflows
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - name: Collect and verify ETFIQ flows
+        run: node scripts/update-etf-flows.mjs --collect "$RUNNER_TEMP/etf-flows-report.json"
+      - name: Validate flow publication contracts
+        run: node scripts/test-etf-flows-weekly.mjs
+      - name: Commit validated observations
+        id: record
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash scripts/commit-validated-data.sh 'Update validated weekly ETF flows' src/data/etf-flows-weekly.json
+          # A rerun can repair an edition committed in an earlier failed deployment.
+          blob=$(git hash-object src/data/etf-flows-weekly.json)
+          manifest="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/data/publication-manifest.json"
+          if ! curl -fsS --max-time 15 "$manifest" | jq -e --arg blob "$blob" '.files["src/data/etf-flows-weekly.json"] == $blob' >/dev/null; then
+            echo 'publish=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: etf-flows-report
+          path: ${{ runner.temp }}/etf-flows-report.json
+          retention-days: 35
+  deploy:
+    needs: collect
+    if: needs.collect.outputs.publish == 'true'
+    permissions:
+      contents: read
+      deployments: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/publish-validated-data.yml
+    with:
+      ref: ${{ needs.collect.outputs.commit_sha }}
+      producer: update-etf-flows.yml
