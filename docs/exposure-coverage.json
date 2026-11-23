@@ -1,9 +1,36 @@
 {
-  "checkedAt": "2026-11-23T19:49:24.673Z",
+  "checkedAt": "2026-11-23T23:06:35.996Z",
   "total": 704,
   "outside": 60,
-  "complete": 637,
+  "complete": 636,
   "gaps": [
+    {
+      "asset": "IE00BMW42413",
+      "isin": "IE00BMW42413",
+      "name": "iShares MSCI Europe Information Technology Sector UCITS ETF",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      }
+    },
     {
       "asset": "lifestrategy20",
       "isin": "IE00BMVB5K07",
