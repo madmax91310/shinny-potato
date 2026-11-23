@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import zipfile
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence, unseen_workflow_runs, remember_terminal_runs, terminal_run_mode, merge_proof_retry, TERMINAL_RUN_LIMIT
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence, unseen_workflow_runs, remember_terminal_runs, prioritize_terminal_runs, terminal_run_mode, merge_proof_retry, TERMINAL_RUN_LIMIT
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
@@ -31,6 +31,36 @@ class EventCatchupTests(unittest.TestCase):
   self.assertTrue(durable['pendingTerminalRuns']['129:1']['_proofRetry'])
   self.assertNotIn('_proofRetry',durable['pendingTerminalRuns']['129:2'])
   self.assertEqual(durable['workflows'],previous)
+
+ def test_recent_scpi_recovery_gets_a_slot_and_the_bypassed_report_remains_readable(self):
+  scpi = 'update-scpi.yml'
+  state = {'workflows': {scpi: {'status':'failure', 'runId':20, 'completedAt':'2026-10-20T10:00:00Z',
+    'dataFailures':{'transitions-europe':{'completedAt':'2026-10-20T10:00:00Z'}}}}}
+  historical = [run(i) for i in range(1, 20)]
+  intermediate = run(21, workflow=scpi)
+  recovery = run(22, 'success', workflow=scpi)
+  trigger = run(23, _eventTerminal=True)
+  pending = remember_terminal_runs(state, [*historical, intermediate, recovery, trigger])
+  ordered = prioritize_terminal_runs(state, pending, '23:1')
+  self.assertEqual([key for key, _ in ordered[:3]], ['23:1','22:1','1:1'])
+  self.assertEqual(len(ordered), len(pending))
+  self.assertIn('transitions-europe', state['workflows'][scpi]['dataFailures'])
+  durable = json.loads(json.dumps(state))
+  older = durable['pendingTerminalRuns']['21:1']
+  self.assertEqual(terminal_run_mode(older, {'runId':22}), 'proof')
+  self.assertEqual(terminal_run_mode(recovery, state['workflows'][scpi]), 'current')
+
+ def test_recovery_priority_is_bounded_and_unreadable_attempts_wait(self):
+  workflows = ('update-scpi.yml','update-insurance.yml','update-regulatory-data.yml',
+               'update-bitcoin-monthly.yml','update-publication-observations.yml',
+               'update-economic-data.yml')
+  state = {'workflows': {name:{'status':'failure', 'runId':2} for name in workflows},
+           'observerErrors': {'terminal-run:9:1':{'attemptedAt':'2026-10-09T10:00:00Z'}}}
+  successes = [run(i, 'success', workflow=name) for i, name in enumerate(workflows, 4)]
+  pending = remember_terminal_runs(state, [run(1), *successes])
+  ordered = prioritize_terminal_runs(state, pending, None)
+  self.assertEqual([r['id'] for _, r in ordered], [4,5,6,7,1,8,9])
+  self.assertEqual(len(ordered), len(pending))
 
  def test_delayed_native_event_and_read_retry_keep_exact_attempt_evidence(self):
   workflow='update-economic-data.yml'
