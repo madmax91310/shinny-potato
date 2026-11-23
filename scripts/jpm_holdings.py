@@ -2,12 +2,34 @@
 import json
 import math
 import re
+from collections import Counter
 from issuer_documents import download, document_date
 from collect_physical_holdings import observation, checked_rows
 
 ISIN='IE0003UVYC20'
 URL='https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false'
 NAME='JPM Global Equity Premium Income Active UCITS ETF - USD (dist)'
+
+def ranked_position_key(position):
+    isin = position.get('securityIsin')
+    kind = position.get('securityType')
+    currency = position.get('currencyCode')
+    date = position.get('navDate')
+    value, weight = position.get('marketValue'), position.get('marketValuePercent')
+    if (not all(isinstance(field, str) and field for field in (kind, currency, date))
+            or any(type(amount) not in (int, float) or not math.isfinite(amount) for amount in (value, weight))):
+        return None
+    if isinstance(isin, str) and isin:
+        identity = ('isin', isin, kind, currency)
+    elif (isin is None and kind == 'Cash'
+          and all(isinstance(position.get(key), str) and position[key].strip()
+                  for key in ('securityId', 'securityDescription'))):
+        # Cash can appear in the official ranking without a security ISIN.
+        # Match the publisher's row; never use this key as a securities identity.
+        identity = ('cash', position['securityId'], position['securityDescription'], currency)
+    else:
+        return None
+    return identity, date, value, weight
 
 def qualified_fund(body):
     fund=body['fundData'];share=fund['shareClass']
@@ -50,8 +72,10 @@ def parse(body,now):
         if abs(100*p['marketValue']/market_total-p['marketValuePercent'])>0.000001:
             raise ValueError('JPM market values and weights differ')
     top=fund['dailyHoldings']
-    by_isin={p['securityIsin']:p['marketValuePercent'] for p in positions if p.get('securityIsin')}
-    if top.get('effectiveDate')!=stamp or not top.get('data') or any(by_isin.get(p['securityIsin'])!=p['marketValuePercent'] for p in top['data']):
+    complete_keys = Counter(ranked_position_key(position) for position in positions)
+    ranked_keys = Counter(ranked_position_key(position) for position in top.get('data') or [])
+    if (top.get('effectiveDate') != stamp or not ranked_keys or None in ranked_keys
+            or any(count != 1 or complete_keys[key] != 1 for key, count in ranked_keys.items())):
         raise ValueError('JPM top positions and complete list differ')
     return checked_rows(records),stamp,excluded
 
