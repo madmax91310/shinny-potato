@@ -5,6 +5,9 @@ import { AUTOMATED_INDICES, refreshIndexSheet } from '../src/data/automated-indi
 import { INDEX_FACTS, buildAutomatedIndexSnapshot, getIndexFacts, getCurrentIndexFacts, getCurrentIndexDescription, formatCurrentIndexDate, getIndexDescription } from '../src/data/index-facts.js';
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js';
 import { AUTOMATED_ETF, refreshFundDetails } from '../src/data/automated-etf.js';
+import { chooseNativeFundTopTen } from '../src/data/holding-weight-basis.js';
+import nonBondRecords from '../src/data/non-bond-etf-records.json' with { type:'json' };
+import nativeFundDetails from '../src/data/native-fund-details.json' with { type:'json' };
 import { SHEETS } from '../src/data/index-factsheets.js';
 for (const [id, record] of Object.entries(AUTOMATED_INDICES)) {
   if (record.facts && INDEX_FACTS[id]) {
@@ -92,10 +95,20 @@ for (const id of ['gold-physical', 'silver-physical', 'bitcoin', 'ethereum', 'sp
   assert.equal(current.source.url, AUTOMATED_INDICES[id].returns.source.url, `${id}: active exact-reference calendar series ignored`);
 }
 
-// A physical ETF can publish fund allocations alongside separate index holdings.
-const mixed = refreshFundDetails('IE000L2SA8K5');
-assert.equal(mixed.holdingsBasis, 'tracked-index');
+// A fund can publish allocations separately from its ranked holdings. A
+// qualifying native fund projection keeps its NAV basis when it supersedes
+// the index ranking. The two possible sources retain their own dates.
+const mixedIsin = 'IE000L2SA8K5';
+const indexHoldings = nonBondRecords[mixedIsin].holdings;
+const nativeHoldings = nativeFundDetails[mixedIsin];
+const selectedHoldings = chooseNativeFundTopTen(mixedIsin, indexHoldings, nativeHoldings);
+assert.equal(indexHoldings.basis, 'index');
+assert.equal(AUTOMATED_ETF[mixedIsin].holdings, selectedHoldings);
+const mixed = refreshFundDetails(mixedIsin);
+assert.equal(mixed.holdingsBasis, selectedHoldings === nativeHoldings ? 'fund' : 'tracked-index');
+assert.equal(mixed.holdingsWeightBasis, selectedHoldings.weightBasis);
+assert.equal(mixed.holdingsSource, selectedHoldings.sourceUrl);
+assert.equal(mixed.holdingsAsOf, selectedHoldings.asOf);
 assert.equal(mixed.sectorsBasis, 'fund');
 assert.equal(mixed.countriesBasis, 'fund');
-assert.equal(mixed.sectorsAsOf, AUTOMATED_ETF.IE000L2SA8K5.sectors.asOf);
-assert.equal(mixed.holdingsAsOf, AUTOMATED_ETF.IE000L2SA8K5.holdings.asOf);
+assert.equal(mixed.sectorsAsOf, AUTOMATED_ETF[mixedIsin].sectors.asOf);

@@ -371,19 +371,26 @@ def wisdomtree_factsheet(body, share, now):
             launch=dt.datetime.strptime(only(re.findall(r'Inception Date\s+(\d{2}/\d{2}/\d{4})',text),'inception date'),'%d/%m/%Y').date()
             result['performance']={'currency':currency,'basis':'fund','years':{y:bounded_return(float(v))for y,v in zip(years,values)if launch<=dt.date(int(y),1,1)},'method':'calendar-year exact-share NAV return, net of fees'}
     if share.get('collectListings'):
-        mics={'LSE':'XLON','Xetra':'XETR','Borsa Italiana':'ETFP','SIX':'XSWX','Euronext(FR)':'XPAR'}
+        venues = {
+            'LSE': ('XLON', 'London Stock Exchange'),
+            'Xetra': ('XETR', 'Xetra'),
+            'Borsa Italiana': ('ETFP', 'Borsa Italiana'),
+            'SIX': ('XSWX', 'SIX Swiss Exchange'),
+            'Euronext(FR)': ('XPAR', 'Euronext Paris'),
+        }
         listings=[]
         for line in text.splitlines():
             cells=line.split()
             # Select the literal exact-share listing rows, not the headline ticker.
             if share['isin'] not in cells:continue
-            exchange=next((e for e in mics if line.strip().startswith(e+' ')),None)
+            exchange=next((e for e in venues if line.strip().startswith(e+' ')),None)
             if exchange is None:continue
             values=line.strip()[len(exchange):].split()
             if len(values)!=9 or values[0] not in ('USD','EUR') or values[6]!=share['isin']:continue
-            currency,ticker,ric=values[0],values[1],values[4];mic=mics[exchange]
+            currency, ticker, ric = values[0], values[1], values[4]
+            mic, exchange_label = venues[exchange]
             if not re.fullmatch(r'[A-Z0-9]+\.[A-Z]+',ric):reject('WisdomTree listing RIC changed')
-            listings.append({'ticker':ticker,'exchange':'London Stock Exchange' if exchange=='LSE' else exchange,'mic':mic,'currency':currency,'symbol':ric,'sourceUrl':url,'checkedAt':now.date().isoformat(),'sourceDocumentAsOf':stamp,'evidenceId':f'{share["isin"]}-{mic}-{ticker}-{currency}','excerpt':line.strip(),'sha256':digest})
+            listings.append({'ticker':ticker,'exchange':exchange_label,'mic':mic,'currency':currency,'symbol':ric,'sourceUrl':url,'checkedAt':now.date().isoformat(),'sourceDocumentAsOf':stamp,'evidenceId':f'{share["isin"]}-{mic}-{ticker}-{currency}','excerpt':line.strip(),'sha256':digest})
         if not listings:reject('No exact-share WisdomTree trading row')
         result['characteristics']['listings']=listings
         result['listingObservation']={'rows':listings,'asOf':stamp,'sourceUrl':url,'sha256':digest}
