@@ -3,7 +3,7 @@ import fs from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { TWEETS } from '../src/pages/tweet-bank/data.js'
-import { contentValidity } from '../src/pages/tweet-bank/validity.js'
+import { contentValidity, reviewPolicy } from '../src/pages/tweet-bank/validity.js'
 
 const id = 'guide:sectoriels-thematiques-pea'
 const guide = TWEETS.find(item => item.id === id)
@@ -19,8 +19,11 @@ for (const proof of guide.productChecks) {
   const segment = guide.text.split(proof.isin)[1].split('🆔')[0]
   assert(segment.includes(proof.terPct.toLocaleString('fr-FR', { minimumFractionDigits: 2 }) + ' %'))
 }
-assert.equal(contentValidity(guide, undefined, '2026-10-24').ready, true)
-assert.equal(contentValidity(guide, undefined, '2026-12-01').ready, false)
+const policy = reviewPolicy(guide)
+const lastValidClock = new Date(Date.parse(policy.checkedAt) + policy.maxAge * 86400000 + 12 * 3600000)
+const expiredClock = new Date(lastValidClock.getTime() + 86400000)
+assert.equal(contentValidity(guide, undefined, lastValidClock.toISOString().slice(0, 10)).ready, true)
+assert.equal(contentValidity(guide, undefined, expiredClock.toISOString().slice(0, 10)).ready, false)
 assert(!/encours|millions|100 M/.test(guide.text))
 
 const base = process.env.TEST_BASE_URL ?? 'http://127.0.0.1:4441/shinny-potato'
@@ -37,6 +40,7 @@ try {
   for (const width of [1440, 390]) {
     const context = await browser.newContext({ viewport: { width, height: 900 } })
     const page = await context.newPage()
+    await page.clock.setFixedTime(lastValidClock)
     const errors = []
     page.on('pageerror', error => errors.push(error.message))
     await page.goto(base + '/banque-tweets', { waitUntil: 'networkidle' })
@@ -66,10 +70,15 @@ try {
     assert.equal(await textarea.inputValue(), guide.text)
     await card.scrollIntoViewIfNeeded()
     await page.screenshot({ path: `${out}/guide-${width}.png` })
+    await page.clock.setFixedTime(expiredClock)
+    await page.reload({ waitUntil: 'networkidle' })
+    assert.equal(await textarea.inputValue(), guide.text)
+    assert(await card.getByRole('button', { name: '📋 Copier', exact: true }).isDisabled())
+    assert(await card.getByText('À vérifier avant réutilisation', { exact: true }).isVisible())
     assert.deepEqual(errors, [])
     await context.close()
   }
-  console.log('13 verified references; desktop/mobile: category, search, complete text, sources, copy, publication history, persistent draft and reset OK.')
+  console.log('13 verified references; desktop/mobile: category, search, complete text, sources, copy, publication history, persistent draft, reset and expiry lock OK.')
 } finally {
   await browser?.close()
   server?.kill()
