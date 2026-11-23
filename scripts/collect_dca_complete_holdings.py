@@ -11,6 +11,7 @@ from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError,
 from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
 from qualified_corporate_identities import qualified_corporate_identity
 ROOT=Path(__file__).resolve().parents[1]
+EXPLICIT_OTHER_SECTOR_SHARES = {'IE00BF4RFH31', 'IE00BKM4GZ66'}
 def ranking_nav_downgrade(isin, previous, candidate, now):
     """Preserve a dated native book; a newer ranking cannot prove its NAV basis.
 
@@ -151,7 +152,7 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         # BlackRock explicitly puts some valued equity lines in its « Other »
         # sector bucket. Keep their weights unclassified in the fund breakdown;
         # this does not assign the securities a sector or admit a missing label.
-        sector_bucket = 'Non classé' if not localized and sector == 'Other' else sector
+        sector_bucket = 'Non classé' if isin in EXPLICIT_OTHER_SECTOR_SHARES and not localized and sector == 'Other' else sector
         if (localized and not translated_allocations) or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector_bucket)):
             classified=False
         else:

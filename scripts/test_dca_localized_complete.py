@@ -71,10 +71,15 @@ class LocalizedComplete(CompleteRealEstate):
         body = self.body()
         facts = body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         facts['assetClass']['value'] = 'Equity'
+        isin = 'IE00BF4RFH31'
+        facts['isin']['value'] = isin
+        body['productId'] = '296576'
+        url = 'https://www.blackrock.com/?portfolioId=296576'
+        now = dt.datetime(2026, 10, 16, tzinfo=dt.timezone.utc)
         points = body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
         points['sectorName']['value'][0] = 'Other'
         weight = points['holdingPercent']['value'][0]
-        record, securities = self.parse(body, 'Equity')
+        record, securities = parse_complete(body, isin, url, now)
         facts = record['compositionFacts']
         self.assertEqual(facts['sectors']['asOf'], record['asOf'])
         self.assertIn({'name': 'Non classé', 'weightPct': weight}, facts['sectors']['rows'])
@@ -86,7 +91,7 @@ class LocalizedComplete(CompleteRealEstate):
             with self.subTest(field=field, value=value):
                 candidate = copy.deepcopy(body)
                 candidate['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap'][field]['value'][0] = value
-                invalid, _ = self.parse(candidate, 'Equity')
+                invalid, _ = parse_complete(candidate, isin, url, now)
                 self.assertNotIn('compositionFacts', invalid)
 
     def german_fixture(self):
