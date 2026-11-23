@@ -2,6 +2,7 @@
 // benchmark proof. A physical ETF proxy cannot acquire this status by a label.
 import contracts from './native-index-composition-contracts.json' with {type:'json'}
 import freshness from './freshness-policy.json' with {type:'json'}
+import {isBnpDocfinderUrl} from './bnp-document-evidence.js'
 const hash=value=>/^[a-f0-9]{64}$/.test(value||'')
 const day=value=>{
  if(!/^\d{4}-\d{2}-\d{2}$/.test(value||''))return NaN
@@ -41,10 +42,16 @@ function qualifiedIssuerIndex(h,share,index,now){
   && Number.isFinite(advertisedStamp)&&advertisedStamp<=control
   && new Date(advertisedStamp+86400000).getUTCDate()===1
   && new Date(advertisedStamp-weekendDelta*86400000).toISOString().slice(0,10)===h.shareAsOf)
+ const publicationStamp=day(h.shareDocumentPublicationDate)
+ const officialBnp=share.shareOfficialCatalogueUrl&&h.shareDiscoverySourceUrl===share.shareOfficialCatalogueUrl
+  &&isBnpDocfinderUrl(h.shareSourceUrl)
+  &&day(h.shareDocumentAdvertisedAsOf)===advertisedStamp&&advertisedMatch
+  &&publicationStamp>=advertisedStamp&&publicationStamp<=control
+  &&(advertisedAsOf===h.shareAsOf||h.shareCatalogueReferenceDate===h.shareAsOf)
+ const legacyBnp=share.shareDocumentPrefix&&h.shareSourceUrl===share.shareDocumentPrefix+advertisedAsOf
+  &&h.shareDiscoverySourceUrl===share.shareDocumentDiscoveryUrl&&advertisedMatch
  const subjectSource=share.shareDocumentTemplates?share.shareDocumentTemplates.some(template=>h.shareSourceUrl===template.replace('{monthEnd}',h.shareAsOf?.replaceAll('-',''))):share.shareDocumentBase?h.shareSourceUrl===share.shareDocumentBase:
-  typeof h.shareSourceUrl==='string'&&h.shareSourceUrl.startsWith(share.shareDocumentPrefix)
-   &&advertisedMatch&&h.shareSourceUrl===share.shareDocumentPrefix+advertisedAsOf
-   &&h.shareDiscoverySourceUrl===share.shareDocumentDiscoveryUrl&&hash(h.shareDiscoverySha256)
+  (officialBnp||legacyBnp)&&hash(h.shareDiscoverySha256)
  const subjectScopeQualified=!share.referenceOnly||(h.approximation===true&&p?.referenceOnlyForSubject===true)
  const returnRule=index.returnWeightContract,returnProof=p?.returnWeightProof
  // Preserve genuine earlier source controls without allowing the producer to
