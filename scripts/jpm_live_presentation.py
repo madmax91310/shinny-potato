@@ -131,12 +131,20 @@ def collect(share, now, document, fetch=download, calendar_fetch=None):
             attempts.append({'url': URL, 'status': 'failed' if error else 'validated', 'fields': [field],
                              **({'reason': error['reason']} if error else {})})
         if calendar_fetch is not None and not result.get('performance'):
-            from jpm_calendar import HISTORY_URL, parse as parse_calendar
-            try:
-                result['performance'] = parse_calendar(calendar_fetch(HISTORY_URL, max_bytes=6_000_000), identity_body, share, now)
-                attempts.append({'url': HISTORY_URL, 'status': 'validated', 'fields': ['performance']})
-            except Exception as error:
-                result.setdefault('collectionErrors', []).append({'field': 'performance-current-source', 'url': HISTORY_URL, 'reason': str(error)})
-                attempts.append({'url': HISTORY_URL, 'status': 'failed', 'fields': ['performance'], 'reason': str(error)})
+            from jpm_calendar import HISTORY_ROLES, parse as parse_calendar
+            errors = []
+            for url in HISTORY_ROLES:
+                try:
+                    result['performance'] = parse_calendar(
+                        calendar_fetch(url, max_bytes=6_000_000), identity_body, share, now, source_url=url)
+                except Exception as error:
+                    errors.append({'field': 'performance-current-source', 'url': url, 'reason': str(error)})
+                    attempts.append({'url': url, 'status': 'failed', 'fields': ['performance'], 'reason': str(error)})
+                    continue
+                attempts.append({'url': url, 'status': 'validated', 'fields': ['performance']})
+                break
+            for error in errors:
+                result.setdefault('collectionErrors', []).append(
+                    {**error, **({'qualifiedAlternativeAvailable': True} if result.get('performance') else {})})
     result.setdefault('sourceAttempts', []).extend(attempts)
     return result
