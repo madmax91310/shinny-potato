@@ -38,6 +38,13 @@ const different=sample([100,50]);different.data.snapshot.holdings[1].issuerName=
 assert.equal(normalizePortfolio(different).holdings.length,2,'Classes distinctes conservées')
 const badTotal=sample([100,50]);badTotal.data.snapshot.declaredTotal=200
 assert(normalizePortfolio(badTotal).problem)
+const officialConflict=sample([100,50])
+officialConflict.data.snapshot.coverReconciliation={status:'reviewed-official-discrepancy',informationTableTotal:150,reportedCoverTotal:151,difference:1,weightDenominator:'informationTableTotal'}
+officialConflict.data.snapshot.reconciliationWarning='La page de garde et les lignes SEC diffèrent.'
+const conflicted=normalizePortfolio(officialConflict)
+assert.equal(conflicted.problem,null)
+assert.equal(conflicted.total,150)
+assert.equal(editorialCopy(conflicted).status, 'review')
 console.log('Calculs indépendants : concentration, 300/1501 petites lignes, noms longs, <0,1 %, classes, unités et regroupement exact.')
 
 assert.equal(logoIdentity({issuerName:'Nom de déclaration différent',cusip:'037833100'}).id,'apple')
@@ -45,6 +52,8 @@ assert.equal(logoIdentity({issuerName:'Homonyme non résolu',ticker:'AAPL'}),nul
 const missingPrimary=sample([3,2]);delete missingPrimary.data.snapshot.primaryVerified;assert(normalizePortfolio(missingPrimary).problem)
 
 const { detailedCSV, detailedExport } = await import('../src/pages/investor-portfolio/exports.js')
+assert(detailedExport(conflicted).warnings[0].includes('page de garde'))
+assert.deepEqual(detailedExport(conflicted).snapshot.coverReconciliation, officialConflict.data.snapshot.coverReconciliation)
 const optionPayload=sample([40,30,20,10]);optionPayload.data.snapshot.holdings[2].putCall='CALL';optionPayload.data.snapshot.holdings[3].putCall='PUT'
 const optionPortfolio=normalizePortfolio(optionPayload)
 assert.equal(publicationPlan(optionPortfolio).total,70)

@@ -27,6 +27,13 @@ CURRENT_REVIEW_OUTPUTS = [
     'src/pages/data-review/review-inbox.js',
 ]
 ACTOR_OUTPUT = 'src/data/automated-presentation-actors.json'
+METADATA_RACE = [
+    'docs/asset-field-coverage.md',
+    'public/data/asset-field-coverage.json',
+    'scripts/instrument-metadata-sources.json',
+    'src/data/automated-instrument-metadata.json',
+    'src/data/instrument-metadata-status.json',
+]
 BUDGET_EDITORIAL_READERS = [
     'docs/budget-editorial-polish-2026-11-02.csv',
     'docs/budget-editorial-polish-2026-11-02.md',
@@ -695,6 +702,19 @@ else:
     def test_actor_scpi_race_cannot_bypass_validation(self):
         self.assert_refused('src/data/automated-scpi.json', 'actors', validation='false')
 
+    def test_metadata_race_validates_and_preserves_the_five_concurrent_files(self):
+        for path in METADATA_RACE:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {path})" = "concurrent update"' for path in METADATA_RACE)
+        result = self.publish('actors', validation)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+        for path in METADATA_RACE:
+            self.assertEqual(self.f.git(self.f.remote, 'show', f'master:{path}'), 'concurrent update')
+
+    def test_metadata_race_cannot_bypass_actor_validation(self):
+        self.assert_refused('scripts/instrument-metadata-sources.json', 'actors', validation='exit 23')
+
     def test_publication_economic_output_is_independent(self):
         self.f.advance_remote('src/data/automated-economic.json')
         result = self.publish('publication')
@@ -1084,6 +1104,11 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
 
     def test_scpi_acquisition_graph_does_not_read_actor_output(self):
         self.python_graph(['collect_scpi.py'],[ACTOR_OUTPUT])
+
+    def test_scpi_and_actor_acquisition_do_not_read_instrument_metadata(self):
+        # The shared report plan module declares the ETF producer's own inputs.
+        self.python_graph(['collect_scpi.py', 'collect_presentation_actors.py'], METADATA_RACE,
+                          boundaries=('producer_report_contract.py',))
 
     def test_insurance_acquisition_graph_does_not_read_exposure_outputs(self):
         # The reporting module imports adapters for all producers. Exercise its

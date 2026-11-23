@@ -1,12 +1,7 @@
-"""BNP-authored exact-share factsheets, discovered from a public document mirror.
-
-The mirror is disclosed in every field's provenance. Its page metrics are never
-used as BNP data; only the issuer PDF is parsed. No fixed monthly UUID is stored.
-"""
+"""Exact-share English factsheets discovered in BNP Paribas AM’s public catalogue."""
 import datetime as dt
-from html.parser import HTMLParser
+import json
 import re
-from urllib.parse import urlparse
 from data_automation import reject, number
 from issuer_documents import download, pdf_text, document_date, proof, bounded_return, validated_rows
 
@@ -64,54 +59,58 @@ def exposures(text, share, stamp):
     return result
 
 
-class Links(HTMLParser):
-    def __init__(self):
-        super().__init__(); self.urls = []
-
-    def handle_starttag(self, tag, attrs):
-        if tag == 'a':
-            href = dict(attrs).get('href', '')
-            if href: self.urls.append(href)
+CATALOGUE_URL = r'https://api\.bnpparibas-am\.com/push/fundsheet/[A-Z_]+-FSE/[A-Z]{3}/([A-Z]{3})/'
+PDF_URL = r'https://docfinder\.bnpparibas-am\.com/api/files/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/[0-9]+'
+DOCUMENT_TYPES = {'easy-fr': 'DOC_FACTSHEET', 'easy-ii': 'DOC_FACTSHEET_B2B'}
 
 
-def discover(body, share, now):
-    text = body.decode('utf-8')
-    if share['isin'] not in text or 'id_' + share['mirrorCode'] not in text:
-        reject('BNP document discovery page has wrong share identity')
-    links = Links(); links.feed(text)
-    pattern = r'/pobierz/etf/' + re.escape(share['mirrorCode']) + r'/KA/(\d{4}-\d{2}-\d{2})'
-    candidates = {}
-    for url in links.urls:
-        parts = urlparse(url)
-        match = re.fullmatch(pattern, parts.path)
-        if match and parts.scheme == 'https' and parts.netloc == 'dokumenty.analizy.pl' and not parts.query and not parts.fragment:
-            candidates[match[1]] = url
-    if not candidates: reject('No current BNP factsheet link published by document mirror')
-    # Do not fall back to an older file if the latest advertised PDF is invalid.
-    stamp = document_date(max(candidates), now)
-    return candidates[stamp], stamp
+def discover(body, share, now, country):
+    catalogue = json.loads(body)
+    identity = catalogue.get('fundshare_selection', {})
+    if (identity.get('isin'), identity.get('currency')) != (share['isin'], share['currency']):
+        reject('BNP catalogue has wrong share identity or currency')
+    documents = catalogue.get('publications', {}).get('ENG', {}).get('documents', [])
+    candidates = [entry for entry in documents
+                  if entry.get('doc_type') == DOCUMENT_TYPES[share['layout']] and entry.get('country') == country]
+    if not candidates:
+        reject('No exact English BNP factsheet listed in the issuer catalogue')
+
+    def dates(entry):
+        pair = (entry.get('reference_date'), entry.get('publication_date'))
+        if any(not isinstance(value, str) or not re.fullmatch(r'[0-9]{4}-[0-9]{2}-[0-9]{2}', value) for value in pair):
+            reject('Missing or invalid BNP catalogue dates')
+        return pair
+
+    # Select the latest issue by its reference period, then its publication
+    # date. Validate that issue even when an older candidate could pass.
+    candidates.sort(key=dates)
+    entry = candidates[-1]
+    reference, publication = dates(entry)
+    if len(candidates) > 1 and dates(candidates[-2]) == (reference, publication):
+        reject('Ambiguous latest BNP factsheet')
+    url = entry.get('url', '')
+    if (entry.get('language') != 'ENG' or entry.get('format') != 'pdf'
+            or not isinstance(url, str) or not re.fullmatch(PDF_URL, url)):
+        reject('Invalid BNP Docfinder factsheet')
+    reference = document_date(reference, now)
+    publication = document_date(publication, now)
+    if publication < reference:
+        reject('BNP catalogue publication predates its document reference')
+    expected = reference
+    if share['isin'] == 'IE000QDFFK00':
+        end = dt.date.fromisoformat(reference)
+        if end.weekday() >= 5 and (end + dt.timedelta(days=1)).month != end.month:
+            friday = (end - dt.timedelta(days=end.weekday() - 4)).isoformat()
+            # The product and the actual PDF must both corroborate this date.
+            if catalogue.get('reference_date') == friday:
+                expected = friday
+    return url, reference, publication, expected
 
 
 def unique(pattern, text):
     values = re.findall(pattern, text, re.M)
     if not values or len(set(values)) != 1: reject('Missing or ambiguous BNP field: ' + pattern)
     return values[0]
-
-
-# The exact BNP documents for these two parts carry the last weekday as
-# valuation date. The mirror indexes the same monthly issue by calendar end.
-WEEKEND_MONTH_END_SHARES = {'FR0011550193', 'IE000QDFFK00'}
-
-
-def matches_advertised_date(observed, advertised, isin):
-    if observed == advertised:
-        return True
-    if isin not in WEEKEND_MONTH_END_SHARES:
-        return False
-    end = dt.date.fromisoformat(advertised)
-    if end.weekday() < 5 or (end + dt.timedelta(days=1)).month == end.month:
-        return False
-    return observed == (end - dt.timedelta(days=end.weekday() - 4)).isoformat()
 
 
 def parse(text, share, now, expected_date):
@@ -151,7 +150,8 @@ def parse(text, share, now, expected_date):
         row_label = r'Portfolio\*'
     else: reject('Unknown BNP document layout')
     document_date(stamp, now)
-    if not matches_advertised_date(stamp, expected_date, isin): reject('BNP publication date differs from advertised document date')
+    if stamp != expected_date:
+        reject(f'BNP PDF observation date {stamp} differs from expected reference {expected_date}')
     headers = [re.findall(r'20\d{2}', line) for line in block.splitlines() if len(re.findall(r'20\d{2}', line)) >= 3]
     if len(headers) != 1: reject('Missing or ambiguous BNP calendar header')
     years = headers[0]
@@ -177,24 +177,34 @@ def parse(text, share, now, expected_date):
     return result
 
 
-def collect_one(share, now, fetch=download):
+def collect_one(share, now, fetch=None):
     page = share['discoveryUrl']
-    if urlparse(page).netloc != 'www.analizy.pl' or not urlparse(page).path.startswith('/etf/' + share['isin'] + '/'):
-        reject('Unexpected BNP mirror discovery URL')
-    url, stamp = discover(fetch(page), share, now)
-    body = fetch(url); result = parse(pdf_text(body), share, now, stamp)
+    route = re.fullmatch(CATALOGUE_URL + re.escape(share['isin']), page)
+    if not route:
+        reject('Unexpected BNP issuer catalogue URL')
+
+    def fetch_official(url):
+        if fetch is not None:
+            return fetch(url)
+        return download(url, url_validator=lambda candidate: candidate == url)
+
+    url, reference, publication, expected = discover(fetch_official(page), share, now, route[1])
+    body = fetch_official(url)
+    result = parse(pdf_text(body), share, now, expected)
     result['sourceUrl'] = url
+    digest = proof(body)
     for field in ('characteristics', 'aum', 'performance', 'countries', 'sectors', 'holdings'):
-        if field not in result: continue
-        result[field].update(sourceUrl=url, discoveryUrl=page, sha256=proof(body),
-                             sourceLabel='Fiche BNP Paribas Asset Management · copie hébergée par Analizy',
-                             publisher='BNP Paribas Asset Management', documentHost='Analizy',
-                             documentAdvertisedAsOf=stamp)
+        if field not in result:
+            continue
+        result[field].update(sourceUrl=url, discoveryUrl=page, sha256=digest,
+                             sourceLabel='Fiche BNP Paribas Asset Management',
+                             publisher='BNP Paribas Asset Management', documentHost='BNP Paribas Asset Management',
+                             documentAdvertisedAsOf=reference, documentPublicationDate=publication)
     if share.get('collectTrackedCountries'):
         from collect_tracked_exposure import collect_one as tracked_exposure
         try:
             # parse() above independently checks the current BNP benchmark.
-            result['countries'] = tracked_exposure(share, now, share['expectedIndex'], fetch)['countries']
+            result['countries'] = tracked_exposure(share, now, share['expectedIndex'], fetch or download)['countries']
             result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('countries:')]
         except Exception as error:
             result.setdefault('collectionErrors', []).append({'field': 'countries', 'reason': str(error)})

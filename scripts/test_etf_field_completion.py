@@ -124,13 +124,20 @@ class FieldCompletion(unittest.TestCase):
             self.assertEqual(result['holdings']['rows'][0]['weightPct'],first)
             self.assertEqual('countries' in result,isin=='FR0011550193')
 
-    def test_weekend_month_end_keeps_the_pdf_valuation_date(self):
-        from collect_bnp_etf import matches_advertised_date
-        for isin in ('FR0011550193','IE000QDFFK00'):
-            self.assertTrue(matches_advertised_date('2026-10-30','2026-10-31',isin))
-            self.assertFalse(matches_advertised_date('2026-10-29','2026-10-31',isin))
-            self.assertFalse(matches_advertised_date('2026-10-02','2026-10-03',isin))
-        self.assertFalse(matches_advertised_date('2026-10-30','2026-10-31','FR0011550185'))
+    def test_bnp_pdf_requires_the_observation_date_resolved_from_catalogue(self):
+        now = NOW.replace(month=11, day=22)
+        for isin, filename in [
+            ('FR0011550185', 'bnp-easy-sp500'),
+            ('FR0011550193', 'bnp-easy-stoxx'),
+            ('IE000QDFFK00', 'bnp-easy-ii-nasdaq'),
+        ]:
+            with self.subTest(isin=isin):
+                share = next(s for s in CONFIG if s['isin'] == isin)
+                text = (FIX / (filename + '-october-2026.txt')).read_text()
+                result = bnp(text, share, now, '2026-10-30')
+                self.assertEqual(result['holdings']['asOf'], '2026-10-30')
+                with self.assertRaisesRegex(ValueError, 'observation date'):
+                    bnp(text, share, now, '2026-10-31')
 
     def test_bad_bnp_exposures_preserve_independent_fields_and_signal_failure(self):
         share=next(s for s in CONFIG if s['isin']=='IE000QDFFK00')

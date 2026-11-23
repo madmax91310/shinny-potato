@@ -211,7 +211,7 @@ export async function renderPortfolioImage(portfolio) {
     box.lines.forEach((line, i) => label(line, x, box.y + 32 + i * 39, nameSize, green))
     label(entry.percent, x, box.y + 32 + box.lines.length * 39, percentSize, ink, 'center', 900)
   }
-  label(`Valeur déclarée hors options · ${cash(plan.total, plan.currency)}`, 48, 1288, 36, ink, 'left')
+  label(`${portfolio.snapshot.coverReconciliation ? 'Valeur des lignes SEC' : 'Valeur déclarée'} hors options · ${cash(plan.total, plan.currency)}`, 48, 1288, 36, ink, 'left')
   label('Épargnant Libre', 1032, 1322, 25, '#343434', 'right', 700)
   const shown = plan.entries.filter(entry => !entry.other)
   const shownWeight = shown.reduce((sum, entry) => sum + entry.value, 0) / plan.total
