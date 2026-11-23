@@ -115,8 +115,14 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
         return proved(patterns[broker],True,{'tr':'IFU pour l’offre française après migration ; anciens comptes étrangers distincts.', 'ibkr':'IFU disponible pour le PEA ✅'}.get(broker,'IFU fourni selon les opérations à déclarer ; modalités dans la source officielle.'))
     if field=='dca':
         if broker=='bourso':
-            m=find(r'Plan d.Épargne \(Hors CTO Business\)(.{0,1300}?)\(1\)',text); block=m[1]
-            find(r'négociation\s+GRATUIT',block);v=amount(find(r'Minimum\s*:\s*([\d ,]+)€',block)[1]);find(r'Voir DIC',block)
+            labelled=r"Plan d['’]épargne \(hors CTO Business\) Droit d'entrée gratuit Commission de négociation gratuit Droit de garde gratuit Droit de sortie gratuit Frais de gestion voir DIC Montant d'investissement minimum par fonds par mois Minimum\s*:\s*([\d ,]+)\s*€"
+            rows=list(re.finditer(labelled,text,re.I))
+            if len(rows)>1:raise ValueError('Rubrique du plan d’épargne BoursoBank ambiguë')
+            if rows:
+                m=rows[0];v=amount(m[1])
+            else:
+                m=find(r'Plan d.Épargne \(Hors CTO Business\)(.{0,1300}?)\(1\)',text); block=m[1]
+                find(r'négociation\s+GRATUIT',block);v=amount(find(r'Minimum\s*:\s*([\d ,]+)€',block)[1]);find(r'Voir DIC',block)
             return True,'confirmé',f'Plan d’Épargne dès {fmt(v)} €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.',source,m[0]
         if broker=='caidf':
             v=amount(find(r'à partir de ([\d ,]+)\s*€\s*par mois',text)[1]);find(r'1 à 3 fonds',text)
@@ -243,10 +249,19 @@ def parse(broker,field,raws,today,sources=None):
         if key!=decisive and key not in supporting: continue
         reference_quote = quote if key == decisive else supporting[key]
         info=sources[key]
-        page=next((i for i,p in enumerate(raw.split('\f'),1) if clean(reference_quote) in clean(p)),None) if '<html' not in raw.lower() else None
+        pdf_pages=raw.split('\f')
+        page=next((i for i,p in enumerate(pdf_pages,1) if clean(reference_quote) in clean(p)),None) if '<html' not in raw.lower() else None
+        spanned_pages=None
+        if page is None and (broker,field,key)==('bourso','dca','boursoTariff'):
+            # The labelled plan starts on one page and gives its per-fund
+            # minimum on the next. Keep both instead of truncating the proof.
+            spans=[(i,i+1) for i,(first,second) in enumerate(zip(pdf_pages,pdf_pages[1:]),1)
+                   if clean(reference_quote) in clean(first+' '+second)]
+            if len(spans)==1:
+                spanned_pages=list(spans[0]);page=spanned_pages[0]
         kind='pdf' if '\f' in raw or re.search(r'\.pdf(?:$|\?)',info['url']) else 'page'
         if kind=='pdf' and not page: raise ValueError('Page de la clause officielle non localisée')
-        refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
+        refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,**({'pages':spanned_pages} if spanned_pages else {}),'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
     return {**({'programmed':programmed} if programmed else {}),**({'conversion':conversion} if conversion else {}),'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
       'sourceUrl':getattr(raws[decisive],'source_url',sources[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
       'method':('Rapprochement de trois sources officielles : condition obligatoire d’activation des fractions pour Recurring Investments, entité IBIE éligible, et fractions interdites sur PEA ; exclusion déduite de cette incompatibilité' if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq' else 'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue'),

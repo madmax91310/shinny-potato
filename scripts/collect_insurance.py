@@ -422,10 +422,12 @@ def qualify_vie_guarantees(record, notice, url):
         fund['sourceUrls'] = list(dict.fromkeys([*fund['sourceUrls'], url]))
 
 
-def refresh(previous, adapters, today):
+def refresh(previous, adapters, today, clock=None):
+    clock = clock or (lambda: dt.datetime.now(dt.timezone.utc))
     records = {r['id']:r for r in previous.get('records',[])}
     observations=[]
     for id_, adapter in adapters.items():
+        attempted_at=clock().isoformat()
         try:
             record=adapter(today)
             old=records.get(id_)
@@ -459,16 +461,21 @@ def refresh(previous, adapters, today):
                     for field in ('guarantee', 'maxAllocation', 'ceiling', 'accessValidUntil'):
                         if before.get(field) is not None and fund.get(field) is None:
                             raise ValueError('Qualified fund condition disappeared: ' + fund['name'] + ' / ' + field)
-            records[id_]=validate(record,today);observations.append({'id':id_,'name':record['name'],'status':'success'})
+            validated=validate(record,today)
+            receipt={'id':id_,'name':record['name'],'status':'success','attemptedAt':attempted_at,
+                     'checkedAt':clock().isoformat(),'sourceUrl':validated['sourceUrl']}
+            records[id_]=validated
+            observations.append(receipt)
         except ContractSuperseded as error:
             if id_ not in records:
-                observations.append({'id':id_, 'status':'failure', 'reason':str(error)})
+                observations.append({'id':id_, 'status':'failure', 'attemptedAt':attempted_at, 'reason':str(error)})
                 continue
             records[id_] = {**records[id_], 'availability': error.evidence}
             observations.append({'id':id_, 'name':records[id_]['name'], 'status':'superseded',
-                'reason':str(error), 'successorName':error.evidence['successorName']})
+                'attemptedAt':attempted_at,'reason':str(error), 'successorName':error.evidence['successorName']})
         except Exception as error:
-            observations.append({'id':id_,'name':records.get(id_,{}).get('name',id_),'status':'failure','reason':str(error)[:250]})
+            observations.append({'id':id_,'name':records.get(id_,{}).get('name',id_),'status':'failure',
+                'attemptedAt':attempted_at,'reason':str(error)[:250]})
     return {'records':list(records.values())},observations
 
 

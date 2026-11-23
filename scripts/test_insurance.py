@@ -1,7 +1,9 @@
 import copy
 import datetime as dt
+import hashlib
 import json
 import pathlib
+import tempfile
 import unittest
 from unittest.mock import patch
 from collect_insurance import collect, parse_contract, parse_fund, refresh, validate, qualify_vie_guarantees, vie_notice_url, qualify_avenir_plus, contract_url, AVENIR_PLUS_FEES, VERTESSIMA_NOTICE
@@ -20,11 +22,31 @@ class InsuranceTests(unittest.TestCase):
               vie_notice_url(fixture['contractHtml']):fixture['contractNotice'],
               VERTESSIMA_NOTICE:fixture['fundNotice']}
         empty={**old,'euroFunds':[]}
+        stamp=dt.datetime.combine(today,dt.time(10),dt.timezone.utc)
+        times=iter((stamp,stamp+dt.timedelta(seconds=2)))
         with patch('collect_insurance.fetch',side_effect=lambda url:docs[url].encode()), \
              patch('collect_insurance.parse_contract',return_value=empty), \
              patch('collect_insurance.pdf_text',side_effect=lambda data,**_:data.decode()):
-            result,observations=refresh({'records':[old]},{'linxea-vie':lambda day:collect('linxea-vie',day)},today)
+            result,observations=refresh({'records':[old]},{'linxea-vie':lambda day:collect('linxea-vie',day)},today,clock=lambda:next(times))
         self.assertEqual(observations[0]['status'],'success')
+        self.assertEqual(observations[0]['attemptedAt'],stamp.isoformat())
+        self.assertEqual(observations[0]['checkedAt'],(stamp+dt.timedelta(seconds=2)).isoformat())
+        self.assertNotIn('asOf',observations[0])
+        from producer_report_contract import finish
+        from producer_report_plans import build_plan
+        from publish_automation_status import read_report
+        plan={**build_plan('collect_insurance',[]),'producer':'collect_insurance',
+              'reportStem':'insurance-observation','declaredAt':stamp.isoformat(),
+              'nonce':'isolated-test'}
+        plan['sha256']=hashlib.sha256(json.dumps(plan,sort_keys=True).encode()).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            path=pathlib.Path(tmp)/'insurance-observation.json'
+            path.write_text(json.dumps(finish({'observations':observations},plan)))
+            successes=read_report(path,'update-insurance.yml')['successes']
+        proof=next(row for row in successes if row['id']=='linxea-vie')
+        self.assertTrue(proof['verifiedInAttempt'])
+        self.assertEqual(proof['checkedAt'],observations[0]['checkedAt'])
+        self.assertEqual(proof['sourceUrls'],[contract])
         record=result['records'][0]
         netissima,vertessima=record['euroFunds']
         self.assertEqual(netissima['years'][-1],{'year':2025,'return':3.0})
@@ -40,6 +62,8 @@ class InsuranceTests(unittest.TestCase):
         renewed_document['euroFunds'][1]['fundEvidence']['documentDate']='2027-06-01'
         retained,events=refresh(result,{'linxea-vie':lambda _:renewed_document},dt.date(2027,7,1))
         self.assertEqual(events[0]['status'],'failure','A new KID never defers the missing annual return')
+        self.assertIn('attemptedAt',events[0])
+        self.assertNotIn('checkedAt',events[0])
         self.assertEqual(retained,result)
         without_closure=copy.deepcopy(record);without_closure.pop('eurossimaClosure')
         self.assertEqual(refresh({'records':[old]},{'linxea-vie':lambda _:without_closure},today)[0],{'records':[old]})
