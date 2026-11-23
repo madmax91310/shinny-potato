@@ -83,6 +83,18 @@ class QualifiedListings(unittest.TestCase):
   self.assertEqual(parse(source,json.dumps(payload).encode(),'2026-10-17')[0]['symbol'],'GLDD.L')
   payload['products'][0]['characteristics']['ISIN']='OTHER'
   with self.assertRaises(ValueError):parse(source,json.dumps(payload).encode(),'2026-10-17')
+ def test_coinshares_ether_renewal_uses_the_published_london_row(self):
+  import json
+  from pathlib import Path
+  source=next(s for s in json.loads(Path(__file__).with_name('qualified-listing-sources.json').read_text())['sources'] if s['isin']=='GB00BLD4ZM24')
+  text='Ticker ETHE         ISIN GB00BLD4ZM24 WKN A3GQ2N\nBörse Xetra  EUR   CETH GY Equity  BKPKL67  7/6/2021\nLSE   USD   ETHE LN Equity   BTKTC69   14/01/2025\nLSE   GBP   ETHP LN Equity   BTKTC81   14/01/2025'
+  with patch('refresh_qualified_listings.pdf_text',return_value=text):
+   rows=parse(source,b'official-fixture','2026-11-23')
+  self.assertEqual([(r['mic'],r['symbol'],r['currency']) for r in rows],[('XLON','ETHE.L','USD'),('XETR','CETH.DE','EUR')])
+  for wrong in [text.replace('BTKTC69   14/01/2025','BTKTC69   14/01/2024'), text.replace('USD','GBP'), text+'\n'+text]:
+   with patch('refresh_qualified_listings.pdf_text',return_value=wrong),self.assertRaises(ValueError):
+    parse(source,b'official-fixture','2026-11-23')
+
  def test_pdf_row_and_document_identity_required(self):
   source={'isin':'IE000TEST000','url':'https://issuer/document','rows':[{'pattern':r'^LSE USD TEST (TEST\.L) IE000TEST000$','ticker':'TEST','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'}]}
   with patch('refresh_qualified_listings.pdf_text',return_value='LSE USD TEST TEST.L IE000TEST000'):
