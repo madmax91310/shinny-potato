@@ -24,8 +24,10 @@ CHECK = 'bash scripts/validate-producer-publication.sh scpi'
 DEPENDENCIES = ['package.json', 'package-lock.json', 'vite.config.js',
                 'scripts', '.github', 'src/lib', 'src/design-system',
                 ':(glob)src/**/*.js', 'src/data/freshness-policy.json',
-                # The exact ETF registry remains subject to the combined-tree guard.
-                ':(exclude,literal)scripts/instrument-metadata-sources.json']
+                # These exact independent data files still pass the combined-tree
+                # financial check below, like the other non-bond output JSON.
+                ':(exclude,literal)scripts/instrument-metadata-sources.json',
+                ':(exclude,literal)scripts/source-snapshots/non-bond-monthly-active.json']
 PYTHON_TESTS = ['test_scpi.py', 'test_scpi_recording.py', 'test_iroko_snapshot.py',
                 'test_corum.py', 'test_corum_vector.py', 'test_extended_scpi.py',
                 'test_scpi_current_bulletins.py', 'test_presentation_expansion.py',

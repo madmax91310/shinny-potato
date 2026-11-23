@@ -156,9 +156,11 @@ class ScpiRecording(unittest.TestCase):
         self.git('fetch', '-q', 'origin', 'master')
         self.assertEqual(json.loads(self.git('show', 'origin/master:src/data/automated-scpi.json'))['b'], self.old['b'])
 
-    def test_metadata_registry_drift_still_requires_combined_financial_validation(self):
+    def test_independent_data_drift_still_requires_combined_financial_validation(self):
         metadata_path = 'scripts/instrument-metadata-sources.json'
-        upstream = self.advance({metadata_path: '{"instruments":[]}'})
+        history_path = 'scripts/source-snapshots/non-bond-monthly-active.json'
+        history = '{"series":[{"id":"non-bond","lastClosedMonth":"2026-10"}]}'
+        upstream = self.advance({metadata_path: '{"instruments":[]}', history_path: history})
         valid_observation = self.file.read_text()
         self.file.write_text(valid_observation.replace('"value": 11', '"value": 99'))
         with self.assertRaisesRegex(RuntimeError, 'no unsafe retry'):
@@ -170,6 +172,7 @@ class ScpiRecording(unittest.TestCase):
         self.assertEqual((result['changed'], result['collection_failed']), ('true', 'false'))
         self.git('fetch', '-q', 'origin', 'master')
         self.assertEqual(self.git('show', f'origin/master:{metadata_path}'), '{"instruments":[]}')
+        self.assertEqual(self.git('show', f'origin/master:{history_path}'), history)
         self.assertEqual(self.git('show', 'origin/master:src/data/automated-scpi.json'), valid_observation)
 
     def test_financial_failure_without_an_input_refusal_is_not_retried(self):
