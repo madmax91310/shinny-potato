@@ -28,6 +28,14 @@ for (const [isin, oldYears] of Object.entries(previous)) {
   }
   for (const method of ['calendar-year proxy total return, net of fund fees','calendar-year NAV total return, gross of fund fees']) assert.equal(qualifyPreferredManualNav({...source,method}),null)
 }
+const smh = QUALIFIED_FUND_CALENDARS.IE00BMC38736
+for (const url of ['https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf', 'https://www.vaneck.com/fr/fr/library/fact-sheets/smh-fact-sheet.pdf']) {
+  assert.equal(qualifyPreferredManualNav({...smh, sourceUrls:[url]}).id,'manual-IE00BMC38736')
+}
+for (const url of ['https://www.vaneck.com/fr/fr/library/fact-sheets/smh-fact-sheet.pdf?other=1', 'https://www.vaneck.com/fr/fr/library/fact-sheets/smh-fact-sheet.pdf'.replace('smh-','dfns-')]) {
+  assert.equal(qualifyPreferredManualNav({...smh, sourceUrls:[url]}),null)
+}
+assert.equal(qualifyPreferredManualNav({...smh, currency:'EUR', sourceUrls:['https://www.vaneck.com/fr/fr/library/fact-sheets/smh-fact-sheet.pdf']}),null)
 const ese = QUALIFIED_FUND_CALENDARS.FR0011550185
 const legacy = qualifyPreferredManualNav({...ese, sourceUrls:['https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30'], documentEvidence:undefined})
 assert.equal(legacy.id,'manual-FR0011550185')
