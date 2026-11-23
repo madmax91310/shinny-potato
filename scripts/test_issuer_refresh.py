@@ -47,6 +47,30 @@ class IssuerRefreshTests(unittest.TestCase):
         self.assertEqual(result['performance']['years'], {'2024': 10, '2025': 10})
         self.assertEqual(result['characteristics']['inceptionDate'], '2023-10-31')
 
+    def test_state_street_corporate_bond_agency_keeps_published_weight(self):
+        isin = 'IE00B3T9LM79'
+        share = {
+            'isin': isin, 'productId': isin, 'currency': 'EUR',
+            'provider': 'State Street', 'sourceUrl': 'https://www.ssga.com/fr/',
+            'characteristics': {'terPct': 0.12},
+            'sectors': {'basis': 'fund', 'asOf': '2026-11-20', 'rows': [
+                {'name': 'CORPORATE - INDUSTRIAL', 'weightPct': 49.093497},
+                {'name': 'CORPORATE - FINANCE', 'weightPct': 42.404495},
+                {'name': 'CORPORATE - UTILITY', 'weightPct': 8.376028},
+                {'name': 'Monétaire', 'weightPct': 0.068283},
+                {'name': 'Agence', 'weightPct': 0.057698},
+            ]},
+        }
+        report = {'checkedAt': '2026-11-23', 'shares': [share]}
+        merged = merge_collection(report, {}, {})[isin]['sectors']
+        self.assertEqual(merged['asOf'], '2026-11-20')
+        self.assertEqual(merged['rows'][-1], {'name': 'Agence', 'label': 'Agence', 'weightPct': 0.057698})
+        self.assertEqual([row['weightPct'] for row in merged['rows']],
+                         [row['weightPct'] for row in share['sectors']['rows']])
+        share['isin'] = 'OTHER'
+        with self.assertRaisesRegex(ValueError, 'Unknown issuer sector: Agence'):
+            merge_collection(report, {}, {})
+
     def test_merge_does_not_resurrect_the_partial_inception_year(self):
         share={'isin':'TESTSHARE','productId':'TESTSHARE','currency':'USD','sourceUrl':'https://issuer.test/share',
             'characteristics':{'inceptionDate':'2023-10-31'},

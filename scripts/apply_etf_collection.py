@@ -79,6 +79,10 @@ def merge_collection(report, current, baseline, sibling_aum=None):
                 continue
             if field == 'sectors':
                 sector_names=SECTORS
+                if isin == 'IE00B3T9LM79' and share.get('provider') == 'State Street':
+                    # The identical French and English issuer snapshots label
+                    # this bond category Agence/Agency. Preserve its own weight.
+                    sector_names = {**SECTORS, 'Agence': 'Agence'}
                 if incoming.get('classification')=='jpm-proprietary-sectors-v1':
                     from jpm_published_exposures import sector_labels
                     sector_names=sector_labels(share,incoming)
