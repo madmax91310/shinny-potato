@@ -126,6 +126,32 @@ class SourceIncidents(unittest.TestCase):
             else:sector['fund']['value'][1]=0
             with self.subTest(defect=defect),self.assertRaises((ValueError,KeyError)):parse_share(bad,share,NOW)
 
+    def test_equity_sector_above_100_needs_the_same_dated_signed_book(self):
+        from collect_etf_pilot import allocation
+        config = json.loads((ROOT/'scripts/etf-pilot.json').read_text())['instruments']
+        share = next(s for s in config if s['isin'] == 'IE00BMW42413')
+        self.assertEqual(share['sectorAllocationConvention'], 'signed-net-assets-reconciled-holdings')
+        self.assertEqual(share['holdingsAssetClass'], 'Equity')
+        def points(**values):
+            return {'dataPointsByNameMap': {k: {'value': v} for k, v in values.items()}}
+        labels = ['Information Technology', 'Cash and/or Derivatives']
+        sector = points(asOf=20261120, type=labels, fund=[100.24, -.24])
+        book = points(asOfDate=20261120, sectorName=[labels[0], labels[0], labels[1], labels[1]],
+                      assetClass=['Equity', 'Equity', 'Cash', 'Cash Collateral and Margins'],
+                      holdingPercent=[70, 30.23917, -.25287, .01372])
+        now = dt.datetime(2026, 11, 23, tzinfo=UTC)
+        with self.assertRaisesRegex(ValueError, 'Invalid allocation weight'):
+            allocation(sector, now)
+        result = allocation(sector, now, book, signed_asset_class=share['holdingsAssetClass'])
+        self.assertEqual(result, {'asOf': '2026-11-20', 'rows': [
+            {'name': labels[0], 'weightPct': 100.24}, {'name': labels[1], 'weightPct': -.24}]})
+        for field, replacement in [('assetClass', ['Fixed Income', 'Equity', 'Cash', 'Cash Collateral and Margins']),
+                                   ('holdingPercent', [70, 30.23917, -.25287]), ('asOfDate', 20261119)]:
+            bad = copy.deepcopy(book)
+            bad['dataPointsByNameMap'][field]['value'] = replacement
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                allocation(sector, now, bad, signed_asset_class=share['holdingsAssetClass'])
+
     def test_three_treasury_contracts_require_same_date_complete_signed_holdings(self):
         configs = [s for name in ('additional-etf-sources.json', 'qualified-exposure-sources.json')
                    for s in json.loads((ROOT/'scripts'/name).read_text())['instruments']]

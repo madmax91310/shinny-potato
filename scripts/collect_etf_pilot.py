@@ -154,7 +154,7 @@ def source_date(value, now):
     return parsed.isoformat()
 
 
-def allocation(container, now, signed_holdings=None):
+def allocation(container, now, signed_holdings=None, *, signed_asset_class='Fixed Income'):
     points = container['dataPointsByNameMap']
     labels, weights = points['type']['value'], points['fund']['value']
     if not isinstance(labels, list) or not labels or len(labels) != len(weights) or len(set(labels)) != len(labels):
@@ -173,7 +173,7 @@ def allocation(container, now, signed_holdings=None):
         for name, kind, value in zip(names, kinds, values):
             if (name not in labels or isinstance(value, bool) or not isinstance(value, (int, float))
                     or not math.isfinite(value) or not -100 <= value <= 100
-                    or (name != 'Cash and/or Derivatives' and (kind != 'Fixed Income' or value < 0))
+                    or (name != 'Cash and/or Derivatives' and (kind != signed_asset_class or value < 0))
                     or (name == 'Cash and/or Derivatives' and kind not in ('Cash', 'Money Market', 'Cash Collateral and Margins', 'FX', 'Futures', 'Forwards'))):
                 reject('Invalid signed allocation holding')
             totals[name] = totals.get(name, 0) + value
@@ -278,7 +278,8 @@ def parse_share(body, share, now):
                               and any(type(w) in (int, float) and math.isfinite(w) and (w < 0 or w > 100)
                                       for w in weights))
             sectors = allocation(exposure['sector'], now,
-                components['holdings']['containersByNameMap']['all'] if signed_sectors else None)
+                components['holdings']['containersByNameMap']['all'] if signed_sectors else None,
+                signed_asset_class=share.get('holdingsAssetClass', 'Fixed Income'))
         else:
             sectors = {'status': 'not-published', 'rows': []}
     except ValueError as error:
