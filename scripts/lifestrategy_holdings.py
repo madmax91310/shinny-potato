@@ -3,7 +3,7 @@ import datetime as dt
 import hashlib
 import json
 from collect_physical_holdings import checked_rows, finite_weight
-from lifestrategy_portfolio import qualified_stored_portfolio
+from lifestrategy_portfolio import paired_allocation, qualified_stored_portfolio
 
 # These exact issuer fund labels already identify the allocation underliers in
 # derive-exposure-sleeves.mjs. North America is a fund-level, unhedged portfolio.
@@ -41,9 +41,10 @@ def derive(isin, record, underliers, errors, now):
     if isin not in FUNDS or record['isin'] != isin or record['currency'] != 'EUR':
         raise ValueError('Wrong LifeStrategy exact share')
     parent = qualified_stored_portfolio(record, now)
-    holdings, allocation = parent or record['holdings'], record['assetAllocation']
+    holdings = parent or record['holdings']
+    allocation, document_sha = paired_allocation(record, parent) if parent else (record['assetAllocation'], record.get('documentSha256'))
     dates = [fresh(holdings, now), fresh(allocation, now)]
-    if not record.get('documentSha256'):
+    if not document_sha:
         raise ValueError('LifeStrategy fund holdings lack document evidence')
     if dates[0] != dates[1]:
         raise ValueError('LifeStrategy fund weights and asset allocation dates differ')
@@ -104,7 +105,7 @@ def derive(isin, record, underliers, errors, now):
     total = sum(r['weightPct'] for r in final)
     if total > equity_weight + .1:
         raise ValueError('LifeStrategy equity exposure exceeds its published fund weights')
-    evidence = dict(isin=isin, documentSha256=record['documentSha256'],
+    evidence = dict(isin=isin, documentSha256=document_sha,
                     holdings=holdings, allocation=allocation, dependencies=dependencies)
     controls=[holdings['checkedAt'],allocation['checkedAt'],*(d['checkedAt']for d in dependencies)]
     def control_time(value):

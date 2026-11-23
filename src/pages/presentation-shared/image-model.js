@@ -33,9 +33,9 @@ export function presentationImageModel(record, kind) {
     sections.push({title:'Supports et accès',columns:[{title:'Versements minimums',rows:[row('Ouverture',euro(access.initial)),row('Versement libre',euro(access.free)),row('Programmé',`${euro(access.monthly)}/mois`)]},{title:'Supports annoncés',rows:[row('Nombre',`Plus de ${format(supports.minimumCount)}`),row('Catégories',supports.categories.join(', '))]}],notes:[`Assureur : ${record.insurer}. Gestion libre.`]})
     sections.push({title:'Frais du contrat',columns:[{title:'Opérations',rows:[row('Versement',pct(fees.subscription)),row('Arbitrage en ligne',pct(fees.arbitrage))]},{title:'Gestion et transactions',rows:[row('Unités de compte',`${pct(fees.units)}/an`),row('Transactions ETF',`${pct(fees.etfTrade)} par opération`)]}],notes:[fees.notes,'Les frais propres aux supports et aux options s’ajoutent.'].filter(Boolean)})
     for (const fund of euroFunds) {
-      sections.push({title:fund.name,annual:fund.years.map(r=>({year:r.year,value:r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`})),notes:[...fund.years.filter(r=>r.condition).map(r=>`${r.year} : ${r.condition}.`),`Gestion du fonds : ${pct(fund.managementFeeMax)} maximum/an.`,annualPublicationNote(fund.publication),fundGuarantee(fund),fundAllocation(fund),fundOperations(fund),fund.notes].filter(Boolean)})
+      sections.push({title:fund.name,...(fund.years.length?{annual:fund.years.map(r=>({year:r.year,value:r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`}))}:{}),notes:[...fund.years.filter(r=>r.condition).map(r=>`${r.year} : ${r.condition}.`),`Gestion du fonds : ${pct(fund.managementFeeMax)} maximum/an.`,annualPublicationNote(fund.publication),fundGuarantee(fund),fundAllocation(fund),fundOperations(fund),fund.notes].filter(Boolean)})
       const latest=fund.years.at(-1)
-      if(latest.tiers) sections.push({title:`Barème ${latest.year} · ${fund.name}`,table:latest.tiers,notes:['Ce barème dépend de l’encours et de la part d’unités de compte.']})
+      if(latest?.tiers) sections.push({title:`Barème ${latest.year} · ${fund.name}`,table:latest.tiers,notes:['Ce barème dépend de l’encours et de la part d’unités de compte.']})
     }
     footer='Rendements nets de gestion, avant prélèvements sociaux et fiscaux, hors bonus commerciaux. UC non garanties. Rendements passés non garantis à l’avenir.'
   }
@@ -60,9 +60,10 @@ export function presentationCardModel(record, kind) {
     ]
     model.compactFooter='Capital et revenus non garantis · Revente non immédiate'
   } else {
+    const publishedFunds=record.euroFunds.filter(f=>f.years.length)
     model.cards=[
       {title:'Supports',icon:'leaf',rows:[row('Supports annoncés',`> ${format(record.supports.minimumCount)}`),row('Ouverture',euro(record.access.initial)),row('Versement programmé',`${euro(record.access.monthly)}/mois`)],note:'Gestion libre · '+record.insurer},
-      {title:'Fonds euros',icon:'coins',rows:record.euroFunds.map(f=>{const r=f.years.at(-1);return row(`${f.name} · ${r.year}`,r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`)}),note:record.euroFunds.map(f=>f.years.at(-1).condition).filter(Boolean).join('; ') || 'Nets de gestion, avant prélèvements sociaux et fiscaux. Hors bonus.'},
+      {title:'Fonds euros',icon:'coins',rows:publishedFunds.map(f=>{const r=f.years.at(-1);return row(`${f.name} · ${r.year}`,r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`)}),note:publishedFunds.map(f=>f.years.at(-1).condition).filter(Boolean).join('; ') || 'Nets de gestion, avant prélèvements sociaux et fiscaux. Hors bonus.'},
       {title:'Frais',icon:'document',rows:[row('Versement',pct(record.fees.subscription)),row('Gestion des UC',`${pct(record.fees.units)}/an`),row('Transactions ETF',pct(record.fees.etfTrade))],note:'Hors frais des supports et options. Transactions : par opération.'},
     ]
     model.compactFooter='UC non garanties · Rendements passés non garantis à l’avenir'
@@ -116,13 +117,14 @@ export function presentationReliefModel(record,kind) {
     model.qualifier='Brut de fiscalité étrangère'
     model.subtitle='SCPI · Immobilier d’entreprise'
   } else {
-    model.highlights=record.euroFunds.slice(0,2).map(f=>{
+    const publishedFunds=record.euroFunds.filter(f=>f.years.length).slice(0,2)
+    model.highlights=publishedFunds.map(f=>{
       const r=f.years.at(-1)
       return row(`${f.name} · ${r.year}`,r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`)
     })
     if(model.highlights.length===1)model.highlights.push(row('Ouverture',euro(record.access.initial)))
     model.highlights.push(row('Gestion des UC',`${pct(record.fees.units)}/an`))
-    const conditions=record.euroFunds.slice(0,2).map(f=>f.years.at(-1).condition).filter(Boolean)
+    const conditions=publishedFunds.map(f=>f.years.at(-1).condition).filter(Boolean)
     model.qualifier=['Fonds euros : nets de gestion, avant prélèvements sociaux et fiscaux. Hors bonus.',...conditions.map(c=>c+'.'),
       'Gestion des UC : hors frais des supports et options.'].join(' ')
   }

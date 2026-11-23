@@ -366,6 +366,23 @@ class ProductContracts(unittest.TestCase):
         again,_=observe_running_workflows(read,{w:REGISTRY[w]},api,'test/repo','2026-10-24T12:06:00Z',reports)
         self.assertEqual(calls,[1]);self.assertEqual(again['workflows'][w]['lastCollectionSuccessAt'],before['lastCollectionSuccessAt'])
 
+    def test_expired_observation_budget_retains_running_and_unconfirmed_terminal_evidence(self):
+        workflow='update-scpi.yml'
+        active={**event(workflow,101),'status':'in_progress'}
+        previous={**event(workflow,100),'status':'in_progress'}
+        old={'workflow':workflow,'run':previous,'checkedAt':'2026-10-24T10:05:00Z','reports':[{'errors':[{'id':'supplier'}]}]}
+        state={'inFlightRuns':{'100:1':old},'workflows':{}}
+        def api(path):
+            self.assertTrue('status=' in path)
+            return {'workflow_runs':[active] if 'status=in_progress&' in path else []}
+        result,terminal=observe_running_workflows(state,{workflow:REGISTRY[workflow]},api,'test/repo',NOW,
+            lambda *_: self.fail('No report read is allowed once the budget is exhausted'),deadline=0)
+        self.assertEqual(result['inFlightRuns']['100:1'],old)
+        self.assertEqual(result['inFlightRuns']['101:1']['run'],active)
+        self.assertNotIn('checkedAt',result['inFlightRuns']['101:1'])
+        self.assertEqual(terminal,[])
+        self.assertEqual(result['workflows'],{})
+
     def test_composite_issuer_success_does_not_repair_an_unproved_branch(self):
         w='update-scpi.yml'
         old=update_status({},event(w),jobs(w),[{'errors':[{'id':'share:sectors-primary','error':'Empty primary branch'}]}])

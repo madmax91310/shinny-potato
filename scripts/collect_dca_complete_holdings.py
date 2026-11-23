@@ -11,6 +11,7 @@ from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError,
 from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
 from qualified_corporate_identities import qualified_corporate_identity
 ROOT=Path(__file__).resolve().parents[1]
+EXPLICIT_OTHER_SECTOR_SHARES = {'IE00BF4RFH31', 'IE00BKM4GZ66'}
 def ranking_nav_downgrade(isin, previous, candidate, now):
     """Preserve a dated native book; a newer ranking cannot prove its NAV basis.
 
@@ -148,10 +149,14 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         if translated_allocations:
             country = COUNTRIES.get(country.strip()) if isinstance(country,str) else None
             sector = SECTORS.get(sector.strip()) if isinstance(sector,str) else None
-        if (localized and not translated_allocations) or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector)):
+        # BlackRock explicitly puts some valued equity lines in its « Other »
+        # sector bucket. Keep their weights unclassified in the fund breakdown;
+        # this does not assign the securities a sector or admit a missing label.
+        sector_bucket = 'Non classé' if isin in EXPLICIT_OTHER_SECTOR_SHARES and not localized and sector == 'Other' else sector
+        if (localized and not translated_allocations) or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector_bucket)):
             classified=False
         else:
-            for field,label in [('countries',country),('sectors',sector)]:
+            for field,label in [('countries',country),('sectors',sector_bucket)]:
                 allocations[field][label]=allocations[field].get(label,0)+weight
         if not localized and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
             securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})
@@ -178,6 +183,18 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
                for field,values in allocations.items()}}
     return record,securities
 
+def attach_composition(book, allocations, method, source_url, digest):
+    fields = ('countries', 'sectors')
+    if all(allocations.get(field, {}).get('asOf') == book['asOf'] and
+           allocations[field].get('rows') for field in fields):
+        book['compositionFacts'] = {
+            'asOf': book['asOf'], 'basis': 'fund', 'method': method,
+            **{field: {**allocations[field], 'sourceUrl': source_url, 'sha256': digest}
+               for field in fields},
+        }
+    return book
+
+
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--only',nargs='+');ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
     config={**json.loads((ROOT/'scripts/dca-complete-holdings-sources.json').read_text()),**json.loads((ROOT/'scripts/generated-holdings-sources.json').read_text())};now=dt.datetime.now(UTC)
@@ -186,6 +203,8 @@ def main():
         if set(args.only)-set(config):raise ValueError('Unknown complete holdings selection')
         config={k:v for k,v in config.items() if k in args.only}
     errors={};fresh={};evidence={};rejected={}
+    proxy_isins = {proxy['isin'] for proxy in json.loads(
+        Path(__file__).with_name('index-company-sources.json').read_text())['physicalProxies'].values()}
     identities={**json.loads((ROOT/'scripts/dca-equity-identities.json').read_text()),**json.loads((ROOT/'scripts/dca-equity-extra-identities.json').read_text())}
     wanted=set(identities.values())
     def one(item):
@@ -195,7 +214,7 @@ def main():
             if c.get('parser') in COLLECTORS:
                 return isin, (COLLECTORS[c['parser']](c, now), []), None
             if c.get('parser') == 'ssga':
-                from collect_ssga_etf import parse_page, parse_holdings, get_xlsx, Inputs
+                from collect_ssga_etf import allocation, parse_page, parse_holdings, get_xlsx, Inputs
                 from urllib.parse import urljoin
                 from bs4 import BeautifulSoup
                 page=get_text(c['sourceUrl'],('text/html',),6_000_000)
@@ -208,6 +227,15 @@ def main():
                 url=urljoin(c['sourceUrl'],path)
                 raw=get_xlsx(url)
                 h=parse_holdings(raw,c,now,complete=True);h.update(sourceUrl=url,sha256=hashlib.sha256(raw).hexdigest(),identitySourceUrl=c['sourceUrl'],identitySha256=page_hash,method='Complete physical equity securities published in the issuer workbook; cash excluded, no renormalisation')
+                if isin in proxy_isins:
+                    for field, component in [('countries', 'fund-geographical-breakdown'), ('sectors', 'fund-sector-breakdown')]:
+                        if field not in result and component in inputs.data:
+                            try:
+                                result[field] = allocation(inputs.data[component], now)
+                            except (KeyError, TypeError, ValueError):
+                                # An incomplete page breakdown must not discard the validated book.
+                                pass
+                    attach_composition(h, result, 'same-date-state-street-published-allocations', c['sourceUrl'], page_hash)
                 return isin,(h,[]),None
             if c.get('parser') == 'dws':
                 from collect_dws_etf import parse_product, parse_holdings
@@ -220,7 +248,11 @@ def main():
                 fund_isins={p['header']['value'] for table in body.get('tables',[]) for p in table.get('values',[])
                             if p.get('column_5',{}).get('value')=='Mutual Fund' or p.get('header',{}).get('value') in (LIQUIDITY_FUNDS.keys()|EQUITY_FUNDS.keys())}
                 qualifications={fund_isin:qualify_held_fund(fund_isin,now) for fund_isin in fund_isins}
-                return isin, (parse_holdings(body, c, now, url, complete=True,non_equity_funds=qualifications)['completeHoldings'], []), None
+                result = parse_holdings(body, c, now, url, complete=True, non_equity_funds=qualifications)
+                h = result['completeHoldings']
+                if isin in proxy_isins:
+                    attach_composition(h, result, 'same-dws-holdings-payload-allocations', url, h['sha256'])
+                return isin, (h, []), None
             return isin,collect_blackrock_complete({**c,'isin':isin},now),None
         except Exception as e:return isin,None,e
     direct={isin:c for isin,c in config.items() if c.get('parser')!='lifestrategy-lookthrough'}
@@ -312,7 +344,7 @@ def main():
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
-    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','sourceAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions','qualifiedIdentityPositions','sourcePartial','partialSourceProof','unvaluedPositions'] if key in h},
+    observations={isin:{**{key:h[key] for key in ['weightBasis','accessAttempts','sourceAttempts','asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareDocumentAdvertisedAsOf','shareSourceAttempts','settlementCashProof','qualifiedExcludedPositions','qualifiedIdentityPositions','sourcePartial','partialSourceProof','unvaluedPositions'] if key in h},
         'completeFile':h.get('complete') is True,'rows':len(h['rows']),
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}

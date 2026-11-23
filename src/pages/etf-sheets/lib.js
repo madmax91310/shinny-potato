@@ -22,41 +22,30 @@ export function buildText(sourceEtf) {
   const tickerStr = presentationTicker(etf)
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
-  const commodities = commodityAllocationLines(etf.isin)
+  const performance = annual && formatTweetPerformance(annual, { annualOnly: true })
+  const commodities = commodityAllocationLines(etf.isin, { includeDate: false })
   const percentSpacing = value => value.replace(/(\d)\s*%/g, '$1 %')
-  const aum = /^(Part|Fonds)\s*:/.test(etf.aum)
-    ? etf.aum.replace(/^Part\s*:\s*/, 'Encours de la part : ').replace(/^Fonds\s*:\s*/, 'Encours du fonds : ')
-    : 'Encours : ' + etf.aum
-  return (
-    etf.hook + '\n\n' +
-    dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + '\n' +
-    '\n' +
-    '🆔 ISIN : ' + etf.isin + '\n' +
-    (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
-    '💸 ' + etf.feeLabel + ' : ' + percentSpacing(etf.ter) + '\n' +
-    (etf.swapFee ? '💸 Frais de swap : ' + percentSpacing(etf.swapFee) + '\n' : '') +
-    (etf.positions ? '📦 ' + etf.positions + '\n' : '') +
-    '💰 ' + aum + '\n' +
-    (etf.distribution ? '🔄 ' + etf.distribution + '\n' : '') +
-    '🏦 ' + accountLabel(etf) + '\n' +
-    (etf.location ? '📍 ' + etf.location + '\n' : '') +
-    (etf.shareCurrency ? '💱 Devise de la part : ' + etf.shareCurrency + '\n' : '') +
-    (etf.currencyHedge ? '💱 ' + etf.currencyHedge + '\n' : '') +
-    (annual ? '\n' + formatTweetPerformance(annual) + '\n' : '') +
-    (commodities.length ? '\n' + commodities.join('\n') + '\n' : '') +
-    '\n' +
-    '🔍 Ce que tu achètes\n' +
-    etf.whatIs + '\n' +
-    '\n' +
-    '✅ Pourquoi s’y intéresser ?\n' +
-    etf.whyInteresting + '\n' +
-    '\n' +
-    '⚠️ Le point de vigilance\n' +
-    etf.whatToKnow + (etf.riskMetric ? '\n\n' + etf.riskMetric : '') + '\n' +
-    '\n' +
-    (etf.closing ? etf.closing + '\n\n' : '') +
-    '💬 ' + etf.question + '\n\nPas un conseil financier.'
-  )
+  const facts = [
+    `🆔 ISIN : ${etf.isin}`,
+    `💸 ${etf.feeLabel} : ${percentSpacing(etf.ter)}`,
+    etf.swapFee && `💸 Frais de swap : ${percentSpacing(etf.swapFee)}`,
+    etf.distribution && !commodities.length && `🔄 ${etf.distribution}`,
+    `🏦 ${accountLabel(etf)}`,
+    etf.currencyHedge === 'Couverture de change' && `💱 ${etf.currencyHedge}`,
+  ].filter(Boolean).join('\n')
+  return [
+    etf.hook,
+    `${dot} ${etf.name}${tickerStr ? ` (${tickerStr})` : ''}`,
+    facts,
+    performance,
+    commodities.join('\n'),
+    `🔍 Ce que tu achètes\n${etf.postWhatIs}`,
+    `✅ Pourquoi s’y intéresser ?\n${etf.whyInteresting}`,
+    `⚠️ Le point de vigilance\n${etf.whatToKnow}`,
+    etf.closing,
+    `💬 ${etf.question}`,
+    'Pas un conseil financier.',
+  ].filter(Boolean).join('\n\n')
 }
 
 // Lignes de faits en texte brut, utilisées pour dessiner l'image (canvas).

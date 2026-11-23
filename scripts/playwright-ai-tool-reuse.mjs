@@ -58,7 +58,6 @@ try{
  await page.goto(`${base}/classements-performances`,{waitUntil:'networkidle'})
  for(const p of report.profiles){
   const category=ALL_CATEGORIES.find(c=>c.id===p.id),family=comparisonFamily(category,{...RANKING_ASSETS,...ANNUAL_ASSETS})
-  await page.getByRole('button',{name:'Présentation actuelle',exact:true}).click()
   await page.getByRole('button',{name:COMPARISON_FAMILIES.find(f=>f.id===family).label,exact:true}).click()
   const picker=page.getByRole('group',{name:'Catégorie',exact:true})
   await picker.locator(`[data-option][data-value="${p.id}"]`).click()
@@ -68,25 +67,22 @@ try{
   assert.equal(await page.getByRole('alert').count(),0,`${p.id}: qualified current period`)
   assert(!/NaN|undefined/.test(await page.getByLabel('Texte à publier',{exact:true}).inputValue()))
   if(['ai-infrastructure','cyber-etf-stocks','world-gold-products'].includes(p.id))await png(`rankings-${p.id}`)
-  await page.getByRole('button',{name:'Classement annuel',exact:true}).click()
-  await page.getByRole('button',{name:'Année par année',exact:true}).click()
   const years=p.annualWindow.length?p.annualWindow:qualifiedYearWindow(p.coverage.years,1,7)
   if(years.length){
+   await page.getByRole('button',{name:'Année par année',exact:true}).click()
    await choose(page.getByRole('group',{name:'Première année',exact:true}),years[0])
    await choose(page.getByRole('group',{name:'Dernière année',exact:true}),years.at(-1))
-  }
-  if(p.modes.annual){
    assert.equal(await page.locator('.rk-annual-table tbody tr').count(),p.ids.length)
    const download=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()
    const file=await download;assert.equal(await file.failure(),null);await file.saveAs(`/tmp/ai-tool-reuse-browser/annual-${p.id}.png`)
   }else{
-   assert.match(await page.locator('body').innerText(),/au moins 2 années civiles complètes communes/)
-   assert(await page.getByRole('button',{name:'Télécharger l’image',exact:true}).isDisabled())
+   assert(await page.locator('.rk-annual-table thead th').filter({hasText:/\*/}).count())
+   assert(await page.getByRole('button',{name:'Télécharger l’image',exact:true}).isEnabled())
   }
  }
  await page.setViewportSize({width:390,height:844})
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'rankings mobile overflow')
  await page.screenshot({path:'/tmp/ai-tool-reuse-browser/rankings-mobile.png'})
  assert.deepEqual(errors,[])
- console.log('Browser: all 16 comparison profiles, both presentations, annual blockers, downloads and mobile verified.')
+ console.log('Browser: all 16 comparison profiles, calendar and partial periods, downloads and mobile verified.')
 }finally{await browser?.close();server?.kill()}

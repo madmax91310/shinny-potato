@@ -19,11 +19,15 @@ export function assetReturn(asset, year) {
   return convertCalendarReturn(original, year, currency, 'EUR')
 }
 
-export function performanceNotes(selection, { includeMethod = true } = {}) {
+export function performanceNotes(selection, { includeMethod = true, includeFxConversion = true, includeSourceCaveats = false } = {}) {
   const notes = includeMethod ? ['En euros · pondérations rétablies chaque année · hors courtage et fiscalité.'] : []
-  if (selection.some(asset => returnCurrency(asset) === 'USD')) notes.push('Rendements USD convertis en EUR avec les taux BCE de fin d’année.')
+  if (includeFxConversion && selection.some(asset => returnCurrency(asset) === 'USD')) notes.push('Rendements USD convertis en EUR avec les taux BCE de fin d’année.')
   const proxies = selection.filter(asset => dataLabels(asset).includes('Historique reconstitué') || ['fonds_euros', 'scpi'].includes(asset.id))
   if (proxies.length) notes.push('Historiques indicatifs : ' + proxies.map(asset => `${asset.name} — ${asset.confidenceNote ?? 'historique reconstitué'}`).join(' ; '))
+  if (includeSourceCaveats) {
+    const caveats = selection.filter(asset => !proxies.includes(asset) && (dataLabels(asset).includes('Indice modifié') || /rendements de marché diffèrent.*NAV/i.test(asset.confidenceNote ?? '')))
+    notes.push(...caveats.map(asset => `${asset.name} — ${asset.confidenceNote}`))
+  }
   if (selection.some(asset => !returnCurrency(asset))) notes.push('Performance indisponible : devise historique non documentée pour une ligne.')
   // A short common window (recent share) is stated as such: its worst year is not comparable to a six-year worst year.
   const years = performanceYears(computeYearlyPerf(selection))
@@ -74,15 +78,22 @@ export function formatPerformance(value) {
     : 'non disponible'
 }
 
-export function performanceExcerpt(perf) {
-  const YEARS = performanceYears(perf)
-  const annualized = annualizedReturn(perf)
+export function performanceExcerpt(perf, annualized = annualizedReturn(perf)) {
+  const years = performanceYears(perf)
+  const annualLines = years.map(year => {
+    const value = perf[year]
+    const marker = Number.isFinite(value) ? (value >= 0 ? '🟢 ' : '🔴 ') : ''
+    return `${marker}${year} : ${formatPerformance(value)}`
+  }).join('\n')
+  const unavailable = '📈 L’historique disponible ne permet pas de calculer un rendement annualisé pour cette composition.'
+  if (annualized === null) {
+    return years.some(year => Number.isFinite(perf[year])) ? `${unavailable}\n\n${annualLines}` : unavailable
+  }
   return [
-    '📈 Performances annuelles simulées (EUR)',
-    ...YEARS.map(year => `${Number.isFinite(perf?.[year]) ? perf[year] >= 0 ? '🟢 ' : '🔴 ' : ''}${year} : ${formatPerformance(perf?.[year])}`),
-    '',
-    `📊 Performance annualisée (${YEARS[0]} à ${YEARS.at(-1)}) : ${formatPerformance(annualized)}${annualized === null ? '' : ' par an'}`,
-  ].join('\n')
+    `📈 Et voici ce que ce type de portefeuille aurait donné de ${years[0]} à ${years.at(-1)} 👇`,
+    annualLines,
+    `📊 Sur la période, ça donne ${formatPerformance(annualized)} par an en rendement annualisé.`,
+  ].join('\n\n')
 }
 
 

@@ -539,17 +539,19 @@ def main():
     # when an execution starts immediately before a month/year rollover.
     now=dt.datetime.now(UTC)
     registered_config=json.loads((ROOT/'scripts/monthly-automation.json').read_text())
-    config=select_series(registered_config,status,args.only,args.retry_failed,now=now)
+    config,scope,unregistered=monthly_execution_scope(registered_config,status,args.only,args.retry_failed,now)
     merged,report=refresh(config,current,json.loads(args.baseline.read_text()),now=now)
     from reviewed_nav_prefix import recorded_prefix_config
     accepted_config=recorded_prefix_config(registered_config,config,report['series'])
-    report['scope']={'requestedIds':[s['id']for s in config['series']],'expectedIds':[s['id']for s in config['series']],'selection':'failed-or-missing'if args.retry_failed else'explicit'if args.only is not None else'configured-universe'}
+    observations=report['series']
+    report['scope']=scope
+    report['series']=[*observations,*unregistered]
     if args.evidence_output:write_json_atomic(args.evidence_output,report)
     write_json_atomic(args.output,monitoring_report(report))
     if args.apply and accepted_config != registered_config:
         write_json_atomic(ROOT/'scripts/monthly-automation.json',accepted_config)
-    if args.apply and report['series']:
-        for observation in report['series']:
+    if args.apply and observations:
+        for observation in observations:
             status['series'][observation['id']]={
                 'status':observation['status'],'checkedAt':report['checkedAt'],
                 **({'reason':observation['reason']} if observation['status']=='failed' else {
@@ -575,7 +577,7 @@ def main():
                 # Persist proof for the active version, not a subsequent unchanged check.
                 if result['responseSha256']==observation['record']['responseSha256']:
                     evidence[observation['id']]={k:v for k,v in result.items() if k not in ['rawResponse','points','anniversaryPoints']}
-    if args.apply:write_json_atomic(evidence_path,evidence)
+    if args.apply and observations:write_json_atomic(evidence_path,evidence)
     failed=[s for s in report['series'] if s['status']=='failed']
     print(f"Monthly histories: {len(report['series'])-len(failed)}/{len(report['series'])} validated.")
     for s in failed:print(s['id']+': '+s['reason'])
@@ -584,6 +586,20 @@ def main():
             f.write('\n## Historiques mensuels\n\n| Série | État | Dernier mois / erreur |\n|---|---|---|\n')
             for s in report['series']:f.write(f"| {s['id']} | {s['status']} | {s.get('record',{}).get('periodEnd',s.get('reason'))} |\n")
     if failed:raise SystemExit(1)
+
+
+def monthly_execution_scope(config, status, only, retry_failed, now):
+    selected=select_series(config,status,retry_failed=retry_failed,now=now)
+    configured={series['id'] for series in selected['series']}
+    requested=list(dict.fromkeys(only)) if only is not None else [series['id'] for series in selected['series']]
+    scope={'requestedIds':requested,'expectedIds':requested,
+           'selection':'failed-or-missing'if retry_failed else'explicit'if only is not None else'configured-universe'}
+    if only is not None:
+        selected={**selected,'series':[series for series in selected['series'] if series['id'] in requested]}
+    missing=[{'id':series_id,'status':'failed','sourceState':'not-attempted',
+              'reason':'Exact monthly series is not registered after qualification; source not attempted by the history collector'}
+             for series_id in requested if series_id not in configured]
+    return selected,scope,missing
 
 
 def select_series(config,status,only=None,retry_failed=False,now=None):

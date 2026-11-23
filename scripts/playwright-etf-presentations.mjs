@@ -7,9 +7,10 @@ import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js'
 const base=process.env.ETF_REVIEW_URL ?? 'http://localhost:4173/shinny-potato'
 const artifacts=process.env.ETF_REVIEW_ARTIFACTS ?? '/tmp/etf-presentation-browser'
 await mkdir(artifacts,{recursive:true})
-const browser=await chromium.launch({headless:true})
+const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+const browser=await chromium.launch({headless:true,executablePath})
 const errors=[],results=[],exports=[]
-const representatives=['blockchain','msci-world','msci-em','oblig_eur_long_ishares','quality','world-energy','lifestrategy60','etc-brent-crude-oil','support-lqq','covered-call']
+const representatives=['support-tech_europe','pea-us-tech-screened','blockchain','msci-world','msci-em','oblig_eur_long_ishares','quality','world-energy','lifestrategy60','etc-brent-crude-oil','support-lqq','covered-call']
 try {
  const context=await browser.newContext({viewport:{width:1440,height:1000},permissions:['clipboard-read','clipboard-write'],acceptDownloads:true})
  const page=await context.newPage()

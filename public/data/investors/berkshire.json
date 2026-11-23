@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-15T16:41:33.458652+00:00",
+  "as_of": "2026-11-17T21:07:44.175618+00:00",
   "data": {
     "identity": {
       "slug": "berkshire",
@@ -9,12 +9,12 @@
       "dataProvider": "SEC",
       "personVerified": false,
       "personSource": "https://foliofact.com/api/v1/funds/berkshire-hathaway",
-      "personPeriod": "2026-06-30",
+      "personPeriod": "2026-09-30",
       "declaringCik": "0001067983",
-      "entitySource": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/"
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526463399/"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
         {
           "issuerName": "APPLE INC",
@@ -23,12 +23,12 @@
           "securityId": "037833100",
           "ticker": "",
           "putCall": null,
-          "value": 65950296923,
+          "value": 75901188420,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 200237120,
+              "value": 230449840,
               "issuerName": "APPLE INC",
               "shares": "692000",
               "amountType": "SH",
@@ -36,7 +36,7 @@
               "otherManager": "4"
             },
             {
-              "value": 1111142400,
+              "value": 1278796800,
               "issuerName": "APPLE INC",
               "shares": "3840000",
               "amountType": "SH",
@@ -44,7 +44,7 @@
               "otherManager": "1,2,4,11"
             },
             {
-              "value": 9838240,
+              "value": 11322680,
               "issuerName": "APPLE INC",
               "shares": "34000",
               "amountType": "SH",
@@ -52,7 +52,7 @@
               "otherManager": "2,4,11"
             },
             {
-              "value": 10047736640,
+              "value": 11563786480,
               "issuerName": "APPLE INC",
               "shares": "34724000",
               "amountType": "SH",
@@ -60,7 +60,7 @@
               "otherManager": "4,5"
             },
             {
-              "value": 788216640,
+              "value": 907146480,
               "issuerName": "APPLE INC",
               "shares": "2724000",
               "amountType": "SH",
@@ -68,7 +68,7 @@
               "otherManager": "4,6"
             },
             {
-              "value": 4494339520,
+              "value": 5172466640,
               "issuerName": "APPLE INC",
               "shares": "15532000",
               "amountType": "SH",
@@ -76,7 +76,7 @@
               "otherManager": "4,7"
             },
             {
-              "value": 17808079008,
+              "value": 20495045864,
               "issuerName": "APPLE INC",
               "shares": "61542988",
               "amountType": "SH",
@@ -84,7 +84,7 @@
               "otherManager": "4,8,11"
             },
             {
-              "value": 2084549440,
+              "value": 2399076080,
               "issuerName": "APPLE INC",
               "shares": "7204000",
               "amountType": "SH",
@@ -92,7 +92,7 @@
               "otherManager": "4,5,9"
             },
             {
-              "value": 4187617920,
+              "value": 4819465440,
               "issuerName": "APPLE INC",
               "shares": "14472000",
               "amountType": "SH",
@@ -100,7 +100,7 @@
               "otherManager": "4,10"
             },
             {
-              "value": 23341172315,
+              "value": 26862998356,
               "issuerName": "APPLE INC",
               "shares": "80664820",
               "amountType": "SH",
@@ -108,7 +108,7 @@
               "otherManager": "4,11"
             },
             {
-              "value": 784744320,
+              "value": 903150240,
               "issuerName": "APPLE INC",
               "shares": "2712000",
               "amountType": "SH",
@@ -116,7 +116,7 @@
               "otherManager": "4,12"
             },
             {
-              "value": 1092623360,
+              "value": 1257483520,
               "issuerName": "APPLE INC",
               "shares": "3776000",
               "amountType": "SH",
@@ -126,7 +126,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.22038266729497397
+          "weight": 0.24951361415501272
         },
         {
           "issuerName": "AMERICAN EXPRESS CO",
@@ -135,12 +135,12 @@
           "securityId": "025816109",
           "ticker": "",
           "putCall": null,
-          "value": 51282319275,
+          "value": 46104813870,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 388967882,
+              "value": 349697362,
               "issuerName": "AMERICAN EXPRESS CO",
               "shares": "1149942",
               "amountType": "SH",
@@ -148,7 +148,7 @@
               "otherManager": "4"
             },
             {
-              "value": 50419898471,
+              "value": 45329463785,
               "issuerName": "AMERICAN EXPRESS CO",
               "shares": "149061045",
               "amountType": "SH",
@@ -156,7 +156,7 @@
               "otherManager": "4,11"
             },
             {
-              "value": 473452922,
+              "value": 425652723,
               "issuerName": "AMERICAN EXPRESS CO",
               "shares": "1399713",
               "amountType": "SH",
@@ -166,7 +166,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.17136745146261054
+          "weight": 0.1515625641457889
         },
         {
           "issuerName": "COCA COLA CO",
@@ -175,12 +175,12 @@
           "securityId": "191216100",
           "ticker": "",
           "putCall": null,
-          "value": 32508000000,
+          "value": 34432000000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 65016000,
+              "value": 68864000,
               "issuerName": "COCA COLA CO",
               "shares": "800000",
               "amountType": "SH",
@@ -188,7 +188,7 @@
               "otherManager": "4"
             },
             {
-              "value": 30189448,
+              "value": 31976224,
               "issuerName": "COCA COLA CO",
               "shares": "371471",
               "amountType": "SH",
@@ -196,7 +196,7 @@
               "otherManager": "1,2,4,11"
             },
             {
-              "value": 6907950,
+              "value": 7316800,
               "issuerName": "COCA COLA CO",
               "shares": "85000",
               "amountType": "SH",
@@ -204,7 +204,7 @@
               "otherManager": "2,4,11"
             },
             {
-              "value": 6524615664,
+              "value": 6910777856,
               "issuerName": "COCA COLA CO",
               "shares": "80283200",
               "amountType": "SH",
@@ -212,7 +212,7 @@
               "otherManager": "4,5"
             },
             {
-              "value": 148236480,
+              "value": 157009920,
               "issuerName": "COCA COLA CO",
               "shares": "1824000",
               "amountType": "SH",
@@ -220,7 +220,7 @@
               "otherManager": "4,6"
             },
             {
-              "value": 1171198224,
+              "value": 1240516096,
               "issuerName": "COCA COLA CO",
               "shares": "14411200",
               "amountType": "SH",
@@ -228,7 +228,7 @@
               "otherManager": "4,8,11"
             },
             {
-              "value": 1218269808,
+              "value": 1290373632,
               "issuerName": "COCA COLA CO",
               "shares": "14990400",
               "amountType": "SH",
@@ -236,7 +236,7 @@
               "otherManager": "4,10"
             },
             {
-              "value": 22976876186,
+              "value": 24336772512,
               "issuerName": "COCA COLA CO",
               "shares": "282722729",
               "amountType": "SH",
@@ -244,7 +244,7 @@
               "otherManager": "4,11"
             },
             {
-              "value": 288671040,
+              "value": 305756160,
               "issuerName": "COCA COLA CO",
               "shares": "3552000",
               "amountType": "SH",
@@ -252,7 +252,7 @@
               "otherManager": "4,12"
             },
             {
-              "value": 78019200,
+              "value": 82636800,
               "issuerName": "COCA COLA CO",
               "shares": "960000",
               "amountType": "SH",
@@ -262,7 +262,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.10863028799990918
+          "weight": 0.11318996370709788
         },
         {
           "issuerName": "ALPHABET INC",
@@ -271,12 +271,12 @@
           "securityId": "02079K305",
           "ticker": "",
           "putCall": null,
-          "value": 28157599351,
+          "value": 27110464741,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 5968079,
+              "value": 5746136,
               "issuerName": "ALPHABET INC",
               "shares": "16700",
               "amountType": "SH",
@@ -284,7 +284,7 @@
               "otherManager": "2,4,11"
             },
             {
-              "value": 2394379000,
+              "value": 2305336000,
               "issuerName": "ALPHABET INC",
               "shares": "6700000",
               "amountType": "SH",
@@ -292,7 +292,7 @@
               "otherManager": "4,5"
             },
             {
-              "value": 2233562500,
+              "value": 2150500000,
               "issuerName": "ALPHABET INC",
               "shares": "6250000",
               "amountType": "SH",
@@ -300,7 +300,7 @@
               "otherManager": "4,10"
             },
             {
-              "value": 23523689772,
+              "value": 22648882605,
               "issuerName": "ALPHABET INC",
               "shares": "65824467",
               "amountType": "SH",
@@ -310,7 +310,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.09409278106574338
+          "weight": 0.08912152997549799
         },
         {
           "issuerName": "BANK OF AMER CORP",
@@ -319,12 +319,12 @@
           "securityId": "060505104",
           "ticker": "",
           "putCall": null,
-          "value": 27543790975,
+          "value": 24812509222,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 223361600,
+              "value": 213365600,
               "issuerName": "BANK OF AMER CORP",
               "shares": "3920000",
               "amountType": "SH",
@@ -332,7 +332,7 @@
               "otherManager": "4"
             },
             {
-              "value": 678062000,
+              "value": 647717000,
               "issuerName": "BANK OF AMER CORP",
               "shares": "11900000",
               "amountType": "SH",
@@ -340,7 +340,7 @@
               "otherManager": "1,2,4,11"
             },
             {
-              "value": 8290590,
+              "value": 7919565,
               "issuerName": "BANK OF AMER CORP",
               "shares": "145500",
               "amountType": "SH",
@@ -348,7 +348,7 @@
               "otherManager": "2,4,11"
             },
             {
-              "value": 119658000,
+              "value": 114303000,
               "issuerName": "BANK OF AMER CORP",
               "shares": "2100000",
               "amountType": "SH",
@@ -356,7 +356,7 @@
               "otherManager": "4,6"
             },
             {
-              "value": 1196580000,
+              "value": 1143030000,
               "issuerName": "BANK OF AMER CORP",
               "shares": "21000000",
               "amountType": "SH",
@@ -364,15 +364,15 @@
               "otherManager": "4,7"
             },
             {
-              "value": 17595909185,
+              "value": 15309820457,
               "issuerName": "BANK OF AMER CORP",
-              "shares": "308808515",
+              "shares": "281275408",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
               "otherManager": "4,8,11"
             },
             {
-              "value": 7163525600,
+              "value": 6842939600,
               "issuerName": "BANK OF AMER CORP",
               "shares": "125720000",
               "amountType": "SH",
@@ -380,7 +380,7 @@
               "otherManager": "4,11"
             },
             {
-              "value": 558404000,
+              "value": 533414000,
               "issuerName": "BANK OF AMER CORP",
               "shares": "9800000",
               "amountType": "SH",
@@ -390,7 +390,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.09204164963158451
+          "weight": 0.08156735067147454
         },
         {
           "issuerName": "CHEVRON CORPORATION",
@@ -399,12 +399,12 @@
           "securityId": "166764100",
           "ticker": "",
           "putCall": null,
-          "value": 13986141890,
+          "value": 17230393553,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 572577806,
+              "value": 705394026,
               "issuerName": "CHEVRON CORPORATION",
               "shares": "3454258",
               "amountType": "SH",
@@ -412,7 +412,7 @@
               "otherManager": "2,4,11"
             },
             {
-              "value": 1523694265,
+              "value": 1877133240,
               "issuerName": "CHEVRON CORPORATION",
               "shares": "9192171",
               "amountType": "SH",
@@ -420,7 +420,7 @@
               "otherManager": "4,5"
             },
             {
-              "value": 2234059905,
+              "value": 2752276624,
               "issuerName": "CHEVRON CORPORATION",
               "shares": "13477678",
               "amountType": "SH",
@@ -428,7 +428,7 @@
               "otherManager": "4,8,11"
             },
             {
-              "value": 9655809914,
+              "value": 11895589663,
               "issuerName": "CHEVRON CORPORATION",
               "shares": "58251749",
               "amountType": "SH",
@@ -438,7 +438,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.04673676084404744
+          "weight": 0.05664229847011743
         },
         {
           "issuerName": "OCCIDENTAL PETE CORP",
@@ -447,12 +447,12 @@
           "securityId": "674599105",
           "ticker": "",
           "putCall": null,
-          "value": 12868205304,
+          "value": 14656559963,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 12868205304,
+              "value": 14656559963,
               "issuerName": "OCCIDENTAL PETE CORP",
               "shares": "264941431",
               "amountType": "SH",
@@ -462,31 +462,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.04300101046559243
-        },
-        {
-          "issuerName": "CHUBB LIMITED",
-          "shareClass": "COM",
-          "cusip": "H1467J104",
-          "securityId": "H1467J104",
-          "ticker": "",
-          "putCall": null,
-          "value": 11670066615,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 11670066615,
-              "issuerName": "CHUBB LIMITED",
-              "shares": "34249183",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4,11"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.03899725290284162
+          "weight": 0.04818121196221172
         },
         {
           "issuerName": "MOODYS CORP",
@@ -495,12 +471,12 @@
           "securityId": "615369105",
           "ticker": "",
           "putCall": null,
-          "value": 11173435852,
+          "value": 11203286284,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 32655532,
+              "value": 32742773,
               "issuerName": "MOODYS CORP",
               "shares": "72100",
               "amountType": "SH",
@@ -508,7 +484,7 @@
               "otherManager": "1,2,4,11"
             },
             {
-              "value": 5423231470,
+              "value": 5437719923,
               "issuerName": "MOODYS CORP",
               "shares": "11973928",
               "amountType": "SH",
@@ -516,7 +492,7 @@
               "otherManager": "4,8,11"
             },
             {
-              "value": 5717548850,
+              "value": 5732823588,
               "issuerName": "MOODYS CORP",
               "shares": "12623750",
               "amountType": "SH",
@@ -526,7 +502,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.03733768778612251
+          "weight": 0.03682909990375777
+        },
+        {
+          "issuerName": "CHUBB LIMITED",
+          "shareClass": "COM",
+          "cusip": "H1467J104",
+          "securityId": "H1467J104",
+          "ticker": "",
+          "putCall": null,
+          "value": 11139546771,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 11139546771,
+              "issuerName": "CHUBB LIMITED",
+              "shares": "34249183",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,11"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.03661956594804279
         },
         {
           "issuerName": "ALPHABET INC",
@@ -535,12 +535,12 @@
           "securityId": "02079K107",
           "ticker": "",
           "putCall": null,
-          "value": 9606489032,
+          "value": 9264186660,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 9606489032,
+              "value": 9264186660,
               "issuerName": "ALPHABET INC",
               "shares": "27188433",
               "amountType": "SH",
@@ -550,7 +550,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.03210150332884609
+          "weight": 0.030454604781051938
         },
         {
           "issuerName": "KRAFT HEINZ CO",
@@ -559,12 +559,12 @@
           "securityId": "500754106",
           "ticker": "",
           "putCall": null,
-          "value": 7691494401,
+          "value": 7398423065,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 7691494401,
+              "value": 7398423065,
               "issuerName": "KRAFT HEINZ CO",
               "shares": "325634818",
               "amountType": "SH",
@@ -574,39 +574,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.025702265655540756
-        },
-        {
-          "issuerName": "DAVITA INC",
-          "shareClass": "COM",
-          "cusip": "23918K108",
-          "securityId": "23918K108",
-          "ticker": "",
-          "putCall": null,
-          "value": 6425268898,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 3331328308,
-              "issuerName": "DAVITA INC",
-              "shares": "14973608",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4"
-            },
-            {
-              "value": 3093940590,
-              "issuerName": "DAVITA INC",
-              "shares": "13906601",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4,8,11"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.021470985937818356
+          "weight": 0.024321190701007956
         },
         {
           "issuerName": "DELTA AIR LINES INC",
@@ -615,14 +583,14 @@
           "securityId": "247361702",
           "ticker": "",
           "putCall": null,
-          "value": 5368591200,
+          "value": 5378997000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 5368591200,
+              "value": 5378997000,
               "issuerName": "DELTA AIR LINES INC",
-              "shares": "57320000",
+              "shares": "64450000",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
               "otherManager": "4,11"
@@ -630,7 +598,39 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.017939941190161745
+          "weight": 0.017682634619266623
+        },
+        {
+          "issuerName": "DAVITA INC",
+          "shareClass": "COM",
+          "cusip": "23918K108",
+          "securityId": "23918K108",
+          "ticker": "",
+          "putCall": null,
+          "value": 5019719296,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2619183511,
+              "issuerName": "DAVITA INC",
+              "shares": "14973608",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 2400535785,
+              "issuerName": "DAVITA INC",
+              "shares": "13723621",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,8,11"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.01650156380500868
         },
         {
           "issuerName": "SIRIUSXM HOLDINGS INC",
@@ -639,12 +639,12 @@
           "securityId": "829933100",
           "ticker": "",
           "putCall": null,
-          "value": 3686802237,
+          "value": 3230008188,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 472193651,
+              "value": 413688953,
               "issuerName": "SIRIUSXM HOLDINGS INC",
               "shares": "15984890",
               "amountType": "SH",
@@ -652,7 +652,7 @@
               "otherManager": "4"
             },
             {
-              "value": 3214608586,
+              "value": 2816319235,
               "issuerName": "SIRIUSXM HOLDINGS INC",
               "shares": "108822227",
               "amountType": "SH",
@@ -662,39 +662,47 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.01231999473372768
+          "weight": 0.010618160710192524
         },
         {
-          "issuerName": "VERISIGN INC",
-          "shareClass": "COM",
-          "cusip": "92343E102",
-          "securityId": "92343E102",
+          "issuerName": "LENNAR CORP",
+          "shareClass": "CL A",
+          "cusip": "526057104",
+          "securityId": "526057104",
           "ticker": "",
           "putCall": null,
-          "value": 2261494212,
+          "value": 2124149633,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 244754547,
-              "issuerName": "VERISIGN INC",
-              "shares": "972947",
+              "value": 295763750,
+              "issuerName": "LENNAR CORP",
+              "shares": "3625000",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "4"
+              "otherManager": "2,4,11"
             },
             {
-              "value": 2016739665,
-              "issuerName": "VERISIGN INC",
-              "shares": "8016933",
+              "value": 369772978,
+              "issuerName": "LENNAR CORP",
+              "shares": "4532087",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "4,8,11"
+              "otherManager": "4,5,9"
+            },
+            {
+              "value": 1458612905,
+              "issuerName": "LENNAR CORP",
+              "shares": "17877349",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,11"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.007557117249898107
+          "weight": 0.006982818885563293
         },
         {
           "issuerName": "KROGER CO",
@@ -703,20 +711,20 @@
           "securityId": "501044101",
           "ticker": "",
           "putCall": null,
-          "value": 2165670000,
+          "value": 2051700000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 311361708,
+              "value": 94207616,
               "issuerName": "KROGER CO",
-              "shares": "5607090",
+              "shares": "1607090",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
               "otherManager": "4"
             },
             {
-              "value": 42676526,
+              "value": 45051287,
               "issuerName": "KROGER CO",
               "shares": "768531",
               "amountType": "SH",
@@ -724,7 +732,7 @@
               "otherManager": "1,2,4,11"
             },
             {
-              "value": 298036118,
+              "value": 314620516,
               "issuerName": "KROGER CO",
               "shares": "5367119",
               "amountType": "SH",
@@ -732,7 +740,7 @@
               "otherManager": "2,4,11"
             },
             {
-              "value": 1513595648,
+              "value": 1597820581,
               "issuerName": "KROGER CO",
               "shares": "27257260",
               "amountType": "SH",
@@ -742,103 +750,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.007236906478797937
+          "weight": 0.006744651734951578
         },
         {
-          "issuerName": "ALLY FINL INC",
+          "issuerName": "VERISIGN INC",
           "shareClass": "COM",
-          "cusip": "02005N100",
-          "securityId": "02005N100",
+          "cusip": "92343E102",
+          "securityId": "92343E102",
           "ticker": "",
           "putCall": null,
-          "value": 1240650000,
+          "value": 1670101573,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 577211815,
-              "issuerName": "ALLY FINL INC",
-              "shares": "12561737",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4"
-            },
-            {
-              "value": 128838056,
-              "issuerName": "ALLY FINL INC",
-              "shares": "2803875",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "2,4,11"
-            },
-            {
-              "value": 194285790,
-              "issuerName": "ALLY FINL INC",
-              "shares": "4228200",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4,5"
-            },
-            {
-              "value": 78463301,
-              "issuerName": "ALLY FINL INC",
-              "shares": "1707580",
+              "value": 1670101573,
+              "issuerName": "VERISIGN INC",
+              "shares": "5922136",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
               "otherManager": "4,8,11"
-            },
-            {
-              "value": 203264788,
-              "issuerName": "ALLY FINL INC",
-              "shares": "4423608",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4,10"
-            },
-            {
-              "value": 58586250,
-              "issuerName": "ALLY FINL INC",
-              "shares": "1275000",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4,11"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.004145815393352016
-        },
-        {
-          "issuerName": "LENNAR CORP",
-          "shareClass": "CL A",
-          "cusip": "526057104",
-          "securityId": "526057104",
-          "ticker": "",
-          "putCall": null,
-          "value": 1186481443,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 67450522,
-              "issuerName": "LENNAR CORP",
-              "shares": "745392",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "2,4,11"
-            },
-            {
-              "value": 1119030921,
-              "issuerName": "LENNAR CORP",
-              "shares": "12366349",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4,11"
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.003964803151828406
+          "weight": 0.005490204938285231
         },
         {
           "issuerName": "LIBERTY LIVE HOLDINGS INC",
@@ -847,12 +783,12 @@
           "securityId": "530909308",
           "ticker": "",
           "putCall": null,
-          "value": 1118425787,
+          "value": 1029599657,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 367590332,
+              "value": 338396060,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "3479651",
               "amountType": "SH",
@@ -860,7 +796,7 @@
               "otherManager": "4"
             },
             {
-              "value": 581821068,
+              "value": 535612447,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "5507583",
               "amountType": "SH",
@@ -868,7 +804,7 @@
               "otherManager": "4,8,11"
             },
             {
-              "value": 17179177,
+              "value": 15814795,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "162620",
               "amountType": "SH",
@@ -876,7 +812,7 @@
               "otherManager": "4,10"
             },
             {
-              "value": 151835210,
+              "value": 139776355,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "1437289",
               "amountType": "SH",
@@ -886,7 +822,71 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0037373851159202376
+          "weight": 0.0033846522946291368
+        },
+        {
+          "issuerName": "ALLY FINL INC",
+          "shareClass": "COM",
+          "cusip": "02005N100",
+          "securityId": "02005N100",
+          "ticker": "",
+          "putCall": null,
+          "value": 1015740001,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 472572546,
+              "issuerName": "ALLY FINL INC",
+              "shares": "12561737",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4"
+            },
+            {
+              "value": 105481778,
+              "issuerName": "ALLY FINL INC",
+              "shares": "2803875",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "2,4,11"
+            },
+            {
+              "value": 159064884,
+              "issuerName": "ALLY FINL INC",
+              "shares": "4228200",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,5"
+            },
+            {
+              "value": 64239160,
+              "issuerName": "ALLY FINL INC",
+              "shares": "1707580",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,8,11"
+            },
+            {
+              "value": 166416133,
+              "issuerName": "ALLY FINL INC",
+              "shares": "4423608",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,10"
+            },
+            {
+              "value": 47965500,
+              "issuerName": "ALLY FINL INC",
+              "shares": "1275000",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,11"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.003339090783255041
         },
         {
           "issuerName": "NEW YORK TIMES CO MTN BE",
@@ -895,12 +895,12 @@
           "securityId": "650111107",
           "ticker": "",
           "putCall": null,
-          "value": 1098686000,
+          "value": 1000090000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 97972000,
+              "value": 89180000,
               "issuerName": "NEW YORK TIMES CO MTN BE",
               "shares": "1400000",
               "amountType": "SH",
@@ -908,7 +908,7 @@
               "otherManager": "4"
             },
             {
-              "value": 1000714000,
+              "value": 910910000,
               "issuerName": "NEW YORK TIMES CO MTN BE",
               "shares": "14300000",
               "amountType": "SH",
@@ -918,39 +918,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0036714216993191896
+          "weight": 0.003287643784962579
         },
         {
-          "issuerName": "CAPITAL ONE FINL CORP",
-          "shareClass": "COM",
-          "cusip": "14040H105",
-          "securityId": "14040H105",
+          "issuerName": "BENDING SPOONS SPA",
+          "shareClass": "COM SHS",
+          "cusip": "T19377109",
+          "securityId": "T19377109",
           "ticker": "",
           "putCall": null,
-          "value": 601860000,
+          "value": 689379305,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 228328029,
-              "issuerName": "CAPITAL ONE FINL CORP",
-              "shares": "1138112",
+              "value": 689379305,
+              "issuerName": "BENDING SPOONS SPA",
+              "shares": "20689655",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
-              "otherManager": "4,5"
-            },
-            {
-              "value": 373531971,
-              "issuerName": "CAPITAL ONE FINL CORP",
-              "shares": "1861888",
-              "amountType": "SH",
-              "investmentDiscretion": "DFND",
-              "otherManager": "4,11"
+              "otherManager": "4,8,11"
             }
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.002011204169300644
+          "weight": 0.0022662296268986513
         },
         {
           "issuerName": "LIBERTY LIVE HOLDINGS INC",
@@ -959,12 +951,12 @@
           "securityId": "530909100",
           "ticker": "",
           "putCall": null,
-          "value": 504941901,
+          "value": 471930689,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 102444539,
+              "value": 95747099,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "1011698",
               "amountType": "SH",
@@ -972,7 +964,7 @@
               "otherManager": "4"
             },
             {
-              "value": 332616317,
+              "value": 310871106,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "3284775",
               "amountType": "SH",
@@ -980,7 +972,7 @@
               "otherManager": "4,8,11"
             },
             {
-              "value": 23628717,
+              "value": 22083960,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "233347",
               "amountType": "SH",
@@ -988,7 +980,7 @@
               "otherManager": "4,10"
             },
             {
-              "value": 46252328,
+              "value": 43228524,
               "issuerName": "LIBERTY LIVE HOLDINGS INC",
               "shares": "456768",
               "amountType": "SH",
@@ -998,7 +990,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0016873380130691409
+          "weight": 0.0015514003705906047
+        },
+        {
+          "issuerName": "NUCOR CORP",
+          "shareClass": "COM",
+          "cusip": "670346105",
+          "securityId": "670346105",
+          "ticker": "",
+          "putCall": null,
+          "value": 369506390,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 369506390,
+              "issuerName": "NUCOR CORP",
+              "shares": "1580776",
+              "amountType": "SH",
+              "investmentDiscretion": "DFND",
+              "otherManager": "4,11"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.001214696063941704
         },
         {
           "issuerName": "LOUISIANA PAC CORP",
@@ -1007,12 +1023,12 @@
           "securityId": "546347105",
           "ticker": "",
           "putCall": null,
-          "value": 445592617,
+          "value": 365662388,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 103822075,
+              "value": 85198512,
               "issuerName": "LOUISIANA PAC CORP",
               "shares": "1319884",
               "amountType": "SH",
@@ -1020,7 +1036,7 @@
               "otherManager": "4"
             },
             {
-              "value": 341770542,
+              "value": 280463876,
               "issuerName": "LOUISIANA PAC CORP",
               "shares": "4344909",
               "amountType": "SH",
@@ -1030,23 +1046,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0014890136063536123
+          "weight": 0.0012020594919484998
         },
         {
-          "issuerName": "NUCOR CORP",
+          "issuerName": "CAPITAL ONE FINL CORP",
           "shareClass": "COM",
-          "cusip": "670346105",
-          "securityId": "670346105",
+          "cusip": "14040H105",
+          "securityId": "14040H105",
           "ticker": "",
           "putCall": null,
-          "value": 413814258,
+          "value": 222030500,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 413814258,
-              "issuerName": "NUCOR CORP",
-              "shares": "1857752",
+              "value": 222030500,
+              "issuerName": "CAPITAL ONE FINL CORP",
+              "shares": "1150000",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
               "otherManager": "4,11"
@@ -1054,7 +1070,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0013828215216257142
+          "weight": 0.0007298915031618493
         },
         {
           "issuerName": "MACYS INC",
@@ -1063,20 +1079,20 @@
           "securityId": "55616P104",
           "ticker": "",
           "putCall": null,
-          "value": 173031882,
+          "value": 171658476,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 10451466,
+              "value": 14462889,
               "issuerName": "MACYS INC",
-              "shares": "443799",
+              "shares": "635173",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
               "otherManager": "4,5"
             },
             {
-              "value": 32410122,
+              "value": 31336666,
               "issuerName": "MACYS INC",
               "shares": "1376226",
               "amountType": "SH",
@@ -1084,7 +1100,7 @@
               "otherManager": "4,11"
             },
             {
-              "value": 130170294,
+              "value": 125858921,
               "issuerName": "MACYS INC",
               "shares": "5527401",
               "amountType": "SH",
@@ -1094,7 +1110,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0005782116148279285
+          "weight": 0.0005643011346554291
         },
         {
           "issuerName": "NVR INC",
@@ -1103,12 +1119,12 @@
           "securityId": "62944T105",
           "ticker": "",
           "putCall": null,
-          "value": 75710501,
+          "value": 68387582,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 75710501,
+              "value": 68387582,
               "issuerName": "NVR INC",
               "shares": "11112",
               "amountType": "SH",
@@ -1118,7 +1134,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0002529978321720011
+          "weight": 0.00022481377569110654
         },
         {
           "issuerName": "LENNAR CORP",
@@ -1127,14 +1143,14 @@
           "securityId": "526057302",
           "ticker": "",
           "putCall": null,
-          "value": 26445959,
+          "value": 44234470,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 26445959,
+              "value": 44234470,
               "issuerName": "LENNAR CORP",
-              "shares": "298117",
+              "shares": "553000",
               "amountType": "SH",
               "investmentDiscretion": "DFND",
               "otherManager": "4,11"
@@ -1142,7 +1158,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 8.837308178306233e-05
+          "weight": 0.00014541409310823392
         },
         {
           "issuerName": "JEFFERIES FINANCIAL GROUP IN",
@@ -1151,12 +1167,12 @@
           "securityId": "47233W109",
           "ticker": "",
           "putCall": null,
-          "value": 21669229,
+          "value": 19826607,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 21669229,
+              "value": 19826607,
               "issuerName": "JEFFERIES FINANCIAL GROUP IN",
               "shares": "433558",
               "amountType": "SH",
@@ -1166,7 +1182,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 7.241093229377334e-05
+          "weight": 6.517695535446366e-05
         },
         {
           "issuerName": "D R HORTON INC",
@@ -1175,12 +1191,12 @@
           "securityId": "23331A109",
           "ticker": "",
           "putCall": null,
-          "value": 580504,
+          "value": 487021,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 580504,
+              "value": 487021,
               "issuerName": "D R HORTON INC",
               "shares": "3564",
               "amountType": "SH",
@@ -1190,42 +1206,42 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 1.939839938018312e-06
+          "weight": 1.601007473123679e-06
         }
       ],
-      "filedAt": "2026-08-14",
-      "declaredTotal": 299253556246,
+      "filedAt": "2026-11-16",
+      "declaredTotal": 304196581325,
       "currency": "USD",
       "valueUnit": 1,
       "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
       "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
       "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
-        "exits": [
-          {
-            "issuerName": "Constellation Brands Inc.",
-            "ticker": "STZ",
-            "putCall": null
-          }
-        ]
+        "priorPeriodLabel": "Q2 2026",
+        "exits": []
       },
       "publicationSource": "https://foliofact.com/funds/berkshire-hathaway",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/",
-      "reportedCoverTotal": 299253556246,
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526463399/",
+      "reportedCoverTotal": 304196581325,
       "reconciliationDifference": 0,
-      "providerDeclaredTotal": 299253556246.0,
-      "providerHoldingsCount": 27,
+      "providerDeclaredTotal": 304196581325.0,
+      "providerHoldingsCount": 28,
       "providerTotalDifference": 0.0,
       "sourceDocuments": [
-        "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/56757.xml",
-        "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/primary_doc.xml"
+        "https://www.sec.gov/Archives/edgar/data/1067983/000119312526463399/60471.xml",
+        "https://www.sec.gov/Archives/edgar/data/1067983/000119312526463399/primary_doc.xml"
       ],
       "originalRowCount": 89,
       "primaryVerified": true
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526463399/",
     "discoverySourceUrl": "https://foliofact.com/funds/berkshire-hathaway",
-    "filingHistory": []
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/",
+        "snapshotUrl": "data/investors/archive/berkshire/2026-06-30.json"
+      }
+    ]
   }
 }

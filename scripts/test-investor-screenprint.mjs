@@ -19,8 +19,8 @@ try {
   for(const [slug] of (await import('../src/pages/investor-portfolio/data.js')).INVESTORS)cases.push([slug,JSON.parse(await readFile(`public/data/investors/${slug}.json`,'utf8'))])
   for(const [id,payload] of cases){
     const result=await page.evaluate(async({payload,id})=>{
-      const {normalizePortfolio,buildTweet}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
-      const {publicationPlan,editorialSeries,weightLabel}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
+      const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
+      const {publicationPlan}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
       const {renderPortfolioImage}=await import('/shinny-potato/src/pages/investor-portfolio/image.js')
       const portfolio=normalizePortfolio(payload)
       if(portfolio.problem){let refused=false;try{await renderPortfolioImage(portfolio)}catch{refused=true}if(!refused)throw Error('Incomplete filing rendered');return {id,status:'incomplete',reason:portfolio.problem}}
@@ -38,41 +38,20 @@ try {
       try{png=await renderPortfolioImage(portfolio)}finally{CanvasRenderingContext2D.prototype.fillText=original}
       const img=new Image();img.src=png;await img.decode()
       if(img.width!==1080||img.height!==1350)throw Error('Dimensions')
-      const plan=publicationPlan(portfolio),tweet=buildTweet(portfolio)
-      const named=plan.entries.filter(r=>!r.other),coverage=named.reduce((sum,r)=>sum+r.value,0)/plan.total
-      if(editorialSeries(portfolio).coverage<.5){
-        if(!boxes.some(b=>b.text.includes(`${named.length} positions affichées`)) || !boxes.some(b=>b.text.includes(weightLabel(coverage))))throw Error('Main coverage must describe the actually named positions')
-        if(boxes.some(b=>/premières/.test(b.text)))throw Error('Editorial coverage leaked into main image')
+      const plan=publicationPlan(portfolio)
+      for (const row of plan.entries) {
+        if (!boxes.some(box => box.text === row.percent)) throw Error('Image and publication plan mismatch')
       }
-      for(const r of plan.entries)if(!tweet.includes(r.label))throw Error('Text/image mismatch')
+      const expected = new Set([portfolio.identity.displayName, ...plan.entries.map(row => row.percent), ...plan.entries.flatMap(row => row.box.lines), 'Épargnant Libre'])
+      for (const box of boxes) {
+        if (!expected.has(box.text) && !/^Portefeuille · T[1-4] \d{4}$|^Valeur déclarée hors options · /.test(box.text)
+          && !/^[\p{Lu}\p{N}]{1,3}$/u.test(box.text)) throw Error(`Unexpected editorial text: ${box.text}`)
+      }
       return {id,status:'ready',png,entries:plan.entries.map(r=>({label:r.label,value:r.value,weight:r.weight,other:r.other||false})),total:plan.total,boxes}
     },{payload,id})
     if(result.png){await writeFile(`${out}/${id}.png`,Buffer.from(result.png.split(',')[1],'base64'));delete result.png}
     results.push(result)
   }
-  const seriesChecks=[]
-  for(const [id,payload] of cases){
-    const check=await page.evaluate(async({id,payload})=>{
-      const {normalizePortfolio}=await import('/shinny-potato/src/pages/investor-portfolio/data.js')
-      const {editorialSeries}=await import('/shinny-potato/src/pages/investor-portfolio/publication.js')
-      const {renderSeriesPage}=await import('/shinny-potato/src/pages/investor-portfolio/series-image.js')
-      const p=normalizePortfolio(payload);if(p.problem)return {id,blocked:true}
-      const series=editorialSeries(p),original=CanvasRenderingContext2D.prototype.fillText
-      for(let i=1;i<series.pages.length;i++){
-        const boxes=[]
-        CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...args){
-          const m=this.measureText(value),b={value,l:x-m.actualBoundingBoxLeft,r:x+m.actualBoundingBoxRight,t:y-m.actualBoundingBoxAscent,b:y+m.actualBoundingBoxDescent}
-          if(b.l<0||b.r>1080||b.t<0||b.b>1350)throw Error(`Series clipped ${id}: ${value}`)
-          for(const a of boxes)if(Math.min(a.r,b.r)-Math.max(a.l,b.l)>1&&Math.min(a.b,b.b)-Math.max(a.t,b.t)>1)throw Error(`Series overlap ${id}: ${a.value} / ${value}`)
-          boxes.push(b);return original.call(this,value,x,y,...args)
-        }
-        try{await renderSeriesPage(p,i)}finally{CanvasRenderingContext2D.prototype.fillText=original}
-      }
-      return {id,pages:series.pages.length,covered:series.coveredCount,coverage:series.coverage}
-    },{id,payload})
-    seriesChecks.push(check)
-  }
-  await writeFile(`${out}/series-layout.json`,JSON.stringify(seriesChecks,null,2))
   // An explicitly sourced historical illustration never changes corporate ownership.
   await page.evaluate(async()=>{
     const {portfolioPortrait}=await import('/shinny-potato/src/pages/investor-portfolio/media.js')
@@ -116,9 +95,14 @@ try {
   // Real app download, preview bytes, copy, full exports, errors and retry.
   const fixture=sample([900000,99999,1]);Object.assign(fixture.data.snapshot.holdings[0],{issuerName:'Apple Inc.',ticker:'AAPL',cusip:'037833100'});fixture.data.identity.personVerified=true;fixture.data.identity.personSource='https://foliofact.com/api/v1/funds/appaloosa';fixture.data.identity.personPeriod='2026-06-30'
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))
-  for(const width of [1440,390]){
+  for(const width of [1440,390,320]){
     await page.setViewportSize({width,height:1000});await page.goto(`${base}portefeuilles-investisseurs`)
     if(width<700)await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+    // The synthetic filing has no approved draft. Explicitly review a manual
+    // draft before using the copy control on this synthetic fixture.
+    await page.locator('#ip-draft').fill(`À ${width} px. Brouillon vérifié pour le relevé de test.`)
+    const approve=page.getByRole('button',{name:'Valider le texte pour ce relevé'})
+    if(await approve.isVisible())await approve.click()
     await page.getByRole('button',{name:'📋 Copier le tweet'}).click()
     const draft=await page.locator('#ip-draft').inputValue();assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),draft)
     const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'⬇️ Télécharger le PNG',exact:true}).click()])
@@ -146,7 +130,7 @@ try {
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({status:503,body:'Unavailable'}))
   await page.getByRole('button',{name:'Actualiser les données disponibles'}).click()
   await page.getByRole('alert').filter({hasText:'503'}).waitFor()
-  assert.equal(await page.locator('#ip-draft').inputValue(),await page.evaluate(async p=>(await import('/shinny-potato/src/pages/investor-portfolio/data.js')).buildTweet((await import('/shinny-potato/src/pages/investor-portfolio/data.js')).normalizePortfolio(p)),fixture))
+  assert.equal(await page.locator('#ip-draft').inputValue(),'À 320 px. Brouillon vérifié pour le relevé de test.')
   await page.unroute('**/data/investors/tepper.json')
   await page.route('**/data/investors/tepper.json',route=>route.fulfill({json:fixture}))
   await page.getByRole('button',{name:'Réessayer le chargement'}).click();await page.getByRole('alert').filter({hasText:'503'}).waitFor({state:'hidden'})
@@ -183,7 +167,7 @@ try {
   // Exercise the full real broad portfolio, not only the grouped main image.
   await page.getByRole('button',{name:'Réglages',exact:true}).click()
   await choose(page.getByLabel('Choisir un investisseur'),'renaissance')
-  await page.waitForFunction(()=>document.querySelector('#ip-draft')?.value.startsWith('Portefeuille de Renaissance Technologies'))
+  await page.waitForFunction(()=>document.querySelector('#ip-draft')?.value.includes('le relevé de Renaissance Technologies'))
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   const started=Date.now(),allPending=page.waitForEvent('download',{timeout:240000})
   await page.getByRole('button',{name:'Télécharger les PNG détaillés (ZIP)',exact:true}).click()

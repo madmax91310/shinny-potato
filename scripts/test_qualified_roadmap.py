@@ -1,7 +1,7 @@
 """Exact issuer identity, dated metrics and signed hedge holdings."""
 import copy,datetime as dt,json,pathlib,unittest
 from unittest.mock import patch
-from collect_qualified_exposures import collect_one,holdings_sectors,retain_listing_evidence
+from collect_qualified_exposures import collect_one,holdings_sectors,retain_listing_evidence,retain_omitted_yield
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 class QualifiedRoadmap(unittest.TestCase):
  def test_partial_listing_refresh_preserves_prior_quote_proof_and_date(self):
@@ -28,6 +28,26 @@ class QualifiedRoadmap(unittest.TestCase):
   self.assertEqual(r['metrics']['modelOad']['asOf'],'2026-10-13')
   self.assertIn('does not include fees',r['metrics']['yieldToWorst']['method'])
   self.assertEqual(r['metrics']['twelveMonTrlYld']['scope'],'Exact share, trailing 12 months')
+ def test_missing_exact_yield_stays_failed_without_replacing_its_proof(self):
+  from qualified_physical_allocation import contract_results
+  old=self.collect()
+  points=self.body['componentsByNameMap']['fundamentalsAndRisk']['containersByNameMap']['default']['dataPointsByNameMap']
+  points['fxHedgedYield']=points.pop('yieldToWorst')
+  candidate=self.collect()
+  self.assertNotIn('yieldToWorst',candidate['metrics'])
+  self.assertNotIn('fxHedgedYield',candidate['metrics'])
+  with self.assertRaisesRegex(ValueError,'missing or observation date regressed'):
+   retain_omitted_yield(copy.deepcopy(candidate),old,{})
+  retain_omitted_yield(candidate,old,self.config)
+  self.assertEqual(candidate['metrics']['yieldToWorst'],old['metrics']['yieldToWorst'])
+  results=contract_results([self.config],{'records':[candidate],'excluded':[]})
+  self.assertEqual([row['id'] for row in results['errors']],['qualified-yield:'+self.config['isin']])
+  self.assertEqual([row['id'] for row in results['successes']],[self.config['isin']])
+  regression=copy.deepcopy(old)
+  regression['metrics']['yieldToWorst']['asOf']='2026-01-01'
+  with self.assertRaisesRegex(ValueError,'missing or observation date regressed'):
+   retain_omitted_yield(regression,old,self.config)
+
  def test_equity_metrics_keep_their_definition_and_reject_fractional_counts(self):
   points=self.body['componentsByNameMap']['fundamentalsAndRisk']['containersByNameMap']['default']['dataPointsByNameMap']
   points['numHoldings']={'value':24,'asOfDate':20261013,'infoBubble':'Excludes cash and derivatives'}

@@ -20,8 +20,8 @@ for (const profile of BUDGET_PROFILES) {
   assert(context.questions.length >= 1 && context.questions.length <= 2)
   assert.equal(new Set(context.questions.map(q => q.text)).size, context.questions.length)
   assert(!/Que pensez-vous de (?:ce|son|leur) budget/.test(buildBudgetText(profile)))
-  assert.equal(context.evidence.at(-1).editorialReview.monthlyAmountsChanged, false)
-  assert.equal(context.evidence.at(-1).editorialReview.sourceConsultedAgain, false)
+  assert.equal(context.evidence.findLast(item => item.editorialReview).editorialReview.monthlyAmountsChanged, false)
+  assert.equal(context.evidence.findLast(item => item.editorialReview).editorialReview.sourceConsultedAgain, false)
 }
 const emilie = BUDGET_PROFILES.find(p => p.name === 'Émilie')
 assert.match(buildBudgetText(emilie), /commencer à investir en Bourse/)

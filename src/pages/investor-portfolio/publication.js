@@ -1,5 +1,5 @@
 import shortNames from './short-names.json' with {type:'json'}
-import { arrangeOrbit, POSTER, measure } from './orbit-layout.js'
+import { arrangeOrbit } from './orbit-layout.js'
 export { POSTER } from './orbit-layout.js'
 // Shared by the image, copy and exports. No monetary value is inferred from a weight.
 export const MAIN_IMAGE = { width: 1080, height: 1350 }
@@ -25,15 +25,17 @@ export function monetaryStatus(snapshot) {
 // These colors describe the illustration, never the financial data. A security's
 // identity gives it the same color on every page, even when grouped in the main.
 const palette = ['#1769cc','#e34c46','#f6ae2d','#803fb0','#00a889','#ef729b','#164455','#ae743b','#68882b','#5567a8','#e27635','#37959f']
-const brands = { Amazon:'#26364c', Apple:'#b0b0b0', Microsoft:'#1769cc', Nvidia:'#83ac32', Meta:'#5865ce', Micron:'#803fb0', TSMC:'#e6e8ea', Alphabet:'#00d660', 'Coca-Cola':'#e60023', 'American Express':'#006fcf', 'Bank of America':'#58d3e5', Uber:'#164455' }
+const otherColor = '#d4b9ca'
+const brands = { Tesla:'#d51a37', SpaceX:'#739aca', Amazon:'#26364c', Apple:'#b0b0b0', Microsoft:'#1769cc', Nvidia:'#83ac32', Meta:'#5865ce', Micron:'#803fb0', TSMC:'#e6e8ea', Alphabet:'#00d660', 'Coca-Cola':'#e60023', 'American Express':'#006fcf', 'Bank of America':'#58d3e5', Uber:'#164455' }
 export function positionColor(row) {
-  if(row.other)return '#f4d539'
+  if(row.other)return otherColor
   const name=String(row.displayLabel || row.label || row.issuerName || '').replace(/ \(.*\)$/,'').replace(/ Technologies Inc$/,'')
   let hash=0;for(const char of String(row.cusip || row.securityId || name))hash=(hash*31+char.charCodeAt(0))>>>0
-  return brands[name] || palette[hash%palette.length]
+  const spaceX = row.cusip === '84615Q103'
+  return (spaceX ? brands.SpaceX : brands[name]) || palette[hash % palette.length]
 }
 export function colorPositions(rows) {
-  const used=new Set(['#f4d539'])
+  const used=new Set([otherColor])
   const rgb=color=>[1,3,5].map(i=>parseInt(color.slice(i,i+2),16))
   const separation=color=>Math.min(...[...used].map(other=>Math.hypot(...rgb(color).map((v,i)=>v-rgb(other)[i]))))
   return rows.map(row=>{
@@ -46,7 +48,7 @@ export function colorPositions(rows) {
 }
 export const posterCash=(value,currency)=>cash(value,currency).replace(/\s*\$US/,' $')
 export function shortPosition(row) {
-  const issuerNames={'SPACE EXPLORATION TECHN CORP':'SpaceX'}
+  const issuerNames={'SPACE EXPLORATION TECHN CORP':'SpaceX','Space Exploration Technologies':'SpaceX','Twist Bioscience Corp':'Twist','Tempus AI Inc':'Tempus','10X Genomics Inc':'10x Genomics','SHARONAI HOLDINGS INC':'SharonAI','Circle Internet Group Inc':'Circle','CRISPR Therapeutics AG':'CRISPR','Coinbase Global Inc':'Coinbase','Robinhood Markets Inc':'Robinhood'}
   const distinct=/ \([A-Z0-9*@#]{9}\)$/.test(row.displayLabel || '')
   let base=String(shortNames[row.cusip] || issuerNames[row.issuerName] || (distinct?row.issuerName:null) || row.displayLabel || row.issuerName || '')
   if(distinct && !shortNames[row.cusip] && !issuerNames[row.issuerName] && base===base.toUpperCase())base=base.toLocaleLowerCase('fr-FR').replace(/\b\p{L}/gu,c=>c.toLocaleUpperCase('fr-FR'))
@@ -55,9 +57,10 @@ export function shortPosition(row) {
   // Preserve an explicit class discriminator; never merge securities to save space.
   if(distinct) {
     const cls=row.shareClass?.match(/(?:CL|CLASS|SER|SERIES)\s+([A-Z])\b/i)?.[1]
-    name=`${name} ${cls || '·'+row.cusip.slice(-4)}`
+    if (cls) name = `${name} ${cls}`
   }
-  if(row.cusip==='464286772' && row.shareClass==='MSCI STH KOR ETF')name='iShares Corée'
+  if (row.cusip === '464286772' && row.shareClass === 'MSCI STH KOR ETF') name = 'iShares Corée'
+  if (row.cusip === '464287523' && row.shareClass === 'ISHARES SEMICDTR') name = 'iShares Semi'
   if(name.length>23 && row.ticker)name=row.ticker
   return name || row.issuerName
 }
@@ -73,23 +76,26 @@ export function publicationPlan(portfolio) {
   if (!(total > 0)) throw new Error('Total des positions absent.')
   const sorted = colorPositions([...holdings].sort((a,b) => b.value - a.value))
   let best
-  const capacity=Math.floor(2*Math.PI*POSTER.badgeOrbit/(POSTER.badgeRadius*2+7))
-  // Capacity comes from the uniform circle badges and the available perimeter.
-  // Every admissible position remains in the data and the detailed exports.
-  for(let n=Math.min(sorted.length,capacity);n>=1&&!best;n--) {
-    const selected=sorted.slice(0,n).map(r=>({...r,label:shortPosition(r),weight:r.value/total}))
-    const rest=sorted.slice(n)
-    if(rest.length){const value=rest.reduce((s,r)=>s+r.value,0);selected.push({issuerName:'Autres positions',label:`Autres · ${rest.length} positions`,other:true,ticker:'',currency:portfolio.snapshot.currency,unit:1,count:rest.length,value,weight:value/total,color:'#f4d539'})}
-    if(new Set(selected.map(r=>r.color)).size!==selected.length)continue
-    let layout=null
-    const other=selected.find(r=>r.other)
-    const base=other?-Math.PI/2-Math.PI*2*(1-other.weight)-Math.PI*other.weight:-80*Math.PI/180
-    const rotations=[base,...Array.from({length:16},(_,i)=>base+(i%2?1:-1)*Math.ceil((i+1)/2)*Math.PI/36),...Array.from({length:36},(_,i)=>(-80+i*10)*Math.PI/180)]
-    for(const rotation of rotations) {
-      const candidate=arrangeOrbit(selected,rotation,portfolio.snapshot.currency,measure(portfolioOwner(portfolio),60)>980?260:202)
-      if(candidate){layout=candidate;break}
+  // Reserve the available perimeter for readable names and their paired weights.
+  for (let n = Math.min(sorted.length, 13); n >= 1 && !best; n--) {
+    const selected = sorted.slice(0, n).map(r => ({ ...r, label: shortPosition(r), weight: r.value / total }))
+    const rest = sorted.slice(n)
+    if (rest.length) {
+      const value = rest.reduce((sum, row) => sum + row.value, 0)
+      selected.push({ label: 'Autres', other: true, ticker: '', currency: portfolio.snapshot.currency, unit: 1, count: rest.length, value, weight: value / total, color: otherColor })
     }
-    if(layout)best={entries:layout.entries,total,currency:portfolio.snapshot.currency,hiddenCount:rest.length}
+    if (new Set(selected.map(r => r.color)).size !== selected.length || new Set(selected.map(r => r.label)).size !== selected.length) continue
+    for (const row of selected) row.percent = weightLabel(row.weight).replace(/\s/g, '')
+    const other = selected.find(r => r.other)
+    const base = other ? Math.PI * (other.weight - 1) : -Math.PI / 2
+    const rotations = [base, ...Array.from({ length: 36 }, (_, i) => base + (i % 2 ? 1 : -1) * Math.ceil((i + 1) / 2) * Math.PI / 18)]
+    for (const rotation of rotations) {
+      const layout = arrangeOrbit(selected, rotation)
+      if (layout) {
+        best = { entries: layout.entries, total, currency: portfolio.snapshot.currency, hiddenCount: rest.length }
+        break
+      }
+    }
   }
   if (!best) throw new Error('La composition ne tient pas dans le visuel. Consulter le détail.')
   if (Math.abs(best.entries.reduce((s,r) => s+r.value,0) - total) > .01 || Math.abs(best.entries.reduce((s,r) => s+r.weight,0)-1) > 1e-10) throw new Error('Regroupement incohérent.')
@@ -97,15 +103,3 @@ export function publicationPlan(portfolio) {
   return best
 }
 export const emojiFor = ticker => ({ apple:'🍎', 'american-express':'💳', cocacola:'🥤', 'bank-of-america':'🏦', amazon:'📦', microsoft:'💻', nvidia:'💻', AAPL:'🍎', AXP:'💳', KO:'🥤', BAC:'🏦', MSFT:'💻', AMZN:'📦', NVDA:'💻', META:'💬', V:'💳', CVX:'⛽', TSM:'💻' }[ticker] || '📌')
-
-// A publication is a short editorial series; the complete archive stays separate.
-export function editorialSeries(portfolio) {
-  const main=publicationPlan(portfolio), named=main.entries.filter(r=>!r.other).length
-  const rows=colorPositions([...portfolio.holdings].sort((a,b)=>b.value-a.value))
-  const top=rows.slice(0,Math.min(12,rows.length))
-  const coverage=top.reduce((s,r)=>s+r.value,0)/main.total
-  const remaining=rows.slice(named)
-  // Keep a short four-image editorial series, separate from the full archive.
-  const complements=Math.min(coverage<.5?3:2,Math.ceil(remaining.length/12))
-  return {main,coverage,topCount:top.length,pages:[{kind:'summary'},...Array.from({length:complements},(_,i)=>({kind:'continuation',start:named+i*12,rows:remaining.slice(i*12,(i+1)*12)}))],coveredCount:named+Math.min(remaining.length,complements*12)}
-}

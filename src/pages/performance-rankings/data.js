@@ -81,7 +81,7 @@ export const CATEGORIES = [
   {id:'australia-leaders',label:'Grandes valeurs australiennes',ids:['bhp','commonwealth-bank','csl','macquarie'],currency:'EUR'},
   { id: 'world-acwi-net', label: 'World et ACWI · vingt ans · indices nets', ids: ['world-net', 'msciAcwi'], currency: 'USD' },
   { id: 'world-acwi-imi', label: 'World, ACWI et ACWI IMI · indices nets', ids: ['world-net', 'msciAcwi', 'msciAcwiImi'], currency: 'USD' },
-  { id: 'regions-indices', label: 'Grandes régions · indices nets', ids: ['world-net', 'msciUsa', 'msciEurope', 'japan-net', 'emerging-net'], currency: 'USD' },
+  { id: 'regions-indices', label: 'Grandes régions MSCI · indices nets', ids: ['world-net', 'msciUsa', 'msciEurope', 'japan-net', 'emerging-net'], currency: 'EUR' },
   { id: 'global-indices', label: 'World, ACWI, All-World · indices bruts', ids: ['msciWorld', 'acwi-gross', 'ftseAllWorld'], currency: 'USD' },
   { id: 'multi-asset', label: 'Actions, or, obligations et Bitcoin', ids: ['world-net', 'gold-invesco-usd', 'euroGov13', 'bitcoin'], currency: 'EUR' },
   { id: 'world', label: 'Marchés mondiaux', ids: ['etfIE00B4L5Y983', 'etfIE00B6R52259', 'etfVwce'] },

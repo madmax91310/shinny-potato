@@ -32,9 +32,18 @@ function qualifiedIssuerIndex(h,share,index,now){
  const currencyQualified=!rule||(currencyProof?.sourceUrl===rule.sourceUrl&&currencyProof.sha256===rule.sha256
   &&currencyProof.version===rule.version&&currencyProof.checkedAt===h.checkedAt
   &&currencyProof.rule===rule.rule&&currencyProof.originalWeightsUnchanged===true&&share.hedged===false)
+ const advertisedAsOf=h.shareDocumentAdvertisedAsOf??h.shareAsOf
+ const weekendIssuance=['FR0011550193','IE000QDFFK00'].includes(h.subjectIsin)
+ const advertisedDate=new Date(advertisedAsOf),advertisedDay=advertisedDate.getUTCDay()
+ const weekendDelta=advertisedDay===0?2:advertisedDay===6?1:0
+ const advertisedStamp=day(advertisedAsOf)
+ const advertisedMatch=advertisedAsOf===h.shareAsOf||(weekendIssuance&&weekendDelta>0
+  && Number.isFinite(advertisedStamp)&&advertisedStamp<=control
+  && new Date(advertisedStamp+86400000).getUTCDate()===1
+  && new Date(advertisedStamp-weekendDelta*86400000).toISOString().slice(0,10)===h.shareAsOf)
  const subjectSource=share.shareDocumentTemplates?share.shareDocumentTemplates.some(template=>h.shareSourceUrl===template.replace('{monthEnd}',h.shareAsOf?.replaceAll('-',''))):share.shareDocumentBase?h.shareSourceUrl===share.shareDocumentBase:
   typeof h.shareSourceUrl==='string'&&h.shareSourceUrl.startsWith(share.shareDocumentPrefix)
-   &&h.shareSourceUrl===share.shareDocumentPrefix+h.shareAsOf
+   &&advertisedMatch&&h.shareSourceUrl===share.shareDocumentPrefix+advertisedAsOf
    &&h.shareDiscoverySourceUrl===share.shareDocumentDiscoveryUrl&&hash(h.shareDiscoverySha256)
  const subjectScopeQualified=!share.referenceOnly||(h.approximation===true&&p?.referenceOnlyForSubject===true)
  const returnRule=index.returnWeightContract,returnProof=p?.returnWeightProof
@@ -46,7 +55,9 @@ function qualifiedIssuerIndex(h,share,index,now){
  const returnQualified=!returnRule||(returnProof?.checkedAt===h.checkedAt&&returnProof.rule===returnRule.rule
   &&returnProof.originalWeightsUnchanged===true&&returnProof.targetReturnSeriesUnchanged===true
   &&Array.isArray(returnProof.documents)&&returnDocumentSets.some(docs=>Array.isArray(docs)&&returnProof.documents.length===docs.length
-   &&docs.every((doc,i)=>['sourceUrl','sha256','version'].every(key=>returnProof.documents[i]?.[key]===doc[key])))
+   &&docs.every((doc,i)=>['sourceUrl','version'].every(key=>returnProof.documents[i]?.[key]===doc[key])
+    && (doc.sha256===returnProof.documents[i]?.sha256 || doc.reviewedAlternateDocuments?.some(version=>
+     version.sha256===returnProof.documents[i]?.sha256 && control>=Date.parse(version.reviewedOn)))))
   &&p.targetBenchmark===share.targetBenchmark&&share.hedged===false)
  return returnQualified&&subjectScopeQualified&&currencyQualified&&h.methodCode===index.methodCode&&h.sourceUrl===index.weightSourceUrl&&hash(h.sha256)
   &&typeof h.method==='string'&&h.method.trim().length>0&&subjectSource&&hash(h.shareSha256)

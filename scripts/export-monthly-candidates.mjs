@@ -9,8 +9,11 @@ const active=[...Object.values(read('src/data/automated-etf-monthly.json')),...O
 const suffix={XPAR:'.PA',XAMS:'.AS',XETR:'.DE',XLON:'.L',ETFP:'.MI',XSWX:'.SW'};
 const pending=[];
 const reviewIsins=new Set(process.argv.slice(2));
+const requested=process.env.MONTHLY_REQUESTED_SERIES || null;
+const requestedIds=new Set(requested?.split(/[\s,]+/).filter(Boolean));
 for(const isin of Object.keys(AUTOMATED_ETF)) {
  const prior=active.find(r=>r.isin===isin);
+ if(requested && !requestedIds.has(prior?.id??'etf'+isin))continue;
  if(!reviewIsins.has(isin)&&(prior||Object.values(ASSETS).some(r=>r.isin===isin)))continue;
  if(reviewIsins.size&&!reviewIsins.has(isin))continue;
  const listings=INSTRUMENT_LISTINGS_BY_ISIN[isin]?.filter(l=>suffix[l.mic]&&['USD','EUR'].includes(l.currency)&&l.evidenceId);

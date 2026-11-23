@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows:
       - Update editorial radar
-      - ETF flows qualification (automatic collection blocked)
+      - Update weekly ETF flows
       - Update active ETF issuer data
       - Update exact instrument metadata
       - Update active monthly market histories
@@ -39,6 +39,10 @@ on:
       - "scripts/automation-report-contracts.json"
       - "scripts/test_automation_product.py"
       - "scripts/automation_status_storage.py"
+      - "scripts/monitor_incident_history.py"
+      - "scripts/test_automation_incident_history.py"
+      - "src/lib/monitor-incident-history.js"
+      - "public/monitor-incident-history-capabilities.json"
       - "scripts/automation_status_git.py"
       - "scripts/test_automation_status_storage.py"
       - "scripts/test-monitor-storage.mjs"
@@ -69,6 +73,10 @@ on:
       - '.github/workflows/automation-status.yml'
       - 'scripts/publish_automation_status.py'
       - 'scripts/automation_status_storage.py'
+      - 'scripts/monitor_incident_history.py'
+      - 'scripts/test_automation_incident_history.py'
+      - 'src/lib/monitor-incident-history.js'
+      - 'public/monitor-incident-history-capabilities.json'
       - 'scripts/automation_status_git.py'
       - 'src/lib/monitor-storage.js'
       - 'src/lib/monitor-scope-storage.js'

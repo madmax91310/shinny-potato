@@ -23,10 +23,10 @@ INDEPENDENT = {'src/data/anniversary-levels.json',
                'scripts/test_investor_refresh.py',
                'scripts/validate-investor-publication.py'}
 CUSTOM_COLLECTOR = 'scripts/collect_exposure_expansion.py'
-# Requalified 2026-11-14: explicit selection preflight and failure context only.
-# collect/collect_amundi/qualify_refresh/fund_siblings keep their financial paths;
-# neither independent registry is read. Unknown collector versions stay refused.
-CUSTOM_SHA256 = '164a37ea32c94b2ea7a239cc61f2a4e932ebe8e1744a6d86ad4a1e2b84291a34'
+# The collector checks the publication fallback before staging its record.
+# The check only reads the collected receipts, the original record and issuer
+# routes. The independent paths above are still outside acquisition.
+CUSTOM_SHA256 = '2046cf90b4d451b33617334ecf96c41e8be6f50d296357b9c512d24521073b37'
 
 
 def git_bytes(root, ref, path):
@@ -129,6 +129,66 @@ def qualified_transport_fallback(row, outcome, configured, checked):
     return True
 
 
+def qualified_pdf_with_retained_allocations(row, outcome, configured, checked, previous):
+    """Verify independent PDF and directory fields after a rankings rejection."""
+    allocation_fields = {'countries', 'sectors', 'holdings'}
+    if (configured.get('parser') != 'wisdomtree-html'
+            or outcome.get('status') != 'failed'
+            or outcome.get('operationAttempted') is not True
+            or outcome.get('sourceAttempted') is False):
+        return False
+    record = row.get('record', {})
+    errors = row.get('collectionErrors', [])
+    rejected = [error for error in errors if error.get('field') in allocation_fields]
+    other = [error for error in errors if error.get('field') not in allocation_fields]
+    if (len(rejected) != 3 or {error['field'] for error in rejected} != allocation_fields
+            or any(error.get('phase') != 'validation'
+                   or error.get('networkAttempted') is not True
+                   or error.get('reason') != 'Missing/duplicate rankings security identifiers'
+                   or urlsplit(error.get('url', '')).netloc != 'dataspanapi.wisdomtree.com'
+                   or urlsplit(error.get('url', '')).path != '/funddetails/rankings/'
+                   for error in rejected)):
+        return False
+    if outcome.get('field') != ', '.join(sorted(error['field'] for error in errors)):
+        return False
+    if any(record.get(field) != previous.get(field) for field in allocation_fields):
+        return False
+    permitted = {'aum', 'characteristics', 'characteristicChecks', 'performance'}
+    if any(record.get(field) != previous.get(field) for field in
+           (record.keys() | previous.keys()) - permitted):
+        return False
+    if len(other) != 1 or other[0].get('field') != 'aum-primary-http':
+        return False
+    directory_outcome = {**outcome, 'field': 'aum-primary-http'}
+    if not qualified_transport_fallback({**row, 'collectionErrors': other},
+                                        directory_outcome, configured, checked):
+        return False
+    pdf_url = ('https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/'
+               + configured['isin'])
+    if not any(attempt.get('url') == pdf_url and attempt.get('status') == 'validated'
+               for attempt in row.get('sourceAttempts', [])):
+        return False
+    characteristics, performance = (record.get(field, {}) for field in ('characteristics', 'performance'))
+    for field in (characteristics, performance):
+        if (field.get('sourceUrl') != pdf_url or field.get('checkedAt') != checked.date().isoformat()
+                or not re.fullmatch(r'[0-9a-f]{64}', str(field.get('sha256', '')))):
+            return False
+    if (characteristics['sha256'] != performance['sha256']
+            or characteristics.get('asOf') != performance.get('asOf')
+            or performance.get('basis') != 'fund'
+            or performance.get('currency') != record.get('currency')
+            or performance.get('method') != 'calendar-year exact-share NAV return, net of fees'):
+        return False
+    expected_check = {'checkedAt': characteristics['checkedAt'], 'sourceUrl': pdf_url,
+                      'asOf': characteristics['asOf']}
+    return record.get('characteristicChecks') == {'terPct': expected_check}
+
+
+def qualified_publication_fallback(row, outcome, configured, checked, previous):
+    return (qualified_transport_fallback(row, outcome, configured, checked)
+            or qualified_pdf_with_retained_allocations(row, outcome, configured, checked, previous))
+
+
 def audit(root, report, started, base, *, only=None, run_id=None, attempt=None, now=None):
     # Determine the requested instruments from inputs before examining results.
     config = load((root / 'scripts/exposure-etf-expansion.json').read_bytes())['instruments']
@@ -177,8 +237,9 @@ def audit(root, report, started, base, *, only=None, run_id=None, attempt=None, 
             continue
         outcome = outcomes[isin]
         source_success = (outcome['status'] in ('succeeded', 'unchanged-verified')
-                          and outcome.get('sourceAttempted') is True)
-        fallback = qualified_transport_fallback(row, outcome, configured[isin], checked)
+                          and outcome.get('sourceAttempted') is True
+                          and not row.get('collectionErrors'))
+        fallback = qualified_publication_fallback(row, outcome, configured[isin], checked, old)
         if row.get('status') != 'validated' or not (source_success or fallback):
             raise ValueError('A missing result or cache cannot certify source success: ' + isin)
         if value != row['record']:

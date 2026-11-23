@@ -1,276 +1,312 @@
-import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicSavingsRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
-import { budgetQualification, budgetPublicBasis, budgetRowSymbol } from './presentation.js'
+import { analyzeBudget, budgetBalanceText, budgetCashIncome, budgetExpenseColumns, budgetPublicPresentation,
+  budgetTransferPlan, cleanTransferLabel, euro, publicationContextFor } from './lib.js'
+import { budgetProfileHousehold, budgetRowSymbol } from './presentation.js'
+import socialLabels from './social-labels.json' with { type: 'json' }
 
 export const SOCIAL_SIZE = { width: 1080, height: 1350 }
-export const SOCIAL_BODY_SIZE = 40
-const C = { ink:'#10182f', background:'#1c2127', cream:'#fff8e5', muted:'#c8ced9', income:'#dbd1ff', expense:'#ffc4ae', savings:'#c5f4cb', balance:'#f6e9c4', deficit:'#ffaaa8' }
-const M=32, GAP=20, INNER=1016, END=1186, STEP=50
-const type=(ctx,size,weight=600)=>{const font=`${weight} ${size}px Arial, sans-serif`;if(ctx.font!==font)ctx.font=font}
-const wrapCache=new WeakMap(),measureCache=new WeakMap(),rowCache=new WeakMap()
-function measure(ctx,value) {
-  let cache=measureCache.get(ctx);if(!cache){cache=new Map();measureCache.set(ctx,cache)}
-  const key=ctx.font+'|'+value
-  if(!cache.has(key))cache.set(key,ctx.measureText(value))
-  return cache.get(key)
-}
-function wrap(ctx,value,width,size=SOCIAL_BODY_SIZE,weight=600) {
-  type(ctx,size,weight);let cache=wrapCache.get(ctx);if(!cache){cache=new Map();wrapCache.set(ctx,cache)}
-  const key=JSON.stringify([value,width,size,weight]);if(cache.has(key))return cache.get(key)
-  const result=[];let line=''
-  const tokens=String(value).replace(/\d[\d \u00a0\u202f]*(?:[.,]\d+)?\s*(?:€|CHF|EUR|USD)/g,amount=>amount.replace(/\s/g,'\u00a0')).split(/[^\S\u00a0\u202f]+/).filter(Boolean)
-  for(const word of tokens) {
-    if(line&&measure(ctx,line+' '+word).width>width){result.push(line);line=''}
-    for(const char of (line?' ':'')+word){if(measure(ctx,line+char).width>width){result.push(line);line=''}line+=char}
-  }
-  if(line)result.push(line);cache.set(key,result);return result
-}
-export function socialBudgetLabel(label) {
-  return label.replace(/^Assurance-vieillesse luxembourgeoise$/i,'Assurance vieillesse (Luxembourg)').replace(/^Assurance-vie luxembourgeoise$/i,'Assurance-vie (Luxembourg)').replace(/^Sa part /i,'Part ').replace(/^(Part) (?:du |de la |de l[’']|des |d[’'])/i,'$1 ')
-    .replace(/^Provision personnelle pour /i,'Provision ')
-    .replace(/loyer et des charges hors énergie et eau/i,'loyer et charges (hors eau/énergie)')
-    .replace(/énergie et de l’eau/i,'énergie et eau').replace(/entretien et des petits équipements/i,'entretien et équipement')
-    .replace(/internet et forfait mobile/i,'internet et mobile').replace(/soins et frais de santé/i,'soins et santé')
-    .replace(/^Épargne pour apport immobilier$/i,'Apport immobilier').replace(/\s+/g,' ').trim()
-    .replace(/^./u,c=>c.toLocaleUpperCase('fr'))
-}
-const duration=n=>n%12===0?`${n/12} an${n===12?'':'s'}`:`${n} mois`
-export function socialBudgetHighlights(profile) {
-  if(profile.kind==='participant')return []
-  const money=(n,currency=profile.currency)=>euro(n,currency),result=[]
-  const finance=profile.editorialCreation?.finance||[]
-  const emilie = profile.id==='prepared-lot2-08-2026-10-30' && finance.some(f=>f.type==='project'&&f.targetAmount===25000&&f.initialFunding===7000&&f.horizonMonths===36&&f.monthlyFunding===500)
-  for(const [i,item] of finance.entries()) {
-    if(emilie)continue
-    if(item.type==='financial-stock')result.push({id:`stock:${i}`,label:`${item.label} : ${money(item.amount,item.currency)}${item.investmentMonths?` · depuis ${duration(item.investmentMonths)}`:''}${item.acceleratedMonthlyFunding?` · ${money(item.acceleratedMonthlyFunding)}/mois depuis ${duration(item.acceleratedFundingMonths)}`:''}`})
-    if(item.type==='project') {
-      const facts=[item.initialFunding!==undefined&&item.targetAmount!==undefined?`${money(item.initialFunding)} → ${money(item.targetAmount)}`:item.targetAmount!==undefined?`objectif ${money(item.targetAmount)}`:item.initialFunding!==undefined&&`déjà ${money(item.initialFunding)}`,item.horizonMonths&&`dans ${duration(item.horizonMonths)}`,item.monthlyFunding!==undefined&&`${money(item.monthlyFunding)}/mois`,item.consideredMonthlyFunding!==undefined&&`${money(item.consideredMonthlyFunding)}/mois envisagés`,item.fundingMonths&&`pendant ${duration(item.fundingMonths)}`,item.consideredRent!==undefined&&`loyer envisagé ${money(item.consideredRent)} contre ${money(item.currentRent)} actuellement (+${money(item.monthlyImpact)}/mois)`,item.alternativeRepair!==undefined&&`ou réparation à ${money(item.alternativeRepair)}`,item.requiresReallocation&&'versements à réorganiser',item.requiresPositiveBalance&&'achat reporté tant que le budget est déficitaire',item.fundedWithinExpenseEnvelope&&'financé par l’enveloppe déjà dans les dépenses',item.reviewAfterTarget&&'versement à revoir après cet objectif'].filter(Boolean)
-      result.push({id:`project:${i}`,label:`${item.label} : ${facts.join(' · ')}`})
-      for(const [j,part]of(item.components||[]).entries())result.push({id:`component:${i}:${j}`,label:`${part.label} : ${money(part.amount)}`})
-    }
-  }
-  if(emilie)result.push(
-    {id:'stock:livret',label:'Livret : 7 000 €'},
-    {id:'stock:security',label:'Dont sécurité : 5 000 €'},
-    {id:'project:apport',label:'Apport : 2 000 € → 20 000 € dans 3 ans'})
-  const funding={
-    'prepared-lot2-03-2026-10-30':'Lave-linge : sur l’enveloppe projets de 100 €/mois ; les 150 € de précaution restent séparés.',
-    'prepared-lot2-06-2026-10-30':'Travaux : avec les 350 €/mois du Livret A, sans retrait. Réduire le PER permettrait de les avancer.',
-    'finary-ingenieur-colocation-projet-2026-08-18':'Sur les 750 € envisagés : 170 € pour le séjour et 580 € sur le PEA. Rien n’est encore versé.'
-  }
-  if(funding[profile.id])result.push({id:'funding',label:funding[profile.id]})
-  return result
-}
-function sectionsFor(profile,a,p,mode = 'social') {
-  const rows=(key,items)=>items.map((r,i)=>({...r,id:`${key}:${i}`,label:mode === 'social' ? socialBudgetLabel(r.label) : r.label}))
-  const basis=budgetPublicBasis(profile,p.basis)
-  const note=[basis&&!/^Montants mensuels$/i.test(basis)&&basis,p.incomeNote].filter(Boolean).join(' · ').replace('Le salaire est celui de 2026 ; les dépenses reprennent la moyenne de 2025.', 'Salaire prévu, comparé aux dépenses moyennes de l’année précédente.')
-  const sections=[{id:'income',title:'REVENUS',color:C.income,total:a.income,rows:[...(note?[{id:'income-note',label:note}]:[]),...rows('income',budgetPublicIncomeRows(profile))]}]
-  sections.push({id:'expenses',title:'DÉPENSES',color:C.expense,total:a.expenses,rows:rows('expenses',budgetImageExpenses(profile,mode))})
-  const transferKinds=new Set(budgetPublicSavingsRows(profile).map(row=>budgetRowSymbol(row,'savings').kind))
-  const transferKind=transferKinds.size===1?[...transferKinds][0]:'other'
-  if(profile.savings.length)sections.push({id:'savings',title:({savings:'ÉPARGNE',investment:'PLACEMENTS',business:'ENTREPRISE',debt:'REMBOURSEMENTS'})[transferKind]||'VERSEMENTS',color:C.savings,total:a.savings,rows:rows('savings',budgetPublicSavingsRows(profile))})
-  const highlights=socialBudgetHighlights(profile)
-  if(hasSeparateBudgetCapacity(profile,a))highlights.push({id:'capacity',label:`Capacité ${profile.kind==='planned'?'envisagée':'annoncée'} : ${euro(profile.capacity,profile.currency)}/mois`})
-  if(profile.kind==='participant'&&profile.context.trim())highlights.push({id:'context',label:profile.context})
-  if(highlights.length)sections.push({id:'projects',title:'RÉSERVES ET PROJETS',color:C.cream,rows:highlights})
-  return sections
-}
-function rowPlan(ctx,row,width,money,single=false) {
-  const amount=row.amount===undefined?'':money(row.amount)
-  let cache=rowCache.get(ctx);if(!cache){cache=new Map();rowCache.set(ctx,cache)}
-  const key=JSON.stringify([row,width,amount,single]);if(cache.has(key))return cache.get(key)
-  type(ctx,SOCIAL_BODY_SIZE,700)
-  const available=width-(amount&&!single?measure(ctx,amount).width+18:0)
-  const longest=Math.max(0,...String(row.label).split(/\s+/).map(word=>measure(ctx,word).width))
-  const stacked=!!amount&&!single&&(available<160||longest>available),lines=wrap(ctx,row.label,stacked?width:available)
-  const result={...row,lines,stacked,amountText:single?'':amount,height:lines.length*STEP+8+(stacked?STEP:0)}
-  cache.set(key,result);return result
-}
-function cardsFor(ctx,entries,width,money) {
-  if(width<=0&&entries.length)return {cards:[],height:Infinity}
-  const cards=[];const inner=width-36
-  for(const entry of entries) {
-    let card=cards.at(-1)
-    if(!card||card.section.id!==entry.section.id) {
-      const first=entry.rowIndex===0&&!entry.fragment
-      const section=entry.section,title=section.title+(first?'':' · SUITE'),total=first?section.total:undefined
-      type(ctx,30,800);const titleWidth=measure(ctx,title).width;type(ctx,44,800)
-      if(total!==undefined&&measure(ctx,money(total)).width>inner)return {cards:[],height:Infinity}
-      const inline=total!==undefined&&titleWidth+measure(ctx,money(total)).width+22<=inner
-      const heading=wrap(ctx,title,inner,30,800),header=22+(inline?54:heading.length*36+(total===undefined?0:54))+10
-      card={section,title,heading,total,inline,header,height:header+8,rows:[],width};cards.push(card)
-    }
-    const plan=rowPlan(ctx,entry.row,inner,money,entry.section.rows.filter(r=>r.amount!==undefined).length===1&&entry.section.total!==undefined)
-    card.rows.push(plan);card.height+=plan.height
-  }
-  return {cards,height:cards.reduce((sum,c)=>sum+c.height+GAP,0)}
-}
-function bestColumns(ctx,entries,money,limit) {
-  let best=null
-  for(const widths of [[1016,0],[676,320],[648,348],[628,368],[596,400],[498,498],[400,596],[368,628],[320,676]]) {
-    const expense=entries.filter(e=>e.section.id==='expenses'),other=entries.filter(e=>e.section.id!=='expenses')
-    for(const lists of [[expense,other],[other,expense]]) {
-      if(!expense.length||!other.length)continue
-      const columns=lists.map((list,i)=>cardsFor(ctx,list,widths[i],money)),height=Math.max(...columns.map(c=>c.height))
-      if(height<=limit&&(!best||height<best.height))best={columns,widths,height}
-    }
-    for(let i=0;i<=entries.length;i++) {
-      const columns=[cardsFor(ctx,entries.slice(0,i),widths[0],money),cardsFor(ctx,entries.slice(i),widths[1],money)]
-      const height=Math.max(...columns.map(c=>c.height))
-      if(height<=limit&&(!best||height<best.height))best={columns,widths,height}
-    }
-  }
-  return best
-}
-function entriesFor(sections){return sections.flatMap(section=>section.rows.map((row,rowIndex)=>({section,row,rowIndex})))}
-function splitOversize(ctx,entries,money,limit) {
-  return entries.flatMap(entry=>{
-    if(cardsFor(ctx,[entry],498,money).height<=limit)return [entry]
-    // Split exceptionally long user content across pages, keeping its amount once.
-    const lines=wrap(ctx,entry.row.label,280),size=Math.max(1,Math.floor((limit-230)/STEP))
-    const parts=[]
-    for(let i=0;i<lines.length;i+=size)parts.push({...entry,fragment:i>0,row:{...entry.row,id:entry.row.id+`:part:${i/size}`,label:lines.slice(i,i+size).join(' '),...(i>0&&{amount:undefined})}})
-    return parts
-  })
-}
-export function planSocialBudget(ctx,profile,mode = 'social') {
-  const a=analyzeBudget(profile);if(a.errors.length)throw new Error(a.errors.join(' '))
-  const p=budgetPublicPresentation(profile),amounts=new Map()
-  const money=n=>{if(!amounts.has(n))amounts.set(n,(profile.approximate?'≈ ':'')+euro(n,profile.currency));return amounts.get(n)}
-  const name=p.name+(profile.age&&!p.name.includes(' et ')&&!p.name.includes(String(profile.age))?`, ${profile.age} ans`:'')
-  const title=wrap(ctx,name,INNER,62,800)
-  const parts=[p.job,p.household,p.location].filter(Boolean),qualification=budgetQualification(profile)
-  if(qualification&&!parts.join(' ').toLocaleLowerCase('fr').includes(qualification.toLocaleLowerCase('fr')))parts.push(qualification)
-  const context=parts.join(' · ')
-  let details=wrap(ctx,context,INNER,36,500)
-  const sections=sectionsFor(profile,a,p,mode==='main'?'social':mode)
-  if(details.length>5){sections.unshift({id:'situation',title:'SITUATION',color:C.cream,rows:[{id:'situation',label:context}]});details=wrap(ctx,budgetQualification(profile),INNER,36,500)}
-  const header=88+title.length*74+details.length*44+16,limit=END-header
-  // Preserve the original narrative verbatim on separate readable pages. It
-  // contains wealth, funding conditions and alternatives absent from ledger rows.
-  const contextSection={id:'context',title:'PATRIMOINE ET PROJETS',color:C.cream,rows:profile.kind==='participant'||mode==='main'?[]:profile.context.trim().split(/\n\s*\n/).filter(Boolean).map((label,i)=>({id:`context:${i}`,label}))}
-  const contextPages=[]
-  for(const row of contextSection.rows) {
-    const lines=wrap(ctx,row.label,INNER-36)
-    const size=Math.max(1,Math.floor((END-header-160)/STEP))
-    for(let i=0;i<lines.length;i+=size) {
-      const fragment={...row,id:row.id+`:part:${i/size}`,label:lines.slice(i,i+size).join(' ')}
-      const column=cardsFor(ctx,[{section:contextSection,row:fragment,rowIndex:0}],INNER,money)
-      contextPages.push({kind:'context',columns:[column],widths:[INNER],height:column.height})
-    }
-  }
-  const entries=entriesFor(sections),candidate=bestColumns(ctx,entries,money,Infinity),single=candidate.height<=limit?candidate:null
-  const fit={header,required:candidate.height,available:limit}
-  if(single)return {a,p,money,title,details,header,sections,pages:[{kind:'complete',...single},...contextPages],single:true,fit}
-  const pages=[],remaining=splitOversize(ctx,entries,money,Math.min(limit,1050-header))
-  for(let from=0;from<remaining.length;) {
-    const pageLimit=pages.length?limit:1050-header
-    let fit=null,end=from,low=from+1,high=remaining.length
-    while(low<=high) {
-      const to=Math.floor((low+high)/2),candidate=bestColumns(ctx,remaining.slice(from,to),money,pageLimit)
-      if(candidate){fit=candidate;end=to;low=to+1}else high=to-1
-    }
-    if(!fit)throw new Error('Le contenu ne peut pas être composé à cette taille de caractères. Réduis la longueur d’un libellé.')
-    pages.push({kind:pages.length?'details':'primary',...fit});from=end
-  }
-  return {a,p,money,title,details,header,sections,pages:[...pages,...contextPages],single:false,fit}
-}
-function draw(ctx,value,x,y,size=SOCIAL_BODY_SIZE,color=C.ink,weight=600,align='left') {
-  type(ctx,size,weight);ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='top';ctx.fillText(value,x,y)
-}
-function box(ctx,x,y,w,h,color){ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y,w,h,20);ctx.fill()}
-function paintColumns(ctx,page,plan) {
-  let x=M
-  page.columns.forEach((column,index)=>{
-    let y=plan.header
-    for(const card of column.cards) {
-      box(ctx,x,y,card.width,card.height,card.section.color);let top=y+18
-      for(const line of card.heading){draw(ctx,line,x+18,top,30,C.ink,800);top+=36}
-      if(card.total!==undefined){draw(ctx,plan.money(card.total),card.inline?x+card.width-18:x+18,card.inline?y+15:top,44,C.ink,800,card.inline?'right':'left');top+=54}
-      top=y+card.header
-      for(const row of card.rows){for(const [i,line]of row.lines.entries())draw(ctx,line,x+18,top+i*STEP);if(row.amountText)draw(ctx,row.amountText,x+card.width-18,top+(row.stacked?row.lines.length*STEP:0),SOCIAL_BODY_SIZE,C.ink,700,'right');top+=row.height}
-      y+=card.height+GAP
-    }
-    x+=page.widths[index]+GAP
-  })
-}
-function paintPrimaryTotals(ctx,plan) {
-  const {a,money}=plan
-  const stats=[['REVENUS / MOIS',a.income,C.income],['TOTAL DÉPENSES',a.expenses,C.expense],['TOTAL VERSEMENTS',a.savings,C.savings],[a.balance<0?(a.savings?'DÉFICIT APRÈS VERSEMENTS':'DÉFICIT MENSUEL'):(a.savings?'RESTE APRÈS VERSEMENTS':'RESTE DISPONIBLE'),Math.abs(a.balance),a.balance<0?C.deficit:C.balance]]
-  for(const [i,[label,value,color]]of stats.entries()){
-    const x=M+(i%2)*518,y=1070+Math.floor(i/2)*116
-    box(ctx,x,y,498,104,color);draw(ctx,label,x+18,y+12,30,C.ink,800);draw(ctx,money(value),x+18,y+47,44,C.ink,800)
-  }
-}
-export async function renderSocialBudgetImages(profile,mode = 'social') {
-  if(document.fonts?.ready)await document.fonts.ready
-  const measure=document.createElement('canvas').getContext('2d'),plan=planSocialBudget(measure,profile,mode)
-  return plan.pages.map((page,index)=>{
-    const canvas=document.createElement('canvas');Object.assign(canvas,SOCIAL_SIZE);const ctx=canvas.getContext('2d')
-    ctx.fillStyle=C.background;ctx.fillRect(0,0,1080,1350)
-    draw(ctx,'LE BUDGET DE',M,26,30,C.cream,800)
-    if(plan.pages.length>1)draw(ctx,`${index+1} / ${plan.pages.length}`,1048,26,30,C.cream,800,'right')
-    let y=78;for(const line of plan.title){draw(ctx,line,M,y,62,C.cream,800);y+=74}for(const line of plan.details){draw(ctx,line,M,y,36,C.muted,500);y+=44}
-    paintColumns(ctx,page,plan)
-    if(page.kind==='primary')paintPrimaryTotals(ctx,plan)
-    else {
-      const a=plan.a,hasTransfers=a.savings>0
-      box(ctx,M,1194,INNER,106,a.balance<0?C.deficit:C.balance)
-      if(hasTransfers){draw(ctx,a.available<0?'Manque avant versements':'Avant versements',M+20,1207,30);draw(ctx,plan.money(Math.abs(a.available)),M+20,1245,42,C.ink,800)}
-      const x=hasTransfers?548:M+20
-      draw(ctx,a.balance<0?(hasTransfers?'Déficit après versements':'Déficit mensuel'):hasTransfers?'Après versements':'Reste disponible',x,1207,30)
-      draw(ctx,plan.money(Math.abs(a.balance)),x,1245,42,C.ink,800)
-    }
-    draw(ctx,index<plan.pages.length-1?'Suite des postes et projets : image '+(index+2)+'/'+plan.pages.length:'Montants mensuels · Épargnant Libre',540,1312,26,C.cream,500,'center')
-    canvas.budgetFormat=mode;canvas.budgetPage=index+1;canvas.budgetPageCount=plan.pages.length
-    canvas.budgetLayout={kind:page.kind,fontSize:SOCIAL_BODY_SIZE,sourceRows:page.columns?.flatMap(c=>c.cards.flatMap(card=>card.rows.map(row=>({id:row.id,label:row.label,amount:row.amount}))))||[]}
-    return canvas
-  })
-}
-export async function renderSocialBudgetImage(profile){const pages=await renderSocialBudgetImages(profile);pages[0].budgetPages=pages;return pages[0]}
+export const SOCIAL_BODY_SIZE = 31
 
-// A standalone overview is not page one of a truncated ledger. All four totals
-// use the same analysis as the detailed export; the complete rows remain there.
-export async function renderBudgetOverview(profile) {
-  if(document.fonts?.ready)await document.fonts.ready
-  // New bank entries are qualified against the real fonts for a complete main
-  // image. Never silently replace it with a totals-only view or a long image.
-  if(profile.mainImage==='complete'&&profile.kind!=='participant') {
-    const images=await renderSocialBudgetImages(profile,'main')
-    if(images.length!==1)throw new Error('Ce budget nécessite plusieurs pages. Consulte le détail X complet.')
-    const canvas=images[0]
-    canvas.budgetFormat='overview';canvas.budgetTotals=analyzeBudget(profile)
-    return canvas
+const colors = {
+  cream: '#f4f1e8', ink: '#102d28', muted: '#4d6255', green: '#153d34',
+  salmon: '#fa987d', mint: '#a6e5ca', gold: '#f4cc77', white: '#fcfaf1',
+  fixed: '#fbe9e1', flexible: '#fdf0d4', savings: '#e3f1e2', capacity: '#e4ecd9',
+}
+const width = 980
+const margin = 50
+const gap = 20
+const column = (width - gap) / 2
+const detailsY = 635
+const detailsHeight = 520
+const sum = rows => rows.reduce((total, row) => total + Math.round(row.amount * 100), 0) / 100
+
+// Keep the user's main rows. Aggregate the smaller ones only within the same
+// public category and retain the original rows for reconciliation with the text.
+function groupRows(rows, maximum, otherLabel = 'Autres postes', question = '', label = shortLabel) {
+  const prepared = rows.map(row => ({ label: label(row), amount: row.amount, members: [row], order: row.order }))
+  if (prepared.length > maximum && otherLabel === 'Autres postes') {
+    const clothes = prepared.find(row => row.members[0].label === 'Vêtements')
+    const gifts = prepared.find(row => /^(?:Provision )?cadeaux$/iu.test(row.members[0].label))
+    if (clothes && gifts) {
+      prepared.splice(prepared.indexOf(clothes), 1)
+      prepared.splice(prepared.indexOf(gifts), 1)
+      prepared.push({ label: 'Vêtements et cadeaux', amount: sum([clothes, gifts]), members: [...clothes.members, ...gifts.members] })
+    }
   }
-  const a=analyzeBudget(profile)
-  if(a.errors.length)throw new Error(a.errors.join(' '))
-  const p=budgetPublicPresentation(profile),canvas=document.createElement('canvas')
-  Object.assign(canvas,SOCIAL_SIZE)
-  const ctx=canvas.getContext('2d'),money=n=>euro(n,profile.currency)
-  ctx.fillStyle=C.background;ctx.fillRect(0,0,1080,1350)
-  draw(ctx,'LE BUDGET DE',M,26,30,C.cream,800)
-  const name=p.name+(profile.age&&!p.name.includes(' et ')&&!p.name.includes(String(profile.age))?`, ${profile.age} ans`:'')
-  const title=wrap(ctx,name,INNER,62,800)
-  let y=78
-  for(const line of title){draw(ctx,line,M,y,62,C.cream,800);y+=74}
-  const basis=budgetPublicBasis(profile,p.basis)||'Montants mensuels'
-  const context=[p.job,p.household,p.location,budgetQualification(profile),basis].filter(Boolean).join(' · ')
-  for(const line of wrap(ctx,context,INNER,32,500)){draw(ctx,line,M,y,32,C.muted,500);y+=40}
-  const rows=[['REVENUS',a.income,C.income],['DÉPENSES',a.expenses,C.expense],['VERSEMENTS',a.savings,C.savings],
-    [a.balance<0?'DÉFICIT APRÈS VERSEMENTS':'RESTE APRÈS VERSEMENTS',Math.abs(a.balance),a.balance<0?C.deficit:C.balance]]
-  const top=Math.max(350,y+20),height=165
-  if(top+rows.length*height>1200)throw new Error('Le titre est trop long pour l’image principale. Utilise l’export détaillé ou raccourcis le nom.')
-  for(const [i,[label,value,color]]of rows.entries()){
-    const yy=top+i*height
-    box(ctx,M,yy,INNER,height-18,color)
-    draw(ctx,label,M+24,yy+20,34,C.ink,800)
-    const amount=(profile.approximate?'≈ ':'')+money(value)
-    type(ctx,64,800)
-    if(measure(ctx,amount).width>INNER-48)throw new Error('Le montant est trop long pour l’image principale. Utilise l’export détaillé.')
-    draw(ctx,amount,M+24,yy+72,64,C.ink,800)
+  const sorted = prepared.toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0) || b.amount - a.amount)
+  const keep = sorted.length <= maximum ? sorted : sorted.slice(0, maximum - 1)
+  if (keep.length > 2 && keep.length < sorted.length) {
+    const relevant = sorted.find(row => row.members.some(member => mentionsRow(question, member)))
+    if (relevant && !keep.includes(relevant)) keep[keep.length - 1] = relevant
   }
-  draw(ctx,'Vue d’ensemble · postes et projets dans l’export complet',540,1240,30,C.cream,500,'center')
-  draw(ctx,'Épargnant Libre',540,1300,26,C.cream,500,'center')
-  canvas.budgetFormat='overview';canvas.budgetTotals={...a}
+  if (keep.length !== sorted.length) {
+    const rest = sorted.filter(row => !keep.includes(row))
+    const pair = rest.map(row => row.label).join(' et ')
+    const name = otherLabel === 'Autres postes' && rest.length === 2 && pair.length <= 22 ? pair : otherLabel
+    keep.push({ label: name, amount: sum(rest), members: rest.flatMap(row => row.members) })
+  }
+  return keep
+}
+
+const compactLabels = [
+  [/^Crédit à la consommation$/i, 'Crédit conso'],
+  [/^Cantine des deux enfants$/i, 'Cantine'],
+  [/^Centre de loisirs du mercredi$/i, 'Loisirs du mercredi'],
+  [/^Loyer et charges locatives$/i, 'Loyer et charges'],
+  [/^Courses, hygiène et trois chats$/i, 'Courses, hygiène, chats'],
+  [/^Transports du quotidien$/i, 'Transports'],
+  [/^Assurances habitation et auto$/i, 'Assur. logement et auto'],
+  [/^Cadeaux et remplacements$/i, 'Cadeaux et achats'],
+  [/^Provision trajets familiaux$/i, 'Trajets famille'],
+  [/^Loyer, eau et chauffage$/i, 'Loyer et charges'],
+  [/^Assurance maladie LAMal.*$/i, 'Assurance LAMal'],
+  [/^Alimentation et boissons sans alcool$/i, 'Alim. et boissons'],
+  [/^Téléphone, internet, télévision et redevance$/i, 'Télécoms + TV'],
+  [/^Coiffeur, loisirs et argent de poche · adulte (.+)$/i, 'Loisirs et soins $1'],
+  [/^Loisirs communs, école et camps$/i, 'École et loisirs'],
+  [/^Assurances habitation et santé$/i, 'Assur. logement et santé'],
+  [/^Abonnement de transport$/i, 'Abonnement transport'],
+  [/^Livret A · précaution prévue$/i, 'Livret A · précaution'],
+  [/^Enveloppe vacances prévue$/i, 'Vacances'],
+  [/^Enveloppe rentrée scolaire prévue$/i, 'Rentrée scolaire'],
+  [/^Épargne de sécurité prévue$/i, 'Épargne de sécurité'],
+]
+const normalizeMatch = text => text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+function mentionsRow(question, row) {
+  const label = normalizeMatch(row.label.replace(/^Provision /i, ''))
+  return label.length > 5 && question.includes(label)
+}
+
+function shortLabel(row) {
+  if (row.imageLabel) return row.imageLabel
+  if (Object.hasOwn(socialLabels, row.label)) return socialLabels[row.label]
+  const compact = compactLabels.find(([pattern]) => pattern.test(row.label))
+  if (compact) return row.label.replace(...compact)
+
+  return row.label.replace(/^(?:(?:Sa|Leur) )?Part (?:personnelle )?(?:du |de la |de l[’']|des |d[’'])?/i, '')
+    .replace(/^Carburant, entretien et assurance auto$/i, 'Frais auto')
+    .replace(/^(?:Courses|Alimentation)(?: alimentaires)? payées sur (?:le|son) compte$/i, 'Courses')
+    .replace(/^Assurance habitation$/i, 'Assur. habitation')
+    .replace(/^Provisions?(?: mensuelles?)? (?:pour )?(?=.{18,})/i, '')
+    .replace(/(?:Box )?internet et (?:forfaits? )?(?:téléphones?|mobiles?)/i, 'Télécoms')
+    .replace(/téléphones? et internet/i, 'Télécoms')
+    .replace(/^(?:Remboursement du |Mensualité du )crédit /i, 'Crédit ')
+    .replace(/^(?:Sa |Son |Leur )(?=\p{L})/iu, '')
+    .replace(/^[\p{L}]/u, letter => letter.toLocaleUpperCase('fr')).trim()
+}
+
+export function planSocialBudget(profile) {
+  const totals = analyzeBudget(profile)
+  const presentation = budgetPublicPresentation(profile)
+  const question = normalizeMatch(presentation.question || '')
+  if (totals.errors.length) throw new Error(totals.errors.join(' '))
+  const [left, right] = budgetExpenseColumns(profile)
+  const fixed = left.rows.filter(row => !row.mixed), mixed = left.rows.filter(row => row.mixed)
+  const plan = budgetTransferPlan(profile)
+  const flexibleLimit = plan.rows.length ? 3 : 8
+  const fixedRows = groupRows(fixed, mixed.length ? 7 : 8, 'Autres postes', question)
+  if (mixed.length) fixedRows.push(...groupRows(mixed, 1, 'Autres frais mixtes'))
+  const expenses = [
+    [{ ...left, title: mixed.length && fixed.length ? 'Frais contraints et mixtes' : left.title, rows: fixedRows }],
+    [{ ...right, rows: groupRows(right.rows, flexibleLimit, 'Autres postes', question) }],
+  ]
+  const transferRows = groupRows(plan.rows, 4, plan.mixed ? 'Autres du plan' : 'Autres versements', question, row => {
+    if (row.imageLabel) return row.imageLabel
+    const label = cleanTransferLabel(shortLabel(row), plan.planned)
+    const status = plan.distinct && { planned: 'prévu', paid: 'versé', budgeted: 'budget' }[row.status]
+    return status ? `${label} · ${status}` : label
+  })
+  const budget = publicationContextFor(profile)?.budget
+  return { totals, presentation, expenses, transferRows, plan, balanceText: budgetBalanceText(profile, totals.balance),
+    incomeLabel: budget?.imageCaption || budget?.imageIncomeLabel,
+    netSalary: budgetCashIncome(profile).netSalary, showAllocation: !presentation.averageBeforeInvestments && totals.income > 0 && totals.balance >= 0 }
+}
+
+let budgetFont
+function loadBudgetFont() {
+  if (!budgetFont) {
+    const url = `${import.meta.env.BASE_URL}asset-art/investor-type/inter-latin.woff2`
+    budgetFont = new FontFace('Budget Inter', `url("${url}")`, { weight: '100 900' }).load()
+      .then(face => document.fonts.add(face)).catch(() => {})
+  }
+  return budgetFont
+}
+
+function type(ctx, size, weight = 500) {
+  ctx.font = `${weight} ${size}px "Budget Inter", Arial, sans-serif`
+}
+
+function fit(ctx, text, max) {
+  if (ctx.measureText(text).width <= max) return text
+  const words = text.trim().split(/\s+/)
+  while (words.length > 1 && ctx.measureText(words.join(' ') + '…').width > max) words.pop()
+  const prefix = [...words.join(' ').replace(/[·,:]$/, '').trim()]
+  while (prefix.length && ctx.measureText(prefix.join('') + '…').width > max) prefix.pop()
+  return prefix.join('') + '…'
+}
+
+function draw(ctx, text, x, y, { size = SOCIAL_BODY_SIZE, weight = 500, color = colors.ink, align = 'left', max } = {}) {
+  type(ctx, size, weight)
+  ctx.fillStyle = color
+  ctx.textBaseline = 'top'
+  ctx.textAlign = align
+  ctx.fillText(max === undefined ? text : fit(ctx, text, max), x, y)
+}
+
+function drawAmount(ctx, text, x, y, max, options) {
+  const weight = options.weight || 800
+  let size = options.size
+  type(ctx, size, weight)
+  while (ctx.measureText(text).width > max && size > 27) type(ctx, --size, weight)
+  draw(ctx, text, x, y + (options.size - size) / 2, { ...options, weight, size })
+}
+
+function box(ctx, x, y, w, h, color, radius = 24) {
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.roundRect(x, y, w, h, radius)
+  ctx.fill()
+}
+
+function drawIdentity(ctx, profile, presentation) {
+  const { name, job, location } = presentation
+  const age = profile.age && !/ ans\b| et /i.test(name) ? `, ${profile.age} ans` : ''
+  type(ctx, 78, 800)
+  const long = ctx.measureText(name + age).width > width
+  if (long) {
+    type(ctx, 47, 800)
+    const words = name.trim().split(/\s+/), first = []
+    while (words.length > 1 && ctx.measureText([...first, words[0]].join(' ')).width <= width) first.push(words.shift())
+    if (first.length) draw(ctx, first.join(' '), 540, 25, { size: 47, weight: 800, align: 'center' })
+    type(ctx, 47, 800)
+    draw(ctx, fit(ctx, words.join(' '), width - ctx.measureText(age).width) + age,
+      540, first.length ? 79 : 52, { size: 47, weight: 800, align: 'center' })
+  } else draw(ctx, name + age, 540, 47, { size: 78, weight: 800, align: 'center' })
+
+  const household = budgetProfileHousehold(presentation.household)
+    .replace(/^Couple de (\d+) et (\d+) ans/, '$1 et $2 ans')
+    .replace(/ · sans enfant/i, ' sans enfant')
+    .replace(/un enfant de (\d+) ans pendant les vacances/i, '1 enfant')
+    .replace(/deux enfants de (\d+) et (\d+) ans/i, '2 enfants ($1 et $2 ans)')
+    .replace('trois enfants de 5, 8 et 11 ans · relais familial après l’école', '3 enfants · relais familial')
+    .replace('Sylvie, 62 ans · couple marié · maison payée · enfants indépendants', 'Sylvie, 62 ans · maison payée · couple')
+  const compactJob = job?.includes(' · ') ? job
+    .replace(/(?:^| · )[^:·]+ : /g, part => part.startsWith(' · ') ? ' · ' : '')
+    .replace(/assistante administrative/i, 'assistante admin.')
+    .replace(/technicien de maintenance/i, 'technicien maintenance')
+    .replace(/agente d’entretien à temps partiel/i, 'agente d’entretien (temps partiel)')
+    .replace('Assistante dentaire et préparateur de commandes · tous deux à 60 %', 'Assistante dentaire et préparateur · 60 %')
+    .replace(/préparateur de commandes/i, 'préparateur commandes') : job
+  const context = [location?.replace(/^Agglomération lilloise$/i, 'Région lilloise'), household].filter(Boolean).join(' · ')
+  if (compactJob) draw(ctx, compactJob, 540, 140, { size: 35, weight: 650, align: 'center', max: width })
+  if (context) draw(ctx, context, 540, job ? 193 : 158, { size: 31, color: colors.muted, align: 'center', max: width })
+}
+
+function drawIncome(ctx, profile, plan, money) {
+  const { totals, netSalary, showAllocation } = plan
+  box(ctx, margin, 250, width, 207, colors.green, 30)
+  draw(ctx, plan.incomeLabel?.toUpperCase() || (netSalary ? 'SALAIRE NET MENSUEL' : 'REVENUS MENSUELS'), 540, showAllocation ? 271 : 290,
+    { size: 25, weight: 750, color: colors.mint, align: 'center' })
+  drawAmount(ctx, (profile.approximate ? '≈ ' : '') + money(totals.income), 540, showAllocation ? 305 : 325, width - 60,
+    { size: 78, color: colors.white, align: 'center' })
+  if (!showAllocation) return
+  const x = margin + 28, y = 413, w = width - 56, h = 20
+  ctx.save()
+  ctx.beginPath()
+  ctx.roundRect(x, y, w, h, h / 2)
+  ctx.clip()
+  let cursor = x
+  for (const [amount, color] of [[totals.expenses, colors.salmon], [totals.savings, colors.mint], [totals.balance, colors.gold]]) {
+    const segment = amount / totals.income * w
+    ctx.fillStyle = color
+    ctx.fillRect(cursor, y, segment, h)
+    cursor += segment
+  }
+  ctx.restore()
+}
+
+function drawTotals(ctx, plan, money) {
+  const { totals: a } = plan
+  const average = plan.presentation.averageBeforeInvestments
+  const card = (width - 2 * 15) / 3
+  const data = [
+    ['Dépenses', a.expenses, colors.salmon],
+    [plan.plan.planned ? plan.plan.label : 'Versements', a.savings, colors.mint],
+    [average ? 'Solde moyen' : (plan.plan.planned || plan.presentation.projected) ? (a.balance < 0 ? 'Déficit prévu' : 'Reste prévu') : a.balance < 0 ? 'Reste négatif' : 'Reste disponible', a.balance, colors.gold],
+  ]
+  data.forEach(([label, amount, color], index) => {
+    const x = margin + index * (card + 15), center = x + card / 2
+    box(ctx, x, 480, card, 130, color)
+    drawAmount(ctx, average && index === 1 ? 'Non isolés' : index === 2 ? plan.balanceText : money(amount), center, 491, card - 22, { size: 47, align: 'center' })
+    draw(ctx, label, center, 555, { align: 'center', size: 29, weight: 600 })
+  })
+}
+
+const labelBySymbol = {
+  housing: 'Logement', energy: 'Énergie', food: 'Alimentation', transport: 'Transport',
+  education: 'École', child: 'Enfants', bills: 'Factures', health: 'Santé', clothing: 'Vêtements',
+  insurance: 'Assurance', childcare: 'Garde', care: 'Entretien', tax: 'Impôts', gift: 'Cadeaux',
+  dining: 'Repas', leisure: 'Loisirs', investment: 'Placement', savings: 'Épargne', debt: 'Crédit',
+}
+function detailLabel(ctx, row, room, index, transfer) {
+  for (const size of [SOCIAL_BODY_SIZE, 29, 27]) {
+    type(ctx, size)
+    if (ctx.measureText(row.label).width <= room) return { text: row.label, size }
+  }
+  const { kind } = budgetRowSymbol(row.members[0], transfer ? 'savings' : 'expenses')
+  const status = transfer && row.label.match(/ · (prévu|versé|budget)$/u)?.[1]
+  const name = labelBySymbol[kind] || (transfer ? 'Versement' : 'Dépense')
+  const number = index + 1
+  const fallback = `${name} ${number}${status ? ' · ' + status : ''}`
+  const compact = status ? `${status[0].toUpperCase() + status.slice(1)} ${number}` : `Poste ${number}`
+  return { text: ctx.measureText(fallback).width <= room ? fallback : compact, size: 27 }
+}
+
+function detailCard(ctx, x, y, height, title, total, rows, background, money) {
+  box(ctx, x, y, column, height, background)
+  draw(ctx, title, x + column / 2, y + 20, { size: 28, weight: 750, align: 'center' })
+  if (total !== undefined) drawAmount(ctx, money(total), x + column / 2, y + 59, column - 45, { size: 32, align: 'center' })
+  if (!rows.length) return
+  const start = total === undefined ? 80 : 107
+  const step = Math.min(total === undefined ? 46 : 51, (height - start - 13) / rows.length)
+  for (const [index, row] of rows.entries()) {
+    const yy = y + start + step * index
+    const amount = money(row.amount)
+    type(ctx, SOCIAL_BODY_SIZE, 650)
+    const room = column - 58 - ctx.measureText(amount).width
+    const label = detailLabel(ctx, row, room, index, total === undefined)
+    draw(ctx, label.text, x + 23, yy, { size: label.size })
+    draw(ctx, amount, x + column - 23, yy, { align: 'right', weight: 650 })
+  }
+}
+
+export async function renderSocialBudgetImage(profile) {
+  await loadBudgetFont()
+  const plan = planSocialBudget(profile)
+  const canvas = document.createElement('canvas')
+  Object.assign(canvas, SOCIAL_SIZE)
+  const ctx = canvas.getContext('2d')
+  const money = value => euro(value, profile.currency)
+  ctx.fillStyle = colors.cream
+  ctx.fillRect(0, 0, SOCIAL_SIZE.width, SOCIAL_SIZE.height)
+  drawIdentity(ctx, profile, plan.presentation)
+  drawIncome(ctx, profile, plan, money)
+  drawTotals(ctx, plan, money)
+
+  const [[fixed], [flexible]] = plan.expenses
+  const x = margin + column + gap
+  detailCard(ctx, margin, detailsY, detailsHeight, fixed.title,
+    fixed.amount, fixed.rows, colors.fixed, money)
+  const flexibleHeight = plan.transferRows.length ? Math.max(156, 110 + 37 * flexible.rows.length) : detailsHeight
+  detailCard(ctx, x, detailsY, flexibleHeight, flexible.title, flexible.amount, flexible.rows, colors.flexible, money)
+  if (plan.transferRows.length) {
+    detailCard(ctx, x, detailsY + flexibleHeight + 18, detailsHeight - flexibleHeight - 18, plan.plan.label,
+      undefined, plan.transferRows, colors.savings, money)
+  }
+
+  box(ctx, margin, 1180, width, 85, colors.capacity)
+  draw(ctx, plan.presentation.averageBeforeInvestments ? 'Solde moyen avant placements' : plan.totals.available < 0 ? 'Déficit avant versements' : 'Capacité d’épargne',
+    margin + 28, 1202, { size: 35, weight: 750 })
+  drawAmount(ctx, money(plan.totals.available), width + margin - 28, 1195, 410, { size: 43, align: 'right' })
+  draw(ctx, 'ÉPARGNANT LIBRE', 540, 1302, { size: 23, weight: 800, color: colors.green, align: 'center' })
   return canvas
 }

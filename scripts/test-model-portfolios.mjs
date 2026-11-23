@@ -25,8 +25,15 @@ for (const family of MODEL_FAMILIES) {
       assert.ok(Math.abs(expected - p.perf[year]) < 1e-10)
     }
     const text = renderTweetText(p)
-    assert.ok(text.includes(`${family.emoji} ${preset.label}`))
-    assert.ok(text.includes(preset.thesis), 'The explanation must be present in the copied post')
+    assert.ok(text.startsWith(family.emoji))
+    assert.ok(text.includes('Et voici ce que ce type de portefeuille aurait donné'))
+    assert.ok(text.endsWith('Pas un conseil financier.'))
+    assert.equal(text.split('\n').filter(line => /^\S+ \d+(?:,\d+)? % /.test(line)).length, p.selection.length)
+    if (family.id === 'all-weather' && preset.id === 'euro') {
+      assert.match(text, /Voici un exemple de portefeuille All Weather avec des obligations en euros/)
+      assert.match(text, /7,5 % Invesco Bloomberg Commodity\nUn panier de matières premières/)
+      assert.match(text, /En 2022|en 2022/)
+    }
     assert.deepEqual(getReplacementCandidates(p, p.selection[0].id), [])
     const manual = buildManualPortfolio(p.selection, 'generaliste', [p])
     assert.deepEqual(manual.perf, p.perf)
@@ -34,7 +41,7 @@ for (const family of MODEL_FAMILIES) {
     assert.deepEqual(buildModelPortfolio(family.id, preset.id, [p]).selection, p.selection)
   }
 }
-assert.equal(signatures.size, 10)
+assert.equal(signatures.size, MODEL_FAMILIES.reduce((count, family) => count + family.presets.length, 0))
 assert.equal(JSON.stringify(MODEL_FAMILIES), before)
 const permanent = buildModelPortfolio('permanent', 'euro')
 assert.deepEqual(permanent.selection.map(row => row.pct), [25,25,25,25])
@@ -48,7 +55,7 @@ for (const equity of [40,60,80]) {
 }
 assert.throws(() => getModelFamily('missing'), /inconnue/)
 assert.throws(() => buildModelPortfolio('permanent', '60-40'), /inconnue/)
-console.log('Modèles : 6 familles, 10 allocations, explications publiées, calcul EUR et édition validés.')
+console.log(`Modèles : ${MODEL_FAMILIES.length} familles, ${signatures.size} allocations, calcul EUR et édition validés.`)
 
 // Pin identities and sleeve weights, not refreshed market values or observation dates.
 const referenceSupports = {
@@ -94,3 +101,30 @@ for (const [id, expectedSupports] of Object.entries(referenceSupports)) {
 assert.deepEqual(getModelFamily('ivy').reference.map(r => r.pct), [20,20,20,20,20])
 assert.deepEqual(getModelFamily('swensen').reference.map(r => r.pct), [30,15,5,20,15,15])
 console.log('Ivy et Swensen : identités exactes, sources NAV/cours distinctes, absence de proxy, fixings BCE et capitalisation indépendante validés.')
+
+
+const newModels = [
+  ['larry', 'euro', [['IE00B4WXJG34',70],['IE00BSPLC298',15],['IE00BSPLC413',8],['IE00B469F816',7]]],
+  ['merriman', 'ucits', [['IE00B5BMR087',25],['IE00BD1F4M44',25],['IE00BJ38QD84',25],['IE00BSPLC413',25]]],
+  ['pinwheel', 'euro', [['IE00B4K48X80',15],['IE00B5BMR087',15],['IE00BSPLC298',10],['IE00B469F816',10],['IE00B4WXJG34',15],['LU0290358497',10],['IE00B1FZSF77',15],['IE00B579F325',10]]],
+]
+for (const [id, preset, expectedSupports] of newModels) {
+  const family = getModelFamily(id)
+  const portfolio = buildModelPortfolio(id, preset)
+  assert.deepEqual(portfolio.selection.map(row => [row.isin, row.pct]), expectedSupports)
+  assert.deepEqual(family.reference.map(row => row.pct), expectedSupports.map(([, weight]) => weight))
+  assert.ok(portfolio.selection.every(row => !SIMULATION_PROXIES[row.isin]))
+  assert.ok(renderTweetText(portfolio).includes(family.label.split(' · ')[0]))
+}
+const pinwheel = buildModelPortfolio('pinwheel', 'euro')
+const property = pinwheel.selection.find(row => row.isin === 'IE00B1FZSF77')
+const propertySource = getInstrumentAnnualPerformance(property.isin)
+assert.equal(propertySource.basis, 'fund')
+assert.equal(propertySource.currency, 'USD')
+assert.match(propertySource.source, /ishares/)
+for (const year of performanceYears(pinwheel.perf)) {
+  const native = getAsset(property.id).calendarReturns[year]
+  const expected = ((1 + native / 100) * fx.months[`${year - 1}-12`].rates.USD / fx.months[`${year}-12`].rates.USD - 1) * 100
+  assert.ok(Math.abs(expected - assetReturn(property, year)) < 1e-10)
+}
+console.log('Larry, Merriman et Pinwheel : allocations, supports et conversion de la poche immobilière validés.')

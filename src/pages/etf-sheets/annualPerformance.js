@@ -35,14 +35,16 @@ export function performanceImageHeading(series) {
 }
 
 // Les observations datées (YTD, depuis le lancement…) ne deviennent pas des années complètes.
-export function formatTweetPerformance(series, { includeIcon = true } = {}) {
+export function formatTweetPerformance(series, { includeIcon = true, annualOnly = false } = {}) {
   const entries = performanceEntries(series)
+    .filter(({ label }) => !annualOnly || /^\d{4}$/.test(label))
+  if (annualOnly && !entries.length) return ''
   const heading = series.sourceKind === 'adjusted-market-price' ? 'Performances annuelles · cours ajustés, distributions réinvesties' : !entries.length ? 'Historique de performance' : series.values.some(Number.isFinite) ? 'Performances annuelles' : 'Performances sur les périodes publiées'
   const lines = entries.map(({ label, value, asOf }) => `${value < 0 ? '🔴' : '🟢'} ${label} : ${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %${asOf ? ` (au ${formatPerformanceDate(asOf)})` : ''}`)
   const method = series.sourceKind === 'adjusted-market-price' ? ''
     : /NAV/i.test(series.method ?? '') ? /income|revenus/i.test(series.method ?? '')
-      ? 'Valeur liquidative, revenus réinvestis, frais du fonds inclus.'
-      : 'Valeur liquidative, frais inclus.'
+      ? annualOnly ? 'Revenus réinvestis, frais inclus.' : 'Valeur liquidative, revenus réinvestis, frais du fonds inclus.'
+      : annualOnly ? 'Frais inclus.' : 'Valeur liquidative, frais inclus.'
     : /share total return/i.test(series.method ?? '') ? 'Performance de la part, revenus réinvestis, frais du fonds inclus.' : ''
   return `${includeIcon ? '📈 ' : ''}${heading} (${series.currency})\n${lines.length ? lines.join('\n') : series.note}${method ? '\n'+method : ''}`
 }

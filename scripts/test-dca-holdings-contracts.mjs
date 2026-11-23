@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import {projectDcaHoldings,isSyntheticReplication} from './lib/dca-holdings-projection.mjs'
 import {portfolioAnalytics} from '../src/pages/dca-profiles/analytics.js'
 const now=new Date('2026-10-29T12:00:00Z'),asOf='2026-10-28',sourceUrl='https://issuer.example/full'
@@ -64,10 +65,13 @@ for(const [asset,isin] of [['world','IE00B4L5Y983'],['sp500','IE00B5BMR087'],['n
 }
 console.log('Holdings contracts: shared completeness, real source metadata, stale/incompatible/neutral/synthetic safeguards, exact identifiers and no double counting verified.')
 
+// Exact peer books from 3aecd11e, dated 12 November. Keep the historical
+// regression isolated from the moving production registry checked above.
+const historicalPeers=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/qualified-cash-rights/overlap-peers-20261112.json.gz')))
+
 // Same actual World Small Cap photograph before/after the documented Akero
 // cash-only right qualification. Never zero, renormalise or map it to Novo.
 {
- const {gunzipSync}=await import('node:zlib')
  const fixture=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/qualified-cash-rights/IE00BF4RFH31-qualified.json.gz')))
  const {qualifyHoldings}=await import('../src/pages/dca-profiles/holdings-qualification.js')
  const now=new Date('2026-11-13T15:00:00Z'),isin='IE00BF4RFH31',ref={isin},line={isin}
@@ -78,15 +82,15 @@ console.log('Holdings contracts: shared completeness, real source metadata, stal
  assert.ok(Math.abs(qualified.sourceCoverage-99.58645)<1e-9)
  assert.equal(fixture.record.navReconciliation.normalizationApplied,false)
  assert.equal(fixture.record.qualifiedExcludedPositions[0].sourcePosition.weightPct,.0003)
- const refs={x:ref,y:{isin:'IE00BSPLC413'}},lines=[{asset:'x',isin,label:'Small',weight:50},{asset:'y',isin:refs.y.isin,label:'Value',weight:50}],observations={x:fixture.record,y:canonical[refs.y.isin]}
+ const refs={x:ref,y:{isin:'IE00BSPLC413'}},lines=[{asset:'x',isin,label:'Small',weight:50},{asset:'y',isin:refs.y.isin,label:'Value',weight:50}],observations={x:fixture.record,y:historicalPeers[refs.y.isin]}
  const a=portfolioAnalytics(lines,refs,observations,now),b=portfolioAnalytics([...lines].reverse(),refs,observations,now)
+ assert.equal(a.pairs.length,1,JSON.stringify({qualification:a.qualification,incompatiblePairs:a.incompatiblePairs}));
  assert.equal(a.pairs[0].full,true);assert.ok(Number.isFinite(a.pairs[0].overlap));assert.deepEqual(a.pairs,b.pairs)
  assert(!a.pairs[0].companyCommon.some(row=>row.name==='AKERO THERAPEUTICS CVR'))
  console.log('World Small Cap: qualified cash right retained with original NAV; full company overlap restored on the real source fixture; order invariant.')
 }
 
 {
- const {gunzipSync}=await import('node:zlib')
  const fixture=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/qualified-cash-rights/IE00BYXG2H39-qualified.json.gz')))
  const {qualifyHoldings}=await import('../src/pages/dca-profiles/holdings-qualification.js')
  const now=new Date('2026-11-13T15:00:00Z'),isin='IE00BYXG2H39',ref={isin}
@@ -94,8 +98,9 @@ console.log('Holdings contracts: shared completeness, real source metadata, stal
  assert.equal(qualifyHoldings(fixture.record,{isin},ref,now).complete,true)
  assert.equal(fixture.record.qualifiedExcludedPositions.length,2)
  assert.equal(fixture.record.navReconciliation.normalizationApplied,false)
- const refs={x:ref,y:{isin:'IE00BYZK4776'}},lines=[{asset:'x',isin,label:'Biotech',weight:50},{asset:'y',isin:refs.y.isin,label:'Healthcare',weight:50}],observations={x:fixture.record,y:canonical[refs.y.isin]}
+ const refs={x:ref,y:{isin:'IE00BYZK4776'}},lines=[{asset:'x',isin,label:'Biotech',weight:50},{asset:'y',isin:refs.y.isin,label:'Healthcare',weight:50}],observations={x:fixture.record,y:historicalPeers[refs.y.isin]}
  const a=portfolioAnalytics(lines,refs,observations,now),b=portfolioAnalytics([...lines].reverse(),refs,observations,now)
+ assert.equal(a.pairs.length,1,JSON.stringify({qualification:a.qualification,incompatiblePairs:a.incompatiblePairs}));
  assert.equal(a.pairs[0].full,true);assert.ok(Number.isFinite(a.pairs[0].overlap));assert.deepEqual(a.pairs,b.pairs)
  console.log('Biotech: both documented cash-only rights retained outside company shares; complete overlap restored on exact native fixture.')
 }

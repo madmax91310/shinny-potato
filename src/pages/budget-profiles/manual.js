@@ -1,10 +1,12 @@
 import { EXPENSE_CATEGORIES } from './data.js'
 import { budgetPublicBasis, budgetQualification } from './presentation.js'
 import { monthlyProvision } from './row-input.js'
-import { blankBudget, budgetDisplayName, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicSavingsRows, buildBudgetText } from './lib.js'
+import { blankBudget, budgetDisplayName, budgetPublicPresentation, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetTransferPlan, buildBudgetText } from './lib.js'
 import { budgetFinancialReference } from './completion.js'
 
 const copyRow = row => ({ label: row.label, amount: row.amount,
+  ...(row.inKind && { inKind: true }), ...(row.transferStatus && { transferStatus: row.transferStatus }),
+  ...(row.constraint && { constraint: row.constraint }),
   ...(row.category && { category: EXPENSE_CATEGORIES.some(c => c.id === row.category) ? row.category : 'other' }),
 })
 const copyExpenseRow = row => ({ ...copyRow(row),
@@ -16,7 +18,7 @@ export function duplicateBudget(record, id, now = new Date().toISOString()) {
     job: [person.job, !/budget prévu/i.test(person.job) && budgetQualification(p)].filter(Boolean).join(' · '), household: person.household, location: person.location, period: p.period,
     country: p.country || '', family: p.family || '', children: p.children || '', housing: p.housing || '',
     approximate: p.approximate, incomeBasis: budgetPublicBasis(p, person.basis), incomeNote: person.incomeNote, capacity: p.capacity,
-    income: (personal ? p.income : budgetPublicIncomeRows(p)).map(copyRow), expenses: (personal ? p.expenses : budgetPublicExpenseRows(p)).map(copyExpenseRow), savings: (personal ? p.savings : budgetPublicSavingsRows(p)).map(copyRow),
+    income: (personal ? p.income : budgetPublicIncomeRows(p)).map(copyRow), expenses: (personal ? p.expenses : budgetPublicExpenseRows(p)).map(copyExpenseRow), savings: personal ? p.savings.map(copyRow) : budgetTransferPlan(p).rows.map(row => copyRow({ ...row, label: row.manualLabel || row.label, transferStatus: row.status === 'budgeted' ? undefined : row.status })),
     context: personal ? p.context : '', question: personal ? p.question : '',
     provenance: { nature: 'manual-copy', copiedAt: now, copiedFrom: { id: p.id, source: p.source, period: p.period },
       originalLines: structuredClone({ income: p.income, expenses: p.expenses, savings: p.savings }),

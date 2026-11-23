@@ -1,8 +1,40 @@
+import { REVIEWED_EXPOSURE_COPY } from './etf-presentation-copy.js';
+
 // Parts exactes sélectionnées le 11/10/2026. Données variables dans automated-etf.json.
 // Simulation uniquement après qualification explicite et raccordement du 15/10/2026.
 // Compléments revus le 15/10/2026 : fiches officielles DWS, Amundi, L&G et DIC Avantis.
 // Confiance élevée sur les caractéristiques ; observations variables importées par ISIN.
 export const PRESENTATION_ETF_ADDITIONS = [
+// iShares, fiche officielle et cotation Amsterdam contrôlées le 22/11/2026.
+{
+  id: 'us-property-ishares',
+  portfolioEnabled: true,
+  isin: 'IE00B1FZSF77',
+  name: 'iShares US Property Yield UCITS ETF USD (Dist)',
+  category: 'Sectoriels classiques',
+  ter: '0,40',
+  source: 'https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf',
+  benchmark: 'FTSE EPRA Nareit US Dividend+ Net of Tax Index (USD)',
+  incomePolicy: 'distributing',
+  replicationMethod: 'Physical',
+  domicile: 'Irlande',
+  location: 'Irlande, réplication physique',
+  distribution: 'Distribuant (trimestriel)',
+  listing: {
+    ticker: 'IUSP',
+    exchange: 'Euronext Amsterdam',
+    mic: 'XAMS',
+    currency: 'EUR',
+    sourceUrl: 'https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf',
+    checkedAt: '2026-11-22',
+    evidenceId: 'IE00B1FZSF77-XAMS-IUSP-EUR',
+  },
+  listingExcerpt: 'Euronext Amsterdam | IUSP | EUR | 22/Jan/2007 | B1N9M26 | IUSP NA | IUSP.AS',
+  ...REVIEWED_EXPOSURE_COPY['us-property-ishares'],
+  verdict: 'Une exposition à l’immobilier coté américain, avec les variations de la Bourse et du dollar.',
+  reviewedAt: '22/11/2026',
+  characteristicsCheckedAt: '2026-11-22',
+},
 {
   "id": "world-healthcare-xtrackers",
   "portfolioEnabled": true,
@@ -322,5 +354,36 @@ export const PRESENTATION_ETF_ADDITIONS = [
     "whatToKnow": "Les versements sont variables et le capital peut baisser. La vente d’options peut limiter la participation à certaines hausses ; un revenu élevé ne garantit pas une bonne performance totale.",
     "verdict": "Le gérant choisit des actions mondiales et ajoute une stratégie de vente d’options.",
     "question": "Tu préfères recevoir un revenu mensuel ou laisser les revenus investis dans un ETF mondial classique ?"
-  }
+  },
+{
+  "id": "ftse-global-all-cap-vanguard",
+  "isin": "IE000VAHT5T0",
+  "name": "Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating",
+  "category": "Cœur de portefeuille",
+  "ter": "0,07",
+  "source": "https://www.vanguard.co.uk/professional/product/etf/equity/E161/vanguard-ftse-global-all-cap-ucits-etf-usd-acc",
+  "benchmark": "FTSE Global All Cap Index",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Sampled)",
+  "domicile": "Irlande",
+  "listing": {
+    "ticker": "VGLA",
+    "exchange": "Xetra",
+    "mic": "XETR",
+    "currency": "EUR",
+    "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/E161/vanguard-ftse-global-all-cap-ucits-etf-usd-acc",
+    "checkedAt": "2026-11-18",
+    "evidenceId": "IE000VAHT5T0-XETR-VGLA-EUR"
+  },
+  "reviewedAt": "18/11/2026",
+  "characteristicsCheckedAt": "2026-11-18",
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique par échantillonnage",
+  "hook": "Les petites entreprises ont aussi leur place dans un ETF mondial. Voici ce que le Vanguard FTSE Global All-Cap ajoute à un All-World 👇",
+  "whatIs": "Tu suis les grandes, moyennes et petites entreprises des pays développés et émergents à travers le FTSE Global All Cap. Le fonds achète un échantillon représentatif des actions de cet indice et réinvestit les dividendes.",
+  "whyInteresting": "Tu réunis les trois tailles d’entreprises dans une seule ligne mondiale. Les petites capitalisations complètent la couverture des grands et moyens groupes du FTSE All-World, sans avoir à gérer un deuxième ETF.",
+  "whatToKnow": "Les poids suivent les capitalisations boursières : les grands groupes conservent donc une place importante. La cotation en euros ne couvre pas le risque de change. Lancée en août 2026, cette part ne dispose pas encore d’une année civile complète de performance.",
+  "verdict": "Tu réunis les trois tailles d’entreprises dans une seule ligne mondiale.",
+  "question": "Tu choisirais un ETF mondial qui inclut aussi les petites entreprises ?"
+}
 ];

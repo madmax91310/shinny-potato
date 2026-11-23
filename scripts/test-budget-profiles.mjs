@@ -13,7 +13,7 @@ import './test-budget-completeness.mjs'
 import assert from 'node:assert/strict'
 import './test-budget-editorial-context.mjs'
 import { createHash } from 'node:crypto'
-import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_COMPLETENESS } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_BEFORE_COHERENCE, BUDGET_COMPLETENESS } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, budgetImageExpenses, budgetPublicIncomeRows, budgetPublicExpenseRows, budgetPublicPresentation, buildBudgetText, compareBudgetRecency, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 
@@ -32,14 +32,14 @@ for (const p of BUDGET_PROFILES) {
   assert(!text.includes('Situation familiale non précisée'))
   assert(!/prénoms? fictifs?|scénario mensuel préparé|données de 2025|l’auteur|sa femme|la personne|placeholder|\.json|PR #/i.test(text), p.id)
   assert.equal(typeof BUDGET_EDITORIAL[p.id]?.publicIncomeNote, 'string', `Every profile needs a contextual editorial review: ${p.id}`)
-  for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), 'Even a single resource is detailed')
+  for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} :`) && text.includes(euro(row.amount, p.currency)), 'Even a single resource is detailed')
   assert(!/budget personnel/i.test(text), p.id)
   const a = analyzeBudget(p)
-  const sumCents = key => p[key].reduce((n, r) => n + Math.round(r.amount * 100), 0)
+  const sumCents = key => p[key].reduce((n, r) => n + (r.inKind ? 0 : Math.round(r.amount * 100)), 0)
   assert.equal(Math.round(a.balance * 100), sumCents('income') - sumCents('expenses') - sumCents('savings'))
   assert(Math.abs(a.expenseShare - 100 * sumCents('expenses') / sumCents('income')) < 1e-10)
 
-  for (const row of budgetPublicExpenseRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), row.label)
+  for (const row of budgetPublicExpenseRows(p)) assert(text.includes(`${row.label} :`) && text.includes(euro(row.amount, p.currency)), row.label)
   const sections = budgetExpenseSections(p)
   assert.deepEqual(sections.flatMap(s => s.rows).map(r => r.label).sort(), budgetPublicExpenseRows(p).map(r => r.label).sort(), 'Every expense appears once')
   if (p.kind === 'planned') assert.match(text, /budget prévu/i)
@@ -51,18 +51,18 @@ for (const p of BUDGET_PROFILES) {
 assert.equal(new Set(BUDGET_PROFILES.map(budgetDisplayName)).size, BUDGET_PROFILES.length)
 for (const id of Object.keys(BUDGET_EDITORIAL)) assert(BUDGET_PROFILES.some(p => p.id === id), id)
 const grouped = BUDGET_PROFILES.find(p => p.id === 'finary-alternant-22-2025-05-15')
-assert.equal(budgetExpenseSections(grouped).length, 1)
+assert(budgetExpenseSections(grouped).some(section => section.id === 'mixed'))
 assert.match(buildBudgetText(grouped), /livret|Livret/, 'The earlier capital withdrawal stays distinct from newly funded transfers')
 const detailed = BUDGET_PROFILES.find(p => p.id === 'finary-alternant-19-2025-09-27')
 assert.equal(budgetExpenseSections(detailed).length, 2)
-assert.equal(budgetExpenseSections({ ...detailed, expenses: [...detailed.expenses, { label: 'Poste non ventilé', amount: 10 }] }).length, 1)
-assert(buildBudgetText(detailed).includes(`Reste avant épargne et investissements : ${euro(analyzeBudget(detailed).available)}`))
-assert(buildBudgetText(detailed).includes(`Reste après épargne et investissements : ${euro(analyzeBudget(detailed).balance)}`))
+assert.equal(budgetExpenseSections({ ...detailed, expenses: [...detailed.expenses, { label: 'Poste non ventilé', amount: 10 }] }).find(section => section.id === 'mixed').rows.at(-1).amount, 10)
+assert(buildBudgetText(detailed).includes(`Capacité d’épargne : ${euro(analyzeBudget(detailed).available)}`))
+assert(buildBudgetText(detailed).includes(`Déficit après versements : ${euro(4.99)}`))
 assert(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30').expenses.some(row => row.label === 'Impôts' && row.amount === 260), 'Simplifying the wage keeps the tax expense')
 assert(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21').expenses.some(r=>/vacances/i.test(r.label)), 'Previously unfinanced holidays now have an explicit provision')
 const techText = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'reddit-tech-26-2026-02-06'))
-assert(techText.includes(`Reste avant épargne : ${euro(830)}`))
-assert(techText.includes(`Reste après épargne : ${euro(230)}`))
+assert(techText.includes(`Capacité d’épargne : ${euro(830)}`))
+assert(techText.includes(`Reste après versements : ${euro(230)}`))
 assert(techText.includes('2 400 €'), 'The created starting reserve is explicit in the editorial story')
 const generatedDraft = { profile: structuredClone(BUDGET_PROFILES[0]), text: 'Ancien texte généré', edited: false }
 assert.equal(refreshBudgetDraft(generatedDraft).text, buildBudgetText(BUDGET_PROFILES[0]))
@@ -110,7 +110,7 @@ for (const [id, income, expenses, savings, balance] of [
 }
 const swiss = BUDGET_PROFILES.find(p => p.currency === 'CHF')
 assert.equal(swiss.capacity, 3750, 'The source rounded average savings must not become a fabricated transfer or be silently changed')
-assert.match(buildBudgetText(swiss), /revenus exceptionnels inclus/)
+assert.match(buildBudgetText(swiss), /héritage et ventes inclus/)
 assert.match(buildBudgetText(swiss), /3 749|3\u202f749/)
 assert(!buildBudgetText(swiss).includes('€'), 'No euro label on the Swiss budget')
 assert.equal(euro(100, 'CHF'), '100 CHF')
@@ -160,10 +160,10 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 
 // Prepared budgets preserve source statements and may show a deficit; the independent new ledgers are tested separately.
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
-  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id) || p
+  const source = BUDGET_ORIGINAL_PROFILES.find(q=>q.id===p.id) || BUDGET_BEFORE_COHERENCE.find(q=>q.id===p.id)
   if (source.kind==='prepared') assert.equal(analyzeBudget(source).balance, source.provenance?.expectedBalance ?? 0, p.id)
   assert.match(sourceReply(p), /^Source(?: d’inspiration)? : /)
-  assert.match(buildBudgetText(p), /^Budget /)
+  assert.match(buildBudgetText(p), /^💰 Budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method || p.completion && BUDGET_COMPLETENESS[p.id].conclusion)
 }
@@ -241,7 +241,8 @@ const bankProfile = id => BUDGET_PROFILES.find(p => p.id === id)
 const futureStudent = bankProfile('finary-alternante-projet-2026-10-06')
 assert.equal(futureStudent.country, ''); assert.equal(futureStudent.family, ''); assert.equal(futureStudent.housing, '')
 assert.match(budgetPublicPresentation(futureStudent).balanceLabel, /Reste disponible après versements/, 'Living costs now appear in expenses, not hidden in a remainder label')
-assert.equal(futureStudent.income.length, 2, 'Exclude salary increases and allowances belonging to future months')
+assert.equal(futureStudent.income.length, 1, 'The base plan excludes housing aid without an established remaining rent')
+assert.equal(analyzeBudget(futureStudent).balance, 24.78)
 const engineerPlan = bankProfile('finary-ingenieur-colocation-projet-2026-08-18')
 assert.equal(engineerPlan.budgetAsOf, undefined, 'An ambiguous future school year cannot inherit the source publication date for sorting')
 assert.deepEqual(engineerPlan.savings, [], 'An undecided 750-euro option is not an actual or agreed transfer')

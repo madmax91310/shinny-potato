@@ -1,5 +1,8 @@
 """Source qualification, fee scopes and last-good retention regression tests."""
 import copy
+import datetime as dt
+import hashlib
+import tempfile
 import json
 import pathlib
 import unittest
@@ -24,6 +27,34 @@ class SaxoCurrentOfferTests(unittest.TestCase):
    with self.subTest(wrong=wrong[-100:]),self.assertRaises(ValueError):parse_supplement('saxo_offer',wrong,'2026-11-06')
 
 class BrokerTariffTests(unittest.TestCase):
+ def test_bourso_accessible_brochure_revalidates_the_same_scopes(self):
+  from collect_broker_tariffs import parse as parse_tariff
+  from broker_profiles import parse as parse_profile
+  from broker_tariff_extensions import base_supplements
+  # Official PDF SHA-256 5114f969770e781b5d09c5576597ce438dc8dc1f08dd911facf459febfba5838.
+  # The fixture keeps the relevant Poppler pages at their original positions.
+  text=fixture('bourso-labelled-20261118.txt'); today='2026-11-23'
+  tariff=parse_tariff('bourso',text,today)
+  self.assertEqual((tariff['asOf'],tariff['checkedAt'],tariff['page']),('2026-11-18',today,35))
+  self.assertEqual(tariff['values'],{'minimum':1.99,'threshold':500,'rate':.60})
+  order=parse_supplement('bourso_minimum_order',text,today)[2]
+  self.assertEqual((order['values'],order['page']),({'etfEuronext':100},47))
+  self.assertIn('PEA (boursomarkets)',order['statement'])
+  fields=base_supplements('bourso',text,tariff)
+  self.assertEqual(fields['sortant']['values'],{'perLine':15,'maximum':150})
+  self.assertEqual(fields['change']['values'],{'fxPoints':.0025})
+  plan=parse_profile('bourso','dca',{'boursoTariff':text},today)
+  self.assertIn('10 €/fonds/mois',plan['copy']['full'])
+  self.assertEqual(plan['refs'][0]['pages'],[37,38])
+  with self.assertRaisesRegex(ValueError,'plafond PEA'):
+   parse_tariff('bourso',text.replace('plafonnés à 0,50 %','plafonnés à 0,60 %',1),today)
+  with self.assertRaisesRegex(ValueError,'Minimum ETF différent'):
+   parse_supplement('bourso_minimum_order',text.replace('Etendus\n\n100 €','Etendus\n\n125 €',1),today)
+  with self.assertRaisesRegex(ValueError,'Comptes du minimum ETF'):
+   parse_supplement('bourso_minimum_order',text.replace('\nPEA (boursomarkets)\n','\nCTO (boursomarkets)\n'),today)
+  with self.assertRaises(ValueError):
+   parse_profile('bourso','dca',{'boursoTariff':text.replace('Commission de négociation\n\ngratuit','Commission de négociation\n\n1 €')},today)
+
  def test_bourso_etf_minimum_requires_matching_account_columns(self):
   from collect_broker_tariffs import parse as parse_tariff
   text=fixture('bourso.txt')
@@ -110,6 +141,38 @@ class BrokerTariffTests(unittest.TestCase):
   with self.assertRaises(ValueError):parse_supplement('tr_direct',fixture('tr_direct.txt').replace('2 €','3 €'),TODAY)
   self.assertIn('ne qualifie pas',results['tr_transfer_cto']['copy']['full'])
   with self.assertRaises(ValueError):parse_supplement('saxo_transfer',fixture('saxo_transfer.txt').replace('facturation','inconnu'),TODAY)
+ def test_current_broker_proofs_are_dated_and_retained_results_cannot_close_incidents(self):
+  from collect_broker_tariffs import build_report
+  from producer_report_contract import finish
+  from producer_report_plans import build_plan
+  from publish_automation_status import read_report
+  stamp = dt.datetime(2026, 11, 23, 10, tzinfo=dt.timezone.utc)
+  today = stamp.date().isoformat()
+  source = SOURCES['bourso']
+  tariff = {'sourceUrl': source, 'asOf': '2026-11-18'}
+  baseline = {'brokers': {'bourso': {**tariff, 'profile': {
+    'dca': {'sourceUrl': source, 'checkedAt': today},
+    'cash': {'sourceUrl': source, 'checkedAt': today},
+  }}}}
+  failures = {key: 'Read failed' for key in SUPPLEMENT_SOURCES}
+  failures.update({'bourso:profile:cash': 'Retained from an earlier attempt', 'bourso:extras': 'Fields not revalidated'})
+  report = build_report(baseline, failures, ['bourso'], today, stamp, 'broker-observation')
+  self.assertEqual(report['successfulSources'], ['bourso', 'bourso:profile:dca'])
+  plan = {**build_plan('collect_broker_tariffs', [], report_stem='broker-observation'), 'producer': 'collect_broker_tariffs',
+          'reportStem': 'broker-observation', 'declaredAt': (stamp - dt.timedelta(minutes=1)).isoformat(),
+          'nonce': 'isolated-test'}
+  plan['sha256'] = hashlib.sha256(json.dumps(plan, sort_keys=True).encode()).hexdigest()
+  with tempfile.TemporaryDirectory() as tmp:
+   path = pathlib.Path(tmp)/'broker-observation.json'
+   path.write_text(json.dumps(finish(report, plan)))
+   observed = read_report(path, 'update-regulatory-data.yml')
+  proof = {row['id']: row for row in observed['successes']}
+  self.assertTrue(proof['broker-observation:bourso']['verifiedInAttempt'])
+  self.assertEqual(proof['broker-observation:bourso']['asOf'], '2026-11-18')
+  self.assertEqual(proof['broker-observation:bourso:profile:dca']['checkedAt'], stamp.isoformat())
+  self.assertNotIn('broker-observation:bourso:profile:cash', proof)
+  self.assertIn('broker-observation:bourso:profile:cash', {row['id'] for row in observed['errors']})
+
  def test_source_failure_retains_independent_fields_and_recovers(self):
   baseline={'schemaVersion':1,'brokers':{'saxo':{'asOf':'2026-05-05','checkedAt':'2026-10-01','fields':{'offerPea':{'copy':{'full':'previous qualified offer'}}}}}}
   original=copy.deepcopy(baseline)

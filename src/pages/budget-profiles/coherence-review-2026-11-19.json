@@ -1,0 +1,176 @@
+{
+  "finary-cyber-24-2026-08-27": {
+    "amounts": {
+      "Vêtements": 60,
+      "Provision cadeaux": 30
+    },
+    "budget": {
+      "expenseLabels": {
+        "Loyer": "Logement hors factures",
+        "Transports": "Transports (enveloppe)"
+      },
+      "transferDetails": {
+        "Livret · échéances du prêt étudiant": {
+          "label": "Prêt étudiant",
+          "imageLabel": "Prêt étudiant · mis de côté",
+          "status": "paid",
+          "statement": "déjà mis de côté chaque mois",
+          "emoji": "🎓",
+          "order": 1,
+          "manualLabel": "Livret pour le prêt étudiant"
+        },
+        "Livret · précaution prévue": {
+          "label": "Réserve de sécurité",
+          "imageLabel": "Réserve prévue",
+          "status": "planned",
+          "statement": "prévus par mois",
+          "emoji": "🛟",
+          "order": 2
+        },
+        "PEA · premier versement prévu": {
+          "label": "Futur PEA",
+          "imageLabel": "Futur PEA",
+          "status": "planned",
+          "statement": "par mois s’il décide de l’ouvrir",
+          "emoji": "📈",
+          "order": 3
+        }
+      }
+    },
+    "paragraphs": [
+      "Adrien a 3 000 € sur un livret et n’a pas encore ouvert de PEA.",
+      "🎓 Il a un prêt étudiant de 15 000 €. Il met déjà 450 € par mois sur un livret pour préparer son remboursement."
+    ],
+    "questions": [
+      "À sa place, vous ouvririez le PEA maintenant ou vous attendriez d’avoir 6 000 € de réserve ?"
+    ],
+    "reason": "Relevé de référence et ajustement éditorial demandé. Vêtements 40 à 60 € et cadeaux 20 à 30 €. Les 40 € de transports sont une enveloppe de la fiche préparée, sans fréquence ni mode de trajet confirmé. Le poste logement n’établit pas un loyer. 450 € sur livret préparent le prêt, sans paiement bancaire. Les 500 € de réserve et 500 € de PEA sont prévus. L’échéancier et le délai restant ne sont pas confirmés."
+  },
+  "editorial-qualified-37301-2026-11-15": {
+    "budget": {
+      "transferDetails": {
+        "PEA": {
+          "status": "paid"
+        },
+        "Épargne PEL": {
+          "status": "paid"
+        },
+        "Épargne de moyen terme prévue": {
+          "label": "Épargne de moyen terme",
+          "imageLabel": "Moyen terme · prévu",
+          "status": "planned"
+        }
+      }
+    },
+    "reason": "Les 300 € de PEA et 45 € de PEL sont des versements en place. Les 200 € de moyen terme constituent un nouveau projet."
+  },
+  "editorial-qualified-40616-2026-11-15": {
+    "budget": {
+      "transferDetails": {
+        "Assurance-vie": {
+          "status": "paid"
+        },
+        "PEA · ETF World prévu": {
+          "status": "planned",
+          "imageLabel": "ETF World · prévu"
+        }
+      }
+    },
+    "reason": "L’assurance-vie est alimentée à 50 € par mois selon la source. Les trois lignes à 180, 180 et 90 € appartiennent à la répartition envisagée."
+  },
+  "editorial-roadmap-befire-first-home-2026-11-16": {
+    "budget": {
+      "transferDetails": {
+        "Réserve de précaution": {
+          "status": "planned",
+          "imageLabel": "Précaution · prévue"
+        },
+        "Épargne pour apport": {
+          "status": "planned",
+          "imageLabel": "Apport · prévu"
+        },
+        "ETF prévus": {
+          "status": "planned",
+          "imageLabel": "ETF · prévus"
+        },
+        "Épargne pension": {
+          "status": "paid",
+          "imageLabel": "Épargne-pension · versée"
+        }
+      }
+    },
+    "paragraphs": [
+      "Iris participe aux frais du logement de son compagnon. Son employeur prend en charge la voiture et le carburant. La ligne des courses correspond à ce qu’elle paie sur son compte, en plus des achats couverts par les chèques-repas.",
+      "Avec 1 500 € déjà disponibles, le plan prévoit 750 € par mois pendant deux mois pour atteindre 3 000 € de précaution, 600 € pour son apport et 100 € pour débuter en ETF. Elle verse déjà 87 € par mois à son épargne-pension, séparément de ces projets.",
+      "Une fois les 3 000 € atteints, elle pourrait porter l’apport à 1 000 € par mois : ces seuls versements représenteraient 59 200 € en cinq ans, avant imprévus. Le premier palier de 10 000 € ferait partie de cet apport. Même avec sa participation au logement portée de 375 à 500 €, cette nouvelle répartition laisserait 403 € par mois."
+    ],
+    "reason": "Le versement pension de 87 € existe depuis deux ans. Les trois autres montants viennent de la construction éditoriale, sans présumer leur exécution."
+  },
+  "editorial-qualified-31536-2026-11-15": {
+    "budget": {
+      "transferDetails": {
+        "Épargne disponible": {
+          "status": "planned"
+        },
+        "Placements de long terme envisagés": {
+          "status": "planned",
+          "imageLabel": "Placements à long terme"
+        }
+      }
+    },
+    "paragraphs": [
+      "Son logement est payé et Gérald n’a plus d’enfant à charge. Ses 5 500 € de ressources réunissent son salaire et sa pension militaire.",
+      "Il souhaite investir sur dix à quinze ans et envisage aussi une activité de marchand de biens. Aucun revenu de cette activité ne figure dans le budget. La répartition proposée prévoit 1 000 € à garder disponibles et 1 500 € pour le long terme."
+    ],
+    "reason": "Les deux enveloppes de 1 000 et 1 500 € viennent de l’allocation éditoriale. La source ne donne aucun versement ni capital attesté pour ces deux postes."
+  },
+  "reddit-alternant-20-2025-09-03": {
+    "paragraphs": [
+      "Léo a 1 800 € sur Livret A, 500 € sur PEA, 300 € en immobilier fractionné et 100 € en cryptomonnaies. Il a commencé ces placements il y a cinq mois.",
+      "Il prépare une installation dans deux ans : 4 000 € pour les premiers frais et 2 000 € de sécurité. Dans ce budget, les 200 € prévus sur le livret serviraient aux deux objectifs. Il hésite à y rediriger aussi les 60 € prévus pour l’immobilier fractionné."
+    ],
+    "reason": "Les 200 € du livret font partie du budget prévisionnel. Le solde déjà détenu et l’ancienneté des placements restent documentés."
+  },
+  "reddit-couple-nord-2026-07-09": {
+    "paragraphs": [
+      "Julie et Alex n’ont que 250 € de côté. Leur première priorité est de sortir durablement du découvert et d’atteindre 1 000 € de réserve : avec le virement de 100 €, il leur faudrait environ huit mois sans retrait.",
+      "Les trajets familiaux ont leur provision de 150 €. S’ils versent bien les 100 € prévus, il leur restera 107 €. Ils hésitent à en ajouter une partie à la réserve ou à la laisser sur le compte pour éviter un nouveau découvert."
+    ],
+    "reason": "Les 107 € tiennent déjà compte des 100 € prévus pour la réserve. Le texte les présente comme un solde du plan."
+  },
+  "reference-vendeuse-rennes-2026": {
+    "paragraphs": [
+      "Nolwenn a 450 € sur un livret et voudrait atteindre 1 500 € dans deux ans. Elle commence par mettre 50 € de côté chaque mois.",
+      "Dans ce budget, il reste environ 1 000 € de crédit. Douze mensualités de 90 € donnent un ordre de grandeur pour le remboursement. Nolwenn hésite à utiliser une partie des 80 € qui resteraient après son épargne de précaution pour rembourser plus vite ou à la garder sur son compte."
+    ],
+    "reason": "Les douze échéances servent de repère dans le scénario éditorial. Le capital est arrondi et le nouveau solde après remboursement n’est pas calculé."
+  },
+  "editorial-complementary-solo-2026-11-16": {
+    "paragraphs": [
+      "Les allocations familiales de Djamila varient de 130 à 150 €. La pension alimentaire peut atteindre 300 €, mais elle n’arrive pas tous les mois : elle n’est donc pas comptée dans les revenus affichés.",
+      "Il manque 830 € avant placements et 850 € si elle maintient le versement de 20 € sur son assurance-vie. Les 35 € de vêtements sont une estimation serrée pour le foyer, soit 420 € par an."
+    ],
+    "reason": "Les 35 € de vêtements sont une enveloppe éditoriale serrée de 420 € par an pour le foyer. Aucune aide, seconde enveloppe ni augmentation du déficit n’a été supposée."
+  },
+  "reference-bordeaux-budget-2026-03": {
+    "paragraphs": [
+      "Clémence a 1 200 € sur Livret A et voudrait atteindre 5 000 € de réserve dans les dix-huit mois. Le virement de 250 € est sa priorité avant de commencer à investir.",
+      "Si le crédit auto se termine dans huit mois comme prévu dans ce budget, seuls 150 € seraient libérés. Les 67 € d’assurance continueraient. Clémence hésite entre accélérer son épargne et préparer un vélo électrique à 1 200 €."
+    ],
+    "reason": "Le délai de huit mois est propre au scénario de Clémence. Seuls les 150 € de crédit s’arrêtent. L’assurance de 67 € reste due."
+  },
+  "editorial-qualified-38815-2026-11-15": {
+    "paragraphs": [
+      "Aude et Rémy veulent faire construire. Le projet est annoncé à 330 000 €, auxquels s’ajoutent 15 000 à 20 000 € d’aménagement. Ils envisagent 50 000 € d’apport, voire 75 000 € pour réduire le crédit ou agrandir la maison.",
+      "L’un des deux souhaite changer d’emploi. Avec un salaire ramené de 2 900 à 2 500 €, leur marge avec le même plan d’épargne tomberait de 600 à 200 €. La mensualité envisagée pour la construction serait de 1 500 €, contre 1 450 € de loyer et charges aujourd’hui ; entretien et charges de propriétaire restent à chiffrer avant de signer."
+    ],
+    "reason": "Les 1 000 € sont une allocation au projet de construction et la comparaison de salaire conserve ce plan."
+  },
+  "editorial-qualified-36821-2026-11-15": {
+    "paragraphs": [
+      "Léna et Gaëtan ont réuni 92 000 € d’épargne, dont 1 500 € sur leurs deux PEA. Les 90 500 € restants sont sur livrets. Leur loyer de 490 € leur permet de préparer l’achat sans se presser.",
+      "Ils visent une maison autour de 160 000 € dans un à deux ans. Le plan prévoit d’ajouter 1 500 € chaque mois à leur apport et de verser 400 € sur leurs PEA pour le long terme. Ils n’ont pas encore arrêté l’apport à mobiliser."
+    ],
+    "reason": "Les stocks de livrets et de PEA sont documentés. La ventilation de 1 500 € et 400 € par mois relève de l’allocation éditoriale."
+  }
+}

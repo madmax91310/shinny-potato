@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-15T16:44:11.178435+00:00",
+  "as_of": "2026-11-17T21:10:21.805646+00:00",
   "data": {
     "identity": {
       "slug": "baker-bros",
@@ -9,12 +9,12 @@
       "dataProvider": "SEC",
       "personVerified": false,
       "personSource": "https://foliofact.com/api/v1/funds/baker-bros-advisors",
-      "personPeriod": "2026-06-30",
+      "personPeriod": "2026-09-30",
       "declaringCik": "0001263508",
-      "entitySource": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/"
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926128308/"
     },
     "snapshot": {
-      "periodEnd": "2026-06-30",
+      "periodEnd": "2026-09-30",
       "holdings": [
         {
           "issuerName": "Incyte Corporation",
@@ -23,14 +23,14 @@
           "securityId": "45337C102",
           "ticker": "",
           "putCall": null,
-          "value": 3487217729,
+          "value": 3733047820,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 3487217729,
+              "value": 3733047820,
               "issuerName": "Incyte Corporation",
-              "shares": "30762330",
+              "shares": "30762652",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -38,7 +38,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.1747519940560041
+          "weight": 0.17738877389052984
         },
         {
           "issuerName": "BeOne Medicines Ltd.",
@@ -47,14 +47,14 @@
           "securityId": "07725L102",
           "ticker": "",
           "putCall": null,
-          "value": 2508182548,
+          "value": 3232104670,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2508182548,
+              "value": 3232104670,
               "issuerName": "BeOne Medicines Ltd.",
-              "shares": "8801567",
+              "shares": "8832335",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -62,7 +62,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.12569043167980212
+          "weight": 0.1535847147270553
         },
         {
           "issuerName": "Revolution Medicines, Inc.",
@@ -71,14 +71,14 @@
           "securityId": "76155X100",
           "ticker": "",
           "putCall": null,
-          "value": 2143111899,
+          "value": 2183415893,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2143111899,
+              "value": 2183415893,
               "issuerName": "Revolution Medicines, Inc.",
-              "shares": "11443357",
+              "shares": "10637318",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -86,7 +86,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.10739595486708989
+          "weight": 0.10375261363578415
+        },
+        {
+          "issuerName": "Kodiak Sciences Inc.",
+          "shareClass": "COM",
+          "cusip": "50015M109",
+          "securityId": "50015M109",
+          "ticker": "",
+          "putCall": null,
+          "value": 2072417207,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 2072417207,
+              "issuerName": "Kodiak Sciences Inc.",
+              "shares": "21860941",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.09847812432774204
         },
         {
           "issuerName": "Madrigal Pharmaceuticals, Inc.",
@@ -95,12 +119,12 @@
           "securityId": "558868105",
           "ticker": "",
           "putCall": null,
-          "value": 1150754190,
+          "value": 1080052299,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1150754190,
+              "value": 1080052299,
               "issuerName": "Madrigal Pharmaceuticals, Inc.",
               "shares": "2143131",
               "amountType": "SH",
@@ -110,55 +134,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.057666771907720425
-        },
-        {
-          "issuerName": "ACADIA Pharmaceuticals Inc.",
-          "shareClass": "COM",
-          "cusip": "004225108",
-          "securityId": "004225108",
-          "ticker": "",
-          "putCall": null,
-          "value": 1085696471,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1085696471,
-              "issuerName": "ACADIA Pharmaceuticals Inc.",
-              "shares": "42912904",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.05440658943346885
-        },
-        {
-          "issuerName": "Kymera Therapeutics, Inc.",
-          "shareClass": "COM",
-          "cusip": "501575104",
-          "securityId": "501575104",
-          "ticker": "",
-          "putCall": null,
-          "value": 992725940,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 992725940,
-              "issuerName": "Kymera Therapeutics, Inc.",
-              "shares": "8657242",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.04974763580818016
+          "weight": 0.051322448116203866
         },
         {
           "issuerName": "Insmed Incorporated",
@@ -167,12 +143,12 @@
           "securityId": "457669307",
           "ticker": "",
           "putCall": null,
-          "value": 937841355,
+          "value": 1003988110,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 937841355,
+              "value": 1003988110,
               "issuerName": "Insmed Incorporated",
               "shares": "8796111",
               "amountType": "SH",
@@ -182,23 +158,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0469972509979846
+          "weight": 0.047707993152246955
         },
         {
-          "issuerName": "Celcuity Inc.",
+          "issuerName": "Kymera Therapeutics, Inc.",
           "shareClass": "COM",
-          "cusip": "15102K100",
-          "securityId": "15102K100",
+          "cusip": "501575104",
+          "securityId": "501575104",
           "ticker": "",
           "putCall": null,
-          "value": 828150159,
+          "value": 967793083,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 828150159,
-              "issuerName": "Celcuity Inc.",
-              "shares": "7915792",
+              "value": 967793083,
+              "issuerName": "Kymera Therapeutics, Inc.",
+              "shares": "8657242",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -206,23 +182,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.04150038882273842
+          "weight": 0.04598806033326029
         },
         {
-          "issuerName": "Kodiak Sciences Inc.",
+          "issuerName": "ACADIA Pharmaceuticals Inc.",
           "shareClass": "COM",
-          "cusip": "50015M109",
-          "securityId": "50015M109",
+          "cusip": "004225108",
+          "securityId": "004225108",
           "ticker": "",
           "putCall": null,
-          "value": 776051487,
+          "value": 864695016,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 776051487,
-              "issuerName": "Kodiak Sciences Inc.",
-              "shares": "19919186",
+              "value": 864695016,
+              "issuerName": "ACADIA Pharmaceuticals Inc.",
+              "shares": "42912904",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -230,103 +206,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0388896121155781
-        },
-        {
-          "issuerName": "Rhythm Pharmaceuticals, Inc.",
-          "shareClass": "COM",
-          "cusip": "76243J105",
-          "securityId": "76243J105",
-          "ticker": "",
-          "putCall": null,
-          "value": 622265747,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 622265747,
-              "issuerName": "Rhythm Pharmaceuticals, Inc.",
-              "shares": "5604483",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.031183077333167275
-        },
-        {
-          "issuerName": "Praxis Precision Medicines, Inc.",
-          "shareClass": "COM",
-          "cusip": "74006W207",
-          "securityId": "74006W207",
-          "ticker": "",
-          "putCall": null,
-          "value": 586953158,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 586953158,
-              "issuerName": "Praxis Precision Medicines, Inc.",
-              "shares": "1753198",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.029413487412895876
-        },
-        {
-          "issuerName": "Alkermes plc",
-          "shareClass": "SHS",
-          "cusip": "G01767105",
-          "securityId": "G01767105",
-          "ticker": "",
-          "putCall": null,
-          "value": 524592729,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 524592729,
-              "issuerName": "Alkermes plc",
-              "shares": "10012267",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.02628847195219997
-        },
-        {
-          "issuerName": "Summit Therapeutics Inc.",
-          "shareClass": "COM",
-          "cusip": "86627T108",
-          "securityId": "86627T108",
-          "ticker": "",
-          "putCall": null,
-          "value": 477697090,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 477697090,
-              "issuerName": "Summit Therapeutics Inc.",
-              "shares": "32786348",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.023938430439268524
+          "weight": 0.04108899646442035
         },
         {
           "issuerName": "GRAIL, Inc.",
@@ -335,12 +215,12 @@
           "securityId": "384747101",
           "ticker": "",
           "putCall": null,
-          "value": 275033478,
+          "value": 564489394,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 275033478,
+              "value": 564489394,
               "issuerName": "GRAIL, Inc.",
               "shares": "4028614",
               "amountType": "SH",
@@ -350,7 +230,79 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.013782520177322182
+          "weight": 0.02682368035560504
+        },
+        {
+          "issuerName": "Summit Therapeutics Inc.",
+          "shareClass": "COM",
+          "cusip": "86627T108",
+          "securityId": "86627T108",
+          "ticker": "",
+          "putCall": null,
+          "value": 554417145,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 554417145,
+              "issuerName": "Summit Therapeutics Inc.",
+              "shares": "32786348",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.026345062350537504
+        },
+        {
+          "issuerName": "Rhythm Pharmaceuticals, Inc.",
+          "shareClass": "COM",
+          "cusip": "76243J105",
+          "securityId": "76243J105",
+          "ticker": "",
+          "putCall": null,
+          "value": 533630849,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 533630849,
+              "issuerName": "Rhythm Pharmaceuticals, Inc.",
+              "shares": "5604483",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.025357329072273303
+        },
+        {
+          "issuerName": "Praxis Precision Medicines, Inc.",
+          "shareClass": "COM",
+          "cusip": "74006W207",
+          "securityId": "74006W207",
+          "ticker": "",
+          "putCall": null,
+          "value": 510583854,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 510583854,
+              "issuerName": "Praxis Precision Medicines, Inc.",
+              "shares": "1753198",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.024262170804273626
         },
         {
           "issuerName": "AbCellera Biologics Inc.",
@@ -359,14 +311,14 @@
           "securityId": "00288U106",
           "ticker": "",
           "putCall": null,
-          "value": 259145283,
+          "value": 481647108,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 259145283,
+              "value": 481647108,
               "issuerName": "AbCellera Biologics Inc.",
-              "shares": "33012138",
+              "shares": "33012139",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -374,23 +326,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.012986328492727591
+          "weight": 0.022887140496378536
         },
         {
-          "issuerName": "Immunovant, Inc.",
-          "shareClass": "COM",
-          "cusip": "45258J102",
-          "securityId": "45258J102",
+          "issuerName": "Alkermes plc",
+          "shareClass": "SHS",
+          "cusip": "G01767105",
+          "securityId": "G01767105",
           "ticker": "",
           "putCall": null,
-          "value": 209419027,
+          "value": 405697059,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 209419027,
-              "issuerName": "Immunovant, Inc.",
-              "shares": "5435220",
+              "value": 405697059,
+              "issuerName": "Alkermes plc",
+              "shares": "10012267",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -398,23 +350,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.010494438663000432
+          "weight": 0.019278109292209376
         },
         {
-          "issuerName": "IDEAYA Biosciences, Inc.",
+          "issuerName": "Celcuity Inc.",
           "shareClass": "COM",
-          "cusip": "45166A102",
-          "securityId": "45166A102",
+          "cusip": "15102K100",
+          "securityId": "15102K100",
           "ticker": "",
           "putCall": null,
-          "value": 186723818,
+          "value": 382951780,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 186723818,
-              "issuerName": "IDEAYA Biosciences, Inc.",
-              "shares": "5010030",
+              "value": 382951780,
+              "issuerName": "Celcuity Inc.",
+              "shares": "4815792",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -422,7 +374,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.00935713284028512
+          "weight": 0.018197288111191656
         },
         {
           "issuerName": "Kiniksa Pharmaceuticals International, plc",
@@ -431,12 +383,12 @@
           "securityId": "G52694109",
           "ticker": "",
           "putCall": null,
-          "value": 181275420,
+          "value": 211492714,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 181275420,
+              "value": 211492714,
               "issuerName": "Kiniksa Pharmaceuticals International, plc",
               "shares": "2834643",
               "amountType": "SH",
@@ -446,47 +398,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.009084101877236026
+          "weight": 0.01004981319077785
         },
         {
-          "issuerName": "Roivant Sciences Ltd.",
-          "shareClass": "SHS",
-          "cusip": "G76279101",
-          "securityId": "G76279101",
-          "ticker": "",
-          "putCall": null,
-          "value": 166928649,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 166928649,
-              "issuerName": "Roivant Sciences Ltd.",
-              "shares": "4716831",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.008365154270476237
-        },
-        {
-          "issuerName": "Arrowhead Pharmaceuticals, Inc.",
+          "issuerName": "IDEAYA Biosciences, Inc.",
           "shareClass": "COM",
-          "cusip": "04280A100",
-          "securityId": "04280A100",
+          "cusip": "45166A102",
+          "securityId": "45166A102",
           "ticker": "",
           "putCall": null,
-          "value": 162431742,
+          "value": 192485353,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 162431742,
-              "issuerName": "Arrowhead Pharmaceuticals, Inc.",
-              "shares": "1992783",
+              "value": 192485353,
+              "issuerName": "IDEAYA Biosciences, Inc.",
+              "shares": "5010030",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -494,31 +422,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.008139804571545981
-        },
-        {
-          "issuerName": "Ionis Pharmaceuticals, Inc.",
-          "shareClass": "COM",
-          "cusip": "462222100",
-          "securityId": "462222100",
-          "ticker": "",
-          "putCall": null,
-          "value": 162364274,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 162364274,
-              "issuerName": "Ionis Pharmaceuticals, Inc.",
-              "shares": "2047727",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.008136423604697561
+          "weight": 0.009146612207222094
         },
         {
           "issuerName": "Edgewise Therapeutics, Inc.",
@@ -527,12 +431,12 @@
           "securityId": "28036F105",
           "ticker": "",
           "putCall": null,
-          "value": 150400843,
+          "value": 150289791,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 150400843,
+              "value": 150289791,
               "issuerName": "Edgewise Therapeutics, Inc.",
               "shares": "3701719",
               "amountType": "SH",
@@ -542,7 +446,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.007536910300548087
+          "weight": 0.007141543060585275
         },
         {
           "issuerName": "Replimune Group, Inc.",
@@ -551,12 +455,12 @@
           "securityId": "76029N106",
           "ticker": "",
           "putCall": null,
-          "value": 122271870,
+          "value": 146240249,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 122271870,
+              "value": 146240249,
               "issuerName": "Replimune Group, Inc.",
               "shares": "11045336",
               "amountType": "SH",
@@ -566,7 +470,55 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.006127306856054501
+          "weight": 0.0069491149629998
+        },
+        {
+          "issuerName": "Roivant Sciences Ltd.",
+          "shareClass": "SHS",
+          "cusip": "G76279101",
+          "securityId": "G76279101",
+          "ticker": "",
+          "putCall": null,
+          "value": 133859073,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 133859073,
+              "issuerName": "Roivant Sciences Ltd.",
+              "shares": "3660352",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.006360780246740297
+        },
+        {
+          "issuerName": "Arrowhead Pharmaceuticals, Inc.",
+          "shareClass": "COM",
+          "cusip": "04280A100",
+          "securityId": "04280A100",
+          "ticker": "",
+          "putCall": null,
+          "value": 111857519,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 111857519,
+              "issuerName": "Arrowhead Pharmaceuticals, Inc.",
+              "shares": "1709053",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.005315299750391798
         },
         {
           "issuerName": "Nurix Therapeutics, Inc.",
@@ -575,12 +527,12 @@
           "securityId": "67080M103",
           "ticker": "",
           "putCall": null,
-          "value": 113016569,
+          "value": 110454363,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 113016569,
+              "value": 110454363,
               "issuerName": "Nurix Therapeutics, Inc.",
               "shares": "4658556",
               "amountType": "SH",
@@ -590,23 +542,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.005663503781216862
+          "weight": 0.005248623904161374
         },
         {
-          "issuerName": "Stoke Therapeutics, Inc.",
+          "issuerName": "Immunovant, Inc.",
           "shareClass": "COM",
-          "cusip": "86150R107",
-          "securityId": "86150R107",
+          "cusip": "45258J102",
+          "securityId": "45258J102",
           "ticker": "",
           "putCall": null,
-          "value": 109176726,
+          "value": 93583335,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 109176726,
-              "issuerName": "Stoke Therapeutics, Inc.",
-              "shares": "3336697",
+              "value": 93583335,
+              "issuerName": "Immunovant, Inc.",
+              "shares": "2770377",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -614,23 +566,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.005471080975054881
+          "weight": 0.004446938226533811
         },
         {
-          "issuerName": "Monte Rosa Therapeutics, Inc.",
+          "issuerName": "Celldex Therapeutics, Inc.",
           "shareClass": "COM",
-          "cusip": "61225M102",
-          "securityId": "61225M102",
+          "cusip": "15117B202",
+          "securityId": "15117B202",
           "ticker": "",
           "putCall": null,
-          "value": 105166811,
+          "value": 83131131,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 105166811,
-              "issuerName": "Monte Rosa Therapeutics, Inc.",
-              "shares": "4345736",
+              "value": 83131131,
+              "issuerName": "Celldex Therapeutics, Inc.",
+              "shares": "2564984",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -638,31 +590,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.005270135494531063
-        },
-        {
-          "issuerName": "Immatics N.V.",
-          "shareClass": "SHS",
-          "cusip": "N44445109",
-          "securityId": "N44445109",
-          "ticker": "",
-          "putCall": null,
-          "value": 96321763,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 96321763,
-              "issuerName": "Immatics N.V.",
-              "shares": "9508565",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00482689108146589
+          "weight": 0.0039502653357981945
         },
         {
           "issuerName": "Denali Therapeutics Inc.",
@@ -671,12 +599,12 @@
           "securityId": "24823R105",
           "ticker": "",
           "putCall": null,
-          "value": 96047122,
+          "value": 77188725,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 96047122,
+              "value": 77188725,
               "issuerName": "Denali Therapeutics Inc.",
               "shares": "3734336",
               "amountType": "SH",
@@ -686,31 +614,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.004813128229206792
-        },
-        {
-          "issuerName": "Crinetics Pharmaceuticals, Inc.",
-          "shareClass": "COM",
-          "cusip": "22663K107",
-          "securityId": "22663K107",
-          "ticker": "",
-          "putCall": null,
-          "value": 87991820,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 87991820,
-              "issuerName": "Crinetics Pharmaceuticals, Inc.",
-              "shares": "2351465",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.004409459689810204
+          "weight": 0.003667891210116695
         },
         {
           "issuerName": "Dianthus Therapeutics, Inc.",
@@ -719,12 +623,12 @@
           "securityId": "252828108",
           "ticker": "",
           "putCall": null,
-          "value": 83068947,
+          "value": 75033040,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 83068947,
+              "value": 75033040,
               "issuerName": "Dianthus Therapeutics, Inc.",
               "shares": "852164",
               "amountType": "SH",
@@ -734,45 +638,21 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.004162763916821816
-        },
-        {
-          "issuerName": "Structure Therapeutics Inc.",
-          "shareClass": "SPONSORED ADS",
-          "cusip": "86366E106",
-          "securityId": "86366E106",
-          "ticker": "",
-          "putCall": null,
-          "value": 76883831,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 76883831,
-              "issuerName": "Structure Therapeutics Inc.",
-              "shares": "1432529",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0038528144274397338
+          "weight": 0.003565456326482065
         },
         {
           "issuerName": "Celcuity Inc.",
-          "shareClass": "Note  2.75% 8/1/2031",
+          "shareClass": "Note 2.75% 8/1/2031",
           "cusip": "15102KAA8",
           "securityId": "15102KAA8",
           "ticker": "",
           "putCall": null,
-          "value": 69158687,
+          "value": 55457225,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 69158687,
+              "value": 55457225,
               "issuerName": "Celcuity Inc.",
               "shares": "30750000",
               "amountType": "PRN",
@@ -782,7 +662,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.003465690816790708
+          "weight": 0.0026352432705030924
         },
         {
           "issuerName": "Rapport Therapeutics, Inc.",
@@ -791,12 +671,12 @@
           "securityId": "75383L102",
           "ticker": "",
           "putCall": null,
-          "value": 64467240,
+          "value": 51982224,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 64467240,
+              "value": 51982224,
               "issuerName": "Rapport Therapeutics, Inc.",
               "shares": "1547090",
               "amountType": "SH",
@@ -806,23 +686,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0032305922992991844
+          "weight": 0.002470116490354221
         },
         {
-          "issuerName": "Alumis Inc.",
+          "issuerName": "Monte Rosa Therapeutics, Inc.",
           "shareClass": "COM",
-          "cusip": "022307102",
-          "securityId": "022307102",
+          "cusip": "61225M102",
+          "securityId": "61225M102",
           "ticker": "",
           "putCall": null,
-          "value": 56631750,
+          "value": 51844630,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 56631750,
-              "issuerName": "Alumis Inc.",
-              "shares": "2012500",
+              "value": 51844630,
+              "issuerName": "Monte Rosa Therapeutics, Inc.",
+              "shares": "4345736",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -830,31 +710,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0028379390128356135
-        },
-        {
-          "issuerName": "Prelude Therapeutics Inc.",
-          "shareClass": "COM",
-          "cusip": "74065P101",
-          "securityId": "74065P101",
-          "ticker": "",
-          "putCall": null,
-          "value": 53959982,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 53959982,
-              "issuerName": "Prelude Therapeutics Inc.",
-              "shares": "10123824",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00270405096169035
+          "weight": 0.0024635782320378045
         },
         {
           "issuerName": "Relay Therapeutics, Inc.",
@@ -863,12 +719,12 @@
           "securityId": "75943R102",
           "ticker": "",
           "putCall": null,
-          "value": 52889110,
+          "value": 51023433,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 52889110,
+              "value": 51023433,
               "issuerName": "Relay Therapeutics, Inc.",
               "shares": "2826783",
               "amountType": "SH",
@@ -878,23 +734,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0026503872584399068
+          "weight": 0.0024245561953598546
         },
         {
-          "issuerName": "Mirum Pharmaceuticals, Inc.",
+          "issuerName": "Ionis Pharmaceuticals, Inc.",
           "shareClass": "COM",
-          "cusip": "604749101",
-          "securityId": "604749101",
+          "cusip": "462222100",
+          "securityId": "462222100",
           "ticker": "",
           "putCall": null,
-          "value": 52210293,
+          "value": 45715528,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 52210293,
-              "issuerName": "Mirum Pharmaceuticals, Inc.",
-              "shares": "445975",
+              "value": 45715528,
+              "issuerName": "Ionis Pharmaceuticals, Inc.",
+              "shares": "1023864",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -902,23 +758,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.002616370275972015
+          "weight": 0.0021723325954282006
         },
         {
-          "issuerName": "Bicycle Therapeutics plc",
+          "issuerName": "Structure Therapeutics Inc.",
           "shareClass": "SPONSORED ADS",
-          "cusip": "088786108",
-          "securityId": "088786108",
+          "cusip": "86366E106",
+          "securityId": "86366E106",
           "ticker": "",
           "putCall": null,
-          "value": 46153914,
+          "value": 44795182,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 46153914,
-              "issuerName": "Bicycle Therapeutics plc",
-              "shares": "10885357",
+              "value": 44795182,
+              "issuerName": "Structure Therapeutics Inc.",
+              "shares": "1432529",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -926,7 +782,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0023128720750402345
+          "weight": 0.002128599148559295
         },
         {
           "issuerName": "Enliven Therapeutics, Inc.",
@@ -935,12 +791,12 @@
           "securityId": "29337E102",
           "ticker": "",
           "putCall": null,
-          "value": 45938443,
+          "value": 41493955,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 45938443,
+              "value": 41493955,
               "issuerName": "Enliven Therapeutics, Inc.",
               "shares": "905191",
               "amountType": "SH",
@@ -950,23 +806,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0023020743589704557
+          "weight": 0.0019717298454855637
         },
         {
-          "issuerName": "Celldex Therapeutics, Inc.",
-          "shareClass": "COM",
-          "cusip": "15117B202",
-          "securityId": "15117B202",
+          "issuerName": "Bicycle Therapeutics plc",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "088786108",
+          "securityId": "088786108",
           "ticker": "",
           "putCall": null,
-          "value": 44004955,
+          "value": 40058114,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 44004955,
-              "issuerName": "Celldex Therapeutics, Inc.",
-              "shares": "1182611",
+              "value": 40058114,
+              "issuerName": "Bicycle Therapeutics plc",
+              "shares": "10885357",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -974,23 +830,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0022051831093437093
+          "weight": 0.0019035008575987297
         },
         {
-          "issuerName": "Viridian Therapeutics, Inc.",
+          "issuerName": "Prelude Therapeutics Inc.",
           "shareClass": "COM",
-          "cusip": "92790C104",
-          "securityId": "92790C104",
+          "cusip": "74065P101",
+          "securityId": "74065P101",
           "ticker": "",
           "putCall": null,
-          "value": 43776169,
+          "value": 39584152,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 43776169,
-              "issuerName": "Viridian Therapeutics, Inc.",
-              "shares": "2383025",
+              "value": 39584152,
+              "issuerName": "Prelude Therapeutics Inc.",
+              "shares": "10123824",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -998,7 +854,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.002193718149935063
+          "weight": 0.0018809789017855028
+        },
+        {
+          "issuerName": "Mirum Pharmaceuticals, Inc.",
+          "shareClass": "COM",
+          "cusip": "604749101",
+          "securityId": "604749101",
+          "ticker": "",
+          "putCall": null,
+          "value": 38121943,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 38121943,
+              "issuerName": "Mirum Pharmaceuticals, Inc.",
+              "shares": "445975",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0018114969465070146
         },
         {
           "issuerName": "Design Therapeutics, Inc.",
@@ -1007,14 +887,14 @@
           "securityId": "25056L103",
           "ticker": "",
           "putCall": null,
-          "value": 38756882,
+          "value": 37560970,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 38756882,
+              "value": 37560970,
               "issuerName": "Design Therapeutics, Inc.",
-              "shares": "2678430",
+              "shares": "2988144",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1022,7 +902,55 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0019421908636704033
+          "weight": 0.0017848403598641753
+        },
+        {
+          "issuerName": "Immatics N.V.",
+          "shareClass": "SHS",
+          "cusip": "N44445109",
+          "securityId": "N44445109",
+          "ticker": "",
+          "putCall": null,
+          "value": 37373668,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 37373668,
+              "issuerName": "Immatics N.V.",
+              "shares": "4256682",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0017759400527346395
+        },
+        {
+          "issuerName": "Stoke Therapeutics, Inc.",
+          "shareClass": "COM",
+          "cusip": "86150R107",
+          "securityId": "86150R107",
+          "ticker": "",
+          "putCall": null,
+          "value": 34163974,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 34163974,
+              "issuerName": "Stoke Therapeutics, Inc.",
+              "shares": "1313999",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0016234202590761188
         },
         {
           "issuerName": "Entrada Therapeutics, Inc.",
@@ -1031,12 +959,12 @@
           "securityId": "29384C108",
           "ticker": "",
           "putCall": null,
-          "value": 37335293,
+          "value": 32211836,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 37335293,
+              "value": 32211836,
               "issuerName": "Entrada Therapeutics, Inc.",
               "shares": "5072730",
               "amountType": "SH",
@@ -1046,55 +974,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.001870951975885407
-        },
-        {
-          "issuerName": "Faeth Therapeutics, Inc.",
-          "shareClass": "COM",
-          "cusip": "81728A207",
-          "securityId": "81728A207",
-          "ticker": "",
-          "putCall": null,
-          "value": 32160275,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 32160275,
-              "issuerName": "Faeth Therapeutics, Inc.",
-              "shares": "1286411",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0016116206736684258
-        },
-        {
-          "issuerName": "Aktis Oncology, Inc.",
-          "shareClass": "COM",
-          "cusip": "01021M104",
-          "securityId": "01021M104",
-          "ticker": "",
-          "putCall": null,
-          "value": 32112393,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 32112393,
-              "issuerName": "Aktis Oncology, Inc.",
-              "shares": "996351",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0016092212034805435
+          "weight": 0.0015306576203470198
         },
         {
           "issuerName": "Neurogene Inc.",
@@ -1103,12 +983,12 @@
           "securityId": "64135M105",
           "ticker": "",
           "putCall": null,
-          "value": 31188682,
+          "value": 27588844,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 31188682,
+              "value": 27588844,
               "issuerName": "Neurogene Inc.",
               "shares": "991691",
               "amountType": "SH",
@@ -1118,319 +998,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0015629320550172628
-        },
-        {
-          "issuerName": "Jade Biosciences, Inc.",
-          "shareClass": "COM",
-          "cusip": "008064206",
-          "securityId": "008064206",
-          "ticker": "",
-          "putCall": null,
-          "value": 27340066,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 27340066,
-              "issuerName": "Jade Biosciences, Inc.",
-              "shares": "1230426",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0013700696149227336
-        },
-        {
-          "issuerName": "Taysha Gene Therapies, Inc.",
-          "shareClass": "COM SHS",
-          "cusip": "877619106",
-          "securityId": "877619106",
-          "ticker": "",
-          "putCall": null,
-          "value": 27272388,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 27272388,
-              "issuerName": "Taysha Gene Therapies, Inc.",
-              "shares": "4004756",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0013666781245218421
-        },
-        {
-          "issuerName": "Arcus Biosciences, Inc.",
-          "shareClass": "COM",
-          "cusip": "03969F109",
-          "securityId": "03969F109",
-          "ticker": "",
-          "putCall": null,
-          "value": 26045677,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 26045677,
-              "issuerName": "Arcus Biosciences, Inc.",
-              "shares": "844816",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.001305204993206377
-        },
-        {
-          "issuerName": "Disc Medicine, Inc.",
-          "shareClass": "COM",
-          "cusip": "254604101",
-          "securityId": "254604101",
-          "ticker": "",
-          "putCall": null,
-          "value": 25573913,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 25573913,
-              "issuerName": "Disc Medicine, Inc.",
-              "shares": "349657",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0012815638826906084
-        },
-        {
-          "issuerName": "Absci Corporation",
-          "shareClass": "COM",
-          "cusip": "00091E109",
-          "securityId": "00091E109",
-          "ticker": "",
-          "putCall": null,
-          "value": 24742367,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 24742367,
-              "issuerName": "Absci Corporation",
-              "shares": "2134803",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0012398933209585871
-        },
-        {
-          "issuerName": "Generate Biomedicines, Inc.",
-          "shareClass": "COM SHS",
-          "cusip": "370920100",
-          "securityId": "370920100",
-          "ticker": "",
-          "putCall": null,
-          "value": 24016166,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 24016166,
-              "issuerName": "Generate Biomedicines, Inc.",
-              "shares": "1423602",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0012035018241558176
-        },
-        {
-          "issuerName": "DBV Technologies S.A.",
-          "shareClass": "SPONSORED ADS",
-          "cusip": "23306J309",
-          "securityId": "23306J309",
-          "ticker": "",
-          "putCall": null,
-          "value": 23967370,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 23967370,
-              "issuerName": "DBV Technologies S.A.",
-              "shares": "1461425",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0012010565514586058
-        },
-        {
-          "issuerName": "Xenon Pharmaceuticals Inc.",
-          "shareClass": "COM",
-          "cusip": "98420N105",
-          "securityId": "98420N105",
-          "ticker": "",
-          "putCall": null,
-          "value": 22345755,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 22345755,
-              "issuerName": "Xenon Pharmaceuticals Inc.",
-              "shares": "370208",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0011197939298320549
-        },
-        {
-          "issuerName": "Tectonic Therapeutic, Inc.",
-          "shareClass": "COM",
-          "cusip": "878972108",
-          "securityId": "878972108",
-          "ticker": "",
-          "putCall": null,
-          "value": 20892713,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 20892713,
-              "issuerName": "Tectonic Therapeutic, Inc.",
-              "shares": "607788",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0010469788644475544
-        },
-        {
-          "issuerName": "Cerus Corporation",
-          "shareClass": "COM",
-          "cusip": "157085101",
-          "securityId": "157085101",
-          "ticker": "",
-          "putCall": null,
-          "value": 18674659,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 18674659,
-              "issuerName": "Cerus Corporation",
-              "shares": "6395431",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00093582739942703
-        },
-        {
-          "issuerName": "CytomX Therapeutics, Inc.",
-          "shareClass": "COM",
-          "cusip": "23284F105",
-          "securityId": "23284F105",
-          "ticker": "",
-          "putCall": null,
-          "value": 18659348,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 18659348,
-              "issuerName": "CytomX Therapeutics, Inc.",
-              "shares": "4975826",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0009350601322275257
-        },
-        {
-          "issuerName": "Dyne Therapeutics, Inc.",
-          "shareClass": "COM",
-          "cusip": "26818M108",
-          "securityId": "26818M108",
-          "ticker": "",
-          "putCall": null,
-          "value": 18066702,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 18066702,
-              "issuerName": "Dyne Therapeutics, Inc.",
-              "shares": "813449",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.000905361364236055
-        },
-        {
-          "issuerName": "Cytokinetics, Incorporated",
-          "shareClass": "COM",
-          "cusip": "23282W605",
-          "securityId": "23282W605",
-          "ticker": "",
-          "putCall": null,
-          "value": 17997836,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 17997836,
-              "issuerName": "Cytokinetics, Incorporated",
-              "shares": "211267",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0009019103405954658
+          "weight": 0.0013109800479912152
         },
         {
           "issuerName": "Xencor, Inc.",
@@ -1439,12 +1007,12 @@
           "securityId": "98401F105",
           "ticker": "",
           "putCall": null,
-          "value": 17743907,
+          "value": 27497545,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 17743907,
+              "value": 27497545,
               "issuerName": "Xencor, Inc.",
               "shares": "1102106",
               "amountType": "SH",
@@ -1454,23 +1022,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0008891854112830159
+          "weight": 0.0013066416579013097
         },
         {
-          "issuerName": "Sionna Therapeutics, Inc.",
+          "issuerName": "Faeth Therapeutics, Inc.",
           "shareClass": "COM",
-          "cusip": "829401108",
-          "securityId": "829401108",
+          "cusip": "81728A207",
+          "securityId": "81728A207",
           "ticker": "",
           "putCall": null,
-          "value": 17596000,
+          "value": 23893860,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 17596000,
-              "issuerName": "Sionna Therapeutics, Inc.",
-              "shares": "400000",
+              "value": 23893860,
+              "issuerName": "Faeth Therapeutics, Inc.",
+              "shares": "803425",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1478,23 +1046,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0008817734728285009
+          "weight": 0.0011354000091303347
         },
         {
-          "issuerName": "Intellia Therapeutics, Inc.",
+          "issuerName": "Absci Corporation",
           "shareClass": "COM",
-          "cusip": "45826J105",
-          "securityId": "45826J105",
+          "cusip": "00091E109",
+          "securityId": "00091E109",
           "ticker": "",
           "putCall": null,
-          "value": 15739525,
+          "value": 22991828,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 15739525,
-              "issuerName": "Intellia Therapeutics, Inc.",
-              "shares": "930232",
+              "value": 22991828,
+              "issuerName": "Absci Corporation",
+              "shares": "2134803",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1502,7 +1070,199 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0007887415105660952
+          "weight": 0.0010925368157812545
+        },
+        {
+          "issuerName": "Disc Medicine, Inc.",
+          "shareClass": "COM",
+          "cusip": "254604101",
+          "securityId": "254604101",
+          "ticker": "",
+          "putCall": null,
+          "value": 22888547,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 22888547,
+              "issuerName": "Disc Medicine, Inc.",
+              "shares": "349657",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0010876290592135424
+        },
+        {
+          "issuerName": "Arcus Biosciences, Inc.",
+          "shareClass": "COM",
+          "cusip": "03969F109",
+          "securityId": "03969F109",
+          "ticker": "",
+          "putCall": null,
+          "value": 21821597,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 21821597,
+              "issuerName": "Arcus Biosciences, Inc.",
+              "shares": "844816",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0010369292124854871
+        },
+        {
+          "issuerName": "Generate Biomedicines, Inc.",
+          "shareClass": "COM SHS",
+          "cusip": "370920100",
+          "securityId": "370920100",
+          "ticker": "",
+          "putCall": null,
+          "value": 21382502,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 21382502,
+              "issuerName": "Generate Biomedicines, Inc.",
+              "shares": "1423602",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0010160640836612167
+        },
+        {
+          "issuerName": "Taysha Gene Therapies, Inc.",
+          "shareClass": "COM SHS",
+          "cusip": "877619106",
+          "securityId": "877619106",
+          "ticker": "",
+          "putCall": null,
+          "value": 19503162,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 19503162,
+              "issuerName": "Taysha Gene Therapies, Inc.",
+              "shares": "4004756",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009267606955456505
+        },
+        {
+          "issuerName": "Aktis Oncology, Inc.",
+          "shareClass": "COM",
+          "cusip": "01021M104",
+          "securityId": "01021M104",
+          "ticker": "",
+          "putCall": null,
+          "value": 19398954,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 19398954,
+              "issuerName": "Aktis Oncology, Inc.",
+              "shares": "996351",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0009218088893430756
+        },
+        {
+          "issuerName": "Jade Biosciences, Inc.",
+          "shareClass": "COM",
+          "cusip": "008064206",
+          "securityId": "008064206",
+          "ticker": "",
+          "putCall": null,
+          "value": 17287485,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 17287485,
+              "issuerName": "Jade Biosciences, Inc.",
+              "shares": "1230426",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0008214750830062837
+        },
+        {
+          "issuerName": "DBV Technologies S.A.",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "23306J309",
+          "securityId": "23306J309",
+          "ticker": "",
+          "putCall": null,
+          "value": 17186358,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 17186358,
+              "issuerName": "DBV Technologies S.A.",
+              "shares": "1461425",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0008166696812535605
+        },
+        {
+          "issuerName": "First Tracks Biotherapeutics, Inc.",
+          "shareClass": "ORD SHS",
+          "cusip": "337185102",
+          "securityId": "337185102",
+          "ticker": "",
+          "putCall": null,
+          "value": 16760710,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 16760710,
+              "issuerName": "First Tracks Biotherapeutics, Inc.",
+              "shares": "472932",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0007964435334864643
         },
         {
           "issuerName": "Parabilis Medicines, Inc.",
@@ -1511,12 +1271,12 @@
           "securityId": "698955101",
           "ticker": "",
           "putCall": null,
-          "value": 13685000,
+          "value": 16145000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 13685000,
+              "value": 16145000,
               "issuerName": "Parabilis Medicines, Inc.",
               "shares": "500000",
               "amountType": "SH",
@@ -1526,7 +1286,175 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0006857848360796792
+          "weight": 0.0007671859275734123
+        },
+        {
+          "issuerName": "Tectonic Therapeutic, Inc.",
+          "shareClass": "COM",
+          "cusip": "878972108",
+          "securityId": "878972108",
+          "ticker": "",
+          "putCall": null,
+          "value": 14155383,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 14155383,
+              "issuerName": "Tectonic Therapeutic, Inc.",
+              "shares": "607788",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006726423435745996
+        },
+        {
+          "issuerName": "Cytokinetics, Incorporated",
+          "shareClass": "COM",
+          "cusip": "23282W605",
+          "securityId": "23282W605",
+          "ticker": "",
+          "putCall": null,
+          "value": 13924608,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 13924608,
+              "issuerName": "Cytokinetics, Incorporated",
+              "shares": "211267",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006616762653809946
+        },
+        {
+          "issuerName": "Xenon Pharmaceuticals Inc.",
+          "shareClass": "COM",
+          "cusip": "98420N105",
+          "securityId": "98420N105",
+          "ticker": "",
+          "putCall": null,
+          "value": 13768036,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 13768036,
+              "issuerName": "Xenon Pharmaceuticals Inc.",
+              "shares": "370208",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006542362012712377
+        },
+        {
+          "issuerName": "CytomX Therapeutics, Inc.",
+          "shareClass": "COM",
+          "cusip": "23284F105",
+          "securityId": "23284F105",
+          "ticker": "",
+          "putCall": null,
+          "value": 13534247,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 13534247,
+              "issuerName": "CytomX Therapeutics, Inc.",
+              "shares": "4975826",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006431269023662231
+        },
+        {
+          "issuerName": "Dyne Therapeutics, Inc.",
+          "shareClass": "COM",
+          "cusip": "26818M108",
+          "securityId": "26818M108",
+          "ticker": "",
+          "putCall": null,
+          "value": 13104663,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 13104663,
+              "issuerName": "Dyne Therapeutics, Inc.",
+              "shares": "813449",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006227137218452756
+        },
+        {
+          "issuerName": "Scribe Therapeutics Inc.",
+          "shareClass": "COM",
+          "cusip": "811033109",
+          "securityId": "811033109",
+          "ticker": "",
+          "putCall": null,
+          "value": 12675358,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 12675358,
+              "issuerName": "Scribe Therapeutics Inc.",
+              "shares": "688691",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0006023137989814228
+        },
+        {
+          "issuerName": "Freenome, Inc.",
+          "shareClass": "COM",
+          "cusip": "35661P100",
+          "securityId": "35661P100",
+          "ticker": "",
+          "putCall": null,
+          "value": 12519801,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 12519801,
+              "issuerName": "Freenome, Inc.",
+              "shares": "794908",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0005949219661331393
         },
         {
           "issuerName": "MapLight Therapeutics, Inc.",
@@ -1535,14 +1463,14 @@
           "securityId": "56565P103",
           "ticker": "",
           "putCall": null,
-          "value": 13071027,
+          "value": 11889315,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 13071027,
+              "value": 11889315,
               "issuerName": "MapLight Therapeutics, Inc.",
-              "shares": "364705",
+              "shares": "1166763",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1550,55 +1478,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0006550173261664641
-        },
-        {
-          "issuerName": "Avalyn Pharma Inc.",
-          "shareClass": "COM SHS",
-          "cusip": "05348Y105",
-          "securityId": "05348Y105",
-          "ticker": "",
-          "putCall": null,
-          "value": 11522000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 11522000,
-              "issuerName": "Avalyn Pharma Inc.",
-              "shares": "350000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0005773922456200266
-        },
-        {
-          "issuerName": "Evommune, Inc.",
-          "shareClass": "COM SHS",
-          "cusip": "30054Y107",
-          "securityId": "30054Y107",
-          "ticker": "",
-          "putCall": null,
-          "value": 11261813,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 11261813,
-              "issuerName": "Evommune, Inc.",
-              "shares": "847390",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0005643537144439168
+          "weight": 0.0005649622270973975
         },
         {
           "issuerName": "BioNTech SE",
@@ -1607,12 +1487,12 @@
           "securityId": "09075V102",
           "ticker": "",
           "putCall": null,
-          "value": 11142086,
+          "value": 11770737,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 11142086,
+              "value": 11770737,
               "issuerName": "BioNTech SE",
               "shares": "119743",
               "amountType": "SH",
@@ -1622,55 +1502,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0005583539365068095
-        },
-        {
-          "issuerName": "Tango Therapeutics, Inc.",
-          "shareClass": "COM",
-          "cusip": "87583X109",
-          "securityId": "87583X109",
-          "ticker": "",
-          "putCall": null,
-          "value": 10419990,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 10419990,
-              "issuerName": "Tango Therapeutics, Inc.",
-              "shares": "333333",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0005221681500987867
-        },
-        {
-          "issuerName": "Avalo Therapeutics, Inc.",
-          "shareClass": "COM",
-          "cusip": "05338F306",
-          "securityId": "05338F306",
-          "ticker": "",
-          "putCall": null,
-          "value": 10164000,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 10164000,
-              "issuerName": "Avalo Therapeutics, Inc.",
-              "shares": "550000",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.0005093399396356492
+          "weight": 0.0005593275802767225
         },
         {
           "issuerName": "Sera Prognostics, Inc.",
@@ -1679,12 +1511,12 @@
           "securityId": "81749D107",
           "ticker": "",
           "putCall": null,
-          "value": 10006669,
+          "value": 11491175,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 10006669,
+              "value": 11491175,
               "issuerName": "Sera Prognostics, Inc.",
               "shares": "5498170",
               "amountType": "SH",
@@ -1694,23 +1526,47 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.000501455744235923
+          "weight": 0.0005460432177939551
         },
         {
-          "issuerName": "Verastem, Inc.",
+          "issuerName": "Evommune, Inc.",
+          "shareClass": "COM SHS",
+          "cusip": "30054Y107",
+          "securityId": "30054Y107",
+          "ticker": "",
+          "putCall": null,
+          "value": 10199398,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 10199398,
+              "issuerName": "Evommune, Inc.",
+              "shares": "1234794",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00048465993281637695
+        },
+        {
+          "issuerName": "Intellia Therapeutics, Inc.",
           "shareClass": "COM",
-          "cusip": "92337C203",
-          "securityId": "92337C203",
+          "cusip": "45826J105",
+          "securityId": "45826J105",
           "ticker": "",
           "putCall": null,
-          "value": 9547471,
+          "value": 9998379,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 9547471,
-              "issuerName": "Verastem, Inc.",
-              "shares": "2499338",
+              "value": 9998379,
+              "issuerName": "Intellia Therapeutics, Inc.",
+              "shares": "829053",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1718,23 +1574,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0004784443430552058
+          "weight": 0.0004751078146389301
         },
         {
-          "issuerName": "Sagimet Biosciences Inc.",
-          "shareClass": "COM SER A",
-          "cusip": "786700104",
-          "securityId": "786700104",
+          "issuerName": "Avalyn Pharma Inc.",
+          "shareClass": "COM SHS",
+          "cusip": "05348Y105",
+          "securityId": "05348Y105",
           "ticker": "",
           "putCall": null,
-          "value": 7366659,
+          "value": 9971500,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 7366659,
-              "issuerName": "Sagimet Biosciences Inc.",
-              "shares": "952996",
+              "value": 9971500,
+              "issuerName": "Avalyn Pharma Inc.",
+              "shares": "350000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1742,23 +1598,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0003691591548973251
+          "weight": 0.00047383056530184457
         },
         {
-          "issuerName": "Eikon Therapeutics, Inc.",
+          "issuerName": "Avalo Therapeutics, Inc.",
           "shareClass": "COM",
-          "cusip": "282564103",
-          "securityId": "282564103",
+          "cusip": "05338F306",
+          "securityId": "05338F306",
           "ticker": "",
           "putCall": null,
-          "value": 7249993,
+          "value": 8431500,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 7249993,
-              "issuerName": "Eikon Therapeutics, Inc.",
-              "shares": "555555",
+              "value": 8431500,
+              "issuerName": "Avalo Therapeutics, Inc.",
+              "shares": "550000",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1766,7 +1622,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0003633127702655332
+          "weight": 0.000400652099618162
+        },
+        {
+          "issuerName": "Tango Therapeutics, Inc.",
+          "shareClass": "COM",
+          "cusip": "87583X109",
+          "securityId": "87583X109",
+          "ticker": "",
+          "putCall": null,
+          "value": 8316658,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 8316658,
+              "issuerName": "Tango Therapeutics, Inc.",
+              "shares": "333333",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0003951949818544961
         },
         {
           "issuerName": "LB Pharmaceuticals Inc.",
@@ -1775,12 +1655,12 @@
           "securityId": "50180M108",
           "ticker": "",
           "putCall": null,
-          "value": 6491000,
+          "value": 7676000,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 6491000,
+              "value": 7676000,
               "issuerName": "LB Pharmaceuticals Inc.",
               "shares": "200000",
               "amountType": "SH",
@@ -1790,7 +1670,55 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0003252779956882132
+          "weight": 0.00036475188479736837
+        },
+        {
+          "issuerName": "Protara Therapeutics, Inc.",
+          "shareClass": "COM STK",
+          "cusip": "74365U107",
+          "securityId": "74365U107",
+          "ticker": "",
+          "putCall": null,
+          "value": 5623575,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 5623575,
+              "issuerName": "Protara Therapeutics, Inc.",
+              "shares": "1843795",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00026722375984228254
+        },
+        {
+          "issuerName": "Cerus Corporation",
+          "shareClass": "COM",
+          "cusip": "157085101",
+          "securityId": "157085101",
+          "ticker": "",
+          "putCall": null,
+          "value": 5552909,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 5552909,
+              "issuerName": "Cerus Corporation",
+              "shares": "2333155",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00026386581863708575
         },
         {
           "issuerName": "vTv Therapeutics, Inc.",
@@ -1799,12 +1727,12 @@
           "securityId": "918385204",
           "ticker": "",
           "putCall": null,
-          "value": 5584022,
+          "value": 4574004,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 5584022,
+              "value": 4574004,
               "issuerName": "vTv Therapeutics, Inc.",
               "shares": "148314",
               "amountType": "SH",
@@ -1814,71 +1742,23 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.0002798273739083173
+          "weight": 0.00021734973685131608
         },
         {
-          "issuerName": "Wave Life Sciences Ltd.",
-          "shareClass": "SHS",
-          "cusip": "Y95308105",
-          "securityId": "Y95308105",
-          "ticker": "",
-          "putCall": null,
-          "value": 4779527,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 4779527,
-              "issuerName": "Wave Life Sciences Ltd.",
-              "shares": "822638",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00023951239607112904
-        },
-        {
-          "issuerName": "Protara Therapeutics, Inc.",
-          "shareClass": "COM STK",
-          "cusip": "74365U107",
-          "securityId": "74365U107",
-          "ticker": "",
-          "putCall": null,
-          "value": 3711565,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 3711565,
-              "issuerName": "Protara Therapeutics, Inc.",
-              "shares": "971614",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 0.00018599451919065215
-        },
-        {
-          "issuerName": "TScan Therapeutics, Inc.",
+          "issuerName": "Q32 Bio Inc.",
           "shareClass": "COM",
-          "cusip": "89854M101",
-          "securityId": "89854M101",
+          "cusip": "746964105",
+          "securityId": "746964105",
           "ticker": "",
           "putCall": null,
-          "value": 2729375,
+          "value": 4531505,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 2729375,
-              "issuerName": "TScan Therapeutics, Inc.",
-              "shares": "2784792",
+              "value": 4531505,
+              "issuerName": "Q32 Bio Inc.",
+              "shares": "547945",
               "amountType": "SH",
               "investmentDiscretion": "SOLE",
               "otherManager": null
@@ -1886,7 +1766,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 0.00013677486203689986
+          "weight": 0.00021533024879086748
+        },
+        {
+          "issuerName": "Eikon Therapeutics, Inc.",
+          "shareClass": "COM",
+          "cusip": "282564103",
+          "securityId": "282564103",
+          "ticker": "",
+          "putCall": null,
+          "value": 4466662,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 4466662,
+              "issuerName": "Eikon Therapeutics, Inc.",
+              "shares": "555555",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.00021224900771922656
         },
         {
           "issuerName": "Immunome, Inc.",
@@ -1895,12 +1799,12 @@
           "securityId": "45257U108",
           "ticker": "",
           "putCall": null,
-          "value": 1171934,
+          "value": 1189632,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1171934,
+              "value": 1189632,
               "issuerName": "Immunome, Inc.",
               "shares": "55306",
               "amountType": "SH",
@@ -1910,31 +1814,7 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 5.872813782142512e-05
-        },
-        {
-          "issuerName": "Skye Bioscience, Inc.",
-          "shareClass": "COM",
-          "cusip": "83086J200",
-          "securityId": "83086J200",
-          "ticker": "",
-          "putCall": null,
-          "value": 1092116,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 1092116,
-              "issuerName": "Skye Bioscience, Inc.",
-              "shares": "1575243",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 5.472828586335367e-05
+          "weight": 5.652950940792899e-05
         },
         {
           "issuerName": "Sana Biotechnology, Inc.",
@@ -1943,12 +1823,12 @@
           "securityId": "799566104",
           "ticker": "",
           "putCall": null,
-          "value": 1083586,
+          "value": 905058,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 1083586,
+              "value": 905058,
               "issuerName": "Sana Biotechnology, Inc.",
               "shares": "310483",
               "amountType": "SH",
@@ -1958,7 +1838,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 5.430082918437963e-05
+          "weight": 4.300698428230024e-05
+        },
+        {
+          "issuerName": "TScan Therapeutics, Inc.",
+          "shareClass": "COM",
+          "cusip": "89854M101",
+          "securityId": "89854M101",
+          "ticker": "",
+          "putCall": null,
+          "value": 875817,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 875817,
+              "issuerName": "TScan Therapeutics, Inc.",
+              "shares": "2784792",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 4.1617496285510265e-05
         },
         {
           "issuerName": "Aligos Therapeutics, Inc.",
@@ -1967,12 +1871,12 @@
           "securityId": "01626L204",
           "ticker": "",
           "putCall": null,
-          "value": 479227,
+          "value": 467600,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 479227,
+              "value": 467600,
               "issuerName": "Aligos Therapeutics, Inc.",
               "shares": "83055",
               "amountType": "SH",
@@ -1982,7 +1886,31 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 2.4015097525754944e-05
+          "weight": 2.2219643216681796e-05
+        },
+        {
+          "issuerName": "Skye Bioscience, Inc.",
+          "shareClass": "COM",
+          "cusip": "83086J309",
+          "securityId": "83086J309",
+          "ticker": "",
+          "putCall": null,
+          "value": 317017,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 317017,
+              "issuerName": "Skye Bioscience, Inc.",
+              "shares": "196905",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": null
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 1.5064167308859736e-05
         },
         {
           "issuerName": "Tyra Biosciences, Inc.",
@@ -1991,12 +1919,12 @@
           "securityId": "90240B106",
           "ticker": "",
           "putCall": null,
-          "value": 338788,
+          "value": 231975,
           "currency": "USD",
           "unit": 1,
           "sourceRows": [
             {
-              "value": 338788,
+              "value": 231975,
               "issuerName": "Tyra Biosciences, Inc.",
               "shares": "10607",
               "amountType": "SH",
@@ -2006,101 +1934,88 @@
           ],
           "isNew": false,
           "sharesChangePct": null,
-          "weight": 1.697739664199944e-05
-        },
-        {
-          "issuerName": "Surrozen, Inc. Warrants @ $172.50 8/11/2026 (15 FOR 1)",
-          "shareClass": "W EXP 8/11/2026",
-          "cusip": "86889P117",
-          "securityId": "86889P117",
-          "ticker": "",
-          "putCall": null,
-          "value": 13750,
-          "currency": "USD",
-          "unit": 1,
-          "sourceRows": [
-            {
-              "value": 13750,
-              "issuerName": "Surrozen, Inc. Warrants @ $172.50 8/11/2026 (15 FOR 1)",
-              "shares": "833333",
-              "amountType": "SH",
-              "investmentDiscretion": "SOLE",
-              "otherManager": null
-            }
-          ],
-          "isNew": false,
-          "sharesChangePct": null,
-          "weight": 6.890421261304778e-07
+          "weight": 1.1023100374657312e-05
         }
       ],
-      "filedAt": "2026-08-14",
-      "declaredTotal": 19955238553,
+      "filedAt": "2026-11-16",
+      "declaredTotal": 21044442318,
       "currency": "USD",
       "valueUnit": 1,
       "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
       "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
       "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
       "quarterChanges": {
-        "priorPeriodLabel": "Q1 2026",
+        "priorPeriodLabel": "Q2 2026",
         "exits": [
           {
-            "issuerName": "Abivax S.A.",
-            "ticker": "ABVX",
+            "issuerName": "Crinetics Pharmaceuticals Inc.",
+            "ticker": "CRNX",
             "putCall": null
           },
           {
-            "issuerName": "Spyre Therapeutics Inc.",
-            "ticker": "SYRE",
+            "issuerName": "Alumis",
+            "ticker": "ALMS",
             "putCall": null
           },
           {
-            "issuerName": "Centessa Pharmaceuticals",
-            "ticker": "CNTA",
+            "issuerName": "Viridian Therapeutics Inc.",
+            "ticker": "VRDN",
             "putCall": null
           },
           {
-            "issuerName": "Immunocore",
-            "ticker": "IMCR",
+            "issuerName": "Sionna Therapeutics Inc.",
+            "ticker": "SION",
             "putCall": null
           },
           {
-            "issuerName": "Contineum Therapeutics Inc-A",
-            "ticker": "CTNM",
+            "issuerName": "Verastem Inc.",
+            "ticker": "VSTM",
             "putCall": null
           },
           {
-            "issuerName": "Argenx SE",
-            "ticker": "ARGX",
+            "issuerName": "Sagimet Biosciences Inc.",
+            "ticker": "SGMT",
             "putCall": null
           },
           {
-            "issuerName": "Compass Pathways PLC",
-            "ticker": "CMPS",
+            "issuerName": "Wave Life Sciences Ltd.",
+            "ticker": "WVE",
             "putCall": null
           },
           {
-            "issuerName": "Pharvaris N V",
-            "ticker": "PHVS",
+            "issuerName": "Skye Bioscience, Inc.",
+            "ticker": "SKYE",
+            "putCall": null
+          },
+          {
+            "issuerName": "Surrozen, Inc.",
+            "ticker": "SRZNW",
             "putCall": null
           }
         ]
       },
       "publicationSource": "https://foliofact.com/funds/baker-bros-advisors",
-      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/",
-      "reportedCoverTotal": 19955238553,
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926128308/",
+      "reportedCoverTotal": 21044442318,
       "reconciliationDifference": 0,
-      "providerDeclaredTotal": 19955238553.0,
-      "providerHoldingsCount": 84,
+      "providerDeclaredTotal": 21044442318.0,
+      "providerHoldingsCount": 80,
       "providerTotalDifference": 0.0,
       "sourceDocuments": [
-        "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/infotable.xml",
-        "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/primary_doc.xml"
+        "https://www.sec.gov/Archives/edgar/data/1263508/000110465926128308/infotable.xml",
+        "https://www.sec.gov/Archives/edgar/data/1263508/000110465926128308/primary_doc.xml"
       ],
-      "originalRowCount": 84,
+      "originalRowCount": 80,
       "primaryVerified": true
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926128308/",
     "discoverySourceUrl": "https://foliofact.com/funds/baker-bros-advisors",
-    "filingHistory": []
+    "filingHistory": [
+      {
+        "periodEnd": "2026-06-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1263508/000110465926097191/",
+        "snapshotUrl": "data/investors/archive/baker-bros/2026-06-30.json"
+      }
+    ]
   }
 }

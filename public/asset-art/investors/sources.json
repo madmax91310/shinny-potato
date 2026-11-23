@@ -260,20 +260,30 @@
     "file": "investors/baker-bros.webp"
   },
   "icahn": {
-    "title": "Carl Icahn · Shareholders’ Square Table",
-    "url": "https://carlicahn.com/wp-content/themes/sst-main/assets/images/jumbotron-bg.jpg",
-    "source": "https://carlicahn.com/about/",
-    "author": "Carl Icahn",
-    "license": "Source officielle",
+    "title": "Carl Icahn, 1980s.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Carl_Icahn%2C_1980s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "source": "https://commons.wikimedia.org/wiki/File:Carl_Icahn,_1980s.jpg",
+    "author": "AviateHistory",
+    "license": "CC0",
     "focusX": 0.78,
-    "file": "investors/icahn.webp",
+    "file": "investors/icahn-commons-original.jpg",
     "person": "Carl Icahn",
-    "commonsPortrait": {
-      "wikidataId": "Q981479",
-      "title": "Carl Icahn, 1980s.jpg",
-      "identitySource": "https://carlicahn.com/about/",
-      "reviewedAt": "2026-11-16"
-    }
+    "identityVerified": true,
+    "identitySource": "https://carlicahn.com/about/",
+    "checkedAt": "2026-11-21",
+    "sourceSha1": "8640f1e045efd8c5a08050fbcccb924b404eb0a6",
+    "sourceSha256": "41b14704df6c39171fbb5c92bedb50bfe816f92158cd2b0e90ac52b6d1210c1c",
+    "reviewedMask": "investors/icahn-mask.json",
+    "crop": [
+      216,
+      104,
+      826,
+      679
+    ],
+    "cropForSha1": "8640f1e045efd8c5a08050fbcccb924b404eb0a6",
+    "cropNote": "Veste et cheveux conservés, partie inférieure recadrée avant les micros.",
+    "maskNote": "Veste et cheveux conservés, partie inférieure recadrée avant les micros.",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
   },
   "laffont": {
     "title": "Philippe Laffont · Coatue",
@@ -406,7 +416,23 @@
     "file": "investors/watsa.jpg",
     "focusX": 0.55,
     "description": "Auteur Wikimedia : செல்வா. Recadrage et effet de sérigraphie dans l’export.",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "person": "Prem Watsa",
+    "identityVerified": true,
+    "identitySource": "https://commons.wikimedia.org/wiki/File:Prem_Watsa.jpg",
+    "checkedAt": "2026-11-21",
+    "sourceSha1": "916af9afa4a09db13959bdbb431da51e82e8c86e",
+    "sourceSha256": "424ba25992e0d296d697cc8455eb3fc59fb23881fb1577d4c44061f6f16a8c4a",
+    "reviewedMask": "investors/watsa-mask.json",
+    "crop": [
+      867,
+      48,
+      2163,
+      1413
+    ],
+    "cropForSha1": "916af9afa4a09db13959bdbb431da51e82e8c86e",
+    "cropNote": "Cadre resserré sur le buste et masque du microphone externe.",
+    "maskNote": "Cadre resserré sur le buste et masque du microphone externe."
   },
   "gavin-baker": {
     "title": "Gavin Baker · Atreides Management",

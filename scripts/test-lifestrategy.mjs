@@ -5,6 +5,7 @@ import { LIFESTRATEGY_RECORDS, LIFESTRATEGY_SHEETS } from '../src/data/lifestrat
 import { ETFS } from '../src/data/etf-cards.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 import { buildText } from '../src/pages/etf-sheets/lib.js'
+import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js'
 import { getETFArt } from '../src/pages/etf-sheets/visualIdentity.js'
 import { ASSETS } from '../src/data/market-history.js'
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, MARKET_ASSETS } from '../src/pages/tweet-midi/data/marketHistory.js'
@@ -24,7 +25,13 @@ for (const sheet of LIFESTRATEGY_SHEETS) {
   assert(r.holdings.rows.every(x=>x.name.startsWith('Vanguard ')))
   assert(!r.countries && !r.sectors)
   const text = buildText(card)
-  assert(text.includes('Allocation publiée au')); assert(!/undefined|NaN/.test(text)); getETFArt(sheet.id)
+  assert.match(text,new RegExp(`\\b${n} % d’actions`))
+  assert.doesNotMatch(text,/\d{2}\/\d{2}\/\d{4}|undefined|NaN/)
+  const details = getPresentationCopy(card).whatIs
+  assert(details.includes(`Allocation du fonds au ${r.assetAllocation.asOf.split('-').reverse().join('/')}`))
+  const equity = r.assetAllocation.rows.find(row=>row.name==='Actions')
+  assert(details.includes(`Actions : ${equity.weightPct.toLocaleString('fr-FR')} %`))
+  getETFArt(sheet.id)
   const history = ASSETS[`etfLifeStrategy${n}`]
   assert(history && history.points[0].date==='2021-01' && history.currency==='EUR')
   assert(!history.anniversaryPoints)

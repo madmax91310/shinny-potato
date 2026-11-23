@@ -1,0 +1,487 @@
+{
+  "as_of": "2026-11-15T16:39:20.165115+00:00",
+  "data": {
+    "identity": {
+      "slug": "morfit",
+      "archetype": "hedge_fund",
+      "displayName": "Mason Morfit",
+      "entityName": "ValueAct Holdings, L.P.",
+      "dataProvider": "SEC",
+      "personVerified": true,
+      "personSource": "https://foliofact.com/api/v1/funds/valueact-capital",
+      "personPeriod": "2026-06-30",
+      "declaringCik": "0001418814",
+      "entitySource": "https://www.sec.gov/Archives/edgar/data/1418814/000141881426000003/"
+    },
+    "snapshot": {
+      "periodEnd": "2026-06-30",
+      "holdings": [
+        {
+          "issuerName": "VISA INC",
+          "shareClass": "COM CL A",
+          "cusip": "92826C839",
+          "securityId": "92826C839",
+          "ticker": "",
+          "putCall": null,
+          "value": 794682213,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 794682213,
+              "issuerName": "VISA INC",
+              "shares": "2316250",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.1410278423174379
+        },
+        {
+          "issuerName": "AMAZON COM INC",
+          "shareClass": "COM",
+          "cusip": "023135106",
+          "securityId": "023135106",
+          "ticker": "",
+          "putCall": null,
+          "value": 701124778,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 701124778,
+              "issuerName": "AMAZON COM INC",
+              "shares": "2941700",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.12442472351728937
+        },
+        {
+          "issuerName": "ROCKET COS INC",
+          "shareClass": "COM CL A",
+          "cusip": "77311W101",
+          "securityId": "77311W101",
+          "ticker": "",
+          "putCall": null,
+          "value": 656283191,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 656283191,
+              "issuerName": "ROCKET COS INC",
+              "shares": "41668774",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.11646693591710348
+        },
+        {
+          "issuerName": "BLACKROCK INC",
+          "shareClass": "COM",
+          "cusip": "09290D101",
+          "securityId": "09290D101",
+          "ticker": "",
+          "putCall": null,
+          "value": 559339452,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 559339452,
+              "issuerName": "BLACKROCK INC",
+              "shares": "581700",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.09926286853809087
+        },
+        {
+          "issuerName": "META PLATFORMS INC",
+          "shareClass": "CL A",
+          "cusip": "30303M102",
+          "securityId": "30303M102",
+          "ticker": "",
+          "putCall": null,
+          "value": 515790007,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 515790007,
+              "issuerName": "META PLATFORMS INC",
+              "shares": "915674",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.09153439020800909
+        },
+        {
+          "issuerName": "SALESFORCE INC",
+          "shareClass": "COM",
+          "cusip": "79466L302",
+          "securityId": "79466L302",
+          "ticker": "",
+          "putCall": null,
+          "value": 469119780,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 469119780,
+              "issuerName": "SALESFORCE INC",
+              "shares": "2994509",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0832520840149107
+        },
+        {
+          "issuerName": "TOAST INC",
+          "shareClass": "CL A",
+          "cusip": "888787108",
+          "securityId": "888787108",
+          "ticker": "",
+          "putCall": null,
+          "value": 393208937,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 393208937,
+              "issuerName": "TOAST INC",
+              "shares": "14134038",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.0697806079686892
+        },
+        {
+          "issuerName": "KKR & CO INC",
+          "shareClass": "COM",
+          "cusip": "48251W104",
+          "securityId": "48251W104",
+          "ticker": "",
+          "putCall": null,
+          "value": 326571596,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 326571596,
+              "issuerName": "KKR & CO INC",
+              "shares": "3558200",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.05795484885987002
+        },
+        {
+          "issuerName": "SPOTIFY TECHNOLOGY S A",
+          "shareClass": "SHS",
+          "cusip": "L8681T102",
+          "securityId": "L8681T102",
+          "ticker": "",
+          "putCall": null,
+          "value": 241869684,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 241869684,
+              "issuerName": "SPOTIFY TECHNOLOGY S A",
+              "shares": "526800",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.042923270583533915
+        },
+        {
+          "issuerName": "LIBERTY LIVE HOLDINGS INC",
+          "shareClass": "COM SHS SER C",
+          "cusip": "530909308",
+          "securityId": "530909308",
+          "ticker": "",
+          "putCall": null,
+          "value": 229491068,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 229491068,
+              "issuerName": "LIBERTY LIVE HOLDINGS INC",
+              "shares": "2172388",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.04072650629612672
+        },
+        {
+          "issuerName": "SIMPSON MFG INC",
+          "shareClass": "COM",
+          "cusip": "829073105",
+          "securityId": "829073105",
+          "ticker": "",
+          "putCall": null,
+          "value": 173894903,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 173894903,
+              "issuerName": "SIMPSON MFG INC",
+              "shares": "830642",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.03086016341992816
+        },
+        {
+          "issuerName": "ROBLOX CORP",
+          "shareClass": "CL A",
+          "cusip": "771049103",
+          "securityId": "771049103",
+          "ticker": "",
+          "putCall": null,
+          "value": 171156754,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 171156754,
+              "issuerName": "ROBLOX CORP",
+              "shares": "3147421",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.030374239312031145
+        },
+        {
+          "issuerName": "CBRE GROUP INC",
+          "shareClass": "CL A",
+          "cusip": "12504L109",
+          "securityId": "12504L109",
+          "ticker": "",
+          "putCall": null,
+          "value": 133665144,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 133665144,
+              "issuerName": "CBRE GROUP INC",
+              "shares": "992391",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.023720811341941574
+        },
+        {
+          "issuerName": "LIBERTY LIVE HOLDINGS INC",
+          "shareClass": "COM SER A",
+          "cusip": "530909100",
+          "securityId": "530909100",
+          "ticker": "",
+          "putCall": null,
+          "value": 79501150,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 79501150,
+              "issuerName": "LIBERTY LIVE HOLDINGS INC",
+              "shares": "785119",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.014108627905397674
+        },
+        {
+          "issuerName": "MONGODB INC",
+          "shareClass": "CL A",
+          "cusip": "60937P106",
+          "securityId": "60937P106",
+          "ticker": "",
+          "putCall": null,
+          "value": 55658630,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 55658630,
+              "issuerName": "MONGODB INC",
+              "shares": "165700",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.009877428193104177
+        },
+        {
+          "issuerName": "LIVE NATION ENTERTAINMENT IN",
+          "shareClass": "COM",
+          "cusip": "538034109",
+          "securityId": "538034109",
+          "ticker": "",
+          "putCall": null,
+          "value": 55311305,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 55311305,
+              "issuerName": "LIVE NATION ENTERTAINMENT IN",
+              "shares": "302066",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.009815790352805737
+        },
+        {
+          "issuerName": "WIX COM LTD",
+          "shareClass": "SHS",
+          "cusip": "M98068105",
+          "securityId": "M98068105",
+          "ticker": "",
+          "putCall": null,
+          "value": 47384496,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 47384496,
+              "issuerName": "WIX COM LTD",
+              "shares": "1099370",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.008409063548751237
+        },
+        {
+          "issuerName": "PAYPAY CORP",
+          "shareClass": "SPONSORED ADS",
+          "cusip": "70450C101",
+          "securityId": "70450C101",
+          "ticker": "",
+          "putCall": null,
+          "value": 30878284,
+          "currency": "USD",
+          "unit": 1,
+          "sourceRows": [
+            {
+              "value": 30878284,
+              "issuerName": "PAYPAY CORP",
+              "shares": "2154800",
+              "amountType": "SH",
+              "investmentDiscretion": "SOLE",
+              "otherManager": "1"
+            }
+          ],
+          "isNew": false,
+          "sharesChangePct": null,
+          "weight": 0.005479797704979041
+        }
+      ],
+      "filedAt": "2026-08-14",
+      "declaredTotal": 5634931372,
+      "currency": "USD",
+      "valueUnit": 1,
+      "valueUnitSource": "https://www.sec.gov/files/form13f.pdf",
+      "valueScope": "Déclaration SEC 13F ; positions longues et options déclarées",
+      "securityIdentityNote": "Titres identifiés par CUSIP, classe et type. Lignes de gestion identiques additionnées ; classes distinctes conservées.",
+      "quarterChanges": {
+        "priorPeriodLabel": "Q1 2026",
+        "exits": [
+          {
+            "issuerName": "Walt Disney Co.",
+            "ticker": "DIS",
+            "putCall": null
+          }
+        ]
+      },
+      "publicationSource": "https://foliofact.com/funds/valueact-capital",
+      "filingUrl": "https://www.sec.gov/Archives/edgar/data/1418814/000141881426000003/",
+      "reportedCoverTotal": 5634931372,
+      "reconciliationDifference": 0,
+      "providerDeclaredTotal": 5634931372.0,
+      "providerHoldingsCount": 17,
+      "providerTotalDifference": 0.0,
+      "sourceDocuments": [
+        "https://www.sec.gov/Archives/edgar/data/1418814/000141881426000003/primary_doc.xml",
+        "https://www.sec.gov/Archives/edgar/data/1418814/000141881426000003/vac13f81426.xml"
+      ],
+      "originalRowCount": 18,
+      "primaryVerified": true
+    },
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1418814/000141881426000003/",
+    "discoverySourceUrl": "https://foliofact.com/funds/valueact-capital",
+    "filingHistory": []
+  }
+}

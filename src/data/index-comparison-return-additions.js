@@ -153,7 +153,7 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
         "date": "Années calendaires 2023–2025"
       },
       "source": {
-        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "label": "Nasdaq-100 Total Return (XNDX)",
         "url": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf"
       },
       "currency": "USD",

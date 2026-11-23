@@ -39,7 +39,7 @@ export function buildTweet(record) {
   const fundLines = euroFunds.map(fund => {
     const latest = fund.years.at(-1)
     return [
-      `• ${fund.name} : ${latest.year} → ${fundReturn(latest)}`,
+      latest ? `• ${fund.name} : ${latest.year} → ${fundReturn(latest)}` : `• ${fund.name}`,
       fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, après frais de gestion.` : '',
       shortFundAccess(fund),
       annualPublicationNote(fund.publication),

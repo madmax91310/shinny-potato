@@ -16586,6 +16586,46 @@
       "method": "ISIN qualifié dans les positions émetteur ; cotation exacte qualifiée par ces positions ou l’annuaire officiel référencé. Cours ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
       "yahooInstrumentType": "EQUITY",
       "periodStart": "2016-09"
+    },
+    {
+      "id": "etfIE000VAHT5T0",
+      "label": "Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating",
+      "isin": "IE000VAHT5T0",
+      "ticker": "VGLA",
+      "mic": "XETR",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "VGLA.DE",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE000VAHT5T0-XETR-VGLA-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2026-09",
+      "verifyMonthlyDisagreements": true
+    },
+    {
+      "id": "etfIE00B1FZSF77",
+      "label": "iShares US Property Yield UCITS ETF USD (Dist)",
+      "isin": "IE00B1FZSF77",
+      "ticker": "IUSP",
+      "mic": "XAMS",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "IUSP.AS",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE00B1FZSF77-XAMS-IUSP-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2015-01",
+      "verifyMonthlyDisagreements": true
     }
   ]
 }

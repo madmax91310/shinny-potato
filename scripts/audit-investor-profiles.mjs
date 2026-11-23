@@ -1,22 +1,42 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { INVESTOR_PROFILES, investorIntroduction } from '../src/data/investor-profiles.js'
-import { INVESTORS, buildTweet, normalizePortfolio, percentage } from '../src/pages/investor-portfolio/data.js'
-import { publicationPlan, portfolioOwner } from '../src/pages/investor-portfolio/publication.js'
+import { INVESTORS, buildTweet, normalizePortfolio } from '../src/pages/investor-portfolio/data.js'
+import { editorialCopy, draftBasis } from '../src/pages/investor-portfolio/editorial.js'
+import { publicationPlan } from '../src/pages/investor-portfolio/publication.js'
 assert.deepEqual(Object.keys(INVESTOR_PROFILES).sort(), INVESTORS.map(([id])=>id).sort())
 const read = path => JSON.parse(readFileSync(path,'utf8'))
+const endings = new Set()
 for (const [slug] of INVESTORS) {
   const profile=INVESTOR_PROFILES[slug]
   assert(investorIntroduction(slug) && profile.checkedAt && profile.sourceUrls.every(url=>new URL(url).protocol==='https:'))
   const payload=read(`public/data/investors/${slug}.json`), portfolio=normalizePortfolio(payload), before=JSON.stringify(portfolio)
   const tweet=buildTweet(portfolio)
-  assert(tweet.startsWith(`Portefeuille de ${portfolioOwner(portfolio)} :`))
-  assert(!/NaN|undefined|#|performance|rendement/.test(tweet))
+  const editorial = editorialCopy(portfolio)
+  assert(!/\bNaN\b|\bundefined\b|#|—|ma lecture|ce qu.il faut retenir|décryptage|\{\w+\}/i.test(tweet))
+  if (editorial.text) {
+    assert(editorial.text.length >= 600 && editorial.short.length <= 270)
+    assert(editorial.weights.length >= 3)
+    const end = editorial.text.split('\n\n').at(-1)
+    assert(end.includes('?') && !endings.has(end))
+    endings.add(end)
+  }
   if(portfolio.problem) { assert(tweet.includes('Données incomplètes')); assert.throws(()=>publicationPlan(portfolio)) }
   else {
     const plan=publicationPlan(portfolio)
-    for(const row of plan.entries) assert(tweet.includes(row.label) && tweet.includes(percentage(row.weight)))
-    assert(tweet.endsWith('Quelle ligne aimerais-tu avoir dans ton portefeuille ? 👇'))
+    if (editorial.status === 'reviewed') {
+      const next = structuredClone(portfolio)
+      next.snapshot.periodEnd = next.snapshot.periodEnd === '2026-09-30' ? '2026-06-30' : '2026-09-30'
+      assert.notEqual(draftBasis(next), draftBasis(portfolio))
+      const updated = editorialCopy(next)
+      assert.equal(updated.status, 'review')
+      assert(updated.comparisons.every(({ rows, weight }) => rows.reduce((sum, row) => sum + row.value, 0) / next.total === weight))
+      assert.equal(buildTweet(next), tweet, 'Le texte relu reste disponible pour la révision')
+      const amended = structuredClone(portfolio)
+      amended.holdings[0].value++
+      amended.total++
+      assert.equal(editorialCopy(amended).status, 'review')
+    }
     assert(Math.abs(plan.total-portfolio.holdings.reduce((sum,r)=>sum+r.value,0))<.01)
   }
   assert.equal(before,JSON.stringify(portfolio),'Génération sans mutation')
@@ -39,5 +59,5 @@ for(const review of reviews) {
   assert.equal(review.as_of,stored.as_of)
   assert(!review.data.snapshot.holdings)
 }
-console.log(`${INVESTORS.length} profils sourcés, photographie, états incomplets, montants, texte court et métadonnées vérifiés.`)
+console.log(`${INVESTORS.length} profils sourcés, photographie, états incomplets, montants, textes relus, états de révision et métadonnées vérifiés.`)
 await import('./test-investor-functional.mjs')

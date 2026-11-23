@@ -1,6 +1,7 @@
 import './test-consumer-field-evidence.mjs'
 import './test-ishares-physical-targets.mjs'
 import assert from 'node:assert/strict'
+import weeklyFlows from '../src/data/etf-flows-weekly.json' with {type:'json'}
 import {consumerUsage} from './lib/consumer-usage.mjs'
 import {groupIncidents,incidentPresentations} from '../src/pages/data-review/incident-priority.js'
 import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
@@ -28,6 +29,14 @@ assert(!report.fields.some(f=>f.type==='company'),'Retired company accounts must
 assert(!report.workflows.some(w=>w.path.endsWith('/update-company-analysis.yml')))
 assert(report.consumerUsage.tools.some(t=>t.path==='/france-100-menages'))
 assert(report.consumerUsage.tools.some(t=>t.path==='/portefeuilles-investisseurs'))
+for(const path of ['/comparateur-indices','/portefeuilles-publics','/flux-etf']) {
+ assert(report.consumerUsage.tools.some(tool=>tool.path===path&&tool.required>0),path)
+}
+const flows = report.consumerUsage.tools.find(tool=>tool.path==='/flux-etf').rows
+assert.equal(flows.find(row=>row.id==='etf-flows:weekly-europe').state,'blocked')
+assert.equal(flows.find(row=>row.id==='etf-flows:weekly-us-listed').state,weeklyFlows.editions.length?'scheduled-evidence':'blocked')
+assert(report.consumerUsage.tools.find(tool=>tool.path==='/comparateur-indices').rows.some(row=>row.id==='IE00B5BMR087'))
+
 assert(report.consumerUsage.tools.flatMap(t=>t.rows).some(r=>r.id.startsWith('lexicon:')&&r.required),'Variable regulatory data remain required')
 assert(report.consumerUsage.tools.every(t=>!t.path.includes('analyse-entreprise')))
 console.log('Consumed fields: required observations, alias deduplication, unknown consumers, retired financial accounts, household/regulatory/13F coverage and incident roots passed.')

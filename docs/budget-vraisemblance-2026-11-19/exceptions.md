@@ -1,0 +1,57 @@
+# Profils avec une limite essentielle
+
+- **Mathieu** · Charges hors énergie et aucun poste énergie identifié dans la source publique conservée.
+- **Nicolas** · Assiette de la taxe foncière du logement et éventuelles primes dans la moyenne de rémunération inconnues.
+- **Hugo** · Fréquence du bonus inconnue, donc marge habituelle indéterminée.
+- **Clara et Louis** · Revenus insuffisamment ventilés pour évaluer chaque salaire ou l’effet du projet d’enfant.
+- **Adrien** · Coût et mode du déplacement frontalier, rythme de présence et brut contractuel inconnus. 40 € ne prouvent pas le coût complet.
+- **Bastien** · Conditions de durée des cours particuliers et du soutien familial non établies. Ne pas annualiser ce reste.
+- **Julien** · Le métier et l’horaire empêchent de juger le niveau salarial au-delà du montant déclaré.
+- **Paul** · Ventilation du travail et récurrence non établies, donc salaire comparable et reste habituel non validés.
+- **Enzo** · Nature du contrat, localisation du futur logement et articulation avec l’impôt non établies.
+- **Romain** · Part du salaire / des recettes exceptionnelles inconnue. Aucun équivalent de capacité habituelle possible.
+- **Florian** · Comparateur de métier impossible. Ventilation courses/repas dans les restaurants incertaine.
+- **Théo** · Éligibilité et durée des 100 € Mobili-Jeune en plus de la CAF non établies. Scénario de période uniquement.
+- **Guillaume** · Cadre salarial et détail de l’enveloppe de 532 € inconnus.
+- **Thomas à Paris** · Périmètre du loyer parisien de 525 € inconnu (surface, statut, partage). Ne pas supposer un loyer de marché.
+- **Alexandre** · Poste, commune et quotité manquent pour juger salaire et loyer ensemble.
+- **Maxime et Clara** · Détail des primes, salaires et frais transfrontaliers non disponible.
+- **Adrien et Léa** · L’année moyenne est antérieure à la naissance et ne valide ni métier ni dépenses après naissance.
+- **Marc** · Impossible de considérer CHF 16 167 après charges comme récurrent sans historique du variable et périmètre des dépenses.
+- **Inès** · Type et durée d’indemnisation inconnus, impossible d’en juger le caractère récurrent.
+- **Aïcha** · Ventilation fixe/astreintes non disponible.
+- **Élodie** · Contrat d’assurance et durée de versement inconnus.
+- **Soraya** · Volume d’heures, majorations et éventuels cumuls restent indispensables pour expliquer le salaire.
+- **Maud** · Rôle et base fiscale ne permettent pas de juger le niveau salarial exactement.
+- **Émilie** · Le partage du bail n’est pas documenté. 900 € représentent uniquement sa contribution.
+- **Anaïs** · Contrat, heures et primes de vol absents. L’indication « de base » ne représente pas nécessairement le revenu ordinaire total.
+- **Zoé** · Montant loyer 550 € estimé dans Paris 19e, bail et éventuelle colocation non documentés.
+- **Chloé et Nathan** · Quotité de Chloé et incidence du futur logement inconnues.
+- **Hadrien** · Prime, ancienneté et quotité inconnues. Dépenses moyennes 2025 confrontées au salaire 2026 uniquement en projection.
+- **Victor** · Taux temps plein de la convention et composantes du salaire manquent pour confirmer.
+- **Olivier et Alice** · Activités et historique salarial indispensables pour expliquer les revenus du couple.
+- **Sébastien et Mélanie** · Salaire de Mélanie et part variable restent inconnus.
+- **Vincent et Sarah** · Le calcul de la marge locative ne détaille pas vacance, entretien et fiscalité des trois biens.
+- **Élise et Karim** · Nouvelle mensualité de regroupement inconnue. Coûts auto sur deux véhicules et maintenance retenus sur le mois documenté.
+- **Timéo** · Branche précise et barème de l’entreprise non fournis. Ce salaire est une hypothèse du scénario, pas une grille.
+- **Benoît** · Période de lissage et définition du revenu indépendant (cotisations, IR, frais) insuffisantes.
+- **Axel** · Le revenu et la commune du projet n’autorisent pas la validation de l’ensemble.
+- **Apolline** · Parents règlent le logement. Quote-part ouvrant droit à l’aide inconnue. Sans l’aide, reste affiché diminué de 100 €.
+- **Émilien** · Montants des aides et niveau exact du loyer futur non documentés. Fort reste de projet, pas une constatation récurrente.
+- **Solène** · Le grade et la convention n’établissent pas une comparaison salariale de même métier.
+- **Patrice** · Poste/échelon BTP et trésorerie agricole insuffisamment documentés. Pas de virement supposé.
+- **Noémie** · Quotité, brut et périmètre fiscal non documentés. Utilisation précise des titres-restaurant et répartition du couple inconnues.
+- **Cédric** · Détail des cachets, mois sans droits et régime fiscal non déterminés.
+- **Gérald** · Part de la pension, métier civil et base fiscale inconnus. Total seul conservé.
+- **Alban** · Année de contrat et base fiscale manquantes. Impossible de contrôler le minimum applicable au cas précis.
+- **Aude et Rémy** · Métiers et dates d’extinction du CDD inconnus. Pas de revenu long terme ni extrapolation du reste.
+- **Léna et Gaëtan** · Prix de 490 € pour le loyer entier sans commune, surface ni bail ne peut être comparé au marché.
+- **Baptiste** · Aucun comparatif précis du revenu faute d’activité déterminée.
+- **Corentin** · Durée restante et capital du prêt étudiant inconnus, réserve de précaution non chiffrée avant le projet locatif. Aucun crédit immobilier distinct déclaré.
+- **Étienne** · Le montant est conservé. Retraite de base/complémentaire et répartition des charges du couple inconnues.
+- **Esteban** · Les 60 € de frais auto personnels ne permettent pas de déterminer kilométrage, qui règle assurance et entretien.
+- **Séverine** · Le pont des frais et prélèvements aboutit à 4 565 € plutôt qu’aux 4 500 € arrondis. Détail partiel des charges pro. La marge de 1 € reste indicative.
+- **Ingrid et Joël** · Comparaison par métier impossible. Allocations non présumées.
+- **Iris** · Pays de l’emploi et traitement fiscal exact non précisés. Métier et primes non chiffrés.
+- **Laurent et Eva** · Métier, retenues et temps de travail inconnus. Déplacements ponctuels retenus en scénario.
+- **Maël** · Part des deux aides et année de contrat non précisées. Courses et carburant trop agrégés pour conclure au coût de chacun.

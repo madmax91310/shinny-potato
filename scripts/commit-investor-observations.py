@@ -52,6 +52,44 @@ def preserve_latest_report(target):
         copy_report_evidence(state['path'], target)
 
 
+def collection_summary(root, report):
+    baseline = subprocess.check_output(
+        ['git', 'show', 'HEAD:public/data/investors/review-metadata.json'], cwd=root, text=True)
+    previous = {row['data']['identity']['slug']: row for row in json.loads(baseline)}
+    rows = []
+    for check in report['managers']:
+        slug = check['slug']
+        prior = previous.get(slug, {})
+        data = json.loads((root / 'public/data/investors' / f'{slug}.json').read_text())['data']
+        snapshot = data['snapshot']
+        failed = check['status'] == 'failed'
+        previous_period = prior.get('data', {}).get('snapshot', {}).get('periodEnd')
+        rows.append({
+            **check, 'availablePeriod': snapshot['periodEnd'] if snapshot.get('primaryVerified') else None,
+            'newQuarter': bool(not failed and previous_period and snapshot['periodEnd'] > previous_period),
+            'newFailure': failed and (prior.get('lastAttemptStatus') != 'failed' or prior.get('lastError') != check['reason']),
+        })
+    return rows
+
+
+def write_collection_summary(rows):
+    if not os.environ.get('GITHUB_STEP_SUMMARY'):
+        return
+    validated = [row for row in rows if row['status'] == 'validated']
+    with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+        summary.write('\n## Bilan des observations enregistrées\n\n')
+        summary.write(f"{len(rows)} profils examinés · {len(validated)} relevés validés · "
+                      f"{sum(not row['changed'] for row in validated)} inchangés · "
+                      f"{sum(row['newQuarter'] for row in rows)} nouveaux trimestres · "
+                      f"{len(rows) - len(validated)} échecs.\n\n")
+        for row in rows:
+            status = ('échec nouveau ou modifié' if row['newFailure'] else 'échec déjà signalé') if row['status'] == 'failed' else (
+                'nouveau trimestre' if row['newQuarter'] else 'relevé mis à jour' if row['changed'] else 'relevé inchangé')
+            available = row['availablePeriod'] or 'aucun relevé SEC qualifié'
+            reason = ' · ' + ' '.join(row['reason'].splitlines()) if row.get('reason') else ''
+            summary.write(f"- `{row['slug']}` · {status} · {available}{reason}\n")
+
+
 def publish(root, report, attempts=3, command=None):
     command = command or WRITER
     if command != WRITER:
@@ -79,7 +117,10 @@ def publish(root, report, attempts=3, command=None):
             if status == 0:
                 result = dict(line.split('=', 1) for line in output.read_text().splitlines())
                 data = json.loads(current_report.read_text())
-                result['collection_failed'] = str(any(r['status'] == 'failed' for r in data['managers'])).lower()
+                rows = collection_summary(current, data)
+                write_collection_summary(rows)
+                result['collection_failed'] = str(any(r['status'] == 'failed' for r in rows)).lower()
+                result['new_collection_failure'] = str(any(r['newFailure'] for r in rows)).lower()
                 copy_report_evidence(current_report, report)
                 return result
             run(['git', 'fetch', 'origin', 'master'], root)
@@ -117,7 +158,7 @@ def main():
     args = parser.parse_args()
     try:
         result = publish(ROOT, args.report, command=[v for i,v in enumerate(args.command) if not (i==0 and v=='--')])
-        text = ''.join(f'{key}={result[key]}\n' for key in ('changed', 'commit_sha', 'collection_failed'))
+        text = ''.join(f'{key}={result[key]}\n' for key in ('changed', 'commit_sha', 'collection_failed', 'new_collection_failure'))
         if os.environ.get('GITHUB_OUTPUT'):
             with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
                 out.write(text)

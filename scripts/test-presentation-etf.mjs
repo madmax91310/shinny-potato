@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { PRESENTATION_ETF_ADDITIONS } from '../src/data/presentation-etf-additions.js';
 import { ETFS } from '../src/data/etf-cards.js';
+import { instrumentOption } from '../src/data/asset-selection.js';
 import { ASSETS } from '../src/data/portfolio-assets.js';
 import { AUTOMATED_ETF, buildAnnualPerformance } from '../src/data/automated-etf.js';
 import { getAnnualPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js';
@@ -14,7 +15,7 @@ function assertManualConvention(asset) {
 }
 const config = [...JSON.parse(readFileSync(new URL('./additional-etf-sources.json', import.meta.url))).instruments, ...JSON.parse(readFileSync(new URL('./etf-pilot.json', import.meta.url))).instruments.map(s => ({...s, enabled:true, required:true}))];
 const marketCalendars=JSON.parse(readFileSync(new URL('../src/data/monthly-duel-returns.json',import.meta.url)));
-assert.equal(PRESENTATION_ETF_ADDITIONS.length, 11);
+assert.equal(PRESENTATION_ETF_ADDITIONS.length, 13);
 for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>!r.reviewedAt)) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
@@ -66,7 +67,7 @@ for (const r of PRESENTATION_ETF_EXPANSION) {
 console.log('Five PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');
 
 // New cards retain actual short histories and explicitly unavailable country data.
-for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
+for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt==='15/10/2026')) {
  const card=ETFS.find(c=>c.isin===r.isin),record=AUTOMATED_ETF[r.isin];
  assert.equal(card.presentationOnly, !r.portfolioEnabled);
  assert(card.listing && getETFArt(card.id));
@@ -88,3 +89,49 @@ for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
  }
 }
 console.log('Four additional cards: issuer facts, exact listings and short/missing histories preserved.');
+
+// The newly launched All-Cap share must never inherit an older World history.
+const allCap = ETFS.find(r=>r.isin==='IE000VAHT5T0');
+assert.equal(ETFS.filter(r=>r.isin===allCap.isin).length,1);
+assert.equal(allCap.listing.ticker,'VGLA');
+assert.equal(allCap.listing.currency,'EUR');
+assert.equal(allCap.pea,false);
+assert.equal(allCap.presentationOnly,true);
+assert(getETFArt(allCap.id));
+assert.match(allCap.whatIs,/petites.*développés et émergents/);
+assert.match(allCap.whatToKnow,/août 2026/);
+assert.equal(getAnnualPerformance(allCap).availability,'not-yet-published');
+assert(getAnnualPerformance(allCap).values.every(v=>v===null));
+assert.match(getAnnualPerformance(allCap).note,/18 août 2026/);
+assert(!ASSETS.some(a=>a.isin===allCap.isin));
+assert(config.some(s=>s.isin===allCap.isin&&s.parser==='vanguard'&&s.enabled));
+assert.equal(AUTOMATED_ETF[allCap.isin].aum.scope,'share-class');
+assert.equal(AUTOMATED_ETF[allCap.isin].currency,'USD');
+console.log('Vanguard All-Cap: exact share, EUR listing/USD share, automated source and no borrowed history verified.');
+
+const panx = ETFS.find(r => r.isin === 'FR0013412269');
+assert.equal(panx.listing.ticker, 'PANX');
+assert.equal(panx.listing.mic, 'XPAR');
+assert.equal(panx.pea, true);
+assert.equal(panx.ter, '0,30%');
+assert.match(instrumentOption(panx).search, /FR0013412269.*\bPANX\b/);
+assert.equal(getETFArt(panx.id).theme, 'chip');
+const panxRecord = AUTOMATED_ETF[panx.isin];
+const panxSeries = getAnnualPerformance(panx);
+assert.equal(panxSeries.currency, 'EUR');
+assert.equal(panxSeries.basis, 'fund');
+assert.deepEqual(panxSeries.years, panxRecord.performance.years);
+assert.equal(panxRecord.holdings.basis, 'index');
+console.log('PANX: searchable exact share, PEA, issuer returns and tracked-index holdings verified.');
+
+
+const usProperty = ETFS.find(card => card.isin === 'IE00B1FZSF77');
+assert.equal(usProperty.listing.ticker, 'IUSP');
+assert.equal(usProperty.listing.mic, 'XAMS');
+assert.equal(usProperty.listing.currency, 'EUR');
+assert.equal(usProperty.ter, '0,40%');
+assert.equal(usProperty.presentationOnly, false);
+const usPropertySeries = getAnnualPerformance(usProperty);
+assert.equal(usPropertySeries.currency, 'USD');
+assert.ok(performanceEntries(usPropertySeries).length >= 6);
+assert.ok(config.some(source => source.isin === usProperty.isin && source.productId === 251803));

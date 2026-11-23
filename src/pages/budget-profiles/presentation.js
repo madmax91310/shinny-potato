@@ -46,11 +46,19 @@ export function budgetSalaryLabel(label, original = label) {
   const missingFiscal = fiscal && !label.toLocaleLowerCase('fr').includes(fiscal.toLocaleLowerCase('fr'))
   return [label.replace(/\s+déclarés?(?![\p{L}\p{N}_])/giu, ''), [net && 'net', missingFiscal && fiscal].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
 }
+// Keep the cash perimeter in the record. The heading describes the household.
+export function budgetProfileHousehold(household) {
+  return household.split(/\s*·\s*/).filter(part =>
+    !/^(?:(?:sa|leur) part(?:$| (?:du|des|de la) )|ses dépenses et sa part |dépenses à (?:sa|leur) charge|budget personnel)/i.test(part)
+  ).join(' · ')
+}
+
 export function budgetIntroduction(profile, p) {
   const qualification = budgetQualification(profile)
-  const h = normalize(p.household)
+  const household = budgetProfileHousehold(p.household)
+  const h = normalize(household)
   const family = /mere celibataire/.test(h) ? '👩‍👧' : /enfant|filles|fils/.test(h) && !/sans enfant|projet d.enfant|avant.*naissance/.test(h) ? '👪' : /couple|adultes|marie|concubin/.test(h) ? '👥' : /locataire|proprietaire|heberge|loge/.test(h) ? '🏠' : '👤'
-  const introduction = [p.job && `💼 ${p.job}`, p.household && `${family} ${p.household.replace(/ · (?=(?:un|deux|trois) enfants?)/g, ', ')}`, p.location && `📍 ${p.location}`].filter(Boolean)
+  const introduction = [p.job && `💼 ${p.job}`, household && `${family} ${household.replace(/ · (?=(?:un|deux|trois) enfants?)/g, ', ')}`, p.location && `📍 ${p.location}`].filter(Boolean)
   if (qualification && !normalize(introduction.join(' ')).includes(normalize(qualification))) introduction[0] = introduction[0] ? `${introduction[0]} · ${qualification.toLowerCase()}` : `👤 ${qualification}`
   return introduction.join('\n')
 }

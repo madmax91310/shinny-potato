@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS } from '../src/pages/budget-profiles/data.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 const base=process.env.BUDGET_PUBLIC_BASE||'http://127.0.0.1:4498/shinny-potato'
 const server=process.env.BUDGET_PUBLIC_BASE?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4498','--strictPort'],{stdio:'ignore'})
@@ -22,14 +22,11 @@ async function readZip(path){
  assert.equal(view.getUint32(offset,true),0x02014b50)
  return files
 }
-// Page navigation exists before its requested PNG has been encoded. Wait for
-// that exact image and decode it before checking the download action.
-async function selectedPngReady(page,number){
+async function pngReady(page) {
  const region=page.getByRole('region',{name:'Image du budget',exact:true})
- const image=region.locator(`img[alt*="image ${number} sur "]`)
- await image.waitFor({state:'visible'})
- await image.evaluate(img=>img.decode())
- await expect(region).toHaveAttribute('aria-busy','false')
+ await expect(region).toHaveAttribute('aria-busy','false',{timeout:30000})
+ await expect(region.locator('img')).toHaveCount(1)
+ await region.locator('img').evaluate(img=>img.decode())
 }
 try{
  if(server)await waitPreview(server,base)
@@ -92,17 +89,15 @@ try{
   await page.getByRole('button',{name:'Rétablir le texte',exact:true}).click()
   const exactText=await text.inputValue();assert(exactText.includes(manualQuestion));assert.match(exactText,/Provision Cadeaux : 10/)
   await page.getByRole('button',{name:'Copier le texte',exact:true}).click();assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),exactText)
-  const mode=page.getByRole('group',{name:'Version de l’image',exact:true})
-  await mode.locator('[data-value="social"]').click()
   const pngButton=page.getByRole('button',{name:'Télécharger le PNG',exact:true})
-  await selectedPngReady(page,1);await expect(pngButton).toBeEnabled()
+  await pngReady(page);await expect(pngButton).toBeEnabled()
   const pngPromise=page.waitForEvent('download');await pngButton.click();const png=await pngPromise;await png.saveAs(`${out}/${width}-selected.png`)
   await page.getByText('Vérifier et télécharger la publication',{exact:true}).click()
   const review=page.getByRole('region',{name:'Relecture de la publication'})
   await expect(review.locator('pre')).toHaveText(exactText)
   const packetPromise=page.waitForEvent('download');await review.getByRole('button',{name:/Télécharger texte \+ \d+ PNG/}).click();const packet=await packetPromise;const zipPath=`${out}/${width}-publication.zip`;await packet.saveAs(zipPath)
   const files=await readZip(zipPath);assert.equal(new TextDecoder().decode(files.find(f=>f.name==='publication.txt').bytes),exactText)
-  const pngs=files.filter(f=>f.name.endsWith('.png'));assert(pngs.length>0)
+  const pngs=files.filter(f=>f.name.endsWith('.png'));assert.equal(pngs.length,1)
   for(const file of pngs){const bytes=Buffer.from(file.bytes);assert.equal(bytes.toString('ascii',1,4),'PNG');assert.equal(bytes.readUInt32BE(16),1080);assert.equal(bytes.readUInt32BE(20),1350);writeFileSync(`${out}/${width}-${file.name}`,bytes);assert(await page.evaluate(async bytes=>{const bmp=await createImageBitmap(new Blob([new Uint8Array(bytes)],{type:'image/png'}));const ok=bmp.width===1080&&bmp.height===1350;bmp.close();return ok},[...file.bytes]))}
   assert.deepEqual(pngs[0].bytes,new Uint8Array(readFileSync(`${out}/${width}-selected.png`)),'ZIP is the exact selected-format PNG, not a second renderer')
   await page.getByText('Points à vérifier dans la fiche',{exact:true}).click()
@@ -123,11 +118,7 @@ try{
   assert.deepEqual((await state()).published,fixture.published);assert.deepEqual((await state()).publicationDates,fixture.publicationDates)
   await page.getByRole('button',{name:'Profils',exact:true}).click()
   const david=BUDGET_PROFILES.find(p=>p.id==='editorial-studio-alternance-demenagement-2026-11-16')
-  await page.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value="${david.id}"]`).click()
-  await page.getByRole('group',{name:'Version de l’image',exact:true}).locator('[data-value="social"]').click()
-  await expect(page.getByRole('button',{name:'Image 2 sur 3',exact:true})).toBeVisible()
-  // Hold genuine encoder callbacks on mobile: navigation must remain usable,
-  // while the download stays disabled until the selected PNG is ready.
+  // Hold the real encoder callback and verify the download is unavailable until it resolves.
   if(width===390)await page.evaluate(()=>{
    window.budgetStudioNativeToBlob=HTMLCanvasElement.prototype.toBlob
    window.budgetStudioPendingPng=[];window.budgetStudioReleasePng=false
@@ -138,7 +129,7 @@ try{
     },...args)
    }
   })
-  await page.getByRole('button',{name:'Image 2 sur 3',exact:true}).click()
+  await page.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value='${david.id}']`).click()
   if(width===390){
    await expect(page.getByRole('region',{name:'Image du budget',exact:true})).toHaveAttribute('aria-busy','true')
    await expect(pngButton).toBeDisabled()
@@ -148,15 +139,56 @@ try{
     window.budgetStudioPendingPng.splice(0).forEach(release=>release())
    })
   }
-  await selectedPngReady(page,2);await expect(pngButton).toBeEnabled()
-  const pageTwoPromise=page.waitForEvent('download');await pngButton.click();const pageTwo=await pageTwoPromise
+  await pngReady(page);await expect(pngButton).toBeEnabled()
+  const pngPromiseForDavid=page.waitForEvent('download');await pngButton.click();const davidPng=await pngPromiseForDavid
   await page.getByText('Vérifier et télécharger la publication',{exact:true}).click()
-  const multiPromise=page.waitForEvent('download');await page.getByRole('region',{name:'Relecture de la publication'}).getByRole('button',{name:'Télécharger texte + 3 PNG (ZIP)',exact:true}).click()
-  const multi=await multiPromise,multiPath=`${out}/${width}-series.zip`;await multi.saveAs(multiPath);const series=await readZip(multiPath)
-  assert.equal(series.length,4);assert.deepEqual(series.find(f=>f.name==='image-02.png').bytes,new Uint8Array(readFileSync(await pageTwo.path())))
+  const zipPromise=page.waitForEvent('download');await page.getByRole('region',{name:'Relecture de la publication'}).getByRole('button',{name:'Télécharger texte + 1 PNG (ZIP)',exact:true}).click()
+  const zip=await zipPromise
+  const davidFiles=await readZip(await zip.path())
+  assert.deepEqual(davidFiles.map(file=>file.name),['publication.txt','image-01.png'])
+  assert.deepEqual(davidFiles[1].bytes,new Uint8Array(readFileSync(await davidPng.path())))
+  if (width === 390) {
+   await page.evaluate(() => {
+    const native = HTMLCanvasElement.prototype.toBlob
+    HTMLCanvasElement.prototype.toBlob = function (callback) {
+     HTMLCanvasElement.prototype.toBlob = native
+     callback(null)
+    }
+   })
+   await page.getByRole('group',{name:'Choisir un profil',exact:true}).locator(`[data-value='${guillaume.id}']`).click()
+   await expect(page.getByRole('button',{name:'Réessayer l’image',exact:true})).toBeVisible()
+   await expect(pngButton).toBeDisabled()
+   await page.getByRole('button',{name:'Réessayer l’image',exact:true}).click()
+   await pngReady(page)
+   await expect(pngButton).toBeEnabled()
+  }
   assert.deepEqual((await state()).published,fixture.published)
   assert.deepEqual(errors,[])
-  receipts.push({width,legacyVersion:4,currentVersion:5,annualAmount:120,monthlyProvision:10,manualQuestionsPreserved:true,customDraftsPreserved:true,zipFiles:files.map(f=>f.name),exactPng:true,multiImageZip:true,queueImportConflicts:true,publishedUnchanged:true})
+  receipts.push({width,legacyVersion:4,currentVersion:5,annualAmount:120,monthlyProvision:10,manualQuestionsPreserved:true,customDraftsPreserved:true,zipFiles:files.map(f=>f.name),exactPng:true,singleImageZip:true,queueImportConflicts:true,publishedUnchanged:true})
+  await ctx.close()
+ }
+ if (widths.includes(390)) {
+  const previous = BUDGET_NOEMIE_PREVIOUS
+  const personalized = 'Mon introduction.\n💰 Salaire net : 4 400 € / mois\n🧾 Total des dépenses : 2 600 € / mois\nJe vise un autre objectif à 7 200 €.'
+  const scheduledDates = { [previous.id]: '2026-12-13' }
+  const legacy = { version: 5, drafts: [{ profile: previous, text: personalized, textFinance: budgetFinancialReference(previous), edited: true }],
+    activeId: previous.id, published: [previous.id], publicationDates: { [previous.id]: '2026-10-12' }, used: [], queued: [previous.id], scheduledDates }
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, permissions: ['clipboard-read','clipboard-write'] })
+  await ctx.addInitScript(({ key, legacy }) => { if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(legacy)) }, { key, legacy })
+  const page = await ctx.newPage()
+  await page.goto(base + '/le-budget-de')
+  const field = page.getByLabel('Texte prêt à publier')
+  const expected = personalized.replace('4 400 €', '3\u202f500\u00a0€').replace('2 600 €', '2\u202f670\u00a0€')
+  await expect(field).toHaveValue(expected)
+  await expect(page.getByText(/4 400 €.*3\s500/)).toBeVisible()
+  await expect(page.getByText(/Les montants du budget ont changé/)).toBeVisible()
+  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
+  assert.equal(await page.evaluate(() => navigator.clipboard.readText()), expected)
+  await page.reload()
+  await expect(field).toHaveValue(expected)
+  const restored = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), key)
+  for (const field of ['activeId', 'published', 'publicationDates', 'queued', 'scheduledDates']) assert.deepEqual(restored[field], legacy[field])
+  assert.equal(restored.drafts[0].textCorrections.length, 2)
   await ctx.close()
  }
  writeFileSync(`${out}/receipt-${widths.join('-')}.json`,JSON.stringify(receipts,null,2)+'\n')

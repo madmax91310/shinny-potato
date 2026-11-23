@@ -1,5 +1,7 @@
 """Exact LifeStrategy fund-NAV positions, distinct from its rounded PDF table."""
 from decimal import Decimal, ROUND_FLOOR
+from functools import lru_cache
+from pathlib import Path
 import hashlib
 import json
 
@@ -115,6 +117,33 @@ def parse_portfolio(body, config, record, now):
             'method': 'Complete same-date issuer fund portfolio, exact held share ISINs and original fund-NAV weights; cash and signed settlement positions retained. Published 2dp asset allocation corroborated separately. Not a whole-fund company look-through or the rounded PDF allocation table.'}
 
 
+@lru_cache(maxsize=1)
+def september_allocation_proofs():
+    # Exact parent/official PDF companions from merged ef9d448ee06a82eac.
+    path = Path(__file__).with_name('lifestrategy-september-2026-allocation-proof.json')
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != 'ece0dc6444d8bd0ffe3da76b44695831e79a8ca758cff90a4b076fd09164dcf6':
+        raise ValueError('LifeStrategy archived allocation proof changed')
+    return json.loads(raw)
+
+
+def paired_allocation(record, parent):
+    """Select the same-date published evidence without changing either clock."""
+    current = record['assetAllocation']
+    if current['asOf'] == parent['asOf']:
+        return current, record['documentSha256']
+    proof = record.get('underlyingHoldingsAllocation')
+    if proof is None and parent['asOf'] == '2026-09-30':
+        proof = september_allocation_proofs().get(record['isin'])
+    if (not proof or proof.get('holdingsSha256') != parent['sha256']
+            or proof['allocation']['asOf'] != parent['asOf']
+            or not proof['allocation'].get('sourceUrl')
+            or not proof.get('documentSha256')):
+        raise ValueError('LifeStrategy same-date published allocation proof missing')
+    return proof['allocation'], proof['documentSha256']
+
+
+
 def qualified_stored_portfolio(record, now):
     """Validate an acquired dependency without renewing its source-control date."""
     h = record.get('underlyingHoldings')
@@ -127,7 +156,8 @@ def qualified_stored_portfolio(record, now):
             or h.get('weightBasis') != 'original-fund-nav-percentage'):
         raise ValueError('LifeStrategy stored parent portfolio evidence changed')
     code = body['data']['funds'][0]['profile']['portId']
-    check = parse_portfolio(body, (None, code, record['isin']), record, now)
+    allocation, _ = paired_allocation(record, h)
+    check = parse_portfolio(body, (None, code, record['isin']), {**record, 'assetAllocation': allocation}, now)
     for field in ['rows', 'nonFundPositions', 'asOf', 'assetAllocationChecks', 'sourceRowCount', 'publishedNetWeightPct']:
         if h[field] != check[field]:
             raise ValueError('LifeStrategy portfolio field differs from its acquired source: ' + field)

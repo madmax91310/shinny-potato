@@ -4,7 +4,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
+import { analyzeBudget, budgetBalanceText, budgetRemainingLabel, budgetTransferPlan, budgetPublicPresentation, budgetPublicExpenseRows, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
 import { budgetFinancialReference, staleBudgetText } from './completion.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, peekWorkspace, WORKSPACE_KEY } from './workspace.js'
 import { publicationLabel } from '../../lib/publication-date.js'
@@ -38,7 +38,7 @@ export default function App() {
   const [saved, setSaved] = useState(loadSavedDrafts)
   const [subscriberOpen, setSubscriberOpen] = useState(initial.value.profile.kind === 'participant')
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
-  const [imageMode, setImageMode] = useState('overview'), [backupOpen, setBackupOpen] = useState(false)
+  const [backupOpen, setBackupOpen] = useState(false)
   const [evidenceOpen, setEvidenceOpen] = useState(false)
   const [hidePublished, setHidePublished] = useState(false)
   const [unused, setUnused] = useState(false), [query, setQuery] = useState(''), [feedback, setFeedback] = useState('')
@@ -54,7 +54,7 @@ export default function App() {
     const changed = event => { if (event.key === WORKSPACE_KEY || event.key === null) { const latest=peekWorkspace(); if(latest.readable){setPublished(latest.value.published);setPublicationDates(latest.value.publicationDates);setUsed(latest.value.used);setQueued(latest.value.queued);setScheduledDates(latest.value.scheduledDates)} setFeedback('Les données ont changé dans un autre onglet. Recharge la page après avoir conservé ton texte en cours.') } }
     window.addEventListener('storage', changed); return () => window.removeEventListener('storage', changed)
   }, [])
-  const a = analyzeBudget(profile), image = useBudgetImage(profile, !a.errors.length, imageMode)
+  const a = analyzeBudget(profile), image = useBudgetImage(profile, !a.errors.length)
   const prepared = profile.kind !== 'participant'
   const filtered = profiles.filter(p => matchesBudgetFilters(p, filters) && (!unused || !used.includes(p.id)) && (!hidePublished || !published.includes(p.id)) &&
     `${budgetDisplayName(p)} ${p.name} ${p.job} ${p.household} ${p.period} ${p.source.publisher} ${analyzeBudget(p).income}`.toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr').trim()))
@@ -156,29 +156,30 @@ export default function App() {
         {!prepared && <Button variant="secondary" onClick={adapt}>Dupliquer ce profil</Button>}
         {!prepared && <Suspense fallback={<p>Chargement de la participation…</p>}><ParticipantEditor profile={profile} edit={edit}/></Suspense>}
         {!!a.errors.length && <div className="dca-errors" role="alert">{a.errors.map(error => <p key={error}>{error}</p>)}</div>}
-        {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Reste disponible après versements</dt><dd>{money(a.balance)}</dd></div>}</dl>}
+        {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{budgetPublicPresentation(profile).averageBeforeInvestments ? 'Solde moyen avant placements' : a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>{budgetTransferPlan(profile).planned ? budgetRemainingLabel(a.balance, true) : 'Reste disponible après versements'}</dt><dd>{budgetBalanceText(profile, a.balance)}</dd></div>}</dl>}
         {profile.source && <details className="dca-evidence" onToggle={e => { if (e.currentTarget.open) setEvidenceOpen(true) }}><summary>Source et vérification du profil</summary>
           {evidenceOpen && <Suspense fallback={<p>Chargement de la vérification…</p>}><SourceEvidencePanel profile={profile} onCopy={copy}/></Suspense>}
         </details>}
       </section>
       <div className="dca-publication-column">
         <section className="dca-simple-card dca-simple-preview" aria-label="Image du budget" aria-busy={image.busy}>
-          <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="overview">Image principale X · 1 080 × 1 350</option><option value="social">X · 1 080 × 1 350</option><option value="detailed">Détaillée · tous les libellés</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">L’image principale résume les totaux. Le détail X conserve tous les postes et projets au ratio 4:5. Si le budget nécessite plusieurs images, la première affiche les totaux du budget et les postes continuent sur les suivantes. Toutes les versions sont paginées en 1 080 × 1 350 pixels.</p>
-          {image.count > 0 && <p className="budget-image-count" role="status">{`${image.count} image${image.count > 1 ? 's' : ''} · 1 080 × 1 350 px`}{image.count > 1 && ` · Image ${image.index + 1} sur ${image.count}`}</p>}
-
-          {image.count > 1 && <nav className="budget-image-pages" aria-label="Images du budget">{Array.from({ length: image.count }, (_, i) => <Button key={i} variant="secondary" aria-pressed={image.index === i} onClick={() => image.select(i)}>Image {i + 1} sur {image.count}</Button>)}</nav>}
-          {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} · image ${image.index + 1} sur ${image.count} : revenus, dépenses et reste disponible`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : image.error ? 'Aucune image disponible.' : 'Préparation de l’image…'}</p>}
-          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${image.format}${image.count > 1 ? `-${String(image.index + 1).padStart(2, '0')}-sur-${String(image.count).padStart(2, '0')}` : ''}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
+          <h2>Image pour X</h2>
+          {image.url && <p className="budget-image-count" role="status">1 image · 1 080 × 1 350 px</p>}
+          {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} · revenus, dépenses et capacité d’épargne`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : image.error ? 'Aucune image disponible.' : 'Préparation de l’image…'}</p>}
+          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
             {image.url && <a href={image.url} target="_blank" rel="noreferrer">Ouvrir l’image</a>}
-            {image.error && ['social', 'overview'].includes(imageMode) && <Button variant="secondary" onClick={() => setImageMode('detailed')}>Afficher tous les détails</Button>}
             {image.error && <Button variant="secondary" onClick={image.retry}>Réessayer l’image</Button>}
           </div><p role="status">{image.error || (image.busy ? 'Préparation de l’image…' : '')}</p>
         </section>
         <details className="dca-simple-card"><summary>Vérifier et télécharger la publication</summary><Suspense fallback={<p>Chargement…</p>}><PreparationPanel record={record} image={image} onFeedback={setFeedback}/></Suspense></details>
         <section className="dca-simple-card dca-text-card">
           <label htmlFor="budget-draft">Texte prêt à publier</label><textarea id="budget-draft" maxLength={20000} value={text} onChange={e => { setApproved(false); setRecord({ ...record, text: e.target.value, edited: true }) }}/>
-          {staleBudgetText(record) && <div className="dca-errors" role="alert"><p>Les montants du budget ont changé. Votre texte personnalisé est conservé, mais il peut encore afficher les anciens chiffres. « Rétablir le texte » le régénère volontairement.</p><Button variant="secondary" onClick={() => setRecord({ ...record, textFinance: budgetFinancialReference(profile) })}>J’ai vérifié les montants de mon texte</Button></div>}
-          <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false, textFinance: budgetFinancialReference(profile) }) }}>Rétablir le texte</Button></div>
+          {Array.isArray(record.textCorrections) && record.textCorrections.length > 0 && <details className="dca-note" open>
+            <summary>Montants corrigés dans votre texte</summary>
+            <ul>{record.textCorrections.map(({ label, before, after }, index) => <li key={index}>{label} · {before} → {after}</li>)}</ul>
+          </details>}
+          {staleBudgetText(record) && <div className="dca-errors" role="alert"><p>Les montants du budget ont changé. Les passages qui nécessitent une vérification restent dans votre texte. Relisez-les avant la publication.</p><Button variant="secondary" onClick={() => setRecord({ ...record, textFinance: budgetFinancialReference(profile) })}>J’ai vérifié les montants de mon texte</Button></div>}
+          <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false, textFinance: budgetFinancialReference(profile), textCorrections: undefined }) }}>Rétablir le texte</Button></div>
           <label className="budget-check"><input type="checkbox" checked={queued.includes(profile.id)} onChange={e => markQueued(e.target.checked)}/>À publier prochainement</label><p className="dca-note">Trois statuts indépendants, enregistrés manuellement dans ce navigateur.</p>
           {edited && <p className="dca-note">{prepared ? 'Texte personnalisé conservé. « Rétablir le texte » reprend les chiffres du budget.' : 'Texte personnalisé conservé. « Rétablir le texte » réactive la mise à jour depuis les lignes et garde vos questions.'}</p>}
           {!prepared && <label className="budget-check"><input type="checkbox" checked={approved} onChange={e => setApproved(e.target.checked)}/>La personne a validé les informations à publier.</label>}

@@ -1,13 +1,73 @@
 import copy
 import datetime as dt
+import hashlib
 import json
 import pathlib
+import tempfile
 import unittest
-from collect_insurance import parse_contract, parse_fund, refresh, validate, qualify_vie_guarantees, vie_notice_url, qualify_avenir_plus, contract_url, AVENIR_PLUS_FEES
+from unittest.mock import patch
+from collect_insurance import collect, parse_contract, parse_fund, refresh, validate, qualify_vie_guarantees, vie_notice_url, qualify_avenir_plus, contract_url, AVENIR_PLUS_FEES, VERTESSIMA_NOTICE
 TODAY=dt.date(2026,10,10)
 ROOT=pathlib.Path(__file__).resolve().parents[1]
+VIE_RECEIPT=json.loads((ROOT/'scripts/fixtures/linxea-vie-current-20261122.json').read_text())
 
 class InsuranceTests(unittest.TestCase):
+    def test_exact_vie_source_transition_preserves_history_and_waits_for_first_return(self):
+        fixture=VIE_RECEIPT
+        today=dt.date.fromisoformat(fixture['sourceCheckedAt'])
+        old=fixture['legacyRecord']
+        contract=contract_url('linxea-vie')
+        page=contract+'supports-disponibles-sur-linxea-vie/fonds-euro/'
+        docs={contract:fixture['contractHtml'], page:fixture['fundsHtml'],
+              vie_notice_url(fixture['contractHtml']):fixture['contractNotice'],
+              VERTESSIMA_NOTICE:fixture['fundNotice']}
+        empty={**old,'euroFunds':[]}
+        stamp=dt.datetime.combine(today,dt.time(10),dt.timezone.utc)
+        times=iter((stamp,stamp+dt.timedelta(seconds=2)))
+        with patch('collect_insurance.fetch',side_effect=lambda url:docs[url].encode()), \
+             patch('collect_insurance.parse_contract',return_value=empty), \
+             patch('collect_insurance.pdf_text',side_effect=lambda data,**_:data.decode()):
+            result,observations=refresh({'records':[old]},{'linxea-vie':lambda day:collect('linxea-vie',day)},today,clock=lambda:next(times))
+        self.assertEqual(observations[0]['status'],'success')
+        self.assertEqual(observations[0]['attemptedAt'],stamp.isoformat())
+        self.assertEqual(observations[0]['checkedAt'],(stamp+dt.timedelta(seconds=2)).isoformat())
+        self.assertNotIn('asOf',observations[0])
+        from producer_report_contract import finish
+        from producer_report_plans import build_plan
+        from publish_automation_status import read_report
+        plan={**build_plan('collect_insurance',[]),'producer':'collect_insurance',
+              'reportStem':'insurance-observation','declaredAt':stamp.isoformat(),
+              'nonce':'isolated-test'}
+        plan['sha256']=hashlib.sha256(json.dumps(plan,sort_keys=True).encode()).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            path=pathlib.Path(tmp)/'insurance-observation.json'
+            path.write_text(json.dumps(finish({'observations':observations},plan)))
+            successes=read_report(path,'update-insurance.yml')['successes']
+        proof=next(row for row in successes if row['id']=='linxea-vie')
+        self.assertTrue(proof['verifiedInAttempt'])
+        self.assertEqual(proof['checkedAt'],observations[0]['checkedAt'])
+        self.assertEqual(proof['sourceUrls'],[contract])
+        record=result['records'][0]
+        netissima,vertessima=record['euroFunds']
+        self.assertEqual(netissima['years'][-1],{'year':2025,'return':3.0})
+        self.assertEqual(netissima['years'][0]['condition'],'selon la part en unités de compte détenue')
+        eurossima=next(f for f in old['euroFunds'] if f['name']=='Eurossima')
+        self.assertEqual(record['archivedEuroFunds'],[{**eurossima,'lastQualifiedAt':old['checkedAt']}])
+        self.assertEqual(vertessima['guarantee'],99.25)
+        self.assertEqual(vertessima['publication'],{'latestPublishedYear':None,'expectedYear':2026,'awaitingPublication':True})
+        self.assertEqual(vertessima['years'],[])
+        self.assertIsNone(vertessima['asOf'])
+        with self.assertRaises(ValueError):validate(copy.deepcopy(record),dt.date(2027,7,1))
+        renewed_document=copy.deepcopy(record)
+        renewed_document['euroFunds'][1]['fundEvidence']['documentDate']='2027-06-01'
+        retained,events=refresh(result,{'linxea-vie':lambda _:renewed_document},dt.date(2027,7,1))
+        self.assertEqual(events[0]['status'],'failure','A new KID never defers the missing annual return')
+        self.assertIn('attemptedAt',events[0])
+        self.assertNotIn('checkedAt',events[0])
+        self.assertEqual(retained,result)
+        without_closure=copy.deepcopy(record);without_closure.pop('eurossimaClosure')
+        self.assertEqual(refresh({'records':[old]},{'linxea-vie':lambda _:without_closure},today)[0],{'records':[old]})
+
     def test_successor_is_archived_without_refreshing_old_terms(self):
         html = '<link rel="canonical" href="https://www.linxea.com/assurance-vie/linxea-avenir-2/"><section><h1>Linxea Avenir 2+</h1><p>Successeur de Linxea Avenir 2, le contrat idéal</p></section><p>géré par Suravenir</p>'
         previous = self.previous()
@@ -129,6 +189,7 @@ class InsuranceTests(unittest.TestCase):
         Simulation 20 ans : versement initial 10000€ Bonus 5 %'''
     def previous(self):
         data=json.loads((ROOT/'src/data/automated-insurance.json').read_text())
+        data['records']=[copy.deepcopy(VIE_RECEIPT['legacyRecord']) if r['id']=='linxea-vie' else r for r in data['records']]
         # Keep the fixed-date fixtures independent of daily proof refreshes.
         for record in data['records']:
             for fund in record['euroFunds']:

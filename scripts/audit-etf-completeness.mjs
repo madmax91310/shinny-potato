@@ -55,7 +55,16 @@ for (const etf of ETFS) {
   else if (series.observations?.length) other++;
   else {
     const reviewedHold = etf.isin === 'IE00BM8R0J59';
-    assert(unpublished.has(etf.isin) || sourceConflicts.has(etf.isin) || reviewedHold, `${etf.isin}: absence non revue`);
+    // Exact-share launch reviews may postdate the immutable October inventory.
+    // This admission expires once a complete post-launch calendar year exists.
+    const reviewedLaunch = REVIEWED_PERFORMANCE_META[etf.isin];
+    const recentLaunch = reviewedLaunch?.availability === 'not-yet-published'
+      && /^20\d{2}-\d{2}-\d{2}$/.test(reviewedLaunch.inceptionDate ?? '')
+      && reviewedLaunch.inceptionDate <= reviewedLaunch.checkedAt
+      && reviewedLaunch.checkedAt <= today
+      && Number(reviewedLaunch.inceptionDate.slice(0,4)) + 1 >= Number(today.slice(0,4))
+      && series.source === reviewedLaunch.source;
+    assert(unpublished.has(etf.isin) || sourceConflicts.has(etf.isin) || reviewedHold || recentLaunch, `${etf.isin}: absence non revue`);
     assert.equal(series.availability, reviewedHold ? 'not-published' : sourceConflicts.has(etf.isin) ? 'source-conflict' : 'not-yet-published');
     assert(series.note && series.source);
   }
