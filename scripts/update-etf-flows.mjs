@@ -18,12 +18,18 @@ function save(file, value) {
   renameSync(temp, file)
 }
 
-async function updateWeekly(mode, reportPath, monday = lastWeekMonday()) {
+function readWeeklyRegistry() {
   const registry = JSON.parse(readFileSync(registryPath, 'utf8'))
   if (registry.schemaVersion !== 1 || !Array.isArray(registry.editions)) throw Error('Registre automatique invalide.')
+  return registry
+}
+
+async function updateWeekly(mode, reportPath, monday = lastWeekMonday()) {
+  const registry = readWeeklyRegistry()
   let report
   try {
-    const existing = mode === '--collect' && registry.editions.find(edition => edition.monday === monday)
+    const existing = mode !== '--preview' && registry.editions.find(edition => edition.monday === monday)
+    if (mode === '--retained' && !existing) throw Error(`Édition validée introuvable pour le ${monday}.`)
     const edition = existing || {...await collectEdition(monday), validatedAt: new Date().toISOString()}
     if (!existing) edition.post = renderPost(edition)
     if (mode === '--collect' && !existing) {
@@ -41,10 +47,14 @@ async function updateWeekly(mode, reportPath, monday = lastWeekMonday()) {
   }
 }
 
-if (['--collect', '--preview'].includes(args[0]) && [2, 3].includes(args.length)) {
+if (args[0] === '--plan' && [1, 2].includes(args.length)) {
+  const monday = args[1] ?? lastWeekMonday()
+  const collect = !readWeeklyRegistry().editions.some(edition => edition.monday === monday)
+  console.log(JSON.stringify({monday, collect}))
+} else if (['--collect', '--preview', '--retained'].includes(args[0]) && [2, 3].includes(args.length)) {
   await updateWeekly(...args)
 } else if (args.length && !(['--import','--report'].includes(args[0]) && args.length === 2)) {
-  throw Error('Usage: node scripts/update-etf-flows.mjs [--collect|--preview rapport.json [lundi] | --import fichier.json | --report rapport.json]')
+  throw Error('Usage: node scripts/update-etf-flows.mjs [--plan [lundi] | --collect|--preview|--retained rapport.json [lundi] | --import fichier.json | --report rapport.json]')
 } else if (args[0] === '--import') {
   // No inferred dates, zero filling, destructive correction or automatic revalidation.
   const observation = JSON.parse(readFileSync(args[1], 'utf8'))
