@@ -50971,7 +50971,7 @@
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-11-20",
-      "checkedAt": "2026-11-22",
+      "checkedAt": "2026-11-23",
       "modifiedAt": "2026-11-22"
     },
     "sectors": {
@@ -51084,88 +51084,124 @@
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector",
-      "checkedAt": "2026-11-22",
+      "checkedAt": "2026-11-23",
       "modifiedAt": "2026-11-22"
     },
     "countries": {
-      "asOf": "2026-10-08",
+      "asOf": "2026-11-20",
+      "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 19.67
+          "weightPct": 19.85953
         },
         {
           "name": "France",
-          "weightPct": 19.64
+          "weightPct": 19.2356
         },
         {
           "name": "Germany",
-          "weightPct": 15.24
+          "weightPct": 15.25691
         },
         {
           "name": "United Kingdom",
-          "weightPct": 8.6
+          "weightPct": 8.96718
         },
         {
           "name": "Spain",
-          "weightPct": 4.94
+          "weightPct": 4.86499
         },
         {
           "name": "Sweden",
-          "weightPct": 4.58
-        },
-        {
-          "name": "Italy",
-          "weightPct": 4.03
+          "weightPct": 4.5219
         },
         {
           "name": "Netherlands",
-          "weightPct": 3.58
+          "weightPct": 4.12232
+        },
+        {
+          "name": "Italy",
+          "weightPct": 3.95975
         },
         {
           "name": "Japan",
-          "weightPct": 3.24
-        },
-        {
-          "name": "Denmark",
-          "weightPct": 2.39
+          "weightPct": 3.24003
         },
         {
           "name": "Switzerland",
-          "weightPct": 2.39
+          "weightPct": 2.33847
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 2.33193
         },
         {
           "name": "Finland",
-          "weightPct": 1.7
+          "weightPct": 1.65004
         },
         {
           "name": "Canada",
-          "weightPct": 1.61
+          "weightPct": 1.59364
         },
         {
           "name": "Norway",
-          "weightPct": 1.38
+          "weightPct": 1.36212
         },
         {
           "name": "Australia",
-          "weightPct": 1.1
+          "weightPct": 1.03866
         },
         {
           "name": "New Zealand",
-          "weightPct": 1.03
+          "weightPct": 0.99746
         },
         {
-          "name": "Other",
-          "weightPct": 4.83
+          "name": "Luxembourg",
+          "weightPct": 0.86625
         },
         {
-          "name": "Cash and/or Derivatives",
-          "weightPct": 0.03
+          "name": "Austria",
+          "weightPct": 0.79676
+        },
+        {
+          "name": "Portugal",
+          "weightPct": 0.77974
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 0.74566
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.70584
+        },
+        {
+          "name": "China",
+          "weightPct": 0.34253
+        },
+        {
+          "name": "Korea (South)",
+          "weightPct": 0.191
+        },
+        {
+          "name": "South Africa",
+          "weightPct": 0.17902
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 0.166
+        },
+        {
+          "name": "Iceland",
+          "weightPct": 0.10924
+        },
+        {
+          "name": "European Union",
+          "weightPct": -0.22252
         }
       ],
-      "sourceComponent": "exposureBreakdowns.geography.countries",
-      "checkedAt": "2026-11-22",
-      "modifiedAt": "2026-10-16"
+      "checkedAt": "2026-11-23",
+      "modifiedAt": "2026-11-23"
     },
     "holdings": {
       "asOf": "2026-11-20",
@@ -51222,7 +51258,7 @@
           "isin": "XS2806471368"
         }
       ],
-      "checkedAt": "2026-11-22",
+      "checkedAt": "2026-11-23",
       "modifiedAt": "2026-11-22"
     },
     "characteristics": {
@@ -51237,7 +51273,7 @@
         "fundMethodologyTypeCode": "Sampled"
       },
       "productStructure": "Physical",
-      "checkedAt": "2026-11-22",
+      "checkedAt": "2026-11-23",
       "modifiedAt": "2026-10-23"
     },
     "performance": {
@@ -51247,47 +51283,47 @@
       "years": {
         "2025": 3.34
       },
-      "checkedAt": "2026-11-22",
+      "checkedAt": "2026-11-23",
       "modifiedAt": "2026-10-14"
     },
     "characteristicChecks": {
       "terPct": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "index": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "distribution": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "domicile": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethod": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "inceptionDate": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "replicationMethodRaw": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       },
       "productStructure": {
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
       }
@@ -51301,7 +51337,7 @@
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "A measure of the responsiveness of a bond&#39;s or portfolio&#39;s price to changes in interest rates. Effective Duration adjusts for changes in projected cash flows as a result of yield changes, accounting for embedded optionality.",
         "scope": "Fund portfolio",
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "modifiedAt": "2026-11-22"
       },
       "weightedAvgLife": {
@@ -51312,7 +51348,7 @@
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "Weighted Average Maturity is the length of time until the average security in the fund will mature or be redeemed by its issuer. It indicates a fixed income fund&#39;s sensitivity to interest rate changes. Longer average weighted maturity implies greater volatility in response to interest rate changes. This metric considers the likelihood that bonds will be called or prepaid.",
         "scope": "Fund portfolio",
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "modifiedAt": "2026-11-22"
       },
       "yieldToWorst": {
@@ -51334,7 +51370,7 @@
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio",
-        "checkedAt": "2026-11-22",
+        "checkedAt": "2026-11-23",
         "modifiedAt": "2026-11-22"
       }
     }
