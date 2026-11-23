@@ -3819,7 +3819,20 @@
         "marketMic": "XPAR"
       },
       "reason": "Cause complète non démontrée pour FR0010755611/2021, CL2.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2020-12-31 (2054.089890000) → 2021-12-31 (3725.674560000) = 81.37836022 %. NAV aux dates de marché reçues : 2020-12-31 (2559.396000000) et 2021-12-31 (4642.190500000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
-      "missingPiece": "Confirmation officielle des clôtures et de la devise historique de CL2.PA (XPAR) aux 2020-12-31/2021-12-31, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 5.62997039 pp après la convention BCE existante.",
+      "missingPiece": "Les deux dates et les prix du graphique Euronext en EUR corroborent les bornes de cotation conservées. Le rendement du graphique est de 87,01 % contre 81,38 % pour la NAV ajustée de la part. Méthode du graphique aux dates de valorisation et preuve exhaustive des distributions, opérations et unités applicables à cette fenêtre.",
+      "boundaryVerification": {
+        "symbol": "CL2.PA",
+        "mic": "XPAR",
+        "currency": "EUR",
+        "start": "2020-12-31",
+        "end": "2021-12-31",
+        "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0010755611-XPAR",
+        "field": "Prix journalier du graphique Euronext de la part exacte",
+        "finding": "Les deux dates et les prix du graphique Euronext en EUR corroborent les bornes de cotation conservées. Le rendement du graphique est de 87,01 % contre 81,38 % pour la NAV ajustée de la part.",
+        "missing": "Méthode du graphique aux dates de valorisation et preuve exhaustive des distributions, opérations et unités applicables à cette fenêtre.",
+        "checkedAt": "2026-11-22",
+        "qualification": "consultation-des-bornes"
+      },
       "resolutionEvidence": null,
       "currentCashRepair": null,
       "currentConsumer": {
@@ -3864,7 +3877,8 @@
         "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
-        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "https://live.euronext.com/en/product/etfs/FR0010755611-XPAR"
       ],
       "latestCheck": {
         "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962852559",
@@ -3899,7 +3913,20 @@
         "marketMic": "XPAR"
       },
       "reason": "Cause complète non démontrée pour FR0010755611/2024, CL2.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2023-12-29 (3606.910473051) → 2024-12-31 (5973.756616637) = 65.61976410 %. NAV aux dates de marché reçues : 2023-12-29 (14.980700000) et 2024-12-31 (24.811000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
-      "missingPiece": "Confirmation officielle des clôtures et de la devise historique de CL2.PA (XPAR) aux 2023-12-29/2024-12-31, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 2.54861047 pp après la convention BCE existante.",
+      "missingPiece": "Les deux dates et les prix du graphique Euronext en EUR corroborent les bornes de cotation conservées. Le rendement du graphique est de 68,17 % contre 65,62 % pour la NAV ajustée de la part. Méthode du graphique aux dates de valorisation et preuve complète des distributions et opérations sur l’année civile. Le rapport annuel Amundi de juin 2025 couvre le second semestre 2024.",
+      "boundaryVerification": {
+        "symbol": "CL2.PA",
+        "mic": "XPAR",
+        "currency": "EUR",
+        "start": "2023-12-29",
+        "end": "2024-12-31",
+        "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0010755611-XPAR",
+        "field": "Prix journalier du graphique Euronext de la part exacte",
+        "finding": "Les deux dates et les prix du graphique Euronext en EUR corroborent les bornes de cotation conservées. Le rendement du graphique est de 68,17 % contre 65,62 % pour la NAV ajustée de la part.",
+        "missing": "Méthode du graphique aux dates de valorisation et preuve complète des distributions et opérations sur l’année civile. Le rapport annuel Amundi de juin 2025 couvre le second semestre 2024.",
+        "checkedAt": "2026-11-22",
+        "qualification": "consultation-des-bornes"
+      },
       "resolutionEvidence": null,
       "currentCashRepair": null,
       "currentConsumer": {
@@ -3944,7 +3971,8 @@
         "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
-        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "https://live.euronext.com/en/product/etfs/FR0010755611-XPAR"
       ],
       "latestCheck": {
         "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962852559",
@@ -4137,7 +4165,20 @@
         "marketMic": "XETR"
       },
       "reason": "Écart 12.93067002 points pour DE000A27Z304/2021: marché 81.36168361 %, officiel publié 55.46 % (USD), converti 68.43101359703338 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
-      "missingPiece": "Bitwise: série quotidienne de la part exacte DE000A27Z304 sur décembre 2020 et décembre 2021, avec devise, distributions/ajustements et dates de valeur ; les documents annuels disponibles ne donnent pas ces deux bornes. Clôtures officielles BTCE.DE 2020-12-30/2021-12-30 également absentes.",
+      "missingPiece": "Les deux clôtures Xetra en EUR corroborent les bornes de cotation conservées. Le rendement officiel publié en USD reste différent après conversion. Niveaux quotidiens de référence de l’émetteur, heures de valorisation et convention d’ajustement sur la fenêtre complète. La voie automatisée Xetra doit aussi fournir un historique continu réutilisable.",
+      "boundaryVerification": {
+        "symbol": "BTCE.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "start": "2020-12-30",
+        "end": "2021-12-30",
+        "sourceUrl": "https://live.deutsche-boerse.com/en/etf/de000a27z304-etc-issuance-gmbh-0-000/price-history/historical-prices-and-volumes?currency=EUR",
+        "field": "Clôture de séance, colonne Close",
+        "finding": "Les deux clôtures Xetra en EUR corroborent les bornes de cotation conservées. Le rendement officiel publié en USD reste différent après conversion.",
+        "missing": "Niveaux quotidiens de référence de l’émetteur, heures de valorisation et convention d’ajustement sur la fenêtre complète. La voie automatisée Xetra doit aussi fournir un historique continu réutilisable.",
+        "checkedAt": "2026-11-22",
+        "qualification": "consultation-des-bornes"
+      },
       "resolutionEvidence": null,
       "currentCashRepair": null,
       "currentConsumer": {
@@ -4198,7 +4239,8 @@
         "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
-        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+        "https://live.deutsche-boerse.com/en/etf/de000a27z304-etc-issuance-gmbh-0-000/price-history/historical-prices-and-volumes?currency=EUR"
       ],
       "latestCheck": {
         "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962852559",
@@ -7491,7 +7533,20 @@
         "marketMic": "XETR"
       },
       "reason": "Cause complète non démontrée pour DE000A0H08P6/2019, EXH8.DE en EUR. Série officielle official income-reinvested performanceData en EUR: 2018-12-31 (17631.650300000) → 2019-12-31 (24297.701800000) = 37.80730327 %. NAV aux dates de marché reçues : 2018-12-28 (26.315900000) et 2019-12-30 (35.494600000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
-      "missingPiece": "Confirmation officielle des clôtures et de la devise historique de EXH8.DE (XETR) aux 2018-12-28/2019-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 2.44422892 pp après la convention BCE existante.",
+      "missingPiece": "Les clôtures brutes Xetra des deux séances ont été consultées en EUR. La borne brute ne qualifie pas le traitement des distributions. Facteurs de réinvestissement publiés par iShares pour les distributions d’avril et de juillet 2019 et rapprochement avec la série de marché ajustée.",
+      "boundaryVerification": {
+        "symbol": "EXH8.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "start": "2018-12-28",
+        "end": "2019-12-30",
+        "sourceUrl": "https://live.deutsche-boerse.com/en/etf/ishares-stoxx-europe-600-retail-ucits-etf-de/price-history/historical-prices-and-volumes?currency=EUR",
+        "field": "Clôture de séance, colonne Close",
+        "finding": "Les clôtures brutes Xetra des deux séances ont été consultées en EUR. La borne brute ne qualifie pas le traitement des distributions.",
+        "missing": "Facteurs de réinvestissement publiés par iShares pour les distributions d’avril et de juillet 2019 et rapprochement avec la série de marché ajustée.",
+        "checkedAt": "2026-11-22",
+        "qualification": "consultation-des-bornes"
+      },
       "resolutionEvidence": null,
       "currentCashRepair": null,
       "currentConsumer": {
@@ -7535,7 +7590,8 @@
         "secured": "Fenêtre de cotation contestée refusée pour 2019 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
-        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://live.deutsche-boerse.com/en/etf/ishares-stoxx-europe-600-retail-ucits-etf-de/price-history/historical-prices-and-volumes?currency=EUR"
       ],
       "latestCheck": {
         "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962852559",

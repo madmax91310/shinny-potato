@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-11-22T17:42:03.801Z",
-  "total": 703,
+  "checkedAt": "2026-11-23T07:07:53.732Z",
+  "total": 704,
   "outside": 60,
   "complete": 638,
   "gaps": [
@@ -110,6 +110,31 @@
           "Ventilation absente"
         ],
         "asOf": null
+      }
+    },
+    {
+      "asset": "IE00B1FZSF77",
+      "isin": "IE00B1FZSF77",
+      "name": "iShares US Property Yield UCITS ETF USD (Dist)",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Ventilation absente"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-11-19"
       }
     },
     {

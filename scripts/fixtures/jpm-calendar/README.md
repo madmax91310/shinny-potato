@@ -9,3 +9,5 @@ Le composant officiel `pdp` associe les dix labels à oneYear, twoYears, …, te
 SHA256 du script officiel contrôlé : cc958b189a48f4899ca1ef82578780e50f8dadf34506d6cd6270a79314a9fa26. Les rendements décimaux 0,080845 et 0,123492 donnent les valeurs de présentation 8,08 % et 12,35 %, identiques au PDF déjà qualifié. Le YTD 0,067387 n’est pas une performance annuelle 2026. Aucun dividende n’est ajouté à ces rendements déjà réinvestis.
 
 La recette 2027 modifie uniquement des copies en mémoire de ces fixtures. Aucune observation future n’est écrite dans les registres. La collecte GitHub, l’enregistrement, la publication et le prochain cron restent des preuves distinctes.
+
+Les deux réponses compressées datent du 23 novembre 2026. Le point d’accès britannique demandé avec `role=per` a rendu le contexte `institutional`. La requête publique explicite avec `role=institutional` a produit les mêmes octets. L’identité, le prix de NAV et la date sont contrôlés sur la même part via l’API officielle de Singapour. Les deux routes conservent les validations de dividendes réinvestis, de bornes et de ligne exacte. Les empreintes originales sont vérifiées dans le test de régression.

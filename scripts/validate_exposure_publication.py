@@ -23,10 +23,10 @@ INDEPENDENT = {'src/data/anniversary-levels.json',
                'scripts/test_investor_refresh.py',
                'scripts/validate-investor-publication.py'}
 CUSTOM_COLLECTOR = 'scripts/collect_exposure_expansion.py'
-# Requalified 2026-11-14: explicit selection preflight and failure context only.
-# collect/collect_amundi/qualify_refresh/fund_siblings keep their financial paths;
-# neither independent registry is read. Unknown collector versions stay refused.
-CUSTOM_SHA256 = '164a37ea32c94b2ea7a239cc61f2a4e932ebe8e1744a6d86ad4a1e2b84291a34'
+# The collector checks the publication fallback before staging its record.
+# The check only reads the collected receipts, the original record and issuer
+# routes. The independent paths above are still outside acquisition.
+CUSTOM_SHA256 = '2046cf90b4d451b33617334ecf96c41e8be6f50d296357b9c512d24521073b37'
 
 
 def git_bytes(root, ref, path):
@@ -184,6 +184,11 @@ def qualified_pdf_with_retained_allocations(row, outcome, configured, checked, p
     return record.get('characteristicChecks') == {'terPct': expected_check}
 
 
+def qualified_publication_fallback(row, outcome, configured, checked, previous):
+    return (qualified_transport_fallback(row, outcome, configured, checked)
+            or qualified_pdf_with_retained_allocations(row, outcome, configured, checked, previous))
+
+
 def audit(root, report, started, base, *, only=None, run_id=None, attempt=None, now=None):
     # Determine the requested instruments from inputs before examining results.
     config = load((root / 'scripts/exposure-etf-expansion.json').read_bytes())['instruments']
@@ -232,9 +237,9 @@ def audit(root, report, started, base, *, only=None, run_id=None, attempt=None, 
             continue
         outcome = outcomes[isin]
         source_success = (outcome['status'] in ('succeeded', 'unchanged-verified')
-                          and outcome.get('sourceAttempted') is True)
-        fallback = (qualified_transport_fallback(row, outcome, configured[isin], checked)
-                    or qualified_pdf_with_retained_allocations(row, outcome, configured[isin], checked, old))
+                          and outcome.get('sourceAttempted') is True
+                          and not row.get('collectionErrors'))
+        fallback = qualified_publication_fallback(row, outcome, configured[isin], checked, old)
         if row.get('status') != 'validated' or not (source_success or fallback):
             raise ValueError('A missing result or cache cannot certify source success: ' + isin)
         if value != row['record']:

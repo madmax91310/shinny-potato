@@ -88,3 +88,22 @@ const lossYears = Object.fromEntries([2020,2021,2022,2023,2024,2025].map(year=>[
 assert.deepEqual(latestCommonYears([lossYears],{now:new Date('2026-06-01')}),[2020,2021,2022,2023,2024,2025]);
 assert.equal(annualizedReturn(lossYears),-100);
 assert.deepEqual(latestCommonYears([{2020:2,2021:2,2022:-100,2023:2,2024:2}],{minimum:3,now:new Date('2026-06-01')}),[2020,2021,2022,2023,2024]);
+
+// The provenance gate must pass for a share with archived evidence once the
+// issuer supplies the next complete calendar year.
+const propertyIsin = 'IE00B1FZSF77';
+const propertyRecord = AUTOMATED_ETF[propertyIsin];
+const propertyDisplay = AUTOMATED_PERFORMANCE[propertyIsin];
+try {
+  const next = { ...propertyRecord, performance: { ...propertyRecord.performance, years: { ...propertyRecord.performance.years, 2026: 10 } } };
+  AUTOMATED_ETF[propertyIsin] = next;
+  AUTOMATED_PERFORMANCE[propertyIsin] = buildAnnualPerformance(next, now);
+  await import('./audit-data-provenance.mjs');
+  const { DATA_CATALOG } = await import('../src/data/catalog.js');
+  const fields = DATA_CATALOG.find(record => record.id === propertyIsin).fields;
+  assert.equal(fields.find(field => field.label === 'Rendements 2020–2025').value.at(-1), propertyRecord.performance.years[2025]);
+  assert.equal(fields.find(field => field.label === 'Rendements 2021–2026').value.at(-1), 10);
+} finally {
+  AUTOMATED_ETF[propertyIsin] = propertyRecord;
+  AUTOMATED_PERFORMANCE[propertyIsin] = propertyDisplay;
+}

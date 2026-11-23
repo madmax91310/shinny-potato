@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-22",
+  "cases": {
+    "DE000A27Z304/2021": {
+      "symbol": "BTCE.DE",
+      "mic": "XETR",
+      "currency": "EUR",
+      "start": "2020-12-30",
+      "end": "2021-12-30",
+      "sourceUrl": "https://live.deutsche-boerse.com/en/etf/de000a27z304-etc-issuance-gmbh-0-000/price-history/historical-prices-and-volumes?currency=EUR",
+      "field": "Clôture de séance, colonne Close",
+      "finding": "Les deux clôtures Xetra en EUR corroborent les bornes de cotation conservées. Le rendement officiel publié en USD reste différent après conversion.",
+      "missing": "Niveaux quotidiens de référence de l’émetteur, heures de valorisation et convention d’ajustement sur la fenêtre complète. La voie automatisée Xetra doit aussi fournir un historique continu réutilisable."
+    },
+    "DE000A0H08P6/2019": {
+      "symbol": "EXH8.DE",
+      "mic": "XETR",
+      "currency": "EUR",
+      "start": "2018-12-28",
+      "end": "2019-12-30",
+      "sourceUrl": "https://live.deutsche-boerse.com/en/etf/ishares-stoxx-europe-600-retail-ucits-etf-de/price-history/historical-prices-and-volumes?currency=EUR",
+      "field": "Clôture de séance, colonne Close",
+      "finding": "Les clôtures brutes Xetra des deux séances ont été consultées en EUR. La borne brute ne qualifie pas le traitement des distributions.",
+      "missing": "Facteurs de réinvestissement publiés par iShares pour les distributions d’avril et de juillet 2019 et rapprochement avec la série de marché ajustée."
+    },
+    "FR0010755611/2021": {
+      "symbol": "CL2.PA",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "start": "2020-12-31",
+      "end": "2021-12-31",
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0010755611-XPAR",
+      "field": "Prix journalier du graphique Euronext de la part exacte",
+      "finding": "Les deux dates et les prix du graphique Euronext en EUR corroborent les bornes de cotation conservées. Le rendement du graphique est de 87,01 % contre 81,38 % pour la NAV ajustée de la part.",
+      "missing": "Méthode du graphique aux dates de valorisation et preuve exhaustive des distributions, opérations et unités applicables à cette fenêtre."
+    },
+    "FR0010755611/2024": {
+      "symbol": "CL2.PA",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "start": "2023-12-29",
+      "end": "2024-12-31",
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0010755611-XPAR",
+      "field": "Prix journalier du graphique Euronext de la part exacte",
+      "finding": "Les deux dates et les prix du graphique Euronext en EUR corroborent les bornes de cotation conservées. Le rendement du graphique est de 68,17 % contre 65,62 % pour la NAV ajustée de la part.",
+      "missing": "Méthode du graphique aux dates de valorisation et preuve complète des distributions et opérations sur l’année civile. Le rapport annuel Amundi de juin 2025 couvre le second semestre 2024."
+    }
+  }
+}

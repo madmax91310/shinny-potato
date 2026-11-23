@@ -1,4 +1,5 @@
 import { ECONOMIC_OBSERVATIONS } from '../src/data/economic-data.js';
+import { AUTOMATED_PERFORMANCE, HISTORICAL_AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js';
 import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js';
 import assert from 'node:assert/strict';
@@ -81,9 +82,19 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
     if (field.label.startsWith('Rendements')) assert.equal(field.metadata.periodEnd, '2025-12-31');
   }
   if (VERIFIED_RETURNS[isin]) {
-    const values = getInstrumentAnnualPerformance(isin).values;
-    if (values.some(Number.isFinite)) assert.deepEqual(record.fields.find(f => f.label === 'Rendements 2020–2025').value, values, `${isin}: catalogue différent de la série réellement consommée`);
+    const archive = HISTORICAL_AUTOMATED_PERFORMANCE[isin] ?? getInstrumentAnnualPerformance(isin);
+    if (archive.values.some(Number.isFinite)) assert.deepEqual(record.fields.find(f => f.label === 'Rendements 2020–2025').value, archive.values, `${isin}: catalogue différent de la série 2020–2025`);
     else assert(record.fields.some(f => f.label === 'Disponibilité de la performance'), `${isin}: absence d’historique non expliquée`);
+  }
+  const live = AUTOMATED_PERFORMANCE[isin];
+  if (live?.values.some(Number.isFinite) && (live.periodStart !== '2020-01-01' || live.periodEnd !== '2025-12-31')) {
+    const label = `Rendements ${live.calendarYears[0]}–${live.calendarYears.at(-1)}`;
+    const field = record.fields.find(f => f.label === label);
+    assert(field, `${isin}: calendrier glissant absent du catalogue`);
+    assert.deepEqual(field.value, live.values, `${isin}: calendrier glissant différent des rendements utilisés`);
+    assert.equal(field.metadata.periodStart, live.periodStart);
+    assert.equal(field.metadata.periodEnd, live.periodEnd);
+    assert.equal(field.metadata.asOf, live.periodEnd);
   }
 }
 for (const family of FAMILIES) for (const index of family.indices) if (index.indexFacts) {

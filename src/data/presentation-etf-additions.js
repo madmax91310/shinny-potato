@@ -1,8 +1,40 @@
+import { REVIEWED_EXPOSURE_COPY } from './etf-presentation-copy.js';
+
 // Parts exactes sélectionnées le 11/10/2026. Données variables dans automated-etf.json.
 // Simulation uniquement après qualification explicite et raccordement du 15/10/2026.
 // Compléments revus le 15/10/2026 : fiches officielles DWS, Amundi, L&G et DIC Avantis.
 // Confiance élevée sur les caractéristiques ; observations variables importées par ISIN.
 export const PRESENTATION_ETF_ADDITIONS = [
+// iShares, fiche officielle et cotation Amsterdam contrôlées le 22/11/2026.
+{
+  id: 'us-property-ishares',
+  portfolioEnabled: true,
+  isin: 'IE00B1FZSF77',
+  name: 'iShares US Property Yield UCITS ETF USD (Dist)',
+  category: 'Sectoriels classiques',
+  ter: '0,40',
+  source: 'https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf',
+  benchmark: 'FTSE EPRA Nareit US Dividend+ Net of Tax Index (USD)',
+  incomePolicy: 'distributing',
+  replicationMethod: 'Physical',
+  domicile: 'Irlande',
+  location: 'Irlande, réplication physique',
+  distribution: 'Distribuant (trimestriel)',
+  listing: {
+    ticker: 'IUSP',
+    exchange: 'Euronext Amsterdam',
+    mic: 'XAMS',
+    currency: 'EUR',
+    sourceUrl: 'https://www.ishares.com/uk/individual/en/products/251803/ishares-us-property-yield-ucits-etf',
+    checkedAt: '2026-11-22',
+    evidenceId: 'IE00B1FZSF77-XAMS-IUSP-EUR',
+  },
+  listingExcerpt: 'Euronext Amsterdam | IUSP | EUR | 22/Jan/2007 | B1N9M26 | IUSP NA | IUSP.AS',
+  ...REVIEWED_EXPOSURE_COPY['us-property-ishares'],
+  verdict: 'Une exposition à l’immobilier coté américain, avec les variations de la Bourse et du dollar.',
+  reviewedAt: '22/11/2026',
+  characteristicsCheckedAt: '2026-11-22',
+},
 {
   "id": "world-healthcare-xtrackers",
   "portfolioEnabled": true,

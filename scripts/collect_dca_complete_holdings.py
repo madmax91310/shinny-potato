@@ -11,6 +11,7 @@ from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError,
 from qualified_cash_rights import cash_right_for_company_perimeter as qualified_cash_right
 from qualified_corporate_identities import qualified_corporate_identity
 ROOT=Path(__file__).resolve().parents[1]
+EXPLICIT_OTHER_SECTOR_SHARES = {'IE00BF4RFH31', 'IE00BKM4GZ66'}
 def ranking_nav_downgrade(isin, previous, candidate, now):
     """Preserve a dated native book; a newer ranking cannot prove its NAV basis.
 
@@ -148,10 +149,14 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         if translated_allocations:
             country = COUNTRIES.get(country.strip()) if isinstance(country,str) else None
             sector = SECTORS.get(sector.strip()) if isinstance(sector,str) else None
-        if (localized and not translated_allocations) or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector)):
+        # BlackRock explicitly puts some valued equity lines in its « Other »
+        # sector bucket. Keep their weights unclassified in the fund breakdown;
+        # this does not assign the securities a sector or admit a missing label.
+        sector_bucket = 'Non classé' if isin in EXPLICIT_OTHER_SECTOR_SHARES and not localized and sector == 'Other' else sector
+        if (localized and not translated_allocations) or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector_bucket)):
             classified=False
         else:
-            for field,label in [('countries',country),('sectors',sector)]:
+            for field,label in [('countries',country),('sectors',sector_bucket)]:
                 allocations[field][label]=allocations[field].get(label,0)+weight
         if not localized and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
             securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})

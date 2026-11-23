@@ -67,7 +67,7 @@ try {
       }
       await page.screenshot({ path: `test-artifacts/model-portfolios/${family.id}-${width}.png`, fullPage: true })
     }
-    assert.equal(images.size, 10)
+    assert.equal(images.size, MODEL_FAMILIES.reduce((count, family) => count + family.presets.length, 0))
     await page.getByLabel('Choisir un portefeuille modèle', { exact: true }).selectOption('all-weather')
     await page.getByLabel('Choisir une variante', { exact: true }).selectOption('shorter')
     await page.getByRole('button', { name: 'Modifier cette allocation', exact: true }).click()
@@ -103,5 +103,5 @@ try {
     assert.deepEqual(errors, [])
     await page.close()
   }
-  console.log('Modèles : 10 allocations et images distinctes, explications, édition décimale et affichage mobile/bureau OK.')
+  console.log('Modèles : allocations et images distinctes, explications, édition décimale et affichage mobile/bureau OK.')
 } finally { await browser?.close(); server.kill() }

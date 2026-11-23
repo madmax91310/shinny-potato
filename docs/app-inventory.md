@@ -44,24 +44,24 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | broker | 8 |
 | household | 29 |
 | index | 56 |
-| instrument | 695 |
+| instrument | 696 |
 | insurance | 7 |
 | lexicon | 44 |
 | portfolio | 8 |
 | reference | 11 |
 | scpi | 8 |
-| series | 783 |
+| series | 784 |
 
 ## Champs des instruments
 
 | Champ | Présents / instruments |
 |---|---:|
-| ter | 281/284 |
-| aum | 281/284 |
-| performance | 260/284 |
-| countries | 252/284 |
-| sectors | 252/284 |
-| holdings | 257/284 |
+| ter | 282/285 |
+| aum | 282/285 |
+| performance | 261/285 |
+| countries | 252/285 |
+| sectors | 253/285 |
+| holdings | 257/285 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 

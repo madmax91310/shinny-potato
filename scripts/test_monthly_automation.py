@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 import urllib.error
 from urllib.parse import urlparse, parse_qs
-from refresh_monthly_history import yahoo_chart, collect_yahoo, collect_msci, msci_rows, collect_stoxx, refresh, select_series, UTC
+from refresh_monthly_history import yahoo_chart, collect_yahoo, collect_msci, msci_rows, collect_stoxx, refresh, select_series, monthly_execution_scope, UTC
 
 NOW=dt.datetime(2026,2,6,tzinfo=UTC)
 CONFIG={'id':'test','parser':'yahoo','symbol':'TEST','currency':'USD','field':'adjclose','precision':6,'periodStart':'2026-01','method':'adjusted'}
@@ -78,6 +78,42 @@ class Monthly(unittest.TestCase):
         self.assertEqual([s['id'] for s in select_series(config,status,['bad'])['series']],['bad'])
         for only in [[],['typo']]:
             with self.assertRaises(ValueError):select_series(config,status,only)
+
+    def test_explicit_replay_keeps_unregistered_id_in_its_requested_scope(self):
+        requested=['test','etfIE00B1FZSF77']
+        config={'series':[CONFIG,dict(CONFIG,id='unrelated')]}
+        selected,scope,missing=monthly_execution_scope(config,{},requested,False,NOW)
+        self.assertEqual(selected['series'],[CONFIG])
+        self.assertEqual(scope,{'expectedIds':requested,'requestedIds':requested,'selection':'explicit'})
+        self.assertEqual([(row['id'],row['sourceState']) for row in missing],
+                         [('etfIE00B1FZSF77','not-attempted')])
+        qualified=dict(CONFIG,id='etfIE00B1FZSF77')
+        selected,scope,missing=monthly_execution_scope({'series':[CONFIG,qualified]}, {}, requested, False, NOW)
+        self.assertEqual(selected['series'],[CONFIG,qualified])
+        self.assertEqual(scope['expectedIds'],requested)
+        self.assertEqual(missing,[])
+
+    def test_unregistered_cli_emits_failed_observation_without_registry_write(self):
+        import refresh_monthly_history as module
+        with tempfile.TemporaryDirectory() as directory:
+            root=pathlib.Path(directory)
+            inputs={'src/data/automated-monthly.json':{},'scripts/monthly-automation.json':{'series':[CONFIG]},'baseline.json':{}}
+            for relative,value in inputs.items():
+                path=root/relative
+                path.parent.mkdir(parents=True,exist_ok=True)
+                path.write_text(json.dumps(value))
+            output=root/'monthly-observation.json'
+            args=['refresh_monthly_history.py','--only','etfIE00B1FZSF77','--baseline',str(root/'baseline.json'),
+                  '--output',str(output),'--apply']
+            with patch.object(module,'ROOT',root),patch.object(sys,'argv',args),self.assertRaises(SystemExit) as exit_status:
+                module.main()
+            self.assertEqual(exit_status.exception.code,1)
+            result=json.loads(output.read_text())
+            self.assertEqual(result['scope']['expectedIds'],['etfIE00B1FZSF77'])
+            self.assertEqual([(r['id'],r['status'],r['sourceState']) for r in result['series']],
+                             [('etfIE00B1FZSF77','failed','not-attempted')])
+            self.assertFalse((root/'scripts/source-snapshots/monthly-collection-status.json').exists())
+            self.assertEqual(json.loads((root/'scripts/monthly-automation.json').read_text()),inputs['scripts/monthly-automation.json'])
 
     def test_adjusted_daily_not_monthly_adjusted(self):
         def fetch(url):return chart('1mo' if 'interval=1mo' in url else '1d',adjusted=999 if 'interval=1mo' in url else 10)

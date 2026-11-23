@@ -314,10 +314,53 @@ def parse_funds_euros(body, source_url, today):
     return {'year':year,'value':value,'checkedAt':today,'sourceUrl':source_url,'method':'ACPR contrats individuels, net de prélèvements sur encours, avant prélèvements sociaux','sha256':hashlib.sha256(body).hexdigest()}
 
 
+ACPR_REPORT_NAME = re.compile(r'AS(\d+)_revalorisation_(20\d{2})\.pdf$', re.I)
+
+
+def acpr_report_identity(url):
+    parsed = urllib.parse.urlparse(url)
+    match = ACPR_REPORT_NAME.search(parsed.path)
+    require(parsed.scheme == 'https' and parsed.netloc in ('acpr.banque-france.fr', 'www.banque-france.fr')
+            and parsed.path.startswith('/system/files/') and match, 'URL de rapport ACPR non qualifiée')
+    return match[1], int(match[2])
+
+
+def parse_funds_euros_article(body, article_url, pdf_url, today):
+    edition, year = acpr_report_identity(pdf_url)
+    page_url = urllib.parse.urlparse(article_url)
+    require(page_url.scheme == 'https' and page_url.netloc == 'acpr.banque-france.fr'
+            and page_url.path.startswith('/fr/'), 'Source de synthèse ACPR non qualifiée')
+    soup = BeautifulSoup(body, 'html.parser')
+    title = norm(soup.h1.get_text(' ', strip=True)) if soup.h1 else ''
+    require(re.fullmatch(fr'n°\s*{edition}\s*:\s*revalorisation {year} des contrats d.assurance.vie et de capitalisation', title),
+            'Identité de la synthèse ACPR incompatible')
+    path = urllib.parse.urlparse(pdf_url).path
+    require(any(urllib.parse.urljoin(ACPR, anchor['href']) == ACPR+path for anchor in soup.find_all('a', href=True)),
+            'La synthèse ne référence pas le rapport ACPR exact')
+    matches = []
+    for paragraph in soup.select('.field--name-field-contenu-riche p'):
+        text = norm(paragraph.get_text(' ', strip=True))
+        match = re.search(
+            fr'taux de revalorisation moyens des supports euros des contrats individuels\b[^.:]{{0,200}}'
+            fr'en {year}\s*:\s*([\d,.]+) % (?:comme en {year-1} )?'
+            r'nets de prelevements sur encours et avant prelevements sociaux pour les contrats individuels\b',
+            text,
+        )
+        if match:
+            matches.append(number(match[1]))
+    value = unique(matches, 'Taux individuel ACPR absent ou ambigu dans la synthèse')
+    require(year < int(today[:4]) and 0 <= value <= 20, 'Année/taux ACPR invalide')
+    return {'year':year,'value':value,'checkedAt':today,'sourceUrl':article_url,'pdfUrl':pdf_url,
+            'method':'ACPR contrats individuels, net de prélèvements sur encours, avant prélèvements sociaux',
+            'sha256':hashlib.sha256(body).hexdigest()}
+
+
 def collect_funds_euros(today, previous):
     discovery_error=None
+    article_url=None
+    article_body=None
     try:
-        url=discover_acpr()
+        url, article_url, article_body = discover_acpr()
     except Exception as error:
         # A known report can cover the latest possible complete calendar year.
         # Re-download it rather than interpreting inaccessible catalogues as a
@@ -326,10 +369,13 @@ def collect_funds_euros(today, previous):
         latest=max(observations,key=lambda o:o['year'],default=None)
         require(latest is not None and latest['year']==int(today[:4])-1,
                 f'Découverte ACPR obligatoire pour un nouveau millésime : {error}')
-        url=latest['sourceUrl']
-        parsed=urllib.parse.urlparse(url)
-        require(parsed.scheme=='https' and parsed.hostname in ('acpr.banque-france.fr','www.banque-france.fr')
-                and parsed.path.startswith('/system/files/'), 'URL de rapport ACPR non qualifiée')
+        url=latest.get('pdfUrl') or latest['sourceUrl']
+        edition, year = acpr_report_identity(url)
+        require(year == latest['year'], 'Le rapport ACPR de secours appartient à une autre année')
+        article_url = latest['sourceUrl'] if latest.get('pdfUrl') else (
+            ACPR + '/fr/publications-et-statistiques/publications/'
+            f'ndeg-{edition}-revalorisation-{year}-des-contrats-dassurance-vie-et-de-capitalisation'
+        )
         discovery_error=str(error)
     # Banque de France publishes the same ACPR report on its own official host.
     # Keep the exact path and record the host that actually served the document.
@@ -341,17 +387,25 @@ def collect_funds_euros(today, previous):
     for candidate in candidates:
         try:
             body=official_download(candidate)
-            break
         except Exception as error:
             errors.append(f'{candidate}: {error}')
+            continue
+        observation=parse_funds_euros(body,candidate,today)
+        break
     else:
-        raise ValueError('; '.join(errors))
-    observation=parse_funds_euros(body,candidate,today)
+        try:
+            observation = parse_funds_euros_article(article_body or official_download(article_url), article_url, url, today)
+            retained = previous.get('fonds_euros:'+str(observation['year']))
+            require(not retained or retained.get('value') == observation['value'],
+                    'La synthèse contredit la dernière valeur du rapport complet')
+        except Exception as error:
+            raise ValueError('; '.join(errors + [f'{article_url}: {error}'])) from error
+        observation['pdfAccessFailure'] = '; '.join(errors)
     if discovery_error:
         require(observation['year']==int(today[:4])-1,'Rapport de secours ACPR hors dernier millésime complet')
         observation['discoveryStatus']='latest-complete-year-revalidated'
-        observation['discoveryNote']='Catalogue indisponible ; dernier millésime annuel complet téléchargé et revalidé sur son URL officielle.'
-        print('ACPR : catalogue indisponible ; PDF officiel du dernier millésime annuel complet revalidé.',flush=True)
+        observation['discoveryNote']='Catalogue indisponible ; dernier millésime annuel complet vérifié auprès de l’ACPR.'
+        print('ACPR : catalogue indisponible ; dernier millésime annuel complet vérifié.',flush=True)
     return observation
 
 
@@ -382,10 +436,19 @@ def discover_acpr_sitemap():
                if u.startswith(ACPR+'/fr/') and re.search(r'revalorisation-(20\d{2})-des-contrats',u)]
     require(bool(matches),'Rapport annuel ACPR introuvable')
     year,url = max(matches)
-    page = BeautifulSoup(official_download(url),'html.parser')
-    pdfs = sorted({urllib.parse.urljoin(ACPR,a['href']) for a in page.find_all('a',href=True)
-                   if re.search(r'AS\d+_revalorisation_'+str(year)+r'\.pdf$',a['href'],re.I)})
-    return unique(pdfs,'PDF revalorisation ACPR ambigu/absent')
+    return acpr_publication(url, year)
+
+
+def acpr_publication(url, year):
+    body = official_download(url)
+    page = BeautifulSoup(body, 'html.parser')
+    pdfs = set()
+    for anchor in page.find_all('a', href=True):
+        candidate = urllib.parse.urljoin(ACPR, anchor['href'])
+        if candidate.startswith(ACPR+'/system/files/') and ACPR_REPORT_NAME.search(candidate):
+            if acpr_report_identity(candidate)[1] == year:
+                pdfs.add(candidate)
+    return unique(sorted(pdfs), 'PDF ACPR ambigu/absent'), url, body
 
 
 def discover_acpr():
@@ -402,11 +465,7 @@ def discover_acpr():
                        if u.startswith(ACPR+'/fr/') and re.search(r'revalorisation-(20\d{2})-des-contrats',u)]
             require(bool(matches), 'Rapport annuel absent du catalogue ACPR')
             year, url = max(matches)
-            page = BeautifulSoup(official_download(url), 'html.parser')
-            pdfs = sorted({urllib.parse.urljoin(ACPR,a['href']) for a in page.find_all('a',href=True)
-                           if urllib.parse.urljoin(ACPR,a['href']).startswith(ACPR+'/system/files/')
-                           and re.search(r'AS\d+_revalorisation_'+str(year)+r'\.pdf$',a['href'],re.I)})
-            return unique(pdfs,'PDF ACPR ambigu/absent')
+            return acpr_publication(url, year)
         except Exception as error:
             errors.append(str(error))
     try:
@@ -521,7 +580,12 @@ def main():
                         require(observations['livret_a']['effectiveAt']>=current['effectiveAt'],'Régression du taux légal Livret A')
                     observations={observations['livret_a']['effectiveAt']:observations['livret_a']}
                 state=merge(state,family,observations)
-                successes.append({'id':name,'count':len(observations)})
+                receipt = {'id':name,'count':len(observations)}
+                if name == 'fonds-euros':
+                    source = next(iter(observations.values()))
+                    receipt.update(checkedAt=dt.datetime.now(dt.timezone.utc).isoformat(),
+                                   asOf=str(source['year'])+'-12-31', sourceUrl=source['sourceUrl'])
+                successes.append(receipt)
             except Exception as e:
                 errors.append({'id':name,'error':str(e)})
     if args.apply:

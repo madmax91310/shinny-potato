@@ -12,6 +12,7 @@ from data_automation import UTC, write_json_atomic
 from apply_etf_collection import merge_collection
 from refresh_additional_etf import collect_one as existing_collect
 from issuer_documents import validated_rows
+from validate_exposure_publication import qualified_publication_fallback
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / 'scripts/exposure-etf-expansion.json'
@@ -170,17 +171,32 @@ def main():
         if error:
             return {'isin':share['isin'],'status':'failed','reason':str(error)}
         try:
+            isin = share['isin']
+            siblings = {isin: fund_siblings(share, config, fund_aum)}
+            merged = merge_collection({'checkedAt': now.isoformat(), 'shares': [result]}, current, {}, siblings)
+            errors = result.get('collectionErrors', [])
+            row = {'isin': isin, 'retainedFields': retained, 'unavailable': result.get('unavailable', []),
+                   'collectionErrors': errors, 'sourceAttempts': result.get('sourceAttempts', [])}
+            candidate = {**row, 'record': merged[isin]}
+            if errors:
+                # Preflight only. The publication guard checks the actual contract outcome.
+                failure = {'status': 'failed', 'operationAttempted': True, 'sourceAttempted': None,
+                           'field': ', '.join(sorted({e.get('field', 'Collecte') for e in errors}))}
+                if not qualified_publication_fallback(candidate, failure, share, now, current.get(isin, {})):
+                    return {**row, 'status': 'failed', 'reason': 'No qualified publication fallback'}
+                candidate['notice'] = 'Qualified fallback; source failure retained in resultContract'
             for field in retained:
-                print(f"::warning::{share['isin']} {field['field']} retained at {field['asOf']}: {field['reason']}",flush=True)
-            siblings={share['isin']:fund_siblings(share, config, fund_aum)}
-            merged=merge_collection({'checkedAt': now.isoformat(), 'shares':[result]},current,{},siblings)
-            return {'isin':share['isin'],'status':'validated','record':merged[share['isin']], 'retainedFields':retained, 'unavailable':result.get('unavailable',[]), 'collectionErrors':result.get('collectionErrors',[]), 'sourceAttempts':result.get('sourceAttempts',[])}
+                print(f"::warning::{isin} {field['field']} retained at {field['asOf']}: {field['reason']}", flush=True)
+            return {**candidate, 'status': 'validated'}
         except Exception as error:
             return {'isin':share['isin'],'status':'failed','reason':str(error)}
     report=[]
     for item in (one(*row) for row in gathered):
         report.append(item)
-        print(item['isin'],item['status'],item.get('reason',''),flush=True)
+        print(item['isin'], item['status'], item.get('reason') or item.get('notice', ''), flush=True)
+        for error in item.get('collectionErrors', []):
+            print(f"  {error.get('field', 'Collection')} ({error.get('phase', 'unknown phase')}): "
+                  f"{error.get('reason', 'Field failed qualification')}", flush=True)
     write_json_atomic(args.report,{'checkedAt':now.isoformat(),'shares':report})
     if args.apply:
         for item in report:
