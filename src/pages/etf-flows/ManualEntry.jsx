@@ -1,7 +1,6 @@
 import {useCallback, useEffect, useRef, useState} from 'react'
 import Card from '../../design-system/Card.jsx'
 import Button from '../../design-system/Button.jsx'
-import PageHeader from '../../design-system/PageHeader.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace.jsx'
 import {copyPublicationText} from '../../design-system/publicationActions.js'
 import {readLocalPreferenceRecord,writeLocalPreference} from '../../lib/publication-preferences.js'
@@ -40,7 +39,7 @@ export default function ManualEntry() {
   }
   function preview(){setShowErrors(true);if(ready)setView('preview')}
   return <div className="etf-flows flows-manual">
-    <PageHeader title="Où va l’argent des ETF ?" subtitle="Colle le bilan ETF Express, vérifie les flux et récupère ton tweet ou ton image." />
+    <h2>Saisie manuelle</h2>
     <ToolWorkspace view={view} onViewChange={setView} renderImage={renderImage} imageDisabled={!ready||!approved} imageFilename={`flux-etf-${draft.end||'brouillon'}.png`} imageAlt="Sélection de flux nets relevés manuellement" actions={<Button disabled={!ready||!approved} onClick={copy}>Copier le tweet</Button>}>
       <div className="tool-settings">
         <Card><h2>1. Ouvre le bilan ETF Express</h2><p>Copie le texte de l’article. Pour une autre semaine, ouvre un autre bilan sur ETF Express.</p><p className="flows-source-links">{FLOW_SOURCES.map(s=><a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.label} ↗</a>)}</p><ReportImport onImport={result=>{setDraft(d=>({...d,start:result.start,end:result.end,scope:result.scope,url:'',currency:result.currency,rows:result.rows.map(r=>({label:r.label,amount:String(r.amount/1e6),unit:'M'}))}));setApproved(false);setMessage('')}} /></Card>

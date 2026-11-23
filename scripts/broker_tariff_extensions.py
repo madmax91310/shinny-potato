@@ -3,6 +3,7 @@ import datetime as dt
 import hashlib
 import re
 from bs4 import BeautifulSoup
+from broker_bourso_tariff_rows import order_minimum
 from collect_regulatory_data import unique
 SOURCES = {
  'xtb':'https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf',
@@ -208,21 +209,23 @@ def parse_supplement(key,s,today):
   return public_model(s,today)
  if key=='bourso_minimum_order':
   broker,field,url=SUPPLEMENT_SOURCES[key]
-  pages=[(i,p) for i,p in enumerate(s.split('\f'),1) if 'Conditions' in p and 'PEA 18-25 ans' in p and 'Boursomarkets' in p and re.search(r'ETF [–-] ETN [–-] ETC\s*\n\s*\(Paris,Amsterdam\)',p)]
-  if len(pages)!=1:raise ValueError('Table des minimums PEA ETF absente ou ambiguë')
-  page,block=pages[0]
-  row=re.search(r'ETF [–-] ETN [–-] ETC\s*\n\s*\(Paris,Amsterdam\)\s+([^\n]+)',block)
-  amounts=re.findall(r'([\d ]+)€',row[1])
-  # All four account/offer columns currently agree. A future distinction needs
-  # an explicit column parser, never an assumption about the PEA column.
-  if len(amounts)!=4 or len({num(v) for v in amounts})!=1:raise ValueError('Colonnes de minimum ETF divergentes ou modifiées')
-  value=num(amounts[0])
+  labelled=order_minimum(s)
+  if labelled is None:
+   pages=[(i,p) for i,p in enumerate(s.split('\f'),1) if 'Conditions' in p and 'PEA 18-25 ans' in p and 'Boursomarkets' in p and re.search(r'ETF [–-] ETN [–-] ETC\s*\n\s*\(Paris,Amsterdam\)',p)]
+   if len(pages)!=1:raise ValueError('Table des minimums PEA ETF absente ou ambiguë')
+   page,block=pages[0]
+   row=re.search(r'ETF [–-] ETN [–-] ETC\s*\n\s*\(Paris,Amsterdam\)\s+([^\n]+)',block)
+   amounts=re.findall(r'([\d ]+)€',row[1])
+   if len(amounts)!=4 or len({num(v) for v in amounts})!=1:raise ValueError('Colonnes de minimum ETF divergentes ou modifiées')
+   value,statement=num(amounts[0]),row[0]
+  else:
+   value,page,statement=labelled
   if value<=0:raise ValueError('Minimum ETF invalide')
   dated=re.search(r'Tarifs applicables au (\d{1,2}) (\w+) (\d{4})',s)
   if not dated:raise ValueError('Date de la brochure des minimums absente')
   published=dt.date(int(dated[3]),MONTHS[dated[2].lower()],int(dated[1])).isoformat()
-  meta=metadata(s,url,today,published);meta.update(page=page,statement=row[0])
-  return broker,field,item({'etfEuronext':value},f'Ordre minimum ETF sur Paris/Amsterdam : {fmt(value)} €, y compris sur PEA.',meta,'BoursoBank ; minimum par ordre ETF Paris/Amsterdam ; colonnes CTO et PEA avec/sans BoursoMarkets')
+  meta=metadata(s,url,today,published);meta.update(page=page,statement=statement)
+  return broker,field,item({'etfEuronext':value},f'Ordre minimum ETF sur Paris/Amsterdam : {fmt(value)} €, y compris sur PEA.',meta,'BoursoBank ; minimum par ordre ETF Paris/Amsterdam ; comptes CTO et PEA avec/sans BoursoMarkets')
  if key in ('tr_pea_transfer','tr_pea_transfer_out'):
   broker,field,url=SUPPLEMENT_SOURCES[key]
   # macOS Poppler separates the initial glyph in "i nstitution". Repair this
@@ -358,7 +361,9 @@ def base_supplements(name,s,observation):
  if name=='bourso':
   fx=get(r'Taux de change J\+1 \(J étant le jour de négociation\) \+ ([\d,]+) points',s)
   fields['change']=item({'fxPoints':fx},f'Taux J+1 majoré de {fmt(fx)} point de cours ; ce n’est pas un pourcentage fixe.',meta,'Bourse hors zone euro ; point de cours, pas pourcentage')
-  m=re.search(r'([\d]+)€ par ligne dans la limite de\s*.*?Transfert de titres vers établissement tiers \(PEA, PEA 18-25 ans, PEA-PME\)\s*([\d]+)€ par compte transféré',s,re.S)
+  m=re.search(r'Transfert de titres vers établissement tiers \(PEA, PEA 18-25 ans, PEA-PME\)\s*([\d]+)\s*€ par ligne dans la limite de ([\d]+)\s*€ par compte transféré',s)
+  if not m:
+   m=re.search(r'([\d]+)€ par ligne dans la limite de\s*.*?Transfert de titres vers établissement tiers \(PEA, PEA 18-25 ans, PEA-PME\)\s*([\d]+)€ par compte transféré',s,re.S)
   if not m:raise ValueError('Transfert Bourso PEA absent')
   fields['sortant']=item({'perLine':num(m[1]),'maximum':num(m[2])},f'{m[1]} € par ligne, maximum {m[2]} €.',meta,'Transfert sortant PEA ; distinct du CTO')
  elif name=='fortuneo':

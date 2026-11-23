@@ -1,15 +1,15 @@
-# Champs restant à automatiser — 2026-11-22
+# Champs restant à automatiser — 2026-11-23
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
 | Champ ETF/ETP | Présent / applicable | Non applicable | En attente | Non publié | À résoudre |
 |---|---:|---:|---:|---:|---:|
-| Frais | 281/284 | 0 | 0 | 0 | 3 |
-| Encours | 281/284 | 0 | 0 | 0 | 3 |
-| Calendrier annuel | 260/284 | 0 | 13 | 6 | 5 |
-| Pays | 252/261 | 23 | 0 | 5 | 4 |
-| Secteurs | 252/261 | 23 | 0 | 5 | 4 |
-| Positions pondérées | 257/261 | 23 | 0 | 0 | 4 |
+| Frais | 282/285 | 0 | 0 | 0 | 3 |
+| Encours | 282/285 | 0 | 0 | 0 | 3 |
+| Calendrier annuel | 261/285 | 0 | 13 | 6 | 5 |
+| Pays | 252/262 | 23 | 0 | 5 | 5 |
+| Secteurs | 253/262 | 23 | 0 | 5 | 4 |
+| Positions pondérées | 257/262 | 23 | 0 | 0 | 5 |
 
 ## Premiers calendriers des 13 parts récentes
 
@@ -98,6 +98,8 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | iShares US Property Yield UCITS ETF USD (Dist) (IE00B1FZSF77) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares US Property Yield UCITS ETF USD (Dist) (IE00B1FZSF77) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Copper Miners UCITS ETF USD Acc (IE0003Z9E2Y3) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
 | instrument | Vanguard FTSE Global All-Cap UCITS ETF USD Accumulating (IE000VAHT5T0) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
@@ -187,7 +189,7 @@ Couverture : une donnée active peut être conservée malgré un accès désorma
 | Linxea Zen | Apicil Euroflex | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
 | Linxea Zen | Apicil Euro Garanti | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
 | Linxea Vie | Netissima | Sans limite de montant | Souscriptions, versements libres et programmés | 2026-12-31 |
-| Linxea Vie | Eurossima | Fixé par l’assureur, entre 0 et 50000 € l’année de souscription puis entre 0 et 25000 €/an | Versements initiaux, libres et programmés ; année civile | Non publiée |
+| Linxea Vie | Vertessima | Sans limite de montant | Souscriptions, versements libres et programmés | 2026-12-31 |
 | Linxea Avenir 2+ | Suravenir Opportunités 2 | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
 | Linxea Avenir 2+ | Suravenir Rendement 2 | Sans limite de montant, minimum 30 % UC | Souscriptions, versements complémentaires et programmés | Non publiée |
 
@@ -197,7 +199,7 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 
 | Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
 |---|---|---|---|---|
-| Lucya Cardif | Fonds général | Plafond en euros | 2026-11-21 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-11-21 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-11-21 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
-| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-11-21 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Fonds général | Plafond en euros | 2026-11-22 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-11-22 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-11-22 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
+| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-11-22 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |

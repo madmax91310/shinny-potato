@@ -64,6 +64,5 @@ for(const instrumentType of ['EQUITY','ETF'])for(const value of [-20,-0.001,0,0.
 }
 const holdings=[.4,.2,.15,.1,.1,.05].map((weight,i)=>({weight,value:weight*1000000,issuerName:`Entreprise ${i}`,ticker:`TEST${i}`}))
 const text=investor({identity:{slug:'test',displayName:'Gestionnaire de test',personVerified:true,personPeriod:'2026-06-30',personSource:'https://example.com/verified-fixture'},snapshot:{periodEnd:'2026-06-30',holdings},holdings})
-assert(text.startsWith('Portefeuille de Gestionnaire de test :') && text.includes('40,0 %') && text.includes('400'))
-assert(!text.includes('Les 1 autres'))
+assert.equal(text, '', 'Un relevé sans validation éditoriale ne produit pas de récit')
 console.log('Textes complets : accords, égalité/perte/gain, DCA neutre, prix saisis, dates, données partielles et BTC en USD validés.')

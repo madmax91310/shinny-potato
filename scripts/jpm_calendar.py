@@ -15,13 +15,15 @@ from jpm_holdings import ISIN, URL, qualified_fund
 
 HISTORY_URL = ('https://am.jpmorgan.com/FundsMarketingHandler/historicalData'
                '?cusip=IE0003UVYC20&country=gb&role=per&userLoggedIn=false&language=en')
+INSTITUTIONAL_HISTORY_URL = HISTORY_URL.replace('role=per', 'role=institutional')
+HISTORY_ROLES = {HISTORY_URL: 'per', INSTITUTIONAL_HISTORY_URL: 'institutional'}
 SLOTS = ['oneYear', 'twoYears', 'threeYears', 'fourYears', 'fiveYears',
          'sixYears', 'sevenYears', 'eightYears', 'nineYears', 'tenYears']
 CONVENTION = ('Share class performance is shown based on the NAV (net asset value) of the share class '
               'with income (gross) reinvested including actual ongoing charges excluding any entry and exit fees.')
 
 
-def parse(body, identity_body, share, now):
+def parse(body, identity_body, share, now, *, source_url=HISTORY_URL):
     if share.get('isin') != ISIN or share.get('currency') != 'USD':
         raise ValueError('Unsupported JPM calendar share/currency')
     fund = qualified_fund(json.loads(identity_body))
@@ -30,8 +32,9 @@ def parse(body, identity_body, share, now):
     if CONVENTION not in text:
         raise ValueError('JPM exact-share NAV reinvestment convention changed')
     history = json.loads(body)
-    if (history.get('error') or history.get('cachedForCountry') != 'gb'
-            or history.get('cachedForRole') != 'per' or history.get('fundTypeCode') != 'N_ETF'):
+    role = HISTORY_ROLES.get(source_url)
+    if (not role or history.get('error') or history.get('cachedForCountry') != 'gb'
+            or history.get('cachedForRole') != role or history.get('fundTypeCode') != 'N_ETF'):
         raise ValueError('Unexpected JPM historical-data context')
     nav = fund['shareClass']['nav']
     stamp = document_date(nav['date'], now)
@@ -74,7 +77,7 @@ def parse(body, identity_body, share, now):
     if not years:
         raise ValueError('JPM share has no complete calendar year')
     return {'currency': 'USD', 'basis': 'fund', 'years': years, 'asOf': date,
-            'sourceUrl': HISTORY_URL, 'sha256': proof(body),
+            'sourceUrl': source_url, 'sha256': proof(body),
             'identitySourceUrl': URL, 'identitySha256': proof(identity_body),
             'identityNavAsOf': stamp,
             'sourceComponent': 'historicalCalendarYearPerformanceReturn.labels/performanceData; oneYear..tenYears; YTD excluded',

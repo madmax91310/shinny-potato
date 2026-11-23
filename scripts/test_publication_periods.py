@@ -24,6 +24,11 @@ class PublicationTests(unittest.TestCase):
                     result=validator(copy.deepcopy(record),today)
                     annuals=[result['annual']] if kind=='scpi' else result['euroFunds']
                     for annual in annuals:
+                        if not annual['years']:
+                            self.assertEqual(annual['name'],'Vertessima')
+                            self.assertIsNone(annual['asOf'])
+                            self.assertEqual(annual['publication'],{'latestPublishedYear':None,'expectedYear':2026,'awaitingPublication':True})
+                            continue
                         self.assertEqual(annual['publication'],{'latestPublishedYear':2025,'expectedYear':2026,'awaitingPublication':True})
                         self.assertEqual(annual['years'][-1]['year'],2025)
                 with self.assertRaises(ValueError):validator(copy.deepcopy(record),JUL)
@@ -33,7 +38,11 @@ class PublicationTests(unittest.TestCase):
             for record in self.records(kind):
                 annuals=[record['annual']] if kind=='scpi' else record['euroFunds']
                 for annual in annuals:
-                    for row in annual['years']:row['year']+=1
+                    if not annual['years']:
+                        self.assertEqual(annual['name'],'Vertessima')
+                        annual['years']=[{'year':2026,'return':2.0}]
+                    else:
+                        for row in annual['years']:row['year']+=1
                     if kind=='insurance':annual['asOf']='2026-12-31'
                 result=validator(record,JAN)
                 annuals=[result['annual']] if kind=='scpi' else result['euroFunds']

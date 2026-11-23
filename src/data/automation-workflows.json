@@ -670,9 +670,9 @@
     "publishes": true
   },
   "update-etf-flows.yml": {
-    "name": "Contrôle des flux ETF · collecte bloquée",
-    "workflowName": "ETF flows qualification (automatic collection blocked)",
-    "collectionJob": "qualification",
+    "name": "Flux nets hebdomadaires des ETF",
+    "workflowName": "Update weekly ETF flows",
+    "collectionJob": "collect",
     "maxAgeHours": 192,
     "tools": [
       "Où va l’argent des ETF ?"
@@ -680,12 +680,12 @@
     "paths": [
       "/flux-etf"
     ],
-    "publishes": false,
-    "validationOnly": true,
-    "collectionSteps": [],
+    "publishes": true,
+    "collectionSteps": [
+      "Collect and verify ETFIQ flows"
+    ],
     "validationSteps": [
-      "Validate flow publication contracts",
-      "Report blocked flow collection"
+      "Validate collected observations"
     ]
   },
   "refresh-public-portfolios.yml": {

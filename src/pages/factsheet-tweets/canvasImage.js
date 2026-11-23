@@ -138,9 +138,23 @@ export async function renderFactsheetImage(sheet) {
     {label:'SECTEURS',style:'lavender',kind:'sector',rows:sortedRows(sheet.sectors).slice(0,4).map(([name,value])=>({name:displayLabel(sectorLabel(name)),raw:name,value}))},
     {label:'ENTREPRISES',style:'mint',kind:'company',rows:holdings.map(([name,value],i)=>({name:((sheet.compositionOnly||sheet.concentration?.available)?compositionCompanyLabel:imageCompanyLabel)(name),raw:name,value,image:logos[i]}))},
   ]
+  // Highlight one existing value. A single-country or single-sector mandate
+  // already communicates its scope through the title and labels.
+  const [, sectorBand] = definitions
+  const dominates = ({ rows }) => rows.length > 1 && rows[0].value >= 55 && rows[0].value < 100 &&
+    rows[0].value - rows[1].value >= 20
+  const focus = sheet.id === 'nasdaq-pea'
+    ? sectorBand.rows.find(row => /^(Technologie|Information Technology)$/i.test(row.name))
+    : [sectorBand, definitions[0]].find(dominates)?.rows[0]
   const bands=definitions.map(band=>{
     const width=USABLE/Math.max(1,band.rows.length)
-    const cells=band.rows.map(row=>({...row,nameBlock:block(ctx,row.name,width-32,band.kind==='sector'?40:49,700),valueBlock:fit(ctx,row.value>0&&row.value<.005?'< 0,01 %':percent(row.value),width-28,99,76,false)}))
+    const emphasizedBand = band.rows.includes(focus)
+    const cells=band.rows.map(row=>{
+      const emphasized = row === focus
+      const size = emphasized ? 112 : emphasizedBand ? 86 : 99
+      return {...row, emphasized, nameBlock:block(ctx,row.name,width-32,band.kind==='sector'?40:49,700),
+        valueBlock:fit(ctx,row.value>0&&row.value<.005?'< 0,01 %':percent(row.value),width-(emphasized ? 22 : 28),size,76,false)}
+    })
     const nameH=Math.max(61,...cells.map(cell=>cell.nameBlock.height)),valueH=Math.max(118,...cells.map(cell=>cell.valueBlock.height))
     return {...band,cells,width,nameH,valueH,height:Math.max(422,100+126+15+nameH+8+valueH+26)}
   })
@@ -183,7 +197,7 @@ export async function renderFactsheetImage(sheet) {
       else if(band.kind==='sector')drawSector(ctx,cell.raw,center-60,iconY,120)
       else logoSupport(ctx,cell.image,cell.name,center-61,iconY-2,122)
       draw(ctx,cell.nameBlock,center,y+241,'center',C.ink)
-      draw(ctx,cell.valueBlock,center,y+241+band.nameH+9,'center',band.kind==='company'?'#042d31':C.ink)
+      draw(ctx,cell.valueBlock,center,y+241+band.nameH+9,'center',cell.emphasized ? '#5f254f' : band.kind==='company'?'#042d31':C.ink)
     })
     y+=band.height+GAP
   }

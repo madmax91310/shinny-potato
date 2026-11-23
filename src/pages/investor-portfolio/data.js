@@ -1,5 +1,6 @@
 import { logoIdentity } from './media.js'
-import { monetaryStatus, publicationPlan, portfolioOwner, cash, weightLabel, emojiFor } from './publication.js'
+import { monetaryStatus, portfolioOwner, weightLabel } from './publication.js'
+import { editorialCopy } from './editorial.js'
 import { investorModel } from '../../data/investor-models.js'
 import { modelPortfolio, buildModelTweet } from './models.js'
 import { INVESTORS } from '../../data/investor-roster.js'
@@ -91,15 +92,7 @@ export function buildTweet(portfolio, intro = '') {
   if (portfolio.kind === 'model') return buildModelTweet(portfolio, intro, percentage)
   const { identity, snapshot } = portfolio
   if (portfolio.problem) return `Portefeuille de ${portfolioOwner(portfolio)} :\n\nPositions au ${dateFR(snapshot.periodEnd)}\n\nDonnées incomplètes : ${portfolio.problem}`
-  const plan = publicationPlan(portfolio)
-  return [
-    `Portefeuille de ${portfolioOwner(portfolio)} :`,
-    `Positions déclarées au ${dateFR(snapshot.periodEnd)} · hors options`,
-    [...plan.entries].sort((a,b) => b.weight-a.weight).map(row => `${row.other ? '📦' : emojiFor(row.ticker || logoIdentity(row)?.id)} ${row.label} : ${percentage(row.weight)} · ${cash(row.value, plan.currency)}`).join('\n'),
-    ...(snapshot.coverReconciliation ? [`⚠️ Les lignes SEC totalisent ${cash(snapshot.coverReconciliation.informationTableTotal, snapshot.currency)}, la page de garde indique ${cash(snapshot.coverReconciliation.reportedCoverTotal, snapshot.currency)}. Poids calculés sur les lignes.`]
-      : snapshot.reconciliationWarning ? ['Chiffres SEC ; le fournisseur affiche un autre total.'] : []),
-    'Quelle ligne aimerais-tu avoir dans ton portefeuille ? 👇',
-  ].join('\n\n')
+  return editorialCopy(portfolio).text
 }
 
 export async function loadPortfolio(slug, signal) {
@@ -115,6 +108,8 @@ export async function loadPortfolio(slug, signal) {
     if (reviewResponse.ok) {
       const review = (await reviewResponse.json()).find(row => row.data?.identity?.slug === slug && row.data?.snapshot?.periodEnd === portfolio.snapshot.periodEnd)
       portfolio.lastSuccessfulPollAt = review?.lastSuccessfulPollAt || null
+      portfolio.lastAttemptAt = review?.lastAttemptAt || null
+      portfolio.positionsCollectedAt = review?.positionsCollectedAt || null
       portfolio.lastError = review?.lastAttemptStatus === 'failed' ? review.lastError : null
     }
   } catch (error) { if (error.name === 'AbortError') throw error }

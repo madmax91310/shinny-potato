@@ -15,7 +15,7 @@ function assertManualConvention(asset) {
 }
 const config = [...JSON.parse(readFileSync(new URL('./additional-etf-sources.json', import.meta.url))).instruments, ...JSON.parse(readFileSync(new URL('./etf-pilot.json', import.meta.url))).instruments.map(s => ({...s, enabled:true, required:true}))];
 const marketCalendars=JSON.parse(readFileSync(new URL('../src/data/monthly-duel-returns.json',import.meta.url)));
-assert.equal(PRESENTATION_ETF_ADDITIONS.length, 12);
+assert.equal(PRESENTATION_ETF_ADDITIONS.length, 13);
 for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>!r.reviewedAt)) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
@@ -123,3 +123,15 @@ assert.equal(panxSeries.basis, 'fund');
 assert.deepEqual(panxSeries.years, panxRecord.performance.years);
 assert.equal(panxRecord.holdings.basis, 'index');
 console.log('PANX: searchable exact share, PEA, issuer returns and tracked-index holdings verified.');
+
+
+const usProperty = ETFS.find(card => card.isin === 'IE00B1FZSF77');
+assert.equal(usProperty.listing.ticker, 'IUSP');
+assert.equal(usProperty.listing.mic, 'XAMS');
+assert.equal(usProperty.listing.currency, 'EUR');
+assert.equal(usProperty.ter, '0,40%');
+assert.equal(usProperty.presentationOnly, false);
+const usPropertySeries = getAnnualPerformance(usProperty);
+assert.equal(usPropertySeries.currency, 'USD');
+assert.ok(performanceEntries(usPropertySeries).length >= 6);
+assert.ok(config.some(source => source.isin === usProperty.isin && source.productId === 251803));

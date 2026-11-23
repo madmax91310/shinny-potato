@@ -103,6 +103,20 @@ def _collect_one(config,now,audit):
  if attempts:result['sourceAttempts']=attempts
  return result
 
+def retain_omitted_yield(record, previous, config):
+ # A different issuer yield can include currency carry. Keep the original
+ # metric's exact value and control date until the original field is available.
+ before = (previous or {}).get('metrics', {})
+ metrics = record.get('metrics', {})
+ omitted = 'yieldToWorst' not in metrics
+ if config.get('isolateMissingYieldToWorst') and omitted and 'yieldToWorst' in before:
+  record['metrics'] = {**metrics, 'yieldToWorst': copy.deepcopy(before['yieldToWorst'])}
+  record['yieldToWorstUnavailable'] = True
+ if any(key not in record.get('metrics', {}) or record['metrics'][key]['asOf'] < metric['asOf']
+        for key, metric in before.items()):
+  raise ValueError('Issuer metric missing or observation date regressed')
+
+
 def retain_listing_evidence(archive, records, required_ids=None):
  result={isin:[dict(row) for row in rows] for isin,rows in archive.items()}
  for record in records:
@@ -169,9 +183,14 @@ def main():
    previous=old.get(r['id']);
    if previous and (previous['isin']!=r['isin']or previous['currency']!=r['currency']):raise ValueError('Share identity changed')
    try:
-    merged=merge_collection({'checkedAt':now.isoformat(),'shares':[r]},current,{})
+    config = next(c for c in configs if c['isin'] == r['isin'])
+    merge_input = r
+    retain_omitted_yield(r, previous, config)
+    if r.get('yieldToWorstUnavailable'):
+     # Never pass a retained observation to the merge's fresh-source path.
+     merge_input = {**r, 'metrics': {k:v for k,v in r['metrics'].items() if k != 'yieldToWorst'}}
+    merged=merge_collection({'checkedAt':now.isoformat(),'shares':[merge_input]},current,{})
     if previous and any(r[field]['asOf']<previous[field]['asOf']for field in ['countries','sectors','holdings','aum']):raise ValueError('Observation date regressed')
-    if previous and any(k not in r.get('metrics',{}) or r['metrics'][k]['asOf']<v['asOf']for k,v in previous.get('metrics',{}).items()):raise ValueError('Issuer metric missing or observation date regressed')
     # A partial current list cannot erase the dated proof of an active history.
     listing_archive=retain_listing_evidence(listing_archive,[previous,r],required_listing_ids)
     current=merged;r['automatedRecord']=merged[r['isin']];old[r['id']]=r;valid.append(r)
@@ -183,7 +202,7 @@ def main():
   write_json_atomic(ROOT/'src/data/automated-etf.json',current)
  active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
  for row in report['excluded']:row['active']=row['id']in active
- if any(c.get('allocationFallback') or c.get('isolateAllocationFailures') for c in configs):
+ if any(c.get('allocationFallback') or c.get('isolateAllocationFailures') or c.get('isolateMissingYieldToWorst') for c in configs):
   from qualified_physical_allocation import contract_results
   report['contractResults']=contract_results(configs,report)
  write_json_atomic(args.output,report)

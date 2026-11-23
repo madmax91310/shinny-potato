@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { annualColumns, buildRanking, buildTweet, commonCoverage, rankRows } from '../src/pages/performance-rankings/engine.js'
-import { annualImagePercent, annualRankingColumns, annualRankingError, annualRankingLayout, contrastText } from '../src/pages/performance-rankings/annualRanking.js'
+import { annualImagePercent, annualRankingColumns, annualRankingError, annualRankingLayout, annualRankingPanels, contrastText } from '../src/pages/performance-rankings/annualRanking.js'
 import { COLORS } from '../src/pages/performance-rankings/palette.js'
 
 // Synthetic calendars only: financial refreshes must never change these expectations.
@@ -33,10 +33,12 @@ assert.deepEqual(commonCoverage(missing).years, [2019])
 assert.throws(() => buildRanking(missing, { mode: 'years', startYear: 2018, endYear: 2019 }), /couvertes/)
 assert.throws(() => commonCoverage([assets[0], { ...assets[1], currency: 'USD' }]), /même devise/)
 assert.throws(() => annualRankingColumns({ ...result, columns: [{ ...result.columns[0], rows: result.columns[0].rows.slice(1) }, result.columns[1]] }), /absente/)
-assert.throws(() => annualRankingColumns({ ...result, columns: [{ ...result.columns[0], partial: true }] }), /partielle/)
+assert.equal(annualRankingColumns({ ...result, columns: [{ ...result.columns[0], partial: true }] })[0].partial, true)
 const manyYears = { ...result, columns: Array.from({ length: 8 }, (_, i) => ({ ...result.columns[0], label: String(2010 + i) })) }
 assert.match(annualRankingError(manyYears), /maximum 7/)
-assert.throws(() => annualRankingColumns(manyYears), /maximum 7/)
+const longColumns = annualRankingColumns(manyYears)
+assert.deepEqual(annualRankingPanels(longColumns).map(panel => panel.length), [4, 4])
+assert.deepEqual(annualRankingPanels(longColumns).flat(), longColumns)
 const duplicates = buildRanking([make('one', { 2018: 1, 2019: 1 }, 'Même nom'), make('two', { 2018: 2, 2019: 2 }, 'Même nom')], { mode: 'years', startYear: 2018, endYear: 2019 })
 assert.deepEqual(annualRankingColumns(duplicates)[0].rows.map(r => r.label), ['two', 'one'])
 for (let count = 2; count <= 6; count++) for (let years = 2; years <= 7; years++) {
@@ -67,7 +69,8 @@ assert.deepEqual(publicationDraft('nouveau', 'selection-2', null), { text: 'nouv
 assert.equal(publicationDraft('identique', 'EUR', { owner: 'USD', value: handEdited }).stale, true)
 assert.match(selectionFilename({ ...result, assets: [assets[1], assets[2]] }, 'annual'), /^classement-annual-b-c-EUR-/)
 assert(!selectionFilename({ ...result, assets: [assets[1], assets[2]] }, 'annual').includes('annual-a-'))
-assert.match(annualRankingError({ ...result, columns: [result.columns[0]] }), /au moins 2/)
+assert.equal(annualRankingColumns({ ...result, columns: [result.columns[0]] }).length, 1)
+assert.equal(annualRankingLayout(2, 1).width, 1000)
 const reference = { ...assets[0], benchmark: true, shortLabel: 'ETF Référence' }
 assert.match(buildTweet({ ...result, assets: [reference, { ...assets[1], instrumentType: 'EQUITY' }, { ...assets[2], instrumentType: 'EQUITY' }] }, 'Ma sélection'), /ces deux actions/)
 assert.match(buildTweet(result, 'Ma sélection'), /en EUR/)

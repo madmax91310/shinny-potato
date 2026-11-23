@@ -17,12 +17,14 @@ import subprocess
 import tempfile
 import urllib.error
 import urllib.request
+from functools import cache
 
 from automation_contracts import owns_failure, RETIREMENT_REASON
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp, restore_history
 from github_automation_transport import request_json, unseen_completed_runs
 from automation_history_coverage import recover_skipped_history_gaps
 from automation_legacy_phases import CONTRACTS as LEGACY_PHASE_CONTRACTS, qualify_legacy_phases
+from monitor_incident_history import incident_history_reader_ready, pack_incident_history
 from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives,decode_status,reader_ready,pack_proof_checks,pack_scope_archives,scope_reader_ready
 from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
@@ -30,9 +32,14 @@ from automation_recovery import plan_recovery, persist_and_dispatch, recovery_re
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
 WORKFLOWS = {key: value['name'] for key, value in REGISTRY.items()}
 REPORT_ARTIFACTS = {key: value['artifact'] for key, value in REGISTRY.items() if value.get('artifact')}
-ACTIVE_QUALIFIED = {row['isin'] for row in json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/qualified-exposure-etfs.json').read_text()).values()}
 BRANCH = 'automation-status'
 PATH = 'automation-status.json'
+
+
+@cache
+def active_qualified_exposures():
+    path = pathlib.Path(__file__).resolve().parents[1] / 'src/data/qualified-exposure-etfs.json'
+    return {row['isin'] for row in json.loads(path.read_text()).values()}
 
 
 DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alimentation': 'Prix alimentaires', 'purchasing-energie': 'Prix de l’énergie', 'purchasing-irl': 'Indice des loyers', 'purchasing-smic': 'SMIC','livret-a': 'Taux du Livret A', 'fonds-euros': 'Moyenne des fonds euros', 'scpi': 'Rendement global des SCPI',
@@ -114,7 +121,8 @@ def _normalize_report(report):
         return combined
     if isinstance(report.get('records'), list) and ('failed' in report or 'excluded' in report):
         # Older artifacts lack the active flag; consult the production catalogue.
-        excluded = [{**row, 'active': row.get('active', row.get('isin') in ACTIVE_QUALIFIED)} for row in report.get('excluded', [])]
+        excluded = [{**row, 'active': row['active'] if 'active' in row else row.get('isin') in active_qualified_exposures()}
+                    for row in report.get('excluded', [])]
         failures = report.get('failed', []) + [row for row in excluded if row['active']]
         return {'successes': [{'id': row.get('isin', row.get('id'))} for row in report['records']],
                 'errors': [{'id': row.get('isin', row.get('id')), 'name': row.get('isin', row.get('id')),
@@ -762,7 +770,7 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
 PROOF_READER_VERSION = 2
 
 
-def observe_running_workflows(state, registry, api, repo, now, read_reports):
+def observe_running_workflows(state, registry, api, repo, now, read_reports, *, deadline=None):
     """Observe source-phase failures while a parent waits for validation/publication.
 
     No completed workflow or source timestamp is invented. API/read failures retain
@@ -793,7 +801,7 @@ def observe_running_workflows(state, registry, api, repo, now, read_reports):
             result.setdefault('observerErrors',{})[key]={'cause':'Exécutions intermédiaires non observables : '+str(error)[:250]}
     for key,old in previous.items():
         if key in active:continue
-        if not complete:active[key]=old;continue
+        if not complete or deadline is not None and time.monotonic() >= deadline:active[key]=old;continue
         try:
             r=old['run'];run=api(f'/actions/runs/{r["id"]}/attempts/{r.get("run_attempt",1)}')
             if run.get('status')=='completed':
@@ -803,8 +811,12 @@ def observe_running_workflows(state, registry, api, repo, now, read_reports):
         except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,KeyError,TypeError,AttributeError)as error:
             active[key]=old
             result.setdefault('observerErrors',{})['inflight:'+key]={'cause':'Fin d’exécution non vérifiable : '+str(error)[:250]}
-    for key,entry in list(active.items()):
+    ordered = sorted(active.items(), key=lambda item: (previous.get(item[0], {}).get('checkedAt') or '', item[1]['run']['id']))
+    for key,entry in ordered:
         workflow=entry['workflow'];run=entry['run'];old=previous.get(key,{})
+        if deadline is not None and time.monotonic() >= deadline:
+            active[key]={**old,**entry}
+            continue
         try:
             jobs=[];page=1
             while True:
@@ -1375,7 +1387,40 @@ def unseen_failed_workflow_runs(state, workflows, api):
     return runs
 
 
+TERMINAL_RUN_LIMIT = 12
+TERMINAL_RUN_FIELDS = ('id', 'run_attempt', 'path', 'event', 'status', 'conclusion',
+                       'head_branch', 'head_sha', 'html_url', 'created_at', 'updated_at', 'run_started_at')
+TERMINAL_RUN_FLAGS = ('_phaseRetry', '_proofRetry', '_jobEvidenceRetry', '_inflightTerminal',
+                      '_eventTerminal', '_terminalReadRetry')
+
+
+def remember_terminal_runs(state, runs):
+    """Keep deferred attempts after they leave GitHub's 30-run discovery window."""
+    pending = state.setdefault('pendingTerminalRuns', {})
+    for run in runs:
+        if (run.get('status') != 'completed' or run.get('head_branch') != 'master'
+                or run.get('path', '').split('/')[-1] not in WORKFLOWS):
+            continue
+        key = f'{run["id"]}:{run.get("run_attempt", 1)}'
+        snapshot = {field: run[field] for field in (*TERMINAL_RUN_FIELDS, *TERMINAL_RUN_FLAGS) if field in run}
+        if isinstance(run.get('head_repository'), dict):
+            snapshot['head_repository'] = {'full_name': run['head_repository'].get('full_name')}
+        pending[key] = {**pending.get(key, {}), **snapshot}
+    return sorted(pending.items(), key=lambda item: (item[1]['id'], item[1].get('run_attempt', 1)))
+
+
+def terminal_run_mode(run, current):
+    stamp = (run['id'], run.get('run_attempt', 1))
+    current_stamp = (current.get('runId', 0), current.get('attempt', 1))
+    if run.get('_proofRetry'):
+        return 'proof'
+    if stamp < current_stamp:
+        return 'proof' if any(run.get(flag) for flag in ('_eventTerminal', '_inflightTerminal', '_terminalReadRetry')) else 'skip'
+    return 'current'
+
+
 def main():
+    started = time.monotonic()
     parser = argparse.ArgumentParser()
     parser.add_argument('--event', type=pathlib.Path)
     mode = parser.add_mutually_exclusive_group()
@@ -1406,7 +1451,9 @@ def main():
             with tempfile.TemporaryDirectory()as directory:return artifact_reports(repo,workflow,jobs,artifacts,directory)
         except (urllib.error.URLError,ValueError,KeyError,TypeError,OSError)as error:
             return [report_error('artifact-read:'+REPORT_ARTIFACTS[workflow],str(error))]
-    state,terminal_runs=observe_running_workflows(state,REGISTRY,api,repo,dt.datetime.now(dt.timezone.utc).isoformat(),reports_for_run)
+    print('Lecture des exécutions en cours.', flush=True)
+    state,terminal_runs=observe_running_workflows(state,REGISTRY,api,repo,dt.datetime.now(dt.timezone.utc).isoformat(),reports_for_run,
+                                                  deadline=started+180)
     state['workflowAvailability'] = state.get('workflowAvailability', {})
     for workflow in WORKFLOWS:
         try:
@@ -1417,6 +1464,7 @@ def main():
         else:
             state.setdefault('observerErrors', {}).pop('availability:' + workflow, None)
     runs = []
+    trigger_key = None
     if args.backfill or args.monitor_only:
         for workflow in WORKFLOWS:
             candidates=completed_run_candidates(state,workflow,api)
@@ -1436,7 +1484,9 @@ def main():
                 runs.append(latest)
     elif not args.monitor_only:
         require_event = json.loads(args.event.read_text())
-        runs = [require_event['workflow_run']]
+        trigger = require_event['workflow_run']
+        trigger_key = f'{trigger["id"]}:{trigger.get("run_attempt", 1)}'
+        runs = [{**trigger, '_eventTerminal': True}]
         # The queue can contain hours of old events. Catch up known failures
         # from actual completed runs instead of waiting for a later cron/backfill.
         recovered_runs=unseen_failed_workflow_runs(state,WORKFLOWS,api)
@@ -1465,7 +1515,6 @@ def main():
             runs.append({**retry, '_jobEvidenceRetry': True})
         except (urllib.error.URLError, OSError, ValueError, KeyError, TypeError) as error:
             state.setdefault('observerErrors', {})['jobs-proof:' + workflow] = {'cause': 'Preuve des phases incomplète : ' + str(error)[:250]}
-    runs=list({(r['id'],r.get('run_attempt',1)):r for r in runs}.values())
     pending_proofs = [(failure.get('lastProofReadAt',''),workflow,key,failure) for workflow,row in state.get('workflows',{}).items() if workflow in REPORT_ARTIFACTS for key,failure in row.get('proofFailures',{}).items() if failure.get('runId')]
     for _, workflow, key, failure in sorted(pending_proofs,key=lambda r:r[0])[:4]:
         failure['lastProofReadAt']=dt.datetime.now(dt.timezone.utc).isoformat()
@@ -1477,12 +1526,21 @@ def main():
         except (urllib.error.URLError,ValueError,KeyError) as error:
             state.setdefault('observerErrors',{})['proof-retry:'+workflow]={'cause':'Relecture historique impossible : '+str(error)[:250]}
     state=recover_skipped_history_gaps(state,api,dt.datetime.now(dt.timezone.utc).isoformat())
+    pending = remember_terminal_runs(state, runs)
+    # The exact native event gets a slot ahead of the listing backlog.
+    # An unreadable attempt goes to the back of the retry queue.
+    pending.sort(key=lambda item: (item[0] != trigger_key,
+                                  state.get('observerErrors', {}).get('terminal-run:'+item[0], {}).get('attemptedAt', '')))
+    print(f'Exécutions terminales à examiner — {len(pending)}, jusqu’à {TERMINAL_RUN_LIMIT} par passage.', flush=True)
     publication_history = []
-    for run in sorted(runs, key=lambda r: (r['id'], r.get('run_attempt', 1))):
+    for key,run in pending[:TERMINAL_RUN_LIMIT]:
+        if time.monotonic() >= started+480:
+            break  # Reserve time for public verification, serialization and the durable write.
         workflow = run['path'].split('/')[-1]
         try:
-            previous_run = state.get('workflows', {}).get(run['path'].split('/')[-1], {})
-            if run['id'] < previous_run.get('runId', 0) and not run.get('_proofRetry') and not run.get('_inflightTerminal'):
+            mode = terminal_run_mode(run, state.get('workflows', {}).get(workflow, {}))
+            if mode == 'skip':
+                state['pendingTerminalRuns'].pop(key)
                 continue
             jobs = []
             page = 1
@@ -1511,9 +1569,11 @@ def main():
                 state=qualify_legacy_phases(state,run,jobs,source_sha,dt.datetime.now(dt.timezone.utc).isoformat())
                 if not state['workflows'][workflow].get('legacyPhaseEvidence'):raise ValueError('Code ou étapes du contrat historique non confirmés')
                 state.setdefault('observerErrors',{}).pop('phase-proof:'+workflow,None)
-            if run.get('_proofRetry') or run['id']<previous_run.get('runId',0):
+            if mode == 'proof':
                 state = merge_proof_retry(state,run,reports)
                 state.setdefault('observerErrors',{}).pop('proof-retry:'+workflow,None)
+                state['observerErrors'].pop('terminal-run:'+key, None)
+                state['pendingTerminalRuns'].pop(key)
                 continue
             state = update_status(state, run, jobs, reports)
             workflow = run['path'].split('/')[-1]
@@ -1539,9 +1599,14 @@ def main():
             if row.get('publicationStatus') == 'success' and not qualified_receipt(row.get('publicationReceipt')):
                 row['publicationEvidenceError'] = 'Reçu de publication attendu absent ou non qualifié ; périmètre livré non démontré.'
             publication_history.append((run, jobs))
+            state['pendingTerminalRuns'].pop(key)
+            state.setdefault('observerErrors', {}).pop('terminal-run:'+key, None)
             state.setdefault('observerErrors', {}).pop(workflow, None)
         except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError,subprocess.SubprocessError) as error:
+            state['pendingTerminalRuns'][key]['_terminalReadRetry'] = True
             state.setdefault('observerErrors', {})[workflow] = {'cause': type(error).__name__ + ': ' + str(error)[:400], 'runUrl': run.get('html_url'), 'attemptedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
+            state['observerErrors']['terminal-run:'+key] = state['observerErrors'][workflow]
+    print(f'Vérification publique et écriture — {len(state["pendingTerminalRuns"])} exécutions différées.', flush=True)
     if args.backfill:
         state = repair_publication_history(state, publication_history)
     if sha is None:
@@ -1646,6 +1711,8 @@ def main():
         state = pack_proof_checks(state)
     if compressed and scope_reader_ready(repo):
         state = pack_scope_archives(state)
+    if compressed and incident_history_reader_ready(repo):
+        state = pack_incident_history(state)
     print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',state.get('reportScopeArchives',{}))))+' périmètres de preuve uniques ; aucun incident retiré.')
     encoded = encode_status(state, compressed=compressed)
     print('Transport du moniteur : '+('gzip vérifié, lecteur public disponible' if compressed else 'JSON historique, nouveau lecteur public non démontré'))

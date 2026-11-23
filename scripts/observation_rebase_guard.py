@@ -127,6 +127,26 @@ DCA_EXPOSURE_VIEWS = {
     *(f'src/pages/dca-profiles/exposures-extra-{i}.json' for i in range(3)),
     *(f'src/pages/dca-profiles/holdings-{i}.json' for i in range(32)),
 }
+# Insurance runs 45051491078 and 45047799654 overlapped the exact-share
+# exposure and LifeStrategy writers. These outputs are not used by the
+# insurance acquisition adapters or their plan. Rebuild and validate the
+# combined tree, and still require recollection after any source/runtime change.
+INSURANCE_EXPOSURE_OUTPUTS = DCA_EXPOSURE_VIEWS | {
+    'docs/automation-gaps.json',
+    'docs/automation-gaps.md',
+    'docs/exposure-coverage.json',
+    'docs/exposure-coverage.md',
+    'public/data/holdings-discovery.json',
+    'public/data/pending-source-checks.json',
+    'scripts/instrument-metadata-sources.json',
+    'src/data/dca-complete-holdings.json',
+    'src/data/dca-holdings-status.json',
+    'src/data/dca-security-classifications.json',
+    'src/data/exposure-sleeves.json',
+    'src/data/lifestrategy.json',
+    'src/data/qualified-exposure-etfs.json',
+    'src/data/qualified-listing-records.json',
+}
 # This saved INSEE source receipt is not read by actor, anniversary or monthly
 # acquisition. The active inflation-monthly.js remains a protected input.
 INFLATION_RECEIPT = 'scripts/source-snapshots/inflation-automated.json'
@@ -167,7 +187,7 @@ ALLOWED = {
     'etf': ETF_INDEPENDENT,
     'indices': INDEPENDENT | {'src/data/automated-scpi.json','src/data/worldbank-gold-monthly.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     'market': {INFLATION_RECEIPT} | INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/exposure-etf-expansion-records.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
-    'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
+    'insurance': INSURANCE_EXPOSURE_OUTPUTS | {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     # Run41115036012: actor/publication observations do not feed SCPI acquisition.
     # Exact outputs only; combined-tree build, audits and non-mutation still required.
     'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {

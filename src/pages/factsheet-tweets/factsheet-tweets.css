@@ -4,6 +4,7 @@
 .fs-panel select, .fs-panel textarea { width: 100%; background: #f7f8fb; color: #222636; border: 1px solid #d7dce6; border-radius: 10px; padding: 12px; }
 .fs-panel select:focus, .fs-panel textarea:focus { outline: 2px solid #6552c4; outline-offset: 2px; }
 .fs-meta { display: flex; flex-wrap: wrap; gap: 9px 20px; margin: 18px 0; color: #626a7a; font-size: 14px; }
+.fs-composition-status { margin: 0; flex-basis: 100%; color: #626a7a; }
 .fs-sources { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-size: 13px; }
 .fs-sources strong { color: #222636; margin-right: 5px; }
 .fs-sources a { color: #6552c4; text-decoration: underline; text-underline-offset: 3px; }

@@ -1,14 +1,17 @@
 """Publication boundaries from the actual 36-instrument source transaction."""
+import contextlib
 import copy
 import datetime as dt
 import gzip
 import importlib.util
+import io
 import json
 import os
 from pathlib import Path
 import shlex
 import subprocess
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -73,6 +76,10 @@ class ExposurePublication(unittest.TestCase):
  def test_contract_omission_or_cache_does_not_certify_a_native_success(self):
   outcome=self.report['resultContract']['outcomes'][0]
   outcome.update(status='cached',reason='Retained cache',sourceAttempted=False)
+  with self.assertRaisesRegex(ValueError,'cache cannot certify'):self.audit()
+ def test_contract_success_cannot_override_a_native_field_error(self):
+  row=next(r for r in self.report['shares'] if r['status']=='validated')
+  row['collectionErrors']=[{'field':'countries','phase':'validation','reason':'Invalid exposure'}]
   with self.assertRaisesRegex(ValueError,'cache cannot certify'):self.audit()
  def test_wrong_run_attempt_revision_or_pre_acquisition_plan_is_rejected(self):
   with self.assertRaisesRegex(ValueError,'another GitHub run'):self.audit(run_id='1')
@@ -149,6 +156,8 @@ class ExposureFallbackPublication(unittest.TestCase):
    lambda r:r['collectionErrors'][0].update(phase='validation'),
    lambda r:r['collectionErrors'][0].update(field='financial-contradiction'),
    lambda r:r.update(sourceAttempts=[a for a in r['sourceAttempts']if a.get('status')!='downloaded']),
+    lambda r:r.update(sourceAttempts=[{**a, 'url': 'https://dataspanapi.wisdomtree.com/other'}
+                                       if a.get('status')=='downloaded' else a for a in r['sourceAttempts']]),
   ]
   for mutate in mutations:
    with self.subTest(mutation=mutate):
@@ -166,7 +175,7 @@ class ExposurePublicationGit(unittest.TestCase):
  def test_shell_passes_explicit_scope_to_initial_and_rebased_validation(self):
   with tempfile.TemporaryDirectory()as folder:
    root=Path(folder);bin=root/'bin';bin.mkdir();log=root/'args'
-   for name,body in {'git':'echo abc', 'npm':'exit 0', 'python3':'printf "%s\\n" "$*" >> "$CAPTURE"'}.items():
+   for name,body in {'git':'echo abc', 'npm':'exit 0', 'node':'exit 0', 'python3':'printf "%s\\n" "$*" >> "$CAPTURE"'}.items():
     f=bin/name;f.write_text('#!/bin/sh\n'+body+'\n');f.chmod(0o755)
    env={**os.environ,'PATH':str(bin)+os.pathsep+os.environ['PATH'],'CAPTURE':str(log),'RUNNER_TEMP':folder,'VALIDATED_DATA_ORIGINAL_BASE':'base','EXPOSURE_ISINS':'DE0002635307,LU0328475792'}
    for mode in ['validate','check']:
@@ -247,5 +256,99 @@ class ExposurePublicationGit(unittest.TestCase):
   env={**os.environ,'VALIDATED_DATA_CHECK':'echo "Financial merged-tree validation failed" >&2; exit 1'}
   result=subprocess.run(['bash','scripts/commit-validated-data.sh','Must not publish',publication.REGISTRY],cwd=root,env=env,capture_output=True,text=True)
   self.assertNotEqual(result.returncode,0);self.assertEqual(self.git(root,'ls-remote','origin','refs/heads/master').split()[0],remote_before)
+
+class MixedWisdomTreePublication(unittest.TestCase):
+ """The unmodified failed cron receipt must retain its allocation errors."""
+ flush=ExposurePublication.flush
+
+ def setUp(self):
+  self.tmp=tempfile.TemporaryDirectory()
+  self.addCleanup(self.tmp.cleanup)
+  self.root=Path(self.tmp.name)
+  fixture=ROOT/'scripts/fixtures/exposure-expansion-20261122.json.gz'
+  data=json.loads(gzip.decompress(fixture.read_bytes()))
+  self.baseline=data['baseline']
+  self.report=data['report']
+  self.started=data['started']
+  self.current=copy.deepcopy(self.baseline)
+  for row in self.report['shares']:
+   if row['status']=='validated':
+    self.current[row['isin']]=copy.deepcopy(row['record'])
+  write(self.root/'scripts/exposure-etf-expansion.json',json.loads((ROOT/'scripts/exposure-etf-expansion.json').read_text()))
+
+ def audit(self):
+  self.flush()
+  plan=self.report['resultContract']['inputPlan']
+  with patch.object(publication,'git_bytes',return_value=json.dumps(self.baseline).encode()):
+   return publication.audit(self.root,self.report,self.started,plan['codeSha'],
+    run_id='45039697993',attempt='1',now=dt.datetime(2026,11,22,16,tzinfo=dt.timezone.utc))
+
+ def test_mixed_report_accepts_only_independently_qualified_fields(self):
+  self.assertEqual(self.audit(),36)
+  outcome=next(row for row in self.report['resultContract']['outcomes'] if row['instrument']=='IE00BKLF1R75')
+  self.assertEqual(outcome['status'],'failed')
+
+ def test_retained_allocations_cannot_be_changed(self):
+  row=next(row for row in self.report['shares'] if row['isin']=='IE00BKLF1R75')
+  row['record']['sectors']['checkedAt']='2026-11-22'
+  self.current[row['isin']]=copy.deepcopy(row['record'])
+  with self.assertRaisesRegex(ValueError,'cache cannot certify'):
+   self.audit()
+
+ def test_collect_applies_only_the_already_qualified_recovery(self):
+  import collect_exposure_expansion as collector
+
+  isin = 'IE00BKLF1R75'
+  archived = next(row for row in self.report['shares'] if row['isin'] == isin)
+  plan = self.report['resultContract']['inputPlan']
+  config = self.root / 'scripts/exposure-etf-expansion.json'
+  output = self.root / publication.REGISTRY
+  report_path = self.root / 'producer-report.json'
+  checked = publication.instant(self.report['checkedAt'])
+  clock = SimpleNamespace(datetime=SimpleNamespace(now=lambda _tz: checked), date=dt.date)
+
+  for directory_browser in (False, True):
+   with self.subTest(directory_browser=directory_browser):
+    write(output, self.baseline)
+    result = {**copy.deepcopy(archived['record']), 'isin': isin,
+              **copy.deepcopy({key: archived[key] for key in ('unavailable', 'collectionErrors', 'sourceAttempts')})}
+    result.pop('countries')
+    if not directory_browser:
+     # The runs on Nov 20/21 had these same rankings validation errors and a successful HTTP directory call.
+     result['collectionErrors'] = [error for error in result['collectionErrors'] if error['field'] != 'aum-primary-http']
+     for source in result['sourceAttempts']:
+      for attempt in source.get('transportAttempts', []):
+       if attempt.get('status') == 'downloaded':
+        attempt['transport'] = 'http'
+    args = ['collector', '--only', isin, '--apply', '--report', str(report_path)]
+    with patch.object(collector, 'CONFIG', config), patch.object(collector, 'OUTPUT', output), \
+         patch.object(collector, 'dt', clock), patch.object(collector, 'collect', return_value=result), \
+         patch.object(collector, 'merge_collection', return_value={isin: archived['record']}), \
+         patch('sys.argv', args), contextlib.redirect_stdout(io.StringIO()) as log:
+     if directory_browser:
+      collector.main()
+     else:
+      with self.assertRaises(SystemExit) as failure:
+       collector.main()
+      self.assertEqual(failure.exception.code, 1)
+    native = json.loads(report_path.read_text())
+    row, = native['shares']
+    outcome = next(o for o in finish(native, plan)['resultContract']['outcomes'] if o['instrument'] == isin)
+    self.assertEqual(outcome['status'], 'failed')
+    self.assertEqual(row['collectionErrors'], result['collectionErrors'])
+    self.assertEqual(row['sourceAttempts'], result['sourceAttempts'])
+    published = json.loads(output.read_text())
+    if directory_browser:
+     self.assertEqual(row['status'], 'validated')
+     self.assertIn('Qualified fallback', log.getvalue())
+     self.assertEqual(published[isin], archived['record'])
+     for field in ('countries', 'sectors', 'holdings'):
+      self.assertEqual(published[isin][field], self.baseline[isin][field])
+    else:
+     self.assertEqual(row['status'], 'failed')
+     self.assertNotIn('record', row)
+     self.assertIn('Missing/duplicate rankings security identifiers', log.getvalue())
+     self.assertEqual(published, self.baseline)
+
 
 if __name__=='__main__':unittest.main()

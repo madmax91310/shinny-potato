@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { normalizePortfolio, buildTweet, percentage } from '../src/pages/investor-portfolio/data.js'
+import { editorialCopy } from '../src/pages/investor-portfolio/editorial.js'
 import { logoIdentity } from '../src/pages/investor-portfolio/media.js'
 import { cash, publicationPlan, reportedAmount, portfolioOwner, POSTER, colorPositions, shortPosition, positionColor } from '../src/pages/investor-portfolio/publication.js'
 export function sample(values, long=false) {
@@ -26,9 +27,7 @@ for(const values of [[1000],[9999,1],[400,300,200,100],Array(300).fill(1),[10000
       assert(b.x+b.width<=c.x || c.x+c.width<=b.x || b.y+b.height<=c.y || c.y+c.height<=b.y,'Label collision')
     }
   }
-  const tweet=buildTweet(portfolio)
-  assert.equal(tweet.split('👇').length,2)
-  for(const entry of plan.entries)assert(tweet.includes(entry.label)&&tweet.includes(percentage(entry.weight)))
+  assert.equal(editorialCopy(portfolio).status, 'review')
 }
 assert.equal(percentage(.000001),'< 0,1 %')
 const incomplete=sample([100,50]);delete incomplete.data.snapshot.holdings[0].value
@@ -44,8 +43,8 @@ officialConflict.data.snapshot.coverReconciliation={status:'reviewed-official-di
 officialConflict.data.snapshot.reconciliationWarning='La page de garde et les lignes SEC diffèrent.'
 const conflicted=normalizePortfolio(officialConflict)
 assert.equal(conflicted.problem,null)
-assert(buildTweet(conflicted).includes('Les lignes SEC totalisent'))
-assert(buildTweet(conflicted).includes('la page de garde indique'))
+assert.equal(conflicted.total,150)
+assert.equal(editorialCopy(conflicted).status, 'review')
 console.log('Calculs indépendants : concentration, 300/1501 petites lignes, noms longs, <0,1 %, classes, unités et regroupement exact.')
 
 assert.equal(logoIdentity({issuerName:'Nom de déclaration différent',cusip:'037833100'}).id,'apple')
@@ -54,6 +53,7 @@ const missingPrimary=sample([3,2]);delete missingPrimary.data.snapshot.primaryVe
 
 const { detailedCSV, detailedExport } = await import('../src/pages/investor-portfolio/exports.js')
 assert(detailedExport(conflicted).warnings[0].includes('page de garde'))
+assert.deepEqual(detailedExport(conflicted).snapshot.coverReconciliation, officialConflict.data.snapshot.coverReconciliation)
 const optionPayload=sample([40,30,20,10]);optionPayload.data.snapshot.holdings[2].putCall='CALL';optionPayload.data.snapshot.holdings[3].putCall='PUT'
 const optionPortfolio=normalizePortfolio(optionPayload)
 assert.equal(publicationPlan(optionPortfolio).total,70)
@@ -66,7 +66,7 @@ assert(!reportedAmount({value:1000}).includes('$'))
 assert(!reportedAmount({value:1000,currency:'USD',unit:1000}).includes('$'))
 assert(reportedAmount({value:1000,currency:'USD',unit:1}).includes('$US'))
 
-const unverified=normalizePortfolio(sample([60,40]));unverified.identity.personVerified=false;assert.equal(portfolioOwner(unverified),'Appaloosa LP');assert(buildTweet(unverified).startsWith('Portefeuille de Appaloosa LP :'))
+const unverified=normalizePortfolio(sample([60,40]));unverified.identity.personVerified=false;assert.equal(portfolioOwner(unverified),'Appaloosa LP');assert.equal(editorialCopy(unverified).status, 'review')
 unverified.identity.personVerified=true;unverified.identity.personPeriod='2026-03-31';assert.equal(portfolioOwner(unverified),'Appaloosa LP')
 
 assert.equal(cash(78300000,'USD'),'78,3\u00a0M\u00a0$US') // Same explicit precision in Node 20 and Chromium.

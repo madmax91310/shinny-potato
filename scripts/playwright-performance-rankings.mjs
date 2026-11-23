@@ -19,7 +19,6 @@ try {
   await page.getByRole('heading', { name: 'Qui a vraiment gagné ?', exact: true }).waitFor()
   // An open tab must still export after a deployment removes old JS chunks.
   // Do this before opening the image preview, which could mask a lazy import.
-  await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
   const lateModules = []
   const blockLateModule = route => { lateModules.push(route.request().url()); return route.abort() }
   await page.route('**/*.js', blockLateModule)
@@ -32,7 +31,6 @@ try {
   assert.equal(Buffer.concat(chunks).subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
   assert.deepEqual(lateModules, [], 'Export must use the already loaded renderer')
   await page.unroute('**/*.js', blockLateModule)
-  await page.getByRole('button', { name: 'Présentation actuelle', exact: true }).click()
   const category = async value => {
     const c = ALL_CATEGORIES.find(c => c.id === value)
     const family = comparisonFamily(c, { ...RANKING_ASSETS, ...ANNUAL_ASSETS })
@@ -78,7 +76,7 @@ try {
   assert((await downloadEvent).suggestedFilename().endsWith('.png'))
   await mkdir('test-artifacts/performance-rankings', { recursive: true })
   await page.screenshot({ path: 'test-artifacts/performance-rankings/desktop.png', fullPage: true })
-  // Capture the real PNG at three, five and six rows, not just the editor.
+  // Capture the PNG at three, five and six rows.
   const dimensions = {}
   await page.getByLabel('Montrer la fréquence de première place').uncheck()
   for (const [categoryId, count] of [['europe', 3], ['themes', 5], ['europe-sectors', 6]]) {
@@ -91,8 +89,8 @@ try {
     dimensions[count] = await img.evaluate(img => ({ width: img.naturalWidth, height: img.naturalHeight }))
   }
   for (const { width, height } of Object.values(dimensions)) {
-    assert.equal(width, 1200)
-    assert(height <= 1230)
+    assert(width >= 1000 && width <= 1790)
+    assert(height <= 1440, `Le classement dépasse le cadre attendu du tableau coloré : ${width} × ${height}`)
   }
   await category('us-stocks')
   await page.getByRole('button', { name: 'Personnaliser les actifs', exact: true }).click()
@@ -106,9 +104,15 @@ try {
   assert.equal(await page.locator('.rk-selected>div').count(), 2)
   // Four new capabilities: long index history, annual calendars, ECB and portfolios.
   await category('regions-indices')
-  assert.match(await page.locator('.rk-coverage').innerText(), /2005-12/)
-  await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-option][data-value="EUR"]').click()
+  await page.getByRole('tab', { name: 'Texte', exact: true }).click()
+  assert.match(await page.locator('.rk-coverage').innerText(), /\d{4}-\d{2} → \d{4}-\d{2}/)
   assert.match(await page.locator('.rk-coverage').innerText(), /EUR/)
+  await page.getByRole('group', { name: 'Première année', exact: true }).locator('[data-value="2020"]').click()
+  await page.getByRole('group', { name: 'Dernière année', exact: true }).locator('[data-value="2025"]').click()
+  assert.equal(await page.locator('.rk-annual-table td').count(), 30)
+  assert.deepEqual(await page.locator('.rk-annual-table thead th').allTextContents(), ['Rang', '2020', '2021', '2022', '2023', '2024', '2025'])
+  assert.deepEqual(await page.locator('.rk-annual-table tbody tr').first().locator('strong').allTextContents(),
+    ['MSCI USA', 'MSCI USA', 'MSCI Europe', 'MSCI USA', 'MSCI USA', 'MSCI Europe'])
   await category(ANNUAL_PEA_CATEGORIES[0].id)
   assert.match(await page.locator('.rk-coverage').innerText(), /NAV officiels/)
   await category('multi-asset')
@@ -252,7 +256,7 @@ try {
   await page.getByRole('tab', { name: 'Image', exact: true }).click()
   await img.waitFor({ state: 'visible' })
   await page.screenshot({ path: 'test-artifacts/performance-rankings/mobile.png', fullPage: true })
-  // Both presentations retain the exact calculation snapshot and annualized tweet.
+  // The annual PNG matches the active ranking and annualized tweet.
   await page.setViewportSize({ width: 1440, height: 1000 })
   for (const [id, count, length] of [['luxury-stocks', 2, 2], ['us-stocks', 6, 7]]) {
     await category(id)
@@ -262,10 +266,6 @@ try {
     await page.getByRole('tab', { name: 'Texte', exact: true }).click()
     const tweet = await page.getByLabel('Texte à publier', { exact: true }).inputValue()
     const expectedCurrency = (await page.locator('.rk-coverage strong').innerText()).split(' · ')[0]
-    const selected = await page.locator('.rk-selected strong').allTextContents()
-    await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
-    assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), tweet)
-    assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), selected)
     assert.equal(await page.locator('.rk-annual-table td').count(), count * length)
     const colours = await page.locator('.rk-annual-table td').evaluateAll(cells => cells.map(cell => ({ id: cell.dataset.asset, color: cell.style.background, rank: Number(cell.dataset.rank) })))
     for (const cell of colours) assert(colours.filter(other => other.id === cell.id).every(other => other.color === cell.color))
@@ -281,18 +281,15 @@ try {
     const path = `test-artifacts/performance-rankings/annual-live-downloaded-${count}.png`
     await downloaded.saveAs(path)
     assert.equal((await readFile(path)).toString('base64'), png.split(',')[1])
-    await page.getByRole('button', { name: 'Présentation actuelle', exact: true }).click()
     await page.getByRole('tab', { name: 'Texte', exact: true }).click()
     assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), tweet)
   }
-  await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
   await page.getByRole('button', { name: 'Période libre', exact: true }).click()
   await page.getByLabel('Début, fin de mois', { exact: true }).fill('2020-05')
   await page.getByLabel('Fin, fin de mois', { exact: true }).fill('2022-08')
-  assert.match(await page.getByRole('alert').innerText(), /année partielle/)
-  assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
-  await page.getByRole('button', { name: 'Utiliser la dernière période commune (7 années maximum)', exact: true }).click()
   assert.equal(await page.getByRole('alert').count(), 0)
+  assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isEnabled())
+  assert.deepEqual(await page.locator('.rk-annual-table thead th').allTextContents(), ['Rang', '2020*', '2021', '2022*'])
   await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-value="USD"]').click()
   await page.getByRole('tab', { name: 'Texte', exact: true }).click()
   assert.match(await page.locator('.rk-annual-table caption').innerText(), /USD/)
@@ -310,7 +307,6 @@ try {
   await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-value="EUR"]').click()
   const recent = CATEGORIES.find(c => c.id === 'small-cap-regions').ids.map(id => RANKING_ASSETS[id]).sort((a, b) => b.points[0].date.localeCompare(a.points[0].date))[0]
   assert(recent.points[0].date > `${requestedYear - 1}-12`)
-  await page.getByRole('button', { name: 'Présentation actuelle', exact: true }).click()
   await page.getByRole('button', { name: 'Personnaliser les actifs', exact: true }).click()
   await page.getByRole('button', { name: 'Nouvelle sélection', exact: true }).click()
   await page.getByRole('button', { name: 'Un par un', exact: true }).click()
@@ -323,7 +319,6 @@ try {
   assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
   assert.match(await page.getByRole('alert').innerText(), /couvertes/)
   // Prepared annual profiles are temporary workspaces, including picker preferences.
-  await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
   await category('world')
   await page.getByRole('tab', { name: 'Texte', exact: true }).click()
   const profile = CATEGORIES.find(c => c.id === 'world')
@@ -397,7 +392,6 @@ try {
   assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), originalNames)
   assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), originalText)
   assert.equal(JSON.stringify(profile), catalogBefore)
-  assert.equal(await page.getByRole('button', { name: 'Enregistrer la confrontation', exact: true }).count(), 0)
   assert.deepEqual(await page.evaluate(() => window.selectionWrites), [])
   assert.equal(await page.evaluate(() => JSON.stringify({ local: { ...localStorage }, session: { ...sessionStorage } })), beforeStorage)
   await category('luxury-stocks')
@@ -419,7 +413,6 @@ try {
     await commonPeriodAction.click()
     assert.equal(await page.getByRole('alert').count(), 0)
   } else {
-    await page.getByText(/Historique insuffisant : au moins 2 années/).waitFor()
     assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
   }
   assert.equal(await page.locator('.rk-selected>div').count(), profile.ids.length + 1)

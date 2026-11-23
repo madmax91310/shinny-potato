@@ -98,6 +98,22 @@ def unique(pattern, text):
     return values[0]
 
 
+# The exact BNP documents for these two parts carry the last weekday as
+# valuation date. The mirror indexes the same monthly issue by calendar end.
+WEEKEND_MONTH_END_SHARES = {'FR0011550193', 'IE000QDFFK00'}
+
+
+def matches_advertised_date(observed, advertised, isin):
+    if observed == advertised:
+        return True
+    if isin not in WEEKEND_MONTH_END_SHARES:
+        return False
+    end = dt.date.fromisoformat(advertised)
+    if end.weekday() < 5 or (end + dt.timedelta(days=1)).month == end.month:
+        return False
+    return observed == (end - dt.timedelta(days=end.weekday() - 4)).isoformat()
+
+
 def parse(text, share, now, expected_date):
     if share['documentName'] not in text.split('\f', 1)[0] or 'bnpparibas-am.com' not in text:
         reject('Wrong BNP issuer document title or authorship')
@@ -135,7 +151,7 @@ def parse(text, share, now, expected_date):
         row_label = r'Portfolio\*'
     else: reject('Unknown BNP document layout')
     document_date(stamp, now)
-    if stamp != expected_date: reject('BNP publication date differs from advertised document date')
+    if not matches_advertised_date(stamp, expected_date, isin): reject('BNP publication date differs from advertised document date')
     headers = [re.findall(r'20\d{2}', line) for line in block.splitlines() if len(re.findall(r'20\d{2}', line)) >= 3]
     if len(headers) != 1: reject('Missing or ambiguous BNP calendar header')
     years = headers[0]
@@ -172,7 +188,8 @@ def collect_one(share, now, fetch=download):
         if field not in result: continue
         result[field].update(sourceUrl=url, discoveryUrl=page, sha256=proof(body),
                              sourceLabel='Fiche BNP Paribas Asset Management · copie hébergée par Analizy',
-                             publisher='BNP Paribas Asset Management', documentHost='Analizy')
+                             publisher='BNP Paribas Asset Management', documentHost='Analizy',
+                             documentAdvertisedAsOf=stamp)
     if share.get('collectTrackedCountries'):
         from collect_tracked_exposure import collect_one as tracked_exposure
         try:

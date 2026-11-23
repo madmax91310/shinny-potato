@@ -51,18 +51,19 @@ export default function App({ embedded = false }) {
           <details><summary>Les fonds euros et leurs conditions</summary>
             {record.euroFunds.map(fund => <section key={fund.name}>
               <h3>{fund.name}</h3>
-              <table className="insurance-return-history"><thead><tr><th>Année</th><th>Rendement net de gestion</th></tr></thead><tbody>{fund.years.map(row => <tr key={row.year}><th scope="row">{row.year}</th><td>{fundReturn(row)}</td></tr>)}</tbody></table>
+              {!!fund.years.length && <table className="insurance-return-history"><thead><tr><th>Année</th><th>Rendement net de gestion</th></tr></thead><tbody>{fund.years.map(row => <tr key={row.year}><th scope="row">{row.year}</th><td>{fundReturn(row)}</td></tr>)}</tbody></table>}
               {fund.years.filter(row => row.tiers).map(row => <details key={row.year} className="insurance-rate-tiers"><summary>Barème de rendement {row.year}</summary>
                 <table><thead><tr><th>Encours du contrat</th><th>Part d’unités de compte</th><th>Rendement</th></tr></thead><tbody>{row.tiers.map((tier, index) => <tr key={index}><td>{tier.encours}</td><td>{tier.condition}</td><td>{format(tier.return)} %</td></tr>)}</tbody></table>
               </details>)}
               {annualPublicationNote(fund.publication) && <p>{annualPublicationNote(fund.publication)}</p>}
-              <p>Avant prélèvements sociaux et fiscaux ; historique publié disponible, sans bonus commercial.</p>
+              {!!fund.years.length && <p>Avant prélèvements sociaux et fiscaux ; historique publié disponible, sans bonus commercial.</p>}
               <p>{fundGuarantee(fund)} Frais de gestion : {format(fund.managementFeeMax)} % maximum/an.</p>
               <p>{fundAllocation(fund)} {fundOperations(fund)}</p>
               {fundCeiling(fund) && <p>{fundCeiling(fund)}</p>}
               {fund.notes && <p>{fund.notes}</p>}
               {(fund.sourceUrls ?? [fund.sourceUrl]).map(url => <p key={url}><a href={url} target="_blank" rel="noreferrer">Source et conditions du fonds</a></p>)}
             </section>)}
+            {record.archivedEuroFunds?.map(fund => <p key={fund.name}>{fund.name} reste documenté dans l’historique du contrat. Linxea le présente comme fermé aux nouvelles souscriptions. <a href={record.eurossimaClosure.sourceUrl} target="_blank" rel="noreferrer">Conditions actuelles du contrat</a></p>)}
           </details>
           <details><summary>Comprendre les frais</summary>
             <p>La gestion des unités de compte porte sur leur valeur, et les frais internes des supports s’ajoutent. Les frais de transaction ETF s’appliquent aux opérations concernées.</p>

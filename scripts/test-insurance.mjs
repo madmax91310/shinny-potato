@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { HOME_TOOLS, WEEKLY_ORDER } from '../src/tools.js'
 import { INSURANCE, ARCHIVED_INSURANCE } from '../src/data/insurance.js'
 import { buildTweet } from '../src/pages/insurance-presentation/lib.js'
+import { presentationImageModel, presentationCardModel, presentationReliefModel } from '../src/pages/presentation-shared/image-model.js'
 import { searchData } from '../src/data/catalog.js'
 assert.equal(INSURANCE.length, 6)
 assert.equal(ARCHIVED_INSURANCE.length, 1)
@@ -32,11 +33,19 @@ console.log('Insurance: shared records, changed fees/returns/conditions and cont
 
 const vie=INSURANCE.find(row => row.id === 'linxea-vie')
 assert(!buildTweet(vie).includes('2023 :'))
-assert(buildTweet(vie).includes('31/12/2026') && buildTweet(vie).includes('Plafond annuel fixé par l’assureur'))
-assert.equal(vie.euroFunds.find(fund => fund.name === 'Eurossima').guarantee, 99.25)
+const eurossima=[...vie.euroFunds, ...(vie.archivedEuroFunds??[])].find(fund => fund.name === 'Eurossima')
+assert.equal(eurossima.guarantee, 99.25)
+if(vie.eurossimaClosure){
+  const vertessima=vie.euroFunds.find(fund=>fund.name==='Vertessima')
+  assert.equal(vertessima.guarantee,99.25)
+  assert(buildTweet(vie).includes('Vertessima'))
+  assert(!buildTweet(vie).includes('Eurossima'))
+}else{
+  assert(buildTweet(vie).includes('31/12/2026') && buildTweet(vie).includes('Plafond annuel fixé par l’assureur'))
+}
 assert(!buildTweet(vie).includes('Minimum annuel calculé'))
 const missingGuarantee = structuredClone(vie)
-missingGuarantee.euroFunds.find(fund => fund.name === 'Eurossima').guarantee = null
+missingGuarantee.euroFunds.find(fund => fund.name === 'Netissima').guarantee = null
 // An unknown guarantee is omitted from the tweet; the UI keeps the reserve (fundGuarantee).
 const guaranteeLines = text => text.split('\n').filter(line => line.startsWith('Garantie annuelle')).length
 assert(!buildTweet(missingGuarantee).includes('à vérifier') && guaranteeLines(buildTweet(missingGuarantee)) === guaranteeLines(buildTweet(vie)) - 1)
@@ -78,8 +87,15 @@ assert(!buildTweet(waiting).includes('2026 :'))
 const netissima=vie.euroFunds.find(f=>f.name==='Netissima')
 assert(fundCeiling(netissima,'2026-12-31').includes('jusqu’au 31/12/2026'))
 assert.equal(fundCeiling(netissima,'2027-01-01'),'')
-const eurossima=vie.euroFunds.find(f=>f.name==='Eurossima')
 assert(fundCeiling(eurossima).match(/entre 0 et 50\s*000 €/))
 assert(fundCeiling(eurossima).includes('montant applicable à ton contrat reste à confirmer'))
+const firstPublication=structuredClone(vie)
+firstPublication.euroFunds[1]={...firstPublication.euroFunds[1],name:'Vertessima',years:[],publication:{latestPublishedYear:null,expectedYear:2026,awaitingPublication:true}}
+const awaitingText=buildTweet(firstPublication)
+assert(awaitingText.includes('Rendement annuel 2026 en attente de publication.'))
+assert(!awaitingText.includes('2026 →')&&!awaitingText.includes('null'))
+assert.equal(presentationImageModel(firstPublication,'insurance').sections.find(s=>s.title==='Vertessima').annual,undefined)
+assert(!presentationCardModel(firstPublication,'insurance').cards[1].rows.some(r=>r.label.includes('Vertessima')))
+assert(!presentationReliefModel(firstPublication,'insurance').highlights.some(r=>r.label.includes('Vertessima')))
 const rendement=ARCHIVED_INSURANCE.find(r=>r.id==='linxea-avenir-2').euroFunds.find(f=>f.name==='Suravenir Rendement 2')
 assert(fundCeiling(rendement).includes('au moins 30 % en unités de compte'))

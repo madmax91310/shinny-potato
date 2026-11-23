@@ -22,6 +22,11 @@ if(individualContract)individualContract.start(process.argv[contractReportAt+1])
 const output = {}
 const labelRows = rows => rows.map(row => [row.label ?? row.name, row.weightPct])
 const missing = reason => ({ available: false, reason })
+const embeddedAllocationMethods = new Map([
+  ['same-snapshot-equity-country-of-risk-and-sector', 'Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.'],
+  ['same-dws-holdings-payload-allocations', 'Pays d’enregistrement et secteurs dérivés de la même réponse DWS que les positions, avec la ventilation nette publiée.'],
+  ['same-date-state-street-published-allocations', 'Pays et secteurs publiés par State Street à la date du fichier de positions.'],
+])
 for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...c, title: c.name }))]) {
   const id = definition.id, extra = config.additionalIndices.find(row => row.id === id)
   const original = extra ? observations[id]?.facts : definition.indexFacts
@@ -70,8 +75,19 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
     if (full?.basis !== 'fund' || full.complete !== true) throw new Error('Composition physique complète absente')
     if (full.rows.some(row => INSTRUMENT_FACTS_BY_ISIN[row.isin]?.replicationMethod)) throw new Error('Fonds sous-jacent présent : transparisation de même date exigée')
     // A single composition date for all three bands and the concentration visual.
-    const allocations = full.compositionFacts?.asOf === full.asOf && full.compositionFacts?.method === 'same-snapshot-equity-country-of-risk-and-sector' ? full.compositionFacts : fund
-    if (!['countries','sectors'].every(key => allocations?.[key]?.asOf === full.asOf && allocations[key].rows?.length)) throw new Error('Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies')
+    const embedded = full.compositionFacts
+    const allocationFields = ['countries', 'sectors']
+    const sameProof = (url, sha256) => Boolean(url && sha256 && allocationFields.every(key =>
+      embedded?.[key]?.sourceUrl === url && embedded[key].sha256 === sha256))
+    const boundToBook = embedded?.method === 'same-snapshot-equity-country-of-risk-and-sector' ||
+      (embedded?.method === 'same-dws-holdings-payload-allocations' && sameProof(full.sourceUrl, full.sha256)) ||
+      (embedded?.method === 'same-date-state-street-published-allocations' && sameProof(full.identitySourceUrl, full.identitySha256))
+    const embeddedMethod = boundToBook && embedded.asOf === full.asOf && embedded.basis === 'fund' && embeddedAllocationMethods.get(embedded.method)
+    const allocations = embeddedMethod ? embedded : fund
+    if (!allocationFields.every(key => allocations?.[key]?.asOf === full.asOf && allocations[key].rows?.length)) {
+      const date = block => block?.asOf ?? 'absente'
+      throw new Error(`Dates des positions, pays et secteurs incompatibles (positions ${full.asOf}, pays ${date(allocations?.countries)}, secteurs ${date(allocations?.sectors)}) ; aucun mélange de photographies`)
+    }
     const record = { ...full, checkedAt: full.checkedAt ?? holdingsStatus[proxy.isin]?.lastSuccessAt }
     const result = calculateConcentration(record, identities)
     if (!result.available) throw new Error(result.reason)
@@ -80,7 +96,10 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
       identitySourceUrl: facts.characteristicsSource.url, identityCheckedAt: facts.characteristicsSource.checkedAt,
       observedIdentitySourceUrl: fund.sourceUrl, observedIdentityCheckedAt: observed.checkedAt,
       productStructure: replication.structure, replicationMethodology: replication.methodology,
-      approximation: true, method: `Positions d’un ETF physique suivant exactement ${proxy.benchmark}. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.${allocations === full.compositionFacts ? ' Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.' : ''}`,
+      approximation: true, method: `Positions d’un ETF physique suivant exactement ${proxy.benchmark}. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.${embeddedMethod ? ' ' + embeddedMethod : ''}`,
+      ...(embeddedMethod && embedded.countries.sourceUrl ? {
+        allocationSourceUrl: embedded.countries.sourceUrl, allocationSha256: embedded.countries.sha256,
+      } : {}),
       refresh: holdingsStatus[proxy.isin],
       visualFacts: { asOf: full.asOf, countries: labelRows(allocations.countries.rows), sectors: labelRows(allocations.sectors.rows),
         holdings: result.top.map(row => [row.name, row.weightPct]), source: { url: full.sourceUrl, checkedAt: record.checkedAt },
@@ -95,8 +114,7 @@ for (const [id, candidate] of Object.entries(output)) {
   output[id] = candidate.sourceBasis==='qualified-native-index'||previous?.sourceBasis==='qualified-native-index'
     ? retainIndexCompanyView(candidate,previous) : retainQualifiedComposition(candidate, previous)
   if (!candidate.available && previous?.available) failures.push({ id, field: 'company-composition', error: candidate.reason })
-  if(candidate.available&&output[id].retained&&output[id].refresh?.status==='failed'&&
-      (candidate.sourceBasis==='qualified-native-index'||previous?.sourceBasis==='qualified-native-index'))
+  if(candidate.available&&output[id].retained&&output[id].refresh?.status==='failed')
     failures.push({id,field:'company-composition',error:output[id].refresh.error})
   if (process.argv.includes('--apply') && candidate.available && !output[id].retained &&
       (!previous || candidate.asOf >= previous.asOf || output[id].sourcePromotion)) {

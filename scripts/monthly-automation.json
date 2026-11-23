@@ -16606,6 +16606,26 @@
       "yahooInstrumentType": "ETF",
       "periodStart": "2026-09",
       "verifyMonthlyDisagreements": true
+    },
+    {
+      "id": "etfIE00B1FZSF77",
+      "label": "iShares US Property Yield UCITS ETF USD (Dist)",
+      "isin": "IE00B1FZSF77",
+      "ticker": "IUSP",
+      "mic": "XAMS",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "IUSP.AS",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE00B1FZSF77-XAMS-IUSP-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2015-01",
+      "verifyMonthlyDisagreements": true
     }
   ]
 }

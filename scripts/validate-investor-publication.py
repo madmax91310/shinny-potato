@@ -46,10 +46,12 @@ INDEPENDENT = {
 # frozen before/after proof: fixtures/defence-physical-allocation/13f-plan-before-after.json.
 # 13 Nov: targeted anniversary/gold selection leaves all 28 13F plans intact;
 # proof: fixtures/publication/xndx-official-20261113/13f-plan-before-after.json.
+# 22 Nov: only the qualified ETF producer adds four yield field operations.
+# The complete 28-manager 13F plan is identical before and after 9d49926b.
 ACQUISITION_SHA256 = {
     'scripts/update-investor-13f.py': '9f13ba97470e7f4ace882a3d925e0a7e8ab622e171de9e36ffc8316122726f08',
     'scripts/producer_report_contract.py': '54ee3ffe6e80be3d6ba2529172928063c3c1706f85c9973fe485db266778b463',
-    'scripts/producer_report_plans.py': '50b52581836c7e6eb08e45e84fe4ae956fcc774c90aa5f2b8e340b2125cb7fa3',
+    'scripts/producer_report_plans.py': '58c24a8aa425f6985f7359f10f7d2e04d07468b681699541cbf5ddb6451e67d7',
 }
 JOB_WINDOW = dt.timedelta(minutes=30)  # Per acquisition attempt; a retry must acquire fresh observations.
 

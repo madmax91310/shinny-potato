@@ -91,6 +91,13 @@ for(const [isin,f]of Object.entries(physicalReferences)){
  assert.equal(qualifiedNativeIndexComposition({...h,approximation:false},isin,issuerNow),false)
  assert.equal(qualifiedNativeIndexComposition({...h,coverageProof:{...h.coverageProof,referenceOnlyForSubject:false}},isin,issuerNow),false)
 }
+const bnpIsin='IE000QDFFK00'
+const bnp=physicalReferences[bnpIsin].qualifiedRecord
+const octoberBnp={...bnp,shareAsOf:'2026-10-30',shareDocumentAdvertisedAsOf:'2026-10-31',
+ shareSourceUrl:contracts.shares[bnpIsin].shareDocumentPrefix+'2026-10-31',checkedAt:'2026-11-22T16:40:00Z'}
+const bnpReview=new Date('2026-11-22T18:00:00Z')
+assert(qualifiedNativeIndexComposition(projectDcaHoldings(octoberBnp,false,octoberBnp.sourceUrl),bnpIsin,bnpReview))
+assert.equal(qualifiedNativeIndexComposition({...octoberBnp,shareAsOf:'2026-10-29'},bnpIsin,bnpReview),false)
 console.log('UBS World/BNP Nasdaq: index reference only; missing physical fund holdings remain explicitly uncertified.')
 
 const russell=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/invesco-economic-index/russell-equity-reference.json.gz'))).qualifiedRecord
@@ -113,6 +120,12 @@ assert.equal(qualifiedNativeIndexComposition(russellNew,'LU1681038672',novemberN
 russellNew.coverageProof.returnWeightProof.documents=structuredClone(russellRule.documents)
 assert(qualifiedNativeIndexComposition(russellNew,'LU1681038672',novemberNow),'Current reviewed method qualifies the same unmodified equity-member weights')
 assert.deepEqual(russellNew.rows,russell.rows,'Method review must never alter, rescale or replace positions')
+const alternateMethod=structuredClone(russellNew)
+alternateMethod.coverageProof.returnWeightProof.documents[0].sha256=russellRule.documents[0].reviewedAlternateDocuments[0].sha256
+assert.equal(qualifiedNativeIndexComposition(alternateMethod,'LU1681038672',novemberNow),false)
+alternateMethod.checkedAt='2026-11-22T16:33:17Z'
+alternateMethod.coverageProof.returnWeightProof.checkedAt=alternateMethod.checkedAt
+assert.equal(qualifiedNativeIndexComposition(alternateMethod,'LU1681038672',new Date('2026-11-22T17:00:00Z')),true)
 const corruptMethod=structuredClone(russellNew);corruptMethod.coverageProof.returnWeightProof.documents[0].sha256='f'.repeat(64)
 assert.equal(qualifiedNativeIndexComposition(corruptMethod,'LU1681038672',novemberNow),false)
 assert(qualifiedNativeIndexComposition(russell,'LU1681038672',issuerNow),'Original immutable fixture remains qualified on its historical date')

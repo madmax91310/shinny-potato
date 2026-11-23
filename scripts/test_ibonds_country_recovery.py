@@ -27,12 +27,19 @@ class IBondsCountryRecovery(unittest.TestCase):
   self.assertEqual(r['collectionErrors'][0]['field'],'countries-primary')
   self.assertEqual(r['sectors']['asOf'],'2026-11-13')
   self.assertTrue(r['performance']['years']);self.assertNotIn('2026',r['performance']['years'])
-  merged=merge_collection({'checkedAt':r['checkedAt'],'shares':[r]},json.loads((ROOT/'src/data/automated-etf.json').read_text()),{})
+  merged=merge_collection({'checkedAt':r['checkedAt'],'shares':[r]},{},{})
   self.assertEqual(merged[r['isin']]['countries']['rows'],r['countries']['rows'])
   self.assertEqual(self.collect(BODY)['countries'],r['countries'])
+  # Replay the older proof against a separately qualified newer photograph.
+  # The production registry must never be the baseline of this dated fixture.
+  previous=copy.deepcopy(merged)
+  countries=previous[r['isin']]['countries']
+  countries.update(asOf='2026-11-14',checkedAt='2026-11-15')
+  replay=merge_collection({'checkedAt':r['checkedAt'],'shares':[r]},previous,{})
+  self.assertEqual(replay[r['isin']]['countries'],countries)
  def test_primary_failure_remains_explicit_in_targeted_native_contract(self):
   r=self.collect(BODY);report={'records':[r],'excluded':[]};report['contractResults']=contract_results([CONFIG],report)
-  self.assertEqual(report['contractResults']['successes'],[])
+  self.assertEqual([row['id'] for row in report['contractResults']['successes']],['qualified-yield:'+CONFIG['isin']])
   error=report['contractResults']['errors'][0]
   self.assertEqual(error['id'],CONFIG['isin']);self.assertEqual(error['field'],'countries-primary')
   self.assertTrue(error['qualifiedAlternativeAvailable'])
@@ -41,7 +48,7 @@ class IBondsCountryRecovery(unittest.TestCase):
   plan['sha256']=hashlib.sha256(json.dumps(plan,sort_keys=True).encode()).hexdigest()
   contract=finish(report,plan)['resultContract'];validate_contract(contract)
   normalized=normalize_contract(contract)
-  self.assertEqual(normalized['successes'],[])
+  self.assertEqual([row['id'] for row in normalized['successes']],['qualified-yield:'+CONFIG['isin']])
   self.assertEqual([e['id']for e in normalized['errors']],[CONFIG['isin']])
   self.assertEqual(contract['issues'],[]);self.assertEqual(contract['unscopedFailures'],[])
   self.assertEqual({o['id']for o in contract['outcomes']if o['status']=='failed'},{CONFIG['isin']})
@@ -60,4 +67,23 @@ class IBondsCountryRecovery(unittest.TestCase):
     f['productStructure']['value']='Synthetic';f['fundMethodologyTypeCode']['value']='Synthetic Replication'
    else:b['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['holdingPercent']['value'].pop()
    with self.subTest(defect=defect),self.assertRaises(ValueError):self.collect(b)
+ def test_2029_book_recovers_only_the_independently_dated_country_allocation(self):
+  fixture=ROOT/'scripts/fixtures/ishares-stale-country-20261123'
+  raw=gzip.decompress((fixture/'IE000SNLFDR7.json.gz').read_bytes())
+  provenance=json.loads((fixture/'provenance.json').read_text())
+  self.assertEqual(hashlib.sha256(raw).hexdigest(),provenance['sha256'])
+  config=next(row for row in json.loads((ROOT/'scripts/qualified-exposure-sources.json').read_text())['instruments']
+              if row['isin']==provenance['isin'])
+  now=dt.datetime(2026,11,23,6,tzinfo=dt.timezone.utc)
+  with patch.object(collector,'get_text',return_value=raw.decode()):
+   result=collector.collect_one(config,now)
+  self.assertEqual(result['countries']['asOf'],'2026-11-20')
+  self.assertEqual(result['sectors']['asOf'],'2026-11-19')
+  self.assertEqual(result['aum']['asOf'],'2026-11-20')
+  points=json.loads(raw)['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+  self.assertAlmostEqual(sum(row['weightPct'] for row in result['countries']['rows']),
+                         sum(points['holdingPercent']['value']),places=5)
+  errors=contract_results([config],{'records':[result],'excluded':[]})['errors']
+  self.assertEqual([(row['id'],row['field'],row['qualifiedAlternativeAvailable']) for row in errors],
+                   [('IE000SNLFDR7','countries-primary',True)])
 if __name__=='__main__':unittest.main()

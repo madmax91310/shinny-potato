@@ -63,8 +63,8 @@ for(const[isin,source]of Object.entries(fixture.restoredAnnual)){
  for(const y of duel.years){assert.equal(p.perf[y],live.years[y]);assert.equal(duel.a.annual[y],live.years[y])}
  for(const patch of[{currency:'USD'},{isin:'IE00B4K6B023'},{basis:'market-price'},{method:'calendar-year gross price return'},{method:'calendar-year proxy total return, net of fees'},{sourceUrls:['https://other.invalid']},{checkedAt:'2000-01-01'}])assert.equal(qualifyPreferredManualNav({...live,...patch}),null)
  const tweet=renderTweetText(p)
- assert(tweet.includes(`sur la période ${expectedYears[0]}–${expectedYears.at(-1)}`))
- assert(tweet.includes(`Performance annualisée (${expectedYears[0]} à ${expectedYears.at(-1)})`))
+ assert(tweet.includes(`aurait donné de ${expectedYears[0]} à ${expectedYears.at(-1)}`))
+ assert(tweet.includes(`par an en rendement annualisé.`))
  // Hypothetical completed observations, in memory only. Neither the shared
  // records nor the production clock are modified by this rollover scenario.
  const NativeDate=Date
@@ -76,8 +76,8 @@ for(const[isin,source]of Object.entries(fixture.restoredAnnual)){
   const future={...p,selection:p.selection.map(a=>({...a,calendarReturns:{...a.calendarReturns,2026:0,2027:99}}))}
   assert.deepEqual(Object.keys(computeYearlyPerf(future.selection)).map(Number),[2021,2022,2023,2024,2025,2026])
   const futureTweet=renderTweetText(future)
-  assert(futureTweet.includes('sur la période 2021–2026'))
-  assert(futureTweet.includes('Performance annualisée (2021 à 2026)'))
+  assert(futureTweet.includes('aurait donné de 2021 à 2026'))
+  assert(futureTweet.includes('par an en rendement annualisé.'))
   assert(futureTweet.includes('2026 : +0,0 %'))
   assert(!futureTweet.includes('2027 :'))
  } finally {globalThis.Date=NativeDate}
