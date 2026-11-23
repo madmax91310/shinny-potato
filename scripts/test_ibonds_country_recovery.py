@@ -67,4 +67,23 @@ class IBondsCountryRecovery(unittest.TestCase):
     f['productStructure']['value']='Synthetic';f['fundMethodologyTypeCode']['value']='Synthetic Replication'
    else:b['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['holdingPercent']['value'].pop()
    with self.subTest(defect=defect),self.assertRaises(ValueError):self.collect(b)
+ def test_2029_book_recovers_only_the_independently_dated_country_allocation(self):
+  fixture=ROOT/'scripts/fixtures/ishares-stale-country-20261123'
+  raw=gzip.decompress((fixture/'IE000SNLFDR7.json.gz').read_bytes())
+  provenance=json.loads((fixture/'provenance.json').read_text())
+  self.assertEqual(hashlib.sha256(raw).hexdigest(),provenance['sha256'])
+  config=next(row for row in json.loads((ROOT/'scripts/qualified-exposure-sources.json').read_text())['instruments']
+              if row['isin']==provenance['isin'])
+  now=dt.datetime(2026,11,23,6,tzinfo=dt.timezone.utc)
+  with patch.object(collector,'get_text',return_value=raw.decode()):
+   result=collector.collect_one(config,now)
+  self.assertEqual(result['countries']['asOf'],'2026-11-20')
+  self.assertEqual(result['sectors']['asOf'],'2026-11-19')
+  self.assertEqual(result['aum']['asOf'],'2026-11-20')
+  points=json.loads(raw)['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+  self.assertAlmostEqual(sum(row['weightPct'] for row in result['countries']['rows']),
+                         sum(points['holdingPercent']['value']),places=5)
+  errors=contract_results([config],{'records':[result],'excluded':[]})['errors']
+  self.assertEqual([(row['id'],row['field'],row['qualifiedAlternativeAvailable']) for row in errors],
+                   [('IE000SNLFDR7','countries-primary',True)])
 if __name__=='__main__':unittest.main()

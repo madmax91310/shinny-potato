@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       coulisses_only:
-        description: Refresh the nine Coulisses des indices holdings sources
+        description: Refresh the holdings sources used by Coulisses des indices
         type: boolean
         default: false
   push:
@@ -23,6 +23,7 @@ on:
       - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_etf_pilot.py'
+      - 'scripts/qualified-exposure-sources.json'
       - 'scripts/qualified_cash_rights.py'
       - 'scripts/qualified_corporate_identities.py'
       - 'scripts/test_dca_qualified_heg_identity.py'
