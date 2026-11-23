@@ -6,6 +6,11 @@ export async function staticBrowser(width=390,engine='chromium'){
  const launcher={chromium,firefox,webkit}[engine]
  if(!launcher)throw new Error('Unknown browser engine')
  const browser=await launcher.launch({headless:true,...(engine==='chromium'&&process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})})
+ const context=await staticBrowserContext(browser,width)
+ const page=await context.newPage();return{browser,context,page}
+}
+
+export async function staticBrowserContext(browser,width){
  const context=await browser.newContext({viewport:{width,height:950}})
  await context.route('**/*',async route=>{
   const url=route.request().url();if(!url.startsWith(staticBase))return route.abort()
@@ -14,5 +19,5 @@ export async function staticBrowser(width=390,engine='chromium'){
   try{await route.fulfill({body:await readFile(file),contentType:({'.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.woff2':'font/woff2'})[extname(file)]||'text/html'})}
   catch{if(!extname(path))await route.fulfill({body:await readFile(resolve(root,'index.html')),contentType:'text/html'});else await route.fulfill({status:404,body:''})}
  })
- const page=await context.newPage();return{browser,context,page}
+ return context
 }
