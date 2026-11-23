@@ -44,5 +44,5 @@ node scripts/test-comparison-etf-details.mjs
 npm run build
 if [[ "$mode" == check ]]; then
   # Build generators must agree with the exact prepared publication tree.
-  git diff --exit-code --name-only HEAD -- src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json src/data/native-fund-details.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json
+  git diff --exit-code HEAD --name-only -- src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json src/data/native-fund-details.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json
 fi
