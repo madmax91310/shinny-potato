@@ -41,7 +41,7 @@ jobs:
           }
           const cut=Date.parse('2026-11-24T11:14:00Z');
           let build;
-          for(let i=0;i<55;i++){
+          for(let i=0;i<4;i++){
             try{
               const current=await branchInfo();
               if(await has(merged,current.sha)){
@@ -51,7 +51,7 @@ jobs:
                 if(required.every(Boolean)&&(await Promise.all(required.map(c=>has(c.sha,current.dataSha??current.sha)))).every(Boolean)){build=current;break;}
               }
             }catch(e){console.log(String(e))}
-            if(i<54)await wait(50000);
+            if(i<3)await wait(5000);
           }
           assert.ok(build,'Public version must include both producer records');
           console.log('Verified actual Pages versions',JSON.stringify(build));
@@ -70,7 +70,7 @@ jobs:
                 JSON.stringify({lines,field:'overlap',exposureLimit:4})),lines);
               const page=await context.newPage(), responses=[], errors=[];
               page.on('pageerror',e=>errors.push(e.message));
-              page.on('response',r=>{if(new URL(r.url()).pathname.includes('/data/')&&r.ok()&&r.headers()['content-type']?.includes('json'))responses.push(r.json().catch(()=>null));});
+              page.on('response',r=>{if(new URL(r.url()).origin===new URL(base).origin&&new URL(r.url()).pathname.endsWith('.json')&&r.ok()&&r.headers()['content-type']?.includes('json'))responses.push(r.json().catch(()=>null));});
               await page.goto(base+'le-dca-de');
               await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click();
               const panel=page.getByRole('region',{name:'Analyse du portefeuille',exact:true});
