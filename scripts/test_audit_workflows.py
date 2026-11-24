@@ -289,8 +289,10 @@ class WorkflowContracts(unittest.TestCase):
         self.assertIn("steps.producer.outcome == 'failure'",workflow)
         publish_code = workflow.split('\n  publish-code:\n', 1)[1]
         condition = re.search(r'(?m)^    if: (.+)$', publish_code).group(1).removeprefix('${{').removesuffix('}}').strip()
-        self.assertIn(condition, ("needs.publish.outputs.needs_code == 'true'",
-                                  "!cancelled() && needs.publish.outputs.needs_code == 'true'"))
+        clauses = [clause.strip() for clause in condition.split('&&')]
+        self.assertEqual(clauses.count("needs.publish.outputs.needs_code == 'true'"), 1)
+        self.assertEqual([clause for clause in clauses if clause != "needs.publish.outputs.needs_code == 'true'"],
+                         ['!cancelled()'] if len(clauses) > 1 else [])
         self.assertIn("if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'",workflow)
         for name,path in [('update-scpi.yml','src/data/automated-scpi.json'),('update-presentation-actors.yml','src/data/automated-presentation-actors.json')]:
             caller=(ROOT/'.github/workflows'/name).read_text()
