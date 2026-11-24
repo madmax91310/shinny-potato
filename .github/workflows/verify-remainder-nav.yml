@@ -6,6 +6,11 @@ on:
         description: 'Exact configured remainder NAV IDs, separated by spaces; empty keeps the existing full qualification'
         type: string
         default: ''
+  pull_request:
+    branches: [master]
+    paths:
+      - 'scripts/amundi_nav_history.py'
+      - '.github/workflows/verify-remainder-nav.yml'
   push:
     branches: [fix/reliquat-79-20261023, fix/qualified-six-monthly-20261124]
     paths:
@@ -16,6 +21,7 @@ permissions:
   contents: read
 jobs:
   qualify:
+    if: github.event_name != 'pull_request' || github.head_ref == 'fix/qualified-six-monthly-20261124'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -41,7 +47,7 @@ jobs:
           import json, os, shlex, subprocess, sys
           allowed = [r['id'] for r in json.load(open('scripts/official-nav-remainder-sources.json'))]
           branch_ids = ['etfFR0010755611Nav', 'etfFR0013411998Nav', 'etfFR0013412004Nav', 'etfEuropeRetailNav']
-          default_ids = branch_ids if os.environ.get('GITHUB_REF_NAME') == 'fix/qualified-six-monthly-20261124' else allowed
+          default_ids = branch_ids if (os.environ.get('GITHUB_HEAD_REF') or os.environ.get('GITHUB_REF_NAME')) == 'fix/qualified-six-monthly-20261124' else allowed
           ids = shlex.split(os.environ.get('NAV_ONLY', '')) or default_ids
           if len(ids) != len(set(ids)) or any(i not in allowed for i in ids):
               raise SystemExit('Unknown or repeated exact NAV target')
@@ -53,7 +59,7 @@ jobs:
         if: always()
         run: python -m unittest discover -s scripts -p test_amundi_nav_history.py
       - name: Inspect the distributor's Bitwise exact-ISIN NAV workbook
-        if: always() && github.ref_name == 'fix/qualified-six-monthly-20261124'
+        if: always() && (github.head_ref == 'fix/qualified-six-monthly-20261124' || github.ref_name == 'fix/qualified-six-monthly-20261124')
         run: |
           PYTHONPATH=scripts python - <<'PY'
           import hashlib, json, os, pathlib
