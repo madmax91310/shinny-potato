@@ -28,13 +28,18 @@ def parse(body, source, now):
         raise ValueError('Wrong Amundi NAV currency')
     # Historical cash distributions require a separately qualified reinvestment path.
     income_index=source.get('navHistoryKind')=='official-income-reinvested-index'
-    if source.get('navHistoryKind') not in (None,'official-income-reinvested-index'):
+    audited_units = source.get('navHistoryKind') == 'official-adjusted-nav-with-unit-checks'
+    if source.get('navHistoryKind') not in (None, 'official-income-reinvested-index',
+                                           'official-adjusted-nav-with-unit-checks'):
         raise ValueError('Unqualified Amundi NAV history convention')
     if income_index:
         if (facts['DISTRIBUTION_POLICY']!='Distribution'
                 or source.get('anniversaryNavKind')!='official-price-excluding-distributions'
                 or not source.get('anniversaryCashDates')):
             raise ValueError('Distributing Amundi share needs explicit income-index and cash/price qualification')
+    elif audited_units:
+        if facts['DISTRIBUTION_POLICY'] != source.get('amundiDeclaredPolicy') or source.get('collectAnniversary') is not False:
+            raise ValueError('Amundi adjusted NAV requires the reviewed policy and a separate performance-only route')
     elif facts['DISTRIBUTION_POLICY'] != 'Capitalisation':
         raise ValueError('Amundi NAV requires explicitly accumulating share')
     inception = dt.date.fromisoformat(facts['LAUNCH_DATE'])
@@ -90,7 +95,14 @@ def parse(body, source, now):
     factor=nav[anchor]/adjusted[anchor]
     normalized={day:value*factor for day,value in adjusted.items()}
     normalized[anchor]=nav[anchor]
-    income_proof={}
+    income_proof = {}
+    if audited_units:
+        if facts['LAUNCH_DATE'] != source.get('amundiInception'):
+            raise ValueError('Amundi exact-share inception changed')
+        required = set(source['requiredQualifiedCalendarYears'])
+        if not required or not required.issubset({c['year'] for c in checks}):
+            raise ValueError('Reviewed Amundi calendar window missing')
+        income_proof = {'adjustedUnitQualification': qualify_adjusted_units(nav, normalized, source, now)}
     if income_index:
         prices,cash=anniversary_price_history(body,source,now,normalized)
         unit_errors=[abs(prices[day]/nav[day]-1) for day in prices]
@@ -114,6 +126,39 @@ def parse(body, source, now):
                             'historicalCurrencyIndicator': 'navCurrency',
                             'latestRawNav': max(nav), 'latestAdjustedNav': max(adjusted),
                             'officialIncomeReinvestedChartChecks': checks}
+
+def qualify_adjusted_units(nav, adjusted, source, now):
+    """Check the issuer's adjustment against real NAVs in the same share units."""
+    split = source.get('amundiShareSplit')
+    split_day = split['date'] if split else None
+    if split:
+        dt.date.fromisoformat(split_day)
+        if (type(split['ratio']) is not int or split['ratio'] < 2
+                or not split['sourceUrl'].startswith('https://www.amundietf.fr/pdfDocuments/download/')):
+            raise ValueError('Invalid reviewed Amundi split evidence')
+
+    def month_ends(series):
+        return {day[:7]: day for day in sorted(series)
+                if source['periodStart'] <= day[:7] < now.strftime('%Y-%m')}
+
+    raw_ends, adjusted_ends = month_ends(nav), month_ends(adjusted)
+    if not adjusted_ends or raw_ends != adjusted_ends:
+        raise ValueError('Adjusted Amundi NAV misses an official closed-month valuation')
+    # Check every common observation, including both split regimes. The small
+    # tolerance is for quoted NAV rounding only and does not patch observations.
+    errors = {}
+    for day, level in adjusted.items():
+        units = split['ratio'] if split and day < split_day else 1
+        errors[day] = abs(level / (nav[day] / units) - 1)
+        if errors[day] > 1e-6:
+            raise ValueError(f'Amundi adjusted NAV/share unit discrepancy: {day}')
+
+    if split and (not any(day < split_day for day in errors) or split_day not in errors):
+        raise ValueError('Amundi split not bounded by published valuations')
+    return {'months': raw_ends, 'dailyChecks': len(errors),
+            'maximumRelativeUnitError': max(errors.values()), 'split': split,
+            'method': 'Issuer adjusted history checked against each same-date published NAV in current share units; no cash or split factor reapplied'}
+
 
 def anniversary_price_history(body,source,now,normalized_nav):
     """Remove independently qualified cash reinvestment; retain issuer unit adjustments."""
