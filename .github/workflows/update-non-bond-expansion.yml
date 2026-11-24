@@ -77,7 +77,7 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/refresh_non_bond_sources.py --apply --output "$RUNNER_TEMP/non-bond.json"
       - name: "Validate observations: node scripts audit-automated-monthly.mjs"
-        run: node scripts/audit-automated-monthly.mjs
+        run: node scripts/audit-automated-monthly.mjs && node scripts/test-exh8-market-consumers.mjs
       - name: "Validate observations: node scripts audit-comparison-automation.mjs"
         run: node scripts/audit-comparison-automation.mjs
       - name: "Validate observations: node scripts test-qualified-exposures.mjs"
