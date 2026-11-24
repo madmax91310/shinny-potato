@@ -46,11 +46,27 @@ for(const year of [2021,2023,2024]){
  assert.equal(paris.qualification.qualified,year!==2021)
  if(year===2021){
   assert.doesNotMatch(route,/etfDE000A27Z304Paris/)
-  assert.match(secured,/Fenêtre de cotation contestée refusée/)
+  const nav=windows.find(w=>w.id==='etfDE000A27Z304Nav')
+  assert.equal(nav.convention,'fund-nav-total-return')
+  assert.equal(nav.currency,'USD')
+  assert.equal(nav.qualification.qualified,true)
+  assert.match(secured,/NAV indépendante qualifiée pour 2021 \(USD\)/)
  }else{
   assert.match(route,/etfDE000A27Z304Paris · XPAR · EUR/)
   assert.match(secured,/Série mensuelle qualifiée.*XPAR/)
   assert.doesNotMatch(secured,/aucune cotation mensuelle/)
+ }
+}
+const retail=report.rows.find(row=>row.id==='DE000A0H08P6/2019')
+assert(retail.currentConsumer.windows.every(w=>!w.qualification.qualified),'Retail 2019 stays refused while dividend factors remain unresolved')
+for(const [isin,years] of [['FR0010755611',[2021,2024]],['FR0013411998',[2025]],['FR0013412004',[2025]]]){
+ for(const year of years){
+  const row=report.rows.find(item=>item.id===`${isin}/${year}`)
+  assert(row.open,'The independent NAV does not close the original market discrepancy')
+  const nav=row.currentConsumer.windows.find(w=>w.id===`etf${isin}Nav`)
+  assert.equal(nav.currency,'EUR');assert.equal(nav.convention,'fund-nav-total-return')
+  assert.equal(nav.qualification.qualified,true)
+  assert.equal(row.currentConsumer.windows.find(w=>w.mic==='XPAR').qualification.qualified,false)
  }
 }
 const verifiedBounds=report.rows.filter(row=>row.boundaryVerification)
