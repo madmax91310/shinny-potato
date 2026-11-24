@@ -194,7 +194,7 @@ assert.match(codeDeployment,/id: deployment\s+if: steps\.current\.outputs\.curre
 assert(codeDeployment.indexOf('id: current\n')<codeDeployment.indexOf('node scripts/deploy-validated-pages.mjs'))
 assert.match(codeDeployment,/verify-pages-publication\.mjs "\$\{\{ steps\.deployment_refreshed\.outputs\.page_url \|\| steps\.deployment\.outputs\.page_url \}\}"/)
 assert(codeDeployment.indexOf('node scripts/deploy-validated-pages.mjs')<codeDeployment.indexOf('node scripts/verify-pages-publication.mjs'))
-assert.match(codeWorkflow.split('\njobs:')[0], /pages-validation-v6-/, 'The exact-ID gate must have a validation queue distinct from older definitions')
+assert.match(codeWorkflow.split('\njobs:')[0], /pages-validation-v7-/, 'The exact-ID gate must have a validation queue distinct from older definitions')
 assert.match(codeDeployment, /concurrency:\s+group: pages-production\s+cancel-in-progress: false\s+queue: max/, 'All actual publications still share the same ordered lock')
 
 
