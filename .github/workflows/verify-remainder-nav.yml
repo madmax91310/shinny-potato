@@ -92,6 +92,37 @@ jobs:
               print(json.dumps(report))
               (folder / 'exh8-cash-inspection.json').write_text(json.dumps(report, indent=2))
           PY
+      - name: Quantify Bitwise workbook failures and historical NAV bounds
+        if: always() && github.head_ref == 'fix/qualified-six-monthly-20261124'
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import datetime as dt
+          import json
+          from bitwise_nav_history import WORKBOOK_URL, EXCEL_EPOCH
+          from issuer_documents import download
+          from issuer_nav_history import xlsx_rows
+          rows = xlsx_rows(download(WORKBOOK_URL))[4:]
+          points, bad, discrepancies = {}, [], []
+          for row in rows:
+              if not row.get('A', '').isdigit():
+                  bad.append(row)
+                  continue
+              day = (EXCEL_EPOCH + dt.timedelta(days=int(row['A']))).isoformat()
+              try:
+                  nav, aum, shares, entitlement = (float(row[k]) for k in 'BCDE')
+                  if min(nav, shares, entitlement) <= 0:
+                      bad.append([day, row])
+                  if nav > 0:
+                      points[day] = nav
+                  if nav > 0 and aum > 0 and shares > 0 and abs(aum / shares / nav - 1) > 5e-5:
+                      discrepancies.append([day, row, aum / shares])
+              except (ValueError, KeyError, ZeroDivisionError):
+                  bad.append([day, row])
+          last = {day[:7]: (day, points[day]) for day in sorted(points)}
+          print(json.dumps({'invalid': bad[:15], 'invalidCount': len(bad), 'units': discrepancies[:6],
+              'unitDiscrepancies': len(discrepancies), 'calendar': [value for month, value in last.items() if month.endswith('-12')],
+              'firstWindow': {key: value for key, value in last.items() if '2020-12' <= key <= '2021-12'}}))
+          PY
       - name: Exercise the ordinary monthly producer and consumers with the qualified Amundi routes
         if: always() && github.head_ref == 'fix/qualified-six-monthly-20261124'
         run: |
