@@ -11,7 +11,6 @@ const windows = {
   etfFR0010755611Nav: ['etfFR0010755611', [2021, 2024]],
   etfFR0013411998Nav: ['etfFR0013411998', [2025]],
   etfFR0013412004Nav: ['etfFR0013412004', [2025]],
-  etfEuropeRetailNav: ['etfEuropeRetail', [2019]],
   etfDE000A27Z304Nav: ['etfDE000A27Z304', [2021]],
 }
 const registered = new Set(JSON.parse(readFileSync('scripts/monthly-automation.json')).series.map(s => s.id))

@@ -122,7 +122,9 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    recovered = json.loads((ROOT/'scripts/monthly-window-nav-sources.json').read_text())
+    recovered = [source for source in old.values() if source.get('parser') == 'official-nav'
+                 and (source.get('navHistoryKind') == 'official-adjusted-nav-with-unit-checks'
+                      or source.get('navProvider') == 'bitwise')]
     return result + remainder + recovered + [s for s in old.values() if s.get('navProvider')=='hsbc'] + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
 
 

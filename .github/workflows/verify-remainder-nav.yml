@@ -7,12 +7,15 @@ on:
         type: string
         default: ''
   pull_request:
-    branches: [master]
     paths:
       - 'scripts/amundi_nav_history.py'
+      - 'scripts/bitwise_nav_history.py'
+      - 'scripts/test_amundi_nav_history.py'
+      - 'scripts/test_bitwise_nav_history.py'
+      - 'scripts/test-monthly-window-nav-consumers.mjs'
       - '.github/workflows/verify-remainder-nav.yml'
   push:
-    branches: [fix/reliquat-79-20261023, fix/qualified-six-monthly-20261124]
+    branches: [fix/reliquat-79-20261023]
     paths:
       - 'scripts/official-nav-remainder-sources.json'
       - 'scripts/collect_official_share_history.py'
@@ -21,7 +24,6 @@ permissions:
   contents: read
 jobs:
   qualify:
-    if: github.event_name != 'pull_request' || github.head_ref == 'fix/qualified-six-monthly-20261124'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -40,91 +42,27 @@ jobs:
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
       - name: Collect exact shares, verify identity, income, currency and annual bounds
+        if: github.event_name != 'pull_request'
         env:
           NAV_ONLY: ${{ inputs.only }}
         run: |
           python - <<'PY'
           import json, os, shlex, subprocess, sys
-          allowed = [r['id'] for path in ['scripts/official-nav-remainder-sources.json', 'scripts/monthly-window-nav-sources.json'] for r in json.load(open(path))]
-          branch_ids = ['etfFR0010755611Nav', 'etfFR0013411998Nav', 'etfFR0013412004Nav', 'etfDE000A27Z304Nav']
-          default_ids = branch_ids if (os.environ.get('GITHUB_HEAD_REF') or os.environ.get('GITHUB_REF_NAME')) == 'fix/qualified-six-monthly-20261124' else allowed
-          ids = shlex.split(os.environ.get('NAV_ONLY', '')) or default_ids
+          allowed = [r['id'] for r in json.load(open('scripts/official-nav-remainder-sources.json'))]
+          ids = shlex.split(os.environ.get('NAV_ONLY', '')) or allowed
           if len(ids) != len(set(ids)) or any(i not in allowed for i in ids):
               raise SystemExit('Unknown or repeated exact NAV target')
           subprocess.run([sys.executable, 'scripts/collect_official_share_history.py', '--only', *ids,
                           '--output', os.path.join(os.environ['RUNNER_TEMP'], 'nav.json'),
                           '--capture-dir', os.path.join(os.environ['RUNNER_TEMP'], 'nav-raw')], check=True)
           PY
-      - name: Verify Amundi share-unit qualification and month-end refusals
-        if: always()
-        run: python -m unittest discover -s scripts -p test_amundi_nav_history.py
-      - name: Inspect the historical iShares cash factors independently
-        if: always() && (github.head_ref == 'fix/qualified-six-monthly-20261124' || github.ref_name == 'fix/qualified-six-monthly-20261124')
+      - name: Check exact share units and Bitwise workbook validation
+        if: github.event_name == 'pull_request'
         run: |
-          PYTHONPATH=scripts python - <<'PY'
-          import datetime as dt
-          import gzip, json, os, pathlib
-          from issuer_nav_history import blackrock_nav, calendar_checks
-          folder = pathlib.Path(os.environ['RUNNER_TEMP'])
-          for path in (folder / 'nav-raw').glob('*.json.gz'):
-              body = json.loads(gzip.decompress(path.read_bytes()))
-              if 'componentsByNameMap' not in body:
-                  continue
-              now = dt.datetime.now(dt.timezone.utc)
-              parsed = blackrock_nav(body, 'DE000A0H08P6', 'EUR', now)
-              nav, total = parsed['nav'], parsed['totalReturn']
-              dates = sorted(nav.keys() & total.keys())
-              perf = body['componentsByNameMap']['performance']['containersByNameMap']
-              cash = perf['distributions']['subContainersByNameMap']['table']['dataPointsByNameMap']
-              report = {'dividends': [], 'calendar': calendar_checks(total, parsed['years'], 2, now)}
-              for stamp, amount, currency in zip(cash['exDate']['value'], cash['totalDistribution']['value'], cash['totalDistribution']['prefix']):
-                  if not str(stamp).startswith('2019'):
-                      continue
-                  day = dt.datetime.strptime(str(stamp), '%Y%m%d').date().isoformat()
-                  before, after = max(d for d in dates if d < day), min(d for d in dates if d >= day)
-                  seen = (total[after] / nav[after]) / (total[before] / nav[before])
-                  report['dividends'].append(dict(day=day, before=before, after=after,
-                      previousNav=nav[before], exNav=nav[day], navAfter=nav[after],
-                      totalBefore=total[before], totalAfter=total[after],
-                      amount=amount, currency=currency, observed=seen,
-                      previousNavFactor=1 / (1 - float(amount) / nav[before]),
-                      exNavFactor=1 + float(amount) / nav[day]))
-              print(json.dumps(report))
-              (folder / 'exh8-cash-inspection.json').write_text(json.dumps(report, indent=2))
-          PY
-      - name: Quantify Bitwise workbook failures and historical NAV bounds
-        if: always() && github.head_ref == 'fix/qualified-six-monthly-20261124'
-        run: |
-          PYTHONPATH=scripts python - <<'PY'
-          import datetime as dt
-          import json
-          from bitwise_nav_history import WORKBOOK_URL, EXCEL_EPOCH
-          from issuer_documents import download
-          from issuer_nav_history import xlsx_rows
-          rows = xlsx_rows(download(WORKBOOK_URL))[4:]
-          points, bad, discrepancies = {}, [], []
-          for row in rows:
-              if not row.get('A', '').isdigit():
-                  bad.append(row)
-                  continue
-              day = (EXCEL_EPOCH + dt.timedelta(days=int(row['A']))).isoformat()
-              try:
-                  nav, aum, shares, entitlement = (float(row[k]) for k in 'BCDE')
-                  if min(nav, shares, entitlement) <= 0:
-                      bad.append([day, row])
-                  if nav > 0:
-                      points[day] = nav
-                  if nav > 0 and aum > 0 and shares > 0 and abs(aum / shares / nav - 1) > 5e-5:
-                      discrepancies.append([day, row, aum / shares])
-              except (ValueError, KeyError, ZeroDivisionError):
-                  bad.append([day, row])
-          last = {day[:7]: (day, points[day]) for day in sorted(points)}
-          print(json.dumps({'invalid': bad[:15], 'invalidCount': len(bad), 'units': discrepancies[:6],
-              'unitDiscrepancies': len(discrepancies), 'calendar': [value for month, value in last.items() if month.endswith('-12')],
-              'firstWindow': {key: value for key, value in last.items() if '2020-12' <= key <= '2021-12'}}))
-          PY
-      - name: Exercise the ordinary monthly producer and consumers with the qualified Amundi routes
-        if: always() && github.head_ref == 'fix/qualified-six-monthly-20261124'
+          python -m unittest discover -s scripts -p test_amundi_nav_history.py
+          python -m unittest discover -s scripts -p test_bitwise_nav_history.py
+      - name: Exercise the ordinary producer and consumers on an isolated checkout
+        if: github.event_name == 'pull_request'
         run: |
           node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/monthly-window-baseline.json"
           python scripts/refresh_monthly_history.py --only etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav etfDE000A27Z304Nav --baseline "$RUNNER_TEMP/monthly-window-baseline.json" --output "$RUNNER_TEMP/monthly-window-observation.json" --evidence-output "$RUNNER_TEMP/monthly-window-evidence.json" --apply
@@ -138,7 +76,6 @@ jobs:
           path: |
             ${{ runner.temp }}/nav.json
             ${{ runner.temp }}/nav-raw
-            ${{ runner.temp }}/exh8-cash-inspection.json
             ${{ runner.temp }}/monthly-window-observation.json
             ${{ runner.temp }}/monthly-window-evidence.json
           retention-days: 35
