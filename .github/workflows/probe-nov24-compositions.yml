@@ -34,7 +34,17 @@ jobs:
               for link in links:
                   b=download(link);t=pdf_text(b)
                   blocks=[t[m.start():m.start()+2050] for m in re.finditer('Allocation aux fonds Vanguard sous-jacents',t)]
-                  print(json.dumps({'isin':isin,'pdfSha':hashlib.sha256(b).hexdigest(),'printedAllocation':blocks,
+                  try:
+                      from collect_lifestrategy import parse_sources, fetch_api
+                      record=parse_sources(html,b,fetch_api(code),config,now)
+                      parsed=[record['holdings']['asOf'],len(record['holdings']['rows'])]
+                  except Exception as e:
+                      import traceback
+                      parsed=traceback.format_exc()
+                  container=soup.find('europe-core-asset-allocations')
+                  print(json.dumps({'isin':isin,'parsed':parsed,'tables':len(container.find_all('table')),
+                    'rows':[[cell.get_text(' ',strip=True) for cell in row.find_all('td')] for row in container.find_all('tr')],
+                    'pdfSha':hashlib.sha256(b).hexdigest(),'printedAllocation':blocks,
                     'webAllocation':soup.find('europe-core-asset-allocations').get_text(' ',strip=True)},ensure_ascii=False))
           with ThreadPoolExecutor(max_workers=4) as pool:
               list(pool.map(one, CONFIG))
