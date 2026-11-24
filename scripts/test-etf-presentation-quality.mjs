@@ -5,7 +5,7 @@ import { REVIEWED_EXPOSURE_COPY } from '../src/data/etf-presentation-copy.js'
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js'
 import { buildText, accountLabel, buildFactRows } from '../src/pages/etf-sheets/lib.js'
 import { presentationComposition, presentationCountries } from '../src/pages/etf-sheets/presentationDetails.js'
-import { formatTweetPerformance, getAnnualPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js'
+import { formatTweetPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js'
 assert.deepEqual(new Set(reviewedIds),new Set(ETFS.map(e=>e.id)),'Toute nouvelle fiche exige une revue explicite')
 assert.deepEqual(new Set(Object.keys(REVIEWED_EXPOSURE_COPY)),new Set(reviewedIds))
 assert.equal(new Set(ETFS.map(e=>e.isin)).size,ETFS.length)
@@ -23,13 +23,10 @@ for(const etf of ETFS) {
   for(const heading of ['🔍 Ce que tu achètes','✅ Pourquoi s’y intéresser ?','⚠️ Le point de vigilance','💬 '])assert(text.includes(heading),etf.id)
   assert(text.includes(`🆔 ISIN : ${etf.isin}`),etf.id)
   assert(text.includes(`💸 ${copy.feeLabel} : ${etf.ter.replace(/(\d)\s*%/g, '$1 %')}`),etf.id)
-  const calendar = getAnnualPerformance(etf)
-  const annualBlock = calendar && formatTweetPerformance(calendar, {annualOnly:true})
-  assert.equal(text.split('\n').filter(line => /^[🟢🔴]/u.test(line) && /\d{4} :/.test(line)).length,
-    annualBlock ? performanceEntries(calendar).filter(({label})=>/^\d{4}$/.test(label)).length : 0,etf.id)
-  if (annualBlock) assert(text.includes(annualBlock),etf.id)
+  assert.doesNotMatch(text, /Performances annuelles|^[🟢🔴] \d{4}\s*:/mu, etf.id)
+  assert.doesNotMatch(text, /^Indice suivi :|Le fonds utilise un swap : il échange|Capitalisation et\/ou distribution/m, etf.id)
   if (text.includes('🟡 Matières premières de l’indice suivi')) assert(!text.includes('🔄 '),etf.id)
-  if (etf.category === 'Obligataires') assert(!text.includes('Les trois premières lignes publiées'),etf.id)
+  if (etf.category === 'Obligataires') assert(!text.includes('À elles trois,'),etf.id)
   assert(!/undefined|\bNaN\b|\bnull\b/.test(text),etf.id)
   assert.doesNotMatch(text,/\b\d{2}\/\d{2}\/\d{4}\b|\b\d{4}-\d{2}-\d{2}\b|Cotation :|Encours|Devise de la part|Duration effective|Répartition par pays|hors liquidités et dérivés/,etf.id)
   assert(text.startsWith(copy.hook+'\n\n'),etf.id)
@@ -49,10 +46,17 @@ const observation={holdings:{asOf:'2026-09-30',basis:'fund',rows:[{name:'A',weig
 assert.equal(presentationComposition(observation,{replicationMethod:'Synthetic swap'}),'','Un panier de substitution ne décrit pas l’indice')
 assert.equal(presentationCountries(observation,{replicationMethod:'Hybrid Replication'}),'')
 assert(presentationComposition({...observation,holdings:{...observation.holdings,basis:'index'}},{replicationMethod:'Synthetic swap'}).includes('de l’indice suivi'))
-assert.match(presentationComposition(observation,{replicationMethod:'Physical'},{forPost:true}),/du fonds sont A \(40 %\), B \(30 %\), C \(10 %\), soit 80 % au total/)
+assert.match(presentationComposition(observation,{replicationMethod:'Physical'},{forPost:true}),/A, B et C pèsent 80 % du fonds/)
 assert.equal(presentationComposition(observation,{replicationMethod:'Synthetic swap'},{forPost:true}),'')
 const diversified = {...observation,holdings:{...observation.holdings,rows:observation.holdings.rows.map(row=>({...row,weightPct:row.weightPct/2}))}}
-assert.match(presentationComposition(diversified,{replicationMethod:'Physical'},{forPost:true}),/40 % au total/)
+assert.equal(presentationComposition(diversified,{replicationMethod:'Physical'},{forPost:true}),'')
+assert.match(presentationComposition(diversified,{replicationMethod:'Physical'}), /40 %/)
+const cl2 = ETFS.find(etf => etf.isin === 'FR0010755611')
+const cl2Text = buildText(cl2)
+assert.match(cl2Text, /deux jours.*lâche 4 %/)
+assert.match(cl2Text, /à 99 €.*à 96 € avant coûts/)
+assert.doesNotMatch(cl2Text, /Apple|Nvidia|Microsoft|MSCI USA Leveraged 2X Index/)
+
 assert.equal(presentationComposition({...observation,holdings:{...observation.holdings,asOf:null}},{replicationMethod:'Physical'}),'')
 const rows=performanceEntries({values:[10,20],calendarYears:[2025,2026]},new Date('2026-10-23T00:00:00Z'))
 assert.deepEqual(rows.map(r=>r.label),['2025'])

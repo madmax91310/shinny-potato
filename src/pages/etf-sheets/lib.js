@@ -1,6 +1,6 @@
 import { getPresentationCopy, presentationTicker } from './editorial.js'
 import { CATEGORY_EMOJI } from './records.js'
-import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance, formatTweetPerformance } from './annualPerformance.js'
+import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance.js'
 import { getInstrumentFacts } from '../../data/instrument-facts.js'
 import { commodityAllocationLines } from '../../data/commodity-allocation.js'
 
@@ -21,15 +21,13 @@ export function buildText(sourceEtf) {
   const etf = getPresentationCopy(sourceEtf)
   const tickerStr = presentationTicker(etf)
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
-  const annual = getAnnualPerformance(etf)
-  const performance = annual && formatTweetPerformance(annual, { annualOnly: true })
   const commodities = commodityAllocationLines(etf.isin, { includeDate: false })
   const percentSpacing = value => value.replace(/(\d)\s*%/g, '$1 %')
   const facts = [
     `🆔 ISIN : ${etf.isin}`,
     `💸 ${etf.feeLabel} : ${percentSpacing(etf.ter)}`,
     etf.swapFee && `💸 Frais de swap : ${percentSpacing(etf.swapFee)}`,
-    etf.distribution && !commodities.length && `🔄 ${etf.distribution}`,
+    etf.distribution && etf.distribution !== 'Capitalisation et/ou distribution' && !commodities.length && `🔄 ${etf.distribution}`,
     `🏦 ${accountLabel(etf)}`,
     etf.currencyHedge === 'Couverture de change' && `💱 ${etf.currencyHedge}`,
   ].filter(Boolean).join('\n')
@@ -37,7 +35,6 @@ export function buildText(sourceEtf) {
     etf.hook,
     `${dot} ${etf.name}${tickerStr ? ` (${tickerStr})` : ''}`,
     facts,
-    performance,
     commodities.join('\n'),
     `🔍 Ce que tu achètes\n${etf.postWhatIs}`,
     `✅ Pourquoi s’y intéresser ?\n${etf.whyInteresting}`,

@@ -28,14 +28,15 @@ function qualifiedComposition(record, facts) {
 
 export function presentationComposition(record, facts, { forPost = false } = {}) {
   const composition = qualifiedComposition(record, facts)
-  if (!composition) return ''
+  if (!composition || (forPost && composition.weight < 50)) return ''
   const scope = composition.basis === 'index' ? 'de l’indice suivi' : 'du fonds'
-  const positions = composition.top.map(row => `${holdingName(row.name)} (${pct(row.weightPct)})`).join(', ')
   if (forPost) {
-    // Les libellés obligataires peuvent contenir une date d’échéance.
-    if (/\b(?:\d{4}-\d{2}-\d{2}|\d{2}\/\d{2}\/\d{4})\b/.test(positions)) return ''
-    return `Les trois premières lignes publiées ${scope} sont ${positions}, soit ${pct(composition.weight)} au total.`
+    const [first, second, third] = composition.top.map(row => holdingName(row.name))
+    // Les noms de certains titres incluent leur date d’échéance.
+    if (/\b(?:\d{4}-\d{2}-\d{2}|\d{2}\/\d{2}\/\d{4})\b/.test([first, second, third].join(' '))) return ''
+    return `À elles trois, ${first}, ${second} et ${third} pèsent ${pct(composition.weight)} ${scope}.`
   }
+  const positions = composition.top.map(row => `${holdingName(row.name)} (${pct(row.weightPct)})`).join(', ')
   return `Au ${date(composition.asOf)}, ${positions} forment les trois premières lignes publiées ${scope}. Elles représentent ensemble ${pct(composition.weight)}.`
 }
 
@@ -66,7 +67,7 @@ export function completePresentation(copy) {
   const holdingsSource = record?.holdings?.sourceUrl ?? record?.sourceUrl
   const postComposition = holdingsSource && copy.category !== 'Obligataires'
     ? presentationComposition(record, facts, { forPost: true }) : ''
-  const postExplanation = [intro+description, swap, postComposition, postAllocation]
+  const postExplanation = [description, postComposition, postAllocation]
   const count = record?.metrics?.numHoldings
   const positions = Number.isInteger(count?.value) && count.value > 0 && dated(count.asOf) && count.sourceUrl && (!facts.positionsAsOf || count.asOf>=facts.positionsAsOf)
     ? `${count.value.toLocaleString('fr-FR')} positions hors liquidités et dérivés au ${date(count.asOf)}`

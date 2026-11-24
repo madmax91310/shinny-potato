@@ -573,7 +573,7 @@ async function testEtfSheets(page) {
       || !copied.includes(card.isin) || !copied.replace(/\s/g, '').includes(card.ter.replace(/\s/g, '')) || !copied.includes(card.hook)
       || (copied.includes('🏦 PEA : ✅') !== (card.pea === true))
       || ![card.postWhatIs, card.whyInteresting, card.whatToKnow, ...(card.closing ? [card.closing] : [])].every(value => copied.includes(value))
-      || /\d{2}\/\d{2}\/\d{4}|Cotation :|Devise de la part :/.test(copied)
+      || /\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2}|Cotation :|Devise de la part :|Performances annuelles/.test(copied)
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
       || !copied.endsWith('💬 ' + card.question + '\n\nPas un conseil financier.')
       || /undefined|NaN/.test(copied)) badCount++;
