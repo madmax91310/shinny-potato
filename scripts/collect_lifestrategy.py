@@ -181,6 +181,8 @@ def collect_one(config, now, previous=None):
 
 def main():
     p = argparse.ArgumentParser(); p.add_argument('--apply', action='store_true'); p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--validate-verified-prior-period', action='store_true',
+                   help='Allow a PR to test verified observations when only the newer exact books are pending')
     args = p.parse_args(); now = dt.datetime.now(UTC)
     path = ROOT/'src/data/lifestrategy.json'
     old = json.loads(path.read_text()) if path.exists() else {}
@@ -223,6 +225,8 @@ def main():
     if args.apply: write_json_atomic(path, old)
     write_json_atomic(args.output, report)
     print(json.dumps({'validated': [r['isin'] for r in report['records']], 'failed': report['failed']}))
-    if report['failed']: raise SystemExit(1)
+    if report['failed'] and (not args.validate_verified_prior_period
+                            or any('lastVerifiedAt' not in failure for failure in report['failed'])):
+        raise SystemExit(1)
 
 if __name__ == '__main__': __import__('producer_report_contract').run('collect_lifestrategy', main)

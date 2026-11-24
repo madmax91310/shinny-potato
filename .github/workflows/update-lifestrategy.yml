@@ -73,7 +73,7 @@ jobs:
       - name: "Collect observations: collect"
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
-        run: python scripts/collect_lifestrategy.py --apply --output "$RUNNER_TEMP/lifestrategy.json"
+        run: python scripts/collect_lifestrategy.py --apply --output "$RUNNER_TEMP/lifestrategy.json" ${{ github.event_name == 'pull_request' && '--validate-verified-prior-period' || '' }}
       - name: "Validate observations: same-date partial equity look-through"
         id: lookthrough
         continue-on-error: ${{ github.event_name != 'pull_request' }}

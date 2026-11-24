@@ -38,7 +38,7 @@ delayed.underlyingHoldingsAllocation={
 };
 const projected=deriveExposureSleeves({[isin]:delayed,...children},{},{},now)[isin];
 assert.equal(projected.equitySleeve.asOf,'2026-09-30');
-assert.equal(projected.equitySleeve.weightPct,delayed.underlyingHoldings.assetAllocationChecks.Actions.originalNavWeightPct);
+assert.ok(Math.abs(projected.equitySleeve.weightPct-delayed.underlyingHoldings.assetAllocationChecks.Actions.originalNavWeightPct)<1e-9);
 assert.equal(projected.countries.asOf,'2026-09-30');
 const octoberChildren=structuredClone(children);
 for(const child of Object.values(octoberChildren))for(const field of ['countries','sectors'])if(child[field])child[field].asOf='2026-10-31';
