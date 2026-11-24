@@ -1,0 +1,61 @@
+name: Validate exact US Property Yield holdings
+on:
+  push:
+    branches: [fix/ishares-us-property-book-20261124]
+    paths: [.github/workflows/probe-ishares-property-book.yml]
+permissions:
+  contents: read
+jobs:
+  issuer-book:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -c scripts/python-constraints.txt -r scripts/python-requirements.in
+      - name: Collect and validate the exact official share via the ordinary producer
+        run: |
+          python scripts/collect_dca_complete_holdings.py --apply --only IE00B1FZSF77 --output "$RUNNER_TEMP/us-property-holdings.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          isin = 'IE00B1FZSF77'
+          path = Path(os.environ['RUNNER_TEMP']) / 'us-property-holdings.json'
+          report = json.loads(path.read_text())
+          row = json.loads(Path('src/data/dca-complete-holdings.json').read_text())[isin]
+          assert len(report['updated']) == 1 and report['updated'][0] == isin
+          assert report['observations'][isin]['sha256'] == row['sha256']
+          assert row['complete'] and row['basis'] == 'fund' and len(row['rows']) >= 11
+          assert not report['errors']
+          print(json.dumps({'asOf': row['asOf'], 'checkedAt': row['checkedAt'], 'positions': len(row['rows']),
+                'positionsWithIdentity': sum(bool(p['isin']) for p in row['rows']),
+                'weights': sum(p['weightPct'] for p in row['rows']), 'scope':row.get('scope'), 'sha256': row['sha256']}))
+          PY
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: node scripts/build-dca-exposures.mjs && node scripts/test-dca-holdings-contracts.mjs
+      - name: Verify the actual DCA projection of the qualified book
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync as read} from 'node:fs';
+          const id='IE00B1FZSF77';
+          const data=path=>JSON.parse(read(path));
+          const manifest=data('src/pages/dca-profiles/holdings-manifest.json');
+          const source=data('src/data/dca-complete-holdings.json')[id];
+          const record=data('src/pages/dca-profiles/holdings-'+manifest[id]+'.json')[id];
+          assert.equal(record.sha256,source.sha256);
+          assert.equal(record.asOf,source.asOf);
+          assert.deepEqual(record.rows,source.rows.map(({name,isin,weightPct})=>({name,isin,weightPct})));
+          assert.ok(record.complete);
+          console.log('Exact US Property Yield holdings are projected into DCA');
+          JS
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: us-property-qualified-book
+          path: ${{ runner.temp }}/us-property-holdings*.json
