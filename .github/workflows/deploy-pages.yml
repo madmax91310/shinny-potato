@@ -139,6 +139,7 @@ jobs:
     runs-on: ubuntu-26.04
     outputs:
       commit_sha: ${{ steps.snapshot.outputs.commit_sha }}
+      tweet_midi_reused: ${{ steps.verifier.outputs.reused }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -242,7 +243,22 @@ jobs:
       - run: node scripts/test-tweet-midi-shards.mjs
       # Freeze the verifier and all its input data at the same point as before.
       # Execution moves to four exhaustive partitions, alongside browser checks.
-      - run: node scripts/build-tweet-midi-verifier.mjs
+      - uses: actions/download-artifact@v4
+        if: inputs.producer_receipt_declared && github.event_name != 'pull_request'
+        continue-on-error: true
+        with:
+          name: monthly-tweet-midi-proof
+          path: ${{ runner.temp }}/monthly-verification
+      - id: verifier
+        env:
+          TZ: UTC
+        run: |
+          if bash scripts/reuse-tweet-midi-proof.sh "$RUNNER_TEMP/monthly-verification/proof.json"; then
+            echo 'reused=true' >> "$GITHUB_OUTPUT"
+          else
+            node scripts/build-tweet-midi-verifier.mjs
+            echo 'reused=false' >> "$GITHUB_OUTPUT"
+          fi
       - run: npm run audit:investor-profiles
       - run: npm run audit:household-statistics
       - run: node scripts/test-diversification-lot-one.mjs
@@ -267,7 +283,8 @@ jobs:
       - run: node scripts/test-asset-routing-blockers.mjs
       - run: node scripts/test-publication-reliability.mjs
       - run: node scripts/test-historical-publications.mjs
-      - run: npm run stress-test:portfolios
+      - name: Freeze the inputs to the portfolio stress test
+        run: npx --no-install esbuild scripts/stress-test-portfolios.mjs --bundle --platform=node --format=esm --outfile=test-artifacts/portfolio-stress.mjs
       - run: node scripts/test-observation-freshness.mjs
       - run: node scripts/test-automation-overview.mjs
       - run: node scripts/test-review-inbox.mjs
@@ -323,6 +340,12 @@ jobs:
           path: test-artifacts/tweet-midi-verifier.mjs
           if-no-files-found: error
           retention-days: 2
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: portfolio-stress-verifier
+          path: test-artifacts/portfolio-stress.mjs
+          if-no-files-found: error
+          retention-days: 2
       - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v5.0.0
@@ -341,14 +364,18 @@ jobs:
         shard: [0, 1, 2, 3]
     steps:
       - uses: actions/setup-node@v7.0.0
+        if: needs.build.outputs.tweet_midi_reused != 'true'
         with:
           node-version: 20
       - uses: actions/download-artifact@v4
+        if: needs.build.outputs.tweet_midi_reused != 'true'
         with:
           name: tweet-midi-verifier
           path: test-artifacts
       - name: Verify every entry in this partition
+        if: needs.build.outputs.tweet_midi_reused != 'true'
         env:
+          TZ: UTC
           TWEET_MIDI_SHARD_INDEX: ${{ matrix.shard }}
           TWEET_MIDI_SHARD_COUNT: 4
         run: node test-artifacts/tweet-midi-verifier.mjs
@@ -501,6 +528,20 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_data_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_safety.py'
 
+  portfolio-stress:
+    needs: build
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: portfolio-stress-verifier
+          path: test-artifacts
+      - run: node test-artifacts/portfolio-stress.mjs
+
   browser-checks:
     timeout-minutes: 40
     needs: build
@@ -537,7 +578,7 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
-      - run: npx playwright install --with-deps chromium
+      - run: bash scripts/install-pages-playwright.sh chromium
       - id: portable-engines
         run: node scripts/browser-portability-engines.mjs ${{ matrix.shard }} 8
       - uses: actions/cache@v4
@@ -548,7 +589,7 @@ jobs:
             ~/.cache/ms-playwright/webkit-*
           key: portable-engines-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - if: steps.portable-engines.outputs.extra == 'true'
-        run: npx playwright install --with-deps firefox webkit
+        run: bash scripts/install-pages-playwright.sh firefox webkit
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 8
       - uses: actions/upload-artifact@v7.0.1
         if: always()
@@ -603,7 +644,7 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
-      - run: npx playwright install --with-deps chromium
+      - run: bash scripts/install-pages-playwright.sh chromium
       - run: node scripts/playwright-exposure-scope.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: failure()
@@ -645,7 +686,7 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
-      - run: npx playwright install --with-deps chromium
+      - run: bash scripts/install-pages-playwright.sh chromium
       - run: node scripts/smoke-data-routes.mjs
 
   # Data-only snapshots are published even if an advisory browser check failed;
@@ -665,10 +706,10 @@ jobs:
       deployments: read
       pages: write
       id-token: write
-    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
+    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke, portfolio-stress]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
-      && needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+      && needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success' && needs.portfolio-stress.result == 'success'
       && ((needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
           || needs.scope.outputs.data_only == 'true')
     # Explicitly validate the next ubuntu-latest image before its rollout.
@@ -794,11 +835,11 @@ jobs:
   # and publish it if the build and the data smoke test pass. The failed checks
   # stay red in this run and in the monitoring issue.
   fallback-build:
-    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
+    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke, portfolio-stress]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       && needs.scope.result == 'success' && needs.scope.outputs.data_only != 'true' && needs.scope.outputs.published != ''
-      && !(needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+      && !(needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success' && needs.portfolio-stress.result == 'success'
            && needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
     runs-on: ubuntu-26.04
     permissions:
@@ -829,7 +870,7 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: chromium-ubuntu26-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
-      - run: npx playwright install --with-deps chromium
+      - run: bash scripts/install-pages-playwright.sh chromium
       - run: node scripts/smoke-data-routes.mjs
       - uses: actions/configure-pages@v6.0.0
       - uses: actions/upload-pages-artifact@v5.0.0

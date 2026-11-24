@@ -755,8 +755,16 @@ def duplicate_investor_attempt(path, workflow, paths, sidecars, artifacts):
         return None
 
 
+def source_jobs_for_workflow(workflow, jobs):
+    """Match the reusable monthly writer without changing historical job keys."""
+    if workflow == 'update-market-monthly.yml':
+        return [{**job, 'name': 'refresh'} if job.get('name') == 'refresh / refresh' else job for job in jobs]
+    return jobs
+
+
 def artifact_reports(repo, workflow, jobs, artifacts, directory, download=download_status_artifact):
     """The contract is conditional on executed steps, never on unattempted fields."""
+    jobs = source_jobs_for_workflow(workflow, jobs)
     contract = REPORT_CONTRACTS[workflow]
     steps = [s for j in jobs for s in (j.get('steps') or [])]
     if contract.get('activationSteps') and any(j.get('name')==REGISTRY[workflow]['collectionJob']for j in jobs) and not any(s.get('name')in contract['activationSteps']for s in steps) and (contract.get('requiresActivationMarker') or not any(a.get('name')==contract['artifact']for a in artifacts)):
@@ -886,6 +894,7 @@ def observe_running_workflows(state, registry, api, repo, now, read_reports, *, 
                 jobs.extend(batch)
                 if len(batch)<100:break
                 page+=1
+            jobs = source_jobs_for_workflow(workflow, jobs)
             failures=[{'job':j['name'],'step':s['name']}for j in jobs if j.get('conclusion')in('failure','timed_out')for s in j.get('steps',[])if s.get('conclusion')in('failure','timed_out')]
             phase_jobs=[j for j in jobs if j['name']==registry[workflow]['collectionJob']or j['name'].startswith(registry[workflow]['collectionJob']+' (')]
             source_done=bool(phase_jobs)and all(j.get('conclusion')in('success','failure','timed_out')for j in phase_jobs)
@@ -964,6 +973,7 @@ def update_status(state, run, jobs, reports=None):
     workflow = run['path'].split('/')[-1]
     if workflow not in WORKFLOWS or run.get('head_branch') != 'master' or run.get('event') not in ('push', 'schedule', 'workflow_dispatch', 'workflow_run') or run.get('status') != 'completed':
         return result
+    jobs = source_jobs_for_workflow(workflow, jobs)
     entries = result.get('workflows', {})
     previous = entries.get(workflow, {})
     # Run IDs follow creation order. An older queued snapshot finishing later must
@@ -1134,7 +1144,14 @@ def update_status(state, run, jobs, reports=None):
             if step.get('conclusion') in ('failure', 'timed_out', 'cancelled'):
                 failures.append({'job': job['name'], 'step': step['name'], **({'checks': named[:3]} if named else {})})
     refresh_jobs = [job for job in jobs if (job['name'] == REGISTRY[workflow]['collectionJob'] or job['name'].startswith(REGISTRY[workflow]['collectionJob'] + ' ('))]
-    steps = [step for job in refresh_jobs for step in (job.get('steps') or [])]
+    phase_jobs = refresh_jobs
+    monthly_shard_failed = False
+    if workflow == 'update-market-monthly.yml':
+        phase_jobs = refresh_jobs + [job for job in jobs if job.get('name') == 'refresh / record']
+        monthly_shard_failed = any(job.get('name', '').startswith('refresh / tweet-midi (')
+                                   and job.get('conclusion') in ('failure', 'timed_out', 'cancelled')
+                                   for job in jobs)
+    steps = [step for job in phase_jobs for step in (job.get('steps') or [])]
     def phase_status(names):
         selected = [step for step in steps if step.get('name') in names]
         if any(step.get('conclusion') in ('failure', 'timed_out', 'cancelled') for step in selected):
@@ -1150,6 +1167,8 @@ def update_status(state, run, jobs, reports=None):
     validation_status = phase_status(REGISTRY[workflow].get('validationSteps', []))
     # A partial set of successful checks does not certify validation as complete.
     checkpoint = next((s for s in steps if s.get('name') == 'Validate collected observations'), None)
+    if monthly_shard_failed:
+        validation_status = 'failure'
     if validation_status != 'failure':
         validation_status = ('failure' if checkpoint and checkpoint.get('conclusion') in ('failure','timed_out') else 'success' if checkpoint and checkpoint.get('conclusion') == 'success'
                              else 'not-run' if checkpoint else 'unknown')
@@ -1646,6 +1665,7 @@ def main():
                 if len(batch) < 100:
                     break
                 page += 1
+            jobs = source_jobs_for_workflow(workflow, jobs)
             require_completed_job_evidence(run, jobs, REGISTRY[workflow]['collectionJob'])
             for job in jobs:
                 # Browser checks annotate the exact failed check ('Échec ...'): keep it so

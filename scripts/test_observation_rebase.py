@@ -1074,7 +1074,8 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
         workflow = (ROOT / '.github/workflows/update-market-monthly.yml').read_text()
         for path in ['scripts/observation_rebase_guard.py', 'scripts/test_observation_rebase.py']:
             self.assertEqual(workflow.count("      - '" + path + "'"), 2)
-        self.assertIn("run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'", workflow)
+        producer = (ROOT / '.github/workflows/validate-record-market-monthly.yml').read_text()
+        self.assertIn("run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'", producer)
 
 
     def test_etf_acquisition_graph_does_not_read_actor_output(self):

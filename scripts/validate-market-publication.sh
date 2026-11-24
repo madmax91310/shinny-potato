@@ -11,24 +11,25 @@ python -m unittest discover -s scripts -p 'test_monthly*units.py'
 python -m unittest discover -s scripts -p 'test_ranking_sources.py'
 python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
 python -m unittest discover -s scripts -p 'test_market_transport.py'
-node scripts/build-equity-history-links.mjs
-node scripts/build-ranking-annual.mjs
-node scripts/build-monthly-duel-returns.mjs
-node scripts/build-equity-duel-returns.mjs
 npm run audit:calculator-series
 node scripts/test-monthly-consumers.mjs
 node scripts/test-investment-history-units.mjs
 node scripts/test-market-calendar-performance.mjs
 node scripts/test-performance-rankings.mjs
-node scripts/build-performance-links.mjs
 node scripts/test-etf-tool-connections.mjs
 node scripts/test-index-comparison-copy.mjs
 node scripts/test-asset-selection.mjs
 npm run audit:data-catalog
 npm run audit:data-provenance
-npm run verify:tweet-midi
+if ! bash scripts/reuse-tweet-midi-proof.sh "${TWEET_MIDI_PROOF:-}"; then
+  npm run verify:tweet-midi
+fi
 npm run build
 node scripts/build-dca-exposures.mjs
 node scripts/audit-portfolio-routing.mjs
 # Regeneration must agree with the exact files already committed for publication.
-git diff --exit-code HEAD -- src/data/equity-history-links.json src/data/ranking-annual.json src/data/monthly-duel-returns.json src/data/equity-duel-returns.json src/data/performance-links.json
+git diff --exit-code HEAD -- \
+  src/data/equity-history-links.json docs/equity-identity-gaps.json \
+  src/data/monthly-duel-returns.json src/data/equity-duel-returns.json \
+  src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json \
+  src/data/performance-links.json src/data/simulation-links.json

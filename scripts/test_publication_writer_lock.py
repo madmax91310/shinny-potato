@@ -14,7 +14,16 @@ class SharedAnniversaryWriterLock(unittest.TestCase):
         for path in workflows:
             text = path.read_text()
             refresh = text.split('  refresh:\n', 1)[1]
-            lock, steps = refresh.split('    steps:\n', 1)
+            if path.name == 'update-market-monthly.yml':
+                caller = refresh.split('\n  deploy:', 1)[0]
+                self.assertIn('uses: ./.github/workflows/validate-record-market-monthly.yml', caller)
+                lock = caller.split('    uses:', 1)[0]
+                steps = path.with_name('validate-record-market-monthly.yml').read_text()
+                self.assertIn('needs: [refresh, tweet-midi]', steps)
+                self.assertIn("needs.tweet-midi.result == 'success'", steps)
+                steps += (ROOT/'scripts/stage-market-monthly.sh').read_text()
+            else:
+                lock, steps = refresh.split('    steps:\n', 1)
             self.assertIn('src/data/anniversary-levels.json', steps)
             self.assertIn('actions/checkout@', steps)
             self.assertRegex(lock, r'(?m)^    concurrency:$')

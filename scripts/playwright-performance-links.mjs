@@ -9,6 +9,9 @@ import {qualifiedMonthlyWindows} from '../src/pages/performance-rankings/selecti
 import {getSimulationAssetId} from '../src/data/simulation-links.js'
 import { ASSETS,ASSET_ORDER,SPARSE_MONTHLY_DATA_IDS,INCONSISTENT_MONTHLY_DATA_IDS } from '../src/data/market-history.js'
 
+const widths = process.argv.length === 2 ? [390, 1280] : [Number(process.argv[2])]
+assert(process.argv.length <= 3 && widths.every(width => width === 390 || width === 1280), 'Expected viewport 390 or 1280')
+
 const base = 'http://localhost:4321/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--port', '4321'], { stdio: 'ignore' })
 let browser
@@ -23,7 +26,7 @@ try {
     await new Promise(resolve => setTimeout(resolve, 200))
   }
   browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH })
-  for (const width of [390, 1280]) {
+  for (const width of widths) {
     const page = await browser.newPage({ viewport: { width, height: 900 } })
     const errors = []
     const scripts = []
@@ -122,7 +125,7 @@ try {
     assert.deepEqual(errors, [])
     await page.close()
   }
-  console.log(`History shortcuts: mobile/desktop, ${ETFS.filter(etf=>getPerformanceHref(etf.isin)).length} exact ETF shares, annual/simulation round trips, valid dates, back navigation, unavailable IDs without substitution, preserved settings and no overflow verified.`)
+  console.log(`History shortcuts: ${widths.join("/")} px, ${ETFS.filter(etf=>getPerformanceHref(etf.isin)).length} exact ETF shares, annual/simulation round trips, valid dates, back navigation, unavailable IDs without substitution, preserved settings and no overflow verified.`)
 } finally {
   await browser?.close()
   server.kill()
