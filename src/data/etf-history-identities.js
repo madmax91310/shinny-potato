@@ -21,6 +21,9 @@ export const ETF_HISTORY_IDENTITIES = {
  etc_wheatNav:{...(automaticIdentities.etc_wheat??NON_BOND_HISTORY_IDENTITIES.etc_wheat)},
  // Independent NAV choices reuse the existing share artwork, never its quote history.
  etfFR0010342592Nav:{...automaticIdentities.etfFR0010342592},
+ etfFR0010755611Nav:{...automaticIdentities.etfFR0010755611},
+ etfFR0013411998Nav:{...automaticIdentities.etfFR0013411998},
+ etfFR0013412004Nav:{...automaticIdentities.etfFR0013412004},
  etfFR0007054358Nav:{...automaticIdentities.etfFR0007054358},
  etfLU1875395870Nav:{...automaticIdentities.etfLU1875395870},
  etfLU2196470426Nav:{...automaticIdentities.etfLU2196470426},
