@@ -27,7 +27,8 @@ try{
    await page.locator(`[data-asset-id="${etf.id}"]`).click()
    const copy=getPresentationCopy(etf)
    await page.waitForFunction(isin=>document.querySelector('.es-card .es-facts')?.textContent.includes(isin),isin)
-   assert((await page.locator('.es-card').innerText()).includes(copy.aum))
+   await page.locator('.es-details summary').click()
+   assert((await page.locator('.es-details').innerText()).includes(copy.aum))
    await page.getByRole('button',{name:/Copier le texte|Copié !/}).click()
    assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),buildText(etf))
    let png=false

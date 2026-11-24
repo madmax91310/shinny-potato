@@ -2,7 +2,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { annualPerformanceCurrencies } from '../../data/annual-performance-currency.js'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
-import { getPresentationCopy, presentationTicker } from './editorial.js'
+import { getPresentationCopy } from './editorial.js'
 import { Link, useLocation } from 'react-router-dom'
 import AssetToolLinks from '../../design-system/AssetToolLinks.jsx'
 import { getPerformanceHref } from '../../data/performance-links.js'
@@ -12,7 +12,7 @@ import AssetPicker from '../../design-system/AssetPicker'
 import SupportAlternatives from './SupportAlternatives'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { CATEGORY_EMOJI, ETFS, OPTIONS, readSheetRecord } from './records.js'
+import { ETFS, OPTIONS, readSheetRecord } from './records.js'
 import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
 import { accountLabel, buildText } from './lib'
 const renderETFImage = async etf => (await import('./canvasImage')).renderETFImage(etf)
@@ -34,22 +34,13 @@ function triggerAnchorDownload(dataUrl, filename) {
   document.body.removeChild(a)
 }
 
-function EtfCard({ etf: sourceEtf }) {
-  const etf = getPresentationCopy(sourceEtf)
-  const dot = CATEGORY_EMOJI[etf.category] || '⚫'
-  const tickerStr = presentationTicker(etf)
+function EtfDetails({ etf }) {
   const annual = getAnnualPerformance(etf)
   const commodities = commodityAllocationLines(etf.isin)
 
   return (
-    <article className="es-card">
-      <p className="es-engagement">{etf.hook}</p>
-      <h2 className="es-identity">
-        <span className="es-dot">{dot}</span>
-        <span className="es-name">{etf.name}</span>
-        {tickerStr && <span className="es-tickers">({tickerStr})</span>}
-      </h2>
-
+    <details className="es-details">
+      <summary>Détails et performances</summary>
       <ul className="es-facts">
         <li className="mono">
           <span className="es-fi">🆔</span>
@@ -97,27 +88,11 @@ function EtfCard({ etf: sourceEtf }) {
       </section>}
 
       <section className="es-block">
-        <h3 className="es-block-title">🔍 Ce que tu achètes</h3>
+        <h3 className="es-block-title">Exposition et composition</h3>
         <p>{etf.whatIs}</p>
-      </section>
-      <section className="es-block">
-        <h3 className="es-block-title">✅ Pourquoi s’y intéresser ?</h3>
-        <p>{etf.whyInteresting}</p>
-      </section>
-      <section className="es-block">
-        <h3 className="es-block-title">⚠️ Le point de vigilance</h3>
-        <p>{etf.whatToKnow}</p>
         {etf.riskMetric && <p>{etf.riskMetric}</p>}
       </section>
-      {etf.closing && <section className="es-block">
-        <p>{etf.closing}</p>
-      </section>}
-
-      <div className="es-foot">
-        <p className="es-engagement">💬 {etf.question}</p>
-        <p>Pas un conseil financier.</p>
-      </div>
-    </article>
+    </details>
   )
 }
 
@@ -222,7 +197,8 @@ function EtfWorkspace({ search }) {
   const sourceEtf = readSheetRecord(currentId)
   const currencies = annualPerformanceCurrencies(getAnnualPerformance(sourceEtf))
   const effectiveCurrency = currencies.includes(currency) ? currency : 'native'
-  const currentEtf = { ...sourceEtf, performanceCurrency: effectiveCurrency }
+  const currentEtf = getPresentationCopy({ ...sourceEtf, performanceCurrency: effectiveCurrency })
+  const postText = buildText(currentEtf)
   const exportKey = `${currentId}:${effectiveCurrency}`
   selectedRef.current = exportKey
   useEffect(() => { setLightbox(null); setCopied(false) }, [exportKey])
@@ -250,7 +226,7 @@ function EtfWorkspace({ search }) {
 
   async function copyCurrent() {
     try {
-      await copyPublicationText(buildText(currentEtf))
+      await copyPublicationText(postText)
       setCopied(true)
       setTimeout(() => setCopied(false), 1800)
     } catch { setCopied(false) }
@@ -277,7 +253,7 @@ function EtfWorkspace({ search }) {
     <div className="es-scope">
       <PageHeader
         title="Présentation d'ETF"
-        subtitle={`Bibliothèque de ${ETFS.length} ETF — vérifie les chiffres (ISIN, encours, performance) avant publication.`}
+        subtitle={`Bibliothèque de ${ETFS.length} ETF`}
       />
 
       <ToolWorkspace renderImage={() => renderETFImage(currentEtf)} imageAlt={`Fiche ETF ${currentEtf.name}`} actions={<>
@@ -297,13 +273,15 @@ function EtfWorkspace({ search }) {
             <AssetToolLinks isin={currentEtf.isin} exclude="sheet" />
             {performanceHref && <Button as={Link} to={performanceHref} variant="secondary">Voir sa performance</Button>}
           </div>
-          <p className="es-disclaimer" style={{ marginTop: 16 }}>Choisis un ETF, puis ouvre l’aperçu pour relire ta publication. Les boutons ci-dessous créent les visuels.</p>
           <SupportAlternatives key={currentId} etf={currentEtf} onSelect={selectETF} />
           {imageError && <p role="alert" className="es-disclaimer">{imageError}</p>}
         </section>
         <section className="tool-preview" aria-label="Publication ETF">
           <div className="es-preview-heading"><h2>Aperçu de la publication</h2></div>
-          <EtfCard etf={currentEtf} />
+          <article className="es-card">
+            <div className="es-post-text">{postText}</div>
+            <EtfDetails key={currentId} etf={currentEtf} />
+          </article>
           <p className="es-disclaimer" style={{ marginTop: 16 }}>Données actualisées automatiquement, sans cotation en temps réel.</p>
         </section>
       </ToolWorkspace>

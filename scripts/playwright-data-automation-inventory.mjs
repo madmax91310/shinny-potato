@@ -73,10 +73,11 @@ try{
    await page.goto(`${base}/fiches-etf?isin=${isin}`,{waitUntil:'networkidle'})
    if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
    await page.getByRole('tab',{name:'Texte',exact:true}).click()
-   await page.locator('.es-card .es-facts').getByText(`ISIN : ${isin}`,{exact:true}).waitFor()
+   await page.locator('.es-details summary').click()
+   await page.locator('.es-details .es-facts').getByText(`ISIN : ${isin}`,{exact:true}).waitFor()
    const observation=report.connections.find(r=>r.id===isin&&r.field==='performance')
    const expected=observation.marketCalendar
-   const card=await page.locator('.es-card').innerText()
+   const card=await page.locator('.es-details').innerText()
    if(observation.actionState==='current'){
     assert(card.includes('Performances annuelles'),isin)
     assert(!card.includes('cours ajustés, distributions réinvesties'),'The official NAV calendar must regain precedence once published: '+isin)
