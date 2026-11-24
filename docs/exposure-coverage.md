@@ -1,6 +1,6 @@
 # Couverture des expositions
 
-Contrôle automatique : 2026-11-23T23:06:35.996Z.
+Contrôle automatique : 2026-11-24T11:23:29.610Z.
 
 704 actifs distincts ; 636 avec au moins 99,5 % de pays et secteurs ; 60 hors classification ; 8 à compléter. Les alias d’un même ISIN sont comptés une fois.
 
@@ -15,4 +15,4 @@ Les actifs hors classification ne sont pas des lacunes. Une date expirée, une t
 | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5R75 | 0.00 % | 0.00 % | Ventilation absente |
 | iShares Blockchain Technology UCITS ETF | IE000RDRMSD1 | 100.00 % | 0.00 % | Poids signés incompatibles avec un donut |
 | iShares US Property Yield UCITS ETF USD (Dist) | IE00B1FZSF77 | 0.00 % | 100.00 % | Ventilation absente |
-| Avantis Global Small Cap Value UCITS ETF USD Acc | IE0003R87OG3 | 99.25 % | 100.00 % | Table partielle |
+| Avantis Global Small Cap Value UCITS ETF USD Acc | IE0003R87OG3 | 98.98 % | 100.00 % | Table partielle |
