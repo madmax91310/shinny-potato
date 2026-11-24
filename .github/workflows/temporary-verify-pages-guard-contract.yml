@@ -1,0 +1,19 @@
+name: Verify Pages guard contract (temporary branch)
+on:
+  push:
+    branches: [fix/publication-recovery-contract-20261124]
+    paths: [.github/workflows/temporary-verify-pages-guard-contract.yml]
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
+      - run: |
+          for test in scripts/test-*publish*.mjs; do
+            if grep -q 'needs.publish.outputs.needs_code' "$test"; then
+              node "$test"
+            fi
+          done
