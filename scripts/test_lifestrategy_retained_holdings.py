@@ -1,4 +1,5 @@
 """Compatible dated dependencies, never a fresh-source success from Git/cache."""
+from contextlib import contextmanager, redirect_stderr, redirect_stdout
 import copy
 import datetime as dt
 import gzip
@@ -15,6 +16,20 @@ from lifestrategy_holdings import derive
 
 FIXTURE = json.loads(gzip.decompress((Path(__file__).parent / 'fixtures/lifestrategy-nav/compatible-september-and-newer-october.json.gz').read_bytes()))
 NOW = dt.datetime(2026, 11, 16, 16, tzinfo=dt.timezone.utc)
+
+
+@contextmanager
+def capture_collector_output(scenario):
+    stdout = io.StringIO()
+    stderr = io.StringIO()
+    try:
+        with redirect_stdout(stdout), redirect_stderr(stderr):
+            yield stdout
+    except (Exception, SystemExit) as error:
+        for stream, captured in [('stdout', stdout), ('stderr', stderr)]:
+            if captured.getvalue():
+                error.add_note(f'LifeStrategy test scenario ({scenario}) collector {stream}:\n{captured.getvalue()}')
+        raise
 
 
 class RetainedLifeStrategyTest(unittest.TestCase):
@@ -123,40 +138,58 @@ class RetainedLifeStrategyTest(unittest.TestCase):
             for name, value in files.items():
                 path=root/name;path.parent.mkdir(parents=True, exist_ok=True);path.write_text(json.dumps(value))
             output=root/'result.json'
-            with patch.object(collector, 'ROOT', root), patch.object(collector, 'dt', types.SimpleNamespace(datetime=Clock)), \
-                 patch.object(retained, 'bootstrap_books', return_value=FIXTURE['retained']), \
-                 patch('sys.argv', ['collector','--apply','--only',*FIXTURE['parents'],'--output',str(output)]):
-                collector.main()
-            report=json.loads(output.read_text())
-            self.assertEqual(report['errors'], [])
-            self.assertEqual(len(report['successes']),4)
-            from producer_report_contract import _complete_holdings_results
-            native = _complete_holdings_results(report)
-            self.assertEqual(native['errors'], [])
-            self.assertTrue(all(r['sourceAttempted'] is False and r['phase'] == 'validation' for r in native['successes']))
-            self.assertTrue(all(r['checkedAt'] == '2026-11-14T14:51:25.690636+00:00' for r in native['successes']))
-            self.assertEqual(len(report['restoredDependencySnapshots']),8)
-            after=json.loads((root/'src/data/dca-complete-holdings.json').read_text())
-            for isin, old in FIXTURE['latest'].items():
-                self.assertEqual({k:v for k,v in after[isin].items() if k != retained.HISTORY}, old)
-            for isin in FIXTURE['parents']:
-                self.assertEqual(after[isin]['checkedAt'], '2026-11-14T14:51:25.690636+00:00')
-                self.assertEqual(after[isin]['validatedAt'], NOW.isoformat())
-                self.assertEqual(report['observations'][isin]['scope'], 'equity-lookthrough')
+            with capture_collector_output('valid retained holdings') as stdout:
+                with patch.object(collector, 'ROOT', root), patch.object(collector, 'dt', types.SimpleNamespace(datetime=Clock)), \
+                     patch.object(retained, 'bootstrap_books', return_value=FIXTURE['retained']), \
+                     patch('sys.argv', ['collector','--apply','--only',*FIXTURE['parents'],'--output',str(output)]):
+                    collector.main()
+                report=json.loads(output.read_text())
+                self.assertEqual(report['errors'], [])
+                self.assertEqual(
+                    {entry['id'] for entry in report['successes']},
+                    {f'dca-holdings:{isin}' for isin in FIXTURE['parents']},
+                )
+                self.assertEqual(len(report['successes']), 4)
+                self.assertIn('Complete holdings: 4/4;', stdout.getvalue())
+                from producer_report_contract import _complete_holdings_results
+                native = _complete_holdings_results(report)
+                self.assertEqual(native['errors'], [])
+                self.assertTrue(all(r['sourceAttempted'] is False and r['phase'] == 'validation' for r in native['successes']))
+                self.assertTrue(all(r['checkedAt'] == '2026-11-14T14:51:25.690636+00:00' for r in native['successes']))
+                self.assertEqual(len(report['restoredDependencySnapshots']),8)
+                after=json.loads((root/'src/data/dca-complete-holdings.json').read_text())
+                for isin, old in FIXTURE['latest'].items():
+                    self.assertEqual({k:v for k,v in after[isin].items() if k != retained.HISTORY}, old)
+                for isin in FIXTURE['parents']:
+                    self.assertEqual(after[isin]['checkedAt'], '2026-11-14T14:51:25.690636+00:00')
+                    self.assertEqual(after[isin]['validatedAt'], NOW.isoformat())
+                    self.assertEqual(report['observations'][isin]['scope'], 'equity-lookthrough')
             # One invalid parent cannot discard the other three derivations or
             # masquerade as a supplier access failure. Prior valid book remains.
             invalid = copy.deepcopy(FIXTURE['parents'])
             invalid['IE00BMVB5K07']['underlyingHoldings']['rows'][0]['weightPct'] += .01
             (root/'src/data/lifestrategy.json').write_text(json.dumps(invalid))
-            with patch.object(collector, 'ROOT', root), patch.object(collector, 'dt', types.SimpleNamespace(datetime=Clock)), \
-                 patch.object(retained, 'bootstrap_books', side_effect=AssertionError('Already retained')), \
-                 patch('sys.argv', ['collector','--apply','--only',*FIXTURE['parents'],'--output',str(output)]), self.assertRaises(SystemExit):
-                collector.main()
-            partial = json.loads(output.read_text())
-            self.assertEqual(len(partial['successes']),3)
-            self.assertEqual(len(partial['errors']),1)
-            self.assertEqual(partial['errors'][0]['phase'],'validation')
-            self.assertIs(partial['errors'][0]['sourceAttempted'],False)
-            self.assertEqual(json.loads((root/'src/data/dca-complete-holdings.json').read_text())['IE00BMVB5K07'],after['IE00BMVB5K07'])
+            with capture_collector_output('LifeStrategy 20 weight altered by +0.01 pp') as stdout:
+                with patch.object(collector, 'ROOT', root), patch.object(collector, 'dt', types.SimpleNamespace(datetime=Clock)), \
+                     patch.object(retained, 'bootstrap_books', side_effect=AssertionError('Already retained')), \
+                     patch('sys.argv', ['collector','--apply','--only',*FIXTURE['parents'],'--output',str(output)]), self.assertRaises(SystemExit) as exit_status:
+                    collector.main()
+                self.assertEqual(exit_status.exception.code, 1)
+                self.assertIn('Complete holdings: 3/4;', stdout.getvalue())
+                partial = json.loads(output.read_text())
+                self.assertEqual(
+                    {entry['id'] for entry in partial['successes']},
+                    {f'dca-holdings:{isin}' for isin in FIXTURE['parents'] if isin != 'IE00BMVB5K07'},
+                )
+                self.assertEqual(len(partial['successes']),3)
+                self.assertEqual(len(partial['errors']),1)
+                self.assertEqual(partial['errors'][0]['id'], 'dca-holdings:IE00BMVB5K07')
+                self.assertEqual(
+                    partial['errors'][0]['error'].partition('; retained snapshot recovery: ')[0],
+                    'LifeStrategy portfolio field differs from its acquired source: rows',
+                )
+                self.assertEqual(partial['errors'][0]['phase'],'validation')
+                self.assertIs(partial['errors'][0]['sourceAttempted'],False)
+                self.assertEqual(json.loads((root/'src/data/dca-complete-holdings.json').read_text())['IE00BMVB5K07'],after['IE00BMVB5K07'])
 
 if __name__ == '__main__': unittest.main()
