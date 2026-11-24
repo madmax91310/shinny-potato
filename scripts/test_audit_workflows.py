@@ -302,8 +302,8 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',workflow)
             self.assertTrue(paths,filename)
             if filename == 'update-market-monthly.yml':
-                configured_paths = (ROOT/'scripts/stage-market-monthly.sh').read_text()
-                committed = re.findall(r'(?m)^    (src/data/[a-z0-9-]+\.json)$', configured_paths)
+                configured_paths = (ROOT/'.github/workflows/monthly-market-publication-paths.json').read_text()
+                committed = [p for p in json.loads(configured_paths)['monthly'] if p.startswith('src/data/')]
                 workflow += configured_paths
             else:
                 committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))

@@ -30,6 +30,7 @@ jobs:
     outputs:
       base: ${{ steps.snapshot.outputs.base }}
       tree: ${{ steps.snapshot.outputs.tree }}
+      node_version: ${{ steps.snapshot.outputs.node_version }}
       collection_failed: ${{ steps.collect.outcome == 'failure' || steps.rankings.outcome == 'failure' || steps.listings.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -216,6 +217,7 @@ jobs:
           git diff --cached --binary HEAD -- "${market_paths[@]}" > "$RUNNER_TEMP/monthly-candidate.patch"
           echo "base=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "tree=$(git write-tree)" >> "$GITHUB_OUTPUT"
+          echo "node_version=$(node -p process.versions.node)" >> "$GITHUB_OUTPUT"
       - name: Freeze the exhaustive verifier from the candidate tree
         if: inputs.listings_only != true
         run: |
@@ -265,7 +267,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v7.0.0
         with:
-          node-version: 20
+          node-version: ${{ needs.refresh.outputs.node_version }}
       - uses: actions/download-artifact@v4
         with:
           name: monthly-tweet-midi-verifier
@@ -299,7 +301,7 @@ jobs:
           persist-credentials: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
       - uses: actions/setup-node@v7.0.0
         with:
-          node-version: 20
+          node-version: ${{ needs.refresh.outputs.node_version }}
           cache: npm
       - uses: actions/download-artifact@v4
         with:

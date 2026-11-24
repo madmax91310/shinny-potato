@@ -21,7 +21,7 @@ class SharedAnniversaryWriterLock(unittest.TestCase):
                 steps = path.with_name('validate-record-market-monthly.yml').read_text()
                 self.assertIn('needs: [refresh, tweet-midi]', steps)
                 self.assertIn("needs.tweet-midi.result == 'success'", steps)
-                steps += (ROOT/'scripts/stage-market-monthly.sh').read_text()
+                steps += path.with_name('monthly-market-publication-paths.json').read_text()
             else:
                 lock, steps = refresh.split('    steps:\n', 1)
             self.assertIn('src/data/anniversary-levels.json', steps)
