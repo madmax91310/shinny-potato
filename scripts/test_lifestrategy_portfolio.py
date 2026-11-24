@@ -83,6 +83,34 @@ class ExactLifeStrategyPortfolio(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'same-date'):
                     qualified_stored_portfolio(record, now)
 
+    def test_lagged_book_is_rechecked_only_against_its_own_allocation(self):
+        from collect_lifestrategy import collect_exact_portfolio
+        records = load('retained-parent-october-allocation-20261122')
+        now = dt.datetime(2026, 11, 24, tzinfo=UTC)
+        for config in CONFIG:
+            isin = config[2]
+            with self.subTest(isin=isin):
+                previous = records[isin]
+                latest = copy.deepcopy(previous)
+                old_book = previous['underlyingHoldings']
+                collect_exact_portfolio(old_book['sourceResponse'], config, latest, previous, now)
+                self.assertEqual(latest['underlyingHoldingsQualification']['status'], 'qualified-previous-period')
+                self.assertEqual(latest['underlyingHoldingsQualification']['expectedAsOf'], '2026-10-31')
+                self.assertEqual(latest['underlyingHoldings']['asOf'], '2026-09-30')
+                self.assertEqual(latest['underlyingHoldings']['checkedAt'], now.isoformat())
+                self.assertEqual(latest['underlyingHoldingsAllocation']['allocation']['checkedAt'], '2026-11-16')
+                self.assertEqual(latest['assetAllocation'], previous['assetAllocation'])
+                self.assertEqual(latest['underlyingHoldings']['rows'], old_book['rows'])
+                self.assertEqual(latest['underlyingHoldings'], qualified_stored_portfolio(latest, now))
+
+                changed = copy.deepcopy(old_book['sourceResponse'])
+                items = changed['data']['borHoldings'][0]['holdings']['items']
+                items[0]['securityLongDescription'] += ' changed'
+                with self.assertRaisesRegex(ValueError, 'different positions'):
+                    collect_exact_portfolio(changed, config, copy.deepcopy(previous), previous, now)
+                with self.assertRaisesRegex(ValueError, 'no qualified matching allocation'):
+                    collect_exact_portfolio(old_book['sourceResponse'], config, copy.deepcopy(previous), None, now)
+
     def test_source_format_change_and_wrong_published_allocation_rejected(self):
         body=load('9494');body['data']['borHoldings'][0]['holdings']['items'][0]['securityType']='NEW_TYPE'
         with self.assertRaises(ValueError):self.parse(body=body)
