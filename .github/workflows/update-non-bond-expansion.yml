@@ -7,6 +7,8 @@ on:
     branches: [master]
     paths:
       - 'scripts/*non_bond*'
+      - 'scripts/exh8_market_history.py'
+      - 'scripts/test_exh8_market_history.py'
       - 'scripts/collect_invesco_allocations.py'
       - 'scripts/*non-bond*'
       - '.github/workflows/update-non-bond-expansion.yml'
@@ -20,6 +22,8 @@ on:
       - 'scripts/test_issuer_refresh.py'
       - 'scripts/fixtures/characteristic-controls/**'
       - 'scripts/*non_bond*'
+      - 'scripts/exh8_market_history.py'
+      - 'scripts/test_exh8_market_history.py'
       - 'scripts/collect_invesco_allocations.py'
       - 'scripts/*non-bond*'
       - 'src/data/non-bond*'
@@ -64,6 +68,7 @@ jobs:
         run: |
           if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
       - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_exh8_market_history.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
