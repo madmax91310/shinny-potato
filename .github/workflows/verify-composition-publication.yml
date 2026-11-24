@@ -27,7 +27,7 @@ jobs:
           import {chromium} from 'playwright';
           const base='https://madmax91310.github.io/shinny-potato/';
           const repo='https://api.github.com/repos/madmax91310/shinny-potato/';
-          const merged='fb9623f204eb07b0b1d89ad3f70ded16559ad6df';
+          const merged='fc93aaaa55e55527e9ec836137952f4a5d6d7e04';
           async function json(url,headers={}){
             const r=await fetch(url,{headers,cache:'no-store',signal:AbortSignal.timeout(12000)});
             if(!r.ok)throw Error('HTTP '+r.status+' for '+url);
@@ -57,8 +57,9 @@ jobs:
           console.log('Verified actual Pages versions',JSON.stringify(build));
           const hash=b=>createHash('sha256').update(b).digest('hex');
           const lines=[
-            {asset:'lifestrategy20',isin:'IE00BMVB5K07',label:'Vanguard LifeStrategy 20% Equity UCITS ETF',weight:50,amount:0},
-            {asset:'IE000NDWFGA5',isin:'IE000NDWFGA5',label:'Global X Uranium UCITS ETF',weight:50,amount:0},
+            {asset:'lifestrategy20',isin:'IE00BMVB5K07',label:'Vanguard LifeStrategy 20% Equity UCITS ETF',weight:40,amount:0},
+            {asset:'IE000NDWFGA5',isin:'IE000NDWFGA5',label:'Global X Uranium UCITS ETF',weight:30,amount:0},
+            {asset:'IE00B1FZSF77',isin:'IE00B1FZSF77',label:'iShares US Property Yield UCITS ETF USD (Dist)',weight:30,amount:0},
           ];
           await mkdir('test-artifacts/composition-public',{recursive:true});
           const browser=await chromium.launch();
@@ -94,10 +95,15 @@ jobs:
               assert.ok(Math.abs(sleeve.equitySleeve.weightPct-20.36421)<1e-7);
               assert.equal(uranium?.complete,false);
               assert.ok(uranium.unvaluedPositions.some(p=>p.weightPct===null&&p.published?.NAME==='CURRENCY CONTRACT - USD'));
+              const property=snapshots.find(r=>r.sha256==='3852ab9450f0eebf3008eb28e26ed49fa285cddcec30c6a47546e1d50731c74e');
+              assert.equal(property?.asOf,'2026-11-20');
+              assert.equal(property.complete,true);
+              assert.equal(property.rows.length,86);
+              assert.ok(property.rows.every(r=>r.isin));
               assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
               assert.deepEqual(errors,[]);
               await panel.screenshot({path:'test-artifacts/composition-public/consumer-'+width+'.png'});
-              console.log(JSON.stringify({width,sleeve:sleeve.equitySleeve.asOf,uranium:uranium.asOf,rows:uranium.rows.length,overlap,pngSha256:hash(preview)}));
+              console.log(JSON.stringify({width,sleeve:sleeve.equitySleeve.asOf,uranium:uranium.asOf,rows:uranium.rows.length,propertyRows:property.rows.length,overlap,pngSha256:hash(preview)}));
               await context.close();
             }
           }finally{await browser.close();}
