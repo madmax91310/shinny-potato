@@ -1,8 +1,9 @@
 import datetime as dt
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
+from zipfile import BadZipFile
 
-from bitwise_nav_history import EXCEL_EPOCH, HEADER, workbook
+from bitwise_nav_history import EXCEL_EPOCH, HEADER, acquire_workbook, workbook
 
 
 class BitwiseWorkbookTests(unittest.TestCase):
@@ -28,3 +29,19 @@ class BitwiseWorkbookTests(unittest.TestCase):
             rows[2]['B'] = 'DE000A4AER62'
             with self.assertRaisesRegex(ValueError, 'identity'):
                 workbook(b'', now, '2020-12')
+
+    def test_only_an_invalid_workbook_transport_retries(self):
+        valid = ({'2021-12-31': 45}, {}, [])
+        document = Mock(side_effect=[b'html', b'valid-workbook'])
+        sleep = Mock()
+        with patch('bitwise_nav_history.workbook', side_effect=[BadZipFile(), valid]):
+            *parsed, attempts = acquire_workbook(None, '2020-12', document, sleep=sleep)
+        self.assertEqual(tuple(parsed), valid)
+        self.assertEqual([r['status'] for r in attempts], ['invalid-workbook-transport', 'workbook-parsed'])
+        sleep.assert_called_once_with(1)
+        document.reset_mock(side_effect=True)
+        document.return_value = b'bad-identity'
+        with patch('bitwise_nav_history.workbook', side_effect=ValueError('Wrong identity')):
+            with self.assertRaisesRegex(ValueError, 'Wrong identity'):
+                acquire_workbook(None, '2020-12', document, sleep=Mock())
+        document.assert_called_once()

@@ -3,6 +3,8 @@ import datetime as dt
 import hashlib
 import math
 import re
+import time
+from zipfile import BadZipFile
 
 from collect_product_calendars import bitwise_calendar
 from collect_public_issuer import Page
@@ -50,6 +52,23 @@ def workbook(body, now, start):
     return dated(values, now), units, disagreements
 
 
+def acquire_workbook(now, start, document, sleep=time.sleep):
+    attempts = []
+    for attempt in range(3):
+        body = document(WORKBOOK_URL)
+        digest = hashlib.sha256(body).hexdigest()
+        try:
+            parsed = workbook(body, now, start)
+        except BadZipFile as error:
+            attempts.append({'status': 'invalid-workbook-transport', 'sha256': digest})
+            if attempt == 2:
+                raise ValueError('HANetf returned a non-XLSX response on three bounded attempts') from error
+            sleep(2 ** attempt)
+        else:
+            attempts.append({'status': 'workbook-parsed', 'sha256': digest})
+            return (*parsed, attempts)
+
+
 def qualify(source, now, document):
     if (source['isin'], source['navCurrency'], source['sourceUrl'], source['workbookUrl']) != (
             'DE000A27Z304', 'USD', PRODUCT_URL, WORKBOOK_URL):
@@ -60,7 +79,7 @@ def qualify(source, now, document):
     if not {'DE000A27Z304', 'BTCE'} <= set(page.tokens) or 'Price Reference Currency\nUSD' not in text:
         raise ValueError('Bitwise issuer identity or currency changed')
     result = bitwise_calendar(page, {**source, 'currency': 'USD'}, now, hashlib.sha256(page_body).hexdigest())
-    nav, units, disagreements = workbook(document(WORKBOOK_URL), now, source['periodStart'])
+    nav, units, disagreements, attempts = acquire_workbook(now, source['periodStart'], document)
     checks = calendar_checks(nav, result['years'], 2, now)
     proof = next((check for check in checks if check['year'] == 2021), None)
     if not proof or any(proof[bound] not in units or proof[bound] in disagreements for bound in ('start', 'end')):
@@ -73,6 +92,7 @@ def qualify(source, now, document):
         'controlledCalendarYears': sorted(result['years']),
         'officialCalendarSource': PRODUCT_URL,
         'sourceNavUrl': WORKBOOK_URL,
+        'workbookAcquisitionAttempts': attempts,
         'officialIncomeReinvestedChartChecks': checks,
         # AUM and shares lack a same-valuation-time guarantee in this export.
         # Disagreements are retained, and never used to replace the NAV column.
