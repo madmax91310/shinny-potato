@@ -122,7 +122,8 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    return result + remainder + [s for s in old.values() if s.get('navProvider')=='hsbc'] + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
+    recovered = json.loads((ROOT/'scripts/monthly-window-nav-sources.json').read_text())
+    return result + remainder + recovered + [s for s in old.values() if s.get('navProvider')=='hsbc'] + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
 
 
 def daily_nav_fx_factor(native, currency, latest, body):
