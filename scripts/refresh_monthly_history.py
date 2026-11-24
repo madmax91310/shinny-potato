@@ -266,6 +266,9 @@ def collect_yahoo(config, now, fetch=get_json):
         result['splitComparisonEvidence']=split_notice
         result['sourceUrls'].append(split_notice['sourceUrl'])
         raw['splitComparisonEvidence']=split_notice
+    if config.get('reviewedMarketWindow') == 'EXH8-2019':
+        from exh8_market_history import verify_window
+        result = verify_window(config, result, daily, now)
     if config.get('distributionEvidence'):
         from qualified_distributions import reconcile_adjustments
         result=reconcile_adjustments(config,result,daily,now)

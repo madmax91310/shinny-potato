@@ -58,7 +58,11 @@ for(const year of [2021,2023,2024]){
  }
 }
 const retail=report.rows.find(row=>row.id==='DE000A0H08P6/2019')
-assert(retail.currentConsumer.windows.every(w=>!w.qualification.qualified),'Retail 2019 stays refused while dividend factors remain unresolved')
+assert(retail.open,'Qualification of the Xetra series does not change the BlackRock NAV discrepancy')
+const retailQuote=retail.currentConsumer.windows.find(w=>w.id==='etfEuropeRetail')
+assert.equal(retailQuote.mic,'XETR')
+assert.equal(retailQuote.qualification.qualified,true)
+assert(!retail.currentConsumer.windows.some(w=>w.convention==='fund-nav-total-return'&&w.qualification.qualified))
 for(const [isin,years] of [['FR0010755611',[2021,2024]],['FR0013411998',[2025]],['FR0013412004',[2025]]]){
  for(const year of years){
   const row=report.rows.find(item=>item.id===`${isin}/${year}`)
@@ -78,6 +82,6 @@ for(const row of verifiedBounds){
  assert.deepEqual([evidence.symbol,evidence.mic,evidence.currency,evidence.start,evidence.end],[row.original.marketSymbol,row.original.marketMic,row.original.marketCurrency,row.original.marketStartDate,row.original.marketEndDate])
  assert(row.sourceUrls.includes(evidence.sourceUrl))
  assert(row.missingPiece.includes(evidence.missing))
- assert.equal(row.currentConsumer.windows.find(w=>w.mic===evidence.mic&&w.currency===evidence.currency&&w.convention==='adjusted')?.qualification.qualified,false)
+ assert.equal(row.currentConsumer.windows.find(w=>w.mic===evidence.mic&&w.currency===evidence.currency&&w.convention==='adjusted')?.qualification.qualified,row.id==='DE000A0H08P6/2019')
 }
 console.log('Every original alert, value and period survives; only integrated financial proof updates its status, with residuals preserved.')

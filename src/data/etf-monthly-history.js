@@ -17,6 +17,7 @@ export function buildEtfMonthlyHistories(records = RECORDS) {
       ...(record.valuationBasis ? {valuationBasis:record.valuationBasis,historyConvention:record.valuationBasis} : {}),
     ...(record.anniversaryExclusionReason?{anniversaryExclusionReason:record.anniversaryExclusionReason}:{}),
       ...(record.anniversaryValuationBasis ? {anniversaryValuationBasis:record.anniversaryValuationBasis,anniversaryVariant:record.anniversaryVariant}:{}),
+      ...(record.reviewedMarketWindowEvidence ? { reviewedMarketWindowEvidence: record.reviewedMarketWindowEvidence } : {}),
       ...(record.historyUnqualifiedReturnWindows?.length?{historyUnqualifiedReturnWindows:record.historyUnqualifiedReturnWindows}:{}),
       ...(record.historyExcludedMonths?.length?{historyExcludedMonths:record.historyExcludedMonths,...(record.historyExclusionReasons?{historyExclusionReasons:record.historyExclusionReasons}:{})}:{}),
       ...(record.splitAdjustmentEvidence?{anniversaryCorporateActions:[{exDate:record.splitAdjustmentEvidence.exDate,ratio:record.splitAdjustmentEvidence.ratio,firstPostSplitMonth:record.splitAdjustmentEvidence.checks.find(c=>c.date>=record.splitAdjustmentEvidence.exDate)?.date.slice(0,7),sourceUrl:record.splitAdjustmentEvidence.sourceUrl}]}:{}),
