@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from bs4 import BeautifulSoup
 from collect_vanguard_etf import fetch_api, fetch_query, parse_api
-from lifestrategy_portfolio import QUERY as PORTFOLIO_QUERY, parse_portfolio
+from lifestrategy_portfolio import QUERY as PORTFOLIO_QUERY, parse_portfolio, paired_allocation, qualified_stored_portfolio
 from issuer_documents import download, pdf_text, document_date, validated_rows
 from data_automation import UTC, write_json_atomic
 
@@ -117,7 +117,48 @@ def parse_sources(html, pdf, api, config, now):
             'fieldQualification': qualifications,
             'unavailable': ['countries: no qualified whole-fund look-through', 'sectors: asset allocation is not an equity sector table']}
 
-def collect_one(config, now):
+def collect_exact_portfolio(body, config, record, previous, now):
+    allocation = record['assetAllocation']
+    retained = (previous or {}).get('underlyingHoldings')
+    portfolios = body.get('data', {}).get('borHoldings') or []
+    portfolio = portfolios[0].get('holdings', {}) if len(portfolios) == 1 else {}
+    dates = {row.get('effectiveDate') for row in portfolio.get('items', [])}
+    publication = next(iter(dates)) if len(dates) == 1 else None
+    historical = publication and publication < allocation['asOf']
+    document_sha = record['documentSha256']
+    if historical:
+        if not retained or publication != retained['asOf']:
+            raise ValueError(
+                f"Vanguard exact book is dated {publication}, but published allocation is "
+                f"{allocation['asOf']}; no qualified matching allocation for that book"
+            )
+        qualified_stored_portfolio(previous, now)
+        allocation, document_sha = paired_allocation(previous, retained)
+    observation = parse_portfolio(body, config, {**record, 'assetAllocation': allocation}, now)
+    if historical:
+        # The supplier was actually contacted, but only the old quarter was verified.
+        # Require the same individual weights; a new book at that date is a conflict.
+        sort_funds = lambda rows: sorted(rows, key=lambda row: (row['isin'], row['sedol']))
+        sort_cash = lambda rows: sorted(json.dumps(row, sort_keys=True) for row in rows)
+        if (sort_funds(observation['rows']) != sort_funds(retained['rows'])
+                or sort_cash(observation['nonFundPositions']) != sort_cash(retained['nonFundPositions'])):
+            raise ValueError('Vanguard republished different positions for the previously qualified date')
+    record['underlyingHoldings'] = observation
+    record['underlyingHoldingsAllocation'] = {
+        'holdingsSha256': observation['sha256'], 'allocation': allocation,
+        'documentSha256': document_sha,
+    }
+    qualification = {'status': 'qualified', 'sourceUrl': observation['sourceUrl'],
+                     'checkedAt': observation['checkedAt'], 'asOf': observation['asOf']}
+    if historical:
+        expected = record['assetAllocation']['asOf']
+        qualification.update(status='qualified-previous-period', expectedAsOf=expected,
+                             error=f'Vanguard precise fund-NAV book {expected} not yet served; '
+                                   f'prior exact book {publication} rechecked against its own allocation')
+    record['underlyingHoldingsQualification'] = qualification
+
+
+def collect_one(config, now, previous=None):
     equity, code, isin = config
     url = f'https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/{code}/lifestrategy-{equity}-equity-ucits-etf-eur-accumulating'
     html = download(url).decode('utf-8')
@@ -131,15 +172,7 @@ def collect_one(config, now):
     record['holdings']['weightBasis'] = 'issuer-reported-rounded-underlying-allocation'
     try:
         body = fetch_query(PORTFOLIO_QUERY, {'portIds': [str(code)]}, 'LifeStrategyPortfolio')
-        record['underlyingHoldings'] = parse_portfolio(body, config, record, now)
-        record['underlyingHoldingsAllocation'] = {
-            'holdingsSha256': record['underlyingHoldings']['sha256'],
-            'allocation': record['assetAllocation'],
-            'documentSha256': record['documentSha256'],
-        }
-        record['underlyingHoldingsQualification'] = {'status': 'qualified',
-            'sourceUrl': record['underlyingHoldings']['sourceUrl'],
-            'checkedAt': now.isoformat(), 'asOf': record['underlyingHoldings']['asOf']}
+        collect_exact_portfolio(body, config, record, previous, now)
     except Exception as error:
         record['underlyingHoldingsQualification'] = {'status': 'failed',
             'sourceUrl': 'https://www.vanguard.co.uk/gpx/graphql',
@@ -149,8 +182,10 @@ def collect_one(config, now):
 def main():
     p = argparse.ArgumentParser(); p.add_argument('--apply', action='store_true'); p.add_argument('--output', type=Path, required=True)
     args = p.parse_args(); now = dt.datetime.now(UTC)
+    path = ROOT/'src/data/lifestrategy.json'
+    old = json.loads(path.read_text()) if path.exists() else {}
     def one(config):
-        try: return {'record': collect_one(config, now)}
+        try: return {'record': collect_one(config, now, old.get(config[2]))}
         except Exception as error: return {'isin': config[2], 'error': str(error)}
     with ThreadPoolExecutor(max_workers=4) as pool: results = list(pool.map(one, CONFIG))
     report = {'checkedAt': now.isoformat(), 'records': [r['record'] for r in results if 'record' in r],
@@ -158,8 +193,6 @@ def main():
     for record in report['records']:
         report['failed'].extend({'isin': record['isin'], 'field': field, 'error': q['reason']}
                                for field, q in record['fieldQualification'].items() if q['status'] == 'unqualified')
-    path = ROOT/'src/data/lifestrategy.json'
-    old = json.loads(path.read_text()) if path.exists() else {}
     for r in report['records']:
         prev = old.get(r['isin'])
         if prev and any(r[f]['asOf'] < prev[f]['asOf'] for f in ['aum', 'holdings', 'assetAllocation']):
@@ -171,6 +204,11 @@ def main():
                 'sourceUrl': latest['sourceUrl'], 'attemptedAt': now.isoformat(),
                 'error': 'Exact underlying-fund portfolio date regressed'}
             latest = None
+        qualification = r.get('underlyingHoldingsQualification', {})
+        if qualification.get('status') == 'qualified-previous-period':
+            report['failed'].append({'isin': r['isin'], 'field': 'underlyingHoldings',
+                'error': qualification['error'], 'expectedAsOf': qualification['expectedAsOf'],
+                'lastVerifiedAsOf': qualification['asOf'], 'lastVerifiedAt': qualification['checkedAt']})
         if r.get('underlyingHoldingsQualification', {}).get('status') == 'failed':
             report['failed'].append({'isin': r['isin'], 'field': 'underlyingHoldings',
                 'error': r['underlyingHoldingsQualification']['error']})
