@@ -46,7 +46,7 @@ jobs:
           python - <<'PY'
           import json, os, shlex, subprocess, sys
           allowed = [r['id'] for path in ['scripts/official-nav-remainder-sources.json', 'scripts/monthly-window-nav-sources.json'] for r in json.load(open(path))]
-          branch_ids = ['etfFR0010755611Nav', 'etfFR0013411998Nav', 'etfFR0013412004Nav', 'etfEuropeRetailNav', 'etfDE000A27Z304Nav']
+          branch_ids = ['etfFR0010755611Nav', 'etfFR0013411998Nav', 'etfFR0013412004Nav', 'etfDE000A27Z304Nav']
           default_ids = branch_ids if (os.environ.get('GITHUB_HEAD_REF') or os.environ.get('GITHUB_REF_NAME')) == 'fix/qualified-six-monthly-20261124' else allowed
           ids = shlex.split(os.environ.get('NAV_ONLY', '')) or default_ids
           if len(ids) != len(set(ids)) or any(i not in allowed for i in ids):
@@ -127,8 +127,8 @@ jobs:
         if: always() && github.head_ref == 'fix/qualified-six-monthly-20261124'
         run: |
           node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/monthly-window-baseline.json"
-          python scripts/refresh_monthly_history.py --only etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav --baseline "$RUNNER_TEMP/monthly-window-baseline.json" --output "$RUNNER_TEMP/monthly-window-observation.json" --evidence-output "$RUNNER_TEMP/monthly-window-evidence.json" --apply
-          node scripts/test-monthly-window-nav-consumers.mjs etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav
+          python scripts/refresh_monthly_history.py --only etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav etfDE000A27Z304Nav --baseline "$RUNNER_TEMP/monthly-window-baseline.json" --output "$RUNNER_TEMP/monthly-window-observation.json" --evidence-output "$RUNNER_TEMP/monthly-window-evidence.json" --apply
+          node scripts/test-monthly-window-nav-consumers.mjs etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav etfDE000A27Z304Nav
           npm run build
       - name: Preserve real results even after a failure
         if: always()

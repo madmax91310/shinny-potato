@@ -16704,6 +16704,25 @@
         2025
       ],
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "etfDE000A27Z304Nav",
+      "isin": "DE000A27Z304",
+      "label": "Bitwise Physical Bitcoin ETP · VL",
+      "instrumentType": "ETN",
+      "consumerScope": "catalog",
+      "currency": "USD",
+      "periodStart": "2020-12",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Valeur liquidative officielle de l'ETP en USD, nette des frais, recoupée avec le calendrier Bitwise. La cotation en EUR reste distincte.",
+      "navProvider": "bitwise",
+      "navCurrency": "USD",
+      "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "workbookUrl": "https://hanetf.com/wp-content/assets/upload/NAV_history-BTCE-DE000A27Z304-all-all.xlsx"
     }
   ]
 }
