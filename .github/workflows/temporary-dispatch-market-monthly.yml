@@ -1,0 +1,15 @@
+name: Recollect monthly observations after Pages transition (temporary branch)
+on:
+  push:
+    branches: [ops/recollect-monthly-after-pages-v7-20261124]
+    paths: [.github/workflows/temporary-dispatch-market-monthly.yml]
+permissions:
+  actions: write
+jobs:
+  launch:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Recollect only the ordinary recovery scope on master
+        run: gh workflow run update-market-monthly.yml --repo "$GITHUB_REPOSITORY" --ref master -f retry_failed=true
